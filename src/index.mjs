@@ -10,8 +10,37 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
 
   const code = req(entryPointFile);
   const fdata = phase0(code, entryPointFile);
-  phase1(fdata, resolve, req);
-  phase2(fdata, resolve, req);
+  const program = {
+    modules: new Map([[fdata.name, fdata]]),
+    main: fdata.name,
+  };
+  phase1(program, fdata, resolve, req);
+  phase2(program, fdata, resolve, req);
+
+  fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
+    console.log('-', uniqueName, obj);
+    if (obj.updates.length === 1) {
+      let update = obj.updates[0].parent[obj.updates[0].prop];
+      if (obj.updates[0].index >= 0) update = update[obj.updates[0].index];
+      if (update.type === 'Literal') {
+        log('Replacing literal binding with the literal...');
+
+        // Replace all occurrences with the literal...
+        obj.usages.forEach(({parent, prop, index}) => {
+          // Cannot replace the declaration itself. But can eliminate it
+          if (parent.type === 'VariableDeclarator' && prop !== 'init') {
+            // TODO: Eliminate this declaration...
+            log('TODO: eliminate var declarator');
+
+          } else {
+            log('Replacing a usage of `' + uniqueName + '` with a literal');
+            if (index >= 0) parent[prop][index] = update;
+            else parent[prop] = update;
+          }
+        });
+      }
+    }
+  })
 
   // This is where the magic starts
 

@@ -32,11 +32,12 @@ export function phase0(code, fname) {
 
   groupEnd();
 
-  return {
+  return { // fdata
     fname,
     tenkoOutput,
     tokenTable,
-    imports: undefined,
-    exports: undefined,
+    imports: undefined, // phase1
+    exports: undefined, // phase1
+    globallyUniqueNamingRegistery: undefined, // phase1. every binding is assigned a (module) globally unique name and meta data for this binding is stored here by that name
   };
 }

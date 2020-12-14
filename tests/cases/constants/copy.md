@@ -1,0 +1,21 @@
+# Preval test case
+
+# copy.md
+
+> constants > copy
+>
+> Copy one constant into another. Should fold them.
+
+## Input
+
+`````js filename=intro
+const foo = "five";
+const bar = foo;
+`````
+
+## Output
+
+`````js filename=intro
+const foo = "five";
+const bar = "five";
+`````

@@ -23,5 +23,4 @@ f("x");
 function f(a) {
   return a;
 }
-
 `````

@@ -25,7 +25,7 @@ Error.stackTraceLimit = Infinity;
 
 const CONFIG = parseTestArgs();
 
-const fileNames = getTestFileNames();
+const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames();
 const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname));
@@ -33,7 +33,7 @@ const testCases = fileNames
 let pass = 0;
 let snap = 0; // snapshot fail
 let fail = 0; // crash
-testCases.forEach(runTestCase);
+testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 }, i));
 
 console.log(
   `Suite finished, ${GREEN}${pass} tests passed${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
@@ -42,7 +42,7 @@ console.log(
 );
 
 function runTestCase(
-  { md, mdHead, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length), fin, withOutput = false, ...other },
+  { md, mdHead, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
   caseIndex,
 ) {
   if (JSON.stringify(other) !== '{}') {
@@ -124,10 +124,12 @@ function runTestCase(
   if (withOutput) {
     console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
     console.log('code:');
-    for (const name of fin) {
-      console.log('###########################\n## File:', name, '\n###########################');
-      console.log(fin[name]);
-    }
+    Object.keys(fin).forEach((fname) => {
+      console.log('###########################\n## File:', fname, '\n###########################');
+      console.log(fin[fname]);
+      console.log('#######\n## Output:\n#######');
+      console.log(output.files[fname]);
+    });
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
   }
 }

@@ -1,6 +1,6 @@
 import path from 'path';
 
-import Prettier from 'prettier'
+import Prettier from 'prettier';
 
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
@@ -28,6 +28,7 @@ export function fromMarkdownCase(md, fname) {
   // Returns a test case: {md, fname, head, fin}
 
   if (md[0] === '/' && md[1] === '/' && md[2] === ' ') {
+    console.log('Converting new case in', fname, 'to an actual test case');
     // Assume new test case
     return {
       fname,
@@ -76,6 +77,15 @@ export function fromMarkdownCase(md, fname) {
   }
 }
 
+function fmat(code) {
+  try {
+    return Prettier.format(code, { parser: 'babel' });
+  } catch (e) {
+    // Prettier error implies invalid transformation. Uups.
+    throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
+  }
+}
+
 export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
   const content =
     mdHead +
@@ -84,7 +94,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
     '\n\n## Output\n\n' +
     Object.keys(output.files)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-      .map((key) => '`````js filename=' + key + '\n' + Prettier.format(output.files[key]) + '\n`````')
+      .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
       .join('\n\n');
 
   return content;

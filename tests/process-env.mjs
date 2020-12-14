@@ -5,6 +5,7 @@ export function parseTestArgs() {
   const config = {
     updateSnapshots: false,
     noColor: false,
+    targetFile: undefined,
   };
 
   while (argv.length) {
@@ -14,6 +15,10 @@ export function parseTestArgs() {
       case '--update-snapshots': {
         config.updateSnapshots = true;
         break;
+      }
+
+      case '-f': {
+        config.targetFile = argv.shift();
       }
 
       case '-C': {

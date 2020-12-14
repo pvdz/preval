@@ -26,4 +26,6 @@ export default new Map([
   ['RegExp', 'RegExp'],
   ['Set', 'Set'],
   ['String', 'String'],
+  // special
+  ['$', '$'],
 ]);

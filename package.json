@@ -1,0 +1,38 @@
+{
+  "name": "preval",
+  "version": "0.0.1",
+  "author": "Peter van der Zee",
+  "description": "Wannabe compiler tool for JS",
+  "main": "src/index.mjs",
+  "module": "src/index.mjs",
+  "bin": "./p",
+  "devDependencies": {
+    "prettier": "2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvdz/preval.git"
+  },
+  "keywords": [
+    "javascript",
+    "js",
+    "ecmascript",
+    "es5",
+    "es6",
+    "es7",
+    "es8",
+    "es9",
+    "es10",
+    "es11",
+    "es2015",
+    "es2016",
+    "es2017",
+    "es2018",
+    "es2019",
+    "es2020",
+    "parser",
+    "parsing",
+    "compiler",
+    "tooling"
+  ]
+}

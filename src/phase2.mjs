@@ -13,7 +13,7 @@ function linter() {
 }
 linter.check = linter; // OH NO HE DIDNT
 
-export function phase2(fdata, resolve, req) {
+export function phase2(program, fdata, resolve, req) {
   const tokenTable = fdata.tokenTable;
   const tokens = fdata.tenkoOutput.tokens;
 
@@ -361,6 +361,34 @@ export function phase2(fdata, resolve, req) {
         //const desc = 'Function<' + (node.id ? node.id.name : '<anon>') + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
         //_$(node, '@func', 'N' + node.$p.tid + '=' + (node.id ? node.id.name : 'anon'), node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'decl', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
 
+
+        if (node.body.length === 0) {
+          // Empty function. Eliminate.
+          node.$p.replaceWith = 'undefined';
+        }
+        if (node.body.length === 1 && node.body[0].type === 'ReturnStatement') {
+          // TODO: function f(a = sideEffects()) { return 'x' }
+
+          if (node.body[0].argument) {
+            // function f(){ return 'x'; }f() -> 'x'
+            // TODO: function f(a) { return a }
+            // TODO: let n = 1; function f() { return n }
+
+            if (node.body[0].argument.type === 'Literal') {
+              // So this is a function with only a return statement and it returns a literal.
+              // TODO: side effects are possible in the param defaults. But barring that...
+              // There are no other side effects so this function can essentially be replaced with the literal for any call of it
+              // If this function now gets resolved as being called then the call will be replaced with this literal. Baby steps.
+              node.$p.replacedBy = node.body[0].argument;
+            }
+
+            node.$p.replaceWith = node.body[0].argument;
+          } else {
+            // Eh ok. Good test, I guess.
+            node.$p.replaceWith = 'undefined';
+          }
+        }
+
         break;
       }
 
@@ -434,7 +462,9 @@ export function phase2(fdata, resolve, req) {
       }
 
       case 'ReturnStatement': {
-        if (node.argument) expr(node, 'argument', -1, node.argument);
+        if (node.argument) {
+          expr(node, 'argument', -1, node.argument);
+        }
         //else $(node, '@push', 'undefined');
         //$(node, '@return'); // Assumes an (implicit or explicit) arg is pushed
         break;
@@ -486,24 +516,55 @@ export function phase2(fdata, resolve, req) {
       case 'VariableDeclaration': {
         const kind = node.kind;
         node.declarations.forEach((dnode, i) => {
+          ASSERT(dnode.id?.type === 'Identifier', 'todo: implement other kinds of variable declarations');
+
           if (dnode.init) {
-            expr(node, 'declarations', i, dnode, 'init', -1, dnode.init);
+            // Detect whether it was a literal (we don't care to visit those). If not, visit it. If the AST changed, check again.
+            // Phase 1 already checked the first case but if this replacement changed it, we can update the
+            const wasLiteral = dnode.init.type === 'Literal' || dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name);
+            // No need to visit literals
+            if (!wasLiteral) {
+              expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
+              const nowLiteral = dnode.init.type === 'Literal' || dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name);
+              if (nowLiteral) {
+                // The visit replaced whatever was there with a literal. This means the binding is now also a side-effect free variable that can be inlined and eliminated.
+                program.globallyUniqueNamingRegistery.get(dnode.id)
+              }
+            }
+
           } else {
-            const pid = createPlaceholder(store, 'HB', 'binding `' + dnode.id ? dnode.id.name : '<destruct>' + '` without init');
+            // Ignore? Phase1 should have marked this var as potentially undefined. If it has no actual assignments then it's just `undefined`
+
+            //const pid = createPlaceholder(store, 'HB', 'binding `' + dnode.id ? dnode.id.name : '<destruct>' + '` without init');
             linter.check(
               'BINDING_NO_INIT',
               { filename: fdata.fname, column: dnode.id.loc.start.column, line: dnode.id.loc.start.line },
               dnode.id.name,
             );
-            log('Created placeholder', tstr(pid), 'for the binding');
+            //log('Created placeholder', tstr(pid), 'for the binding');
           }
 
           // The paramNode can be either an Identifier or a pattern of sorts
           if (dnode.id.type === 'Identifier') {
             // Simple case. Create the binding and be done.
 
-            log('Var decl id:');
             const uniqueName = findUniqueNameForBindingIdent(dnode.id);
+            log('Var decl id:', uniqueName);
+            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            const updates = meta.updates;
+            log('This binding has', updates.length, 'updates');
+            ASSERT(updates, 'should find meta data for each name and should have an updates array', uniqueName, meta);
+            if (updates.length === 1) {
+              ASSERT(updates[0].parent?.[updates[0]?.prop], 'all updates are nodes, right? can this be null?', updates);
+              const update = updates[0].parent[updates[0].prop];
+              if (update.type === 'Literal') {
+                log('The binding `' + uniqueName + '` has one update and it is a literal:', update);
+                log('This means it can be inlined in all its usages:',meta.usages);
+              }
+            } else {
+              // TODO: cases where all updates are for the same thing
+            }
+
 
             //if (isExport) {
             //  $(dnode, '@dup', '<exported binding decl>');
@@ -856,6 +917,13 @@ export function phase2(fdata, resolve, req) {
           //$(node, '@super_call', node.arguments.length, spreadAt);
         } else {
           log(DIM + 'Setting up call context' + RESET);
+
+          if (node.callee.type === 'Identifier') {
+            // Look up the binding. See if we can statically resolve it to a function value?
+            const uniqueName = findUniqueNameForBindingIdent(node.callee);
+
+          }
+
           if (node.callee.type !== 'MemberExpression') {
             // in strict mode implicit context is undefined, not global
           }
@@ -965,10 +1033,10 @@ export function phase2(fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        const uniqueName = findUniqueNameForBindingIdent(node);
-        log('Queueing lookup for `' + uniqueName + '`');
-        //$(node, '@ident', uniqueName);
-
+        const uniqueName = node.$p.uniqueName;
+        ASSERT(uniqueName, 'the uniqueName should be resolved in phase1', node, uniqueName);
+        const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+        ASSERT(meta, 'meta data should exist for this name', node.name, uniqueName, meta);
         //getFirstToken(node).tlog = [];
         break;
       }

@@ -16,5 +16,4 @@ $('a' + 'b')
 
 `````js filename=intro
 $("ab");
-
 `````

@@ -95,7 +95,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
     Object.keys(output.files)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-      .join('\n\n');
+      .join('\n\n') + '\n';
 
   return content;
 }

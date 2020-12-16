@@ -15,9 +15,6 @@ function linter() {
 linter.check = linter; // OH NO HE DIDNT
 
 export function phase2(program, fdata, resolve, req) {
-  const tokenTable = fdata.tokenTable;
-  const tokens = fdata.tenkoOutput.tokens;
-
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 

@@ -19,7 +19,7 @@ $(f());
 
 `````js filename=intro
 function f() {
-  return "foo";
+  return 'foo';
 }
 $(f());
 `````

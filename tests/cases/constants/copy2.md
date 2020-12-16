@@ -18,8 +18,8 @@ $(wow)
 ## Output
 
 `````js filename=intro
-const foo = "five";
-const bar = "five";
-const wow = "five";
-$("five");
+const foo = 'five';
+const bar = 'five';
+const wow = 'five';
+$('five');
 `````

@@ -79,7 +79,22 @@ export function fromMarkdownCase(md, fname) {
 
 function fmat(code) {
   try {
-    return Prettier.format(code, { parser: 'babel' });
+    return Prettier.format(code, {
+      parser: 'babel',
+      ...{
+        // maybe keep in sync with prettierrc? prolly fairly immutable and irrelevant for tests anyways...
+        printWidth: 140,
+        tabWidth: 2,
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+        quoteProps: 'as-needed',
+        trailingComma: 'all',
+        bracketSpacing: true,
+        arrowParens: 'always',
+        endOfLine: 'lf',
+      },
+    });
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
     throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
@@ -95,7 +110,8 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
     Object.keys(output.files)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-      .join('\n\n') + '\n';
+      .join('\n\n') +
+    '\n';
 
   return content;
 }

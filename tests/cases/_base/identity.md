@@ -19,7 +19,7 @@ function f(a) {
 ## Output
 
 `````js filename=intro
-f("x");
+f('x');
 function f(a) {
   return a;
 }

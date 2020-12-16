@@ -16,6 +16,6 @@ $(foo)
 ## Output
 
 `````js filename=intro
-const foo = "five";
-$("five");
+const foo = 'five';
+$('five');
 `````

@@ -13,15 +13,15 @@ const x = 'a';
 const y = 'b' + x;
 const z = x + y;
 const xyz = z;
-$(xyz)
+$(xyz);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = "aba";
-const y = "ba";
-const z = "aba";
-const xyz = "aba";
-$("aba");
+const x = 'aba';
+const y = 'ba';
+const z = 'aba';
+const xyz = 'aba';
+$('aba');
 `````

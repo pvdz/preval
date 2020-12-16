@@ -506,6 +506,7 @@ export function phase2(program, fdata, resolve, req) {
 
       case 'VariableDeclaration': {
         const kind = node.kind;
+        let removed = false;
         node.declarations.forEach((dnode, i) => {
           ASSERT(dnode.id?.type === 'Identifier', 'todo: implement other kinds of variable declarations');
 
@@ -559,6 +560,15 @@ export function phase2(program, fdata, resolve, req) {
               // TODO: cases where all updates are for the same thing
             }
 
+            log('Declaration has', meta.usages.length, 'usages left');
+            if (meta.usages.length === 1) {
+              log('Binding is no longer referenced so we can remove its declarator');
+              ASSERT(meta.usages[0].parent === dnode, 'the last usage should be its own declaration');
+              // Drop the declaration. It's no longer useful.
+              node.declarations[i] = null; // Filtered out after the loop
+              removed = true;
+            }
+
             //if (isExport) {
             //  $(dnode, '@dup', '<exported binding decl>');
             //  $(dnode, '@export_as', isExport === true ? uniqueName : 'default');
@@ -601,6 +611,15 @@ export function phase2(program, fdata, resolve, req) {
             dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
           }
         });
+        if (removed) {
+          node.declarations = node.declarations.filter(Boolean); // such cheesy
+          if (node.declarations.length === 0) {
+            log('Declaration has no more declarations so we can drop that one too');
+            const index = crumbsIndex[crumbsIndex.length - 1];
+            if (index >= 0) crumbsNode[crumbsNode.length - 1][crumbsProp[crumbsProp.length - 1]][index] = { type: 'EmptyStatement' };
+            else crumbsNode[crumbsNode.length - 1][crumbsProp[crumbsProp.length - 1]] = { type: 'EmptyStatement' };
+          }
+        }
         break;
       }
 

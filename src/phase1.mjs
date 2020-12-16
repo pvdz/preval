@@ -316,6 +316,7 @@ export function phase1(program, fdata, resolve, req) {
         log('Ident:', node.name);
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
         log('Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (
           // We wouldn't want to process the property name of `foo.bar`, but we would want to process `foo`, or a dynamic property `foo[bar]`
@@ -334,8 +335,8 @@ export function phase1(program, fdata, resolve, req) {
 
           //// Do not include the declarations as references (although they could be eliminated...?)
           //if (parentNode.type !== 'VariableDeclarator') {
-            const obj = globallyUniqueNamingRegistery.get(uniqueName);
-            obj.usages.push({parent: parentNode, prop: parentProp, index: -1}); // TODO: index
+          const obj = globallyUniqueNamingRegistery.get(uniqueName);
+          obj.usages.push({ parent: parentNode, prop: parentProp, index: parentIndex });
           //}
         }
 

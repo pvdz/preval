@@ -15,32 +15,45 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
     main: fdata.name,
   };
   phase1(program, fdata, resolve, req);
-  phase2(program, fdata, resolve, req);
 
-  fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
-    console.log('-', uniqueName, obj);
-    if (obj.updates.length === 1) {
-      let update = obj.updates[0].parent[obj.updates[0].prop];
-      if (obj.updates[0].index >= 0) update = update[obj.updates[0].index];
-      if (update.type === 'Literal') {
-        log('Replacing literal binding with the literal...');
+  let changed = false;
+  do {
+    changed = phase2(program, fdata, resolve, req);
 
-        // Replace all occurrences with the literal...
-        obj.usages.forEach(({parent, prop, index}) => {
-          // Cannot replace the declaration itself. But can eliminate it
-          if (parent.type === 'VariableDeclarator' && prop !== 'init') {
-            // TODO: Eliminate this declaration...
-            log('TODO: eliminate var declarator');
+    fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
+      if (obj.updates.length === 1) {
+        let update = obj.updates[0].parent[obj.updates[0].prop];
+        if (obj.updates[0].index >= 0) update = update[obj.updates[0].index];
+        if (update.type === 'Literal') {
+          log('Replacing literal binding with the literal...');
 
-          } else {
-            log('Replacing a usage of `' + uniqueName + '` with a literal');
-            if (index >= 0) parent[prop][index] = update;
-            else parent[prop] = update;
-          }
-        });
+          // Replace all occurrences with the literal...
+          obj.usages.forEach(({ parent, prop, index }) => {
+            // Cannot replace the declaration itself. But can eliminate it
+            if (parent.type === 'VariableDeclarator' && prop !== 'init') {
+              // TODO: Eliminate this declaration...
+              log('TODO: eliminate var declarator');
+            } else {
+              log('Replacing a usage of `' + uniqueName + '` with a literal');
+              if (index >= 0) {
+                if (parent[prop][index] !== update) {
+                  log('- actually replacing', parent.type + '[' + prop + '][' + index + '] with a', update.type);
+                  parent[prop][index] = update;
+                  changed = true;
+                }
+              } else {
+                if (parent[prop] !== update) {
+                  log('- actually replacing', parent.type + '[' + prop + '] with a', update.type, '->', index);
+                  parent[prop] = update;
+                  changed = true;
+                }
+              }
+            }
+          });
+        }
       }
-    }
-  })
+    });
+  } while (changed);
 
   // This is where the magic starts
 

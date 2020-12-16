@@ -1,4 +1,5 @@
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+import { printer } from '../lib/printer.mjs';
 
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, printNode } from './utils.mjs';
 
@@ -17,6 +18,9 @@ export function phase2(program, fdata, resolve, req) {
   const tokenTable = fdata.tokenTable;
   const tokens = fdata.tenkoOutput.tokens;
 
+  let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
+  let somethingChanged = false; // Did phase2 change anything at all?
+
   const lexScopeStack = [];
   const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
@@ -29,7 +33,13 @@ export function phase2(program, fdata, resolve, req) {
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   //let actions = [];
-  stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
+  do {
+    changed = false;
+    stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
+    if (changed) somethingChanged = true;
+
+    log('Current state\n--------------\n' + printer(fdata.tenkoOutput.ast) + '\n--------------\n');
+  } while (changed);
   //$(fileState.tenkoOutput.ast, '@log', 'End of Program');
   //fileState.globalActions = actions;
 
@@ -46,6 +56,8 @@ export function phase2(program, fdata, resolve, req) {
 
   groupEnd();
 
+  return somethingChanged;
+
   //function $(node, action, ...args) {
   //  const {loc: {start: {column, line}}} = node;
   //  actions.push([action, column, line, args]);
@@ -54,22 +66,6 @@ export function phase2(program, fdata, resolve, req) {
   //  const {loc: {start: {column, line}}} = node;
   //  actions.unshift([action, column, line, args]);
   //}
-
-  function getFirstToken(node) {
-    ASSERT(node, 'getFirstToken wants a node', node);
-    const token = tokenTable.get(node.loc.start.line + ':' + node.loc.start.column);
-    ASSERT(token, 'each ast node should be able to find the first token of that node', node, token);
-    return token;
-  }
-  function getPrevTokenPastGroupAndSpaces(node) {
-    const tokenRhs = getFirstToken(node);
-    let tokenPrev = tokens[tokenRhs.n - 1];
-    while (tokenPrev && (Tenko.isWhiteToken(tokenPrev.type) || tokenPrev.str === '(')) {
-      tokenPrev = tokens[tokenPrev.n - 1];
-    }
-    ASSERT(tokenPrev, 'should have found a token', tokenPrev);
-    return tokenPrev;
-  }
 
   function findUniqueNameForBindingIdent(node, startAtPArent = false) {
     ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
@@ -228,10 +224,6 @@ export function phase2(program, fdata, resolve, req) {
           node.specifiers.forEach((snode) => {
             ASSERT(snode.local.type === 'Identifier', 'fixme if different', snode);
             ASSERT(snode.exported.type === 'Identifier', 'fixme if different', snode);
-
-            //$(snode.local, '@ident', snode.local.name);
-            //getFirstToken(snode.local).tlog = [];
-            //$(snode, '@export_as', snode.exported.name);
           });
         }
         break;
@@ -360,7 +352,6 @@ export function phase2(program, fdata, resolve, req) {
 
         //const desc = 'Function<' + (node.id ? node.id.name : '<anon>') + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
         //_$(node, '@func', 'N' + node.$p.tid + '=' + (node.id ? node.id.name : 'anon'), node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'decl', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
-
 
         if (node.body.length === 0) {
           // Empty function. Eliminate.
@@ -521,17 +512,20 @@ export function phase2(program, fdata, resolve, req) {
           if (dnode.init) {
             // Detect whether it was a literal (we don't care to visit those). If not, visit it. If the AST changed, check again.
             // Phase 1 already checked the first case but if this replacement changed it, we can update the
-            const wasLiteral = dnode.init.type === 'Literal' || dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name);
+            const wasLiteral =
+              dnode.init.type === 'Literal' ||
+              (dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name));
             // No need to visit literals
             if (!wasLiteral) {
               expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
-              const nowLiteral = dnode.init.type === 'Literal' || dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name);
+              const nowLiteral =
+                dnode.init.type === 'Literal' ||
+                (dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name));
               if (nowLiteral) {
                 // The visit replaced whatever was there with a literal. This means the binding is now also a side-effect free variable that can be inlined and eliminated.
-                program.globallyUniqueNamingRegistery.get(dnode.id)
+                fdata.globallyUniqueNamingRegistery.get(dnode.id);
               }
             }
-
           } else {
             // Ignore? Phase1 should have marked this var as potentially undefined. If it has no actual assignments then it's just `undefined`
 
@@ -559,12 +553,11 @@ export function phase2(program, fdata, resolve, req) {
               const update = updates[0].parent[updates[0].prop];
               if (update.type === 'Literal') {
                 log('The binding `' + uniqueName + '` has one update and it is a literal:', update);
-                log('This means it can be inlined in all its usages:',meta.usages);
+                log('This means it can be inlined in all its usages:', meta.usages);
               }
             } else {
               // TODO: cases where all updates are for the same thing
             }
-
 
             //if (isExport) {
             //  $(dnode, '@dup', '<exported binding decl>');
@@ -698,10 +691,6 @@ export function phase2(program, fdata, resolve, req) {
         // - operator (the first non-space token left of node.right
         // - right (first token of the value being assigned)
 
-        const tokenOp = getPrevTokenPastGroupAndSpaces(node.right);
-        ASSERT(tokenOp.str.slice(-1) === '=', 'should have found the assign op', tokenOp);
-        tokenOp.tlog = [];
-
         expr(node, 'right', -1, node.right);
 
         if (node.left.type === 'MemberExpression') {
@@ -756,17 +745,6 @@ export function phase2(program, fdata, resolve, req) {
         //let funcActions = actions;
         //actions = abak;
 
-        // For arrows, focus on the `=>` token. A little annoying since we have to skip an arbitrary header
-        // but we can use the body node as an offset and seek backwards to find the `=>` token.
-        // For method shorthands, we won't have an `=>` token but immediately find the `)` token. Need to figure out
-        // how to deal with that visually.
-        let funcToken = getFirstToken(node.body);
-        while (funcToken && funcToken.str !== '=>') {
-          funcToken = tokens[funcToken.n - 1];
-        }
-        ASSERT(funcToken && funcToken.str === '=>', 'pretty sure this is an invariant', funcToken);
-        funcToken.tlog = [];
-
         //const desc = 'Arrow<line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
         //$(node, '@func', 'N' + node.$p.tid + '=arrow', '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'arrow', false, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
         break;
@@ -778,14 +756,8 @@ export function phase2(program, fdata, resolve, req) {
         expr(node, 'left', -1, node.left);
         expr(node, 'right', -1, node.right);
 
-        const tokenOp = getPrevTokenPastGroupAndSpaces(node.right);
-        ASSERT(tokenOp.str === node.operator, 'should have found the binary op', tokenOp);
-        //tokenOp.tlog = [];
-        //$(node, '@binop', node.operator, tokenOp.n); // Assumes two values on the stack but won't consume them
-
         switch (node.operator) {
           case '+': {
-
             if (node.left.type === 'Literal' && node.right.type === 'Literal') {
               // TODO: this hack won't work for something like bigint and a few others. I guess.
               log('Replacing BinaryExpression with a Literal');
@@ -798,8 +770,19 @@ export function phase2(program, fdata, resolve, req) {
               const parent = crumbsNode[crumbsNode.length - 1];
               const prop = crumbsProp[crumbsProp.length - 1];
               const index = crumbsIndex[crumbsIndex.length - 1];
-              if (index >= 0) parent[prop][index] = node.left;
-              else parent[prop] = node.left;
+              if (index >= 0) {
+                if (parent[prop][index] !== node.left) {
+                  log('- actually replacing', parent.type + '[' + prop + '][' + index + '] with a', node.left.type);
+                  parent[prop][index] = node.left;
+                  changed = true;
+                }
+              } else {
+                if (parent[prop] !== node.left) {
+                  log('- actually replacing', parent.type + '[' + prop + '] with a', node.left.type, '->', index);
+                  parent[prop] = node.left;
+                  changed = true;
+                }
+              }
 
               // `node` is a Binary expression that we want to replace in its parent.
               crumbsNode[crumbsNode.length - 1] = node.left;
@@ -921,7 +904,6 @@ export function phase2(program, fdata, resolve, req) {
           if (node.callee.type === 'Identifier') {
             // Look up the binding. See if we can statically resolve it to a function value?
             const uniqueName = findUniqueNameForBindingIdent(node.callee);
-
           }
 
           if (node.callee.type !== 'MemberExpression') {
@@ -931,8 +913,6 @@ export function phase2(program, fdata, resolve, req) {
           expr(node, 'callee', -1, node.callee, false, true);
           //log(DIM + 'Setting up call with ' + node.arguments.length + ' args' + RESET);
           //$(node, '@call', node.arguments.length, spreadAt);
-
-          getFirstToken(node).tlog = [];
         }
         break;
       }
@@ -1022,10 +1002,6 @@ export function phase2(program, fdata, resolve, req) {
         //let funcActions = actions;
         //actions = abak;
 
-        // For functions, focus on the `function` keyword
-        let funcToken = getFirstToken(node);
-        funcToken.tlog = [];
-
         //const debugName = (isMethod ? methodName : node.id ? node.id.name : '<anon>');
         //const desc = (isMethod ? 'Method' : 'Function') + '<' + debugName + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
         //$(node, '@func', 'N' + node.$p.tid + '=' + debugName, node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, isMethod ? 'method' : 'expr', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
@@ -1037,7 +1013,6 @@ export function phase2(program, fdata, resolve, req) {
         ASSERT(uniqueName, 'the uniqueName should be resolved in phase1', node, uniqueName);
         const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
         ASSERT(meta, 'meta data should exist for this name', node.name, uniqueName, meta);
-        //getFirstToken(node).tlog = [];
         break;
       }
 
@@ -1067,13 +1042,6 @@ export function phase2(program, fdata, resolve, req) {
       case 'LogicalExpression': {
         expr(node, 'left', -1, node.left);
         expr(node, 'right', -1, node.right);
-
-        const tokenOp = getPrevTokenPastGroupAndSpaces(node.right);
-        ASSERT(tokenOp.str === node.operator, 'should have found the binary op', tokenOp);
-        tokenOp.tlog = [];
-        //$(node, '@binop', node.operator, tokenOp.n); // Assumes two values on the stack but won't consume them
-
-        //$(node, '@logical', node.operator);
         break;
       }
 
@@ -1125,7 +1093,6 @@ export function phase2(program, fdata, resolve, req) {
         //  } else {
         //    ASSERT(nameNode && nameNode.type === 'Identifier', 'the stack should contain ident nodes or zeroes', nameNode);
         //    //$(nameNode, '@get', nameNode.name);
-        //    //getFirstToken(nameNode).tlog = [];
         //  }
         //}
         break;
@@ -1238,7 +1205,6 @@ export function phase2(program, fdata, resolve, req) {
         // It's a hack but since you can't declare a local binding named `this`, we can get away with it.
         log('Queueing lookup explicitly for `this`');
         //$(node, '@ident', 'this');
-        //getFirstToken(node).tlog = [];
         break;
       }
 
@@ -1614,11 +1580,6 @@ export function phase2(program, fdata, resolve, req) {
 
       const knode = node.key;
 
-      // Get the property from the top of the stack (but leave the object as well for the next iteration)
-      //$(node, '@dup');
-      //$(knode, '@get', knode.name, node.value.type === 'AssignmentPattern');
-      getFirstToken(knode).tlog = [];
-
       // The prop name is not relevant at this point (the prop was fetched and is on top of the stack)
       // Put the default on the stack, prepare the actual value node (binding ident/obj/arr)
       let vnode = node.value;
@@ -1696,10 +1657,6 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       ASSERT(pnode.key.type === 'Identifier', 'fixme if else', pnode.key);
-
-      //$(pnode, '@dup');
-      //$(pnode.key, '@get', pnode.key.name, pnode.value.type === 'AssignmentPattern');
-      getFirstToken(pnode.key).tlog = [];
 
       // Top of the stack should be object being destructured.
       // Value is an Identifier, AssignmentPattern, ObjectPattern, or ArrayPattern. Assignment can nest the other three.

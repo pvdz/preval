@@ -11,6 +11,7 @@
 `````js filename=intro
 const foo = "five";
 const bar = foo;
+$(bar)
 `````
 
 ## Output
@@ -18,4 +19,5 @@ const bar = foo;
 `````js filename=intro
 const foo = "five";
 const bar = "five";
+$("five");
 `````

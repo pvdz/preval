@@ -12,6 +12,7 @@
 const foo = "five";
 const bar = foo;
 const wow = bar;
+$(wow)
 `````
 
 ## Output
@@ -20,4 +21,5 @@ const wow = bar;
 const foo = "five";
 const bar = "five";
 const wow = "five";
+$("five");
 `````

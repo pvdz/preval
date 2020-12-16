@@ -10,10 +10,12 @@
 
 `````js filename=intro
 const foo = "five";
+$(foo)
 `````
 
 ## Output
 
 `````js filename=intro
 const foo = "five";
+$("five");
 `````

@@ -16,6 +16,7 @@ export default new Map([
   ['undefined', 'undefined'],
   ['Array', 'Array'],
   ['Boolean', 'Boolean'],
+  ['Date', 'Date'],
   ['Error', 'Error'],
   ['Infinity', 'number'],
   ['JSON', 'JSON'],

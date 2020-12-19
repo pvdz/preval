@@ -2,6 +2,8 @@ import { clearStdio, setStdio, log, group, groupEnd } from './utils.mjs';
 import { phase0 } from './phase0.mjs';
 import { phase1 } from './phase1.mjs';
 import { phase2 } from './phase2.mjs';
+import { phase3 } from './phase3.mjs';
+import { phase4 } from './phase4.mjs';
 import { printer } from '../lib/printer.mjs';
 
 export function preval({ entryPointFile, stdio, resolve, req }) {
@@ -18,40 +20,10 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
 
   let changed = false;
   do {
+    ++fdata.cycle;
     changed = phase2(program, fdata, resolve, req);
-
-    fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
-      if (obj.updates.length === 1) {
-        let update = obj.updates[0].parent[obj.updates[0].prop];
-        if (obj.updates[0].index >= 0) update = update[obj.updates[0].index];
-        if (update.type === 'Literal') {
-          log('Replacing literal binding with the literal...');
-
-          // Replace all occurrences with the literal...
-          obj.usages.forEach(({ parent, prop, index }) => {
-            // Cannot replace the declaration itself. But can eliminate it
-            if (parent.type === 'VariableDeclarator' && prop !== 'init') {
-              return; // Ignore, phase2 will take care of this
-            }
-
-            log('Replacing a usage of `' + uniqueName + '` with a literal');
-            if (index >= 0) {
-              if (parent[prop][index] !== update) {
-                log('- actually replacing', parent.type + '[' + prop + '][' + index + '] with a', update.type);
-                parent[prop][index] = update;
-                changed = true;
-              }
-            } else {
-              if (parent[prop] !== update) {
-                log('- actually replacing', parent.type + '[' + prop + '] with a', update.type, '->', index);
-                parent[prop] = update;
-                changed = true;
-              }
-            }
-          });
-        }
-      }
-    });
+    changed = phase3(program, fdata, resolve, req) || changed;
+    changed = phase4(program, fdata, resolve, req) || changed;
   } while (changed);
 
   // This is where the magic starts

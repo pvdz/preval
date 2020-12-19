@@ -2,12 +2,13 @@ import walk from '../lib/walk.mjs';
 import { log, group, groupEnd, ASSERT, BLUE, RESET } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+import { $p } from './$p.mjs';
 
 // This phase is fairly mechanical. Setup scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 export function phase1(program, fdata, resolve, req) {
   const ast = fdata.tenkoOutput.ast;
-  const tokenTable = fdata.tokenTable;
 
+  let uid = 0;
   const funcStack = [];
   const lexScopeStack = [];
   let lexScopeCounter = 0;
@@ -15,6 +16,15 @@ export function phase1(program, fdata, resolve, req) {
   const thisStack = [];
 
   const globallyUniqueNamingRegistery = new Map();
+  globals.forEach((name) =>
+    globallyUniqueNamingRegistery.set(name, {
+      // ident meta data
+      uid: ++uid,
+      updates: [], // {parent, prop, index} indirect reference ot the node being assigned
+      usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
+    }),
+  );
+
   fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
   const imports = new Map();
   fdata.imports = imports;
@@ -48,33 +58,13 @@ export function phase1(program, fdata, resolve, req) {
     return uniqueName;
   }
 
-  let uid = 0;
-
   walk(_walker, ast, 'ast');
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
 
     if (before) {
-      let tid = String(++uid);
-
-      let needleNode = node;
-      if (needleNode.type === 'TemplateElement') needleNode = path.nodes[path.nodes.length - 2];
-      const key = needleNode.loc.start.line + ':' + needleNode.loc.start.column;
-      const token = tokenTable.get(key);
-      ASSERT(token, 'each node start should correspond to a token at that position', key, tokenTable, needleNode, path);
-
-      node.$p = {
-        tid, // Incremental unique id (may have gaps between consecutive nodes but will be unique)
-        explicitReturns: '', // Set if the node is a branching type where it matters
-        tokenIndex: token.n, // Number. Token index on linear list of tokens. First token forward from this node
-
-        // Add properties here in a comment but not actually (you would do this for perf) because it makes debugging more noisy
-        //scope: undefined, // Only functions get this (not arrows, not global)
-        //nameMapping: undefined, // Map. Scope tracking for nodes that have a scope
-        //scopeBinding: undefined, // Reference to nearest func/global map. Global/func nodes get a fresh Map.
-        //thisAccess: undefined, // boolean. For functions (not arrows), whether it access `this` anywhere in its own scope. Includes whether nested arrows access this in its scope. But not nested functions
-      };
+      node.$p = $p();
     }
 
     group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
@@ -270,7 +260,6 @@ export function phase1(program, fdata, resolve, req) {
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
         funcStack.push(node);
-        node.$p.returnNodes = [];
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           node.$p.scope = { type: 'zscope', names: new Map() };
           thisStack.push(node);
@@ -287,6 +276,30 @@ export function phase1(program, fdata, resolve, req) {
 
         let lexes = lexScopeStack.slice(1);
         while (lexes[0] && ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(lexes[0].type)) lexes.shift(); // Drop global block scopes etc
+
+        const body = node.body.body;
+        let explicit = false;
+        log('checking', body.length, 'statements to get explicitReturns state');
+        for (let i = 0; i < body.length; ++i) {
+          if (body[i].$p.explicitReturns === 'yes') {
+            explicit = true;
+            // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
+            // Ignore if it is the last statement of the function
+            // TODO: hoisting. `function f(){ return g; function g(){} }`
+            if (i < body.length - 1) {
+              log(
+                '- Returning early. Slicing',
+                body.length - (i + 1),
+                'statements from this function that appeared after a return statement',
+              );
+              node.body.body = body.slice(0, i + 1);
+            }
+            break;
+          }
+        }
+        node.$p.explicitReturns = explicit ? 'yes' : 'no';
+        log('- explicitReturns =', node.$p.explicitReturns);
+
         //const map = new Map();
         //lexes.forEach((node) => {
         //  node.$p.nameMapping.forEach((newName, bindingName) => {
@@ -298,7 +311,7 @@ export function phase1(program, fdata, resolve, req) {
         //node.$p.reachableNames = map;
         node.$p.parentScope = funcStack[funcStack.length - 1];
 
-        log('-->', node.$p.scopeBindings);
+        log('scope bindings -->', node.$p.scopeBindings);
         break;
       }
 
@@ -331,13 +344,7 @@ export function phase1(program, fdata, resolve, req) {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(node, parentNode.type === 'FunctionDeclaration');
           log('- unique name:', uniqueName);
-          node.$p.uniqueName = uniqueName;
-
-          //// Do not include the declarations as references (although they could be eliminated...?)
-          //if (parentNode.type !== 'VariableDeclarator') {
-          const obj = globallyUniqueNamingRegistery.get(uniqueName);
-          obj.usages.push({ parent: parentNode, prop: parentProp, index: parentIndex });
-          //}
+          node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
         }
 
         break;
@@ -347,14 +354,7 @@ export function phase1(program, fdata, resolve, req) {
         // Find all bindings, resolve their unique name, copy their init (or undefined) to the updates
         // If we're going to store these then what happens when they're transformed/replaced?
         // `var a = 1; var b = a; var c = b;`. maybe store the parent node and key instead for an indirect lookup
-
         ASSERT(node.id?.type === 'Identifier', 'tofix: var declarations that are not just idents');
-
-        const obj = globallyUniqueNamingRegistery.get(node.id.$p.uniqueName);
-        const parent = node; // path.nodes[path.nodes.length - 2];
-        const prop = 'init'; // path.props[path.props.length - 1];
-        log('Marking `' + node.id.$p.uniqueName + '` as being updated to', parent.type + '.' + prop + ' (=' + node.init?.type + ')');
-        obj.updates.push({ parent, prop, index: -1 });
         break;
       }
       //case 'AssignmentExpression': {
@@ -369,7 +369,6 @@ export function phase1(program, fdata, resolve, req) {
         const resolvedSource = resolve(source, fdata.fname);
 
         ASSERT(node.specifiers, 'fixme if different', node);
-
         node.specifiers.forEach((snode) => {
           const id = snode.local;
           ASSERT(id.type === 'Identifier', 'fixme if local is not an ident', snode);
@@ -427,7 +426,6 @@ export function phase1(program, fdata, resolve, req) {
 
       case 'ReturnStatement:before': {
         node.$p.explicitReturns = 'yes'; // Per definition :)
-        funcStack[funcStack.length - 1].$p.returnNodes.push(node);
         break;
       }
 

@@ -1,5 +1,6 @@
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { printer } from '../lib/printer.mjs';
+import { $p } from './$p.mjs';
 
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, printNode } from './utils.mjs';
 
@@ -22,12 +23,20 @@ export function phase2(program, fdata, resolve, req) {
   const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
 
+  const funcStack = [];
+
   // Crumb path for walking through the AST. This way you can reach out to parent nodes and manipulate them or whatever. Shoot your own foot.
   const crumbsNode = [];
   const crumbsProp = [];
   const crumbsIndex = [];
 
-  group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  // Clear usage and update data.
+  fdata.globallyUniqueNamingRegistery.forEach((meta) => {
+    meta.updates = [];
+    meta.usages = [];
+  });
+
+  group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '  ::  cycle ' + fdata.cycle + '\n##################################\n\n\n');
 
   //let actions = [];
   do {
@@ -35,7 +44,7 @@ export function phase2(program, fdata, resolve, req) {
     stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
     if (changed) somethingChanged = true;
 
-    log('Current state\n--------------\n' + printer(fdata.tenkoOutput.ast) + '\n--------------\n');
+    log('\nCurrent state\n--------------\n' + printer(fdata.tenkoOutput.ast) + '\n--------------\n');
   } while (changed);
   //$(fileState.tenkoOutput.ast, '@log', 'End of Program');
   //fileState.globalActions = actions;
@@ -51,6 +60,7 @@ export function phase2(program, fdata, resolve, req) {
   //}).join('\n').split('\n');
   //log('\n' + printFriendly.slice(0, 100).join('\n'), printFriendly.length >= 100 ? '(... ' + (printFriendly.length - 100) + ' more actions suppressed...)' : '');
 
+  log('End of phase2');
   groupEnd();
 
   return somethingChanged;
@@ -113,9 +123,62 @@ export function phase2(program, fdata, resolve, req) {
       isExport,
     );
 
+    if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
+      funcStack.push(node);
+      node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
+      node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
+      if (node.$p.explicitReturns === 'no') node.$p.returns.push(undefined); // at least one branch returns implicitly so add undefined
+    }
+
     crumb(parent, prop, index);
     _stmt(node, isExport);
     uncrumb(parent, prop, index);
+
+    if (node.type === 'FunctionDeclaration') {
+      funcStack.pop();
+      log('Function was', node.$p.pure ? 'pure' : 'not pure', 'and has', node.$p.returns.length, 'return points to consider');
+
+      ASSERT(
+        node.$p.returns.length,
+        'returns should contain at least one element, even if it has no return statements the implicit return would add an undefined to the list',
+      );
+
+      let multi = false; // more than one different return value?
+      let value = undefined;
+      //console.log('-->', node.$p);
+      node.$p.returns.some((rnode, i) => {
+        // !rnode for the implicit return, or return without argument
+        if (!rnode || (rnode.type === 'Identifier' && rnode.name === 'undefined')) {
+          if (i && value.name !== 'undefined') multi = true;
+          log('- returns `undefined`, implicitly');
+          value = { type: 'Identifier', name: 'undefined', $p: $p() };
+        } else if (rnode.type === 'Literal') {
+          if (i && value.value !== rnode.value) multi = true;
+          log('- returns `' + rnode.value + '`');
+          value = { type: 'Literal', value: rnode.value, raw: rnode.raw, $p: $p() };
+        } else if (rnode.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(rnode.name)) {
+          if (i && value.name !== rnode.name) multi = true;
+          log('- returns `' + rnode.name + '` (', rnode.name, ')');
+          value = { type: 'Identifier', name: rnode.name, $p: $p() };
+        } else {
+          // This kind of value is currently unsupported
+          // TODO: collect these cases and figure out if we can do something to support them anyways
+          log('- returns', rnode, '(unsupported)');
+          multi = true;
+        }
+
+        return multi;
+      });
+
+      if (!multi) {
+        // All return statements of this function returned the same value
+        // If the function returned implicitly anywhere then all explicit returns also returned `undefined`
+        log('Function is always returning', [value], 'so any call to it can be decomposed to the call itself and then this value');
+        node.$p.oneReturnValue = value;
+      } else {
+        node.$p.oneReturnValue = undefined;
+      }
+    }
   }
   function _stmt(node, isExport = false) {
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
@@ -326,9 +389,14 @@ export function phase2(program, fdata, resolve, req) {
         if (node.id) {
           group('Function decl id:');
           const uniqueName = findUniqueNameForBindingIdent(node.id, true);
+          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+          meta.updates.push({
+            // parent of this function decl
+            parent: crumbsNode[crumbsNode.length - 1],
+            prop: crumbsProp[crumbsProp.length - 1],
+            index: crumbsIndex[crumbsIndex.length - 1],
+          });
           groupEnd();
-
-          //_$(node.id, '@binding', uniqueName, 'lex');
         }
         //else linter.check('TOFIX', {filename, line: node.loc.start.line, column: node.loc.start.column}, 'todo_export_default_without_name'); // I mean this'll just crash? :)
 
@@ -351,8 +419,10 @@ export function phase2(program, fdata, resolve, req) {
         //_$(node, '@func', 'N' + node.$p.tid + '=' + (node.id ? node.id.name : 'anon'), node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'decl', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
 
         if (node.body.length === 0) {
+          ASSERT(node.$p.pure, 'empty func should be pure');
+
           // Empty function. Eliminate.
-          node.$p.replaceWith = 'undefined';
+          node.$p.replaceWith = { type: 'Identifier', name: 'undefined', $p: $p() };
         }
         if (node.body.length === 1 && node.body[0].type === 'ReturnStatement') {
           // TODO: function f(a = sideEffects()) { return 'x' }
@@ -453,6 +523,9 @@ export function phase2(program, fdata, resolve, req) {
         if (node.argument) {
           expr(node, 'argument', -1, node.argument);
         }
+
+        funcStack[funcStack.length - 1].$p.returns.push(node.argument);
+
         //else $(node, '@push', 'undefined');
         //$(node, '@return'); // Assumes an (implicit or explicit) arg is pushed
         break;
@@ -503,27 +576,18 @@ export function phase2(program, fdata, resolve, req) {
 
       case 'VariableDeclaration': {
         const kind = node.kind;
-        let removed = false;
         node.declarations.forEach((dnode, i) => {
           ASSERT(dnode.id?.type === 'Identifier', 'todo: implement other kinds of variable declarations');
 
+          // For ident case;
+          const uniqueName = findUniqueNameForBindingIdent(dnode.id);
+          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+          log('Marking `' + uniqueName + '` as being updated to', dnode.init?.type);
+          meta.updates.push({ parent: dnode, prop: 'init', index: -1 });
+          meta.usages.push({ parent: dnode, prop: 'id', index: -1 });
+
           if (dnode.init) {
-            // Detect whether it was a literal (we don't care to visit those). If not, visit it. If the AST changed, check again.
-            // Phase 1 already checked the first case but if this replacement changed it, we can update the
-            const wasLiteral =
-              dnode.init.type === 'Literal' ||
-              (dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name));
-            // No need to visit literals
-            if (!wasLiteral) {
-              expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
-              const nowLiteral =
-                dnode.init.type === 'Literal' ||
-                (dnode.init.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(dnode.init.name));
-              if (nowLiteral) {
-                // The visit replaced whatever was there with a literal. This means the binding is now also a side-effect free variable that can be inlined and eliminated.
-                fdata.globallyUniqueNamingRegistery.get(dnode.id);
-              }
-            }
+            expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
           } else {
             // Ignore? Phase1 should have marked this var as potentially undefined. If it has no actual assignments then it's just `undefined`
 
@@ -536,45 +600,13 @@ export function phase2(program, fdata, resolve, req) {
             //log('Created placeholder', tstr(pid), 'for the binding');
           }
 
-          // The paramNode can be either an Identifier or a pattern of sorts
+          // The id can be either an Identifier or a pattern of sorts
           if (dnode.id.type === 'Identifier') {
-            // Simple case. Create the binding and be done.
-
-            const uniqueName = findUniqueNameForBindingIdent(dnode.id);
-            log('Var decl id:', uniqueName);
-            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
-            const updates = meta.updates;
-            log('This binding has', updates.length, 'updates');
-            ASSERT(updates, 'should find meta data for each name and should have an updates array', uniqueName, meta);
-            if (updates.length === 1) {
-              ASSERT(updates[0].parent?.[updates[0]?.prop], 'all updates are nodes, right? can this be null?', updates);
-              const update = updates[0].parent[updates[0].prop];
-              if (update.type === 'Literal') {
-                log('The binding `' + uniqueName + '` has one update and it is a literal:', update);
-                log('This means it can be inlined in all its usages:', meta.usages);
-              }
-            } else {
-              // TODO: cases where all updates are for the same thing
-            }
-
-            log('Declaration has', meta.usages.length, 'usages left');
-            if (meta.usages.length === 1) {
-              log('Binding is no longer referenced so we can remove its declarator');
-              ASSERT(meta.usages[0].parent === dnode, 'the last usage should be its own declaration');
-              // Drop the declaration. It's no longer useful.
-              node.declarations[i] = null; // Filtered out after the loop
-              removed = true;
-            }
-
             //if (isExport) {
             //  $(dnode, '@dup', '<exported binding decl>');
             //  $(dnode, '@export_as', isExport === true ? uniqueName : 'default');
             //}
-
-            //$(dnode, '@binding', uniqueName, kind);
           } else if (dnode.id.type === 'ArrayPattern') {
-            // Complex case. Sort out the final param value vs default, then walk through the destructuring pattern.
-
             if (isExport)
               linter.check(
                 'TOFIX',
@@ -588,12 +620,8 @@ export function phase2(program, fdata, resolve, req) {
               line: dnode.id.loc.start.line,
             });
 
-            // Next we are going to pushpop the top value recursively to process all parts of the pattern
-
             dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
           } else {
-            // Complex case. Sort out the final param value vs default, then walk through the destructuring pattern.
-
             if (isExport)
               linter.check(
                 'TOFIX',
@@ -603,20 +631,9 @@ export function phase2(program, fdata, resolve, req) {
 
             ASSERT(dnode.id.type === 'ObjectPattern', 'fixme if else', dnode.id);
 
-            // Next we are going to pushpop the top value recursively to process all parts of the pattern
-
             dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
           }
         });
-        if (removed) {
-          node.declarations = node.declarations.filter(Boolean); // such cheesy
-          if (node.declarations.length === 0) {
-            log('Declaration has no more declarations so we can drop that one too');
-            const index = crumbsIndex[crumbsIndex.length - 1];
-            if (index >= 0) crumbsNode[crumbsNode.length - 1][crumbsProp[crumbsProp.length - 1]][index] = { type: 'EmptyStatement' };
-            else crumbsNode[crumbsNode.length - 1][crumbsProp[crumbsProp.length - 1]] = { type: 'EmptyStatement' };
-          }
-        }
         break;
       }
 
@@ -644,9 +661,70 @@ export function phase2(program, fdata, resolve, req) {
   }
   function expr2(parent2, prop2, index2, parent, prop, index, node, isMethod, isCallee, methodName) {
     // Skip one property
+    if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
+      funcStack.push(node);
+      node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
+      node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
+    }
     crumb(parent2, prop2, index2);
     expr(parent, prop, index, node, isMethod, isCallee, methodName);
     uncrumb(parent2, prop2, index2);
+    if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
+      funcStack.pop();
+
+      ASSERT(
+        node.$p.returns.length,
+        'returns should contain at least one element, even if it has no return statements the implicit return would add an undefined to the list',
+      );
+
+      let multi = false; // more than one different return value?
+      let value = undefined;
+
+      if (node.type === 'ArrowFunctionExpression' && node.expression) {
+        // The whole body is the return expression
+        // Right now let's take an extra step to only allow primitives here. But later we might just inline the whole thing because why not.
+        if (node.body.type === 'Literal') {
+          value = { type: 'Literal', value: node.value, raw: node.raw, $p: $p() };
+        } else if (node.body.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(node.body.name)) {
+          value = { type: 'Identifier', name: node.name, $p: $p() };
+        } else {
+          multi = true;
+        }
+      } else {
+        node.$p.returns.some((rnode, i) => {
+          // !rnode for the implicit return, or return without argument
+          if (!rnode || (rnode.type === 'Identifier' && rnode.name === 'undefined')) {
+            if (i && value.name !== 'undefined') multi = true;
+            log('- returns `undefined`, implicitly');
+            value = { type: 'Identifier', name: 'undefined', $p: $p() };
+          } else if (rnode.type === 'Literal') {
+            if (i && value.value !== rnode.value) multi = true;
+            log('- returns `' + rnode.value + '`');
+            value = { type: 'Literal', value: rnode.value, raw: rnode.raw, $p: $p() };
+          } else if (rnode.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(rnode.name)) {
+            if (i && value.name !== rnode.name) multi = true;
+            log('- returns `' + rnode.name + '` (', rnode.name, ')');
+            value = { type: 'Identifier', name: rnode.name, $p: $p() };
+          } else {
+            // This kind of value is currently unsupported
+            // TODO: collect these cases and figure out if we can do something to support them anyways
+            log('- returns', rnode, '(unsupported)');
+            multi = true;
+          }
+
+          return multi;
+        });
+      }
+
+      if (!multi) {
+        // All return statements of this function returned the same value
+        // If the function returned implicitly anywhere then all explicit returns also returned `undefined`
+        log('Function is always returning', [value], 'so any call to it can be decomposed to the call itself and then this value');
+        node.$p.oneReturnValue = value;
+      } else {
+        node.$p.oneReturnValue = undefined;
+      }
+    }
   }
   function expr(parent, prop, index, node, isMethod, isCallee, methodName) {
     ASSERT(
@@ -672,7 +750,7 @@ export function phase2(program, fdata, resolve, req) {
 
     if (node.$scope) {
       lexScopeStack.push(node);
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
+      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)) {
         rootScopeStack.push(node);
       }
     }
@@ -729,6 +807,8 @@ export function phase2(program, fdata, resolve, req) {
           const uniqueName = findUniqueNameForBindingIdent(node.left);
           //$(node, '@assign', uniqueName, node.operator, tokenOp.n);
         }
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: confirm whether the assignment is to a closure or not because we can eliminate it for local assignments.
 
         break;
       }
@@ -856,11 +936,6 @@ export function phase2(program, fdata, resolve, req) {
             // This model should conclusively determine the truth value of any `in` expression
             linter.check('IN_OBSOLETE', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column });
 
-            // Require the lhs to be a string
-            expr(node, 'left', -1, node.left);
-            //$(node, '@push', 'string');
-            //$(node, '@merge');
-
             // TODO: figure out valid values of rhs. Probably have to verify that state in the @in callback
             expr(node, 'right', -1, node.right);
             //$(node, '@in', node);
@@ -930,6 +1005,9 @@ export function phase2(program, fdata, resolve, req) {
           //log(DIM + 'Setting up call with ' + node.arguments.length + ' args' + RESET);
           //$(node, '@call', node.arguments.length, spreadAt);
         }
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: if this calls a pure function then this call is okay in a pure function
+
         break;
       }
 
@@ -988,7 +1066,12 @@ export function phase2(program, fdata, resolve, req) {
             // Specific hack because we won't have access to the 'current" func instance otherwise
             log('Function param id:');
             const uniqueName = findUniqueNameForBindingIdent(node.id);
-            //$(node, '@func_expr_name', uniqueName);
+            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            meta.updates.push({
+              parent: crumbsNode[crumbsNode.length - 1],
+              prop: crumbsProp[crumbsProp.length - 1],
+              index: crumbsIndex[crumbsIndex.length - 1],
+            });
           }
         } else if (isMethod) {
           log('Function expression is a method with key: `' + methodName + '`');
@@ -1025,10 +1108,17 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        const uniqueName = node.$p.uniqueName;
-        ASSERT(uniqueName, 'the uniqueName should be resolved in phase1', node, uniqueName);
+        const uniqueName = findUniqueNameForBindingIdent(node);
         const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
         ASSERT(meta, 'meta data should exist for this name', node.name, uniqueName, meta);
+        meta.usages.push({
+          parent: crumbsNode[crumbsNode.length - 1],
+          prop: crumbsProp[crumbsProp.length - 1],
+          index: crumbsIndex[crumbsIndex.length - 1],
+        });
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: allow for local reads. non-local reads need more validation work.
+
         break;
       }
 
@@ -1092,6 +1182,8 @@ export function phase2(program, fdata, resolve, req) {
         }
         r(node);
 
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: getters and setters are problematic. if we can guarantee that the read is just a read, and on a local value, then maybe.
+
         //while (nameStack.length > 0) {
         //  const wasDynamic = dynaStack.pop();
         //  const nameNode = nameStack.pop();
@@ -1131,6 +1223,9 @@ export function phase2(program, fdata, resolve, req) {
 
         expr(node, 'callee', -1, node.callee);
         //$(node, '@new', node.arguments.length, spreadAt);
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: fine for pure functions or constructors. good luck.
+
         break;
       }
 
@@ -1142,7 +1237,7 @@ export function phase2(program, fdata, resolve, req) {
         const spreads = [];
         node.properties.forEach((pnode, i) => {
           if (pnode.type === 'SpreadElement') {
-            expr(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
+            expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
             spreads.push(true);
           } else {
             ASSERT(pnode.type === 'Property', 'fixmeifnot', pnode);
@@ -1150,7 +1245,7 @@ export function phase2(program, fdata, resolve, req) {
             ASSERT(pnode.key.type === 'Identifier' || pnode.key.type === 'Literal', 'prop key should be ident or num/str', pnode);
 
             ASSERT(pnode.value);
-            expr(
+            expr2(
               node,
               'properties',
               i,
@@ -1181,7 +1276,7 @@ export function phase2(program, fdata, resolve, req) {
       case 'SequenceExpression': {
         node.expressions.forEach((enode, i) => {
           group('Sequence part', i + 1, '/', node.expressions.length);
-          expr(node, 'expressions', i, enode);
+          expr2(node, 'expressions', i, enode, 'expressions', i, enode);
           if (i < node.expressions.length - 1) {
             log('This is not the last value in the sequence so dropping it');
           } else {
@@ -1201,6 +1296,8 @@ export function phase2(program, fdata, resolve, req) {
         // The prop can occur in any class method or object method. This usage is syntactically restircted to the
         // method shorthand syntax and its reference is bound to the initial object of its __proto__. That bond cannot
         // be broken or changed in JS (unlike call, which is an indirect lookup).
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: super what tho. super call is okay for pure constructors. super prop is probably too complicated to verify?
 
         // This handler is a noop because the MemberExpression and CallExpression handlers should handle super
         break;
@@ -1276,6 +1373,8 @@ export function phase2(program, fdata, resolve, req) {
         expr(node, 'argument', -1, node.argument);
         //$(node, '@push', 'number');
         //$(node, '@merge');
+
+        funcStack[funcStack.length - 1].$p.pure = false; // TODO: confirm whether or not the update is to a local or non-local binding
         break;
       }
 

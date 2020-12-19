@@ -34,6 +34,7 @@ export function phase0(code, fname) {
 
   return { // fdata
     fname,
+    cycle: 0, // How often did we repeat the main loop
     tenkoOutput,
     tokenTable,
     imports: undefined, // phase1

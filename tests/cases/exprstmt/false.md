@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# false.md
 
-> ifelse > simple > if_false
+> exprstmt > false
 >
-> Eliminate simple tautology
+> Booleans as statement can be eliminated
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+false;
 `````
 
 ## Output

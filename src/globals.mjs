@@ -22,6 +22,7 @@ export default new Map([
   ['JSON', 'JSON'],
   ['Math', 'Math'],
   ['Map', 'Map'],
+  ['NaN', 'NaN'],
   ['Number', 'Number'],
   ['Object', 'Object'],
   ['RegExp', 'RegExp'],

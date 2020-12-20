@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# regex.md
 
-> ifelse > simple > if_false
+> exprstmt > regex
 >
-> Eliminate simple tautology
+> Regexes as statement can be eliminated
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+/foo/g;
 `````
 
 ## Output

@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# undefined.md
 
-> ifelse > simple > if_false
+> exprstmt > undefined
 >
-> Eliminate simple tautology
+> Date as ident statement can be eliminated
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+Date;
 `````
 
 ## Output

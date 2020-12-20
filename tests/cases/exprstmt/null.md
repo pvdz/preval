@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# null.md
 
-> ifelse > simple > if_false
+> exprstmt > null
 >
-> Eliminate simple tautology
+> Nulls as statement can be eliminated
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+null;
 `````
 
 ## Output

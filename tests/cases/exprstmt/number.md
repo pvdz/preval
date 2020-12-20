@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# number.md
 
-> ifelse > simple > if_false
+> exprstmt > number
 >
-> Eliminate simple tautology
+> Numbers as statement can be eliminated
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+15;
 `````
 
 ## Output

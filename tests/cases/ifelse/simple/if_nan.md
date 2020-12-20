@@ -1,15 +1,15 @@
 # Preval test case
 
-# if_false.md
+# if_obj.md
 
-> ifelse > simple > if_false
+> ifelse > simple > if_obj
 >
 > Eliminate simple tautology
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+if (NaN) $();
 `````
 
 ## Output

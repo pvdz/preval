@@ -9,11 +9,11 @@
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+if (Infinity) $();
 `````
 
 ## Output
 
 `````js filename=intro
-
+$();
 `````

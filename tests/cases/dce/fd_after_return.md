@@ -27,6 +27,9 @@ $(f(1));
 `````js filename=intro
 function f(x) {
   return g();
+  function g() {
+    return $();
+  }
 }
 $(f(1));
 `````

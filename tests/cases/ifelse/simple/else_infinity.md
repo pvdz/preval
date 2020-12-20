@@ -1,19 +1,20 @@
 # Preval test case
 
-# if_false.md
+# else_obj.md
 
-> ifelse > simple > if_false
+> ifelse > simple > else_obj
 >
 > Eliminate simple tautology
 
 ## Input
 
 `````js filename=intro
-if (void 1) $();
+if (Infinity) $(1);
+else $(2);
 `````
 
 ## Output
 
 `````js filename=intro
-
+$(1);
 `````

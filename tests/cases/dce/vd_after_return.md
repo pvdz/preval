@@ -29,6 +29,7 @@ $(f(1));
 `````js filename=intro
 function f(x) {
   return g;
+  var g = $();
 }
 $(f(1));
 `````

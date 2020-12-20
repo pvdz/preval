@@ -207,6 +207,18 @@ export function phase4(program, fdata, resolve, req) {
 
       case 'ExpressionStatement': {
         expr(node, 'expression', -1, node.expression);
+
+        if (node.expression.type === 'Literal') {
+          // I don't think there's any literal that has an observable side effect on its own. Ditch it.
+          crumbSet(1, { type: 'EmptyStatement', $p: $p() });
+          changed = true;
+        } else if (node.expression.type === 'Identifier') {
+          // Not sure but I don't think an identifier itslef should have an observable side effect.
+          // There are edge cases like setting a getter on window or whatever. Don't think I care for such hacks.
+          crumbSet(1, { type: 'EmptyStatement', $p: $p() });
+          changed = true;
+        }
+
         break;
       }
 
@@ -316,9 +328,12 @@ export function phase4(program, fdata, resolve, req) {
             action = KEEP_ELSE;
           }
         } else if (node.test.type === 'Identifier') {
-          if (node.test.name === 'undefined') {
-            log('if(falsy) means the alternate is dead code. Eliminating if-else and using the consequent');
+          if (['undefined', 'NaN'].includes(node.test.name)) {
+            log('if(falsy) means the consequent is dead code. Eliminating if-else and using the alternate');
             action = KEEP_ELSE;
+          } else if (['Infinity'].includes(node.test.name)) {
+            log('if(truthy) means the alternate is dead code. Eliminating if-else and using the consequent');
+            action = KEEP_IF;
           }
         } else if (
           ['ObjectExpression', 'ArrayExpression', 'FunctionExpression', 'ArrowFunctionExpression', 'ClassExpression'].includes(

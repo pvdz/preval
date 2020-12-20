@@ -460,12 +460,15 @@ export function phase2(program, fdata, resolve, req) {
             // TODO: function f(a) { return a }
             // TODO: let n = 1; function f() { return n }
 
-            if (node.body[0].argument.type === 'Literal' || (node.body[0].argument.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(node.body[0].argument.name))) {
+            if (
+              node.body[0].argument.type === 'Literal' ||
+              (node.body[0].argument.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(node.body[0].argument.name))
+            ) {
               // So this is a function with only a return statement and it returns a literal or primitive.
               // TODO: side effects are possible in the param defaults. But barring that...
               // There are no other side effects so this function can essentially be replaced with the literal for any call of it
               // If this function now gets resolved as being called then the call will be replaced with this literal. Baby steps.
-              log('Should replace calls to this function with', node.body[0].argument.type)
+              log('Should replace calls to this function with', node.body[0].argument.type);
               node.$p.replaceWith = node.body[0].argument;
             }
 
@@ -1349,65 +1352,65 @@ export function phase2(program, fdata, resolve, req) {
             if (node.argument.type === 'Literal') {
               if (typeof node.argument.value === 'number') {
                 // Drop the unary. It adds no value.
-                log('Dropping the + unary')
+                log('Dropping the + unary');
                 crumbSet(1, node.argument);
                 changed = true;
               } else if (typeof node.argument.value === 'string') {
                 // Shrug.
               } else if (node.argument.value === true) {
-                log('Dropping the + unary')
+                log('Dropping the + unary');
                 crumbSet(1, {
                   type: 'Literal',
                   value: 1,
                   raw: '1',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.value === false) {
-                log('Dropping the + unary')
+                log('Dropping the + unary');
                 crumbSet(1, {
                   type: 'Literal',
                   value: 0,
                   raw: '0',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.regex) {
-                log('Dropping the + unary, +regex becomes NaN')
+                log('Dropping the + unary, +regex becomes NaN');
                 crumbSet(1, {
                   type: 'Identifier',
                   name: 'NaN',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.value === null) {
-                log('Dropping the + unary')
+                log('Dropping the + unary');
                 crumbSet(1, {
                   type: 'Literal',
                   value: 0,
                   raw: '0',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else {
                 ASSERT(false, 'what kind of literal?', node.argument);
               }
             } else if (node.argument.type === 'Identifier') {
               if (node.argument.name === 'undefined') {
-                log('Dropping the + unary, +undefined becomes NaN')
+                log('Dropping the + unary, +undefined becomes NaN');
                 crumbSet(1, {
                   type: 'Identifier',
                   name: 'NaN',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.name === 'NaN') {
-                log('Dropping the + unary')
-                crumbSet(1, node.argument)
+                log('Dropping the + unary');
+                crumbSet(1, node.argument);
                 changed = true;
               } else if (node.argument.name === 'Infinity') {
-                log('Dropping the + unary')
-                crumbSet(1, node.argument)
+                log('Dropping the + unary');
+                crumbSet(1, node.argument);
                 changed = true;
               }
             }
@@ -1421,42 +1424,42 @@ export function phase2(program, fdata, resolve, req) {
                 // Shrug.
               } else if (node.argument.value === true) {
                 // -true = -1
-                log('Dropping the - unary, -true becomes -1')
+                log('Dropping the - unary, -true becomes -1');
                 node.argument = {
                   type: 'Literal',
                   value: 1,
                   raw: '1',
-                  $p: $p()
-                }
+                  $p: $p(),
+                };
                 changed = true;
               } else if (node.argument.value === false) {
                 // -false is -0 (the sign _is_ detectable)
-                log('Dropping the - unary, -false becomes -0')
+                log('Dropping the - unary, -false becomes -0');
                 node.argument = {
                   type: 'Literal',
                   value: 0,
                   raw: '0',
-                  $p: $p()
-                }
+                  $p: $p(),
+                };
                 changed = true;
               } else if (node.argument.regex) {
                 // -/1/ is NaN (no sign)
-                log('Dropping the - unary, -regex becomes NaN')
+                log('Dropping the - unary, -regex becomes NaN');
                 crumbSet(1, {
                   type: 'Identifier',
                   name: 'NaN',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.value === null) {
                 // -null is -0
-                log('Dropping the - unary, -null becomes -0')
+                log('Dropping the - unary, -null becomes -0');
                 node.argument = {
                   type: 'Literal',
                   value: 0,
                   raw: '0',
-                  $p: $p()
-                }
+                  $p: $p(),
+                };
                 changed = true;
               } else {
                 ASSERT(false, 'what kind of literal?', node.argument);
@@ -1464,17 +1467,17 @@ export function phase2(program, fdata, resolve, req) {
             } else if (node.argument.type === 'Identifier') {
               if (node.argument.name === 'undefined') {
                 // -undefined is NaN (no sign)
-                log('Dropping the - unary, -undefined becomes NaN')
+                log('Dropping the - unary, -undefined becomes NaN');
                 crumbSet(1, {
                   type: 'Identifier',
                   name: 'NaN',
-                  $p: $p()
-                })
+                  $p: $p(),
+                });
                 changed = true;
               } else if (node.argument.name === 'NaN') {
                 // -NaN and NaN are indistinguishable
-                log('Dropping the - unary from a NaN')
-                crumbSet(1, node.argument)
+                log('Dropping the - unary from a NaN');
+                crumbSet(1, node.argument);
                 changed = true;
               } else if (node.argument.name === 'Infinity') {
                 // no change
@@ -1489,8 +1492,96 @@ export function phase2(program, fdata, resolve, req) {
           }
 
           case '!': {
-            //$(node, '@push', 'boolean');
-            //$(node, '@merge');
+            if (node.argument.type === 'Literal') {
+              if (node.argument.value === 0 || node.argument.value === '') {
+                // Zero and the empty string are falsy and become true
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: true,
+                  raw: 'true',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (typeof node.argument.value === 'number' || typeof node.argument.value === 'string') {
+                // All non-zero numbers and non-empty strings are truthy and become false
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: false,
+                  raw: 'false',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.value === true) {
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: false,
+                  raw: 'false',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.value === false) {
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: true,
+                  raw: 'true',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.regex) {
+                // All regexes are objects and therefore truthy so they invert to false
+                log('Dropping the ! unary, +regex becomes NaN');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: false,
+                  raw: 'false',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.value === null) {
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: true,
+                  raw: 'true',
+                  $p: $p(),
+                });
+                changed = true;
+              } else {
+                ASSERT(false, 'what kind of literal?', node.argument);
+              }
+            } else if (node.argument.type === 'Identifier') {
+              if (node.argument.name === 'undefined') {
+                log('Dropping the ! unary, +undefined becomes NaN');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: true,
+                  raw: 'true',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.name === 'NaN') {
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: true,
+                  raw: 'true',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.name === 'Infinity') {
+                log('Dropping the ! unary');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: false,
+                  raw: 'false',
+                  $p: $p(),
+                });                changed = true;
+              }
+            }
             break;
           }
 

@@ -455,7 +455,7 @@ export function phase2(program, fdata, resolve, req) {
         //$(node, '@condition');
 
         stmt(node, 'consequent', -1, node.consequent);
-        if (node.alternate) stmt(node, 'alternative', -1, node.alternate);
+        if (node.alternate) stmt(node, 'alternate', -1, node.alternate);
 
         break;
       }

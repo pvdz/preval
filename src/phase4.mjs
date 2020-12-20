@@ -22,6 +22,29 @@ export function phase4(program, fdata, resolve, req) {
   const crumbsProps = [];
   const crumbsIndexes = [];
 
+  function crumbGet(delta) {
+    ASSERT(delta > 0, 'must go at least one step back');
+    ASSERT(delta < crumbsNodes.length, 'can not go past root');
+
+    const index = crumbsIndexes[crumbsIndexes.length - delta];
+    if (index >= 0) return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]][index];
+    else return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]];
+  }
+  function crumbSet(delta, node) {
+    ASSERT(delta > 0, 'must go at least one step back');
+    ASSERT(delta < crumbsNodes.length, 'can not go past root');
+    ASSERT(node?.type, 'every node must at least have a type');
+
+    const parent = crumbsNodes[crumbsNodes.length - delta];
+    const prop = crumbsProps[crumbsProps.length - delta];
+    const index = crumbsIndexes[crumbsIndexes.length - delta];
+
+    log('Replacing the call at `' + parent.type + '.' + prop + (index >= 0 ? '[' + index + ']' : '') + '` with', node.type);
+
+    if (index >= 0) return (parent[prop][index] = node);
+    else return (parent[prop] = node);
+  }
+
   group(
     '\n\n\n##################################\n## phase4  ::  ' +
       fdata.fname +
@@ -250,12 +273,7 @@ export function phase4(program, fdata, resolve, req) {
             // There was only one usage and that was this function declaration
             ASSERT(!isExport, 'todo: exports may not be safe to eliminate');
             log('Function is is not actually used so since this is a declaration, it should be safe to eliminate now.');
-            const index = crumbsIndexes[crumbsIndexes.length - 1];
-            if (index >= 0) {
-              crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]][index] = { type: 'EmptyStatement', $p: $p() };
-            } else {
-              crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]] = { type: 'EmptyStatement', $p: $p() };
-            }
+            crumbSet(1, { type: 'EmptyStatement', $p: $p() });
             changed = true;
           }
         }
@@ -266,7 +284,116 @@ export function phase4(program, fdata, resolve, req) {
       case 'IfStatement': {
         expr(node, 'test', -1, node.test);
         stmt(node, 'consequent', -1, node.consequent);
-        if (node.alternate) stmt(node, 'alternative', -1, node.alternate);
+        if (node.alternate) stmt(node, 'alternate', -1, node.alternate);
+
+        // TODO: do we care about function statements? what about labelled function statements? is that relevant at all here?
+
+        const NEITHER = 0;
+        const KEEP_IF = 1;
+        const KEEP_ELSE = 2;
+        let action = NEITHER;
+
+        log('test type:', node.test.type);
+
+        if (node.test.type === 'Literal') {
+          if (node.test.value === 0) {
+            log('if(0) means the consequent is dead code. Eliminating if-else and using the alternate, if available', !!node.alternate);
+            action = KEEP_ELSE;
+          } else if (typeof node.test.value === 'number') {
+            log('if(n) with n!=0 means the alternate is dead code. Eliminating if-else and using the consequent');
+            action = KEEP_IF;
+          } else if (node.test.value === '') {
+            log('if("") means the consequent is dead code. Eliminating if-else and using the alternate, if available', !!node.alternate);
+            action = KEEP_ELSE;
+          } else if (typeof node.test.value === 'string') {
+            log('if(s) with non-empty-string means the alternate is dead code. Eliminating if-else and using the consequent');
+            action = KEEP_IF;
+          } else if (node.test.value === true) {
+            log('if(true) means the consequent is dead code. Eliminating if-else and using the alternate, if available', !!node.alternate);
+            action = KEEP_IF;
+          } else if ([false, null].includes(node.test.value)) {
+            log('if(falsy) means the alternate is dead code. Eliminating if-else and using the consequent');
+            action = KEEP_ELSE;
+          }
+        } else if (node.test.type === 'Identifier') {
+          if (node.test.name === 'undefined') {
+            log('if(falsy) means the alternate is dead code. Eliminating if-else and using the consequent');
+            action = KEEP_ELSE;
+          }
+        } else if (
+          ['ObjectExpression', 'ArrayExpression', 'FunctionExpression', 'ArrowFunctionExpression', 'ClassExpression'].includes(
+            node.test.type,
+          )
+        ) {
+          log('if(obj) means the consequent is dead code. Eliminating if-else and using the alternate, if available', !!node.alternate);
+          action = KEEP_IF;
+        } else if (node.test.type === 'UnaryExpression') {
+          log('operator:', node.test.operator);
+          switch (node.test.operator) {
+            case 'void': {
+              log('if(void ..) is always falsy so rewrite it');
+              // Note: `if (void $(1)) $(2) else $(3)` -> `{ $(1); $(3) }`
+              // In general, if the void has a non-observable side-effect then that's an expression statement that
+              // will automatically get eliminated in a later step, so don't worry about it too much.
+              // (This case is very unlikely to appear in the real world, even after other reductions)
+              crumbSet(
+                1,
+                node.alternate
+                  ? {
+                      type: 'BlockStatement',
+                      body: [{ type: 'ExpressionStatement', expression: node.test.argument, $p: $p() }, node.alternate],
+                      $p: $p(),
+                    }
+                  : { type: 'ExpressionStatement', expression: node.test.argument, $p: $p() },
+              );
+              changed = true;
+              break;
+            }
+            case '!': {
+              log('`if(! ..) A` is `if(..); else A` and `if(!..)A; else B` is `if(..)B; else A`. Normalizing it.');
+              // Note: if there was no `else` this is likely to regress the size. But a final step can always undo
+              //       this transform if the consequent turns out to be a noop.
+              // TODO: are there any coercion cases where `if(x)` is different from `if(!!x)`?
+              // TODO: are there any dangerous if-else pair matching cases to consider here?
+              const A = node.consequent;
+              const B = node.alternate;
+              node.test = node.test.argument;
+              node.consequent = B || { type: 'EmptyStatement', $p: $p() }; // Should this be a block instead?
+              node.alternate = A;
+              changed = true;
+              break;
+            }
+            case 'typeof': {
+              log('`if(typeof ..) is guaranteed to be dead code. Replacing the `if` with the consequent.');
+              // TODO: I think this is observable through proxies? Do I care?
+              action = KEEP_IF;
+              break;
+            }
+            // ~, +, and - can result in zero or non-zero and are not something we can determine statically
+            // delete can result in true or false and is not something we can determine statically
+            // --, ++, and new are not unary ops
+          }
+        } else if (node.test.type === 'NewExpression') {
+          log('`if(new ..)` is always truthy so replacing the `if` with the test and the consequent.');
+          // `if (new ($(1)) $(2); else $(3)` -> `{new ($(1)); $(2)}`
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [{ type: 'ExpressionStatement', expression: node.test, $p: $p() }, node.consequent],
+            $p: $p(),
+          });
+          changed = true;
+        }
+
+        if (action === KEEP_IF) {
+          // The node.alternate is dead code
+          crumbSet(1, node.consequent);
+          changed = true;
+        } else if (action === KEEP_ELSE) {
+          // The node.consequent is dead code
+          crumbSet(1, node.alternate || { type: 'EmptyStatement', $p: $p() });
+          changed = true;
+        }
+
         break;
       }
 
@@ -399,10 +526,7 @@ export function phase4(program, fdata, resolve, req) {
           node.declarations = node.declarations.filter(Boolean); // such cheesy
           if (node.declarations.length === 0) {
             log('Declaration has no more declarations so we can drop that one too');
-            const index = crumbsIndexes[crumbsIndexes.length - 1];
-            if (index >= 0)
-              crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]][index] = { type: 'EmptyStatement', $p: $p() };
-            else crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]] = { type: 'EmptyStatement', $p: $p() };
+            crumbSet(1, { type: 'EmptyStatement', $p: $p() });
           }
         }
 
@@ -604,25 +728,8 @@ export function phase4(program, fdata, resolve, req) {
                     // `function f(){ return 1; } $(f())` -> `$(1)`
                     // Replace `node` with the value
                     // TODO: we also need to outline the arguments; `f(a = 10)`
-                    const crumbParent = crumbsNodes[crumbsNodes.length - 1];
-                    const crumbProp = crumbsProps[crumbsProps.length - 1];
-                    const crumbIndex = crumbsIndexes[crumbsIndexes.length - 1];
                     const newNode = updateTo.$p.oneReturnValue;
-                    log(
-                      'Replacing the call at `' +
-                        crumbParent.type +
-                        '.' +
-                        crumbProp +
-                        (crumbIndex >= 0 ? '[' + crumbIndex + ']' : '') +
-                        '` with',
-                      newNode,
-                    );
-
-                    if (crumbIndex >= 0) {
-                      crumbParent[crumbProp][crumbIndex] = newNode;
-                    } else {
-                      crumbParent[crumbProp] = newNode;
-                    }
+                    crumbSet(1, newNode);
                     changed = true;
                   } else {
                     log('The function does not return a single value.');
@@ -677,9 +784,7 @@ export function phase4(program, fdata, resolve, req) {
           log('Updates to', updateTo.type);
           if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(update.name))) {
             log('Update was a literal. Replacing occurrence with this literal'); // TODO: what about long strings?
-            const crumbIndex = crumbsIndexes[crumbsIndexes.length - 1];
-            if (crumbIndex >= 0) crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]][crumbIndex] = update;
-            else crumbsNodes[crumbsNodes.length - 1][crumbsProps[crumbsProps.length - 1]] = update;
+            crumbSet(1, update);
           }
         }
 

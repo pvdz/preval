@@ -19,6 +19,7 @@ export function parseTestArgs() {
 
       case '-f': {
         config.targetFile = argv.shift();
+        break;
       }
 
       case '-C': {

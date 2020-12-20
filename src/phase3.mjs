@@ -20,7 +20,7 @@ export function phase3(program, fdata, resolve, req) {
         $p: $p(),
       };
       //log('test->', updateTo)
-      if (updateTo.type === 'Literal' || (updateTo.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(updateTo.name))) {
+      if (updateTo.type === 'Literal' || (updateTo.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(updateTo.name))) {
         log('Replacing literal binding with the actual literal...');
 
         // Replace all occurrences with the literal...

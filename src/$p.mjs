@@ -23,6 +23,6 @@ export function $p() {
     // pure // boolean. For functions, whether the function does anything that might have observable side effects beyond the return value.
     // returns // Array<node> | undefined. For functions, all its return nodes. Implicit return adds undefined here.
     // oneReturnValue // any. The node being returned.
-    // replaceWith //
+    // replaceWith // any. The call to this pure function should be replaced with this node.
   };
 }

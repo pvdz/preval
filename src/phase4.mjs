@@ -749,7 +749,6 @@ export function phase4(program, fdata, resolve, req) {
                   } else {
                     log('The function does not return a single value.');
                     // `function f(){ return x; } $(f())` -> `$(x)` ?? (I mean in this particular case easy but generically, not so much)
-                    TODO;
                   }
                 } else if (updateTo.$p.oneReturnValue) {
                   log(
@@ -797,7 +796,7 @@ export function phase4(program, fdata, resolve, req) {
           const update = meta.updates.pop();
           const updateTo = update.index >= 0 ? update.parent[update.prop][update.index] : update.parent[update.prop];
           log('Updates to', updateTo.type);
-          if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(update.name))) {
+          if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(update.name))) {
             log('Update was a literal. Replacing occurrence with this literal'); // TODO: what about long strings?
             crumbSet(1, update);
           }

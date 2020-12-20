@@ -36,7 +36,13 @@ export function phase2(program, fdata, resolve, req) {
     meta.usages = [];
   });
 
-  group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '  ::  cycle ' + fdata.cycle + '\n##################################\n\n\n');
+  group(
+    '\n\n\n##################################\n## phase2  ::  ' +
+      fdata.fname +
+      '  ::  cycle ' +
+      fdata.cycle +
+      '\n##################################\n\n\n',
+  );
 
   //let actions = [];
   do {
@@ -156,7 +162,7 @@ export function phase2(program, fdata, resolve, req) {
           if (i && value.value !== rnode.value) multi = true;
           log('- returns `' + rnode.value + '`');
           value = { type: 'Literal', value: rnode.value, raw: rnode.raw, $p: $p() };
-        } else if (rnode.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(rnode.name)) {
+        } else if (rnode.type === 'Identifier' && ['null', 'NaN', 'Infinity'].includes(rnode.name)) {
           if (i && value.name !== rnode.name) multi = true;
           log('- returns `' + rnode.name + '` (', rnode.name, ')');
           value = { type: 'Identifier', name: rnode.name, $p: $p() };
@@ -423,8 +429,7 @@ export function phase2(program, fdata, resolve, req) {
 
           // Empty function. Eliminate.
           node.$p.replaceWith = { type: 'Identifier', name: 'undefined', $p: $p() };
-        }
-        if (node.body.length === 1 && node.body[0].type === 'ReturnStatement') {
+        } else if (node.body.length === 1 && node.body[0].type === 'ReturnStatement') {
           // TODO: function f(a = sideEffects()) { return 'x' }
 
           if (node.body[0].argument) {
@@ -432,15 +437,16 @@ export function phase2(program, fdata, resolve, req) {
             // TODO: function f(a) { return a }
             // TODO: let n = 1; function f() { return n }
 
-            if (node.body[0].argument.type === 'Literal') {
-              // So this is a function with only a return statement and it returns a literal.
+            if (node.body[0].argument.type === 'Literal' || (node.body[0].argument.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(node.body[0].argument.name))) {
+              // So this is a function with only a return statement and it returns a literal or primitive.
               // TODO: side effects are possible in the param defaults. But barring that...
               // There are no other side effects so this function can essentially be replaced with the literal for any call of it
               // If this function now gets resolved as being called then the call will be replaced with this literal. Baby steps.
-              node.$p.replacedBy = node.body[0].argument;
+              log('Should replace calls to this function with', node.body[0].argument.type)
+              node.$p.replaceWith = node.body[0].argument;
             }
 
-            node.$p.replaceWith = node.body[0].argument;
+            //node.$p.replaceWith = node.body[0].argument;
           } else {
             // Eh ok. Good test, I guess.
             node.$p.replaceWith = 'undefined';
@@ -685,7 +691,7 @@ export function phase2(program, fdata, resolve, req) {
         // Right now let's take an extra step to only allow primitives here. But later we might just inline the whole thing because why not.
         if (node.body.type === 'Literal') {
           value = { type: 'Literal', value: node.value, raw: node.raw, $p: $p() };
-        } else if (node.body.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(node.body.name)) {
+        } else if (node.body.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(node.body.name)) {
           value = { type: 'Identifier', name: node.name, $p: $p() };
         } else {
           multi = true;
@@ -701,7 +707,7 @@ export function phase2(program, fdata, resolve, req) {
             if (i && value.value !== rnode.value) multi = true;
             log('- returns `' + rnode.value + '`');
             value = { type: 'Literal', value: rnode.value, raw: rnode.raw, $p: $p() };
-          } else if (rnode.type === 'Identifier' && ['undefined', 'null', 'true', 'false'].includes(rnode.name)) {
+          } else if (rnode.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(rnode.name)) {
             if (i && value.name !== rnode.name) multi = true;
             log('- returns `' + rnode.name + '` (', rnode.name, ')');
             value = { type: 'Identifier', name: rnode.name, $p: $p() };
@@ -1117,7 +1123,7 @@ export function phase2(program, fdata, resolve, req) {
           index: crumbsIndex[crumbsIndex.length - 1],
         });
 
-        funcStack[funcStack.length - 1].$p.pure = false; // TODO: allow for local reads. non-local reads need more validation work.
+        //funcStack[funcStack.length - 1].$p.pure = false; // TODO: allow for local reads. non-local reads need more validation work.
 
         break;
       }

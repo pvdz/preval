@@ -45,7 +45,7 @@ export function fromMarkdownCase(md, fname) {
         '\n' +
         '>\n' +
         '> ' +
-        md.slice(3, md.indexOf('\n')),
+        md.slice(3, md.indexOf('\n')) + '\n\n#TODO',
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md.slice(md.indexOf('\n')).trim() + '\n`````\n'],
       fin: {
         intro: md.slice(md.indexOf('\n')),

@@ -1,20 +1,19 @@
 # Preval test case
 
-# if_not.md
+# min_false.md
 
-> ifelse > invert > if_not
+> plusmin > min_false
 >
-> Invert the logic
+> Literals with a `!` unary should get inlined
 
 ## Input
 
 `````js filename=intro
-if (!$(1)) $(2);
+$(!false)
 `````
 
 ## Output
 
 `````js filename=intro
-if ($(1));
-else $(2);
+$(true);
 `````

@@ -1413,6 +1413,12 @@ export function phase2(program, fdata, resolve, req) {
                 crumbSet(1, node.argument);
                 changed = true;
               }
+            } else if (node.argument.type === 'UnaryExpression') {
+              if (node.argument.operator === '-') {
+                log('Replace a negative number with itself since the unary `+` will not change it');
+                crumbSet(1, node.argument);
+                changed = true;
+              }
             }
             break;
           }
@@ -1482,12 +1488,106 @@ export function phase2(program, fdata, resolve, req) {
               } else if (node.argument.name === 'Infinity') {
                 // no change
               }
+            } else if (node.argument.type === 'UnaryExpression') {
+              if (node.argument.operator === '-') {
+                log('Replace a double negative number with the arg, but make sure to coerce it');
+                // I think the easiest/safest way is to have it do the same as `+`
+                crumbSet(1, {
+                  type: 'UnaryExpression',
+                  operator: '+',
+                  argument: node.argument.argument, // The actual value
+                  $p: $p(),
+                });
+                changed = true;
+              }
             }
             break;
           }
           case '~': {
-            //$(node, '@push', 'number');
-            //$(node, '@merge');
+            let negative = false;
+            let target = node.argument;
+            if (target.type === 'UnaryExpression' && target.operator === '-') {
+              target = target.argument;
+              negative = true; // invert the value to be tilded
+            }
+
+            if (target.type === 'Literal') {
+              if (target.regex) {
+                // A -regex will normalize to a number at some point so don't bother here
+                if (!negative) {
+                  // Regular expressions are just objects
+                  log('Resolving the `typeof` operator');
+                  // ~regex === -1
+                  crumbSet(1, {
+                    type: 'UnaryExpression',
+                    operator: '~',
+                    argument: {
+                      type: 'Literal',
+                      value: 1,
+                      raw: '1',
+                      $p: $p(),
+                    },
+                    $p: $p(),
+                  });
+                  changed = true;
+                }
+              } else {
+                // All other literals should have a value and we can just ~ it here
+                log('Dropping the ! unary');
+                // A negative value has a different AST node
+                const value = ~(negative ? -target.value : target.value);
+                crumbSet(
+                  1,
+                  value < 0 || Object.is(-0, value)
+                    ? {
+                        type: 'UnaryExpression',
+                        operator: '-',
+                        argument: {
+                          type: 'Literal',
+                          value: -value, // Make sure it's positive!
+                          raw: String(-value),
+                          $p: $p(),
+                        },
+                        $p: $p(),
+                      }
+                    : {
+                        type: 'Literal',
+                        value: value,
+                        raw: String(value),
+                        $p: $p(),
+                      },
+                );
+                changed = true;
+              }
+            } else if (target.type === 'Identifier') {
+              if (target.name === 'undefined' || target.name === 'NaN' || target.name === 'Infinity') {
+                const value = ~(negative ? -target.value : target.value);
+                log('Dropping the ! unary');
+                // In all cases, the `~` result is -1. Including ~(-Infinity).
+                crumbSet(
+                  1,
+                  negative
+                    ? {
+                        type: 'Literal',
+                        value: value,
+                        raw: String(value),
+                        $p: $p(),
+                      }
+                    : {
+                        type: 'UnaryExpression',
+                        operator: '-',
+                        argument: {
+                          type: 'Literal',
+                          value: 1, // Make sure it's positive!
+                          raw: '1',
+                          $p: $p(),
+                        },
+                        $p: $p(),
+                      },
+                );
+                changed = true;
+              }
+            }
             break;
           }
 
@@ -1579,21 +1679,132 @@ export function phase2(program, fdata, resolve, req) {
                   value: false,
                   raw: 'false',
                   $p: $p(),
-                });                changed = true;
+                });
+                changed = true;
+              }
+            } else if (node.argument.type === 'UnaryExpression' && node.argument.operator === '-') {
+              if (node.argument.argument.type === 'Literal' && typeof node.argument.argument.value === 'number') {
+                // !-n. Ignore the sign. If n is zero, replace with true. OTherwise replace with false.
+                // Other kinds of values will normalize to a number eventually so ignore them.
+                if (node.argument.argument.value === 0) {
+                  // sign is irrelevant
+                  log('Replacing `!-0` with `true`');
+                  crumbSet(1, {
+                    type: 'Literal',
+                    value: true,
+                    raw: 'true',
+                    $p: $p(),
+                  });
+                  changed = true;
+                } else {
+                  log('Replacing `!-n` with `false` because n!=0');
+                  crumbSet(1, {
+                    type: 'Literal',
+                    value: false,
+                    raw: 'false',
+                    $p: $p(),
+                  });
+                  changed = true;
+                }
               }
             }
             break;
           }
 
           case 'typeof': {
-            //$(node, '@drop');
-            //$(node, '@push', 'string');
+            if (node.argument.type === 'Literal') {
+              if (node.argument.regex) {
+                // Regular expressions are just objects
+                log('Resolving the `typeof` operator');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 'object',
+                  raw: '"object"',
+                  $p: $p(),
+                });
+                changed = true;
+              } else {
+                // All other literals should have a value
+                log('Resolving the `typeof` operator');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: typeof node.argument.value,
+                  raw: '"' + typeof node.argument.value + '"',
+                  $p: $p(),
+                });
+                changed = true;
+              }
+            } else if (node.argument.type === 'Identifier') {
+              if (node.argument.name === 'undefined') {
+                log('Resolving the `typeof` operator');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 'undefined',
+                  raw: '"undefined"',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.name === 'NaN') {
+                log('Resolving the `typeof` operator');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 'number',
+                  raw: '"number"',
+                  $p: $p(),
+                });
+                changed = true;
+              } else if (node.argument.name === 'Infinity') {
+                log('Resolving the `typeof` operator');
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 'number',
+                  raw: '"number"',
+                  $p: $p(),
+                });
+                changed = true;
+              }
+            } else if (node.argument.type === 'UnaryExpression') {
+              log('Resolving the `typeof` operator which is another operator', node.argument.operator);
+              crumbSet(
+                1,
+                node.argument.operator === '-' || node.argument.operator === '+' || node.argument.operator === '~'
+                  ? {
+                      type: 'Literal',
+                      value: 'number',
+                      raw: '"number"',
+                      $p: $p(),
+                    }
+                  : node.argument.operator === 'typeof'
+                  ? {
+                      type: 'Literal',
+                      value: 'string',
+                      raw: '"string"',
+                      $p: $p(),
+                    }
+                  : node.argument.operator === 'void'
+                  ? {
+                      type: 'Literal',
+                      value: 'undefined',
+                      raw: '"undefined"',
+                      $p: $p(),
+                    }
+                  : node.argument.operator === '!'
+                  ? {
+                      type: 'Literal',
+                      value: 'boolean',
+                      raw: '"boolean"',
+                      $p: $p(),
+                    }
+                  : ASSERT(false, 'what operator'),
+              );
+              changed = true;
+            }
             break;
           }
 
           case 'void': {
-            //$(node, '@drop');
-            //$(node, '@push', 'undefined');
+            // Is it easier to have `void x` or `(x, undefined)` and eliminate void altogether?
+            // It's not shorter, but we can always try to mend that in the end. tbd
             break;
           }
 

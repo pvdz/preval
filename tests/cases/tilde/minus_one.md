@@ -1,20 +1,19 @@
 # Preval test case
 
-# if_not.md
+# min_zero.md
 
-> ifelse > invert > if_not
+> plusmin > min_zero
 >
-> Invert the logic
+> Inlining `~` when we know something is a literal
 
 ## Input
 
 `````js filename=intro
-if (!$(1)) $(2);
+$(~(-1));
 `````
 
 ## Output
 
 `````js filename=intro
-if ($(1));
-else $(2);
+$(0);
 `````

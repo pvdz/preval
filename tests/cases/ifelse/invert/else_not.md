@@ -6,8 +6,6 @@
 >
 > Invert the logic
 
-#TODO
-
 ## Input
 
 `````js filename=intro

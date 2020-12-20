@@ -30,6 +30,29 @@ export function phase2(program, fdata, resolve, req) {
   const crumbsProp = [];
   const crumbsIndex = [];
 
+  function crumbGet(delta) {
+    ASSERT(delta > 0, 'must go at least one step back');
+    ASSERT(delta < crumbsNode.length, 'can not go past root');
+
+    const index = crumbsIndex[crumbsIndex.length - delta];
+    if (index >= 0) return crumbsNode[crumbsNode.length - delta][crumbsProp[crumbsProp.length - delta]][index];
+    else return crumbsNode[crumbsNode.length - delta][crumbsProp[crumbsProp.length - delta]];
+  }
+  function crumbSet(delta, node) {
+    ASSERT(delta > 0, 'must go at least one step back');
+    ASSERT(delta < crumbsNode.length, 'can not go past root');
+    ASSERT(node?.type, 'every node must at least have a type');
+
+    const parent = crumbsNode[crumbsNode.length - delta];
+    const prop = crumbsProp[crumbsProp.length - delta];
+    const index = crumbsIndex[crumbsIndex.length - delta];
+
+    log('Replacing the call at `' + parent.type + '.' + prop + (index >= 0 ? '[' + index + ']' : '') + '` with', node.type);
+
+    if (index >= 0) return (parent[prop][index] = node);
+    else return (parent[prop] = node);
+  }
+
   // Clear usage and update data.
   fdata.globallyUniqueNamingRegistery.forEach((meta) => {
     meta.updates = [];
@@ -869,26 +892,8 @@ export function phase2(program, fdata, resolve, req) {
               node.left.raw = str;
               node.left.loc = node.loc; // Keep original loc of this range because who knows source maps amirite
 
-              const parent = crumbsNode[crumbsNode.length - 1];
-              const prop = crumbsProp[crumbsProp.length - 1];
-              const index = crumbsIndex[crumbsIndex.length - 1];
-              if (index >= 0) {
-                if (parent[prop][index] !== node.left) {
-                  log('- actually replacing', parent.type + '[' + prop + '][' + index + '] with a', node.left.type);
-                  parent[prop][index] = node.left;
-                  changed = true;
-                }
-              } else {
-                if (parent[prop] !== node.left) {
-                  log('- actually replacing', parent.type + '[' + prop + '] with a', node.left.type, '->', index);
-                  parent[prop] = node.left;
-                  changed = true;
-                }
-              }
-
-              // `node` is a Binary expression that we want to replace in its parent.
-              crumbsNode[crumbsNode.length - 1] = node.left;
-              crumbsProp[crumbsProp.length - 1] = true; // Prevent assertion from blowing up
+              crumbSet(1, node.left);
+              changed = true;
             }
 
             break;

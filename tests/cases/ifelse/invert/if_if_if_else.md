@@ -6,7 +6,7 @@
 >
 > Test else-matching
 
-The transform should not cause the `else $(4)` part to become matched to the first `if`. 
+The transform should not cause the `else $(4)` part to become matched to the first `if`.
 
 ## Input
 

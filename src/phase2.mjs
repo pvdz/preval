@@ -886,6 +886,8 @@ export function phase2(program, fdata, resolve, req) {
 
         switch (node.operator) {
           case '+': {
+            // Note: this is unsafe due to potential rounding errors and/or representation errors
+
             if (node.left.type === 'Literal' && node.right.type === 'Literal') {
               // TODO: this hack won't work for something like bigint and a few others. I guess.
               log('Replacing BinaryExpression with a Literal');
@@ -902,58 +904,86 @@ export function phase2(program, fdata, resolve, req) {
             break;
           }
           case '-': {
-            //$(node, '@push', 'number');
-            //$(node, '@merge');
-            //$(node, '@merge');
-            //$(node, '@drop'); // Don't care about the merged value, it always returns a number
-            //$(node, '@push', 'number');
+            // Note: this is unsafe due to potential rounding errors and/or representation errors
+
             break;
           }
           case '==':
           case '!=':
-            linter.check(
-              'TOFIX',
-              { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-              'weak comparison is bad and not implemented',
-            );
-            //$(node, '@merge');
-            break;
           case '===':
           case '!==':
-            //$(node, '@merge');
-            //$(node, '@drop'); // Don't care about the merged value
-            //$(node, '@push', 'boolean');
-            break;
           case '<':
           case '<=':
           case '>':
-          case '>=':
-            // Merge left and right with number and return a boolean
-            //$(node, '@push', 'number');
-            //$(node, '@merge'); // must return a number
-            //$(node, '@merge');
-            //$(node, '@drop'); // Don't care about the merged value
-            //$(node, '@push', 'boolean');
+          case '>=': {
+            // Note: regexes aren't necessarily safe to compare and eliminate just yet here TODO
+            let nleft = node.left;
+            let lneg = false;
+            if (nleft.type === 'UnaryExpression' && nleft.operator === '-') {
+              nleft = nleft.argument;
+              lneg = true;
+            }
+            if (
+              (nleft.type === 'Literal' && !nleft.regex) ||
+              (nleft.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(nleft.name))
+            ) {
+              let nright = node.right;
+              let rneg = false;
+              if (nright.type === 'UnaryExpression' && nright.operator === '-') {
+                nright = nright.argument;
+                rneg = true;
+              }
+              if (
+                (nright.type === 'Literal' && !nright.regex) ||
+                (nright.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(nright.name))
+              ) {
+                let left =
+                  nleft.type === 'Literal' ? nleft.value : nleft.name === 'undefined' ? undefined : nleft.name === 'NaN' ? NaN : Infinity;
+                if (lneg) left = -left;
+                let right =
+                  nright.type === 'Literal'
+                    ? nright.value
+                    : nright.name === 'undefined'
+                    ? undefined
+                    : nright.name === 'NaN'
+                    ? NaN
+                    : Infinity;
+                if (rneg) right = -right;
+                const result =
+                  node.operator === '!='
+                    ? left != right
+                    : node.operator === '=='
+                    ? left == right
+                    : node.operator === '!=='
+                    ? left !== right
+                    : node.operator === '!=='
+                    ? left === right
+                    : node.operator === '<'
+                    ? left < right
+                    : node.operator === '<='
+                    ? left <= right
+                    : node.operator === '>'
+                    ? left > right
+                    : left >= right;
+
+                log('Replacing', node.operator, 'node with', left, node.operator, right, '==>', result);
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: result,
+                  raw: String(result),
+                  $p: $p(),
+                });
+                changed = true;
+              }
+            }
             break;
+          }
 
           case 'instanceof': {
-            // This model should conclusively determine the truth value of any `instanceof` expression
-            linter.check('INSTANCEOF_OBSOLETE', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column });
-
-            // TODO: figure out the rules, proper
-            //$(node, '@instanceof');
-
             break;
           }
 
           case 'in': {
-            // This model should conclusively determine the truth value of any `in` expression
-            linter.check('IN_OBSOLETE', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column });
-
-            // TODO: figure out valid values of rhs. Probably have to verify that state in the @in callback
-            expr(node, 'right', -1, node.right);
-            //$(node, '@in', node);
-
             break;
           }
 

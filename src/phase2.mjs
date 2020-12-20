@@ -1345,8 +1345,143 @@ export function phase2(program, fdata, resolve, req) {
             break;
           }
 
-          case '+':
-          case '-':
+          case '+': {
+            if (node.argument.type === 'Literal') {
+              if (typeof node.argument.value === 'number') {
+                // Drop the unary. It adds no value.
+                log('Dropping the + unary')
+                crumbSet(1, node.argument);
+                changed = true;
+              } else if (typeof node.argument.value === 'string') {
+                // Shrug.
+              } else if (node.argument.value === true) {
+                log('Dropping the + unary')
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 1,
+                  raw: '1',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.value === false) {
+                log('Dropping the + unary')
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 0,
+                  raw: '0',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.regex) {
+                log('Dropping the + unary, +regex becomes NaN')
+                crumbSet(1, {
+                  type: 'Identifier',
+                  name: 'NaN',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.value === null) {
+                log('Dropping the + unary')
+                crumbSet(1, {
+                  type: 'Literal',
+                  value: 0,
+                  raw: '0',
+                  $p: $p()
+                })
+                changed = true;
+              } else {
+                ASSERT(false, 'what kind of literal?', node.argument);
+              }
+            } else if (node.argument.type === 'Identifier') {
+              if (node.argument.name === 'undefined') {
+                log('Dropping the + unary, +undefined becomes NaN')
+                crumbSet(1, {
+                  type: 'Identifier',
+                  name: 'NaN',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.name === 'NaN') {
+                log('Dropping the + unary')
+                crumbSet(1, node.argument)
+                changed = true;
+              } else if (node.argument.name === 'Infinity') {
+                log('Dropping the + unary')
+                crumbSet(1, node.argument)
+                changed = true;
+              }
+            }
+            break;
+          }
+          case '-': {
+            if (node.argument.type === 'Literal') {
+              if (typeof node.argument.value === 'number') {
+                // Leave it
+              } else if (typeof node.argument.value === 'string') {
+                // Shrug.
+              } else if (node.argument.value === true) {
+                // -true = -1
+                log('Dropping the - unary, -true becomes -1')
+                node.argument = {
+                  type: 'Literal',
+                  value: 1,
+                  raw: '1',
+                  $p: $p()
+                }
+                changed = true;
+              } else if (node.argument.value === false) {
+                // -false is -0 (the sign _is_ detectable)
+                log('Dropping the - unary, -false becomes -0')
+                node.argument = {
+                  type: 'Literal',
+                  value: 0,
+                  raw: '0',
+                  $p: $p()
+                }
+                changed = true;
+              } else if (node.argument.regex) {
+                // -/1/ is NaN (no sign)
+                log('Dropping the - unary, -regex becomes NaN')
+                crumbSet(1, {
+                  type: 'Identifier',
+                  name: 'NaN',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.value === null) {
+                // -null is -0
+                log('Dropping the - unary, -null becomes -0')
+                node.argument = {
+                  type: 'Literal',
+                  value: 0,
+                  raw: '0',
+                  $p: $p()
+                }
+                changed = true;
+              } else {
+                ASSERT(false, 'what kind of literal?', node.argument);
+              }
+            } else if (node.argument.type === 'Identifier') {
+              if (node.argument.name === 'undefined') {
+                // -undefined is NaN (no sign)
+                log('Dropping the - unary, -undefined becomes NaN')
+                crumbSet(1, {
+                  type: 'Identifier',
+                  name: 'NaN',
+                  $p: $p()
+                })
+                changed = true;
+              } else if (node.argument.name === 'NaN') {
+                // -NaN and NaN are indistinguishable
+                log('Dropping the - unary from a NaN')
+                crumbSet(1, node.argument)
+                changed = true;
+              } else if (node.argument.name === 'Infinity') {
+                // no change
+              }
+            }
+            break;
+          }
           case '~': {
             //$(node, '@push', 'number');
             //$(node, '@merge');

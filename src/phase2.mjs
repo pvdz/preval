@@ -391,6 +391,7 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'FunctionDeclaration': {
+        log('Name:', node.id ? node.id.name : '<anon>');
         //let abak = actions;
         //actions = []
         //
@@ -1210,7 +1211,7 @@ export function phase2(program, fdata, resolve, req) {
 
             if (node.computed) {
               log('Dynamic property access.');
-              expr(node, 'computed', -1, node.computed);
+              expr(node, 'property', -1, node.property);
               dynaStack.push(true);
             } else {
               dynaStack.push(false);

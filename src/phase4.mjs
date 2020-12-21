@@ -273,6 +273,7 @@ export function phase4(program, fdata, resolve, req) {
       }
 
       case 'FunctionDeclaration': {
+        log('Name:', node.id ? node.id.name : '<anon>');
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
         stmt(node, 'body', -1, node.body);
 
@@ -834,7 +835,7 @@ export function phase4(program, fdata, resolve, req) {
             r(node.object);
             uncrumb(node, 'object', -1);
             if (node.computed) {
-              expr(node, 'computed', -1, node.computed);
+              expr(node, 'property', -1, node.property);
             }
           } else if (node.type === 'Super') {
           } else {

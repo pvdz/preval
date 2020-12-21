@@ -28,7 +28,7 @@ const CONFIG = parseTestArgs();
 const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames();
 const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
-  .map(({ md, fname }) => fromMarkdownCase(md, fname));
+  .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
 
 let pass = 0;
 let snap = 0; // snapshot fail
@@ -116,7 +116,11 @@ function runTestCase(
   if (md2 !== md) {
     ++snap;
 
-    if (CONFIG) {
+    if (CONFIG.fileVerbatim) {
+      console.log('Not writing result:');
+      console.log(md2);
+      console.log();
+    } else {
       fs.writeFileSync(fname, md2, 'utf8');
     }
   }

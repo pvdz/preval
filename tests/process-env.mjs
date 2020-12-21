@@ -6,6 +6,7 @@ export function parseTestArgs() {
     updateSnapshots: false,
     noColor: false,
     targetFile: undefined,
+    fileVerbatim: false,
   };
 
   while (argv.length) {
@@ -19,6 +20,12 @@ export function parseTestArgs() {
 
       case '-f': {
         config.targetFile = argv.shift();
+        break;
+      }
+
+      case '-F': {
+        config.targetFile = argv.shift();
+        config.fileVerbatim = true;
         break;
       }
 

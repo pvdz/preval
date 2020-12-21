@@ -23,11 +23,33 @@ export function ASSERT(a, desc = '', ...rest) {
   }
 }
 
-export function fromMarkdownCase(md, fname) {
+export function fromMarkdownCase(md, fname, config) {
   // A test case either starts with `//` (new test case) or with `#` (existing test case). Reject the rest.
   // Returns a test case: {md, fname, head, fin}
 
-  if (md[0] === '/' && md[1] === '/' && md[2] === ' ') {
+  if (config.fileVerbatim) {
+    console.log('Reading', fname, 'as the whole test case');
+    return {
+      fname,
+      md,
+      mdHead:
+        '# Preval test case\n\n# ' +
+        path.basename(fname) +
+        '\n\n' +
+        '> ' +
+        fname
+        .slice(fname.indexOf('tests/cases/') + 'tests/cases/'.length, -3)
+        .split('/')
+        .join(' > ') +
+        '\n' +
+        '>\n' +
+        '> (verbatim file)\n\n#TODO',
+      mdChunks: ['## Input\n\n`````js filename=intro\n' + md + '\n`````\n'],
+      fin: {
+        intro: md,
+      },
+    };
+  } else if (md[0] === '/' && md[1] === '/' && md[2] === ' ') {
     console.log('Converting new case in', fname, 'to an actual test case');
     // Assume new test case
     return {

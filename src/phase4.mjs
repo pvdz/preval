@@ -79,7 +79,6 @@ export function phase4(program, fdata, resolve, req) {
     }
     if (index < 0) {
       log('The ident `' + node.name + '` could not be resolved to a unique name. Was it an implicit global?');
-      linter.check('IMPLICIT_GLOBAL', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, node.name);
       // Register one...
       //log('Creating global binding for `' + node.name + '` now');
       lexScopeStack[0].$p.nameMapping.set(node.name, node.name);
@@ -257,7 +256,7 @@ export function phase4(program, fdata, resolve, req) {
       case 'ForOfStatement': {
         // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
         if (node.await) {
-          linter.check('TOFIX', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, 'todo_for_await');
+          TODO
         }
 
         // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
@@ -756,7 +755,7 @@ export function phase4(program, fdata, resolve, req) {
                     'The function is not pure but does have a single return value. Replace the call with that value and move the call up.',
                   );
                   // `function f(){ console.log(1); return 2; } $(f())` -> `f(); $(1)` -> `console.log(2); $(1)`
-                  TODO;
+                  //TODO;
                 }
               }
             }

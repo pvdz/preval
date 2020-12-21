@@ -46,8 +46,7 @@ export function phase1(program, fdata, resolve, req) {
       }
     }
     if (index < 0) {
-      log('The ident `' + node.name + '` could not be resolved');
-      linter.check('IMPLICIT_GLOBAL', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, node.name);
+      log('The ident `' + node.name + '` could not be resolved and is an implicit global');
       // Register one...
       log('Creating global binding for `' + node.name + '` now');
       lexScopeStack[0].$p.nameMapping.set(node.name, node.name);
@@ -213,9 +212,7 @@ export function phase1(program, fdata, resolve, req) {
               updates: [], // {parent, prop, index} indirect reference ot the node being assigned
               usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
             });
-            log('- the scope binding for node at linecol:', funcNode.loc.start.line + ':' + funcNode.loc.start.column);
             scopeBindings.set(name + (n ? '_' + n : ''), uid);
-            log('- the mapping for node at linecol:', node.loc.start.line + ':' + node.loc.start.column);
             node.$p.nameMapping.set(name, name + (n ? '_' + n : ''));
           });
         }
@@ -243,7 +240,6 @@ export function phase1(program, fdata, resolve, req) {
         ),
       );
       log('nearest func scope bindings:', [...scopeBindings.entries()].map(([key, value]) => key + ': ' + value).join(', '));
-      log('node loc;', node.loc.start.line + ':' + node.loc.start.column);
     }
 
     switch (key) {
@@ -419,8 +415,6 @@ export function phase1(program, fdata, resolve, req) {
         if (thisStack.length) {
           log('Marking func as having `this` access');
           thisStack[thisStack.length - 1].$p.thisAccess = true;
-        } else {
-          store.linter.check('GLOBAL_THIS', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column });
         }
         break;
       }

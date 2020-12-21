@@ -10,11 +10,6 @@ import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, printNode } 
 
 const E = eval; // indirect eval. Because it's safe that way.                                                                        lol.
 
-function linter() {
-  console.log('TOFIX: LINTER');
-}
-linter.check = linter; // OH NO HE DIDNT
-
 export function phase2(program, fdata, resolve, req) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
@@ -116,7 +111,6 @@ export function phase2(program, fdata, resolve, req) {
     }
     if (index < 0) {
       log('The ident `' + node.name + '` could not be resolved');
-      linter.check('IMPLICIT_GLOBAL', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, node.name);
       // Register one...
       log('Creating global binding for `' + node.name + '` now');
       lexScopeStack[0].$p.nameMapping.set(node.name, node.name);
@@ -258,7 +252,6 @@ export function phase2(program, fdata, resolve, req) {
         // TODO: replace the star with the actual symbols being exported...?
         const source = node.source.value;
         ASSERT(typeof source === 'string');
-        linter.check('TOFIX', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, 'todo_export_star');
         break;
       }
 
@@ -299,7 +292,6 @@ export function phase2(program, fdata, resolve, req) {
 
         if (node.source) {
           // export ... from
-          linter.check('TOFIX', locFrom, callerTee.tid);
         } else if (node.declaration) {
           ASSERT(
             node.declaration.type === 'FunctionDeclaration' ||
@@ -367,7 +359,6 @@ export function phase2(program, fdata, resolve, req) {
       case 'ForOfStatement': {
         // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
         if (node.await)
-          linter.check('TOFIX', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, 'todo_for_await');
 
         // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
         expr(node, 'right', -1, node.right);
@@ -428,7 +419,6 @@ export function phase2(program, fdata, resolve, req) {
           });
           groupEnd();
         }
-        //else linter.check('TOFIX', {filename, line: node.loc.start.line, column: node.loc.start.column}, 'todo_export_default_without_name'); // I mean this'll just crash? :)
 
         // For functions, focus on the `function` keyword
         //let funcToken = getFirstToken(node);
@@ -625,11 +615,6 @@ export function phase2(program, fdata, resolve, req) {
             // Ignore? Phase1 should have marked this var as potentially undefined. If it has no actual assignments then it's just `undefined`
 
             //const pid = createPlaceholder(store, 'HB', 'binding `' + dnode.id ? dnode.id.name : '<destruct>' + '` without init');
-            linter.check(
-              'BINDING_NO_INIT',
-              { filename: fdata.fname, column: dnode.id.loc.start.column, line: dnode.id.loc.start.line },
-              dnode.id.name,
-            );
             //log('Created placeholder', tstr(pid), 'for the binding');
           }
 
@@ -640,27 +625,11 @@ export function phase2(program, fdata, resolve, req) {
             //  $(dnode, '@export_as', isExport === true ? uniqueName : 'default');
             //}
           } else if (dnode.id.type === 'ArrayPattern') {
-            if (isExport)
-              linter.check(
-                'TOFIX',
-                { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-                'exported array pattern',
-              );
-
-            linter.check('ARRAY_PATTERN_UNSOUND', {
-              filename: fdata.fname,
-              column: dnode.id.loc.start.column,
-              line: dnode.id.loc.start.line,
-            });
+            if (isExport) TODO
 
             dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
           } else {
-            if (isExport)
-              linter.check(
-                'TOFIX',
-                { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-                'exported object pattern',
-              );
+            if (isExport) TODO
 
             ASSERT(dnode.id.type === 'ObjectPattern', 'fixme if else', dnode.id);
 
@@ -896,7 +865,6 @@ export function phase2(program, fdata, resolve, req) {
               const str = JSON.stringify(val); // eew
               node.left.value = val;
               node.left.raw = str;
-              node.left.loc = node.loc; // Keep original loc of this range because who knows source maps amirite
 
               crumbSet(1, node.left);
               changed = true;
@@ -1011,7 +979,6 @@ export function phase2(program, fdata, resolve, req) {
             // TODO: can ignore empty arrays (although is that really worth it in the real world?)
             if (i !== 0) {
               // note: reversed order, so we expect rest to be index 0
-              linter.check('SPREAD_NOT_TAIL', { filename: fdata.fname, column: anode.loc.start.column, line: anode.loc.start.line });
             } else {
               spreadAt = node.arguments.length - 1 - i; // Note: list is reversed!
             }
@@ -1100,11 +1067,6 @@ export function phase2(program, fdata, resolve, req) {
 
           if (has) {
             log('The func expr name was shadowed by a param name or local var, ignoring it');
-            linter.check('FUNC_EXPR_NAME_SHADOW', {
-              filename: fdata.fname,
-              column: node.id.loc.start.column,
-              line: node.id.loc.start.line,
-            });
           } else {
             // Ok, the func expr had a name the name was not shadowed, record it
             log('Making sure the func name gets bound properly');
@@ -1181,11 +1143,6 @@ export function phase2(program, fdata, resolve, req) {
           //$(node, '@push', 'null');
         } else {
           log('Missing support for literal', node);
-          linter.check(
-            'TOFIX',
-            { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-            'unknown literal type',
-          );
         }
         break;
       }
@@ -1373,9 +1330,6 @@ export function phase2(program, fdata, resolve, req) {
 
         switch (node.operator) {
           case 'delete': {
-            linter.check('DELETE_MEH', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column });
-            //$(node, '@drop');
-            //$(node, '@push', 'boolean');
             break;
           }
 
@@ -1840,7 +1794,7 @@ export function phase2(program, fdata, resolve, req) {
           }
 
           default: {
-            linter.check('TOFIX', { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column }, 'unknown unary op');
+            TOFIX
           }
         }
 
@@ -1895,7 +1849,6 @@ export function phase2(program, fdata, resolve, req) {
         log('- ' + (methodTypes.length + 1) + ': a ' + (cnode.static ? 'static' : 'proto') + ' method: `' + methodName + '`');
 
         if (cnode.computed) {
-          linter.check('CLASS_COMPUTED_METHOD', { filename: fdata.fname, line: cnode.loc.start.line, column: cnode.loc.start.column });
           // I think the computed key of a method should be visited first...?
           crumb(node, 'body', -1);
           expr2(node.body, 'body', i, cnode, 'key', cnode.key);
@@ -1925,10 +1878,6 @@ export function phase2(program, fdata, resolve, req) {
     // Put the future prototype object on the stack.
     //$(node, '@obj', []);
 
-    const desc =
-      'Class<' + (node.id ? node.id.name : '<anon>') + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
-    //$(node, '@class', 'N' + node.$p.tid + '=' + (node.id ? node.id.name : 'anon'), node.id ? node.id.name : '', methodTypes.reverse(), methodNames.reverse(), desc);
-
     if (isExport) {
       ASSERT(node.id, 'exported classes (not by default) must have an id as per syntax');
       //$(node, '@dup');
@@ -1937,23 +1886,14 @@ export function phase2(program, fdata, resolve, req) {
 
     if (isExpr) {
       // TODO: how do we best model the class expression id being accessible inside the class? fake an arrow?
-      if (node.id)
-        linter.check(
-          'TOFIX',
-          { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-          'class expression id is a small scoping nightmare. just skip tests with a class expr id; not a vital path to cover atm',
-        );
+      if (node.id) TOFIX
     } else {
       if (node.id) {
         log('Class id:');
         const uniqueName = findUniqueNameForBindingIdent(node.id);
         //$(node, '@binding', uniqueName, 'lex');
       } else {
-        linter.check(
-          'TOFIX',
-          { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-          'exported class as a default has no name',
-        );
+        TOFIX
       }
     }
 
@@ -2022,12 +1962,6 @@ export function phase2(program, fdata, resolve, req) {
           paramBindingNames.push(uniqueName);
         } else if (paramNode.type === 'ArrayPattern') {
           // Complex case. Sort out the final param value vs default, then walk through the destructuring pattern.
-
-          linter.check('ARRAY_PATTERN_UNSOUND', {
-            filename: fdata.fname,
-            column: paramNode.loc.start.column,
-            line: paramNode.loc.start.line,
-          });
 
           //$(pnode, '@defaults');
 
@@ -2125,17 +2059,7 @@ export function phase2(program, fdata, resolve, req) {
         .map((pnode, i) => {
           if (pnode.type === 'Property') {
             if (pnode.computed) {
-              linter.check(
-                'DYNAMIC_PROP_ACCESS',
-                { filename: fdata.fname, column: pnode.loc.start.column, line: pnode.loc.start.line },
-                'destructuring',
-              );
-
-              linter.check(
-                'TOFIX',
-                { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-                'destructuring dynamic property stuff',
-              ); // check how to make dyn_prop stuff work when destructuring
+              TOFIX
 
               // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
               expr2(objNode, 'properties', i, pnode, 'property', -1, pnode.property);
@@ -2229,17 +2153,7 @@ export function phase2(program, fdata, resolve, req) {
 
       if (pnode.computed) {
         // let {[x]: y} = obj
-        linter.check(
-          'DYNAMIC_PROP_ACCESS',
-          { filename: fdata.fname, column: pnode.loc.start.column, line: pnode.loc.start.line },
-          'destructuring2',
-        );
-
-        linter.check(
-          'TOFIX',
-          { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-          'destructuring dynamic property stuff',
-        ); // Check how to make this dyn_prop stuff work for destructuring
+        TOFIX
 
         // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
         expr(pnode, 'property', -1, pnode.property);
@@ -2270,7 +2184,6 @@ export function phase2(program, fdata, resolve, req) {
         //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
       } else if (pnode.value.type === 'ArrayPattern') {
         // let {x: [x]} = obj
-        linter.check('ARRAY_PATTERN_UNSOUND', { filename: fdata.fname, column: pnode.loc.start.column, line: pnode.loc.start.line });
         pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
         //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
       } else {
@@ -2305,7 +2218,6 @@ export function phase2(program, fdata, resolve, req) {
           //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
         } else if (vnode.value.type === 'ArrayPattern') {
           // let {x: [x]} = obj
-          linter.check('ARRAY_PATTERN_UNSOUND', { filename: fdata.fname, column: vnode.loc.start.column, line: vnode.loc.start.line });
           pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
           //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
         } else {
@@ -2317,17 +2229,7 @@ export function phase2(program, fdata, resolve, req) {
         .map((pnode) => {
           if (pnode.type === 'Property') {
             if (pnode.computed) {
-              linter.check(
-                'DYNAMIC_PROP_ACCESS',
-                { filename: fdata.fname, column: pnode.loc.start.column, line: pnode.loc.start.line },
-                'destructuring3',
-              );
-
-              linter.check(
-                'TOFIX',
-                { filename: fdata.fname, line: node.loc.start.line, column: node.loc.start.column },
-                'destructuring dynamic property stuff',
-              ); // check how to make dyn_prop stuff work for destructuring
+              TOFIX
 
               // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
               expr(pnode, 'property', -1, pnode.property);
@@ -2382,7 +2284,6 @@ export function phase2(program, fdata, resolve, req) {
       enode.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, enode, kind));
       //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
     } else if (enode.type === 'ArrayPattern') {
-      linter.check('ARRAY_PATTERN_UNSOUND', { filename: fdata.fname, column: enode.loc.start.column, line: enode.loc.start.line });
       enode.elements.forEach((node) => destructBindingArrayElement(node, kind));
       //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
     } else if (pnode.type === 'RestElement') {

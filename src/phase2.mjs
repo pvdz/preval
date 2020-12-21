@@ -1066,7 +1066,7 @@ export function phase2(program, fdata, resolve, req) {
         //$(node, '@merge'); // Merge condition with bool
         //$(node, '@drop'); // pop the bool
         expr(node, 'consequent', -1, node.consequent);
-        expr(node, 'alternate', node.alternate);
+        expr(node, 'alternate', -1, node.alternate);
         //$(node, '@merge'); // Merge consequent with alternate (not with bool) and return it
         break;
       }

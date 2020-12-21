@@ -775,7 +775,7 @@ export function phase4(program, fdata, resolve, req) {
       case 'ConditionalExpression': {
         expr(node, 'test', -1, node.test);
         expr(node, 'consequent', -1, node.consequent);
-        expr(node, 'alternate', node.alternate);
+        expr(node, 'alternate', -1, node.alternate);
         break;
       }
 

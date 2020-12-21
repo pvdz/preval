@@ -99,7 +99,7 @@ export function fromMarkdownCase(md, fname, config) {
   }
 }
 
-function fmat(code) {
+export function fmat(code) {
   try {
     return Prettier.format(code, {
       parser: 'babel',

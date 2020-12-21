@@ -1,7 +1,6 @@
 // ran on node 14+ (only real requirement is esm)
 
 import fs from 'fs';
-
 import { preval } from '../src/index.mjs';
 import {
   RED,
@@ -17,6 +16,7 @@ import {
   BAD,
   fromMarkdownCase,
   toMarkdownCase,
+  fmat,
 } from './utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
@@ -129,10 +129,10 @@ function runTestCase(
     console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
     console.log('code:');
     Object.keys(fin).forEach((fname) => {
-      console.log('###########################\n## File:', fname, '\n###########################');
+      console.log('###########################\n## File input:', fname, '\n###########################');
       console.log(fin[fname]);
-      console.log('#######\n## Output:\n#######');
-      console.log(output.files[fname]);
+      console.log('\n#######\n## Preval Output:\n#######');
+      console.log(fmat(output.files[fname]));
     });
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
   }

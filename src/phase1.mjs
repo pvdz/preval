@@ -1,5 +1,6 @@
+import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RESET } from './utils.mjs';
+import {log, group, groupEnd, ASSERT, BLUE, RESET, fmat} from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from './$p.mjs';
@@ -564,6 +565,8 @@ export function phase1(program, fdata, resolve, req) {
   }
 
   log('globallyUniqueNamingRegistery:', globallyUniqueNamingRegistery);
+
+  log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
   log('End of phase 1');
   groupEnd();

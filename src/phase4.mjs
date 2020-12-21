@@ -1,5 +1,5 @@
 import { printer } from '../lib/printer.mjs';
-import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, printNode } from './utils.mjs';
+import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
 import { $p } from './$p.mjs';
 
 // This phase is intended for things that require a full parse first. Like figuring out how often a variable is assigned to.
@@ -58,7 +58,7 @@ export function phase4(program, fdata, resolve, req) {
     stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
     if (changed) somethingChanged = true;
 
-    log('\nCurrent state\n--------------\n' + printer(fdata.tenkoOutput.ast) + '\n--------------\n');
+    log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
   } while (changed);
 
   log('End of phase4');

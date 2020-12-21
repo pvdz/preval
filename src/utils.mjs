@@ -1,3 +1,5 @@
+import Prettier from 'prettier';
+
 const colorLess = typeof process !== 'undefined' && process.argv.includes('-C');
 
 export const RED = colorLess ? '' : '\x1b[31;1m';
@@ -121,4 +123,29 @@ export function groupEnd(...args) {
 }
 export function dir(...args) {
   if (VERBOSE) return Console.dir(...args);
+}
+
+// Debugging
+export function fmat(code) {
+  try {
+    return Prettier.format(code, {
+      parser: 'babel',
+      ...{
+        // maybe keep in sync with prettierrc? prolly fairly immutable and irrelevant for tests anyways...
+        printWidth: 140,
+        tabWidth: 2,
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+        quoteProps: 'as-needed',
+        trailingComma: 'all',
+        bracketSpacing: true,
+        arrowParens: 'always',
+        endOfLine: 'lf',
+      },
+    });
+  } catch (e) {
+    // Prettier error implies invalid transformation. Uups.
+    throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
+  }
 }

@@ -1,5 +1,6 @@
 import { clearStdio, setStdio, log, group, groupEnd } from './utils.mjs';
 import { phase0 } from './phase0.mjs';
+import { phaseNormalize } from './normalize.mjs';
 import { phase1 } from './phase1.mjs';
 import { phase2 } from './phase2.mjs';
 import { phase3 } from './phase3.mjs';
@@ -10,13 +11,25 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
   if (stdio) setStdio(stdio);
   else clearStdio();
 
+  // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
+  // Scope tracking by parser not looking so hot now, eh.
   const code = req(entryPointFile);
-  const fdata = phase0(code, entryPointFile);
+  const fdataOriginal = phase0(code, entryPointFile);
+  phase1(fdataOriginal, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+  phaseNormalize(fdataOriginal, entryPointFile);
+  const normalizedCode = printer(fdataOriginal.tenkoOutput.ast);
+
+  log('\n\nSerializing and parsing normalized code next.');
+
+  // Now process the normalized code
+  const fdata = phase0(normalizedCode, entryPointFile);
+
   const program = {
     modules: new Map([[fdata.name, fdata]]),
     main: fdata.name,
   };
-  phase1(program, fdata, resolve, req);
+
+  phase1(fdata, resolve, req);
 
   let changed = false;
   do {

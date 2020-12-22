@@ -13,6 +13,8 @@ export function phase0(code, fname) {
     collectTokens: Tenko.COLLECT_TOKENS_NONE,
     goalMode: Tenko.GOAL_MODULE,
     locationTracking: false,
+
+    astUids: true, // debugging
   });
 
   log('- Finished parsing');

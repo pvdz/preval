@@ -13,7 +13,6 @@ export function phase2(program, fdata, resolve, req) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
-  const lexScopeStack = [];
   const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
 
@@ -61,7 +60,6 @@ export function phase2(program, fdata, resolve, req) {
       '\n##################################\n\n\n',
   );
 
-  //let actions = [];
   do {
     changed = false;
     stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
@@ -69,57 +67,11 @@ export function phase2(program, fdata, resolve, req) {
 
     log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
   } while (changed);
-  //$(fileState.tenkoOutput.ast, '@log', 'End of Program');
-  //fileState.globalActions = actions;
-
-  //log('\nCompiled actions:');
-  //dir(actions, {depth: null});
-  //log('\nprint friendly actions:');
-  //const printFriendly = actions.slice(0,20).map(function r(action, _, __, indent = '  ') {
-  //  if (action[0] === '@func') {
-  //    return indent + action[0] + ',' + action[3].slice(0, 5) + ', ' + action[3].slice(7).join(', ') + action.slice(4).join(', ') + ':\n' + action[3][6].map(a => r(a, _, __, indent + '  ')).join('\n');
-  //  }
-  //  return indent + action.join(', ');
-  //}).join('\n').split('\n');
-  //log('\n' + printFriendly.slice(0, 100).join('\n'), printFriendly.length >= 100 ? '(... ' + (printFriendly.length - 100) + ' more actions suppressed...)' : '');
 
   log('End of phase2');
   groupEnd();
 
   return somethingChanged;
-
-  //function $(node, action, ...args) {
-  //  const {loc: {start: {column, line}}} = node;
-  //  actions.push([action, column, line, args]);
-  //}
-  //function _$(node, action, ...args) {
-  //  const {loc: {start: {column, line}}} = node;
-  //  actions.unshift([action, column, line, args]);
-  //}
-
-  function findUniqueNameForBindingIdent(node, startAtPArent = false) {
-    ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
-    log('Finding unique name for `' + node.name + '`');
-    let index = lexScopeStack.length;
-    if (startAtPArent) --index; // For example: func decl id has to be looked up outside its own inner scope
-    while (--index >= 0) {
-      // log('- lex level', index,':', lexScopeStack[index].$p.nameMapping.has(node.name));
-      if (lexScopeStack[index].$p.nameMapping.has(node.name)) {
-        break;
-      }
-    }
-    if (index < 0) {
-      log('The ident `' + node.name + '` could not be resolved');
-      // Register one...
-      log('Creating global binding for `' + node.name + '` now');
-      lexScopeStack[0].$p.nameMapping.set(node.name, node.name);
-      index = 0;
-    }
-    const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
-    ASSERT(uniqueName !== undefined, 'should exist');
-    log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
-    return uniqueName;
-  }
 
   function crumb(parent, prop, index) {
     crumbsNode.push(parent);
@@ -132,6 +84,7 @@ export function phase2(program, fdata, resolve, req) {
     const c = crumbsIndex.pop();
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
+
   function stmt(parent, prop, index, node, isExport) {
     ASSERT(
       parent === null ||
@@ -206,8 +159,6 @@ export function phase2(program, fdata, resolve, req) {
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
 
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      if (node.$scope) lexScopeStack.push(node);
-      else lexScopeStack.push(node.handler);
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         rootScopeStack.push(node);
       }
@@ -247,7 +198,7 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'ExportAllDeclaration': {
-        // export * from 'foo'
+        // export * as foo from 'foo'
         // TODO: replace the star with the actual symbols being exported...?
         const source = node.source.value;
         ASSERT(typeof source === 'string');
@@ -345,9 +296,7 @@ export function phase2(program, fdata, resolve, req) {
           ASSERT(id && id.type === 'Identifier');
           ASSERT(!node.left.declarations[0].init, 'for-in lhs should not be allowed to have an init');
 
-          //log('For-in lhs:');
-          //const uniqueName = findUniqueNameForBindingIdent(id);
-          //$(id, '@binding', uniqueName, node.left.kind);
+          log('For-in lhs:', id.name);
         } else {
           expr(node, 'left', -1, node.left);
         }
@@ -358,9 +307,8 @@ export function phase2(program, fdata, resolve, req) {
       case 'ForOfStatement': {
         // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
         if (node.await)
-
-        // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
-        expr(node, 'right', -1, node.right);
+          // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
+          expr(node, 'right', -1, node.right);
 
         if (node.left.type === 'VariableDeclaration') {
           ASSERT(node.left.declarations.length === 1, 'I think this is syntactically enforced?');
@@ -369,9 +317,7 @@ export function phase2(program, fdata, resolve, req) {
           ASSERT(id && id.type === 'Identifier');
           ASSERT(!node.left.declarations[0].init, 'for-in lhs should not be allowed to have an init');
 
-          //log('For-of lhs:');
-          //const uniqueName = findUniqueNameForBindingIdent(id);
-          //$(id, '@binding', uniqueName, node.left.kind);
+          log('For-of lhs:', id.name);
         } else {
           expr(node, 'left', -1, node.left);
         }
@@ -408,8 +354,7 @@ export function phase2(program, fdata, resolve, req) {
 
         if (node.id) {
           group('Function decl id:');
-          const uniqueName = findUniqueNameForBindingIdent(node.id, true);
-          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+          const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
           meta.updates.push({
             // parent of this function decl
             parent: crumbsNode[crumbsNode.length - 1],
@@ -491,12 +436,11 @@ export function phase2(program, fdata, resolve, req) {
         node.specifiers.forEach((snode) => {
           const local = snode.local;
           ASSERT(local && local.type === 'Identifier', 'local should be an ident', snode);
-          const uniqueName = findUniqueNameForBindingIdent(local); // I dont think this is ever different, but w/e
 
           switch (snode.type) {
             case 'ImportDefaultSpecifier': {
               // import x from 'y'
-              log('Importing the default export from `0' + from + '` as `' + local.name + '` (-> `' + uniqueName + '`)');
+              log('Importing the default export from `0' + from + '` as `' + local.name + '` (-> `' + local.name + '`)');
               //$(snode, '@import_binding', uniqueName, 'default', from);
               break;
             }
@@ -515,7 +459,7 @@ export function phase2(program, fdata, resolve, req) {
                   '` as `' +
                   local.name +
                   '` (-> `' +
-                  uniqueName +
+                local.name +
                   '`)',
               );
               //$(snode, '@import_binding', uniqueName, imported.name, from);
@@ -523,7 +467,7 @@ export function phase2(program, fdata, resolve, req) {
             }
             case 'ImportNamespaceSpecifier': {
               // import * as x from 'y'
-              log('Importing all exports from module `' + from + '` as an object in `' + local.name + '` (-> `' + uniqueName + '`)');
+              log('Importing all exports from module `' + from + '` as an object in `' + local.name + '` (-> `' + local.name + '`)');
               //$(snode, '@import_star', uniqueName, from);
               break;
             }
@@ -560,12 +504,7 @@ export function phase2(program, fdata, resolve, req) {
             log('Processing catch clause');
             // Catch clause is present. Register the binding.
             ASSERT(node.handler.param.type === 'Identifier', 'todo catch clauses that are not idents', node.handler.param);
-            const uniqueName = findUniqueNameForBindingIdent(node.handler.param);
-
-            //$(node.handler.param, '@push', 'Error.prototype');
-            //$(node.handler.param, '@obj', ['__proto__']);
-            //// And this will be the init value of the binding
-            //$(node.handler.param, '@binding', uniqueName, 'let'); // TODO: let? I think so :)
+            log('Catch var:', node.handler.param.name);
           }
           // TODO: footgun; setting node as parent but skipping on handler or body in the crumb path? Sorry future me.
           stmt(node, 'handler', 'body', node.handler.body);
@@ -602,9 +541,8 @@ export function phase2(program, fdata, resolve, req) {
           ASSERT(dnode.id?.type === 'Identifier', 'todo: implement other kinds of variable declarations');
 
           // For ident case;
-          const uniqueName = findUniqueNameForBindingIdent(dnode.id);
-          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
-          log('Marking `' + uniqueName + '` as being updated to', dnode.init?.type);
+          const meta = fdata.globallyUniqueNamingRegistery.get(dnode.id.name);
+          log('Marking `' + dnode.id.name + '` as being updated to', dnode.init?.type);
           meta.updates.push({ parent: dnode, prop: 'init', index: -1 });
           meta.usages.push({ parent: dnode, prop: 'id', index: -1 });
 
@@ -612,7 +550,6 @@ export function phase2(program, fdata, resolve, req) {
             expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
           } else {
             // Ignore? Phase1 should have marked this var as potentially undefined. If it has no actual assignments then it's just `undefined`
-
             //const pid = createPlaceholder(store, 'HB', 'binding `' + dnode.id ? dnode.id.name : '<destruct>' + '` without init');
             //log('Created placeholder', tstr(pid), 'for the binding');
           }
@@ -624,11 +561,11 @@ export function phase2(program, fdata, resolve, req) {
             //  $(dnode, '@export_as', isExport === true ? uniqueName : 'default');
             //}
           } else if (dnode.id.type === 'ArrayPattern') {
-            if (isExport) TODO
+            if (isExport) TODO;
 
             dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
           } else {
-            if (isExport) TODO
+            if (isExport) TODO;
 
             ASSERT(dnode.id.type === 'ObjectPattern', 'fixme if else', dnode.id);
 
@@ -652,7 +589,6 @@ export function phase2(program, fdata, resolve, req) {
     }
 
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      lexScopeStack.pop();
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         rootScopeStack.pop();
       }
@@ -750,7 +686,6 @@ export function phase2(program, fdata, resolve, req) {
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
 
     if (node.$scope) {
-      lexScopeStack.push(node);
       if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)) {
         rootScopeStack.push(node);
       }
@@ -803,10 +738,8 @@ export function phase2(program, fdata, resolve, req) {
             //$(node, '@set', node.left.property.name, tokenOp.n);
           }
         } else {
-          // TODO: patterns
-
-          const uniqueName = findUniqueNameForBindingIdent(node.left);
-          //$(node, '@assign', uniqueName, node.operator, tokenOp.n);
+          ASSERT(node.left.type === 'Identifier', 'TODO: patterns (et.al.?)');
+          log('Assignment to:', node.left.name);
         }
 
         funcStack[funcStack.length - 1].$p.pure = false; // TODO: confirm whether the assignment is to a closure or not because we can eliminate it for local assignments.
@@ -1002,19 +935,7 @@ export function phase2(program, fdata, resolve, req) {
           //$(node, '@super_call', node.arguments.length, spreadAt);
         } else {
           log(DIM + 'Setting up call context' + RESET);
-
-          if (node.callee.type === 'Identifier') {
-            // Look up the binding. See if we can statically resolve it to a function value?
-            const uniqueName = findUniqueNameForBindingIdent(node.callee);
-          }
-
-          if (node.callee.type !== 'MemberExpression') {
-            // in strict mode implicit context is undefined, not global
-          }
-          //log('Putting the callee on the stack');
           expr(node, 'callee', -1, node.callee, false, true);
-          //log(DIM + 'Setting up call with ' + node.arguments.length + ' args' + RESET);
-          //$(node, '@call', node.arguments.length, spreadAt);
         }
 
         funcStack[funcStack.length - 1].$p.pure = false; // TODO: if this calls a pure function then this call is okay in a pure function
@@ -1071,8 +992,7 @@ export function phase2(program, fdata, resolve, req) {
             log('Making sure the func name gets bound properly');
             // Specific hack because we won't have access to the 'current" func instance otherwise
             log('Function param id:');
-            const uniqueName = findUniqueNameForBindingIdent(node.id);
-            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
             meta.updates.push({
               parent: crumbsNode[crumbsNode.length - 1],
               prop: crumbsProp[crumbsProp.length - 1],
@@ -1085,11 +1005,6 @@ export function phase2(program, fdata, resolve, req) {
         } else {
           log('Function expression has no name');
         }
-
-        //$(node, '@binding', 'this', 'lex'); // Top of the stack ought to be the context for this call
-        //$(node, '@push', 'number');
-        //$(node, '@obj', ['length']); // Create the arguments object and put it on the stack
-        //$(node, '@binding', 'arguments', 'lex');
 
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
@@ -1114,16 +1029,15 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        const uniqueName = findUniqueNameForBindingIdent(node);
-        const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
-        ASSERT(meta, 'meta data should exist for this name', node.name, uniqueName, meta);
+        const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
+        ASSERT(meta, 'meta data should exist for this name', node.name, meta);
         meta.usages.push({
           parent: crumbsNode[crumbsNode.length - 1],
           prop: crumbsProp[crumbsProp.length - 1],
           index: crumbsIndex[crumbsIndex.length - 1],
         });
 
-        //funcStack[funcStack.length - 1].$p.pure = false; // TODO: allow for local reads. non-local reads need more validation work.
+        //funcStack[funcStack.length - 1].$p.pure = false; // TODO: what edge cases break this? closures probably? especially if the value is returned
 
         break;
       }
@@ -1793,7 +1707,7 @@ export function phase2(program, fdata, resolve, req) {
           }
 
           default: {
-            TOFIX
+            TOFIX;
           }
         }
 
@@ -1817,7 +1731,6 @@ export function phase2(program, fdata, resolve, req) {
     }
 
     if (node.$scope) {
-      lexScopeStack.pop();
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         rootScopeStack.pop();
       }
@@ -1885,14 +1798,12 @@ export function phase2(program, fdata, resolve, req) {
 
     if (isExpr) {
       // TODO: how do we best model the class expression id being accessible inside the class? fake an arrow?
-      if (node.id) TOFIX
+      if (node.id) TOFIX;
     } else {
       if (node.id) {
-        log('Class id:');
-        const uniqueName = findUniqueNameForBindingIdent(node.id);
-        //$(node, '@binding', uniqueName, 'lex');
+        log('Class id:', node.id.name);
       } else {
-        TOFIX
+        TOFIX;
       }
     }
 
@@ -1908,7 +1819,8 @@ export function phase2(program, fdata, resolve, req) {
 
     group('Compiling params');
     node.params.forEach((pnode, i) => {
-      // The rest param can not have a default so check that one first
+      // Note: Param defaults should not exist because they were eliminated in the normalization step
+
       if (pnode.type === 'RestElement') {
         log('- param', i, 'is a rest');
         ASSERT(i === node.params.length - 1, 'rest must be last element');
@@ -1921,66 +1833,31 @@ export function phase2(program, fdata, resolve, req) {
         ASSERT(pnode.argument.type === 'Identifier', 'fixme for non-ident rest params', pnode);
         hasRest = true;
 
-        //$(pnode, '@push', NO_DEFAULT_VALUE); // Ignore the default. Rest doesn't have it.
+        paramBindingNames.push(pnode.argument.name);
 
-        // The name may not match, for example a func expr with the same name as one of its args
-        const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
-        //$(pnode, '@param_binding', uniqueName);
-        paramBindingNames.push(uniqueName);
+        const meta = fdata.globallyUniqueNamingRegistery.get(pnode.argument.name);
+        //meta.updates.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
+        meta.usages.push({ parent: pnode, prop: 'argument', index: -1 });
       } else {
-        // Now there's basically two states: a param with a default or without a default. The params with a default
-        // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
-        // continue to process the left value. Otherwise, put null on the stack and process the node itself.
-
-        let paramNode = pnode;
-        if (pnode.type === 'AssignmentPattern') {
-          log('- param', i, 'has a default');
-          ASSERT(
-            pnode.left.type === 'Identifier' || pnode.left.type === 'ObjectPattern' || pnode.left.type === 'ArrayPattern',
-            'fixme if different',
-            pnode.left,
-          );
-          // Put right on the stack as the param default, continue to process left
-          expr2(node, 'params', i, pnode, 'right', -1, pnode.right);
-          paramNode = pnode.left;
-        } else {
-          minParamRequired = i + 1;
-          log('- param', i, 'has no default, min args now at:', minParamRequired);
-          // Put null on the stack, to signify no param default, and continue to process this node
-          //$(pnode, '@push', NO_DEFAULT_VALUE);
-          // Need at least this many args
-        }
+        ASSERT(pnode.type !== 'AssignmentPattern', 'normalization should have removed this');
 
         // The paramNode can be either an Identifier or a pattern of sorts
-        if (paramNode.type === 'Identifier') {
+        if (pnode.type === 'Identifier') {
           // Simple case. Create the param binding and be done.
 
           // The name may not match, for example a func expr with the same name as one of its args
-          const uniqueName = findUniqueNameForBindingIdent(paramNode);
-          //$(pnode, '@param_binding', uniqueName);
-          paramBindingNames.push(uniqueName);
-        } else if (paramNode.type === 'ArrayPattern') {
+          paramBindingNames.push(pnode.name);
+
+          const meta = fdata.globallyUniqueNamingRegistery.get(pnode.name);
+          //meta.updates.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
+          meta.usages.push({ parent: pnode, prop: 'argument', index: -1 });
+        } else if (pnode.type === 'ArrayPattern') {
           // Complex case. Sort out the final param value vs default, then walk through the destructuring pattern.
-
-          //$(pnode, '@defaults');
-
-          // Next we are going to pushpop the top value recursively to process all parts of the pattern
-
-          paramNode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-
-          //$(pnode, '@drop'); // Drop the param array value. It should still be here and we don't need it anymore.
+          pnode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
         } else {
           // Complex case. Sort out the final param value vs default, then walk through the destructuring pattern.
-
-          ASSERT(paramNode.type === 'ObjectPattern', 'fixme if else', paramNode);
-
-          //$(pnode, '@defaults');
-
-          // Next we are going to pushpop the top value recursively to process all parts of the pattern
-
-          paramNode.properties.forEach((pnode) => processObjectPatternProp(pnode, paramNode, paramBindingNames));
-
-          //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+          ASSERT(pnode.type === 'ObjectPattern', 'fixme if else', pnode);
+          pnode.properties.forEach((pnode) => processObjectPatternProp(pnode, pnode, paramBindingNames));
         }
       }
     });
@@ -1991,54 +1868,37 @@ export function phase2(program, fdata, resolve, req) {
 
     return { minParamRequired, hasRest, paramBindingNames };
   }
+
   function processArrayPatternElement(node, paramBindingNames) {
-    //$(node, '@dup'); // Leave the array on the stack
-    //$(node, '@kind', '<array pattern element>'); // Get the kind of the arr that should be on top right now.
+    // TODO: normalize patterns out?
 
     // `enode` is one element of the array. If the element had a default, apply that logic now
     let enode = node;
+    // TODO: this needs to be normalized out as well
     if (node.type === 'AssignmentPattern') {
       expr(node, 'right', -1, node.right);
       enode = node.left;
-    } else {
-      //$(node, '@push', NO_DEFAULT_VALUE);
     }
-
-    //$(node, '@defaults');
 
     // - f(['x']) function f([a=1]){}  -> a is type string
     // - f([]) function f([a=1]){}     -> a is type number
     // - f() function f([a=1]){}       -> error (lint warnings)
 
     if (enode.type === 'ObjectPattern') {
-      // Top of stack must now be object. Process it recursively then drop it.
       enode.properties.forEach((e) => processObjectPatternProp(e, enode, paramBindingNames));
-      //$(node, '@drop');
     } else if (enode.type === 'ArrayPattern') {
-      // Top of stack must now be array. Process it recursively then drop it.
       enode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-      //$(node, '@drop');
     } else if (enode.type === 'RestElement') {
       ASSERT(enode.argument.type === 'Identifier', 'fixme if different', enode); // This can be an arr/obj pattern, too
-      // Assume that the array gets the same kind as the array being spread from
-      //$(node, '@arr', 1); // "1 arg". The kind is shared and assumed not to be undefined.
-
-      // The name may not match, for example a func expr with the same name as one of its args
-      const uniqueName = findUniqueNameForBindingIdent(enode.argument);
-      // Now create a binding with the property value onto this name
-      //$(node, '@binding', uniqueName, 'var');
-      paramBindingNames.push(uniqueName);
+      paramBindingNames.push(enode.argument.name);
     } else {
       ASSERT(enode.type === 'Identifier', 'fixme if different', enode);
-
-      // The name may not match, for example a func expr with the same name as one of its args
-      const uniqueName = findUniqueNameForBindingIdent(enode);
-      // Now create a binding with the property value onto this name
-      //$(node, '@binding', uniqueName, 'var');
-      paramBindingNames.push(uniqueName);
+      paramBindingNames.push(enode.name);
     }
   }
   function processObjectPatternProp(node, objNode, paramBindingNames) {
+    // TODO: normalize patterns out?
+
     ASSERT(node.type === 'Property' || node.type === 'ObjectPattern' || node.type === 'RestElement', 'fixme for other types', node);
 
     // Note: If there is a default, the .value will be an AssignmentPattern:
@@ -2051,39 +1911,19 @@ export function phase2(program, fdata, resolve, req) {
       // A rest element does not have a key/value property like other property nodes do
       ASSERT(node.argument.type === 'Identifier', 'fixme if different', node); // This can be an arr/obj pattern, too
 
-      // Rest is more difficult because you have take the input object, eliminate all properties that are
-      // explicitly checked, then take the resulting set of properties and construct a new object with that
-
-      const unusedNames = objNode.properties
-        .map((pnode, i) => {
-          if (pnode.type === 'Property') {
-            if (pnode.computed) {
-              TOFIX
-
-              // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
-              expr2(objNode, 'properties', i, pnode, 'property', -1, pnode.property);
-              // The action should assert the property on the stack to be a string or number, then discard it
-              // If the object is a plain object (type='o') and it has a non-false .kind, then return that kind. Otherwise return undefined.
-              //$(pnode, '@dyn_prop');
-
-              return null;
-            }
-            ASSERT(pnode.key.type === 'Identifier');
-            return pnode.key.name;
+      objNode.properties.forEach((pnode, i) => {
+        if (pnode.type === 'Property') {
+          if (pnode.computed) {
+            expr2(objNode, 'properties', i, pnode, 'property', -1, pnode.property);
           } else {
-            ASSERT(pnode.type === 'RestElement');
-            return null;
+            ASSERT(pnode.key.type === 'Identifier');
           }
-        })
-        .filter(Boolean);
+        } else {
+          ASSERT(pnode.type === 'RestElement');
+        }
+      });
 
-      //$(node, '@objrest', [...unusedNames, '__proto__']); // proto appears not to be copied regardless
-
-      // The name may not match, for example a func expr with the same name as one of its args
-      const uniqueName = findUniqueNameForBindingIdent(node.argument);
-      // Now create a binding with the property value onto this name
-      //$(node, '@binding', uniqueName, 'var');
-      paramBindingNames.push(uniqueName);
+      paramBindingNames.push(node.argument.name);
     } else {
       ASSERT(node.key.type === 'Identifier', 'fixme for other key types', node.key);
       ASSERT(
@@ -2121,21 +1961,20 @@ export function phase2(program, fdata, resolve, req) {
         //$(node, '@drop');
       } else if (vnode.type === 'ArrayPattern') {
         // Top of stack must now be array. Process it recursively then drop it.
-        vnode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
+        vnode.elements.forEach((n, i) => {
+          crumb(vnode, 'elements', i);
+          processArrayPatternElement(n, paramBindingNames);
+          uncrumb(vnode, 'elements', i);
+        });
         //$(node, '@drop');
       } else {
         ASSERT(vnode.type === 'Identifier', 'fixme if different value', vnode);
         // Doesn't matter whether it's shorthand or not; the binding name is in the value node
 
-        // The name may not match, for example a func expr with the same name as one of its args
-        const uniqueName = findUniqueNameForBindingIdent(vnode);
-        // Now create a binding with the property value onto this name
-        //$(node, '@binding', uniqueName, 'var');
-        paramBindingNames.push(uniqueName);
+        paramBindingNames.push(vnode.name);
       }
     }
   }
-
   function destructBindingObjectProp(pnode, objNode, kind) {
     ASSERT(objNode && typeof objNode === 'object');
 
@@ -2152,7 +1991,7 @@ export function phase2(program, fdata, resolve, req) {
 
       if (pnode.computed) {
         // let {[x]: y} = obj
-        TOFIX
+        TOFIX;
 
         // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
         expr(pnode, 'property', -1, pnode.property);
@@ -2174,17 +2013,25 @@ export function phase2(program, fdata, resolve, req) {
         // No default
         // let {x} = obj
         // let {x:y} = obj
-        log('Pattern piece id:');
-        const uniqueName = findUniqueNameForBindingIdent(pnode.value);
-        //$(pnode, '@binding', uniqueName, kind);
+        log('Pattern piece id:', pnode.value.name);
       } else if (pnode.value.type === 'ObjectPattern') {
         // let {x: {x}} = obj
-        pnode.value.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, pnode.value, kind));
-        //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+        crumb(pnode, 'value', -1);
+        pnode.value.properties.forEach((ppnode, i) => {
+          crumb(pnode.value, 'properties', i);
+          destructBindingObjectProp(ppnode, pnode.value, kind);
+          uncrumb(pnode.value, 'properties', i);
+        });
+        uncrumb(pnode, 'value', -1);
       } else if (pnode.value.type === 'ArrayPattern') {
         // let {x: [x]} = obj
-        pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
-        //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+        crumb(pnode, 'value', -1);
+        pnode.value.elements.forEach((ppnode, i) => {
+          crumb(pnode.value, 'elements', i);
+          destructBindingArrayElement(ppnode, kind);
+          uncrumb(pnode.value, 'elements', i);
+        });
+        uncrumb(pnode, 'value', -1);
       } else {
         ASSERT(pnode.value.type === 'AssignmentPattern', 'fixme if else', pnode.value); // patterns?
         ASSERT(pnode.value.left.type === 'Identifier', 'left is ident', pnode);
@@ -2199,59 +2046,53 @@ export function phase2(program, fdata, resolve, req) {
         // Top of the stack is property obj.x
         // Next we can get the default value (the rhs of the assignment pattern) and run a defaults
         expr(pnode, 'value', -1, pnode.value, 'right', -1, pnode.value.right);
-        //$(pnode, '@defaults');
-
-        // Top of the stack is now the value to destructure/bind, the second is the parent object
 
         if (vnode.type === 'Identifier') {
           // No default
           // let {x} = obj
           // let {x:y} = obj
 
-          log('Pattern piece id:');
-          const uniqueName = findUniqueNameForBindingIdent(vnode);
-          //$(pnode, '@binding', uniqueName, kind);
+          log('Pattern piece id:', vnode.name);
         } else if (vnode.value.type === 'ObjectPattern') {
           // let {x: {x}} = obj
-          pnode.value.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, pnode.value, kind));
-          //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+          crumb(pnode, 'value', -1);
+          pnode.value.properties.forEach((ppnode, i) => {
+            crumb(pnode.value, 'properties', i);
+            destructBindingObjectProp(ppnode, pnode.value, kind);
+            uncrumb(pnode.value, 'properties', i);
+          });
+          uncrumb(pnode, 'value', -1);
         } else if (vnode.value.type === 'ArrayPattern') {
           // let {x: [x]} = obj
-          pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
-          //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+          crumb(pnode, 'value', -1);
+          pnode.value.elements.forEach((ppnode, i) => {
+            crumb(pnode.value, 'elements', i);
+            destructBindingArrayElement(ppnode, kind);
+            uncrumb(pnode.value, 'elements', i);
+          });
+          uncrumb(pnode, 'value', -1);
         } else {
           ASSERT(false, 'fixme for other nodes', vnode);
         }
       }
     } else if (pnode.type === 'RestElement') {
-      const unusedNames = objNode.properties
-        .map((pnode) => {
-          if (pnode.type === 'Property') {
-            if (pnode.computed) {
-              TOFIX
-
-              // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
-              expr(pnode, 'property', -1, pnode.property);
-              // The action should assert the property on the stack to be a string or number, then discard it
-              // If the object is a plain object (type='o') and it has a non-false .kind, then return that kind. Otherwise return undefined.
-              //$(pnode, '@dyn_prop');
-
-              return null;
-            }
-            ASSERT(pnode.key.type === 'Identifier');
-            return pnode.key.name;
+      crumb(objNode, 'properties', -1);
+      objNode.properties.forEach((pnode, i) => {
+        if (pnode.type === 'Property') {
+          if (pnode.computed) {
+            TOFIX;
+            expr(pnode, 'property', i, pnode.property);
           } else {
-            ASSERT(pnode.type === 'RestElement');
-            return null;
+            ASSERT(pnode.key.type === 'Identifier');
           }
-        })
-        .filter(Boolean);
-
-      //$(pnode, '@objrest', [...unusedNames, '__proto__']); // proto appears not to be copied regardless
+        } else {
+          ASSERT(pnode.type === 'RestElement');
+        }
+      });
+      uncrumb(objNode, 'properties', -1);
 
       ASSERT(pnode.argument.type === 'Identifier', 'rest arg is ident or fixme', pnode.argument);
-      const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
-      //$(pnode, '@binding', uniqueName, kind);
+      log('Rest name:', pnode.argument.name);
     } else {
       ASSERT(false, 'fixme', pnode);
     }
@@ -2259,40 +2100,30 @@ export function phase2(program, fdata, resolve, req) {
   function destructBindingArrayElement(pnode, kind) {
     // Can't be assignment on the toplevel (that'd be the decl init)
 
-    //$(pnode, '@dup');
-    //$(pnode, '@kind', '<array binding pattern>');
-
     let enode = pnode;
     if (pnode.type === 'AssignmentPattern') {
       expr(pnode, 'right', -1, pnode.right);
       enode = pnode.left;
-      //$(pnode, '@defaults');
-    } else {
-      // $(pnode, '@push', NO_DEFAULT_VALUE);
-      // $(pnode, '@defaults');
     }
 
     if (enode.type === 'Identifier') {
       // No init
-      // $(pnode, '@push', NO_DEFAULT_VALUE);
-      // $(pnode, '@defaults'); // If value is undefined and there is a default, use default, otherwise if there is a default, validate it against the value. Leave either on the stack.
-      log('Pattern piece id:');
-      const uniqueName = findUniqueNameForBindingIdent(enode);
-      //$(pnode, '@binding', uniqueName, kind);
+      log('Pattern piece id:', enode.name);
     } else if (enode.type === 'ObjectPattern') {
-      enode.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, enode, kind));
-      //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+      enode.properties.forEach((ppnode, i) => {
+        crumb(enode, 'properties', i);
+        destructBindingObjectProp(ppnode, enode, kind)
+        uncrumb(enode, 'properties', i);
+      });
     } else if (enode.type === 'ArrayPattern') {
-      enode.elements.forEach((node) => destructBindingArrayElement(node, kind));
-      //$(pnode, '@drop'); // Drop the param value. It should still be here and we don't need it anymore.
+      enode.elements.forEach((pnode, i) => {
+        crumb(enode, 'elements', i);
+        destructBindingArrayElement(pnode, kind)
+        uncrumb(enode, 'elements', i);
+      });
     } else if (pnode.type === 'RestElement') {
       ASSERT(pnode.argument.type === 'Identifier', 'fixme if else', pnode.argument);
-      // While it could share the type, in theory it's a fresh reference, which is relevant for tracking
-      // own properties, so we create a fresh array type for it.
-      //$(pnode, '@arr', 1);
-      // Cannot have initializer. Set to input array because why not.
-      const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
-      //$(pnode, '@binding', uniqueName, kind);
+      log('Rest id:', pnode.argument.name);
     } else {
       ASSERT(false, 'fixme if else', enode);
     }

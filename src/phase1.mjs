@@ -1,30 +1,89 @@
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
-import {log, group, groupEnd, ASSERT, BLUE, RESET, fmat} from './utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RESET, fmat } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from './$p.mjs';
 
-// This phase is fairly mechanical. Setup scope tracking, imports/exports tracking, return value analysis. That sort of thing.
-export function phase1(program, fdata, resolve, req) {
+// This phase is fairly mechanical and should only do discovery, no AST changes.
+// It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
+// It runs twice; once for actual input code and once on normalized code.
+
+export function phase1(fdata, resolve, req) {
   const ast = fdata.tenkoOutput.ast;
 
-  let uid = 0;
   const funcStack = [];
   const lexScopeStack = [];
   let lexScopeCounter = 0;
   const funcScopeStack = [];
   const thisStack = [];
 
+  fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistery = new Map();
-  globals.forEach((name) =>
-    globallyUniqueNamingRegistery.set(name, {
-      // ident meta data
-      uid: ++uid,
-      updates: [], // {parent, prop, index} indirect reference ot the node being assigned
-      usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-    }),
-  );
+  function createUniqueGlobalName(name) {
+    // Create a (module) globally unique name. Then use that name for the local scope.
+    let n = 0;
+    if (globallyUniqueNamingRegistery.has(name)) {
+      while (globallyUniqueNamingRegistery.has(name + '_' + ++n));
+    }
+    return n ? name + '_' + n : name;
+  }
+  function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
+    if (!globallyUniqueNamingRegistery.has(name)) {
+      globallyUniqueNamingRegistery.set(name, {
+        // ident meta data
+        uid: ++fdata.globalNameCounter,
+        originalName,
+        isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
+        isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
+        knownBuiltin, // Make a distinction between known builtins and unknown builtins.
+        // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
+        // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
+        // var/let a;
+        // var/const/let a = b;
+        // const a = b;
+        // import a, b as a, * as a, {a, b as a} from 'x';
+        // export var/let a
+        // export var/const/let a = b
+        // function a(){};
+        // export function a(){};
+        // a = b;
+        // a+= b;
+        // var/const/let [a, b: a] = b;
+        // [a, b: a] = b;
+        // var/const/let {a, b: a} = b;
+        // ({a, b: a} = b);
+        // [b: a] = c;
+        // ++a;
+        // a++;
+        // for (a in b);
+        // for ([a] in b);
+        // for ({a} in b);
+        // In a nutshell there are six concrete areas to look for updates;
+        // - [x] binding declarations
+        //   - [x] regular
+        //   - [ ] destructuring
+        //   - [ ] exported
+        //   - [x] could be inside `for` header
+        // - [ ] param names
+        //   - [ ] regular
+        //   - [ ] patterns
+        // - [ ] assigning
+        //   - [ ] regular
+        //   - [ ] compound
+        //   - [ ] destructuring array
+        //   - [ ] destructuring object
+        // - [ ] imports of any kind
+        // - [ ] function declarations
+        // - [ ] update expressions, pre or postifx, inc or dec
+        // - [ ] for-loop lhs
+        updates: [], // {parent, prop, index} indirect reference ot the node being assigned
+        usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
+      });
+    }
+  }
+  globals.forEach((_, name) => registerGlobalIdent(name, name, { isImplicitGlobal: true, knownBuiltin: true }));
+  registerGlobalIdent('module', 'module', { isImplicitGlobal: true, knownBuiltin: true });
 
   fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
   const imports = new Map();
@@ -40,18 +99,30 @@ export function phase1(program, fdata, resolve, req) {
     let index = lexScopeStack.length;
     if (startAtParent) --index; // For example: func decl id has to be looked up outside its own inner scope
     while (--index >= 0) {
-      log('- lex level', index, ': lex id:', lexScopeStack[index].$p.lexScopeId, ':', lexScopeStack[index].$p.nameMapping.has(node.name));
+      log(
+        '- lex level',
+        index,
+        ' (' + lexScopeStack[index].type + '): lex id:',
+        lexScopeStack[index].$p.lexScopeId,
+        ':',
+        lexScopeStack[index].$p.nameMapping.has(node.name),
+      );
       if (lexScopeStack[index].$p.nameMapping.has(node.name)) {
         break;
       }
     }
+
     if (index < 0) {
       log('The ident `' + node.name + '` could not be resolved and is an implicit global');
       // Register one...
-      log('Creating global binding for `' + node.name + '` now');
-      lexScopeStack[0].$p.nameMapping.set(node.name, node.name);
-      index = 0;
+      log('Creating implicit global binding for `' + node.name + '` now');
+      const uniqueName = createUniqueGlobalName(node.name);
+      log('-->', uniqueName);
+      registerGlobalIdent(uniqueName, node.name, { isImplicitGlobal: true });
+      lexScopeStack[0].$p.nameMapping.set(node.name, uniqueName);
+      return uniqueName;
     }
+
     const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
     ASSERT(uniqueName !== undefined, 'should exist');
     log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
@@ -67,7 +138,12 @@ export function phase1(program, fdata, resolve, req) {
       node.$p = $p();
     }
 
-    group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    group(
+      BLUE + nodeType + ':' + (before ? 'before' : 'after'),
+      RESET,
+      // To debug lexical scopes:
+      //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
+    );
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -87,15 +163,6 @@ export function phase1(program, fdata, resolve, req) {
       // lex binding can look up its unique global name through this (nearest) mapping
       if (node.type === 'Program') {
         // global scope
-
-        globals.forEach((_, key) =>
-          globallyUniqueNamingRegistery.set(key, {
-            // ident meta data
-            uid: ++uid,
-            updates: [], // {parent, prop, index} indirect reference ot the node being assigned
-            usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-          }),
-        );
         node.$p.nameMapping = new Map([...globals.keys(), 'module'].map((k) => [k, k]));
       } else {
         // non-global scope
@@ -106,9 +173,6 @@ export function phase1(program, fdata, resolve, req) {
       }
 
       const funcNode = funcScopeStack[funcScopeStack.length - 1];
-      if (funcNode === node) funcNode.$p.scopeBindings = new Map();
-      const scopeBindings = funcNode.$p.scopeBindings;
-      ASSERT(scopeBindings);
 
       let s = node.$scope;
       ASSERT(
@@ -161,59 +225,10 @@ export function phase1(program, fdata, resolve, req) {
               return;
             }
 
-            // Create a (module) globally unique name. Then use that name for the local scope.
-            let n = 0;
-            if (globallyUniqueNamingRegistery.has(name)) {
-              while (globallyUniqueNamingRegistery.has(name + '_' + ++n));
-            }
-
-            log('Adding `' + name + '` to:');
-            log('- globallyUniqueNamingRegistery -->', n ? name + '_' + n : name);
-            globallyUniqueNamingRegistery.set(name + (n ? '_' + n : ''), {
-              // ident meta data
-              uid: ++uid,
-              // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
-              // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
-              // var/let a;
-              // var/const/let a = b;
-              // const a = b;
-              // import a, b as a, * as a, {a, b as a} from 'x';
-              // export var/let a
-              // export var/const/let a = b
-              // function a(){};
-              // export function a(){};
-              // a = b;
-              // a+= b;
-              // var/const/let [a, b: a] = b;
-              // [a, b: a] = b;
-              // var/const/let {a, b: a} = b;
-              // ({a, b: a} = b);
-              // [b: a] = c;
-              // ++a;
-              // a++;
-              // for (a in b);
-              // for ([a] in b);
-              // for ({a} in b);
-              // In a nutshell there are six concrete areas to look for updates;
-              // - [x] binding declarations
-              //   - [x] regular
-              //   - [ ] destructuring
-              //   - [ ] exported
-              //   - [x] could be inside `for` header
-              // - [ ] assigning
-              //   - [ ] regular
-              //   - [ ] compound
-              //   - [ ] destructuring array
-              //   - [ ] destructuring object
-              // - [ ] imports of any kind
-              // - [ ] function declarations
-              // - [ ] update expressions, pre or postifx, inc or dec
-              // - [ ] for-loop lhs
-              updates: [], // {parent, prop, index} indirect reference ot the node being assigned
-              usages: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-            });
-            scopeBindings.set(name + (n ? '_' + n : ''), uid);
-            node.$p.nameMapping.set(name, name + (n ? '_' + n : ''));
+            const uniqueName = createUniqueGlobalName(name);
+            log('Adding', name, 'to globallyUniqueNamingRegistery -->', uniqueName);
+            registerGlobalIdent(uniqueName, name);
+            node.$p.nameMapping.set(name, uniqueName);
           });
         }
 
@@ -232,14 +247,13 @@ export function phase1(program, fdata, resolve, req) {
       // Each node should now be able to search through the lexScopeStack, and if any of them .has() the name, it will
       // be able to .get() the unique name, which can be used in either the root scope or by the compiler in phase2.
       log(
-        'node.$p.nameMapping:',
+        'node<' + node.$uid + '>.$p.nameMapping:',
         new Map(
           [...node.$p.nameMapping.entries()].filter(([tid]) =>
             node.type === 'Program' ? !globals.has(tid) : !['this', 'arguments'].includes(tid),
           ),
         ),
       );
-      log('nearest func scope bindings:', [...scopeBindings.entries()].map(([key, value]) => key + ': ' + value).join(', '));
     }
 
     switch (key) {
@@ -249,7 +263,6 @@ export function phase1(program, fdata, resolve, req) {
       }
       case 'Program:after': {
         funcStack.pop();
-        log('-->', node.$p.scopeBindings);
         break;
       }
 
@@ -276,22 +289,38 @@ export function phase1(program, fdata, resolve, req) {
 
         const body = node.body.body;
         let explicit = false;
-        log('checking', body.length, 'statements to get explicitReturns state');
-        for (let i = 0; i < body.length; ++i) {
-          if (body[i].$p.explicitReturns === 'yes') {
-            explicit = true;
-            // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
-            // Ignore if it is the last statement of the function
-            // TODO: hoisting. `function f(){ return g; function g(){} }`
-            if (i < body.length - 1) {
-              log(
-                '- Returning early. Slicing',
-                body.length - (i + 1),
-                'statements from this function that appeared after a return statement',
-              );
-              node.body.body = body.slice(0, i + 1);
+        if (node.expression) {
+          log('Arrow has expression so it always returns explicitly');
+          explicit = true;
+        } else {
+          log('checking', body.length, 'statements to get explicitReturns state');
+          for (let i = 0; i < body.length; ++i) {
+            if (body[i].$p.explicitReturns === 'yes') {
+              explicit = true;
+              // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
+              // Ignore if it is the last statement of the function
+              // TODO: hoisting. `function f(){ return g; function g(){} }`
+              if (i < body.length - 1) {
+                log(
+                  '- Returning early. Slicing',
+                  body.length - (i + 1),
+                  'statements from this function that appeared after a return statement',
+                );
+
+                // It's trickier than it seems.
+                // DCE'd var decls must be inlined as `undefined` as their init is never visited.
+                // Func decls should only appear at toplevel so I think those are fine? But who knows at this point.
+
+                node.body.body.forEach((cnode, j) => {
+                  if (!cnode) return;
+                  if (j <= i) return;
+                  if (cnode.type === 'FunctionDeclaration') return; // Do not remove function declarations
+                  if (cnode.type === 'VariableDeclaration' && cnode.kind === 'var') return; // keep var decls, but not let/const (they're tdz'd)
+                  node.body.body[j] = { type: 'EmptyStatement', $p: $p() };
+                });
+              }
+              break;
             }
-            break;
           }
         }
         node.$p.explicitReturns = explicit ? 'yes' : 'no';
@@ -308,7 +337,6 @@ export function phase1(program, fdata, resolve, req) {
         //node.$p.reachableNames = map;
         node.$p.parentScope = funcStack[funcStack.length - 1];
 
-        log('scope bindings -->', node.$p.scopeBindings);
         break;
       }
 
@@ -342,6 +370,22 @@ export function phase1(program, fdata, resolve, req) {
           const uniqueName = findUniqueNameForBindingIdent(node, parentNode.type === 'FunctionDeclaration');
           log('- unique name:', uniqueName);
           node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
+
+          // Resolve whether this was an export. If so, mark the name as such.
+          const grandParent = path.nodes[path.nodes.length - 3];
+          if (
+            ((parentNode.type === 'FunctionDeclaration' || parentNode.type === 'ClassDeclaration') &&
+              parentProp === 'id' &&
+              grandParent.type === 'ExportNamedDeclaration') ||
+            (parentNode.type === 'VariableDeclarator' &&
+              parentProp === 'id' &&
+              grandParent.type === 'VariableDeclaration' &&
+              path.nodes[path.nodes.length - 4].type === 'ExportNamedDeclaration')
+          ) {
+            ASSERT(globallyUniqueNamingRegistery.has(uniqueName));
+            log('Marking `' + uniqueName + '` as being an export');
+            globallyUniqueNamingRegistery.get(uniqueName).isExport = true;
+          }
         }
 
         break;
@@ -354,10 +398,6 @@ export function phase1(program, fdata, resolve, req) {
         ASSERT(node.id?.type === 'Identifier', 'tofix: var declarations that are not just idents');
         break;
       }
-      //case 'AssignmentExpression': {
-      //  console.log(node);
-      //  process.exit()
-      //}
 
       case 'ImportDeclaration:before': {
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
@@ -546,7 +586,7 @@ export function phase1(program, fdata, resolve, req) {
         break;
     }
 
-    if (!before && node.$p.scope) {
+    if (!before && node.$scope) {
       lexScopeStack.pop();
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.pop();
@@ -564,4 +604,14 @@ export function phase1(program, fdata, resolve, req) {
 
   log('End of phase 1');
   groupEnd();
+
+  // Guarantee that exports are not renamed by the deduping normalization algo
+  globallyUniqueNamingRegistery.forEach((obj, name) => {
+    ASSERT(
+      !obj.isExport || name === obj.originalName,
+      'all exports should keep their name because they are recorded in global scope, must be lex and so unique, and any other binding that shadows them will be aliased instead',
+      name,
+      obj,
+    );
+  });
 }

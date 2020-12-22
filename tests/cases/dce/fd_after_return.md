@@ -26,10 +26,10 @@ $(f(1));
 
 `````js filename=intro
 function f(x) {
-  return g();
   function g() {
     return $();
   }
+  return g();
 }
 $(f(1));
 `````
@@ -38,10 +38,10 @@ $(f(1));
 
 `````js filename=intro
 function f(x) {
-  return g();
   function g() {
     return $();
   }
+  return g();
 }
 $(f(1));
 `````

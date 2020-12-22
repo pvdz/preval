@@ -23,10 +23,10 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const x = 'x';
 function f() {
   return x;
 }
+const x = 'x';
 $(f());
 `````
 

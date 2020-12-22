@@ -25,19 +25,19 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const x = $();
 function f() {
   return x;
 }
+const x = $();
 $(f());
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $();
 function f() {
   return x;
 }
+const x = $();
 $(f());
 `````

@@ -7,18 +7,15 @@ import { $p } from './$p.mjs';
   - Parameter defaults are rewritten to ES5 equivalent code
   - All binding names are unique in a file
     - No shadowing on any level or even between scopes
+  - Hoists var statements and function declarations to the top of their scope
  */
 
 /*
   Ideas for normalization;
-  - hoisting of var decls (no init) and func decls
-    - makes DCE easier
   - all bindings have only one point of decl
     - dedupe multiple var statements for the same name
     - dedupe var+function decls
     - dedupe parameter shadows
-  - every binding name to get their unique global name
-    - makes code easier as there's no need to do the global unique lookup every time
   - eliminate "use strict"
     - we assume module goal. worst case this prevents a parse-time error so who cares.
   - we could implement the one-time assignment thing
@@ -55,6 +52,10 @@ import { $p } from './$p.mjs';
     - We can recompose them in the final step if we want to
   - Deconstruct optional chaining
     - Probably easier not to have to worry about this pure sugar?
+  - Sequence expression
+    - In left side of `for` loop. Move them out
+    - In expression statement. Split them up. Mind the arrow.
+
  */
 
 export function phaseNormalize(fdata, fname) {
@@ -203,6 +204,10 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(uniqueName !== undefined, 'should exist');
     return uniqueName;
   }
+  function getMetaForBindingName(node, startAtParent) {
+    const uniqueName = findUniqueNameForBindingIdent(node, startAtParent);
+    return fdata.globallyUniqueNamingRegistery.get(uniqueName);
+  }
 
   function crumb(parent, prop, index) {
     crumbsNodes.push(parent);
@@ -230,11 +235,31 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.push(node);
+      node.$p.varBindingsToInject = [];
+      node.$p.funcBindingsToInject = [];
     }
 
     crumb(parent, prop, index);
     _stmt(node, isExport);
     uncrumb(parent, prop, index);
+
+    if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
+      funcStack.pop(node);
+
+      // TODO: dedupe declared names. functions trump vars. last func wins (so order matters).
+      // Since we unshift, add var statements first
+      if (node.$p.varBindingsToInject.length) {
+        // Inject all the decls, without init, at the start of the function. Try to maintain order. It's not very important.
+        // TODO: dedupe decls. Make sure multiple var statements for the same name are collapsed and prefer func decls
+        (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
+      }
+      // Put func decls at the top
+      if (node.$p.funcBindingsToInject.length) {
+        // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
+        // Inject all the decls, without init, at the start of the function. Order matters.
+        (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
+      }
+    }
   }
   function _stmt(node, isExport = false) {
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
@@ -372,8 +397,31 @@ export function phaseNormalize(fdata, fname) {
 
       case 'FunctionDeclaration': {
         log('Name:', node.id ? node.id.name : '<anon>');
+        if (node.id) expr(node, 'id', -1, node.id);
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
         stmt(node, 'body', -1, node.body);
+
+        ASSERT(funcStack[funcStack.length - 1] === node, 'top of funcStack should be the current node');
+        const meta = getMetaForBindingName(node.id, true);
+        if (meta.isExport) {
+          const parent = crumbGet(2);
+          ASSERT(
+            parent.type === 'ExportNamedDeclaration',
+            'phase1 should have made sure that if the meta says isExport that the parent is a ExportNamedDeclaration',
+            parent.type,
+            node.id?.name,
+          );
+          log(
+            'Replace the exported func decl node with an empty statement and put the parent on a list to be prepended to the function body',
+          );
+          funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(parent);
+          crumbSet(2, { type: 'EmptyStatement', $p: $p() });
+        } else {
+          log('Replace the func decl node with an empty statement and put the node itself on a list to be prepended to the function body');
+          funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(node);
+          crumbSet(1, { type: 'EmptyStatement', $p: $p() });
+        }
+
         break;
       }
 
@@ -432,7 +480,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'VariableDeclaration': {
         const kind = node.kind;
-        let removed = false;
+        const names = [];
         node.declarations.forEach((dnode, i) => {
           if (dnode.init) {
             expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
@@ -440,9 +488,9 @@ export function phaseNormalize(fdata, fname) {
 
           // The paramNode can be either an Identifier or a pattern of sorts
           if (dnode.id.type === 'Identifier') {
-            const uniqueName = findUniqueNameForBindingIdent(dnode.id);
-            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            const meta = getMetaForBindingName(dnode.id);
             meta.usages.push(dnode.id);
+            names.push(dnode.id.name);
           } else if (dnode.id.type === 'ArrayPattern') {
             // Complex case. Walk through the destructuring pattern.
             dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
@@ -451,6 +499,30 @@ export function phaseNormalize(fdata, fname) {
             dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
           }
         });
+
+        if (kind === 'var') {
+          log('`var` statement declared these names:', names);
+          log('Moving the decl itself to the top of the function while keeping the init as they are');
+
+          funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: names.map((name) => ({
+              type: 'VariableDeclarator',
+              id: {
+                type: 'Identifier',
+                name,
+                $p: $p(),
+              },
+              init: null,
+              $p: $p(),
+            })),
+            $p: $p(),
+          });
+
+          // Don't hate me. The printer does not validate the AST. It just assumes the structure is valid and prints verbatim.
+          node.kind = ''; // This removes the `var` when printing, causing a sequence expression (or simple assignment)
+        }
 
         break;
       }
@@ -481,9 +553,11 @@ export function phaseNormalize(fdata, fname) {
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
     }
+
     crumb(parent2, prop2, index2);
     expr(parent, prop, index, node);
     uncrumb(parent2, prop2, index2);
+
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.pop();
     }
@@ -646,9 +720,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'Identifier': {
-        const uniqueName = findUniqueNameForBindingIdent(node);
-        const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
-        ASSERT(meta, 'meta data should exist for this name', node.name, uniqueName, meta);
+        const meta = getMetaForBindingName(node);
         meta.usages.push(node);
         break;
       }
@@ -862,8 +934,7 @@ export function phaseNormalize(fdata, fname) {
 
           expr2(funcNode, 'params', i, pnode, 'right', -1, pnode.right);
 
-          const uniqueName = findUniqueNameForBindingIdent(pnode.left);
-          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+          const meta = getMetaForBindingName(pnode.left);
           meta.usages.push(pnode.left);
 
           const newName = createUniqueGlobalName('$tdz$__' + pnode.left.name);
@@ -925,8 +996,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (paramNode.type === 'Identifier') {
-          const uniqueName = findUniqueNameForBindingIdent(paramNode);
-          const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+          const meta = getMetaForBindingName(paramNode);
           meta.usages.push(paramNode);
         } else {
           ASSERT(false, 'TODO: param pattern normalization');

@@ -101,7 +101,13 @@ export function phase2(program, fdata, resolve, req) {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
-      if (node.$p.explicitReturns === 'no') node.$p.returns.push(undefined); // at least one branch returns implicitly so add undefined
+      if (node.$p.explicitReturns === 'no') {
+        log('Function has at least one implicit return point so adding that to the returns');
+        // at least one branch returns implicitly so add undefined
+        node.$p.returns.push(undefined);
+      } else {
+        log('Function returns explicitly in all branches (', node.$p.explicitReturns, ')');
+      }
     }
 
     crumb(parent, prop, index);
@@ -109,7 +115,8 @@ export function phase2(program, fdata, resolve, req) {
     uncrumb(parent, prop, index);
 
     if (node.type === 'FunctionDeclaration') {
-      funcStack.pop();
+      const x = funcStack.pop();
+      ASSERT(x === node, 'amirite');
       log('Function was', node.$p.pure ? 'pure' : 'not pure', 'and has', node.$p.returns.length, 'return points to consider');
 
       ASSERT(
@@ -321,32 +328,15 @@ export function phase2(program, fdata, resolve, req) {
 
       case 'FunctionDeclaration': {
         log('Name:', node.id ? node.id.name : '<anon>');
-        //let abak = actions;
-        //actions = []
-        //
-        //$(node, '@log', 'start of func decl ' + (node.id ? node.id.name : '{anon}'));
-        //
-        //$(node, '@this'); // Top of the stack ought to be the context
-        //$(node, '@arguments');
 
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
-
-        //$(node, '@body_start');
 
         stmt(node, 'body', -1, node.body);
 
         log('The explicitReturns value for its body is:', [node.body.$p.explicitReturns]);
-        if (node.body.$p.explicitReturns !== 'yes') {
-          // Implicitly return `undefined`
-          //$(node, '@push', 'undefined');
-          //$(node, '@return');
-        }
-
-        //let funcActions = actions;
-        //actions = abak;
 
         if (node.id) {
-          group('Function decl id:');
+          group('Function decl id:', node.id.name);
           const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
           meta.updates.push({
             // parent of this function decl
@@ -357,23 +347,9 @@ export function phase2(program, fdata, resolve, req) {
           groupEnd();
         }
 
-        // For functions, focus on the `function` keyword
-        //let funcToken = getFirstToken(node);
-        //while (funcToken && (funcToken.str === 'export' || funcToken.str === 'default' || Tenko.isWhiteToken(funcToken.type))) {
-        //  funcToken = tokens[funcToken.n + 1];
-        //}
-        //ASSERT(funcToken.str === 'function', 'pretty sure this is an invariant', funcToken);
-        //funcToken.tlog = [];
-
         if (isExport) {
           ASSERT(node.id, 'exported functions (not by default) must have an id as per syntax');
-          //log('Registering as exported default value');
-          //_$(node, '@export_as', isExport === true ? node.id.name : 'default');
-          //_$(node, '@dup', '(exported func value)'); // Note: _$ is reverse order
         }
-
-        //const desc = 'Function<' + (node.id ? node.id.name : '<anon>') + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
-        //_$(node, '@func', 'N' + node.$p.tid + '=' + (node.id ? node.id.name : 'anon'), node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'decl', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
 
         if (node.body.length === 0) {
           ASSERT(node.$p.pure, 'empty func should be pure');
@@ -399,8 +375,6 @@ export function phase2(program, fdata, resolve, req) {
               log('Should replace calls to this function with', node.body[0].argument.type);
               node.$p.replaceWith = node.body[0].argument;
             }
-
-            //node.$p.replaceWith = node.body[0].argument;
           } else {
             // Eh ok. Good test, I guess.
             node.$p.replaceWith = 'undefined';
@@ -483,10 +457,8 @@ export function phase2(program, fdata, resolve, req) {
           expr(node, 'argument', -1, node.argument);
         }
 
+        log('Adding return statement to $p.returns');
         funcStack[funcStack.length - 1].$p.returns.push(node.argument);
-
-        //else $(node, '@push', 'undefined');
-        //$(node, '@return'); // Assumes an (implicit or explicit) arg is pushed
         break;
       }
 
@@ -524,7 +496,6 @@ export function phase2(program, fdata, resolve, req) {
 
       case 'ThrowStatement': {
         expr(node, 'argument', -1, node.argument);
-        //$(node, '@drop');
         break;
       }
 
@@ -721,6 +692,8 @@ export function phase2(program, fdata, resolve, req) {
         } else {
           ASSERT(node.left.type === 'Identifier', 'TODO: patterns (et.al.?)');
           log('Assignment to:', node.left.name);
+          const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
+          meta.updates.push(node.right);
         }
 
         funcStack[funcStack.length - 1].$p.pure = false; // TODO: confirm whether the assignment is to a closure or not because we can eliminate it for local assignments.
@@ -742,22 +715,13 @@ export function phase2(program, fdata, resolve, req) {
 
         if (node.expression) {
           expr(node, 'body', -1, node.body);
-          //$(node, '@return');
+          log('Adding arrow.body as returns node for this func');
+          funcStack[funcStack.length - 1].$p.returns.push(node.body);
         } else {
           stmt(node, 'body', -1, node.body);
           log('The explicitReturns value for its body is:', [node.body.$p.explicitReturns]);
-          if (node.body.$p.explicitReturns !== 'yes') {
-            // Implicitly return `undefined`
-            //$(node, '@push', 'undefined');
-            //$(node, '@return');
-          }
         }
 
-        //let funcActions = actions;
-        //actions = abak;
-
-        //const desc = 'Arrow<line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
-        //$(node, '@func', 'N' + node.$p.tid + '=arrow', '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, 'arrow', false, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
         break;
       }
 

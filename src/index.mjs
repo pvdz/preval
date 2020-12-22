@@ -1,4 +1,4 @@
-import { clearStdio, setStdio, log, group, groupEnd } from './utils.mjs';
+import { clearStdio, setStdio, log, fmat, group, groupEnd } from './utils.mjs';
 import { phase0 } from './phase0.mjs';
 import { phaseNormalize } from './normalize.mjs';
 import { phase1 } from './phase1.mjs';
@@ -45,6 +45,10 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
     files: {
       // note: test runner will auto-Prettier the result. Perhaps this should be done here..? Or let the user take care of that?
       [entryPointFile]: printer(fdata.tenkoOutput.ast),
+    },
+    normalized: {
+      // For debug/testing
+      [entryPointFile]: normalizedCode,
     },
   };
 }

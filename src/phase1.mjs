@@ -83,7 +83,6 @@ export function phase1(fdata, resolve, req) {
     }
   }
   globals.forEach((_, name) => registerGlobalIdent(name, name, { isImplicitGlobal: true, knownBuiltin: true }));
-  registerGlobalIdent('module', 'module', { isImplicitGlobal: true, knownBuiltin: true });
 
   fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
   const imports = new Map();
@@ -163,7 +162,7 @@ export function phase1(fdata, resolve, req) {
       // lex binding can look up its unique global name through this (nearest) mapping
       if (node.type === 'Program') {
         // global scope
-        node.$p.nameMapping = new Map([...globals.keys(), 'module'].map((k) => [k, k]));
+        node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
       } else {
         // non-global scope
         node.$p.nameMapping = new Map([
@@ -596,7 +595,10 @@ export function phase1(fdata, resolve, req) {
     groupEnd();
   }
 
-  log('\ngloballyUniqueNamingRegistery (sans builtins):\n', [...globallyUniqueNamingRegistery.keys()].filter(name => !globals.has(name)).join(', '));
+  log(
+    '\ngloballyUniqueNamingRegistery (sans builtins):\n',
+    [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+  );
 
   log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
 

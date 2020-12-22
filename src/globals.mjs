@@ -28,6 +28,8 @@ export default new Map([
   ['RegExp', 'RegExp'],
   ['Set', 'Set'],
   ['String', 'String'],
+  // nodejs
+  ['module', 'module'],
   // special
   ['$', '$'],
 ]);

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Shorthand for ``./p u` see ./p for details.
+
+"./tests/p.sh" u "$@"

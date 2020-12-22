@@ -11,7 +11,6 @@ export function phase4(program, fdata, resolve, req) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
-  const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
 
   const funcStack = [];
@@ -96,15 +95,13 @@ export function phase4(program, fdata, resolve, req) {
     crumb(parent, prop, index);
     _stmt(node, isExport);
     uncrumb(parent, prop, index);
+
+    if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
+      funcStack.pop();
+    }
   }
   function _stmt(node, isExport = false) {
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
-    if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
-    }
 
     switch (node.type) {
       case 'BlockStatement': {
@@ -503,24 +500,19 @@ export function phase4(program, fdata, resolve, req) {
       }
     }
 
-    if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
-      }
-    }
-
     groupEnd();
   }
   function expr2(parent2, prop2, index2, parent, prop, index, node) {
-    // Skip one property
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
     }
+
     crumb(parent2, prop2, index2);
     expr(parent, prop, index, node);
     uncrumb(parent2, prop2, index2);
+
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.pop();
     }
@@ -549,12 +541,6 @@ export function phase4(program, fdata, resolve, req) {
   }
   function _expr(node) {
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
-    if (node.$scope) {
-      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
-    }
 
     switch (node.type) {
       case 'ArrayExpression': {
@@ -878,12 +864,6 @@ export function phase4(program, fdata, resolve, req) {
 
       default: {
         throw new Error('Missing support for expr ' + node.type);
-      }
-    }
-
-    if (node.$scope) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
       }
     }
 

@@ -13,7 +13,6 @@ export function phase2(program, fdata, resolve, req) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
-  const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
 
   const funcStack = [];
@@ -157,12 +156,6 @@ export function phase2(program, fdata, resolve, req) {
   }
   function _stmt(node, isExport = false) {
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
-    if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
-    }
 
     switch (node.type) {
       case 'BlockStatement': {
@@ -588,12 +581,6 @@ export function phase2(program, fdata, resolve, req) {
       }
     }
 
-    if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
-      }
-    }
-
     groupEnd();
   }
   function expr2(parent2, prop2, index2, parent, prop, index, node, isMethod, isCallee, methodName) {
@@ -684,12 +671,6 @@ export function phase2(program, fdata, resolve, req) {
   }
   function _expr(node, isMethod = false, isCallee = false, methodName = '') {
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
-    if (node.$scope) {
-      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
-    }
 
     switch (node.type) {
       case 'ArrayExpression': {
@@ -1727,12 +1708,6 @@ export function phase2(program, fdata, resolve, req) {
       default: {
         log('unknown expression node:', node);
         throw new Error('Missing support for expr ' + node.type);
-      }
-    }
-
-    if (node.$scope) {
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
       }
     }
 

@@ -62,7 +62,6 @@ export function phaseNormalize(fdata, fname) {
   let somethingChanged = false; // Did phase2 change anything at all?
 
   const lexScopeStack = [];
-  const rootScopeStack = [];
   const superCallStack = []; // `super()` is validated by the parser so we don't have to worry about scoping rules
 
   const funcStack = [];
@@ -243,9 +242,6 @@ export function phaseNormalize(fdata, fname) {
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       if (node.$scope) lexScopeStack.push(node);
       else lexScopeStack.push(node.handler);
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
     }
 
     switch (node.type) {
@@ -474,9 +470,6 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       lexScopeStack.pop();
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
-      }
     }
 
     groupEnd();
@@ -522,9 +515,6 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.$scope) {
       lexScopeStack.push(node);
-      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)) {
-        rootScopeStack.push(node);
-      }
     }
 
     switch (node.type) {
@@ -803,9 +793,6 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.$scope) {
       lexScopeStack.pop();
-      if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-        rootScopeStack.pop();
-      }
     }
 
     groupEnd();

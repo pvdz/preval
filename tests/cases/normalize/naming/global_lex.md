@@ -17,6 +17,17 @@ $(a);
 }
 `````
 
+## Normalized
+
+`````js filename=intro
+let a = $(1);
+$(a);
+{
+  let a_1 = $(1);
+  $(a_1);
+}
+`````
+
 ## Output
 
 `````js filename=intro

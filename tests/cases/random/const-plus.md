@@ -16,6 +16,16 @@ const xyz = z;
 $(xyz);
 `````
 
+## Normalized
+
+`````js filename=intro
+const x = 'a';
+const y = 'b' + x;
+const z = x + y;
+const xyz = z;
+$(xyz);
+`````
+
 ## Output
 
 `````js filename=intro

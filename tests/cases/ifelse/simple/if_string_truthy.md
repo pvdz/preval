@@ -14,6 +14,14 @@ if ("pass") {
 }
 `````
 
+## Normalized
+
+`````js filename=intro
+if ('pass') {
+  $();
+}
+`````
+
 ## Output
 
 `````js filename=intro

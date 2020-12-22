@@ -19,6 +19,15 @@ arr.push(2);
 $(arr);
 `````
 
+## Normalized
+
+`````js filename=intro
+const arr = [];
+arr.push(1);
+arr.push(2);
+$(arr);
+`````
+
 ## Output
 
 `````js filename=intro

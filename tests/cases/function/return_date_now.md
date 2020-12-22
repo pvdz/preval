@@ -19,6 +19,15 @@ function f() {
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+function f() {
+  return Date.now();
+}
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

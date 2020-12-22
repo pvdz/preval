@@ -38,9 +38,9 @@ export function fromMarkdownCase(md, fname, config) {
         '\n\n' +
         '> ' +
         fname
-        .slice(fname.indexOf('tests/cases/') + 'tests/cases/'.length, -3)
-        .split('/')
-        .join(' > ') +
+          .slice(fname.indexOf('tests/cases/') + 'tests/cases/'.length, -3)
+          .split('/')
+          .join(' > ') +
         '\n' +
         '>\n' +
         '> (verbatim file)\n\n#TODO',
@@ -67,7 +67,8 @@ export function fromMarkdownCase(md, fname, config) {
         '\n' +
         '>\n' +
         '> ' +
-        md.slice(3, md.indexOf('\n')) + '\n\n#TODO',
+        md.slice(3, md.indexOf('\n')) +
+        '\n\n#TODO',
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md.slice(md.indexOf('\n')).trim() + '\n`````\n'],
       fin: {
         intro: md.slice(md.indexOf('\n')),
@@ -82,7 +83,7 @@ export function fromMarkdownCase(md, fname, config) {
       md,
       fname,
       mdHead: mdHead.trim(),
-      mdChunks: chunks.filter((s) => !s.startsWith('Output\n')).map((s) => '## ' + s.trim()),
+      mdChunks: chunks.filter((s) => !s.startsWith('Output\n') && !s.startsWith('Normalized')).map((s) => '## ' + s.trim()),
       fin: {},
     };
 
@@ -128,6 +129,11 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
     mdHead +
     '\n\n' +
     mdChunks.join('\n\n') +
+    '\n\n## Normalized\n\n' +
+    Object.keys(output.normalized)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````js filename=' + key + '\n' + fmat(output.normalized[key]).trim() + '\n`````')
+      .join('\n\n') +
     '\n\n## Output\n\n' +
     Object.keys(output.files)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))

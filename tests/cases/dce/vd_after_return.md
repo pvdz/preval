@@ -24,12 +24,19 @@ function f(x) {
 $(f(1));
 `````
 
-## Output
+## Normalized
 
 `````js filename=intro
 function f(x) {
+  var g;
   return g;
-  var g = $();
+  g = $();
 }
 $(f(1));
+`````
+
+## Output
+
+`````js filename=intro
+$(undefined);
 `````

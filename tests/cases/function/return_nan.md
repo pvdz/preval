@@ -15,6 +15,15 @@ function f() {
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+function f() {
+  return NaN;
+}
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

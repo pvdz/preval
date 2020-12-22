@@ -17,6 +17,17 @@ $(f('x'));
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+function f($tdz$__a) {
+  let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
+  return a;
+}
+$(f('x'));
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

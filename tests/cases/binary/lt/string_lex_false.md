@@ -12,6 +12,12 @@
 $('a' < 'b');
 `````
 
+## Normalized
+
+`````js filename=intro
+$('a' < 'b');
+`````
+
 ## Output
 
 `````js filename=intro

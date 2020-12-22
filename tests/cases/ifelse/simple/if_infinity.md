@@ -12,6 +12,12 @@
 if (Infinity) $();
 `````
 
+## Normalized
+
+`````js filename=intro
+if (Infinity) $();
+`````
+
 ## Output
 
 `````js filename=intro

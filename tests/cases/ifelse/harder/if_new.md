@@ -12,6 +12,12 @@
 if (new ($(1))) $(2);
 `````
 
+## Normalized
+
+`````js filename=intro
+if (new ($(1))()) $(2);
+`````
+
 ## Output
 
 `````js filename=intro

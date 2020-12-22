@@ -25,6 +25,15 @@ function f() {
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+function f() {
+  return 'foo';
+}
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

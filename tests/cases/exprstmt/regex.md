@@ -12,6 +12,12 @@
 /foo/g;
 `````
 
+## Normalized
+
+`````js filename=intro
+/foo/g;
+`````
+
 ## Output
 
 `````js filename=intro

@@ -12,6 +12,12 @@
 $(0 >= '1');
 `````
 
+## Normalized
+
+`````js filename=intro
+$(0 >= '1');
+`````
+
 ## Output
 
 `````js filename=intro

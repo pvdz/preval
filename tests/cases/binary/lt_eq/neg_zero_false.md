@@ -14,6 +14,12 @@ Note: weak and strict equals can not detect negative zero this way.
 $(-0 <= 0);
 `````
 
+## Normalized
+
+`````js filename=intro
+$(-0 <= 0);
+`````
+
 ## Output
 
 `````js filename=intro

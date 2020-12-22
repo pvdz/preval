@@ -21,6 +21,15 @@ $(bar);
 $(bar);
 `````
 
+## Normalized
+
+`````js filename=intro
+const foo = /foo/g;
+const bar = foo;
+$(bar);
+$(bar);
+`````
+
 ## Output
 
 `````js filename=intro

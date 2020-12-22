@@ -12,6 +12,12 @@
 $('x' === 2);
 `````
 
+## Normalized
+
+`````js filename=intro
+$('x' === 2);
+`````
+
 ## Output
 
 `````js filename=intro

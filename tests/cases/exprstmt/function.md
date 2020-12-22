@@ -14,6 +14,14 @@ function f() {
 }
 `````
 
+## Normalized
+
+`````js filename=intro
+function f() {
+  $();
+}
+`````
+
 ## Output
 
 `````js filename=intro

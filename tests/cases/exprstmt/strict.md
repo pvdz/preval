@@ -12,6 +12,12 @@
 "use strict";
 `````
 
+## Normalized
+
+`````js filename=intro
+'use strict';
+`````
+
 ## Output
 
 `````js filename=intro

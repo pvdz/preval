@@ -12,6 +12,12 @@
 if (undefined) $();
 `````
 
+## Normalized
+
+`````js filename=intro
+if (undefined) $();
+`````
+
 ## Output
 
 `````js filename=intro

@@ -15,6 +15,13 @@ const x = {};
 $(x == x);
 `````
 
+## Normalized
+
+`````js filename=intro
+const x = {};
+$(x == x);
+`````
+
 ## Output
 
 `````js filename=intro

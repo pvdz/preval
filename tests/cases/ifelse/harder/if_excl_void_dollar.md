@@ -14,6 +14,12 @@ This should decompose into calling $(1) and $(2)
 if (!void $(1)) $(2);
 `````
 
+## Normalized
+
+`````js filename=intro
+if (!void $(1)) $(2);
+`````
+
 ## Output
 
 `````js filename=intro

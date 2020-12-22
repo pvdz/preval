@@ -12,6 +12,12 @@
 $(typeof 1);
 `````
 
+## Normalized
+
+`````js filename=intro
+$(typeof 1);
+`````
+
 ## Output
 
 `````js filename=intro

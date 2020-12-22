@@ -12,6 +12,12 @@
 true;
 `````
 
+## Normalized
+
+`````js filename=intro
+true;
+`````
+
 ## Output
 
 `````js filename=intro

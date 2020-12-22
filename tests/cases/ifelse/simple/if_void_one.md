@@ -12,6 +12,12 @@
 if (void 1) $();
 `````
 
+## Normalized
+
+`````js filename=intro
+if (void 1) $();
+`````
+
 ## Output
 
 `````js filename=intro

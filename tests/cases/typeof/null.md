@@ -16,6 +16,12 @@ I believe the idea was to have `null` represent "the empty object" or placeholde
 $(typeof null);
 `````
 
+## Normalized
+
+`````js filename=intro
+$(typeof null);
+`````
+
 ## Output
 
 `````js filename=intro

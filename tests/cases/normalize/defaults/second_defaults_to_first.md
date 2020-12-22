@@ -19,6 +19,20 @@ $(f(undefined, 'y')); // [foo, y]
 $(f('x', 'y')); // [x, y]
 `````
 
+## Normalized
+
+`````js filename=intro
+function f($tdz$__a, $tdz$__b) {
+  let b = $tdz$__b === undefined ? a : $tdz$__b;
+  let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
+  return [a, b];
+}
+$(f());
+$(f('x'));
+$(f(undefined, 'y'));
+$(f('x', 'y'));
+`````
+
 ## Output
 
 `````js filename=intro

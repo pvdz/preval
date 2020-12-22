@@ -14,6 +14,14 @@ if (true) {
 }
 `````
 
+## Normalized
+
+`````js filename=intro
+if (true) {
+  $();
+}
+`````
+
 ## Output
 
 `````js filename=intro

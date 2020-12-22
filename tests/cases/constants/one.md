@@ -13,6 +13,13 @@ const foo = "five";
 $(foo)
 `````
 
+## Normalized
+
+`````js filename=intro
+const foo = 'five';
+$(foo);
+`````
+
 ## Output
 
 `````js filename=intro

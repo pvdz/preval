@@ -13,6 +13,13 @@ if (function(){}) $(1);
 else $(2);
 `````
 
+## Normalized
+
+`````js filename=intro
+if (function () {}) $(1);
+else $(2);
+`````
+
 ## Output
 
 `````js filename=intro

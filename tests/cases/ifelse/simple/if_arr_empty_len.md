@@ -14,6 +14,12 @@
 if ([].length) $();
 `````
 
+## Normalized
+
+`````js filename=intro
+if ([].length) $();
+`````
+
 ## Output
 
 `````js filename=intro

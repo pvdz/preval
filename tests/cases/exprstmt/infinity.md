@@ -12,6 +12,12 @@
 Infinity;
 `````
 
+## Normalized
+
+`````js filename=intro
+Infinity;
+`````
+
 ## Output
 
 `````js filename=intro

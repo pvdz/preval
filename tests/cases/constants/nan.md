@@ -14,6 +14,14 @@ const bar = foo;
 $(bar)
 `````
 
+## Normalized
+
+`````js filename=intro
+const foo = NaN;
+const bar = foo;
+$(bar);
+`````
+
 ## Output
 
 `````js filename=intro

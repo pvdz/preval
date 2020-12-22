@@ -12,6 +12,12 @@
 $('x' >= 'y');
 `````
 
+## Normalized
+
+`````js filename=intro
+$('x' >= 'y');
+`````
+
 ## Output
 
 `````js filename=intro

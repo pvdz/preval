@@ -12,6 +12,12 @@
 NaN;
 `````
 
+## Normalized
+
+`````js filename=intro
+NaN;
+`````
+
 ## Output
 
 `````js filename=intro

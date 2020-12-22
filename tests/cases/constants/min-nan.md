@@ -16,6 +16,14 @@ const bar = foo;
 $(bar)
 `````
 
+## Normalized
+
+`````js filename=intro
+const foo = -Infinity;
+const bar = foo;
+$(bar);
+`````
+
 ## Output
 
 `````js filename=intro

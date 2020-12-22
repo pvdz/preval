@@ -22,6 +22,16 @@ function f() {
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+const x = $();
+function f() {
+  return x;
+}
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

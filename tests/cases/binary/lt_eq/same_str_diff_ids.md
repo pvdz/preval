@@ -14,6 +14,14 @@ const y = x;
 $(x <= y);
 `````
 
+## Normalized
+
+`````js filename=intro
+const x = 'xyz';
+const y = x;
+$(x <= y);
+`````
+
 ## Output
 
 `````js filename=intro

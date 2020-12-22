@@ -12,6 +12,12 @@
 $(-null);
 `````
 
+## Normalized
+
+`````js filename=intro
+$(-null);
+`````
+
 ## Output
 
 `````js filename=intro

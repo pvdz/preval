@@ -16,6 +16,14 @@ if (!$(1))
   else $(4);
 `````
 
+## Normalized
+
+`````js filename=intro
+if (!$(1))
+  if ($(2)) $(3);
+  else $(4);
+`````
+
 ## Output
 
 `````js filename=intro

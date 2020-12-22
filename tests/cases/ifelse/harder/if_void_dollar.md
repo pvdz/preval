@@ -14,6 +14,12 @@ This should reduce into $(1)
 if (void $(1)) $(2);
 `````
 
+## Normalized
+
+`````js filename=intro
+if (void $(1)) $(2);
+`````
+
 ## Output
 
 `````js filename=intro

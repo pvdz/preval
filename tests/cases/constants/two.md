@@ -14,6 +14,14 @@ const bar = "six";
 $(bar)
 `````
 
+## Normalized
+
+`````js filename=intro
+const foo = 'five';
+const bar = 'six';
+$(bar);
+`````
+
 ## Output
 
 `````js filename=intro

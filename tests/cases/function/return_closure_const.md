@@ -20,6 +20,16 @@ function f() {
 $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+const x = 'x';
+function f() {
+  return x;
+}
+$(f());
+`````
+
 ## Output
 
 `````js filename=intro

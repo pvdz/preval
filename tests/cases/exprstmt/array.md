@@ -14,6 +14,12 @@
 [1,2,3];
 `````
 
+## Normalized
+
+`````js filename=intro
+[1, 2, 3];
+`````
+
 ## Output
 
 `````js filename=intro

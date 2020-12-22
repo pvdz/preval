@@ -22,6 +22,20 @@ export class c {}
 export const x = $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+export function f() {
+  let x_1 = $(1);
+  return x_1;
+}
+export function g(x_2) {
+  return x_2;
+}
+export class c {}
+export const x = $(f());
+`````
+
 ## Output
 
 `````js filename=intro

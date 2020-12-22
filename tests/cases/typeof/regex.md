@@ -14,6 +14,12 @@ Regular expressions are objects. They do not have a special type, only special s
 $(typeof /1/);
 `````
 
+## Normalized
+
+`````js filename=intro
+$(typeof /1/);
+`````
+
 ## Output
 
 `````js filename=intro

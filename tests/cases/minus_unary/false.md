@@ -14,6 +14,12 @@ Note: the -0 is observable. Object.is(0, !false) -> false
 $(-false)
 `````
 
+## Normalized
+
+`````js filename=intro
+$(-false);
+`````
+
 ## Output
 
 `````js filename=intro

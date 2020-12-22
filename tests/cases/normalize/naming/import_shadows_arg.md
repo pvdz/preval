@@ -15,6 +15,15 @@ export function g(x) {
 export const x = $(f());
 `````
 
+## Normalized
+
+`````js filename=intro
+export function g(x_1) {
+  return x_1;
+}
+export const x = $(f());
+`````
+
 ## Output
 
 `````js filename=intro

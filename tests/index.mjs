@@ -127,10 +127,13 @@ function runTestCase(
 
   if (withOutput) {
     console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
-    console.log('code:');
+    console.log();
     Object.keys(fin).forEach((fname) => {
       console.log('###########################\n## File input:', fname, '\n###########################');
-      console.log(fin[fname]);
+      console.log(fin[fname].trim() );
+      console.log();
+      console.log('###########################\n## Normalized input:', fname, '\n###########################');
+      console.log(fmat(output.normalized[fname]).trim());
       console.log('\n#######\n## Preval Output:\n#######');
       console.log(fmat(output.files[fname]));
     });

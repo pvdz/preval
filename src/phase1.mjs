@@ -295,7 +295,7 @@ export function phase1(fdata, resolve, req) {
         } else {
           log('checking', body.length, 'statements to get explicitReturns state');
           for (let i = 0; i < body.length; ++i) {
-            if (body[i].$p.explicitReturns === 'yes') {
+            if (body[i].$p.explicitReturns === 'yes' && body[i].type !== 'FunctionDeclaration') {
               explicit = true;
               // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
               // Ignore if it is the last statement of the function
@@ -590,15 +590,13 @@ export function phase1(fdata, resolve, req) {
       lexScopeStack.pop();
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.pop();
-        //} else {
-        //  const funcScope = funcScopeStack[funcScopeStack.length - 1];
       }
     }
 
     groupEnd();
   }
 
-  log('globallyUniqueNamingRegistery:', globallyUniqueNamingRegistery);
+  log('\ngloballyUniqueNamingRegistery (sans builtins):\n', [...globallyUniqueNamingRegistery.keys()].filter(name => !globals.has(name)).join(', '));
 
   log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
 

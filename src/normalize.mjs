@@ -17,10 +17,16 @@ import { $p } from './$p.mjs';
     - We assume module goal. worst case this prevents a parse-time error so who cares.
     - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this needs extra work.
     - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
+  - Member expressions only access idents, literals, or groups that end with an ident or literal
+    - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
  */
 
 /*
   Ideas for normalization;
+  - Flatten nested groups
+    - Same as blocks basically
+  - One binding declared per decl
+    - Will make certain things easier to reason about
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -119,6 +125,7 @@ export function phaseNormalize(fdata, fname) {
         // ident meta data
         uid: ++fdata.globalNameCounter,
         originalName,
+        uniqueName: name,
         isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
         isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
         knownBuiltin, // Make a distinction between known builtins and unknown builtins.
@@ -547,11 +554,10 @@ export function phaseNormalize(fdata, fname) {
                 type: 'BlockStatement',
                 body: cnode.consequent,
                 $p: $p(),
-              }
-            ]
+              },
+            ];
           }
           cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
-
         });
         break;
       }
@@ -700,19 +706,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'AssignmentExpression': {
         expr(node, 'right', -1, node.right);
-
-        if (node.left.type === 'MemberExpression') {
-          if (node.left.computed) {
-            // Visit the "property" first
-            expr2(node, 'left', -1, node.left, 'property', -1, node.left.property);
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-          } else {
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-          }
-        } else {
-          // TODO: patterns
-        }
-
+        expr(node, 'left', -1, node.left);
         break;
       }
 
@@ -814,6 +808,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Identifier': {
         const meta = getMetaForBindingName(node);
+        log('Recording a usage for `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
         meta.usages.push(node);
         break;
       }
@@ -837,6 +832,81 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'MemberExpression': {
+        // Normalize `a.b.c` to `(tmp = a.b, tmp.c)` for any a that is not an ident or primitive. Then visit them.
+        if (
+          !(
+            node.object.type === 'Identifier' ||
+            node.object.type === 'Literal' ||
+            // We rewrite into a sequence that ends with an identifier. So that's fine to keep
+            (node.object.type === 'SequenceExpression' &&
+              (node.object.expressions[node.object.expressions.length - 1].type === 'Identifier' ||
+                node.object.expressions[node.object.expressions.length - 1].type === 'Literal'))
+          )
+        ) {
+          // expr.prop => (tmp = expr, tmp).prop
+
+          const property = node.property;
+          const tmpName = createUniqueGlobalName('tmpObj');
+          registerGlobalIdent(tmpName, 'tmpObj');
+          log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+          lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+          funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: tmpName,
+                  $p: $p(),
+                },
+                init: null,
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          });
+
+          const cacheAssignNode = {
+            type: 'AssignmentExpression',
+            operator: '=',
+            left: {
+              type: 'Identifier',
+              name: tmpName,
+              $p: $p(),
+            },
+            right: node.object,
+            $p: $p(),
+          };
+          const groupNode = {
+            type: 'SequenceExpression',
+            expressions: [
+              // tmpProp = obj, obj.prop = right
+              cacheAssignNode,
+              {
+                type: 'Identifier',
+                name: tmpName,
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          };
+          const newLeftNode = {
+            type: 'MemberExpression',
+            computed: node.computed,
+            object: groupNode,
+            property: property,
+            $p: $p(),
+          };
+
+          crumbSet(1, newLeftNode);
+
+          log('Visit new sequence expression');
+          _expr(newLeftNode);
+          break;
+        }
+
         // Walk the property structure in such a way that it visits the root object first, then back up to the leaf property
         // Any dynamic expressions get visited before the next property access
         // It's kind a messy, useful for the other project, maybe not here, and maybe I'll rewrite it.
@@ -890,7 +960,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'SequenceExpression': {
         node.expressions.forEach((enode, i) => {
-          expr2(node, 'expressions', i, enode, 'expressions', i, enode);
+          expr(node, 'expressions', i, enode);
         });
         break;
       }

@@ -34,6 +34,7 @@ export function phase1(fdata, resolve, req) {
         // ident meta data
         uid: ++fdata.globalNameCounter,
         originalName,
+        uniqueName: name,
         isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
         isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
         knownBuiltin, // Make a distinction between known builtins and unknown builtins.

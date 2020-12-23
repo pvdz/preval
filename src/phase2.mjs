@@ -698,22 +698,9 @@ export function phase2(program, fdata, resolve, req) {
         // - right (first token of the value being assigned)
 
         expr(node, 'right', -1, node.right);
+        expr(node, 'left', -1, node.left);
 
-        if (node.left.type === 'MemberExpression') {
-          if (node.left.computed) {
-            // No warning yet; this may be
-            // - an indexed array assignment
-            // - a primitve update
-            // - a object-as-map half-supported update
-            // Some warning will be shown by dyn_set
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-            expr2(node, 'left', -1, node.left, 'property', -1, node.left.property);
-            //$(node, '@dyn_set', tokenOp.n);
-          } else {
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-            //$(node, '@set', node.left.property.name, tokenOp.n);
-          }
-        } else {
+        if (node.left.type === 'Identifier') {
           ASSERT(node.left.type === 'Identifier', 'TODO: patterns (et.al.?)');
           log('Assignment to:', node.left.name);
           const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
@@ -1160,7 +1147,7 @@ export function phase2(program, fdata, resolve, req) {
       case 'SequenceExpression': {
         node.expressions.forEach((enode, i) => {
           group('Sequence part', i + 1, '/', node.expressions.length);
-          expr2(node, 'expressions', i, enode, 'expressions', i, enode);
+          expr(node, 'expressions', i, enode);
           if (i < node.expressions.length - 1) {
             log('This is not the last value in the sequence so dropping it');
           } else {

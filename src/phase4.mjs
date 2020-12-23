@@ -585,19 +585,7 @@ export function phase4(program, fdata, resolve, req) {
 
       case 'AssignmentExpression': {
         expr(node, 'right', -1, node.right);
-
-        if (node.left.type === 'MemberExpression') {
-          if (node.left.computed) {
-            // Visit the "property" first
-            expr2(node, 'left', -1, node.left, 'property', -1, node.left.property);
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-          } else {
-            expr2(node, 'left', -1, node.left, 'object', -1, node.left.object);
-          }
-        } else {
-          // TODO: patterns
-        }
-
+        expr(node, 'left', -1, node.left);
         break;
       }
 
@@ -828,7 +816,7 @@ export function phase4(program, fdata, resolve, req) {
 
       case 'SequenceExpression': {
         node.expressions.forEach((enode, i) => {
-          expr2(node, 'expressions', i, enode, 'expressions', i, enode);
+          expr(node, 'expressions', i, enode);
         });
         break;
       }

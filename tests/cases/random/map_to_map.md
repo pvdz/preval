@@ -54,10 +54,13 @@ $(
 ## Normalized
 
 `````js filename=intro
+var tmpObj;
+var tmpObj_1;
+var tmpObj_2;
 $(
-  new Map(
-    [
-      ...new Map([
+  ((tmpObj = new Map(
+    ((tmpObj_1 = [
+      ...((tmpObj_2 = new Map([
         ['clearInterval', 'global.clearInterval'],
         ['clearTimeout', 'global.clearTimeout'],
         ['console', 'global.console'],
@@ -85,20 +88,26 @@ $(
         ['Set', 'Set'],
         ['String', 'String'],
         ['$', '$'],
-      ]).keys(),
+      ])),
+      tmpObj_2).keys(),
       'module',
-    ].map((k) => [k, k]),
-  ).get('$'),
+    ]),
+    tmpObj_1).map((k) => [k, k]),
+  )),
+  tmpObj).get('$'),
 );
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpObj;
+var tmpObj_1;
+var tmpObj_2;
 $(
-  new Map(
-    [
-      ...new Map([
+  ((tmpObj = new Map(
+    ((tmpObj_1 = [
+      ...((tmpObj_2 = new Map([
         ['clearInterval', 'global.clearInterval'],
         ['clearTimeout', 'global.clearTimeout'],
         ['console', 'global.console'],
@@ -126,9 +135,12 @@ $(
         ['Set', 'Set'],
         ['String', 'String'],
         ['$', '$'],
-      ]).keys(),
+      ])),
+      tmpObj_2).keys(),
       'module',
-    ].map((k) => [k, k]),
-  ).get('$'),
+    ]),
+    tmpObj_1).map((k) => [k, k]),
+  )),
+  tmpObj).get('$'),
 );
 `````

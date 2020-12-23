@@ -17,7 +17,8 @@ if ([].length) $();
 ## Normalized
 
 `````js filename=intro
-if ([].length) {
+var tmpObj;
+if (((tmpObj = []), tmpObj).length) {
   $();
 }
 `````
@@ -25,7 +26,8 @@ if ([].length) {
 ## Output
 
 `````js filename=intro
-if ([].length) {
+var tmpObj;
+if (((tmpObj = []), tmpObj).length) {
   $();
 }
 `````

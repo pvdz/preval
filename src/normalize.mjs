@@ -13,6 +13,10 @@ import { $p } from './$p.mjs';
     - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
   - Flatten nested blocks
     - Other transforming phases still need to do this because when a single statement is replaced with multiple statements and the parent block is still being iterated, we can't mutate the child-count of the block in-place so a block wrapper is added anyways. This is fine. :fire:
+  - Eliminate "use strict"
+    - We assume module goal. worst case this prevents a parse-time error so who cares.
+    - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this needs extra work.
+    - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
  */
 
 /*
@@ -23,8 +27,6 @@ import { $p } from './$p.mjs';
     - dedupe multiple var statements for the same name
     - dedupe var+function decls
     - dedupe parameter shadows
-  - eliminate "use strict"
-    - we assume module goal. worst case this prevents a parse-time error so who cares.
   - we could implement the one-time assignment thing
     - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
   - Can we simplify/normalize loops? Should we?

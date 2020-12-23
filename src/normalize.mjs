@@ -20,14 +20,17 @@ import { $p } from './$p.mjs';
   - Member expressions only access idents, literals, or groups that end with an ident or literal
     - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
   - Sequence expressions (groups) nested directly in another sequence expression are flattened
+  - Some sequence expression constructs are rewritten to try and split them into statements
+    - A toplevel sequence expression becomes a series of expression statements
+    - Work in progress to catch more cases as I find them
+  - One binding declared per decl
+    - Will make certain things easier to reason about
  */
 
 /*
   Ideas for normalization;
   - Flatten nested groups
     - Same as blocks basically
-  - One binding declared per decl
-    - Will make certain things easier to reason about
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -70,8 +73,6 @@ import { $p } from './$p.mjs';
     - Probably easier not to have to worry about this pure sugar?
   - Sequence expression
     - In left side of `for` loop. Move them out
-    - In expression statement. Split them up. Mind the arrow.
-
  */
 
 export function phaseNormalize(fdata, fname) {
@@ -268,7 +269,6 @@ export function phaseNormalize(fdata, fname) {
     // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
 
     let i = 0;
-    log('statementifySequences', node.body);
     while (i < node.body.length) {
       ASSERT(node.body[i], 'sequence does not have empty elements?', node);
       const e = node.body[i];
@@ -285,6 +285,37 @@ export function phaseNormalize(fdata, fname) {
             ...expr.expressions.map((enode) => ({
               type: 'ExpressionStatement',
               expression: enode,
+              $p: $p(),
+            })),
+          );
+          changed = true;
+          --i; // revisit (recursively)
+        }
+      }
+      ++i;
+    }
+  }
+  function oneDeclOneBinding(node) {
+    // Break up variable declarations that declare multiple bindings
+    // TODO: patterns
+
+    let i = 0;
+    while (i < node.body.length) {
+      ASSERT(node.body[i], 'block does not have empty elements?', node);
+      const e = node.body[i];
+      if (e.type === 'VariableDeclaration') {
+        if (e.declarations.length > 1) {
+          // Break up into individual statements
+          // `var a, b` -> `var a; var b;`
+          // `var a = 1, b = 2` -> `var a = 1; var b = 1;
+          log('Breaking up a var decl');
+          node.body.splice(
+            i,
+            1,
+            ...e.declarations.map((dnode) => ({
+              type: 'VariableDeclaration',
+              kind: e.kind,
+              declarations: [dnode],
               $p: $p(),
             })),
           );
@@ -347,6 +378,7 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'BlockStatement': {
+        oneDeclOneBinding(node); // do this before
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
         statementifySequences(node);
         break;
@@ -576,6 +608,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'Program': {
+        oneDeclOneBinding(node); // do this before
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
         statementifySequences(node);
         break;

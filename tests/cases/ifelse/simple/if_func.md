@@ -15,11 +15,15 @@ if (function(){}) $();
 ## Normalized
 
 `````js filename=intro
-if (function () {}) $();
+if (function () {}) {
+  $();
+}
 `````
 
 ## Output
 
 `````js filename=intro
-$();
+{
+  $();
+}
 `````

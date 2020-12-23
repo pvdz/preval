@@ -15,11 +15,15 @@ if (Infinity) $();
 ## Normalized
 
 `````js filename=intro
-if (Infinity) $();
+if (Infinity) {
+  $();
+}
 `````
 
 ## Output
 
 `````js filename=intro
-$();
+{
+  $();
+}
 `````

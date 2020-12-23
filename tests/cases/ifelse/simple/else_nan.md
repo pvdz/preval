@@ -16,12 +16,17 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if (NaN) $(1);
-else $(2);
+if (NaN) {
+  $(1);
+} else {
+  $(2);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-$(2);
+{
+  $(2);
+}
 `````

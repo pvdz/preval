@@ -15,7 +15,9 @@ if (new ($(1))) $(2);
 ## Normalized
 
 `````js filename=intro
-if (new ($(1))()) $(2);
+if (new ($(1))()) {
+  $(2);
+}
 `````
 
 ## Output
@@ -23,6 +25,8 @@ if (new ($(1))()) $(2);
 `````js filename=intro
 {
   new ($(1))();
-  $(2);
+  {
+    $(2);
+  }
 }
 `````

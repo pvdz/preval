@@ -31,7 +31,9 @@ function f() {
   {
     let a_1 = $(1);
     $(a_1);
-    if ($()) return a_1;
+    if ($()) {
+      return a_1;
+    }
   }
   return a;
 }
@@ -47,7 +49,9 @@ function f() {
   {
     let a_1 = $(1);
     $(a_1);
-    if ($()) return a_1;
+    if ($()) {
+      return a_1;
+    }
   }
   return a;
 }

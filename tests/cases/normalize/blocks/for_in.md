@@ -1,24 +1,21 @@
 # Preval test case
 
-# else_zero.md
+# for_in.md
 
-> ifelse > simple > else_zero
+> normalize > blocks > for_in
 >
-> Eliminate simple tautology
+> Add blocks to sub-statements
 
 ## Input
 
 `````js filename=intro
-if (0) $(1);
-else $(2);
+for (x in $(1)) $(2);
 `````
 
 ## Normalized
 
 `````js filename=intro
-if (0) {
-  $(1);
-} else {
+for (x in $(1)) {
   $(2);
 }
 `````
@@ -26,7 +23,7 @@ if (0) {
 ## Output
 
 `````js filename=intro
-{
+for (x in $(1)) {
   $(2);
 }
 `````

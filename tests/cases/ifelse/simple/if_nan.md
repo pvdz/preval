@@ -15,7 +15,9 @@ if (NaN) $();
 ## Normalized
 
 `````js filename=intro
-if (NaN) $();
+if (NaN) {
+  $();
+}
 `````
 
 ## Output

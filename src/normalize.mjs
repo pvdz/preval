@@ -8,10 +8,15 @@ import { $p } from './$p.mjs';
   - All binding names are unique in a file
     - No shadowing on any level or even between scopes
   - Hoists var statements and function declarations to the top of their scope
+  - All sub-statements are forced to be blocks
+    - We'll let the final formatting undo this step.
+    - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
  */
 
 /*
   Ideas for normalization;
+  - treeshaking?
+    - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
     - dedupe multiple var statements for the same name
     - dedupe var+function decls
@@ -294,6 +299,16 @@ export function phaseNormalize(fdata, fname) {
 
       case 'DoWhileStatement': {
         stmt(node, 'body', -1, node.body);
+        if (node.body.type !== 'BlockStatement') {
+          log('Wrapping do-while sub-statement in a block');
+          crumb(node, 'body', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.body],
+            $p: $p(),
+          });
+          uncrumb(node, 'body', -1);
+        }
         expr(node, 'test', -1, node.test);
         break;
       }
@@ -364,6 +379,16 @@ export function phaseNormalize(fdata, fname) {
           expr(node, 'update', -1, node.update);
         }
         stmt(node, 'body', -1, node.body);
+        if (node.body.type !== 'BlockStatement') {
+          log('Wrapping for-loop sub-statement in a block');
+          crumb(node, 'body', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.body],
+            $p: $p(),
+          });
+          uncrumb(node, 'body', -1);
+        }
         break;
       }
 
@@ -374,6 +399,16 @@ export function phaseNormalize(fdata, fname) {
           expr(node, 'left', -1, node.left);
         }
         stmt(node, 'body', -1, node.body);
+        if (node.body.type !== 'BlockStatement') {
+          log('Wrapping for-in sub-statement in a block');
+          crumb(node, 'body', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.body],
+            $p: $p(),
+          });
+          uncrumb(node, 'body', -1);
+        }
         break;
       }
 
@@ -392,6 +427,16 @@ export function phaseNormalize(fdata, fname) {
         }
 
         stmt(node, 'body', -1, node.body);
+        if (node.body.type !== 'BlockStatement') {
+          log('Wrapping for-of sub-statement in a block');
+          crumb(node, 'body', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.body],
+            $p: $p(),
+          });
+          uncrumb(node, 'body', -1);
+        }
         break;
       }
 
@@ -428,7 +473,29 @@ export function phaseNormalize(fdata, fname) {
       case 'IfStatement': {
         expr(node, 'test', -1, node.test);
         stmt(node, 'consequent', -1, node.consequent);
-        if (node.alternate) stmt(node, 'alternate', -1, node.alternate);
+        if (node.consequent.type !== 'BlockStatement') {
+          log('Wrapping if-consequent sub-statement in a block');
+          crumb(node, 'consequent', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.consequent],
+            $p: $p(),
+          });
+          uncrumb(node, 'consequent', -1);
+        }
+        if (node.alternate) {
+          stmt(node, 'alternate', -1, node.alternate);
+          if (node.alternate.type !== 'BlockStatement') {
+            log('Wrapping else-alternate sub-statement in a block');
+            crumb(node, 'alternate', -1);
+            crumbSet(1, {
+              type: 'BlockStatement',
+              body: [node.alternate],
+              $p: $p(),
+            });
+            uncrumb(node, 'alternate', -1);
+          }
+        }
         break;
       }
 
@@ -462,13 +529,24 @@ export function phaseNormalize(fdata, fname) {
       case 'SwitchStatement': {
         expr(node, 'discriminant', -1, node.discriminant);
         node.cases.forEach((cnode, i) => {
-          // Defaults have no test
+          // The `default` is in this list as well and has no test node
           if (cnode.test) {
-            // All cases must have test for same type as discriminant (switch value)
             expr2(node, 'cases', i, cnode, 'test', -1, cnode.test);
-            //$(cnode.test, '@merge'); // pop the test and the discriminant, merge them, result will be pushed to be the new discriminant. it is dropped later.
+          }
+          // Wrap in block first. This way block-dedenting can still happen if necessary.
+          // Switch is unique in that this transform may still cause nested blocks. Other occurrences for normalization do not.
+          if (cnode.consequent.length > 1 || (cnode.consequent[0] && cnode.consequent[0].type !== 'BlockStatement')) {
+            log('Wrapping case block in an actual block');
+            cnode.consequent = [
+              {
+                type: 'BlockStatement',
+                body: cnode.consequent,
+                $p: $p(),
+              }
+            ]
           }
           cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
+
         });
         break;
       }
@@ -530,6 +608,16 @@ export function phaseNormalize(fdata, fname) {
       case 'WhileStatement': {
         expr(node, 'test', -1, node.test);
         stmt(node, 'body', -1, node.body);
+        if (node.body.type !== 'BlockStatement') {
+          log('Wrapping while sub-statement in a block');
+          crumb(node, 'body', -1);
+          crumbSet(1, {
+            type: 'BlockStatement',
+            body: [node.body],
+            $p: $p(),
+          });
+          uncrumb(node, 'body', -1);
+        }
         break;
       }
 

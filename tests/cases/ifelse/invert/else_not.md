@@ -16,13 +16,19 @@ else $(3);
 ## Normalized
 
 `````js filename=intro
-if (!$(1)) $(2);
-else $(3);
+if (!$(1)) {
+  $(2);
+} else {
+  $(3);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-if ($(1)) $(3);
-else $(2);
+if ($(1)) {
+  $(3);
+} else {
+  $(2);
+}
 `````

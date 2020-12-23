@@ -19,15 +19,24 @@ if (!$(1))
 ## Normalized
 
 `````js filename=intro
-if (!$(1))
-  if ($(2)) $(3);
-  else $(4);
+if (!$(1)) {
+  if ($(2)) {
+    $(3);
+  } else {
+    $(4);
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
 if ($(1));
-else if ($(2)) $(3);
-else $(4);
+else {
+  if ($(2)) {
+    $(3);
+  } else {
+    $(4);
+  }
+}
 `````

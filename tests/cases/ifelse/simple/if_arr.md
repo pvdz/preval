@@ -15,11 +15,15 @@ if ([]) $();
 ## Normalized
 
 `````js filename=intro
-if ([]) $();
+if ([]) {
+  $();
+}
 `````
 
 ## Output
 
 `````js filename=intro
-$();
+{
+  $();
+}
 `````

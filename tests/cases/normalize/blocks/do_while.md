@@ -1,32 +1,30 @@
 # Preval test case
 
-# else_zero.md
+# do_while.md
 
-> ifelse > simple > else_zero
+> normalize > blocks > do_while
 >
-> Eliminate simple tautology
+> Add blocks to sub-statements
 
 ## Input
 
 `````js filename=intro
-if (0) $(1);
-else $(2);
+do $(1);
+while ($(2));
 `````
 
 ## Normalized
 
 `````js filename=intro
-if (0) {
+do {
   $(1);
-} else {
-  $(2);
-}
+} while ($(2));
 `````
 
 ## Output
 
 `````js filename=intro
-{
-  $(2);
-}
+do {
+  $(1);
+} while ($(2));
 `````

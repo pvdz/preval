@@ -17,7 +17,9 @@ if (!void $(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-if (!void $(1)) $(2);
+if (!void $(1)) {
+  $(2);
+}
 `````
 
 ## Output
@@ -25,6 +27,8 @@ if (!void $(1)) $(2);
 `````js filename=intro
 {
   $(1);
-  $(2);
+  {
+    $(2);
+  }
 }
 `````

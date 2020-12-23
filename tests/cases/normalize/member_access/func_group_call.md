@@ -21,7 +21,7 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObj;
-  const y = ((tmpObj = (1, 2, $())), tmpObj).foo;
+  const y = (1, 2, (tmpObj = $()), tmpObj).foo;
   return $(y);
 }
 $(f());
@@ -32,7 +32,7 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObj;
-  const y = ((tmpObj = (1, 2, $())), tmpObj).foo;
+  const y = (1, 2, (tmpObj = $()), tmpObj).foo;
   return $(y);
 }
 $(f());

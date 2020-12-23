@@ -9,21 +9,36 @@
 ## Input
 
 `````js filename=intro
-const a = (1, 2, (3, 4));
-$(a);
+function f() {
+  ($(1), $(2), ($(3), $(4)), $(5), $(6));
+}
+$(f());
 `````
-
 
 ## Normalized
 
 `````js filename=intro
-const a = (1, 2, 3, 4);
-$(a);
+function f() {
+  $(1);
+  $(2);
+  $(3);
+  $(4);
+  $(5);
+  $(6);
+}
+$(f());
 `````
 
 ## Output
 
 `````js filename=intro
-const a = (1, 2, 3, 4);
-$(a);
+function f() {
+  $(1);
+  $(2);
+  $(3);
+  $(4);
+  $(5);
+  $(6);
+}
+$(f());
 `````

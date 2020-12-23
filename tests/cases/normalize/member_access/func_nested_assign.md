@@ -24,7 +24,8 @@ function f() {
   var tmpObj;
   var tmpObj_1;
   const obj = { a: { b: $() } };
-  ((tmpObj = obj.a), tmpObj).b = 15;
+  tmpObj = obj.a;
+  tmpObj = 15;
   return $(((tmpObj_1 = obj.a), tmpObj_1).b);
 }
 $(f());
@@ -37,7 +38,8 @@ function f() {
   var tmpObj;
   var tmpObj_1;
   const obj = { a: { b: $() } };
-  ((tmpObj = obj.a), tmpObj).b = 15;
+  tmpObj = obj.a;
+  tmpObj = 15;
   return $(((tmpObj_1 = obj.a), tmpObj_1).b);
 }
 $(f());

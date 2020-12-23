@@ -26,7 +26,7 @@ $(f());
 function f() {
   var tmpObj;
   const a = 10,
-    b = ((tmpObj = (a, $(2))), tmpObj).toString,
+    b = (a, (tmpObj = $(2)), tmpObj).toString,
     c = (1, b).length;
   return $(c);
 }
@@ -38,7 +38,7 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObj;
-  const b = ((tmpObj = (10, $(2))), tmpObj).toString,
+  const b = (10, (tmpObj = $(2)), tmpObj).toString,
     c = (1, b).length;
   return $(c);
 }

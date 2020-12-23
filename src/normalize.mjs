@@ -258,6 +258,43 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
+  function statementifySequences(node) {
+    // Note: make sure the node is not being walked currently or things end bad.
+
+    // Break up sequence expressions in certain positions
+
+    // Sequence expressions have only some edge cases to care about. In particular around context.
+    // In this case we only replace whole groups nested in other groups, which should not be a concern.
+    // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
+
+    let i = 0;
+    log('statementifySequences', node.body);
+    while (i < node.body.length) {
+      ASSERT(node.body[i], 'sequence does not have empty elements?', node);
+      const e = node.body[i];
+      if (e.type === 'ExpressionStatement') {
+        const expr = node.body[i].expression;
+        if (expr.type === 'SequenceExpression') {
+          // Break sequence expressions that are the child of an ExpressionStatement up into separate statements
+          // `a, (b, c), d`
+          // -> `a; b; c; d;`
+          log('Breaking up a sequence');
+          node.body.splice(
+            i,
+            1,
+            ...expr.expressions.map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          changed = true;
+          --i; // revisit (recursively)
+        }
+      }
+      ++i;
+    }
+  }
 
   function stmt(parent, prop, index, node, isExport) {
     ASSERT(
@@ -311,6 +348,7 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'BlockStatement': {
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
+        statementifySequences(node);
         break;
       }
 
@@ -539,6 +577,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Program': {
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
+        statementifySequences(node);
         break;
       }
 
@@ -631,8 +670,20 @@ export function phaseNormalize(fdata, fname) {
             $p: $p(),
           });
 
-          // Don't hate me. The printer does not validate the AST. It just assumes the structure is valid and prints verbatim.
-          node.kind = ''; // This removes the `var` when printing, causing a sequence expression (or simple assignment)
+          // TODO: drop individual declarators, if not the whole thing
+          if (node.declarations.every((enode) => !enode.init)) {
+            // If none of the bindings had an init, this is dead code. Drop the decl
+            crumbSet(1, {
+              type: 'EmptyStatement',
+              $p: $p(),
+            });
+          } else {
+            // Don't hate me. The printer does not validate the AST. It just assumes the structure is valid and prints verbatim.
+            node.kind = ''; // This removes the `var` when printing, causing a sequence expression (or simple assignment)
+          }
+
+          // Since we always move var statements to the top we CANNOT set changed here (same for func decl)
+          //changed = true;
         }
 
         break;
@@ -729,6 +780,56 @@ export function phaseNormalize(fdata, fname) {
       case 'AssignmentExpression': {
         expr(node, 'right', -1, node.right);
         expr(node, 'left', -1, node.left);
+
+        if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
+          // `(a, b).c = d` (occurs as a transformation artifact)
+          // -> `(a, b.c = d)`
+          const memb = node.left;
+          const seq = memb.object;
+          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+
+          const newNode = {
+            type: 'SequenceExpression',
+            expressions: [
+              ...exprs.slice(0, -1),
+              {
+                type: 'AssignmentExpression',
+                operator: node.operator,
+                left: exprs.pop(),
+                right: node.right,
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          };
+          crumbSet(1, newNode);
+          _expr(newNode);
+          changed = true;
+        } else if (node.right.type === 'SequenceExpression') {
+          // `a = (b, c)`
+          // -> `(b, a = c)`
+          const seq = node.right;
+          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+
+          const newNode = {
+            type: 'SequenceExpression',
+            expressions: [
+              ...exprs.slice(0, -1),
+              {
+                type: 'AssignmentExpression',
+                operator: node.operator,
+                left: node.left,
+                right: exprs.pop(),
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          };
+          crumbSet(1, newNode);
+          _expr(newNode);
+          changed = true;
+        }
+
         break;
       }
 

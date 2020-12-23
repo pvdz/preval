@@ -17,7 +17,7 @@ $(y);
 
 `````js filename=intro
 var tmpObj;
-const y = ((tmpObj = (1, 2, $())), tmpObj).foo;
+const y = (1, 2, (tmpObj = $()), tmpObj).foo;
 $(y);
 `````
 
@@ -25,6 +25,6 @@ $(y);
 
 `````js filename=intro
 var tmpObj;
-const y = ((tmpObj = (1, 2, $())), tmpObj).foo;
+const y = (1, 2, (tmpObj = $()), tmpObj).foo;
 $(y);
 `````

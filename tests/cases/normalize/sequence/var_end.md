@@ -1,29 +1,28 @@
 # Preval test case
 
-# start.md
+# end.md
 
-> normalize > sequence > start
+> normalize > sequence > end
 >
 > Nested groups can be flattened. We only care about the normalized output for this case. (I mean, it'll be resolved entirely, obviously)
 
 ## Input
 
 `````js filename=intro
-const a = ((3, 4), 5, 6);
+const a = (1, 2, (3, 4));
 $(a);
 `````
-
 
 ## Normalized
 
 `````js filename=intro
-const a = (3, 4, 5, 6);
+const a = (1, 2, 3, 4);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = (3, 4, 5, 6);
+const a = (1, 2, 3, 4);
 $(a);
 `````

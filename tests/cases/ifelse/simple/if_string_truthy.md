@@ -25,7 +25,5 @@ if ('pass') {
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````

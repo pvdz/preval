@@ -26,7 +26,5 @@ if (class {}) {
 ## Output
 
 `````js filename=intro
-{
-  $(1);
-}
+$(1);
 `````

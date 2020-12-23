@@ -11,6 +11,8 @@ import { $p } from './$p.mjs';
   - All sub-statements are forced to be blocks
     - We'll let the final formatting undo this step.
     - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
+  - Flatten nested blocks
+    - Other transforming phases still need to do this because when a single statement is replaced with multiple statements and the parent block is still being iterated, we can't mutate the child-count of the block in-place so a block wrapper is added anyways. This is fine. :fire:
  */
 
 /*
@@ -225,6 +227,7 @@ export function phaseNormalize(fdata, fname) {
     const c = crumbsIndexes.pop();
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
+
   function stmt(parent, prop, index, node, isExport) {
     ASSERT(
       parent === null ||

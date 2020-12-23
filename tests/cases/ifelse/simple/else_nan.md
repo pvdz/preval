@@ -26,7 +26,5 @@ if (NaN) {
 ## Output
 
 `````js filename=intro
-{
-  $(2);
-}
+$(2);
 `````

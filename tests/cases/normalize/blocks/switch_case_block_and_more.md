@@ -37,9 +37,7 @@ switch ($(1)) {
 `````js filename=intro
 switch ($(1)) {
   case $(2): {
-    {
-      $(3);
-    }
+    $(3);
     break;
   }
 }

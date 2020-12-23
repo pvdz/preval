@@ -23,7 +23,5 @@ if ([]) {
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````

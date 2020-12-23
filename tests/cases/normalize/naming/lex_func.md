@@ -44,12 +44,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a_1 = $(1);
-    $(a_1);
-    if ($()) {
-      return a_1;
-    }
+  let a_1 = $(1);
+  $(a_1);
+  if ($()) {
+    return a_1;
   }
   let a = $(1);
   $(a);

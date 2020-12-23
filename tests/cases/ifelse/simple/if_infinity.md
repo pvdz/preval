@@ -23,7 +23,5 @@ if (Infinity) {
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````

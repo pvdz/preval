@@ -26,7 +26,5 @@ if (undefined) {
 ## Output
 
 `````js filename=intro
-{
-  $(2);
-}
+$(2);
 `````

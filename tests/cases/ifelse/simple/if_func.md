@@ -23,7 +23,5 @@ if (function () {}) {
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````

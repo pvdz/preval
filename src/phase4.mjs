@@ -75,6 +75,29 @@ export function phase4(program, fdata, resolve, req) {
     const c = crumbsIndexes.pop();
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
+
+  function flattenBlocks(node) {
+    // Note: make sure the node is not being walked currently or things end bad.
+
+    // Flatten nested blocks
+    // This would be dangerous in regular JS because of lexical scopes, but we normalized
+    // all bindings to be unique and I'm not aware of other reasons :shrug:
+    // Note: this needs to be re-applied in other transforming phases as well because
+    //       replacing a single statement with multiple statements needs to be wrapped
+    //       in a block because the parent block is (most likely) still being iterated.
+    let i = 0;
+    while (i < node.body.length) {
+      ASSERT(node.body[i], 'block does not have empty elements?', node);
+      if (node.body[i].type === 'BlockStatement') {
+        log('Flattening an object');
+        node.body.splice(i, 1, ...node.body[i].body);
+        changed = true;
+      } else {
+        ++i;
+      }
+    }
+  }
+
   function stmt(parent, prop, index, node, isExport) {
     ASSERT(
       parent === null ||
@@ -106,6 +129,7 @@ export function phase4(program, fdata, resolve, req) {
     switch (node.type) {
       case 'BlockStatement': {
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
+        flattenBlocks(node);
         break;
       }
 
@@ -320,6 +344,8 @@ export function phase4(program, fdata, resolve, req) {
               // In general, if the void has a non-observable side-effect then that's an expression statement that
               // will automatically get eliminated in a later step, so don't worry about it too much.
               // (This case is very unlikely to appear in the real world, even after other reductions)
+              // Note: the parent is guaranteed to be a block, but we can't mutate the children count since it's being
+              // iterated so we replace the whole node with a single block and rely on final transform to flatten blocks.
               crumbSet(
                 1,
                 node.alternate
@@ -387,6 +413,7 @@ export function phase4(program, fdata, resolve, req) {
 
       case 'Program': {
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
+        flattenBlocks(node);
         break;
       }
 

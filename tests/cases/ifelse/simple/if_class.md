@@ -23,7 +23,5 @@ if (class {}) {
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````

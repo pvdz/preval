@@ -995,9 +995,9 @@ export function phase4(program, fdata, resolve, req) {
       ASSERT(node.key.type === 'Identifier', 'fixme for other key types', node.key);
       ASSERT(
         node.value.type === 'Identifier' ||
-        node.value.type === 'AssignmentPattern' ||
-        node.value.type === 'ObjectPattern' ||
-        node.value.type === 'ArrayPattern',
+          node.value.type === 'AssignmentPattern' ||
+          node.value.type === 'ObjectPattern' ||
+          node.value.type === 'ArrayPattern',
         'fixme for other value types',
         node.value,
       );
@@ -1179,13 +1179,13 @@ export function phase4(program, fdata, resolve, req) {
     } else if (enode.type === 'ObjectPattern') {
       enode.properties.forEach((ppnode, i) => {
         crumb(enode, 'properties', i);
-        destructBindingObjectProp(ppnode, enode, kind)
+        destructBindingObjectProp(ppnode, enode, kind);
         uncrumb(enode, 'properties', i);
       });
     } else if (enode.type === 'ArrayPattern') {
       enode.elements.forEach((pnode, i) => {
         crumb(enode, 'elements', i);
-        destructBindingArrayElement(pnode, kind)
+        destructBindingArrayElement(pnode, kind);
         uncrumb(enode, 'elements', i);
       });
     } else if (pnode.type === 'RestElement') {

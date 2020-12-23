@@ -19,6 +19,7 @@ import { $p } from './$p.mjs';
     - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
   - Member expressions only access idents, literals, or groups that end with an ident or literal
     - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
+  - Sequence expressions (groups) nested directly in another sequence expression are flattened
  */
 
 /*
@@ -235,6 +236,27 @@ export function phaseNormalize(fdata, fname) {
     const b = crumbsProps.pop();
     const c = crumbsIndexes.pop();
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
+  }
+
+  function flattenSequences(node) {
+    // Note: make sure the node is not being walked currently or things end bad.
+
+    // Flatten nested groups
+    // `(a, (b, c), d)` -> `(a, b, c, d)`
+    // Sequence expressions have only some edge cases to care about. In particular around context.
+    // In this case we only replace whole groups nested in other groups, which should not be a concern.
+    // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
+    let i = 0;
+    while (i < node.expressions.length) {
+      ASSERT(node.expressions[i], 'sequence does not have empty elements?', node);
+      if (node.expressions[i].type === 'SequenceExpression') {
+        log('Flattening a sequence');
+        node.expressions.splice(i, 1, ...node.expressions[i].expressions);
+        changed = true;
+      } else {
+        ++i;
+      }
+    }
   }
 
   function stmt(parent, prop, index, node, isExport) {
@@ -962,6 +984,9 @@ export function phaseNormalize(fdata, fname) {
         node.expressions.forEach((enode, i) => {
           expr(node, 'expressions', i, enode);
         });
+
+        flattenSequences(node);
+
         break;
       }
 

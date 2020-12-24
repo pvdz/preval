@@ -1023,6 +1023,27 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'MemberExpression': {
+        if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
+          // If the key name is a legit key then why not. Let's just test it.
+          let simpleIdent = true;
+          try {
+            Function('foo["' + node.property.value + '"]');
+          } catch {
+            simpleIdent = false;
+          }
+          if (simpleIdent) {
+            // `foo["bar"]` -> `foo.bar`
+            log('Converting dynamic property access with string literal that is a valid ident, to regular property access');
+            node.computed = false;
+            node.property = {
+              type: 'Identifier',
+              name: node.property.value,
+              $p: $p(),
+            };
+            changed = true;
+          }
+        }
+
         // Walk the property structure in such a way that it visits the root object first, then back up to the leaf property
         // Any dynamic expressions get visited before the next property access
         // It's kind a messy, useful for the other project, maybe not here, and maybe I'll rewrite it.

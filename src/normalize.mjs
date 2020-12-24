@@ -32,7 +32,8 @@ import { $p } from './$p.mjs';
   - Array elements are normalized if they are not simple
   - Object property shorthands into regular properties
     - Simplifies some edge case code checks
-  - Dynamic property access for complex keys is cached first
+  - Computed property access for complex keys is normalized to ident keys
+  - Computed property access with literals that are valid idents become regular property access
  */
 
 /*
@@ -1563,6 +1564,27 @@ export function phaseNormalize(fdata, fname) {
           _expr(seq);
           changed = true;
           break;
+        }
+        if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
+          // If the key name is a legit key then why not. Let's just test it.
+          // Note: will need to do this during phase2 and phase4 as well because a value might resolve to a string at a later step.
+          let simpleIdent = true;
+          try {
+            Function('foo["' + node.property.value + '"]');
+          } catch {
+            simpleIdent = false;
+          }
+          if (simpleIdent) {
+            // `foo["bar"]` -> `foo.bar`
+            log('Converting dynamic property access with string literal that is a valid ident, to regular property access');
+            node.computed = false;
+            node.property = {
+              type: 'Identifier',
+              name: node.property.value,
+              $p: $p(),
+            };
+            changed = true;
+          }
         }
 
         // Walk the property structure in such a way that it visits the root object first, then back up to the leaf property

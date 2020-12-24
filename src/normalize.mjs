@@ -30,14 +30,14 @@ import { $p } from './$p.mjs';
     - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
   - Complex callee and arguments for new expressions (similar to regular calls)
   - Array elements are normalized if they are not simple
+  - Object property shorthands into regular properties
+    - Simplifies some edge case code checks
  */
 
 /*
   Ideas for normalization;
   - normalize dynamic property access
   - objects, just like calls
-  - array property shorthands into regular properties
-    - Simplifies some edge case code checks
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -1549,6 +1549,11 @@ export function phaseNormalize(fdata, fname) {
           if (pnode.type === 'SpreadElement') {
             expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
           } else {
+            if (pnode.shorthand) {
+              // I think it _is_ this simple?
+              pnode.shorthand = false;
+            }
+
             expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
           }
         });

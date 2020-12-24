@@ -22,6 +22,7 @@ import { $p } from './$p.mjs';
   - Sequence expressions (groups) nested directly in another sequence expression are flattened
   - Some sequence expression constructs are rewritten to try and split them into statements
     - A toplevel sequence expression becomes a series of expression statements
+    - Sequence expressions in a return statement or variable declaration, or inside a member expression, are normalized
     - Work in progress to catch more cases as I find them
   - One binding declared per decl
     - Will make certain things easier to reason about
@@ -29,8 +30,8 @@ import { $p } from './$p.mjs';
 
 /*
   Ideas for normalization;
-  - Flatten nested groups
-    - Same as blocks basically
+  - Make sure all call args are idents or literals
+    - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -288,6 +289,129 @@ export function phaseNormalize(fdata, fname) {
               $p: $p(),
             })),
           );
+          changed = true;
+          --i; // revisit (recursively)
+        }
+      } else if (e.type === 'VariableDeclaration') {
+        log('Parent of sequene is var decl');
+        ASSERT(e.declarations.length === 1, 'var decl binding count should be normalized already');
+        const init = e.declarations[0].init;
+        if (!init) {
+        } else if (init.type === 'SequenceExpression') {
+          // `var x = (1, 2)` -> `1; var x = 2`
+          // This assumes sub-statements are normalized to be groups already
+          log('Outlining a sequence that is the init of a binding decl');
+          const exprs = init.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...init.expressions.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          e.declarations[0].init = init.expressions[init.expressions.length - 1];
+          changed = true;
+          --i; // revisit (recursively)
+        } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
+          // `var x = (a, b).x` -> `a; var x = b.x`
+          // This assumes sub-statements are normalized to be groups already
+          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+          const seq = init.object;
+          const exprs = seq.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...exprs.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          init.object = exprs[exprs.length - 1];
+          changed = true;
+          --i; // revisit (recursively)
+        }
+      } else if (e.type === 'ReturnStatement') {
+        if (e.argument.type === 'SequenceExpression') {
+          // `return (a,b)` -> a; return b;`
+          // This assumes sub-statements are normalized to be groups already
+          log('Moving the sequence argument of return to individual statements');
+          const seq = e.argument;
+          const exprs = seq.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...exprs.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          e.argument = exprs[exprs.length - 1];
+          changed = true;
+          --i; // revisit (recursively)
+        } else if (e.argument.type === 'MemberExpression' && e.argument.object.type === 'SequenceExpression') {
+          // `return (a, b).foo` -> `a; return b.foo`
+          // This assumes sub-statements are normalized to be groups already
+          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+          const seq = e.argument.object;
+          const exprs = seq.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...exprs.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          e.argument.object = exprs[exprs.length - 1];
+          changed = true;
+          --i; // revisit (recursively)
+        }
+      } else if (e.type === 'IfStatement') {
+        if (e.test.type === 'SequenceExpression') {
+          // `if (a,b) c` -> a; if (b) c;`
+          // This assumes sub-statements are normalized to be groups already
+          log('Moving the sequence argument of return to individual statements');
+          const seq = e.test;
+          const exprs = seq.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...exprs.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          e.test = exprs[exprs.length - 1];
+          changed = true;
+          --i; // revisit (recursively)
+        } else if (e.test.type === 'MemberExpression' && e.test.object.type === 'SequenceExpression') {
+          // `if ((a,b).x) c` -> a; if (b.x) c;`
+          // This assumes sub-statements are normalized to be groups already
+          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+          const seq = e.test.object;
+          const exprs = seq.expressions;
+          node.body.splice(
+            i,
+            0,
+            ...exprs.slice(0, -1).map((enode) => ({
+              type: 'ExpressionStatement',
+              expression: enode,
+              $p: $p(),
+            })),
+          );
+          // Replace the old sequence expression with its last element
+          e.test.object = exprs[exprs.length - 1];
           changed = true;
           --i; // revisit (recursively)
         }
@@ -853,6 +977,35 @@ export function phaseNormalize(fdata, fname) {
                 operator: node.operator,
                 left: node.left,
                 right: exprs.pop(),
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          };
+          crumbSet(1, newNode);
+          _expr(newNode);
+          changed = true;
+        } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
+          // `a = (b, c).d`
+          // -> `(b, a = c.d)`
+          const mem = node.right;
+          const seq = mem.object;
+          const exprs = seq.expressions.slice(0);
+          const newNode = {
+            type: 'SequenceExpression',
+            expressions: [
+              ...exprs.slice(0, -1),
+              {
+                type: 'AssignmentExpression',
+                operator: node.operator,
+                left: node.left,
+                right: {
+                  type: 'MemberExpression',
+                  computed: mem.computed,
+                  object: exprs.pop(),
+                  property: mem.property,
+                  $p: $p(),
+                },
                 $p: $p(),
               },
             ],

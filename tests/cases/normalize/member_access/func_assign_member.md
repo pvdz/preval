@@ -4,13 +4,16 @@
 
 > normalize > member_access > global_group_call
 >
-> Counter test to ensure we still process groups that don't end with an ident or literal
+> Assignment of a member expression where the object is a sequence
+
+This could appear and is most likely a transformation artifact.
 
 ## Input
 
 `````js filename=intro
 function f() {
-  const y = (1, 2, $())()
+  var y;
+  y = (1, 2, $()).foo;
   return $(y);
 }
 $(f());
@@ -20,7 +23,12 @@ $(f());
 
 `````js filename=intro
 function f() {
-  const y = (1, 2, $())();
+  var y;
+  var tmpObj;
+  1;
+  2;
+  tmpObj = $();
+  y = tmpObj.foo;
   return $(y);
 }
 $(f());
@@ -30,7 +38,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  const y = (1, 2, $())();
+  var y;
+  var tmpObj;
+  tmpObj = $();
+  y = tmpObj.foo;
   return $(y);
 }
 $(f());

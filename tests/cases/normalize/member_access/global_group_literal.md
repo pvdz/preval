@@ -18,13 +18,15 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const y = (1, 2, 3).foo;
+1;
+2;
+const y = (3).foo;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const y = (1, 2, 3).foo;
+const y = (3).foo;
 $(y);
 `````

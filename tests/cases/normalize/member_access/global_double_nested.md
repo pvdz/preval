@@ -19,7 +19,7 @@ $(obj.a.b.c);
 var tmpObj;
 var tmpObj_1;
 const obj = { a: { b: { c: $() } } };
-$(((tmpObj = ((tmpObj_1 = obj.a), tmpObj_1).b), tmpObj).c);
+$(((tmpObj_1 = obj.a), (tmpObj = tmpObj_1.b), tmpObj).c);
 `````
 
 ## Output
@@ -28,5 +28,5 @@ $(((tmpObj = ((tmpObj_1 = obj.a), tmpObj_1).b), tmpObj).c);
 var tmpObj;
 var tmpObj_1;
 const obj = { a: { b: { c: $() } } };
-$(((tmpObj = ((tmpObj_1 = obj.a), tmpObj_1).b), tmpObj).c);
+$(((tmpObj_1 = obj.a), (tmpObj = tmpObj_1.b), tmpObj).c);
 `````

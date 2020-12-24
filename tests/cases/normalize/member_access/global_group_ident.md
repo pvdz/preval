@@ -18,7 +18,8 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-const y = (1, a).x;
+1;
+const y = a.x;
 $(y);
 `````
 
@@ -26,6 +27,6 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-const y = (1, a).x;
+const y = a.x;
 $(y);
 `````

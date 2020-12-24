@@ -22,7 +22,8 @@ $(f());
 `````js filename=intro
 function f() {
   const a = { x: 1 };
-  const y = (1, a).x;
+  1;
+  const y = a.x;
   return $(y);
 }
 $(f());
@@ -33,7 +34,7 @@ $(f());
 `````js filename=intro
 function f() {
   const a = { x: 1 };
-  const y = (1, a).x;
+  const y = a.x;
   return $(y);
 }
 $(f());

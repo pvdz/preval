@@ -18,7 +18,8 @@ if ([].length) $();
 
 `````js filename=intro
 var tmpObj;
-if (((tmpObj = []), tmpObj).length) {
+tmpObj = [];
+if (tmpObj.length) {
   $();
 }
 `````
@@ -27,7 +28,8 @@ if (((tmpObj = []), tmpObj).length) {
 
 `````js filename=intro
 var tmpObj;
-if (((tmpObj = []), tmpObj).length) {
+tmpObj = [];
+if (tmpObj.length) {
   $();
 }
 `````

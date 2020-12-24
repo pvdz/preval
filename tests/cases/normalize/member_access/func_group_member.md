@@ -9,26 +9,35 @@
 ## Input
 
 `````js filename=intro
-const y = (1, 2, $()).foo
-$(y);
+function f() {
+  const y = (1, 2, $()).foo
+  return $(y);
+}
+$(f());
 `````
 
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
-1;
-2;
-tmpObj = $();
-const y = tmpObj.foo;
-$(y);
+function f() {
+  var tmpObj;
+  1;
+  2;
+  tmpObj = $();
+  const y = tmpObj.foo;
+  return $(y);
+}
+$(f());
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
-tmpObj = $();
-const y = tmpObj.foo;
-$(y);
+function f() {
+  var tmpObj;
+  tmpObj = $();
+  const y = tmpObj.foo;
+  return $(y);
+}
+$(f());
 `````

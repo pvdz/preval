@@ -16,13 +16,15 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-const a = (3, 4, 5, 6);
+3;
+4;
+5;
+const a = 6;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = (3, 4, 5, 6);
-$(a);
+$(6);
 `````

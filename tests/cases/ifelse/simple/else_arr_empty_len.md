@@ -19,7 +19,8 @@ else $(2);
 
 `````js filename=intro
 var tmpObj;
-if (((tmpObj = []), tmpObj).length) {
+tmpObj = [];
+if (tmpObj.length) {
   $(1);
 } else {
   $(2);
@@ -30,7 +31,8 @@ if (((tmpObj = []), tmpObj).length) {
 
 `````js filename=intro
 var tmpObj;
-if (((tmpObj = []), tmpObj).length) {
+tmpObj = [];
+if (tmpObj.length) {
   $(1);
 } else {
   $(2);

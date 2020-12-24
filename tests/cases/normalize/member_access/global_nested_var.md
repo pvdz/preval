@@ -22,8 +22,11 @@ $(c);
 `````js filename=intro
 var tmpObj;
 const a = 10;
-const b = (a, (tmpObj = $(2)), tmpObj).toString;
-const c = (1, b).length;
+a;
+tmpObj = $(2);
+const b = tmpObj.toString;
+1;
+const c = b.length;
 $(c);
 `````
 
@@ -31,7 +34,8 @@ $(c);
 
 `````js filename=intro
 var tmpObj;
-const b = (10, (tmpObj = $(2)), tmpObj).toString;
-const c = (1, b).length;
+tmpObj = $(2);
+const b = tmpObj.toString;
+const c = b.length;
 $(c);
 `````

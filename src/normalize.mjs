@@ -32,11 +32,11 @@ import { $p } from './$p.mjs';
   - Array elements are normalized if they are not simple
   - Object property shorthands into regular properties
     - Simplifies some edge case code checks
+  - Dynamic property access for complex keys is cached first
  */
 
 /*
   Ideas for normalization;
-  - normalize dynamic property access
   - objects, just like calls
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
@@ -1499,9 +1499,69 @@ export function phaseNormalize(fdata, fname) {
           };
 
           crumbSet(1, newLeftNode);
-
-          log('Visit new sequence expression');
           _expr(newLeftNode);
+          changed = true;
+          break;
+        }
+
+        if (node.computed && isComplexNode(node.property)) {
+          // `a[b]`
+          // -> `(tmp=b, a[tmp])`
+
+          const tmpName = createUniqueGlobalName('tmpComputedProp');
+          registerGlobalIdent(tmpName, 'tmpComputedProp');
+          log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+          lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+          funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+            type: 'VariableDeclaration',
+            kind: 'var',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: {
+                  type: 'Identifier',
+                  name: tmpName,
+                  $p: $p(),
+                },
+                init: null,
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          });
+
+          const seq = {
+            type: 'SequenceExpression',
+            expressions: [
+              {
+                type: 'AssignmentExpression',
+                operator: '=',
+                left: {
+                  type: 'Identifier',
+                  name: tmpName,
+                  $p: $p(),
+                },
+                right: node.property,
+                $p: $p(),
+              },
+              {
+                type: 'MemberExpression',
+                computed: true,
+                object: node.object,
+                property: {
+                  type: 'Identifier',
+                  name: tmpName,
+                  $p: $p(),
+                },
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          };
+
+          crumbSet(1, seq);
+          _expr(seq);
+          changed = true;
           break;
         }
 

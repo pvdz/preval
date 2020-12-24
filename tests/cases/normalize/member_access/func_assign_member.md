@@ -23,8 +23,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var y;
   var tmpObj;
+  var y;
   1;
   2;
   tmpObj = $();
@@ -40,8 +40,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  var y;
   var tmpObj;
+  var y;
   tmpObj = $();
   y = tmpObj.foo;
   return $(y);

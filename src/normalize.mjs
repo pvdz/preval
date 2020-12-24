@@ -28,11 +28,16 @@ import { $p } from './$p.mjs';
     - Will make certain things easier to reason about
   - All call args are only identifiers or literals. Everything is first assigned to a tmp var.
     - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
-
+  - Complex callee and arguments for new expressions (similar to regular calls)
+  - Array elements are normalized if they are not simple
  */
 
 /*
   Ideas for normalization;
+  - normalize dynamic property access
+  - objects, just like calls
+  - array property shorthands into regular properties
+    - Simplifies some edge case code checks
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -241,6 +246,31 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
 
+  function isComplexNode(node) {
+    // A node is simple if it is
+    // - an identifier
+    // - a literal
+    // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
+    // Most of the time these nodes are not reduced any further
+
+    if (node.type === 'Literal') {
+      return false;
+    }
+    if (node.type === 'Identifier') {
+      return false;
+    }
+    if (node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+')) {
+      // -100 (is a unary expression!)
+      if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
+      // A little unlikely but you know
+      // -NaN, +NaN, -Infinity, +Infinity
+      if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
+    }
+    if (node.type === 'ArrayExpression' && node.elements.length === 0) return false; // Empty array literal is not exciting, probably not worth separating (?)
+    if (node.type === 'ObjectExpression' && node.properties.length === 0) return false; // Empty object literal is not exciting, probably not worth separating (?)
+
+    return true;
+  }
   function flattenSequences(node) {
     // Note: make sure the node is not being walked currently or things end bad.
 
@@ -449,6 +479,258 @@ export function phaseNormalize(fdata, fname) {
         }
       }
       ++i;
+    }
+  }
+  function normalizeCallArgsChangedSomething(node, isNew) {
+    // If this returns true, then the given node was replaced and already walked
+
+    // For all args that are not an identifier or literal, store them in a temporary variable first.
+    // `f(x(), 100, y(), a, z())` -> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`
+    // The expression can be changed inline so we can do it right now, before traversing.
+
+    const assigns = [];
+    const newArgs = [];
+    node.arguments.forEach((anode, i) => {
+      if (isComplexNode(anode)) {
+        // Create new var for this node and assign it to them
+        const tmpName = createUniqueGlobalName('tmpArg');
+        registerGlobalIdent(tmpName, 'tmpArg');
+        log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+        lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+        funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+          type: 'VariableDeclaration',
+          kind: 'var',
+          declarations: [
+            {
+              type: 'VariableDeclarator',
+              id: {
+                type: 'Identifier',
+                name: tmpName,
+                $p: $p(),
+              },
+              init: null,
+              $p: $p(),
+            },
+          ],
+          $p: $p(),
+        });
+
+        assigns.push({
+          type: 'AssignmentExpression',
+          operator: '=',
+          left: {
+            type: 'Identifier',
+            name: tmpName,
+            $p: $p(),
+          },
+          right: anode,
+          $p: $p(),
+        });
+        newArgs.push({
+          type: 'Identifier',
+          name: tmpName,
+          $p: $p(),
+        });
+      } else {
+        newArgs.push(anode);
+      }
+    });
+    if (assigns.length) {
+      const seq = {
+        type: 'SequenceExpression',
+        expressions: [...assigns, { type: isNew ? 'NewExpression' : 'CallExpression', callee: node.callee, arguments: newArgs, $p: $p() }],
+        $p: $p(),
+      };
+
+      crumbSet(1, seq);
+
+      // Visit the sequence expression node now.
+      _expr(seq);
+
+      return true;
+    }
+
+    return false;
+  }
+  function normalizeArrayElementsChangedSomething(node) {
+    // If this returns true, then the given node was replaced and already walked
+
+    // For all elements that are not an identifier or literal, store them in a temporary variable first.
+    // `[x(), 100, y(), a, z()]` -> `(t1=x(), t2=y(), t3=z(), [t1, 100, t2, a, t3])`
+    // The expression can be changed inline so we can do it right now, before traversing.
+
+    const assigns = [];
+    const newElements = [];
+    node.elements.forEach((anode, i) => {
+      // Elided elements are `null` here. Skip 'em
+      if (!anode) return;
+
+      let valueNode = anode;
+      if (anode.type === 'SpreadElement') {
+        valueNode = anode.argument;
+        crumb(anode, 'argument', valueNode);
+      }
+
+      if (isComplexNode(valueNode)) {
+        // Create new var for this node and assign it to them
+        const tmpName = createUniqueGlobalName('tmpElement');
+        registerGlobalIdent(tmpName, 'tmpElement');
+        log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+        lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+        funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+          type: 'VariableDeclaration',
+          kind: 'var',
+          declarations: [
+            {
+              type: 'VariableDeclarator',
+              id: {
+                type: 'Identifier',
+                name: tmpName,
+                $p: $p(),
+              },
+              init: null,
+              $p: $p(),
+            },
+          ],
+          $p: $p(),
+        });
+
+        assigns.push({
+          type: 'AssignmentExpression',
+          operator: '=',
+          left: {
+            type: 'Identifier',
+            name: tmpName,
+            $p: $p(),
+          },
+          right: valueNode,
+          $p: $p(),
+        });
+        newElements.push({
+          type: 'Identifier',
+          name: tmpName,
+          $p: $p(),
+        });
+      } else {
+        newElements.push(valueNode);
+      }
+
+      if (anode.type === 'SpreadElement') {
+        uncrumb(anode, 'argument', valueNode);
+      }
+    });
+    if (assigns.length) {
+      log('Replacing the non-simple elements of an array with a tmp var');
+      const seq = {
+        type: 'SequenceExpression',
+        expressions: [...assigns, { type: 'ArrayExpression', elements: newElements, $p: $p() }],
+        $p: $p(),
+      };
+
+      crumbSet(1, seq);
+
+      // Visit the sequence expression node now.
+      _expr(seq);
+
+      //return true;
+    }
+
+    return false;
+  }
+  function normalizeCalleeChangedSomething(node, isNew) {
+    // Technically doing a `new` on any literal will cause a runtime error, but let's not bother with normalizing them to ident
+    // Note: for regular calls, the context can be determined by a member expression, so make sure to not change those.
+    if (isComplexNode(node.callee) && (isNew || node.callee.type !== 'MemberExpression')) {
+      // `new x.y(a,b)` -> `(tmp=x.y, new tmp(a,b))`
+      // `($())(a,b)` -> `(tmp=$(), tmp)(a,b))`
+
+      // Create new var for this node and assign it to them
+      const tmpName = createUniqueGlobalName('tmpNewObj');
+      registerGlobalIdent(tmpName, 'tmpNewObj');
+      log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+      lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+      funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+        type: 'VariableDeclaration',
+        kind: 'var',
+        declarations: [
+          {
+            type: 'VariableDeclarator',
+            id: {
+              type: 'Identifier',
+              name: tmpName,
+              $p: $p(),
+            },
+            init: null,
+            $p: $p(),
+          },
+        ],
+        $p: $p(),
+      });
+
+      const assign = {
+        type: 'AssignmentExpression',
+        operator: '=',
+        left: {
+          type: 'Identifier',
+          name: tmpName,
+          $p: $p(),
+        },
+        right: node.callee,
+        $p: $p(),
+      };
+      const newNode = {
+        type: isNew ? 'NewExpression' : 'CallExpression',
+        callee: {
+          type: 'Identifier',
+          name: tmpName,
+          $p: $p(),
+        },
+        arguments: node.arguments,
+        $p: $p(),
+      };
+      const seq = {
+        type: 'SequenceExpression',
+        expressions: [assign, newNode],
+        $p: $p(),
+      };
+      crumbSet(1, seq);
+      _expr(seq);
+      changed = true;
+      return true;
+    } else if (!isNew && node.callee.type === 'MemberExpression' && node.callee.object.type === 'SequenceExpression') {
+      // `(a, b).c()` -> `(a, b.c())`
+      // `(a, b)[c]()` -> `(a, b[c]())`
+
+      log('Replacing the call expression with a member expression with a sequence, with a sequence ending in that call');
+
+      const mem = node.callee;
+      const exprs = mem.object.expressions;
+      const prop = mem.property;
+
+      const seq = {
+        type: 'SequenceExpression',
+        expressions: [
+          ...exprs.slice(0, -1),
+          {
+            type: 'CallExpression',
+            callee: {
+              type: 'MemberExpression',
+              computed: mem.computed,
+              object: exprs[exprs.length - 1],
+              property: prop,
+              $p: $p(),
+            },
+            arguments: node.arguments,
+          },
+        ],
+        $p: $p(),
+      };
+      crumbSet(1, seq);
+
+      changed = true;
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -876,77 +1158,6 @@ export function phaseNormalize(fdata, fname) {
 
     groupEnd();
   }
-  function normalizeCallArgsChangedSomething(node, isNew) {
-    // If this returns true, then the given node was replaced and already walked
-
-    // For all args that are not an identifier or literal, store them in a temporary variable first.
-    // `f(x(), 100, y(), a, z())` -> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`
-    // The expression can be changed inline so we can do it right now, before traversing.
-
-    const assigns = [];
-    const newArgs = [];
-    node.arguments.forEach((anode, i) => {
-      if (anode.type !== 'Literal' && anode.type !== 'Identifier') {
-        // Create new var for this node and assign it to them
-        const tmpName = createUniqueGlobalName('tmpArg');
-        registerGlobalIdent(tmpName, 'tmpArg');
-        log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-        lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
-        funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-          type: 'VariableDeclaration',
-          kind: 'var',
-          declarations: [
-            {
-              type: 'VariableDeclarator',
-              id: {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-              init: null,
-              $p: $p(),
-            },
-          ],
-          $p: $p(),
-        });
-
-        assigns.push({
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'Identifier',
-            name: tmpName,
-            $p: $p(),
-          },
-          right: anode,
-          $p: $p(),
-        });
-        newArgs.push({
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        });
-      } else {
-        newArgs.push(anode);
-      }
-    });
-    if (assigns.length) {
-      const seq = {
-        type: 'SequenceExpression',
-        expressions: [...assigns, { type: isNew ? 'NewExpression' : 'CallExpression', callee: node.callee, arguments: newArgs }],
-        $p: $p(),
-      };
-
-      crumbSet(1, seq);
-
-      // Visit the sequence expression node now.
-      _expr(seq);
-
-      return true;
-    }
-
-    return false;
-  }
   function expr2(parent2, prop2, index2, parent, prop, index, node) {
     // Skip one property
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
@@ -994,13 +1205,17 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'ArrayExpression': {
-        for (let i = 0; i < node.elements.length; ++i) {
-          const elNode = node.elements[i];
-          if (elNode.type === 'SpreadElement') {
-            // Special case spread because its behavior differs per parent case
-            expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
-          } else {
-            expr(node, 'elements', i, elNode);
+        if (!normalizeArrayElementsChangedSomething(node)) {
+          for (let i = 0; i < node.elements.length; ++i) {
+            const elNode = node.elements[i];
+            if (elNode) {
+              if (elNode.type === 'SpreadElement') {
+                // Special case spread because its behavior differs per parent case
+                expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+              } else {
+                expr(node, 'elements', i, elNode);
+              }
+            }
           }
         }
         break;
@@ -1145,24 +1360,26 @@ export function phaseNormalize(fdata, fname) {
 
       case 'CallExpression': {
         if (!normalizeCallArgsChangedSomething(node, false)) {
-          node.arguments.forEach((anode, i) => {
-            if (anode.type === 'SpreadElement') {
-              expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
-            } else {
-              expr(node, 'arguments', i, anode);
+          if (!normalizeCalleeChangedSomething(node, false)) {
+            node.arguments.forEach((anode, i) => {
+              if (anode.type === 'SpreadElement') {
+                expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+              } else {
+                expr(node, 'arguments', i, anode);
+              }
+            });
+
+            // `super` itself is not an actual value
+            if (node.callee.type !== 'Super') {
+              // Find the callee.
+              // If it's an ident, figure out if we can determine that it's a function.
+              // If it's a function, determine whether
+              // - it is pure; consider to inline it somehow
+              // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
+              // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
+
+              expr(node, 'callee', -1, node.callee);
             }
-          });
-
-          // `super` itself is not an actual value
-          if (node.callee.type !== 'Super') {
-            // Find the callee.
-            // If it's an ident, figure out if we can determine that it's a function.
-            // If it's a function, determine whether
-            // - it is pure; consider to inline it somehow
-            // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
-            // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
-
-            expr(node, 'callee', -1, node.callee);
           }
         }
 
@@ -1217,16 +1434,14 @@ export function phaseNormalize(fdata, fname) {
       case 'MemberExpression': {
         // Normalize `a.b.c` to `(tmp = a.b, tmp.c)` for any a that is not an ident or primitive. Then visit them.
         if (
-          !(
-            node.object.type === 'Identifier' ||
-            node.object.type === 'Literal' ||
-            // We rewrite into a sequence that ends with an identifier. So that's fine to keep
-            (node.object.type === 'SequenceExpression' &&
-              (node.object.expressions[node.object.expressions.length - 1].type === 'Identifier' ||
-                node.object.expressions[node.object.expressions.length - 1].type === 'Literal'))
-          )
+          // If the object is complex, and it is not a sequence that ends with a simple node, then transform it.
+          // We rewrite into a sequence that ends with an identifier. So that's fine to keep
+          isComplexNode(node.object) &&
+          (node.object.type !== 'SequenceExpression' || isComplexNode(node.object.expressions[node.object.expressions.length - 1]))
         ) {
           // expr.prop => (tmp = expr, tmp).prop
+
+          log('Replacing a complex object of a member expression with a sequence that ends with an identifier');
 
           const property = node.property;
           const tmpName = createUniqueGlobalName('tmpObj');
@@ -1313,62 +1528,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'NewExpression': {
         if (!normalizeCallArgsChangedSomething(node, true)) {
-          if (node.callee.type !== 'Identifier' && node.callee.type !== 'Literal') {
-            // `new x.y(a,b)` -> `(tmp=x.y, new tmp(a,b))`
-
-            // Create new var for this node and assign it to them
-            const tmpName = createUniqueGlobalName('tmpNewObj');
-            registerGlobalIdent(tmpName, 'tmpNewObj');
-            log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-            lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
-            funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-              type: 'VariableDeclaration',
-              kind: 'var',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: tmpName,
-                    $p: $p(),
-                  },
-                  init: null,
-                  $p: $p(),
-                },
-              ],
-              $p: $p(),
-            });
-
-            const assign = {
-              type: 'AssignmentExpression',
-              operator: '=',
-              left: {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-              right: node.callee,
-              $p: $p(),
-            };
-            const newNode = {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-              arguments: node.arguments,
-              $p: $p(),
-            };
-            const seq = {
-              type: 'SequenceExpression',
-              expressions: [assign, newNode],
-              $p: $p(),
-            };
-            crumbSet(1, seq);
-            _expr(seq);
-            changed = true;
-          } else {
+          if (!normalizeCalleeChangedSomething(node, true)) {
             node.arguments.forEach((anode, i) => {
               if (anode.type === 'SpreadElement') {
                 expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);

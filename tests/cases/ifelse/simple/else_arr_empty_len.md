@@ -18,9 +18,7 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
-tmpObj = [];
-if (tmpObj.length) {
+if ([].length) {
   $(1);
 } else {
   $(2);
@@ -30,9 +28,7 @@ if (tmpObj.length) {
 ## Output
 
 `````js filename=intro
-var tmpObj;
-tmpObj = [];
-if (tmpObj.length) {
+if ([].length) {
   $(1);
 } else {
   $(2);

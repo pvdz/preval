@@ -20,9 +20,7 @@ if (!$(1))
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = -1;
-if ($(tmpArg)) {
+if ($(-1)) {
   $(0);
 }
 if (!$(1)) {
@@ -37,9 +35,7 @@ if (!$(1)) {
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = -1;
-if ($(tmpArg)) {
+if ($(-1)) {
   $(0);
 }
 if ($(1));

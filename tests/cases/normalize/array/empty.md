@@ -1,25 +1,25 @@
 # Preval test case
 
-# plus_one.md
+# call.md
 
-> plusmin > plus_one
+> normalize > new > call
 >
-> Literals with a plus unary coerced to number without the plus
+> Make sure empty array works
 
 ## Input
 
 `````js filename=intro
-$(+1);
+$([]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$(+1);
+$([]);
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
+$([]);
 `````

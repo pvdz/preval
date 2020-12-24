@@ -31,11 +31,15 @@ $(f());
 function f() {
   return 'foo';
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('foo');
+var tmpArg;
+tmpArg = 'foo';
+$(tmpArg);
 `````

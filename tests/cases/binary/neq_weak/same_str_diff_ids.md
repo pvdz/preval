@@ -17,13 +17,17 @@ $(x != y);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 const x = 'xyz';
 const y = x;
-$(x != y);
+tmpArg = x != y;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(false);
+var tmpArg;
+tmpArg = false;
+$(tmpArg);
 `````

@@ -17,11 +17,15 @@ $('foo'.length);
 ## Normalized
 
 `````js filename=intro
-$('foo'.length);
+var tmpArg;
+tmpArg = 'foo'.length;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('foo'.length);
+var tmpArg;
+tmpArg = 'foo'.length;
+$(tmpArg);
 `````

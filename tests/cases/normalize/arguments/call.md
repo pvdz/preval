@@ -1,22 +1,24 @@
 # Preval test case
 
-# base_true.md
+# call.md
 
-> eq > base_true
+> normalize > arguments > call
 >
-> If two values compare to the same primitive value in code then we can freely replace them with true or false
+> Normalizing call args when they are not identifier or literal
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(1 != 1);
+$($());
 `````
 
 ## Normalized
 
 `````js filename=intro
 var tmpArg;
-tmpArg = 1 != 1;
+tmpArg = $();
 $(tmpArg);
 `````
 
@@ -24,6 +26,6 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = false;
+tmpArg = $();
 $(tmpArg);
 `````

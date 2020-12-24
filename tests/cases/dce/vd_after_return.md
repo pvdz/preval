@@ -32,11 +32,15 @@ function f(x) {
   return g;
   g = $();
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(undefined);
+var tmpArg;
+tmpArg = undefined;
+$(tmpArg);
 `````

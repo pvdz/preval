@@ -20,20 +20,30 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObj;
   const obj = { a: { b: $() } };
-  return $(((tmpObj = obj.a), tmpObj).b);
+  tmpObj = obj.a;
+  tmpArg = tmpObj.b;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObj;
   const obj = { a: { b: $() } };
-  return $(((tmpObj = obj.a), tmpObj).b);
+  tmpObj = obj.a;
+  tmpArg = tmpObj.b;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````

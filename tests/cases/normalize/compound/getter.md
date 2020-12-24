@@ -21,15 +21,19 @@ $(obj.x); // 5
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 const obj = { x: 0 };
 obj.x += 5;
-$(obj.x);
+tmpArg = obj.x;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpArg;
 const obj = { x: 0 };
 obj.x += 5;
-$(obj.x);
+tmpArg = obj.x;
+$(tmpArg);
 `````

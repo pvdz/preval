@@ -15,11 +15,15 @@ $(1 == 'x');
 ## Normalized
 
 `````js filename=intro
-$(1 == 'x');
+var tmpArg;
+tmpArg = 1 == 'x';
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(false);
+var tmpArg;
+tmpArg = false;
+$(tmpArg);
 `````

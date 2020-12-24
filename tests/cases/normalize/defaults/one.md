@@ -24,8 +24,12 @@ function f($tdz$__a) {
   let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
   return a;
 }
-$(f('x'));
-$(f());
+var tmpArg;
+var tmpArg_1;
+tmpArg = f('x');
+$(tmpArg);
+tmpArg_1 = f();
+$(tmpArg_1);
 `````
 
 ## Output
@@ -35,6 +39,10 @@ function f($tdz$__a) {
   let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
   return a;
 }
-$(f('x'));
-$(f());
+var tmpArg;
+var tmpArg_1;
+tmpArg = f('x');
+$(tmpArg);
+tmpArg_1 = f();
+$(tmpArg_1);
 `````

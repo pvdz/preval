@@ -21,11 +21,15 @@ $(f());
 function f() {
   return Infinity;
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(Infinity);
+var tmpArg;
+tmpArg = Infinity;
+$(tmpArg);
 `````

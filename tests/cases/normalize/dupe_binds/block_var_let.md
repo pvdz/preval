@@ -30,7 +30,9 @@ function f(x) {
     return x_1;
   }
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -40,5 +42,7 @@ function f(x) {
   let x_1 = $(1);
   return x_1;
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

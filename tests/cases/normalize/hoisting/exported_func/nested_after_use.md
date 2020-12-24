@@ -25,9 +25,13 @@ export function g() {
   function f() {
     return $(2);
   }
-  $(f(1));
+  var tmpArg_1;
+  tmpArg_1 = f(1);
+  $(tmpArg_1);
 }
-$(g());
+var tmpArg;
+tmpArg = g();
+$(tmpArg);
 `````
 
 ## Output
@@ -37,7 +41,11 @@ export function g() {
   function f() {
     return $(2);
   }
-  $(f(1));
+  var tmpArg_1;
+  tmpArg_1 = f(1);
+  $(tmpArg_1);
 }
-$(g());
+var tmpArg;
+tmpArg = g();
+$(tmpArg);
 `````

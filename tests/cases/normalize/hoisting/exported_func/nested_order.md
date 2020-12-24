@@ -34,9 +34,17 @@ export function f() {
   function h() {
     return $();
   }
-  $(f_1(), g(), h());
+  var tmpArg_1;
+  var tmpArg_2;
+  var tmpArg_3;
+  tmpArg_1 = f_1();
+  tmpArg_2 = g();
+  tmpArg_3 = h();
+  $(tmpArg_1, tmpArg_2, tmpArg_3);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -52,7 +60,15 @@ export function f() {
   function h() {
     return $();
   }
-  $(f_1(), g(), h());
+  var tmpArg_1;
+  var tmpArg_2;
+  var tmpArg_3;
+  tmpArg_1 = f_1();
+  tmpArg_2 = g();
+  tmpArg_3 = h();
+  $(tmpArg_1, tmpArg_2, tmpArg_3);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

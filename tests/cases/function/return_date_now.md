@@ -25,7 +25,9 @@ $(f());
 function f() {
   return Date.now();
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -34,5 +36,7 @@ $(f());
 function f() {
   return Date.now();
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

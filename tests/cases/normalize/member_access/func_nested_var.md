@@ -33,7 +33,9 @@ function f() {
   const c = b.length;
   return $(c);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -46,5 +48,7 @@ function f() {
   const c = b.length;
   return $(c);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

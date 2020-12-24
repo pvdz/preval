@@ -18,11 +18,21 @@ $($(1), ($(2), $(3)));
 ## Normalized
 
 `````js filename=intro
-$($(1), ($(2), $(3)));
+var tmpArg;
+var tmpArg_1;
+tmpArg = $(1);
+$(2);
+tmpArg_1 = $(3);
+$(tmpArg, tmpArg_1);
 `````
 
 ## Output
 
 `````js filename=intro
-$($(1), ($(2), $(3)));
+var tmpArg;
+var tmpArg_1;
+tmpArg = $(1);
+$(2);
+tmpArg_1 = $(3);
+$(tmpArg, tmpArg_1);
 `````

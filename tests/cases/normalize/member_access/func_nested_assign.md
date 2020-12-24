@@ -22,13 +22,18 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObj;
+  var tmpArg;
   var tmpObj_1;
   const obj = { a: { b: $() } };
   tmpObj = obj.a;
   tmpObj = 15;
-  return $(((tmpObj_1 = obj.a), tmpObj_1).b);
+  tmpObj_1 = obj.a;
+  tmpArg = tmpObj_1.b;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````
 
 ## Output
@@ -36,11 +41,16 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObj;
+  var tmpArg;
   var tmpObj_1;
   const obj = { a: { b: $() } };
   tmpObj = obj.a;
   tmpObj = 15;
-  return $(((tmpObj_1 = obj.a), tmpObj_1).b);
+  tmpObj_1 = obj.a;
+  tmpArg = tmpObj_1.b;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````

@@ -27,10 +27,18 @@ function f($tdz$__a, $tdz$__b) {
   let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
   return [a, b];
 }
-$(f());
-$(f('x'));
-$(f(undefined, 'y'));
-$(f('x', 'y'));
+var tmpArg;
+var tmpArg_1;
+var tmpArg_2;
+var tmpArg_3;
+tmpArg = f();
+$(tmpArg);
+tmpArg_1 = f('x');
+$(tmpArg_1);
+tmpArg_2 = f(undefined, 'y');
+$(tmpArg_2);
+tmpArg_3 = f('x', 'y');
+$(tmpArg_3);
 `````
 
 ## Output
@@ -41,8 +49,16 @@ function f($tdz$__a, $tdz$__b) {
   let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
   return [a, b];
 }
-$(f());
-$(f('x'));
-$(f(undefined, 'y'));
-$(f('x', 'y'));
+var tmpArg;
+var tmpArg_1;
+var tmpArg_2;
+var tmpArg_3;
+tmpArg = f();
+$(tmpArg);
+tmpArg_1 = f('x');
+$(tmpArg_1);
+tmpArg_2 = f(undefined, 'y');
+$(tmpArg_2);
+tmpArg_3 = f('x', 'y');
+$(tmpArg_3);
 `````

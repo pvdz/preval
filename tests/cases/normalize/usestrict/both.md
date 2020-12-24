@@ -24,8 +24,10 @@ function f() {
   'use strict';
   return $();
 }
+var tmpArg;
 ('use strict');
-$(f());
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -34,5 +36,7 @@ $(f());
 function f() {
   return $();
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

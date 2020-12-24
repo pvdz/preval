@@ -26,12 +26,13 @@ import { $p } from './$p.mjs';
     - Work in progress to catch more cases as I find them
   - One binding declared per decl
     - Will make certain things easier to reason about
+  - All call args are only identifiers or literals. Everything is first assigned to a tmp var.
+    - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
+
  */
 
 /*
   Ideas for normalization;
-  - Make sure all call args are idents or literals
-    - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -1072,24 +1073,88 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'CallExpression': {
+        // For all args that are not an identifier or literal, store them in a temporary variable first.
+        // `f(x(), 100, y(), a, z())` -> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`
+        // The expression can be changed inline so we can do it right now, before traversing.
+
+        const assigns = [];
+        const newArgs = [];
         node.arguments.forEach((anode, i) => {
-          if (anode.type === 'SpreadElement') {
-            expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+          if (anode.type !== 'Literal' && anode.type !== 'Identifier') {
+            // Create new var for this node and assign it to them
+            const tmpName = createUniqueGlobalName('tmpArg');
+            registerGlobalIdent(tmpName, 'tmpArg');
+            log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+            lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+            funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+              type: 'VariableDeclaration',
+              kind: 'var',
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  id: {
+                    type: 'Identifier',
+                    name: tmpName,
+                    $p: $p(),
+                  },
+                  init: null,
+                  $p: $p(),
+                },
+              ],
+              $p: $p(),
+            });
+
+            assigns.push({
+              type: 'AssignmentExpression',
+              operator: '=',
+              left: {
+                type: 'Identifier',
+                name: tmpName,
+                $p: $p(),
+              },
+              right: anode,
+              $p: $p(),
+            });
+            newArgs.push({
+              type: 'Identifier',
+              name: tmpName,
+              $p: $p(),
+            });
           } else {
-            expr(node, 'arguments', i, anode);
+            newArgs.push(anode);
           }
         });
+        if (assigns.length) {
+          const seq = {
+            type: 'SequenceExpression',
+            expressions: [...assigns, { type: 'CallExpression', callee: node.callee, arguments: newArgs }],
+            $p: $p(),
+          };
 
-        // `super` itself is not an actual value
-        if (node.callee.type !== 'Super') {
-          // Find the callee.
-          // If it's an ident, figure out if we can determine that it's a function.
-          // If it's a function, determine whether
-          // - it is pure; consider to inline it somehow
-          // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
-          // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
+          crumbSet(1, seq);
 
-          expr(node, 'callee', -1, node.callee);
+          // Visit the sequence expression node now.
+          _expr(seq);
+        } else {
+          node.arguments.forEach((anode, i) => {
+            if (anode.type === 'SpreadElement') {
+              expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+            } else {
+              expr(node, 'arguments', i, anode);
+            }
+          });
+
+          // `super` itself is not an actual value
+          if (node.callee.type !== 'Super') {
+            // Find the callee.
+            // If it's an ident, figure out if we can determine that it's a function.
+            // If it's a function, determine whether
+            // - it is pure; consider to inline it somehow
+            // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
+            // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
+
+            expr(node, 'callee', -1, node.callee);
+          }
         }
 
         break;

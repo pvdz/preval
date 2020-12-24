@@ -17,11 +17,15 @@ $(typeof /1/);
 ## Normalized
 
 `````js filename=intro
-$(typeof /1/);
+var tmpArg;
+tmpArg = typeof /1/;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('object');
+var tmpArg;
+tmpArg = 'object';
+$(tmpArg);
 `````

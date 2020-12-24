@@ -15,11 +15,15 @@ $(typeof 0);
 ## Normalized
 
 `````js filename=intro
-$(typeof 0);
+var tmpArg;
+tmpArg = typeof 0;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('number');
+var tmpArg;
+tmpArg = 'number';
+$(tmpArg);
 `````

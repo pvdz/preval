@@ -31,7 +31,9 @@ function f(x) {
   }
   return g();
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````
 
 ## Output
@@ -43,5 +45,7 @@ function f(x) {
   }
   return g();
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````

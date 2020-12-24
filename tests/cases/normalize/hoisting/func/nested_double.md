@@ -29,9 +29,13 @@ function g() {
   function f() {
     return $(2);
   }
-  $(f(3));
+  var tmpArg_1;
+  tmpArg_1 = f(3);
+  $(tmpArg_1);
 }
-$(g());
+var tmpArg;
+tmpArg = g();
+$(tmpArg);
 `````
 
 ## Output
@@ -44,7 +48,11 @@ function g() {
   function f() {
     return $(2);
   }
-  $(f(3));
+  var tmpArg_1;
+  tmpArg_1 = f(3);
+  $(tmpArg_1);
 }
-$(g());
+var tmpArg;
+tmpArg = g();
+$(tmpArg);
 `````

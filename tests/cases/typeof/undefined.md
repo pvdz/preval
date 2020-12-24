@@ -15,11 +15,15 @@ $(typeof undefined);
 ## Normalized
 
 `````js filename=intro
-$(typeof undefined);
+var tmpArg;
+tmpArg = typeof undefined;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('undefined');
+var tmpArg;
+tmpArg = 'undefined';
+$(tmpArg);
 `````

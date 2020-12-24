@@ -15,13 +15,19 @@ $(parseInt(15).foo);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 var tmpObj;
-$(((tmpObj = parseInt(15)), tmpObj).foo);
+tmpObj = parseInt(15);
+tmpArg = tmpObj.foo;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpArg;
 var tmpObj;
-$(((tmpObj = parseInt(15)), tmpObj).foo);
+tmpObj = parseInt(15);
+tmpArg = tmpObj.foo;
+$(tmpArg);
 `````

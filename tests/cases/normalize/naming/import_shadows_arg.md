@@ -21,7 +21,8 @@ export const x = $(f());
 export function g(x_1) {
   return x_1;
 }
-export const x = $(f());
+var tmpArg;
+export const x = ((tmpArg = f()), $(tmpArg));
 `````
 
 ## Output
@@ -30,5 +31,6 @@ export const x = $(f());
 export function g(x_1) {
   return x_1;
 }
-export const x = $(f());
+var tmpArg;
+export const x = ((tmpArg = f()), $(tmpArg));
 `````

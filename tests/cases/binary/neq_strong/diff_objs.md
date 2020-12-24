@@ -17,11 +17,15 @@ $({} !== {});
 ## Normalized
 
 `````js filename=intro
-$({} !== {});
+var tmpArg;
+tmpArg = {} !== {};
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$({} !== {});
+var tmpArg;
+tmpArg = {} !== {};
+$(tmpArg);
 `````

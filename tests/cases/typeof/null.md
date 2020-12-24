@@ -19,11 +19,15 @@ $(typeof null);
 ## Normalized
 
 `````js filename=intro
-$(typeof null);
+var tmpArg;
+tmpArg = typeof null;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('object');
+var tmpArg;
+tmpArg = 'object';
+$(tmpArg);
 `````

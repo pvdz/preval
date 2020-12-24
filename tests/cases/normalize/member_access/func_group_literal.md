@@ -27,7 +27,9 @@ function f() {
   const y = (3).foo;
   return $(y);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -37,5 +39,7 @@ function f() {
   const y = (3).foo;
   return $(y);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

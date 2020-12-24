@@ -54,93 +54,97 @@ $(
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 var tmpObj;
+var tmpArg_1;
 var tmpObj_1;
 var tmpObj_2;
-$(
-  ((tmpObj = new Map(
-    ((tmpObj_1 = [
-      ...((tmpObj_2 = new Map([
-        ['clearInterval', 'global.clearInterval'],
-        ['clearTimeout', 'global.clearTimeout'],
-        ['console', 'global.console'],
-        ['false', 'boolean'],
-        ['null', 'null'],
-        ['this', 'undefined'],
-        ['parseInt', 'global.parseInt'],
-        ['parseFloat', 'global.parseFloat'],
-        ['setInterval', 'global.setInterval'],
-        ['setTimeout', 'global.setTimeout'],
-        ['true', 'boolean'],
-        ['undefined', 'undefined'],
-        ['Array', 'Array'],
-        ['Boolean', 'Boolean'],
-        ['Date', 'Date'],
-        ['Error', 'Error'],
-        ['Infinity', 'number'],
-        ['JSON', 'JSON'],
-        ['Math', 'Math'],
-        ['Map', 'Map'],
-        ['NaN', 'NaN'],
-        ['Number', 'Number'],
-        ['Object', 'Object'],
-        ['RegExp', 'RegExp'],
-        ['Set', 'Set'],
-        ['String', 'String'],
-        ['$', '$'],
-      ])),
-      tmpObj_2).keys(),
-      'module',
-    ]),
-    tmpObj_1).map((k) => [k, k]),
-  )),
-  tmpObj).get('$'),
-);
+tmpArg = ((tmpObj = new Map(
+  ((tmpArg_1 = (k) => [k, k]),
+  ((tmpObj_1 = [
+    ...((tmpObj_2 = new Map([
+      ['clearInterval', 'global.clearInterval'],
+      ['clearTimeout', 'global.clearTimeout'],
+      ['console', 'global.console'],
+      ['false', 'boolean'],
+      ['null', 'null'],
+      ['this', 'undefined'],
+      ['parseInt', 'global.parseInt'],
+      ['parseFloat', 'global.parseFloat'],
+      ['setInterval', 'global.setInterval'],
+      ['setTimeout', 'global.setTimeout'],
+      ['true', 'boolean'],
+      ['undefined', 'undefined'],
+      ['Array', 'Array'],
+      ['Boolean', 'Boolean'],
+      ['Date', 'Date'],
+      ['Error', 'Error'],
+      ['Infinity', 'number'],
+      ['JSON', 'JSON'],
+      ['Math', 'Math'],
+      ['Map', 'Map'],
+      ['NaN', 'NaN'],
+      ['Number', 'Number'],
+      ['Object', 'Object'],
+      ['RegExp', 'RegExp'],
+      ['Set', 'Set'],
+      ['String', 'String'],
+      ['$', '$'],
+    ])),
+    tmpObj_2).keys(),
+    'module',
+  ]),
+  tmpObj_1).map(tmpArg_1)),
+)),
+tmpObj).get('$');
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpArg;
 var tmpObj;
+var tmpArg_1;
 var tmpObj_1;
 var tmpObj_2;
-$(
-  ((tmpObj = new Map(
-    ((tmpObj_1 = [
-      ...((tmpObj_2 = new Map([
-        ['clearInterval', 'global.clearInterval'],
-        ['clearTimeout', 'global.clearTimeout'],
-        ['console', 'global.console'],
-        ['false', 'boolean'],
-        ['null', 'null'],
-        ['this', 'undefined'],
-        ['parseInt', 'global.parseInt'],
-        ['parseFloat', 'global.parseFloat'],
-        ['setInterval', 'global.setInterval'],
-        ['setTimeout', 'global.setTimeout'],
-        ['true', 'boolean'],
-        ['undefined', 'undefined'],
-        ['Array', 'Array'],
-        ['Boolean', 'Boolean'],
-        ['Date', 'Date'],
-        ['Error', 'Error'],
-        ['Infinity', 'number'],
-        ['JSON', 'JSON'],
-        ['Math', 'Math'],
-        ['Map', 'Map'],
-        ['NaN', 'NaN'],
-        ['Number', 'Number'],
-        ['Object', 'Object'],
-        ['RegExp', 'RegExp'],
-        ['Set', 'Set'],
-        ['String', 'String'],
-        ['$', '$'],
-      ])),
-      tmpObj_2).keys(),
-      'module',
-    ]),
-    tmpObj_1).map((k) => [k, k]),
-  )),
-  tmpObj).get('$'),
-);
+tmpArg = ((tmpObj = new Map(
+  ((tmpArg_1 = (k) => [k, k]),
+  ((tmpObj_1 = [
+    ...((tmpObj_2 = new Map([
+      ['clearInterval', 'global.clearInterval'],
+      ['clearTimeout', 'global.clearTimeout'],
+      ['console', 'global.console'],
+      ['false', 'boolean'],
+      ['null', 'null'],
+      ['this', 'undefined'],
+      ['parseInt', 'global.parseInt'],
+      ['parseFloat', 'global.parseFloat'],
+      ['setInterval', 'global.setInterval'],
+      ['setTimeout', 'global.setTimeout'],
+      ['true', 'boolean'],
+      ['undefined', 'undefined'],
+      ['Array', 'Array'],
+      ['Boolean', 'Boolean'],
+      ['Date', 'Date'],
+      ['Error', 'Error'],
+      ['Infinity', 'number'],
+      ['JSON', 'JSON'],
+      ['Math', 'Math'],
+      ['Map', 'Map'],
+      ['NaN', 'NaN'],
+      ['Number', 'Number'],
+      ['Object', 'Object'],
+      ['RegExp', 'RegExp'],
+      ['Set', 'Set'],
+      ['String', 'String'],
+      ['$', '$'],
+    ])),
+    tmpObj_2).keys(),
+    'module',
+  ]),
+  tmpObj_1).map(tmpArg_1)),
+)),
+tmpObj).get('$');
+$(tmpArg);
 `````

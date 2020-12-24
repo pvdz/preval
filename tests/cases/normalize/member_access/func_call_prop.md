@@ -19,18 +19,28 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObj;
-  return $(((tmpObj = parseInt(15)), tmpObj).foo);
+  tmpObj = parseInt(15);
+  tmpArg = tmpObj.foo;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObj;
-  return $(((tmpObj = parseInt(15)), tmpObj).foo);
+  tmpObj = parseInt(15);
+  tmpArg = tmpObj.foo;
+  return $(tmpArg);
 }
-$(f());
+var tmpArg_1;
+tmpArg_1 = f();
+$(tmpArg_1);
 `````

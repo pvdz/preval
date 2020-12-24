@@ -22,11 +22,15 @@ $(f());
 function f() {
   return 1;
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
+var tmpArg;
+tmpArg = 1;
+$(tmpArg);
 `````

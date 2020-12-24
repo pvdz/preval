@@ -15,11 +15,15 @@ $(-undefined);
 ## Normalized
 
 `````js filename=intro
-$(-undefined);
+var tmpArg;
+tmpArg = -undefined;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+var tmpArg;
+tmpArg = NaN;
+$(tmpArg);
 `````

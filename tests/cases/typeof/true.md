@@ -15,11 +15,15 @@ $(typeof true);
 ## Normalized
 
 `````js filename=intro
-$(typeof true);
+var tmpArg;
+tmpArg = typeof true;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('boolean');
+var tmpArg;
+tmpArg = 'boolean';
+$(tmpArg);
 `````

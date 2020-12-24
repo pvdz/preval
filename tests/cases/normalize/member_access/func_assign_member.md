@@ -31,7 +31,9 @@ function f() {
   y = tmpObj.foo;
   return $(y);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -44,5 +46,7 @@ function f() {
   y = tmpObj.foo;
   return $(y);
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````

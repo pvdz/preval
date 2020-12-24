@@ -15,11 +15,15 @@ $('x' >= 'y');
 ## Normalized
 
 `````js filename=intro
-$('x' >= 'y');
+var tmpArg;
+tmpArg = 'x' >= 'y';
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(false);
+var tmpArg;
+tmpArg = false;
+$(tmpArg);
 `````

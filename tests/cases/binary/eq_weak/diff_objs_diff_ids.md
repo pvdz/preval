@@ -19,15 +19,19 @@ $(x == y);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 const x = {};
 const y = x;
-$(x == y);
+tmpArg = x == y;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpArg;
 const x = {};
 const y = x;
-$(x == y);
+tmpArg = x == y;
+$(tmpArg);
 `````

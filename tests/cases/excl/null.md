@@ -15,11 +15,15 @@ $(!null);
 ## Normalized
 
 `````js filename=intro
-$(!null);
+var tmpArg;
+tmpArg = !null;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(true);
+var tmpArg;
+tmpArg = true;
+$(tmpArg);
 `````

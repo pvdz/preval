@@ -30,7 +30,13 @@ function g() {
 function h() {
   return $();
 }
-$(f(), g(), h());
+var tmpArg;
+var tmpArg_1;
+var tmpArg_2;
+tmpArg = f();
+tmpArg_1 = g();
+tmpArg_2 = h();
+$(tmpArg, tmpArg_1, tmpArg_2);
 `````
 
 ## Output
@@ -45,5 +51,11 @@ function g() {
 function h() {
   return $();
 }
-$(f(), g(), h());
+var tmpArg;
+var tmpArg_1;
+var tmpArg_2;
+tmpArg = f();
+tmpArg_1 = g();
+tmpArg_2 = h();
+$(tmpArg, tmpArg_1, tmpArg_2);
 `````

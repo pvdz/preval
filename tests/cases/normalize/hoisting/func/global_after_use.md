@@ -21,7 +21,9 @@ function f() { return $(2); }
 function f() {
   return $(2);
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````
 
 ## Output
@@ -30,5 +32,7 @@ $(f(1));
 function f() {
   return $(2);
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````

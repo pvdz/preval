@@ -21,11 +21,15 @@ $(f());
 function f() {
   return NaN;
 }
-$(f());
+var tmpArg;
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+var tmpArg;
+tmpArg = NaN;
+$(tmpArg);
 `````

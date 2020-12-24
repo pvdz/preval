@@ -28,8 +28,10 @@ $(f());
 function f() {
   return x;
 }
+var tmpArg;
 const x = $();
-$(f());
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
@@ -38,6 +40,8 @@ $(f());
 function f() {
   return x;
 }
+var tmpArg;
 const x = $();
-$(f());
+tmpArg = f();
+$(tmpArg);
 `````

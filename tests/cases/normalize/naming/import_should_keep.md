@@ -32,8 +32,9 @@ export function f() {
 export function g(x_2) {
   return x_2;
 }
+var tmpArg;
 export class c {}
-export const x = $(f());
+export const x = ((tmpArg = f()), $(tmpArg));
 `````
 
 ## Output
@@ -46,6 +47,7 @@ export function f() {
 export function g(x_2) {
   return x_2;
 }
+var tmpArg;
 export class c {}
-export const x = $(f());
+export const x = ((tmpArg = f()), $(tmpArg));
 `````

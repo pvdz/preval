@@ -17,11 +17,15 @@ $(global.foo);
 ## Normalized
 
 `````js filename=intro
-$(global.foo);
+var tmpArg;
+tmpArg = global.foo;
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$(global.foo);
+var tmpArg;
+tmpArg = global.foo;
+$(tmpArg);
 `````

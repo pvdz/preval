@@ -15,11 +15,15 @@ $('a' + 'b')
 ## Normalized
 
 `````js filename=intro
-$('a' + 'b');
+var tmpArg;
+tmpArg = 'a' + 'b';
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ab');
+var tmpArg;
+tmpArg = 'ab';
+$(tmpArg);
 `````

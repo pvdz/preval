@@ -26,12 +26,16 @@ $(f());
 function f() {
   return x;
 }
+var tmpArg;
 const x = 'x';
-$(f());
+tmpArg = f();
+$(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-$('x');
+var tmpArg;
+tmpArg = 'x';
+$(tmpArg);
 `````

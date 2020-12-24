@@ -19,7 +19,9 @@ export function f() { return $(2); }
 export function f() {
   return $(2);
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````
 
 ## Output
@@ -28,5 +30,7 @@ $(f(1));
 export function f() {
   return $(2);
 }
-$(f(1));
+var tmpArg;
+tmpArg = f(1);
+$(tmpArg);
 `````

@@ -16,7 +16,9 @@ else $(3);
 ## Normalized
 
 `````js filename=intro
-if (new ($(1))()) {
+var tmpNewObj;
+tmpNewObj = $(1);
+if (new tmpNewObj()) {
   $(2);
 } else {
   $(3);
@@ -26,6 +28,8 @@ if (new ($(1))()) {
 ## Output
 
 `````js filename=intro
-new ($(1))();
+var tmpNewObj;
+tmpNewObj = $(1);
+new tmpNewObj();
 $(2);
 `````

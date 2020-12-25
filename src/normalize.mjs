@@ -34,10 +34,13 @@ import { $p } from './$p.mjs';
     - Simplifies some edge case code checks
   - Computed property access for complex keys is normalized to ident keys
   - Computed property access with literals that are valid idents become regular property access
+  - Normalize conditional expression parts
+    - Not doing normalize ternary vs if-else right now because there'll always be contexts that require it to be an expression and there will always be contents that require it to be a statement
  */
 
 /*
   Ideas for normalization;
+  - arrows with expression body to arrows with block body
   - Figure out how to get around the var-might-be-undefined problem
     - Current implementation makes our system think the var might be `undefined` when we know that's never the case
     - Should the vars we introduce be set at the first time usage instead? hmmm
@@ -62,6 +65,7 @@ import { $p } from './$p.mjs';
     - Member expressions with more than one step, calls inside calls, etc etc. How far can we push this and is it worth anything?
   - ternary to if-else
     - or if-else to ternary? both have contextual limitations
+    - could transform ternary to if-else wrapped in an immediately invoked arrow and hope that we can unbox that later...? might be a little excessive.
   - multiple conditions per if-else to one condition
   - switch to if-else
     - probably too detrimental to perf. but perhaps we could detect that a series of if-elses applies to the same thing, in the end.
@@ -251,12 +255,17 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
 
-  function isComplexNode(node) {
+  function isComplexNodeOrAlreadySequenced(node) {
+    return isComplexNode(node, true);
+  }
+  function isComplexNode(node, orSequence = false) {
     // A node is simple if it is
     // - an identifier
     // - a literal
     // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
+    // - a sequence expression ending in a simple node
     // Most of the time these nodes are not reduced any further
+    // The sequence expression sounds complex but that's what we normalize into most of the time
 
     if (node.type === 'Literal') {
       return false;
@@ -271,10 +280,65 @@ export function phaseNormalize(fdata, fname) {
       // -NaN, +NaN, -Infinity, +Infinity
       if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
     }
+    if (orSequence && node.type === 'SequenceExpression' && !isComplexNode(node.expressions[node.expressions.length - 1])) return false;
     if (node.type === 'ArrayExpression' && node.elements.length === 0) return false; // Empty array literal is not exciting, probably not worth separating (?)
     if (node.type === 'ObjectExpression' && node.properties.length === 0) return false; // Empty object literal is not exciting, probably not worth separating (?)
 
     return true;
+  }
+  function sequenceNode(node, tmpNameBase) {
+    // Take given node, assign it to a fresh tmp variable, and create a sequence with this assignment and then that variable.
+    // `expr`
+    // -> `(tmp = expr, tmp)`
+
+    ASSERT(isComplexNode(node), 'this probably should not be called on simple nodes...');
+
+    // Create new var for this node and assign it to them
+    const tmpName = createUniqueGlobalName(tmpNameBase);
+    registerGlobalIdent(tmpName, tmpNameBase);
+    log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+    lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+    funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
+      type: 'VariableDeclaration',
+      kind: 'var',
+      declarations: [
+        {
+          type: 'VariableDeclarator',
+          id: {
+            type: 'Identifier',
+            name: tmpName,
+            $p: $p(),
+          },
+          init: null,
+          $p: $p(),
+        },
+      ],
+      $p: $p(),
+    });
+
+    const assign = {
+      type: 'AssignmentExpression',
+      operator: '=',
+      left: {
+        type: 'Identifier',
+        name: tmpName,
+        $p: $p(),
+      },
+      right: node,
+      $p: $p(),
+    };
+    return {
+      type: 'SequenceExpression',
+      expressions: [
+        assign,
+        {
+          type: 'Identifier',
+          name: tmpName,
+          $p: $p(),
+        },
+      ],
+      $p: $p(),
+    };
   }
   function flattenSequences(node) {
     // Note: make sure the node is not being walked currently or things end bad.
@@ -1436,6 +1500,43 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ConditionalExpression': {
+        if (isComplexNodeOrAlreadySequenced(node.test)) {
+          // `a ? b : c`
+          // -> `(tmp = a, tmp) ? b : c`
+          // -> `(tmp = a, (tmp ? b : c))`
+          // -> `tmp = a; tmp ? b : c;`
+          node.test = sequenceNode(node.test, 'tmpTernaryTest');
+          changed = true;
+        }
+        if (node.test.type === 'SequenceExpression' && !isComplexNode(node.test.expressions[node.test.expressions.length - 1])) {
+          // `(a, b) ? c : d`
+          // -> `(a, (b ? c : d))`
+          const exprs = node.test.expressions;
+          node.test = exprs.pop();
+          const seq = {
+            type: 'SequenceExpression',
+            expressions: [
+              ...exprs,
+              node
+            ],
+            $p: $p()
+          };
+          crumbSet(1, seq);
+          changed = 1;
+        }
+        if (isComplexNodeOrAlreadySequenced(node.consequent)) {
+          // `a ? b : c`
+          // -> `a ? (tmp = b, tmp) : c`
+          node.consequent = sequenceNode(node.consequent, 'tmpTernaryConsequent');
+          changed = true;
+        }
+        if (isComplexNodeOrAlreadySequenced(node.alternate)) {
+          // `a ? b : c`
+          // -> `a ? b : (tmp = c, tmp)`
+          node.alternate = sequenceNode(node.alternate, 'tmpTernaryAlternate');
+          changed = true;
+        }
+
         expr(node, 'test', -1, node.test);
         expr(node, 'consequent', -1, node.consequent);
         expr(node, 'alternate', -1, node.alternate);
@@ -1487,57 +1588,12 @@ export function phaseNormalize(fdata, fname) {
 
           log('Replacing a complex object of a member expression with a sequence that ends with an identifier');
 
+          const seq = sequenceNode(node.object, 'tmpObj');
           const property = node.property;
-          const tmpName = createUniqueGlobalName('tmpObj');
-          registerGlobalIdent(tmpName, 'tmpObj');
-          log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-          lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
-          funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: tmpName,
-                  $p: $p(),
-                },
-                init: null,
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          });
-
-          const cacheAssignNode = {
-            type: 'AssignmentExpression',
-            operator: '=',
-            left: {
-              type: 'Identifier',
-              name: tmpName,
-              $p: $p(),
-            },
-            right: node.object,
-            $p: $p(),
-          };
-          const groupNode = {
-            type: 'SequenceExpression',
-            expressions: [
-              // tmpProp = obj, obj.prop = right
-              cacheAssignNode,
-              {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          };
           const newLeftNode = {
             type: 'MemberExpression',
             computed: node.computed,
-            object: groupNode,
+            object: seq,
             property: property,
             $p: $p(),
           };

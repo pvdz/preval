@@ -23,8 +23,12 @@ $(f('x', 'y')); // [x, y]
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let b = $tdz$__b === undefined ? a : $tdz$__b;
-  let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
+  var tmpTernaryTest;
+  var tmpTernaryTest_1;
+  tmpTernaryTest = $tdz$__b === undefined;
+  let b = tmpTernaryTest ? a : $tdz$__b;
+  tmpTernaryTest_1 = $tdz$__a === undefined;
+  let a = tmpTernaryTest_1 ? 'foo' : $tdz$__a;
   return [a, b];
 }
 var tmpArg;
@@ -45,8 +49,12 @@ $(tmpArg_3);
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let b = $tdz$__b === undefined ? a : $tdz$__b;
-  let a = $tdz$__a === undefined ? 'foo' : $tdz$__a;
+  var tmpTernaryTest;
+  var tmpTernaryTest_1;
+  tmpTernaryTest = $tdz$__b === undefined;
+  let b = tmpTernaryTest ? a : $tdz$__b;
+  tmpTernaryTest_1 = $tdz$__a === undefined;
+  let a = tmpTernaryTest_1 ? 'foo' : $tdz$__a;
   return [a, b];
 }
 var tmpArg;

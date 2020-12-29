@@ -6,8 +6,6 @@
 >
 > Testing simple pattern normalizations
 
-#TODO
-
 ## Input
 
 `````js filename=intro

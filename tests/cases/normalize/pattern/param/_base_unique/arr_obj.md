@@ -4,12 +4,16 @@
 
 > normalize > pattern > param > _base > arr_obj
 >
-> Testing simple pattern normalizations
+> Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
 
 ## Input
 
 `````js filename=intro
-function h([{ x = a }]) { return x}
+let x = 1;
+function h([{ x }]) {
+  { let x = 2; }
+  return x
+}
 `````
 
 ## Normalized
@@ -18,12 +22,13 @@ function h([{ x = a }]) { return x}
 function h(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
-  if (x === undefined) {
-    x = a;
+  let x_1 = arrPatternStep.x;
+  {
+    let x_2 = 2;
   }
-  return x;
+  return x_1;
 }
+let x = 1;
 `````
 
 ## Output

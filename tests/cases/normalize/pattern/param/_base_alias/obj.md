@@ -9,18 +9,15 @@
 ## Input
 
 `````js filename=intro
-function g({ x = b } ) { return x }
+function g({ x: y }) { return y }
 `````
 
 ## Normalized
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let x = tmpParamPattern.x;
-  if (x === undefined) {
-    x = b;
-  }
-  return x;
+  let y = tmpParamPattern.x;
+  return y;
 }
 `````
 

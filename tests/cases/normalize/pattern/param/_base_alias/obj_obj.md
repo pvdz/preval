@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-function i({x: {y: {z}}}) { return z }
+function i({x: {y: {z: a}}}) { return a }
 `````
 
 ## Normalized
@@ -18,8 +18,8 @@ function i({x: {y: {z}}}) { return z }
 function i(tmpParamPattern) {
   let arrPatternStep = tmpParamPattern.x;
   let arrPatternStep_1 = arrPatternStep.y;
-  let z = arrPatternStep_1.z;
-  return z;
+  let a = arrPatternStep_1.z;
+  return a;
 }
 `````
 

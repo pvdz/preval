@@ -1,6 +1,7 @@
 import { printer } from '../lib/printer.mjs';
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
 import { $p } from './$p.mjs';
+import * as AST from './ast.mjs';
 
 /*
   Normalization steps that happen:
@@ -312,47 +313,10 @@ export function phaseNormalize(fdata, fname) {
 
     const tmpName = createFreshVarInCurrentRootScope(tmpNameBase);
 
-    funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-      type: 'VariableDeclaration',
-      kind: 'var',
-      declarations: [
-        {
-          type: 'VariableDeclarator',
-          id: {
-            type: 'Identifier',
-            name: tmpName,
-            $p: $p(),
-          },
-          init: null,
-          $p: $p(),
-        },
-      ],
-      $p: $p(),
-    });
+    funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
 
-    const assign = {
-      type: 'AssignmentExpression',
-      operator: '=',
-      left: {
-        type: 'Identifier',
-        name: tmpName,
-        $p: $p(),
-      },
-      right: node,
-      $p: $p(),
-    };
-    return {
-      type: 'SequenceExpression',
-      expressions: [
-        assign,
-        {
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        },
-      ],
-      $p: $p(),
-    };
+    const assign = AST.assignmentExpression(tmpName, node);
+    return AST.sequenceExpression(assign, AST.identifier(tmpName));
   }
   function flattenSequences(node) {
     // Note: make sure the node is not being walked currently or things end bad.
@@ -394,15 +358,7 @@ export function phaseNormalize(fdata, fname) {
           // `a, (b, c), d`
           // -> `a; b; c; d;`
           log('Breaking up a sequence');
-          node.body.splice(
-            i,
-            1,
-            ...expr.expressions.map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 1, ...expr.expressions.map((enode) => AST.expressionStatement(enode)));
           changed = true;
           --i; // revisit (recursively)
         }
@@ -416,15 +372,7 @@ export function phaseNormalize(fdata, fname) {
           // This assumes sub-statements are normalized to be groups already
           log('Outlining a sequence that is the init of a binding decl');
           const exprs = init.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...init.expressions.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...init.expressions.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           e.declarations[0].init = init.expressions[init.expressions.length - 1];
           changed = true;
@@ -435,15 +383,7 @@ export function phaseNormalize(fdata, fname) {
           log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
           const seq = init.object;
           const exprs = seq.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...exprs.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           init.object = exprs[exprs.length - 1];
           changed = true;
@@ -456,15 +396,7 @@ export function phaseNormalize(fdata, fname) {
           log('Moving the sequence argument of return to individual statements');
           const seq = e.argument;
           const exprs = seq.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...exprs.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           e.argument = exprs[exprs.length - 1];
           changed = true;
@@ -475,15 +407,7 @@ export function phaseNormalize(fdata, fname) {
           log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
           const seq = e.argument.object;
           const exprs = seq.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...exprs.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           e.argument.object = exprs[exprs.length - 1];
           changed = true;
@@ -496,15 +420,7 @@ export function phaseNormalize(fdata, fname) {
           log('Moving the sequence argument of return to individual statements');
           const seq = e.test;
           const exprs = seq.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...exprs.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           e.test = exprs[exprs.length - 1];
           changed = true;
@@ -515,15 +431,7 @@ export function phaseNormalize(fdata, fname) {
           log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
           const seq = e.test.object;
           const exprs = seq.expressions;
-          node.body.splice(
-            i,
-            0,
-            ...exprs.slice(0, -1).map((enode) => ({
-              type: 'ExpressionStatement',
-              expression: enode,
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
           // Replace the old sequence expression with its last element
           e.test.object = exprs[exprs.length - 1];
           changed = true;
@@ -547,16 +455,7 @@ export function phaseNormalize(fdata, fname) {
           // `var a, b` -> `var a; var b;`
           // `var a = 1, b = 2` -> `var a = 1; var b = 1;
           log('Breaking up a var decl');
-          node.body.splice(
-            i,
-            1,
-            ...e.declarations.map((dnode) => ({
-              type: 'VariableDeclaration',
-              kind: e.kind,
-              declarations: [dnode],
-              $p: $p(),
-            })),
-          );
+          node.body.splice(i, 1, ...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind)));
           changed = true;
           --i; // revisit (recursively)
         }
@@ -576,51 +475,18 @@ export function phaseNormalize(fdata, fname) {
     node.arguments.forEach((anode, i) => {
       if (isComplexNode(anode)) {
         const tmpName = createFreshVarInCurrentRootScope('tmpArg');
-
-        funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-          type: 'VariableDeclaration',
-          kind: 'var',
-          declarations: [
-            {
-              type: 'VariableDeclarator',
-              id: {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-              init: null,
-              $p: $p(),
-            },
-          ],
-          $p: $p(),
-        });
-
-        assigns.push({
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'Identifier',
-            name: tmpName,
-            $p: $p(),
-          },
-          right: anode,
-          $p: $p(),
-        });
-        newArgs.push({
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        });
+        funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+        assigns.push(AST.assignmentExpression(tmpName, anode));
+        newArgs.push(AST.identifier(tmpName));
       } else {
         newArgs.push(anode);
       }
     });
     if (assigns.length) {
-      const seq = {
-        type: 'SequenceExpression',
-        expressions: [...assigns, { type: isNew ? 'NewExpression' : 'CallExpression', callee: node.callee, arguments: newArgs, $p: $p() }],
-        $p: $p(),
-      };
+      const seq = AST.sequenceExpression(
+        ...assigns,
+        isNew ? AST.newExpression(node.callee, newArgs) : AST.callExpression(node.callee, newArgs),
+      );
 
       crumbSet(1, seq);
 
@@ -654,52 +520,10 @@ export function phaseNormalize(fdata, fname) {
       if (isComplexNode(valueNode)) {
         const tmpName = createFreshVarInCurrentRootScope('tmpElement');
 
-        funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-          type: 'VariableDeclaration',
-          kind: 'var',
-          declarations: [
-            {
-              type: 'VariableDeclarator',
-              id: {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-              init: null,
-              $p: $p(),
-            },
-          ],
-          $p: $p(),
-        });
+        funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
 
-        assigns.push({
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'Identifier',
-            name: tmpName,
-            $p: $p(),
-          },
-          right: valueNode,
-          $p: $p(),
-        });
-        newElements.push(
-          anode.type === 'SpreadElement'
-            ? {
-                type: 'SpreadElement',
-                argument: {
-                  type: 'Identifier',
-                  name: tmpName,
-                  $p: $p(),
-                },
-                $p: $p(),
-              }
-            : {
-                type: 'Identifier',
-                name: tmpName,
-                $p: $p(),
-              },
-        );
+        assigns.push(AST.assignmentExpression(tmpName, valueNode));
+        newElements.push(anode.type === 'SpreadElement' ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
       } else {
         // Use anode because if this was a spread then we'd want to keep it
         newElements.push(anode);
@@ -711,11 +535,7 @@ export function phaseNormalize(fdata, fname) {
     });
     if (assigns.length) {
       log('Replacing the non-simple elements of an array with a tmp var');
-      const seq = {
-        type: 'SequenceExpression',
-        expressions: [...assigns, { type: 'ArrayExpression', elements: newElements, $p: $p() }],
-        $p: $p(),
-      };
+      const seq = AST.sequenceExpression(...assigns, AST.arrayExpression(newElements));
 
       crumbSet(1, seq);
 
@@ -736,50 +556,11 @@ export function phaseNormalize(fdata, fname) {
 
       const tmpName = createFreshVarInCurrentRootScope('tmpNewObj');
 
-      funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-        type: 'VariableDeclaration',
-        kind: 'var',
-        declarations: [
-          {
-            type: 'VariableDeclarator',
-            id: {
-              type: 'Identifier',
-              name: tmpName,
-              $p: $p(),
-            },
-            init: null,
-            $p: $p(),
-          },
-        ],
-        $p: $p(),
-      });
+      funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
 
-      const assign = {
-        type: 'AssignmentExpression',
-        operator: '=',
-        left: {
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        },
-        right: node.callee,
-        $p: $p(),
-      };
-      const newNode = {
-        type: isNew ? 'NewExpression' : 'CallExpression',
-        callee: {
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        },
-        arguments: node.arguments,
-        $p: $p(),
-      };
-      const seq = {
-        type: 'SequenceExpression',
-        expressions: [assign, newNode],
-        $p: $p(),
-      };
+      const assign = AST.assignmentExpression(tmpName, node.callee);
+      const newNode = isNew ? AST.newExpression(tmpName, node.arguments) : AST.callExpression(tmpName, node.arguments);
+      const seq = AST.sequenceExpression(assign, newNode);
       crumbSet(1, seq);
       _expr(seq);
       changed = true;
@@ -794,24 +575,10 @@ export function phaseNormalize(fdata, fname) {
       const exprs = mem.object.expressions;
       const prop = mem.property;
 
-      const seq = {
-        type: 'SequenceExpression',
-        expressions: [
-          ...exprs.slice(0, -1),
-          {
-            type: 'CallExpression',
-            callee: {
-              type: 'MemberExpression',
-              computed: mem.computed,
-              object: exprs[exprs.length - 1],
-              property: prop,
-              $p: $p(),
-            },
-            arguments: node.arguments,
-          },
-        ],
-        $p: $p(),
-      };
+      const seq = AST.sequenceExpression(
+        ...exprs.slice(0, -1),
+        AST.memberCall(exprs[exprs.length - 1], prop, node.arguments, mem.computed),
+      );
       crumbSet(1, seq);
 
       changed = true;
@@ -917,11 +684,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.type !== 'BlockStatement') {
           log('Wrapping do-while sub-statement in a block');
           crumb(node, 'body', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.body],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
         expr(node, 'test', -1, node.test);
@@ -997,11 +760,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.type !== 'BlockStatement') {
           log('Wrapping for-loop sub-statement in a block');
           crumb(node, 'body', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.body],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
         break;
@@ -1017,11 +776,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.type !== 'BlockStatement') {
           log('Wrapping for-in sub-statement in a block');
           crumb(node, 'body', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.body],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
         break;
@@ -1045,11 +800,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.type !== 'BlockStatement') {
           log('Wrapping for-of sub-statement in a block');
           crumb(node, 'body', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.body],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
         break;
@@ -1075,11 +826,11 @@ export function phaseNormalize(fdata, fname) {
             'Replace the exported func decl node with an empty statement and put the parent on a list to be prepended to the function body',
           );
           funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(parent);
-          crumbSet(2, { type: 'EmptyStatement', $p: $p() });
+          crumbSet(2, AST.emptyStatement());
         } else {
           log('Replace the func decl node with an empty statement and put the node itself on a list to be prepended to the function body');
           funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(node);
-          crumbSet(1, { type: 'EmptyStatement', $p: $p() });
+          crumbSet(1, AST.emptyStatement());
         }
 
         break;
@@ -1091,11 +842,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.consequent.type !== 'BlockStatement') {
           log('Wrapping if-consequent sub-statement in a block');
           crumb(node, 'consequent', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.consequent],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.consequent));
           uncrumb(node, 'consequent', -1);
         }
         if (node.alternate) {
@@ -1103,11 +850,7 @@ export function phaseNormalize(fdata, fname) {
           if (node.alternate.type !== 'BlockStatement') {
             log('Wrapping else-alternate sub-statement in a block');
             crumb(node, 'alternate', -1);
-            crumbSet(1, {
-              type: 'BlockStatement',
-              body: [node.alternate],
-              $p: $p(),
-            });
+            crumbSet(1, AST.blockStatement(node.alternate));
             uncrumb(node, 'alternate', -1);
           }
         }
@@ -1171,13 +914,7 @@ export function phaseNormalize(fdata, fname) {
           // Switch is unique in that this transform may still cause nested blocks. Other occurrences for normalization do not.
           if (cnode.consequent.length > 1 || (cnode.consequent[0] && cnode.consequent[0].type !== 'BlockStatement')) {
             log('Wrapping case block in an actual block');
-            cnode.consequent = [
-              {
-                type: 'BlockStatement',
-                body: cnode.consequent,
-                $p: $p(),
-              },
-            ];
+            cnode.consequent = [AST.blockStatement(cnode.consequent)];
           }
           cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
         });
@@ -1220,29 +957,18 @@ export function phaseNormalize(fdata, fname) {
             log('`var` statement declared these names:', names);
             log('Moving the decl itself to the top of the function while keeping the init as they are');
 
-            funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-              type: 'VariableDeclaration',
-              kind: 'var',
-              declarations: names.map((name) => ({
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name,
-                  $p: $p(),
-                },
-                init: null,
-                $p: $p(),
-              })),
-              $p: $p(),
-            });
+            funcStack[funcStack.length - 1].$p.varBindingsToInject.push(
+              AST.variableDeclaration(
+                names.map((name) => AST.identifier(name)),
+                null,
+                'var',
+              ),
+            );
 
             // TODO: drop individual declarators, if not the whole thing
             if (node.declarations.every((enode) => !enode.init)) {
               // If none of the bindings had an init, this is dead code. Drop the decl
-              crumbSet(1, {
-                type: 'EmptyStatement',
-                $p: $p(),
-              });
+              crumbSet(1, AST.emptyStatement());
             } else {
               // Don't hate me. The printer does not validate the AST. It just assumes the structure is valid and prints verbatim.
               node.kind = ''; // This removes the `var` when printing, causing a sequence expression (or simple assignment)
@@ -1263,11 +989,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.type !== 'BlockStatement') {
           log('Wrapping while sub-statement in a block');
           crumb(node, 'body', -1);
-          crumbSet(1, {
-            type: 'BlockStatement',
-            body: [node.body],
-            $p: $p(),
-          });
+          crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
         break;
@@ -1362,20 +1084,7 @@ export function phaseNormalize(fdata, fname) {
           const seq = memb.object;
           const exprs = seq.expressions.slice(0); // Last one will replace the sequence
 
-          const newNode = {
-            type: 'SequenceExpression',
-            expressions: [
-              ...exprs.slice(0, -1),
-              {
-                type: 'AssignmentExpression',
-                operator: node.operator,
-                left: exprs.pop(),
-                right: node.right,
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          };
+          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(exprs.pop(), node.right, node.operator));
           crumbSet(1, newNode);
           _expr(newNode);
           changed = true;
@@ -1385,20 +1094,7 @@ export function phaseNormalize(fdata, fname) {
           const seq = node.right;
           const exprs = seq.expressions.slice(0); // Last one will replace the sequence
 
-          const newNode = {
-            type: 'SequenceExpression',
-            expressions: [
-              ...exprs.slice(0, -1),
-              {
-                type: 'AssignmentExpression',
-                operator: node.operator,
-                left: node.left,
-                right: exprs.pop(),
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          };
+          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
           crumbSet(1, newNode);
           _expr(newNode);
           changed = true;
@@ -1408,26 +1104,10 @@ export function phaseNormalize(fdata, fname) {
           const mem = node.right;
           const seq = mem.object;
           const exprs = seq.expressions.slice(0);
-          const newNode = {
-            type: 'SequenceExpression',
-            expressions: [
-              ...exprs.slice(0, -1),
-              {
-                type: 'AssignmentExpression',
-                operator: node.operator,
-                left: node.left,
-                right: {
-                  type: 'MemberExpression',
-                  computed: mem.computed,
-                  object: exprs.pop(),
-                  property: mem.property,
-                  $p: $p(),
-                },
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          };
+          const newNode = AST.sequenceExpression(
+            ...exprs.slice(0, -1),
+            AST.assignmentExpression(node.left, AST.memberExpression(exprs.pop(), mem.property, mem.computed)),
+          );
           crumbSet(1, newNode);
           _expr(newNode);
           changed = true;
@@ -1535,11 +1215,7 @@ export function phaseNormalize(fdata, fname) {
           // -> `(a, (b ? c : d))`
           const exprs = node.test.expressions;
           node.test = exprs.pop();
-          const seq = {
-            type: 'SequenceExpression',
-            expressions: [...exprs, node],
-            $p: $p(),
-          };
+          const seq = AST.sequenceExpression(...exprs, node);
           crumbSet(1, seq);
           changed = 1;
         }
@@ -1609,13 +1285,7 @@ export function phaseNormalize(fdata, fname) {
 
           const seq = sequenceNode(node.object, 'tmpObj');
           const property = node.property;
-          const newLeftNode = {
-            type: 'MemberExpression',
-            computed: node.computed,
-            object: seq,
-            property: property,
-            $p: $p(),
-          };
+          const newLeftNode = AST.memberExpression(seq, property, node.computed);
 
           crumbSet(1, newLeftNode);
           _expr(newLeftNode);
@@ -1629,52 +1299,12 @@ export function phaseNormalize(fdata, fname) {
 
           const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp');
 
-          funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: tmpName,
-                  $p: $p(),
-                },
-                init: null,
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          });
+          funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
 
-          const seq = {
-            type: 'SequenceExpression',
-            expressions: [
-              {
-                type: 'AssignmentExpression',
-                operator: '=',
-                left: {
-                  type: 'Identifier',
-                  name: tmpName,
-                  $p: $p(),
-                },
-                right: node.property,
-                $p: $p(),
-              },
-              {
-                type: 'MemberExpression',
-                computed: true,
-                object: node.object,
-                property: {
-                  type: 'Identifier',
-                  name: tmpName,
-                  $p: $p(),
-                },
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          };
+          const seq = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.property),
+            AST.memberExpression(node.object, tmpName, true),
+          );
 
           crumbSet(1, seq);
           _expr(seq);
@@ -1694,11 +1324,7 @@ export function phaseNormalize(fdata, fname) {
             // `foo["bar"]` -> `foo.bar`
             log('Converting dynamic property access with string literal that is a valid ident, to regular property access');
             node.computed = false;
-            node.property = {
-              type: 'Identifier',
-              name: node.property.value,
-              $p: $p(),
-            };
+            node.property = AST.identifier(node.property.value);
             changed = true;
           }
         }
@@ -1863,52 +1489,9 @@ export function phaseNormalize(fdata, fname) {
       });
     }
 
-    //if (isExpr) {
-    //  if (node.id){}
-    //} else {
-    //  if (node.id) {}
-    //}
-
     superCallStack.pop();
   }
 
-  function freshMemberExpression(objName, propName) {
-    log('freshMemberExpression:', objName, propName);
-    return {
-      type: 'MemberExpression',
-      computed: false,
-      object: {
-        type: 'Identifier',
-        name: objName,
-        $p: $p(),
-      },
-      property: {
-        type: 'Identifier',
-        name: propName,
-        $p: $p(),
-      },
-      $p: $p(),
-    };
-  }
-  function freshMemberExpressionArray(objName, index) {
-    log('freshMemberExpressionArray:', objName, index);
-    return {
-      type: 'MemberExpression',
-      computed: true,
-      object: {
-        type: 'Identifier',
-        name: objName,
-        $p: $p(),
-      },
-      property: {
-        type: 'Literal',
-        value: index,
-        raw: String(index),
-        $p: $p(),
-      },
-      $p: $p(),
-    };
-  }
   function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings) {
     group('- walkObjectPattern');
 
@@ -1927,50 +1510,16 @@ export function phaseNormalize(fdata, fname) {
 
         const bindingName = propNode.argument.name;
 
-        newBindings.push({
-          type: 'VariableDeclaration',
-          kind: 'let',
-          declarations: [
-            {
-              type: 'VariableDeclarator',
-              id: {
-                type: 'Identifier',
-                name: bindingName,
-                $p: $p(),
-              },
-              init: {
-                type: 'CallExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: BUILTIN_REST_HANDLER_NAME, //'objPatternRest',
-                  $p: $p(),
-                },
-                arguments: [
-                  {
-                    type: 'Identifier',
-                    name: cacheNameStack[cacheNameStack.length - 1],
-                    $p: $p(),
-                  },
-                  {
-                    type: 'ArrayExpression',
-                    elements: node.properties
-                      .filter((n) => n !== propNode)
-                      .map((n) => ({
-                        type: 'Literal',
-                        value: n.key.name,
-                        raw: '"' + n.key.name + '"',
-                        $p: $p(),
-                      })),
-                    $p: $p(),
-                  },
-                ],
-                $p: $p(),
-              },
-              $p: $p(),
-            },
-          ],
-          $p: $p(),
-        });
+        // -> `let bindingName = restHander(sourceObject, ['excluded', 'props'])`
+        newBindings.push(
+          AST.variableDeclaration(
+            bindingName,
+            AST.callExpression(BUILTIN_REST_HANDLER_NAME, [
+              AST.identifier(cacheNameStack[cacheNameStack.length - 1]),
+              AST.arrayExpression(node.properties.filter((n) => n !== propNode).map((n) => AST.literal(n.key.name))),
+            ]),
+          ),
+        );
 
         return;
       }
@@ -1992,24 +1541,9 @@ export function phaseNormalize(fdata, fname) {
 
       // Store the property in this name. It's a regular property access and the previous step should
       // be cached already. So read it from that cache.
-      newBindings.push({
-        type: 'VariableDeclaration',
-        kind: 'let',
-        declarations: [
-          {
-            type: 'VariableDeclarator',
-            id: {
-              type: 'Identifier',
-              name: bindingName,
-              $p: $p(),
-            },
-            // Previous prop step was stored in a var so access the prop on that var:
-            init: freshMemberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name),
-            $p: $p(),
-          },
-        ],
-        $p: $p(),
-      });
+      newBindings.push(
+        AST.variableDeclaration(bindingName, AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name)),
+      );
 
       if (propNode.value.type === 'AssignmentPattern') {
         log('The object pattern had a default. Preparing to compile that statement in that mutates `' + bindingName + '`');
@@ -2025,40 +1559,10 @@ export function phaseNormalize(fdata, fname) {
         // TODO: should this be a ternary on a fresh binding? Like toplevel params would do?
         // `function([x = y])`
         // -> `if (x === undefined) x = y`
-        const injectedDefaultNode = {
-          type: 'IfStatement',
-          test: {
-            type: 'BinaryExpression',
-            operator: '===',
-            left: {
-              type: 'Identifier',
-              name: bindingName, // To be filled in after the next bit
-              $p: $p(),
-            },
-            right: {
-              type: 'Identifier',
-              name: 'undefined',
-              $p: $p(),
-            },
-            $p: $p(),
-          },
-          consequent: {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              operator: '=',
-              left: {
-                type: 'Identifier',
-                name: bindingName, // To be filled in after the next bit
-                $p: $p(),
-              },
-              right: propNode.value.right,
-              $p: $p(),
-            },
-            $p: $p(),
-          },
-          $p: $p(),
-        };
+        const injectedDefaultNode = AST.ifStatement(
+          AST.binaryExpression('===', bindingName, 'undefined'),
+          AST.expressionStatement(AST.assignmentExpression(bindingName, propNode.value.right)),
+        );
 
         // Add now to maintain the execution order
         newBindings.push(injectedDefaultNode);
@@ -2086,35 +1590,17 @@ export function phaseNormalize(fdata, fname) {
     cacheNameStack.push(bindingName);
     // Store this property in a local variable. Because it's an array pattern, we need to invoke the iterator. The easiest
     // way syntactically is to spread it into an array. Especially since we'll want indexed access to it later, anyways.
-    newBindings.push({
-      type: 'VariableDeclaration',
-      kind: 'let',
-      declarations: [
-        {
-          type: 'VariableDeclarator',
-          id: {
-            type: 'Identifier',
-            name: bindingName,
-            $p: $p(),
-          },
-          init: {
-            type: 'ArrayExpression',
-            elements: [
-              {
-                // Previous prop step was stored in a var so access the prop on that var.
-                // Invoke the iterator by spreading it into an array. Also means we can safely try direct access
-                type: 'SpreadElement',
-                argument: { type: 'Identifier', name: cacheNameStack[cacheNameStack.length - 2], $p: $p() },
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          },
-          $p: $p(),
-        },
-      ],
-      $p: $p(),
-    });
+    // -> `arrPatternSplat = [...arrPatternTmp]`
+    newBindings.push(
+      AST.variableDeclaration(
+        bindingName,
+        AST.arrayExpression(
+          // Previous prop step was stored in a var so access the prop on that var.
+          // Invoke the iterator by spreading it into an array. Also means we can safely try direct access
+          AST.spreadElement(cacheNameStack[cacheNameStack.length - 2]),
+        ),
+      ),
+    );
 
     node.elements.forEach((elemNode, i) => {
       log('elemNode:', elemNode);
@@ -2130,50 +1616,14 @@ export function phaseNormalize(fdata, fname) {
 
         const bindingName = elemNode.argument.name;
 
-        newBindings.push({
-          type: 'VariableDeclaration',
-          kind: 'let',
-          declarations: [
-            {
-              type: 'VariableDeclarator',
-              id: {
-                type: 'Identifier',
-                name: bindingName,
-                $p: $p(),
-              },
-              init: {
-                type: 'CallExpression',
-                callee: {
-                  type: 'MemberExpression',
-                  computed: false,
-                  object: {
-                    type: 'Identifier',
-                    name: cacheNameStack[cacheNameStack.length - 1],
-                    $p: $p(),
-                  },
-                  property: {
-                    type: 'Identifier',
-                    name: 'slice',
-                    $p: $p(),
-                  },
-                  $p: $p(),
-                },
-                arguments: [
-                  {
-                    type: 'Literal',
-                    value: i, // If rest is first arg, then arr.slice(0)
-                    raw: String(i),
-                    $p: $p(),
-                  },
-                ],
-                $p: $p(),
-              },
-              $p: $p(),
-            },
-          ],
-          $p: $p(),
-        });
-
+        newBindings.push(
+          AST.variableDeclaration(
+            bindingName,
+            AST.memberCall(cacheNameStack[cacheNameStack.length - 1], 'slice', [
+              AST.literal(i), // If rest is first arg, then arr.slice(0)
+            ]),
+          ),
+        );
         return;
       }
 
@@ -2193,24 +1643,13 @@ export function phaseNormalize(fdata, fname) {
       cacheNameStack.push(bindingName);
 
       // Store the property in this name
-      newBindings.push({
-        type: 'VariableDeclaration',
-        kind: 'let',
-        declarations: [
-          {
-            type: 'VariableDeclarator',
-            id: {
-              type: 'Identifier',
-              name: bindingName,
-              $p: $p(),
-            },
-            // Previous prop step was stored in a var so access the prop on that var:
-            init: freshMemberExpressionArray(cacheNameStack[cacheNameStack.length - 2], i),
-            $p: $p(),
-          },
-        ],
-        $p: $p(),
-      });
+      newBindings.push(
+        AST.variableDeclaration(
+          bindingName,
+          // Previous prop step was stored in a var so access the prop on that var:
+          AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], AST.literal(i), true),
+        ),
+      );
 
       if (elemNode.type === 'AssignmentPattern') {
         log('The array pattern had a default. Preparing to compile that statement in that mutates `' + bindingName + '`');
@@ -2226,40 +1665,10 @@ export function phaseNormalize(fdata, fname) {
         // TODO: should this be a ternary on a fresh binding? Like toplevel params would do?
         // `function([x = y])`
         // -> `if (x === undefined) x = y`
-        const injectedDefaultNode = {
-          type: 'IfStatement',
-          test: {
-            type: 'BinaryExpression',
-            operator: '===',
-            left: {
-              type: 'Identifier',
-              name: bindingName,
-              $p: $p(),
-            },
-            right: {
-              type: 'Identifier',
-              name: 'undefined',
-              $p: $p(),
-            },
-            $p: $p(),
-          },
-          consequent: {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              operator: '=',
-              left: {
-                type: 'Identifier',
-                name: bindingName,
-                $p: $p(),
-              },
-              right: elemNode.right,
-              $p: $p(),
-            },
-            $p: $p(),
-          },
-          $p: $p(),
-        };
+        const injectedDefaultNode = AST.ifStatement(
+          AST.binaryExpression('===', bindingName, 'undefined'),
+          AST.expressionStatement(AST.assignmentExpression(bindingName, elemNode.right)),
+        );
 
         // Add now to maintain the execution order
         newBindings.push(injectedDefaultNode);
@@ -2341,54 +1750,19 @@ export function phaseNormalize(fdata, fname) {
           cacheNameStack.push(newName);
 
           log('Replacing param default with a local variable');
-          const newIdentNode = {
-            type: 'Identifier',
-            name: newName,
-            $p: $p(),
-          };
+          const newIdentNode = AST.identifier(newName);
           funcNode.params[i] = newIdentNode;
 
           // Put new nodes at the start of the function body
           ASSERT(!funcNode.expression, 'fixme implement me');
           // TODO: reverse param order
-          newBindings.push({
-            type: 'VariableDeclaration',
-            kind: 'let',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: pnode.left,
-                init: {
-                  // param === undefined ? init : param
-                  type: 'ConditionalExpression',
-                  test: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'Identifier',
-                      name: newName,
-                      $p: $p(),
-                    },
-                    operator: '===',
-                    right: {
-                      type: 'Identifier',
-                      name: 'undefined',
-                      $p: $p(),
-                    },
-                    $p: $p(),
-                  },
-                  consequent: pnode.right,
-                  alternate: {
-                    type: 'Identifier',
-                    name: newName,
-                    $p: $p(),
-                  },
-                  $p: $p(),
-                },
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          });
+          newBindings.push(
+            AST.variableDeclaration(
+              pnode.left,
+              // `param === undefined ? init : param`
+              AST.conditionalExpression(AST.binaryExpression('===', newName, 'undefined'), pnode.right, newName),
+            ),
+          );
 
           log('- Ident param;', '`' + pnode.left.name + '`');
           const meta = getMetaForBindingName(pnode.left);
@@ -2404,11 +1778,7 @@ export function phaseNormalize(fdata, fname) {
           registerGlobalIdent(newName, newName);
           cacheNameStack.push(newName);
           log('Replacing param default with a local variable');
-          const newIdentNode = {
-            type: 'Identifier',
-            name: newName,
-            $p: $p(),
-          };
+          const newIdentNode = AST.identifier(newName);
           funcNode.params[i] = newIdentNode;
 
           // Create unique var containing the initial param value after resolving default values
@@ -2416,53 +1786,18 @@ export function phaseNormalize(fdata, fname) {
           registerGlobalIdent(undefaultName, undefaultName);
           cacheNameStack.push(undefaultName);
           log('Replacing param default with a local variable');
-          const undefaultNameNode = {
-            type: 'Identifier',
-            name: undefaultName,
-            $p: $p(),
-          };
+          const undefaultNameNode = AST.identifier(undefaultName);
 
           // Put new nodes at the start of the function body
           ASSERT(!funcNode.expression, 'fixme implement me');
           // TODO: reverse param order
-          newBindings.push({
-            type: 'VariableDeclaration',
-            kind: 'let',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: undefaultNameNode,
-                init: {
-                  // param === undefined ? init : param
-                  type: 'ConditionalExpression',
-                  test: {
-                    type: 'BinaryExpression',
-                    left: {
-                      type: 'Identifier',
-                      name: newName,
-                      $p: $p(),
-                    },
-                    operator: '===',
-                    right: {
-                      type: 'Identifier',
-                      name: 'undefined',
-                      $p: $p(),
-                    },
-                    $p: $p(),
-                  },
-                  consequent: pnode.right,
-                  alternate: {
-                    type: 'Identifier',
-                    name: newName,
-                    $p: $p(),
-                  },
-                  $p: $p(),
-                },
-                $p: $p(),
-              },
-            ],
-            $p: $p(),
-          });
+          newBindings.push(
+            AST.variableDeclaration(
+              undefaultNameNode,
+              // `param === undefined ? init : param`
+              AST.conditionalExpression(AST.binaryExpression('===', newName, 'undefined'), pnode.right, newName),
+            ),
+          );
 
           const metaNew = getMetaForBindingName(newIdentNode);
           metaNew.usages.push(newIdentNode);
@@ -2498,11 +1833,7 @@ export function phaseNormalize(fdata, fname) {
           cacheNameStack.push(tmpName);
           log('- Replacing the pattern param with', '`' + tmpName + '`');
           // Replace the pattern with a variable that receives the whole object
-          const newIdentNode = {
-            type: 'Identifier',
-            name: tmpName,
-            $p: $p(),
-          };
+          const newIdentNode = AST.identifier(tmpName);
           funcNode.params[i] = newIdentNode;
           const metaNew = getMetaForBindingName(newIdentNode);
           metaNew.usages.push(newIdentNode);

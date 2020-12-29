@@ -1,3 +1,4 @@
+import fs from 'fs';
 export function parseTestArgs() {
   // Note: 0=node, 1=file. Ignore empty args
   const argv = process.argv.slice(2).filter(Boolean);
@@ -19,7 +20,13 @@ export function parseTestArgs() {
       }
 
       case '-f': {
-        config.targetFile = argv.shift();
+        const name = argv.shift();
+        if (fs.statSync(name).isDirectory()) {
+          config.targetDir = name;
+        } else {
+          config.targetFile = name;
+        }
+
         break;
       }
 

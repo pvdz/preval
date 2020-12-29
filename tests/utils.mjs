@@ -75,7 +75,7 @@ export function fromMarkdownCase(md, fname, config) {
       },
     };
   } else if (md[0] === '#') {
-    const [mdHead, ...chunks] = md.split('\n## ');
+    const [mdHead, ...chunks] = md.split('\n## ').filter((s) => !s.startsWith('Eval\n'));
     const mdInput = chunks.filter((s) => s.startsWith('Input\n'))[0];
     ASSERT(mdInput, 'all test cases should have an input block', fname);
 
@@ -124,11 +124,18 @@ export function fmat(code) {
   }
 }
 
-export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output }) {
+export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
   const content =
     mdHead +
     '\n\n' +
     mdChunks.join('\n\n') +
+    //'\n\n## Eval' +
+    //'\n\nResult of executing test case: ' +
+    //evalled.in +
+    //'\n\nCalls to `$` (' +
+    //evalled.$in.length +
+    //'x):\n' +
+    //evalled.$in.map((obj) => '\n - ' + JSON.stringify(obj)).join(',') +
     '\n\n## Normalized\n\n' +
     Object.keys(output.normalized)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))

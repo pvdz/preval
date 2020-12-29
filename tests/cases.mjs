@@ -26,6 +26,6 @@ function getTestFiles(path, file = '', files = [], silent = true, dirsToo = fals
   return files;
 }
 
-export function getTestFileNames() {
-  return getTestFiles(path.join(dirname, 'cases'));
+export function getTestFileNames(dir = path.join(dirname, 'cases')) {
+  return getTestFiles(dir);
 }

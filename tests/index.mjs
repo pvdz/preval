@@ -25,7 +25,7 @@ Error.stackTraceLimit = Infinity;
 
 const CONFIG = parseTestArgs();
 
-const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames();
+const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(CONFIG.targetDir);
 const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
@@ -79,6 +79,36 @@ function runTestCase(
     lastError = e;
   }
 
+  // TODO: eval stuff. We can't do this until we morph or exclude loops.
+  //const evalled = { in: undefined, $in: [], norm: undefined, $norm: [], out: undefined, $out: [] };
+  //function ev(key, stack) {
+  //  const $stack = stack;
+  //  function $(...args) {
+  //    $stack.push(args);
+  //    return args[0];
+  //  }
+  //  try {
+  //    evalled[key] = eval(output.normalized.intro);
+  //  } catch {
+  //    evalled[key] = '<crash>';
+  //  }
+  //}
+  //ev('in', evalled.$in);
+  //ev('norm', evalled.$norm);
+  //ev('out', evalled.$out);
+  //if (withOutput) {
+  //  console.log('\n\nEvalled output:', evalled);
+  //}
+  //if (!lastError) {
+  //  const jin = JSON.stringify([evalled.in, evalled.$in]);
+  //  if (jin !== JSON.stringify([evalled.norm, evalled.$norm])) {
+  //    lastError = new Error('Eval mismatch between input and normalized code');
+  //  } else if (jin !== JSON.stringify([evalled.out, evalled.$out])) {
+  //    lastError = new Error('Eval mismatch between input and normalized code');
+  //  }
+  //}
+  const evalled = null
+
   if (withOutput) {
     console.groupEnd();
   }
@@ -112,7 +142,7 @@ function runTestCase(
     throw new Error();
   }
 
-  const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output });
+  const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled });
   if (md2 !== md) {
     ++snap;
 
@@ -129,13 +159,14 @@ function runTestCase(
     console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
     console.log();
     Object.keys(fin).forEach((fname) => {
-      console.log('###########################\n## File input:', fname, '\n###########################');
-      console.log(fin[fname].trim() );
-      console.log();
-      console.log('###########################\n## Normalized input:', fname, '\n###########################');
-      console.log(fmat(output.normalized[fname]).trim());
-      console.log('\n#######\n## Preval Output:\n#######');
-      console.log(fmat(output.files[fname]));
+      //console.log('###########################\n## File input:', fname, '\n###########################');
+      //console.log(fin[fname].trim() );
+      //console.log();
+      //console.log('###########################\n## Normalized input:', fname, '\n###########################');
+      //console.log(fmat(output.normalized[fname]).trim());
+      //console.log('\n#######\n## Preval Output:\n#######');
+      //console.log(fmat(output.files[fname]));
+      console.log(md2);
     });
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
   }

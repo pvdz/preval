@@ -573,11 +573,14 @@ export function phase4(program, fdata, resolve, req) {
       case 'ArrayExpression': {
         for (let i = 0; i < node.elements.length; ++i) {
           const elNode = node.elements[i];
-          if (elNode.type === 'SpreadElement') {
-            // Special case spread because its behavior differs per parent case
-            expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
-          } else {
-            expr(node, 'elements', i, elNode);
+          // Elided elements are `null` here
+          if (elNode) {
+            if (elNode.type === 'SpreadElement') {
+              // Special case spread because its behavior differs per parent case
+              expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+            } else {
+              expr(node, 'elements', i, elNode);
+            }
           }
         }
         break;

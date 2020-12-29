@@ -677,13 +677,16 @@ export function phase2(program, fdata, resolve, req) {
         } else {
           for (let i = 0; i < node.elements.length; ++i) {
             const elNode = node.elements[i];
-            if (elNode.type === 'SpreadElement') {
-              // Special case spread because its behavior differs per parent case
-              expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
-              // Stack should now have an array and the owner array should have its kind merged like all other elements
-              //$(node, '@kind', '<empty array literal>'); // Ignore if the array is empty... (in that case dup the stack)
-            } else {
-              expr(node, 'elements', i, elNode);
+            // Elided elements are `null` here
+            if (elNode) {
+              if (elNode.type === 'SpreadElement') {
+                // Special case spread because its behavior differs per parent case
+                expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+                // Stack should now have an array and the owner array should have its kind merged like all other elements
+                //$(node, '@kind', '<empty array literal>'); // Ignore if the array is empty... (in that case dup the stack)
+              } else {
+                expr(node, 'elements', i, elNode);
+              }
             }
           }
         }

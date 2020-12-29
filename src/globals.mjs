@@ -32,4 +32,5 @@ export default new Map([
   ['module', 'module'],
   // special
   ['$', '$'],
+  ['objPatternRest', 'objPatternRest'],
 ]);

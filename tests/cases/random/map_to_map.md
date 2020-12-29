@@ -148,7 +148,7 @@ tmpArg_3 = [
 ];
 tmpObj_2 = new Map(tmpArg_3);
 tmpElement = tmpObj_2.keys();
-tmpObj_1 = [tmpElement, 'module'];
+tmpObj_1 = [...tmpElement, 'module'];
 tmpArg_1 = tmpObj_1.map(tmpArg_2);
 tmpObj = new Map(tmpArg_1);
 tmpArg = tmpObj.get('$');
@@ -252,7 +252,7 @@ tmpArg_3 = [
 ];
 tmpObj_2 = new Map(tmpArg_3);
 tmpElement = tmpObj_2.keys();
-tmpObj_1 = [tmpElement, 'module'];
+tmpObj_1 = [...tmpElement, 'module'];
 tmpArg_1 = tmpObj_1.map(tmpArg_2);
 tmpObj = new Map(tmpArg_1);
 tmpArg = tmpObj.get('$');

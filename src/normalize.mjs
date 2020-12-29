@@ -6,36 +6,44 @@ import { $p } from './$p.mjs';
   Normalization steps that happen:
   - Parameter defaults are rewritten to ES5 equivalent code
   - All binding names are unique in a file
-    - No shadowing on any level or even between scopes
+    - No shadowing on any level or even between scopes. Lexical scoping becomes irrelevant.
   - Hoists var statements and function declarations to the top of their scope
+    - Currently adds complexity because a variable can have two values. But the final system must be able to cope with this so I'm ok with this for now.
   - All sub-statements are forced to be blocks
     - We'll let the final formatting undo this step.
     - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
   - Flatten nested blocks
     - Other transforming phases still need to do this because when a single statement is replaced with multiple statements and the parent block is still being iterated, we can't mutate the child-count of the block in-place so a block wrapper is added anyways. This is fine. :fire:
+    - Since we normalize binding names to be unique, we don't need to worry about block scoping issues that would otherwise arise here.
   - Eliminate "use strict"
-    - We assume module goal. worst case this prevents a parse-time error so who cares.
-    - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this needs extra work.
+    - We assume module goal. worst case this prevents a parse-time error and even that is a mighty edge case so who cares.
+    - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this will need extra work.
     - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
   - Member expressions only access idents, literals, or groups that end with an ident or literal
     - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
   - Sequence expressions (groups) nested directly in another sequence expression are flattened
-  - Some sequence expression constructs are rewritten to try and split them into statements
-    - A toplevel sequence expression becomes a series of expression statements
+  - Sequence expressions that are expression statements are rewritten to a set of expression statements
+  - Sequence expression appearing in certain constructs are rewritten to statements when possible
+    - (`return (a,b)` -> `a; return b;`)
     - Sequence expressions in a return statement or variable declaration, or inside a member expression, are normalized
     - Work in progress to catch more cases as I find them
   - One binding declared per decl
-    - Will make certain things easier to reason about
+    - Will make certain things easier to reason about. Can always assume `node.declarations[0]`.
   - All call args are only identifiers or literals. Everything is first assigned to a tmp var.
     - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
-  - Complex callee and arguments for new expressions (similar to regular calls)
+  - Complex callee and arguments for `new` expressions (similar to regular calls)
   - Array elements are normalized if they are not simple
+    - TODO: same for object property values
   - Object property shorthands into regular properties
     - Simplifies some edge case code checks
   - Computed property access for complex keys is normalized to ident keys
   - Computed property access with literals that are valid idents become regular property access
   - Normalize conditional expression parts
     - Not doing normalize ternary vs if-else right now because there'll always be contexts that require it to be an expression and there will always be contents that require it to be a statement
+  - Parameter patterns are transformed to body code
+    - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
+    - Including spread and defaults for all object/array patterns on any level
+
  */
 
 /*
@@ -90,6 +98,8 @@ import { $p } from './$p.mjs';
   - Sequence expression
     - In left side of `for` loop. Move them out
  */
+
+const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 
 export function phaseNormalize(fdata, fname) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
@@ -255,6 +265,13 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
 
+  function createFreshVarInCurrentRootScope(name) {
+    const tmpName = createUniqueGlobalName(name);
+    registerGlobalIdent(tmpName, name);
+    log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+    lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+    return tmpName;
+  }
   function isComplexNodeOrAlreadySequenced(node) {
     return isComplexNode(node, true);
   }
@@ -293,11 +310,8 @@ export function phaseNormalize(fdata, fname) {
 
     ASSERT(isComplexNode(node), 'this probably should not be called on simple nodes...');
 
-    // Create new var for this node and assign it to them
-    const tmpName = createUniqueGlobalName(tmpNameBase);
-    registerGlobalIdent(tmpName, tmpNameBase);
-    log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-    lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+    const tmpName = createFreshVarInCurrentRootScope(tmpNameBase);
+
     funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
       type: 'VariableDeclaration',
       kind: 'var',
@@ -561,11 +575,8 @@ export function phaseNormalize(fdata, fname) {
     const newArgs = [];
     node.arguments.forEach((anode, i) => {
       if (isComplexNode(anode)) {
-        // Create new var for this node and assign it to them
-        const tmpName = createUniqueGlobalName('tmpArg');
-        registerGlobalIdent(tmpName, 'tmpArg');
-        log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-        lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+        const tmpName = createFreshVarInCurrentRootScope('tmpArg');
+
         funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
           type: 'VariableDeclaration',
           kind: 'var',
@@ -641,11 +652,8 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (isComplexNode(valueNode)) {
-        // Create new var for this node and assign it to them
-        const tmpName = createUniqueGlobalName('tmpElement');
-        registerGlobalIdent(tmpName, 'tmpElement');
-        log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-        lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+        const tmpName = createFreshVarInCurrentRootScope('tmpElement');
+
         funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
           type: 'VariableDeclaration',
           kind: 'var',
@@ -675,13 +683,26 @@ export function phaseNormalize(fdata, fname) {
           right: valueNode,
           $p: $p(),
         });
-        newElements.push({
-          type: 'Identifier',
-          name: tmpName,
-          $p: $p(),
-        });
+        newElements.push(
+          anode.type === 'SpreadElement'
+            ? {
+                type: 'SpreadElement',
+                argument: {
+                  type: 'Identifier',
+                  name: tmpName,
+                  $p: $p(),
+                },
+                $p: $p(),
+              }
+            : {
+                type: 'Identifier',
+                name: tmpName,
+                $p: $p(),
+              },
+        );
       } else {
-        newElements.push(valueNode);
+        // Use anode because if this was a spread then we'd want to keep it
+        newElements.push(anode);
       }
 
       if (anode.type === 'SpreadElement') {
@@ -713,11 +734,8 @@ export function phaseNormalize(fdata, fname) {
       // `new x.y(a,b)` -> `(tmp=x.y, new tmp(a,b))`
       // `($())(a,b)` -> `(tmp=$(), tmp)(a,b))`
 
-      // Create new var for this node and assign it to them
-      const tmpName = createUniqueGlobalName('tmpNewObj');
-      registerGlobalIdent(tmpName, 'tmpNewObj');
-      log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-      lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+      const tmpName = createFreshVarInCurrentRootScope('tmpNewObj');
+
       funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
         type: 'VariableDeclaration',
         kind: 'var',
@@ -1187,9 +1205,11 @@ export function phaseNormalize(fdata, fname) {
           } else if (dnode.id.type === 'ArrayPattern') {
             // Complex case. Walk through the destructuring pattern.
             dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
-          } else {
+          } else if (dnode.id.type === 'ObjectPattern') {
             // Complex case. Walk through the destructuring pattern.
             dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
+          } else {
+            ASSERT(false, 'wat is dis', [dnode.id.type], dnode);
           }
         });
 
@@ -1316,6 +1336,7 @@ export function phaseNormalize(fdata, fname) {
         if (!normalizeArrayElementsChangedSomething(node)) {
           for (let i = 0; i < node.elements.length; ++i) {
             const elNode = node.elements[i];
+            group('-', elNode ? elNode.type : '<none>');
             if (elNode) {
               if (elNode.type === 'SpreadElement') {
                 // Special case spread because its behavior differs per parent case
@@ -1324,6 +1345,7 @@ export function phaseNormalize(fdata, fname) {
                 expr(node, 'elements', i, elNode);
               }
             }
+            groupEnd();
           }
         }
         break;
@@ -1515,11 +1537,8 @@ export function phaseNormalize(fdata, fname) {
           node.test = exprs.pop();
           const seq = {
             type: 'SequenceExpression',
-            expressions: [
-              ...exprs,
-              node
-            ],
-            $p: $p()
+            expressions: [...exprs, node],
+            $p: $p(),
           };
           crumbSet(1, seq);
           changed = 1;
@@ -1608,10 +1627,8 @@ export function phaseNormalize(fdata, fname) {
           // `a[b]`
           // -> `(tmp=b, a[tmp])`
 
-          const tmpName = createUniqueGlobalName('tmpComputedProp');
-          registerGlobalIdent(tmpName, 'tmpComputedProp');
-          log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
-          lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+          const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp');
+
           funcStack[funcStack.length - 1].$p.varBindingsToInject.push({
             type: 'VariableDeclaration',
             kind: 'var',
@@ -1855,59 +1872,486 @@ export function phaseNormalize(fdata, fname) {
     superCallStack.pop();
   }
 
+  function freshMemberExpression(objName, propName) {
+    log('freshMemberExpression:', objName, propName);
+    return {
+      type: 'MemberExpression',
+      computed: false,
+      object: {
+        type: 'Identifier',
+        name: objName,
+        $p: $p(),
+      },
+      property: {
+        type: 'Identifier',
+        name: propName,
+        $p: $p(),
+      },
+      $p: $p(),
+    };
+  }
+  function freshMemberExpressionArray(objName, index) {
+    log('freshMemberExpressionArray:', objName, index);
+    return {
+      type: 'MemberExpression',
+      computed: true,
+      object: {
+        type: 'Identifier',
+        name: objName,
+        $p: $p(),
+      },
+      property: {
+        type: 'Literal',
+        value: index,
+        raw: String(index),
+        $p: $p(),
+      },
+      $p: $p(),
+    };
+  }
+  function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings) {
+    group('- walkObjectPattern');
+
+    node.properties.forEach((propNode, i) => {
+      log('- prop', i, ';', propNode.type);
+
+      if (propNode.type === 'RestElement') {
+        // Yes, it's Element.
+        // This is a "leaf" node. Rest properties cannot be patterns and cannot have a default
+        // `function f({a, ...b}){ return b; }`
+        // -> `function f(obj) { const tmp = obj.a; const {b: tmp3, ...b} = obj; }`
+        // -> `function f(obj) { const tmp = obj.a; const b = objPatternRest(tmp, ['a']); return b; }
+        // Object spread will actually be quite hard to emulate... Let's use something like `objPatternRest` as DSL for it.
+
+        ASSERT(propNode.argument.type === 'Identifier', 'TODO: non ident rest keys?', propNode);
+
+        const bindingName = propNode.argument.name;
+
+        newBindings.push({
+          type: 'VariableDeclaration',
+          kind: 'let',
+          declarations: [
+            {
+              type: 'VariableDeclarator',
+              id: {
+                type: 'Identifier',
+                name: bindingName,
+                $p: $p(),
+              },
+              init: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: BUILTIN_REST_HANDLER_NAME, //'objPatternRest',
+                  $p: $p(),
+                },
+                arguments: [
+                  {
+                    type: 'Identifier',
+                    name: cacheNameStack[cacheNameStack.length - 1],
+                    $p: $p(),
+                  },
+                  {
+                    type: 'ArrayExpression',
+                    elements: node.properties
+                      .filter((n) => n !== propNode)
+                      .map((n) => ({
+                        type: 'Literal',
+                        value: n.key.name,
+                        raw: '"' + n.key.name + '"',
+                        $p: $p(),
+                      })),
+                    $p: $p(),
+                  },
+                ],
+                $p: $p(),
+              },
+              $p: $p(),
+            },
+          ],
+          $p: $p(),
+        });
+
+        return;
+      }
+
+      ASSERT(propNode.key.type === 'Identifier', 'TODO: non ident keys?', propNode);
+
+      let valueNode = propNode.value;
+      if (propNode.value.type === 'AssignmentPattern') {
+        // `function({x = y})`
+        // -> We'll first transform the `x` part. Afterwards we'll know what the binding name
+        //    of that step will be. Then we'll add a check to see if that's `undefined` and
+        //    in that case assign the node.right to it. That's essentially what happens here.
+        valueNode = valueNode.left;
+      }
+
+      // If this is a leaf then use the actual name, otherwise use a placeholder
+      const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVarInCurrentRootScope('arrPatternStep');
+      cacheNameStack.push(bindingName);
+
+      // Store the property in this name. It's a regular property access and the previous step should
+      // be cached already. So read it from that cache.
+      newBindings.push({
+        type: 'VariableDeclaration',
+        kind: 'let',
+        declarations: [
+          {
+            type: 'VariableDeclarator',
+            id: {
+              type: 'Identifier',
+              name: bindingName,
+              $p: $p(),
+            },
+            // Previous prop step was stored in a var so access the prop on that var:
+            init: freshMemberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name),
+            $p: $p(),
+          },
+        ],
+        $p: $p(),
+      });
+
+      if (propNode.value.type === 'AssignmentPattern') {
+        log('The object pattern had a default. Preparing to compile that statement in that mutates `' + bindingName + '`');
+        // Observable side effect order of defaults vs property reads...
+        // `function e({a = f(), b = g()} = {get a(){ return h(); }})`
+        // -> `e()`, calls `h()` then `g()`
+        // -> `e({})`, calls `f()` then `g()`
+        // So the `=undefined` check must go before reading the properties
+        // However, we won't know what name the value will be stored in at this
+        // point. So remember the node we will inject here and update the name
+        // after processing the node. Should not be a problem... Fingers crossed.
+
+        // TODO: should this be a ternary on a fresh binding? Like toplevel params would do?
+        // `function([x = y])`
+        // -> `if (x === undefined) x = y`
+        const injectedDefaultNode = {
+          type: 'IfStatement',
+          test: {
+            type: 'BinaryExpression',
+            operator: '===',
+            left: {
+              type: 'Identifier',
+              name: bindingName, // To be filled in after the next bit
+              $p: $p(),
+            },
+            right: {
+              type: 'Identifier',
+              name: 'undefined',
+              $p: $p(),
+            },
+            $p: $p(),
+          },
+          consequent: {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              operator: '=',
+              left: {
+                type: 'Identifier',
+                name: bindingName, // To be filled in after the next bit
+                $p: $p(),
+              },
+              right: propNode.value.right,
+              $p: $p(),
+            },
+            $p: $p(),
+          },
+          $p: $p(),
+        };
+
+        // Add now to maintain the execution order
+        newBindings.push(injectedDefaultNode);
+      }
+
+      if (valueNode.type === 'ArrayPattern') {
+        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings);
+      } else if (valueNode.type === 'ObjectPattern') {
+        // Every step that is not a leaf should be verified to be non-nullable
+        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings);
+      } else {
+        ASSERT(valueNode.type === 'Identifier', 'welke nog meer?', valueNode);
+      }
+
+      cacheNameStack.pop();
+    });
+
+    groupEnd();
+  }
+  function funcArgsWalkArrayPattern(node, cacheNameStack, newBindings) {
+    group('- walkArrayPattern');
+
+    // If this is a leaf then use the actual name, otherwise use a placeholder
+    const bindingName = node.type === 'Identifier' ? node.name : createFreshVarInCurrentRootScope('arrPatternSplat');
+    cacheNameStack.push(bindingName);
+    // Store this property in a local variable. Because it's an array pattern, we need to invoke the iterator. The easiest
+    // way syntactically is to spread it into an array. Especially since we'll want indexed access to it later, anyways.
+    newBindings.push({
+      type: 'VariableDeclaration',
+      kind: 'let',
+      declarations: [
+        {
+          type: 'VariableDeclarator',
+          id: {
+            type: 'Identifier',
+            name: bindingName,
+            $p: $p(),
+          },
+          init: {
+            type: 'ArrayExpression',
+            elements: [
+              {
+                // Previous prop step was stored in a var so access the prop on that var.
+                // Invoke the iterator by spreading it into an array. Also means we can safely try direct access
+                type: 'SpreadElement',
+                argument: { type: 'Identifier', name: cacheNameStack[cacheNameStack.length - 2], $p: $p() },
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          },
+          $p: $p(),
+        },
+      ],
+      $p: $p(),
+    });
+
+    node.elements.forEach((elemNode, i) => {
+      log('elemNode:', elemNode);
+
+      if (!elemNode) return; // Ignore elided elements (they will be `null` in the AST)
+
+      if (elemNode.type === 'RestElement') {
+        // This is a "leaf" node. Rest elements cannot be patterns and cannot have a default
+        // `function f([a, ...b]){ return b; }`
+        // -> `function f(arr) { const tmp = arr.a; const b = arr.slice(1); }`
+
+        ASSERT(elemNode.argument.type === 'Identifier', 'TODO: non ident rest keys?', elemNode);
+
+        const bindingName = elemNode.argument.name;
+
+        newBindings.push({
+          type: 'VariableDeclaration',
+          kind: 'let',
+          declarations: [
+            {
+              type: 'VariableDeclarator',
+              id: {
+                type: 'Identifier',
+                name: bindingName,
+                $p: $p(),
+              },
+              init: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'MemberExpression',
+                  computed: false,
+                  object: {
+                    type: 'Identifier',
+                    name: cacheNameStack[cacheNameStack.length - 1],
+                    $p: $p(),
+                  },
+                  property: {
+                    type: 'Identifier',
+                    name: 'slice',
+                    $p: $p(),
+                  },
+                  $p: $p(),
+                },
+                arguments: [
+                  {
+                    type: 'Literal',
+                    value: i, // If rest is first arg, then arr.slice(0)
+                    raw: String(i),
+                    $p: $p(),
+                  },
+                ],
+                $p: $p(),
+              },
+              $p: $p(),
+            },
+          ],
+          $p: $p(),
+        });
+
+        return;
+      }
+
+      let valueNode = elemNode;
+      if (elemNode.type === 'AssignmentPattern') {
+        // `function([x=y])`
+        // -> We'll first transform the `x` part. Afterwards we'll know what the binding name
+        //    of that step will be. Then we'll add a check to see if that's `undefined` and
+        //    in that case assign the node.right to it. That's essentially what happens here.
+        valueNode = valueNode.left;
+      }
+
+      // Store this element in a local variable. If it's a leaf, use the actual
+      // element name as the binding, otherwise create a fresh var for it.
+
+      const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVarInCurrentRootScope('arrPatternStep');
+      cacheNameStack.push(bindingName);
+
+      // Store the property in this name
+      newBindings.push({
+        type: 'VariableDeclaration',
+        kind: 'let',
+        declarations: [
+          {
+            type: 'VariableDeclarator',
+            id: {
+              type: 'Identifier',
+              name: bindingName,
+              $p: $p(),
+            },
+            // Previous prop step was stored in a var so access the prop on that var:
+            init: freshMemberExpressionArray(cacheNameStack[cacheNameStack.length - 2], i),
+            $p: $p(),
+          },
+        ],
+        $p: $p(),
+      });
+
+      if (elemNode.type === 'AssignmentPattern') {
+        log('The array pattern had a default. Preparing to compile that statement in that mutates `' + bindingName + '`');
+        // Observable side effect order of defaults vs property reads...
+        // `function e({a = f(), b = g()} = {get a(){ return h(); }})`
+        // -> `e()`, calls `h()` then `g()`
+        // -> `e({})`, calls `f()` then `g()`
+        // So the `=undefined` check must go before reading the properties
+        // However, we won't know what name the value will be stored in at this
+        // point. So remember the node we will inject here and update the name
+        // after processing the node. Should not be a problem... Fingers crossed.
+
+        // TODO: should this be a ternary on a fresh binding? Like toplevel params would do?
+        // `function([x = y])`
+        // -> `if (x === undefined) x = y`
+        const injectedDefaultNode = {
+          type: 'IfStatement',
+          test: {
+            type: 'BinaryExpression',
+            operator: '===',
+            left: {
+              type: 'Identifier',
+              name: bindingName,
+              $p: $p(),
+            },
+            right: {
+              type: 'Identifier',
+              name: 'undefined',
+              $p: $p(),
+            },
+            $p: $p(),
+          },
+          consequent: {
+            type: 'ExpressionStatement',
+            expression: {
+              type: 'AssignmentExpression',
+              operator: '=',
+              left: {
+                type: 'Identifier',
+                name: bindingName,
+                $p: $p(),
+              },
+              right: elemNode.right,
+              $p: $p(),
+            },
+            $p: $p(),
+          },
+          $p: $p(),
+        };
+
+        // Add now to maintain the execution order
+        newBindings.push(injectedDefaultNode);
+      }
+
+      if (valueNode.type === 'ObjectPattern') {
+        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings);
+      } else if (valueNode.type === 'ArrayPattern') {
+        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings);
+      } else {
+        ASSERT(valueNode.type === 'Identifier', 'ook dat nog', valueNode);
+      }
+
+      cacheNameStack.pop();
+    });
+
+    cacheNameStack.pop();
+
+    groupEnd();
+
+    return bindingName;
+  }
   function processFuncArgs(funcNode) {
+    group(DIM + 'function(' + RESET + BLUE + 'parameters' + RESET + DIM + ')' + RESET);
+
     let minParamRequired = 0; // Ends up as the last non-rest param without default, +1
     let hasRest = false;
     let paramBindingNames = []; // Includes names inside pattern
 
     funcNode.params.forEach((pnode, i) => {
       if (pnode.type === 'RestElement') {
+        log('- Rest param');
         hasRest = true;
         const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
         const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
         paramBindingNames.push(uniqueName);
         meta.usages.push(pnode.argument);
-      } else {
-        // Now there's basically two states: a param with a default or without a default. The params with a default
-        // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
-        // continue to process the left value. Otherwise, put null on the stack and process the node itself.
+        return;
+      }
 
-        let paramNode = pnode;
-        if (pnode.type === 'AssignmentPattern') {
-          // Param defaults. Rewrite to be inside the function
-          // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
-          // function f(a=b, b=1){}
-          //   ->
-          // function f($a, $b){
-          //   let a = $a === undefined ? $b : $a; // b is tdz'd, mimicking the default behavior.
-          //   let b = $b === undefined ? 1 : $a;
-          // }
-          // The let bindings solely exist to catch reference errors thrown by default param handling
-          // One small source of trouble is that params are var bindings, not let. The default behavior is special.
-          // This transform would break functions that contain another var declaration for the same name.
+      // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+      const newBindings = [];
 
+      // Node to represent the cache of the current property/element step
+      const cacheNameStack = [];
+
+      // Now there's basically two states: a param with a default or without a default. The params with a default
+      // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
+      // continue to process the left value. Otherwise, put null on the stack and process the node itself.
+      // See https://gist.github.com/pvdz/dc2c0a477cc276d1b9e6e2ddbb417135 for a brute force set of test cases
+      // See https://gist.github.com/pvdz/867502f6ed2dd902d061c82e38a81181 for the hack to regenerate them
+      if (pnode.type === 'AssignmentPattern') {
+        // Param defaults. Rewrite to be inside the function
+        // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
+        // function f(a=b, b=1){}
+        //   ->
+        // function f($a, $b){
+        //   let a = $a === undefined ? $b : $a; // b is tdz'd, mimicking the default behavior.
+        //   let b = $b === undefined ? 1 : $a;
+        // }
+        // The let bindings solely exist to catch reference errors thrown by default param handling
+        // One small source of trouble is that params are var bindings, not let. The default behavior is special.
+        // This transform would break functions that contain another var declaration for the same name.
+
+        ASSERT(
+          pnode.left.type === 'Identifier' || pnode.left.type === 'ObjectPattern' || pnode.left.type === 'ArrayPattern',
+          'wat node now?',
+          pnode.left,
+        );
+
+        expr2(funcNode, 'params', i, pnode, 'right', -1, pnode.right);
+
+        if (pnode.left.type === 'Identifier') {
+          // param default ident
           expr2(funcNode, 'params', i, pnode, 'right', -1, pnode.right);
-
-          const meta = getMetaForBindingName(pnode.left);
-          meta.usages.push(pnode.left);
 
           const newName = createUniqueGlobalName('$tdz$__' + pnode.left.name);
           registerGlobalIdent(newName, newName);
+          cacheNameStack.push(newName);
 
-          paramNode = {
+          log('Replacing param default with a local variable');
+          const newIdentNode = {
             type: 'Identifier',
             name: newName,
             $p: $p(),
           };
+          funcNode.params[i] = newIdentNode;
 
-          log('Replacing param default with plain param name:', pnode.left.name);
-          crumb(funcNode, 'params', i);
-          crumbSet(1, paramNode);
-          uncrumb(funcNode, 'params', i);
           // Put new nodes at the start of the function body
           ASSERT(!funcNode.expression, 'fixme implement me');
           // TODO: reverse param order
-          funcNode.body.body.unshift({
+          newBindings.push({
             type: 'VariableDeclaration',
             kind: 'let',
             declarations: [
@@ -1945,21 +2389,158 @@ export function phaseNormalize(fdata, fname) {
             ],
             $p: $p(),
           });
-        } else {
-          minParamRequired = i + 1;
-        }
 
-        if (paramNode.type === 'Identifier') {
-          const meta = getMetaForBindingName(paramNode);
-          meta.usages.push(paramNode);
+          log('- Ident param;', '`' + pnode.left.name + '`');
+          const meta = getMetaForBindingName(pnode.left);
+          meta.usages.push(pnode.left);
+
+          const metaNew = getMetaForBindingName(newIdentNode);
+          metaNew.usages.push(newIdentNode);
         } else {
-          ASSERT(false, 'TODO: param pattern normalization');
+          // param default pattern
+
+          // Param name to hold the object to destructure
+          const newName = createUniqueGlobalName('$tdz$__pattern');
+          registerGlobalIdent(newName, newName);
+          cacheNameStack.push(newName);
+          log('Replacing param default with a local variable');
+          const newIdentNode = {
+            type: 'Identifier',
+            name: newName,
+            $p: $p(),
+          };
+          funcNode.params[i] = newIdentNode;
+
+          // Create unique var containing the initial param value after resolving default values
+          const undefaultName = createUniqueGlobalName('$tdz$__pattern_after_default');
+          registerGlobalIdent(undefaultName, undefaultName);
+          cacheNameStack.push(undefaultName);
+          log('Replacing param default with a local variable');
+          const undefaultNameNode = {
+            type: 'Identifier',
+            name: undefaultName,
+            $p: $p(),
+          };
+
+          // Put new nodes at the start of the function body
+          ASSERT(!funcNode.expression, 'fixme implement me');
+          // TODO: reverse param order
+          newBindings.push({
+            type: 'VariableDeclaration',
+            kind: 'let',
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                id: undefaultNameNode,
+                init: {
+                  // param === undefined ? init : param
+                  type: 'ConditionalExpression',
+                  test: {
+                    type: 'BinaryExpression',
+                    left: {
+                      type: 'Identifier',
+                      name: newName,
+                      $p: $p(),
+                    },
+                    operator: '===',
+                    right: {
+                      type: 'Identifier',
+                      name: 'undefined',
+                      $p: $p(),
+                    },
+                    $p: $p(),
+                  },
+                  consequent: pnode.right,
+                  alternate: {
+                    type: 'Identifier',
+                    name: newName,
+                    $p: $p(),
+                  },
+                  $p: $p(),
+                },
+                $p: $p(),
+              },
+            ],
+            $p: $p(),
+          });
+
+          const metaNew = getMetaForBindingName(newIdentNode);
+          metaNew.usages.push(newIdentNode);
+
+          // Then walk the whole pattern.
+          // - At every step of the pattern create code that stores the value of that step in a tmp variable.
+          // - Store the tmp var in a stack (pop it when walking out)
+          // - A leaf node should be able to access the property from the binding name at the top of the stack
+
+          if (pnode.left.type === 'ObjectPattern') {
+            log('- Starting from an object pattern param');
+            // `function({x}) {}`
+            // -> `function(obj) { var x = obj.x; }
+            funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings);
+          } else if (pnode.left.type === 'ArrayPattern') {
+            // `function([x]) {}`
+            // -> `function(obj) { var tmp = [...obj]; var x = tmp[0]; }
+            log('- Starting from an array pattern param');
+            funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings);
+          } else {
+            ASSERT(false, 'what else?', pnode.left);
+          }
         }
+      } else {
+        minParamRequired = i + 1;
+
+        if (pnode.type === 'Identifier') {
+          log('- Ident param;', '`' + pnode.name + '`');
+          const meta = getMetaForBindingName(pnode);
+          meta.usages.push(pnode);
+        } else if (pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern') {
+          const tmpName = createFreshVarInCurrentRootScope('tmpParamPattern');
+          cacheNameStack.push(tmpName);
+          log('- Replacing the pattern param with', '`' + tmpName + '`');
+          // Replace the pattern with a variable that receives the whole object
+          const newIdentNode = {
+            type: 'Identifier',
+            name: tmpName,
+            $p: $p(),
+          };
+          funcNode.params[i] = newIdentNode;
+          const metaNew = getMetaForBindingName(newIdentNode);
+          metaNew.usages.push(newIdentNode);
+
+          // Then walk the whole pattern.
+          // - At every step of the pattern create code that stores the value of that step in a tmp variable.
+          // - Store the tmp var in a stack (pop it when walking out)
+          // - A leaf node should be able to access the property from the binding name at the top of the stack
+
+          if (pnode.type === 'ObjectPattern') {
+            log('- Starting from an object pattern param');
+            // `function({x}) {}`
+            // -> `function(obj) { var x = obj.x; }
+            funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings);
+          } else if (pnode.type === 'ArrayPattern') {
+            // `function([x]) {}`
+            // -> `function(obj) { var tmp = [...obj]; var x = tmp[0]; }
+            log('- Starting from an array pattern param');
+            funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings);
+          } else {
+            ASSERT(false, 'dunno wat dis is', pnode);
+          }
+        } else {
+          ASSERT(false, 'wat else?', pnode);
+        }
+      }
+
+      if (newBindings.length) {
+        funcNode.body.body.unshift(...newBindings);
+        changed = true;
       }
     });
 
+    groupEnd();
+
     return { minParamRequired, hasRest, paramBindingNames };
   }
+
   function processArrayPatternElement(node, paramBindingNames) {
     let enode = node;
     if (node.type === 'AssignmentPattern') {

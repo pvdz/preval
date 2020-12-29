@@ -177,7 +177,7 @@ sequenceExpression.statement = (...args) => {
 
 export function spreadElement(argument) {
   if (typeof argument === 'string') argument = identifier(argument);
-  
+
   return {
     type: 'SpreadElement',
     argument,

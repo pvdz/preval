@@ -1,0 +1,73 @@
+# Preval test case
+
+# flash1.md
+
+> normalize > pattern > param > flash1
+>
+> https://twitter.com/buzyescayadev/status/1343866976939098113 
+
+The actual case contains unnecessary complexity in defaults so those were replaced:
+
+```js
+function x([[[[[[foo = (y = a??z)]= {...[a(a?.b)]}]]]]], {x: {...x}}) {}
+```
+
+## Input
+
+`````js filename=intro
+function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
+`````
+
+## Normalized
+
+`````js filename=intro
+function x_1(tmpParamPattern, tmpParamPattern_1) {
+  let arrPatternStep_5 = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(arrPatternStep_5, []);
+  let arrPatternSplat = [...tmpParamPattern];
+  let arrPatternStep = arrPatternSplat[0];
+  let arrPatternSplat_1 = [...arrPatternStep];
+  let arrPatternStep_1 = arrPatternSplat_1[0];
+  let arrPatternSplat_2 = [...arrPatternStep_1];
+  let arrPatternStep_2 = arrPatternSplat_2[0];
+  let arrPatternSplat_3 = [...arrPatternStep_2];
+  let arrPatternStep_3 = arrPatternSplat_3[0];
+  let arrPatternSplat_4 = [...arrPatternStep_3];
+  let arrPatternStep_4 = arrPatternSplat_4[0];
+  if (arrPatternStep_4 === undefined) {
+    arrPatternStep_4 = y;
+  }
+  let arrPatternSplat_5 = [...arrPatternStep_4];
+  let foo = arrPatternSplat_5[0];
+  if (foo === undefined) {
+    foo = x_1;
+  }
+}
+`````
+
+## Output
+
+`````js filename=intro
+function x_1(tmpParamPattern, tmpParamPattern_1) {
+  let arrPatternStep_5 = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(arrPatternStep_5, []);
+  let arrPatternSplat = [...tmpParamPattern];
+  let arrPatternStep = arrPatternSplat[0];
+  let arrPatternSplat_1 = [...arrPatternStep];
+  let arrPatternStep_1 = arrPatternSplat_1[0];
+  let arrPatternSplat_2 = [...arrPatternStep_1];
+  let arrPatternStep_2 = arrPatternSplat_2[0];
+  let arrPatternSplat_3 = [...arrPatternStep_2];
+  let arrPatternStep_3 = arrPatternSplat_3[0];
+  let arrPatternSplat_4 = [...arrPatternStep_3];
+  let arrPatternStep_4 = arrPatternSplat_4[0];
+  if (arrPatternStep_4 === undefined) {
+    arrPatternStep_4 = y;
+  }
+  let arrPatternSplat_5 = [...arrPatternStep_4];
+  let foo = arrPatternSplat_5[0];
+  if (foo === undefined) {
+    foo = x_1;
+  }
+}
+`````

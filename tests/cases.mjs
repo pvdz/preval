@@ -15,7 +15,7 @@ export const PROJECT_ROOT_DIR = path.resolve(path.join(dirname, '..'));
 function getTestFiles(path, file = '', files = [], silent = true, dirsToo = false) {
   let combo = path + file;
   if (fs.statSync(combo).isFile()) {
-    if (combo.slice(-3) === '.md' && combo.slice(-'README.md'.length) !== 'README.md') {
+    if (combo.slice(-3) === '.md' && combo.slice(-'README.md'.length) !== 'README.md' && !combo.includes('SKIP')) {
       files.push(combo);
     }
   } else {

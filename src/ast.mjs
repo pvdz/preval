@@ -194,15 +194,23 @@ export function variableDeclaration(names, inits = null, kind = 'let') {
   }
   ASSERT(!inits || names.length === inits.length, 'if inits are given then an init should be given for each name to be declared');
 
-  return {
-    type: 'VariableDeclaration',
-    kind,
-    declarations: names.map((name, i) => ({
+  return variableDeclarationFromDeclaration(
+    names.map((name, i) => ({
       type: 'VariableDeclarator',
       id: name,
       init: inits ? inits[i] : null,
       $p: $p(),
     })),
+    kind,
+  );
+}
+export function variableDeclarationFromDeclaration(declarations, kind = 'let') {
+  if (!Array.isArray(declarations)) declarations = [declarations];
+
+  return {
+    type: 'VariableDeclaration',
+    kind,
+    declarations,
     $p: $p(),
   };
 }

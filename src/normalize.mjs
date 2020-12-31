@@ -605,6 +605,20 @@ export function phaseNormalize(fdata, fname) {
       funcStack.push(node);
       node.$p.varBindingsToInject = [];
       node.$p.funcBindingsToInject = [];
+
+      const body = node.type === 'FunctionDeclaration' ? node.body.body : node.body;
+      for (let i = 0; i < body.length; ++i) {
+        const nodei = body[i];
+        if (nodei.type === 'VariableDeclaration') {
+          if (nodei.declarations.length > 1) {
+            // Split up into separate declarations while maintaining order
+            log('Splitting up var decl that creates multiple bindings as a', nodei.kind);
+            body.splice(i+1, 0, ...nodei.declarations.slice(1).map((dec) => AST.variableDeclarationFromDeclaration(dec, nodei.kind)));
+            nodei.declarations.length = 1;
+            changed = true;
+          }
+        }
+      }
     }
 
     crumb(parent, prop, index);
@@ -927,28 +941,30 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'VariableDeclaration': {
-        const kind = node.kind;
-        const names = [];
-        node.declarations.forEach((dnode, i) => {
-          if (dnode.init) {
-            expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
-          }
+        ASSERT(node.declarations.length === 1, 'var decl count should be normalized to 1 before visiting them', node);
 
-          // The paramNode can be either an Identifier or a pattern of sorts
-          if (dnode.id.type === 'Identifier') {
-            const meta = getMetaForBindingName(dnode.id);
-            meta.usages.push(dnode.id);
-            names.push(dnode.id.name);
-          } else if (dnode.id.type === 'ArrayPattern') {
-            // Complex case. Walk through the destructuring pattern.
-            dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
-          } else if (dnode.id.type === 'ObjectPattern') {
-            // Complex case. Walk through the destructuring pattern.
-            dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
-          } else {
-            ASSERT(false, 'wat is dis', [dnode.id.type], dnode);
-          }
-        });
+        const kind = node.kind;
+        const dnode = node.declarations[0];
+        const names = [];
+
+        if (dnode.init) {
+          expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
+        }
+
+        // The paramNode can be either an Identifier or a pattern of sorts
+        if (dnode.id.type === 'Identifier') {
+          const meta = getMetaForBindingName(dnode.id);
+          meta.usages.push(dnode.id);
+          names.push(dnode.id.name);
+        } else if (dnode.id.type === 'ArrayPattern') {
+          // Complex case. Walk through the destructuring pattern.
+          dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
+        } else if (dnode.id.type === 'ObjectPattern') {
+          // Complex case. Walk through the destructuring pattern.
+          dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
+        } else {
+          ASSERT(false, 'wat is dis', [dnode.id.type], dnode);
+        }
 
         if (kind === 'var') {
           if (stillHoisting) {
@@ -957,6 +973,8 @@ export function phaseNormalize(fdata, fname) {
             log('`var` statement declared these names:', names);
             log('Moving the decl itself to the top of the function while keeping the init as they are');
 
+            // Note: patterns may still introduce multiple bindings before they get normalized.
+            // TODO: if we enforce the pattern normalization to happen before reaching this point then patterns are not a concern...
             funcStack[funcStack.length - 1].$p.varBindingsToInject.push(
               AST.variableDeclaration(
                 names.map((name) => AST.identifier(name)),

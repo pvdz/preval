@@ -395,7 +395,6 @@ export function phase1(fdata, resolve, req) {
         // Find all bindings, resolve their unique name, copy their init (or undefined) to the updates
         // If we're going to store these then what happens when they're transformed/replaced?
         // `var a = 1; var b = a; var c = b;`. maybe store the parent node and key instead for an indirect lookup
-        ASSERT(node.id?.type === 'Identifier', 'tofix: var declarations that are not just idents');
         break;
       }
 

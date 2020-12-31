@@ -363,31 +363,36 @@ export function phaseNormalize(fdata, fname) {
           --i; // revisit (recursively)
         }
       } else if (e.type === 'VariableDeclaration') {
-        log('Parent of sequene is var decl');
-        ASSERT(e.declarations.length === 1, 'var decl binding count should be normalized already');
-        const init = e.declarations[0].init;
-        if (!init) {
-        } else if (init.type === 'SequenceExpression') {
-          // `var x = (1, 2)` -> `1; var x = 2`
-          // This assumes sub-statements are normalized to be groups already
-          log('Outlining a sequence that is the init of a binding decl');
-          const exprs = init.expressions;
-          node.body.splice(i, 0, ...init.expressions.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          e.declarations[0].init = init.expressions[init.expressions.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
-        } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
-          // `var x = (a, b).x` -> `a; var x = b.x`
-          // This assumes sub-statements are normalized to be groups already
-          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
-          const seq = init.object;
-          const exprs = seq.expressions;
-          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          init.object = exprs[exprs.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
+        log('Parent of sequence is var decl');
+        if (e.declarations.length > 1) {
+          log(
+            '- New var decls with multiple bindings were added by normalization. Skipping this statementifySequences step on it until the next round when they are one-binding-per-decl',
+          );
+        } else {
+          const init = e.declarations[0].init;
+          if (!init) {
+          } else if (init.type === 'SequenceExpression') {
+            // `var x = (1, 2)` -> `1; var x = 2`
+            // This assumes sub-statements are normalized to be groups already
+            log('Outlining a sequence that is the init of a binding decl');
+            const exprs = init.expressions;
+            node.body.splice(i, 0, ...init.expressions.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
+            // Replace the old sequence expression with its last element
+            e.declarations[0].init = init.expressions[init.expressions.length - 1];
+            changed = true;
+            --i; // revisit (recursively)
+          } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
+            // `var x = (a, b).x` -> `a; var x = b.x`
+            // This assumes sub-statements are normalized to be groups already
+            log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+            const seq = init.object;
+            const exprs = seq.expressions;
+            node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
+            // Replace the old sequence expression with its last element
+            init.object = exprs[exprs.length - 1];
+            changed = true;
+            --i; // revisit (recursively)
+          }
         }
       } else if (e.type === 'ReturnStatement') {
         if (e.argument.type === 'SequenceExpression') {
@@ -957,13 +962,43 @@ export function phaseNormalize(fdata, fname) {
           meta.usages.push(dnode.id);
           names.push(dnode.id.name);
         } else if (dnode.id.type === 'ArrayPattern') {
-          // Complex case. Walk through the destructuring pattern.
-          dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
+          log('Normalizing an array binding pattern away');
+          const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternArrRoot');
+          const nameStack = [bindingPatternRootName];
+          const newBindings = [];
+          funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings);
+
+          if (newBindings.length) {
+            log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
+            node.declarations = [
+              AST.variableDeclarator(bindingPatternRootName, dnode.init),
+              ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
+            ];
+          } else if (dnode.init) {
+            log('There were no bindings so replacing the var declaration with its init');
+            crumbSet(1, AST.expressionStatement(dnode.init))
+          } else {
+            ASSERT(false, 'binding patterns are required to have an init');
+          }
         } else if (dnode.id.type === 'ObjectPattern') {
-          // Complex case. Walk through the destructuring pattern.
-          dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
+          log('Normalizing an object binding pattern away');
+          const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
+          const nameStack = [bindingPatternRootName];
+          const newBindings = [];
+          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings);
+
+          if (newBindings.length) {
+            log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
+            node.declarations = [
+              AST.variableDeclarator(bindingPatternRootName, dnode.init),
+              ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
+            ];
+          } else if (dnode.init) {
+            log('There were no bindings so replacing the var declaration with its init');
+            crumbSet(1, AST.expressionStatement(dnode.init))
+          }
         } else {
-          console.dir(node, {depth: null})
+          console.dir(node, { depth: null });
           ASSERT(false, 'wat is dis', [dnode.id.type], node);
         }
 
@@ -1886,10 +1921,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (newBindings.length) {
-        log(
-          'Params were transformed somehow, injecting new nodes into body',
-          //AST.variableDeclarationFromDeclaration(newBindings.map(([name, init]) => AST.variableDeclarator(name, init))),
-        );
+        log('Params were transformed somehow, injecting new nodes into body');
         funcNode.body.body.unshift(
           AST.variableDeclarationFromDeclaration(newBindings.map(([name, init]) => AST.variableDeclarator(name, init))),
         );
@@ -1900,123 +1932,5 @@ export function phaseNormalize(fdata, fname) {
     groupEnd();
 
     return { minParamRequired, hasRest, paramBindingNames };
-  }
-
-  function processArrayPatternElement(node, paramBindingNames) {
-    let enode = node;
-    if (node.type === 'AssignmentPattern') {
-      expr(node, 'right', -1, node.right);
-      enode = node.left;
-    }
-
-    if (enode.type === 'ObjectPattern') {
-      enode.properties.forEach((e) => processObjectPatternProp(e, enode, paramBindingNames));
-    } else if (enode.type === 'ArrayPattern') {
-      enode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-    } else if (enode.type === 'RestElement') {
-      const uniqueName = findUniqueNameForBindingIdent(enode.argument);
-      paramBindingNames.push(uniqueName);
-    } else {
-      const uniqueName = findUniqueNameForBindingIdent(enode);
-      paramBindingNames.push(uniqueName);
-    }
-  }
-  function processObjectPatternProp(node, objNode, paramBindingNames) {
-    if (node.type === 'RestElement') {
-      objNode.properties.forEach((pnode, i) => {
-        if (pnode.type === 'Property') {
-          if (pnode.computed) {
-            expr2(objNode, 'properties', i, pnode, 'property', -1, pnode.property);
-          }
-        }
-      });
-
-      const uniqueName = findUniqueNameForBindingIdent(node.argument);
-      paramBindingNames.push(uniqueName);
-    } else {
-      let vnode = node.value;
-      let assign = vnode.type === 'AssignmentPattern';
-      let lnode = vnode.left;
-      crumb(node, 'value', -1);
-      if (assign) {
-        expr(vnode, 'right', -1, vnode.right);
-        crumb(vnode, 'left', -1);
-        vnode = lnode;
-      }
-
-      if (vnode.type === 'ObjectPattern') {
-        vnode.properties.forEach((pnode, i) => {
-          crumb(vnode, 'properties', i);
-          processObjectPatternProp(pnode, vnode, paramBindingNames);
-          uncrumb(vnode, 'properties', i);
-        });
-      } else if (vnode.type === 'ArrayPattern') {
-        vnode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-      } else {
-        ASSERT(vnode.type === 'Identifier', 'fixme if different value', vnode);
-        const uniqueName = findUniqueNameForBindingIdent(vnode);
-        paramBindingNames.push(uniqueName);
-      }
-
-      if (assign) {
-        uncrumb(lnode, 'left', -1);
-      }
-      uncrumb(node, 'value', -1);
-    }
-  }
-
-  function destructBindingObjectProp(pnode, objNode, kind) {
-    if (pnode.type === 'Property') {
-      if (pnode.computed) {
-        expr(pnode, 'property', -1, pnode.property);
-        return;
-      }
-      if (pnode.value.type === 'Identifier') {
-      } else if (pnode.value.type === 'ObjectPattern') {
-        pnode.value.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, pnode.value, kind));
-      } else if (pnode.value.type === 'ArrayPattern') {
-        pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
-      } else {
-        let vnode = pnode.value.left;
-        expr(pnode, 'value', -1, pnode.value, 'right', -1, pnode.value.right);
-        if (vnode.type === 'Identifier') {
-        } else if (vnode.value.type === 'ObjectPattern') {
-          pnode.value.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, pnode.value, kind));
-        } else if (vnode.value.type === 'ArrayPattern') {
-          pnode.value.elements.forEach((node) => destructBindingArrayElement(node, kind));
-        } else {
-          ASSERT(false, 'fixme for other nodes', vnode);
-        }
-      }
-    } else if (pnode.type === 'RestElement') {
-      objNode.properties.forEach((pnode) => {
-        if (pnode.type === 'Property') {
-          if (pnode.computed) {
-            expr(pnode, 'property', -1, pnode.property);
-            return null;
-          }
-        } else {
-        }
-      });
-    } else {
-      ASSERT(false, 'fixme', pnode);
-    }
-  }
-  function destructBindingArrayElement(pnode, kind) {
-    let enode = pnode;
-    if (pnode.type === 'AssignmentPattern') {
-      expr(pnode, 'right', -1, pnode.right);
-      enode = pnode.left;
-    }
-
-    if (enode.type === 'Identifier') {
-    } else if (enode.type === 'ObjectPattern') {
-      enode.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, enode, kind));
-    } else if (enode.type === 'ArrayPattern') {
-      enode.elements.forEach((node) => destructBindingArrayElement(node, kind));
-    } else if (pnode.type === 'RestElement') {
-    } else {
-      ASSERT(false, 'fixme if else', enode);
-    }
   }
 }

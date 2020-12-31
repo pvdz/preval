@@ -462,7 +462,6 @@ export function phase4(program, fdata, resolve, req) {
             expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
           }
 
-          // The paramNode can be either an Identifier or a pattern of sorts
           if (dnode.id.type === 'Identifier') {
             const meta = fdata.globallyUniqueNamingRegistery.get(dnode.id.name);
             const updates = meta.updates;
@@ -494,12 +493,11 @@ export function phase4(program, fdata, resolve, req) {
                 removed = true;
               }
             }
-          } else if (dnode.id.type === 'ArrayPattern') {
-            // Complex case. Walk through the destructuring pattern.
-            dnode.id.elements.forEach((node) => destructBindingArrayElement(node, kind));
           } else {
-            // Complex case. Walk through the destructuring pattern.
-            dnode.id.properties.forEach((ppnode) => destructBindingObjectProp(ppnode, dnode.id, kind));
+            ASSERT(
+              dnode.id.type === 'RestElement',
+              'The paramNode ought to be an Identifier or RestElement. The patterns and defaults ought to be normalized out.',
+            );
           }
         });
 
@@ -941,297 +939,24 @@ export function phase4(program, fdata, resolve, req) {
   }
 
   function processFuncArgs(node) {
+    // All patterns and defaults ought to be normalized out so it should only be Identifiers and RestElements
+
     let minParamRequired = 0; // Ends up as the last non-rest param without default, +1
     let hasRest = false;
-    let paramBindingNames = []; // Includes names inside pattern
+    let paramBindingNames = [];
 
     node.params.forEach((pnode, i) => {
       if (pnode.type === 'RestElement') {
         hasRest = true;
         paramBindingNames.push(pnode.argument.name);
+      } else if (pnode.type === 'Identifier') {
+        minParamRequired = i + 1;
+        paramBindingNames.push(pnode.name);
       } else {
-        // Now there's basically two states: a param with a default or without a default. The params with a default
-        // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
-        // continue to process the left value. Otherwise, put null on the stack and process the node itself.
-
-        let paramNode = pnode;
-        if (pnode.type === 'AssignmentPattern') {
-          expr2(node, 'params', i, pnode, 'right', -1, pnode.right);
-          paramNode = pnode.left;
-        } else {
-          minParamRequired = i + 1;
-        }
-
-        if (paramNode.type === 'Identifier') {
-          paramBindingNames.push(paramNode.name);
-        } else if (paramNode.type === 'ArrayPattern') {
-          paramNode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-        } else {
-          paramNode.properties.forEach((pnode) => processObjectPatternProp(pnode, paramNode, paramBindingNames));
-        }
+        ASSERT(false, 'Patterns and defaults ougth to be normalized out', node);
       }
     });
 
     return { minParamRequired, hasRest, paramBindingNames };
-  }
-
-  function processArrayPatternElement(node, paramBindingNames) {
-    // TODO: normalize patterns out?
-
-    // `enode` is one element of the array. If the element had a default, apply that logic now
-    let enode = node;
-    // TODO: this needs to be normalized out as well
-    if (node.type === 'AssignmentPattern') {
-      expr(node, 'right', -1, node.right);
-      enode = node.left;
-    }
-
-    // - f(['x']) function f([a=1]){}  -> a is type string
-    // - f([]) function f([a=1]){}     -> a is type number
-    // - f() function f([a=1]){}       -> error (lint warnings)
-
-    if (enode.type === 'ObjectPattern') {
-      enode.properties.forEach((e) => processObjectPatternProp(e, enode, paramBindingNames));
-    } else if (enode.type === 'ArrayPattern') {
-      enode.elements.forEach((n) => processArrayPatternElement(n, paramBindingNames));
-    } else if (enode.type === 'RestElement') {
-      ASSERT(enode.argument.type === 'Identifier', 'fixme if different', enode); // This can be an arr/obj pattern, too
-      paramBindingNames.push(enode.argument.name);
-    } else {
-      ASSERT(enode.type === 'Identifier', 'fixme if different', enode);
-      paramBindingNames.push(enode.name);
-    }
-  }
-  function processObjectPatternProp(node, objNode, paramBindingNames) {
-    // TODO: normalize patterns out?
-
-    ASSERT(node.type === 'Property' || node.type === 'ObjectPattern' || node.type === 'RestElement', 'fixme for other types', node);
-
-    // Note: If there is a default, the .value will be an AssignmentPattern:
-    // {x}
-    // {x:y}
-    // {x=z}
-    // {x:y=z}
-
-    if (node.type === 'RestElement') {
-      // A rest element does not have a key/value property like other property nodes do
-      ASSERT(node.argument.type === 'Identifier', 'fixme if different', node); // This can be an arr/obj pattern, too
-
-      objNode.properties.forEach((pnode, i) => {
-        if (pnode.type === 'Property') {
-          if (pnode.computed) {
-            expr2(objNode, 'properties', i, pnode, 'property', -1, pnode.property);
-          } else {
-            ASSERT(pnode.key.type === 'Identifier');
-          }
-        } else {
-          ASSERT(pnode.type === 'RestElement');
-        }
-      });
-
-      paramBindingNames.push(node.argument.name);
-    } else {
-      ASSERT(node.key.type === 'Identifier', 'fixme for other key types', node.key);
-      ASSERT(
-        node.value.type === 'Identifier' ||
-          node.value.type === 'AssignmentPattern' ||
-          node.value.type === 'ObjectPattern' ||
-          node.value.type === 'ArrayPattern',
-        'fixme for other value types',
-        node.value,
-      );
-
-      const knode = node.key;
-
-      // The prop name is not relevant at this point (the prop was fetched and is on top of the stack)
-      // Put the default on the stack, prepare the actual value node (binding ident/obj/arr)
-      let vnode = node.value;
-      if (vnode.type === 'AssignmentPattern') {
-        expr2(node, 'value', -1, vnode, 'right', -1, vnode.right);
-        vnode = vnode.left;
-        //} else {
-        //  $(node, '@push', NO_DEFAULT_VALUE);
-      }
-
-      //$(node, '@defaults');
-
-      if (vnode.type === 'ObjectPattern') {
-        // Top of stack must now be object. Process it recursively then drop it.
-        crumb(node, 'value', -1);
-        vnode.properties.forEach((pnode, i) => {
-          crumb(vnode, 'properties', i);
-          processObjectPatternProp(pnode, vnode, paramBindingNames);
-          uncrumb(vnode, 'properties', i);
-        });
-        uncrumb(node, 'value', -1);
-        //$(node, '@drop');
-      } else if (vnode.type === 'ArrayPattern') {
-        // Top of stack must now be array. Process it recursively then drop it.
-        vnode.elements.forEach((n, i) => {
-          crumb(vnode, 'elements', i);
-          processArrayPatternElement(n, paramBindingNames);
-          uncrumb(vnode, 'elements', i);
-        });
-        //$(node, '@drop');
-      } else {
-        ASSERT(vnode.type === 'Identifier', 'fixme if different value', vnode);
-        // Doesn't matter whether it's shorthand or not; the binding name is in the value node
-
-        paramBindingNames.push(vnode.name);
-      }
-    }
-  }
-  function destructBindingObjectProp(pnode, objNode, kind) {
-    ASSERT(objNode && typeof objNode === 'object');
-
-    // Can't be assignment on the toplevel (that'd be the decl init)
-    if (pnode.type === 'Property') {
-      // let {x} = obj
-      // -> prop will have key and value be the same Identifier
-      // let {x = z} = obj
-      // -> prop will have key ident, value be assignment of some rhs to an Identifier with same value as key
-      // let {x: y} = obj
-      // -> key and value will be different Identifiers
-      // let {x: y = z} = obj
-      // -> key is Identifier and value is assignment with rhs to different Identifier than key
-
-      if (pnode.computed) {
-        // let {[x]: y} = obj
-        TOFIX;
-
-        // We may be able to salvage this, tentatively and under protest, if this is a plain object and all props have the same tid
-        expr(pnode, 'property', -1, pnode.property);
-        // The action should assert the property on the stack to be a string or number, then discard it
-        // If the object is a plain object (type='o') and it has a non-false .kind, then return that kind. Otherwise return undefined.
-        //$(pnode, '@dyn_prop');
-
-        return;
-      }
-
-      ASSERT(pnode.key.type === 'Identifier', 'fixme if else', pnode.key);
-
-      // Top of the stack should be object being destructured.
-      // Value is an Identifier, AssignmentPattern, ObjectPattern, or ArrayPattern. Assignment can nest the other three.
-      // Since this path can still require a property lookup on the object on the top of the stack, we'll need to
-      // unbox the AssignmentPattern step-by-step, rather than generically. (Because we need to do default.) Very sad.
-
-      if (pnode.value.type === 'Identifier') {
-        // No default
-        // let {x} = obj
-        // let {x:y} = obj
-        log('Pattern piece id:', pnode.value.name);
-      } else if (pnode.value.type === 'ObjectPattern') {
-        // let {x: {x}} = obj
-        crumb(pnode, 'value', -1);
-        pnode.value.properties.forEach((ppnode, i) => {
-          crumb(pnode.value, 'properties', i);
-          destructBindingObjectProp(ppnode, pnode.value, kind);
-          uncrumb(pnode.value, 'properties', i);
-        });
-        uncrumb(pnode, 'value', -1);
-      } else if (pnode.value.type === 'ArrayPattern') {
-        // let {x: [x]} = obj
-        crumb(pnode, 'value', -1);
-        pnode.value.elements.forEach((ppnode, i) => {
-          crumb(pnode.value, 'elements', i);
-          destructBindingArrayElement(ppnode, kind);
-          uncrumb(pnode.value, 'elements', i);
-        });
-        uncrumb(pnode, 'value', -1);
-      } else {
-        ASSERT(pnode.value.type === 'AssignmentPattern', 'fixme if else', pnode.value); // patterns?
-        ASSERT(pnode.value.left.type === 'Identifier', 'left is ident', pnode);
-
-        // let {x = z} = obj
-        // let {x: y = z} = obj
-        // let {x: {x} = z} = obj
-        // let {x: [x] = z} = obj
-
-        let vnode = pnode.value.left;
-
-        // Top of the stack is property obj.x
-        // Next we can get the default value (the rhs of the assignment pattern) and run a defaults
-        expr(pnode, 'value', -1, pnode.value, 'right', -1, pnode.value.right);
-
-        if (vnode.type === 'Identifier') {
-          // No default
-          // let {x} = obj
-          // let {x:y} = obj
-
-          log('Pattern piece id:', vnode.name);
-        } else if (vnode.value.type === 'ObjectPattern') {
-          // let {x: {x}} = obj
-          crumb(pnode, 'value', -1);
-          pnode.value.properties.forEach((ppnode, i) => {
-            crumb(pnode.value, 'properties', i);
-            destructBindingObjectProp(ppnode, pnode.value, kind);
-            uncrumb(pnode.value, 'properties', i);
-          });
-          uncrumb(pnode, 'value', -1);
-        } else if (vnode.value.type === 'ArrayPattern') {
-          // let {x: [x]} = obj
-          crumb(pnode, 'value', -1);
-          pnode.value.elements.forEach((ppnode, i) => {
-            crumb(pnode.value, 'elements', i);
-            destructBindingArrayElement(ppnode, kind);
-            uncrumb(pnode.value, 'elements', i);
-          });
-          uncrumb(pnode, 'value', -1);
-        } else {
-          ASSERT(false, 'fixme for other nodes', vnode);
-        }
-      }
-    } else if (pnode.type === 'RestElement') {
-      crumb(objNode, 'properties', -1);
-      objNode.properties.forEach((pnode, i) => {
-        if (pnode.type === 'Property') {
-          if (pnode.computed) {
-            TOFIX;
-            expr(pnode, 'property', i, pnode.property);
-          } else {
-            ASSERT(pnode.key.type === 'Identifier');
-          }
-        } else {
-          ASSERT(pnode.type === 'RestElement');
-        }
-      });
-      uncrumb(objNode, 'properties', -1);
-
-      ASSERT(pnode.argument.type === 'Identifier', 'rest arg is ident or fixme', pnode.argument);
-      log('Rest name:', pnode.argument.name);
-    } else {
-      ASSERT(false, 'fixme', pnode);
-    }
-  }
-  function destructBindingArrayElement(pnode, kind) {
-    // Can't be assignment on the toplevel (that'd be the decl init)
-
-    let enode = pnode;
-    if (pnode.type === 'AssignmentPattern') {
-      expr(pnode, 'right', -1, pnode.right);
-      enode = pnode.left;
-    }
-
-    if (enode.type === 'Identifier') {
-      // No init
-      log('Pattern piece id:', enode.name);
-    } else if (enode.type === 'ObjectPattern') {
-      enode.properties.forEach((ppnode, i) => {
-        crumb(enode, 'properties', i);
-        destructBindingObjectProp(ppnode, enode, kind);
-        uncrumb(enode, 'properties', i);
-      });
-    } else if (enode.type === 'ArrayPattern') {
-      enode.elements.forEach((pnode, i) => {
-        crumb(enode, 'elements', i);
-        destructBindingArrayElement(pnode, kind);
-        uncrumb(enode, 'elements', i);
-      });
-    } else if (pnode.type === 'RestElement') {
-      ASSERT(pnode.argument.type === 'Identifier', 'fixme if else', pnode.argument);
-      log('Rest id:', pnode.argument.name);
-    } else {
-      ASSERT(false, 'fixme if else', enode);
-    }
   }
 }

@@ -195,14 +195,19 @@ export function variableDeclaration(names, inits = null, kind = 'let') {
   ASSERT(!inits || names.length === inits.length, 'if inits are given then an init should be given for each name to be declared');
 
   return variableDeclarationFromDeclaration(
-    names.map((name, i) => ({
-      type: 'VariableDeclarator',
-      id: name,
-      init: inits ? inits[i] : null,
-      $p: $p(),
-    })),
+    names.map((name, i) => variableDeclarator(name, inits ? inits[i] : null)),
     kind,
   );
+}
+export function variableDeclarator(id, init = null) {
+  if (typeof id === 'string') id = identifier(id);
+  if (typeof init === 'string') init = identifier(init);
+  return {
+    type: 'VariableDeclarator',
+    id,
+    init,
+    $p: $p(),
+  };
 }
 export function variableDeclarationFromDeclaration(declarations, kind = 'let') {
   if (!Array.isArray(declarations)) declarations = [declarations];

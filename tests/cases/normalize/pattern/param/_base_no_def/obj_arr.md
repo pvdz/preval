@@ -16,8 +16,8 @@ function i({x: [ y ]}) { return y }
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat[0];
   return y;
 }

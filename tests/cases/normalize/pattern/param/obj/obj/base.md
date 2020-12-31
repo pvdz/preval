@@ -22,12 +22,12 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpTernaryTest;
+  var tmpTernaryTest_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest ? b : $tdz$__pattern;
-  let arrPatternStep = $tdz$__pattern_after_default.x;
-  if (arrPatternStep === undefined) {
-    arrPatternStep = a;
-  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  let objPatternAfterDefault = tmpTernaryTest_1 ? a : objPatternBeforeDefault;
   return 'ok';
 }
 var tmpArg;
@@ -42,12 +42,11 @@ $(tmpArg);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpTernaryTest;
+  var tmpTernaryTest_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest ? b : $tdz$__pattern;
-  let arrPatternStep = $tdz$__pattern_after_default.x;
-  if (arrPatternStep === undefined) {
-    arrPatternStep = a;
-  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
   return 'ok';
 }
 var tmpArg;

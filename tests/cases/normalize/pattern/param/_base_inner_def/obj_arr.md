@@ -16,12 +16,12 @@ function i({x: [ y = a ]}) { return y }
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
-  let y = arrPatternSplat[0];
-  if (y === undefined) {
-    y = a;
-  }
+  var tmpTernaryTest;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let y = tmpTernaryTest ? a : arrPatternBeforeDefault;
   return y;
 }
 `````

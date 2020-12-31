@@ -21,12 +21,12 @@ $(f({ x: [''], a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
-  let y = arrPatternSplat[0];
-  if (y === undefined) {
-    y = 'fail';
-  }
+  var tmpTernaryTest;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let y = tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
   return y;
 }
 var tmpArg;
@@ -40,12 +40,12 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
-  let y = arrPatternSplat[0];
-  if (y === undefined) {
-    y = 'fail';
-  }
+  var tmpTernaryTest;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let y = tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
   return y;
 }
 var tmpArg;

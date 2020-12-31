@@ -24,20 +24,23 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   var tmpArg_1;
+  var tmpTernaryTest_2;
+  var tmpTernaryConsequent_2;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
     ? ((tmpArg = { x: { y: 'fail3' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
-  let arrPatternStep = $tdz$__pattern_after_default.x;
-  if (arrPatternStep === undefined) {
-    tmpArg_1 = { y: 'fail2' };
-    arrPatternStep = $(tmpArg_1);
-  }
-  let y = arrPatternStep.y;
-  if (y === undefined) {
-    y = $('fail');
-  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  let objPatternAfterDefault = tmpTernaryTest_1
+    ? ((tmpArg_1 = { y: 'fail2' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
+    : objPatternBeforeDefault;
+  let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  tmpTernaryTest_2 = objPatternBeforeDefault_1 === undefined;
+  let y = tmpTernaryTest_2 ? ((tmpTernaryConsequent_2 = $('fail')), tmpTernaryConsequent_2) : objPatternBeforeDefault_1;
   return 'bad';
 }
 var tmpArg_2;
@@ -52,20 +55,22 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   var tmpArg_1;
+  var tmpTernaryTest_2;
+  var tmpTernaryConsequent_2;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
     ? ((tmpArg = { x: { y: 'fail3' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
-  let arrPatternStep = $tdz$__pattern_after_default.x;
-  if (arrPatternStep === undefined) {
-    tmpArg_1 = { y: 'fail2' };
-    arrPatternStep = $(tmpArg_1);
-  }
-  let y = arrPatternStep.y;
-  if (y === undefined) {
-    y = $('fail');
-  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  let objPatternAfterDefault = tmpTernaryTest_1
+    ? ((tmpArg_1 = { y: 'fail2' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
+    : objPatternBeforeDefault;
+  let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  tmpTernaryTest_2 = objPatternBeforeDefault_1 === undefined;
   return 'bad';
 }
 var tmpArg_2;

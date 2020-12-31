@@ -21,10 +21,10 @@ $(f({ x: [[1, 2, 3], 13], a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep_1];
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
+  let arrPatternStep = arrPatternSplat[0];
+  let arrPatternSplat_1 = [...arrPatternStep];
   return 'ok';
 }
 var tmpArg;
@@ -39,9 +39,9 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternSplat = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat[0];
+  let objPatternNoDefault = tmpParamPattern.x;
+  let arrPatternSplat = [...objPatternNoDefault];
+  let arrPatternStep = arrPatternSplat[0];
   return 'ok';
 }
 var tmpArg;

@@ -22,8 +22,10 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 
 `````js filename=intro
 function x_1(tmpParamPattern, tmpParamPattern_1) {
-  let arrPatternStep_5 = tmpParamPattern_1.x;
-  let x_1 = objPatternRest(arrPatternStep_5, []);
+  var tmpTernaryTest;
+  var tmpTernaryTest_1;
+  let objPatternNoDefault = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(objPatternNoDefault, []);
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -33,15 +35,13 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
   let arrPatternSplat_3 = [...arrPatternStep_2];
   let arrPatternStep_3 = arrPatternSplat_3[0];
   let arrPatternSplat_4 = [...arrPatternStep_3];
-  let arrPatternStep_4 = arrPatternSplat_4[0];
-  if (arrPatternStep_4 === undefined) {
-    arrPatternStep_4 = y;
-  }
+  let arrPatternBeforeDefault = arrPatternSplat_4[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep_4 = tmpTernaryTest ? y : arrPatternBeforeDefault;
   let arrPatternSplat_5 = [...arrPatternStep_4];
-  let foo = arrPatternSplat_5[0];
-  if (foo === undefined) {
-    foo = x_1;
-  }
+  let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
+  let foo = tmpTernaryTest_1 ? x_1 : arrPatternBeforeDefault_1;
 }
 `````
 
@@ -49,8 +49,10 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 
 `````js filename=intro
 function x_1(tmpParamPattern, tmpParamPattern_1) {
-  let arrPatternStep_5 = tmpParamPattern_1.x;
-  let x_1 = objPatternRest(arrPatternStep_5, []);
+  var tmpTernaryTest;
+  var tmpTernaryTest_1;
+  let objPatternNoDefault = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(objPatternNoDefault, []);
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -60,14 +62,11 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
   let arrPatternSplat_3 = [...arrPatternStep_2];
   let arrPatternStep_3 = arrPatternSplat_3[0];
   let arrPatternSplat_4 = [...arrPatternStep_3];
-  let arrPatternStep_4 = arrPatternSplat_4[0];
-  if (arrPatternStep_4 === undefined) {
-    arrPatternStep_4 = y;
-  }
+  let arrPatternBeforeDefault = arrPatternSplat_4[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep_4 = tmpTernaryTest ? y : arrPatternBeforeDefault;
   let arrPatternSplat_5 = [...arrPatternStep_4];
-  let foo = arrPatternSplat_5[0];
-  if (foo === undefined) {
-    foo = x_1;
-  }
+  let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
 }
 `````

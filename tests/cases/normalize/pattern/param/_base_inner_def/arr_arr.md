@@ -16,13 +16,13 @@ function i([[ x = a ]]) { return x }
 
 `````js filename=intro
 function i(tmpParamPattern) {
+  var tmpTernaryTest;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1[0];
-  if (x === undefined) {
-    x = a;
-  }
+  let arrPatternBeforeDefault = arrPatternSplat_1[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest ? a : arrPatternBeforeDefault;
   return x;
 }
 `````

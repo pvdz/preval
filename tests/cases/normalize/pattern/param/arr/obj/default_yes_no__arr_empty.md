@@ -21,11 +21,12 @@ $(f([]));
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    arrPatternStep = $('pass');
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
   return 'ok';
 }
 var tmpArg;
@@ -37,11 +38,11 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    arrPatternStep = $('pass');
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
   return 'ok';
 }
 var tmpArg;

@@ -21,8 +21,8 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let y = arrPatternStep.y;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let y = objPatternNoDefault.y;
   return y;
 }
 var tmpArg;
@@ -36,8 +36,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let y = arrPatternStep.y;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let y = objPatternNoDefault.y;
   return y;
 }
 var tmpArg;

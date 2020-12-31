@@ -27,7 +27,7 @@ $(f([{ x: [{ a: 1, b: 2, c: 3 }, 12], y: 11 }, 10], 100));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternStep_1 = arrPatternStep.x;
+  let objPatternNoDefault = arrPatternStep.x;
   return 'ok';
 }
 var tmpArg;

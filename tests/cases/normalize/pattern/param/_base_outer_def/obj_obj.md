@@ -19,9 +19,9 @@ function i($tdz$__pattern) {
   var tmpTernaryTest;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest ? d : $tdz$__pattern;
-  let arrPatternStep = $tdz$__pattern_after_default.x;
-  let arrPatternStep_1 = arrPatternStep.y;
-  let z = arrPatternStep_1.z;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let objPatternNoDefault_1 = objPatternNoDefault.y;
+  let z = objPatternNoDefault_1.z;
   return z;
 }
 `````

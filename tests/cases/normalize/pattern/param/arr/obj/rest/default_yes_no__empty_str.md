@@ -21,13 +21,15 @@ $(f('', 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = { a: 'pass' };
-    arrPatternStep = $(tmpArg);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
   let x = objPatternRest(arrPatternStep, []);
   return x;
 }
@@ -40,13 +42,15 @@ $(tmpArg_1);
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = { a: 'pass' };
-    arrPatternStep = $(tmpArg);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
   let x = objPatternRest(arrPatternStep, []);
   return x;
 }

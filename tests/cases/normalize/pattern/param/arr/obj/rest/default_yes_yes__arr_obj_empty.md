@@ -25,17 +25,19 @@ function f($tdz$__pattern) {
   var tmpElement;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   var tmpArg_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
     ? ((tmpElement = { a: 'fail2' }), (tmpArg = [tmpElement]), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg_1 = { a: 'fail' };
-    arrPatternStep = $(tmpArg_1);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest_1
+    ? ((tmpArg_1 = { a: 'fail' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
+    : arrPatternBeforeDefault;
   let x = objPatternRest(arrPatternStep, []);
   return x;
 }
@@ -54,17 +56,19 @@ function f($tdz$__pattern) {
   var tmpElement;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   var tmpArg_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
     ? ((tmpElement = { a: 'fail2' }), (tmpArg = [tmpElement]), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg_1 = { a: 'fail' };
-    arrPatternStep = $(tmpArg_1);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest_1
+    ? ((tmpArg_1 = { a: 'fail' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
+    : arrPatternBeforeDefault;
   let x = objPatternRest(arrPatternStep, []);
   return x;
 }

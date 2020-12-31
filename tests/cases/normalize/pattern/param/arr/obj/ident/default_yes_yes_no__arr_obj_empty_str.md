@@ -21,17 +21,20 @@ $(f([{ x: '', y: 2, z: 3 }, 20, 30], 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = { x: 'fail2' };
-    arrPatternStep = $(tmpArg);
-  }
-  let x = arrPatternStep.x;
-  if (x === undefined) {
-    x = $('fail');
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = { x: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
+  let objPatternBeforeDefault = arrPatternStep.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault;
   return x;
 }
 var tmpArg_1;
@@ -47,17 +50,20 @@ $(tmpArg_1);
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = { x: 'fail2' };
-    arrPatternStep = $(tmpArg);
-  }
-  let x = arrPatternStep.x;
-  if (x === undefined) {
-    x = $('fail');
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = { x: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
+  let objPatternBeforeDefault = arrPatternStep.x;
+  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault;
   return x;
 }
 var tmpArg_1;

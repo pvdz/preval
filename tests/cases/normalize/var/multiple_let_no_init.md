@@ -18,7 +18,6 @@ $(b);
 $(c);
 `````
 
-
 ## Normalized
 
 `````js filename=intro

@@ -16,10 +16,10 @@ function g({ x = b } ) { return x }
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let x = tmpParamPattern.x;
-  if (x === undefined) {
-    x = b;
-  }
+  var tmpTernaryTest;
+  let objPatternBeforeDefault = tmpParamPattern.x;
+  tmpTernaryTest = objPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest ? b : objPatternBeforeDefault;
   return x;
 }
 `````

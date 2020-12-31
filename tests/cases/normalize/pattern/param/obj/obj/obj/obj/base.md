@@ -27,9 +27,9 @@ $(f({ x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, 
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternStep_1 = arrPatternStep.y;
-  let arrPatternStep_2 = arrPatternStep_1.z;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternNoDefault_1 = objPatternNoDefault.y;
+  let objPatternNoDefault_2 = objPatternNoDefault_1.z;
   return 'ok';
 }
 var tmpArg;
@@ -43,8 +43,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternStep_1 = arrPatternStep.y;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternNoDefault_1 = objPatternNoDefault.y;
   return 'ok';
 }
 var tmpArg;

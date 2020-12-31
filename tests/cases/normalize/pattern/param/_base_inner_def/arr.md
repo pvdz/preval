@@ -16,11 +16,11 @@ function f([ x = a ]) { return x }
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
   let arrPatternSplat = [...tmpParamPattern];
-  let x = arrPatternSplat[0];
-  if (x === undefined) {
-    x = a;
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest ? a : arrPatternBeforeDefault;
   return x;
 }
 `````

@@ -21,18 +21,21 @@ $(f([], 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = ['pass2'];
-    arrPatternStep = $(tmpArg);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
   let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1[0];
-  if (x === undefined) {
-    x = $('fail');
-  }
+  let arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
+  let x = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : arrPatternBeforeDefault_1;
   return x;
 }
 var tmpArg_1;
@@ -44,18 +47,21 @@ $(tmpArg_1);
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
   var tmpArg;
+  var tmpTernaryTest_1;
+  var tmpTernaryConsequent_1;
   let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  if (arrPatternStep === undefined) {
-    tmpArg = ['pass2'];
-    arrPatternStep = $(tmpArg);
-  }
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  let arrPatternStep = tmpTernaryTest
+    ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    : arrPatternBeforeDefault;
   let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1[0];
-  if (x === undefined) {
-    x = $('fail');
-  }
+  let arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+  tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
+  let x = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : arrPatternBeforeDefault_1;
   return x;
 }
 var tmpArg_1;

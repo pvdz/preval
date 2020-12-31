@@ -27,8 +27,8 @@ $(f([{ x: { a: 1, b: 2, c: 3 }, y: 11 }, 10], 100));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternStep_1 = arrPatternStep.x;
-  let y = objPatternRest(arrPatternStep_1, []);
+  let objPatternNoDefault = arrPatternStep.x;
+  let y = objPatternRest(objPatternNoDefault, []);
   return y;
 }
 var tmpArg;
@@ -46,8 +46,8 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternStep_1 = arrPatternStep.x;
-  let y = objPatternRest(arrPatternStep_1, []);
+  let objPatternNoDefault = arrPatternStep.x;
+  let y = objPatternRest(objPatternNoDefault, []);
   return y;
 }
 var tmpArg;

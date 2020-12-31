@@ -20,9 +20,9 @@ function i({x: {y: {z}}}) {
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternStep_1 = arrPatternStep.y;
-  let z_1 = arrPatternStep_1.z;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternNoDefault_1 = objPatternNoDefault.y;
+  let z_1 = objPatternNoDefault_1.z;
   {
     let z_2 = 2;
   }

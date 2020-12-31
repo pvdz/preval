@@ -21,7 +21,7 @@ $(f('abc', 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
+  let objPatternNoDefault = tmpParamPattern.x;
   return 'bad';
 }
 var tmpArg;

@@ -16,12 +16,12 @@ function h([{ x = a }]) { return x}
 
 `````js filename=intro
 function h(tmpParamPattern) {
+  var tmpTernaryTest;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
-  if (x === undefined) {
-    x = a;
-  }
+  let objPatternBeforeDefault = arrPatternStep.x;
+  tmpTernaryTest = objPatternBeforeDefault === undefined;
+  let x = tmpTernaryTest ? a : objPatternBeforeDefault;
   return x;
 }
 `````

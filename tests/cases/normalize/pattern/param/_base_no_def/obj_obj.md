@@ -16,9 +16,9 @@ function i({x: {y: {z}}}) { return z }
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let arrPatternStep = tmpParamPattern.x;
-  let arrPatternStep_1 = arrPatternStep.y;
-  let z = arrPatternStep_1.z;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternNoDefault_1 = objPatternNoDefault.y;
+  let z = objPatternNoDefault_1.z;
   return z;
 }
 `````

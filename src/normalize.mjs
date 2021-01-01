@@ -41,15 +41,15 @@ import * as AST from './ast.mjs';
   - Computed property access with literals that are valid idents become regular property access
   - Normalize conditional expression parts
     - Not doing normalize ternary vs if-else right now because there'll always be contexts that require it to be an expression and there will always be contents that require it to be a statement
-  - Parameter patterns are transformed to body code
+  - All patterns are transformed to body code
+    - Parameter, binding, and assignment patterns
     - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
     - Including spread and defaults for all object/array patterns on any level
-
+  - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
  */
 
 /*
   Ideas for normalization;
-  - arrows with expression body to arrows with block body
   - Figure out how to get around the var-might-be-undefined problem
     - Current implementation makes our system think the var might be `undefined` when we know that's never the case
     - Should the vars we introduce be set at the first time usage instead? hmmm
@@ -98,6 +98,9 @@ import * as AST from './ast.mjs';
     - Probably easier not to have to worry about this pure sugar?
   - Sequence expression
     - In left side of `for` loop. Move them out
+  - Assignments (maybe any complex nodes, even &&|| ?) inside statement tests (if, while) to be moved outside
+  - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
+  - Eliminate noop parts from sequences
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -115,6 +118,8 @@ export function phaseNormalize(fdata, fname) {
   const crumbsNodes = [];
   const crumbsProps = [];
   const crumbsIndexes = [];
+
+  let arrowExpressionInfiLoopGuard = 0;
 
   const ast = fdata.tenkoOutput.ast;
 
@@ -269,7 +274,7 @@ export function phaseNormalize(fdata, fname) {
   function createFreshVarInCurrentRootScope(name) {
     const tmpName = createUniqueGlobalName(name);
     registerGlobalIdent(tmpName, tmpName);
-    log('Recording', tmpName, 'to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+    log('Recording `' + tmpName + '` to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
     lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
     return tmpName;
   }
@@ -608,6 +613,8 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.push(node);
+      node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
+      node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
       node.$p.funcBindingsToInject = [];
     } else if ((parent.type === 'FunctionDeclaration' || parent.type === 'Program') && node.type === 'BlockStatement') {
@@ -639,12 +646,14 @@ export function phaseNormalize(fdata, fname) {
         // Inject all the decls, without init, at the start of the function. Try to maintain order. It's not very important.
         // TODO: dedupe decls. Make sure multiple var statements for the same name are collapsed and prefer func decls
         (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
+        node.$p.varBindingsToInject.length = 0;
       }
       // Put func decls at the top
       if (node.$p.funcBindingsToInject.length) {
         // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
         // Inject all the decls, without init, at the start of the function. Order matters.
         (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
+        node.$p.funcBindingsToInject.length = 0;
       }
     }
   }
@@ -974,9 +983,10 @@ export function phaseNormalize(fdata, fname) {
               AST.variableDeclarator(bindingPatternRootName, dnode.init),
               ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
             ];
+            changed = true;
           } else if (dnode.init) {
             log('There were no bindings so replacing the var declaration with its init');
-            crumbSet(1, AST.expressionStatement(dnode.init))
+            crumbSet(1, AST.expressionStatement(dnode.init));
           } else {
             ASSERT(false, 'binding patterns are required to have an init');
           }
@@ -993,9 +1003,10 @@ export function phaseNormalize(fdata, fname) {
               AST.variableDeclarator(bindingPatternRootName, dnode.init),
               ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
             ];
+            changed = true;
           } else if (dnode.init) {
             log('There were no bindings so replacing the var declaration with its init');
-            crumbSet(1, AST.expressionStatement(dnode.init))
+            crumbSet(1, AST.expressionStatement(dnode.init));
           }
         } else {
           console.dir(node, { depth: null });
@@ -1068,6 +1079,15 @@ export function phaseNormalize(fdata, fname) {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
+      node.$p.varBindingsToInject = [];
+      node.$p.funcBindingsToInject = [];
+    }
+    if (node.type === 'ArrowFunctionExpression') {
+      if (node.expression) {
+        log('Converting arrow with expression body to arrow with statement body that returns it');
+        node.body = AST.blockStatement(AST.returnStatement(node.body))
+        node.expression = false;
+      }
     }
 
     crumb(parent2, prop2, index2);
@@ -1076,6 +1096,35 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.pop();
+
+      if (node.expression) {
+        log('Arrow is an expression. This should be normalized so waiting for next cycle to process var/func injections');
+        // If this is an infinite loop because the normalization fails, then hopefully it'll lead to this point :/
+        changed = true;
+        if (++arrowExpressionInfiLoopGuard > 50) {
+          log('######################');
+          log('############');
+          log('############     Potential Infinite Loop Warning !!!   See expression arrows');
+          log('############');
+          log('######################');
+        }
+      } else {
+        // TODO: dedupe declared names. functions trump vars. last func wins (so order matters).
+        // Since we unshift, add var statements first
+        if (node.$p.varBindingsToInject.length) {
+          // Inject all the decls, without init, at the start of the function. Try to maintain order. It's not very important.
+          // TODO: dedupe decls. Make sure multiple var statements for the same name are collapsed and prefer func decls
+          (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
+          node.$p.varBindingsToInject.length = 0;
+        }
+        // Put func decls at the top
+        if (node.$p.funcBindingsToInject.length) {
+          // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
+          // Inject all the decls, without init, at the start of the function. Order matters.
+          (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
+          node.$p.funcBindingsToInject.length = 0;
+        }
+      }
     }
   }
   function expr(parent, prop, index, node) {
@@ -1129,42 +1178,102 @@ export function phaseNormalize(fdata, fname) {
 
       case 'AssignmentExpression': {
         expr(node, 'right', -1, node.right);
-        expr(node, 'left', -1, node.left);
+        if (node.left.type === 'ObjectPattern') {
+          const rhsTmpName = createFreshVarInCurrentRootScope('objAssignPatternRhs');
+          const cacheNameStack = [rhsTmpName];
+          const newBindings = [];
 
-        if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
-          // `(a, b).c = d` (occurs as a transformation artifact)
-          // -> `(a, b.c = d)`
-          const memb = node.left;
-          const seq = memb.object;
-          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings);
 
-          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(exprs.pop(), node.right, node.operator));
-          crumbSet(1, newNode);
-          _expr(newNode);
-          changed = true;
-        } else if (node.right.type === 'SequenceExpression') {
-          // `a = (b, c)`
-          // -> `(b, a = c)`
-          const seq = node.right;
-          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+          if (newBindings.length) {
+            log('Replacing an assignment pattern with a sequence of regular assignments');
+            // Replace this assignment node with a sequence
+            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
 
-          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
-          crumbSet(1, newNode);
-          _expr(newNode);
-          changed = true;
-        } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
-          // `a = (b, c).d`
-          // -> `(b, a = c.d)`
-          const mem = node.right;
-          const seq = mem.object;
-          const exprs = seq.expressions.slice(0);
-          const newNode = AST.sequenceExpression(
-            ...exprs.slice(0, -1),
-            AST.assignmentExpression(node.left, AST.memberExpression(exprs.pop(), mem.property, mem.computed)),
-          );
-          crumbSet(1, newNode);
-          _expr(newNode);
-          changed = true;
+            const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
+
+            // First assign the current rhs to a tmp variable.
+            //varBindingsToInject.push(AST.variableDeclaration(rhsTmpName, null, 'var'));
+            newBindings.unshift([rhsTmpName, AST.assignmentExpression(rhsTmpName, node.right)]);
+
+            const expressions = [];
+            newBindings.forEach(([name, expr]) => {
+              varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+              expressions.push(AST.assignmentExpression(name, expr));
+            });
+            crumbSet(1, AST.sequenceExpression(expressions));
+            changed = true;
+          } else {
+            log('Node did not generate new statements so replacing the assignment with the rhs');
+            crumbSet(1, node.right);
+          }
+        } else if (node.left.type === 'ArrayPattern') {
+          const rhsTmpName = createFreshVarInCurrentRootScope('arrAssignPatternRhs');
+          const cacheNameStack = [rhsTmpName];
+          const newBindings = [];
+
+          funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings);
+
+          if (newBindings.length) {
+            log('Replacing an assignment pattern with a sequence of regular assignments');
+            // Replace this assignment node with a sequence
+            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+
+            const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
+
+            // First assign the current rhs to a tmp variable.
+            //varBindingsToInject.push(AST.variableDeclaration(rhsTmpName, null, 'var'));
+            newBindings.unshift([rhsTmpName, AST.assignmentExpression(rhsTmpName, node.right)]);
+
+            const expressions = [];
+            newBindings.forEach(([name, expr]) => {
+              varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+              expressions.push(AST.assignmentExpression(name, expr));
+            });
+            crumbSet(1, AST.sequenceExpression(expressions));
+            changed = true;
+          } else {
+            log('Node did not generate new statements so replacing the assignment with the rhs');
+            crumbSet(1, node.right);
+          }
+        } else {
+          expr(node, 'left', -1, node.left);
+
+          if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
+            // `(a, b).c = d` (occurs as a transformation artifact)
+            // -> `(a, b.c = d)`
+            const memb = node.left;
+            const seq = memb.object;
+            const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+
+            const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(exprs.pop(), node.right, node.operator));
+            crumbSet(1, newNode);
+            _expr(newNode);
+            changed = true;
+          } else if (node.right.type === 'SequenceExpression') {
+            // `a = (b, c)`
+            // -> `(b, a = c)`
+            const seq = node.right;
+            const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+
+            const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
+            crumbSet(1, newNode);
+            _expr(newNode);
+            changed = true;
+          } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
+            // `a = (b, c).d`
+            // -> `(b, a = c.d)`
+            const mem = node.right;
+            const seq = mem.object;
+            const exprs = seq.expressions.slice(0);
+            const newNode = AST.sequenceExpression(
+              ...exprs.slice(0, -1),
+              AST.assignmentExpression(node.left, AST.memberExpression(exprs.pop(), mem.property, mem.computed)),
+            );
+            crumbSet(1, newNode);
+            _expr(newNode);
+            changed = true;
+          }
         }
 
         break;

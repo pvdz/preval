@@ -20,7 +20,15 @@ obj.a.b.c();
 `````js filename=intro
 var tmpObj;
 var tmpObj_1;
-const obj = { a: { b: { c: () => $(1) } } };
+const obj = {
+  a: {
+    b: {
+      c: () => {
+        return $(1);
+      },
+    },
+  },
+};
 tmpObj_1 = obj.a;
 tmpObj = tmpObj_1.b;
 tmpObj.c();
@@ -31,7 +39,15 @@ tmpObj.c();
 `````js filename=intro
 var tmpObj;
 var tmpObj_1;
-const obj = { a: { b: { c: () => $(1) } } };
+const obj = {
+  a: {
+    b: {
+      c: () => {
+        return $(1);
+      },
+    },
+  },
+};
 tmpObj_1 = obj.a;
 tmpObj = tmpObj_1.b;
 tmpObj.c();

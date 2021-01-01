@@ -18,18 +18,30 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 'abc',
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ a: 'pass' }) : objPatternBeforeDefault,
-  y = objPatternRest(objPatternAfterDefault, []);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const bindingPatternObjRoot = 'abc';
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = 'abc'.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ a: 'pass' }) : objPatternBeforeDefault,
-  y = objPatternRest(objPatternAfterDefault, []);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const objPatternBeforeDefault = 'abc'.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````

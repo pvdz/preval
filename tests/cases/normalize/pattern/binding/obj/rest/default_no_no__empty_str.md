@@ -18,8 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '',
-  x = objPatternRest(bindingPatternObjRoot, []);
+const bindingPatternObjRoot = '';
+const x = objPatternRest(bindingPatternObjRoot, []);
 $(x);
 `````
 

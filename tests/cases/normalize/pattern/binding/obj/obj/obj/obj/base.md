@@ -24,18 +24,18 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  objPatternNoDefault_2 = objPatternNoDefault_1.z;
+const bindingPatternObjRoot = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const objPatternNoDefault_2 = objPatternNoDefault_1.z;
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y;
+const bindingPatternObjRoot = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
 $('ok');
 `````

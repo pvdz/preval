@@ -18,20 +18,32 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '',
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $(['pass']) : objPatternBeforeDefault,
-  arrPatternSplat = [...objPatternAfterDefault],
-  y = arrPatternSplat.slice(0);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const bindingPatternObjRoot = '';
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = ['pass']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const arrPatternSplat = [...objPatternAfterDefault];
+const y = arrPatternSplat.slice(0);
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = ''.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $(['pass']) : objPatternBeforeDefault,
-  arrPatternSplat = [...objPatternAfterDefault],
-  y = arrPatternSplat.slice(0);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const objPatternBeforeDefault = ''.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = ['pass']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const arrPatternSplat = [...objPatternAfterDefault];
+const y = arrPatternSplat.slice(0);
 $(y);
 `````

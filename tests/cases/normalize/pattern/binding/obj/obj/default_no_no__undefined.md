@@ -18,8 +18,8 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = undefined,
-  objPatternNoDefault = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = undefined;
+const objPatternNoDefault = bindingPatternObjRoot.x;
 $('bad');
 `````
 

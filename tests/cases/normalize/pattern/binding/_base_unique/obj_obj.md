@@ -20,10 +20,10 @@ const {x: {y: {z}}} = 1;
 {
   let z_1 = 1;
 }
-const bindingPatternObjRoot = 1,
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  z = objPatternNoDefault_1.z;
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const z = objPatternNoDefault_1.z;
 {
   let z_2 = 1;
 }

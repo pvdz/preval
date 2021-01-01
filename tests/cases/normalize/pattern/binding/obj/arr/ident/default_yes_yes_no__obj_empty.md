@@ -18,23 +18,39 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = {},
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $(['pass2']) : objPatternBeforeDefault,
-  arrPatternSplat = [...objPatternAfterDefault],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  y = arrPatternBeforeDefault === undefined ? 'fail' : arrPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+const bindingPatternObjRoot = {};
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+const y = tmpTernaryTest_1 ? 'fail' : arrPatternBeforeDefault;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = {},
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $(['pass2']) : objPatternBeforeDefault,
-  arrPatternSplat = [...objPatternAfterDefault],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  y = arrPatternBeforeDefault === undefined ? 'fail' : arrPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+const bindingPatternObjRoot = {};
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+const y = tmpTernaryTest_1 ? 'fail' : arrPatternBeforeDefault;
 $(y);
 `````

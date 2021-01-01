@@ -18,8 +18,8 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = undefined,
-  arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot = undefined;
+const arrPatternSplat = [...bindingPatternArrRoot];
 $('bad');
 `````
 

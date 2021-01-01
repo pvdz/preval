@@ -18,20 +18,32 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [null, 20, 30],
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $({ a: 'fail' }) : arrPatternBeforeDefault,
-  x = objPatternRest(arrPatternStep, []);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const bindingPatternArrRoot = [null, 20, 30];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
+const x = objPatternRest(arrPatternStep, []);
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [null, 20, 30],
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $({ a: 'fail' }) : arrPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const bindingPatternArrRoot = [null, 20, 30];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
 $('bad');
 `````

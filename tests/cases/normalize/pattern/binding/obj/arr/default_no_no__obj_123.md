@@ -18,16 +18,16 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 1, a: 2, b: 3 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault];
+const bindingPatternObjRoot = { x: 1, a: 2, b: 3 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 1, a: 2, b: 3 },
-  objPatternNoDefault = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = { x: 1, a: 2, b: 3 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 $('bad');
 `````

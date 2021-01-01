@@ -15,10 +15,10 @@ const {x: [ y ]} = 1
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1,
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault],
-  y = arrPatternSplat[0];
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const y = arrPatternSplat[0];
 `````
 
 ## Output

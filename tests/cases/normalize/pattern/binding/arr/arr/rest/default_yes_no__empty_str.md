@@ -18,22 +18,28 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = '',
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $('pass') : arrPatternBeforeDefault,
-  arrPatternSplat_1 = [...arrPatternStep],
-  x = arrPatternSplat_1.slice(0);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+const bindingPatternArrRoot = '';
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+const arrPatternSplat_1 = [...arrPatternStep];
+const x = arrPatternSplat_1.slice(0);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...''],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $('pass') : arrPatternBeforeDefault,
-  arrPatternSplat_1 = [...arrPatternStep],
-  x = arrPatternSplat_1.slice(0);
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+const arrPatternSplat = [...''];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+const arrPatternSplat_1 = [...arrPatternStep];
+const x = arrPatternSplat_1.slice(0);
 $(x);
 `````

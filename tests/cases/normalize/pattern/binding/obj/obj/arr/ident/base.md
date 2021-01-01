@@ -22,21 +22,21 @@ $(z);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  arrPatternSplat = [...objPatternNoDefault_1],
-  z = arrPatternSplat[0];
+const bindingPatternObjRoot = { x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const arrPatternSplat = [...objPatternNoDefault_1];
+const z = arrPatternSplat[0];
 $(z);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  arrPatternSplat = [...objPatternNoDefault_1],
-  z = arrPatternSplat[0];
+const bindingPatternObjRoot = { x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const arrPatternSplat = [...objPatternNoDefault_1];
+const z = arrPatternSplat[0];
 $(z);
 `````

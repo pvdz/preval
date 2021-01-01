@@ -18,16 +18,16 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [],
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternStep = arrPatternSplat[0];
+const bindingPatternArrRoot = [];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternStep = arrPatternSplat[0];
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [],
-  arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot = [];
+const arrPatternSplat = [...bindingPatternArrRoot];
 $('bad');
 `````

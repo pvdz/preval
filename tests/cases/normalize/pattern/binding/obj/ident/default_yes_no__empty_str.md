@@ -18,16 +18,22 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '',
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  x = objPatternBeforeDefault === undefined ? $('pass') : objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+const bindingPatternObjRoot = '';
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = ''.x,
-  x = objPatternBeforeDefault === undefined ? $('pass') : objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+const objPatternBeforeDefault = ''.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
 $(x);
 `````

@@ -19,10 +19,10 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-const bindingPatternObjRoot = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault],
-  arrPatternStep = arrPatternSplat[0];
+const bindingPatternObjRoot = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
 $('ok');
 `````
 
@@ -30,8 +30,8 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-const bindingPatternObjRoot = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault];
+const bindingPatternObjRoot = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
 $('ok');
 `````

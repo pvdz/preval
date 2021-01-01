@@ -20,9 +20,9 @@ const [ x ] = 1;
 {
   let x_1 = 1;
 }
-const bindingPatternArrRoot = 1,
-  arrPatternSplat = [...bindingPatternArrRoot],
-  x = arrPatternSplat[0];
+const bindingPatternArrRoot = 1;
+const arrPatternSplat = [...bindingPatternArrRoot];
+const x = arrPatternSplat[0];
 {
   let x_2 = 1;
 }

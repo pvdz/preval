@@ -15,18 +15,23 @@ const [[ x = a ]] = 1;
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = 1,
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternStep = arrPatternSplat[0],
-  arrPatternSplat_1 = [...arrPatternStep],
-  arrPatternBeforeDefault = arrPatternSplat_1[0],
-  x = arrPatternBeforeDefault === undefined ? a : arrPatternBeforeDefault;
+var tmpTernaryTest;
+const bindingPatternArrRoot = 1;
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat_1[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const x = tmpTernaryTest ? a : arrPatternBeforeDefault;
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...1],
-  arrPatternStep = arrPatternSplat[0],
-  arrPatternSplat_1 = [...arrPatternStep];
+var tmpTernaryTest;
+const arrPatternSplat = [...1];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat_1[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 `````

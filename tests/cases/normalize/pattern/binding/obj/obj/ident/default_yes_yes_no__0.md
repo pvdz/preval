@@ -18,20 +18,38 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 0,
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ y: 'pass2' }) : objPatternBeforeDefault,
-  objPatternBeforeDefault_1 = objPatternAfterDefault.y,
-  y = objPatternBeforeDefault_1 === undefined ? $('fail') : objPatternBeforeDefault_1;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
+const bindingPatternObjRoot = 0;
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { y: 'pass2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
+const y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ y: 'pass2' }) : objPatternBeforeDefault,
-  objPatternBeforeDefault_1 = objPatternAfterDefault.y,
-  y = objPatternBeforeDefault_1 === undefined ? $('fail') : objPatternBeforeDefault_1;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
+const objPatternBeforeDefault = (0).x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { y: 'pass2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
+const y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
 $(y);
 `````

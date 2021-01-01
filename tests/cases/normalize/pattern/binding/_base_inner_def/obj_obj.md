@@ -15,16 +15,21 @@ const {x: {y: {z = a }}} = 1;
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1,
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  objPatternBeforeDefault = objPatternNoDefault_1.z,
-  z = objPatternBeforeDefault === undefined ? a : objPatternBeforeDefault;
+var tmpTernaryTest;
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault_1.z;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const z = tmpTernaryTest ? a : objPatternBeforeDefault;
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = (1).x,
-  objPatternNoDefault_1 = objPatternNoDefault.y;
+var tmpTernaryTest;
+const objPatternNoDefault = (1).x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault_1.z;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 `````

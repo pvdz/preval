@@ -15,8 +15,8 @@ const { x } = 1;
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1,
-  x = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = 1;
+const x = bindingPatternObjRoot.x;
 `````
 
 ## Output

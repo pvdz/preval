@@ -20,8 +20,8 @@ const { x } = 1;
 {
   let x_1 = 1;
 }
-const bindingPatternObjRoot = 1,
-  x = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = 1;
+const x = bindingPatternObjRoot.x;
 {
   let x_2 = 1;
 }

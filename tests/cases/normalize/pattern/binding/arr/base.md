@@ -18,8 +18,8 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [1, 2, 3],
-  arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot = [1, 2, 3];
+const arrPatternSplat = [...bindingPatternArrRoot];
 $('ok');
 `````
 

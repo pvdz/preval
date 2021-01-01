@@ -18,15 +18,15 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null },
-  x = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = { x: null };
+const x = bindingPatternObjRoot.x;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null },
-  x = bindingPatternObjRoot.x;
+const bindingPatternObjRoot = { x: null };
+const x = bindingPatternObjRoot.x;
 $(x);
 `````

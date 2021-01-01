@@ -18,21 +18,25 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: [, , , 1], a: 11, b: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  y = arrPatternBeforeDefault === undefined ? 'pass' : arrPatternBeforeDefault;
+var tmpTernaryTest;
+const bindingPatternObjRoot = { x: [, , , 1], a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const y = tmpTernaryTest ? 'pass' : arrPatternBeforeDefault;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: [, , , 1], a: 11, b: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  y = arrPatternBeforeDefault === undefined ? 'pass' : arrPatternBeforeDefault;
+var tmpTernaryTest;
+const bindingPatternObjRoot = { x: [, , , 1], a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const y = tmpTernaryTest ? 'pass' : arrPatternBeforeDefault;
 $(y);
 `````

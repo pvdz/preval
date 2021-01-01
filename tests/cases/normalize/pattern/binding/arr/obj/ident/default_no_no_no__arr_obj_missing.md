@@ -19,10 +19,11 @@ $(x);
 
 `````js filename=intro
 var tmpElement;
-const bindingPatternArrRoot = ((tmpElement = { y: 2, z: 3 }), [tmpElement, 20, 30]),
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternStep = arrPatternSplat[0],
-  x = arrPatternStep.x;
+tmpElement = { y: 2, z: 3 };
+const bindingPatternArrRoot = [tmpElement, 20, 30];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternStep = arrPatternSplat[0];
+const x = arrPatternStep.x;
 $(x);
 `````
 
@@ -30,9 +31,10 @@ $(x);
 
 `````js filename=intro
 var tmpElement;
-const bindingPatternArrRoot = ((tmpElement = { y: 2, z: 3 }), [tmpElement, 20, 30]),
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternStep = arrPatternSplat[0],
-  x = arrPatternStep.x;
+tmpElement = { y: 2, z: 3 };
+const bindingPatternArrRoot = [tmpElement, 20, 30];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternStep = arrPatternSplat[0];
+const x = arrPatternStep.x;
 $(x);
 `````

@@ -15,10 +15,10 @@ const {x: {y: {z: a}}} = 1
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1,
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  a = objPatternNoDefault_1.z;
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const a = objPatternNoDefault_1.z;
 `````
 
 ## Output

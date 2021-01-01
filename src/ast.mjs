@@ -159,6 +159,16 @@ export function newExpression(callee, args) {
   };
 }
 
+export function returnStatement(argument = null) {
+  if (typeof argument === 'string') argument = AST.identifier(argument);
+
+  return {
+    type: 'ReturnStatement',
+    argument,
+    $p: $p(),
+  };
+}
+
 export function sequenceExpression(...expressions) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the expressions array verbatim

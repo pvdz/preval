@@ -18,18 +18,24 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = 0,
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternStep = arrPatternSplat[0],
-  objPatternBeforeDefault = arrPatternStep.x,
-  x = objPatternBeforeDefault === undefined ? $('pass') : objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+const bindingPatternArrRoot = 0;
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...0],
-  arrPatternStep = arrPatternSplat[0];
+var tmpTernaryTest;
+const arrPatternSplat = [...0];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 $('bad');
 `````

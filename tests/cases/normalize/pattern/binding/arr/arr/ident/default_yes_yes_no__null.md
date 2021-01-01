@@ -18,22 +18,40 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = null,
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $(['fail2']) : arrPatternBeforeDefault,
-  arrPatternSplat_1 = [...arrPatternStep],
-  arrPatternBeforeDefault_1 = arrPatternSplat_1[0],
-  x = arrPatternBeforeDefault_1 === undefined ? $('fail') : arrPatternBeforeDefault_1;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
+const bindingPatternArrRoot = null;
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = ['fail2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
+const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
+const x = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : arrPatternBeforeDefault_1;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $(['fail2']) : arrPatternBeforeDefault,
-  arrPatternSplat_1 = [...arrPatternStep];
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+const arrPatternSplat = [...null];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = ['fail2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
+const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
 $('bad');
 `````

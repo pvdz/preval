@@ -18,18 +18,28 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = '',
-  arrPatternSplat = [...bindingPatternArrRoot],
-  arrPatternBeforeDefault = arrPatternSplat[0],
-  arrPatternStep = arrPatternBeforeDefault === undefined ? $(['pass2']) : arrPatternBeforeDefault,
-  arrPatternSplat_1 = [...arrPatternStep];
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const bindingPatternArrRoot = '';
+const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
+const arrPatternSplat_1 = [...arrPatternStep];
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...''],
-  arrPatternBeforeDefault = arrPatternSplat[0];
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+const arrPatternSplat = [...''];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 $('ok');
 `````

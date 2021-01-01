@@ -20,10 +20,10 @@ const {x: [ y ]} = 1;
 {
   let y_1 = 1;
 }
-const bindingPatternObjRoot = 1,
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  arrPatternSplat = [...objPatternNoDefault],
-  y = arrPatternSplat[0];
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const y = arrPatternSplat[0];
 {
   let y_2 = 1;
 }

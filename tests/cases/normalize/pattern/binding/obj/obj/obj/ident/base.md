@@ -22,19 +22,19 @@ $(z);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  z = objPatternNoDefault_1.z;
+const bindingPatternObjRoot = { x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const z = objPatternNoDefault_1.z;
 $(z);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 },
-  objPatternNoDefault = bindingPatternObjRoot.x,
-  objPatternNoDefault_1 = objPatternNoDefault.y,
-  z = objPatternNoDefault_1.z;
+const bindingPatternObjRoot = { x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+const z = objPatternNoDefault_1.z;
 $(z);
 `````

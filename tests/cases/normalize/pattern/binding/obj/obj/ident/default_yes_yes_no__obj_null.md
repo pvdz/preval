@@ -18,20 +18,38 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 },
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ y: 'fail2' }) : objPatternBeforeDefault,
-  objPatternBeforeDefault_1 = objPatternAfterDefault.y,
-  y = objPatternBeforeDefault_1 === undefined ? $('fail') : objPatternBeforeDefault_1;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
+const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { y: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
+const y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 },
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  objPatternAfterDefault = objPatternBeforeDefault === undefined ? $({ y: 'fail2' }) : objPatternBeforeDefault,
-  objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
+const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const objPatternAfterDefault = tmpTernaryTest
+  ? ((tmpArg = { y: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : objPatternBeforeDefault;
+const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
 $('bad');
 `````

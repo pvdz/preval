@@ -15,13 +15,17 @@ const { x = b } = 1;
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1,
-  objPatternBeforeDefault = bindingPatternObjRoot.x,
-  x = objPatternBeforeDefault === undefined ? b : objPatternBeforeDefault;
+var tmpTernaryTest;
+const bindingPatternObjRoot = 1;
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+const x = tmpTernaryTest ? b : objPatternBeforeDefault;
 `````
 
 ## Output
 
 `````js filename=intro
-
+var tmpTernaryTest;
+const objPatternBeforeDefault = (1).x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 `````

@@ -15,13 +15,19 @@ if (void 1) $();
 ## Normalized
 
 `````js filename=intro
-if (void 1) {
-  $();
+{
+  let ifTestTmp = void 1;
+  if (ifTestTmp) {
+    $();
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-
+let ifTestTmp = void 1;
+if (ifTestTmp) {
+  $();
+}
 `````

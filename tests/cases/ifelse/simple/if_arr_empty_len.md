@@ -17,15 +17,19 @@ if ([].length) $();
 ## Normalized
 
 `````js filename=intro
-if ([].length) {
-  $();
+{
+  let ifTestTmp = [].length;
+  if (ifTestTmp) {
+    $();
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-if ([].length) {
+let ifTestTmp = [].length;
+if (ifTestTmp) {
   $();
 }
 `````

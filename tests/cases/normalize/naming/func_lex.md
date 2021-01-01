@@ -31,8 +31,11 @@ function f() {
   {
     let a_1 = $(1);
     $(a_1);
-    if ($()) {
-      return a_1;
+    {
+      let ifTestTmp = $();
+      if (ifTestTmp) {
+        return a_1;
+      }
     }
   }
   return a;
@@ -50,7 +53,8 @@ function f() {
   $(a);
   let a_1 = $(1);
   $(a_1);
-  if ($()) {
+  let ifTestTmp = $();
+  if (ifTestTmp) {
     return a_1;
   }
   return a;

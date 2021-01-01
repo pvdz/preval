@@ -15,20 +15,24 @@ if ($(0)) ($(1), $(2), $(3), $(4), ($(5), $(6)));
 ## Normalized
 
 `````js filename=intro
-if ($(0)) {
-  $(1);
-  $(2);
-  $(3);
-  $(4);
-  $(5);
-  $(6);
+{
+  let ifTestTmp = $(0);
+  if (ifTestTmp) {
+    $(1);
+    $(2);
+    $(3);
+    $(4);
+    $(5);
+    $(6);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-if ($(0)) {
+let ifTestTmp = $(0);
+if (ifTestTmp) {
   $(1);
   $(2);
   $(3);

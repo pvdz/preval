@@ -46,6 +46,7 @@ import * as AST from './ast.mjs';
     - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
     - Including spread and defaults for all object/array patterns on any level
   - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
+  - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
  */
 
 /*
@@ -98,9 +99,8 @@ import * as AST from './ast.mjs';
     - Probably easier not to have to worry about this pure sugar?
   - Sequence expression
     - In left side of `for` loop. Move them out
-  - Assignments (maybe any complex nodes, even &&|| ?) inside statement tests (if, while) to be moved outside
   - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
-  - Eliminate noop parts from sequences
+  - Eliminate noop parts from sequences (this is probably something for phase4)
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -716,6 +716,20 @@ export function phaseNormalize(fdata, fname) {
           uncrumb(node, 'body', -1);
         }
         expr(node, 'test', -1, node.test);
+
+        if (isComplexNode(node.test)) {
+          // `do { ... } while (x+y);`
+          // -> `var tmp; ... do { tmp = x+y; } while (tmp);`
+          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+          log('Outlining complex `do-while` condition');
+          const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
+          funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+
+          node.body.body.push(AST.expressionStatement(AST.assignmentExpression(tmpName, node.test)));
+          node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
+          changed = true;
+        }
+
         break;
       }
 
@@ -867,6 +881,16 @@ export function phaseNormalize(fdata, fname) {
       case 'IfStatement': {
         expr(node, 'test', -1, node.test);
         stmt(node, 'consequent', -1, node.consequent);
+        if (isComplexNode(node.test)) {
+          // `if (x+y) z`
+          // -> `{ let tmp = x+y; if (tmp) z; }`
+          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+          log('Outlining complex `if` condition');
+          const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
+          crumbSet(1, AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node));
+          node.test = AST.identifier(tmpName);
+          changed = true;
+        }
         if (node.consequent.type !== 'BlockStatement') {
           log('Wrapping if-consequent sub-statement in a block');
           crumb(node, 'consequent', -1);
@@ -1075,24 +1099,47 @@ export function phaseNormalize(fdata, fname) {
   }
   function expr2(parent2, prop2, index2, parent, prop, index, node) {
     // Skip one property
+    crumb(parent2, prop2, index2);
+    expr(parent, prop, index, node);
+    uncrumb(parent2, prop2, index2);
+  }
+  function expr(parent, prop, index, node) {
+    ASSERT(
+      !Array.isArray(parent[prop]) || index >= 0,
+      'if parent.prop is an array then the index should be >= 0',
+      parent,
+      prop,
+      index,
+      node,
+    );
+    ASSERT(
+      Array.isArray(parent[prop]) ? parent[prop][index] === node : parent[prop] === node,
+      'parent[prop] (/[index]) should be node',
+      parent,
+      prop,
+      index,
+      node,
+    );
+
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
       node.$p.funcBindingsToInject = [];
-    }
-    if (node.type === 'ArrowFunctionExpression') {
-      if (node.expression) {
-        log('Converting arrow with expression body to arrow with statement body that returns it');
-        node.body = AST.blockStatement(AST.returnStatement(node.body))
-        node.expression = false;
+
+      if (node.type === 'ArrowFunctionExpression') {
+        if (node.expression) {
+          log('Converting arrow with expression body to arrow with statement body that returns it');
+          node.body = AST.blockStatement(AST.returnStatement(node.body));
+          node.expression = false;
+        }
       }
     }
 
-    crumb(parent2, prop2, index2);
-    expr(parent, prop, index, node);
-    uncrumb(parent2, prop2, index2);
+    crumb(parent, prop, index);
+    _expr(node);
+    uncrumb(parent, prop, index);
 
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.pop();
@@ -1126,28 +1173,6 @@ export function phaseNormalize(fdata, fname) {
         }
       }
     }
-  }
-  function expr(parent, prop, index, node) {
-    ASSERT(
-      !Array.isArray(parent[prop]) || index >= 0,
-      'if parent.prop is an array then the index should be >= 0',
-      parent,
-      prop,
-      index,
-      node,
-    );
-    ASSERT(
-      Array.isArray(parent[prop]) ? parent[prop][index] === node : parent[prop] === node,
-      'parent[prop] (/[index]) should be node',
-      parent,
-      prop,
-      index,
-      node,
-    );
-
-    crumb(parent, prop, index);
-    _expr(node);
-    uncrumb(parent, prop, index);
   }
   function _expr(node) {
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);

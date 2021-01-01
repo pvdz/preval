@@ -18,17 +18,21 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if ([].length) {
-  $(1);
-} else {
-  $(2);
+{
+  let ifTestTmp = [].length;
+  if (ifTestTmp) {
+    $(1);
+  } else {
+    $(2);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-if ([].length) {
+let ifTestTmp = [].length;
+if (ifTestTmp) {
   $(1);
 } else {
   $(2);

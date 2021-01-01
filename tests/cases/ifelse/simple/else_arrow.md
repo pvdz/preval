@@ -16,15 +16,23 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if (() => {}) {
-  $(1);
-} else {
-  $(2);
+{
+  let ifTestTmp = () => {};
+  if (ifTestTmp) {
+    $(1);
+  } else {
+    $(2);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
+let ifTestTmp = () => {};
+if (ifTestTmp) {
+  $(1);
+} else {
+  $(2);
+}
 `````

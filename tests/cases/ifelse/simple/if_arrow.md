@@ -15,13 +15,19 @@ if (() => {}) $();
 ## Normalized
 
 `````js filename=intro
-if (() => {}) {
-  $();
+{
+  let ifTestTmp = () => {};
+  if (ifTestTmp) {
+    $();
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$();
+let ifTestTmp = () => {};
+if (ifTestTmp) {
+  $();
+}
 `````

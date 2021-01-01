@@ -15,13 +15,19 @@ if (function(){}) $();
 ## Normalized
 
 `````js filename=intro
-if (function () {}) {
-  $();
+{
+  let ifTestTmp = function () {};
+  if (ifTestTmp) {
+    $();
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$();
+let ifTestTmp = function () {};
+if (ifTestTmp) {
+  $();
+}
 `````

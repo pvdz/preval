@@ -89,7 +89,9 @@ var tmpElement_24;
 var tmpElement_25;
 var tmpElement_26;
 var tmpElement_27;
-tmpArg_2 = (k) => [k, k];
+tmpArg_2 = (k) => {
+  return [k, k];
+};
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
 tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];
 tmpElement_3 = ['console', 'global.console'];
@@ -193,7 +195,9 @@ var tmpElement_24;
 var tmpElement_25;
 var tmpElement_26;
 var tmpElement_27;
-tmpArg_2 = (k) => [k, k];
+tmpArg_2 = (k) => {
+  return [k, k];
+};
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
 tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];
 tmpElement_3 = ['console', 'global.console'];

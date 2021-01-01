@@ -1,16 +1,15 @@
 # Preval test case
 
-# do_while.md
+# obj.md
 
-> normalize > blocks > do_while
+> normalize > pattern > param > _base > obj
 >
-> Add blocks to sub-statements
+> Testing simple pattern normalizations
 
 ## Input
 
 `````js filename=intro
-do $(1);
-while ($(2));
+do { a; b; } while (x + y);
 `````
 
 ## Normalized
@@ -18,8 +17,9 @@ while ($(2));
 `````js filename=intro
 var ifTestTmp;
 do {
-  $(1);
-  ifTestTmp = $(2);
+  a;
+  b;
+  ifTestTmp = x + y;
 } while (ifTestTmp);
 `````
 
@@ -28,7 +28,6 @@ do {
 `````js filename=intro
 var ifTestTmp;
 do {
-  $(1);
-  ifTestTmp = $(2);
+  ifTestTmp = x + y;
 } while (ifTestTmp);
 `````

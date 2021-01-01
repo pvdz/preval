@@ -16,9 +16,12 @@ if (new ($(1))) $(2);
 
 `````js filename=intro
 var tmpNewObj;
-tmpNewObj = $(1);
-if (new tmpNewObj()) {
-  $(2);
+{
+  tmpNewObj = $(1);
+  let ifTestTmp = new tmpNewObj();
+  if (ifTestTmp) {
+    $(2);
+  }
 }
 `````
 
@@ -27,6 +30,8 @@ if (new tmpNewObj()) {
 `````js filename=intro
 var tmpNewObj;
 tmpNewObj = $(1);
-new tmpNewObj();
-$(2);
+let ifTestTmp = new tmpNewObj();
+if (ifTestTmp) {
+  $(2);
+}
 `````

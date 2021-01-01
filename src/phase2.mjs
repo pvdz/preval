@@ -2,6 +2,7 @@ import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers
 import { printer } from '../lib/printer.mjs';
 import { $p } from './$p.mjs';
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
+import * as AST from './ast.mjs';
 
 // Functions have been hoisted, scopes have been resolved, time to merge AST nodes and leave as few nodes as possible
 // without actually interpreting code.
@@ -576,6 +577,14 @@ export function phase2(program, fdata, resolve, req) {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
+
+      if (node.$p.explicitReturns === 'no') {
+        log('Function has at least one implicit return point so adding that to the returns');
+        // at least one branch returns implicitly so add undefined
+        node.$p.returns.push(undefined);
+      } else {
+        log('Function returns explicitly in all branches (', node.$p.explicitReturns, ')');
+      }
     }
     crumb(parent2, prop2, index2);
     expr(parent, prop, index, node, isMethod, isCallee, methodName);
@@ -698,7 +707,12 @@ export function phase2(program, fdata, resolve, req) {
         if (node.left.type === 'Identifier') {
           log('Assignment to:', node.left.name);
           const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
-          meta.updates.push(node.right);
+          meta.updates.push({
+            // parent of this function decl
+            parent: node,
+            prop: 'right',
+            index: -1,
+          });
         }
 
         funcStack[funcStack.length - 1].$p.pure = false; // TODO: confirm whether the assignment is to a closure or not because we can eliminate it for local assignments.
@@ -707,25 +721,15 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'ArrowFunctionExpression': {
-        //let abak = actions;
-        //actions = [];
-
-        //$(node, '@log', 'start of arrow');
-
-        //$(node, '@drop'); // Drop the context of the call. Arrows inherit this from their parent function.
-
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
-        //$(node, '@body_start');
+        ASSERT(
+          !node.expression,
+          'normalization should make sure all arrows with expression body are transformed to arrows with block',
+          node,
+        );
 
-        if (node.expression) {
-          expr(node, 'body', -1, node.body);
-          log('Adding arrow.body as returns node for this func');
-          funcStack[funcStack.length - 1].$p.returns.push(node.body);
-        } else {
-          stmt(node, 'body', -1, node.body);
-          log('The explicitReturns value for its body is:', [node.body.$p.explicitReturns]);
-        }
+        stmt(node, 'body', -1, node.body);
 
         break;
       }
@@ -959,23 +963,8 @@ export function phase2(program, fdata, resolve, req) {
 
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
-        //$(node, '@body_start');
-
         stmt(node, 'body', -1, node.body);
 
-        log('The explicitReturns value for its body is:', [node.body.$p.explicitReturns]);
-        if (node.body.$p.explicitReturns !== 'yes') {
-          // Implicitly return `undefined`
-          //$(node, '@push', 'undefined');
-          //$(node, '@return');
-        }
-
-        //let funcActions = actions;
-        //actions = abak;
-
-        //const debugName = (isMethod ? methodName : node.id ? node.id.name : '<anon>');
-        //const desc = (isMethod ? 'Method' : 'Function') + '<' + debugName + ': line ' + node.loc.start.line + ', column ' + node.loc.start.column + '>';
-        //$(node, '@func', 'N' + node.$p.tid + '=' + debugName, node.id ? node.id.name : '', node.params.map(node => node.name), paramBindingNames, hasRest, minParamRequired, funcActions, isMethod ? 'method' : 'expr', !!node.$p.thisAccess, node.$p.reachableNames, funcToken.n, filename, node.loc.start.column, node.loc.start.line, desc);
         break;
       }
 

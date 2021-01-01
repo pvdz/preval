@@ -17,9 +17,12 @@ if (({ x } = 1)) y;
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-objAssignPatternRhs = objAssignPatternRhs = 1;
-if ((x = objAssignPatternRhs.x)) {
-  y;
+{
+  objAssignPatternRhs = objAssignPatternRhs = 1;
+  let ifTestTmp = (x = objAssignPatternRhs.x);
+  if (ifTestTmp) {
+    y;
+  }
 }
 `````
 
@@ -29,6 +32,7 @@ if ((x = objAssignPatternRhs.x)) {
 var objAssignPatternRhs;
 var x;
 objAssignPatternRhs = objAssignPatternRhs = 1;
-if ((x = objAssignPatternRhs.x)) {
+let ifTestTmp = (x = objAssignPatternRhs.x);
+if (ifTestTmp) {
 }
 `````

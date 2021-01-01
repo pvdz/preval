@@ -20,14 +20,21 @@ if (!$(1))
 ## Normalized
 
 `````js filename=intro
-if ($(-1)) {
-  $(0);
+{
+  let ifTestTmp = $(-1);
+  if (ifTestTmp) {
+    $(0);
+  }
 }
-if (!$(1)) {
-  if ($(2)) {
-    $(3);
-  } else {
-    $(4);
+{
+  let ifTestTmp_2 = !$(1);
+  if (ifTestTmp_2) {
+    let ifTestTmp_1 = $(2);
+    if (ifTestTmp_1) {
+      $(3);
+    } else {
+      $(4);
+    }
   }
 }
 `````
@@ -35,12 +42,14 @@ if (!$(1)) {
 ## Output
 
 `````js filename=intro
-if ($(-1)) {
+let ifTestTmp = $(-1);
+if (ifTestTmp) {
   $(0);
 }
-if ($(1));
-else {
-  if ($(2)) {
+let ifTestTmp_2 = !$(1);
+if (ifTestTmp_2) {
+  let ifTestTmp_1 = $(2);
+  if (ifTestTmp_1) {
     $(3);
   } else {
     $(4);

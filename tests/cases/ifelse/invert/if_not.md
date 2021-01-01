@@ -15,16 +15,19 @@ if (!$(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-if (!$(1)) {
-  $(2);
+{
+  let ifTestTmp = !$(1);
+  if (ifTestTmp) {
+    $(2);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-if ($(1));
-else {
+let ifTestTmp = !$(1);
+if (ifTestTmp) {
   $(2);
 }
 `````

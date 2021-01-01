@@ -18,10 +18,13 @@ if (($(1), $(2)).foo) $(3);
 
 `````js filename=intro
 var tmpObj;
-$(1);
-tmpObj = $(2);
-if (tmpObj.foo) {
-  $(3);
+{
+  $(1);
+  tmpObj = $(2);
+  let ifTestTmp = tmpObj.foo;
+  if (ifTestTmp) {
+    $(3);
+  }
 }
 `````
 
@@ -31,7 +34,8 @@ if (tmpObj.foo) {
 var tmpObj;
 $(1);
 tmpObj = $(2);
-if (tmpObj.foo) {
+let ifTestTmp = tmpObj.foo;
+if (ifTestTmp) {
   $(3);
 }
 `````

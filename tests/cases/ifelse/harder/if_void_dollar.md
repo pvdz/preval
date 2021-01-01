@@ -17,13 +17,19 @@ if (void $(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-if (void $(1)) {
-  $(2);
+{
+  let ifTestTmp = void $(1);
+  if (ifTestTmp) {
+    $(2);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
+let ifTestTmp = void $(1);
+if (ifTestTmp) {
+  $(2);
+}
 `````

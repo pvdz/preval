@@ -17,9 +17,12 @@ if (($(1), $(2))) $(3);
 ## Normalized
 
 `````js filename=intro
-$(1);
-if ($(2)) {
-  $(3);
+{
+  $(1);
+  let ifTestTmp = $(2);
+  if (ifTestTmp) {
+    $(3);
+  }
 }
 `````
 
@@ -27,7 +30,8 @@ if ($(2)) {
 
 `````js filename=intro
 $(1);
-if ($(2)) {
+let ifTestTmp = $(2);
+if (ifTestTmp) {
   $(3);
 }
 `````

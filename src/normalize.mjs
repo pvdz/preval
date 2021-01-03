@@ -353,10 +353,7 @@ export function phaseNormalize(fdata, fname) {
 
     ASSERT(isComplexNode(node), 'this probably should not be called on simple nodes...');
 
-    const tmpName = createFreshVarInCurrentRootScope(tmpNameBase);
-
-    funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
-
+    const tmpName = createFreshVarInCurrentRootScope(tmpNameBase, true);
     const assign = AST.assignmentExpression(tmpName, node);
     return AST.sequenceExpression(assign, AST.identifier(tmpName));
   }
@@ -522,8 +519,7 @@ export function phaseNormalize(fdata, fname) {
     const newArgs = [];
     node.arguments.forEach((anode, i) => {
       if (isComplexNode(anode)) {
-        const tmpName = createFreshVarInCurrentRootScope('tmpArg');
-        funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+        const tmpName = createFreshVarInCurrentRootScope('tmpArg', true);
         assigns.push(AST.assignmentExpression(tmpName, anode));
         newArgs.push(AST.identifier(tmpName));
       } else {
@@ -570,10 +566,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (isComplexNode(valueNode)) {
-        const tmpName = createFreshVarInCurrentRootScope('tmpElement');
-
-        funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
-
+        const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
         assigns.push(AST.assignmentExpression(tmpName, valueNode));
         newElements.push(anode.type === 'SpreadElement' ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
       } else {
@@ -1584,9 +1577,7 @@ export function phaseNormalize(fdata, fname) {
           log('- Type of computed property:', node.property.type);
           before(node);
 
-          const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp');
-
-          funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+          const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp', true);
 
           const seq = AST.sequenceExpression(
             AST.assignmentExpression(tmpName, node.property),

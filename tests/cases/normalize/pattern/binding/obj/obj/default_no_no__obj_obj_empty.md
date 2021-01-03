@@ -27,5 +27,6 @@ $('ok');
 
 `````js filename=intro
 const bindingPatternObjRoot = { x: {}, b: 11, c: 12 };
+bindingPatternObjRoot.x;
 $('ok');
 `````

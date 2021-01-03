@@ -27,5 +27,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
+const objPatternNoDefault = (0).x;
+objPatternRest(objPatternNoDefault, []);
 $('bad');
 `````

@@ -43,5 +43,6 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault_1 = arrPatternStep.y;
+[...objPatternNoDefault_1];
 $('ok');
 `````

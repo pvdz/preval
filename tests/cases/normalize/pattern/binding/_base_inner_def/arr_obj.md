@@ -32,4 +32,5 @@ const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? a : objPatternBeforeDefault;
 `````

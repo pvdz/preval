@@ -37,5 +37,6 @@ const bindingPatternObjRoot = {};
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : objPatternBeforeDefault;
 $('bad');
 `````

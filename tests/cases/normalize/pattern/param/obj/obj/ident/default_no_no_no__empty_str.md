@@ -35,6 +35,7 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
+  objPatternNoDefault.y;
   return 'bad';
 }
 var tmpArg;

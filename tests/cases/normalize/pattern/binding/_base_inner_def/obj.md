@@ -28,4 +28,5 @@ const x = tmpTernaryTest ? b : objPatternBeforeDefault;
 var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? b : objPatternBeforeDefault;
 `````

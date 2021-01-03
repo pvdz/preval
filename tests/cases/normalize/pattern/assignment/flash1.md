@@ -68,5 +68,6 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
   let arrPatternSplat_5 = [...arrPatternStep_4];
   let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
   tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
+  tmpTernaryTest_1 ? x_1 : arrPatternBeforeDefault_1;
 }
 `````

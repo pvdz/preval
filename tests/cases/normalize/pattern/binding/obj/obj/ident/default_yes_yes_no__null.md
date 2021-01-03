@@ -42,6 +42,7 @@ var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
 var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
 const objPatternBeforeDefault = null.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 const objPatternAfterDefault = tmpTernaryTest
@@ -49,5 +50,6 @@ const objPatternAfterDefault = tmpTernaryTest
   : objPatternBeforeDefault;
 const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
 tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
+tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
 $('bad');
 `````

@@ -29,5 +29,6 @@ $('bad');
 `````js filename=intro
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
+arrPatternSplat[0];
 $('bad');
 `````

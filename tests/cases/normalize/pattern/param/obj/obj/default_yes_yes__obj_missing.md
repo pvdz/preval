@@ -61,6 +61,7 @@ function f($tdz$__pattern) {
     : $tdz$__pattern;
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+  tmpTernaryTest_1 ? ((tmpArg_1 = { x: 'pass' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1) : objPatternBeforeDefault;
   return 'ok';
 }
 var tmpArg_2;

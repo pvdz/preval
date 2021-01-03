@@ -26,5 +26,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
+[...'xyz'];
 $('ok');
 `````

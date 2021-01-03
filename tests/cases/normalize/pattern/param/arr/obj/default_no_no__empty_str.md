@@ -35,6 +35,7 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
+  arrPatternSplat[0];
   return 'bad';
 }
 var tmpArg;

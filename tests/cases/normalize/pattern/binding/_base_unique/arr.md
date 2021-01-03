@@ -31,5 +31,6 @@ const x = arrPatternSplat[0];
 ## Output
 
 `````js filename=intro
-
+const arrPatternSplat = [...1];
+arrPatternSplat[0];
 `````

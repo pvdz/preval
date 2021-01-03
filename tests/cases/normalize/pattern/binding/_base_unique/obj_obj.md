@@ -33,4 +33,6 @@ const z = objPatternNoDefault_1.z;
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
+const objPatternNoDefault_1 = objPatternNoDefault.y;
+objPatternNoDefault_1.z;
 `````

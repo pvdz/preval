@@ -71,6 +71,7 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   tmpTernaryTest_2 = arrPatternBeforeDefault === undefined;
+  tmpTernaryTest_2 ? 'fail' : arrPatternBeforeDefault;
   return 'bad';
 }
 var tmpArg_2;

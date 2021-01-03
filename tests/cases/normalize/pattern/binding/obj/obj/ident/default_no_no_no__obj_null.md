@@ -29,5 +29,6 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
+objPatternNoDefault.y;
 $('bad');
 `````

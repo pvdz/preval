@@ -59,6 +59,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+  tmpTernaryTest_1 ? 'fail' : arrPatternBeforeDefault;
   return 'bad';
 }
 var tmpArg_1;

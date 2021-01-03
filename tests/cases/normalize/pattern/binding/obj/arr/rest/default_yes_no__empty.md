@@ -43,5 +43,7 @@ tmpTernaryTest = objPatternBeforeDefault === undefined;
 const objPatternAfterDefault = tmpTernaryTest
   ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
   : objPatternBeforeDefault;
+const arrPatternSplat = [...objPatternAfterDefault];
+arrPatternSplat.slice(0);
 $('bad');
 `````

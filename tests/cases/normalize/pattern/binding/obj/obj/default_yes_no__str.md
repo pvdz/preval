@@ -34,7 +34,10 @@ $('ok');
 
 `````js filename=intro
 var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
 const objPatternBeforeDefault = 'abc'.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? ((tmpArg = { x: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent) : objPatternBeforeDefault;
 $('ok');
 `````

@@ -41,5 +41,9 @@ var tmpArg;
 const arrPatternSplat = [...undefined];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
+const arrPatternStep = tmpTernaryTest
+  ? ((tmpArg = ['fail2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+  : arrPatternBeforeDefault;
+[...arrPatternStep];
 $('bad');
 `````

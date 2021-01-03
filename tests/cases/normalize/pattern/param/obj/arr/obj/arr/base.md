@@ -50,6 +50,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault_1 = arrPatternStep.y;
+  [...objPatternNoDefault_1];
   return 'ok';
 }
 var tmpArg;

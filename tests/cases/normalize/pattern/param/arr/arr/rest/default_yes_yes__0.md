@@ -55,6 +55,7 @@ function f($tdz$__pattern) {
   tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
   let arrPatternStep = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : arrPatternBeforeDefault;
   let arrPatternSplat_1 = [...arrPatternStep];
+  arrPatternSplat_1.slice(0);
   return 'bad';
 }
 var tmpArg;

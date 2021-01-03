@@ -37,5 +37,6 @@ const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
+tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
 $('ok');
 `````

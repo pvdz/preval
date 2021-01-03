@@ -43,6 +43,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   tmpTernaryTest = arrPatternBeforeDefault === undefined;
+  tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
   return 'ok';
 }
 var tmpArg;

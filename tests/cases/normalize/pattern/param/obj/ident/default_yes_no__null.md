@@ -41,6 +41,7 @@ function f(tmpParamPattern) {
   var tmpTernaryConsequent;
   let objPatternBeforeDefault = tmpParamPattern.x;
   tmpTernaryTest = objPatternBeforeDefault === undefined;
+  tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : objPatternBeforeDefault;
   return 'bad';
 }
 var tmpArg;

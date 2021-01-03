@@ -25,4 +25,6 @@ const x = arrPatternStep.x;
 
 `````js filename=intro
 const arrPatternSplat = [...1];
+const arrPatternStep = arrPatternSplat[0];
+arrPatternStep.x;
 `````

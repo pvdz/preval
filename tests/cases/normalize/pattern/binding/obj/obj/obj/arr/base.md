@@ -39,5 +39,6 @@ const bindingPatternObjRoot = { x: { x: 13, y: { z: [1, 2, 3], a: 15, b: 16 }, z
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const objPatternNoDefault_2 = objPatternNoDefault_1.z;
+[...objPatternNoDefault_2];
 $('ok');
 `````

@@ -33,5 +33,15 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-
+($tdz$__a) => {
+  var objAssignPatternRhs;
+  var x;
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
+  tmpTernaryTest = $tdz$__a === undefined;
+  let a = tmpTernaryTest
+    ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent)
+    : $tdz$__a;
+  return a;
+};
 `````

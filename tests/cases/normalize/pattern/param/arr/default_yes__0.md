@@ -41,6 +41,7 @@ function f($tdz$__pattern) {
   var tmpTernaryConsequent;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : $tdz$__pattern;
+  [...$tdz$__pattern_after_default];
   return 'bad';
 }
 var tmpArg;

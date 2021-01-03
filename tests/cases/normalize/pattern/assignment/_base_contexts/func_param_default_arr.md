@@ -38,5 +38,20 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-
+($tdz$__a) => {
+  var arrAssignPatternRhs;
+  var arrPatternSplat;
+  var x;
+  var tmpTernaryTest;
+  var tmpTernaryConsequent;
+  tmpTernaryTest = $tdz$__a === undefined;
+  let a = tmpTernaryTest
+    ? ((arrAssignPatternRhs = 1),
+      (arrPatternSplat = [...arrAssignPatternRhs]),
+      (x = arrPatternSplat[0]),
+      (tmpTernaryConsequent = x),
+      tmpTernaryConsequent)
+    : $tdz$__a;
+  return a;
+};
 `````

@@ -47,5 +47,6 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 const arrPatternSplat_1 = [...objPatternNoDefault];
 const arrPatternStep_1 = arrPatternSplat_1[0];
+[...arrPatternStep_1];
 $('ok');
 `````

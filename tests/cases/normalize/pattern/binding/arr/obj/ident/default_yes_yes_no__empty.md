@@ -43,6 +43,7 @@ var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
 var tmpTernaryTest_1;
+var tmpTernaryConsequent_1;
 const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
@@ -51,5 +52,6 @@ const arrPatternStep = tmpTernaryTest
   : arrPatternBeforeDefault;
 const objPatternBeforeDefault = arrPatternStep.x;
 tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
+tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('pass')), tmpTernaryConsequent_1) : objPatternBeforeDefault;
 $('bad');
 `````

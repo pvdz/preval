@@ -47,6 +47,7 @@ function f(tmpParamPattern) {
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
   tmpTernaryTest = objPatternBeforeDefault === undefined;
+  tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
   return 'bad';
 }
 var tmpArg;

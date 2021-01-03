@@ -42,5 +42,6 @@ const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat_1 = [...arrPatternStep];
+arrPatternSplat_1[0];
 $('ok');
 `````

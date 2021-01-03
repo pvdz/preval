@@ -32,4 +32,5 @@ const objPatternNoDefault = (1).x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault_1.z;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? a : objPatternBeforeDefault;
 `````

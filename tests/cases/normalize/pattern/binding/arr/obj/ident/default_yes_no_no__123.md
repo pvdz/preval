@@ -33,9 +33,11 @@ $('bad');
 
 `````js filename=intro
 var tmpTernaryTest;
+var tmpTernaryConsequent;
 const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
 $('bad');
 `````

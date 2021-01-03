@@ -55,6 +55,7 @@ function f(tmpParamPattern) {
   let arrPatternStep_1 = arrPatternSplat_1[0];
   let arrPatternSplat_2 = [...arrPatternStep_1];
   let arrPatternStep_2 = arrPatternSplat_2[0];
+  [...arrPatternStep_2];
   return 'ok';
 }
 var tmpArg;

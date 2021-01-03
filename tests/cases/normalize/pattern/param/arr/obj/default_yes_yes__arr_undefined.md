@@ -59,6 +59,7 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+  tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : arrPatternBeforeDefault;
   return 'ok';
 }
 var tmpArg_1;

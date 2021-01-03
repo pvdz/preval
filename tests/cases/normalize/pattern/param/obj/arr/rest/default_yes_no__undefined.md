@@ -51,6 +51,7 @@ function f(tmpParamPattern) {
     ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : objPatternBeforeDefault;
   let arrPatternSplat = [...objPatternAfterDefault];
+  arrPatternSplat.slice(0);
   return 'bad';
 }
 var tmpArg_1;

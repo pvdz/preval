@@ -39,6 +39,7 @@ function f($tdz$__pattern) {
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   tmpTernaryTest = $tdz$__pattern === undefined;
+  tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : $tdz$__pattern;
   return 'ok';
 }
 var tmpArg;

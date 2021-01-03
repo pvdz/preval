@@ -30,4 +30,5 @@ var tmpTernaryTest;
 const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
+tmpTernaryTest ? a : arrPatternBeforeDefault;
 `````

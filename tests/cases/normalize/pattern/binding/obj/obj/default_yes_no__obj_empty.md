@@ -39,5 +39,6 @@ var tmpArg;
 const bindingPatternObjRoot = {};
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
+tmpTernaryTest ? ((tmpArg = { x: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent) : objPatternBeforeDefault;
 $('ok');
 `````

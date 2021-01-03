@@ -1,6 +1,7 @@
 import { printer } from '../lib/printer.mjs';
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
 import { $p } from './$p.mjs';
+import * as AST from './ast.mjs';
 
 // This phase is intended for things that require a full parse first. Like figuring out how often a variable is assigned to.
 // It's always guaranteed to run at least once any time preval is used.
@@ -480,7 +481,7 @@ export function phase4(program, fdata, resolve, req) {
               if (crumbsNodes.length > 2 && crumbGet(2).type === 'ExportNamedDeclaration') {
                 log('Binding is not used but exported so not eliminated here (yet)');
               } else {
-                log('Binding is no longer referenced so we can remove its declarator');
+                log('Binding is no longer referenced so we can replace its declarator with its init');
                 ASSERT(
                   meta.usages[0].parent === dnode,
                   'the last usage should be its own declaration',
@@ -489,8 +490,13 @@ export function phase4(program, fdata, resolve, req) {
                   dnode,
                 );
                 // Drop the declaration. It's no longer useful.
-                node.declarations[i] = null; // Filtered out after this loop
+                // TODO: for-headers, where this will fail, and there's no easy generic way out
+                ASSERT(node.declarations.length === 1, 'should only have this binding as the declarator');
+                if (dnode.init) crumbSet(1, AST.expressionStatement(dnode.init));
+                else crumbSet(1, AST.emptyStatement());
+
                 removed = true;
+                changed = true;
               }
             }
           } else {

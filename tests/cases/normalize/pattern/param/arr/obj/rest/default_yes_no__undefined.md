@@ -51,6 +51,7 @@ function f(tmpParamPattern) {
   let arrPatternStep = tmpTernaryTest
     ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : arrPatternBeforeDefault;
+  objPatternRest(arrPatternStep, []);
   return 'bad';
 }
 var tmpArg_1;

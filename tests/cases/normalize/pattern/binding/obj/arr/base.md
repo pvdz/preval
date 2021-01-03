@@ -29,5 +29,6 @@ $('ok');
 `````js filename=intro
 const bindingPatternObjRoot = { x: [1, 2, 3], a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
+[...objPatternNoDefault];
 $('ok');
 `````

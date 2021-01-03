@@ -33,5 +33,6 @@ var tmpElement;
 tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
+arrPatternSplat[0];
 $('ok');
 `````

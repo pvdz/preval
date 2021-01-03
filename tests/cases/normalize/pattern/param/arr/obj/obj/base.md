@@ -46,6 +46,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
+  arrPatternStep.x;
   return 'ok';
 }
 var tmpArg;

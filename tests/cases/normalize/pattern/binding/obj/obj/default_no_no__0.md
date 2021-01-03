@@ -26,5 +26,6 @@ $('bad');
 ## Output
 
 `````js filename=intro
+(0).x;
 $('bad');
 `````

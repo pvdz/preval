@@ -53,5 +53,6 @@ const arrPatternSplat_1 = [...arrPatternStep];
 const arrPatternStep_1 = arrPatternSplat_1[0];
 const arrPatternSplat_2 = [...arrPatternStep_1];
 const arrPatternStep_2 = arrPatternSplat_2[0];
+[...arrPatternStep_2];
 $('ok');
 `````

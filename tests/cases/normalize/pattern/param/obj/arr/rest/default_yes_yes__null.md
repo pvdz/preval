@@ -65,6 +65,7 @@ function f($tdz$__pattern) {
     ? ((tmpArg_1 = ['fail']), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
     : objPatternBeforeDefault;
   let arrPatternSplat = [...objPatternAfterDefault];
+  arrPatternSplat.slice(0);
   return 'bad';
 }
 var tmpArg_2;

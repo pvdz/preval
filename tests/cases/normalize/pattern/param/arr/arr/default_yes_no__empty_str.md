@@ -51,6 +51,7 @@ function f(tmpParamPattern) {
   let arrPatternStep = tmpTernaryTest
     ? ((tmpArg = ['pass2']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : arrPatternBeforeDefault;
+  [...arrPatternStep];
   return 'ok';
 }
 var tmpArg_1;

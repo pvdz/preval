@@ -47,6 +47,7 @@ function f($tdz$__pattern) {
   let $tdz$__pattern_after_default = tmpTernaryTest
     ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
+  objPatternRest($tdz$__pattern_after_default, []);
   return 'bad';
 }
 var tmpArg_1;

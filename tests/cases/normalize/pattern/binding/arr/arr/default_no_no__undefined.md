@@ -29,5 +29,7 @@ $('bad');
 
 `````js filename=intro
 const arrPatternSplat = [...undefined];
+const arrPatternStep = arrPatternSplat[0];
+[...arrPatternStep];
 $('bad');
 `````

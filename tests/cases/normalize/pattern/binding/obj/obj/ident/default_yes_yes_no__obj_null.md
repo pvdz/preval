@@ -51,5 +51,6 @@ const objPatternAfterDefault = tmpTernaryTest
   : objPatternBeforeDefault;
 const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
 tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
+tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
 $('bad');
 `````

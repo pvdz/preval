@@ -39,6 +39,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
+  arrPatternSplat[0];
   return 'bad';
 }
 var tmpArg;

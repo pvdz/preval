@@ -45,6 +45,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault_1 = objPatternNoDefault.y;
+  objPatternNoDefault_1.z;
   return 'ok';
 }
 var tmpArg;

@@ -69,6 +69,7 @@ function f($tdz$__pattern) {
   let arrPatternStep = tmpTernaryTest_1
     ? ((tmpArg_1 = { a: 'fail' }), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
     : arrPatternBeforeDefault;
+  objPatternRest(arrPatternStep, []);
   return 'bad';
 }
 var tmpArg_2;

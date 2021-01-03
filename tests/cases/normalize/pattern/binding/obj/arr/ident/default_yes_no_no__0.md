@@ -36,5 +36,6 @@ const objPatternNoDefault = (0).x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
+tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
 $('bad');
 `````

@@ -33,6 +33,7 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  tmpParamPattern.x;
   return 'bad';
 }
 var tmpArg;

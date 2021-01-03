@@ -41,5 +41,6 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
 const arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : arrPatternBeforeDefault;
 const arrPatternSplat_1 = [...arrPatternStep];
+arrPatternSplat_1.slice(0);
 $('bad');
 `````

@@ -49,6 +49,7 @@ function f(tmpParamPattern) {
   let objPatternAfterDefault = tmpTernaryTest
     ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : objPatternBeforeDefault;
+  [...objPatternAfterDefault];
   return 'ok';
 }
 var tmpArg_1;

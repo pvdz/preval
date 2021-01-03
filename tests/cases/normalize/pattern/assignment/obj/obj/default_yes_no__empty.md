@@ -24,7 +24,7 @@ var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest
@@ -42,7 +42,7 @@ var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest

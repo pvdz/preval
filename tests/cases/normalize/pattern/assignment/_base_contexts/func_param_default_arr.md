@@ -25,7 +25,7 @@ const f = ($tdz$__a) => {
   var tmpTernaryConsequent;
   tmpTernaryTest = $tdz$__a === undefined;
   let a = tmpTernaryTest
-    ? ((arrAssignPatternRhs = arrAssignPatternRhs = 1),
+    ? ((arrAssignPatternRhs = 1),
       (arrPatternSplat = [...arrAssignPatternRhs]),
       (tmpTernaryConsequent = x = arrPatternSplat[0]),
       tmpTernaryConsequent)

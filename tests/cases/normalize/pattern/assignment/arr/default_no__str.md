@@ -20,7 +20,7 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-arrAssignPatternRhs = arrAssignPatternRhs = 'xyz';
+arrAssignPatternRhs = 'xyz';
 arrPatternSplat = [...arrAssignPatternRhs];
 $('ok');
 `````
@@ -30,7 +30,7 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-arrAssignPatternRhs = arrAssignPatternRhs = 'xyz';
+arrAssignPatternRhs = 'xyz';
 arrPatternSplat = [...arrAssignPatternRhs];
 $('ok');
 `````

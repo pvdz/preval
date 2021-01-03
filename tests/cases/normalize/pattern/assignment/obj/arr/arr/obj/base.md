@@ -27,11 +27,7 @@ var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternStep_1;
-objAssignPatternRhs = objAssignPatternRhs = {
-  x: ((tmpElement_1 = { a: 1, b: 2, c: 3 }), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]),
-  a: 11,
-  b: 12,
-};
+objAssignPatternRhs = { x: ((tmpElement_1 = { a: 1, b: 2, c: 3 }), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
@@ -51,11 +47,7 @@ var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternStep_1;
-objAssignPatternRhs = objAssignPatternRhs = {
-  x: ((tmpElement_1 = { a: 1, b: 2, c: 3 }), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]),
-  a: 11,
-  b: 12,
-};
+objAssignPatternRhs = { x: ((tmpElement_1 = { a: 1, b: 2, c: 3 }), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];

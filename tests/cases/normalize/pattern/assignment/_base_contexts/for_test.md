@@ -17,7 +17,7 @@ for ({ x } = 1;;) y;
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-for (objAssignPatternRhs = objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ; ) {
+for (objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ; ) {
   y;
 }
 `````
@@ -27,5 +27,5 @@ for (objAssignPatternRhs = objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ;
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-for (objAssignPatternRhs = objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ; ) {}
+for (objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ; ) {}
 `````

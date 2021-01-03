@@ -20,7 +20,7 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-objAssignPatternRhs = objAssignPatternRhs = { x: null };
+objAssignPatternRhs = { x: null };
 x = objAssignPatternRhs.x;
 $(x);
 `````
@@ -30,7 +30,7 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-objAssignPatternRhs = objAssignPatternRhs = { x: null };
+objAssignPatternRhs = { x: null };
 x = objAssignPatternRhs.x;
 $(x);
 `````

@@ -26,7 +26,7 @@ There are a few things that make the assignment case different from param and bi
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var x;
-arrAssignPatternRhs = arrAssignPatternRhs = 1;
+arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 `````
@@ -37,7 +37,7 @@ x = arrPatternSplat[0];
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var x;
-arrAssignPatternRhs = arrAssignPatternRhs = 1;
+arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 `````

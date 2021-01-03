@@ -28,7 +28,7 @@ var a_1;
 {
   let a = 1;
 }
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault_1.z;
@@ -44,7 +44,7 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
 var a_1;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault_1.z;

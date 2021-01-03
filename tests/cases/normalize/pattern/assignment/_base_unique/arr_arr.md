@@ -25,7 +25,7 @@ var x_1;
 {
   let x = 1;
 }
-arrAssignPatternRhs = arrAssignPatternRhs = 1;
+arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
@@ -43,7 +43,7 @@ var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
 var x_1;
-arrAssignPatternRhs = arrAssignPatternRhs = 1;
+arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];

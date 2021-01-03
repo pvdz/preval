@@ -1292,8 +1292,7 @@ export function phaseNormalize(fdata, fname) {
             const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
 
             // First assign the current rhs to a tmp variable.
-            //varBindingsToInject.push(AST.variableDeclaration(rhsTmpName, null, 'var'));
-            newBindings.unshift([rhsTmpName, AST.assignmentExpression(rhsTmpName, node.right)]);
+            newBindings.unshift([rhsTmpName, node.right]);
 
             const expressions = [];
             newBindings.forEach(([name, expr]) => {
@@ -1329,8 +1328,7 @@ export function phaseNormalize(fdata, fname) {
             const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
 
             // First assign the current rhs to a tmp variable.
-            //varBindingsToInject.push(AST.variableDeclaration(rhsTmpName, null, 'var'));
-            newBindings.unshift([rhsTmpName, AST.assignmentExpression(rhsTmpName, node.right)]);
+            newBindings.unshift([rhsTmpName, node.right]);
 
             const expressions = [];
             newBindings.forEach(([name, expr]) => {

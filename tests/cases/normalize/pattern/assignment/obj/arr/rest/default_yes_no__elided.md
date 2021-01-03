@@ -26,7 +26,7 @@ var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var y;
-objAssignPatternRhs = objAssignPatternRhs = { x: [, , , 1], a: 11, b: 12 };
+objAssignPatternRhs = { x: [, , , 1], a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest
@@ -48,7 +48,7 @@ var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var y;
-objAssignPatternRhs = objAssignPatternRhs = { x: [, , , 1], a: 11, b: 12 };
+objAssignPatternRhs = { x: [, , , 1], a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest

@@ -22,7 +22,7 @@ var x_1;
 {
   let x = 1;
 }
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 x_1 = objAssignPatternRhs.x;
 {
   let x_2 = 1;
@@ -34,6 +34,6 @@ x_1 = objAssignPatternRhs.x;
 `````js filename=intro
 var objAssignPatternRhs;
 var x_1;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 x_1 = objAssignPatternRhs.x;
 `````

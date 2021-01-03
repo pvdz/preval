@@ -18,7 +18,7 @@ f({ x } = 1);
 var tmpArg;
 var objAssignPatternRhs;
 var x;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 tmpArg = x = objAssignPatternRhs.x;
 f(tmpArg);
 `````
@@ -29,7 +29,7 @@ f(tmpArg);
 var tmpArg;
 var objAssignPatternRhs;
 var x;
-objAssignPatternRhs = objAssignPatternRhs = 1;
+objAssignPatternRhs = 1;
 tmpArg = x = objAssignPatternRhs.x;
 f(tmpArg);
 `````

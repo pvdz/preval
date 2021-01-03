@@ -11,6 +11,7 @@ The while-body should be normalized before the while-test gets inlined...
 ## Input
 
 `````js filename=intro
+let a = 1, x = 3, y = 4;
 do a; while (x + y);
 `````
 
@@ -18,6 +19,9 @@ do a; while (x + y);
 
 `````js filename=intro
 var ifTestTmp;
+let a = 1;
+let x = 3;
+let y = 4;
 do {
   a;
   ifTestTmp = x + y;
@@ -29,6 +33,6 @@ do {
 `````js filename=intro
 var ifTestTmp;
 do {
-  ifTestTmp = x + y;
+  ifTestTmp = 7;
 } while (ifTestTmp);
 `````

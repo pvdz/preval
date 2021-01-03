@@ -1,7 +1,10 @@
 import { printer } from '../lib/printer.mjs';
-import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
+import { ASSERT, DIM, BOLD, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
 import { $p } from './$p.mjs';
 import * as AST from './ast.mjs';
+import globals from './globals.mjs';
+
+const VERBOSE_TRACING = true;
 
 /*
   Normalization steps that happen:
@@ -100,10 +103,21 @@ import * as AST from './ast.mjs';
   - Sequence expression
     - In left side of `for` loop. Move them out
   - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
-  - Eliminate noop parts from sequences (this is probably something for phase4)
+  - Empty `else` sub-statement should eliminate the else (probably not normalization)
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
+
+function rule(desc) {
+  if (desc.slice(-1) === '"') fixme;
+  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '');
+}
+function before(node) {
+  if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
+}
+function after(node) {
+  if (VERBOSE_TRACING) log(YELLOW + 'After:' + RESET, printer(node));
+}
 
 export function phaseNormalize(fdata, fname) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
@@ -211,11 +225,17 @@ export function phaseNormalize(fdata, fname) {
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
 
+  let passes = 0;
   do {
     changed = false;
     stmt(null, 'ast', -1, ast);
-    if (changed) somethingChanged = true;
     log('\nCurrent state\n--------------\n' + fmat(printer(ast)) + '\n--------------\n');
+    if (changed) {
+      somethingChanged = true;
+      log('Something changed. Running another normalization pass (' + ++passes + ')\n');
+      // Clear usage/update lists because mutations may have affected them
+      fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.updates = []), (meta.usages = [])));
+    }
   } while (changed);
 
   // Rename the ident in all usages to a (file-) globally unique name
@@ -223,10 +243,16 @@ export function phaseNormalize(fdata, fname) {
     // As a result, all bindings in this file ought to now have a unique name.
     if (uniqueName !== obj.originalName) {
       ASSERT(!obj.isExport, 'exports should retain their original name and this should not happen');
-      obj.usages.forEach((node) => (node.name = uniqueName));
+      obj.usages.forEach((node) => {
+        if (node.name !== uniqueName) {
+          rule('All bindings are globally unique');
+          log('- Updating name `' + node.name + '` to the unique name `' + uniqueName + '`');
+          node.name = uniqueName;
+        }
+      });
     }
   });
-  // Note: scope tracking is broken now and requires a reparse (!)
+  // Note: scope tracking is now broken and requires a reparse (!)
 
   log('End of phaseNormalize');
   groupEnd();
@@ -271,11 +297,22 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(b === true || (a === parent, b === prop, c === index), 'ought to pop the same as we pushed. just a sanity check.');
   }
 
-  function createFreshVarInCurrentRootScope(name) {
+  function createFreshVarInCurrentRootScope(name, injectVarBinding) {
     const tmpName = createUniqueGlobalName(name);
     registerGlobalIdent(tmpName, tmpName);
-    log('Recording `' + tmpName + '` to be declared in', lexScopeStack[lexScopeStack.length - 1].$p.nameMapping);
+    const lexScope = lexScopeStack[lexScopeStack.length - 1];
+    log(
+      'Recording `' + tmpName + '` to be declared in',
+      [...lexScope.$p.nameMapping.keys()]
+        .filter(function (key) {
+          return this.has(key) ? false : !!this.add(key);
+        }, new Set(globals.keys()))
+        .join(','),
+    );
     lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
+    if (injectVarBinding) {
+      funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+    }
     return tmpName;
   }
   function isComplexNodeOrAlreadySequenced(node) {
@@ -335,8 +372,11 @@ export function phaseNormalize(fdata, fname) {
     while (i < node.expressions.length) {
       ASSERT(node.expressions[i], 'sequence does not have empty elements?', node);
       if (node.expressions[i].type === 'SequenceExpression') {
-        log('Flattening a sequence');
+        rule('No nested sequences');
+        log('- `(a, (b, c))` --> `(a, b, c)`');
+        before(node);
         node.expressions.splice(i, 1, ...node.expressions[i].expressions);
+        after(node);
         changed = true;
       } else {
         ++i;
@@ -360,36 +400,32 @@ export function phaseNormalize(fdata, fname) {
         const expr = node.body[i].expression;
         if (expr.type === 'SequenceExpression') {
           // Break sequence expressions that are the child of an ExpressionStatement up into separate statements
-          // `a, (b, c), d`
-          // -> `a; b; c; d;`
-          log('Breaking up a sequence');
+          rule('Sequences can not be statements');
+          log('- `a, (b, c), d` --> `a; b; c; d;`');
           node.body.splice(i, 1, ...expr.expressions.map((enode) => AST.expressionStatement(enode)));
           changed = true;
           --i; // revisit (recursively)
         }
       } else if (e.type === 'VariableDeclaration') {
-        log('Parent of sequence is var decl');
         if (e.declarations.length > 1) {
-          log(
-            '- New var decls with multiple bindings were added by normalization. Skipping this statementifySequences step on it until the next round when they are one-binding-per-decl',
-          );
+          log('Found a var decl with multiple bindings. Skipping statementifySequences on it until next pass.');
         } else {
           const init = e.declarations[0].init;
           if (!init) {
           } else if (init.type === 'SequenceExpression') {
-            // `var x = (1, 2)` -> `1; var x = 2`
             // This assumes sub-statements are normalized to be groups already
-            log('Outlining a sequence that is the init of a binding decl');
+            rule('Var binding init can not be sequences');
+            log('- `var x = (1, 2)` --> `1; var x = 2`');
             const exprs = init.expressions;
-            node.body.splice(i, 0, ...init.expressions.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
+            node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
             // Replace the old sequence expression with its last element
-            e.declarations[0].init = init.expressions[init.expressions.length - 1];
+            e.declarations[0].init = exprs[exprs.length - 1];
             changed = true;
             --i; // revisit (recursively)
           } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
-            // `var x = (a, b).x` -> `a; var x = b.x`
             // This assumes sub-statements are normalized to be groups already
-            log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+            rule('Var binding init can not be member expression on sequence');
+            log('- `var x = (a, b).x` --> `a; var x = b.x`');
             const seq = init.object;
             const exprs = seq.expressions;
             node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
@@ -401,9 +437,9 @@ export function phaseNormalize(fdata, fname) {
         }
       } else if (e.type === 'ReturnStatement') {
         if (e.argument.type === 'SequenceExpression') {
-          // `return (a,b)` -> a; return b;`
           // This assumes sub-statements are normalized to be groups already
-          log('Moving the sequence argument of return to individual statements');
+          rule('Argument of return statement can not be sequence');
+          log('- `return (a,b)` --> `a; return b;`');
           const seq = e.argument;
           const exprs = seq.expressions;
           node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
@@ -412,9 +448,9 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           --i; // revisit (recursively)
         } else if (e.argument.type === 'MemberExpression' && e.argument.object.type === 'SequenceExpression') {
-          // `return (a, b).foo` -> `a; return b.foo`
           // This assumes sub-statements are normalized to be groups already
-          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+          rule('Argument of return statement can not be member expression on sequence');
+          log('- `return (a, b).foo` --> `a; return b.foo`');
           const seq = e.argument.object;
           const exprs = seq.expressions;
           node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
@@ -425,9 +461,9 @@ export function phaseNormalize(fdata, fname) {
         }
       } else if (e.type === 'IfStatement') {
         if (e.test.type === 'SequenceExpression') {
-          // `if (a,b) c` -> a; if (b) c;`
           // This assumes sub-statements are normalized to be groups already
-          log('Moving the sequence argument of return to individual statements');
+          rule('Test of if statement can not be sequence');
+          log('- `if (a,b) c` --> `a; if (b) c;`');
           const seq = e.test;
           const exprs = seq.expressions;
           node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
@@ -436,9 +472,9 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           --i; // revisit (recursively)
         } else if (e.test.type === 'MemberExpression' && e.test.object.type === 'SequenceExpression') {
-          // `if ((a,b).x) c` -> a; if (b.x) c;`
           // This assumes sub-statements are normalized to be groups already
-          log('Outlining a sequence that is the object of a member expression of an init of a binding decl');
+          rule('Argument of return statement can not be member expression on sequence');
+          log('- `if ((a,b).foo) c` --> `a; if (b.foo) c;`');
           const seq = e.test.object;
           const exprs = seq.expressions;
           node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
@@ -451,21 +487,23 @@ export function phaseNormalize(fdata, fname) {
       ++i;
     }
   }
-  function ensureVarDeclsCreateOneBinding(node) {
+  function ensureVarDeclsCreateOneBinding(body) {
+    // Node should have a .body with statements/declarations
     // Break up variable declarations that declare multiple bindings
-    // TODO: patterns
+
+    log('ensureVarDeclsCreateOneBinding(', body.type, body instanceof Array, ')');
 
     let i = 0;
-    while (i < node.body.length) {
-      ASSERT(node.body[i], 'block does not have empty elements?', node);
-      const e = node.body[i];
+    while (i < body.length) {
+      ASSERT(body[i], 'block does not have empty elements?', body);
+      const e = body[i];
       if (e.type === 'VariableDeclaration') {
+        log('- var decl has', e.declarations.length, 'delcarators');
         if (e.declarations.length > 1) {
-          // Break up into individual statements
-          // `var a, b` -> `var a; var b;`
-          // `var a = 1, b = 2` -> `var a = 1; var b = 1;
-          log('Breaking up a var decl');
-          node.body.splice(i, 1, ...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind)));
+          rule('One binding per variable declaration');
+          log('- `var a, b` --> `var a; var b;`');
+          log('- `var a = 1, b = 2` --> `var a = 1; var b = 1;`');
+          body.splice(i, 1, ...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind)));
           changed = true;
           --i; // revisit (recursively)
         }
@@ -493,6 +531,10 @@ export function phaseNormalize(fdata, fname) {
       }
     });
     if (assigns.length) {
+      rule('Call args must be simple nodes');
+      log('- `f(x())` --> `(tmp=f(), f(tmp)`');
+      log('- `f(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`');
+
       const seq = AST.sequenceExpression(
         ...assigns,
         isNew ? AST.newExpression(node.callee, newArgs) : AST.callExpression(node.callee, newArgs),
@@ -544,7 +586,9 @@ export function phaseNormalize(fdata, fname) {
       }
     });
     if (assigns.length) {
-      log('Replacing the non-simple elements of an array with a tmp var');
+      rule('Elements of array literals must be simple nodes');
+      log('- `[f()]` --> `(tmp=f(), [tmp])`');
+
       const seq = AST.sequenceExpression(...assigns, AST.arrayExpression(newElements));
 
       crumbSet(1, seq);
@@ -561,25 +605,28 @@ export function phaseNormalize(fdata, fname) {
     // Technically doing a `new` on any literal will cause a runtime error, but let's not bother with normalizing them to ident
     // Note: for regular calls, the context can be determined by a member expression, so make sure to not change those.
     if (isComplexNode(node.callee) && (isNew || node.callee.type !== 'MemberExpression')) {
-      // `new x.y(a,b)` -> `(tmp=x.y, new tmp(a,b))`
-      // `($())(a,b)` -> `(tmp=$(), tmp)(a,b))`
+      if (isNew) {
+        rule('Callee of new must be simple node');
+        log('- `new x.y(a,b)` --> `(tmp=x.y, new tmp(a,b))`');
+      } else {
+        rule('Callee of call must be simple node or member expression');
+        log('- `$()(a,b)` --> `(tmp=$(), tmp)(a,b))`');
+      }
 
-      const tmpName = createFreshVarInCurrentRootScope('tmpNewObj');
-
-      funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+      const tmpName = createFreshVarInCurrentRootScope('tmpNewObj', true);
 
       const assign = AST.assignmentExpression(tmpName, node.callee);
       const newNode = isNew ? AST.newExpression(tmpName, node.arguments) : AST.callExpression(tmpName, node.arguments);
       const seq = AST.sequenceExpression(assign, newNode);
+
       crumbSet(1, seq);
       _expr(seq);
       changed = true;
       return true;
     } else if (!isNew && node.callee.type === 'MemberExpression' && node.callee.object.type === 'SequenceExpression') {
-      // `(a, b).c()` -> `(a, b.c())`
-      // `(a, b)[c]()` -> `(a, b[c]())`
-
-      log('Replacing the call expression with a member expression with a sequence, with a sequence ending in that call');
+      rule('Callee of a call can not be member expression on sequence');
+      log('- `(a, b).c()` -> `(a, b.c())`');
+      log('- `(a, b)[c]()` -> `(a, b[c]())`');
 
       const mem = node.callee;
       const exprs = mem.object.expressions;
@@ -617,20 +664,6 @@ export function phaseNormalize(fdata, fname) {
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
       node.$p.funcBindingsToInject = [];
-    } else if ((parent.type === 'FunctionDeclaration' || parent.type === 'Program') && node.type === 'BlockStatement') {
-      const body = node;
-      for (let i = 0; i < body.length; ++i) {
-        const nodei = body[i];
-        if (nodei.type === 'VariableDeclaration') {
-          if (nodei.declarations.length > 1) {
-            // Split up into separate declarations while maintaining order
-            log('Splitting up var decl that creates multiple bindings as a', nodei.kind);
-            body.splice(i + 1, 0, ...nodei.declarations.slice(1).map((dec) => AST.variableDeclarationFromDeclaration(dec, nodei.kind)));
-            nodei.declarations.length = 1;
-            changed = true;
-          }
-        }
-      }
     }
 
     crumb(parent, prop, index);
@@ -667,8 +700,9 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'BlockStatement': {
+        ensureVarDeclsCreateOneBinding(node.body);
+
         let hoisting = !!isFunctionBody;
-        ensureVarDeclsCreateOneBinding(node); // do this before
         node.body.forEach((cnode, i) => {
           if (
             hoisting &&
@@ -708,27 +742,30 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'DoWhileStatement': {
-        stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
-          log('Wrapping do-while sub-statement in a block');
+          rule('Do-while sub-statement must be block');
+          log('- `do x; while(y);` --> `do { x; } while(y);`');
+
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
-        expr(node, 'test', -1, node.test);
+        stmt(node, 'body', -1, node.body);
 
         if (isComplexNode(node.test)) {
           // `do { ... } while (x+y);`
           // -> `var tmp; ... do { tmp = x+y; } while (tmp);`
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-          log('Outlining complex `do-while` condition');
-          const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
-          funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
+
+          rule('Do-while test node must be simple');
+          log('- `do { ... } while (x+y);` --> `do { ... var tmp = x+y; } while (tmp);`');
+          const tmpName = createFreshVarInCurrentRootScope('ifTestTmp', true);
 
           node.body.body.push(AST.expressionStatement(AST.assignmentExpression(tmpName, node.test)));
           node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
           changed = true;
         }
+        expr(node, 'test', -1, node.test);
 
         break;
       }
@@ -800,7 +837,9 @@ export function phaseNormalize(fdata, fname) {
         }
         stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
-          log('Wrapping for-loop sub-statement in a block');
+          rule('For-loop sub-statement must be block');
+          log('- `for (;;) x` --> `for (;;) {x}`');
+
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
@@ -816,7 +855,9 @@ export function phaseNormalize(fdata, fname) {
         }
         stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
-          log('Wrapping for-in sub-statement in a block');
+          rule('For-in sub-statement must be block');
+          log('- `for (x in y) z` --> `for (x in y) {z}`');
+
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
@@ -840,7 +881,9 @@ export function phaseNormalize(fdata, fname) {
 
         stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
-          log('Wrapping for-of sub-statement in a block');
+          rule('For-of sub-statement must be block');
+          log('- `for (x of y) z` --> `for (x in y) {z}`');
+
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
@@ -849,6 +892,8 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionDeclaration': {
+        //ensureVarDeclsCreateOneBinding(node.body.body);
+
         log('Name:', node.id ? node.id.name : '<anon>');
         if (node.id) expr(node, 'id', -1, node.id);
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
@@ -856,6 +901,8 @@ export function phaseNormalize(fdata, fname) {
 
         ASSERT(funcStack[funcStack.length - 1] === node, 'top of funcStack should be the current node');
         const meta = getMetaForBindingName(node.id, true);
+        // TODO: dont move the functions if they're already hoisted
+        rule('All function declarations must be at the top');
         if (meta.isExport) {
           const parent = crumbGet(2);
           ASSERT(
@@ -870,7 +917,6 @@ export function phaseNormalize(fdata, fname) {
           funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(parent);
           crumbSet(2, AST.emptyStatement());
         } else {
-          log('Replace the func decl node with an empty statement and put the node itself on a list to be prepended to the function body');
           funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(node);
           crumbSet(1, AST.emptyStatement());
         }
@@ -882,17 +928,18 @@ export function phaseNormalize(fdata, fname) {
         expr(node, 'test', -1, node.test);
         stmt(node, 'consequent', -1, node.consequent);
         if (isComplexNode(node.test)) {
-          // `if (x+y) z`
-          // -> `{ let tmp = x+y; if (tmp) z; }`
+          rule('If-test node must be simple');
+          log('- `if (x+y) z` --> `{ let tmp = x+y; if (tmp) z; }`');
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-          log('Outlining complex `if` condition');
           const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
           crumbSet(1, AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node));
           node.test = AST.identifier(tmpName);
           changed = true;
         }
         if (node.consequent.type !== 'BlockStatement') {
-          log('Wrapping if-consequent sub-statement in a block');
+          rule('If sub-statement must be block'); // TODO: this is duplicate
+          log('- `if (x) y` --> `if (x) { y }`');
+
           crumb(node, 'consequent', -1);
           crumbSet(1, AST.blockStatement(node.consequent));
           uncrumb(node, 'consequent', -1);
@@ -900,7 +947,9 @@ export function phaseNormalize(fdata, fname) {
         if (node.alternate) {
           stmt(node, 'alternate', -1, node.alternate);
           if (node.alternate.type !== 'BlockStatement') {
-            log('Wrapping else-alternate sub-statement in a block');
+            rule('Else sub-statement must be block'); // TODO: this is duplicate
+            log('- `if (x) {} else y` --> `if (x) {} else { y }`');
+
             crumb(node, 'alternate', -1);
             crumbSet(1, AST.blockStatement(node.alternate));
             uncrumb(node, 'alternate', -1);
@@ -914,7 +963,8 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'Program': {
-        ensureVarDeclsCreateOneBinding(node); // do this before
+        ensureVarDeclsCreateOneBinding(node.body);
+
         let hoisting = true; // false at first body element that is neither a noop var statement nor a func decl
         node.body.forEach((cnode, i) => {
           if (
@@ -965,7 +1015,8 @@ export function phaseNormalize(fdata, fname) {
           // Wrap in block first. This way block-dedenting can still happen if necessary.
           // Switch is unique in that this transform may still cause nested blocks. Other occurrences for normalization do not.
           if (cnode.consequent.length > 1 || (cnode.consequent[0] && cnode.consequent[0].type !== 'BlockStatement')) {
-            log('Wrapping case block in an actual block');
+            rule('Switch case must contain exactly one block'); // TODO: this is duplicate
+            log('- `switch (x) { case a: b; c; }` --> `switch (x) { case a: { b; c; } }`');
             cnode.consequent = [AST.blockStatement(cnode.consequent)];
           }
           cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
@@ -979,7 +1030,11 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'VariableDeclaration': {
-        ASSERT(node.declarations.length === 1, 'var decl count should be normalized to 1 before visiting them', node);
+        if (node.declarations.length !== 1) {
+          log('Encountered a var decl with multiple decls (', node.declarations.length ,'). Waiting for next pass to visit them.');
+          changed = true;
+          break;
+        }
 
         const kind = node.kind;
         const dnode = node.declarations[0];
@@ -995,7 +1050,9 @@ export function phaseNormalize(fdata, fname) {
           meta.usages.push(dnode.id);
           names.push(dnode.id.name);
         } else if (dnode.id.type === 'ArrayPattern') {
-          log('Normalizing an array binding pattern away');
+          rule('Binding patterns not allowed'); // TODO: this is duplicate
+          log('- `let [x] = y()` --> `let tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
+
           const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternArrRoot');
           const nameStack = [bindingPatternRootName];
           const newBindings = [];
@@ -1015,7 +1072,9 @@ export function phaseNormalize(fdata, fname) {
             ASSERT(false, 'binding patterns are required to have an init');
           }
         } else if (dnode.id.type === 'ObjectPattern') {
-          log('Normalizing an object binding pattern away');
+          rule('Binding patterns not allowed'); // TODO: this is duplicate
+          log('- `var {x} = y()` --> `var tmp = y(), x = obj.x`');
+
           const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
           const nameStack = [bindingPatternRootName];
           const newBindings = [];
@@ -1041,8 +1100,9 @@ export function phaseNormalize(fdata, fname) {
           if (stillHoisting) {
             log('This is a var but we are still hoisting so it should be a noop var decl of one binding. Skipping normalization.');
           } else {
-            log('`var` statement declared these names:', names);
-            log('Moving the decl itself to the top of the function while keeping the init as they are');
+            rule('Var bindings must be declared at the top');
+            log('- `var x = y;` --> `var x; ...; x = y;`');
+            log('- `var` statement declared these names:', names);
 
             // Note: patterns may still introduce multiple bindings before they get normalized.
             // TODO: if we enforce the pattern normalization to happen before reaching this point then patterns are not a concern...
@@ -1076,7 +1136,9 @@ export function phaseNormalize(fdata, fname) {
         expr(node, 'test', -1, node.test);
         stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
-          log('Wrapping while sub-statement in a block');
+          rule('While sub-statement must be block');
+          log('- `while (x) y` --> `while (x) { y }`');
+
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
@@ -1130,11 +1192,17 @@ export function phaseNormalize(fdata, fname) {
 
       if (node.type === 'ArrowFunctionExpression') {
         if (node.expression) {
-          log('Converting arrow with expression body to arrow with statement body that returns it');
+          rule('Arrow body must be block');
+          log('- `() => x` --> `() => { return x }`');
+
+          before(node);
           node.body = AST.blockStatement(AST.returnStatement(node.body));
           node.expression = false;
+          after(node);
         }
       }
+    //} else if ((parent.type === 'FunctionExpression' || parent.type === 'ArrowFunctionExpression') && node.type === 'BlockStatement') {
+    //  ensureVarDeclsCreateOneBinding(node.body);
     }
 
     crumb(parent, prop, index);
@@ -1161,6 +1229,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.$p.varBindingsToInject.length) {
           // Inject all the decls, without init, at the start of the function. Try to maintain order. It's not very important.
           // TODO: dedupe decls. Make sure multiple var statements for the same name are collapsed and prefer func decls
+          log('Prepending', node.$p.varBindingsToInject.size, 'var decls');
           (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
           node.$p.varBindingsToInject.length = 0;
         }
@@ -1168,6 +1237,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.$p.funcBindingsToInject.length) {
           // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
           // Inject all the decls, without init, at the start of the function. Order matters.
+          log('Prepending', node.$p.funcBindingsToInject.size, 'func decls');
           (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
           node.$p.funcBindingsToInject.length = 0;
         }
@@ -1203,6 +1273,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'AssignmentExpression': {
         expr(node, 'right', -1, node.right);
+
         if (node.left.type === 'ObjectPattern') {
           const rhsTmpName = createFreshVarInCurrentRootScope('objAssignPatternRhs');
           const cacheNameStack = [rhsTmpName];
@@ -1211,7 +1282,10 @@ export function phaseNormalize(fdata, fname) {
           funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings);
 
           if (newBindings.length) {
-            log('Replacing an assignment pattern with a sequence of regular assignments');
+            rule('Assignment patterns not allowed');
+            before(node);
+            log('- `({x} = y())` --> `var tmp; tmp = y(), x = tmp.x`');
+
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
 
@@ -1226,11 +1300,16 @@ export function phaseNormalize(fdata, fname) {
               varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
-            crumbSet(1, AST.sequenceExpression(expressions));
+            const newNode = AST.sequenceExpression(expressions);
+            crumbSet(1, newNode);
+            after(newNode);
             changed = true;
           } else {
-            log('Node did not generate new statements so replacing the assignment with the rhs');
+            rule('Assignment patterns not allowed');
+            log('- `({} = y())` --> `y()`');
+            before(node);
             crumbSet(1, node.right);
+            after(node.right);
           }
         } else if (node.left.type === 'ArrayPattern') {
           const rhsTmpName = createFreshVarInCurrentRootScope('arrAssignPatternRhs');
@@ -1240,7 +1319,10 @@ export function phaseNormalize(fdata, fname) {
           funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings);
 
           if (newBindings.length) {
-            log('Replacing an assignment pattern with a sequence of regular assignments');
+            rule('Assignment patterns not allowed');
+            log('- `[x] = y()` --> `var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
+            before(node);
+
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
 
@@ -1255,39 +1337,59 @@ export function phaseNormalize(fdata, fname) {
               varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
-            crumbSet(1, AST.sequenceExpression(expressions));
+            const newNode = AST.sequenceExpression(expressions);
+            crumbSet(1, newNode);
+            after(newNode);
+
             changed = true;
           } else {
-            log('Node did not generate new statements so replacing the assignment with the rhs');
+            rule('Assignment patterns not allowed');
+            log('- `[] = y()` --> `y()`'); // TODO: Does it have to be spreaded anyways? Do I care?
+            before(node);
             crumbSet(1, node.right);
+            after(node.right);
           }
         } else {
           expr(node, 'left', -1, node.left);
 
           if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
-            // `(a, b).c = d` (occurs as a transformation artifact)
-            // -> `(a, b.c = d)`
+            // (occurs as a transformation artifact)
+            rule('Assignment must not be to a property of a sequence');
+            log('- `(a, b).c = d` --> `(a, b.c = d)`');
+            before(node);
+
+            const val = node.right;
             const memb = node.left;
             const seq = memb.object;
-            const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+            const prop = memb.property;
+            const exprs = seq.expressions; // Last one will replace the sequence
 
-            const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(exprs.pop(), node.right, node.operator));
+            const newNode = AST.sequenceExpression(
+              ...exprs.slice(0, -1),
+              AST.assignmentExpression(AST.memberExpression(exprs[exprs.length - 1], prop, memb.computed), val, node.operator),
+            );
+
             crumbSet(1, newNode);
+            after(newNode);
             _expr(newNode);
             changed = true;
           } else if (node.right.type === 'SequenceExpression') {
-            // `a = (b, c)`
-            // -> `(b, a = c)`
+            rule('Assignment rhs must not be sequence');
+            log('- `a = (b, c)` --> `(b, a = c)`');
+            before(node);
+
             const seq = node.right;
             const exprs = seq.expressions.slice(0); // Last one will replace the sequence
-
             const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
             crumbSet(1, newNode);
+            after(newNode);
             _expr(newNode);
             changed = true;
           } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
-            // `a = (b, c).d`
-            // -> `(b, a = c.d)`
+            rule('Assignment rhs must not be a property on a sequence');
+            log('- `a = (b, c).d` --> `(b, a = c.d)`');
+            before(node);
+
             const mem = node.right;
             const seq = mem.object;
             const exprs = seq.expressions.slice(0);
@@ -1296,6 +1398,7 @@ export function phaseNormalize(fdata, fname) {
               AST.assignmentExpression(node.left, AST.memberExpression(exprs.pop(), mem.property, mem.computed)),
             );
             crumbSet(1, newNode);
+            after(newNode);
             _expr(newNode);
             changed = true;
           }
@@ -1305,6 +1408,9 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
+        ASSERT(!node.expression, 'should be normalized');
+        ensureVarDeclsCreateOneBinding(node.body.body);
+
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
         if (node.expression) {
@@ -1321,37 +1427,6 @@ export function phaseNormalize(fdata, fname) {
 
         expr(node, 'left', -1, node.left);
         expr(node, 'right', -1, node.right);
-
-        //switch (node.operator) {
-        //  case '+': {
-        //    break;
-        //  }
-        //  case '-': {
-        //    break;
-        //  }
-        //  case '==':
-        //  case '!=':
-        //    break;
-        //  case '===':
-        //  case '!==':
-        //    break;
-        //  case '<':
-        //  case '<=':
-        //  case '>':
-        //  case '>=':
-        //    break;
-        //
-        //  case 'instanceof': {
-        //    break;
-        //  }
-        //
-        //  case 'in': {
-        //    break;
-        //  }
-        //
-        //  default:
-        //    break;
-        //}
 
         break;
       }
@@ -1391,32 +1466,47 @@ export function phaseNormalize(fdata, fname) {
 
       case 'ConditionalExpression': {
         if (isComplexNodeOrAlreadySequenced(node.test)) {
-          // `a ? b : c`
-          // -> `(tmp = a, tmp) ? b : c`
-          // -> `(tmp = a, (tmp ? b : c))`
-          // -> `tmp = a; tmp ? b : c;`
+          rule('Test of conditional must be simple node or sequence');
+          log('- `a() ? b : c` --> `(tmp = a, tmp) ? b : c`');
+          before(node);
           node.test = sequenceNode(node.test, 'tmpTernaryTest');
+          after(node);
           changed = true;
         }
+
         if (node.test.type === 'SequenceExpression' && !isComplexNode(node.test.expressions[node.test.expressions.length - 1])) {
-          // `(a, b) ? c : d`
-          // -> `(a, (b ? c : d))`
+          rule('Last expr of sequence as test of conditional must not be simple');
+          log('- `(a, b) ? c : d` --> `(a, (b ? c : d))`');
+          before(node);
+
           const exprs = node.test.expressions;
           node.test = exprs.pop();
           const seq = AST.sequenceExpression(...exprs, node);
+          after(node);
           crumbSet(1, seq);
           changed = 1;
         }
+
         if (isComplexNodeOrAlreadySequenced(node.consequent)) {
-          // `a ? b : c`
-          // -> `a ? (tmp = b, tmp) : c`
+          // TBD whether this is worth it at all. The consequence/alternate can not be moved out
+          //     easily anyways so is there any advantage to this?
+          rule('Consequent of conditional must be simple node or sequence');
+          log('- `a ? b() : c` --> `a ? (tmp = b(), tmp) : c`');
+          before(node);
           node.consequent = sequenceNode(node.consequent, 'tmpTernaryConsequent');
+          after(node);
           changed = true;
         }
+
         if (isComplexNodeOrAlreadySequenced(node.alternate)) {
-          // `a ? b : c`
-          // -> `a ? b : (tmp = c, tmp)`
+          // TBD whether this is worth it at all. The consequence/alternate can not be moved out
+          //     easily anyways so is there any advantage to this?
+          rule('Alternate of conditional must be simple node or sequence');
+          log('- `a ? b : c()` --> `a ? b : (tmp = c(), tmp)`');
+          before(node);
+
           node.alternate = sequenceNode(node.alternate, 'tmpTernaryAlternate');
+          after(node);
           changed = true;
         }
 
@@ -1427,6 +1517,8 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionExpression': {
+        //ensureVarDeclsCreateOneBinding(node.body.body);
+
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
         stmt(node, 'body', -1, node.body, false, false, true);
@@ -1464,26 +1556,35 @@ export function phaseNormalize(fdata, fname) {
         if (
           // If the object is complex, and it is not a sequence that ends with a simple node, then transform it.
           // We rewrite into a sequence that ends with an identifier. So that's fine to keep
-          isComplexNode(node.object) &&
-          (node.object.type !== 'SequenceExpression' || isComplexNode(node.object.expressions[node.object.expressions.length - 1]))
+          // If the object is a sequence that ends with a simple node or assignment, then skip this step.
+          isComplexNode(node.object)
         ) {
-          // expr.prop => (tmp = expr, tmp).prop
+          const isSeq = node.object.type !== 'SequenceExpression';
+          const last = isSeq || node.object.expressions[node.object.expressions.length - 1];
+          if (isSeq || (isComplexNode(last) && last.type !== 'AssignmentExpression')) {
+            rule('Object of member expression must be simple or simple-sequence that may end with assign');
+            log('- `a().b` --> `(tmp = a(), tmp).b`');
+            log('- `(a, b()).c` --> `(a, (tmp = b(), tmp)).c`');
+            log('- `(a, a = y).c` --> noop');
+            before(node);
 
-          log('Replacing a complex object of a member expression with a sequence that ends with an identifier');
+            const seq = sequenceNode(node.object, 'tmpObj');
+            const property = node.property;
+            const newLeftNode = AST.memberExpression(seq, property, node.computed);
 
-          const seq = sequenceNode(node.object, 'tmpObj');
-          const property = node.property;
-          const newLeftNode = AST.memberExpression(seq, property, node.computed);
-
-          crumbSet(1, newLeftNode);
-          _expr(newLeftNode);
-          changed = true;
-          break;
+            crumbSet(1, newLeftNode);
+            after(newLeftNode);
+            _expr(newLeftNode);
+            changed = true;
+            break;
+          }
         }
 
         if (node.computed && isComplexNode(node.property)) {
-          // `a[b]`
-          // -> `(tmp=b, a[tmp])`
+          rule('Expression of computed property must be simple');
+          log('- `a[b()]` --> `(tmp = b(), a[tmp])`');
+          log('- Type of computed property:', node.property.type);
+          before(node);
 
           const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp');
 
@@ -1495,10 +1596,13 @@ export function phaseNormalize(fdata, fname) {
           );
 
           crumbSet(1, seq);
+          after(seq);
+
           _expr(seq);
           changed = true;
           break;
         }
+
         if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
           // If the key name is a legit key then why not. Let's just test it.
           // Note: will need to do this during phase2 and phase4 as well because a value might resolve to a string at a later step.
@@ -1509,32 +1613,28 @@ export function phaseNormalize(fdata, fname) {
             simpleIdent = false;
           }
           if (simpleIdent) {
-            // `foo["bar"]` -> `foo.bar`
-            log('Converting dynamic property access with string literal that is a valid ident, to regular property access');
+            rule('Computed property that is valid ident must be member expression');
+            log('- `a["foo"]` --> `a.foo`');
+            log('- `a["fo+o"]` --> noop');
+            log('- `a[15]` --> noop');
+            log('- Name: `' + node.property.value + '`');
+            before(node);
+
             node.computed = false;
             node.property = AST.identifier(node.property.value);
+            after(node);
             changed = true;
           }
         }
 
-        // Walk the property structure in such a way that it visits the root object first, then back up to the leaf property
-        // Any dynamic expressions get visited before the next property access
-        // It's kind a messy, useful for the other project, maybe not here, and maybe I'll rewrite it.
-        function r(node) {
-          if (node.type === 'MemberExpression') {
-            // Visit the object first, then on the way up potentially walk the computed prop expresison if it one
-            crumb(node, 'object', -1, node.object);
-            r(node.object);
-            uncrumb(node, 'object', -1);
-            if (node.computed) {
-              expr(node, 'property', -1, node.property);
-            }
-          } else if (node.type === 'Super') {
-          } else {
-            _expr(node); // Root object
-          }
+        // Note: nested member expressions need a little more love here to preserve evaluation
+        // order but since we got rid of those, the traversal is simple
+        ASSERT(node.object.type !== 'MemberExpression', 'at this point nested member expressions should be normalized away...');
+        if (node.computed) {
+          expr(node, 'property', -1, node.property);
         }
-        r(node);
+        expr(node, 'object', -1, node.object);
+
         break;
       }
 
@@ -1563,7 +1663,11 @@ export function phaseNormalize(fdata, fname) {
           } else {
             if (pnode.shorthand) {
               // I think it _is_ this simple?
+              rule('Property shorthands not allowed');
+              log('- `var obj = {a}` --> `var obj = {a: a}`');
+              before(node);
               pnode.shorthand = false;
+              after(node);
             }
 
             expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
@@ -1929,6 +2033,9 @@ export function phaseNormalize(fdata, fname) {
       // See https://gist.github.com/pvdz/dc2c0a477cc276d1b9e6e2ddbb417135 for a brute force set of test cases
       // See https://gist.github.com/pvdz/867502f6ed2dd902d061c82e38a81181 for the hack to regenerate them
       if (pnode.type === 'AssignmentPattern') {
+        rule('Func params must not have inits/defaults');
+        log('- `function f(x = y()) {}` --> `function f(tmp) { x = tmp === undefined ? y() : tmp; }');
+
         // Param defaults. Rewrite to be inside the function
         // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
         // function f(a=b, b=1){}
@@ -2001,14 +2108,14 @@ export function phaseNormalize(fdata, fname) {
           // - A leaf node should be able to access the property from the binding name at the top of the stack
 
           if (pnode.left.type === 'ObjectPattern') {
-            log('- Starting from an object pattern param');
-            // `function({x}) {}`
-            // -> `function(obj) { var x = obj.x; }
+            rule('Func params must not be object patterns');
+            log('- `function({x}) {}` --> `function(tmp) { var x = tmp.x; }`');
+
             funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings);
           } else if (pnode.left.type === 'ArrayPattern') {
-            // `function([x]) {}`
-            // -> `function(obj) { var tmp = [...obj]; var x = tmp[0]; }
-            log('- Starting from an array pattern param');
+            rule('Func params must not be array patterns');
+            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
+
             funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings);
           } else {
             ASSERT(false, 'what else?', pnode.left);
@@ -2037,14 +2144,12 @@ export function phaseNormalize(fdata, fname) {
           // - A leaf node should be able to access the property from the binding name at the top of the stack
 
           if (pnode.type === 'ObjectPattern') {
-            log('- Starting from an object pattern param');
-            // `function({x}) {}`
-            // -> `function(obj) { var x = obj.x; }
+            rule('Func params must not be array patterns');
+            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
             funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings);
           } else if (pnode.type === 'ArrayPattern') {
-            // `function([x]) {}`
-            // -> `function(obj) { var tmp = [...obj]; var x = tmp[0]; }
-            log('- Starting from an array pattern param');
+            rule('Func params must not be array patterns');
+            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
             funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings);
           } else {
             ASSERT(false, 'dunno wat dis is', pnode);

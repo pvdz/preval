@@ -28,7 +28,7 @@ function superExpensiveFunction() {
 }
 var tmpObj;
 tmpObj = superExpensiveFunction();
-tmpObj += 5;
+tmpObj.x += 5;
 `````
 
 ## Output
@@ -39,5 +39,5 @@ function superExpensiveFunction() {
 }
 var tmpObj;
 tmpObj = superExpensiveFunction();
-tmpObj += 5;
+tmpObj.x += 5;
 `````

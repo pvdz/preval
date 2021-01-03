@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let y;
 if (({ x } = 1)) y;
 `````
 
@@ -17,6 +18,7 @@ if (({ x } = 1)) y;
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
+let y;
 {
   objAssignPatternRhs = objAssignPatternRhs = 1;
   let ifTestTmp = (x = objAssignPatternRhs.x);

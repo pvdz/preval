@@ -20,7 +20,7 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 var tmpObj;
 $(1);
 tmpObj = $(2);
-tmpObj = 1;
+tmpObj.x = 1;
 `````
 
 ## Output
@@ -29,5 +29,5 @@ tmpObj = 1;
 var tmpObj;
 $(1);
 tmpObj = $(2);
-tmpObj = 1;
+tmpObj.x = 1;
 `````

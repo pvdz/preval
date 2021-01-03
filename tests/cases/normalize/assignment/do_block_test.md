@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let a = 1, b = 2, x = 3, y = 4;
 do { a; b; } while (x + y);
 `````
 
@@ -16,6 +17,10 @@ do { a; b; } while (x + y);
 
 `````js filename=intro
 var ifTestTmp;
+let a = 1;
+let b = 2;
+let x = 3;
+let y = 4;
 do {
   a;
   b;
@@ -28,6 +33,6 @@ do {
 `````js filename=intro
 var ifTestTmp;
 do {
-  ifTestTmp = x + y;
+  ifTestTmp = 7;
 } while (ifTestTmp);
 `````

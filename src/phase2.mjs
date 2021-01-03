@@ -3,6 +3,15 @@ import { printer } from '../lib/printer.mjs';
 import { $p } from './$p.mjs';
 import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
 import * as AST from './ast.mjs';
+import globals from './globals.mjs';
+
+// Ideas todo
+// - `x = void y` -> `y; x = undefined`
+// - `x = !y` -> can we find some cases where we can guarantee that outcome of this even if we don't actually know y?
+// - eliminate noop parts from sequences (literals, idents)
+// - does it make sense to decompose nested assignments? `a = b = c` -> `b = c, a = b`?, or should normalization be enough?
+// - artificial cases like `[...'']`
+// - toplevel objects/arrays should break down into side-effect pieces (property values and computed keys?)
 
 // Functions have been hoisted, scopes have been resolved, time to merge AST nodes and leave as few nodes as possible
 // without actually interpreting code.
@@ -46,12 +55,6 @@ export function phase2(program, fdata, resolve, req) {
     else return (parent[prop] = node);
   }
 
-  // Clear usage and update data.
-  fdata.globallyUniqueNamingRegistery.forEach((meta) => {
-    meta.updates = [];
-    meta.usages = [];
-  });
-
   group(
     '\n\n\n##################################\n## phase2  ::  ' +
       fdata.fname +
@@ -61,12 +64,27 @@ export function phase2(program, fdata, resolve, req) {
   );
 
   do {
+    // Clear usage and update data befor each pass (mutations may invalidate the data so we wipe before every pass)
+    fdata.globallyUniqueNamingRegistery.forEach((meta) => {
+      meta.updates = [];
+      meta.usages = [];
+    });
+
     changed = false;
     stmt(null, 'ast', -1, fdata.tenkoOutput.ast);
     if (changed) somethingChanged = true;
 
     log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
   } while (changed);
+
+  log(
+    'Usage / update stats for non-builtins:\n' +
+      [...fdata.globallyUniqueNamingRegistery.values()]
+        .filter((meta) => !globals.has(meta.uniqueName))
+        .map((meta) => ' - `' + meta.uniqueName + '`: ' + meta.updates.length + ' updates and ' + meta.usages.length + ' usages')
+        .join('\n'),
+    '\n',
+  );
 
   log('End of phase2');
   groupEnd();
@@ -971,6 +989,7 @@ export function phase2(program, fdata, resolve, req) {
       case 'Identifier': {
         const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
         ASSERT(meta, 'meta data should exist for this name', node.name, meta);
+        log('Marking `' + node.name + '` as being used');
         meta.usages.push({
           parent: crumbsNode[crumbsNode.length - 1],
           prop: crumbsProp[crumbsProp.length - 1],

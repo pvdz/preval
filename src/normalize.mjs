@@ -50,6 +50,7 @@ const VERBOSE_TRACING = true;
     - Including spread and defaults for all object/array patterns on any level
   - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
   - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
+  - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
  */
 
 /*
@@ -101,9 +102,10 @@ const VERBOSE_TRACING = true;
   - Deconstruct optional chaining
     - Probably easier not to have to worry about this pure sugar?
   - Sequence expression
-    - In left side of `for` loop. Move them out
-  - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
+    - In left side of `for` loop. Move them out to statements before the `for`
+  - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
   - Empty `else` sub-statement should eliminate the else (probably not normalization)
+  - Assignment of a simple node to itself
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -1024,7 +1026,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'VariableDeclaration': {
         if (node.declarations.length !== 1) {
-          log('Encountered a var decl with multiple decls (', node.declarations.length ,'). Waiting for next pass to visit them.');
+          log('Encountered a var decl with multiple decls (', node.declarations.length, '). Waiting for next pass to visit them.');
           changed = true;
           break;
         }
@@ -1194,8 +1196,6 @@ export function phaseNormalize(fdata, fname) {
           after(node);
         }
       }
-    //} else if ((parent.type === 'FunctionExpression' || parent.type === 'ArrowFunctionExpression') && node.type === 'BlockStatement') {
-    //  ensureVarDeclsCreateOneBinding(node.body);
     }
 
     crumb(parent, prop, index);
@@ -1343,7 +1343,69 @@ export function phaseNormalize(fdata, fname) {
         } else {
           expr(node, 'left', -1, node.left);
 
-          if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
+          if (node.right.type === 'AssignmentExpression') {
+            // `a = b = c`
+            // `a.foo = b = c`
+            // `a = b.foo = c`
+            // `a = b = c.foo`
+            // `a.foo = b.foo = c.foo`
+            // There are a few cases to consider. In particular, we need to make sure that we
+            // cache b (node.right.left) first if it is a complex node, that we cache it first
+            if (isComplexNode(node.right.left)) {
+              if (isComplexNode(node.right.right)) {
+                rule('Nested assignments with complex middles and complex value are not allowed');
+                log('- `a = b.foo = c.foo` --> `(tmp = c.foo, b = c, a = c)`');
+                log('- `a = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a = tmp)`');
+                before(node);
+
+                const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignRhs', true);
+
+                // Note: a().x = b().x = c().x will evaluate in order of a() b() c() so we must keep that order too
+                // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(tmpName, node.right.right),
+                  AST.assignmentExpression(node.right.left, tmpName),
+                  AST.assignmentExpression(node.left, tmpName),
+                );
+
+                crumbSet(1, newNode);
+
+                after(newNode);
+                changed = true;
+              } else {
+                rule('Nested assignments with complex middles and simple value are not allowed');
+                log('- `a = b.foo = c` --> `(b.foo = c, a = c)`');
+                log('- `a = b().foo = c` --> `(b().foo = c, a = c)`');
+                log('- `a().foo = b().foo = c` --> `(b().foo = c, a().foo = c)`');
+                before(node);
+
+                // Note: a().x = b().x = c will evaluate in order of a() b() c so we must keep that order too
+                // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(node.right.left, node.right.right),
+                  AST.assignmentExpression(node.left, node.right.right),
+                );
+
+                crumbSet(1, newNode);
+
+                after(newNode);
+                changed = true;
+              }
+            } else {
+              rule('Nested assignments with simple middles are not allowed');
+              log('- `a = b = c` --> `(b = c, a = b)`');
+              // Ignore complex cases in the middle (for now) to prevent potential observable side effects
+              // This is no problem for a or c because we don't duplicate them, nor change their evaluation order
+              // rule('Nested assignments not allowed');
+              before(node);
+
+              const newNode = AST.sequenceExpression(node.right, AST.assignmentExpression(node.left, node.right.left));
+              crumbSet(1, newNode);
+              after(newNode);
+
+              changed = true;
+            }
+          } else if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
             // (occurs as a transformation artifact)
             rule('Assignment must not be to a property of a sequence');
             log('- `(a, b).c = d` --> `(a, b.c = d)`');
@@ -1508,8 +1570,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionExpression': {
-        //ensureVarDeclsCreateOneBinding(node.body.body);
-
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
         stmt(node, 'body', -1, node.body, false, false, true);

@@ -25,7 +25,9 @@ var tmpArg;
 a = 10;
 b = 20;
 c = 30;
-tmpArg = a = b = c;
+b = c;
+a = b;
+tmpArg = a;
 $(tmpArg);
 `````
 
@@ -39,6 +41,8 @@ var tmpArg;
 a = 10;
 b = 20;
 c = 30;
-tmpArg = a = b = c;
+b = c;
+a = b;
+tmpArg = a;
 $(tmpArg);
 `````

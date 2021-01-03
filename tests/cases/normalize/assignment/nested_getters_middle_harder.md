@@ -66,6 +66,7 @@ f();
 `````js filename=intro
 function f() {
   var tmpArg;
+  var tmpNestedAssignRhs;
   var tmpArg_1;
   var tmpArg_2;
   console.log('-------- start');
@@ -80,7 +81,10 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  tmpArg = a = b.foo = $(6);
+  tmpNestedAssignRhs = $(6);
+  b.foo = tmpNestedAssignRhs;
+  a = tmpNestedAssignRhs;
+  tmpArg = a;
   $(tmpArg);
   console.log('-------- test case');
   $(a);
@@ -88,7 +92,8 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  tmpArg_2 = b.foo = 4;
+  b.foo = 4;
+  tmpArg_2 = 4;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }
@@ -100,6 +105,7 @@ f();
 `````js filename=intro
 function f() {
   var tmpArg;
+  var tmpNestedAssignRhs;
   var tmpArg_1;
   var tmpArg_2;
   console.log('-------- start');
@@ -114,7 +120,10 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  tmpArg = a = b.foo = $(6);
+  tmpNestedAssignRhs = $(6);
+  b.foo = tmpNestedAssignRhs;
+  a = tmpNestedAssignRhs;
+  tmpArg = a;
   $(tmpArg);
   console.log('-------- test case');
   $(a);
@@ -122,7 +131,8 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  tmpArg_2 = b.foo = 4;
+  b.foo = 4;
+  tmpArg_2 = 4;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }

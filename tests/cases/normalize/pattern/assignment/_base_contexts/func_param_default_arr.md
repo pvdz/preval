@@ -27,7 +27,8 @@ const f = ($tdz$__a) => {
   let a = tmpTernaryTest
     ? ((arrAssignPatternRhs = 1),
       (arrPatternSplat = [...arrAssignPatternRhs]),
-      (tmpTernaryConsequent = x = arrPatternSplat[0]),
+      (x = arrPatternSplat[0]),
+      (tmpTernaryConsequent = x),
       tmpTernaryConsequent)
     : $tdz$__a;
   return a;

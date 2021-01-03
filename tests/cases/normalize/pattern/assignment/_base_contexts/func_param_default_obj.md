@@ -23,7 +23,9 @@ const f = ($tdz$__a) => {
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest ? ((objAssignPatternRhs = 1), (tmpTernaryConsequent = x = objAssignPatternRhs.x), tmpTernaryConsequent) : $tdz$__a;
+  let a = tmpTernaryTest
+    ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent)
+    : $tdz$__a;
   return a;
 };
 `````

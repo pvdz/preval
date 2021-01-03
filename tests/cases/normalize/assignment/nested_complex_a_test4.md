@@ -25,7 +25,8 @@ $($(a).length = b);
 var tmpArg;
 var tmpObj;
 tmpObj = $(a);
-tmpArg = tmpObj.length = b;
+tmpObj.length = b;
+tmpArg = b;
 $(tmpArg);
 `````
 
@@ -35,6 +36,7 @@ $(tmpArg);
 var tmpArg;
 var tmpObj;
 tmpObj = $(a);
-tmpArg = tmpObj.length = b;
+tmpObj.length = b;
+tmpArg = b;
 $(tmpArg);
 `````

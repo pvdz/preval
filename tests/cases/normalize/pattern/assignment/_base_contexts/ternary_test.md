@@ -19,7 +19,8 @@ var objAssignPatternRhs;
 var x;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
-tmpTernaryTest = x = objAssignPatternRhs.x;
+x = objAssignPatternRhs.x;
+tmpTernaryTest = x;
 tmpTernaryTest ? b : c;
 `````
 
@@ -30,6 +31,7 @@ var objAssignPatternRhs;
 var x;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
-tmpTernaryTest = x = objAssignPatternRhs.x;
+x = objAssignPatternRhs.x;
+tmpTernaryTest = x;
 tmpTernaryTest ? b : c;
 `````

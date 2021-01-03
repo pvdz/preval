@@ -27,7 +27,9 @@ a = 10;
 b = [];
 c = 30;
 tmpObj = $(b);
-tmpArg = a = tmpObj.length = c;
+tmpObj.length = c;
+a = c;
+tmpArg = a;
 $(tmpArg);
 `````
 
@@ -43,6 +45,8 @@ a = 10;
 b = [];
 c = 30;
 tmpObj = $(b);
-tmpArg = a = tmpObj.length = c;
+tmpObj.length = c;
+a = c;
+tmpArg = a;
 $(tmpArg);
 `````

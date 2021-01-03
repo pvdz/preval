@@ -18,7 +18,7 @@ a ? ({ x } = 1) : c;
 var tmpTernaryConsequent;
 var objAssignPatternRhs;
 var x;
-a ? ((objAssignPatternRhs = 1), (tmpTernaryConsequent = x = objAssignPatternRhs.x), tmpTernaryConsequent) : c;
+a ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent) : c;
 `````
 
 ## Output
@@ -27,5 +27,5 @@ a ? ((objAssignPatternRhs = 1), (tmpTernaryConsequent = x = objAssignPatternRhs.
 var tmpTernaryConsequent;
 var objAssignPatternRhs;
 var x;
-a ? ((objAssignPatternRhs = 1), (tmpTernaryConsequent = x = objAssignPatternRhs.x), tmpTernaryConsequent) : c;
+a ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent) : c;
 `````

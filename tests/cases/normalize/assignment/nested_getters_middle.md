@@ -79,7 +79,9 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  tmpArg = a = b.foo = 5;
+  b.foo = 5;
+  a = 5;
+  tmpArg = a;
   $(tmpArg);
   console.log('-------- test case');
   $(a);
@@ -87,7 +89,8 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  tmpArg_2 = b.foo = 4;
+  b.foo = 4;
+  tmpArg_2 = 4;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }
@@ -113,7 +116,9 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  tmpArg = a = b.foo = 5;
+  b.foo = 5;
+  a = 5;
+  tmpArg = a;
   $(tmpArg);
   console.log('-------- test case');
   $(a);
@@ -121,7 +126,8 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  tmpArg_2 = b.foo = 4;
+  b.foo = 4;
+  tmpArg_2 = 4;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }

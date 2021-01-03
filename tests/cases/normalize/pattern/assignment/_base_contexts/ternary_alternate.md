@@ -18,7 +18,7 @@ a ? b : ({ x } = 1);
 var tmpTernaryAlternate;
 var objAssignPatternRhs;
 var x;
-a ? b : ((objAssignPatternRhs = 1), (tmpTernaryAlternate = x = objAssignPatternRhs.x), tmpTernaryAlternate);
+a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlternate = x), tmpTernaryAlternate);
 `````
 
 ## Output
@@ -27,5 +27,5 @@ a ? b : ((objAssignPatternRhs = 1), (tmpTernaryAlternate = x = objAssignPatternR
 var tmpTernaryAlternate;
 var objAssignPatternRhs;
 var x;
-a ? b : ((objAssignPatternRhs = 1), (tmpTernaryAlternate = x = objAssignPatternRhs.x), tmpTernaryAlternate);
+a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlternate = x), tmpTernaryAlternate);
 `````

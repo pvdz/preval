@@ -25,13 +25,17 @@ var tmpArg;
 var tmpObj;
 var tmpObj_1;
 var tmpObj_2;
+var tmpNestedAssignRhs;
 a = { x: 1 };
 b = { x: 2 };
 c = { x: 3 };
 tmpObj_2 = $(a);
 tmpObj_1 = $(b);
 tmpObj = $(c);
-tmpArg = tmpObj_2.x = tmpObj_1.x = tmpObj.x;
+tmpNestedAssignRhs = tmpObj.x;
+tmpObj_1.x = tmpNestedAssignRhs;
+tmpObj_2.x = tmpNestedAssignRhs;
+tmpArg = tmpNestedAssignRhs;
 $(tmpArg);
 `````
 
@@ -45,12 +49,16 @@ var tmpArg;
 var tmpObj;
 var tmpObj_1;
 var tmpObj_2;
+var tmpNestedAssignRhs;
 a = { x: 1 };
 b = { x: 2 };
 c = { x: 3 };
 tmpObj_2 = $(a);
 tmpObj_1 = $(b);
 tmpObj = $(c);
-tmpArg = tmpObj_2.x = tmpObj_1.x = tmpObj.x;
+tmpNestedAssignRhs = tmpObj.x;
+tmpObj_1.x = tmpNestedAssignRhs;
+tmpObj_2.x = tmpNestedAssignRhs;
+tmpArg = tmpNestedAssignRhs;
 $(tmpArg);
 `````

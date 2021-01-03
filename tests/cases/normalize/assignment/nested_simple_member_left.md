@@ -26,8 +26,10 @@ var tmpObj;
 a = {};
 b = 20;
 c = 30;
+b = c;
 tmpObj = $(a);
-tmpArg = tmpObj.x = b = c;
+tmpObj.x = b;
+tmpArg = b;
 $(tmpArg);
 `````
 
@@ -42,7 +44,9 @@ var tmpObj;
 a = {};
 b = 20;
 c = 30;
+b = c;
 tmpObj = $(a);
-tmpArg = tmpObj.x = b = c;
+tmpObj.x = b;
+tmpArg = b;
 $(tmpArg);
 `````

@@ -311,7 +311,7 @@ export function phaseNormalize(fdata, fname) {
     );
     lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
     if (injectVarBinding) {
-      funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+      funcStack[funcStack.length - 1].$p.varBindingsToInject.push(AST.variableDeclaration(tmpName, null, 'var'));
     }
     return tmpName;
   }

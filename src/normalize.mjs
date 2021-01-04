@@ -256,6 +256,7 @@ export function phaseNormalize(fdata, fname) {
       });
     }
   });
+
   // Note: scope tracking is now broken and requires a reparse (!)
 
   log('End of phaseNormalize');
@@ -489,17 +490,18 @@ export function phaseNormalize(fdata, fname) {
     }
   }
   function ensureVarDeclsCreateOneBinding(body) {
-    // Node should have a .body with statements/declarations
-    // Break up variable declarations that declare multiple bindings
+    // Body should not be visited at this time, should be a Program or Block .body array
+    // - Break up variable declarations that declare multiple bindings
+    // - Break up var inits that are assignments
 
-    log('ensureVarDeclsCreateOneBinding(', body.type, body instanceof Array, ')');
+    log('ensureVarDeclsCreateOneBinding');
 
     let i = 0;
     while (i < body.length) {
       ASSERT(body[i], 'block does not have empty elements?', body);
       const e = body[i];
       if (e.type === 'VariableDeclaration') {
-        log('- var decl has', e.declarations.length, 'delcarators');
+        log('- var decl has', e.declarations.length, 'declarators');
         if (e.declarations.length > 1) {
           rule('One binding per variable declaration');
           log('- `var a, b` --> `var a; var b;`');
@@ -588,6 +590,7 @@ export function phaseNormalize(fdata, fname) {
       rule('Call args must be simple nodes');
       log('- `f(x())` --> `(tmp=f(), f(tmp)`');
       log('- `f(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`');
+      before(node);
 
       const seq = AST.sequenceExpression(
         ...assigns,
@@ -595,6 +598,8 @@ export function phaseNormalize(fdata, fname) {
       );
 
       crumbSet(1, seq);
+
+      after(seq);
 
       // Visit the sequence expression node now.
       _expr(seq);
@@ -727,7 +732,7 @@ export function phaseNormalize(fdata, fname) {
     groupEnd();
 
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
-      funcStack.pop(node);
+      funcStack.pop();
 
       // TODO: dedupe declared names. functions trump vars. last func wins (so order matters).
       // Since we unshift, add var statements first
@@ -1195,10 +1200,7 @@ export function phaseNormalize(fdata, fname) {
           const decl = node.declarations[0];
           const init = decl.init;
           if (init.type === 'MemberExpression' && isComplexNode(init.object)) {
-            if (
-              init.object.type === 'SequenceExpression' &&
-              !isComplexNode(init.object.expressions[init.object.expressions.length - 1])
-            ) {
+            if (init.object.type === 'SequenceExpression' && !isComplexNode(init.object.expressions[init.object.expressions.length - 1])) {
               rule('Var init cannot be member expression on sequence with trailing node simple');
               log('- `var a = (f(), x).b` --> `f(); var a = x.b`');
               before(node);
@@ -1721,9 +1723,9 @@ export function phaseNormalize(fdata, fname) {
           // If the object is a sequence that ends with a simple node or assignment, then skip this step.
           isComplexNode(node.object)
         ) {
-          const isSeq = node.object.type !== 'SequenceExpression';
-          const last = isSeq || node.object.expressions[node.object.expressions.length - 1];
-          if (isSeq || (isComplexNode(last) && last.type !== 'AssignmentExpression')) {
+          const isSeq = node.object.type === 'SequenceExpression';
+          const last = isSeq && node.object.expressions[node.object.expressions.length - 1];
+          if (!isSeq || (isComplexNode(last) && last.type !== 'AssignmentExpression')) {
             rule('Object of member expression must be simple or simple-sequence that may end with assign');
             log('- `a().b` --> `(tmp = a(), tmp).b`');
             log('- `(a, b()).c` --> `(a, (tmp = b(), tmp)).c`');

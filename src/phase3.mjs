@@ -33,6 +33,7 @@ export function phase3(program, fdata, resolve, req) {
         obj.usages.forEach(({ parent, prop, index }) => {
           // Cannot replace the declaration itself. But can eliminate it
           if (parent.type === 'VariableDeclarator' && prop !== 'init') {
+            // `let x = 5;`
             return; // Ignore, phase4 will take care of this
           }
 

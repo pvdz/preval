@@ -1300,6 +1300,11 @@ export function phaseNormalize(fdata, fname) {
       node,
     );
 
+    crumb(parent, prop, index);
+    _expr(node);
+    uncrumb(parent, prop, index);
+  }
+  function _expr(node) {
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
@@ -1320,9 +1325,9 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    crumb(parent, prop, index);
-    _expr(node);
-    uncrumb(parent, prop, index);
+    group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
+    __expr(node);
+    groupEnd();
 
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.pop();
@@ -1359,9 +1364,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
-  function _expr(node) {
-    group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
+  function __expr(node) {
     if (node.$scope) {
       lexScopeStack.push(node);
     }
@@ -1926,8 +1929,6 @@ export function phaseNormalize(fdata, fname) {
     if (node.$scope) {
       lexScopeStack.pop();
     }
-
-    groupEnd();
   }
 
   function processClass(node, isExpr, isExport) {

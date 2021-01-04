@@ -18,12 +18,12 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+var tmpElement;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
 var tmpTernaryTest_1;
 var tmpTernaryConsequent_1;
-var tmpElement;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
@@ -47,12 +47,12 @@ $(x);
 ## Output
 
 `````js filename=intro
+var tmpElement;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
 var tmpTernaryTest_1;
 var tmpTernaryConsequent_1;
-var tmpElement;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;

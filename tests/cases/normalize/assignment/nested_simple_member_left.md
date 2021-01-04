@@ -22,14 +22,16 @@ var a;
 var b;
 var c;
 var tmpArg;
+var tmpNestedAssignRhs;
 var tmpComplexMemberObj;
 a = {};
 b = 20;
 c = 30;
 b = c;
+tmpNestedAssignRhs = b;
 tmpComplexMemberObj = $(a);
-tmpComplexMemberObj.x = b;
-tmpArg = b;
+tmpComplexMemberObj.x = tmpNestedAssignRhs;
+tmpArg = tmpNestedAssignRhs;
 $(tmpArg);
 `````
 
@@ -40,13 +42,15 @@ var a;
 var b;
 var c;
 var tmpArg;
+var tmpNestedAssignRhs;
 var tmpComplexMemberObj;
 a = {};
 b = 20;
 c = 30;
 b = c;
+tmpNestedAssignRhs = b;
 tmpComplexMemberObj = $(a);
-tmpComplexMemberObj.x = b;
-tmpArg = b;
+tmpComplexMemberObj.x = tmpNestedAssignRhs;
+tmpArg = tmpNestedAssignRhs;
 $(tmpArg);
 `````

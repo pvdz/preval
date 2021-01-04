@@ -1390,8 +1390,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'AssignmentExpression': {
-        expr(node, 'right', -1, node.right);
-
         if (node.left.type === 'ObjectPattern') {
           const rhsTmpName = createFreshVarInCurrentRootScope('objAssignPatternRhs');
           const cacheNameStack = [rhsTmpName];
@@ -1466,69 +1464,87 @@ export function phaseNormalize(fdata, fname) {
             after(node.right);
           }
         } else {
-          expr(node, 'left', -1, node.left);
+          ASSERT(
+            node.left.type === 'Identifier' || node.left.type === 'MemberExpression',
+            'uhhh was there anything else assignable?',
+            node,
+          );
+
+          let changedNow = false;
 
           if (node.right.type === 'AssignmentExpression') {
+            ASSERT(node.right.left.type === 'Identifier' || node.right.left.type === 'MemberExpression' || node.right.left.type === 'ObjectPattern' || node.right.left.type === 'ArrayPattern', 'see above (except patterns arent visited yet)', node.right);
+            const nestedAssign = node.right;
             // `a = b = c`
             // `a.foo = b = c`
             // `a = b.foo = c`
             // `a = b = c.foo`
+            // `a.foo = b.foo = c`
+            // `a = b.foo = c.foo`
             // `a.foo = b.foo = c.foo`
             // There are a few cases to consider. In particular, we need to make sure that we
             // cache b (node.right.left) first if it is a complex node, that we cache it first
-            if (isComplexNode(node.right.left)) {
-              if (isComplexNode(node.right.right)) {
-                rule('Nested assignments with complex middles and complex value are not allowed');
-                log('- `a = b.foo = c.foo` --> `(tmp = c.foo, b = c, a = c)`');
-                log('- `a = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a = tmp)`');
-                before(node);
 
-                const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignRhs', true);
-
-                // Note: a().x = b().x = c().x will evaluate in order of a() b() c() so we must keep that order too
-                // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(tmpName, node.right.right),
-                  AST.assignmentExpression(node.right.left, tmpName),
-                  AST.assignmentExpression(node.left, tmpName),
-                );
-
-                crumbSet(1, newNode);
-
-                after(newNode);
-                changed = true;
-              } else {
-                rule('Nested assignments with complex middles and simple value are not allowed');
-                log('- `a = b.foo = c` --> `(b.foo = c, a = c)`');
-                log('- `a = b().foo = c` --> `(b().foo = c, a = c)`');
-                log('- `a().foo = b().foo = c` --> `(b().foo = c, a().foo = c)`');
-                before(node);
-
-                // Note: a().x = b().x = c will evaluate in order of a() b() c so we must keep that order too
-                // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(node.right.left, node.right.right),
-                  AST.assignmentExpression(node.left, node.right.right),
-                );
-
-                crumbSet(1, newNode);
-
-                after(newNode);
-                changed = true;
-              }
-            } else {
+            if (nestedAssign.left.type === 'ObjectPattern' || nestedAssign.left.type === 'ArrayPattern') {
+              changed = true; // Request another pass
+            } else if (nestedAssign.left.type === 'Identifier') {
               rule('Nested assignments with simple middles are not allowed');
               log('- `a = b = c` --> `(b = c, a = b)`');
-              // Ignore complex cases in the middle (for now) to prevent potential observable side effects
-              // This is no problem for a or c because we don't duplicate them, nor change their evaluation order
-              // rule('Nested assignments not allowed');
+              log('- `a = b = c()` --> `(b = c(), a = b)`');
+              log('- `a.foo = b = c` --> `(b = c, a.foo = b)`');
+              log('- `a.foo = b = c()` --> `(b = c(), a.foo = b)`');
               before(node);
 
-              const newNode = AST.sequenceExpression(node.right, AST.assignmentExpression(node.left, node.right.left));
+              const newNode = AST.sequenceExpression(nestedAssign, AST.assignmentExpression(node.left, nestedAssign.left));
               crumbSet(1, newNode);
               after(newNode);
 
               changed = true;
+              changedNow = true;
+            } else if (isComplexNode(nestedAssign.right)) {
+              ASSERT(nestedAssign.left.type === 'MemberExpression');
+              rule('Nested assignments with complex value to property are not allowed');
+              log('- `a = b.foo = c.foo` --> `(tmp = c.foo, b.foo = tmp, a = tmp)`');
+              log('- `a = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a = tmp)`');
+              log('- `a.foo = b.foo = c.foo` --> `(tmp = c.foo, b.foo = tmp, a.foo = tmp)`');
+              log('- `a.foo = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a.foo = tmp)`');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignRhs', true);
+
+              // Note: a().x = b().x = c().x will evaluate in order of a() b() c() so we must keep that order too
+              // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, nestedAssign.right),
+                AST.assignmentExpression(nestedAssign.left, tmpName),
+                AST.assignmentExpression(node.left, tmpName),
+              );
+
+              crumbSet(1, newNode);
+
+              after(newNode);
+              changed = true;
+              changedNow = true;
+            } else {
+              rule('Nested assignments with simple value to property are not allowed');
+              log('- `a = b.foo = c` --> `(b.foo = c, a = c)`');
+              log('- `a = b().foo = c` --> `(b().foo = c, a = c)`');
+              log('- `a.foo = b.foo = c` --> `(b.foo = c, a.foo = c)`');
+              log('- `a().foo = b().foo = c` --> `(b().foo = c, a().foo = c)`');
+              before(node);
+
+              // Note: a().x = b().x = c will evaluate in order of a() b() c so we must keep that order too
+              // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(nestedAssign.left, nestedAssign.right),
+                AST.assignmentExpression(node.left, nestedAssign.right),
+              );
+
+              crumbSet(1, newNode);
+
+              after(newNode);
+              changed = true;
+              changedNow = true;
             }
           } else if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
             // (occurs as a transformation artifact)
@@ -1551,6 +1567,7 @@ export function phaseNormalize(fdata, fname) {
             after(newNode);
             _expr(newNode);
             changed = true;
+            changedNow = true;
           } else if (node.right.type === 'SequenceExpression') {
             rule('Assignment rhs must not be sequence');
             log('- `a = (b, c)` --> `(b, a = c)`');
@@ -1563,6 +1580,7 @@ export function phaseNormalize(fdata, fname) {
             after(newNode);
             _expr(newNode);
             changed = true;
+            changedNow = true;
           } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
             rule('Assignment rhs must not be a property on a sequence');
             log('- `a = (b, c).d` --> `(b, a = c.d)`');
@@ -1579,6 +1597,14 @@ export function phaseNormalize(fdata, fname) {
             after(newNode);
             _expr(newNode);
             changed = true;
+            changedNow = true;
+          }
+
+          if (changedNow) {
+            _expr(crumbGet(1));
+          } else {
+            expr(node, 'left', -1, node.left);
+            expr(node, 'right', -1, node.right);
           }
         }
 

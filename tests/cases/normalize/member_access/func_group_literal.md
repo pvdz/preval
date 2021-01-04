@@ -23,7 +23,7 @@ $(f());
 `````js filename=intro
 function f() {
   1;
-  2;
+  const tmpPseudoExprStmt = 2;
   const y = (3).foo;
   return $(y);
 }

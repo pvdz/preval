@@ -1136,6 +1136,45 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
+        if (!changedHere && node.declarations.length === 1 && node.declarations[0].init) {
+          const decl = node.declarations[0];
+          const init = decl.init;
+          if (init.type === 'MemberExpression' && isComplexNode(init.object)) {
+            if (
+              init.object.type === 'SequenceExpression' &&
+              !isComplexNode(init.object.expressions[init.object.expressions.length - 1])
+            ) {
+              rule('Var init cannot be member expression on sequence with trailing node simple');
+              log('- `var a = (f(), x).b` --> `f(); var a = x.b`');
+              before(node);
+
+              const mem = init;
+              const seq = init.object;
+              const prop = init.property;
+              const tmpName = createFreshVarInCurrentRootScope('tmpPseudoExprStmt');
+              node.declarations.unshift(AST.variableDeclarator(tmpName, AST.sequenceExpression(seq.expressions.slice(0, -1))));
+              decl.init = AST.memberExpression(seq.expressions[seq.expressions.length - 1], prop, mem.computed);
+              after(node);
+              changed = true;
+              changedHere = true;
+            } else {
+              rule('Var init cannot be member expression with complex object');
+              log('- `var a = f().b` --> `var tmp = $(), a = tmp.b`');
+              before(node);
+
+              const mem = init;
+              const obj = init.object;
+              const prop = init.property;
+              const tmpName = createFreshVarInCurrentRootScope('tmpBindingInit');
+              node.declarations.unshift(AST.variableDeclarator(tmpName, obj));
+              decl.init = AST.memberExpression(tmpName, prop, mem.computed);
+              after(node);
+              changed = true;
+              changedHere = true;
+            }
+          }
+        }
+
         if (changedHere) {
           const node = crumbGet(1);
           _stmt(node, isExport, stillHoisting, isFunctionBody);

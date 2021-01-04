@@ -20,11 +20,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpComplexMemberObj;
   1;
   2;
-  tmpComplexMemberObj = $();
-  const y = tmpComplexMemberObj.foo;
+  const tmpBindingInit = $();
+  const y = tmpBindingInit.foo;
   return $(y);
 }
 var tmpArg;
@@ -36,9 +35,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  var tmpComplexMemberObj;
-  tmpComplexMemberObj = $();
-  const y = tmpComplexMemberObj.foo;
+  const tmpBindingInit = $();
+  const y = tmpBindingInit.foo;
   return $(y);
 }
 var tmpArg;

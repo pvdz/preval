@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 1;
-2;
+const tmpPseudoExprStmt = 2;
 const y = (3).foo;
 $(y);
 `````

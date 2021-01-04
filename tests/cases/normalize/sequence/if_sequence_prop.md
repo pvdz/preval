@@ -20,7 +20,7 @@ if (($(1), $(2)).foo) $(3);
 var tmpComplexMemberObj;
 {
   $(1);
-  tmpComplexMemberObj = $(2);
+  let tmpPseudoExprStmt = (tmpComplexMemberObj = $(2));
   let ifTestTmp = tmpComplexMemberObj.foo;
   if (ifTestTmp) {
     $(3);

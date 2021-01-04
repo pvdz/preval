@@ -206,19 +206,19 @@ export function phaseNormalize(fdata, fname) {
         // In a nutshell there are six concrete areas to look for updates;
         // - [x] binding declarations
         //   - [x] regular
-        //   - [ ] destructuring
+        //   - [x] destructuring
         //   - [ ] exported
         //   - [x] could be inside `for` header
-        // - [ ] param names
-        //   - [ ] regular
-        //   - [ ] patterns
-        // - [ ] assigning
-        //   - [ ] regular
-        //   - [ ] compound
-        //   - [ ] destructuring array
-        //   - [ ] destructuring object
+        // - [x] param names
+        //   - [x] regular
+        //   - [x] patterns
+        // - [x] assigning
+        //   - [x] regular
+        //   - [x] compound
+        //   - [x] destructuring array
+        //   - [x] destructuring object
         // - [ ] imports of any kind
-        // - [ ] function declarations
+        // - [x] function declarations
         // - [ ] update expressions, pre or postifx, inc or dec
         // - [ ] for-loop lhs
         updates: [], // {parent, prop, index} indirect reference ot the node being assigned
@@ -624,7 +624,7 @@ export function phaseNormalize(fdata, fname) {
     const newElements = [];
     node.elements.forEach((anode, i) => {
       // Elided elements are `null` here. Skip 'em
-      if (!anode) return;
+      if (!anode) return newElements.push(null);
 
       let valueNode = anode;
       if (anode.type === 'SpreadElement') {

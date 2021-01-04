@@ -51,6 +51,7 @@ const VERBOSE_TRACING = true;
   - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
   - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
   - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
+  - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
  */
 
 /*
@@ -985,6 +986,10 @@ export function phaseNormalize(fdata, fname) {
       case 'ReturnStatement': {
         if (node.argument) {
           expr(node, 'argument', -1, node.argument);
+        } else {
+          rule('Return argument must exist');
+          log('- `return;` --> `return undefined;`');
+          node.argument = AST.identifier('undefined');
         }
         break;
       }

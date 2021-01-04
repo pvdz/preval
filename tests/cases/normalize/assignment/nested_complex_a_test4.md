@@ -23,9 +23,9 @@ $($(a).length = b);
 
 `````js filename=intro
 var tmpArg;
-var tmpObj;
-tmpObj = $(a);
-tmpObj.length = b;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $(a);
+tmpComplexMemberObj.length = b;
 tmpArg = b;
 $(tmpArg);
 `````
@@ -34,9 +34,9 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpObj;
-tmpObj = $(a);
-tmpObj.length = b;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $(a);
+tmpComplexMemberObj.length = b;
 tmpArg = b;
 $(tmpArg);
 `````

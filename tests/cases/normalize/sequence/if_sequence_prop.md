@@ -17,11 +17,11 @@ if (($(1), $(2)).foo) $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 {
   $(1);
-  tmpObj = $(2);
-  let ifTestTmp = tmpObj.foo;
+  tmpComplexMemberObj = $(2);
+  let ifTestTmp = tmpComplexMemberObj.foo;
   if (ifTestTmp) {
     $(3);
   }
@@ -31,10 +31,10 @@ var tmpObj;
 ## Output
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 $(1);
-tmpObj = $(2);
-let ifTestTmp = tmpObj.foo;
+tmpComplexMemberObj = $(2);
+let ifTestTmp = tmpComplexMemberObj.foo;
 if (ifTestTmp) {
   $(3);
 }

@@ -17,27 +17,27 @@ $(obj.a.b);
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 var tmpArg;
-var tmpObj_1;
+var tmpComplexMemberObj_1;
 const obj = { a: { b: $() } };
-tmpObj = obj.a;
-tmpObj.b = 15;
-tmpObj_1 = obj.a;
-tmpArg = tmpObj_1.b;
+tmpComplexMemberObj = obj.a;
+tmpComplexMemberObj.b = 15;
+tmpComplexMemberObj_1 = obj.a;
+tmpArg = tmpComplexMemberObj_1.b;
 $(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 var tmpArg;
-var tmpObj_1;
+var tmpComplexMemberObj_1;
 const obj = { a: { b: $() } };
-tmpObj = obj.a;
-tmpObj.b = 15;
-tmpObj_1 = obj.a;
-tmpArg = tmpObj_1.b;
+tmpComplexMemberObj = obj.a;
+tmpComplexMemberObj.b = 15;
+tmpComplexMemberObj_1 = obj.a;
+tmpArg = tmpComplexMemberObj_1.b;
 $(tmpArg);
 `````

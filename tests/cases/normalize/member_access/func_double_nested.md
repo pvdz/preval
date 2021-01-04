@@ -21,12 +21,12 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpObj;
-  var tmpObj_1;
+  var tmpComplexMemberObj;
+  var tmpComplexMemberObj_1;
   const obj = { a: { b: { c: $() } } };
-  tmpObj_1 = obj.a;
-  tmpObj = tmpObj_1.b;
-  tmpArg = tmpObj.c;
+  tmpComplexMemberObj_1 = obj.a;
+  tmpComplexMemberObj = tmpComplexMemberObj_1.b;
+  tmpArg = tmpComplexMemberObj.c;
   return $(tmpArg);
 }
 var tmpArg_1;
@@ -39,12 +39,12 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpObj;
-  var tmpObj_1;
+  var tmpComplexMemberObj;
+  var tmpComplexMemberObj_1;
   const obj = { a: { b: { c: $() } } };
-  tmpObj_1 = obj.a;
-  tmpObj = tmpObj_1.b;
-  tmpArg = tmpObj.c;
+  tmpComplexMemberObj_1 = obj.a;
+  tmpComplexMemberObj = tmpComplexMemberObj_1.b;
+  tmpArg = tmpComplexMemberObj.c;
   return $(tmpArg);
 }
 var tmpArg_1;

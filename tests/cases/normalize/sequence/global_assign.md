@@ -17,17 +17,17 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 $(1);
-tmpObj = $(2);
-tmpObj.x = 1;
+tmpComplexMemberObj = $(2);
+tmpComplexMemberObj.x = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 $(1);
-tmpObj = $(2);
-tmpObj.x = 1;
+tmpComplexMemberObj = $(2);
+tmpComplexMemberObj.x = 1;
 `````

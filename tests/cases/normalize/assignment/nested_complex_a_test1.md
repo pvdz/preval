@@ -32,15 +32,15 @@ $(a).length = b;
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
-tmpObj = $(a);
-tmpObj.length = b;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $(a);
+tmpComplexMemberObj.length = b;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
-tmpObj = $(a);
-tmpObj.length = b;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $(a);
+tmpComplexMemberObj.length = b;
 `````

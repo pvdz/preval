@@ -20,11 +20,11 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 const a = 10;
 a;
-tmpObj = $(2);
-const b = tmpObj.toString;
+tmpComplexMemberObj = $(2);
+const b = tmpComplexMemberObj.toString;
 1;
 const c = b.length;
 $(c);
@@ -33,9 +33,9 @@ $(c);
 ## Output
 
 `````js filename=intro
-var tmpObj;
-tmpObj = $(2);
-const b = tmpObj.toString;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $(2);
+const b = tmpComplexMemberObj.toString;
 const c = b.length;
 $(c);
 `````

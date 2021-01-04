@@ -1624,7 +1624,7 @@ export function phaseNormalize(fdata, fname) {
             log('- `(a, a = y).c` --> noop');
             before(node);
 
-            const seq = sequenceNode(node.object, 'tmpObj');
+            const seq = sequenceNode(node.object, 'tmpComplexMemberObj');
             const property = node.property;
             const newLeftNode = AST.memberExpression(seq, property, node.computed);
 

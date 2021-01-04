@@ -21,10 +21,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpObj;
+  var tmpComplexMemberObj;
   $(1);
-  tmpObj = $(2);
-  return tmpObj.foo;
+  tmpComplexMemberObj = $(2);
+  return tmpComplexMemberObj.foo;
 }
 var tmpArg;
 tmpArg = f();
@@ -35,10 +35,10 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  var tmpObj;
+  var tmpComplexMemberObj;
   $(1);
-  tmpObj = $(2);
-  return tmpObj.foo;
+  tmpComplexMemberObj = $(2);
+  return tmpComplexMemberObj.foo;
 }
 var tmpArg;
 tmpArg = f();

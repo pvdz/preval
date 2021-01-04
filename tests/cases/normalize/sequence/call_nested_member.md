@@ -18,8 +18,8 @@ obj.a.b.c();
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
-var tmpObj_1;
+var tmpComplexMemberObj;
+var tmpComplexMemberObj_1;
 const obj = {
   a: {
     b: {
@@ -29,16 +29,16 @@ const obj = {
     },
   },
 };
-tmpObj_1 = obj.a;
-tmpObj = tmpObj_1.b;
-tmpObj.c();
+tmpComplexMemberObj_1 = obj.a;
+tmpComplexMemberObj = tmpComplexMemberObj_1.b;
+tmpComplexMemberObj.c();
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
-var tmpObj_1;
+var tmpComplexMemberObj;
+var tmpComplexMemberObj_1;
 const obj = {
   a: {
     b: {
@@ -48,7 +48,7 @@ const obj = {
     },
   },
 };
-tmpObj_1 = obj.a;
-tmpObj = tmpObj_1.b;
-tmpObj.c();
+tmpComplexMemberObj_1 = obj.a;
+tmpComplexMemberObj = tmpComplexMemberObj_1.b;
+tmpComplexMemberObj.c();
 `````

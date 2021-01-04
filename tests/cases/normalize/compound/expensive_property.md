@@ -26,9 +26,9 @@ superExpensiveFunction().x += 5;
 function superExpensiveFunction() {
   return $();
 }
-var tmpObj;
-tmpObj = superExpensiveFunction();
-tmpObj.x += 5;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = superExpensiveFunction();
+tmpComplexMemberObj.x += 5;
 `````
 
 ## Output
@@ -37,7 +37,7 @@ tmpObj.x += 5;
 function superExpensiveFunction() {
   return $();
 }
-var tmpObj;
-tmpObj = superExpensiveFunction();
-tmpObj.x += 5;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = superExpensiveFunction();
+tmpComplexMemberObj.x += 5;
 `````

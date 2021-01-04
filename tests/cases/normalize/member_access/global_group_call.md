@@ -16,19 +16,19 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObj;
+var tmpComplexMemberObj;
 1;
 2;
-tmpObj = $();
-const y = tmpObj.foo;
+tmpComplexMemberObj = $();
+const y = tmpComplexMemberObj.foo;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObj;
-tmpObj = $();
-const y = tmpObj.foo;
+var tmpComplexMemberObj;
+tmpComplexMemberObj = $();
+const y = tmpComplexMemberObj.foo;
 $(y);
 `````

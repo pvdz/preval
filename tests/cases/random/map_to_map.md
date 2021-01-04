@@ -55,12 +55,12 @@ $(
 
 `````js filename=intro
 var tmpArg;
-var tmpObj;
+var tmpComplexMemberObj;
 var tmpArg_1;
 var tmpArg_2;
-var tmpObj_1;
+var tmpComplexMemberObj_1;
 var tmpElement;
-var tmpObj_2;
+var tmpComplexMemberObj_2;
 var tmpArg_3;
 var tmpElement_1;
 var tmpElement_2;
@@ -148,12 +148,12 @@ tmpArg_3 = [
   tmpElement_26,
   tmpElement_27,
 ];
-tmpObj_2 = new Map(tmpArg_3);
-tmpElement = tmpObj_2.keys();
-tmpObj_1 = [...tmpElement, 'module'];
-tmpArg_1 = tmpObj_1.map(tmpArg_2);
-tmpObj = new Map(tmpArg_1);
-tmpArg = tmpObj.get('$');
+tmpComplexMemberObj_2 = new Map(tmpArg_3);
+tmpElement = tmpComplexMemberObj_2.keys();
+tmpComplexMemberObj_1 = [...tmpElement, 'module'];
+tmpArg_1 = tmpComplexMemberObj_1.map(tmpArg_2);
+tmpComplexMemberObj = new Map(tmpArg_1);
+tmpArg = tmpComplexMemberObj.get('$');
 $(tmpArg);
 `````
 
@@ -161,12 +161,12 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpObj;
+var tmpComplexMemberObj;
 var tmpArg_1;
 var tmpArg_2;
-var tmpObj_1;
+var tmpComplexMemberObj_1;
 var tmpElement;
-var tmpObj_2;
+var tmpComplexMemberObj_2;
 var tmpArg_3;
 var tmpElement_1;
 var tmpElement_2;
@@ -254,11 +254,11 @@ tmpArg_3 = [
   tmpElement_26,
   tmpElement_27,
 ];
-tmpObj_2 = new Map(tmpArg_3);
-tmpElement = tmpObj_2.keys();
-tmpObj_1 = [...tmpElement, 'module'];
-tmpArg_1 = tmpObj_1.map(tmpArg_2);
-tmpObj = new Map(tmpArg_1);
-tmpArg = tmpObj.get('$');
+tmpComplexMemberObj_2 = new Map(tmpArg_3);
+tmpElement = tmpComplexMemberObj_2.keys();
+tmpComplexMemberObj_1 = [...tmpElement, 'module'];
+tmpArg_1 = tmpComplexMemberObj_1.map(tmpArg_2);
+tmpComplexMemberObj = new Map(tmpArg_1);
+tmpArg = tmpComplexMemberObj.get('$');
 $(tmpArg);
 `````

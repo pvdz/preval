@@ -24,10 +24,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpObj;
+  var tmpComplexMemberObj;
   const a = 10;
-  tmpObj = $(2);
-  const b = tmpObj.toString;
+  tmpComplexMemberObj = $(2);
+  const b = tmpComplexMemberObj.toString;
   const c = b.length;
   return $(c);
 }
@@ -40,9 +40,9 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  var tmpObj;
-  tmpObj = $(2);
-  const b = tmpObj.toString;
+  var tmpComplexMemberObj;
+  tmpComplexMemberObj = $(2);
+  const b = tmpComplexMemberObj.toString;
   const c = b.length;
   return $(c);
 }

@@ -21,14 +21,14 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpObj;
+  var tmpComplexMemberObj;
   var tmpArg;
-  var tmpObj_1;
+  var tmpComplexMemberObj_1;
   const obj = { a: { b: $() } };
-  tmpObj = obj.a;
-  tmpObj.b = 15;
-  tmpObj_1 = obj.a;
-  tmpArg = tmpObj_1.b;
+  tmpComplexMemberObj = obj.a;
+  tmpComplexMemberObj.b = 15;
+  tmpComplexMemberObj_1 = obj.a;
+  tmpArg = tmpComplexMemberObj_1.b;
   return $(tmpArg);
 }
 var tmpArg_1;
@@ -40,14 +40,14 @@ $(tmpArg_1);
 
 `````js filename=intro
 function f() {
-  var tmpObj;
+  var tmpComplexMemberObj;
   var tmpArg;
-  var tmpObj_1;
+  var tmpComplexMemberObj_1;
   const obj = { a: { b: $() } };
-  tmpObj = obj.a;
-  tmpObj.b = 15;
-  tmpObj_1 = obj.a;
-  tmpArg = tmpObj_1.b;
+  tmpComplexMemberObj = obj.a;
+  tmpComplexMemberObj.b = 15;
+  tmpComplexMemberObj_1 = obj.a;
+  tmpArg = tmpComplexMemberObj_1.b;
   return $(tmpArg);
 }
 var tmpArg_1;

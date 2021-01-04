@@ -21,7 +21,8 @@ var x;
 let y;
 {
   objAssignPatternRhs = 1;
-  let ifTestTmp = (x = objAssignPatternRhs.x);
+  x = objAssignPatternRhs.x;
+  let ifTestTmp = x;
   if (ifTestTmp) {
     y;
   }
@@ -34,7 +35,8 @@ let y;
 var objAssignPatternRhs;
 var x;
 objAssignPatternRhs = 1;
-let ifTestTmp = (x = objAssignPatternRhs.x);
+x = objAssignPatternRhs.x;
+let ifTestTmp = x;
 if (ifTestTmp) {
 }
 `````

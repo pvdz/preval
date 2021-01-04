@@ -52,6 +52,7 @@ const VERBOSE_TRACING = true;
   - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
   - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
   - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
+  - Var binding inits that are assignments are outlined
  */
 
 /*
@@ -506,6 +507,60 @@ export function phaseNormalize(fdata, fname) {
           body.splice(i, 1, ...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind)));
           changed = true;
           --i; // revisit (recursively)
+        } else {
+          const decl = e.declarations[0];
+          if (decl.init) {
+            const init = decl.init;
+
+            if (init.type === 'AssignmentExpression') {
+              // Note: this transform is only safe with simple left or right sides.
+              // If the right side is simple use the right side as init.
+              // If the left side is simple use the left side as init.
+              // If neither is simple then uhh uh uhh todo.
+
+              if (!isComplexNode(init.right)) {
+                rule('Init of a var binding must not be assignment, with simple rhs');
+                log('- `let x = y().foo = z` --> `y().foo = z; let x = z`');
+                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
+
+                body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.right, e.kind));
+                changed = true;
+                //--i;
+              } else if (!isComplexNode(init.left)) {
+                rule('Init of a var binding must not be assignment, with simple lhs');
+                log('- `let x = y = z()` --> `y = z(); let x = y`');
+                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
+
+                body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.left, e.kind));
+                changed = true;
+                //--i;
+              } else {
+                rule('Init of a var binding must not be assignment, with both sides complex');
+                log('- `let x = y().foo = z().foo` --> `let tmp = y(); let tmp2 = z(); y.foo = tmp2; let x = tmp2;`');
+                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
+                ASSERT(init.left.type === 'MemberExpression', 'what else do you assign to if not simple nor member?', e);
+
+                // We need two new vars because we need to evaluate the lhs before we evaluate the rhs
+                // Consider `let a = $(1).x = $(2)`. This should call $ with 1 before 2.
+                const tmpNameLhs = createFreshVarInCurrentRootScope('tmpBindInitMemberObject');
+                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpBindInitRhs');
+                const mem = init.left;
+
+                body.splice(
+                  i,
+                  1,
+                  AST.variableDeclaration(tmpNameLhs, mem.object),
+                  AST.variableDeclaration(tmpNameRhs, init.right),
+                  AST.expressionStatement(
+                    AST.assignmentExpression(AST.memberExpression(tmpNameLhs, mem.property, mem.computed), tmpNameRhs),
+                  ),
+                  AST.variableDeclaration(decl.id, tmpNameRhs, e.kind),
+                );
+                changed = true;
+                //--i;
+              }
+            }
+          }
         }
       }
       ++i;

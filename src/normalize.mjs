@@ -654,6 +654,11 @@ export function phaseNormalize(fdata, fname) {
       isExport,
     );
 
+    crumb(parent, prop, index);
+    _stmt(node, isExport, stillHoisting, isFunctionBody);
+    uncrumb(parent, prop, index);
+  }
+  function _stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
@@ -662,9 +667,9 @@ export function phaseNormalize(fdata, fname) {
       node.$p.funcBindingsToInject = [];
     }
 
-    crumb(parent, prop, index);
-    _stmt(node, isExport, stillHoisting, isFunctionBody);
-    uncrumb(parent, prop, index);
+    group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
+    __stmt(node, isExport, stillHoisting, isFunctionBody);
+    groupEnd();
 
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.pop(node);
@@ -686,9 +691,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
-  function _stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
-    group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-
+  function __stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       if (node.$scope) lexScopeStack.push(node);
       else lexScopeStack.push(node.handler);
@@ -1036,13 +1039,10 @@ export function phaseNormalize(fdata, fname) {
           break;
         }
 
+        let changedHere = false;
         const kind = node.kind;
         const dnode = node.declarations[0];
         const names = [];
-
-        if (dnode.init) {
-          expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
-        }
 
         // The paramNode can be either an Identifier or a pattern of sorts
         if (dnode.id.type === 'Identifier') {
@@ -1065,9 +1065,12 @@ export function phaseNormalize(fdata, fname) {
               ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
             ];
             changed = true;
+            changedHere = true;
           } else if (dnode.init) {
             log('There were no bindings so replacing the var declaration with its init');
             crumbSet(1, AST.expressionStatement(dnode.init));
+            changed = true;
+            changedHere = true;
           } else {
             ASSERT(false, 'binding patterns are required to have an init');
           }
@@ -1087,9 +1090,12 @@ export function phaseNormalize(fdata, fname) {
               ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
             ];
             changed = true;
+            changedHere = true;
           } else if (dnode.init) {
             log('There were no bindings so replacing the var declaration with its init');
             crumbSet(1, AST.expressionStatement(dnode.init));
+            changed = true;
+            changedHere = true;
           }
         } else {
           console.dir(node, { depth: null });
@@ -1126,7 +1132,15 @@ export function phaseNormalize(fdata, fname) {
             // We explicitly track whether we are still in a hoisting header, and if so, will skip this normalization step
             // So we should not have to worry about running this optimization over and over again.
             changed = true;
+            changedHere = true;
           }
+        }
+
+        if (changedHere) {
+          const node = crumbGet(1);
+          _stmt(node, isExport, stillHoisting, isFunctionBody);
+        } else if (dnode.init) {
+          expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
         }
 
         break;
@@ -1156,8 +1170,6 @@ export function phaseNormalize(fdata, fname) {
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       lexScopeStack.pop();
     }
-
-    groupEnd();
   }
   function expr2(parent2, prop2, index2, parent, prop, index, node) {
     // Skip one property

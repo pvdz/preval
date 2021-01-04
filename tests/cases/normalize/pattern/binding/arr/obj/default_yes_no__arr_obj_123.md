@@ -18,9 +18,9 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var tmpElement;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
-var tmpElement;
 tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
@@ -33,9 +33,9 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var tmpElement;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
-var tmpElement;
 tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];

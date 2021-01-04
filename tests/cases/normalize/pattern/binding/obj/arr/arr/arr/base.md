@@ -20,7 +20,6 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpElement_1;
-var tmpElement_2;
 const bindingPatternObjRoot = { x: ((tmpElement_1 = [1, 2, 3]), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];

@@ -27,13 +27,15 @@ if (!$(1))
   }
 }
 {
-  let ifTestTmp_2 = !$(1);
-  if (ifTestTmp_2) {
-    let ifTestTmp_1 = $(2);
-    if (ifTestTmp_1) {
-      $(3);
-    } else {
-      $(4);
+  let ifTestTmp_1 = !$(1);
+  if (ifTestTmp_1) {
+    {
+      let ifTestTmp_2 = $(2);
+      if (ifTestTmp_2) {
+        $(3);
+      } else {
+        $(4);
+      }
     }
   }
 }
@@ -46,10 +48,10 @@ let ifTestTmp = $(-1);
 if (ifTestTmp) {
   $(0);
 }
-let ifTestTmp_2 = !$(1);
-if (ifTestTmp_2) {
-  let ifTestTmp_1 = $(2);
-  if (ifTestTmp_1) {
+let ifTestTmp_1 = !$(1);
+if (ifTestTmp_1) {
+  let ifTestTmp_2 = $(2);
+  if (ifTestTmp_2) {
     $(3);
   } else {
     $(4);

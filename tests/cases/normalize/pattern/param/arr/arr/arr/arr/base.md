@@ -35,8 +35,6 @@ var tmpArg_1;
 var tmpElement;
 var tmpElement_1;
 var tmpElement_2;
-var tmpElement_3;
-var tmpElement_4;
 tmpElement_2 = [1, 2, 3];
 tmpElement_1 = [tmpElement_2, 4, 5];
 tmpElement = [tmpElement_1, 20, 30];

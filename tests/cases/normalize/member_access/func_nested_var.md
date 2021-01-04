@@ -28,7 +28,7 @@ function f() {
   a;
   const tmpBindingInit = $(2);
   const b = tmpBindingInit.toString;
-  const tmpPseudoExprStmt = 1;
+  1;
   const c = b.length;
   return $(c);
 }

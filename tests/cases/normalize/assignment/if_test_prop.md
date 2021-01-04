@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let y;
-if (({ x } = 1)) y;
+if (({ x } = 1).foo) y;
 `````
 
 ## Normalized
@@ -22,7 +22,8 @@ let y;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
-  let ifTestTmp = 1;
+  let tmpBindingInit = 1;
+  let ifTestTmp = tmpBindingInit.foo;
   if (ifTestTmp) {
     y;
   }
@@ -36,4 +37,7 @@ var objAssignPatternRhs;
 var x;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
+let ifTestTmp = (1).foo;
+if (ifTestTmp) {
+}
 `````

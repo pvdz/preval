@@ -438,7 +438,10 @@ export function phaseNormalize(fdata, fname) {
           }
         }
       } else if (e.type === 'ReturnStatement') {
-        if (e.argument.type === 'SequenceExpression') {
+        if (!e.argument) {
+          log('Return statement is not normalized. Request another pass.');
+          changed = true;
+        } else if (e.argument.type === 'SequenceExpression') {
           // This assumes sub-statements are normalized to be groups already
           rule('Argument of return statement can not be sequence');
           log('- `return (a,b)` --> `a; return b;`');
@@ -598,6 +601,7 @@ export function phaseNormalize(fdata, fname) {
       );
 
       crumbSet(1, seq);
+      changed = true;
 
       after(seq);
 
@@ -648,11 +652,12 @@ export function phaseNormalize(fdata, fname) {
       const seq = AST.sequenceExpression(...assigns, AST.arrayExpression(newElements));
 
       crumbSet(1, seq);
+      changed = true;
 
       // Visit the sequence expression node now.
       _expr(seq);
 
-      //return true;
+      return true;
     }
 
     return false;
@@ -760,6 +765,7 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'BlockStatement': {
         ensureVarDeclsCreateOneBinding(node.body);
+        statementifySequences(node);
 
         let hoisting = !!isFunctionBody;
         node.body.forEach((cnode, i) => {
@@ -779,7 +785,6 @@ export function phaseNormalize(fdata, fname) {
           }
           stmt(node, 'body', i, cnode, false, hoisting);
         });
-        statementifySequences(node);
         break;
       }
 
@@ -809,7 +814,6 @@ export function phaseNormalize(fdata, fname) {
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
         }
-        stmt(node, 'body', -1, node.body);
 
         if (isComplexNode(node.test)) {
           // `do { ... } while (x+y);`
@@ -824,6 +828,8 @@ export function phaseNormalize(fdata, fname) {
           node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
           changed = true;
         }
+
+        stmt(node, 'body', -1, node.body);
         expr(node, 'test', -1, node.test);
 
         break;
@@ -881,6 +887,14 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ForStatement': {
+        if (node.body.type !== 'BlockStatement') {
+          rule('For-loop sub-statement must be block');
+          log('- `for (;;) x` --> `for (;;) {x}`');
+
+          node.body = AST.blockStatement(node.body);
+          //changed = true; // TODO: I don't think this is necessary?
+        }
+
         if (node.init) {
           if (node.init.type === 'VariableDeclaration') {
             stmt(node, 'init', -1, node.init);
@@ -895,36 +909,36 @@ export function phaseNormalize(fdata, fname) {
           expr(node, 'update', -1, node.update);
         }
         stmt(node, 'body', -1, node.body);
-        if (node.body.type !== 'BlockStatement') {
-          rule('For-loop sub-statement must be block');
-          log('- `for (;;) x` --> `for (;;) {x}`');
-
-          crumb(node, 'body', -1);
-          crumbSet(1, AST.blockStatement(node.body));
-          uncrumb(node, 'body', -1);
-        }
         break;
       }
 
       case 'ForInStatement': {
+        if (node.body.type !== 'BlockStatement') {
+          rule('For-in sub-statement must be block');
+          log('- `for (x in y) z` --> `for (x in y) {z}`');
+
+          node.body = AST.blockStatement(node.body);
+          //changed = true; // TODO: I don't think this is necessary?
+        }
+
         expr(node, 'right', -1, node.right);
         if (node.left.type === 'VariableDeclaration') {
         } else {
           expr(node, 'left', -1, node.left);
         }
         stmt(node, 'body', -1, node.body);
-        if (node.body.type !== 'BlockStatement') {
-          rule('For-in sub-statement must be block');
-          log('- `for (x in y) z` --> `for (x in y) {z}`');
-
-          crumb(node, 'body', -1);
-          crumbSet(1, AST.blockStatement(node.body));
-          uncrumb(node, 'body', -1);
-        }
         break;
       }
 
       case 'ForOfStatement': {
+        if (node.body.type !== 'BlockStatement') {
+          rule('For-of sub-statement must be block');
+          log('- `for (x of y) z` --> `for (x in y) {z}`');
+
+          node.body = AST.blockStatement(node.body);
+          //changed = true; // TODO: I don't think this is necessary?
+        }
+
         // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
         if (node.await) {
           TOFIX;
@@ -939,29 +953,20 @@ export function phaseNormalize(fdata, fname) {
         }
 
         stmt(node, 'body', -1, node.body);
-        if (node.body.type !== 'BlockStatement') {
-          rule('For-of sub-statement must be block');
-          log('- `for (x of y) z` --> `for (x in y) {z}`');
-
-          crumb(node, 'body', -1);
-          crumbSet(1, AST.blockStatement(node.body));
-          uncrumb(node, 'body', -1);
-        }
         break;
       }
 
       case 'FunctionDeclaration': {
-        //ensureVarDeclsCreateOneBinding(node.body.body);
-
         log('Name:', node.id ? node.id.name : '<anon>');
+
         if (node.id) expr(node, 'id', -1, node.id);
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
         stmt(node, 'body', -1, node.body, false, false, true);
 
-        ASSERT(funcStack[funcStack.length - 1] === node, 'top of funcStack should be the current node');
-        const meta = getMetaForBindingName(node.id, true);
         // TODO: dont move the functions if they're already hoisted
         rule('All function declarations must be at the top');
+        ASSERT(funcStack[funcStack.length - 1] === node, 'top of funcStack should be the current node');
+        const meta = getMetaForBindingName(node.id, true);
         if (meta.isExport) {
           const parent = crumbGet(2);
           ASSERT(
@@ -984,35 +989,38 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'IfStatement': {
-        expr(node, 'test', -1, node.test);
-        stmt(node, 'consequent', -1, node.consequent);
         if (isComplexNode(node.test)) {
           rule('If-test node must be simple');
           log('- `if (x+y) z` --> `{ let tmp = x+y; if (tmp) z; }`');
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
           const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
-          crumbSet(1, AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node));
+          const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node);
+          crumbSet(1, newNode);
           node.test = AST.identifier(tmpName);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
           changed = true;
+          break;
         }
         if (node.consequent.type !== 'BlockStatement') {
           rule('If sub-statement must be block'); // TODO: this is duplicate
           log('- `if (x) y` --> `if (x) { y }`');
 
-          crumb(node, 'consequent', -1);
-          crumbSet(1, AST.blockStatement(node.consequent));
-          uncrumb(node, 'consequent', -1);
+          node.consequent = AST.blockStatement(node.consequent);
         }
         if (node.alternate) {
-          stmt(node, 'alternate', -1, node.alternate);
           if (node.alternate.type !== 'BlockStatement') {
             rule('Else sub-statement must be block'); // TODO: this is duplicate
             log('- `if (x) {} else y` --> `if (x) {} else { y }`');
 
-            crumb(node, 'alternate', -1);
-            crumbSet(1, AST.blockStatement(node.alternate));
-            uncrumb(node, 'alternate', -1);
+            node.alternate = AST.blockStatement(node.alternate);
           }
+        }
+
+        expr(node, 'test', -1, node.test);
+        stmt(node, 'consequent', -1, node.consequent);
+        if (node.alternate) {
+          stmt(node, 'alternate', -1, node.alternate);
         }
         break;
       }
@@ -1023,6 +1031,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Program': {
         ensureVarDeclsCreateOneBinding(node.body);
+        statementifySequences(node);
 
         let hoisting = true; // false at first body element that is neither a noop var statement nor a func decl
         node.body.forEach((cnode, i) => {
@@ -1042,18 +1051,18 @@ export function phaseNormalize(fdata, fname) {
           }
           stmt(node, 'body', i, cnode, false, hoisting);
         });
-        statementifySequences(node);
+
         break;
       }
 
       case 'ReturnStatement': {
-        if (node.argument) {
-          expr(node, 'argument', -1, node.argument);
-        } else {
+        if (!node.argument) {
           rule('Return argument must exist');
           log('- `return;` --> `return undefined;`');
           node.argument = AST.identifier('undefined');
         }
+
+        expr(node, 'argument', -1, node.argument);
         break;
       }
 
@@ -1081,6 +1090,7 @@ export function phaseNormalize(fdata, fname) {
             rule('Switch case must contain exactly one block'); // TODO: this is duplicate
             log('- `switch (x) { case a: b; c; }` --> `switch (x) { case a: { b; c; } }`');
             cnode.consequent = [AST.blockStatement(cnode.consequent)];
+            // changed = true; // Don't think I need to set this?
           }
           cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
         });
@@ -1243,16 +1253,15 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'WhileStatement': {
-        expr(node, 'test', -1, node.test);
-        stmt(node, 'body', -1, node.body);
         if (node.body.type !== 'BlockStatement') {
           rule('While sub-statement must be block');
           log('- `while (x) y` --> `while (x) { y }`');
 
-          crumb(node, 'body', -1);
-          crumbSet(1, AST.blockStatement(node.body));
-          uncrumb(node, 'body', -1);
+          node.body = AST.blockStatement(node.body);
         }
+
+        expr(node, 'test', -1, node.test);
+        stmt(node, 'body', -1, node.body);
         break;
       }
 

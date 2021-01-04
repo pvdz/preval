@@ -17,12 +17,10 @@ if (($(1), $(2)).foo) $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpComplexMemberObj;
+$(1);
 {
-  $(1);
-  tmpComplexMemberObj = $(2);
-  let tmpPseudoExprStmt = tmpComplexMemberObj;
-  let ifTestTmp = tmpComplexMemberObj.foo;
+  let tmpBindingInit = $(2);
+  let ifTestTmp = tmpBindingInit.foo;
   if (ifTestTmp) {
     $(3);
   }
@@ -32,10 +30,9 @@ var tmpComplexMemberObj;
 ## Output
 
 `````js filename=intro
-var tmpComplexMemberObj;
 $(1);
-tmpComplexMemberObj = $(2);
-let ifTestTmp = tmpComplexMemberObj.foo;
+let tmpBindingInit = $(2);
+let ifTestTmp = tmpBindingInit.foo;
 if (ifTestTmp) {
   $(3);
 }

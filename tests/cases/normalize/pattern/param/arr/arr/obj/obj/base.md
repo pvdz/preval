@@ -38,7 +38,6 @@ var tmpArg;
 var tmpArg_1;
 var tmpElement;
 var tmpElement_1;
-var tmpElement_2;
 tmpElement_1 = { x: { a: 1, b: 2, c: 3 } };
 tmpElement = [tmpElement_1, 20, 30];
 tmpArg_1 = [tmpElement, 40, 50];

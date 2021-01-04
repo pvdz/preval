@@ -33,7 +33,6 @@ var tmpArg;
 var tmpArg_1;
 var tmpElement;
 var tmpElement_1;
-var tmpElement_2;
 tmpArg_1 = { x: ((tmpElement_1 = [1, 2, 3]), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);

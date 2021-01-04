@@ -18,7 +18,7 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-const tmpPseudoExprStmt = 1;
+1;
 const y = a.x;
 $(y);
 `````

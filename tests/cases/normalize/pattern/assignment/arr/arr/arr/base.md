@@ -21,8 +21,6 @@ $('ok');
 var tmpElement;
 var tmpElement_1;
 var tmpElement_2;
-var tmpElement_3;
-var tmpElement_4;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;

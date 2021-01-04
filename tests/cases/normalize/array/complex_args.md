@@ -20,7 +20,6 @@ var tmpElement;
 var tmpElement_1;
 var tmpElement_2;
 var tmpComplexMemberObj;
-var tmpComplexMemberObj_1;
 tmpElement = 5 + 5;
 tmpElement_1 = $();
 tmpComplexMemberObj = Array.prototype;

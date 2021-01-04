@@ -1776,6 +1776,7 @@ export function phaseNormalize(fdata, fname) {
 
             crumbSet(1, newLeftNode);
             after(newLeftNode);
+
             _expr(newLeftNode);
             changed = true;
             break;
@@ -1882,11 +1883,11 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'SequenceExpression': {
+        flattenSequences(node);
+
         node.expressions.forEach((enode, i) => {
           expr(node, 'expressions', i, enode);
         });
-
-        flattenSequences(node);
 
         break;
       }

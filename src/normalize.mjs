@@ -114,7 +114,7 @@ const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 
 function rule(desc) {
   if (desc.slice(-1) === '"') fixme;
-  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '');
+  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"');
 }
 function before(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
@@ -581,7 +581,7 @@ export function phaseNormalize(fdata, fname) {
     const assigns = [];
     const newArgs = [];
     node.arguments.forEach((anode, i) => {
-      if (isComplexNode(anode)) {
+      if (isComplexNode(anode) && anode.type !== 'SpreadElement') {
         const tmpName = createFreshVarInCurrentRootScope('tmpArg', true);
         assigns.push(AST.assignmentExpression(tmpName, anode));
         newArgs.push(AST.identifier(tmpName));

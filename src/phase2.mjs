@@ -1198,6 +1198,11 @@ export function phase2(program, fdata, resolve, req) {
         break;
       }
 
+      case 'TaggedTemplateExpression': {
+        ASSERT(false, 'should be normalized out');
+        break;
+      }
+
       case 'TemplateLiteral': {
         node.expressions.forEach((enode, i) => {
           expr(node, 'expressions', i, enode);

@@ -55,6 +55,9 @@ const VERBOSE_TRACING = true;
   - Var binding inits that are assignments are outlined
   - Outline complex `throw` or `return` arguments
   - Outline complex spread arguments for object and array litearls
+  - Tagged templates are decomposed into the runtime equivalent of a regular func call
+  - Templates that have no expressions are converted to regular strings
+  - All expressions inside templates are outlined to be simple nodes only.
  */
 
 /*
@@ -110,7 +113,6 @@ const VERBOSE_TRACING = true;
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
   - Empty `else` sub-statement should eliminate the else (probably not normalization)
   - Assignment of a simple node to itself
-  - Template parts
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -351,6 +353,7 @@ export function phaseNormalize(fdata, fname) {
     if (orSequence && node.type === 'SequenceExpression' && !isComplexNode(node.expressions[node.expressions.length - 1])) return false;
     if (node.type === 'ArrayExpression' && node.elements.length === 0) return false; // Empty array literal is not exciting, probably not worth separating (?)
     if (node.type === 'ObjectExpression' && node.properties.length === 0) return false; // Empty object literal is not exciting, probably not worth separating (?)
+    if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
 
     return true;
   }
@@ -1971,10 +1974,47 @@ export function phaseNormalize(fdata, fname) {
         break;
       }
 
+      case 'TaggedTemplateExpression': {
+        rule('Tagged templates should decompose into their runtime values');
+        rule("`` f`foo` `` --> `f(['foo'])`");
+        rule("`` f`a${1}b${2}c${3}d` `` --> `f(['a', 'b', 'c', 'd'], 1, 2, 3)`");
+        before(node);
+
+        const newNode = AST.callExpression(node.tag, [
+          AST.arrayExpression(node.quasi.quasis.map((templateElement) => AST.literal(templateElement.value.raw))),
+          ...node.quasi.expressions,
+        ]);
+        crumbSet(1, newNode);
+
+        after(newNode);
+        changed = true;
+
+        _expr(newNode);
+        break;
+      }
+
       case 'TemplateLiteral': {
-        node.expressions.forEach((enode, i) => {
-          expr(node, 'expressions', i, enode);
-        });
+        if (node.expressions.length === 0) {
+          ASSERT(node.quasis.length === 1, 'zero expressions means exaclty one "string" part');
+          ASSERT(node.quasis[0].value && typeof node.quasis[0].value.raw === 'string', 'expecting this AST struct', node);
+
+          rule('Templates without expressions must be strings');
+          rule("`` `foo` `` --> `'foo'`");
+          before(node);
+
+          const newNode = AST.literal(node.quasis[0].value.raw);
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          node.expressions.forEach((enode, i) => {
+            expr(node, 'expressions', i, enode);
+          });
+        }
+
         break;
       }
 

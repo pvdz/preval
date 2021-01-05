@@ -53,6 +53,7 @@ const VERBOSE_TRACING = true;
   - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
   - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
   - Var binding inits that are assignments are outlined
+  - Outline complex `throw` or `return` arguments
  */
 
 /*
@@ -108,6 +109,8 @@ const VERBOSE_TRACING = true;
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
   - Empty `else` sub-statement should eliminate the else (probably not normalization)
   - Assignment of a simple node to itself
+  - Spread arg
+  - Template parts
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -705,6 +708,28 @@ export function phaseNormalize(fdata, fname) {
       return false;
     }
   }
+  function normalizeReturnThrowArg(node, isExport, stillHoisting, isFunctionBody) {
+    // Input should be a statement node with .argument (return, throw)
+    // If the arg is complex, it will outline the arg and replace the node a block
+
+    if (isComplexNode(node.argument)) {
+      rule('Statement.argument must be simple');
+      log('- `throw $()` --> `{ let tmp = $(); throw tmp; }`');
+      log('- `return $()` --> `{ let tmp = $(); return tmp; }`');
+
+      // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+      const tmpName = createFreshVarInCurrentRootScope('tmpStmtArg');
+      const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), node);
+      node.argument = AST.identifier(tmpName);
+      crumbSet(1, newNode);
+
+      _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+      changed = true;
+      return true;
+    }
+
+    return false;
+  }
 
   function stmt(parent, prop, index, node, isExport, stillHoisting, isFunctionBody) {
     ASSERT(
@@ -995,8 +1020,8 @@ export function phaseNormalize(fdata, fname) {
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
           const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
           const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node);
-          crumbSet(1, newNode);
           node.test = AST.identifier(tmpName);
+          crumbSet(1, newNode);
 
           _stmt(newNode, isExport, stillHoisting, isFunctionBody);
           changed = true;
@@ -1062,6 +1087,10 @@ export function phaseNormalize(fdata, fname) {
           node.argument = AST.identifier('undefined');
         }
 
+        if (normalizeReturnThrowArg(node, false, false, isFunctionBody)) {
+          break;
+        }
+
         expr(node, 'argument', -1, node.argument);
         break;
       }
@@ -1098,6 +1127,10 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ThrowStatement': {
+        if (normalizeReturnThrowArg(node, false, false, isFunctionBody)) {
+          break;
+        }
+
         expr(node, 'argument', -1, node.argument);
         break;
       }

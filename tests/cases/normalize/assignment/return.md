@@ -18,7 +18,11 @@ function f(x, y) {
 
 `````js filename=intro
 function f(x, y) {
-  return (x = y);
+  {
+    x = y;
+    let tmpStmtArg = y;
+    return tmpStmtArg;
+  }
 }
 `````
 

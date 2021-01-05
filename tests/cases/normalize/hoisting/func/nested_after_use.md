@@ -25,7 +25,10 @@ function g() {
 `````js filename=intro
 function g() {
   function f() {
-    return $(2);
+    {
+      let tmpStmtArg = $(2);
+      return tmpStmtArg;
+    }
   }
   var tmpArg_1;
   tmpArg_1 = f(1);
@@ -41,7 +44,8 @@ $(tmpArg);
 `````js filename=intro
 function g() {
   function f() {
-    return $(2);
+    let tmpStmtArg = $(2);
+    return tmpStmtArg;
   }
   var tmpArg_1;
   tmpArg_1 = f(1);

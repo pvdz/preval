@@ -24,7 +24,10 @@ superExpensiveFunction().x += 5;
 
 `````js filename=intro
 function superExpensiveFunction() {
-  return $();
+  {
+    let tmpStmtArg = $();
+    return tmpStmtArg;
+  }
 }
 var tmpComplexMemberObj;
 tmpComplexMemberObj = superExpensiveFunction();
@@ -35,7 +38,8 @@ tmpComplexMemberObj.x += 5;
 
 `````js filename=intro
 function superExpensiveFunction() {
-  return $();
+  let tmpStmtArg = $();
+  return tmpStmtArg;
 }
 var tmpComplexMemberObj;
 tmpComplexMemberObj = superExpensiveFunction();

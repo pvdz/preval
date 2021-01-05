@@ -29,7 +29,10 @@ function f($tdz$__a, $tdz$__b) {
   let b = tmpTernaryTest ? 'bar' : $tdz$__b;
   tmpTernaryTest_1 = $tdz$__a === undefined;
   let a = tmpTernaryTest_1 ? 'foo' : $tdz$__a;
-  return [a, b];
+  {
+    let tmpStmtArg = [a, b];
+    return tmpStmtArg;
+  }
 }
 var tmpArg;
 var tmpArg_1;
@@ -55,7 +58,8 @@ function f($tdz$__a, $tdz$__b) {
   let b = tmpTernaryTest ? 'bar' : $tdz$__b;
   tmpTernaryTest_1 = $tdz$__a === undefined;
   let a = tmpTernaryTest_1 ? 'foo' : $tdz$__a;
-  return [a, b];
+  let tmpStmtArg = [a, b];
+  return tmpStmtArg;
 }
 var tmpArg;
 var tmpArg_1;

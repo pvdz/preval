@@ -90,7 +90,10 @@ var tmpElement_25;
 var tmpElement_26;
 var tmpElement_27;
 tmpArg_2 = (k) => {
-  return [k, k];
+  {
+    let tmpStmtArg = [k, k];
+    return tmpStmtArg;
+  }
 };
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
 tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];
@@ -196,7 +199,8 @@ var tmpElement_25;
 var tmpElement_26;
 var tmpElement_27;
 tmpArg_2 = (k) => {
-  return [k, k];
+  let tmpStmtArg = [k, k];
+  return tmpStmtArg;
 };
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
 tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];

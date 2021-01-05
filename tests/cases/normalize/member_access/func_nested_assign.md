@@ -27,9 +27,12 @@ function f() {
   const obj = { a: { b: $() } };
   tmpComplexMemberObj = obj.a;
   tmpComplexMemberObj.b = 15;
-  tmpComplexMemberObj_1 = obj.a;
-  tmpArg = tmpComplexMemberObj_1.b;
-  return $(tmpArg);
+  {
+    tmpComplexMemberObj_1 = obj.a;
+    tmpArg = tmpComplexMemberObj_1.b;
+    let tmpStmtArg = $(tmpArg);
+    return tmpStmtArg;
+  }
 }
 var tmpArg_1;
 tmpArg_1 = f();
@@ -48,7 +51,8 @@ function f() {
   tmpComplexMemberObj.b = 15;
   tmpComplexMemberObj_1 = obj.a;
   tmpArg = tmpComplexMemberObj_1.b;
-  return $(tmpArg);
+  let tmpStmtArg = $(tmpArg);
+  return tmpStmtArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

@@ -23,7 +23,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  return Date.now();
+  {
+    let tmpStmtArg = Date.now();
+    return tmpStmtArg;
+  }
 }
 var tmpArg;
 tmpArg = f();
@@ -34,7 +37,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  return Date.now();
+  let tmpStmtArg = Date.now();
+  return tmpStmtArg;
 }
 var tmpArg;
 tmpArg = f();

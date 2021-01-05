@@ -24,13 +24,22 @@ function f() {
 `````js filename=intro
 function f() {
   function f_1() {
-    return $();
+    {
+      let tmpStmtArg = $();
+      return tmpStmtArg;
+    }
   }
   function g() {
-    return $();
+    {
+      let tmpStmtArg_1 = $();
+      return tmpStmtArg_1;
+    }
   }
   function h() {
-    return $();
+    {
+      let tmpStmtArg_2 = $();
+      return tmpStmtArg_2;
+    }
   }
   var tmpArg_1;
   var tmpArg_2;
@@ -50,13 +59,16 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   function f_1() {
-    return $();
+    let tmpStmtArg = $();
+    return tmpStmtArg;
   }
   function g() {
-    return $();
+    let tmpStmtArg_1 = $();
+    return tmpStmtArg_1;
   }
   function h() {
-    return $();
+    let tmpStmtArg_2 = $();
+    return tmpStmtArg_2;
   }
   var tmpArg_1;
   var tmpArg_2;

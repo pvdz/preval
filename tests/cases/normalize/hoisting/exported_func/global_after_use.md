@@ -17,7 +17,10 @@ export function f() { return $(2); }
 
 `````js filename=intro
 export function f() {
-  return $(2);
+  {
+    let tmpStmtArg = $(2);
+    return tmpStmtArg;
+  }
 }
 var tmpArg;
 tmpArg = f(1);
@@ -28,7 +31,8 @@ $(tmpArg);
 
 `````js filename=intro
 export function f() {
-  return $(2);
+  let tmpStmtArg = $(2);
+  return tmpStmtArg;
 }
 var tmpArg;
 tmpArg = f(1);

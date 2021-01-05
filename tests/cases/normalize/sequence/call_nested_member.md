@@ -24,7 +24,10 @@ const obj = {
   a: {
     b: {
       c: () => {
-        return $(1);
+        {
+          let tmpStmtArg = $(1);
+          return tmpStmtArg;
+        }
       },
     },
   },
@@ -43,7 +46,8 @@ const obj = {
   a: {
     b: {
       c: () => {
-        return $(1);
+        let tmpStmtArg = $(1);
+        return tmpStmtArg;
       },
     },
   },

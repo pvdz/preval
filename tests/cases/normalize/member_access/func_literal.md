@@ -22,8 +22,11 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
-  tmpArg = 'foo'.length;
-  return $(tmpArg);
+  {
+    tmpArg = 'foo'.length;
+    let tmpStmtArg = $(tmpArg);
+    return tmpStmtArg;
+  }
 }
 var tmpArg_1;
 tmpArg_1 = f();
@@ -36,7 +39,8 @@ $(tmpArg_1);
 function f() {
   var tmpArg;
   tmpArg = 'foo'.length;
-  return $(tmpArg);
+  let tmpStmtArg = $(tmpArg);
+  return tmpStmtArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

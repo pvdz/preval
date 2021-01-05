@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_sequence.md
+# simple_sequence.md
 
-> return > complex_sequence
+> return > simple_sequence
 >
 > Returning a sequence that ends in a simple node
 
@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f(){ 
-  return ($(1), $(2), $(3));
+  throw ($(1), $(2), null);
 }
 $(f());
 `````
@@ -21,11 +21,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  $(1);
-  $(2);
   {
-    let tmpStmtArg = $(3);
-    return tmpStmtArg;
+    $(1);
+    $(2);
+    let tmpStmtArg = null;
+    throw tmpStmtArg;
   }
 }
 var tmpArg;
@@ -39,8 +39,7 @@ $(tmpArg);
 function f() {
   $(1);
   $(2);
-  let tmpStmtArg = $(3);
-  return tmpStmtArg;
+  throw null;
 }
 var tmpArg;
 tmpArg = f();

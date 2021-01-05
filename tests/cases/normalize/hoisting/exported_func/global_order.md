@@ -20,13 +20,22 @@ export function h() { return $(); }
 
 `````js filename=intro
 export function f() {
-  return $();
+  {
+    let tmpStmtArg = $();
+    return tmpStmtArg;
+  }
 }
 export function g() {
-  return $();
+  {
+    let tmpStmtArg_1 = $();
+    return tmpStmtArg_1;
+  }
 }
 export function h() {
-  return $();
+  {
+    let tmpStmtArg_2 = $();
+    return tmpStmtArg_2;
+  }
 }
 var tmpArg;
 var tmpArg_1;
@@ -41,13 +50,16 @@ $(tmpArg, tmpArg_1, tmpArg_2);
 
 `````js filename=intro
 export function f() {
-  return $();
+  let tmpStmtArg = $();
+  return tmpStmtArg;
 }
 export function g() {
-  return $();
+  let tmpStmtArg_1 = $();
+  return tmpStmtArg_1;
 }
 export function h() {
-  return $();
+  let tmpStmtArg_2 = $();
+  return tmpStmtArg_2;
 }
 var tmpArg;
 var tmpArg_1;

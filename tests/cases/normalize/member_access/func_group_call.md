@@ -25,7 +25,10 @@ function f() {
   2;
   tmpNewObj = $();
   const y = tmpNewObj();
-  return $(y);
+  {
+    let tmpStmtArg = $(y);
+    return tmpStmtArg;
+  }
 }
 var tmpArg;
 tmpArg = f();
@@ -39,7 +42,8 @@ function f() {
   var tmpNewObj;
   tmpNewObj = $();
   const y = tmpNewObj();
-  return $(y);
+  let tmpStmtArg = $(y);
+  return tmpStmtArg;
 }
 var tmpArg;
 tmpArg = f();

@@ -21,9 +21,12 @@ $(f());
 function f() {
   var tmpArg;
   var tmpComplexMemberObj;
-  tmpComplexMemberObj = parseInt(15);
-  tmpArg = tmpComplexMemberObj.foo;
-  return $(tmpArg);
+  {
+    tmpComplexMemberObj = parseInt(15);
+    tmpArg = tmpComplexMemberObj.foo;
+    let tmpStmtArg = $(tmpArg);
+    return tmpStmtArg;
+  }
 }
 var tmpArg_1;
 tmpArg_1 = f();
@@ -38,7 +41,8 @@ function f() {
   var tmpComplexMemberObj;
   tmpComplexMemberObj = parseInt(15);
   tmpArg = tmpComplexMemberObj.foo;
-  return $(tmpArg);
+  let tmpStmtArg = $(tmpArg);
+  return tmpStmtArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

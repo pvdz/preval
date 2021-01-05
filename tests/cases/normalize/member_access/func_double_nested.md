@@ -24,10 +24,13 @@ function f() {
   var tmpComplexMemberObj;
   var tmpComplexMemberObj_1;
   const obj = { a: { b: { c: $() } } };
-  tmpComplexMemberObj_1 = obj.a;
-  tmpComplexMemberObj = tmpComplexMemberObj_1.b;
-  tmpArg = tmpComplexMemberObj.c;
-  return $(tmpArg);
+  {
+    tmpComplexMemberObj_1 = obj.a;
+    tmpComplexMemberObj = tmpComplexMemberObj_1.b;
+    tmpArg = tmpComplexMemberObj.c;
+    let tmpStmtArg = $(tmpArg);
+    return tmpStmtArg;
+  }
 }
 var tmpArg_1;
 tmpArg_1 = f();
@@ -45,7 +48,8 @@ function f() {
   tmpComplexMemberObj_1 = obj.a;
   tmpComplexMemberObj = tmpComplexMemberObj_1.b;
   tmpArg = tmpComplexMemberObj.c;
-  return $(tmpArg);
+  let tmpStmtArg = $(tmpArg);
+  return tmpStmtArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

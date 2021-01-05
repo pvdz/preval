@@ -27,9 +27,15 @@ $(f(1));
 `````js filename=intro
 function f(x) {
   function g() {
-    return $();
+    {
+      let tmpStmtArg_1 = $();
+      return tmpStmtArg_1;
+    }
   }
-  return g();
+  {
+    let tmpStmtArg = g();
+    return tmpStmtArg;
+  }
 }
 var tmpArg;
 tmpArg = f(1);
@@ -41,9 +47,11 @@ $(tmpArg);
 `````js filename=intro
 function f(x) {
   function g() {
-    return $();
+    let tmpStmtArg_1 = $();
+    return tmpStmtArg_1;
   }
-  return g();
+  let tmpStmtArg = g();
+  return tmpStmtArg;
 }
 var tmpArg;
 tmpArg = f(1);

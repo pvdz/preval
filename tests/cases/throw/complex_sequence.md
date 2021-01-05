@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f(){ 
-  return ($(1), $(2), $(3));
+  throw ($(1), $(2), $(3));
 }
 $(f());
 `````
@@ -21,11 +21,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  $(1);
-  $(2);
   {
+    $(1);
+    $(2);
     let tmpStmtArg = $(3);
-    return tmpStmtArg;
+    throw tmpStmtArg;
   }
 }
 var tmpArg;
@@ -40,7 +40,7 @@ function f() {
   $(1);
   $(2);
   let tmpStmtArg = $(3);
-  return tmpStmtArg;
+  throw tmpStmtArg;
 }
 var tmpArg;
 tmpArg = f();

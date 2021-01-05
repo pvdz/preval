@@ -14,7 +14,6 @@
 $(...[1, 2, 3]);
 `````
 
-
 ## Normalized
 
 `````js filename=intro

@@ -54,6 +54,7 @@ const VERBOSE_TRACING = true;
   - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
   - Var binding inits that are assignments are outlined
   - Outline complex `throw` or `return` arguments
+  - Outline complex spread arguments for object and array litearls
  */
 
 /*
@@ -109,7 +110,6 @@ const VERBOSE_TRACING = true;
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
   - Empty `else` sub-statement should eliminate the else (probably not normalization)
   - Assignment of a simple node to itself
-  - Spread arg
   - Template parts
  */
 
@@ -1411,7 +1411,23 @@ export function phaseNormalize(fdata, fname) {
             if (elNode) {
               if (elNode.type === 'SpreadElement') {
                 // Special case spread because its behavior differs per parent case
-                expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+                if (isComplexNode(elNode.argument)) {
+                  rule('Spread args in array must be simple nodes');
+                  log('- `[...a()]` --> `(tmp = a(), [...tmp])`');
+                  before(elNode);
+
+                  const tmpName = createFreshVarInCurrentRootScope('tmpArrSpreadArg', true);
+                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, elNode.argument), node);
+                  elNode.argument = AST.identifier(tmpName);
+                  crumbSet(1, newNode);
+
+                  after(newNode);
+                  changed = true;
+
+                  _expr(newNode);
+                } else {
+                  expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+                }
               } else {
                 expr(node, 'elements', i, elNode);
               }
@@ -1506,7 +1522,14 @@ export function phaseNormalize(fdata, fname) {
           let changedNow = false;
 
           if (node.right.type === 'AssignmentExpression') {
-            ASSERT(node.right.left.type === 'Identifier' || node.right.left.type === 'MemberExpression' || node.right.left.type === 'ObjectPattern' || node.right.left.type === 'ArrayPattern', 'see above (except patterns arent visited yet)', node.right);
+            ASSERT(
+              node.right.left.type === 'Identifier' ||
+                node.right.left.type === 'MemberExpression' ||
+                node.right.left.type === 'ObjectPattern' ||
+                node.right.left.type === 'ArrayPattern',
+              'see above (except patterns arent visited yet)',
+              node.right,
+            );
             const nestedAssign = node.right;
             // `a = b = c`
             // `a.foo = b = c`
@@ -1893,7 +1916,23 @@ export function phaseNormalize(fdata, fname) {
       case 'ObjectExpression': {
         node.properties.forEach((pnode, i) => {
           if (pnode.type === 'SpreadElement') {
-            expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
+            if (isComplexNode(pnode.argument)) {
+              rule('Spread args in obj must be simple nodes');
+              log('- `${...a()}` --> `(tmp = a(), {...tmp})`');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpObjSpreadArg', true);
+              const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.argument), node);
+              pnode.argument = AST.identifier(tmpName);
+              crumbSet(1, newNode);
+
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+            } else {
+              expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
+            }
           } else {
             if (pnode.shorthand) {
               // I think it _is_ this simple?

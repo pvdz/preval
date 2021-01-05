@@ -58,6 +58,7 @@ const VERBOSE_TRACING = true;
   - Tagged templates are decomposed into the runtime equivalent of a regular func call
   - Templates that have no expressions are converted to regular strings
   - All expressions inside templates are outlined to be simple nodes only.
+  - Binary expressions are normalized to always have simple left and right nodes
  */
 
 /*
@@ -117,9 +118,9 @@ const VERBOSE_TRACING = true;
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 
-function rule(desc) {
+function rule(desc, ...rest) {
   if (desc.slice(-1) === '"') fixme;
-  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"');
+  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
 }
 function before(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
@@ -1688,8 +1689,42 @@ export function phaseNormalize(fdata, fname) {
       case 'BinaryExpression': {
         log('Operator:', node.operator);
 
-        expr(node, 'left', -1, node.left);
-        expr(node, 'right', -1, node.right);
+        if (isComplexNode(node.left)) {
+          rule('Binary expression left must be simple');
+          log('- `a.b === c` --> `(tmp = a.b, tmp === c)`');
+          log('- `a() === c` --> `(tmp = a(), tmp === c)`');
+          log('- `(a, b).x === c` --> `(tmp = (a, b).x, tmp === c)`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
+          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
+          node.left = AST.identifier(tmpName);
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else if (isComplexNode(node.right)) {
+          rule('Binary expression right must be simple');
+          log('- `a === c.b` --> `(tmp = c.b, a === tmp)`');
+          log('- `a === b()` --> `(tmp = b(), a === tmp)`');
+          log('- `a === (b, c).x` --> `(tmp = (b, c).x, tmp === c)`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
+          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
+          node.right = AST.identifier(tmpName);
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          expr(node, 'left', -1, node.left);
+          expr(node, 'right', -1, node.right);
+        }
 
         break;
       }

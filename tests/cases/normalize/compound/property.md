@@ -40,7 +40,9 @@ const obj = {
     return a;
   },
   set x(v) {
-    s += 'write[' + v + '];';
+    var tmpBinaryLeft;
+    tmpBinaryLeft = 'write[' + v;
+    s += tmpBinaryLeft + '];';
     a += v;
     return a;
   },
@@ -60,7 +62,9 @@ const obj = {
     return a;
   },
   set x(v) {
-    s += 'write[' + v + '];';
+    var tmpBinaryLeft;
+    tmpBinaryLeft = 'write[' + v;
+    s += tmpBinaryLeft + '];';
     a += v;
     return a;
   },

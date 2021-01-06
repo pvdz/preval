@@ -1864,8 +1864,44 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'LogicalExpression': {
-        expr(node, 'left', -1, node.left);
-        expr(node, 'right', -1, node.right);
+        log('Operator:', node.operator);
+
+        if (isComplexNode(node.left)) {
+          rule('Logical expression left must be simple');
+          log('- `a.b && c` --> `(tmp = a.b, tmp && c)`');
+          log('- `a() && c` --> `(tmp = a(), tmp && c)`');
+          log('- `(a, b).x && c` --> `(tmp = (a, b).x, tmp && c)`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpLogicalLeft', true);
+          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
+          node.left = AST.identifier(tmpName);
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else if (isComplexNode(node.right)) {
+          rule('Logical expression right must be simple');
+          log('- `a && c.b` --> `(tmp = c.b, a && tmp)`');
+          log('- `a && b()` --> `(tmp = b(), a && tmp)`');
+          log('- `a && (b, c).x` --> `(tmp = (b, c).x, tmp && c)`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpLogicalRight', true);
+          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
+          node.right = AST.identifier(tmpName);
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          expr(node, 'left', -1, node.left);
+          expr(node, 'right', -1, node.right);
+        }
         break;
       }
 
@@ -1974,7 +2010,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ObjectExpression': {
-        node.properties.forEach((pnode, i) => {
+        node.properties.some((pnode, i) => {
           if (pnode.type === 'SpreadElement') {
             if (isComplexNode(pnode.argument)) {
               rule('Spread args in obj must be simple nodes');
@@ -1990,6 +2026,7 @@ export function phaseNormalize(fdata, fname) {
               changed = true;
 
               _expr(newNode);
+              return true;
             } else {
               expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
             }
@@ -2001,6 +2038,33 @@ export function phaseNormalize(fdata, fname) {
               before(node);
               pnode.shorthand = false;
               after(node);
+              changed = true;
+            }
+
+            if (pnode.computed) {
+              // Visit the key before the value
+
+              // TODO: if key is valid ident string, replace with identifier
+
+              if (isComplexNode(pnode.key)) {
+                rule('Computed key node must be simple');
+                log('- `obj = {[$()]: y}` --> obj = (tmp = $(), {[tmp]: y})');
+                before(node);
+
+                const tmpName = createFreshVarInCurrentRootScope('tmpComputedKey', true);
+                const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.key), node);
+                pnode.key = AST.identifier(tmpName);
+                crumbSet(1, newNode);
+
+                after(newNode);
+                changed = true;
+
+                node = newNode;
+                _expr(newNode);
+                return true;
+              } else {
+                expr2(node, 'properties', i, pnode, 'key', -1, pnode.key);
+              }
             }
 
             expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);

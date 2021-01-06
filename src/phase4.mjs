@@ -833,6 +833,10 @@ export function phase4(program, fdata, resolve, req) {
           if (pnode.type === 'SpreadElement') {
             expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
           } else {
+            if (pnode.computed) {
+              // Visit the key before the value
+              expr(pnode, 'key', -1, pnode.key);
+            }
             expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
           }
         });

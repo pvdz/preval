@@ -1127,19 +1127,18 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'ObjectExpression': {
-        //$(node, '@obj', []);
-
-        //$(node, '@super_stack_push'); // Make the object reference available to any methods that use super properties
-
-        const spreads = [];
         node.properties.forEach((pnode, i) => {
           if (pnode.type === 'SpreadElement') {
             expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
-            spreads.push(true);
           } else {
             ASSERT(pnode.type === 'Property', 'fixmeifnot', pnode);
-            ASSERT(!pnode.computed, 'computed prop wot?', pnode);
-            ASSERT(pnode.key.type === 'Identifier' || pnode.key.type === 'Literal', 'prop key should be ident or num/str', pnode);
+
+            if (pnode.computed) {
+              // Visit the key before the value
+              expr(pnode, 'key', -1, pnode.key);
+            } else {
+              ASSERT(pnode.key.type === 'Identifier' || pnode.key.type === 'Literal', 'prop key should be ident or num/str', pnode);
+            }
 
             ASSERT(pnode.value);
             expr2(
@@ -1154,13 +1153,8 @@ export function phase2(program, fdata, resolve, req) {
               false,
               pnode.method ? (pnode.key.type === 'Identifier' ? pnode.key.name : String(pnode.key.value)) : undefined,
             );
-            spreads.push(false);
           }
         });
-
-        //$(node, '@super_stack_pop');
-
-        //$(node, '@obj_init', node.properties.map(node => node.type === 'Property' ? (node.key.type === 'Identifier' ? node.key.name : String(node.key.value)) : '<spread>').reverse(), spreads);
 
         break;
       }

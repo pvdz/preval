@@ -297,6 +297,9 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function crumb(parent, prop, index) {
+    ASSERT(typeof prop === 'string');
+    ASSERT(typeof index === 'number');
+
     crumbsNodes.push(parent);
     crumbsProps.push(prop);
     crumbsIndexes.push(index);
@@ -636,7 +639,7 @@ export function phaseNormalize(fdata, fname) {
       let valueNode = anode;
       if (anode.type === 'SpreadElement') {
         valueNode = anode.argument;
-        crumb(anode, 'argument', valueNode);
+        crumb(anode, 'argument', -1);
       }
 
       if (isComplexNode(valueNode)) {
@@ -649,7 +652,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (anode.type === 'SpreadElement') {
-        uncrumb(anode, 'argument', valueNode);
+        uncrumb(anode, 'argument', -1);
       }
     });
     if (assigns.length) {
@@ -1018,6 +1021,23 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'IfStatement': {
+        if (node.test.type === 'UnaryExpression' && node.test.operator === '!') {
+          // It's kind of redundant since there are plenty of cases where we'll need to deal with
+          // the test in an abstracted form (like `if (!a && !b)` or smth). So maybe I'll drop this one later.
+          rule('The test of an if cannot be invert');
+          log('- `if (!x) y; else z;` --> `if (x) z; else y;`');
+          log('- `if (!x) y;` --> `if (x) ; else z;`');
+          before(node);
+
+          node.test = node.test.argument;
+          const tmp = node.consequent;
+          node.consequent = node.alternate || AST.emptyStatement();
+          node.alternate = tmp;
+
+          changed = true;
+          after(node);
+        }
+
         if (isComplexNode(node.test)) {
           rule('If-test node must be simple');
           log('- `if (x+y) z` --> `{ let tmp = x+y; if (tmp) z; }`');

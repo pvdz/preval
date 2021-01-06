@@ -27,8 +27,9 @@ if (!$(1))
   }
 }
 {
-  let ifTestTmp_1 = !$(1);
+  let ifTestTmp_1 = $(1);
   if (ifTestTmp_1) {
+  } else {
     {
       let ifTestTmp_2 = $(2);
       if (ifTestTmp_2) {
@@ -48,8 +49,9 @@ let ifTestTmp = $(-1);
 if (ifTestTmp) {
   $(0);
 }
-let ifTestTmp_1 = !$(1);
+let ifTestTmp_1 = $(1);
 if (ifTestTmp_1) {
+} else {
   let ifTestTmp_2 = $(2);
   if (ifTestTmp_2) {
     $(3);

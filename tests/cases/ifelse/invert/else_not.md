@@ -17,11 +17,11 @@ else $(3);
 
 `````js filename=intro
 {
-  let ifTestTmp = !$(1);
+  let ifTestTmp = $(1);
   if (ifTestTmp) {
-    $(2);
-  } else {
     $(3);
+  } else {
+    $(2);
   }
 }
 `````
@@ -29,10 +29,10 @@ else $(3);
 ## Output
 
 `````js filename=intro
-let ifTestTmp = !$(1);
+let ifTestTmp = $(1);
 if (ifTestTmp) {
-  $(2);
-} else {
   $(3);
+} else {
+  $(2);
 }
 `````

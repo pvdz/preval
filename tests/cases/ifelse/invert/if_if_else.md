@@ -20,8 +20,9 @@ if (!$(1))
 
 `````js filename=intro
 {
-  let ifTestTmp = !$(1);
+  let ifTestTmp = $(1);
   if (ifTestTmp) {
+  } else {
     {
       let ifTestTmp_1 = $(2);
       if (ifTestTmp_1) {
@@ -37,8 +38,9 @@ if (!$(1))
 ## Output
 
 `````js filename=intro
-let ifTestTmp = !$(1);
+let ifTestTmp = $(1);
 if (ifTestTmp) {
+} else {
   let ifTestTmp_1 = $(2);
   if (ifTestTmp_1) {
     $(3);

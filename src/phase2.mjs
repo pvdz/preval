@@ -515,7 +515,9 @@ export function phase2(program, fdata, resolve, req) {
             log('Catch var:', node.handler.param.name);
           }
           // TODO: footgun; setting node as parent but skipping on handler or body in the crumb path? Sorry future me.
-          stmt(node, 'handler', 'body', node.handler.body);
+          crumb(node, 'handler', -1);
+          stmt(node.handler, 'body', -1, node.handler.body);
+          uncrumb(node, 'handler', -1);
         }
         if (node.finalizer) {
           stmt(node, 'finalizer', -1, node.finalizer);

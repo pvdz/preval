@@ -428,7 +428,9 @@ export function phase4(program, fdata, resolve, req) {
       case 'TryStatement': {
         stmt(node, 'block', -1, node.block);
         if (node.handler) {
-          stmt(node, 'handler', 'body', node.handler.body);
+          crumb(node, 'handler', -1);
+          stmt(node.handler, 'body', -1, node.handler.body);
+          uncrumb(node, 'handler', -1);
         }
         if (node.finalizer) {
           stmt(node, 'finalizer', -1, node.finalizer);

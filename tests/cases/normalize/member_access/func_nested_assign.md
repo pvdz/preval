@@ -21,10 +21,14 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpObjPropValue;
+  var tmpObjPropValue_1;
   var tmpComplexMemberObj;
   var tmpArg;
   var tmpComplexMemberObj_1;
-  const obj = { a: { b: $() } };
+  tmpObjPropValue_1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  const obj = { a: tmpObjPropValue };
   tmpComplexMemberObj = obj.a;
   tmpComplexMemberObj.b = 15;
   {
@@ -43,10 +47,14 @@ $(tmpArg_1);
 
 `````js filename=intro
 function f() {
+  var tmpObjPropValue;
+  var tmpObjPropValue_1;
   var tmpComplexMemberObj;
   var tmpArg;
   var tmpComplexMemberObj_1;
-  const obj = { a: { b: $() } };
+  tmpObjPropValue_1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  const obj = { a: tmpObjPropValue };
   tmpComplexMemberObj = obj.a;
   tmpComplexMemberObj.b = 15;
   tmpComplexMemberObj_1 = obj.a;

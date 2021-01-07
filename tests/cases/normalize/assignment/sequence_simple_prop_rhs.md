@@ -21,10 +21,12 @@ $(a);
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpBinaryRight;
 let a = 0;
 let b = 1;
-let c = { x: { y: 10 } };
+tmpObjPropValue = { y: 10 };
+let c = { x: tmpObjPropValue };
 b = c.x;
 tmpBinaryRight = b.y;
 a = 'Identifier' === tmpBinaryRight;
@@ -34,10 +36,12 @@ $(a);
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpBinaryRight;
 let a = 0;
 let b = 1;
-let c = { x: { y: 10 } };
+tmpObjPropValue = { y: 10 };
+let c = { x: tmpObjPropValue };
 b = c.x;
 tmpBinaryRight = b.y;
 a = 'Identifier' === tmpBinaryRight;

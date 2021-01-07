@@ -22,6 +22,7 @@ $(f({ x: { x: 1, y: 'abc', z: 3 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  var tmpObjPropValue;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   var tmpTernaryTest_1;
@@ -31,7 +32,7 @@ function f($tdz$__pattern) {
   var tmpTernaryConsequent_2;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { x: { y: 'fail3' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    ? ((tmpObjPropValue = { y: 'fail3' }), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
@@ -45,7 +46,9 @@ function f($tdz$__pattern) {
 }
 var tmpArg_2;
 var tmpArg_3;
-tmpArg_3 = { x: { x: 1, y: 'abc', z: 3 }, b: 11, c: 12 };
+var tmpObjPropValue_1;
+tmpObjPropValue_1 = { x: 1, y: 'abc', z: 3 };
+tmpArg_3 = { x: tmpObjPropValue_1, b: 11, c: 12 };
 tmpArg_2 = f(tmpArg_3, 10);
 $(tmpArg_2);
 `````
@@ -55,6 +58,7 @@ $(tmpArg_2);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  var tmpObjPropValue;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   var tmpTernaryTest_1;
@@ -64,7 +68,7 @@ function f($tdz$__pattern) {
   var tmpTernaryConsequent_2;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { x: { y: 'fail3' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    ? ((tmpObjPropValue = { y: 'fail3' }), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
@@ -78,7 +82,9 @@ function f($tdz$__pattern) {
 }
 var tmpArg_2;
 var tmpArg_3;
-tmpArg_3 = { x: { x: 1, y: 'abc', z: 3 }, b: 11, c: 12 };
+var tmpObjPropValue_1;
+tmpObjPropValue_1 = { x: 1, y: 'abc', z: 3 };
+tmpArg_3 = { x: tmpObjPropValue_1, b: 11, c: 12 };
 tmpArg_2 = f(tmpArg_3, 10);
 $(tmpArg_2);
 `````

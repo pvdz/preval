@@ -22,8 +22,13 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpElement;
-const bindingPatternObjRoot = { x: { x: 13, y: ((tmpElement = [1, 2, 3]), [tmpElement, 15]), z: 14 }, b: 11, c: 12 };
+tmpElement = [1, 2, 3];
+tmpObjPropValue_1 = [tmpElement, 15];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const arrPatternSplat = [...objPatternNoDefault_1];
@@ -35,8 +40,13 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpElement;
-const bindingPatternObjRoot = { x: { x: 13, y: ((tmpElement = [1, 2, 3]), [tmpElement, 15]), z: 14 }, b: 11, c: 12 };
+tmpElement = [1, 2, 3];
+tmpObjPropValue_1 = [tmpElement, 15];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const arrPatternSplat = [...objPatternNoDefault_1];

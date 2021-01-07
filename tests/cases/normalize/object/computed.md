@@ -21,8 +21,10 @@ $(obj);
 
 `````js filename=intro
 var tmpComputedKey;
+var tmpObjPropValue;
 tmpComputedKey = $(1);
-const obj = { [tmpComputedKey]: $(2) };
+tmpObjPropValue = $(2);
+const obj = { [tmpComputedKey]: tmpObjPropValue };
 $(obj);
 `````
 
@@ -30,7 +32,9 @@ $(obj);
 
 `````js filename=intro
 var tmpComputedKey;
+var tmpObjPropValue;
 tmpComputedKey = $(1);
-const obj = { [tmpComputedKey]: $(2) };
+tmpObjPropValue = $(2);
+const obj = { [tmpComputedKey]: tmpObjPropValue };
 $(obj);
 `````

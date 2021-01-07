@@ -18,7 +18,9 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: [undefined], a: 11, b: 12 };
+var tmpObjPropValue;
+tmpObjPropValue = [undefined];
+const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 $('ok');
@@ -27,7 +29,9 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: [undefined], a: 11, b: 12 };
+var tmpObjPropValue;
+tmpObjPropValue = [undefined];
+const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 [...objPatternNoDefault];
 $('ok');

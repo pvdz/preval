@@ -34,7 +34,13 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg_1;
-tmpArg_1 = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 };
+var tmpObjPropValue;
+var tmpObjPropValue_1;
+var tmpObjPropValue_2;
+tmpObjPropValue_2 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue_1 = { z: tmpObjPropValue_2, a: 15, b: 16 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
@@ -50,7 +56,13 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg_1;
-tmpArg_1 = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 };
+var tmpObjPropValue;
+var tmpObjPropValue_1;
+var tmpObjPropValue_2;
+tmpObjPropValue_2 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue_1 = { z: tmpObjPropValue_2, a: 15, b: 16 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````

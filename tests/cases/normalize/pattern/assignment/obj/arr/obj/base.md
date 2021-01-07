@@ -18,12 +18,15 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpElement;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternStep;
-objAssignPatternRhs = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 };
+tmpElement = { x: 1, y: 2, c: 3 };
+tmpObjPropValue = [tmpElement, 13, 14];
+objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
@@ -33,12 +36,15 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpElement;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternStep;
-objAssignPatternRhs = { x: ((tmpElement = { x: 1, y: 2, c: 3 }), [tmpElement, 13, 14]), a: 11, b: 12 };
+tmpElement = { x: 1, y: 2, c: 3 };
+tmpObjPropValue = [tmpElement, 13, 14];
+objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];

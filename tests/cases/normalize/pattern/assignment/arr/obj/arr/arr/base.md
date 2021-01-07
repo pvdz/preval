@@ -23,6 +23,7 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -31,7 +32,9 @@ var objPatternNoDefault;
 var arrPatternSplat_1;
 var arrPatternStep_1;
 var arrPatternSplat_2;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 arrAssignPatternRhs = [tmpElement, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
@@ -46,6 +49,7 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -54,7 +58,9 @@ var objPatternNoDefault;
 var arrPatternSplat_1;
 var arrPatternStep_1;
 var arrPatternSplat_2;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 arrAssignPatternRhs = [tmpElement, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];

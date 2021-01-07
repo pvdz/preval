@@ -6,6 +6,9 @@ import globals from './globals.mjs';
 
 const VERBOSE_TRACING = true;
 
+// http://compileroptimizations.com/category/if_optimization.htm
+// https://en.wikipedia.org/wiki/Loop-invariant_code_motion
+
 /*
   Normalization steps that happen:
   - Parameter defaults are rewritten to ES5 equivalent code
@@ -114,6 +117,16 @@ const VERBOSE_TRACING = true;
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
   - Empty `else` sub-statement should eliminate the else (probably not normalization)
   - Assignment of a simple node to itself
+  - Rewrite logic such that each branch in each function explicitly returns
+    - I think this makes it easier to reason about? But maybe it will lead to a too big of an explosion of code...
+  - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
+  - Tear apart `&&` and `||` into explicit `if-else` or ternary expressions
+    - If we are going to normalize branching to one branch per function then a branch with two conditions should be considered two branches
+      - `if (a && b) x; else y;` --> `if (a) { if (b) x; else { y } } else { y }`.
+      - In this case `y` would be abstracted into a function so it shouldn't repeat as much as it seems
+      - Other normalization rules may make this harder to detect since logical ops are "complex" for sure so if they are explicitly conditional...
+  - Convert ternaries in certain places into statements?
+    - Not always possible so perhaps this is not worth it as we need to mirror the logic for if-else to ternary, anyways
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -2067,7 +2080,25 @@ export function phaseNormalize(fdata, fname) {
               }
             }
 
-            expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
+            if (!pnode.method && pnode.kind === 'init' && isComplexNode(pnode.value)) {
+              rule('Object literal property value node must be simple');
+              log('- `obj = {x: y()}` --> obj = (tmp = y(), {x: tmp})');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpObjPropValue', true);
+              const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.value), node);
+              pnode.value = AST.identifier(tmpName);
+              crumbSet(1, newNode);
+
+              after(newNode);
+              changed = true;
+
+              node = newNode;
+              _expr(newNode);
+              return true;
+            } else {
+              expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
+            }
           }
         });
 

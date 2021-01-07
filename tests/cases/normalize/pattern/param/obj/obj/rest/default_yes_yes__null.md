@@ -22,6 +22,7 @@ $(f(null, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  var tmpObjPropValue;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   var tmpTernaryTest_1;
@@ -29,7 +30,7 @@ function f($tdz$__pattern) {
   var tmpArg_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { x: { a: 'fail2' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    ? ((tmpObjPropValue = { a: 'fail2' }), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
@@ -49,6 +50,7 @@ $(tmpArg_2);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  var tmpObjPropValue;
   var tmpTernaryTest;
   var tmpTernaryConsequent;
   var tmpTernaryTest_1;
@@ -56,7 +58,7 @@ function f($tdz$__pattern) {
   var tmpArg_1;
   tmpTernaryTest = $tdz$__pattern === undefined;
   let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { x: { a: 'fail2' } }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
+    ? ((tmpObjPropValue = { a: 'fail2' }), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
     : $tdz$__pattern;
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   tmpTernaryTest_1 = objPatternBeforeDefault === undefined;

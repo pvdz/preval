@@ -18,9 +18,13 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpElement;
 var tmpElement_1;
-const bindingPatternObjRoot = { x: ((tmpElement_1 = [1, 2, 3]), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
+tmpElement_1 = [1, 2, 3];
+tmpElement = [tmpElement_1, 14];
+tmpObjPropValue = [tmpElement, 13];
+const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
@@ -33,9 +37,13 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpElement;
 var tmpElement_1;
-const bindingPatternObjRoot = { x: ((tmpElement_1 = [1, 2, 3]), (tmpElement = [tmpElement_1, 14]), [tmpElement, 13]), a: 11, b: 12 };
+tmpElement_1 = [1, 2, 3];
+tmpElement = [tmpElement_1, 14];
+tmpObjPropValue = [tmpElement, 13];
+const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];

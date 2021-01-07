@@ -23,8 +23,11 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
@@ -39,8 +42,11 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];

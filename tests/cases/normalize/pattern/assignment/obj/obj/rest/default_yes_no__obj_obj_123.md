@@ -18,6 +18,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
@@ -25,7 +26,8 @@ var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var y;
-objAssignPatternRhs = { x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 };
+tmpObjPropValue = { x: 1, y: 2, z: 3 };
+objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest
@@ -38,6 +40,7 @@ $(y);
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
@@ -45,7 +48,8 @@ var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var y;
-objAssignPatternRhs = { x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 };
+tmpObjPropValue = { x: 1, y: 2, z: 3 };
+objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 objPatternAfterDefault = tmpTernaryTest

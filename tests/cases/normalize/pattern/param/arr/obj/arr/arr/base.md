@@ -36,8 +36,11 @@ function f(tmpParamPattern) {
 var tmpArg;
 var tmpArg_1;
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 tmpArg_1 = [tmpElement, 20, 30];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
@@ -58,8 +61,11 @@ function f(tmpParamPattern) {
 var tmpArg;
 var tmpArg_1;
 var tmpElement;
+var tmpObjPropValue;
 var tmpElement_1;
-tmpElement = { x: ((tmpElement_1 = [1, 2, 3]), [tmpElement_1, 10]), y: 11 };
+tmpElement_1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement_1, 10];
+tmpElement = { x: tmpObjPropValue, y: 11 };
 tmpArg_1 = [tmpElement, 20, 30];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);

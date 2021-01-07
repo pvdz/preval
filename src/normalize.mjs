@@ -62,6 +62,7 @@ const VERBOSE_TRACING = true;
   - Templates that have no expressions are converted to regular strings
   - All expressions inside templates are outlined to be simple nodes only.
   - Binary expressions are normalized to always have simple left and right nodes
+  - Update expressions (++x) are transformed to regular binary expression assignments
  */
 
 /*
@@ -2208,7 +2209,45 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UpdateExpression': {
-        expr(node, 'argument', -1, node.argument);
+        if (node.prefix) {
+          rule('Update expression prefix should be regular assignment');
+          if (node.operator === '++') log('- `++x` --> `x = x + 1`');
+          else log('- `--x` --> `x = x - 1`');
+          before(node);
+
+          const newNode = AST.assignmentExpression(
+            node.argument,
+            AST.binaryExpression(node.operator === '++' ? '+' : '-', node.argument, AST.literal(1)),
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          // We kind of have to create a tmp var since the addition/subtraction may be irreversible (NaN/Infinity cases)
+          rule('Update expression postfix should be regular assignment');
+          if (node.operator === '++') log('- `x++` --> `tmp = x, x = x + 1, tmp`');
+          else log('- `x--` --> `tmp = x, x = x - 1, tmp`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpPostfixArg', true);
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.argument),
+            AST.assignmentExpression(
+              node.argument,
+              AST.binaryExpression(node.operator === '++' ? '+' : '-', node.argument, AST.literal(1)),
+            ),
+            node.argument,
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        }
         break;
       }
 

@@ -138,8 +138,8 @@ function runTestCase(
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
 
     console.log(`TEST ${RED}FAIL${RESET} Threw an error`);
-    console.log(lastError.stack);
-    throw new Error();
+    console.log(lastError.stack || lastError);
+    throw new Error('the test failed...');
   }
 
   const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled });

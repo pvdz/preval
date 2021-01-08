@@ -844,6 +844,16 @@ export function phase4(program, fdata, resolve, req) {
         break;
       }
 
+      case 'OptionalMemberExpression': {
+
+        break;
+      }
+
+      case 'OptionalCallExpression': {
+
+        break;
+      }
+
       case 'RegExpLiteral': {
         break;
       }

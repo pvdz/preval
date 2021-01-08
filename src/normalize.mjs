@@ -2106,6 +2106,16 @@ export function phaseNormalize(fdata, fname) {
         break;
       }
 
+      case 'OptionalMemberExpression': {
+        // TODO: do I want to normalize this? May come in handy as is. Or maybe not. Hmmm.
+        break;
+      }
+
+      case 'OptionalCallExpression': {
+        // TODO: do I want to normalize this? May come in handy as is. Or maybe not. Hmmm.
+        break;
+      }
+
       case 'RegExpLiteral': {
         break;
       }

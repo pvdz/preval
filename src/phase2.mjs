@@ -1159,6 +1159,16 @@ export function phase2(program, fdata, resolve, req) {
         break;
       }
 
+      case 'OptionalMemberExpression': {
+
+        break;
+      }
+
+      case 'OptionalCallExpression': {
+
+        break;
+      }
+
       case 'RegExpLiteral': {
         //$(node, '@regex');
         break;

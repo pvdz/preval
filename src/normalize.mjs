@@ -1487,7 +1487,7 @@ export function phaseNormalize(fdata, fname) {
           funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings);
 
           if (newBindings.length) {
-            rule('Assignment patterns not allowed');
+            rule('Assignment obj patterns not allowed');
             before(node);
             log('- `({x} = y())` --> `var tmp; tmp = y(), x = tmp.x`');
 
@@ -1509,7 +1509,7 @@ export function phaseNormalize(fdata, fname) {
             after(newNode);
             changed = true;
           } else {
-            rule('Assignment patterns not allowed');
+            rule('Assignment obj patterns not allowed, empty');
             log('- `({} = y())` --> `y()`');
             before(node);
             crumbSet(1, node.right);
@@ -1523,7 +1523,7 @@ export function phaseNormalize(fdata, fname) {
           funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings);
 
           if (newBindings.length) {
-            rule('Assignment patterns not allowed');
+            rule('Assignment arr patterns not allowed');
             log('- `[x] = y()` --> `var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
             before(node);
 
@@ -1546,7 +1546,7 @@ export function phaseNormalize(fdata, fname) {
 
             changed = true;
           } else {
-            rule('Assignment patterns not allowed');
+            rule('Assignment arr patterns not allowed, empty');
             log('- `[] = y()` --> `y()`'); // TODO: Does it have to be spreaded anyways? Do I care?
             before(node);
             crumbSet(1, node.right);

@@ -1384,18 +1384,6 @@ export function phaseNormalize(fdata, fname) {
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
       node.$p.funcBindingsToInject = [];
-
-      if (node.type === 'ArrowFunctionExpression') {
-        if (node.expression) {
-          rule('Arrow body must be block');
-          log('- `() => x` --> `() => { return x }`');
-
-          before(node);
-          node.body = AST.blockStatement(AST.returnStatement(node.body));
-          node.expression = false;
-          after(node);
-        }
-      }
     }
 
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
@@ -1708,16 +1696,22 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
-        ASSERT(!node.expression, 'should be normalized');
+        if (node.expression) {
+          rule('Arrow body must be block');
+          log('- `() => x` --> `() => { return x }`');
+
+          before(node);
+          node.body = AST.blockStatement(AST.returnStatement(node.body));
+          node.expression = false;
+          changed = true
+          after(node);
+        }
+
         ensureVarDeclsCreateOneBinding(node.body.body);
 
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
-        if (node.expression) {
-          expr(node, 'body', -1, node.body);
-        } else {
-          stmt(node, 'body', -1, node.body, false, false, true);
-        }
+        stmt(node, 'body', -1, node.body, false, false, true);
 
         break;
       }

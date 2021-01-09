@@ -195,6 +195,18 @@ export function spreadElement(argument) {
   };
 }
 
+export function unaryExpression(operator, argument) {
+  ASSERT(typeof operator === 'string');
+  if (typeof argument === 'string') argument = identifier(argument);
+
+  return {
+    type: 'UnaryExpression',
+    operator,
+    argument,
+    $p: $p(),
+  };
+}
+
 export function variableDeclaration(names, inits = null, kind = 'let') {
   if (typeof names === 'string') names = identifier(names);
   if (!Array.isArray(names)) names = [names];

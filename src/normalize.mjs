@@ -64,6 +64,7 @@ const VERBOSE_TRACING = true;
   - Binary expressions are normalized to always have simple left and right nodes
   - Update expressions (++x) are transformed to regular binary expression assignments
   - Normalize spread args in call/new expressions
+  - Normalize optional chaining / call away
  */
 
 /*
@@ -112,8 +113,6 @@ const VERBOSE_TRACING = true;
   - Decompose compound assignments (x+=y -> x=x+y)
     - Don't think this is observable, even with proxies / getters, right?
     - We can recompose them in the final step if we want to
-  - Deconstruct optional chaining
-    - Probably easier not to have to worry about this pure sugar?
   - Sequence expression
     - In left side of `for` loop. Move them out to statements before the `for`
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
@@ -2136,12 +2135,101 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'OptionalMemberExpression': {
-        // TODO: do I want to normalize this? May come in handy as is. Or maybe not. Hmmm.
+        // For now let's normalize this down to es5 code because I'm not sure keeping it as-is will
+        // do me any good and it's one (two) more edge cases to consider otherwise.
+
+        if (node.object.type === 'Identifier') {
+          rule('Optional member expressions should be normalized away');
+          log('`a?.b` --> `(a == undefined ? undefined : a.b)');
+          log('`a?.[b]` --> `(a == undefined ? undefined : a[b])');
+          before(node);
+
+          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
+          const newNode = AST.conditionalExpression(
+            AST.binaryExpression('==', node.object.name, 'null'), // Weak comparison! This compares vs undefined AND null
+            'undefined',
+            AST.memberExpression(node.object.name, node.property, node.computed),
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          rule('Optional member expressions should be normalized away');
+          log('`f()?.b` --> `(tmp = f(), (a == undefined ? undefined : a.b))');
+          log('`f()?.[b]` --> `(tmp = f(), (a == undefined ? undefined : a[b]))');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpOptionalChaining', true);
+
+          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.object),
+            AST.conditionalExpression(
+              AST.binaryExpression('==', tmpName, 'null'), // Weak comparison! This compares vs undefined AND null
+              'undefined',
+              AST.memberExpression(tmpName, node.property, node.computed),
+            ),
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        }
+
         break;
       }
 
       case 'OptionalCallExpression': {
-        // TODO: do I want to normalize this? May come in handy as is. Or maybe not. Hmmm.
+        // For now let's normalize this down to es5 code because I'm not sure keeping it as-is will
+        // do me any good and it's one (two) more edge cases to consider otherwise.
+
+        if (node.callee.type === 'Identifier') {
+          rule('Optional call expressions should be normalized away');
+          log('`a?.()` --> `(a == undefined ? undefined : a())');
+          before(node);
+
+          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
+          const newNode = AST.conditionalExpression(
+            AST.binaryExpression('==', node.callee.name, 'null'), // Weak comparison! This compares vs undefined AND null
+            'undefined',
+            AST.callExpression(node.callee.name, node.arguments),
+          );
+
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else {
+          rule('Optional call expressions should be normalized away');
+          log('`f()?.()` --> `(tmp = f(), (a == undefined ? undefined : a()))');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpOptionalChaining', true);
+
+          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.callee),
+            AST.conditionalExpression(
+              AST.binaryExpression('==', tmpName, 'null'), // Weak comparison! This compares vs undefined AND null
+              'undefined',
+              AST.callExpression(tmpName, node.arguments),
+            ),
+          );
+
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        }
         break;
       }
 

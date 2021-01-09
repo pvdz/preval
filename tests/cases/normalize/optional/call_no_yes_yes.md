@@ -1,8 +1,8 @@
 # Preval test case
 
-# call_no_yes_no.md
+# call_no_yes_yes.md
 
-> normalize > optional > call_no_yes_no
+> normalize > optional > call_no_yes_yes
 >
 > Mix optional with regular member call
 
@@ -12,7 +12,7 @@
 
 `````js filename=intro
 const a = {};
-$(a().b?.().c().d);
+$(a().b?.().c?.().d);
 `````
 
 ## Normalized

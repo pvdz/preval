@@ -65,6 +65,7 @@ const VERBOSE_TRACING = true;
   - Update expressions (++x) are transformed to regular binary expression assignments
   - Normalize spread args in call/new expressions
   - Normalize optional chaining / call away
+  - Normalize nullish coalescing away
  */
 
 /*
@@ -1891,7 +1892,25 @@ export function phaseNormalize(fdata, fname) {
       case 'LogicalExpression': {
         log('Operator:', node.operator);
 
-        if (isComplexNode(node.left)) {
+        if (node.operator === '??') {
+          rule('Nullish coalescing should be normalized away');
+          log('`a ?? b` --> `(tmp == null ? b : tmp)');
+          log('`f() ?? b` --> `(tmp = f(), (tmp == null ? b : tmp))');
+          before(node);
+
+          // Make exception if node.left is already an identifier. (For now...) don't blindly duplicate the literal.
+          const tmpName = node.left.type === 'Identifier' ? node.left.name : createFreshVarInCurrentRootScope('tmpNullish', true);
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.left),
+            AST.conditionalExpression(AST.binaryExpression('==', tmpName, 'null'), node.right, tmpName),
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+        } else if (isComplexNode(node.left)) {
           rule('Logical expression left must be simple');
           log('- `a.b && c` --> `(tmp = a.b, tmp && c)`');
           log('- `a() && c` --> `(tmp = a(), tmp && c)`');

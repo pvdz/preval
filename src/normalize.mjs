@@ -2186,34 +2186,26 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UnaryExpression': {
-        expr(node, 'argument', -1, node.argument);
 
-        //switch (node.operator) {
-        //  case 'delete': {
-        //    break;
-        //  }
-        //
-        //  case '+':
-        //  case '-':
-        //  case '~': {
-        //    break;
-        //  }
-        //
-        //  case '!': {
-        //    break;
-        //  }
-        //
-        //  case 'typeof': {
-        //    break;
-        //  }
-        //
-        //  case 'void': {
-        //    break;
-        //  }
-        //
-        //  default: {
-        //  }
-        //}
+        if (node.operator === 'void') {
+          rule('Void must be replaced by a sequence');
+          log('- `void x` --> `(x, undefined)`');
+          before(node);
+
+          const newNode = AST.sequenceExpression(
+            node.argument,
+            AST.identifier('undefined')
+          )
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
+
+        expr(node, 'argument', -1, node.argument);
 
         break;
       }

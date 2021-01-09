@@ -16,7 +16,8 @@ if (void 1) $();
 
 `````js filename=intro
 {
-  let ifTestTmp = void 1;
+  1;
+  let ifTestTmp = undefined;
   if (ifTestTmp) {
     $();
   }
@@ -26,8 +27,5 @@ if (void 1) $();
 ## Output
 
 `````js filename=intro
-let ifTestTmp = void 1;
-if (ifTestTmp) {
-  $();
-}
+
 `````

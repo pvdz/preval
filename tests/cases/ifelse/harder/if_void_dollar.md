@@ -18,7 +18,8 @@ if (void $(1)) $(2);
 
 `````js filename=intro
 {
-  let ifTestTmp = void $(1);
+  $(1);
+  let ifTestTmp = undefined;
   if (ifTestTmp) {
     $(2);
   }
@@ -28,8 +29,5 @@ if (void $(1)) $(2);
 ## Output
 
 `````js filename=intro
-let ifTestTmp = void $(1);
-if (ifTestTmp) {
-  $(2);
-}
+$(1);
 `````

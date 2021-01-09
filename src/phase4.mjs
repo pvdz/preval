@@ -672,7 +672,7 @@ export function phase4(program, fdata, resolve, req) {
             const meta = fdata.globallyUniqueNamingRegistery.get(node.callee.name);
 
             if (meta.updates.length === 0) {
-              log('Called `' + node.callee.name + '` but it has no updates (implicit global?);', meta);
+              log('Called `' + node.callee.name + '` but it has no updates (implicit global?);');
             } else if (meta.updates.length === 1) {
               log('Called `' + node.callee.name + '` and it has one update: parent =', [meta.updates[0].parent?.type]);
 

@@ -128,7 +128,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
   const content =
     mdHead +
     '\n\n' +
-    mdChunks.join('\n\n') +
+    mdChunks.join('\n\n').trim() +
     //'\n\n## Eval' +
     //'\n\nResult of executing test case: ' +
     //evalled.in +

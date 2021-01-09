@@ -17,6 +17,8 @@ export function phase0(code, fname) {
     astUids: true, // debugging
   });
 
+  //console.dir(tenkoOutput.ast, {depth: null});
+
   log('- Finished parsing');
 
   groupEnd();

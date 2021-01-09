@@ -6,6 +6,7 @@ import { phase2 } from './phase2.mjs';
 import { phase3 } from './phase3.mjs';
 import { phase4 } from './phase4.mjs';
 import { printer } from '../lib/printer.mjs';
+import { printer as specialPrinter } from '../lib/printer_special.mjs';
 
 export function preval({ entryPointFile, stdio, resolve, req }) {
   if (stdio) setStdio(stdio);
@@ -18,6 +19,7 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
   phase1(fdataOriginal, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
   phaseNormalize(fdataOriginal, entryPointFile);
   const normalizedCode = printer(fdataOriginal.tenkoOutput.ast);
+  const specialCode = specialPrinter(fdataOriginal.tenkoOutput.ast);
 
   log('\n\nSerializing and parsing normalized code next.');
 
@@ -49,6 +51,10 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
     normalized: {
       // For debug/testing
       [entryPointFile]: normalizedCode,
+    },
+    special: {
+      // Gives a better idea of how simplified the code is, less noise etc
+      [entryPointFile]: specialCode
     },
   };
 }

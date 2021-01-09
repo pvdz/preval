@@ -18,6 +18,12 @@ $([]);
 $([]);
 `````
 
+## Uniformed
+
+`````js filename=intro
+x([]);
+`````
+
 ## Output
 
 `````js filename=intro

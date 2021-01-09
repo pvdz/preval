@@ -21,6 +21,15 @@ const objPatternNoDefault_1 = objPatternNoDefault.y;
 const a = objPatternNoDefault_1.z;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 8;
+var x = x.x;
+var x = x.x;
+var x = x.x;
+`````
+
 ## Output
 
 `````js filename=intro

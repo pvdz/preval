@@ -103,6 +103,49 @@ function f() {
 f();
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x() {
+  var x;
+  var x;
+  var x;
+  x.x('str');
+  var x = {
+    get x() {
+      {
+        var x = x(8);
+        return x;
+      }
+    },
+    set x(x) {
+      {
+        var x = x(8);
+        return x;
+      }
+    },
+  };
+  x.x('str');
+  var x = 8;
+  x.x('str');
+  x.x = 8;
+  x = 8;
+  x = x;
+  x(x);
+  x.x('str');
+  x(x);
+  x.x('str');
+  x = x.x;
+  x(x);
+  x.x('str');
+  x.x = 8;
+  x = 8;
+  x(x);
+  x.x('str');
+}
+x();
+`````
+
 ## Output
 
 `````js filename=intro

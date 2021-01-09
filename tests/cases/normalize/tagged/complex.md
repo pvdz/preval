@@ -22,6 +22,14 @@ tmpArg = ['abc ', ' def'];
 $(tmpArg, 10);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = ['str', 'str'];
+x(x, 8);
+`````
+
 ## Output
 
 `````js filename=intro

@@ -25,6 +25,16 @@ x = objAssignPatternRhs.x;
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = {};
+x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

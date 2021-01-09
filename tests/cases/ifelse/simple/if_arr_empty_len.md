@@ -25,6 +25,17 @@ if ([].length) $();
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  var x = [].x;
+  if (x) {
+    x();
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

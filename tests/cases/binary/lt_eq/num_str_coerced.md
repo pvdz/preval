@@ -20,6 +20,14 @@ tmpArg = 1 <= '1';
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = 8 * 'str';
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

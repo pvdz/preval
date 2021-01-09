@@ -22,6 +22,13 @@ let x = 'foo'.toString();
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 'str'.x();
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

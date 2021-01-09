@@ -45,6 +45,33 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x, x) {
+  var x;
+  var x;
+  var x = x.x;
+  var x = x(x, []);
+  var x = [...x];
+  var x = x[8];
+  var x = [...x];
+  var x = x[8];
+  var x = [...x];
+  var x = x[8];
+  var x = [...x];
+  var x = x[8];
+  var x = [...x];
+  var x = x[8];
+  x = x * x;
+  var x = x ? x : x;
+  var x = [...x];
+  var x = x[8];
+  x = x * x;
+  var x = x ? x : x;
+}
+`````
+
 ## Output
 
 `````js filename=intro

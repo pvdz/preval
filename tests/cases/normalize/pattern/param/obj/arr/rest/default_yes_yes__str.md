@@ -46,6 +46,31 @@ tmpArg_2 = f('abc', 10);
 $(tmpArg_2);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x;
+  var x;
+  var x;
+  var x;
+  var x;
+  var x;
+  var x;
+  x = x * x;
+  var x = x ? ((x = ['str']), (x = { x: x }), (x = x(x)), x) : x;
+  var x = x.x;
+  x = x * x;
+  var x = x ? ((x = ['str']), (x = x(x)), x) : x;
+  var x = [...x];
+  var x = x.x(8);
+  return x;
+}
+var x;
+x = x('str', 8);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

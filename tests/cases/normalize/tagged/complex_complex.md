@@ -26,6 +26,18 @@ tmpArg_2 = $(20);
 $(tmpArg, tmpArg_1, tmpArg_2);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+x = ['str', 'str', 'str'];
+x = x(8);
+x = x(8);
+x(x, x, x);
+`````
+
 ## Output
 
 `````js filename=intro

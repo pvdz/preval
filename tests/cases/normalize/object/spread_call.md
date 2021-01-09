@@ -35,6 +35,24 @@ tmpArg_1 = { ...tmpObjSpreadArg };
 $(tmpArg_1);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x() {
+  var x;
+  {
+    x = { x: 8 };
+    var x = x(x);
+    return x;
+  }
+}
+var x;
+var x;
+x = x();
+x = { ...x };
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

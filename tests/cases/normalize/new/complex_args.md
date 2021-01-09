@@ -30,6 +30,22 @@ tmpArg = new Array(tmpArg_1, tmpArg_2, tmpArg_3);
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+x = 8 * 8;
+x = x();
+x = x.x;
+x = x.x;
+x = new x(x, x, x);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

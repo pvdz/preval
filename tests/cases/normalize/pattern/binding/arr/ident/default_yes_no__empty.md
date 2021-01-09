@@ -28,6 +28,19 @@ const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConseq
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x = 8;
+var x = [...x];
+var x = x[8];
+x = x * x;
+var x = x ? ((x = x('str')), x) : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

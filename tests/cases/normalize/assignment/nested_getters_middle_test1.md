@@ -25,6 +25,12 @@ const b = {
 const b = { get foo() {} };
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = { get x() {} };
+`````
+
 ## Output
 
 `````js filename=intro

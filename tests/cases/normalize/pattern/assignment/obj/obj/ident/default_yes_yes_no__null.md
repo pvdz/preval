@@ -40,6 +40,29 @@ y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConseque
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+x = /regex/;
+x = x.x;
+x = x * x;
+x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+x = x.x;
+x = x * x;
+x = x ? ((x = x('str')), x) : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

@@ -21,6 +21,13 @@ $();
 $();
 `````
 
+## Uniformed
+
+`````js filename=intro
+'str';
+x();
+`````
+
 ## Output
 
 `````js filename=intro

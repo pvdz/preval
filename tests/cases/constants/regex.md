@@ -28,6 +28,14 @@ const bar = foo;
 $(bar);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = /regex/;
+var x = x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

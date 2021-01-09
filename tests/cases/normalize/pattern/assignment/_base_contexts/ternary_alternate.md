@@ -21,6 +21,15 @@ var x;
 a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlternate = x), tmpTernaryAlternate);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+x ? x : ((x = 8), (x = x.x), (x = x), x);
+`````
+
 ## Output
 
 `````js filename=intro

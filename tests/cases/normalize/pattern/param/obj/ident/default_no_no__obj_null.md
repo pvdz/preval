@@ -31,6 +31,20 @@ tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x = x.x;
+  return x;
+}
+var x;
+var x;
+x = { x: /regex/ };
+x = x(x, 8);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

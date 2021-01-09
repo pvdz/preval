@@ -28,6 +28,16 @@ switch ($(1)) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+switch (x(8)) {
+  case x(8): {
+    x(8);
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

@@ -52,6 +52,43 @@ tmpArg = tmpTernaryTest_5 ? undefined : ((tmpTernaryAlternate_5 = tmpOptionalCha
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x = {};
+x = x * x;
+x = x ? x : ((x = x()), x);
+x = x * x;
+x = x ? x : ((x = x.x), x);
+x = x * x;
+x = x ? x : ((x = x()), x);
+x = x * x;
+x = x ? x : ((x = x.x), x);
+x = x * x;
+x = x ? x : ((x = x()), x);
+x = x * x;
+x = x ? x : ((x = x.x), x);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

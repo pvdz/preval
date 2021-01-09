@@ -22,6 +22,14 @@ tmpLogicalLeft = $(1);
 const x = tmpLogicalLeft && 2;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = x(8);
+var x = x && 8;
+`````
+
 ## Output
 
 `````js filename=intro

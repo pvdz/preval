@@ -30,6 +30,19 @@ const objPatternAfterDefault = tmpTernaryTest
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x = { x: /regex/, x: 8, x: 8 };
+var x = x.x;
+x = x * x;
+var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

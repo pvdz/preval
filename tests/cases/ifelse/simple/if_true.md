@@ -20,6 +20,14 @@ if (true) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+if (true) {
+  x();
+}
+`````
+
 ## Output
 
 `````js filename=intro

@@ -23,6 +23,14 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = x;
+var x = [...x];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

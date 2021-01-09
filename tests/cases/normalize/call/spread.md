@@ -22,6 +22,14 @@ tmpCallSpreadArg = [1, 2, 3];
 $(...tmpCallSpreadArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = [8, 8, 8];
+x(...x);
+`````
+
 ## Output
 
 `````js filename=intro

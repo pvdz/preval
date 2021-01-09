@@ -28,6 +28,22 @@ if ($(0)) ($(1), $(2), $(3), $(4), ($(5), $(6)));
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  var x = x(8);
+  if (x) {
+    x(8);
+    x(8);
+    x(8);
+    x(8);
+    x(8);
+    x(8);
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

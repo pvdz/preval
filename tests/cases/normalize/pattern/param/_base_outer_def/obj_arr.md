@@ -26,6 +26,20 @@ function i($tdz$__pattern) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x;
+  x = x * x;
+  var x = x ? x : x;
+  var x = x.x;
+  var x = [...x];
+  var x = x[8];
+  return x;
+}
+`````
+
 ## Output
 
 `````js filename=intro

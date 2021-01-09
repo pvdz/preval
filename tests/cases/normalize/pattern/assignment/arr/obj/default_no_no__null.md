@@ -27,6 +27,18 @@ arrPatternStep = arrPatternSplat[0];
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+x = /regex/;
+x = [...x];
+x = x[8];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

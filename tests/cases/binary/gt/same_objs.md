@@ -24,6 +24,15 @@ tmpArg = x > x;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = {};
+x = x * x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

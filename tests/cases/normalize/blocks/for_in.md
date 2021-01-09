@@ -20,6 +20,14 @@ for (x in $(1)) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+for (x in x(8)) {
+  x(8);
+}
+`````
+
 ## Output
 
 `````js filename=intro

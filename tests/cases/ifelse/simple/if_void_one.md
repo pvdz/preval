@@ -24,6 +24,18 @@ if (void 1) $();
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  8;
+  var x = x;
+  if (x) {
+    x();
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

@@ -25,6 +25,16 @@ x = objPatternRest(objAssignPatternRhs, []);
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = /regex/;
+x = x(x, []);
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

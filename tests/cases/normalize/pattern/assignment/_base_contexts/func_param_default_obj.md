@@ -30,6 +30,20 @@ const f = ($tdz$__a) => {
 };
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = (x) => {
+  var x;
+  var x;
+  var x;
+  var x;
+  x = x * x;
+  var x = x ? ((x = 8), (x = x.x), (x = x), x) : x;
+  return x;
+};
+`````
+
 ## Output
 
 `````js filename=intro

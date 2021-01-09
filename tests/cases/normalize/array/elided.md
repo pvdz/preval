@@ -24,6 +24,18 @@ tmpArg = [1, tmpElement, , 2, , tmpElement_1, ,];
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+x = x();
+x = x();
+x = [8, x, , 8, , x, ,];
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

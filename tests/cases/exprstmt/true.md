@@ -18,6 +18,12 @@ true;
 true;
 `````
 
+## Uniformed
+
+`````js filename=intro
+true;
+`````
+
 ## Output
 
 `````js filename=intro

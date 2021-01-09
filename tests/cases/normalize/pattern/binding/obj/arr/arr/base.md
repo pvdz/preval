@@ -30,6 +30,21 @@ const arrPatternSplat_1 = [...arrPatternStep];
 $('ok');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = [8, 8, 8];
+x = [x, 8];
+var x = { x: x, x: 8, x: 8 };
+var x = x.x;
+var x = [...x];
+var x = x[8];
+var x = [...x];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

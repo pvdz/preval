@@ -20,6 +20,14 @@ if ([]) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+if ([]) {
+  x();
+}
+`````
+
 ## Output
 
 `````js filename=intro

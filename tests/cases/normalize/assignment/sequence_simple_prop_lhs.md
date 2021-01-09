@@ -33,6 +33,21 @@ a = tmpBinaryLeft === 'Identifier';
 $(a);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x = 8;
+var x = 8;
+x = { x: 8 };
+var x = { x: x };
+x = x.x;
+x = x.x;
+x = x * 'str';
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

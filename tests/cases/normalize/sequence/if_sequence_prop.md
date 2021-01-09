@@ -27,6 +27,19 @@ $(1);
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+x(8);
+{
+  var x = x(8);
+  var x = x.x;
+  if (x) {
+    x(8);
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

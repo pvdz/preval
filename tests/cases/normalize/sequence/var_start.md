@@ -23,6 +23,16 @@ const a = 6;
 $(a);
 `````
 
+## Uniformed
+
+`````js filename=intro
+8;
+8;
+8;
+var x = 8;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

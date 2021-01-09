@@ -25,6 +25,19 @@ tmpTernaryTest = arrPatternBeforeDefault === undefined;
 const x = tmpTernaryTest ? a : arrPatternBeforeDefault;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = 8;
+var x = [...x];
+var x = x[8];
+var x = [...x];
+var x = x[8];
+x = x * x;
+var x = x ? x : x;
+`````
+
 ## Output
 
 `````js filename=intro

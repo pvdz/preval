@@ -29,6 +29,20 @@ arrPatternSplat_1 = [...arrPatternStep];
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+x = x;
+x = [...x];
+x = x[8];
+x = [...x];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

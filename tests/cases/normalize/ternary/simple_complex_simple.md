@@ -26,6 +26,16 @@ const b = 0 ? ((tmpTernaryConsequent_1 = $(4)), tmpTernaryConsequent_1) : 5;
 $(a, b);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x = 8 ? ((x = x(8)), x) : 8;
+var x = 8 ? ((x = x(8)), x) : 8;
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

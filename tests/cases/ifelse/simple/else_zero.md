@@ -23,6 +23,16 @@ if (0) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+if (8) {
+  x(8);
+} else {
+  x(8);
+}
+`````
+
 ## Output
 
 `````js filename=intro

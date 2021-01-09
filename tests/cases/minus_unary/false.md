@@ -22,6 +22,14 @@ tmpArg = -false;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = -false;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

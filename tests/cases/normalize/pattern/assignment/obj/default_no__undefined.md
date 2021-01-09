@@ -22,6 +22,13 @@ undefined;
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

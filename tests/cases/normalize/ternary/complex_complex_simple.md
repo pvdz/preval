@@ -30,6 +30,20 @@ const b = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $(4)), tmpTernaryConsequ
 $(a, b);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+x = x(8);
+var x = x ? ((x = x(8)), x) : 8;
+x = x(8);
+var x = x ? ((x = x(8)), x) : 8;
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

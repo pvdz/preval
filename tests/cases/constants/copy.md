@@ -22,6 +22,14 @@ const bar = foo;
 $(bar);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 'str';
+var x = x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

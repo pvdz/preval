@@ -22,6 +22,15 @@ tmpArg = obj.foo;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = { x: 8 };
+x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

@@ -24,6 +24,15 @@ const arrPatternStep = arrPatternSplat[0];
 $('ok');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = [/regex/, 8, 8];
+var x = [...x];
+var x = x[8];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

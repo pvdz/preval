@@ -28,6 +28,19 @@ tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = f()), tmpTernaryAl
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x = x;
+x = x * x;
+x = x ? x : ((x = x()), x);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

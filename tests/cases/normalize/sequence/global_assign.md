@@ -23,6 +23,15 @@ tmpComplexMemberObj = $(2);
 tmpComplexMemberObj.x = 1;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x(8);
+x = x(8);
+x.x = 8;
+`````
+
 ## Output
 
 `````js filename=intro

@@ -51,6 +51,28 @@ obj.x += 5;
 $(a, s);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 'str';
+var x = 8;
+var x = {
+  get x() {
+    x += 'str';
+    return x;
+  },
+  set x(x) {
+    var x;
+    x = 'str' * x;
+    x += x * 'str';
+    x += x;
+    return x;
+  },
+};
+x.x += 8;
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

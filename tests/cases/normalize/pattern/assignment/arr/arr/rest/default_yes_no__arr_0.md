@@ -36,6 +36,27 @@ x = arrPatternSplat_1.slice(0);
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+x = [8, 8, 8];
+x = [...x];
+x = x[8];
+x = x * x;
+x = x ? ((x = x('str')), x) : x;
+x = [...x];
+x = x.x(8);
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

@@ -29,6 +29,18 @@ const c = b.length;
 $(c);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 8;
+x;
+var x = x(8);
+var x = x.x;
+8;
+var x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

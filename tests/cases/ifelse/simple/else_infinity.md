@@ -23,6 +23,16 @@ if (Infinity) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+if (x) {
+  x(8);
+} else {
+  x(8);
+}
+`````
+
 ## Output
 
 `````js filename=intro

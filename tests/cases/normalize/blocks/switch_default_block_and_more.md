@@ -32,6 +32,19 @@ switch ($(1)) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+switch (x(8)) {
+  default: {
+    {
+      x(8);
+    }
+    break;
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

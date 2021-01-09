@@ -33,6 +33,22 @@ tmpArg = f('abc', 10);
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x;
+  var x;
+  var x = x.x;
+  x = x * x;
+  var x = x ? ((x = x('str')), x) : x;
+  return x;
+}
+var x;
+x = x('str', 8);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

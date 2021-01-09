@@ -26,6 +26,18 @@ function f(x, y) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x, x) {
+  {
+    x = x;
+    var x = x;
+    return x;
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

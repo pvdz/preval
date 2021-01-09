@@ -24,6 +24,14 @@ const b = 0 ? 4 : 5;
 $(a, b);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 8 ? 8 : 8;
+var x = 8 ? 8 : 8;
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

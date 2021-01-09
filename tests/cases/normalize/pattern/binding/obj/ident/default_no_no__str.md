@@ -23,6 +23,14 @@ const x = bindingPatternObjRoot.x;
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 'str';
+var x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

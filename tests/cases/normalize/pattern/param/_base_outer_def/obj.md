@@ -24,6 +24,18 @@ function g($tdz$__pattern) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x;
+  x = x * x;
+  var x = x ? x : x;
+  var x = x.x;
+  return x;
+}
+`````
+
 ## Output
 
 `````js filename=intro

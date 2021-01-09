@@ -36,6 +36,18 @@ f();
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x() {
+  x = 8;
+}
+var x;
+x(x);
+x();
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

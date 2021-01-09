@@ -20,6 +20,12 @@ const x = 1 && 2;
 const x = 1 && 2;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 8 && 8;
+`````
+
 ## Output
 
 `````js filename=intro

@@ -35,6 +35,26 @@ tmpArg = tmpNestedAssignRhs;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x = [];
+var x = 8;
+var x = 8;
+x = x;
+x = x;
+x = x(x);
+x.x = x;
+x = x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

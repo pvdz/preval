@@ -32,6 +32,23 @@ tmpArg = tmpTernaryTest_1 ? ((tmpTernaryConsequent = c.d), tmpTernaryConsequent)
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x = {};
+x = x;
+x = x * x;
+x = x ? x : x;
+x = x * x;
+x = x ? ((x = x.x), x) : x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

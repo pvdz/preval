@@ -42,6 +42,31 @@ if (!$(1))
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  var x = x(-8);
+  if (x) {
+    x(8);
+  }
+}
+{
+  var x = x(8);
+  if (x) {
+  } else {
+    {
+      var x = x(8);
+      if (x) {
+        x(8);
+      } else {
+        x(8);
+      }
+    }
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

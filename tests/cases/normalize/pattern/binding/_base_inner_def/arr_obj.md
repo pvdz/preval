@@ -24,6 +24,18 @@ tmpTernaryTest = objPatternBeforeDefault === undefined;
 const x = tmpTernaryTest ? a : objPatternBeforeDefault;
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = 8;
+var x = [...x];
+var x = x[8];
+var x = x.x;
+x = x * x;
+var x = x ? x : x;
+`````
+
 ## Output
 
 `````js filename=intro

@@ -33,6 +33,25 @@ z_1 = objPatternNoDefault_1.z;
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+{
+  var x = 8;
+}
+x = 8;
+x = x.x;
+x = x.x;
+x = x.x;
+{
+  var x = 8;
+}
+`````
+
 ## Output
 
 `````js filename=intro

@@ -38,6 +38,27 @@ const c = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalCh
 $(c);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x = 8;
+x;
+x = x(8);
+x = x * x;
+var x = x ? x : ((x = x.x), x);
+8;
+x = x;
+x = x * x;
+var x = x ? x : ((x = x.x), x);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

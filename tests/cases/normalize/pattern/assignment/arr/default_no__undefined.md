@@ -25,6 +25,16 @@ arrPatternSplat = [...arrAssignPatternRhs];
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = x;
+x = [...x];
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

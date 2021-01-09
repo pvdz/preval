@@ -30,6 +30,19 @@ tmpObjPropValue_1 = fdata.name;
 const program = { modules: tmpObjPropValue, main: tmpObjPropValue_1 };
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = x.x;
+x = [x, x];
+x = [x];
+x = new x(x);
+x = x.x;
+var x = { x: x, x: x };
+`````
+
 ## Output
 
 `````js filename=intro

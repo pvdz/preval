@@ -24,6 +24,15 @@ const x = arrPatternSplat.slice(0);
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = /regex/;
+var x = [...x];
+var x = x.x(8);
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

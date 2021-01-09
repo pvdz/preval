@@ -24,6 +24,16 @@ tmpArg_1 = $(10);
 $(tmpArg, tmpArg_1, 20);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+x = ['str', 'str', 'str'];
+x = x(8);
+x(x, x, 8);
+`````
+
 ## Output
 
 `````js filename=intro

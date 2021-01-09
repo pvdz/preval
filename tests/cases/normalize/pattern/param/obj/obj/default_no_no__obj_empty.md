@@ -29,6 +29,18 @@ tmpArg = f({}, 10);
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+function x(x) {
+  var x = x.x;
+  return 'str';
+}
+var x;
+x = x({}, 8);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

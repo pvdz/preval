@@ -37,6 +37,26 @@ x = objPatternRest(arrPatternStep, []);
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+x = ['str', 8, 8];
+x = [...x];
+x = x[8];
+x = x * x;
+x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+x = x(x, []);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

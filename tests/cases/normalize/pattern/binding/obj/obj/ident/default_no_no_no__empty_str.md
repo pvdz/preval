@@ -24,6 +24,15 @@ const y = objPatternNoDefault.y;
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = 'str';
+var x = x.x;
+var x = x.x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

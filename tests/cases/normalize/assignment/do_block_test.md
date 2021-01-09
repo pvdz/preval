@@ -28,6 +28,21 @@ do {
 } while (ifTestTmp);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = 8;
+var x = 8;
+var x = 8;
+var x = 8;
+do {
+  x;
+  x;
+  x = x * x;
+} while (x);
+`````
+
 ## Output
 
 `````js filename=intro

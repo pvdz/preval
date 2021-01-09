@@ -28,6 +28,19 @@ const y = tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x = 'str';
+var x = x.x;
+var x = [...x];
+var x = x[8];
+x = x * x;
+var x = x ? 'str' : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

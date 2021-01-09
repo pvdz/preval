@@ -23,6 +23,16 @@ const y = tmpBindingInit.foo;
 $(y);
 `````
 
+## Uniformed
+
+`````js filename=intro
+8;
+8;
+var x = x();
+var x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

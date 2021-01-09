@@ -83,7 +83,7 @@ export function fromMarkdownCase(md, fname, config) {
       md,
       fname,
       mdHead: mdHead.trim(),
-      mdChunks: chunks.filter((s) => !s.startsWith('Output\n') && !s.startsWith('Normalized')).map((s) => '## ' + s.trim()),
+      mdChunks: chunks.filter((s) => !s.startsWith('Output\n') && !s.startsWith('Normalized') && !s.startsWith('Uniformed')).map((s) => '## ' + s.trim()),
       fin: {},
     };
 
@@ -140,6 +140,20 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     Object.keys(output.normalized)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(output.normalized[key]).trim() + '\n`````')
+      .join('\n\n') +
+    '\n\n## Uniformed\n\n' +
+    Object.keys(output.files)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map(
+        (key) =>
+          '`````js filename=' +
+          key +
+          '\n' +
+          fmat(output.special[key])
+            .replace(/\$[a-zA-Z\d]+/g, 'x')
+            .trim() +
+          '\n`````',
+      )
       .join('\n\n') +
     '\n\n## Output\n\n' +
     Object.keys(output.files)

@@ -20,6 +20,12 @@ $(`foo`);
 $('foo');
 `````
 
+## Uniformed
+
+`````js filename=intro
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

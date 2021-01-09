@@ -23,6 +23,14 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = /regex/;
+var x = x.x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

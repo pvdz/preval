@@ -29,6 +29,22 @@ let y;
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+{
+  x = 8;
+  x = x.x;
+  var x = 8;
+  if (x) {
+    x;
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

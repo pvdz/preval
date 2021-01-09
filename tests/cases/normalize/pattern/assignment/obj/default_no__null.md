@@ -22,6 +22,13 @@ null;
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+/regex/;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

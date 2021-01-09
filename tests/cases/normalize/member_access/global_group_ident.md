@@ -23,6 +23,15 @@ const y = a.x;
 $(y);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = { x: 8 };
+8;
+var x = x.x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

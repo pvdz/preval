@@ -36,6 +36,27 @@ x = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) 
 $('bad');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+x = 'str';
+x = [...x];
+x = x[8];
+x = [...x];
+x = x[8];
+x = x * x;
+x = x ? ((x = x('str')), x) : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

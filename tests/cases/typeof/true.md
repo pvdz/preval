@@ -20,6 +20,14 @@ tmpArg = typeof true;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = typeof true;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

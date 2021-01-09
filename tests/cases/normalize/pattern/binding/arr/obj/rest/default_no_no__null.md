@@ -25,6 +25,16 @@ const x = objPatternRest(arrPatternStep, []);
 $(x);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = /regex/;
+var x = [...x];
+var x = x[8];
+var x = x(x, []);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

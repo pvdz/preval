@@ -37,6 +37,25 @@ tmpArg = g();
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+export function x() {
+  function x() {
+    {
+      var x = x(8);
+      return x;
+    }
+  }
+  var x;
+  x = x(8);
+  x(x);
+}
+var x;
+x = x();
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

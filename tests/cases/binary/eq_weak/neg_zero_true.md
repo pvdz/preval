@@ -22,6 +22,14 @@ tmpArg = -0 == -0;
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+x = -8 * -8;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

@@ -22,6 +22,14 @@ while ($(1)) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+while (x(8)) {
+  x(8);
+}
+`````
+
 ## Output
 
 `````js filename=intro

@@ -24,6 +24,15 @@ const y = objPatternRest(objPatternNoDefault, []);
 $(y);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x = { x: {}, x: 8, x: 8 };
+var x = x.x;
+var x = x(x, []);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

@@ -31,6 +31,17 @@ arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+x = 8;
+x = [...x];
+x = x[8];
+`````
+
 ## Output
 
 `````js filename=intro

@@ -23,6 +23,17 @@ if (() => {}) $();
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  var x = () => {};
+  if (x) {
+    x();
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

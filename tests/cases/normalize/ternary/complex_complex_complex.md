@@ -34,6 +34,22 @@ const b = tmpTernaryTest_1
 $(a, b);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+var x;
+var x;
+x = x(8);
+var x = x ? ((x = x(8)), x) : ((x = x(8)), x);
+x = x(8);
+var x = x ? ((x = x(8)), x) : ((x = x(8)), x);
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

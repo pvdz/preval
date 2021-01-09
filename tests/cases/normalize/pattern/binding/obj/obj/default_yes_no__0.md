@@ -30,6 +30,19 @@ const objPatternAfterDefault = tmpTernaryTest
 $('ok');
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x = 8;
+var x = x.x;
+x = x * x;
+var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+x('str');
+`````
+
 ## Output
 
 `````js filename=intro

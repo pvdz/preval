@@ -27,6 +27,19 @@ tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChainin
 $(tmpArg);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x;
+var x;
+x = 'str';
+x = x * x;
+x = x ? x : ((x = x.x), x);
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

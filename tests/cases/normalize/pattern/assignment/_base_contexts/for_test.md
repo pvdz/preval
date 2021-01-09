@@ -22,6 +22,16 @@ for (objAssignPatternRhs = 1, x = objAssignPatternRhs.x; ; ) {
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+for (x = 8, x = x.x; ; ) {
+  x;
+}
+`````
+
 ## Output
 
 `````js filename=intro

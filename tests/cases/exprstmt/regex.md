@@ -18,6 +18,12 @@
 /foo/g;
 `````
 
+## Uniformed
+
+`````js filename=intro
+/regex/;
+`````
+
 ## Output
 
 `````js filename=intro

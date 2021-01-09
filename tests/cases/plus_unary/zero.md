@@ -18,6 +18,12 @@ $(+0);
 $(+0);
 `````
 
+## Uniformed
+
+`````js filename=intro
+x(typeof 8);
+`````
+
 ## Output
 
 `````js filename=intro

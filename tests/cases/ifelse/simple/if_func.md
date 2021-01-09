@@ -23,6 +23,17 @@ if (function(){}) $();
 }
 `````
 
+## Uniformed
+
+`````js filename=intro
+{
+  var x = function () {};
+  if (x) {
+    x();
+  }
+}
+`````
+
 ## Output
 
 `````js filename=intro

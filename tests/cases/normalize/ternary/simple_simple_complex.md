@@ -26,6 +26,16 @@ const b = 0 ? 4 : ((tmpTernaryAlternate_1 = $(5)), tmpTernaryAlternate_1);
 $(a, b);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x = 8 ? 8 : ((x = x(8)), x);
+var x = 8 ? 8 : ((x = x(8)), x);
+x(x, x);
+`````
+
 ## Output
 
 `````js filename=intro

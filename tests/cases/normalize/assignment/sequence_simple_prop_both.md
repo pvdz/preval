@@ -30,6 +30,18 @@ a = tmpBinaryLeft === tmpBinaryRight;
 $(a);
 `````
 
+## Uniformed
+
+`````js filename=intro
+var x;
+var x;
+var x = 8;
+x = 'str'.x;
+x = 'str'.x;
+x = x * x;
+x(x);
+`````
+
 ## Output
 
 `````js filename=intro

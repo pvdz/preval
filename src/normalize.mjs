@@ -63,6 +63,7 @@ const VERBOSE_TRACING = true;
   - All expressions inside templates are outlined to be simple nodes only.
   - Binary expressions are normalized to always have simple left and right nodes
   - Update expressions (++x) are transformed to regular binary expression assignments
+  - Normalize spread args in call/new expressions
  */
 
 /*
@@ -1703,7 +1704,7 @@ export function phaseNormalize(fdata, fname) {
           before(node);
           node.body = AST.blockStatement(AST.returnStatement(node.body));
           node.expression = false;
-          changed = true
+          changed = true;
           after(node);
         }
 
@@ -1762,9 +1763,26 @@ export function phaseNormalize(fdata, fname) {
       case 'CallExpression': {
         if (!normalizeCallArgsChangedSomething(node, false)) {
           if (!normalizeCalleeChangedSomething(node, false)) {
-            node.arguments.forEach((anode, i) => {
+            node.arguments.some((anode, i) => {
               if (anode.type === 'SpreadElement') {
-                expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+                if (isComplexNode(anode.argument)) {
+                  rule('Spread call arg must be simple nodes');
+                  log('- `f(...a())` --> `(tmp = a(), f(...tmp))`');
+                  before(anode);
+
+                  const tmpName = createFreshVarInCurrentRootScope('tmpCallSpreadArg', true);
+                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, anode.argument), node);
+                  anode.argument = AST.identifier(tmpName);
+                  crumbSet(1, newNode);
+
+                  after(newNode);
+                  changed = true;
+
+                  _expr(node);
+                  return true;
+                } else {
+                  expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+                }
               } else {
                 expr(node, 'arguments', i, anode);
               }
@@ -2004,7 +2022,24 @@ export function phaseNormalize(fdata, fname) {
           if (!normalizeCalleeChangedSomething(node, true)) {
             node.arguments.forEach((anode, i) => {
               if (anode.type === 'SpreadElement') {
-                expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+                if (isComplexNode(anode.argument)) {
+                  rule('Spread call arg must be simple nodes');
+                  log('- `f(...a())` --> `(tmp = a(), f(...tmp))`');
+                  before(anode);
+
+                  const tmpName = createFreshVarInCurrentRootScope('tmpCallSpreadArg', true);
+                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, anode.argument), node);
+                  anode.argument = AST.identifier(tmpName);
+                  crumbSet(1, newNode);
+
+                  after(newNode);
+                  changed = true;
+
+                  _expr(node);
+                  return true;
+                } else {
+                  expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+                }
               } else {
                 expr(node, 'arguments', i, anode);
               }
@@ -2180,16 +2215,12 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UnaryExpression': {
-
         if (node.operator === 'void') {
           rule('Void must be replaced by a sequence');
           log('- `void x` --> `(x, undefined)`');
           before(node);
 
-          const newNode = AST.sequenceExpression(
-            node.argument,
-            AST.identifier('undefined')
-          )
+          const newNode = AST.sequenceExpression(node.argument, AST.identifier('undefined'));
           crumbSet(1, newNode);
 
           after(newNode);

@@ -19,35 +19,75 @@ $(a, b)
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryTest_1;
-tmpTernaryTest = $(1);
-const a = tmpTernaryTest ? 2 : 3;
-tmpTernaryTest_1 = $(0);
-const b = tmpTernaryTest_1 ? 4 : 5;
+{
+  let a;
+  {
+    let ifTestTmp = $(1);
+    if (ifTestTmp) {
+      a = 2;
+    } else {
+      a = 3;
+    }
+  }
+}
+{
+  let b;
+  {
+    let ifTestTmp_1 = $(0);
+    if (ifTestTmp_1) {
+      b = 4;
+    } else {
+      b = 5;
+    }
+  }
+}
 $(a, b);
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
-var x;
-x = x(8);
-var x = x ? 8 : 8;
-x = x(8);
-var x = x ? 8 : 8;
+{
+  var x;
+  {
+    var x = x(8);
+    if (x) {
+      x = 8;
+    } else {
+      x = 8;
+    }
+  }
+}
+{
+  var x;
+  {
+    var x = x(8);
+    if (x) {
+      x = 8;
+    } else {
+      x = 8;
+    }
+  }
+}
 x(x, x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryTest_1;
-tmpTernaryTest = $(1);
-const a = tmpTernaryTest ? 2 : 3;
-tmpTernaryTest_1 = $(0);
-const b = tmpTernaryTest_1 ? 4 : 5;
+let a;
+let ifTestTmp = $(1);
+if (ifTestTmp) {
+  a = 2;
+} else {
+  a = 3;
+}
+let b;
+let ifTestTmp_1 = $(0);
+if (ifTestTmp_1) {
+  b = 4;
+} else {
+  b = 5;
+}
 $(a, b);
 `````

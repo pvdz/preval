@@ -17,11 +17,18 @@
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-tmpTernaryTest = x;
-tmpTernaryTest ? b : c;
+{
+  {
+    objAssignPatternRhs = 1;
+    x = objAssignPatternRhs.x;
+    let ifTestTmp = 1;
+    if (ifTestTmp) {
+      b;
+    } else {
+      c;
+    }
+  }
+}
 `````
 
 ## Uniformed
@@ -29,11 +36,18 @@ tmpTernaryTest ? b : c;
 `````js filename=intro
 var x;
 var x;
-var x;
-x = 8;
-x = x.x;
-x = x;
-x ? x : x;
+{
+  {
+    x = 8;
+    x = x.x;
+    var x = 8;
+    if (x) {
+      x;
+    } else {
+      x;
+    }
+  }
+}
 `````
 
 ## Output
@@ -41,9 +55,6 @@ x ? x : x;
 `````js filename=intro
 var objAssignPatternRhs;
 var x;
-var tmpTernaryTest;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
-tmpTernaryTest = x;
-tmpTernaryTest ? b : c;
 `````

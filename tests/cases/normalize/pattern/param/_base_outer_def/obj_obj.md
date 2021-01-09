@@ -16,9 +16,17 @@ function i({x: {y: {z}}} = d ) { return z }
 
 `````js filename=intro
 function i($tdz$__pattern) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest ? d : $tdz$__pattern;
+  {
+    let $tdz$__pattern_after_default;
+    {
+      let ifTestTmp = $tdz$__pattern === undefined;
+      if (ifTestTmp) {
+        $tdz$__pattern_after_default = d;
+      } else {
+        $tdz$__pattern_after_default = $tdz$__pattern;
+      }
+    }
+  }
   let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let objPatternNoDefault_1 = objPatternNoDefault.y;
   let z = objPatternNoDefault_1.z;
@@ -30,9 +38,17 @@ function i($tdz$__pattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = x.x;
   var x = x.x;
   var x = x.x;

@@ -34,11 +34,27 @@ function f() {
   a;
   tmpOptionalChaining = $(2);
   tmpTernaryTest = tmpOptionalChaining == null;
-  const b = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.toString), tmpTernaryAlternate);
+  {
+    let b;
+    if (tmpTernaryTest) {
+      b = undefined;
+    } else {
+      tmpTernaryAlternate = tmpOptionalChaining.toString;
+      b = tmpTernaryAlternate;
+    }
+  }
   1;
   tmpOptionalChaining_1 = b;
   tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-  const c = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_1.length), tmpTernaryAlternate_1);
+  {
+    let c;
+    if (tmpTernaryTest_1) {
+      c = undefined;
+    } else {
+      tmpTernaryAlternate_1 = tmpOptionalChaining_1.length;
+      c = tmpTernaryAlternate_1;
+    }
+  }
   {
     let tmpStmtArg = $(c);
     return tmpStmtArg;
@@ -63,11 +79,27 @@ function x() {
   x;
   x = x(8);
   x = x * x;
-  var x = x ? x : ((x = x.x), x);
+  {
+    var x;
+    if (x) {
+      x = x;
+    } else {
+      x = x.x;
+      x = x;
+    }
+  }
   8;
   x = x;
   x = x * x;
-  var x = x ? x : ((x = x.x), x);
+  {
+    var x;
+    if (x) {
+      x = x;
+    } else {
+      x = x.x;
+      x = x;
+    }
+  }
   {
     var x = x(x);
     return x;
@@ -90,10 +122,22 @@ function f() {
   var tmpTernaryAlternate_1;
   tmpOptionalChaining = $(2);
   tmpTernaryTest = tmpOptionalChaining == null;
-  const b = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.toString), tmpTernaryAlternate);
+  let b;
+  if (tmpTernaryTest) {
+    b = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.toString;
+    b = tmpTernaryAlternate;
+  }
   tmpOptionalChaining_1 = b;
   tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-  const c = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_1.length), tmpTernaryAlternate_1);
+  let c;
+  if (tmpTernaryTest_1) {
+    c = undefined;
+  } else {
+    tmpTernaryAlternate_1 = tmpOptionalChaining_1.length;
+    c = tmpTernaryAlternate_1;
+  }
   let tmpStmtArg = $(c);
   return tmpStmtArg;
 }

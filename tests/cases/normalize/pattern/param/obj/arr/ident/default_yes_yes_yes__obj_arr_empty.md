@@ -23,25 +23,46 @@ $(f({ x: [], a: 11, b: 12 }, 10));
 function f($tdz$__pattern) {
   var tmpArg;
   var tmpObjPropValue;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  var tmpTernaryTest_1;
-  var tmpTernaryConsequent_1;
   var tmpArg_1;
-  var tmpTernaryTest_2;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpObjPropValue = ['fail3']), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : $tdz$__pattern;
+  {
+    let $tdz$__pattern_after_default;
+    {
+      let ifTestTmp = $tdz$__pattern === undefined;
+      if (ifTestTmp) {
+        tmpObjPropValue = ['fail3'];
+        tmpArg = { x: tmpObjPropValue };
+        $tdz$__pattern_after_default = $(tmpArg);
+      } else {
+        $tdz$__pattern_after_default = $tdz$__pattern;
+      }
+    }
+  }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
-  let objPatternAfterDefault = tmpTernaryTest_1
-    ? ((tmpArg_1 = ['fail2']), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
-    : objPatternBeforeDefault;
+  {
+    let objPatternAfterDefault;
+    {
+      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+      if (ifTestTmp_1) {
+        tmpArg_1 = ['fail2'];
+        objPatternAfterDefault = $(tmpArg_1);
+      } else {
+        objPatternAfterDefault = objPatternBeforeDefault;
+      }
+    }
+  }
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  tmpTernaryTest_2 = arrPatternBeforeDefault === undefined;
-  let y = tmpTernaryTest_2 ? 'pass' : arrPatternBeforeDefault;
+  {
+    let y;
+    {
+      let ifTestTmp_2 = arrPatternBeforeDefault === undefined;
+      if (ifTestTmp_2) {
+        y = 'pass';
+      } else {
+        y = arrPatternBeforeDefault;
+      }
+    }
+  }
   return y;
 }
 var tmpArg_2;
@@ -58,20 +79,45 @@ function x(x) {
   var x;
   var x;
   var x;
-  var x;
-  var x;
-  var x;
-  var x;
-  var x;
-  x = x * x;
-  var x = x ? ((x = ['str']), (x = { x: x }), (x = x(x)), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = ['str'];
+        x = { x: x };
+        x = x(x);
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = x.x;
-  x = x * x;
-  var x = x ? ((x = ['str']), (x = x(x)), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = ['str'];
+        x = x(x);
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = [...x];
   var x = x[8];
-  x = x * x;
-  var x = x ? 'str' : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 'str';
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 var x;
@@ -87,25 +133,34 @@ x(x);
 function f($tdz$__pattern) {
   var tmpArg;
   var tmpObjPropValue;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  var tmpTernaryTest_1;
-  var tmpTernaryConsequent_1;
   var tmpArg_1;
-  var tmpTernaryTest_2;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpObjPropValue = ['fail3']), (tmpArg = { x: tmpObjPropValue }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : $tdz$__pattern;
+  let $tdz$__pattern_after_default;
+  let ifTestTmp = $tdz$__pattern === undefined;
+  if (ifTestTmp) {
+    tmpObjPropValue = ['fail3'];
+    tmpArg = { x: tmpObjPropValue };
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  tmpTernaryTest_1 = objPatternBeforeDefault === undefined;
-  let objPatternAfterDefault = tmpTernaryTest_1
-    ? ((tmpArg_1 = ['fail2']), (tmpTernaryConsequent_1 = $(tmpArg_1)), tmpTernaryConsequent_1)
-    : objPatternBeforeDefault;
+  let objPatternAfterDefault;
+  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp_1) {
+    tmpArg_1 = ['fail2'];
+    objPatternAfterDefault = $(tmpArg_1);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  tmpTernaryTest_2 = arrPatternBeforeDefault === undefined;
-  let y = tmpTernaryTest_2 ? 'pass' : arrPatternBeforeDefault;
+  let y;
+  let ifTestTmp_2 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp_2) {
+    y = 'pass';
+  } else {
+    y = arrPatternBeforeDefault;
+  }
   return y;
 }
 var tmpArg_2;

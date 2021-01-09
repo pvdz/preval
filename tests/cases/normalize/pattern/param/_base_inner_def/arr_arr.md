@@ -16,13 +16,21 @@ function i([[ x = a ]]) { return x }
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  var tmpTernaryTest;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
   let arrPatternBeforeDefault = arrPatternSplat_1[0];
-  tmpTernaryTest = arrPatternBeforeDefault === undefined;
-  let x = tmpTernaryTest ? a : arrPatternBeforeDefault;
+  {
+    let x;
+    {
+      let ifTestTmp = arrPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        x = a;
+      } else {
+        x = arrPatternBeforeDefault;
+      }
+    }
+  }
   return x;
 }
 `````
@@ -31,13 +39,21 @@ function i(tmpParamPattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
   var x = [...x];
   var x = x[8];
   var x = [...x];
   var x = x[8];
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 `````

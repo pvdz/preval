@@ -18,15 +18,21 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+{
+  let objPatternAfterDefault;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { a: 'fail' };
+      objPatternAfterDefault = $(tmpArg);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
+    }
+  }
+}
 const y = objPatternRest(objPatternAfterDefault, []);
 $('bad');
 `````
@@ -35,12 +41,20 @@ $('bad');
 
 `````js filename=intro
 var x;
-var x;
-var x;
 var x = { x: /regex/, x: 8, x: 8 };
 var x = x.x;
-x = x * x;
-var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = { x: 'str' };
+      x = x(x);
+    } else {
+      x = x;
+    }
+  }
+}
 var x = x(x, []);
 x('str');
 `````
@@ -48,15 +62,17 @@ x('str');
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+let objPatternAfterDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = { a: 'fail' };
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 objPatternRest(objPatternAfterDefault, []);
 $('bad');
 `````

@@ -21,16 +21,20 @@ const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
   var x;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest
-    ? ((arrAssignPatternRhs = 1),
-      (arrPatternSplat = [...arrAssignPatternRhs]),
-      (x = arrPatternSplat[0]),
-      (tmpTernaryConsequent = x),
-      tmpTernaryConsequent)
-    : $tdz$__a;
+  {
+    let a;
+    {
+      let ifTestTmp = $tdz$__a === undefined;
+      if (ifTestTmp) {
+        arrAssignPatternRhs = 1;
+        arrPatternSplat = [...arrAssignPatternRhs];
+        x = arrPatternSplat[0];
+        a = x;
+      } else {
+        a = $tdz$__a;
+      }
+    }
+  }
   return a;
 };
 `````
@@ -42,10 +46,20 @@ var x = (x) => {
   var x;
   var x;
   var x;
-  var x;
-  var x;
-  x = x * x;
-  var x = x ? ((x = 8), (x = [...x]), (x = x[8]), (x = x), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 8;
+        x = [...x];
+        x = x[8];
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 };
 `````
@@ -57,16 +71,16 @@ var x = (x) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
   var x;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest
-    ? ((arrAssignPatternRhs = 1),
-      (arrPatternSplat = [...arrAssignPatternRhs]),
-      (x = arrPatternSplat[0]),
-      (tmpTernaryConsequent = x),
-      tmpTernaryConsequent)
-    : $tdz$__a;
+  let a;
+  let ifTestTmp = $tdz$__a === undefined;
+  if (ifTestTmp) {
+    arrAssignPatternRhs = 1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    a = x;
+  } else {
+    a = $tdz$__a;
+  }
   return a;
 };
 `````

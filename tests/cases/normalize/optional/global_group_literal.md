@@ -25,7 +25,15 @@ var tmpTernaryAlternate;
 2;
 tmpOptionalChaining = 3;
 tmpTernaryTest = tmpOptionalChaining == null;
-const y = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.foo), tmpTernaryAlternate);
+{
+  let y;
+  if (tmpTernaryTest) {
+    y = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.foo;
+    y = tmpTernaryAlternate;
+  }
+}
 $(y);
 `````
 
@@ -39,7 +47,15 @@ var x;
 8;
 x = 8;
 x = x * x;
-var x = x ? x : ((x = x.x), x);
+{
+  var x;
+  if (x) {
+    x = x;
+  } else {
+    x = x.x;
+    x = x;
+  }
+}
 x(x);
 `````
 
@@ -51,6 +67,12 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 tmpOptionalChaining = 3;
 tmpTernaryTest = tmpOptionalChaining == null;
-const y = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.foo), tmpTernaryAlternate);
+let y;
+if (tmpTernaryTest) {
+  y = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining.foo;
+  y = tmpTernaryAlternate;
+}
 $(y);
 `````

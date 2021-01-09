@@ -21,9 +21,17 @@ $(f('xyz', 200));
 
 `````js filename=intro
 function f($tdz$__x) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__x === undefined;
-  let x = tmpTernaryTest ? 'fail' : $tdz$__x;
+  {
+    let x;
+    {
+      let ifTestTmp = $tdz$__x === undefined;
+      if (ifTestTmp) {
+        x = 'fail';
+      } else {
+        x = $tdz$__x;
+      }
+    }
+  }
   return x;
 }
 var tmpArg;
@@ -35,9 +43,17 @@ $(tmpArg);
 
 `````js filename=intro
 function x(x) {
-  var x;
-  x = x * x;
-  var x = x ? 'str' : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 'str';
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 var x;
@@ -49,9 +65,13 @@ x(x);
 
 `````js filename=intro
 function f($tdz$__x) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__x === undefined;
-  let x = tmpTernaryTest ? 'fail' : $tdz$__x;
+  let x;
+  let ifTestTmp = $tdz$__x === undefined;
+  if (ifTestTmp) {
+    x = 'fail';
+  } else {
+    x = $tdz$__x;
+  }
   return x;
 }
 var tmpArg;

@@ -16,12 +16,20 @@ function i({x: {y: {z = a }}}) { return z }
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  var tmpTernaryTest;
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault_1 = objPatternNoDefault.y;
   let objPatternBeforeDefault = objPatternNoDefault_1.z;
-  tmpTernaryTest = objPatternBeforeDefault === undefined;
-  let z = tmpTernaryTest ? a : objPatternBeforeDefault;
+  {
+    let z;
+    {
+      let ifTestTmp = objPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        z = a;
+      } else {
+        z = objPatternBeforeDefault;
+      }
+    }
+  }
   return z;
 }
 `````
@@ -30,12 +38,20 @@ function i(tmpParamPattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
   var x = x.x;
   var x = x.x;
   var x = x.x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 `````

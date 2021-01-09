@@ -15,31 +15,51 @@ const [ x = a ] = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const x = tmpTernaryTest ? a : arrPatternBeforeDefault;
+{
+  let x;
+  {
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = a;
+    } else {
+      x = arrPatternBeforeDefault;
+    }
+  }
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
 var x = 8;
 var x = [...x];
 var x = x[8];
-x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-tmpTernaryTest ? a : arrPatternBeforeDefault;
+let x;
+let ifTestTmp = arrPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  x = a;
+} else {
+  x = arrPatternBeforeDefault;
+}
 `````

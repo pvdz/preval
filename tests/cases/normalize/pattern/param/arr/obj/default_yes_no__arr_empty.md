@@ -21,12 +21,19 @@ $(f([]));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  tmpTernaryTest = arrPatternBeforeDefault === undefined;
-  let arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+  {
+    let arrPatternStep;
+    {
+      let ifTestTmp = arrPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        arrPatternStep = $('pass');
+      } else {
+        arrPatternStep = arrPatternBeforeDefault;
+      }
+    }
+  }
   return 'ok';
 }
 var tmpArg;
@@ -38,12 +45,19 @@ $(tmpArg);
 
 `````js filename=intro
 function x(x) {
-  var x;
-  var x;
   var x = [...x];
   var x = x[8];
-  x = x * x;
-  var x = x ? ((x = x('str')), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x('str');
+      } else {
+        x = x;
+      }
+    }
+  }
   return 'str';
 }
 var x;
@@ -55,12 +69,15 @@ x(x);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  tmpTernaryTest = arrPatternBeforeDefault === undefined;
-  tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+  let arrPatternStep;
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    arrPatternStep = $('pass');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
+  }
   return 'ok';
 }
 var tmpArg;

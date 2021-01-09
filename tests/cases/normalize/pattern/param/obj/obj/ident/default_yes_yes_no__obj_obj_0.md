@@ -21,19 +21,32 @@ $(f({ x: { x: 1, y: 0, z: 3 }, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
   var tmpArg;
-  var tmpTernaryTest_1;
-  var tmpTernaryConsequent_1;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  tmpTernaryTest = objPatternBeforeDefault === undefined;
-  let objPatternAfterDefault = tmpTernaryTest
-    ? ((tmpArg = { y: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : objPatternBeforeDefault;
+  {
+    let objPatternAfterDefault;
+    {
+      let ifTestTmp = objPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        tmpArg = { y: 'fail2' };
+        objPatternAfterDefault = $(tmpArg);
+      } else {
+        objPatternAfterDefault = objPatternBeforeDefault;
+      }
+    }
+  }
   let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
-  tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
-  let y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
+  {
+    let y;
+    {
+      let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
+      if (ifTestTmp_1) {
+        y = $('fail');
+      } else {
+        y = objPatternBeforeDefault_1;
+      }
+    }
+  }
   return y;
 }
 var tmpArg_1;
@@ -50,16 +63,31 @@ $(tmpArg_1);
 `````js filename=intro
 function x(x) {
   var x;
-  var x;
-  var x;
-  var x;
-  var x;
   var x = x.x;
-  x = x * x;
-  var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = { x: 'str' };
+        x = x(x);
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = x.x;
-  x = x * x;
-  var x = x ? ((x = x('str')), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x('str');
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 var x;
@@ -75,19 +103,24 @@ x(x);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
   var tmpArg;
-  var tmpTernaryTest_1;
-  var tmpTernaryConsequent_1;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  tmpTernaryTest = objPatternBeforeDefault === undefined;
-  let objPatternAfterDefault = tmpTernaryTest
-    ? ((tmpArg = { y: 'fail2' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : objPatternBeforeDefault;
+  let objPatternAfterDefault;
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { y: 'fail2' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
   let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
-  tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
-  let y = tmpTernaryTest_1 ? ((tmpTernaryConsequent_1 = $('fail')), tmpTernaryConsequent_1) : objPatternBeforeDefault_1;
+  let y;
+  let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
+  if (ifTestTmp_1) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault_1;
+  }
   return y;
 }
 var tmpArg_1;

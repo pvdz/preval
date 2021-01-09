@@ -19,41 +19,75 @@ $(a, b)
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-tmpTernaryTest = $(1);
-const a = tmpTernaryTest ? 2 : ((tmpTernaryAlternate = $(3)), tmpTernaryAlternate);
-tmpTernaryTest_1 = $(0);
-const b = tmpTernaryTest_1 ? 4 : ((tmpTernaryAlternate_1 = $(5)), tmpTernaryAlternate_1);
+{
+  let a;
+  {
+    let ifTestTmp = $(1);
+    if (ifTestTmp) {
+      a = 2;
+    } else {
+      a = $(3);
+    }
+  }
+}
+{
+  let b;
+  {
+    let ifTestTmp_1 = $(0);
+    if (ifTestTmp_1) {
+      b = 4;
+    } else {
+      b = $(5);
+    }
+  }
+}
 $(a, b);
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
-var x;
-var x;
-var x;
-x = x(8);
-var x = x ? 8 : ((x = x(8)), x);
-x = x(8);
-var x = x ? 8 : ((x = x(8)), x);
+{
+  var x;
+  {
+    var x = x(8);
+    if (x) {
+      x = 8;
+    } else {
+      x = x(8);
+    }
+  }
+}
+{
+  var x;
+  {
+    var x = x(8);
+    if (x) {
+      x = 8;
+    } else {
+      x = x(8);
+    }
+  }
+}
 x(x, x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-tmpTernaryTest = $(1);
-const a = tmpTernaryTest ? 2 : ((tmpTernaryAlternate = $(3)), tmpTernaryAlternate);
-tmpTernaryTest_1 = $(0);
-const b = tmpTernaryTest_1 ? 4 : ((tmpTernaryAlternate_1 = $(5)), tmpTernaryAlternate_1);
+let a;
+let ifTestTmp = $(1);
+if (ifTestTmp) {
+  a = 2;
+} else {
+  a = $(3);
+}
+let b;
+let ifTestTmp_1 = $(0);
+if (ifTestTmp_1) {
+  b = 4;
+} else {
+  b = $(5);
+}
 $(a, b);
 `````

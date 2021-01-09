@@ -28,11 +28,25 @@ const a = 10;
 a;
 tmpNullish = $(2);
 tmpTernaryTest = tmpNullish == null;
-const b = tmpTernaryTest ? toString : tmpNullish;
+{
+  let b;
+  if (tmpTernaryTest) {
+    b = toString;
+  } else {
+    b = tmpNullish;
+  }
+}
 1;
 tmpNullish_1 = b;
 tmpTernaryTest_1 = tmpNullish_1 == null;
-const c = tmpTernaryTest_1 ? length : tmpNullish_1;
+{
+  let c;
+  if (tmpTernaryTest_1) {
+    c = length;
+  } else {
+    c = tmpNullish_1;
+  }
+}
 $(c);
 `````
 
@@ -47,11 +61,25 @@ var x = 8;
 x;
 x = x(8);
 x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 8;
 x = x;
 x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 x(x);
 `````
 
@@ -64,9 +92,19 @@ var tmpNullish_1;
 var tmpTernaryTest_1;
 tmpNullish = $(2);
 tmpTernaryTest = tmpNullish == null;
-const b = tmpTernaryTest ? toString : tmpNullish;
+let b;
+if (tmpTernaryTest) {
+  b = toString;
+} else {
+  b = tmpNullish;
+}
 tmpNullish_1 = b;
 tmpTernaryTest_1 = tmpNullish_1 == null;
-const c = tmpTernaryTest_1 ? length : tmpNullish_1;
+let c;
+if (tmpTernaryTest_1) {
+  c = length;
+} else {
+  c = tmpNullish_1;
+}
 $(c);
 `````

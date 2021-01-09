@@ -18,35 +18,52 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 const bindingPatternObjRoot = { b: 2, c: 3 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
+{
+  let x;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
+    }
+  }
+}
 $(x);
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
-var x;
 var x = { x: 8, x: 8 };
 var x = x.x;
-x = x * x;
-var x = x ? ((x = x('str')), x) : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = x('str');
+    } else {
+      x = x;
+    }
+  }
+}
 x(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 const bindingPatternObjRoot = { b: 2, c: 3 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const x = tmpTernaryTest ? ((tmpTernaryConsequent = $('pass')), tmpTernaryConsequent) : objPatternBeforeDefault;
+let x;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  x = $('pass');
+} else {
+  x = objPatternBeforeDefault;
+}
 $(x);
 `````

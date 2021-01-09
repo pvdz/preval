@@ -16,10 +16,18 @@ function g({ x = b } ) { return x }
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  var tmpTernaryTest;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  tmpTernaryTest = objPatternBeforeDefault === undefined;
-  let x = tmpTernaryTest ? b : objPatternBeforeDefault;
+  {
+    let x;
+    {
+      let ifTestTmp = objPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        x = b;
+      } else {
+        x = objPatternBeforeDefault;
+      }
+    }
+  }
   return x;
 }
 `````
@@ -28,10 +36,18 @@ function g(tmpParamPattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
   var x = x.x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 `````

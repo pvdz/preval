@@ -15,28 +15,48 @@ const { x = b } = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const x = tmpTernaryTest ? b : objPatternBeforeDefault;
+{
+  let x;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = b;
+    } else {
+      x = objPatternBeforeDefault;
+    }
+  }
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
 var x = 8;
 var x = x.x;
-x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-tmpTernaryTest ? b : objPatternBeforeDefault;
+let x;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  x = b;
+} else {
+  x = objPatternBeforeDefault;
+}
 `````

@@ -100,6 +100,8 @@ export function identifier(name) {
 }
 
 export function ifStatement(test, consequent, alternate = null) {
+  ASSERT(test, 'test defined');
+  ASSERT(consequent, 'consequent defined');
   if (typeof test === 'string') test = identifier(test);
 
   return {

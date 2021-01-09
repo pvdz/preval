@@ -19,14 +19,22 @@ $(y);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
 tmpObjPropValue = [1, 2, 3];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const y = tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
+{
+  let y;
+  {
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      y = 'fail';
+    } else {
+      y = arrPatternBeforeDefault;
+    }
+  }
+}
 $(y);
 `````
 
@@ -34,14 +42,22 @@ $(y);
 
 `````js filename=intro
 var x;
-var x;
 x = [8, 8, 8];
 var x = { x: x, x: 8, x: 8 };
 var x = x.x;
 var x = [...x];
 var x = x[8];
-x = x * x;
-var x = x ? 'str' : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = 'str';
+    } else {
+      x = x;
+    }
+  }
+}
 x(x);
 `````
 
@@ -49,13 +65,17 @@ x(x);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
 tmpObjPropValue = [1, 2, 3];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const y = tmpTernaryTest ? 'fail' : arrPatternBeforeDefault;
+let y;
+let ifTestTmp = arrPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  y = 'fail';
+} else {
+  y = arrPatternBeforeDefault;
+}
 $(y);
 `````

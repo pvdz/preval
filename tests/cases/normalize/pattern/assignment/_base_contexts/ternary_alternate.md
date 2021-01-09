@@ -15,10 +15,16 @@ a ? b : ({ x } = 1);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryAlternate;
 var objAssignPatternRhs;
 var x;
-a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlternate = x), tmpTernaryAlternate);
+{
+  if (a) {
+    b;
+  } else {
+    objAssignPatternRhs = 1;
+    x = objAssignPatternRhs.x;
+  }
+}
 `````
 
 ## Uniformed
@@ -26,15 +32,24 @@ a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlte
 `````js filename=intro
 var x;
 var x;
-var x;
-x ? x : ((x = 8), (x = x.x), (x = x), x);
+{
+  if (x) {
+    x;
+  } else {
+    x = 8;
+    x = x.x;
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryAlternate;
 var objAssignPatternRhs;
 var x;
-a ? b : ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryAlternate = x), tmpTernaryAlternate);
+if (a) {
+} else {
+  objAssignPatternRhs = 1;
+  x = objAssignPatternRhs.x;
+}
 `````

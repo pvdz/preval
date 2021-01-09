@@ -129,6 +129,9 @@ const VERBOSE_TRACING = true;
       - Other normalization rules may make this harder to detect since logical ops are "complex" for sure so if they are explicitly conditional...
   - Convert ternaries in certain places into statements?
     - Not always possible so perhaps this is not worth it as we need to mirror the logic for if-else to ternary, anyways
+  - While test conditions
+    - We could move them into the body with a `break` or something... not sure whether this makes it more complex
+    - Perhaps `break` is something we need to fix anyways so might not matter and then doing it this way is better?
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -432,12 +435,27 @@ export function phaseNormalize(fdata, fname) {
           node.body.splice(i, 1, ...expr.expressions.map((enode) => AST.expressionStatement(enode)));
           changed = true;
           --i; // revisit (recursively)
+        } else if (expr.type === 'ConditionalExpression') {
+          rule('Conditional / ternary expressions should not be statements');
+          log('- `a ? b : c` --> `{ if (a) b; else c; }');
+          before(expr);
+
+          const newNode = AST.blockStatement(
+            AST.ifStatement(expr.test, AST.expressionStatement(expr.consequent), AST.expressionStatement(expr.alternate)),
+          );
+          node.body[i] = newNode;
+
+          after(newNode);
+          changed = true;
+          --i; // revisit
         }
       } else if (e.type === 'VariableDeclaration') {
         if (e.declarations.length > 1) {
           log('Found a var decl with multiple bindings. Skipping statementifySequences on it until next pass.');
         } else {
-          const init = e.declarations[0].init;
+          const dnode = e.declarations[0];
+          const id = dnode.id;
+          const init = dnode.init;
           if (!init) {
           } else if (init.type === 'SequenceExpression') {
             // This assumes sub-statements are normalized to be groups already
@@ -446,7 +464,7 @@ export function phaseNormalize(fdata, fname) {
             const exprs = init.expressions;
             node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
             // Replace the old sequence expression with its last element
-            e.declarations[0].init = exprs[exprs.length - 1];
+            dnode.init = exprs[exprs.length - 1];
             changed = true;
             --i; // revisit (recursively)
           } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
@@ -460,6 +478,26 @@ export function phaseNormalize(fdata, fname) {
             init.object = exprs[exprs.length - 1];
             changed = true;
             --i; // revisit (recursively)
+          } else if (init.type === 'ConditionalExpression') {
+            rule('Conditional / ternary expressions should not be var init');
+            if (node.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
+            if (node.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+            if (node.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+            before(init);
+
+            const newNode = AST.blockStatement(
+              AST.variableDeclaration(id.name, undefined, dnode.kind === 'const' ? 'let' : dnode.kind),
+              AST.ifStatement(
+                init.test,
+                AST.expressionStatement(AST.assignmentExpression(id.name, init.consequent)),
+                AST.expressionStatement(AST.assignmentExpression(id.name, init.alternate)),
+              ),
+            );
+            node.body[i] = newNode;
+
+            after(newNode);
+            changed = true;
+            --i; // revisit
           }
         }
       } else if (e.type === 'ReturnStatement') {
@@ -488,6 +526,23 @@ export function phaseNormalize(fdata, fname) {
           e.argument.object = exprs[exprs.length - 1];
           changed = true;
           --i; // revisit (recursively)
+        } else if (e.argument.type === 'ConditionalExpression') {
+          rule('Conditional / ternary expressions should not be var init');
+          if (node.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
+          if (node.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+          if (node.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+          before(e.argument);
+
+          const newNode = AST.ifStatement(
+            e.argument.test,
+            AST.returnStatement(e.argument.consequent),
+            AST.returnStatement(e.argument.alternate),
+          );
+          node.body[i] = newNode;
+
+          after(newNode);
+          changed = true;
+          --i; // revisit
         }
       } else if (e.type === 'IfStatement') {
         if (e.test.type === 'SequenceExpression') {

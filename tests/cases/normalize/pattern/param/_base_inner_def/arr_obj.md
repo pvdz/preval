@@ -16,12 +16,20 @@ function h([{ x = a }]) { return x}
 
 `````js filename=intro
 function h(tmpParamPattern) {
-  var tmpTernaryTest;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  tmpTernaryTest = objPatternBeforeDefault === undefined;
-  let x = tmpTernaryTest ? a : objPatternBeforeDefault;
+  {
+    let x;
+    {
+      let ifTestTmp = objPatternBeforeDefault === undefined;
+      if (ifTestTmp) {
+        x = a;
+      } else {
+        x = objPatternBeforeDefault;
+      }
+    }
+  }
   return x;
 }
 `````
@@ -30,12 +38,20 @@ function h(tmpParamPattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
   var x = [...x];
   var x = x[8];
   var x = x.x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 `````

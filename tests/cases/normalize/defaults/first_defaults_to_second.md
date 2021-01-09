@@ -23,12 +23,28 @@ $(f('x', 'y')); // [x, y]
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  tmpTernaryTest = $tdz$__b === undefined;
-  let b = tmpTernaryTest ? 'bar' : $tdz$__b;
-  tmpTernaryTest_1 = $tdz$__a === undefined;
-  let a = tmpTernaryTest_1 ? b : $tdz$__a;
+  {
+    let b;
+    {
+      let ifTestTmp = $tdz$__b === undefined;
+      if (ifTestTmp) {
+        b = 'bar';
+      } else {
+        b = $tdz$__b;
+      }
+    }
+  }
+  {
+    let a;
+    {
+      let ifTestTmp_1 = $tdz$__a === undefined;
+      if (ifTestTmp_1) {
+        a = b;
+      } else {
+        a = $tdz$__a;
+      }
+    }
+  }
   {
     let tmpStmtArg = [a, b];
     return tmpStmtArg;
@@ -52,12 +68,28 @@ $(tmpArg_3);
 
 `````js filename=intro
 function x(x, x) {
-  var x;
-  var x;
-  x = x * x;
-  var x = x ? 'str' : x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 'str';
+      } else {
+        x = x;
+      }
+    }
+  }
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   {
     var x = [x, x];
     return x;
@@ -81,12 +113,20 @@ x(x);
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  tmpTernaryTest = $tdz$__b === undefined;
-  let b = tmpTernaryTest ? 'bar' : $tdz$__b;
-  tmpTernaryTest_1 = $tdz$__a === undefined;
-  let a = tmpTernaryTest_1 ? b : $tdz$__a;
+  let b;
+  let ifTestTmp = $tdz$__b === undefined;
+  if (ifTestTmp) {
+    b = 'bar';
+  } else {
+    b = $tdz$__b;
+  }
+  let a;
+  let ifTestTmp_1 = $tdz$__a === undefined;
+  if (ifTestTmp_1) {
+    a = b;
+  } else {
+    a = $tdz$__a;
+  }
   let tmpStmtArg = [a, b];
   return tmpStmtArg;
 }

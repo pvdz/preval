@@ -16,9 +16,17 @@ function f([ x ] = b) { return x }
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest ? b : $tdz$__pattern;
+  {
+    let $tdz$__pattern_after_default;
+    {
+      let ifTestTmp = $tdz$__pattern === undefined;
+      if (ifTestTmp) {
+        $tdz$__pattern_after_default = b;
+      } else {
+        $tdz$__pattern_after_default = $tdz$__pattern;
+      }
+    }
+  }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let x = arrPatternSplat[0];
   return x;
@@ -29,9 +37,17 @@ function f($tdz$__pattern) {
 
 `````js filename=intro
 function x(x) {
-  var x;
-  x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = [...x];
   var x = x[8];
   return x;

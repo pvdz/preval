@@ -23,7 +23,14 @@ const a = { x: 1 };
 1;
 tmpNullish = a;
 tmpTernaryTest = tmpNullish == null;
-const y = tmpTernaryTest ? x : tmpNullish;
+{
+  let y;
+  if (tmpTernaryTest) {
+    y = x;
+  } else {
+    y = tmpNullish;
+  }
+}
 $(y);
 `````
 
@@ -36,7 +43,14 @@ var x = { x: 8 };
 8;
 x = x;
 x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 x(x);
 `````
 
@@ -48,6 +62,11 @@ var tmpTernaryTest;
 const a = { x: 1 };
 tmpNullish = a;
 tmpTernaryTest = tmpNullish == null;
-const y = tmpTernaryTest ? x : tmpNullish;
+let y;
+if (tmpTernaryTest) {
+  y = x;
+} else {
+  y = tmpNullish;
+}
 $(y);
 `````

@@ -19,16 +19,22 @@ $(y);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 tmpObjPropValue = [, , , 1];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+{
+  let objPatternAfterDefault;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail'];
+      objPatternAfterDefault = $(tmpArg);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
+    }
+  }
+}
 const arrPatternSplat = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);
 $(y);
@@ -39,13 +45,21 @@ $(y);
 `````js filename=intro
 var x;
 var x;
-var x;
-var x;
 x = [, , , 8];
 var x = { x: x, x: 8, x: 8 };
 var x = x.x;
-x = x * x;
-var x = x ? ((x = ['str']), (x = x(x)), x) : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = ['str'];
+      x = x(x);
+    } else {
+      x = x;
+    }
+  }
+}
 var x = [...x];
 var x = x.x(8);
 x(x);
@@ -55,16 +69,18 @@ x(x);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 tmpObjPropValue = [, , , 1];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+let objPatternAfterDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = ['fail'];
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 const arrPatternSplat = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);
 $(y);

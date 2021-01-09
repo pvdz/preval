@@ -22,7 +22,14 @@ var tmpTernaryTest;
 2;
 tmpNullish = $();
 tmpTernaryTest = tmpNullish == null;
-const y = tmpTernaryTest ? foo : tmpNullish;
+{
+  let y;
+  if (tmpTernaryTest) {
+    y = foo;
+  } else {
+    y = tmpNullish;
+  }
+}
 $(y);
 `````
 
@@ -35,7 +42,14 @@ var x;
 8;
 x = x();
 x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 x(x);
 `````
 
@@ -46,6 +60,11 @@ var tmpNullish;
 var tmpTernaryTest;
 tmpNullish = $();
 tmpTernaryTest = tmpNullish == null;
-const y = tmpTernaryTest ? foo : tmpNullish;
+let y;
+if (tmpTernaryTest) {
+  y = foo;
+} else {
+  y = tmpNullish;
+}
 $(y);
 `````

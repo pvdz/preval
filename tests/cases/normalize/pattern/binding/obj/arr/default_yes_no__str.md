@@ -18,15 +18,21 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const bindingPatternObjRoot = 'abc';
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+{
+  let objPatternAfterDefault;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail'];
+      objPatternAfterDefault = $(tmpArg);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
+    }
+  }
+}
 const arrPatternSplat = [...objPatternAfterDefault];
 $('ok');
 `````
@@ -35,12 +41,20 @@ $('ok');
 
 `````js filename=intro
 var x;
-var x;
-var x;
 var x = 'str';
 var x = x.x;
-x = x * x;
-var x = x ? ((x = ['str']), (x = x(x)), x) : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = ['str'];
+      x = x(x);
+    } else {
+      x = x;
+    }
+  }
+}
 var x = [...x];
 x('str');
 `````
@@ -48,14 +62,16 @@ x('str');
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const objPatternBeforeDefault = 'abc'.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = ['fail']), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+let objPatternAfterDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = ['fail'];
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 [...objPatternAfterDefault];
 $('ok');
 `````

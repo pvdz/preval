@@ -20,12 +20,19 @@ const f = (a = { x } = 1) => { return a };
 const f = ($tdz$__a) => {
   var objAssignPatternRhs;
   var x;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest
-    ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent)
-    : $tdz$__a;
+  {
+    let a;
+    {
+      let ifTestTmp = $tdz$__a === undefined;
+      if (ifTestTmp) {
+        objAssignPatternRhs = 1;
+        x = objAssignPatternRhs.x;
+        a = x;
+      } else {
+        a = $tdz$__a;
+      }
+    }
+  }
   return a;
 };
 `````
@@ -36,10 +43,19 @@ const f = ($tdz$__a) => {
 var x = (x) => {
   var x;
   var x;
-  var x;
-  var x;
-  x = x * x;
-  var x = x ? ((x = 8), (x = x.x), (x = x), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 8;
+        x = x.x;
+        x = x;
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 };
 `````
@@ -50,12 +66,15 @@ var x = (x) => {
 ($tdz$__a) => {
   var objAssignPatternRhs;
   var x;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest
-    ? ((objAssignPatternRhs = 1), (x = objAssignPatternRhs.x), (tmpTernaryConsequent = x), tmpTernaryConsequent)
-    : $tdz$__a;
+  let a;
+  let ifTestTmp = $tdz$__a === undefined;
+  if (ifTestTmp) {
+    objAssignPatternRhs = 1;
+    x = objAssignPatternRhs.x;
+    a = x;
+  } else {
+    a = $tdz$__a;
+  }
   return a;
 };
 `````

@@ -15,34 +15,54 @@ const {x: {y: {z = a }}} = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault_1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-const z = tmpTernaryTest ? a : objPatternBeforeDefault;
+{
+  let z;
+  {
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      z = a;
+    } else {
+      z = objPatternBeforeDefault;
+    }
+  }
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
 var x = 8;
 var x = x.x;
 var x = x.x;
 var x = x.x;
-x = x * x;
-var x = x ? x : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault_1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-tmpTernaryTest ? a : objPatternBeforeDefault;
+let z;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  z = a;
+} else {
+  z = objPatternBeforeDefault;
+}
 `````

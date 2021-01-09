@@ -22,12 +22,18 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : $tdz$__pattern;
+  {
+    let $tdz$__pattern_after_default;
+    {
+      let ifTestTmp = $tdz$__pattern === undefined;
+      if (ifTestTmp) {
+        tmpArg = { a: 'fail' };
+        $tdz$__pattern_after_default = $(tmpArg);
+      } else {
+        $tdz$__pattern_after_default = $tdz$__pattern;
+      }
+    }
+  }
   let x = objPatternRest($tdz$__pattern_after_default, []);
   return x;
 }
@@ -43,10 +49,18 @@ $(tmpArg_1);
 `````js filename=intro
 function x(x) {
   var x;
-  var x;
-  var x;
-  x = x * x;
-  var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = { x: 'str' };
+        x = x(x);
+      } else {
+        x = x;
+      }
+    }
+  }
   var x = x(x, []);
   return x;
 }
@@ -62,12 +76,14 @@ x(x);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpTernaryTest;
-  var tmpTernaryConsequent;
-  tmpTernaryTest = $tdz$__pattern === undefined;
-  let $tdz$__pattern_after_default = tmpTernaryTest
-    ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-    : $tdz$__pattern;
+  let $tdz$__pattern_after_default;
+  let ifTestTmp = $tdz$__pattern === undefined;
+  if (ifTestTmp) {
+    tmpArg = { a: 'fail' };
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
   let x = objPatternRest($tdz$__pattern_after_default, []);
   return x;
 }

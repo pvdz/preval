@@ -21,9 +21,17 @@ $(f());
 
 `````js filename=intro
 function f($tdz$__a) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest ? 'foo' : $tdz$__a;
+  {
+    let a;
+    {
+      let ifTestTmp = $tdz$__a === undefined;
+      if (ifTestTmp) {
+        a = 'foo';
+      } else {
+        a = $tdz$__a;
+      }
+    }
+  }
   return a;
 }
 var tmpArg;
@@ -38,9 +46,17 @@ $(tmpArg_1);
 
 `````js filename=intro
 function x(x) {
-  var x;
-  x = x * x;
-  var x = x ? 'str' : x;
+  {
+    var x;
+    {
+      var x = x * x;
+      if (x) {
+        x = 'str';
+      } else {
+        x = x;
+      }
+    }
+  }
   return x;
 }
 var x;
@@ -55,9 +71,13 @@ x(x);
 
 `````js filename=intro
 function f($tdz$__a) {
-  var tmpTernaryTest;
-  tmpTernaryTest = $tdz$__a === undefined;
-  let a = tmpTernaryTest ? 'foo' : $tdz$__a;
+  let a;
+  let ifTestTmp = $tdz$__a === undefined;
+  if (ifTestTmp) {
+    a = 'foo';
+  } else {
+    a = $tdz$__a;
+  }
   return a;
 }
 var tmpArg;

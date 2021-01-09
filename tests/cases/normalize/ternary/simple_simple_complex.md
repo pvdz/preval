@@ -19,29 +19,53 @@ $(a, b)
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryAlternate;
-var tmpTernaryAlternate_1;
-const a = 1 ? 2 : ((tmpTernaryAlternate = $(3)), tmpTernaryAlternate);
-const b = 0 ? 4 : ((tmpTernaryAlternate_1 = $(5)), tmpTernaryAlternate_1);
+{
+  let a;
+  if (1) {
+    a = 2;
+  } else {
+    a = $(3);
+  }
+}
+{
+  let b;
+  if (0) {
+    b = 4;
+  } else {
+    b = $(5);
+  }
+}
 $(a, b);
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
-var x;
-var x = 8 ? 8 : ((x = x(8)), x);
-var x = 8 ? 8 : ((x = x(8)), x);
+{
+  var x;
+  if (8) {
+    x = 8;
+  } else {
+    x = x(8);
+  }
+}
+{
+  var x;
+  if (8) {
+    x = 8;
+  } else {
+    x = x(8);
+  }
+}
 x(x, x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryAlternate;
-var tmpTernaryAlternate_1;
-const a = 1 ? 2 : ((tmpTernaryAlternate = $(3)), tmpTernaryAlternate);
-const b = 0 ? 4 : ((tmpTernaryAlternate_1 = $(5)), tmpTernaryAlternate_1);
+let a;
+a = 2;
+let b;
+b = $(5);
 $(a, b);
 `````

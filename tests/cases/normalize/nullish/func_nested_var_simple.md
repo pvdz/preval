@@ -30,10 +30,24 @@ function f() {
   const a = 10;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;
-  const b = tmpTernaryTest ? toString : tmpNullish;
+  {
+    let b;
+    if (tmpTernaryTest) {
+      b = toString;
+    } else {
+      b = tmpNullish;
+    }
+  }
   b = b;
   tmpTernaryTest_1 = b == null;
-  const c = tmpTernaryTest_1 ? length : b;
+  {
+    let c;
+    if (tmpTernaryTest_1) {
+      c = length;
+    } else {
+      c = b;
+    }
+  }
   {
     let tmpStmtArg = $(c);
     return tmpStmtArg;
@@ -54,10 +68,24 @@ function x() {
   var x = 8;
   x = x(8);
   x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
   x = x;
   x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
   {
     var x = x(x);
     return x;
@@ -77,10 +105,20 @@ function f() {
   var tmpTernaryTest_1;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;
-  const b = tmpTernaryTest ? toString : tmpNullish;
+  let b;
+  if (tmpTernaryTest) {
+    b = toString;
+  } else {
+    b = tmpNullish;
+  }
   b = b;
   tmpTernaryTest_1 = b == null;
-  const c = tmpTernaryTest_1 ? length : b;
+  let c;
+  if (tmpTernaryTest_1) {
+    c = length;
+  } else {
+    c = b;
+  }
   let tmpStmtArg = $(c);
   return tmpStmtArg;
 }

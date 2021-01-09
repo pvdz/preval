@@ -27,7 +27,14 @@ function f() {
   1;
   tmpNullish = a;
   tmpTernaryTest = tmpNullish == null;
-  const y = tmpTernaryTest ? x : tmpNullish;
+  {
+    let y;
+    if (tmpTernaryTest) {
+      y = x;
+    } else {
+      y = tmpNullish;
+    }
+  }
   {
     let tmpStmtArg = $(y);
     return tmpStmtArg;
@@ -48,7 +55,14 @@ function x() {
   8;
   x = x;
   x = x * x;
-  var x = x ? x : x;
+  {
+    var x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
+  }
   {
     var x = x(x);
     return x;
@@ -68,7 +82,12 @@ function f() {
   const a = { x: 1 };
   tmpNullish = a;
   tmpTernaryTest = tmpNullish == null;
-  const y = tmpTernaryTest ? x : tmpNullish;
+  let y;
+  if (tmpTernaryTest) {
+    y = x;
+  } else {
+    y = tmpNullish;
+  }
   let tmpStmtArg = $(y);
   return tmpStmtArg;
 }

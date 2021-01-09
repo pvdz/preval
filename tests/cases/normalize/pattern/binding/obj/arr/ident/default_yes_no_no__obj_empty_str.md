@@ -18,38 +18,58 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const y = tmpTernaryTest ? 'pass' : arrPatternBeforeDefault;
+{
+  let y;
+  {
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      y = 'pass';
+    } else {
+      y = arrPatternBeforeDefault;
+    }
+  }
+}
 $(y);
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
 var x = { x: 'str', x: 8, x: 8 };
 var x = x.x;
 var x = [...x];
 var x = x[8];
-x = x * x;
-var x = x ? 'str' : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = 'str';
+    } else {
+      x = x;
+    }
+  }
+}
 x(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const y = tmpTernaryTest ? 'pass' : arrPatternBeforeDefault;
+let y;
+let ifTestTmp = arrPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  y = 'pass';
+} else {
+  y = arrPatternBeforeDefault;
+}
 $(y);
 `````

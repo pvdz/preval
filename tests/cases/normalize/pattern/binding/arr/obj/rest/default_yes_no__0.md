@@ -18,16 +18,22 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const bindingPatternArrRoot = 0;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const arrPatternStep = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : arrPatternBeforeDefault;
+{
+  let arrPatternStep;
+  {
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { a: 'fail' };
+      arrPatternStep = $(tmpArg);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
+    }
+  }
+}
 const x = objPatternRest(arrPatternStep, []);
 $('bad');
 `````
@@ -36,13 +42,21 @@ $('bad');
 
 `````js filename=intro
 var x;
-var x;
-var x;
 var x = 8;
 var x = [...x];
 var x = x[8];
-x = x * x;
-var x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+{
+  var x;
+  {
+    var x = x * x;
+    if (x) {
+      x = { x: 'str' };
+      x = x(x);
+    } else {
+      x = x;
+    }
+  }
+}
 var x = x(x, []);
 x('str');
 `````
@@ -50,15 +64,17 @@ x('str');
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 const arrPatternSplat = [...0];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-const arrPatternStep = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : arrPatternBeforeDefault;
+let arrPatternStep;
+let ifTestTmp = arrPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = { a: 'fail' };
+  arrPatternStep = $(tmpArg);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
 objPatternRest(arrPatternStep, []);
 $('bad');
 `````

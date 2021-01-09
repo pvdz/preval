@@ -19,7 +19,9 @@ $([-$()]);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-tmpElement = -$();
+var tmpUnaryArg;
+tmpUnaryArg = $();
+tmpElement = -tmpUnaryArg;
 tmpArg = [tmpElement];
 $(tmpArg);
 `````
@@ -29,7 +31,9 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-tmpElement = -$();
+var tmpUnaryArg;
+tmpUnaryArg = $();
+tmpElement = -tmpUnaryArg;
 tmpArg = [tmpElement];
 $(tmpArg);
 `````

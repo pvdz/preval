@@ -16,7 +16,9 @@ $(-(-null));
 
 `````js filename=intro
 var tmpArg;
-tmpArg = -(-null);
+var tmpUnaryArg;
+tmpUnaryArg = -null;
+tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````
 
@@ -24,6 +26,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = 0;
+var tmpUnaryArg;
+tmpUnaryArg = -0;
+tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````

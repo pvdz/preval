@@ -2215,6 +2215,22 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UnaryExpression': {
+        if (node.argument.type === 'SequenceExpression') {
+          rule('Unary argument cannot be sequence');
+          log('- `!(a, b)` --> `(a, !b)`');
+          log('- `-(1 + 2, 3 + 4)` --> `(1 + 2, -(3 + 4))`');
+          before(node);
+
+          const exprs = node.argument.expressions;
+          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.unaryExpression(node.operator, exprs[exprs.length - 1]));
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
         if (node.operator === 'void') {
           rule('Void must be replaced by a sequence');
           log('- `void x` --> `(x, undefined)`');
@@ -2229,7 +2245,24 @@ export function phaseNormalize(fdata, fname) {
           _expr(newNode);
           break;
         }
+        if (isComplexNode(node.argument)) {
+          rule('Unary argument cannot be complex');
+          log('- `!f()` --> `(tmp = f(), !tmp)`');
+          before(node);
 
+          const tmpName = createFreshVarInCurrentRootScope('tmpUnaryArg', true);
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, node.argument),
+            AST.unaryExpression(node.operator, tmpName),
+          );
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
         expr(node, 'argument', -1, node.argument);
 
         break;

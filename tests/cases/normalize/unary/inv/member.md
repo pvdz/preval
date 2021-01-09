@@ -1,15 +1,17 @@
 # Preval test case
 
-# min_true.md
+# member.md
 
-> plusmin > min_true
+> normalize > unary > inv > member
 >
-> Literals with a minus unary coerced to a negative number (or positive if the arg is negative)
+> Inverting a member expression is two things
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(-(-true));
+$(!Date.length);
 `````
 
 ## Normalized
@@ -17,8 +19,8 @@ $(-(-true));
 `````js filename=intro
 var tmpArg;
 var tmpUnaryArg;
-tmpUnaryArg = -true;
-tmpArg = -tmpUnaryArg;
+tmpUnaryArg = Date.length;
+tmpArg = !tmpUnaryArg;
 $(tmpArg);
 `````
 
@@ -27,7 +29,7 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpUnaryArg;
-tmpUnaryArg = -1;
-tmpArg = -tmpUnaryArg;
+tmpUnaryArg = Date.length;
+tmpArg = !tmpUnaryArg;
 $(tmpArg);
 `````

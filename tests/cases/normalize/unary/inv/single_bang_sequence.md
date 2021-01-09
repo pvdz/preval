@@ -1,0 +1,40 @@
+# Preval test case
+
+# single_bang_sequence.md
+
+> normalize > unary > inv > single_bang_sequence
+>
+> This is an example of a single bang that can be moved into a sequence
+
+#TODO
+
+## Input
+
+`````js filename=intro
+var x;
+$(!((x = 'foo'), $(x)));
+`````
+
+## Normalized
+
+`````js filename=intro
+var tmpArg;
+var tmpUnaryArg;
+var x;
+x = 'foo';
+tmpUnaryArg = $(x);
+tmpArg = !tmpUnaryArg;
+$(tmpArg);
+`````
+
+## Output
+
+`````js filename=intro
+var tmpArg;
+var tmpUnaryArg;
+var x;
+x = 'foo';
+tmpUnaryArg = $(x);
+tmpArg = !tmpUnaryArg;
+$(tmpArg);
+`````

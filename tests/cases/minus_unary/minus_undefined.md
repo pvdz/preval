@@ -16,7 +16,9 @@ $(-(-undefined));
 
 `````js filename=intro
 var tmpArg;
-tmpArg = -(-undefined);
+var tmpUnaryArg;
+tmpUnaryArg = -undefined;
+tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````
 
@@ -24,6 +26,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = NaN;
+var tmpUnaryArg;
+tmpUnaryArg = NaN;
+tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````

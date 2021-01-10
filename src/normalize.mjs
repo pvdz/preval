@@ -157,8 +157,11 @@ function rule(desc, ...rest) {
 function before(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
 }
+function source(node) {
+  if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, printer(node));
+}
 function after(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'After:' + RESET, printer(node));
+  if (VERBOSE_TRACING) log(YELLOW + 'After :' + RESET, printer(node));
 }
 
 export function phaseNormalize(fdata, fname) {
@@ -1682,6 +1685,25 @@ export function phaseNormalize(fdata, fname) {
             crumbSet(1, node.right);
             after(node.right);
           }
+        } else if (node.left.type === 'MemberExpression' && node.left.computed && isComplexNode(node.left.property)) {
+          rule('Assignment to computed member expression must have simple property');
+          log('- `a[b()] = x` --> `(tmp = b(), a[tmp] = x)`');
+          before(node);
+
+          const mem = node.left;
+          const tmpName = createFreshVarInCurrentRootScope('tmpAssignedComputedProp', true);
+
+          const seq = AST.sequenceExpression(
+            AST.assignmentExpression(tmpName, mem.property),
+            AST.assignmentExpression(AST.memberExpression(mem.object, tmpName, true), node.right, node.operator),
+          );
+
+          crumbSet(1, seq);
+          after(seq);
+
+          _expr(seq);
+          changed = true;
+          break;
         } else {
           ASSERT(
             node.left.type === 'Identifier' || node.left.type === 'MemberExpression',
@@ -2123,7 +2145,6 @@ export function phaseNormalize(fdata, fname) {
         if (node.computed && isComplexNode(node.property)) {
           rule('Expression of computed property must be simple');
           log('- `a[b()]` --> `(tmp = b(), a[tmp])`');
-          log('- Type of computed property:', node.property.type);
           before(node);
 
           const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp', true);

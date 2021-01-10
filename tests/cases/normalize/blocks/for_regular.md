@@ -15,23 +15,33 @@ for ($(1); $(2); $(3)) $(4);
 ## Normalized
 
 `````js filename=intro
-for ($(1); $(2); $(3)) {
-  $(4);
+{
+  $(1);
+  while ($(2)) {
+    $(4);
+    $(3);
+  }
 }
 `````
 
 ## Uniformed
 
 `````js filename=intro
-for (x(8); x(8); x(8)) {
+{
   x(8);
+  while (x(8)) {
+    x(8);
+    x(8);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-for ($(1); $(2); $(3)) {
+$(1);
+while ($(2)) {
   $(4);
+  $(3);
 }
 `````

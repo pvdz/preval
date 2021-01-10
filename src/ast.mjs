@@ -243,3 +243,14 @@ export function variableDeclarationFromDeclaration(declarations, kind = 'let') {
     $p: $p(),
   };
 }
+
+export function whileStatement(test, body) {
+  if (typeof test === 'string') test = identifier(test);
+
+  return {
+    type: 'WhileStatement',
+    test,
+    body,
+    $p: $p,
+  };
+}

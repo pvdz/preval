@@ -136,6 +136,7 @@ const VERBOSE_TRACING = true;
     - for (a;b;c); --> a; while(b) { ...; c }
   - switch to if-else?
     - trickier with overflow cases unless you go for functions. or maybe break+labels...
+  - Statements with empty body can be eliminated or at least split
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -1008,28 +1009,24 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ForStatement': {
-        if (node.body.type !== 'BlockStatement') {
-          rule('For-loop sub-statement must be block');
-          log('- `for (;;) x` --> `for (;;) {x}`');
+        rule('Regular `for` loops must be `while`');
+        log('- `for (a; b; c) d;` -> `{ a; while (b) { d; c; } }');
+        before(node);
 
-          node.body = AST.blockStatement(node.body);
-          //changed = true; // TODO: I don't think this is necessary?
-        }
+        const newNode = AST.blockStatement(
+          node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
+          AST.whileStatement(
+            node.test || 'true',
+            AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
+          ),
+        );
 
-        if (node.init) {
-          if (node.init.type === 'VariableDeclaration') {
-            stmt(node, 'init', -1, node.init);
-          } else {
-            expr(node, 'init', -1, node.init);
-          }
-        }
-        if (node.test) {
-          expr(node, 'test', -1, node.test);
-        }
-        if (node.update) {
-          expr(node, 'update', -1, node.update);
-        }
-        stmt(node, 'body', -1, node.body);
+        crumbSet(1, newNode);
+
+        changed = true;
+        after(newNode);
+
+        _stmt(newNode);
         break;
       }
 

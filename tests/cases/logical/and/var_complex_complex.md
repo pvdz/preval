@@ -17,29 +17,26 @@ const x = $(1) && $(2);
 ## Normalized
 
 `````js filename=intro
-var tmpLogicalLeft;
-var tmpLogicalRight;
-tmpLogicalLeft = $(1);
-tmpLogicalRight = $(2);
-const x = tmpLogicalLeft && tmpLogicalRight;
+let x = $(1);
+if (x) {
+  x = $(2);
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x;
-var x;
-x = x(8);
-x = x(8);
-var x = x && x;
+var x = x(8);
+if (x) {
+  x = x(8);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpLogicalLeft;
-var tmpLogicalRight;
-tmpLogicalLeft = $(1);
-tmpLogicalRight = $(2);
-tmpLogicalLeft && tmpLogicalRight;
+let x = $(1);
+if (x) {
+  x = $(2);
+}
 `````

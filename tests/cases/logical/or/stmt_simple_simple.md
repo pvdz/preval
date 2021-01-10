@@ -11,23 +11,29 @@
 ## Input
 
 `````js filename=intro
-const x = 1 && 2;
+1 || 2;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = 1 && 2;
+if (1) {
+} else {
+  2;
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-var x = 8 && 8;
+if (8) {
+} else {
+  8;
+}
 `````
 
 ## Output
 
 `````js filename=intro
-1 && 2;
+
 `````

@@ -57,7 +57,7 @@ const VERBOSE_TRACING = true;
   - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
   - Var binding inits that are assignments are outlined
   - Outline complex `throw` or `return` arguments
-  - Outline complex spread arguments for object and array litearls
+  - Outline complex spread arguments for object and array literals
   - Tagged templates are decomposed into the runtime equivalent of a regular func call
   - Templates that have no expressions are converted to regular strings
   - All expressions inside templates are outlined to be simple nodes only.
@@ -68,6 +68,8 @@ const VERBOSE_TRACING = true;
   - Normalize nullish coalescing away
   - Regular for-loops are transformed to while loops
   - If-else with empty blocks are eliminated
+  - Logical expressions with `??` are transformed away entirely, end up as ternaries
+  - Logical expressions with `&&` or `||` are decompiled to `if-else` statements where possible
  */
 
 /*
@@ -124,11 +126,6 @@ const VERBOSE_TRACING = true;
   - Rewrite logic such that each branch in each function explicitly returns
     - I think this makes it easier to reason about? But maybe it will lead to a too big of an explosion of code...
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
-  - Tear apart `&&` and `||` into explicit `if-else` or ternary expressions
-    - If we are going to normalize branching to one branch per function then a branch with two conditions should be considered two branches
-      - `if (a && b) x; else y;` --> `if (a) { if (b) x; else { y } } else { y }`.
-      - In this case `y` would be abstracted into a function so it shouldn't repeat as much as it seems
-      - Other normalization rules may make this harder to detect since logical ops are "complex" for sure so if they are explicitly conditional...
   - Convert ternaries in certain places into statements?
     - Not always possible so perhaps this is not worth it as we need to mirror the logic for if-else to ternary, anyways
   - While test conditions
@@ -430,14 +427,15 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
-  function statementifySequences(node) {
+  function statementifyExpressions(node) {
     // Note: make sure the node is not being walked currently or things end bad.
 
-    // Break up sequence expressions in certain positions
-
-    // Sequence expressions have only some edge cases to care about. In particular around context.
-    // In this case we only replace whole groups nested in other groups, which should not be a concern.
-    // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
+    // This is an expression statement. Convert certain expressions into equivalent statements
+    // This includes;
+    // - sequence -> individual expression statements
+    // - logical -> if-else
+    // - conditional -> if-else
+    // - variable declaration -> init processing
 
     let i = 0;
     while (i < node.body.length) {
@@ -446,6 +444,9 @@ export function phaseNormalize(fdata, fname) {
       if (e.type === 'ExpressionStatement') {
         const expr = node.body[i].expression;
         if (expr.type === 'SequenceExpression') {
+          // Sequence expressions have only some edge cases to care about. In particular around context.
+          // In this case we only replace whole groups nested in other groups, which should not be a concern.
+          // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
           // Break sequence expressions that are the child of an ExpressionStatement up into separate statements
           rule('Sequences can not be statements');
           log('- `a, (b, c), d` --> `a; b; c; d;`');
@@ -465,21 +466,125 @@ export function phaseNormalize(fdata, fname) {
           after(newNode);
           changed = true;
           --i; // revisit
-        } else if (expr.type === 'AssignmentExpression' && expr.right.type === 'ConditionalExpression') {
-          rule('Conditional / ternary assignment expressions should not be statements');
-          log('- `x = a ? b : c` --> `{ if (a) x = b; else x = c; }');
-          before(expr);
+        } else if (expr.type === 'AssignmentExpression') {
+          if (expr.right.type === 'ConditionalExpression') {
+            rule('Conditional / ternary assignment expressions should not be statements');
+            log('- `x = a ? b : c` --> `{ if (a) x = b; else x = c; }');
+            before(expr);
 
-          const newNode = AST.ifStatement(
-            expr.right.test,
-            AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.consequent, expr.operator)),
-            AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.alternate, expr.operator)),
-          );
-          node.body[i] = newNode;
+            const newNode = AST.ifStatement(
+              expr.right.test,
+              AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.consequent, expr.operator)),
+              AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.alternate, expr.operator)),
+            );
+            node.body[i] = newNode;
 
-          after(node.body[i]);
-          changed = true;
-          --i; // revisit
+            after(node.body[i]);
+            changed = true;
+            --i; // revisit
+          } else if (expr.right.type === 'LogicalExpression' && expr.left.type === 'Identifier') {
+            const logi = expr.right;
+            // Note: while we checked that the lhs of assignment is ident, we have to take a precaution
+            //       for the case where the operator is not `=`, or when the logical expression left is
+            //       complex. In both cases we cache the lhs first and assign it only if the condition
+            //       would. In the future we could improve this (TODO) by being explicit for each case.
+            if (expr.right.operator === '||') {
+              rule('Logical `||` in stmt assignment should be if-else, complex left');
+              log('- `x = a || b` --> `{ let tmp = a; if (tmp) x = tmp; else x = b; }`');
+              log('- `x = a() || b` --> `{ let tmp = a(); if (tmp) x = tmp; else x = b; }`');
+              log('- `x += a || b` --> `{ let tmp += a; if (tmp) x = tmp; else x = b; }`');
+              before(e);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpAssignLogicStmtOr');
+              const newNode = AST.blockStatement(
+                AST.variableDeclaration(tmpName, logi.left),
+                AST.ifStatement(
+                  tmpName,
+                  AST.expressionStatement(AST.assignmentExpression(expr.left, tmpName)),
+                  AST.expressionStatement(AST.assignmentExpression(expr.left, logi.right)),
+                ),
+              );
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            } else if (expr.right.operator === '&&') {
+              rule('Logical `&&` in stmt assignment should be if-else, complex left');
+              log('- `x = a && b` --> `{ let tmp = a; if (tmp) x = b; else x = tmp; }`');
+              log('- `x = a() && b` --> `{ let tmp = a(); if (tmp) x = b; else x = tmp; }`');
+              log('- `x += a && b` --> `{ let tmp += a; if (tmp) x = b; else x = tmp; }`');
+              before(e);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpAssignLogicStmtOr');
+              const newNode = AST.blockStatement(
+                AST.variableDeclaration(tmpName, logi.left),
+                AST.ifStatement(
+                  tmpName,
+                  AST.expressionStatement(AST.assignmentExpression(expr.left, logi.right)),
+                  AST.expressionStatement(AST.assignmentExpression(expr.left, tmpName)),
+                ),
+              );
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            }
+          }
+        } else if (expr.type === 'LogicalExpression') {
+          const leftIsComplex = isComplexNode(expr.left);
+          if (expr.operator === '||') {
+            if (leftIsComplex) {
+              rule('Logical `||` as statement should be if-else, complex left');
+              log('- `a() || b` --> `tmp = a(); if (tmp); else b;`');
+              before(e);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpLogicStmtOr');
+              const newNode = AST.blockStatement(
+                AST.variableDeclaration(tmpName, expr.left),
+                AST.ifStatement(tmpName, AST.emptyStatement(), AST.expressionStatement(expr.right)),
+              );
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            } else {
+              rule('Logical `||` as statement should be if-else, simple left');
+              log('- `a || b` --> `if (a); else b;`');
+              before(e);
+
+              const newNode = AST.ifStatement(expr.left, AST.emptyStatement(), AST.expressionStatement(expr.right));
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            }
+          } else if (expr.operator === '&&') {
+            if (leftIsComplex) {
+              rule('Logical `&&` as statement should be if-else, complex left');
+              log('- `a() && b` --> `tmp = a(); if (tmp) b;`');
+              before(e);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpLogicStmtAnd');
+              const newNode = AST.blockStatement(
+                AST.variableDeclaration(tmpName, expr.left),
+                AST.ifStatement(tmpName, AST.expressionStatement(expr.right)),
+              );
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            } else {
+              rule('Logical `&&` as statement should be if-else, simple left');
+              log('- `a && b` --> `if (a) b;`');
+              before(e);
+
+              const newNode = AST.ifStatement(expr.left, AST.expressionStatement(expr.right));
+              node.body[i] = newNode;
+
+              changed = true;
+              after(newNode);
+            }
+          }
         }
       } else if (e.type === 'VariableDeclaration') {
         if (e.declarations.length > 1) {
@@ -675,6 +780,38 @@ export function phaseNormalize(fdata, fname) {
                 );
                 changed = true;
                 //--i;
+              }
+            } else if (init.type === 'LogicalExpression') {
+              if (init.operator === '||') {
+                rule('Logical `||` in var init assignment should be if-else');
+                log('- `var x = a() || b` --> `{ var x = a(); if (x); else x = b; }`');
+                before(e);
+
+                body.splice(
+                  i,
+                  1,
+                  AST.variableDeclaration(decl.id, expr.left, e.kind === 'const' ? 'let' : e.kind),
+                  AST.ifStatement(decl.id, AST.emptyStatement(), AST.expressionStatement(AST.assignmentExpression(decl.id, init.right))),
+                );
+
+                changed = true;
+                after(body[i]);
+                after(body[i + 1]);
+              } else if (init.operator === '&&') {
+                rule('Logical `&&` in var init assignment should be if-else');
+                log('- `var x = a() && b` --> `{ var x = a(); if (x) x = b; }`');
+                before(e);
+
+                body.splice(
+                  i,
+                  1,
+                  AST.variableDeclaration(decl.id, init.left, e.kind === 'const' ? 'let' : e.kind),
+                  AST.ifStatement(decl.id, AST.expressionStatement(AST.assignmentExpression(decl.id, init.right))),
+                );
+
+                changed = true;
+                after(body[i]);
+                after(body[i + 1]);
               }
             }
           }
@@ -899,7 +1036,7 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'BlockStatement': {
         ensureVarDeclsCreateOneBinding(node.body);
-        statementifySequences(node);
+        statementifyExpressions(node);
 
         let hoisting = !!isFunctionBody;
         node.body.forEach((cnode, i) => {
@@ -1239,7 +1376,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Program': {
         ensureVarDeclsCreateOneBinding(node.body);
-        statementifySequences(node);
+        statementifyExpressions(node);
 
         let hoisting = true; // false at first body element that is neither a noop var statement nor a func decl
         node.body.forEach((cnode, i) => {
@@ -2067,38 +2204,6 @@ export function phaseNormalize(fdata, fname) {
             AST.assignmentExpression(tmpName, node.left),
             AST.conditionalExpression(AST.binaryExpression('==', tmpName, 'null'), node.right, tmpName),
           );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else if (isComplexNode(node.left)) {
-          rule('Logical expression left must be simple');
-          log('- `a.b && c` --> `(tmp = a.b, tmp && c)`');
-          log('- `a() && c` --> `(tmp = a(), tmp && c)`');
-          log('- `(a, b).x && c` --> `(tmp = (a, b).x, tmp && c)`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpLogicalLeft', true);
-          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
-          node.left = AST.identifier(tmpName);
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else if (isComplexNode(node.right)) {
-          rule('Logical expression right must be simple');
-          log('- `a && c.b` --> `(tmp = c.b, a && tmp)`');
-          log('- `a && b()` --> `(tmp = b(), a && tmp)`');
-          log('- `a && (b, c).x` --> `(tmp = (b, c).x, tmp && c)`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpLogicalRight', true);
-          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
-          node.right = AST.identifier(tmpName);
           crumbSet(1, newNode);
 
           after(newNode);

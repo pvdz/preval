@@ -11,29 +11,39 @@
 ## Input
 
 `````js filename=intro
-const x = $(1) && 2;
+const x = $(1) || 2;
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var tmpLogicalLeft;
-tmpLogicalLeft = $(1);
-const x = tmpLogicalLeft && 2;
+let x;
+if (x) {
+} else {
+  x = 2;
+}
+$(x);
 `````
 
 ## Uniformed
 
 `````js filename=intro
 var x;
-x = x(8);
-var x = x && 8;
+if (x) {
+} else {
+  x = 8;
+}
+x(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpLogicalLeft;
-tmpLogicalLeft = $(1);
-tmpLogicalLeft && 2;
+let x;
+if (x) {
+} else {
+  x = 2;
+}
+$(x);
 `````

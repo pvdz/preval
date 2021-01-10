@@ -66,6 +66,8 @@ const VERBOSE_TRACING = true;
   - Normalize spread args in call/new expressions
   - Normalize optional chaining / call away
   - Normalize nullish coalescing away
+  - Regular for-loops are transformed to while loops
+  - If-else with empty blocks are eliminated
  */
 
 /*
@@ -132,11 +134,18 @@ const VERBOSE_TRACING = true;
   - While test conditions
     - We could move them into the body with a `break` or something... not sure whether this makes it more complex
     - Perhaps `break` is something we need to fix anyways so might not matter and then doing it this way is better?
-  - for to while
-    - for (a;b;c); --> a; while(b) { ...; c }
   - switch to if-else?
     - trickier with overflow cases unless you go for functions. or maybe break+labels...
+    - default case _can_ happen anywhere as well, with unusual semantics
+    - could break cases up in arrows so we can call them directly...
   - Statements with empty body can be eliminated or at least split
+  - For-in and for-of with a var decl
+    - Is that an easy transform to get rid of?
+    - `for (var x in y) ...` is really just `var x = key1; body; var x = key2; body; ...`
+    - If we'd pull the var out of the header (like `{ var x; for (x in y); }` then we run into double assignment issues again
+    - Maybe that's a non-issue because we have to solve it regardless
+  - Continue to if block?
+    - Nested continues are less trivial to transform so this may not be an easy fix
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -935,6 +944,24 @@ export function phaseNormalize(fdata, fname) {
           crumb(node, 'body', -1);
           crumbSet(1, AST.blockStatement(node.body));
           uncrumb(node, 'body', -1);
+
+          changed = true;
+        }
+
+        if (node.body.body.length === 0) {
+          // Note: cannot eliminate a loop because the expression is expected to be called in repeat
+          rule('Do-while cannot have empty body');
+          rule('- `do {} while (x);` --> `while(x);`');
+          before(node);
+
+          const newNode = AST.whileStatement(node.test, AST.blockStatement());
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _stmt(newNode);
+          break;
         }
 
         if (isComplexNode(node.test)) {
@@ -1036,8 +1063,10 @@ export function phaseNormalize(fdata, fname) {
           log('- `for (x in y) z` --> `for (x in y) {z}`');
 
           node.body = AST.blockStatement(node.body);
-          //changed = true; // TODO: I don't think this is necessary?
+          changed = true;
         }
+
+        // There's no real advantage into transforming a for-in with empty body to something else so we don't
 
         expr(node, 'right', -1, node.right);
         if (node.left.type === 'VariableDeclaration') {
@@ -1056,6 +1085,8 @@ export function phaseNormalize(fdata, fname) {
           node.body = AST.blockStatement(node.body);
           //changed = true; // TODO: I don't think this is necessary?
         }
+
+        // There's no real advantage into transforming a for-of with empty body to something else so we don't
 
         // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
         if (node.await) {
@@ -1124,6 +1155,59 @@ export function phaseNormalize(fdata, fname) {
           after(node);
         }
 
+        if (node.alternate) {
+          if (node.alternate.type !== 'BlockStatement') {
+            rule('Else sub-statement must be block'); // TODO: this is duplicate
+            log('- `if (x) {} else y` --> `if (x) {} else { y }`');
+            before(node);
+
+            node.alternate = AST.blockStatement(node.alternate);
+
+            changed = true;
+            after(node);
+          }
+          if (node.alternate.body.length === 0 || (node.alternate.body.length === 1 && node.alternate.body[0].type === 'EmptyStatement')) {
+            rule('Body of else may not be empty');
+            log('- `if (x) { y; } else {}` --> `if (x) { y; }`');
+            log('- `if (x) { y; } else {;}` --> `if (x) { y; }`');
+            before(node);
+
+            node.alternate = null;
+
+            changed = true;
+            after(node);
+          }
+        }
+
+        if (node.consequent.type !== 'BlockStatement') {
+          rule('If sub-statement must be block'); // TODO: this is duplicate
+          log('- `if (x) y` --> `if (x) { y }`');
+          before(node);
+
+          node.consequent = AST.blockStatement(node.consequent);
+
+          changed = true;
+          after(node);
+        }
+        if (
+          !node.alternate &&
+          (node.consequent.body.length === 0 || (node.consequent.body.length === 1 && node.consequent.body[0].type === 'EmptyStatement'))
+        ) {
+          rule('Body of if may not be empty unless it has an else');
+          log('- `if (x) {}` --> `x;`');
+          log('- `if (x) {} else { y; }` --> no change');
+          before(node);
+
+          const newNode = AST.expressionStatement(node.test);
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(node);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          break;
+        }
+
         if (isComplexNode(node.test)) {
           rule('If-test node must be simple');
           log('- `if (x+y) z` --> `{ let tmp = x+y; if (tmp) z; }`');
@@ -1136,20 +1220,6 @@ export function phaseNormalize(fdata, fname) {
           _stmt(newNode, isExport, stillHoisting, isFunctionBody);
           changed = true;
           break;
-        }
-        if (node.consequent.type !== 'BlockStatement') {
-          rule('If sub-statement must be block'); // TODO: this is duplicate
-          log('- `if (x) y` --> `if (x) { y }`');
-
-          node.consequent = AST.blockStatement(node.consequent);
-        }
-        if (node.alternate) {
-          if (node.alternate.type !== 'BlockStatement') {
-            rule('Else sub-statement must be block'); // TODO: this is duplicate
-            log('- `if (x) {} else y` --> `if (x) {} else { y }`');
-
-            node.alternate = AST.blockStatement(node.alternate);
-          }
         }
 
         expr(node, 'test', -1, node.test);

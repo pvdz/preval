@@ -26,7 +26,12 @@ function f() {
   var tmpTernaryAlternate;
   {
     tmpTernaryTest = global == null;
-    tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = global.foo), tmpTernaryAlternate);
+    if (tmpTernaryTest) {
+      tmpArg = undefined;
+    } else {
+      tmpTernaryAlternate = global.foo;
+      tmpArg = tmpTernaryAlternate;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -45,7 +50,12 @@ function x() {
   var x;
   {
     x = x * x;
-    x = x ? x : ((x = x.x), x);
+    if (x) {
+      x = x;
+    } else {
+      x = x.x;
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -63,7 +73,12 @@ function f() {
   var tmpTernaryTest;
   var tmpTernaryAlternate;
   tmpTernaryTest = global == null;
-  tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = global.foo), tmpTernaryAlternate);
+  if (tmpTernaryTest) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate = global.foo;
+    tmpArg = tmpTernaryAlternate;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

@@ -27,7 +27,12 @@ var tmpTernaryAlternate;
 f = { 10: 20 };
 x = 10;
 tmpTernaryTest = f == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = f[x]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = f[x];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````
 
@@ -42,7 +47,12 @@ var x;
 var x = { 8: 8 };
 var x = 8;
 x = x * x;
-x = x ? x : ((x = x[x]), x);
+if (x) {
+  x = x;
+} else {
+  x = x[x];
+  x = x;
+}
 x(x);
 `````
 
@@ -57,6 +67,11 @@ var tmpTernaryAlternate;
 f = { 10: 20 };
 x = 10;
 tmpTernaryTest = f == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = f[x]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = f[x];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````

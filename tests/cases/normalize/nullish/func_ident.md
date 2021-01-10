@@ -26,7 +26,11 @@ function f() {
   {
     global = global;
     tmpTernaryTest = global == null;
-    tmpArg = tmpTernaryTest ? foo : global;
+    if (tmpTernaryTest) {
+      tmpArg = foo;
+    } else {
+      tmpArg = global;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -45,7 +49,11 @@ function x() {
   {
     x = x;
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -63,7 +71,11 @@ function f() {
   var tmpTernaryTest;
   global = global;
   tmpTernaryTest = global == null;
-  tmpArg = tmpTernaryTest ? foo : global;
+  if (tmpTernaryTest) {
+    tmpArg = foo;
+  } else {
+    tmpArg = global;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

@@ -29,14 +29,26 @@ var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
 const a = {};
 tmpTernaryTest = a == null;
-tmpOptionalChaining = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = a[b]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate = a[b];
+  tmpOptionalChaining = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_1
-  ? undefined
-  : ((tmpTernaryTest_2 = c == null),
-    (tmpComputedProp = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = c[d]), tmpTernaryAlternate_2)),
-    (tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp]),
-    tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryTest_2 = c == null;
+  if (tmpTernaryTest_2) {
+    tmpComputedProp = undefined;
+  } else {
+    tmpTernaryAlternate_2 = c[d];
+    tmpComputedProp = tmpTernaryAlternate_2;
+  }
+  tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate_1;
+}
 $(tmpArg);
 `````
 
@@ -54,9 +66,26 @@ var x;
 var x;
 var x = {};
 x = x * x;
-x = x ? x : ((x = x[x]), x);
+if (x) {
+  x = x;
+} else {
+  x = x[x];
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x * x), (x = x ? x : ((x = x[x]), x)), (x = x[x]), x);
+if (x) {
+  x = x;
+} else {
+  x = x * x;
+  if (x) {
+    x = x;
+  } else {
+    x = x[x];
+    x = x;
+  }
+  x = x[x];
+  x = x;
+}
 x(x);
 `````
 
@@ -74,13 +103,25 @@ var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
 const a = {};
 tmpTernaryTest = a == null;
-tmpOptionalChaining = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = a[b]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate = a[b];
+  tmpOptionalChaining = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_1
-  ? undefined
-  : ((tmpTernaryTest_2 = c == null),
-    (tmpComputedProp = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = c[d]), tmpTernaryAlternate_2)),
-    (tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp]),
-    tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryTest_2 = c == null;
+  if (tmpTernaryTest_2) {
+    tmpComputedProp = undefined;
+  } else {
+    tmpTernaryAlternate_2 = c[d];
+    tmpComputedProp = tmpTernaryAlternate_2;
+  }
+  tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate_1;
+}
 $(tmpArg);
 `````

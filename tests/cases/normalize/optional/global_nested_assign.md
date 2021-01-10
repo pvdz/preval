@@ -32,9 +32,19 @@ const obj = { a: tmpObjPropValue };
 tmpComplexMemberObj = obj.a;
 tmpComplexMemberObj.b = 15;
 tmpTernaryTest = obj == null;
-tmpOptionalChaining = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = obj.a), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate = obj.a;
+  tmpOptionalChaining = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining.b;
+  tmpArg = tmpTernaryAlternate_1;
+}
 $(tmpArg);
 `````
 
@@ -56,9 +66,19 @@ var x = { x: x };
 x = x.x;
 x.x = 8;
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -80,8 +100,18 @@ const obj = { a: tmpObjPropValue };
 tmpComplexMemberObj = obj.a;
 tmpComplexMemberObj.b = 15;
 tmpTernaryTest = obj == null;
-tmpOptionalChaining = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = obj.a), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate = obj.a;
+  tmpOptionalChaining = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining.b;
+  tmpArg = tmpTernaryAlternate_1;
+}
 $(tmpArg);
 `````

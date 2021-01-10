@@ -30,7 +30,11 @@ function f() {
   2;
   tmpNullish = $();
   tmpTernaryTest = tmpNullish == null;
-  y = tmpTernaryTest ? foo : tmpNullish;
+  if (tmpTernaryTest) {
+    y = foo;
+  } else {
+    y = tmpNullish;
+  }
   {
     let tmpStmtArg = $(y);
     return tmpStmtArg;
@@ -52,7 +56,11 @@ function x() {
   8;
   x = x();
   x = x * x;
-  x = x ? x : x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
   {
     var x = x(x);
     return x;
@@ -72,7 +80,11 @@ function f() {
   var y;
   tmpNullish = $();
   tmpTernaryTest = tmpNullish == null;
-  y = tmpTernaryTest ? foo : tmpNullish;
+  if (tmpTernaryTest) {
+    y = foo;
+  } else {
+    y = tmpNullish;
+  }
   let tmpStmtArg = $(y);
   return tmpStmtArg;
 }

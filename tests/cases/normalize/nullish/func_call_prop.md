@@ -25,7 +25,11 @@ function f() {
   {
     tmpNullish = parseInt(15);
     tmpTernaryTest = tmpNullish == null;
-    tmpArg = tmpTernaryTest ? foo : tmpNullish;
+    if (tmpTernaryTest) {
+      tmpArg = foo;
+    } else {
+      tmpArg = tmpNullish;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -45,7 +49,11 @@ function x() {
   {
     x = x(8);
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -64,7 +72,11 @@ function f() {
   var tmpTernaryTest;
   tmpNullish = parseInt(15);
   tmpTernaryTest = tmpNullish == null;
-  tmpArg = tmpTernaryTest ? foo : tmpNullish;
+  if (tmpTernaryTest) {
+    tmpArg = foo;
+  } else {
+    tmpArg = tmpNullish;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

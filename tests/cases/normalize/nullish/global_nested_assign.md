@@ -31,9 +31,17 @@ tmpComplexMemberObj = obj.a;
 tmpComplexMemberObj.b = 15;
 obj = obj;
 tmpTernaryTest = obj == null;
-tmpNullish = tmpTernaryTest ? a : obj;
+if (tmpTernaryTest) {
+  tmpNullish = a;
+} else {
+  tmpNullish = obj;
+}
 tmpTernaryTest_1 = tmpNullish == null;
-tmpArg = tmpTernaryTest_1 ? b : tmpNullish;
+if (tmpTernaryTest_1) {
+  tmpArg = b;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````
 
@@ -54,9 +62,17 @@ x = x.x;
 x.x = 8;
 x = x;
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -77,8 +93,16 @@ tmpComplexMemberObj = obj.a;
 tmpComplexMemberObj.b = 15;
 obj = obj;
 tmpTernaryTest = obj == null;
-tmpNullish = tmpTernaryTest ? a : obj;
+if (tmpTernaryTest) {
+  tmpNullish = a;
+} else {
+  tmpNullish = obj;
+}
 tmpTernaryTest_1 = tmpNullish == null;
-tmpArg = tmpTernaryTest_1 ? b : tmpNullish;
+if (tmpTernaryTest_1) {
+  tmpArg = b;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````

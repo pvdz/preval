@@ -19,8 +19,6 @@ $(y);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
@@ -29,8 +27,14 @@ tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-y = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : objPatternBeforeDefault;
+{
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault;
+  }
+}
 $(y);
 `````
 
@@ -42,14 +46,18 @@ var x;
 var x;
 var x;
 var x;
-var x;
-var x;
 x = { x: 8, x: 8, x: 8 };
 x = { x: x, x: 8, x: 8 };
 x = x.x;
 x = x.x;
-x = x * x;
-x = x ? ((x = x('str')), x) : x;
+{
+  var x = x * x;
+  if (x) {
+    x = x('str');
+  } else {
+    x = x;
+  }
+}
 x(x);
 `````
 
@@ -57,8 +65,6 @@ x(x);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
@@ -67,7 +73,11 @@ tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-y = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : objPatternBeforeDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  y = $('fail');
+} else {
+  y = objPatternBeforeDefault;
+}
 $(y);
 `````

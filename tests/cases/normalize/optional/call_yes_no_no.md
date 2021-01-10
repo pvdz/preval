@@ -38,17 +38,47 @@ var tmpTernaryTest_5;
 var tmpTernaryAlternate_5;
 const a = {};
 tmpTernaryTest = a == null;
-tmpOptionalChaining_4 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = a()), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_4 = undefined;
+} else {
+  tmpTernaryAlternate = a();
+  tmpOptionalChaining_4 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_4 == null;
-tmpOptionalChaining_3 = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_4.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining_3 = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_4.b;
+  tmpOptionalChaining_3 = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining_3 == null;
-tmpOptionalChaining_2 = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining_3()), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpOptionalChaining_2 = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining_3();
+  tmpOptionalChaining_2 = tmpTernaryAlternate_2;
+}
 tmpTernaryTest_3 = tmpOptionalChaining_2 == null;
-tmpOptionalChaining_1 = tmpTernaryTest_3 ? undefined : ((tmpTernaryAlternate_3 = tmpOptionalChaining_2.c), tmpTernaryAlternate_3);
+if (tmpTernaryTest_3) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate_3 = tmpOptionalChaining_2.c;
+  tmpOptionalChaining_1 = tmpTernaryAlternate_3;
+}
 tmpTernaryTest_4 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_4 ? undefined : ((tmpTernaryAlternate_4 = tmpOptionalChaining_1()), tmpTernaryAlternate_4);
+if (tmpTernaryTest_4) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_4 = tmpOptionalChaining_1();
+  tmpOptionalChaining = tmpTernaryAlternate_4;
+}
 tmpTernaryTest_5 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_5 ? undefined : ((tmpTernaryAlternate_5 = tmpOptionalChaining.d), tmpTernaryAlternate_5);
+if (tmpTernaryTest_5) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_5 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate_5;
+}
 $(tmpArg);
 `````
 
@@ -75,17 +105,47 @@ var x;
 var x;
 var x = {};
 x = x * x;
-x = x ? x : ((x = x()), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x()), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x()), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -112,16 +172,46 @@ var tmpTernaryTest_5;
 var tmpTernaryAlternate_5;
 const a = {};
 tmpTernaryTest = a == null;
-tmpOptionalChaining_4 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = a()), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_4 = undefined;
+} else {
+  tmpTernaryAlternate = a();
+  tmpOptionalChaining_4 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_4 == null;
-tmpOptionalChaining_3 = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_4.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining_3 = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_4.b;
+  tmpOptionalChaining_3 = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining_3 == null;
-tmpOptionalChaining_2 = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining_3()), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpOptionalChaining_2 = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining_3();
+  tmpOptionalChaining_2 = tmpTernaryAlternate_2;
+}
 tmpTernaryTest_3 = tmpOptionalChaining_2 == null;
-tmpOptionalChaining_1 = tmpTernaryTest_3 ? undefined : ((tmpTernaryAlternate_3 = tmpOptionalChaining_2.c), tmpTernaryAlternate_3);
+if (tmpTernaryTest_3) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate_3 = tmpOptionalChaining_2.c;
+  tmpOptionalChaining_1 = tmpTernaryAlternate_3;
+}
 tmpTernaryTest_4 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_4 ? undefined : ((tmpTernaryAlternate_4 = tmpOptionalChaining_1()), tmpTernaryAlternate_4);
+if (tmpTernaryTest_4) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_4 = tmpOptionalChaining_1();
+  tmpOptionalChaining = tmpTernaryAlternate_4;
+}
 tmpTernaryTest_5 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_5 ? undefined : ((tmpTernaryAlternate_5 = tmpOptionalChaining.d), tmpTernaryAlternate_5);
+if (tmpTernaryTest_5) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_5 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate_5;
+}
 $(tmpArg);
 `````

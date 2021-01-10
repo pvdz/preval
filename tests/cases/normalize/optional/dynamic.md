@@ -22,7 +22,13 @@ var tmpTernaryAlternate;
 var tmpComputedProp;
 const obj = { foo: 10 };
 tmpTernaryTest = obj == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpComputedProp = $()), (tmpTernaryAlternate = obj[tmpComputedProp]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpComputedProp = $();
+  tmpTernaryAlternate = obj[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````
 
@@ -35,7 +41,13 @@ var x;
 var x;
 var x = { x: 8 };
 x = x * x;
-x = x ? x : ((x = x()), (x = x[x]), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x[x];
+  x = x;
+}
 x(x);
 `````
 
@@ -48,6 +60,12 @@ var tmpTernaryAlternate;
 var tmpComputedProp;
 const obj = { foo: 10 };
 tmpTernaryTest = obj == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpComputedProp = $()), (tmpTernaryAlternate = obj[tmpComputedProp]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpComputedProp = $();
+  tmpTernaryAlternate = obj[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````

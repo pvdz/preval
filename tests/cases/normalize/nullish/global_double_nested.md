@@ -31,11 +31,23 @@ tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
 obj = obj;
 tmpTernaryTest = obj == null;
-tmpNullish_1 = tmpTernaryTest ? a : obj;
+if (tmpTernaryTest) {
+  tmpNullish_1 = a;
+} else {
+  tmpNullish_1 = obj;
+}
 tmpTernaryTest_1 = tmpNullish_1 == null;
-tmpNullish = tmpTernaryTest_1 ? b : tmpNullish_1;
+if (tmpTernaryTest_1) {
+  tmpNullish = b;
+} else {
+  tmpNullish = tmpNullish_1;
+}
 tmpTernaryTest_2 = tmpNullish == null;
-tmpArg = tmpTernaryTest_2 ? c : tmpNullish;
+if (tmpTernaryTest_2) {
+  tmpArg = c;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````
 
@@ -57,11 +69,23 @@ x = { x: x };
 var x = { x: x };
 x = x;
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -83,10 +107,22 @@ tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
 obj = obj;
 tmpTernaryTest = obj == null;
-tmpNullish_1 = tmpTernaryTest ? a : obj;
+if (tmpTernaryTest) {
+  tmpNullish_1 = a;
+} else {
+  tmpNullish_1 = obj;
+}
 tmpTernaryTest_1 = tmpNullish_1 == null;
-tmpNullish = tmpTernaryTest_1 ? b : tmpNullish_1;
+if (tmpTernaryTest_1) {
+  tmpNullish = b;
+} else {
+  tmpNullish = tmpNullish_1;
+}
 tmpTernaryTest_2 = tmpNullish == null;
-tmpArg = tmpTernaryTest_2 ? c : tmpNullish;
+if (tmpTernaryTest_2) {
+  tmpArg = c;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````

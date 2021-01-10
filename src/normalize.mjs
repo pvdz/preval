@@ -45,8 +45,8 @@ const VERBOSE_TRACING = true;
     - Simplifies some edge case code checks
   - Computed property access for complex keys is normalized to ident keys
   - Computed property access with literals that are valid idents become regular property access
-  - Normalize conditional expression parts
-    - Not doing normalize ternary vs if-else right now because there'll always be contexts that require it to be an expression and there will always be contents that require it to be a statement
+  - Normalize conditional / ternary expression parts
+    - Becomes `if-else` when possible
   - All patterns are transformed to body code
     - Parameter, binding, and assignment patterns
     - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
@@ -132,6 +132,10 @@ const VERBOSE_TRACING = true;
   - While test conditions
     - We could move them into the body with a `break` or something... not sure whether this makes it more complex
     - Perhaps `break` is something we need to fix anyways so might not matter and then doing it this way is better?
+  - for to while
+    - for (a;b;c); --> a; while(b) { ...; c }
+  - switch to if-else?
+    - trickier with overflow cases unless you go for functions. or maybe break+labels...
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -446,6 +450,21 @@ export function phaseNormalize(fdata, fname) {
           node.body[i] = newNode;
 
           after(newNode);
+          changed = true;
+          --i; // revisit
+        } else if (expr.type === 'AssignmentExpression' && expr.right.type === 'ConditionalExpression') {
+          rule('Conditional / ternary assignment expressions should not be statements');
+          log('- `x = a ? b : c` --> `{ if (a) x = b; else x = c; }');
+          before(expr);
+
+          const newNode = AST.ifStatement(
+            expr.right.test,
+            AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.consequent, expr.operator)),
+            AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.alternate, expr.operator)),
+          );
+          node.body[i] = newNode;
+
+          after(node.body[i]);
           changed = true;
           --i; // revisit
         }

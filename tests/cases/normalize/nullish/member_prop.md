@@ -23,7 +23,11 @@ var tmpTernaryTest;
 const x = 10;
 x = x;
 tmpTernaryTest = x == null;
-tmpArg = tmpTernaryTest ? length : x;
+if (tmpTernaryTest) {
+  tmpArg = length;
+} else {
+  tmpArg = x;
+}
 $(tmpArg);
 `````
 
@@ -35,7 +39,11 @@ var x;
 var x = 8;
 x = x;
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -47,6 +55,10 @@ var tmpTernaryTest;
 const x = 10;
 x = x;
 tmpTernaryTest = x == null;
-tmpArg = tmpTernaryTest ? length : x;
+if (tmpTernaryTest) {
+  tmpArg = length;
+} else {
+  tmpArg = x;
+}
 $(tmpArg);
 `````

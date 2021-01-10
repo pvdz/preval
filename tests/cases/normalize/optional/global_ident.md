@@ -21,7 +21,12 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 tmpTernaryTest = global == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = global.foo), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = global.foo;
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````
 
@@ -32,7 +37,12 @@ var x;
 var x;
 var x;
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -43,6 +53,11 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 tmpTernaryTest = global == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = global.foo), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = global.foo;
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````

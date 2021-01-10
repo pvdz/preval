@@ -28,7 +28,12 @@ function f() {
   {
     tmpOptionalChaining = 'foo';
     tmpTernaryTest = tmpOptionalChaining == null;
-    tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.length), tmpTernaryAlternate);
+    if (tmpTernaryTest) {
+      tmpArg = undefined;
+    } else {
+      tmpTernaryAlternate = tmpOptionalChaining.length;
+      tmpArg = tmpTernaryAlternate;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -49,7 +54,12 @@ function x() {
   {
     x = 'str';
     x = x * x;
-    x = x ? x : ((x = x.x), x);
+    if (x) {
+      x = x;
+    } else {
+      x = x.x;
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -69,7 +79,12 @@ function f() {
   var tmpTernaryAlternate;
   tmpOptionalChaining = 'foo';
   tmpTernaryTest = tmpOptionalChaining == null;
-  tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.length), tmpTernaryAlternate);
+  if (tmpTernaryTest) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.length;
+    tmpArg = tmpTernaryAlternate;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

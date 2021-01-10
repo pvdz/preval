@@ -19,8 +19,6 @@ $(y);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
@@ -29,10 +27,15 @@ var y;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+{
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { a: 'fail' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+}
 y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````
@@ -46,13 +49,18 @@ var x;
 var x;
 var x;
 var x;
-var x;
-var x;
 x = { x: 8, x: 8, x: 8 };
 x = { x: x, x: 8, x: 8 };
 x = x.x;
-x = x * x;
-x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+{
+  var x = x * x;
+  if (x) {
+    x = { x: 'str' };
+    x = x(x);
+  } else {
+    x = x;
+  }
+}
 x = x(x, []);
 x(x);
 `````
@@ -61,8 +69,6 @@ x(x);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
@@ -71,10 +77,13 @@ var y;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'fail' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = { a: 'fail' };
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````

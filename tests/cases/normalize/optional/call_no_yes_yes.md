@@ -36,13 +36,33 @@ const a = {};
 tmpComplexMemberObj = a();
 tmpOptionalChaining_3 = tmpComplexMemberObj.b;
 tmpTernaryTest = tmpOptionalChaining_3 == null;
-tmpOptionalChaining_2 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining_3()), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_2 = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining_3();
+  tmpOptionalChaining_2 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_2 == null;
-tmpOptionalChaining_1 = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_2.c), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_2.c;
+  tmpOptionalChaining_1 = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining_1()), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining_1();
+  tmpOptionalChaining = tmpTernaryAlternate_2;
+}
 tmpTernaryTest_3 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_3 ? undefined : ((tmpTernaryAlternate_3 = tmpOptionalChaining.d), tmpTernaryAlternate_3);
+if (tmpTernaryTest_3) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_3 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate_3;
+}
 $(tmpArg);
 `````
 
@@ -67,13 +87,33 @@ var x = {};
 x = x();
 x = x.x;
 x = x * x;
-x = x ? x : ((x = x()), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x()), x);
+if (x) {
+  x = x;
+} else {
+  x = x();
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -98,12 +138,32 @@ const a = {};
 tmpComplexMemberObj = a();
 tmpOptionalChaining_3 = tmpComplexMemberObj.b;
 tmpTernaryTest = tmpOptionalChaining_3 == null;
-tmpOptionalChaining_2 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining_3()), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_2 = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining_3();
+  tmpOptionalChaining_2 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_2 == null;
-tmpOptionalChaining_1 = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_2.c), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_2.c;
+  tmpOptionalChaining_1 = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining_1()), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining_1();
+  tmpOptionalChaining = tmpTernaryAlternate_2;
+}
 tmpTernaryTest_3 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_3 ? undefined : ((tmpTernaryAlternate_3 = tmpOptionalChaining.d), tmpTernaryAlternate_3);
+if (tmpTernaryTest_3) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_3 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate_3;
+}
 $(tmpArg);
 `````

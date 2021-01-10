@@ -20,7 +20,11 @@ var tmpNullish;
 var tmpTernaryTest;
 tmpNullish = parseInt(15);
 tmpTernaryTest = tmpNullish == null;
-tmpArg = tmpTernaryTest ? foo : tmpNullish;
+if (tmpTernaryTest) {
+  tmpArg = foo;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````
 
@@ -32,7 +36,11 @@ var x;
 var x;
 x = x(8);
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -44,6 +52,10 @@ var tmpNullish;
 var tmpTernaryTest;
 tmpNullish = parseInt(15);
 tmpTernaryTest = tmpNullish == null;
-tmpArg = tmpTernaryTest ? foo : tmpNullish;
+if (tmpTernaryTest) {
+  tmpArg = foo;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````

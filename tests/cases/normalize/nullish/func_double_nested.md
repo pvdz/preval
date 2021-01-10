@@ -36,11 +36,23 @@ function f() {
   {
     obj = obj;
     tmpTernaryTest = obj == null;
-    tmpNullish_1 = tmpTernaryTest ? a : obj;
+    if (tmpTernaryTest) {
+      tmpNullish_1 = a;
+    } else {
+      tmpNullish_1 = obj;
+    }
     tmpTernaryTest_1 = tmpNullish_1 == null;
-    tmpNullish = tmpTernaryTest_1 ? b : tmpNullish_1;
+    if (tmpTernaryTest_1) {
+      tmpNullish = b;
+    } else {
+      tmpNullish = tmpNullish_1;
+    }
     tmpTernaryTest_2 = tmpNullish == null;
-    tmpArg = tmpTernaryTest_2 ? c : tmpNullish;
+    if (tmpTernaryTest_2) {
+      tmpArg = c;
+    } else {
+      tmpArg = tmpNullish;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -70,11 +82,23 @@ function x() {
   {
     x = x;
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -103,11 +127,23 @@ function f() {
   const obj = { a: tmpObjPropValue };
   obj = obj;
   tmpTernaryTest = obj == null;
-  tmpNullish_1 = tmpTernaryTest ? a : obj;
+  if (tmpTernaryTest) {
+    tmpNullish_1 = a;
+  } else {
+    tmpNullish_1 = obj;
+  }
   tmpTernaryTest_1 = tmpNullish_1 == null;
-  tmpNullish = tmpTernaryTest_1 ? b : tmpNullish_1;
+  if (tmpTernaryTest_1) {
+    tmpNullish = b;
+  } else {
+    tmpNullish = tmpNullish_1;
+  }
   tmpTernaryTest_2 = tmpNullish == null;
-  tmpArg = tmpTernaryTest_2 ? c : tmpNullish;
+  if (tmpTernaryTest_2) {
+    tmpArg = c;
+  } else {
+    tmpArg = tmpNullish;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

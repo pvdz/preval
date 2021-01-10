@@ -19,8 +19,6 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
@@ -29,8 +27,14 @@ tmpElement = { x: 1, y: 2, z: 3 };
 arrAssignPatternRhs = [tmpElement, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+{
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    arrPatternStep = $('fail');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
+  }
+}
 $('ok');
 `````
 
@@ -42,14 +46,18 @@ var x;
 var x;
 var x;
 var x;
-var x;
-var x;
 x = { x: 8, x: 8, x: 8 };
 x = [x, 8, 8];
 x = [...x];
 x = x[8];
-x = x * x;
-x = x ? ((x = x('str')), x) : x;
+{
+  var x = x * x;
+  if (x) {
+    x = x('str');
+  } else {
+    x = x;
+  }
+}
 x('str');
 `````
 
@@ -57,8 +65,6 @@ x('str');
 
 `````js filename=intro
 var tmpElement;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
@@ -67,7 +73,11 @@ tmpElement = { x: 1, y: 2, z: 3 };
 arrAssignPatternRhs = [tmpElement, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-arrPatternStep = tmpTernaryTest ? ((tmpTernaryConsequent = $('fail')), tmpTernaryConsequent) : arrPatternBeforeDefault;
+let ifTestTmp = arrPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  arrPatternStep = $('fail');
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
 $('ok');
 `````

@@ -32,9 +32,17 @@ function f() {
   {
     obj = obj;
     tmpTernaryTest = obj == null;
-    tmpNullish = tmpTernaryTest ? a : obj;
+    if (tmpTernaryTest) {
+      tmpNullish = a;
+    } else {
+      tmpNullish = obj;
+    }
     tmpTernaryTest_1 = tmpNullish == null;
-    tmpArg = tmpTernaryTest_1 ? b : tmpNullish;
+    if (tmpTernaryTest_1) {
+      tmpArg = b;
+    } else {
+      tmpArg = tmpNullish;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -60,9 +68,17 @@ function x() {
   {
     x = x;
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -87,9 +103,17 @@ function f() {
   const obj = { a: tmpObjPropValue };
   obj = obj;
   tmpTernaryTest = obj == null;
-  tmpNullish = tmpTernaryTest ? a : obj;
+  if (tmpTernaryTest) {
+    tmpNullish = a;
+  } else {
+    tmpNullish = obj;
+  }
   tmpTernaryTest_1 = tmpNullish == null;
-  tmpArg = tmpTernaryTest_1 ? b : tmpNullish;
+  if (tmpTernaryTest_1) {
+    tmpArg = b;
+  } else {
+    tmpArg = tmpNullish;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

@@ -27,7 +27,12 @@ const a = {};
 tmpComplexMemberObj = a[b];
 tmpOptionalChaining = tmpComplexMemberObj[c];
 tmpTernaryTest = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining[d]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining[d];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````
 
@@ -43,7 +48,12 @@ var x = {};
 x = x[x];
 x = x[x];
 x = x * x;
-x = x ? x : ((x = x[x]), x);
+if (x) {
+  x = x;
+} else {
+  x = x[x];
+  x = x;
+}
 x(x);
 `````
 
@@ -59,6 +69,11 @@ const a = {};
 tmpComplexMemberObj = a[b];
 tmpOptionalChaining = tmpComplexMemberObj[c];
 tmpTernaryTest = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining[d]), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining[d];
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````

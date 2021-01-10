@@ -19,15 +19,20 @@ $('ok');
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest ? a : objPatternBeforeDefault;
+{
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    objPatternAfterDefault = a;
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+}
 $('ok');
 `````
 
@@ -38,12 +43,17 @@ var x;
 var x;
 var x;
 var x;
-var x;
 x = { x: 8, x: 8, x: 8 };
 x = { x: x, x: 8, x: 8 };
 x = x.x;
-x = x * x;
-x = x ? x : x;
+{
+  var x = x * x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 x('str');
 `````
 
@@ -51,14 +61,17 @@ x('str');
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpTernaryTest;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest ? a : objPatternBeforeDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  objPatternAfterDefault = a;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 $('ok');
 `````

@@ -23,7 +23,12 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 tmpOptionalChaining = 'foo';
 tmpTernaryTest = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.length), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining.length;
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````
 
@@ -36,7 +41,12 @@ var x;
 var x;
 x = 'str';
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -49,6 +59,11 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 tmpOptionalChaining = 'foo';
 tmpTernaryTest = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.length), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining.length;
+  tmpArg = tmpTernaryAlternate;
+}
 $(tmpArg);
 `````

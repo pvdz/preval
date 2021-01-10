@@ -21,7 +21,11 @@ var tmpArg;
 var tmpTernaryTest;
 global = global;
 tmpTernaryTest = global == null;
-tmpArg = tmpTernaryTest ? foo : global;
+if (tmpTernaryTest) {
+  tmpArg = foo;
+} else {
+  tmpArg = global;
+}
 $(tmpArg);
 `````
 
@@ -32,7 +36,11 @@ var x;
 var x;
 x = x;
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -43,6 +51,10 @@ var tmpArg;
 var tmpTernaryTest;
 global = global;
 tmpTernaryTest = global == null;
-tmpArg = tmpTernaryTest ? foo : global;
+if (tmpTernaryTest) {
+  tmpArg = foo;
+} else {
+  tmpArg = global;
+}
 $(tmpArg);
 `````

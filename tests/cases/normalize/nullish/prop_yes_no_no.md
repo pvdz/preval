@@ -25,7 +25,13 @@ var tmpComplexMemberObj;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
-tmpArg = tmpTernaryTest ? ((tmpComplexMemberObj = b.c), (tmpTernaryConsequent = tmpComplexMemberObj.d), tmpTernaryConsequent) : a;
+if (tmpTernaryTest) {
+  tmpComplexMemberObj = b.c;
+  tmpTernaryConsequent = tmpComplexMemberObj.d;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = a;
+}
 $(tmpArg);
 `````
 
@@ -39,7 +45,13 @@ var x;
 var x = {};
 x = x;
 x = x * x;
-x = x ? ((x = x.x), (x = x.x), x) : x;
+if (x) {
+  x = x.x;
+  x = x.x;
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -53,6 +65,12 @@ var tmpComplexMemberObj;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
-tmpArg = tmpTernaryTest ? ((tmpComplexMemberObj = b.c), (tmpTernaryConsequent = tmpComplexMemberObj.d), tmpTernaryConsequent) : a;
+if (tmpTernaryTest) {
+  tmpComplexMemberObj = b.c;
+  tmpTernaryConsequent = tmpComplexMemberObj.d;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = a;
+}
 $(tmpArg);
 `````

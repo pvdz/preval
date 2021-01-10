@@ -18,8 +18,6 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
@@ -27,10 +25,15 @@ var objPatternAfterDefault;
 var y;
 objAssignPatternRhs = 'abc';
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+{
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { a: 'pass' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+}
 y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````
@@ -43,12 +46,17 @@ var x;
 var x;
 var x;
 var x;
-var x;
-var x;
 x = 'str';
 x = x.x;
-x = x * x;
-x = x ? ((x = { x: 'str' }), (x = x(x)), x) : x;
+{
+  var x = x * x;
+  if (x) {
+    x = { x: 'str' };
+    x = x(x);
+  } else {
+    x = x;
+  }
+}
 x = x(x, []);
 x(x);
 `````
@@ -56,8 +64,6 @@ x(x);
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
@@ -65,10 +71,13 @@ var objPatternAfterDefault;
 var y;
 objAssignPatternRhs = 'abc';
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-objPatternAfterDefault = tmpTernaryTest
-  ? ((tmpArg = { a: 'pass' }), (tmpTernaryConsequent = $(tmpArg)), tmpTernaryConsequent)
-  : objPatternBeforeDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  tmpArg = { a: 'pass' };
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
 y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````

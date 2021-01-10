@@ -27,7 +27,11 @@ function f() {
   {
     tmpNullish = 'foo';
     tmpTernaryTest = tmpNullish == null;
-    tmpArg = tmpTernaryTest ? length : tmpNullish;
+    if (tmpTernaryTest) {
+      tmpArg = length;
+    } else {
+      tmpArg = tmpNullish;
+    }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -47,7 +51,11 @@ function x() {
   {
     x = 'str';
     x = x * x;
-    x = x ? x : x;
+    if (x) {
+      x = x;
+    } else {
+      x = x;
+    }
     var x = x(x);
     return x;
   }
@@ -66,7 +74,11 @@ function f() {
   var tmpTernaryTest;
   tmpNullish = 'foo';
   tmpTernaryTest = tmpNullish == null;
-  tmpArg = tmpTernaryTest ? length : tmpNullish;
+  if (tmpTernaryTest) {
+    tmpArg = length;
+  } else {
+    tmpArg = tmpNullish;
+  }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

@@ -24,7 +24,11 @@ var tmpTernaryTest;
 f = undefined;
 f = f;
 tmpTernaryTest = f == null;
-tmpArg = tmpTernaryTest ? x : f;
+if (tmpTernaryTest) {
+  tmpArg = x;
+} else {
+  tmpArg = f;
+}
 $(tmpArg);
 `````
 
@@ -37,7 +41,11 @@ var x;
 var x = x;
 x = x;
 x = x * x;
-x = x ? x : x;
+if (x) {
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -50,6 +58,10 @@ var tmpTernaryTest;
 f = undefined;
 f = f;
 tmpTernaryTest = f == null;
-tmpArg = tmpTernaryTest ? x : f;
+if (tmpTernaryTest) {
+  tmpArg = x;
+} else {
+  tmpArg = f;
+}
 $(tmpArg);
 `````

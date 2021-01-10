@@ -33,11 +33,26 @@ tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
 tmpTernaryTest = obj == null;
-tmpOptionalChaining_1 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = obj.a), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate = obj.a;
+  tmpOptionalChaining_1 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_1.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_1.b;
+  tmpOptionalChaining = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining.c), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining.c;
+  tmpArg = tmpTernaryAlternate_2;
+}
 $(tmpArg);
 `````
 
@@ -61,11 +76,26 @@ x = { x: x };
 x = { x: x };
 var x = { x: x };
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x = x * x;
-x = x ? x : ((x = x.x), x);
+if (x) {
+  x = x;
+} else {
+  x = x.x;
+  x = x;
+}
 x(x);
 `````
 
@@ -89,10 +119,25 @@ tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
 tmpTernaryTest = obj == null;
-tmpOptionalChaining_1 = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = obj.a), tmpTernaryAlternate);
+if (tmpTernaryTest) {
+  tmpOptionalChaining_1 = undefined;
+} else {
+  tmpTernaryAlternate = obj.a;
+  tmpOptionalChaining_1 = tmpTernaryAlternate;
+}
 tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-tmpOptionalChaining = tmpTernaryTest_1 ? undefined : ((tmpTernaryAlternate_1 = tmpOptionalChaining_1.b), tmpTernaryAlternate_1);
+if (tmpTernaryTest_1) {
+  tmpOptionalChaining = undefined;
+} else {
+  tmpTernaryAlternate_1 = tmpOptionalChaining_1.b;
+  tmpOptionalChaining = tmpTernaryAlternate_1;
+}
 tmpTernaryTest_2 = tmpOptionalChaining == null;
-tmpArg = tmpTernaryTest_2 ? undefined : ((tmpTernaryAlternate_2 = tmpOptionalChaining.c), tmpTernaryAlternate_2);
+if (tmpTernaryTest_2) {
+  tmpArg = undefined;
+} else {
+  tmpTernaryAlternate_2 = tmpOptionalChaining.c;
+  tmpArg = tmpTernaryAlternate_2;
+}
 $(tmpArg);
 `````

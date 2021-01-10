@@ -31,7 +31,12 @@ function f() {
   2;
   tmpOptionalChaining = $();
   tmpTernaryTest = tmpOptionalChaining == null;
-  y = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.foo), tmpTernaryAlternate);
+  if (tmpTernaryTest) {
+    y = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.foo;
+    y = tmpTernaryAlternate;
+  }
   {
     let tmpStmtArg = $(y);
     return tmpStmtArg;
@@ -54,7 +59,12 @@ function x() {
   8;
   x = x();
   x = x * x;
-  x = x ? x : ((x = x.x), x);
+  if (x) {
+    x = x;
+  } else {
+    x = x.x;
+    x = x;
+  }
   {
     var x = x(x);
     return x;
@@ -75,7 +85,12 @@ function f() {
   var y;
   tmpOptionalChaining = $();
   tmpTernaryTest = tmpOptionalChaining == null;
-  y = tmpTernaryTest ? undefined : ((tmpTernaryAlternate = tmpOptionalChaining.foo), tmpTernaryAlternate);
+  if (tmpTernaryTest) {
+    y = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.foo;
+    y = tmpTernaryAlternate;
+  }
   let tmpStmtArg = $(y);
   return tmpStmtArg;
 }

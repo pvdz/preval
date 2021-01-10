@@ -15,14 +15,19 @@
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var x;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-x = tmpTernaryTest ? b : objPatternBeforeDefault;
+{
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    x = b;
+  } else {
+    x = objPatternBeforeDefault;
+  }
+}
 `````
 
 ## Uniformed
@@ -31,22 +36,30 @@ x = tmpTernaryTest ? b : objPatternBeforeDefault;
 var x;
 var x;
 var x;
-var x;
 x = 8;
 x = x.x;
-x = x * x;
-x = x ? x : x;
+{
+  var x = x * x;
+  if (x) {
+    x = x;
+  } else {
+    x = x;
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var x;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-x = tmpTernaryTest ? b : objPatternBeforeDefault;
+let ifTestTmp = objPatternBeforeDefault === undefined;
+if (ifTestTmp) {
+  x = b;
+} else {
+  x = objPatternBeforeDefault;
+}
 `````

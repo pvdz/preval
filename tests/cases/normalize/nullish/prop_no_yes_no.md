@@ -25,7 +25,12 @@ var tmpTernaryConsequent;
 const a = {};
 tmpNullish = a.b;
 tmpTernaryTest = tmpNullish == null;
-tmpArg = tmpTernaryTest ? ((tmpTernaryConsequent = c.d), tmpTernaryConsequent) : tmpNullish;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = c.d;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````
 
@@ -39,7 +44,12 @@ var x;
 var x = {};
 x = x.x;
 x = x * x;
-x = x ? ((x = x.x), x) : x;
+if (x) {
+  x = x.x;
+  x = x;
+} else {
+  x = x;
+}
 x(x);
 `````
 
@@ -53,6 +63,11 @@ var tmpTernaryConsequent;
 const a = {};
 tmpNullish = a.b;
 tmpTernaryTest = tmpNullish == null;
-tmpArg = tmpTernaryTest ? ((tmpTernaryConsequent = c.d), tmpTernaryConsequent) : tmpNullish;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = c.d;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = tmpNullish;
+}
 $(tmpArg);
 `````

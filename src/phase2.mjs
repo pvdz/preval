@@ -340,6 +340,12 @@ export function phase2(program, fdata, resolve, req) {
 
           log('For-in lhs:', id.name);
         } else {
+          if (node.left.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
+            ASSERT(meta, 'meta data should exist for this name', node.left.name, meta);
+            log('Marking `' + node.name + '` as being used and assigned to');
+            meta.updates.push({ parent: node, prop: 'left', index: -1 });
+          }
           expr(node, 'left', -1, node.left);
         }
         stmt(node, 'body', -1, node.body);
@@ -347,10 +353,10 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'ForOfStatement': {
-        // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
-        if (node.await)
-          // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
-          expr(node, 'right', -1, node.right);
+        ASSERT(!node.await, 'TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.');
+
+        // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
+        expr(node, 'right', -1, node.right);
 
         if (node.left.type === 'VariableDeclaration') {
           ASSERT(node.left.declarations.length === 1, 'I think this is syntactically enforced?');
@@ -361,6 +367,12 @@ export function phase2(program, fdata, resolve, req) {
 
           log('For-of lhs:', id.name);
         } else {
+          if (node.left.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
+            ASSERT(meta, 'meta data should exist for this name', node.left.name, meta);
+            log('Marking `' + node.name + '` as being used and assigned to');
+            meta.updates.push({ parent: node, prop: 'left', index: -1 });
+          }
           expr(node, 'left', -1, node.left);
         }
 
@@ -1160,12 +1172,10 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'OptionalMemberExpression': {
-
         break;
       }
 
       case 'OptionalCallExpression': {
-
         break;
       }
 

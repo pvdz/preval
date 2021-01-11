@@ -15,23 +15,30 @@ for (x of $(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-for (x of $(1)) {
-  $(2);
+{
+  const tmpForOfRhs = $(1);
+  for (x of tmpForOfRhs) {
+    $(2);
+  }
 }
 `````
 
 ## Uniformed
 
 `````js filename=intro
-for (x of x(8)) {
-  x(8);
+{
+  var x = x(8);
+  for (x of x) {
+    x(8);
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-for (x of $(1)) {
+const tmpForOfRhs = $(1);
+for (x of tmpForOfRhs) {
   $(2);
 }
 `````

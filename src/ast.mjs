@@ -91,6 +91,35 @@ export function expressionStatement(expression) {
   };
 }
 
+export function forInStatement(left, right, body) {
+  if (typeof left === 'string') left = identifier(left);
+  if (typeof right === 'string') right = identifier(right);
+  if (typeof body === 'string') body = identifier(body);
+
+  return {
+    type: 'ForInStatement',
+    left,
+    right,
+    body,
+    $p: $p(),
+  };
+}
+
+export function forOfStatement(left, right, body, async = false) {
+  if (typeof left === 'string') left = identifier(left);
+  if (typeof right === 'string') right = identifier(right);
+  if (typeof body === 'string') body = identifier(body);
+
+  return {
+    type: 'ForOfStatement',
+    await: async,
+    left,
+    right,
+    body,
+    $p: $p(),
+  };
+}
+
 export function identifier(name) {
   return {
     type: 'Identifier',

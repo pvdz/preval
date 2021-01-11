@@ -17,10 +17,10 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 ## Normalized
 
 `````js filename=intro
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 $(1);
-tmpComplexMemberObj = $(2);
-tmpComplexMemberObj.x = 1;
+tmpAssignMemberObj = $(2);
+tmpAssignMemberObj.x = 1;
 `````
 
 ## Uniformed
@@ -35,8 +35,8 @@ x.x = 8;
 ## Output
 
 `````js filename=intro
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 $(1);
-tmpComplexMemberObj = $(2);
-tmpComplexMemberObj.x = 1;
+tmpAssignMemberObj = $(2);
+tmpAssignMemberObj.x = 1;
 `````

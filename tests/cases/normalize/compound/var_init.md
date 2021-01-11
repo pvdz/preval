@@ -12,27 +12,31 @@
 
 `````js filename=intro
 let a = $(1);
-a += $(2);
-$(a);
+var x = a += $(2);
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
 var tmpBinaryRight;
+var x;
 let a = $(1);
 tmpBinaryRight = $(2);
 a = a + tmpBinaryRight;
-$(a);
+x = a;
+$(x);
 `````
 
 ## Uniformed
 
 `````js filename=intro
 var x;
+var x;
 var x = x(8);
 x = x(8);
 x = x * x;
+var x = x;
 x(x);
 `````
 
@@ -40,8 +44,10 @@ x(x);
 
 `````js filename=intro
 var tmpBinaryRight;
+var x;
 let a = $(1);
 tmpBinaryRight = $(2);
 a = a + tmpBinaryRight;
-$(a);
+x = a;
+$(x);
 `````

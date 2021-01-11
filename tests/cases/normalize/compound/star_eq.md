@@ -19,23 +19,29 @@ $(a);
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryRight;
 let a = $(1);
-a *= $(2);
+tmpBinaryRight = $(2);
+a = a * tmpBinaryRight;
 $(a);
 `````
 
 ## Uniformed
 
 `````js filename=intro
+var x;
 var x = x(8);
-x *= x(8);
+x = x(8);
+x = x * x;
 x(x);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpBinaryRight;
 let a = $(1);
-a *= $(2);
+tmpBinaryRight = $(2);
+a = a * tmpBinaryRight;
 $(a);
 `````

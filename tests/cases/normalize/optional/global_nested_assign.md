@@ -19,7 +19,7 @@ $(obj?.a?.b);
 `````js filename=intro
 var tmpObjPropValue;
 var tmpObjPropValue_1;
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -29,8 +29,8 @@ var tmpTernaryAlternate_1;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
-tmpComplexMemberObj = obj.a;
-tmpComplexMemberObj.b = 15;
+tmpAssignMemberObj = obj.a;
+tmpAssignMemberObj.b = 15;
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;
@@ -87,7 +87,7 @@ x(x);
 `````js filename=intro
 var tmpObjPropValue;
 var tmpObjPropValue_1;
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -97,8 +97,8 @@ var tmpTernaryAlternate_1;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
-tmpComplexMemberObj = obj.a;
-tmpComplexMemberObj.b = 15;
+tmpAssignMemberObj = obj.a;
+tmpAssignMemberObj.b = 15;
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;

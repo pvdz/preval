@@ -70,6 +70,7 @@ const VERBOSE_TRACING = true;
   - If-else with empty blocks are eliminated
   - Logical expressions with `??` are transformed away entirely, end up as ternaries
   - Logical expressions with `&&` or `||` are decompiled to `if-else` statements where possible
+  - Decompose compound assignments (x+=y -> x=x+y)
  */
 
 /*
@@ -115,9 +116,6 @@ const VERBOSE_TRACING = true;
   - Remove unused `return` keywords
   - Decompose sequence expressions in individual expressions, statements, or whatever. When possible.
     - May not be worth it because this is not always possible so we need to code against it, anyways.
-  - Decompose compound assignments (x+=y -> x=x+y)
-    - Don't think this is observable, even with proxies / getters, right?
-    - We can recompose them in the final step if we want to
   - Sequence expression
     - In left side of `for` loop. Move them out to statements before the `for`
   - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
@@ -1983,6 +1981,54 @@ export function phaseNormalize(fdata, fname) {
             _expr(newNode);
             changed = true;
             changedNow = true;
+          } else if (node.left.type === 'MemberExpression' && isComplexNode(node.left.object)) {
+            rule('Assignment member object should be simple');
+            log('- `a().b = c` --> `(tmp = a(), tmp.b = c)`');
+            before(node);
+
+            const mem = node.left;
+            const tmpName = createFreshVarInCurrentRootScope('tmpAssignMemberObj', true);
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(tmpName, mem.object),
+              AST.assignmentExpression(AST.memberExpression(tmpName, mem.property, mem.computed), node.right, node.operator),
+            );
+            crumbSet(1, newNode);
+
+            after(newNode);
+            changed = true;
+            changedNow = true;
+
+            _expr(newNode);
+          }
+          if (!changedNow && node.operator !== '=') {
+            if (
+              !isComplexNode(node.left) ||
+              (node.left.type === 'MemberExpression' &&
+                !isComplexNode(node.left.object) &&
+                (!node.left.computed || !isComplexNode(node.left.property)))
+            ) {
+              rule('Compound assignments should be non-compound');
+              log('- `a += b` --> `a = a + b`');
+              before(node);
+
+              const newNode = AST.assignmentExpression(
+                node.left,
+                AST.binaryExpression(node.operator.slice(0, -1), node.left, node.right), // += becomes +, >>>= becomes >>>, etc
+              );
+              crumbSet(1, newNode);
+
+              after(newNode);
+              changed = true;
+              changedNow = true;
+
+              _expr(newNode);
+            } else {
+              source(node);
+              ASSERT(
+                false,
+                'lhs should not be complex, or a member expression with non-complex object and (if computed) a non-complex property. Right?',
+              );
+            }
           }
 
           if (changedNow) {

@@ -29,9 +29,11 @@ function superExpensiveFunction() {
     return tmpStmtArg;
   }
 }
-var tmpComplexMemberObj;
-tmpComplexMemberObj = superExpensiveFunction();
-tmpComplexMemberObj.x += 5;
+var tmpAssignMemberObj;
+var tmpBinaryLeft;
+tmpAssignMemberObj = superExpensiveFunction();
+tmpBinaryLeft = tmpAssignMemberObj.x;
+tmpAssignMemberObj.x = tmpBinaryLeft + 5;
 `````
 
 ## Uniformed
@@ -44,8 +46,10 @@ function x() {
   }
 }
 var x;
+var x;
 x = x();
-x.x += 8;
+x = x.x;
+x.x = x * 8;
 `````
 
 ## Output
@@ -55,7 +59,9 @@ function superExpensiveFunction() {
   let tmpStmtArg = $();
   return tmpStmtArg;
 }
-var tmpComplexMemberObj;
-tmpComplexMemberObj = superExpensiveFunction();
-tmpComplexMemberObj.x += 5;
+var tmpAssignMemberObj;
+var tmpBinaryLeft;
+tmpAssignMemberObj = superExpensiveFunction();
+tmpBinaryLeft = tmpAssignMemberObj.x;
+tmpAssignMemberObj.x = tmpBinaryLeft + 5;
 `````

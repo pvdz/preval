@@ -23,7 +23,7 @@ $(f());
 function f() {
   var tmpObjPropValue;
   var tmpObjPropValue_1;
-  var tmpComplexMemberObj;
+  var tmpAssignMemberObj;
   var tmpArg;
   var tmpOptionalChaining;
   var tmpTernaryTest;
@@ -33,8 +33,8 @@ function f() {
   tmpObjPropValue_1 = $();
   tmpObjPropValue = { b: tmpObjPropValue_1 };
   const obj = { a: tmpObjPropValue };
-  tmpComplexMemberObj = obj.a;
-  tmpComplexMemberObj.b = 15;
+  tmpAssignMemberObj = obj.a;
+  tmpAssignMemberObj.b = 15;
   {
     tmpTernaryTest = obj == null;
     if (tmpTernaryTest) {
@@ -107,7 +107,7 @@ x(x);
 function f() {
   var tmpObjPropValue;
   var tmpObjPropValue_1;
-  var tmpComplexMemberObj;
+  var tmpAssignMemberObj;
   var tmpArg;
   var tmpOptionalChaining;
   var tmpTernaryTest;
@@ -117,8 +117,8 @@ function f() {
   tmpObjPropValue_1 = $();
   tmpObjPropValue = { b: tmpObjPropValue_1 };
   const obj = { a: tmpObjPropValue };
-  tmpComplexMemberObj = obj.a;
-  tmpComplexMemberObj.b = 15;
+  tmpAssignMemberObj = obj.a;
+  tmpAssignMemberObj.b = 15;
   tmpTernaryTest = obj == null;
   if (tmpTernaryTest) {
     tmpOptionalChaining = undefined;

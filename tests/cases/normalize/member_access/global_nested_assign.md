@@ -19,16 +19,16 @@ $(obj.a.b);
 `````js filename=intro
 var tmpObjPropValue;
 var tmpObjPropValue_1;
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 var tmpArg;
-var tmpComplexMemberObj_1;
+var tmpComplexMemberObj;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
+tmpAssignMemberObj = obj.a;
+tmpAssignMemberObj.b = 15;
 tmpComplexMemberObj = obj.a;
-tmpComplexMemberObj.b = 15;
-tmpComplexMemberObj_1 = obj.a;
-tmpArg = tmpComplexMemberObj_1.b;
+tmpArg = tmpComplexMemberObj.b;
 $(tmpArg);
 `````
 
@@ -55,15 +55,15 @@ x(x);
 `````js filename=intro
 var tmpObjPropValue;
 var tmpObjPropValue_1;
-var tmpComplexMemberObj;
+var tmpAssignMemberObj;
 var tmpArg;
-var tmpComplexMemberObj_1;
+var tmpComplexMemberObj;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
+tmpAssignMemberObj = obj.a;
+tmpAssignMemberObj.b = 15;
 tmpComplexMemberObj = obj.a;
-tmpComplexMemberObj.b = 15;
-tmpComplexMemberObj_1 = obj.a;
-tmpArg = tmpComplexMemberObj_1.b;
+tmpArg = tmpComplexMemberObj.b;
 $(tmpArg);
 `````

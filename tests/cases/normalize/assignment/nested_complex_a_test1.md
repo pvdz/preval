@@ -32,9 +32,9 @@ $(a).length = b;
 ## Normalized
 
 `````js filename=intro
-var tmpComplexMemberObj;
-tmpComplexMemberObj = $(a);
-tmpComplexMemberObj.length = b;
+var tmpAssignMemberObj;
+tmpAssignMemberObj = $(a);
+tmpAssignMemberObj.length = b;
 `````
 
 ## Uniformed
@@ -48,7 +48,7 @@ x.x = x;
 ## Output
 
 `````js filename=intro
-var tmpComplexMemberObj;
-tmpComplexMemberObj = $(a);
-tmpComplexMemberObj.length = b;
+var tmpAssignMemberObj;
+tmpAssignMemberObj = $(a);
+tmpAssignMemberObj.length = b;
 `````

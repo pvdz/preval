@@ -76,7 +76,7 @@ const VERBOSE_TRACING = true;
   - While headers are normalized
  */
 
-// low hanging fruit: imports/exports, while
+// low hanging fruit: imports/exports, switch
 // next level: assignment analysis and first pass of ssa
 // next level: figure out how to fix var decls vs use
 
@@ -86,7 +86,6 @@ const VERBOSE_TRACING = true;
     - Current implementation makes our system think the var might be `undefined` when we know that's never the case
     - Should the vars we introduce be set at the first time usage instead? hmmm
     - Fixing this generically might also increase input support so there's that
-  - objects, just like calls
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
   - all bindings have only one point of decl
@@ -95,57 +94,31 @@ const VERBOSE_TRACING = true;
     - dedupe parameter shadows
   - we could implement the one-time assignment thing
     - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
-  - Can we simplify/normalize loops? Should we?
-    - If the code only ever needed to worry about for(;;) then that may help
-    - This doesn't apply to for-in and for-of
   - Should arrows become regular funcs?
     - Not sure whether this actually simplifies anything for us.
   - Should func decls be changed to const blabla?
     - Also not sure whether this helps us anything.
-  - Decompose every line to do "one thing"
-    - Member expressions with more than one step, calls inside calls, etc etc. How far can we push this and is it worth anything?
-  - ternary to if-else
-    - or if-else to ternary? both have contextual limitations
-    - could transform ternary to if-else wrapped in an immediately invoked arrow and hope that we can unbox that later...? might be a little excessive.
-  - multiple conditions per if-else to one condition
   - switch to if-else
-    - probably too detrimental to perf. but perhaps we could detect that a series of if-elses applies to the same thing, in the end.
     - do switches have special optimization tricks we can use?
-  - if-else logic with !
-    - May make things worse as it might require `if (!false) $` to become `if (false) ; else $` ....
-    - Maybe it works if we only apply this to certain cases where `else` already exists
-  - if-else logic with >
-    - dangerous due to coercion
-    - not sure it helps anything at all
+    - trickier with overflow cases unless you go for functions. or maybe break+labels...
+    - default case _can_ happen anywhere as well, with unusual semantics
+    - could break cases up in arrows so we can call them directly...
   - return early stuff versus if-elsing it out?
     - What's easier to reason about
     - Create new functions for the remainder after an early return? Does that help?
   - Remove unused `return` keywords
-  - Decompose sequence expressions in individual expressions, statements, or whatever. When possible.
-    - May not be worth it because this is not always possible so we need to code against it, anyways.
-  - Sequence expression
-    - In left side of `for` loop. Move them out to statements before the `for`
-  - Assignments in var decl inits (`var a = b = c` -> `b = c; var a = b;`
-  - Empty `else` sub-statement should eliminate the else (probably not normalization)
   - Assignment of a simple node to itself
-  - Rewrite logic such that each branch in each function explicitly returns
-    - I think this makes it easier to reason about? But maybe it will lead to a too big of an explosion of code...
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
-  - Convert ternaries in certain places into statements?
-    - Not always possible so perhaps this is not worth it as we need to mirror the logic for if-else to ternary, anyways
-  - switch to if-else?
-    - trickier with overflow cases unless you go for functions. or maybe break+labels...
-    - default case _can_ happen anywhere as well, with unusual semantics
-    - could break cases up in arrows so we can call them directly...
   - Statements with empty body can be eliminated or at least split
-  - Continue to if block?
-    - Nested continues are less trivial to transform so this may not be an easy fix
-  - while (true) { if (Math.random()) break; $() }
-    - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
-      - Is that worth it? Kind of depends on the future overhead...
-    - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
-    - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
-  - Early returns to be properly branched out
+  - labels
+    - Continue to if block?
+      - Nested continues are less trivial to transform so this may not be an easy fix
+    - while (true) { if (Math.random()) break; $() }
+      - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
+        - Is that worth it? Kind of depends on the future overhead...
+      - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
+      - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
+    - maybe we dont allow continue/break with labels? outlaw labels altogether?
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals

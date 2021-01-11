@@ -11,25 +11,42 @@
 ## Input
 
 `````js filename=intro
-do {
-
-} while ($());
+while ($());
 `````
 
 ## Normalized
 
 `````js filename=intro
-while ($()) {}
+while (true) {
+  {
+    let ifTestTmp = $();
+    if (ifTestTmp) {
+      break;
+    }
+  }
+}
 `````
 
 ## Uniformed
 
 `````js filename=intro
-while (x()) {}
+while (x) {
+  {
+    var x = x();
+    if (x) {
+      break;
+    }
+  }
+}
 `````
 
 ## Output
 
 `````js filename=intro
-while ($()) {}
+while (true) {
+  let ifTestTmp = $();
+  if (ifTestTmp) {
+    break;
+  }
+}
 `````

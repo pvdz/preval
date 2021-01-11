@@ -17,23 +17,42 @@ while ($(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-while ($(1)) {
-  $(2);
+while (true) {
+  {
+    let ifTestTmp = $(1);
+    if (ifTestTmp) {
+      break;
+    } else {
+      $(2);
+    }
+  }
 }
 `````
 
 ## Uniformed
 
 `````js filename=intro
-while (x(8)) {
-  x(8);
+while (x) {
+  {
+    var x = x(8);
+    if (x) {
+      break;
+    } else {
+      x(8);
+    }
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while ($(1)) {
-  $(2);
+while (true) {
+  let ifTestTmp = $(1);
+  if (ifTestTmp) {
+    break;
+  } else {
+    $(2);
+  }
 }
 `````

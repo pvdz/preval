@@ -73,6 +73,7 @@ const VERBOSE_TRACING = true;
   - Decompose compound assignments (x+=y -> x=x+y)
   - for-in and for-of lhs expressions are normalized to an identifier
   - For headers with var decl are normalized to not contain the var decl
+  - While headers are normalized
  */
 
 // low hanging fruit: imports/exports, while
@@ -132,28 +133,19 @@ const VERBOSE_TRACING = true;
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - Convert ternaries in certain places into statements?
     - Not always possible so perhaps this is not worth it as we need to mirror the logic for if-else to ternary, anyways
-  - While test conditions
-    - We could move them into the body with a `break` or something... not sure whether this makes it more complex
-    - Perhaps `break` is something we need to fix anyways so might not matter and then doing it this way is better?
   - switch to if-else?
     - trickier with overflow cases unless you go for functions. or maybe break+labels...
     - default case _can_ happen anywhere as well, with unusual semantics
     - could break cases up in arrows so we can call them directly...
   - Statements with empty body can be eliminated or at least split
-  - For-in and for-of with a var decl
-    - Is that an easy transform to get rid of?
-    - `for (var x in y) ...` is really just `var x = key1; body; var x = key2; body; ...`
-    - If we'd pull the var out of the header (like `{ var x; for (x in y); }` then we run into double assignment issues again
-    - Maybe that's a non-issue because we have to solve it regardless
   - Continue to if block?
     - Nested continues are less trivial to transform so this may not be an easy fix
-  - while (f()) { y() }
-    - --> let x = true; while (x) { x = f(); while (x) { x = false; y() }
-    - --> while (true) { tmp = f(); if (!tmp) break; y(); }
-      - may be okay considering we'll need to support break/continue anyways. I wonder how we'll normalize those anyways
   - while (true) { if (Math.random()) break; $() }
     - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
-    - Is that worth it? Kind of depends on the future overhead...
+      - Is that worth it? Kind of depends on the future overhead...
+    - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
+    - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
+  - Early returns to be properly branched out
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -1776,6 +1768,22 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'WhileStatement': {
+        if (isComplexNode(node.test)) {
+          rule('While test must be simple node');
+          log('- `while (f()) z()` --> `while (true) { if (f()) break; else z(); }`');
+          before(node);
+
+          const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, AST.breakStatement(), node.body)));
+
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(newNode);
+
+          _stmt(newNode);
+          break;
+        }
+
         if (node.body.type !== 'BlockStatement') {
           rule('While sub-statement must be block');
           log('- `while (x) y` --> `while (x) { y }`');

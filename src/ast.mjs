@@ -51,6 +51,16 @@ export function blockStatement(...body) {
   };
 }
 
+export function breakStatement(label = null) {
+  if (typeof label === 'string') label = identifier(label);
+
+  return {
+    type: 'BreakStatement',
+    label,
+    $p: $p(),
+  };
+}
+
 export function callExpression(callee, args) {
   if (typeof callee === 'string') callee = identifier(callee);
 
@@ -58,6 +68,16 @@ export function callExpression(callee, args) {
     type: 'CallExpression',
     callee,
     arguments: args,
+    $p: $p(),
+  };
+}
+
+export function continueStatement(label = null) {
+  if (typeof label === 'string') label = identifier(label);
+
+  return {
+    type: 'ContinueStatement',
+    label,
     $p: $p(),
   };
 }

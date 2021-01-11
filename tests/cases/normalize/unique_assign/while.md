@@ -23,9 +23,16 @@ $(a);
 
 `````js filename=intro
 let a = $(1);
-while (a < 10) {
-  a = a + 1;
-  $(a);
+while (true) {
+  {
+    let ifTestTmp = a < 10;
+    if (ifTestTmp) {
+      break;
+    } else {
+      a = a + 1;
+      $(a);
+    }
+  }
 }
 $(a);
 `````
@@ -34,9 +41,16 @@ $(a);
 
 `````js filename=intro
 var x = x(8);
-while (x * 8) {
-  x = x * 8;
-  x(x);
+while (x) {
+  {
+    var x = x * 8;
+    if (x) {
+      break;
+    } else {
+      x = x * 8;
+      x(x);
+    }
+  }
 }
 x(x);
 `````
@@ -45,9 +59,14 @@ x(x);
 
 `````js filename=intro
 let a = $(1);
-while (a < 10) {
-  a = a + 1;
-  $(a);
+while (true) {
+  let ifTestTmp = a < 10;
+  if (ifTestTmp) {
+    break;
+  } else {
+    a = a + 1;
+    $(a);
+  }
 }
 $(a);
 `````

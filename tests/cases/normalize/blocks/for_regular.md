@@ -17,9 +17,16 @@ for ($(1); $(2); $(3)) $(4);
 `````js filename=intro
 {
   $(1);
-  while ($(2)) {
-    $(4);
-    $(3);
+  while (true) {
+    {
+      let ifTestTmp = $(2);
+      if (ifTestTmp) {
+        break;
+      } else {
+        $(4);
+        $(3);
+      }
+    }
   }
 }
 `````
@@ -29,9 +36,16 @@ for ($(1); $(2); $(3)) $(4);
 `````js filename=intro
 {
   x(8);
-  while (x(8)) {
-    x(8);
-    x(8);
+  while (x) {
+    {
+      var x = x(8);
+      if (x) {
+        break;
+      } else {
+        x(8);
+        x(8);
+      }
+    }
   }
 }
 `````
@@ -40,8 +54,13 @@ for ($(1); $(2); $(3)) $(4);
 
 `````js filename=intro
 $(1);
-while ($(2)) {
-  $(4);
-  $(3);
+while (true) {
+  let ifTestTmp = $(2);
+  if (ifTestTmp) {
+    break;
+  } else {
+    $(4);
+    $(3);
+  }
 }
 `````

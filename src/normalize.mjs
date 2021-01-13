@@ -766,7 +766,7 @@ export function phaseNormalize(fdata, fname) {
                 body.splice(
                   i,
                   1,
-                  AST.variableDeclaration(decl.id, expr.left, e.kind === 'const' ? 'let' : e.kind),
+                  AST.variableDeclaration(decl.id, init.left, e.kind === 'const' ? 'let' : e.kind),
                   AST.ifStatement(decl.id, AST.emptyStatement(), AST.expressionStatement(AST.assignmentExpression(decl.id, init.right))),
                 );
 

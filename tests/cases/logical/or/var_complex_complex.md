@@ -17,7 +17,7 @@ const x = $(1) || $(2);
 ## Normalized
 
 `````js filename=intro
-let x;
+let x = $(1);
 if (x) {
 } else {
   x = $(2);
@@ -27,7 +27,7 @@ if (x) {
 ## Uniformed
 
 `````js filename=intro
-var x;
+var x = x(8);
 if (x) {
 } else {
   x = x(8);
@@ -37,7 +37,7 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x;
+let x = $(1);
 if (x) {
 } else {
   x = $(2);

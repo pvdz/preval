@@ -18,7 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x;
+let x = 1;
 if (x) {
 } else {
   x = $(2);
@@ -29,7 +29,7 @@ $(x);
 ## Uniformed
 
 `````js filename=intro
-var x;
+var x = 8;
 if (x) {
 } else {
   x = x(8);
@@ -40,7 +40,7 @@ x(x);
 ## Output
 
 `````js filename=intro
-let x;
+let x = 1;
 if (x) {
 } else {
   x = $(2);

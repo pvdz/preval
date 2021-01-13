@@ -412,6 +412,10 @@ export function phase4(program, fdata, resolve, req) {
         break;
       }
 
+      case 'LabeledStatement': {
+        break;
+      }
+
       case 'Program': {
         node.body.forEach((cnode, i) => stmt(node, 'body', i, cnode));
         flattenBlocks(node);

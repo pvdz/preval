@@ -1507,6 +1507,22 @@ export function phaseNormalize(fdata, fname) {
         break;
       }
 
+      case 'LabeledStatement': {
+        if (node.body.type !== 'BlockStatement') {
+          rule('Label sub-statement must be block');
+          log('- `x: y` --> `x: { y }`');
+          before(node);
+
+          node.body = AST.blockStatement(node.consequent);
+
+          changed = true;
+          after(node);
+        }
+
+        stmt(node, 'body', -1, node.body);
+        break;
+      }
+
       case 'Program': {
         ensureVarDeclsCreateOneBinding(node.body);
         statementifyExpressions(node);

@@ -579,7 +579,6 @@ export function phase1(fdata, resolve, req) {
         break;
 
       case 'LabeledStatement:after': // node.body
-        TODO; // add tests
         node.$p.explicitReturns = node.body.$p.explicitReturns === 'yes' ? 'yes' : 'no';
         log('- explicitReturns:', node.$p.explicitReturns);
         break;

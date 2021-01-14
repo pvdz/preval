@@ -96,6 +96,17 @@ export function conditionalExpression(test, consequent, alternate) {
   };
 }
 
+export function doWhileStatement(body, test) {
+  if (typeof test === 'string') test = identifier(test);
+
+  return {
+    type: 'DoWhileStatement',
+    test,
+    body,
+    $p: $p,
+  };
+}
+
 export function emptyStatement() {
   return {
     type: 'EmptyStatement',
@@ -162,6 +173,17 @@ export function ifStatement(test, consequent, alternate = null) {
   };
 }
 
+export function labeledStatement(label, body) {
+  if (typeof label === 'string') label = identifier(label);
+
+  return {
+    type: 'LabeledStatement',
+    label,
+    body,
+    $p: $p(),
+  };
+}
+
 export function literal(value) {
   if (typeof value === 'number') {
     return {
@@ -180,6 +202,19 @@ export function literal(value) {
   } else {
     ASSERT(false, 'TODO', value);
   }
+}
+
+export function logicalExpression(operator, left, right) {
+  if (typeof left === 'string') left = identifier(left);
+  if (typeof right === 'string') right = identifier(right);
+
+  return {
+    type: 'LogicalExpression',
+    operator,
+    left,
+    right,
+    $p: $p(),
+  };
 }
 
 export function memberCall(object, property, args, computed = false) {
@@ -231,10 +266,6 @@ export function sequenceExpression(...expressions) {
     $p: $p(),
   };
 }
-// TODO: is this kind of extension worth it? expressionStatement(sequenceExression(...)) vs sequenceExpression.statement(...)
-sequenceExpression.statement = (...args) => {
-  return expressionStatement(...args);
-};
 
 export function spreadElement(argument) {
   if (typeof argument === 'string') argument = identifier(argument);
@@ -243,6 +274,41 @@ export function spreadElement(argument) {
     type: 'SpreadElement',
     argument,
     $p: $p(),
+  };
+}
+
+export function switchCase(test = null, ...consequent) {
+  if (typeof test === 'strng') test = identifier(test);
+  if (Array.isArray(consequent[0])) consequent = consequent[0];
+
+  return {
+    type: 'SwitchCase',
+    test,
+    consequent,
+    $p: $p(),
+  };
+}
+
+export function switchDefault(...consequent) {
+  // The `default` is a SwitchCase with test=null
+  if (Array.isArray(consequent[0])) consequent = consequent[0];
+
+  return {
+    type: 'SwitchCase',
+    test: null,
+    consequent,
+    $p: $p(),
+  };
+}
+
+export function switchStatement(discriminant, cases) {
+  if (typeof discriminant === 'string') discriminant = identifier(discriminant);
+
+  return {
+    type: 'SwitchStatement',
+    discriminant,
+    cases,
+    $p: $p,
   };
 }
 

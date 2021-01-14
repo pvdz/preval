@@ -40,7 +40,6 @@ const VERBOSE_TRACING = true;
     - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
   - Complex callee and arguments for `new` expressions (similar to regular calls)
   - Array elements are normalized if they are not simple
-    - TODO: same for object property values
   - Object property shorthands into regular properties
     - Simplifies some edge case code checks
   - Computed property access for complex keys is normalized to ident keys
@@ -74,9 +73,12 @@ const VERBOSE_TRACING = true;
   - for-in and for-of lhs expressions are normalized to an identifier
   - For headers with var decl are normalized to not contain the var decl
   - While headers are normalized
+  - Switches are transformed to if-else with labeled break
+  - Label names are made unique globally (relative to the module)
+  - Unreferenced labels are dropped
  */
 
-// low hanging fruit: imports/exports, switch
+// low hanging fruit: imports/exports
 // next level: assignment analysis and first pass of ssa
 // next level: figure out how to fix var decls vs use
 
@@ -118,7 +120,8 @@ const VERBOSE_TRACING = true;
         - Is that worth it? Kind of depends on the future overhead...
       - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
       - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
-    - maybe we dont allow continue/break with labels? outlaw labels altogether?
+    - what would be a normalized cross-branch labelled break/continue look like?
+  - Can we get rid of labeled continue such that we can normalize all label sub-statements to blocks? Right now we need to exclude loops.
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -240,19 +243,28 @@ export function phaseNormalize(fdata, fname) {
       });
     }
   }
+  function createNewUniqueLabel(name) {
+    let n = 0;
+    if (fdata.globallyUniqueLabelRegistery.has(name)) {
+      while (fdata.globallyUniqueLabelRegistery.has(name + '_' + ++n));
+    }
+    return n ? name + '_' + n : name;
+  }
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
 
   let passes = 0;
   do {
     changed = false;
+    // Create a new map for labels every time. Populated as we go. Label references always appear after the definition anyways.
+    fdata.globallyUniqueLabelRegistery = new Map();
+    // Clear usage/update lists because mutations may have affected them
+    fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.updates = []), (meta.usages = [])));
     stmt(null, 'ast', -1, ast);
     log('\nCurrent state\n--------------\n' + fmat(printer(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');
-      // Clear usage/update lists because mutations may have affected them
-      fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.updates = []), (meta.usages = [])));
     }
   } while (changed);
 
@@ -268,6 +280,14 @@ export function phaseNormalize(fdata, fname) {
           node.name = uniqueName;
         }
       });
+    }
+  });
+  fdata.globallyUniqueLabelRegistery.forEach((meta) => {
+    if (meta.usages.length === 0) {
+      log('Dropping the label `' + meta.name + '` because it is not referenced');
+      const { parent, prop, index } = meta.labelNode;
+      if (index >= 0) parent[prop][index] = parent[prop][index].body;
+      else parent[prop] = parent[prop].body;
     }
   });
 
@@ -1036,6 +1056,14 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'BreakStatement': {
+        if (node.label) {
+          log('Recording', node.label.name, 'as being used here');
+          const parent = crumbsNodes[crumbsNodes.length - 1];
+          const prop = crumbsProps[crumbsProps.length - 1];
+          const index = crumbsIndexes[crumbsIndexes.length - 1];
+
+          fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push({ parent, prop, index });
+        }
         break;
       }
 
@@ -1045,6 +1073,14 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ContinueStatement': {
+        if (node.label) {
+          log('Recording', node.label.name, 'as being used here');
+          const parent = crumbsNodes[crumbsNodes.length - 1];
+          const prop = crumbsProps[crumbsProps.length - 1];
+          const index = crumbsIndexes[crumbsIndexes.length - 1];
+
+          fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push({ parent, prop, index });
+        }
         break;
       }
 
@@ -1508,16 +1544,42 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'LabeledStatement': {
-        if (node.body.type !== 'BlockStatement') {
-          rule('Label sub-statement must be block');
+        if (
+          !['BlockStatement', 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'].includes(
+            node.body.type,
+          )
+        ) {
+          // TODO: can we get rid of the labeled continue such that we dont have to make this exception? Guess it won't be easy.
+          rule('Label sub-statement must be block unless it is a loop');
           log('- `x: y` --> `x: { y }`');
           before(node);
 
-          node.body = AST.blockStatement(node.consequent);
+          node.body = AST.blockStatement(node.body);
 
           changed = true;
           after(node);
         }
+
+        ASSERT(
+          !fdata.globallyUniqueLabelRegistery.has(node.label.name) || fdata.globallyUniqueLabelRegistery.get(node.label.name) === true,
+          'labels should be made unique in phase1',
+          fdata.globallyUniqueLabelRegistery,
+          node,
+        );
+        const parent = crumbsNodes[crumbsNodes.length - 1];
+        const prop = crumbsProps[crumbsProps.length - 1];
+        const index = crumbsIndexes[crumbsIndexes.length - 1];
+        fdata.globallyUniqueLabelRegistery.set(node.label.name, {
+          // ident meta data
+          name: node.label.name,
+          uniqueName: node.label.name,
+          labelNode: {
+            parent,
+            prop,
+            index,
+          },
+          usages: [], // {parent, prop, index} of the break/continue statement referring to the label
+        });
 
         stmt(node, 'body', -1, node.body);
         break;
@@ -1578,22 +1640,253 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'SwitchStatement': {
-        expr(node, 'discriminant', -1, node.discriminant);
+        if (isComplexNode(node.discriminant)) {
+          rule('Switch condition should be simple node');
+          log('- `switch (f()) {}` --> `{ let tmp = f(); switch (tmp) {} }`');
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpSwitchTest');
+          const newNode = AST.blockStatement(
+            AST.variableDeclaration(tmpName, node.discriminant, 'const'),
+            AST.switchStatement(tmpName, node.cases),
+          );
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(newNode);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          break;
+        }
+
+        // Variables declared on the toplevel of a switch case have to be hoisted to before the switch case, and const
+        // converted to let, to ensure that all cases still have access to that binding after the transformations
+        let hasPattern = false; // If there's a pattern binding anywhere then it needs to be decomposed before we can decompose the switch
+        const vars = [];
+        const lets = [];
         node.cases.forEach((cnode, i) => {
-          // The `default` is in this list as well and has no test node
-          if (cnode.test) {
-            expr2(node, 'cases', i, cnode, 'test', -1, cnode.test);
-          }
-          // Wrap in block first. This way block-dedenting can still happen if necessary.
-          // Switch is unique in that this transform may still cause nested blocks. Other occurrences for normalization do not.
-          if (cnode.consequent.length > 1 || (cnode.consequent[0] && cnode.consequent[0].type !== 'BlockStatement')) {
-            rule('Switch case must contain exactly one block'); // TODO: this is duplicate
-            log('- `switch (x) { case a: b; c; }` --> `switch (x) { case a: { b; c; } }`');
-            cnode.consequent = [AST.blockStatement(cnode.consequent)];
-            // changed = true; // Don't think I need to set this?
-          }
-          cnode.consequent.forEach((dnode, i) => stmt(cnode, 'consequent', i, dnode));
+          cnode.consequent.some((snode, i) => {
+            if (snode.type === 'VariableDeclaration') {
+              snode.declarations.some((dnode) => {
+                if (dnode.id.type !== 'Identifier') {
+                  log('Found at least one pattern binding. Need to normalize that away first.');
+                  hasPattern = true;
+                  return true;
+                }
+
+                log('- Found `' + dnode.id.name + '`');
+                if (snode.kind === 'var') vars.push(dnode.id.name);
+                else lets.push(dnode.id.name);
+
+                rule('Switch case toplevel declaration should be outlined; [1/2] replacing decls with their inits');
+                log('- `switch (x) { case a: let b = 10, c = 20; }` --> `switch (x) { case a: b = 10, c = 20; }`');
+                log('- `switch (x) { case a: let b; }` --> `switch (x) { case a: b = undefined; }`');
+                cnode.consequent[i] = AST.expressionStatement(
+                  AST.sequenceExpression(
+                    snode.declarations.map((dnode) => AST.assignmentExpression(dnode.id, dnode.init || AST.identifier('undefined'))),
+                  ),
+                );
+              });
+              if (hasPattern) return true;
+            }
+          });
+          if (hasPattern) return true;
         });
+
+        if (hasPattern) {
+          changed = true;
+          log(
+            'Skipping switch decomposition because there was at least one binding pattern. Walking the switch first to eliminate those before decomposing the switch.',
+          );
+
+          node.cases.forEach((cnode, i) => {
+            crumb(node, 'cases', i);
+            cnode.consequent.forEach((dnode, j) => stmt(cnode, 'consequent', j, dnode));
+            uncrumb(node, 'cases', i);
+          });
+          break;
+        }
+
+        if (vars.length || lets.length) {
+          rule('Switch case toplevel declaration should be outlined; [2/2] adding var decls before the switch');
+          log('- `switch (x) { case y: a = 10, b = 20; }` --> `{ let a; let b; switch (x) { case y: a = 10, b = 10; }`');
+          before(node); // omit this one?
+
+          const newNode = AST.blockStatement(
+            ...vars.map((name) => AST.variableDeclaration(name, undefined, 'var')),
+            ...lets.map((name) => AST.variableDeclaration(name)),
+            node,
+          );
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(newNode); // omit this one?
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          break;
+        }
+
+        // A switch with a default in the middle has a somewhat more complex transform involving a switch (but no labeled breaks...)
+        // That's because essentially a default occurs last and kind of jumps back up. This is a very uncommon case, but it's legal.
+        // If the default is the last case then there is no jumping back so we don't need the loop. That's almost always the case.
+        let hasDefaultAt = -1;
+        node.cases.some((cnode, i) => {
+          if (!cnode.test) {
+            hasDefaultAt = i;
+            return true;
+          }
+        });
+
+        if (hasDefaultAt >= 0 && hasDefaultAt < node.cases.length - 1) {
+          rule('Switch case with default that is not the last case must be eliminated');
+          log('- transforms to do-while that loops at most once');
+          log('- `switch (1) { case a: b; default: c; case d: e }`');
+          log(
+            '--> `let x = 1; let def = false; let fall = false; do { if (def) fall = true; else { if (x === a) { b; fall = true } } if (fall) { c; fall = true; } if (fall || x === d) { e; fall = true; } def = true; } while (fall === false);`',
+          );
+          before(node); // omit this one?
+
+          const tmpVal = createFreshVarInCurrentRootScope('tmpSwitchValue');
+          const tmpDef = createFreshVarInCurrentRootScope('tmpSwitchCheckCases');
+          const tmpFall = createFreshVarInCurrentRootScope('tmpSwitchFallthrough');
+
+          const newNode = AST.blockStatement(
+            AST.variableDeclaration(tmpVal, node.discriminant),
+            AST.variableDeclaration(tmpDef, 'true'),
+            AST.variableDeclaration(tmpFall, 'false'),
+            AST.doWhileStatement(
+              AST.blockStatement(
+                AST.ifStatement(
+                  tmpDef,
+                  AST.blockStatement(
+                    AST.expressionStatement(AST.literal('Cases before the default case')),
+                    ...node.cases.slice(0, hasDefaultAt).map((cnode, i) => {
+                      log('- `case x: y; break;` --> `if (fall || x === value) { { y; break; } fall = true }`');
+                      before(cnode);
+
+                      const newNode = AST.blockStatement(
+                        AST.expressionStatement(AST.literal('case ' + i)),
+                        AST.ifStatement(
+                          AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', cnode.test, tmpVal)),
+                          AST.blockStatement(
+                            AST.blockStatement(cnode.consequent),
+                            AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
+                          ),
+                        ),
+                      );
+
+                      after(newNode);
+                      return newNode;
+                    }),
+                  ),
+                  // If all cases failed, then set fall=true so the default case gets visited after this branch
+                  AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
+                ),
+                // Default case
+                AST.ifStatement(
+                  tmpFall,
+                  AST.blockStatement(
+                    AST.expressionStatement(AST.literal('the default case')),
+                    AST.blockStatement(node.cases[hasDefaultAt].consequent),
+                    AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
+                  ),
+                ),
+                // Cases after the default case (at least one)
+                AST.blockStatement(
+                  AST.blockStatement(
+                    AST.expressionStatement(AST.literal('cases after the default case')),
+                    ...node.cases.slice(hasDefaultAt + 1).map((cnode, i) => {
+                      log('- `case x: y; break;` --> `if (fall || x === value) { { y; break; } fall = true }`');
+                      before(cnode);
+
+                      const newNode = AST.blockStatement(
+                        AST.expressionStatement(AST.literal('case ' + i)),
+                        AST.ifStatement(
+                          AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', cnode.test, tmpVal)),
+                          AST.blockStatement(
+                            AST.blockStatement(cnode.consequent),
+                            AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
+                          ),
+                        ),
+                      );
+
+                      after(newNode);
+                      return newNode;
+                    }),
+                  ),
+                ),
+                AST.expressionStatement(AST.assignmentExpression(tmpDef, 'true')),
+              ),
+              // } while()
+              AST.binaryExpression('===', tmpFall, 'false'),
+            ),
+          );
+
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(newNode);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+        } else {
+          // Note: discriminant is normalized at this point
+          rule('Switch cases must normalize to labeled if-else');
+          log('- Transform to a set of if-elses with fallthrough mechanics and labeled breaks');
+          log('- `switch (t) { case a(): b(); case c(): d(); break; case e(): f() }`');
+          log(
+            '--> `let fall = false; exit: { if (fall || x === a()) { { b(); } fall = true; } if (fall || x === b()) { { d(); break exit; } fall = true } if (fall || x === e()) { { f(); break exit; } fall = true; } }`',
+          );
+          before(node); // omit this one?
+
+          const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
+          function labelEmptyBreaks(snode) {
+            if (snode.type === 'BlockStatement') {
+              snode.body.forEach(labelEmptyBreaks);
+            } else if (snode.type === 'IfStatement') {
+              labelEmptyBreaks(snode.consequent);
+              if (snode.alternate) labelEmptyBreaks(snode.alternate);
+            } else if (snode.type === 'BreakStatement' && snode.label === null) {
+              // Change into labeled break. It will break to the start of what was originally a switch statement.
+              snode.label = AST.identifier(tmpLabel);
+            }
+          }
+
+          const tmpFall = createFreshVarInCurrentRootScope('tmpFallthrough');
+          fdata.globallyUniqueLabelRegistery.set(tmpLabel, true); // Mark as being reserved
+          const newNode = AST.labeledStatement(
+            tmpLabel,
+            AST.blockStatement(
+              AST.variableDeclaration(tmpFall, 'false'),
+              ...node.cases.map((cnode, i) => {
+                cnode.consequent.forEach(labelEmptyBreaks);
+
+                if (cnode.test) {
+                  return AST.ifStatement(
+                    AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', node.discriminant, cnode.test)),
+                    AST.blockStatement(
+                      AST.expressionStatement(AST.literal('case ' + i + ':')),
+                      AST.blockStatement(cnode.consequent),
+                      AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
+                    ),
+                  );
+                } else {
+                  // Default case. Must be last case of the switch (otherwise the other transform should be applied)
+                  // I don't think there's a reason to check anything at this point, right? If the previous case(s)
+                  // fall through, then they visit the code. And otherwise they break / return. So just add block as-is?
+                  return AST.blockStatement(AST.expressionStatement(AST.literal('default case:')), ...cnode.consequent);
+                }
+              }),
+            ),
+          );
+
+          crumbSet(1, newNode);
+
+          changed = true;
+          after(newNode);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+        }
+
         break;
       }
 

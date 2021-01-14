@@ -24,59 +24,265 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-switch ($(1)) {
-  case $(2): {
-    $(3);
+var tmpBinaryRight;
+var tmpBinaryRight_1;
+var tmpBinaryRight_2;
+var tmpBinaryRight_3;
+var tmpBinaryRight_4;
+{
+  const tmpSwitchTest = $(1);
+  tmpSwitchBreak: {
+    let tmpFallthrough = false;
+    {
+      let ifTestTmp = tmpFallthrough;
+      if (ifTestTmp) {
+      } else {
+        tmpBinaryRight = $(2);
+        ifTestTmp = tmpSwitchTest === tmpBinaryRight;
+      }
+      if (ifTestTmp) {
+        ('case 0:');
+        {
+          $(3);
+        }
+        tmpFallthrough = true;
+      }
+    }
+    {
+      let ifTestTmp_1 = tmpFallthrough;
+      if (ifTestTmp_1) {
+      } else {
+        tmpBinaryRight_1 = $(4);
+        ifTestTmp_1 = tmpSwitchTest === tmpBinaryRight_1;
+      }
+      if (ifTestTmp_1) {
+        ('case 1:');
+        {
+        }
+        tmpFallthrough = true;
+      }
+    }
+    {
+      let ifTestTmp_2 = tmpFallthrough;
+      if (ifTestTmp_2) {
+      } else {
+        tmpBinaryRight_2 = $(5);
+        ifTestTmp_2 = tmpSwitchTest === tmpBinaryRight_2;
+      }
+      if (ifTestTmp_2) {
+        ('case 2:');
+        {
+        }
+        tmpFallthrough = true;
+      }
+    }
+    {
+      let ifTestTmp_3 = tmpFallthrough;
+      if (ifTestTmp_3) {
+      } else {
+        tmpBinaryRight_3 = $(6);
+        ifTestTmp_3 = tmpSwitchTest === tmpBinaryRight_3;
+      }
+      if (ifTestTmp_3) {
+        ('case 3:');
+        {
+          break tmpSwitchBreak;
+        }
+        tmpFallthrough = true;
+      }
+    }
+    {
+      let ifTestTmp_4 = tmpFallthrough;
+      if (ifTestTmp_4) {
+      } else {
+        tmpBinaryRight_4 = $(7);
+        ifTestTmp_4 = tmpSwitchTest === tmpBinaryRight_4;
+      }
+      if (ifTestTmp_4) {
+        ('case 4:');
+        {
+        }
+        tmpFallthrough = true;
+      }
+    }
+    {
+      ('default case:');
+    }
   }
-  case $(4):
-
-  case $(5):
-
-  case $(6): {
-    break;
-  }
-  case $(7):
-
-  default:
 }
 `````
 
 ## Uniformed
 
 `````js filename=intro
-switch (x(8)) {
-  case x(8): {
-    x(8);
+var x;
+var x;
+var x;
+var x;
+var x;
+{
+  var x = x(8);
+  x: {
+    var x = x;
+    {
+      var x = x;
+      if (x) {
+      } else {
+        x = x(8);
+        x = x * x;
+      }
+      if (x) {
+        ('str');
+        {
+          x(8);
+        }
+        x = x;
+      }
+    }
+    {
+      var x = x;
+      if (x) {
+      } else {
+        x = x(8);
+        x = x * x;
+      }
+      if (x) {
+        ('str');
+        {
+        }
+        x = x;
+      }
+    }
+    {
+      var x = x;
+      if (x) {
+      } else {
+        x = x(8);
+        x = x * x;
+      }
+      if (x) {
+        ('str');
+        {
+        }
+        x = x;
+      }
+    }
+    {
+      var x = x;
+      if (x) {
+      } else {
+        x = x(8);
+        x = x * x;
+      }
+      if (x) {
+        ('str');
+        {
+          break x;
+        }
+        x = x;
+      }
+    }
+    {
+      var x = x;
+      if (x) {
+      } else {
+        x = x(8);
+        x = x * x;
+      }
+      if (x) {
+        ('str');
+        {
+        }
+        x = x;
+      }
+    }
+    {
+      ('str');
+    }
   }
-  case x(8):
-
-  case x(8):
-
-  case x(8): {
-    break;
-  }
-  case x(8):
-
-  default:
 }
 `````
 
 ## Output
 
 `````js filename=intro
-switch ($(1)) {
-  case $(2): {
-    $(3);
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    let ifTestTmp = tmpFallthrough;
+    if (ifTestTmp) {
+    } else {
+      tmpBinaryRight = $(2);
+      ifTestTmp = tmpSwitchTest === tmpBinaryRight;
+    }
+    if (ifTestTmp) {
+      ('case 0:');
+      {
+        $(3);
+      }
+      tmpFallthrough = true;
+    }
   }
-  case $(4):
-
-  case $(5):
-
-  case $(6): {
-    break;
+  {
+    let ifTestTmp_1 = tmpFallthrough;
+    if (ifTestTmp_1) {
+    } else {
+      tmpBinaryRight_1 = $(4);
+      ifTestTmp_1 = tmpSwitchTest === tmpBinaryRight_1;
+    }
+    if (ifTestTmp_1) {
+      ('case 1:');
+      {
+      }
+      tmpFallthrough = true;
+    }
   }
-  case $(7):
-
-  default:
+  {
+    let ifTestTmp_2 = tmpFallthrough;
+    if (ifTestTmp_2) {
+    } else {
+      tmpBinaryRight_2 = $(5);
+      ifTestTmp_2 = tmpSwitchTest === tmpBinaryRight_2;
+    }
+    if (ifTestTmp_2) {
+      ('case 2:');
+      {
+      }
+      tmpFallthrough = true;
+    }
+  }
+  {
+    let ifTestTmp_3 = tmpFallthrough;
+    if (ifTestTmp_3) {
+    } else {
+      tmpBinaryRight_3 = $(6);
+      ifTestTmp_3 = tmpSwitchTest === tmpBinaryRight_3;
+    }
+    if (ifTestTmp_3) {
+      ('case 3:');
+      {
+        break tmpSwitchBreak;
+      }
+      tmpFallthrough = true;
+    }
+  }
+  {
+    let ifTestTmp_4 = tmpFallthrough;
+    if (ifTestTmp_4) {
+    } else {
+      tmpBinaryRight_4 = $(7);
+      ifTestTmp_4 = tmpSwitchTest === tmpBinaryRight_4;
+    }
+    if (ifTestTmp_4) {
+      ('case 4:');
+      {
+      }
+      tmpFallthrough = true;
+    }
+  }
+  {
+    ('default case:');
+  }
 }
 `````

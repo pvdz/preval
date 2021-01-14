@@ -1,10 +1,10 @@
 # Preval test case
 
-# switch.md
+# test_complex.md
 
-> normalize > blocks > switch
+> normalize > switch > test_complex
 >
-> Add blocks to sub-statements. Let's do this for cases as well, for now. Maybe that's a mistake :)
+> Normalize switches
 
 #TODO
 
@@ -12,9 +12,7 @@
 
 `````js filename=intro
 switch ($(1)) {
-  default: {
-    $(3);
-  }
+
 }
 `````
 
@@ -25,12 +23,6 @@ switch ($(1)) {
   const tmpSwitchTest = $(1);
   {
     let tmpFallthrough = false;
-    {
-      ('default case:');
-      {
-        $(3);
-      }
-    }
   }
 }
 `````
@@ -42,12 +34,6 @@ switch ($(1)) {
   var x = x(8);
   {
     var x = x;
-    {
-      ('str');
-      {
-        x(8);
-      }
-    }
   }
 }
 `````
@@ -56,5 +42,4 @@ switch ($(1)) {
 
 `````js filename=intro
 $(1);
-$(3);
 `````

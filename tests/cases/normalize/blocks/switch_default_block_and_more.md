@@ -22,12 +22,17 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-switch ($(1)) {
-  default: {
+{
+  const tmpSwitchTest = $(1);
+  tmpSwitchBreak: {
+    let tmpFallthrough = false;
     {
-      $(3);
+      ('default case:');
+      {
+        $(3);
+      }
+      break tmpSwitchBreak;
     }
-    break;
   }
 }
 `````
@@ -35,12 +40,17 @@ switch ($(1)) {
 ## Uniformed
 
 `````js filename=intro
-switch (x(8)) {
-  default: {
+{
+  var x = x(8);
+  x: {
+    var x = x;
     {
-      x(8);
+      ('str');
+      {
+        x(8);
+      }
+      break x;
     }
-    break;
   }
 }
 `````
@@ -48,10 +58,15 @@ switch (x(8)) {
 ## Output
 
 `````js filename=intro
-switch ($(1)) {
-  default: {
-    $(3);
-    break;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    {
+      $(3);
+    }
+    break tmpSwitchBreak;
   }
 }
 `````

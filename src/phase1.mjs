@@ -14,6 +14,7 @@ export function phase1(fdata, resolve, req) {
 
   const funcStack = [];
   const lexScopeStack = [];
+  const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   let lexScopeCounter = 0;
   const funcScopeStack = [];
   const thisStack = [];
@@ -85,7 +86,30 @@ export function phase1(fdata, resolve, req) {
   }
   globals.forEach((_, name) => registerGlobalIdent(name, name, { isImplicitGlobal: true, knownBuiltin: true }));
 
+  const globallyUniqueLabelRegistery = new Map();
+  function createUniqueGlobalLabel(name) {
+    // Create a (module) globally unique label name.
+    let n = 0;
+    if (globallyUniqueLabelRegistery.has(name)) {
+      while (globallyUniqueLabelRegistery.has(name + '_' + ++n));
+    }
+    return n ? name + '_' + n : name;
+  }
+  function registerGlobalLabel(name, originalName, labelNode) {
+    ASSERT(!globallyUniqueLabelRegistery.has(name), 'this func should be called with the unique label name');
+
+    globallyUniqueLabelRegistery.set(name, {
+      // ident meta data
+      uid: ++fdata.globalNameCounter,
+      originalName,
+      uniqueName: name,
+      labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
+      usages: [], // {parent, prop, index} of the break/continue statement referring to the label
+    });
+  }
+
   fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
+  fdata.globallyUniqueLabelRegistery = globallyUniqueLabelRegistery;
   const imports = new Map();
   fdata.imports = imports;
   const exports = new Map();
@@ -482,6 +506,33 @@ export function phase1(fdata, resolve, req) {
         log('- explicitReturns:', node.$p.explicitReturns);
         break;
 
+      case 'BreakStatement:before':
+      case 'ContinueStatement:before': {
+        // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
+        // Find the first label ancestor where the original name matches the label of this node
+        if (node.label) {
+          const name = node.label.name;
+          log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
+          let i = labelStack.length;
+          while (--i >= 0) {
+            log('->', labelStack[i].$p.originalLabelName)
+            if (labelStack[i].$p.originalLabelName === name) {
+              const newName = labelStack[i].label.name;
+              if (newName !== name) {
+                log('- Label was renamed to', newName);
+                node.label.name = newName;
+                break;
+              } else {
+                log('- Label not renamed');
+              }
+            }
+          }
+        } else {
+          log('No label');
+        }
+        break;
+      }
+
       case 'IfStatement:after': // there is no ElseStatement (!), node.consequent and node.alternate
         // The problem here is that each branch is not visited explicitly so we can't queue up a return tid for
         // the `if` and the `else` separately. That's a little annoying. So we have to retroactively check the
@@ -578,10 +629,24 @@ export function phase1(fdata, resolve, req) {
         ASSERT(false, 'with is not allowed in a "strict" context. The parser should have rejected this.');
         break;
 
-      case 'LabeledStatement:after': // node.body
+      case 'LabeledStatement:before': {
+        labelStack.push(node);
+        log('Label:', node.label.name);
+        node.$p.originalLabelName = node.label.name;
+        const uniqueName = createUniqueGlobalLabel(node.label.name);
+        registerGlobalLabel(uniqueName, node.label.name, node);
+        if (node.label.name !== uniqueName) {
+          log('- Unique label name:', uniqueName);
+          node.label.name = uniqueName;
+        }
+        break;
+      }
+      case 'LabeledStatement:after': {
+        labelStack.pop();
         node.$p.explicitReturns = node.body.$p.explicitReturns === 'yes' ? 'yes' : 'no';
         log('- explicitReturns:', node.$p.explicitReturns);
         break;
+      }
     }
 
     if (!before && node.$scope) {

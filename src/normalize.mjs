@@ -136,9 +136,11 @@ function rule(desc, ...rest) {
 function before(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
 }
+
 function source(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, printer(node));
 }
+
 function after(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'After :' + RESET, printer(node));
 }
@@ -169,6 +171,7 @@ export function phaseNormalize(fdata, fname) {
     if (index >= 0) return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]][index];
     else return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]];
   }
+
   function crumbSet(delta, node) {
     ASSERT(delta > 0, 'must go at least one step back');
     ASSERT(delta < crumbsNodes.length, 'can not go past root');
@@ -183,6 +186,7 @@ export function phaseNormalize(fdata, fname) {
     if (index >= 0) return (parent[prop][index] = node);
     else return (parent[prop] = node);
   }
+
   function createUniqueGlobalName(name) {
     // Create a (module) globally unique name. Then use that name for the local scope.
     let n = 0;
@@ -191,6 +195,7 @@ export function phaseNormalize(fdata, fname) {
     }
     return n ? name + '_' + n : name;
   }
+
   function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
     if (!fdata.globallyUniqueNamingRegistery.has(name)) {
       fdata.globallyUniqueNamingRegistery.set(name, {
@@ -246,6 +251,7 @@ export function phaseNormalize(fdata, fname) {
       });
     }
   }
+
   function createNewUniqueLabel(name) {
     let n = 0;
     if (fdata.globallyUniqueLabelRegistery.has(name)) {
@@ -322,6 +328,7 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(uniqueName !== undefined, 'should exist');
     return uniqueName;
   }
+
   function getMetaForBindingName(node, startAtParent) {
     const uniqueName = findUniqueNameForBindingIdent(node, startAtParent);
     return fdata.globallyUniqueNamingRegistery.get(uniqueName);
@@ -335,6 +342,7 @@ export function phaseNormalize(fdata, fname) {
     crumbsProps.push(prop);
     crumbsIndexes.push(index);
   }
+
   function uncrumb(parent, prop, index) {
     const a = crumbsNodes.pop();
     const b = crumbsProps.pop();
@@ -360,9 +368,11 @@ export function phaseNormalize(fdata, fname) {
     }
     return tmpName;
   }
+
   function isComplexNodeOrAlreadySequenced(node) {
     return isComplexNode(node, true);
   }
+
   function isComplexNode(node, orSequence = false) {
     // A node is simple if it is
     // - an identifier
@@ -392,6 +402,7 @@ export function phaseNormalize(fdata, fname) {
 
     return true;
   }
+
   function sequenceNode(node, tmpNameBase) {
     // Take given node, assign it to a fresh tmp variable, and create a sequence with this assignment and then that variable.
     // `expr`
@@ -403,6 +414,7 @@ export function phaseNormalize(fdata, fname) {
     const assign = AST.assignmentExpression(tmpName, node);
     return AST.sequenceExpression(assign, AST.identifier(tmpName));
   }
+
   function flattenSequences(node) {
     // Note: make sure the node is not being walked currently or things end bad.
 
@@ -426,6 +438,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
+
   function statementifyExpressions(node) {
     // Note: make sure the node is not being walked currently or things end bad.
 
@@ -708,6 +721,7 @@ export function phaseNormalize(fdata, fname) {
       ++i;
     }
   }
+
   function ensureVarDeclsCreateOneBinding(body) {
     // Body should not be visited at this time, should be a Program or Block .body array
     // - Break up variable declarations that declare multiple bindings
@@ -837,6 +851,7 @@ export function phaseNormalize(fdata, fname) {
       ++i;
     }
   }
+
   function normalizeCallArgsChangedSomething(node, isNew) {
     // If this returns true, then the given node was replaced and already walked
 
@@ -879,6 +894,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function normalizeArrayElementsChangedSomething(node) {
     // If this returns true, then the given node was replaced and already walked
 
@@ -928,6 +944,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function normalizeCalleeChangedSomething(node, isNew) {
     // Technically doing a `new` on any literal will cause a runtime error, but let's not bother with normalizing them to ident
     // Note: for regular calls, the context can be determined by a member expression, so make sure to not change those.
@@ -971,6 +988,7 @@ export function phaseNormalize(fdata, fname) {
       return false;
     }
   }
+
   function normalizeReturnThrowArg(node, isExport, stillHoisting, isFunctionBody) {
     // Input should be a statement node with .argument (return, throw)
     // If the arg is complex, it will outline the arg and replace the node a block
@@ -1011,6 +1029,7 @@ export function phaseNormalize(fdata, fname) {
     _stmt(node, isExport, stillHoisting, isFunctionBody);
     uncrumb(parent, prop, index);
   }
+
   function _stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.push(node);
@@ -1044,6 +1063,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
+
   function __stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       if (node.$scope) lexScopeStack.push(node);
@@ -1864,6 +1884,7 @@ export function phaseNormalize(fdata, fname) {
           before(node); // omit this one?
 
           const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
+
           function labelEmptyBreaks(snode) {
             if (snode.type === 'BlockStatement') {
               snode.body.forEach(labelEmptyBreaks);
@@ -2114,12 +2135,14 @@ export function phaseNormalize(fdata, fname) {
       lexScopeStack.pop();
     }
   }
+
   function expr2(parent2, prop2, index2, parent, prop, index, node) {
     // Skip one property
     crumb(parent2, prop2, index2);
     expr(parent, prop, index, node);
     uncrumb(parent2, prop2, index2);
   }
+
   function expr(parent, prop, index, node) {
     ASSERT(
       !Array.isArray(parent[prop]) || index >= 0,
@@ -2142,6 +2165,7 @@ export function phaseNormalize(fdata, fname) {
     _expr(node);
     uncrumb(parent, prop, index);
   }
+
   function _expr(node) {
     if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
       funcStack.push(node);
@@ -2190,6 +2214,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
   }
+
   function __expr(node) {
     if (node.$scope) {
       lexScopeStack.push(node);
@@ -2294,6 +2319,7 @@ export function phaseNormalize(fdata, fname) {
               expressions.push(AST.assignmentExpression(name, expr));
             });
             const newNode = AST.sequenceExpression(expressions);
+
             crumbSet(1, newNode);
             after(newNode);
 
@@ -2302,6 +2328,7 @@ export function phaseNormalize(fdata, fname) {
             rule('Assignment arr patterns not allowed, empty');
             log('- `[] = y()` --> `y()`'); // TODO: Does it have to be spreaded anyways? Do I care?
             before(node);
+
             crumbSet(1, node.right);
             after(node.right);
           }
@@ -3481,6 +3508,7 @@ export function phaseNormalize(fdata, fname) {
 
     groupEnd();
   }
+
   function processFuncArgs(funcNode) {
     group(DIM + 'function(' + RESET + BLUE + 'parameters' + RESET + DIM + ')' + RESET);
 

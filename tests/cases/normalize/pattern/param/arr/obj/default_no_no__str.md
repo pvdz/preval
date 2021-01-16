@@ -30,19 +30,6 @@ tmpArg = f('abc', 100);
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x = [...x];
-  var x = x[8];
-  return 'str';
-}
-var x;
-x = x('str', 8);
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -22,14 +22,6 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = [...x];
-var x = x[8];
-`````
-
 ## Output
 
 `````js filename=intro

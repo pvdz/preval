@@ -50,39 +50,6 @@ tmpTernaryTest_1 = tmpNullish_1 == null;
 $(c);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x = 8;
-x;
-x = x(8);
-x = x * x;
-{
-  var x;
-  if (x) {
-    x = x;
-  } else {
-    x = x;
-  }
-}
-8;
-x = x;
-x = x * x;
-{
-  var x;
-  if (x) {
-    x = x;
-  } else {
-    x = x;
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -34,25 +34,6 @@ tmpCallSpreadArg = g.h;
 new y(x, 8, ...tmpCallSpreadArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-x = x.x;
-x = x[x];
-x = x.x;
-new x(x, 8, ...x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -26,16 +26,6 @@ if (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (true) {
-  x(8);
-} else {
-  x(8);
-}
-`````
-
 ## Output
 
 `````js filename=intro

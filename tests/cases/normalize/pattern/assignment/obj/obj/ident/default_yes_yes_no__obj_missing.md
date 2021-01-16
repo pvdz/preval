@@ -47,38 +47,6 @@ objPatternBeforeDefault_1 = objPatternAfterDefault.y;
 $(y);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x;
-var x;
-x = { x: 8, x: 8 };
-x = x.x;
-{
-  var x = x * x;
-  if (x) {
-    x = { x: 'str' };
-    x = x(x);
-  } else {
-    x = x;
-  }
-}
-x = x.x;
-{
-  var x = x * x;
-  if (x) {
-    x = x('str');
-  } else {
-    x = x;
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

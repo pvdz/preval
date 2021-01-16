@@ -50,37 +50,6 @@ a = tmpBindInitRhs;
 $(5, a);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x = {
-  get x() {
-    x(8);
-    return 8;
-  },
-  set x(x) {
-    x(8, x);
-  },
-};
-var x = {
-  get x() {
-    x(8);
-    return 8;
-  },
-  set x(x) {
-    x(8, x);
-  },
-};
-var x = x;
-var x = x.x;
-x.x = x;
-var x = x;
-x(8, x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -49,40 +49,6 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x = { x: 8, x: 8, x: 8 };
-var x = x.x;
-{
-  var x;
-  {
-    var x = x * x;
-    if (x) {
-      x = ['str'];
-      x = x(x);
-    } else {
-      x = x;
-    }
-  }
-}
-var x = [...x];
-var x = x[8];
-{
-  var x;
-  {
-    var x = x * x;
-    if (x) {
-      x = 'str';
-    } else {
-      x = x;
-    }
-  }
-}
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

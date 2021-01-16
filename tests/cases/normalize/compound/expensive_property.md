@@ -36,22 +36,6 @@ tmpBinaryLeft = tmpAssignMemberObj.x;
 tmpAssignMemberObj.x = tmpBinaryLeft + 5;
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x() {
-  {
-    var x = x();
-    return x;
-  }
-}
-var x;
-var x;
-x = x();
-x = x.x;
-x.x = x * 8;
-`````
-
 ## Output
 
 `````js filename=intro

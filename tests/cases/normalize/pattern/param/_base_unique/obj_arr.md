@@ -31,21 +31,6 @@ function i(tmpParamPattern) {
 let y = 1;
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x = x.x;
-  var x = [...x];
-  var x = x[8];
-  {
-    var x = 8;
-  }
-  return x;
-}
-var x = 8;
-`````
-
 ## Output
 
 `````js filename=intro

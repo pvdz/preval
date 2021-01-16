@@ -22,13 +22,6 @@ let x = 'foo'.length;
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 'str'.x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

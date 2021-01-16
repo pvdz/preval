@@ -33,22 +33,6 @@ tmpArg = f();
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x() {
-  {
-    x(8);
-    x(8);
-    var x = x(8);
-    throw x;
-  }
-}
-var x;
-x = x();
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

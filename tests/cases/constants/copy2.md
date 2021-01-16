@@ -24,15 +24,6 @@ const wow = bar;
 $(wow);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 'str';
-var x = x;
-var x = x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

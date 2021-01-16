@@ -24,15 +24,6 @@ const arrPatternStep = arrPatternSplat[0];
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = x;
-var x = [...x];
-var x = x[8];
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

@@ -24,14 +24,6 @@ x = 1;
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = 8;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

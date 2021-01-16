@@ -20,14 +20,6 @@ if (null) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (/regex/) {
-  x();
-}
-`````
-
 ## Output
 
 `````js filename=intro

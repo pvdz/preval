@@ -26,16 +26,6 @@ for (a of b) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x = { x: 8, x: 8 };
-for (x of x) {
-  x(x);
-}
-`````
-
 ## Output
 
 `````js filename=intro

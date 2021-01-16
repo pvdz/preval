@@ -23,16 +23,6 @@ do {
 } while (ifTestTmp);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-do {
-  x(8);
-  x = x(8);
-} while (x);
-`````
-
 ## Output
 
 `````js filename=intro

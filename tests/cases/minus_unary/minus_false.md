@@ -24,16 +24,6 @@ tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-x = -false;
-x = -x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

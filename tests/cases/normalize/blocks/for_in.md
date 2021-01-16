@@ -23,17 +23,6 @@ for (x in $(1)) $(2);
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x = x(8);
-  for (x in x) {
-    x(8);
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

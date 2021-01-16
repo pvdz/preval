@@ -22,14 +22,6 @@ const b = $(2);
 const c = $(3);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = x(8);
-var x = x(8);
-var x = x(8);
-`````
-
 ## Output
 
 `````js filename=intro

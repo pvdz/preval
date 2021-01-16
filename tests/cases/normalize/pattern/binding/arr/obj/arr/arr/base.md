@@ -38,25 +38,6 @@ const arrPatternSplat_2 = [...arrPatternStep_1];
 $('ok');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-x = [8, 8, 8];
-x = [x, 8];
-x = { x: x, x: 8 };
-var x = [x, 8, 8];
-var x = [...x];
-var x = x[8];
-var x = x.x;
-var x = [...x];
-var x = x[8];
-var x = [...x];
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

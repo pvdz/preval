@@ -32,24 +32,6 @@ while (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-while (x) {
-  x = x * 'str';
-  x = x * 8;
-  x = x;
-  x = x * x;
-  x = x.x;
-  {
-    var x = x.x(x);
-    if (x) {
-      break;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

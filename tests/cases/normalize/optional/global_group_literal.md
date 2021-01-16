@@ -37,28 +37,6 @@ tmpTernaryTest = tmpOptionalChaining == null;
 $(y);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-8;
-8;
-x = 8;
-x = x * x;
-{
-  var x;
-  if (x) {
-    x = x;
-  } else {
-    x = x.x;
-    x = x;
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

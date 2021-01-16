@@ -26,14 +26,6 @@ foo: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: {
-  break x;
-}
-`````
-
 ## Output
 
 `````js filename=intro

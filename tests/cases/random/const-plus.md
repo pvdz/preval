@@ -26,16 +26,6 @@ const xyz = z;
 $(xyz);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 'str';
-var x = 'str' * x;
-var x = x * x;
-var x = x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

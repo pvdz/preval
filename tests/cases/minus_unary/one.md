@@ -18,12 +18,6 @@ $(-1);
 $(-1);
 `````
 
-## Uniformed
-
-`````js filename=intro
-x(-8);
-`````
-
 ## Output
 
 `````js filename=intro

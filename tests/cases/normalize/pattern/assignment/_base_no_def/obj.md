@@ -21,15 +21,6 @@ objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-x = 8;
-x = x.x;
-`````
-
 ## Output
 
 `````js filename=intro

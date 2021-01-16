@@ -25,16 +25,6 @@ if (x) {
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-if (x) {
-  x = x(8);
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

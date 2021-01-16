@@ -30,20 +30,6 @@ foo_2: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: {
-  break x;
-}
-x: {
-  break x;
-}
-x: {
-  break x;
-}
-`````
-
 ## Output
 
 `````js filename=intro

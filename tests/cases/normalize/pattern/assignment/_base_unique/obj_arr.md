@@ -33,25 +33,6 @@ y_1 = arrPatternSplat[0];
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-{
-  var x = 8;
-}
-x = 8;
-x = x.x;
-x = [...x];
-x = x[8];
-{
-  var x = 8;
-}
-`````
-
 ## Output
 
 `````js filename=intro

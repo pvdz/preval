@@ -34,19 +34,6 @@ a_1: while (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-}
-x: while (true) {
-  x(8);
-  continue x;
-}
-{
-}
-`````
-
 ## Output
 
 `````js filename=intro

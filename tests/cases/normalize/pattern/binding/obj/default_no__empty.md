@@ -22,13 +22,6 @@ $('bad');
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-8;
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

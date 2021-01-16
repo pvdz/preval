@@ -46,36 +46,6 @@ tmpArg_2 = h();
 $(tmpArg, tmpArg_1, tmpArg_2);
 `````
 
-## Uniformed
-
-`````js filename=intro
-export function x() {
-  {
-    var x = x();
-    return x;
-  }
-}
-export function x() {
-  {
-    var x = x();
-    return x;
-  }
-}
-export function x() {
-  {
-    var x = x();
-    return x;
-  }
-}
-var x;
-var x;
-var x;
-x = x();
-x = x();
-x = x();
-x(x, x, x);
-`````
-
 ## Output
 
 `````js filename=intro

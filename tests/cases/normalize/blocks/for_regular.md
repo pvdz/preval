@@ -31,25 +31,6 @@ for ($(1); $(2); $(3)) $(4);
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  x(8);
-  while (x) {
-    {
-      var x = x(8);
-      if (x) {
-        break;
-      } else {
-        x(8);
-        x(8);
-      }
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

@@ -18,12 +18,6 @@
 'use strict';
 `````
 
-## Uniformed
-
-`````js filename=intro
-'str';
-`````
-
 ## Output
 
 `````js filename=intro

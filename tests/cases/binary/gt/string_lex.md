@@ -20,14 +20,6 @@ tmpArg = 'b' > 'a';
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = 'str' * 'str';
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

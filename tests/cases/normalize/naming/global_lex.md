@@ -28,17 +28,6 @@ $(a);
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = x(8);
-x(x);
-{
-  var x = x(8);
-  x(x);
-}
-`````
-
 ## Output
 
 `````js filename=intro

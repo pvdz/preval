@@ -24,16 +24,6 @@ if (x) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = x(8);
-if (x) {
-} else {
-  x = x(8);
-}
-`````
-
 ## Output
 
 `````js filename=intro

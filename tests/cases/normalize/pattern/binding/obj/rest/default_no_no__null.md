@@ -23,14 +23,6 @@ const x = objPatternRest(bindingPatternObjRoot, []);
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = /regex/;
-var x = x(x, []);
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

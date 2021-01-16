@@ -25,15 +25,6 @@ b = c;
 let a = c;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-x = x;
-var x = x;
-`````
-
 ## Output
 
 `````js filename=intro

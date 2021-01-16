@@ -21,15 +21,6 @@ function g(tmpParamPattern) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x = x.x;
-  return x;
-}
-`````
-
 ## Output
 
 `````js filename=intro

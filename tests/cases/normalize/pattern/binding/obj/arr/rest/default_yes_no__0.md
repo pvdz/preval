@@ -38,29 +38,6 @@ const y = arrPatternSplat.slice(0);
 $(y);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x = 8;
-var x = x.x;
-{
-  var x;
-  {
-    var x = x * x;
-    if (x) {
-      x = ['str'];
-      x = x(x);
-    } else {
-      x = x;
-    }
-  }
-}
-var x = [...x];
-var x = x.x(8);
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

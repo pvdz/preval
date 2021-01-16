@@ -20,14 +20,6 @@ tmpArg = +null;
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = typeof /regex/;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

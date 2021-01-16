@@ -22,14 +22,6 @@ tmpArg = ['foo'];
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = ['str'];
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

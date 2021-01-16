@@ -23,15 +23,6 @@ tmpArg = undefined;
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-8;
-x = x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -61,49 +61,6 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x, x) {
-  var x = x.x;
-  var x = x(x, []);
-  var x = [...x];
-  var x = x[8];
-  var x = [...x];
-  var x = x[8];
-  var x = [...x];
-  var x = x[8];
-  var x = [...x];
-  var x = x[8];
-  var x = [...x];
-  var x = x[8];
-  {
-    var x;
-    {
-      var x = x * x;
-      if (x) {
-        x = x;
-      } else {
-        x = x;
-      }
-    }
-  }
-  var x = [...x];
-  var x = x[8];
-  {
-    var x;
-    {
-      var x = x * x;
-      if (x) {
-        x = x;
-      } else {
-        x = x;
-      }
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

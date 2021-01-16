@@ -32,18 +32,6 @@ foo: while (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: while (true) {
-  x(8);
-  while (true) {
-    x(8);
-    continue x;
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

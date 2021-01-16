@@ -22,14 +22,6 @@ function f() {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x() {
-  x();
-}
-`````
-
 ## Output
 
 `````js filename=intro

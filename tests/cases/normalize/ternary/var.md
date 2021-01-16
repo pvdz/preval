@@ -33,23 +33,6 @@ let c = 3;
 $(foo);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-var x = 8;
-{
-  var x;
-  if (x) {
-    x = x;
-  } else {
-    x = x;
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

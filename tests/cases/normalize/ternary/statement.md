@@ -30,21 +30,6 @@ var c;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-{
-  if (x) {
-    x;
-  } else {
-    x;
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

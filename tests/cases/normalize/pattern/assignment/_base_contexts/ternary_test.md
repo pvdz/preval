@@ -31,25 +31,6 @@ var x;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-{
-  {
-    x = 8;
-    x = x.x;
-    var x = 8;
-    if (x) {
-      x;
-    } else {
-      x;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

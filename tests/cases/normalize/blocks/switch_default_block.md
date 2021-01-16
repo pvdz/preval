@@ -35,23 +35,6 @@ switch ($(1)) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x = x(8);
-  {
-    var x = x;
-    {
-      ('str');
-      {
-        x(8);
-      }
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

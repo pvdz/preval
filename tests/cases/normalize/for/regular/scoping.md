@@ -27,18 +27,6 @@ const x = 1;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-{
-  var x = 8;
-  while (x) {
-    x(x);
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

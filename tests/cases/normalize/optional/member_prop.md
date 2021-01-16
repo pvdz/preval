@@ -32,23 +32,6 @@ if (tmpTernaryTest) {
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x = 8;
-x = x * x;
-if (x) {
-  x = x;
-} else {
-  x = x.x;
-  x = x;
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

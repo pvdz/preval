@@ -28,15 +28,6 @@ arr.push(2);
 $(arr);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = [];
-x.x(8);
-x.x(8);
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

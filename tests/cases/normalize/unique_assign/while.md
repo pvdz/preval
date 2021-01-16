@@ -37,24 +37,6 @@ while (true) {
 $(a);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = x(8);
-while (x) {
-  {
-    var x = x * 8;
-    if (x) {
-      break;
-    } else {
-      x = x * 8;
-      x(x);
-    }
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

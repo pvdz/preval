@@ -24,18 +24,6 @@ function i(tmpParamPattern) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x = [...x];
-  var x = x[8];
-  var x = [...x];
-  var x = x[8];
-  return x;
-}
-`````
-
 ## Output
 
 `````js filename=intro

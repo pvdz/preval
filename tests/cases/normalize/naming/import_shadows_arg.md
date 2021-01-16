@@ -25,16 +25,6 @@ var tmpArg;
 export const x = ((tmpArg = f()), $(tmpArg));
 `````
 
-## Uniformed
-
-`````js filename=intro
-export function x(x) {
-  return x;
-}
-var x;
-export var x = ((x = x()), x(x));
-`````
-
 ## Output
 
 `````js filename=intro

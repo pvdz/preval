@@ -23,15 +23,6 @@ tmpAssignMemberObj = $(2);
 tmpAssignMemberObj.x = 1;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x(8);
-x = x(8);
-x.x = 8;
-`````
-
 ## Output
 
 `````js filename=intro

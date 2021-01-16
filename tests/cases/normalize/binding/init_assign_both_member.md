@@ -27,17 +27,6 @@ tmpBindInitMemberObject.x = tmpBindInitRhs;
 let a = tmpBindInitRhs;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-var x = x;
-var x = x.x;
-x.x = x;
-var x = x;
-`````
-
 ## Output
 
 `````js filename=intro

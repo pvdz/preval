@@ -26,16 +26,6 @@ a = a * tmpBinaryRight;
 $(a);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x = x(8);
-x = x(8);
-x = x * x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -49,36 +49,6 @@ var tmpBinaryRight;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-{
-  var x = x(8);
-  x: {
-    var x = x;
-    {
-      var x = x;
-      if (x) {
-      } else {
-        x = x(8);
-        x = x * x;
-      }
-      if (x) {
-        ('str');
-        {
-          {
-            x(8);
-          }
-          break x;
-        }
-        x = x;
-      }
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

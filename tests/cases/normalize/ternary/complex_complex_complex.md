@@ -44,34 +44,6 @@ $(a, b)
 $(a, b);
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x;
-  {
-    var x = x(8);
-    if (x) {
-      x = x(8);
-    } else {
-      x = x(8);
-    }
-  }
-}
-{
-  var x;
-  {
-    var x = x(8);
-    if (x) {
-      x = x(8);
-    } else {
-      x = x(8);
-    }
-  }
-}
-x(x, x);
-`````
-
 ## Output
 
 `````js filename=intro

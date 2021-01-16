@@ -23,17 +23,6 @@ $(5);
 $(6);
 `````
 
-## Uniformed
-
-`````js filename=intro
-x(8);
-x(8);
-x(8);
-x(8);
-x(8);
-x(8);
-`````
-
 ## Output
 
 `````js filename=intro

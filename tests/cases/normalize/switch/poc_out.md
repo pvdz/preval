@@ -108,62 +108,6 @@ exit: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x = false;
-x: {
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      {
-        x('str');
-      }
-      x = true;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      {
-        x('str');
-        break x;
-      }
-      x = true;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      {
-        x('str');
-        break x;
-      }
-      x = true;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

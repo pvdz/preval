@@ -18,12 +18,6 @@ null;
 null;
 `````
 
-## Uniformed
-
-`````js filename=intro
-/regex/;
-`````
-
 ## Output
 
 `````js filename=intro

@@ -24,15 +24,6 @@ let x = tmpComplexMemberObj.toString();
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = 'str'.x;
-var x = x.x();
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -28,22 +28,6 @@ tmpArg = [tmpElement, tmpElement_1, tmpElement_2];
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x;
-x = 8 * 8;
-x = x();
-x = x.x;
-x = x.x;
-x = [x, x, x];
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

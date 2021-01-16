@@ -53,42 +53,6 @@ switch (1) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x = x;
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = 8 * 8;
-    }
-    if (x) {
-      ('str');
-      {
-        x(8);
-      }
-      x = x;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = 8 * 8;
-    }
-    if (x) {
-      ('str');
-      {
-        x(8);
-      }
-      x = x;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

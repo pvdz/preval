@@ -22,16 +22,6 @@ tmpArg = [100, tmpElement];
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-x = x();
-x = [8, x];
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

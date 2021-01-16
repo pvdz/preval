@@ -20,14 +20,6 @@ if (Infinity) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (x) {
-  x();
-}
-`````
-
 ## Output
 
 `````js filename=intro

@@ -26,16 +26,6 @@ if ('pass') {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if ('str') {
-  x(8);
-} else {
-  x(8);
-}
-`````
-
 ## Output
 
 `````js filename=intro

@@ -28,16 +28,6 @@ woop: while (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: while (true) {
-  x(8);
-  continue x;
-  x(8);
-}
-`````
-
 ## Output
 
 `````js filename=intro

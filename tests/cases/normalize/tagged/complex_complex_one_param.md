@@ -44,21 +44,6 @@ tmpArg_2 = $(20);
 f(tmpArg, tmpArg_1, tmpArg_2);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  return x;
-}
-var x;
-var x;
-var x;
-x = ['str', 'str', 'str'];
-x = x(8);
-x = x(8);
-x(x, x, x);
-`````
-
 ## Output
 
 `````js filename=intro

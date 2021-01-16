@@ -34,25 +34,6 @@ const objPatternBeforeDefault = bindingPatternObjRoot.x;
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = { x: 'str' };
-var x = x.x;
-{
-  var x;
-  {
-    var x = x * x;
-    if (x) {
-      x = x('str');
-    } else {
-      x = x;
-    }
-  }
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -39,28 +39,6 @@ tmpArg = f();
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  {
-    var x;
-    {
-      var x = x * x;
-      if (x) {
-        x = x('str');
-      } else {
-        x = x;
-      }
-    }
-  }
-  return 'str';
-}
-var x;
-x = x();
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

@@ -22,14 +22,6 @@ tmpArg = `abc ${$(1)} def`;
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-x = `abc ${x(8)} def`;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

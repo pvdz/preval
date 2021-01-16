@@ -39,29 +39,6 @@ let c = 3;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-var x = 8;
-{
-  {
-    var x;
-    if (x) {
-      x = x;
-    } else {
-      x = x;
-    }
-  }
-  if (x) {
-    x(8);
-  } else {
-    x(8);
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

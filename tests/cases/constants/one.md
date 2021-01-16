@@ -20,13 +20,6 @@ const foo = 'five';
 $(foo);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 'str';
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

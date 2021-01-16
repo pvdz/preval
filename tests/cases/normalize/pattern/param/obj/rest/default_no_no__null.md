@@ -42,31 +42,6 @@ tmpArg_1 = f(null, 10);
 $(tmpArg_1);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x;
-  {
-    var x;
-    {
-      var x = x * x;
-      if (x) {
-        x = { x: 'str' };
-        x = x(x);
-      } else {
-        x = x;
-      }
-    }
-  }
-  var x = x(x, []);
-  return 'str';
-}
-var x;
-x = x(/regex/, 8);
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

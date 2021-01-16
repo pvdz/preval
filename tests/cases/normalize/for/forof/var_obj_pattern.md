@@ -31,23 +31,6 @@ for (let [x] of {a: 1, b: 2}) $(x);
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x;
-  {
-    var x = { x: 8, x: 8 };
-    for (x of x) {
-      var x = x;
-      var x = [...x];
-      var x = x[8];
-      x(x);
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

@@ -20,14 +20,6 @@ if (false) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (false) {
-  x();
-}
-`````
-
 ## Output
 
 `````js filename=intro

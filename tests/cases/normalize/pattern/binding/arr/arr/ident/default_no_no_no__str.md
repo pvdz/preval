@@ -26,17 +26,6 @@ const x = arrPatternSplat_1[0];
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 'str';
-var x = [...x];
-var x = x[8];
-var x = [...x];
-var x = x[8];
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

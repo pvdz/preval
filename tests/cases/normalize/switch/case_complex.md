@@ -68,46 +68,6 @@ var tmpBinaryRight_1;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-{
-  var x = x;
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = 8 * x;
-    }
-    if (x) {
-      ('str');
-      {
-        x(8);
-      }
-      x = x;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = 8 * x;
-    }
-    if (x) {
-      ('str');
-      {
-        x(8);
-      }
-      x = x;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

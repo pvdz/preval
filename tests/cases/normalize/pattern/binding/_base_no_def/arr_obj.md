@@ -21,15 +21,6 @@ const arrPatternStep = arrPatternSplat[0];
 const x = arrPatternStep.x;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = [...x];
-var x = x[8];
-var x = x.x;
-`````
-
 ## Output
 
 `````js filename=intro

@@ -32,26 +32,6 @@ function g(tmpParamPattern) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x(x) {
-  var x = x.x;
-  {
-    var x;
-    {
-      var x = x * x;
-      if (x) {
-        x = x;
-      } else {
-        x = x;
-      }
-    }
-  }
-  return x;
-}
-`````
-
 ## Output
 
 `````js filename=intro

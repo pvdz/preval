@@ -109,65 +109,6 @@ tmpSwitchBreak: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x = 8;
-x: {
-  var x = x;
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      ('str');
-      {
-        x('str');
-      }
-      x = x;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      ('str');
-      {
-        x('str');
-        break x;
-      }
-      x = x;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = x(8);
-      x = x * x;
-    }
-    if (x) {
-      ('str');
-      {
-        x('str');
-        break x;
-      }
-      x = x;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

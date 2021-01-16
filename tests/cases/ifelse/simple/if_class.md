@@ -23,17 +23,6 @@ if (class{}) $();
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x = class {};
-  if (x) {
-    x();
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

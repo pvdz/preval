@@ -25,16 +25,6 @@ objPatternNoDefault = objAssignPatternRhs.x;
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-x = { x: /regex/, x: 8, x: 8 };
-x = x.x;
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

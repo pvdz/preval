@@ -76,48 +76,6 @@ tmpSwitchBreak: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: {
-  var x = x;
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = 8 * 8;
-    }
-    if (x) {
-      ('str');
-      {
-        {
-          if (8) {
-            x(8);
-          }
-          x(8);
-          break x;
-        }
-      }
-      x = x;
-    }
-  }
-  {
-    var x = x;
-    if (x) {
-    } else {
-      x = 8 * 'str';
-    }
-    if (x) {
-      ('str');
-      {
-        break x;
-      }
-      x = x;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

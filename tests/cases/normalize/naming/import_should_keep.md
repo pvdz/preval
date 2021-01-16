@@ -37,21 +37,6 @@ export class c {}
 export const x = ((tmpArg = f()), $(tmpArg));
 `````
 
-## Uniformed
-
-`````js filename=intro
-export function x() {
-  var x = x(8);
-  return x;
-}
-export function x(x) {
-  return x;
-}
-var x;
-export class x {}
-export var x = ((x = x()), x(x));
-`````
-
 ## Output
 
 `````js filename=intro

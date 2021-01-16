@@ -22,14 +22,6 @@ if ('') {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if ('str') {
-  x();
-}
-`````
-
 ## Output
 
 `````js filename=intro

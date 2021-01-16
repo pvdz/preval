@@ -19,13 +19,6 @@ const bindingPatternObjRoot = 1;
 const x = bindingPatternObjRoot.x;
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = x.x;
-`````
-
 ## Output
 
 `````js filename=intro

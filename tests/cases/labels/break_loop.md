@@ -28,16 +28,6 @@ foo: while (true) {
 $(2);
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: while (true) {
-  x(8);
-  break x;
-}
-x(8);
-`````
-
 ## Output
 
 `````js filename=intro

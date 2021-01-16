@@ -25,16 +25,6 @@ const x = arrPatternStep.x;
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = /regex/;
-var x = [...x];
-var x = x[8];
-var x = x.x;
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

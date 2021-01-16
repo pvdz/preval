@@ -27,19 +27,6 @@ while (true) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-while (x) {
-  {
-    var x = x();
-    if (x) {
-      break;
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

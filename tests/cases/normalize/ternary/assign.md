@@ -31,21 +31,6 @@ if (b) {
 $(a);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-var x = 8;
-var x = 8;
-if (x) {
-  x = x;
-} else {
-  x = x;
-}
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

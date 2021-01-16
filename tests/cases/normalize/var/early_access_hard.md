@@ -39,22 +39,6 @@ tmpArg_1 = f();
 $(tmpArg_1);
 `````
 
-## Uniformed
-
-`````js filename=intro
-function x() {
-  return x;
-}
-var x;
-var x;
-var x;
-x = x();
-x(x);
-var x = 8;
-x = x();
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

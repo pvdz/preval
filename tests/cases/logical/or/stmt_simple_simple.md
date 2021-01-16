@@ -23,15 +23,6 @@ if (1) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (8) {
-} else {
-  8;
-}
-`````
-
 ## Output
 
 `````js filename=intro

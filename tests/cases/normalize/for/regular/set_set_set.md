@@ -31,22 +31,6 @@ let d = 4;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x = 8;
-var x = 8;
-var x = 8;
-var x = 8;
-{
-  x;
-  while (x) {
-    x;
-    x;
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

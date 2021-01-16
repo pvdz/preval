@@ -25,19 +25,6 @@ var tmpNewObj;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-{
-  x = x(8);
-  var x = new x();
-  if (x) {
-    x(8);
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

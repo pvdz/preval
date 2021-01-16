@@ -23,16 +23,6 @@ if (null) {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-if (/regex/) {
-  x(8);
-} else {
-  x(8);
-}
-`````
-
 ## Output
 
 `````js filename=intro

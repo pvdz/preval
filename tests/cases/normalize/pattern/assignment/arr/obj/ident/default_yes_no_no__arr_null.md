@@ -38,29 +38,6 @@ objPatternBeforeDefault = arrPatternStep.x;
 $('bad');
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-var x;
-var x;
-x = [/regex/, 8, 8];
-x = [...x];
-x = x[8];
-x = x.x;
-{
-  var x = x * x;
-  if (x) {
-    x = x('str');
-  } else {
-    x = x;
-  }
-}
-x('str');
-`````
-
 ## Output
 
 `````js filename=intro

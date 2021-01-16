@@ -36,25 +36,6 @@ a: {
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-x: {
-  x: {
-    {
-      {
-        var x = x(8);
-        if (x) {
-          break x;
-        } else {
-          break x;
-        }
-      }
-    }
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

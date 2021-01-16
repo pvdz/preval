@@ -27,19 +27,6 @@ for (let b = 2, c = 3, d = 4; b; ) d;
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-{
-  var x = 8;
-  var x = 8;
-  var x = 8;
-  while (x) {
-    x;
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

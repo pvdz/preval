@@ -34,24 +34,6 @@ let b = { x: 1, y: 2 };
 }
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x = {};
-var x = { x: 8, x: 8 };
-{
-  var x;
-  for (x of x) {
-    x = x(x);
-    x.x = x;
-    x = x.x;
-    x(x);
-  }
-}
-`````
-
 ## Output
 
 `````js filename=intro

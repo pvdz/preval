@@ -24,16 +24,6 @@ tmpArg = x == y;
 $(tmpArg);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x = 'str';
-var x = x;
-x = x * x;
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

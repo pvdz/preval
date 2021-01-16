@@ -27,18 +27,6 @@ x = arrPatternSplat.slice(0);
 $(x);
 `````
 
-## Uniformed
-
-`````js filename=intro
-var x;
-var x;
-var x;
-x = [];
-x = [...x];
-x = x.x(8);
-x(x);
-`````
-
 ## Output
 
 `````js filename=intro

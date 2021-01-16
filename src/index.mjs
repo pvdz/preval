@@ -54,7 +54,7 @@ export function preval({ entryPointFile, stdio, resolve, req }) {
     },
     special: {
       // Gives a better idea of how simplified the code is, less noise etc
-      [entryPointFile]: specialCode
+      [entryPointFile]: specialCode,
     },
   };
 }

@@ -18,21 +18,22 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 tmpObjPropValue = { x: 1, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    y = $('pass');
-  } else {
-    y = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  y = tmpTernaryConsequent;
+} else {
+  y = objPatternBeforeDefault;
 }
 $(y);
 `````
@@ -40,17 +41,20 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 tmpObjPropValue = { x: 1, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
-  y = $('pass');
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  y = tmpTernaryConsequent;
 } else {
   y = objPatternBeforeDefault;
 }

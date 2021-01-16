@@ -21,16 +21,17 @@ $('bad');
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 objAssignPatternRhs = undefined;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    y = $('fail');
-  } else {
-    y = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('fail');
+  y = tmpTernaryConsequent;
+} else {
+  y = objPatternBeforeDefault;
 }
 $('bad');
 `````
@@ -41,12 +42,15 @@ $('bad');
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 objAssignPatternRhs = undefined;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternBeforeDefault = objPatternNoDefault.y;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
-  y = $('fail');
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('fail');
+  y = tmpTernaryConsequent;
 } else {
   y = objPatternBeforeDefault;
 }

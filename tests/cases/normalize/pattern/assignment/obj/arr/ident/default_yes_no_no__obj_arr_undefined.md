@@ -18,23 +18,22 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
 tmpObjPropValue = [undefined];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    y = 'pass';
-  } else {
-    y = arrPatternBeforeDefault;
-  }
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  y = 'pass';
+} else {
+  y = arrPatternBeforeDefault;
 }
 $(y);
 `````
@@ -42,18 +41,19 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
 tmpObjPropValue = [undefined];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;

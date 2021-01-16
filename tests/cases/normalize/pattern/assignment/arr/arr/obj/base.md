@@ -18,13 +18,13 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpElement;
-var tmpElement_1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternStep_1;
+var tmpElement;
+var tmpElement_1;
 tmpElement_1 = { x: 1 };
 tmpElement = [tmpElement_1, 20, 30];
 arrAssignPatternRhs = [tmpElement, 40, 50];
@@ -38,13 +38,13 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var tmpElement;
-var tmpElement_1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternStep_1;
+var tmpElement;
+var tmpElement_1;
 tmpElement_1 = { x: 1 };
 tmpElement = [tmpElement_1, 20, 30];
 arrAssignPatternRhs = [tmpElement, 40, 50];

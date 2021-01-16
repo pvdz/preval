@@ -2330,14 +2330,22 @@ export function phaseNormalize(fdata, fname) {
             crumbSet(1, newNode);
             after(newNode);
             changed = true;
+
+            _expr(newNode);
           } else {
             rule('Assignment obj patterns not allowed, empty');
             log('- `({} = y())` --> `y()`');
             before(node);
             crumbSet(1, node.right);
             after(node.right);
+            changed = true;
+
+            _expr(node.right);
           }
-        } else if (node.left.type === 'ArrayPattern') {
+          break;
+        }
+
+        if (node.left.type === 'ArrayPattern') {
           const rhsTmpName = createFreshVarInCurrentRootScope('arrAssignPatternRhs');
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
@@ -2345,7 +2353,7 @@ export function phaseNormalize(fdata, fname) {
           funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings, 'assign');
 
           if (newBindings.length) {
-            rule('Assignment arr patterns not allowed');
+            rule('Assignment arr patterns not allowed, non-empty');
             log('- `[x] = y()` --> `var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
             before(node);
 
@@ -2368,6 +2376,7 @@ export function phaseNormalize(fdata, fname) {
             after(newNode);
 
             changed = true;
+            _expr(newNode);
           } else {
             rule('Assignment arr patterns not allowed, empty');
             log('- `[] = y()` --> `y()`'); // TODO: Does it have to be spreaded anyways? Do I care?
@@ -2375,8 +2384,17 @@ export function phaseNormalize(fdata, fname) {
 
             crumbSet(1, node.right);
             after(node.right);
+
+            changed = true;
+            _expr(node.right);
           }
-        } else if (node.left.type === 'MemberExpression' && node.left.computed && isComplexNode(node.left.property)) {
+
+          break;
+        }
+
+        ASSERT(node.left.type === 'Identifier' || node.left.type === 'MemberExpression', 'uhhh was there anything else assignable?', node);
+
+        if (node.left.type === 'MemberExpression' && node.left.computed && isComplexNode(node.left.property)) {
           rule('Assignment to computed member expression must have simple property');
           log('- `a[b()] = x` --> `(tmp = b(), a[tmp] = x)`');
           before(node);

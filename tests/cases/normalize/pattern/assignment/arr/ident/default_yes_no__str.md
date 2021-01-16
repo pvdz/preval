@@ -21,16 +21,17 @@ $(x);
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 arrAssignPatternRhs = 'abc';
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = $('fail');
-  } else {
-    x = arrPatternBeforeDefault;
-  }
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('fail');
+  x = tmpTernaryConsequent;
+} else {
+  x = arrPatternBeforeDefault;
 }
 $(x);
 `````
@@ -41,12 +42,15 @@ $(x);
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 arrAssignPatternRhs = 'abc';
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
-  x = $('fail');
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('fail');
+  x = tmpTernaryConsequent;
 } else {
   x = arrPatternBeforeDefault;
 }

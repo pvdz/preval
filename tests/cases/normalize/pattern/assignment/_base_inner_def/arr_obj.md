@@ -19,17 +19,16 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 objPatternBeforeDefault = arrPatternStep.x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = a;
-  } else {
-    x = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  x = a;
+} else {
+  x = objPatternBeforeDefault;
 }
 `````
 
@@ -40,12 +39,13 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 objPatternBeforeDefault = arrPatternStep.x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
   x = a;
 } else {
   x = objPatternBeforeDefault;

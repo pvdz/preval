@@ -19,17 +19,16 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 objPatternBeforeDefault = objPatternNoDefault_1.z;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    z = a;
-  } else {
-    z = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  z = a;
+} else {
+  z = objPatternBeforeDefault;
 }
 `````
 
@@ -40,12 +39,13 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 objPatternBeforeDefault = objPatternNoDefault_1.z;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;

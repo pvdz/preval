@@ -18,9 +18,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+var objAssignPatternRhs;
 var tmpArg;
 var tmpArg_1;
-var objAssignPatternRhs;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
@@ -33,9 +33,9 @@ $(x);
 ## Output
 
 `````js filename=intro
+var objAssignPatternRhs;
 var tmpArg;
 var tmpArg_1;
-var objAssignPatternRhs;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;

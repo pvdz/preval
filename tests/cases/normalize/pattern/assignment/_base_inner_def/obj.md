@@ -17,15 +17,14 @@
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = b;
-  } else {
-    x = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  x = b;
+} else {
+  x = objPatternBeforeDefault;
 }
 `````
 
@@ -34,10 +33,11 @@ objPatternBeforeDefault = objAssignPatternRhs.x;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;

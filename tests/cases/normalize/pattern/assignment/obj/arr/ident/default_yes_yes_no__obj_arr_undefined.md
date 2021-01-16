@@ -18,34 +18,34 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
 tmpObjPropValue = [undefined];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = ['fail2'];
-    objPatternAfterDefault = $(tmpArg);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpArg = ['fail2'];
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 arrPatternSplat = [...objPatternAfterDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-{
-  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
-    y = 'pass';
-  } else {
-    y = arrPatternBeforeDefault;
-  }
+tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest_1) {
+  y = 'pass';
+} else {
+  y = arrPatternBeforeDefault;
 }
 $(y);
 `````
@@ -53,27 +53,31 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpArg;
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
+var tmpObjPropValue;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+var tmpArg;
+var tmpTernaryTest_1;
 tmpObjPropValue = [undefined];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
   tmpArg = ['fail2'];
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 arrPatternSplat = [...objPatternAfterDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-if (ifTestTmp_1) {
+tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest_1) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;

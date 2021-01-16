@@ -20,15 +20,16 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 objAssignPatternRhs = { b: 2, c: 3 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = $('pass');
-  } else {
-    x = objPatternBeforeDefault;
-  }
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
+} else {
+  x = objPatternBeforeDefault;
 }
 $(x);
 `````
@@ -38,11 +39,14 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
 objAssignPatternRhs = { b: 2, c: 3 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
-  x = $('pass');
+tmpTernaryTest = objPatternBeforeDefault === undefined;
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
 } else {
   x = objPatternBeforeDefault;
 }

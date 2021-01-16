@@ -2640,7 +2640,49 @@ export function phaseNormalize(fdata, fname) {
       case 'BinaryExpression': {
         log('Operator:', node.operator);
 
-        if (isComplexNode(node.left)) {
+        // Start with right complex because if it is, it must also outline left regardless (`x = n + ++n`)
+        if (isComplexNode(node.right)) {
+          rule('Binary expression right must be simple');
+          log('- `a === c.b` --> `(tmp = a, tmp2 = c.b, tmp === tmp2)`');
+          log('- `a === b()` --> `(tmp = a = tmp2 = b(), tmp === tmp2)`');
+          log('- `a === (b, c).x` --> `(tmp = a, tmp2 = (b, c).x, tmp === tmp2)`');
+          log('- `n === ++n` --> `(tmp = n, tmp2 = ++n, tmp === tmp2)`');
+          log('- `5 === b()` --> `(tmp = b(), 5 === tmp)`');
+          before(node);
+
+          if (
+            node.left.type === 'Literal' ||
+            (node.left.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(node.left.name))
+          ) {
+            // The lhs is an immutable value. No need to store it in a temporary variable for safety
+            const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
+            const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
+            node.right = AST.identifier(tmpName);
+            crumbSet(1, newNode);
+
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+          } else {
+            const tmpNameLeft = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
+            const tmpNameRight = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(tmpNameLeft, node.left),
+              AST.assignmentExpression(tmpNameRight, node.right),
+              node,
+            );
+            node.left = AST.identifier(tmpNameLeft);
+            node.right = AST.identifier(tmpNameRight);
+            crumbSet(1, newNode);
+
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+          }
+        } else if (isComplexNode(node.left)) {
+          // Note: we dont need to force-move right because left already precedes it (unlike in the opposite case)
           rule('Binary expression left must be simple');
           log('- `a.b === c` --> `(tmp = a.b, tmp === c)`');
           log('- `a() === c` --> `(tmp = a(), tmp === c)`');
@@ -2650,22 +2692,6 @@ export function phaseNormalize(fdata, fname) {
           const tmpName = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
           const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
           node.left = AST.identifier(tmpName);
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else if (isComplexNode(node.right)) {
-          rule('Binary expression right must be simple');
-          log('- `a === c.b` --> `(tmp = c.b, a === tmp)`');
-          log('- `a === b()` --> `(tmp = b(), a === tmp)`');
-          log('- `a === (b, c).x` --> `(tmp = (b, c).x, tmp === c)`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
-          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
-          node.right = AST.identifier(tmpName);
           crumbSet(1, newNode);
 
           after(newNode);

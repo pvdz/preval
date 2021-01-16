@@ -55,8 +55,11 @@ exit: {
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpBinaryLeft_1;
 var tmpBinaryRight_1;
+var tmpBinaryLeft_2;
 var tmpBinaryRight_2;
 let x;
 let fallthrough = false;
@@ -65,8 +68,9 @@ exit: {
     let ifTestTmp = fallthrough;
     if (ifTestTmp) {
     } else {
+      tmpBinaryLeft = x;
       tmpBinaryRight = $(1);
-      ifTestTmp = x === tmpBinaryRight;
+      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
     }
     if (ifTestTmp) {
       {
@@ -79,8 +83,9 @@ exit: {
     let ifTestTmp_1 = fallthrough;
     if (ifTestTmp_1) {
     } else {
+      tmpBinaryLeft_1 = x;
       tmpBinaryRight_1 = $(2);
-      ifTestTmp_1 = x === tmpBinaryRight_1;
+      ifTestTmp_1 = tmpBinaryLeft_1 === tmpBinaryRight_1;
     }
     if (ifTestTmp_1) {
       {
@@ -94,8 +99,9 @@ exit: {
     let ifTestTmp_2 = fallthrough;
     if (ifTestTmp_2) {
     } else {
+      tmpBinaryLeft_2 = x;
       tmpBinaryRight_2 = $(3);
-      ifTestTmp_2 = x === tmpBinaryRight_2;
+      ifTestTmp_2 = tmpBinaryLeft_2 === tmpBinaryRight_2;
     }
     if (ifTestTmp_2) {
       {
@@ -116,8 +122,9 @@ exit: {
     let ifTestTmp = fallthrough;
     if (ifTestTmp) {
     } else {
+      tmpBinaryLeft = x;
       tmpBinaryRight = $(1);
-      ifTestTmp = x === tmpBinaryRight;
+      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
     }
     if (ifTestTmp) {
       {
@@ -130,8 +137,9 @@ exit: {
     let ifTestTmp_1 = fallthrough;
     if (ifTestTmp_1) {
     } else {
+      tmpBinaryLeft_1 = x;
       tmpBinaryRight_1 = $(2);
-      ifTestTmp_1 = x === tmpBinaryRight_1;
+      ifTestTmp_1 = tmpBinaryLeft_1 === tmpBinaryRight_1;
     }
     if (ifTestTmp_1) {
       {
@@ -145,8 +153,9 @@ exit: {
     let ifTestTmp_2 = fallthrough;
     if (ifTestTmp_2) {
     } else {
+      tmpBinaryLeft_2 = x;
       tmpBinaryRight_2 = $(3);
-      ifTestTmp_2 = x === tmpBinaryRight_2;
+      ifTestTmp_2 = tmpBinaryLeft_2 === tmpBinaryRight_2;
     }
     if (ifTestTmp_2) {
       {

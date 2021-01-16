@@ -19,19 +19,23 @@ $(a);
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpBinaryRight;
 let a = $(1);
+tmpBinaryLeft = a;
 tmpBinaryRight = $(2);
-a = a + tmpBinaryRight;
+a = tmpBinaryLeft + tmpBinaryRight;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpBinaryRight;
 let a = $(1);
+tmpBinaryLeft = a;
 tmpBinaryRight = $(2);
-a = a + tmpBinaryRight;
+a = tmpBinaryLeft + tmpBinaryRight;
 $(a);
 `````

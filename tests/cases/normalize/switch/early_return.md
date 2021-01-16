@@ -32,8 +32,11 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpBinaryLeft;
   var tmpBinaryRight;
+  var tmpBinaryLeft_1;
   var tmpBinaryRight_1;
+  var tmpBinaryLeft_2;
   var tmpBinaryRight_2;
   {
     const tmpSwitchTest = $(1);
@@ -58,8 +61,9 @@ function f() {
         let ifTestTmp_1 = tmpFallthrough;
         if (ifTestTmp_1) {
         } else {
+          tmpBinaryLeft = tmpSwitchTest;
           tmpBinaryRight = $(1);
-          ifTestTmp_1 = tmpSwitchTest === tmpBinaryRight;
+          ifTestTmp_1 = tmpBinaryLeft === tmpBinaryRight;
         }
         if (ifTestTmp_1) {
           ('case 1:');
@@ -73,8 +77,9 @@ function f() {
         let ifTestTmp_2 = tmpFallthrough;
         if (ifTestTmp_2) {
         } else {
+          tmpBinaryLeft_1 = tmpSwitchTest;
           tmpBinaryRight_1 = $(4);
-          ifTestTmp_2 = tmpSwitchTest === tmpBinaryRight_1;
+          ifTestTmp_2 = tmpBinaryLeft_1 === tmpBinaryRight_1;
         }
         if (ifTestTmp_2) {
           ('case 2:');
@@ -92,8 +97,9 @@ function f() {
         let ifTestTmp_3 = tmpFallthrough;
         if (ifTestTmp_3) {
         } else {
+          tmpBinaryLeft_2 = tmpSwitchTest;
           tmpBinaryRight_2 = $(7);
-          ifTestTmp_3 = tmpSwitchTest === tmpBinaryRight_2;
+          ifTestTmp_3 = tmpBinaryLeft_2 === tmpBinaryRight_2;
         }
         if (ifTestTmp_3) {
           ('case 3:');
@@ -137,8 +143,9 @@ function f() {
       let ifTestTmp_1 = tmpFallthrough;
       if (ifTestTmp_1) {
       } else {
+        tmpBinaryLeft = tmpSwitchTest;
         tmpBinaryRight = $(1);
-        ifTestTmp_1 = tmpSwitchTest === tmpBinaryRight;
+        ifTestTmp_1 = tmpBinaryLeft === tmpBinaryRight;
       }
       if (ifTestTmp_1) {
         ('case 1:');
@@ -152,8 +159,9 @@ function f() {
       let ifTestTmp_2 = tmpFallthrough;
       if (ifTestTmp_2) {
       } else {
+        tmpBinaryLeft_1 = tmpSwitchTest;
         tmpBinaryRight_1 = $(4);
-        ifTestTmp_2 = tmpSwitchTest === tmpBinaryRight_1;
+        ifTestTmp_2 = tmpBinaryLeft_1 === tmpBinaryRight_1;
       }
       if (ifTestTmp_2) {
         ('case 2:');
@@ -171,8 +179,9 @@ function f() {
       let ifTestTmp_3 = tmpFallthrough;
       if (ifTestTmp_3) {
       } else {
+        tmpBinaryLeft_2 = tmpSwitchTest;
         tmpBinaryRight_2 = $(7);
-        ifTestTmp_3 = tmpSwitchTest === tmpBinaryRight_2;
+        ifTestTmp_3 = tmpBinaryLeft_2 === tmpBinaryRight_2;
       }
       if (ifTestTmp_3) {
         ('case 3:');

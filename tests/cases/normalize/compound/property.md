@@ -32,7 +32,7 @@ $(a, s); // 5, 'read;write[5]'
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft_1;
+var tmpBinaryLeft_2;
 let s = '';
 let a = 0;
 const obj = {
@@ -41,24 +41,26 @@ const obj = {
     return a;
   },
   set x(v) {
-    var tmpBinaryRight;
     var tmpBinaryLeft;
-    tmpBinaryLeft = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft + '];';
-    s = s + tmpBinaryRight;
+    var tmpBinaryRight;
+    var tmpBinaryLeft_1;
+    tmpBinaryLeft = s;
+    tmpBinaryLeft_1 = 'write[' + v;
+    tmpBinaryRight = tmpBinaryLeft_1 + '];';
+    s = tmpBinaryLeft + tmpBinaryRight;
     a = a + v;
     return a;
   },
 };
-tmpBinaryLeft_1 = obj.x;
-obj.x = tmpBinaryLeft_1 + 5;
+tmpBinaryLeft_2 = obj.x;
+obj.x = tmpBinaryLeft_2 + 5;
 $(a, s);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft_1;
+var tmpBinaryLeft_2;
 let s = '';
 let a = 0;
 const obj = {
@@ -67,16 +69,18 @@ const obj = {
     return a;
   },
   set x(v) {
-    var tmpBinaryRight;
     var tmpBinaryLeft;
-    tmpBinaryLeft = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft + '];';
-    s = s + tmpBinaryRight;
+    var tmpBinaryRight;
+    var tmpBinaryLeft_1;
+    tmpBinaryLeft = s;
+    tmpBinaryLeft_1 = 'write[' + v;
+    tmpBinaryRight = tmpBinaryLeft_1 + '];';
+    s = tmpBinaryLeft + tmpBinaryRight;
     a = a + v;
     return a;
   },
 };
-tmpBinaryLeft_1 = obj.x;
-obj.x = tmpBinaryLeft_1 + 5;
+tmpBinaryLeft_2 = obj.x;
+obj.x = tmpBinaryLeft_2 + 5;
 $(a, s);
 `````

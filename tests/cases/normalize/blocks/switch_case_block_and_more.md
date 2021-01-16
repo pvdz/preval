@@ -22,6 +22,7 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpBinaryRight;
 {
   const tmpSwitchTest = $(1);
@@ -31,8 +32,9 @@ var tmpBinaryRight;
       let ifTestTmp = tmpFallthrough;
       if (ifTestTmp) {
       } else {
+        tmpBinaryLeft = tmpSwitchTest;
         tmpBinaryRight = $(2);
-        ifTestTmp = tmpSwitchTest === tmpBinaryRight;
+        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
       }
       if (ifTestTmp) {
         ('case 0:');
@@ -59,8 +61,9 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
+      tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $(2);
-      ifTestTmp = tmpSwitchTest === tmpBinaryRight;
+      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
     }
     if (ifTestTmp) {
       ('case 0:');

@@ -17,15 +17,15 @@ $(...[1, 2, 3]);
 ## Normalized
 
 `````js filename=intro
-var tmpCallSpreadArg;
-tmpCallSpreadArg = [1, 2, 3];
-$(...tmpCallSpreadArg);
+var tmpArg;
+tmpArg = [1, 2, 3];
+$(...tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpCallSpreadArg;
-tmpCallSpreadArg = [1, 2, 3];
-$(...tmpCallSpreadArg);
+var tmpArg;
+tmpArg = [1, 2, 3];
+$(...tmpArg);
 `````

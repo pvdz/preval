@@ -355,12 +355,19 @@ export function phaseNormalize(fdata, fname) {
     registerGlobalIdent(tmpName, tmpName);
     const lexScope = lexScopeStack[lexScopeStack.length - 1];
     log(
-      'Recording `' + tmpName + '` to be declared in',
+      'Created fresh var for `' +
+        name +
+        '`' +
+        (name !== tmpName ? ' (-> `' + tmpName + '`)' : '') +
+        '. Recording `' +
+        tmpName +
+        '` to be declared in [',
       [...lexScope.$p.nameMapping.keys()]
         .filter(function (key) {
           return this.has(key) ? false : !!this.add(key);
         }, new Set(globals.keys()))
-        .join(','),
+        .join(', '),
+      ']',
     );
     lexScopeStack[lexScopeStack.length - 1].$p.nameMapping.set(tmpName, tmpName);
     if (injectVarBinding) {
@@ -855,41 +862,78 @@ export function phaseNormalize(fdata, fname) {
   function normalizeCallArgsChangedSomething(node, isNew) {
     // If this returns true, then the given node was replaced and already walked
 
-    // For all args that are not an identifier or literal, store them in a temporary variable first.
-    // `f(x(), 100, y(), a, z())` -> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`
-    // The expression can be changed inline so we can do it right now, before traversing.
+    // Scan all the args. If any of them are not simple, store all of them in fresh variables and
+    // pass those around. The reason we do them all in that case is to prevent issues where the
+    // variable gets updated in a later argument position, like `f(a, ++a) --> tmp=++a,f(a, tmp)` would be wrong.
 
-    const assigns = [];
-    const newArgs = [];
-    node.arguments.forEach((anode, i) => {
-      if (isComplexNode(anode) && anode.type !== 'SpreadElement') {
-        const tmpName = createFreshVarInCurrentRootScope('tmpArg', true);
-        assigns.push(AST.assignmentExpression(tmpName, anode));
-        newArgs.push(AST.identifier(tmpName));
-      } else {
-        newArgs.push(anode);
-      }
+    // The expression can be changed inline so we can do it right now, before traversing.
+    // We first need to scan to check whether it's necessary at all. This should not be a big deal as most calls
+    // will have less than a handful of arguments.
+
+    const has = node.arguments.some((anode) => {
+      return isComplexNode(anode.type === 'SpreadElement' ? anode.argument : anode);
     });
-    if (assigns.length) {
-      rule('Call args must be simple nodes');
-      log('- `f(x())` --> `(tmp=f(), f(tmp)`');
-      log('- `f(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`');
+
+    if (has) {
+      if (isNew) {
+        rule('New args must be simple nodes');
+        log('- `new F(x())` --> `(tmp=x(), new F(tmp)`');
+        log('- `new F(...x())` --> `(tmp=x(), new F(...tmp)`');
+        log('- `new F(a, ++a)` --> `(tmp=a, tmp2=++a, new F(tmp, tmp2)`');
+        log('- `new F(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), new F(t1, 100, t2, a, t3))`');
+      } else {
+        rule('Call args must be simple nodes');
+        log('- `f(x())` --> `(tmp=x(), f(tmp)`');
+        log('- `f(...x())` --> `(tmp=x(), f(...tmp)`');
+        log('- `f(a, ++a)` --> `(tmp=a, tmp2=++a, f(tmp, tmp2)`');
+        log('- `f(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`');
+      }
       before(node);
 
-      const seq = AST.sequenceExpression(
-        ...assigns,
-        isNew ? AST.newExpression(node.callee, newArgs) : AST.callExpression(node.callee, newArgs),
-      );
+      // Note: must assign ALL args to a fresh var because `f(a, ++a) --> tmp=++a,f(a,tmp)` is a bad bug.
+      const assigns = [];
+      let newArgs = [];
+      node.arguments.forEach((anode, i) => {
+        const target = anode.type === 'SpreadElement' ? anode.argument : anode;
+        if (
+          target.type === 'Literal' ||
+          (target.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(target.name))
+        ) {
+          // Don't re-assign literals. They are immutable, there's no point or risk.
+          if (anode.type === 'SpreadElement') {
+            newArgs.push(anode);
+          } else {
+            newArgs.push(anode);
+          }
+        } else {
+          const tmpName = createFreshVarInCurrentRootScope('tmpArg', true);
 
-      crumbSet(1, seq);
-      changed = true;
+          if (anode.type === 'SpreadElement') {
+            assigns.push(AST.assignmentExpression(tmpName, anode.argument));
+            newArgs.push(AST.spreadElement(tmpName));
+          } else {
+            assigns.push(AST.assignmentExpression(tmpName, anode));
+            newArgs.push(AST.identifier(tmpName));
+          }
+        }
+      });
 
-      after(seq);
+      if (assigns.length) {
+        const seq = AST.sequenceExpression(
+          ...assigns,
+          isNew ? AST.newExpression(node.callee, newArgs) : AST.callExpression(node.callee, newArgs),
+        );
 
-      // Visit the sequence expression node now.
-      _expr(seq);
+        crumbSet(1, seq);
+        changed = true;
 
-      return true;
+        after(seq);
+
+        // Visit the sequence expression node now.
+        _expr(seq);
+
+        return true;
+      }
     }
 
     return false;

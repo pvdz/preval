@@ -18,7 +18,8 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 ## Normalized
 
 `````js filename=intro
-var tmpCallSpreadArg;
+var tmpArg;
+var tmpArg_1;
 var a;
 var b;
 var c;
@@ -28,20 +29,23 @@ var f;
 var g;
 var h;
 var y;
+tmpArg = x;
 a = b.c;
 d = e[f];
-tmpCallSpreadArg = g.h;
-new y(x, 8, ...tmpCallSpreadArg);
+tmpArg_1 = g.h;
+new y(tmpArg, 8, ...tmpArg_1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpCallSpreadArg;
+var tmpArg;
+var tmpArg_1;
 var a;
 var d;
+tmpArg = x;
 a = undefined.c;
 d = undefined[undefined];
-tmpCallSpreadArg = undefined.h;
-new undefined(x, 8, ...tmpCallSpreadArg);
+tmpArg_1 = undefined.h;
+new undefined(tmpArg, 8, ...tmpArg_1);
 `````

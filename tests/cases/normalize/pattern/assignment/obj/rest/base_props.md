@@ -19,12 +19,14 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpArg_1;
 var objAssignPatternRhs;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
-tmpArg = ['a', 'b'];
-x = objPatternRest(objAssignPatternRhs, tmpArg);
+tmpArg = objAssignPatternRhs;
+tmpArg_1 = ['a', 'b'];
+x = objPatternRest(tmpArg, tmpArg_1);
 $(x);
 `````
 
@@ -32,11 +34,13 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpArg_1;
 var objAssignPatternRhs;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
-tmpArg = ['a', 'b'];
-x = objPatternRest(objAssignPatternRhs, tmpArg);
+tmpArg = objAssignPatternRhs;
+tmpArg_1 = ['a', 'b'];
+x = objPatternRest(tmpArg, tmpArg_1);
 $(x);
 `````

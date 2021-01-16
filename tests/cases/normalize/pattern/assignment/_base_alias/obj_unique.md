@@ -22,7 +22,6 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 `````js filename=intro
 var objAssignPatternRhs;
-var a_1;
 {
   let a = 1;
 }
@@ -37,7 +36,6 @@ a_1 = objAssignPatternRhs.x;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var a_1;
 objAssignPatternRhs = 1;
 a_1 = objAssignPatternRhs.x;
 `````

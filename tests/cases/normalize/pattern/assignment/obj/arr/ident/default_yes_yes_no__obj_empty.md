@@ -24,7 +24,6 @@ var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
-var y;
 objAssignPatternRhs = {};
 objPatternBeforeDefault = objAssignPatternRhs.x;
 {
@@ -58,7 +57,6 @@ var objPatternBeforeDefault;
 var objPatternAfterDefault;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
-var y;
 objAssignPatternRhs = {};
 objPatternBeforeDefault = objAssignPatternRhs.x;
 let ifTestTmp = objPatternBeforeDefault === undefined;

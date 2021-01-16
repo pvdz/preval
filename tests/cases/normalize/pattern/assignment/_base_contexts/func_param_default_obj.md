@@ -19,7 +19,6 @@ const f = (a = { x } = 1) => { return a };
 `````js filename=intro
 const f = ($tdz$__a) => {
   var objAssignPatternRhs;
-  var x;
   {
     let a;
     {
@@ -42,7 +41,6 @@ const f = ($tdz$__a) => {
 `````js filename=intro
 ($tdz$__a) => {
   var objAssignPatternRhs;
-  var x;
   let a;
   let ifTestTmp = $tdz$__a === undefined;
   if (ifTestTmp) {

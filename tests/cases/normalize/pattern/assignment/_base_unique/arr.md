@@ -19,7 +19,6 @@
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var x_1;
 {
   let x = 1;
 }
@@ -36,7 +35,6 @@ x_1 = arrPatternSplat[0];
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var x_1;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 x_1 = arrPatternSplat[0];

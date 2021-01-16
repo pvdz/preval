@@ -17,7 +17,6 @@ f({ x } = 1);
 `````js filename=intro
 var tmpArg;
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 tmpArg = x;
@@ -29,7 +28,6 @@ f(tmpArg);
 `````js filename=intro
 var tmpArg;
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 tmpArg = x;

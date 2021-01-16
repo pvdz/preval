@@ -20,7 +20,6 @@ $('bad');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var x;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat.slice(0);
@@ -32,7 +31,6 @@ $('bad');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var x;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat.slice(0);

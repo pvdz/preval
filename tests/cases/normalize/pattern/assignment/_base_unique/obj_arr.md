@@ -20,7 +20,6 @@
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
-var y_1;
 {
   let y = 1;
 }
@@ -39,7 +38,6 @@ y_1 = arrPatternSplat[0];
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
-var y_1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];

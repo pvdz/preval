@@ -20,8 +20,6 @@ $(x);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var a;
-var x;
 arrAssignPatternRhs = [1, 2, 3];
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
@@ -34,8 +32,6 @@ $(x);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var a;
-var x;
 arrAssignPatternRhs = [1, 2, 3];
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];

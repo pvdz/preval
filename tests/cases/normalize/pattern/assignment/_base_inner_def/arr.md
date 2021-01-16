@@ -18,7 +18,6 @@
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
-var x;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
@@ -38,7 +37,6 @@ arrPatternBeforeDefault = arrPatternSplat[0];
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
-var x;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];

@@ -24,7 +24,6 @@ In particular, the pattern's "y" should be replaced with a different name.
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
-var a_1;
 {
   let a = 1;
 }
@@ -43,7 +42,6 @@ a_1 = objPatternNoDefault_1.z;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
-var a_1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;

@@ -126,6 +126,9 @@ const VERBOSE_TRACING = true;
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 
+const FRESH = true;
+const OLD = false;
+
 function rule(desc, ...rest) {
   if (desc.slice(-1) === '"') fixme;
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
@@ -729,34 +732,47 @@ export function phaseNormalize(fdata, fname) {
           const decl = e.declarations[0];
           if (decl.init) {
             const init = decl.init;
-
-            if (init.type === 'AssignmentExpression') {
+            if (init.type === 'ArrayPattern' || init.type === 'ObjectPattern') {
+              // Need to revisit after compiling patterns out
+              changed = true;
+            } else if (init.type === 'AssignmentExpression') {
               // Note: this transform is only safe with simple left or right sides.
               // If the right side is simple use the right side as init.
               // If the left side is simple use the left side as init.
               // If neither is simple then uhh uh uhh todo.
-
-              if (!isComplexNode(init.right)) {
+              if (init.left.type === 'ArrayPattern' || init.left.type === 'ObjectPattern') {
+                // Need to revisit after compiling patterns out
+                changed = true;
+              } else if (!isComplexNode(init.right)) {
                 rule('Init of a var binding must not be assignment, with simple rhs');
                 log('- `let x = y().foo = z` --> `y().foo = z; let x = z`');
+                before(decl);
                 ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
 
                 body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.right, e.kind));
+
+                after(body[i]);
+                after(body[i + 1]);
                 changed = true;
                 //--i;
               } else if (!isComplexNode(init.left)) {
                 rule('Init of a var binding must not be assignment, with simple lhs');
                 log('- `let x = y = z()` --> `y = z(); let x = y`');
+                before(decl);
                 ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
 
                 body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.left, e.kind));
+
+                after(body[i]);
+                after(body[i + 1]);
                 changed = true;
                 //--i;
               } else {
                 rule('Init of a var binding must not be assignment, with both sides complex');
                 log('- `let x = y().foo = z().foo` --> `let tmp = y(); let tmp2 = z(); y.foo = tmp2; let x = tmp2;`');
+                before(decl);
                 ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
-                ASSERT(init.left.type === 'MemberExpression', 'what else do you assign to if not simple nor member?', e);
+                ASSERT(init.left.type === 'MemberExpression', 'what else do you assign to if not simple nor member?', e, init);
 
                 // We need two new vars because we need to evaluate the lhs before we evaluate the rhs
                 // Consider `let a = $(1).x = $(2)`. This should call $ with 1 before 2.
@@ -774,6 +790,11 @@ export function phaseNormalize(fdata, fname) {
                   ),
                   AST.variableDeclaration(decl.id, tmpNameRhs, e.kind),
                 );
+
+                after(body[i]);
+                after(body[i + 1]);
+                after(body[i + 2]);
+                after(body[i + 3]);
                 changed = true;
                 //--i;
               }
@@ -781,7 +802,7 @@ export function phaseNormalize(fdata, fname) {
               if (init.operator === '||') {
                 rule('Logical `||` in var init assignment should be if-else');
                 log('- `var x = a() || b` --> `{ var x = a(); if (x); else x = b; }`');
-                before(e);
+                before(decl);
 
                 body.splice(
                   i,
@@ -1520,14 +1541,18 @@ export function phaseNormalize(fdata, fname) {
         if (isComplexNode(node.test)) {
           rule('If-test node must be simple');
           log('- `if (x+y) z` --> `{ let tmp = x+y; if (tmp) z; }`');
+          before(node);
+
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
           const tmpName = createFreshVarInCurrentRootScope('ifTestTmp');
           const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.test), node);
           node.test = AST.identifier(tmpName);
+
           crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
 
           _stmt(newNode, isExport, stillHoisting, isFunctionBody);
-          changed = true;
           break;
         }
 
@@ -1923,13 +1948,13 @@ export function phaseNormalize(fdata, fname) {
           const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternArrRoot');
           const nameStack = [bindingPatternRootName];
           const newBindings = [];
-          funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings);
+          funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
 
           if (newBindings.length) {
             log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
             node.declarations = [
               AST.variableDeclarator(bindingPatternRootName, dnode.init),
-              ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
+              ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
             ];
             changed = true;
             changedHere = true;
@@ -1948,13 +1973,13 @@ export function phaseNormalize(fdata, fname) {
           const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
           const nameStack = [bindingPatternRootName];
           const newBindings = [];
-          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings);
+          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var');
 
           if (newBindings.length) {
             log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
             node.declarations = [
               AST.variableDeclarator(bindingPatternRootName, dnode.init),
-              ...newBindings.map(([name, init]) => AST.variableDeclarator(name, init)),
+              ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
             ];
             changed = true;
             changedHere = true;
@@ -2212,7 +2237,7 @@ export function phaseNormalize(fdata, fname) {
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
 
-          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings);
+          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings, 'assign');
 
           if (newBindings.length) {
             rule('Assignment obj patterns not allowed');
@@ -2225,11 +2250,11 @@ export function phaseNormalize(fdata, fname) {
             const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
 
             // First assign the current rhs to a tmp variable.
-            newBindings.unshift([rhsTmpName, node.right]);
+            newBindings.unshift([rhsTmpName, FRESH, node.right]);
 
             const expressions = [];
-            newBindings.forEach(([name, expr]) => {
-              varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+            newBindings.forEach(([name, fresh, expr]) => {
+              if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
             const newNode = AST.sequenceExpression(expressions);
@@ -2248,7 +2273,7 @@ export function phaseNormalize(fdata, fname) {
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
 
-          funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings);
+          funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings, 'assign');
 
           if (newBindings.length) {
             rule('Assignment arr patterns not allowed');
@@ -2261,11 +2286,11 @@ export function phaseNormalize(fdata, fname) {
             const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
 
             // First assign the current rhs to a tmp variable.
-            newBindings.unshift([rhsTmpName, node.right]);
+            newBindings.unshift([rhsTmpName, FRESH, node.right]);
 
             const expressions = [];
-            newBindings.forEach(([name, expr]) => {
-              varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
+            newBindings.forEach(([name, fresh, expr]) => {
+              if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
             const newNode = AST.sequenceExpression(expressions);
@@ -3226,8 +3251,9 @@ export function phaseNormalize(fdata, fname) {
     superCallStack.pop();
   }
 
-  function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings) {
-    group('- walkObjectPattern');
+  function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings, kind) {
+    // kind = param, var, assign
+    group('- walkObjectPattern', kind);
 
     node.properties.forEach((propNode, i) => {
       log('- prop', i, ';', propNode.type);
@@ -3248,6 +3274,7 @@ export function phaseNormalize(fdata, fname) {
         // -> `bindingName = restHander(sourceObject, ['excluded', 'props'])`
         newBindings.push([
           restName,
+          OLD,
           AST.callExpression(BUILTIN_REST_HANDLER_NAME, [
             AST.identifier(cacheNameStack[cacheNameStack.length - 1]),
             AST.arrayExpression(node.properties.filter((n) => n !== propNode).map((n) => AST.literal(n.key.name))),
@@ -3291,9 +3318,10 @@ export function phaseNormalize(fdata, fname) {
         // `function([x = y]){}`
         // -> `function(tmp) { let tmp2 = [...tmp], tmp3 = tmp2[0], x = tmp3 === undefined ? y : x; }`
         newBindings.push(
-          [paramNameBeforeDefault, AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name)],
+          [paramNameBeforeDefault, FRESH, AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name)],
           [
             paramNameAfterDefault,
+            valueNode.type === 'Identifier' ? OLD : FRESH,
             AST.conditionalExpression(
               AST.binaryExpression('===', paramNameBeforeDefault, 'undefined'),
               propNode.value.right,
@@ -3309,14 +3337,18 @@ export function phaseNormalize(fdata, fname) {
 
         // Store the property in this name. It's a regular property access and the previous step should
         // be cached already. So read it from that cache.
-        newBindings.push([paramNameWithoutDefault, AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name)]);
+        newBindings.push([
+          paramNameWithoutDefault,
+          valueNode.type === 'Identifier' ? OLD : FRESH,
+          AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name),
+        ]);
       }
 
       if (valueNode.type === 'ArrayPattern') {
-        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings);
+        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings, kind);
       } else if (valueNode.type === 'ObjectPattern') {
         // Every step that is not a leaf should be verified to be non-nullable
-        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings);
+        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings, kind);
       } else {
         ASSERT(valueNode.type === 'Identifier', 'welke nog meer?', valueNode);
       }
@@ -3326,10 +3358,11 @@ export function phaseNormalize(fdata, fname) {
 
     groupEnd();
   }
-  function funcArgsWalkArrayPattern(node, cacheNameStack, newBindings) {
-    group('- walkArrayPattern');
 
-    // If this is a leaf then use the actual name, otherwise use a placeholder
+  function funcArgsWalkArrayPattern(node, cacheNameStack, newBindings, kind) {
+    // kind = param, var, assign
+    group('- walkArrayPattern', kind);
+
     const arrSplatName = node.type === 'Identifier' ? node.name : createFreshVarInCurrentRootScope('arrPatternSplat');
     cacheNameStack.push(arrSplatName);
     // Store this property in a local variable. Because it's an array pattern, we need to invoke the iterator. The easiest
@@ -3337,6 +3370,7 @@ export function phaseNormalize(fdata, fname) {
     // -> `arrPatternSplat = [...arrPatternTmp]`
     newBindings.push([
       arrSplatName,
+      node.type === 'Identifier' ? OLD : FRESH,
       AST.arrayExpression(
         // Previous prop step was stored in a var so access the prop on that var.
         // Invoke the iterator by spreading it into an array. Also means we can safely try direct access
@@ -3360,6 +3394,7 @@ export function phaseNormalize(fdata, fname) {
 
         newBindings.push([
           restName,
+          OLD,
           AST.memberCall(cacheNameStack[cacheNameStack.length - 1], 'slice', [
             AST.literal(i), // If rest is first arg, then arr.slice(0)
           ]),
@@ -3401,11 +3436,13 @@ export function phaseNormalize(fdata, fname) {
         newBindings.push(
           [
             paramNameBeforeDefault,
+            FRESH,
             // Previous prop step was stored in a var so access the prop on that var:
             AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], AST.literal(i), true),
           ],
           [
             paramNameAfterDefault,
+            valueNode.type === 'Identifier' ? OLD : FRESH,
             AST.conditionalExpression(
               AST.binaryExpression('===', paramNameBeforeDefault, 'undefined'),
               elemNode.right,
@@ -3423,15 +3460,16 @@ export function phaseNormalize(fdata, fname) {
         // Store the property in this name
         newBindings.push([
           bindingName,
+          valueNode.type === 'Identifier' ? OLD : FRESH,
           // Previous prop step was stored in a var so access the prop on that var:
           AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], AST.literal(i), true),
         ]);
       }
 
       if (valueNode.type === 'ObjectPattern') {
-        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings);
+        funcArgsWalkObjectPattern(valueNode, cacheNameStack, newBindings, kind);
       } else if (valueNode.type === 'ArrayPattern') {
-        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings);
+        funcArgsWalkArrayPattern(valueNode, cacheNameStack, newBindings, kind);
       } else {
         ASSERT(valueNode.type === 'Identifier', 'ook dat nog', valueNode);
       }
@@ -3515,6 +3553,7 @@ export function phaseNormalize(fdata, fname) {
           ASSERT(!funcNode.expression, 'fixme implement me');
           newBindings.push([
             pnode.left.name, // TODO: is this name already unique at this point?
+            OLD,
             // `param === undefined ? init : param`
             AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
           ]);
@@ -3540,6 +3579,7 @@ export function phaseNormalize(fdata, fname) {
           ASSERT(!funcNode.expression, 'fixme implement me (expr arrows should be normalized to have a body)');
           newBindings.push([
             undefaultNameNode,
+            FRESH,
             // `param === undefined ? init : param`
             AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
           ]);
@@ -3553,12 +3593,12 @@ export function phaseNormalize(fdata, fname) {
             rule('Func params must not be object patterns');
             log('- `function({x}) {}` --> `function(tmp) { var x = tmp.x; }`');
 
-            funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings);
+            funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings, 'param');
           } else if (pnode.left.type === 'ArrayPattern') {
             rule('Func params must not be array patterns');
             log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
 
-            funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings);
+            funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings, 'param');
           } else {
             ASSERT(false, 'what else?', pnode.left);
           }
@@ -3588,11 +3628,11 @@ export function phaseNormalize(fdata, fname) {
           if (pnode.type === 'ObjectPattern') {
             rule('Func params must not be array patterns');
             log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
-            funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings);
+            funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings, 'param');
           } else if (pnode.type === 'ArrayPattern') {
             rule('Func params must not be array patterns');
             log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
-            funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings);
+            funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings, 'param');
           } else {
             ASSERT(false, 'dunno wat dis is', pnode);
           }
@@ -3604,7 +3644,7 @@ export function phaseNormalize(fdata, fname) {
       if (newBindings.length) {
         log('Params were transformed somehow, injecting new nodes into body');
         funcNode.body.body.unshift(
-          AST.variableDeclarationFromDeclaration(newBindings.map(([name, init]) => AST.variableDeclarator(name, init))),
+          AST.variableDeclarationFromDeclaration(newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init))),
         );
         changed = true;
       }

@@ -19,7 +19,6 @@ $(x);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = { x: undefined };
 x = objAssignPatternRhs.x;
 $(x);
@@ -29,7 +28,6 @@ $(x);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = { x: undefined };
 x = objAssignPatternRhs.x;
 $(x);

@@ -16,7 +16,6 @@ a ? b : ({ x } = 1);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 {
   if (a) {
     b;
@@ -31,7 +30,6 @@ var x;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 if (a) {
 } else {
   objAssignPatternRhs = 1;

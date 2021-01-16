@@ -19,7 +19,6 @@ $(x);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 'abc';
 x = objPatternRest(objAssignPatternRhs, []);
 $(x);
@@ -29,7 +28,6 @@ $(x);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 'abc';
 x = objPatternRest(objAssignPatternRhs, []);
 $(x);

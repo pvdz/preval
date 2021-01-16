@@ -20,9 +20,6 @@ $(x);
 `````js filename=intro
 var tmpArg;
 var objAssignPatternRhs;
-var a;
-var b;
-var x;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
@@ -36,9 +33,6 @@ $(x);
 `````js filename=intro
 var tmpArg;
 var objAssignPatternRhs;
-var a;
-var b;
-var x;
 objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;

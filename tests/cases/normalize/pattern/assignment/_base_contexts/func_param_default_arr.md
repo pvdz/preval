@@ -20,7 +20,6 @@ const f = (a = [ x ] = 1) => { return a };
 const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var x;
   {
     let a;
     {
@@ -45,7 +44,6 @@ const f = ($tdz$__a) => {
 ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var x;
   let a;
   let ifTestTmp = $tdz$__a === undefined;
   if (ifTestTmp) {

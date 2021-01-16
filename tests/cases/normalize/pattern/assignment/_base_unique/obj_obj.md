@@ -20,7 +20,6 @@
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
-var z_1;
 {
   let z = 1;
 }
@@ -39,7 +38,6 @@ z_1 = objPatternNoDefault_1.z;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault_1;
-var z_1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;

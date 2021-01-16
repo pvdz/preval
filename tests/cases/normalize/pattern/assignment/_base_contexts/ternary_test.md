@@ -16,12 +16,11 @@
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 {
   {
     objAssignPatternRhs = 1;
     x = objAssignPatternRhs.x;
-    let ifTestTmp = 1;
+    let ifTestTmp = x;
     if (ifTestTmp) {
       b;
     } else {
@@ -35,7 +34,10 @@ var x;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
+let ifTestTmp = x;
+if (ifTestTmp) {
+} else {
+}
 `````

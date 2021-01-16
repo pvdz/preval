@@ -16,7 +16,6 @@
 
 `````js filename=intro
 var objAssignPatternRhs;
-var a;
 objAssignPatternRhs = 1;
 a = objAssignPatternRhs.x;
 `````
@@ -25,7 +24,6 @@ a = objAssignPatternRhs.x;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var a;
 objAssignPatternRhs = 1;
 a = objAssignPatternRhs.x;
 `````

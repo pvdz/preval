@@ -16,7 +16,6 @@ for ({ x } = 1;;) y;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
@@ -30,7 +29,6 @@ var x;
 
 `````js filename=intro
 var objAssignPatternRhs;
-var x;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 while (true) {}

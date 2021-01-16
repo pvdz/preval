@@ -20,7 +20,6 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var x;
 objAssignPatternRhs = { x: undefined };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 {
@@ -39,7 +38,6 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var x;
 objAssignPatternRhs = { x: undefined };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 let ifTestTmp = objPatternBeforeDefault === undefined;

@@ -17,7 +17,6 @@
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var x;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 {
@@ -35,7 +34,6 @@ objPatternBeforeDefault = objAssignPatternRhs.x;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var x;
 objAssignPatternRhs = 1;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 let ifTestTmp = objPatternBeforeDefault === undefined;

@@ -21,7 +21,6 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
-var x_1;
 {
   let x = 1;
 }
@@ -42,7 +41,6 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
 var arrPatternSplat_1;
-var x_1;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];

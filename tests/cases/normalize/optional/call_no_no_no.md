@@ -19,14 +19,14 @@ $(a().b().c().d);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-var tmpComplexMemberObj_1;
-var tmpComplexMemberObj_2;
+var tmpMemberComplexObj;
+var tmpMemberComplexObj_1;
+var tmpMemberComplexObj_2;
 const a = {};
-tmpComplexMemberObj_2 = a();
-tmpComplexMemberObj_1 = tmpComplexMemberObj_2.b();
-tmpComplexMemberObj = tmpComplexMemberObj_1.c();
-tmpArg = tmpComplexMemberObj.d;
+tmpMemberComplexObj_2 = a();
+tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
+tmpMemberComplexObj = tmpMemberComplexObj_1.c();
+tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
 
@@ -34,13 +34,13 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-var tmpComplexMemberObj_1;
-var tmpComplexMemberObj_2;
+var tmpMemberComplexObj;
+var tmpMemberComplexObj_1;
+var tmpMemberComplexObj_2;
 const a = {};
-tmpComplexMemberObj_2 = a();
-tmpComplexMemberObj_1 = tmpComplexMemberObj_2.b();
-tmpComplexMemberObj = tmpComplexMemberObj_1.c();
-tmpArg = tmpComplexMemberObj.d;
+tmpMemberComplexObj_2 = a();
+tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
+tmpMemberComplexObj = tmpMemberComplexObj_1.c();
+tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````

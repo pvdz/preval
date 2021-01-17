@@ -19,12 +19,12 @@ $(a.b.c.d);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-var tmpComplexMemberObj_1;
+var tmpMemberComplexObj;
+var tmpMemberComplexObj_1;
 const a = {};
-tmpComplexMemberObj_1 = a.b;
-tmpComplexMemberObj = tmpComplexMemberObj_1.c;
-tmpArg = tmpComplexMemberObj.d;
+tmpMemberComplexObj_1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
 
@@ -32,11 +32,11 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-var tmpComplexMemberObj_1;
+var tmpMemberComplexObj;
+var tmpMemberComplexObj_1;
 const a = {};
-tmpComplexMemberObj_1 = a.b;
-tmpComplexMemberObj = tmpComplexMemberObj_1.c;
-tmpArg = tmpComplexMemberObj.d;
+tmpMemberComplexObj_1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````

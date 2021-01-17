@@ -133,6 +133,12 @@ function rule(desc, ...rest) {
   if (desc.slice(-1) === '"') fixme;
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
 }
+function example(from, to, condition) {
+  if (!condition || condition()) {
+    log('- `' + from + '` --> `' + to + '`');
+  }
+}
+
 function before(node) {
   if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
 }
@@ -2864,61 +2870,92 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'MemberExpression': {
+        // In all cases, this node can only be replaced by another member expression. The parent node may be
+        // a call expression (`(a,b).c()`) or assignment (`a.b = c`) in which case the member expression must
+        // be preserved for the sake of determining the context of the parent expression.
+
         // Normalize `a.b.c` to `(tmp = a.b, tmp.c)` for any a that is not an ident or primitive. Then visit them.
-        if (
-          // If the object is complex, and it is not a sequence that ends with a simple node, then transform it.
-          // We rewrite into a sequence that ends with an identifier. So that's fine to keep
-          // If the object is a sequence that ends with a simple node or assignment, then skip this step.
-          isComplexNode(node.object)
-        ) {
-          const isSeq = node.object.type === 'SequenceExpression';
-          const last = isSeq && node.object.expressions[node.object.expressions.length - 1];
-          if (!isSeq || (isComplexNode(last) && last.type !== 'AssignmentExpression')) {
-            rule('Object of member expression must be simple or simple-sequence that may end with assign');
-            log('- `a().b` --> `(tmp = a(), tmp).b`');
-            log('- `(a, b()).c` --> `(a, (tmp = b(), tmp)).c`');
-            log('- `(a, a = y).c` --> noop');
+        // `$(1)[$(2)] = $(3)` is evaluated in 1, 2, 3 order
+
+        if (node.object.type === 'SequenceExpression') {
+          // (a, b).c
+          // Note: may be `(a,b).c()` or `(a,b).c=d` so it's important to leave the property dangling (sets context)
+          const seq = node.object;
+          const exprs = seq.expressions;
+
+          if (isComplexNode(exprs[exprs.length - 1])) {
+            rule('Last expr the sequence on which a property is accessed must be a simple node');
+            example('(a, b()).c', '(a, tmp = b(), tmp).c', () => !node.computed);
+            example('(a, b())[c]', '(a, tmp = b(), tmp)[c]', () => node.computed);
             before(node);
 
-            const seq = sequenceNode(node.object, 'tmpComplexMemberObj');
-            const property = node.property;
-            const newLeftNode = AST.memberExpression(seq, property, node.computed);
+            const tmpName = createFreshVarInCurrentRootScope('tmpMemberSeqAssign', true);
+            const newNode = AST.memberExpression(
+              AST.sequenceExpression(
+                ...exprs.slice(0, -1),
+                AST.assignmentExpression(tmpName, exprs[exprs.length - 1]),
+                AST.identifier(tmpName),
+              ),
+              node.property,
+              node.computed,
+            );
 
-            crumbSet(1, newLeftNode);
-            after(newLeftNode);
-
-            _expr(newLeftNode);
+            crumbSet(1, newNode);
+            after(newNode);
             changed = true;
+
+            _expr(newNode);
             break;
           }
+
+          // Else, it's a sequence that ends in a simple node. That's a base case for us.
+        } else if (isComplexNode(node.object)) {
+          rule('Object of member expression must be simple or simple sequence');
+          example('a().b', '(tmp = a(), tmp).b', () => !node.computed);
+          example('a()[b()]', '(tmp = a(), tmp)[b()]', () => node.computed);
+          before(node);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpMemberComplexObj', true);
+          const newNode = AST.memberExpression(
+            AST.sequenceExpression(AST.assignmentExpression(tmpName, node.object), AST.identifier(tmpName)),
+            node.property,
+            node.computed,
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
         }
 
         if (node.computed && isComplexNode(node.property)) {
           rule('Expression of computed property must be simple');
-          log('- `a[b()]` --> `(tmp = b(), a[tmp])`');
+          example('a[b()]', '(tmp = b(), a)[tmp]');
           before(node);
 
           const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp', true);
-
-          const seq = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.property),
-            AST.memberExpression(node.object, tmpName, true),
+          const newNode = AST.memberExpression(
+            AST.sequenceExpression(AST.assignmentExpression(tmpName, node.property), node.object),
+            tmpName,
+            true,
           );
 
-          crumbSet(1, seq);
-          after(seq);
-
-          _expr(seq);
+          crumbSet(1, newNode);
+          after(newNode);
           changed = true;
+
+          _expr(newNode);
           break;
         }
 
         if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
           // If the key name is a legit key then why not. Let's just test it.
-          // Note: will need to do this during phase2 and phase4 as well because a value might resolve to a string at a later step.
-          let simpleIdent = true;
+          let simpleIdent;
           try {
-            Function('foo["' + node.property.value + '"]');
+            // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
+            simpleIdent = !!(/^[\w_$]+$/.test(node.property.value) && Function('foo.' + node.property.value) && true);
           } catch {
             simpleIdent = false;
           }

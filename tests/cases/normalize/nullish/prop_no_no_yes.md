@@ -20,11 +20,11 @@ $(a.b.c??d);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 var tmpTernaryTest;
 const a = {};
-tmpComplexMemberObj = a.b;
-tmpNullish = tmpComplexMemberObj.c;
+tmpMemberComplexObj = a.b;
+tmpNullish = tmpMemberComplexObj.c;
 tmpTernaryTest = tmpNullish == null;
 if (tmpTernaryTest) {
   tmpArg = d;
@@ -39,11 +39,11 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 var tmpTernaryTest;
 const a = {};
-tmpComplexMemberObj = a.b;
-tmpNullish = tmpComplexMemberObj.c;
+tmpMemberComplexObj = a.b;
+tmpNullish = tmpMemberComplexObj.c;
 tmpTernaryTest = tmpNullish == null;
 if (tmpTernaryTest) {
   tmpArg = d;

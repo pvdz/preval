@@ -21,13 +21,13 @@ $(a??b.c.d);
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpComplexMemberObj = b.c;
-  tmpTernaryConsequent = tmpComplexMemberObj.d;
+  tmpMemberComplexObj = b.c;
+  tmpTernaryConsequent = tmpMemberComplexObj.d;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = a;
@@ -41,13 +41,13 @@ $(tmpArg);
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpComplexMemberObj = b.c;
-  tmpTernaryConsequent = tmpComplexMemberObj.d;
+  tmpMemberComplexObj = b.c;
+  tmpTernaryConsequent = tmpMemberComplexObj.d;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = a;

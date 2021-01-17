@@ -20,12 +20,12 @@ $(a[b][c]?.[d]);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 const a = {};
-tmpComplexMemberObj = a[b];
-tmpOptionalChaining = tmpComplexMemberObj[c];
+tmpMemberComplexObj = a[b];
+tmpOptionalChaining = tmpMemberComplexObj[c];
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;
@@ -41,12 +41,12 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpComplexMemberObj;
+var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 const a = {};
-tmpComplexMemberObj = a[b];
-tmpOptionalChaining = tmpComplexMemberObj[c];
+tmpMemberComplexObj = a[b];
+tmpOptionalChaining = tmpMemberComplexObj[c];
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;

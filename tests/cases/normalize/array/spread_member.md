@@ -19,9 +19,9 @@ $([...true.toString.name]);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpComplexMemberObj;
-tmpComplexMemberObj = true.toString;
-tmpElement = tmpComplexMemberObj.name;
+var tmpMemberComplexObj;
+tmpMemberComplexObj = true.toString;
+tmpElement = tmpMemberComplexObj.name;
 tmpArg = [...tmpElement];
 $(tmpArg);
 `````
@@ -31,9 +31,9 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpComplexMemberObj;
-tmpComplexMemberObj = true.toString;
-tmpElement = tmpComplexMemberObj.name;
+var tmpMemberComplexObj;
+tmpMemberComplexObj = true.toString;
+tmpElement = tmpMemberComplexObj.name;
 tmpArg = [...tmpElement];
 $(tmpArg);
 `````

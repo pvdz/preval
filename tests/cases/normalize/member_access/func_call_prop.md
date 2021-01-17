@@ -20,10 +20,10 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpComplexMemberObj;
+  var tmpMemberComplexObj;
   {
-    tmpComplexMemberObj = parseInt(15);
-    tmpArg = tmpComplexMemberObj.foo;
+    tmpMemberComplexObj = parseInt(15);
+    tmpArg = tmpMemberComplexObj.foo;
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -38,9 +38,9 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpComplexMemberObj;
-  tmpComplexMemberObj = parseInt(15);
-  tmpArg = tmpComplexMemberObj.foo;
+  var tmpMemberComplexObj;
+  tmpMemberComplexObj = parseInt(15);
+  tmpArg = tmpMemberComplexObj.foo;
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

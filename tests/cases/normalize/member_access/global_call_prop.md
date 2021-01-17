@@ -16,9 +16,9 @@ $(parseInt(15).foo);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-tmpComplexMemberObj = parseInt(15);
-tmpArg = tmpComplexMemberObj.foo;
+var tmpMemberComplexObj;
+tmpMemberComplexObj = parseInt(15);
+tmpArg = tmpMemberComplexObj.foo;
 $(tmpArg);
 `````
 
@@ -26,8 +26,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpComplexMemberObj;
-tmpComplexMemberObj = parseInt(15);
-tmpArg = tmpComplexMemberObj.foo;
+var tmpMemberComplexObj;
+tmpMemberComplexObj = parseInt(15);
+tmpArg = tmpMemberComplexObj.foo;
 $(tmpArg);
 `````

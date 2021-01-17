@@ -25,15 +25,15 @@ function f() {
   var tmpObjPropValue_1;
   var tmpAssignMemberObj;
   var tmpArg;
-  var tmpComplexMemberObj;
+  var tmpMemberComplexObj;
   tmpObjPropValue_1 = $();
   tmpObjPropValue = { b: tmpObjPropValue_1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemberObj = obj.a;
   tmpAssignMemberObj.b = 15;
   {
-    tmpComplexMemberObj = obj.a;
-    tmpArg = tmpComplexMemberObj.b;
+    tmpMemberComplexObj = obj.a;
+    tmpArg = tmpMemberComplexObj.b;
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
   }
@@ -51,14 +51,14 @@ function f() {
   var tmpObjPropValue_1;
   var tmpAssignMemberObj;
   var tmpArg;
-  var tmpComplexMemberObj;
+  var tmpMemberComplexObj;
   tmpObjPropValue_1 = $();
   tmpObjPropValue = { b: tmpObjPropValue_1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemberObj = obj.a;
   tmpAssignMemberObj.b = 15;
-  tmpComplexMemberObj = obj.a;
-  tmpArg = tmpComplexMemberObj.b;
+  tmpMemberComplexObj = obj.a;
+  tmpArg = tmpMemberComplexObj.b;
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
 }

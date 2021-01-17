@@ -20,7 +20,7 @@ export function phase3(program, fdata, resolve, req) {
     if (obj.updates.length === 1) {
       const update = obj.updates[0];
       // variable decl without init will have updateTo as null/undefined here
-      log('so the updates', obj.updates)
+      //log('so the updates', obj.updates)
       let updateTo;
       if (update.index >= 0) updateTo = update.parent[update.prop][update.index];
       else updateTo = update.parent[update.prop];

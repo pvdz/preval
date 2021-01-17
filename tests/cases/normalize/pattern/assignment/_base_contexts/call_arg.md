@@ -15,21 +15,25 @@ f({ x } = 1);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedComplexRhs;
 var tmpArg;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-tmpArg = x;
+tmpNestedComplexRhs = objAssignPatternRhs.x;
+x = tmpNestedComplexRhs;
+tmpArg = tmpNestedComplexRhs;
 f(tmpArg);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedComplexRhs;
 var tmpArg;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-tmpArg = x;
+tmpNestedComplexRhs = objAssignPatternRhs.x;
+x = tmpNestedComplexRhs;
+tmpArg = tmpNestedComplexRhs;
 f(tmpArg);
 `````

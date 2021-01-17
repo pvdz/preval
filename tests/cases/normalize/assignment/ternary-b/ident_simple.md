@@ -1,0 +1,57 @@
+# Preval test case
+
+# ident_simple.md
+
+> normalize > assignment > ternary-b > ident_simple
+>
+> Assignments of all kinds should be normalized in all circumstances
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let a = 1, b = 2, c = 3;
+$($(true) ? (a = b) : false);
+$(a, b, c);
+`````
+
+## Normalized
+
+`````js filename=intro
+var tmpArg;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+let a = 1;
+let b = 2;
+let c = 3;
+tmpTernaryTest = $(true);
+if (tmpTernaryTest) {
+  a = b;
+  tmpTernaryConsequent = b;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = false;
+}
+$(tmpArg);
+$(a, b, c);
+`````
+
+## Output
+
+`````js filename=intro
+var tmpArg;
+var tmpTernaryTest;
+var tmpTernaryConsequent;
+let a = 1;
+tmpTernaryTest = $(true);
+if (tmpTernaryTest) {
+  a = 2;
+  tmpTernaryConsequent = 2;
+  tmpArg = tmpTernaryConsequent;
+} else {
+  tmpArg = false;
+}
+$(tmpArg);
+$(a, 2, 3);
+`````

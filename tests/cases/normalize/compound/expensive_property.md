@@ -29,11 +29,17 @@ function superExpensiveFunction() {
     return tmpStmtArg;
   }
 }
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
+var tmpAssignMemRhs_1;
 var tmpBinaryLeft;
-tmpAssignMemberObj = superExpensiveFunction();
-tmpBinaryLeft = tmpAssignMemberObj.x;
-tmpAssignMemberObj.x = tmpBinaryLeft + 5;
+tmpAssignMemLhsObj = superExpensiveFunction();
+tmpAssignMemRhs = 5;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpBinaryLeft = tmpAssignMemLhsObj.x;
+tmpAssignMemRhs_1 = tmpBinaryLeft + tmpAssignMemRhs;
+tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
 `````
 
 ## Output
@@ -43,9 +49,15 @@ function superExpensiveFunction() {
   let tmpStmtArg = $();
   return tmpStmtArg;
 }
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
+var tmpAssignMemRhs_1;
 var tmpBinaryLeft;
-tmpAssignMemberObj = superExpensiveFunction();
-tmpBinaryLeft = tmpAssignMemberObj.x;
-tmpAssignMemberObj.x = tmpBinaryLeft + 5;
+tmpAssignMemLhsObj = superExpensiveFunction();
+tmpAssignMemRhs = 5;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpBinaryLeft = tmpAssignMemLhsObj.x;
+tmpAssignMemRhs_1 = tmpBinaryLeft + tmpAssignMemRhs;
+tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
 `````

@@ -19,15 +19,17 @@ for ($(a).x in b) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in b) {
-    tmpAssignMemberObj = $(a);
-    tmpAssignMemberObj.x = tmpForInLhsNode;
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemRhs = tmpForInLhsNode;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
     tmpArg = a.x;
     $(tmpArg);
   }
@@ -37,14 +39,16 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in b) {
-  tmpAssignMemberObj = $(a);
-  tmpAssignMemberObj.x = tmpForInLhsNode;
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemRhs = tmpForInLhsNode;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   tmpArg = a.x;
   $(tmpArg);
 }

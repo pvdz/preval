@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let x = 10, y = 20;
 ({x: [ y ]} = 1)
 `````
 
@@ -18,6 +19,8 @@
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
+let x = 10;
+let y = 20;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
@@ -30,6 +33,7 @@ y = arrPatternSplat[0];
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
+let y = 20;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];

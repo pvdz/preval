@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-var a,b,c,d,e,f,g,h,y;
+let a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8,y=9;
 new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````
 
@@ -20,15 +20,15 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````js filename=intro
 var tmpArg;
 var tmpArg_1;
-var a;
-var b;
-var c;
-var d;
-var e;
-var f;
-var g;
-var h;
-var y;
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+let e = 5;
+let f = 6;
+let g = 7;
+let h = 8;
+let y = 9;
 tmpArg = x;
 a = b.c;
 d = e[f];
@@ -41,11 +41,11 @@ new y(tmpArg, 8, ...tmpArg_1);
 `````js filename=intro
 var tmpArg;
 var tmpArg_1;
-var a;
-var d;
+let a = 1;
+let d = 4;
 tmpArg = x;
-a = undefined.c;
-d = undefined[undefined];
-tmpArg_1 = undefined.h;
-new undefined(tmpArg, 8, ...tmpArg_1);
+a = (2).c;
+d = (5)[6];
+tmpArg_1 = (7).h;
+new 9(tmpArg, 8, ...tmpArg_1);
 `````

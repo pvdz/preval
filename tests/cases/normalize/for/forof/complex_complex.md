@@ -19,7 +19,8 @@ for ($(a).x of $(b)) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
@@ -28,8 +29,9 @@ let b = { x: 1, y: 2 };
   {
     const tmpForOfRhs = $(b);
     for (tmpForOfLhsNode of tmpForOfRhs) {
-      tmpAssignMemberObj = $(a);
-      tmpAssignMemberObj.x = tmpForOfLhsNode;
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemRhs = tmpForOfLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
       tmpArg = a.x;
       $(tmpArg);
     }
@@ -40,15 +42,17 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpAssignMemberObj;
+var tmpAssignMemLhsObj;
+var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
 let tmpForOfLhsNode;
 const tmpForOfRhs = $(b);
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  tmpAssignMemberObj = $(a);
-  tmpAssignMemberObj.x = tmpForOfLhsNode;
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemRhs = tmpForOfLhsNode;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   tmpArg = a.x;
   $(tmpArg);
 }

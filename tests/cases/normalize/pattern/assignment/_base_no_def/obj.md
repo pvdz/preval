@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let x = 10;
 ({ x } = 1);
 `````
 
@@ -16,6 +17,7 @@
 
 `````js filename=intro
 var objAssignPatternRhs;
+let x = 10;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 `````
@@ -24,6 +26,7 @@ x = objAssignPatternRhs.x;
 
 `````js filename=intro
 var objAssignPatternRhs;
+let x = 10;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 `````

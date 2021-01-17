@@ -1,0 +1,81 @@
+# Preval test case
+
+# simple_pattern.md
+
+> normalize > assignment > ternary-c > simple_pattern
+>
+> Assignments of all kinds should be normalized in all circumstances
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let a = 1, x = 1, y = 2, z = [10, 20, 30];
+$($(false) ? true : (a = [x, y] = z));
+$(a, x, y, z);
+`````
+
+## Normalized
+
+`````js filename=intro
+var tmpNestedComplexRhs_1;
+var tmpArg;
+var tmpTernaryTest;
+var tmpTernaryAlternate;
+var tmpNestedComplexRhs;
+var arrAssignPatternRhs;
+var arrPatternSplat;
+let a = 1;
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+tmpTernaryTest = $(false);
+if (tmpTernaryTest) {
+  tmpArg = true;
+} else {
+  arrAssignPatternRhs = z;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  tmpNestedComplexRhs_1 = arrPatternSplat[1];
+  y = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  a = tmpNestedComplexRhs;
+  tmpTernaryAlternate = tmpNestedComplexRhs;
+  tmpArg = tmpTernaryAlternate;
+}
+$(tmpArg);
+$(a, x, y, z);
+`````
+
+## Output
+
+`````js filename=intro
+var tmpNestedComplexRhs_1;
+var tmpArg;
+var tmpTernaryTest;
+var tmpTernaryAlternate;
+var tmpNestedComplexRhs;
+var arrAssignPatternRhs;
+var arrPatternSplat;
+let a = 1;
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+tmpTernaryTest = $(false);
+if (tmpTernaryTest) {
+  tmpArg = true;
+} else {
+  arrAssignPatternRhs = z;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  tmpNestedComplexRhs_1 = arrPatternSplat[1];
+  y = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  a = tmpNestedComplexRhs;
+  tmpTernaryAlternate = tmpNestedComplexRhs;
+  tmpArg = tmpTernaryAlternate;
+}
+$(tmpArg);
+$(a, x, y, z);
+`````

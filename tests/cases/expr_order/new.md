@@ -20,23 +20,27 @@ new $(i, ++i);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg_1;
 let i = 0;
 tmpArg = i;
-i = i + 1;
-tmpArg_1 = i;
+tmpNestedComplexRhs = i + 1;
+i = tmpNestedComplexRhs;
+tmpArg_1 = tmpNestedComplexRhs;
 new $(tmpArg, tmpArg_1);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg_1;
 let i = 0;
 tmpArg = i;
-i = i + 1;
-tmpArg_1 = i;
+tmpNestedComplexRhs = i + 1;
+i = tmpNestedComplexRhs;
+tmpArg_1 = tmpNestedComplexRhs;
 new $(tmpArg, tmpArg_1);
 `````

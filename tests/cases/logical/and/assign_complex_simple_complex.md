@@ -19,16 +19,18 @@ $(x = 1 && $(2));
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedComplexRhs;
 var x;
 {
   let tmpAssignLogicStmtOr = 1;
   if (tmpAssignLogicStmtOr) {
-    x = $(2);
+    tmpNestedComplexRhs = $(2);
   } else {
-    x = tmpAssignLogicStmtOr;
+    tmpNestedComplexRhs = tmpAssignLogicStmtOr;
   }
 }
-tmpArg = x;
+x = tmpNestedComplexRhs;
+tmpArg = tmpNestedComplexRhs;
 $(tmpArg);
 `````
 
@@ -36,8 +38,10 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedComplexRhs;
 var x;
-x = $(2);
-tmpArg = x;
+tmpNestedComplexRhs = $(2);
+x = tmpNestedComplexRhs;
+tmpArg = tmpNestedComplexRhs;
 $(tmpArg);
 `````

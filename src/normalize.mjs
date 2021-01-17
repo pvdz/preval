@@ -122,6 +122,11 @@ const VERBOSE_TRACING = true;
       - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
     - what would be a normalized cross-branch labelled break/continue look like?
   - Can we get rid of labeled continue such that we can normalize all label sub-statements to blocks? Right now we need to exclude loops.
+  - fix the compound assignment expression order problem
+  - normalize every expression to an assignemnt statement, call statement, or const/let declaration
+  - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
+  - revisit switch normalization
+  - unused init for variabel (let x = 10; x = 20; $(x))
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -415,6 +420,12 @@ export function phaseNormalize(fdata, fname) {
 
     return true;
   }
+  function isImmutable(node) {
+    return (
+      node.type === 'Literal' ||
+      (node.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(node.name))
+    );
+  }
 
   function sequenceNode(node, tmpNameBase) {
     // Take given node, assign it to a fresh tmp variable, and create a sequence with this assignment and then that variable.
@@ -474,8 +485,17 @@ export function phaseNormalize(fdata, fname) {
           // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
           // Break sequence expressions that are the child of an ExpressionStatement up into separate statements
           rule('Sequences can not be statements');
+          before(expr);
           log('- `a, (b, c), d` --> `a; b; c; d;`');
-          node.body.splice(i, 1, ...expr.expressions.map((enode) => AST.expressionStatement(enode)));
+          node.body.splice(
+            i,
+            1,
+            ...expr.expressions.map((enode) => {
+              const newNode = AST.expressionStatement(enode);
+              after(newNode);
+              return newNode;
+            }),
+          );
           changed = true;
           --i; // revisit (recursively)
         } else if (expr.type === 'ConditionalExpression') {
@@ -2400,224 +2420,364 @@ export function phaseNormalize(fdata, fname) {
 
         ASSERT(node.left.type === 'Identifier' || node.left.type === 'MemberExpression', 'uhhh was there anything else assignable?', node);
 
+        if (node.left.type === 'MemberExpression' && (isComplexNode(node.right) || isComplexNode(node.left.object))) {
+          rule('Assignment to member expression must have simple lhs and rhs');
+          log('- `a.foo = b()` --> `tmp = a, tmp2 = b(), tmp.foo = tmp2`');
+          log('- `a.b.c = a.b = {x: 10}` --> `tmp = a, tmp2 = a.b = {x: 10}, tmp.b = tmp2`'); // to be normalized further, of course
+          log('- `a().foo = a` --> `tmp = a, tmp2 = b(), tmp.foo = tmp2`');
+          log('- `a().b.c = a.b = {x: 10}` --> `tmp = a(), tmp2 = a.b = {x: 10}, tmp.b = tmp2`'); // to be normalized further, of course
+          before(node);
+
+          const tmpNameLhs = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj', true);
+          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignMemRhs', true);
+          const newNode = AST.sequenceExpression(
+            AST.assignmentExpression(tmpNameLhs, node.left.object), // tmp = a
+            AST.assignmentExpression(tmpNameRhs, node.right), // tmp = b()
+            AST.assignmentExpression(
+              AST.memberExpression(tmpNameLhs, node.left.property, node.left.computed), // tmp.b = tmp2
+              tmpNameRhs,
+              node.operator,
+            ),
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+
+          break;
+        }
+
         if (node.left.type === 'MemberExpression' && node.left.computed && isComplexNode(node.left.property)) {
+          ASSERT(
+            !isComplexNode(node.left.object),
+            '`f()[g()]` calls f first! So this step should happen after we make sure the obj is simple',
+          );
           rule('Assignment to computed member expression must have simple property');
-          log('- `a[b()] = x` --> `(tmp = b(), a[tmp] = x)`');
+          example('a[b()] = x', '(tmp = b(), a[tmp] = x)', () => isImmutable(node.left.object));
+          example('a()[b()] = x', '(tmp = a(), tmp2 = b(), tmp[tmp2] = x)', () => !isImmutable(node.left.object));
           before(node);
 
           const mem = node.left;
-          const tmpName = createFreshVarInCurrentRootScope('tmpAssignedComputedProp', true);
+          let seq;
+          if (isImmutable(mem.object)) {
+            const tmpName = createFreshVarInCurrentRootScope('tmpAssignedComputedProp', true);
 
-          const seq = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, mem.property),
-            AST.assignmentExpression(AST.memberExpression(mem.object, tmpName, true), node.right, node.operator),
-          );
+            seq = AST.sequenceExpression(
+              AST.assignmentExpression(tmpName, mem.property),
+              AST.assignmentExpression(AST.memberExpression(mem.object, tmpName, true), node.right, node.operator),
+            );
+          } else {
+            const tmpName1 = createFreshVarInCurrentRootScope('tmpAssignedComputedObj', true);
+            const tmpName2 = createFreshVarInCurrentRootScope('tmpAssignedComputedProp', true);
+
+            seq = AST.sequenceExpression(
+              AST.assignmentExpression(tmpName1, mem.object),
+              AST.assignmentExpression(tmpName2, mem.property),
+              AST.assignmentExpression(AST.memberExpression(tmpName1, tmpName2, true), node.right, node.operator),
+            );
+          }
 
           crumbSet(1, seq);
           after(seq);
+          changed = true;
 
           _expr(seq);
-          changed = true;
           break;
-        } else {
+        }
+
+        if (node.right.type === 'AssignmentExpression') {
           ASSERT(
-            node.left.type === 'Identifier' || node.left.type === 'MemberExpression',
-            'uhhh was there anything else assignable?',
-            node,
+            node.left.type === 'Identifier',
+            'since we can only assign to ident or member and we already checked member with complex rhs, this must be ident now',
           );
 
-          let changedNow = false;
+          // To preserve observable side effect order we have to process a few cases here in a specific way
+          // We have to do it here because a recursive parse would not have a statement parent, which I want, so... ugh
+          // Note: if a, b, or c is complex then it must be evaluated in a b c order. And only once each.
+          // 1 - `a = b = c` --> `b = c, a = c` (end state)
+          // 2 - `a = b = c()` --> `tmp = c(), a = b = tmp` --> 1 (I think, but we could also do to `b = c(), a = b` ...)
+          // 3 - `a = b.x = c` --> `b.x = c, a = c` (end state)
+          // 4 - `a = b.x = c()` --> `tmp = c(), a = b.x = tmp` --> 3
+          // 5 - `a = b().x = c` --> `tmp = b(), a = tmp.x = c` --> 4
+          // 6 - `a = b().x = c()` --> `tmp = b(), a = tmp.x = c()` --> 4
+          // or
+          // if the rhs.lhs.object or rhs.rhs is complex, store it in tmp.
+          // if the rhs.lhs is a member expression, the property is not read (so that can't serve as the rhs)
+          // in other words, if we make sure to stash the rhs.lhs.object in a tmp var, and then the rhs.rhs,
+          // then we should always be able to use the rhs.rhs (which must be simple at that point) for the
+          // `b = c, a = c` base case safely, regardless whether b is a member expression or ident.
+          // TODO: do we want to special case `a = (b, c).d = e` --> `(b, a = c.d = e)`? It's no problem now, just adds an unnecessary var
 
-          if (node.right.type === 'AssignmentExpression') {
-            ASSERT(
-              node.right.left.type === 'Identifier' ||
-                node.right.left.type === 'MemberExpression' ||
-                node.right.left.type === 'ObjectPattern' ||
-                node.right.left.type === 'ArrayPattern',
-              'see above (except patterns arent visited yet)',
-              node.right,
-            );
-            const nestedAssign = node.right;
-            // `a = b = c`
-            // `a.foo = b = c`
-            // `a = b.foo = c`
-            // `a = b = c.foo`
-            // `a.foo = b.foo = c`
-            // `a = b.foo = c.foo`
-            // `a.foo = b.foo = c.foo`
-            // There are a few cases to consider. In particular, we need to make sure that we
-            // cache b (node.right.left) first if it is a complex node, that we cache it first
+          const a = node.left;
+          const lhs = node.right.left;
 
-            if (nestedAssign.left.type === 'ObjectPattern' || nestedAssign.left.type === 'ArrayPattern') {
-              changed = true; // Request another pass
-            } else if (nestedAssign.left.type === 'Identifier') {
-              rule('Nested assignments with simple middles are not allowed');
-              log('- `a = b = c` --> `(b = c, a = b)`');
-              log('- `a = b = c()` --> `(b = c(), a = b)`');
-              log('- `a.foo = b = c` --> `(b = c, a.foo = b)`');
-              log('- `a.foo = b = c()` --> `(b = c(), a.foo = b)`');
+          if (lhs.type === 'Identifier') {
+            // a = b = c
+            const b = lhs;
+            const c = node.right.right;
+
+            if (isComplexNode(c)) {
+              // In this case, b is only read, so we don't need to cache even if c() would change it
+              rule('The rhs.rhs of a nested assignment must be simple');
+              example('a = b = c()', 'tmp = c(), b = tmp, a = tmp');
               before(node);
 
-              const newNode = AST.sequenceExpression(nestedAssign, AST.assignmentExpression(node.left, nestedAssign.left));
-              crumbSet(1, newNode);
-              after(newNode);
-
-              changed = true;
-              changedNow = true;
-            } else if (isComplexNode(nestedAssign.right)) {
-              ASSERT(nestedAssign.left.type === 'MemberExpression');
-              rule('Nested assignments with complex value to property are not allowed');
-              log('- `a = b.foo = c.foo` --> `(tmp = c.foo, b.foo = tmp, a = tmp)`');
-              log('- `a = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a = tmp)`');
-              log('- `a.foo = b.foo = c.foo` --> `(tmp = c.foo, b.foo = tmp, a.foo = tmp)`');
-              log('- `a.foo = b().foo = c().foo` --> `(tmp = c().foo, b().foo = tmp, a.foo = tmp)`');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignRhs', true);
-
-              // Note: a().x = b().x = c().x will evaluate in order of a() b() c() so we must keep that order too
-              // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedComplexRhs', true);
               const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, nestedAssign.right),
-                AST.assignmentExpression(nestedAssign.left, tmpName),
-                AST.assignmentExpression(node.left, tmpName),
+                AST.assignmentExpression(tmpName, c),
+                AST.assignmentExpression(b, tmpName, node.right.operator),
+                AST.assignmentExpression(a, tmpName, node.operator),
               );
 
               crumbSet(1, newNode);
-
               after(newNode);
               changed = true;
-              changedNow = true;
-            } else {
-              rule('Nested assignments with simple value to property are not allowed');
-              log('- `a = b.foo = c` --> `(b.foo = c, a = c)`');
-              log('- `a = b().foo = c` --> `(b().foo = c, a = c)`');
-              log('- `a.foo = b.foo = c` --> `(b.foo = c, a.foo = c)`');
-              log('- `a().foo = b().foo = c` --> `(b().foo = c, a().foo = c)`');
-              before(node);
-
-              // Note: a().x = b().x = c will evaluate in order of a() b() c so we must keep that order too
-              // Note: getters in the middle do not change the value assigned to the left-most node (there's a test)
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(nestedAssign.left, nestedAssign.right),
-                AST.assignmentExpression(node.left, nestedAssign.right),
-              );
-
-              crumbSet(1, newNode);
-
-              after(newNode);
-              changed = true;
-              changedNow = true;
-            }
-          } else if (node.left.type === 'MemberExpression' && node.left.object.type === 'SequenceExpression') {
-            // (occurs as a transformation artifact)
-            rule('Assignment must not be to a property of a sequence');
-            log('- `(a, b).c = d` --> `(a, b.c = d)`');
-            before(node);
-
-            const val = node.right;
-            const memb = node.left;
-            const seq = memb.object;
-            const prop = memb.property;
-            const exprs = seq.expressions; // Last one will replace the sequence
-
-            const newNode = AST.sequenceExpression(
-              ...exprs.slice(0, -1),
-              AST.assignmentExpression(AST.memberExpression(exprs[exprs.length - 1], prop, memb.computed), val, node.operator),
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            _expr(newNode);
-            changed = true;
-            changedNow = true;
-          } else if (node.right.type === 'SequenceExpression') {
-            rule('Assignment rhs must not be sequence');
-            log('- `a = (b, c)` --> `(b, a = c)`');
-            before(node);
-
-            const seq = node.right;
-            const exprs = seq.expressions.slice(0); // Last one will replace the sequence
-            const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
-            crumbSet(1, newNode);
-            after(newNode);
-            _expr(newNode);
-            changed = true;
-            changedNow = true;
-          } else if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
-            rule('Assignment rhs must not be a property on a sequence');
-            log('- `a = (b, c).d` --> `(b, a = c.d)`');
-            before(node);
-
-            const mem = node.right;
-            const seq = mem.object;
-            const exprs = seq.expressions.slice(0);
-            const newNode = AST.sequenceExpression(
-              ...exprs.slice(0, -1),
-              AST.assignmentExpression(node.left, AST.memberExpression(exprs.pop(), mem.property, mem.computed)),
-            );
-            crumbSet(1, newNode);
-            after(newNode);
-            _expr(newNode);
-            changed = true;
-            changedNow = true;
-          } else if (node.left.type === 'MemberExpression' && isComplexNode(node.left.object)) {
-            rule('Assignment member object should be simple');
-            log('- `a().b = c` --> `(tmp = a(), tmp.b = c)`');
-            before(node);
-
-            const mem = node.left;
-            const tmpName = createFreshVarInCurrentRootScope('tmpAssignMemberObj', true);
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpName, mem.object),
-              AST.assignmentExpression(AST.memberExpression(tmpName, mem.property, mem.computed), node.right, node.operator),
-            );
-            crumbSet(1, newNode);
-
-            after(newNode);
-            changed = true;
-            changedNow = true;
-
-            _expr(newNode);
-          }
-          if (!changedNow && node.operator !== '=') {
-            if (
-              !isComplexNode(node.left) ||
-              (node.left.type === 'MemberExpression' &&
-                !isComplexNode(node.left.object) &&
-                (!node.left.computed || !isComplexNode(node.left.property)))
-            ) {
-              rule('Compound assignments should be non-compound');
-              log('- `a += b` --> `a = a + b`');
-              before(node);
-
-              const newNode = AST.assignmentExpression(
-                node.left,
-                AST.binaryExpression(node.operator.slice(0, -1), node.left, node.right), // += becomes +, >>>= becomes >>>, etc
-              );
-              crumbSet(1, newNode);
-
-              after(newNode);
-              changed = true;
-              changedNow = true;
 
               _expr(newNode);
-            } else {
-              source(node);
-              ASSERT(
-                false,
-                'lhs should not be complex, or a member expression with non-complex object and (if computed) a non-complex property. Right?',
-              );
+              break;
             }
+
+            // This is a = b = c with all idents
+            rule('Nested assignment with all idents must be split');
+            example('a = b = c', 'b = c, a = c');
+            before(node);
+
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(b, c, node.right.operator),
+              AST.assignmentExpression(a, c, node.operator),
+            );
+
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+            break;
           }
 
-          if (changedNow) {
-            _expr(crumbGet(1));
-          } else {
-            expr(node, 'left', -1, node.left);
-            expr(node, 'right', -1, node.right);
+          if (lhs.type === 'MemberExpression') {
+            // a = b.c = d
+            const b = lhs.object;
+            const c = lhs.property;
+            const d = node.right.right;
+
+            if (isComplexNode(d)) {
+              if (lhs.computed) {
+                // We must store all values, a, b, and c, because evaluating d() may change the values of a, b, and/or c
+                // which would lead to a different semantics without storing their before-value.
+                rule('The rhs of a nested assignment to a computed property must be simple');
+                example('a = b()[c()] = d()', 'tmp = b(), tmp2 = c(), tmp3 = d(), tmp[tmp2] = tmp3, a = tmp3');
+                before(node);
+
+                const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberObj', true);
+                const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberProp', true);
+                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberRhs', true);
+
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(tmpNameObj, b),
+                  AST.assignmentExpression(tmpNameProp, c),
+                  AST.assignmentExpression(tmpNameRhs, d),
+                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs, node.right.operator),
+                  AST.assignmentExpression(a, tmpNameRhs, node.operator),
+                );
+
+                crumbSet(1, newNode);
+                after(newNode);
+                changed = true;
+
+                _expr(newNode);
+              } else {
+                // We must store b because evaluating d() may change the value of b (through a closure)
+                // which would lead to a different semantics without storing their before-value.
+                rule('The rhs of a nested assignment to a regular property must be simple');
+                example('a = b.c = d()', 'tmp = b, tmp2 = d(), tmp.c = tmp2, a = tmp2');
+                before(node);
+
+                const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignMemberObj', true);
+                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignMemberRhs', true);
+
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(tmpNameObj, b),
+                  AST.assignmentExpression(tmpNameRhs, d),
+                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, c), tmpNameRhs, node.right.operator),
+                  AST.assignmentExpression(a, tmpNameRhs, node.operator),
+                );
+
+                crumbSet(1, newNode);
+                after(newNode);
+                changed = true;
+
+                _expr(newNode);
+              }
+
+              break;
+            }
+
+            if (lhs.computed && isComplexNode(c)) {
+              // In this case, d is known to be simple (scrubbed above), and we only need to store b in a var first, since
+              // the execution of c may change it after the fact (so we must store the value before evaluating c) but we
+              // don't have to care if calling b or c changes the value of d since that would always be evaluated last.
+              rule('The property of a nested assignment to a computed property must be a simple node');
+              example('a = b[c()] = d', 'tmp = b, tmp2 = c(), tmp[tmp2] = d, a = d', () => !b.computed);
+              before(node);
+
+              const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberObj', true);
+              const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberProp', true);
+
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpNameObj, b),
+                AST.assignmentExpression(tmpNameProp, c),
+                AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), d, node.right.operator),
+                AST.assignmentExpression(a, d, node.operator),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
+            if (isComplexNode(b)) {
+              // In this case c is neither computed nor complex, d is simple, and we only need to put b in a tmp var.
+              // Even if c is computed, b would be evaluated before c so we don't need to preserve its before-value.
+              rule('The object of a nested property assignment must be a simple node');
+              example('a = b().c = d', 'tmp = b(), tmp.c = d, a = d', () => !lhs.computed);
+              example('a = b()[c] = d', 'tmp = b(), tmp[c] = d, a = d', () => lhs.computed);
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignObj', true);
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, b),
+                AST.assignmentExpression(AST.memberExpression(tmpName, c, lhs.computed), d, node.right.operator),
+                AST.assignmentExpression(a, d, node.operator),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
+            // We must be left with `a = b.c = d` or `a = b[c] = d`, which must all be simple nodes
+            ASSERT(!isComplexNode(b));
+            ASSERT(!lhs.computed || !isComplexNode(c));
+            ASSERT(!isComplexNode(d));
+            rule('Nested assignment to property where all nodes are simple must be split up');
+            example('a = b.c = d', 'b.c = d, a = d');
+            before(node);
+
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(lhs, d, node.right.operator),
+              AST.assignmentExpression(a, d, node.operator),
+            );
+
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+            break;
           }
+
+          if (lhs.type === 'ArrayPattern') {
+            log('Array pattern, needs another pass');
+
+            expr(node, 'left', -1, a); // TODO: do we visit left?
+            expr(node, 'right', -1, node.right);
+
+            changed = true;
+            break;
+          }
+
+          if (lhs.type === 'ObjectPattern') {
+            log('Object pattern, needs another pass');
+
+            expr(node, 'left', -1, a); // TODO: do we visit left?
+            expr(node, 'right', -1, node.right);
+
+            changed = true;
+            break;
+          }
+
+          ASSERT(false, 'wait wat?');
         }
+
+        if (node.right.type === 'SequenceExpression') {
+          rule('Assignment rhs must not be sequence');
+          log('- `a = (b, c)` --> `(b, a = c)`');
+          before(node);
+
+          const seq = node.right;
+          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
+
+          crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
+
+        if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
+          rule('Assignment rhs must not be property on a sequence ');
+          log('- `a = (b, c).x` --> `(b, a = c.x)`');
+          before(node);
+
+          const seq = node.right.object;
+          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+          const newNode = AST.sequenceExpression(
+            ...exprs.slice(0, -1),
+            AST.assignmentExpression(
+              node.left,
+              AST.memberExpression(exprs[exprs.length - 1], node.right.property, node.right.computed),
+              node.operator,
+            ),
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
+
+        if (node.operator !== '=') {
+          ASSERT(
+            !isComplexNode(node.left) || (node.left.type === 'MemberExpression' && !isComplexNode(node.left.object)),
+            'lhs should be ident or simple member expression',
+            node.left,
+          );
+          rule('Compound assignments should be non-compound');
+          log('- `a += b()` --> `a = a + b()`');
+          log('- `a.b += b()` --> `a.b = a.b + b()`');
+          before(node);
+
+          const newNode = AST.assignmentExpression(
+            node.left,
+            AST.binaryExpression(node.operator.slice(0, -1), node.left, node.right), // += becomes +, >>>= becomes >>>, etc
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
+        }
+
+        // At this point the lhs should be either an identifier or member expression with simple object and
+        // the rhs should neither be an assignment nor a sequence expression. With assignment operator `=`.
+        // TODO: should it visit the rhs before the lhs? should it special case the lhs here?
+        expr(node, 'left', -1, node.left);
+        expr(node, 'right', -1, node.right);
 
         break;
       }
@@ -2824,6 +2984,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Identifier': {
         const meta = getMetaForBindingName(node);
+        ASSERT(meta, 'expecting meta for', node);
         log('Recording a usage for `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
         meta.usages.push(node);
         break;
@@ -2845,6 +3006,7 @@ export function phaseNormalize(fdata, fname) {
         log('Operator:', node.operator);
 
         if (node.operator === '??') {
+          // TODO: do we care about the document.all exception? Make it optional?
           rule('Nullish coalescing should be normalized away');
           log('`a ?? b` --> `(tmp == null ? b : tmp)');
           log('`f() ?? b` --> `(tmp = f(), (tmp == null ? b : tmp))');
@@ -2856,8 +3018,8 @@ export function phaseNormalize(fdata, fname) {
             AST.assignmentExpression(tmpName, node.left),
             AST.conditionalExpression(AST.binaryExpression('==', tmpName, 'null'), node.right, tmpName),
           );
-          crumbSet(1, newNode);
 
+          crumbSet(1, newNode);
           after(newNode);
           changed = true;
 

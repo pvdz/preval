@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let x = 10;
 ([{ x }] = 1);
 `````
 
@@ -18,6 +19,7 @@
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
+let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
@@ -30,6 +32,7 @@ x = arrPatternStep.x;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
+let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];

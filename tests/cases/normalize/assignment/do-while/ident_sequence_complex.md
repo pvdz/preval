@@ -32,7 +32,7 @@ do {
   {
     tmpPostfixArg = n;
     n = n + 1;
-    tmpArg = n;
+    tmpArg = tmpPostfixArg;
     let ifTestTmp_1 = $(tmpArg);
     if (ifTestTmp_1) {
       break;
@@ -58,7 +58,7 @@ let n = 0;
 do {
   tmpPostfixArg = n;
   n = n + 1;
-  tmpArg = n;
+  tmpArg = tmpPostfixArg;
   let ifTestTmp_1 = $(tmpArg);
   if (ifTestTmp_1) {
     break;
@@ -76,9 +76,6 @@ $(a, 2, 3);
 Should call `$` with:
 [[0], [2], [3], [null, 2, 3], null];
 
-Normalized calls: BAD?!
-[[1], [2], [3], [null, 2, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [2], [3], [null, 2, 3], null];
-
+Final output calls: Same

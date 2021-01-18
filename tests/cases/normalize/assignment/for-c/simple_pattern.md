@@ -35,7 +35,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         arrAssignPatternRhs = z;
@@ -69,7 +69,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     arrAssignPatternRhs = z;
@@ -91,8 +91,8 @@ Should call `$` with:
 [[[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
 Normalized calls: BAD?!
-[[1, 1, 2, [10, 20, 30]], null];
+[[20, 10, 20, [10, 20, 30]], null];
 
 Final output calls: BAD!!
-[[1, 1, 2, [10, 20, 30]], null];
+[[20, 10, 20, [10, 20, 30]], null];
 

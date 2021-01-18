@@ -39,7 +39,7 @@ do {
   {
     tmpPostfixArg = n;
     n = n + 1;
-    tmpArg = n;
+    tmpArg = tmpPostfixArg;
     let ifTestTmp_1 = $(tmpArg);
     if (ifTestTmp_1) {
       break;
@@ -81,7 +81,7 @@ let n = 0;
 do {
   tmpPostfixArg = n;
   n = n + 1;
-  tmpArg = n;
+  tmpArg = tmpPostfixArg;
   let ifTestTmp_1 = $(tmpArg);
   if (ifTestTmp_1) {
     break;
@@ -210,8 +210,8 @@ Should call `$` with:
 ];
 
 Normalized calls: BAD?!
-[[1], '<crash[ <ref> is not iterable ]>'];
+[[0], '<crash[ <ref> is not iterable ]>'];
 
 Final output calls: BAD!!
-[[1], '<crash[ <ref> is not iterable ]>'];
+[[0], '<crash[ <ref> is not iterable ]>'];
 

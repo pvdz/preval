@@ -32,7 +32,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         $(b);
@@ -59,7 +59,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     $(2);
@@ -78,9 +78,6 @@ $(a, 2, 3);
 Should call `$` with:
 [[2], [3], "<crash[ Cannot set property 'x' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[1, 2, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1, 2, 3], null];
-
+Final output calls: Same

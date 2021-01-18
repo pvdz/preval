@@ -34,7 +34,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         a;
@@ -66,7 +66,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = b;

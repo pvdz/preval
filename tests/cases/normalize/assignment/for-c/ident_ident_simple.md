@@ -31,7 +31,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         b = c;
@@ -56,7 +56,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     b = 3;
@@ -73,9 +73,6 @@ $(a, b, 3);
 Should call `$` with:
 [[3, 3, 3], null];
 
-Normalized calls: BAD?!
-[[1, 2, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1, 2, 3], null];
-
+Final output calls: Same

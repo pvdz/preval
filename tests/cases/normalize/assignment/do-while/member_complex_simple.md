@@ -32,7 +32,7 @@ do {
   {
     tmpPostfixArg = n;
     n = n + 1;
-    tmpArg = n;
+    tmpArg = tmpPostfixArg;
     let ifTestTmp_1 = $(tmpArg);
     if (ifTestTmp_1) {
       break;
@@ -57,7 +57,7 @@ let n = 0;
 do {
   tmpPostfixArg = n;
   n = n + 1;
-  tmpArg = n;
+  tmpArg = tmpPostfixArg;
   let ifTestTmp_1 = $(tmpArg);
   if (ifTestTmp_1) {
     break;
@@ -74,9 +74,6 @@ $(a, 2, 3);
 Should call `$` with:
 [[0], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[1], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
-
+Final output calls: Same

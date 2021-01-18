@@ -3490,8 +3490,8 @@ export function phaseNormalize(fdata, fname) {
       case 'UpdateExpression': {
         if (node.prefix) {
           rule('Update expression prefix should be regular assignment');
-          if (node.operator === '++') log('- `++x` --> `x = x + 1`');
-          else log('- `--x` --> `x = x - 1`');
+          example('++x', 'x = x + 1', () => node.operator === '++');
+          example('--x', 'x = x - 1', () => node.operator !== '++');
           before(node);
 
           const newNode = AST.assignmentExpression(
@@ -3507,8 +3507,8 @@ export function phaseNormalize(fdata, fname) {
         } else {
           // We kind of have to create a tmp var since the addition/subtraction may be irreversible (NaN/Infinity cases)
           rule('Update expression postfix should be regular assignment');
-          if (node.operator === '++') log('- `x++` --> `tmp = x, x = x + 1, tmp`');
-          else log('- `x--` --> `tmp = x, x = x - 1, tmp`');
+          example('x++', 'tmp = x, x = x + 1, tmp', () => node.operator === '++');
+          example('x--','tmp = x, x = x - 1, tmp', () => node.operator !== '++');
           before(node);
 
           const tmpName = createFreshVarInCurrentRootScope('tmpPostfixArg', true);
@@ -3518,7 +3518,7 @@ export function phaseNormalize(fdata, fname) {
               node.argument,
               AST.binaryExpression(node.operator === '++' ? '+' : '-', node.argument, AST.literal(1)),
             ),
-            node.argument,
+            AST.identifier(tmpName),
           );
           crumbSet(1, newNode);
 

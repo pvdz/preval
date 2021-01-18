@@ -34,7 +34,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         tmpNestedAssignMemberObj = $(b);
@@ -63,7 +63,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpNestedAssignMemberObj = $(b);
@@ -82,9 +82,6 @@ $(a, b, 7);
 Should call `$` with:
 [[{ x: 2 }], "<crash[ Cannot set property 'x' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[1, { x: 2 }, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1, { x: 2 }, 7], null];
-
+Final output calls: Same

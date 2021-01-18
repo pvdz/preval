@@ -33,7 +33,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         tmpNestedComplexRhs = c + d;
@@ -60,7 +60,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpNestedComplexRhs = 7;
@@ -78,9 +78,8 @@ $(a, b, 7);
 Should call `$` with:
 [[7, 7, 3], null];
 
-Normalized calls: BAD?!
-[[1, 2, 3], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[[1, 2, 7], null];
+[[7, 7, 7], null];
 

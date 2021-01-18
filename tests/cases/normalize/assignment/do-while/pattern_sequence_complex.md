@@ -34,7 +34,7 @@ do {
   {
     tmpPostfixArg = n;
     n = n + 1;
-    tmpArg = n;
+    tmpArg = tmpPostfixArg;
     let ifTestTmp_1 = $(tmpArg);
     if (ifTestTmp_1) {
       break;
@@ -68,7 +68,7 @@ let n = 0;
 do {
   tmpPostfixArg = n;
   n = n + 1;
-  tmpArg = n;
+  tmpArg = tmpPostfixArg;
   let ifTestTmp_1 = $(tmpArg);
   if (ifTestTmp_1) {
     break;
@@ -90,9 +90,6 @@ $(x, y, z);
 Should call `$` with:
 [[0], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-[[1], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

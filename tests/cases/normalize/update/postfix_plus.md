@@ -23,7 +23,7 @@ var tmpPostfixArg;
 let x = 1;
 tmpPostfixArg = x;
 x = x + 1;
-tmpArg = x;
+tmpArg = tmpPostfixArg;
 $(tmpArg);
 `````
 
@@ -35,7 +35,7 @@ var tmpPostfixArg;
 let x = 1;
 tmpPostfixArg = x;
 x = x + 1;
-tmpArg = x;
+tmpArg = tmpPostfixArg;
 $(tmpArg);
 `````
 
@@ -44,9 +44,6 @@ $(tmpArg);
 Should call `$` with:
 [[1], null];
 
-Normalized calls: BAD?!
-[[2], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[2], null];
-
+Final output calls: Same

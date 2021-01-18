@@ -33,7 +33,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         $(x);
@@ -65,7 +65,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     $(x);
@@ -86,9 +86,6 @@ $(x, y, z);
 Should call `$` with:
 [[1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-[[1, 2, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1, 2, [10, 20, 30]], null];
-
+Final output calls: Same

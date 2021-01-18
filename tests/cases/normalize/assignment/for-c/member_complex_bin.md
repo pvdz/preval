@@ -33,7 +33,7 @@ let n = 1;
     {
       tmpPostfixArg = n;
       n = n - 1;
-      tmpBinaryLeft = n;
+      tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         tmpAssignMemLhsObj = $(a);
@@ -60,7 +60,7 @@ let n = 1;
 while (true) {
   tmpPostfixArg = n;
   n = n - 1;
-  tmpBinaryLeft = n;
+  tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = $(a);
@@ -78,9 +78,6 @@ $(a, 5, 3);
 Should call `$` with:
 [[{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{ x: 10 }, 2, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ x: 10 }, 5, 3], null];
-
+Final output calls: Same

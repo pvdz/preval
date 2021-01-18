@@ -140,7 +140,7 @@ function rule(desc, ...rest) {
 }
 function example(from, to, condition) {
   if (!condition || condition()) {
-    log('- `' + from + '` --> `' + to + '`');
+    log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
   }
 }
 
@@ -391,7 +391,7 @@ export function phaseNormalize(fdata, fname) {
     return isComplexNode(node, true);
   }
 
-  function isComplexNode(node, orSequence = false) {
+  function isComplexNode(node, andNotSimpleSequence = false) {
     // A node is simple if it is
     // - an identifier
     // - a literal
@@ -413,12 +413,23 @@ export function phaseNormalize(fdata, fname) {
       // -NaN, +NaN, -Infinity, +Infinity
       if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
     }
-    if (orSequence && node.type === 'SequenceExpression' && !isComplexNode(node.expressions[node.expressions.length - 1])) return false;
+    if (andNotSimpleSequence && isSimpleSequence(node)) return false;
     if (node.type === 'ArrayExpression' && node.elements.length === 0) return false; // Empty array literal is not exciting, probably not worth separating (?)
     if (node.type === 'ObjectExpression' && node.properties.length === 0) return false; // Empty object literal is not exciting, probably not worth separating (?)
     if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
 
     return true;
+  }
+  function isSimpleMemberExpression(node) {
+    // True if `a.b`, `a[b]`, or if a is a sequence that ends with a simple node (but not sequence)
+    if (node.type !== 'MemberExpression') return false;
+    if (isComplexNode(node, true)) return false;
+    if (node.computed) return isComplexNode(node.property);
+    return true;
+  }
+  function isSimpleSequence(node) {
+    if (node.type !== 'SequenceExpression') return false;
+    return !isComplexNode(node.expressions[node.expressions.length - 1]);
   }
   function isImmutable(node) {
     return (
@@ -1214,7 +1225,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.body.length === 0) {
           // Note: cannot eliminate a loop because the expression is expected to be called in repeat
           rule('Do-while cannot have empty body');
-          example('do {} while (x);','while(x);');
+          example('do {} while (x);', 'while(x);');
           before(node);
 
           const newNode = AST.whileStatement(node.test, AST.blockStatement());
@@ -2168,7 +2179,7 @@ export function phaseNormalize(fdata, fname) {
       case 'WhileStatement': {
         if (isComplexNode(node.test)) {
           rule('While test must be simple node');
-          example('while (f()) z()','while (true) { if (f()) z(); else break; }');
+          example('while (f()) z()', 'while (true) { if (f()) z(); else break; }');
           before(node);
 
           const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
@@ -2380,7 +2391,7 @@ export function phaseNormalize(fdata, fname) {
 
           if (newBindings.length) {
             rule('Assignment arr patterns not allowed, non-empty');
-            example('[x] = y()','var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp');
+            example('[x] = y()', 'var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp');
             before(node);
 
             // Replace this assignment node with a sequence
@@ -3514,7 +3525,7 @@ export function phaseNormalize(fdata, fname) {
           // We kind of have to create a tmp var since the addition/subtraction may be irreversible (NaN/Infinity cases)
           rule('Update expression postfix should be regular assignment');
           example('x++', 'tmp = x, x = x + 1, tmp', () => node.operator === '++');
-          example('x--','tmp = x, x = x - 1, tmp', () => node.operator !== '++');
+          example('x--', 'tmp = x, x = x - 1, tmp', () => node.operator !== '++');
           before(node);
 
           const tmpName = createFreshVarInCurrentRootScope('tmpPostfixArg', true);

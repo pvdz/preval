@@ -29,6 +29,7 @@ while (true) {
     tmpBindInitMemberObject.x = tmpBindInitRhs;
     let ifTestTmp = tmpBindInitRhs;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -43,7 +44,6 @@ let a = { x: 10 };
 while (true) {
   let tmpBindInitMemberObject = $(a);
   tmpBindInitMemberObject.x = 5;
-  break;
 }
 $(a, 5, 3);
 `````

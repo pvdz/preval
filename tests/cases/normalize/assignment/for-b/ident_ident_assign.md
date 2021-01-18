@@ -37,8 +37,8 @@ let d = 4;
       a = tmpNestedComplexRhs;
       let ifTestTmp = a;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -63,8 +63,8 @@ while (true) {
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(a, b, 3);

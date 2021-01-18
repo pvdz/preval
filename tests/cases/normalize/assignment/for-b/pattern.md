@@ -33,8 +33,8 @@ let z = [10, 20, 30];
       y = arrPatternSplat[1];
       let ifTestTmp = y;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -57,8 +57,8 @@ while (true) {
   y = arrPatternSplat[1];
   let ifTestTmp = y;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(x, y, z);

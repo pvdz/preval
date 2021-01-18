@@ -28,8 +28,8 @@ let c = 3;
       a = b + c;
       let ifTestTmp = a;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -45,8 +45,8 @@ while (true) {
   a = 5;
   let ifTestTmp = a;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(a, 5, 3);

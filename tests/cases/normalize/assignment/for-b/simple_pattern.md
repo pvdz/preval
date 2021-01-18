@@ -37,8 +37,8 @@ let z = [10, 20, 30];
       a = tmpNestedComplexRhs;
       let ifTestTmp = a;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -65,8 +65,8 @@ while (true) {
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(a, x, y, z);

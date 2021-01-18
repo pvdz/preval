@@ -21,9 +21,9 @@ while (true) {
   {
     let ifTestTmp = $(1);
     if (ifTestTmp) {
-      break;
-    } else {
       $(2);
+    } else {
+      break;
     }
   }
 }
@@ -35,9 +35,9 @@ while (true) {
 while (true) {
   let ifTestTmp = $(1);
   if (ifTestTmp) {
-    break;
-  } else {
     $(2);
+  } else {
+    break;
   }
 }
 `````

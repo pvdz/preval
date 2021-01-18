@@ -21,6 +21,7 @@ while (true) {
   {
     let ifTestTmp = $();
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -33,6 +34,7 @@ while (true) {
 while (true) {
   let ifTestTmp = $();
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

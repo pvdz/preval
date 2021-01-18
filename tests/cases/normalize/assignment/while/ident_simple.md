@@ -27,6 +27,7 @@ while (true) {
     a = b;
     let ifTestTmp = b;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -40,7 +41,6 @@ $(a, b, c);
 let a = 1;
 while (true) {
   a = 2;
-  break;
 }
 $(a, 2, 3);
 `````

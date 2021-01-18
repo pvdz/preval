@@ -36,6 +36,7 @@ while (true) {
     a = tmpNestedComplexRhs;
     let ifTestTmp = a;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -62,6 +63,7 @@ while (true) {
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

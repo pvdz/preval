@@ -31,6 +31,7 @@ while (true) {
     tmpAssignedComputedObj[tmpAssignedComputedProp] = b;
     let ifTestTmp = b;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -48,7 +49,6 @@ while (true) {
   tmpAssignedComputedObj = a;
   tmpAssignedComputedProp = $('x');
   tmpAssignedComputedObj[tmpAssignedComputedProp] = 2;
-  break;
 }
 $(a, 2, 3);
 `````

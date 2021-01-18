@@ -36,6 +36,7 @@ while (true) {
     tmpBindInitMemberObject.c = tmpBindInitRhs;
     let ifTestTmp = tmpBindInitRhs;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -55,7 +56,6 @@ while (true) {
   tmpAssignMemRhs = 3;
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
   tmpBindInitMemberObject.c = 3;
-  break;
 }
 $(1, b, c, 3);
 `````

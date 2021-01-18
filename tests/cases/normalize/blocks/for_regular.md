@@ -21,10 +21,10 @@ for ($(1); $(2); $(3)) $(4);
     {
       let ifTestTmp = $(2);
       if (ifTestTmp) {
-        break;
-      } else {
         $(4);
         $(3);
+      } else {
+        break;
       }
     }
   }
@@ -38,10 +38,10 @@ $(1);
 while (true) {
   let ifTestTmp = $(2);
   if (ifTestTmp) {
-    break;
-  } else {
     $(4);
     $(3);
+  } else {
+    break;
   }
 }
 `````

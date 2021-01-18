@@ -36,8 +36,8 @@ let c = 3;
       tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
       let ifTestTmp = b;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -59,7 +59,6 @@ while (true) {
   tmpAssignedComputedObj = tmpAssignMemLhsObj;
   tmpAssignedComputedProp = $('x');
   tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-  break;
 }
 $(a, 2, 3);
 `````

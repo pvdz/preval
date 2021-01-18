@@ -34,8 +34,8 @@ let c = 3;
       tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpBindInitRhs;
       let ifTestTmp = tmpBindInitRhs;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -54,7 +54,6 @@ while (true) {
   tmpAssignedComputedObj = tmpBindInitMemberObject;
   tmpAssignedComputedProp = $('x');
   tmpAssignedComputedObj[tmpAssignedComputedProp] = 5;
-  break;
 }
 $(a, 5, 3);
 `````

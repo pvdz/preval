@@ -27,6 +27,7 @@ while (true) {
     a = b + c;
     let ifTestTmp = a;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -42,6 +43,7 @@ while (true) {
   a = 5;
   let ifTestTmp = a;
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

@@ -27,10 +27,10 @@ while (true) {
   {
     let ifTestTmp = a < 10;
     if (ifTestTmp) {
-      break;
-    } else {
       a = a + 1;
       $(a);
+    } else {
+      break;
     }
   }
 }
@@ -44,10 +44,10 @@ let a = $(1);
 while (true) {
   let ifTestTmp = a < 10;
   if (ifTestTmp) {
-    break;
-  } else {
     a = a + 1;
     $(a);
+  } else {
+    break;
   }
 }
 $(a);

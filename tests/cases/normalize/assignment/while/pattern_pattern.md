@@ -42,6 +42,7 @@ while (true) {
     b = arrPatternSplat[1];
     let ifTestTmp = b;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -74,6 +75,7 @@ while (true) {
   b = arrPatternSplat[1];
   let ifTestTmp = b;
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

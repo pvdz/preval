@@ -28,8 +28,8 @@ let c = 3;
       a.x = b;
       let ifTestTmp = b;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -43,7 +43,6 @@ $(a, b, c);
 let a = { x: 10 };
 while (true) {
   a.x = 2;
-  break;
 }
 $(a, 2, 3);
 `````

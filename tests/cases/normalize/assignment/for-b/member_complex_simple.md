@@ -32,8 +32,8 @@ let c = 3;
       tmpAssignMemLhsObj.x = tmpAssignMemRhs;
       let ifTestTmp = b;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -51,7 +51,6 @@ while (true) {
   tmpAssignMemLhsObj = $(a);
   tmpAssignMemRhs = 2;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  break;
 }
 $(a, 2, 3);
 `````

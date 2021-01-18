@@ -43,8 +43,8 @@ let d = 4;
       a = tmpNestedAssignCompMemberRhs;
       let ifTestTmp = a;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -75,8 +75,8 @@ while (true) {
   a = tmpNestedAssignCompMemberRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(a, b, 3);

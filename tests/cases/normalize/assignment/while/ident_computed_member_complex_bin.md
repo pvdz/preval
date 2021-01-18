@@ -35,6 +35,7 @@ while (true) {
     a = tmpNestedAssignCompMemberRhs;
     let ifTestTmp = a;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -58,6 +59,7 @@ while (true) {
   a = tmpNestedAssignCompMemberRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

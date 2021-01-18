@@ -26,6 +26,7 @@ while (true) {
   {
     let ifTestTmp = x.x(x);
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -43,6 +44,7 @@ while (true) {
   x = x.x;
   let ifTestTmp = x.x(x);
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

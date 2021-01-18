@@ -1214,7 +1214,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.body.body.length === 0) {
           // Note: cannot eliminate a loop because the expression is expected to be called in repeat
           rule('Do-while cannot have empty body');
-          rule('- `do {} while (x);` --> `while(x);`');
+          example('do {} while (x);','while(x);');
           before(node);
 
           const newNode = AST.whileStatement(node.test, AST.blockStatement());
@@ -2168,10 +2168,10 @@ export function phaseNormalize(fdata, fname) {
       case 'WhileStatement': {
         if (isComplexNode(node.test)) {
           rule('While test must be simple node');
-          log('- `while (f()) z()` --> `while (true) { if (f()) break; else z(); }`');
+          example('while (f()) z()','while (true) { if (f()) z(); else break; }');
           before(node);
 
-          const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, AST.breakStatement(), node.body)));
+          const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
 
           crumbSet(1, newNode);
 

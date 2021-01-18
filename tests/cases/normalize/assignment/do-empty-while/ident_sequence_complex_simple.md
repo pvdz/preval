@@ -31,6 +31,7 @@ while (true) {
     a = c;
     let ifTestTmp = a;
     if (ifTestTmp) {
+    } else {
       break;
     }
   }
@@ -50,6 +51,7 @@ while (true) {
   a = 3;
   let ifTestTmp = a;
   if (ifTestTmp) {
+  } else {
     break;
   }
 }

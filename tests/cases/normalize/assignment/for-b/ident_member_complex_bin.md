@@ -34,8 +34,8 @@ let d = 4;
       a = tmpNestedAssignMemberRhs;
       let ifTestTmp = a;
       if (ifTestTmp) {
-        break;
       } else {
+        break;
       }
     }
   }
@@ -57,8 +57,8 @@ while (true) {
   a = tmpNestedAssignMemberRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
-    break;
   } else {
+    break;
   }
 }
 $(a, b, 7);

@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = {x: 10}, b = 2, c = 3;
+let a = {x: 10}, b = 0, c = 3;
 for (;a.x = b;);
 $(a, b, c);
 `````
@@ -20,7 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { x: 10 };
-let b = 2;
+let b = 0;
 let c = 3;
 {
   while (true) {
@@ -42,7 +42,17 @@ $(a, b, c);
 `````js filename=intro
 let a = { x: 10 };
 while (true) {
-  a.x = 2;
+  a.x = 0;
+  break;
 }
-$(a, 2, 3);
+$(a, 0, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 0 }, 0, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

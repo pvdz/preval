@@ -86,3 +86,15 @@ tmpArg_2 = [undefined, 20, 30];
 tmpArg_1 = f(tmpArg_2, 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['fail'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[['fail'], ['ok'], null];
+

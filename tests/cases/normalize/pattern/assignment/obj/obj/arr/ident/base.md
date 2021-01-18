@@ -56,3 +56,12 @@ arrPatternSplat = [...objPatternNoDefault_1];
 z = arrPatternSplat[0];
 $(z);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

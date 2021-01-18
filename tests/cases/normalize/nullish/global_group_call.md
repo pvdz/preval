@@ -48,3 +48,12 @@ if (tmpTernaryTest) {
 }
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

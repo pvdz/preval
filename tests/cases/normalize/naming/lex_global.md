@@ -36,3 +36,12 @@ $(a_1);
 let a = $(1);
 $(a);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [null], [1], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

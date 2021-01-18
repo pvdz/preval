@@ -46,3 +46,15 @@ tmpArg_1 = { x: '', b: 11, c: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

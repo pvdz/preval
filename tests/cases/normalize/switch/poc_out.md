@@ -167,3 +167,14 @@ exit: {
   }
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], ['A'], ['B'], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

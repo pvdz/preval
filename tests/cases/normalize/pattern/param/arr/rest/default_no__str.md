@@ -42,3 +42,12 @@ var tmpArg;
 tmpArg = f('abc', 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[['a', 'b', 'c']], null];
+
+Normalized calls: Same
+
+Final output calls: Same

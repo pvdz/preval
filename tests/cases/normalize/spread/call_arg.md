@@ -50,3 +50,15 @@ d = undefined[undefined];
 tmpArg_1 = undefined.h;
 undefined.y(tmpArg, 8, ...tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: BAD?!
+["<crash[ Cannot read property 'c' of undefined ]>"];
+
+Final output calls: BAD!!
+["<crash[ Cannot read property 'c' of undefined ]>"];
+

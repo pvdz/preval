@@ -68,3 +68,13 @@ tmpArg_2 = [1, 2, 3];
 tmpArg_1 = f(tmpArg_2, 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2, 3]], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

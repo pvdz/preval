@@ -38,3 +38,15 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ function f(){ \n  throw f;\n} ]>'];
+
+Normalized calls: BAD?!
+['<crash[ function f() {throw f;} ]>'];
+
+Final output calls: BAD!!
+['<crash[ function f() {throw f;} ]>'];
+

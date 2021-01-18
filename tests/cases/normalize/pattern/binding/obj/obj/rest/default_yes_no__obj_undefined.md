@@ -54,3 +54,15 @@ if (ifTestTmp) {
 const y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ a: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+

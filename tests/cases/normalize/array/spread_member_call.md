@@ -33,3 +33,12 @@ tmpElement = true.toString();
 tmpArg = [...tmpElement];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[['t', 'r', 'u', 'e']], null];
+
+Normalized calls: Same
+
+Final output calls: Same

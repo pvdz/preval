@@ -64,3 +64,15 @@ arrPatternSplat_1 = [...arrPatternStep];
 x = arrPatternSplat_1.slice(0);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ undefined is not a function ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

@@ -84,3 +84,13 @@ var tmpArg_1;
 tmpArg_1 = f('abc');
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], [null], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

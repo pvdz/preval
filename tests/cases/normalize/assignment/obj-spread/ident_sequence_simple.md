@@ -49,3 +49,12 @@ tmpArg = { ...tmpObjSpreadArg };
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [{}], [3, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

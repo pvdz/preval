@@ -82,3 +82,12 @@ tmpArg = f();
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ c: 2 }], "<crash[ Cannot set property 'c' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

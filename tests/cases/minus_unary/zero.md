@@ -23,3 +23,12 @@ $(-0);
 `````js filename=intro
 $(-0);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], null];
+
+Normalized calls: Same
+
+Final output calls: Same

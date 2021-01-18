@@ -31,3 +31,12 @@ if (true) {
 `````js filename=intro
 $(1);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

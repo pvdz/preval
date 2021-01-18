@@ -35,3 +35,12 @@ tmpElement_1 = $();
 tmpArg = [1, tmpElement, , 2, , tmpElement_1, ,];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [], [[1, null, null, 2, null, null, null]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

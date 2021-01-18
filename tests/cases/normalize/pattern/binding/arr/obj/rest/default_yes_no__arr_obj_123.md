@@ -60,3 +60,15 @@ if (ifTestTmp) {
 const x = objPatternRest(arrPatternStep, []);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, y: 2, z: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

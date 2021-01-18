@@ -31,3 +31,12 @@ for (x of tmpForOfRhs) {
   $(2);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

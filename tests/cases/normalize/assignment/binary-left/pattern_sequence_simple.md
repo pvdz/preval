@@ -63,3 +63,15 @@ tmpArg = tmpBinaryLeft + 500;
 $(tmpArg);
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], ['10,20,30500'], [10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[1], [2], [520], [10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[1], [2], [520], [10, 20, [10, 20, 30]], null];
+

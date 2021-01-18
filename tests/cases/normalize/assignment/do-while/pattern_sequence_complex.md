@@ -84,3 +84,15 @@ do {
 } while (ifTestTmp);
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[1], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+[[1], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+

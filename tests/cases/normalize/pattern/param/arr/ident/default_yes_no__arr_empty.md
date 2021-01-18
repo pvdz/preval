@@ -60,3 +60,13 @@ var tmpArg;
 tmpArg = f([], 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], [null], null];
+
+Normalized calls: BAD?!
+[['pass'], [{ 0: 'a', 1: 'b', 2: 'c' }], null];
+
+Final output calls: Same

@@ -31,3 +31,15 @@ const arrPatternSplat = [...''];
 arrPatternSplat[0];
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

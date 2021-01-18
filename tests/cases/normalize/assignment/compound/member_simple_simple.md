@@ -45,3 +45,12 @@ tmpAssignMemRhs = tmpBinaryLeft * 2;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 20 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -35,3 +35,12 @@ var objAssignPatternRhs;
 objAssignPatternRhs = 1;
 x_1 = objAssignPatternRhs.x;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

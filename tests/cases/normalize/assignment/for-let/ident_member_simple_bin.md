@@ -54,3 +54,14 @@ while (false) {}
 $(wat_1);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[7], [7, { x: 7 }, 7], null];
+

@@ -33,3 +33,12 @@ tmpElement = $('foo');
 tmpArg = [...tmpElement];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['foo'], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

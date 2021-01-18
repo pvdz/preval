@@ -68,3 +68,13 @@ tmpArg = f();
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3], [3, 2, 3], null];
+
+Normalized calls: BAD?!
+[[2], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

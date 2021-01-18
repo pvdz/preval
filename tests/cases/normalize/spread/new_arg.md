@@ -49,3 +49,12 @@ d = (5)[6];
 tmpArg_1 = (7).h;
 new 9(tmpArg, 8, ...tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

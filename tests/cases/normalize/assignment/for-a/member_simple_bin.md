@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-for (a.x = b + c;;);
+for (a.x = b + c;false;);
 $(a, b, c);
 `````
 
@@ -28,7 +28,7 @@ let c = 3;
   tmpAssignMemLhsObj = a;
   tmpAssignMemRhs = b + c;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -42,6 +42,17 @@ let a = { x: 10 };
 tmpAssignMemLhsObj = a;
 tmpAssignMemRhs = 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-while (true) {}
+while (false) {}
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ x: 5 }, 5, 3], null];
+

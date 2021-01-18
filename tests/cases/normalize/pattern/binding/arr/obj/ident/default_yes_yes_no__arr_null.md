@@ -74,3 +74,13 @@ if (ifTestTmp_1) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'x' of null ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

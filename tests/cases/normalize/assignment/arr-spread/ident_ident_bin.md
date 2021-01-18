@@ -55,3 +55,12 @@ tmpArg = [...tmpElement];
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

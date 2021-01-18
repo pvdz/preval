@@ -59,3 +59,12 @@ tmpArg = tmpBinaryLeft + 500;
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[503], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

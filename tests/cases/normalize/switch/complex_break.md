@@ -122,3 +122,12 @@ tmpSwitchBreak: {
   }
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -44,3 +44,12 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1610999112253], null];
+
+Normalized calls: Same
+
+Final output calls: Same

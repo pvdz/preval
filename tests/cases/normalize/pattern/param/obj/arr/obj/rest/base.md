@@ -58,3 +58,15 @@ tmpArg_1 = { x: tmpObjPropValue, a: 11, b: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, y: 2, c: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

@@ -12,24 +12,38 @@
 
 `````js filename=intro
 let a = 1, b = {c: 2}, d = 3;
-for (;;(a, b).c = d);
+let n = 1;
+for (;n-->0;  (a, b).c = d);
 $(a, b, c, d);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
+let n = 1;
 {
   while (true) {
-    a;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        a;
+        tmpAssignMemLhsObj = b;
+        tmpAssignMemRhs = d;
+        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, c, d);
@@ -38,13 +52,33 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 let b = { c: 2 };
+let n = 1;
 while (true) {
-  tmpAssignMemLhsObj = b;
-  tmpAssignMemRhs = 3;
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    tmpAssignMemLhsObj = b;
+    tmpAssignMemRhs = 3;
+    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  } else {
+    break;
+  }
 }
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

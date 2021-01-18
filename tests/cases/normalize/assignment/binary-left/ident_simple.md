@@ -43,3 +43,12 @@ tmpArg = tmpBinaryLeft + 500;
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[502], [2, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

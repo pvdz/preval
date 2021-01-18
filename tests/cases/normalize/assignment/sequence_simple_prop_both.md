@@ -41,3 +41,12 @@ tmpBinaryRight = 'woop'.length;
 a = tmpBinaryLeft === tmpBinaryRight;
 $(a);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], null];
+
+Normalized calls: Same
+
+Final output calls: Same

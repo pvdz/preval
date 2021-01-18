@@ -45,3 +45,12 @@ export default ((arrAssignPatternRhs = z),
 (y = arrPatternSplat[1]));
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

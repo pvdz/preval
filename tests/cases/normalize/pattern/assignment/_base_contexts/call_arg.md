@@ -37,3 +37,12 @@ x = tmpNestedComplexRhs;
 tmpArg = tmpNestedComplexRhs;
 f(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

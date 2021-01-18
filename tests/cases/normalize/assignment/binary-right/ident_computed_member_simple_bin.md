@@ -71,3 +71,14 @@ tmpArg = 500 + tmpBinaryRight;
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [507], [null], [7, { x: 2, undefined: 7 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], [507], [null], [7, { x: 2, undefined: 7 }, 7], null];
+

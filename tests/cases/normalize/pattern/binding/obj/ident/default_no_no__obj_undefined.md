@@ -30,3 +30,12 @@ const bindingPatternObjRoot = { x: undefined };
 const x = bindingPatternObjRoot.x;
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

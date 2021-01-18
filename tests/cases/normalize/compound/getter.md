@@ -49,3 +49,12 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 tmpArg = obj.x;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[5], null];
+
+Normalized calls: Same
+
+Final output calls: Same

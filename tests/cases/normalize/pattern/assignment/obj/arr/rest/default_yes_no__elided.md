@@ -68,3 +68,12 @@ arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[[null, null, null, 1]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

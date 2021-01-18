@@ -37,3 +37,14 @@ tmpArg = `abc ${(a = 5)} def`;
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc 5 def'], [5, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['abc 5 def'], [5, 5, 3], null];
+

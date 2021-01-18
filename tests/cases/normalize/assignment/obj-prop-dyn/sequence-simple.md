@@ -48,3 +48,12 @@ tmpArg = { [tmpComputedKey]: 1000 };
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ 3: 1000 }], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

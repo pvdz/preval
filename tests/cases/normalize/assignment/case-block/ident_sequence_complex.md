@@ -78,3 +78,14 @@ tmpSwitchBreak: {
 }
 $(1, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['a'], [2], [3], [null, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['a'], '<crash[ <ref> is not defined ]>'];
+

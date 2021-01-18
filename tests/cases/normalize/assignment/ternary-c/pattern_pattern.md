@@ -91,3 +91,15 @@ if (tmpTernaryTest) {
 $(tmpArg);
 $(a, b, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], [[10, 20, 30]], [10, 20, 20, 30, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[false], '<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+[[false], '<crash[ <ref> is not iterable ]>'];
+

@@ -32,3 +32,15 @@ objAssignPatternRhs = { x: 1, b: 2, c: 3 };
 x = objPatternRest(objAssignPatternRhs, []);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, b: 2, c: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

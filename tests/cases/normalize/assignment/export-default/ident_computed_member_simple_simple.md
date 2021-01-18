@@ -44,3 +44,12 @@ export default ((tmpNestedAssignComMemberObj = b),
 (a = 3));
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

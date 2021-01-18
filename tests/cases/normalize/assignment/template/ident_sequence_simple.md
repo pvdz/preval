@@ -37,3 +37,12 @@ tmpArg = `abc ${($(2), (a = 3))} def`;
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], ['abc 3 def'], [3, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

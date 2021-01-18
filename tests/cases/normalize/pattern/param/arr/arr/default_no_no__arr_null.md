@@ -48,3 +48,12 @@ tmpArg_1 = [null, 4, 5];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

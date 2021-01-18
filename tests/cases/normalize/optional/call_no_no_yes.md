@@ -80,3 +80,12 @@ if (tmpTernaryTest_1) {
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ a is not a function ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

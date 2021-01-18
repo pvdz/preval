@@ -37,3 +37,12 @@ tmpElement = tmpMemberComplexObj.name;
 tmpArg = [...tmpElement];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[['t', 'o', 'S', 't', 'r', 'i', 'n', 'g']], null];
+
+Normalized calls: Same
+
+Final output calls: Same

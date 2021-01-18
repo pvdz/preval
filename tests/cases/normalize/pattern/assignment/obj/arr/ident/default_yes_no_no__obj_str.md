@@ -56,3 +56,12 @@ if (tmpTernaryTest) {
 }
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

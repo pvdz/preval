@@ -47,3 +47,12 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[10, 20, [10, 20, 30]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

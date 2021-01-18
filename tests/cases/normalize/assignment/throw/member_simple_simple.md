@@ -38,3 +38,12 @@ a.x = 2;
 throw 2;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ 2 ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

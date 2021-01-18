@@ -40,3 +40,12 @@ arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

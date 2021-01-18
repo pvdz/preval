@@ -47,3 +47,12 @@ tmpBinaryRight = tmpNestedComplexRhs;
 let j = tmpBinaryLeft + tmpBinaryRight;
 $(j);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

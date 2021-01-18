@@ -76,3 +76,12 @@ if (ifTestTmp_1) {
   tmpFallthrough = true;
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

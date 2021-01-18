@@ -51,3 +51,12 @@ tmpBinaryLeft = tmpMemberComplexObj.y;
 a = tmpBinaryLeft === 'Identifier';
 $(a);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ y: 10 }], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

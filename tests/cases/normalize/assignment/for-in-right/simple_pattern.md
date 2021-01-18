@@ -67,3 +67,15 @@ for (tmpForInLhsDecl in tmpForInRhs) {
 }
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot access 'x' before initialization ]>"];
+
+Normalized calls: BAD?!
+[[20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[20, 10, 20, [10, 20, 30]], null];
+

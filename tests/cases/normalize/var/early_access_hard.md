@@ -54,3 +54,12 @@ x = 10;
 tmpArg_1 = f();
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], [10], null];
+
+Normalized calls: Same
+
+Final output calls: Same

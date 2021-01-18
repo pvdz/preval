@@ -82,3 +82,15 @@ tmpArg = f();
 $(tmpArg);
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[[10, 20, 30]], [10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[20], [10, 20, [10, 20, 30]], null];
+

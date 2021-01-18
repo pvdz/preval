@@ -34,3 +34,15 @@ const arrPatternStep = arrPatternSplat[0];
 const x = objPatternRest(arrPatternStep, []);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'undefined' of null ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

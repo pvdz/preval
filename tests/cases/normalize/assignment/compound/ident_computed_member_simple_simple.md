@@ -56,3 +56,15 @@ tmpAssignMemLhsObj[tmpNestedAssignComMemberProp] = tmpAssignMemRhs;
 a = a * 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [null, { x: 2, undefined: null }, 3], null];
+
+Normalized calls: BAD?!
+[['x'], [3, { x: 2, undefined: null }, 3], null];
+
+Final output calls: BAD!!
+[['x'], [3, { x: 2, undefined: null }, 3], null];
+

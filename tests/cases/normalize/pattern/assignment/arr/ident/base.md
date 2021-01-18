@@ -36,3 +36,12 @@ arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

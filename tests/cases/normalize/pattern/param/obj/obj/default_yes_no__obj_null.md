@@ -66,3 +66,15 @@ tmpArg_2 = { x: null, b: 11, c: 12 };
 tmpArg_1 = f(tmpArg_2, 10);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

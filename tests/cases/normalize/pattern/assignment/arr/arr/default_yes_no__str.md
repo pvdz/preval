@@ -66,3 +66,12 @@ if (tmpTernaryTest) {
 arrPatternSplat_1 = [...arrPatternStep];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

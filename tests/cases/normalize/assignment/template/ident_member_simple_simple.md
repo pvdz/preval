@@ -38,3 +38,12 @@ tmpArg = `abc ${((b.x = 3), (a = 3))} def`;
 $(tmpArg);
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc 3 def'], [3, { x: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

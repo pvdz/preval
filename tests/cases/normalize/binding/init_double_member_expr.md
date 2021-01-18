@@ -30,3 +30,12 @@ let tmpBindingInit = 'foo'.length;
 let x = tmpBindingInit.toString;
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -50,3 +50,12 @@ tmpObjSpreadArg = f();
 tmpArg_1 = { ...tmpObjSpreadArg };
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1 }], [{}], null];
+
+Normalized calls: Same
+
+Final output calls: Same

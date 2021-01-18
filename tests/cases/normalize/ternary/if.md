@@ -50,3 +50,13 @@ if (ifTestTmp) {
   $(200);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[100], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

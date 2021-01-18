@@ -75,3 +75,13 @@ if (tmpTernaryTest_1) {
 }
 $(c);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [null], null];
+
+Normalized calls: BAD?!
+[[2], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

@@ -90,3 +90,13 @@ tmpArg_2 = ['', 4, 5];
 tmpArg_1 = f(tmpArg_2, 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], [null], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

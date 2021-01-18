@@ -34,3 +34,12 @@ objAssignPatternRhs = { x: 'abc', b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

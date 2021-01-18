@@ -54,3 +54,13 @@ if (ifTestTmp) {
 [...objPatternAfterDefault];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['fail']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

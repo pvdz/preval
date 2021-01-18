@@ -264,3 +264,14 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [1], [8], [3], [5], [6], [null], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[1], '<crash[ <ref> is not defined ]>'];
+

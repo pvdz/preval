@@ -52,3 +52,12 @@ const objPatternNoDefault_1 = objPatternNoDefault.y;
 objPatternNoDefault_1.z;
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

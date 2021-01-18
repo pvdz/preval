@@ -51,3 +51,14 @@ tmpArg = { foo: tmpObjPropValue };
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ foo: 5 }], [{ x: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ foo: 5 }], [{ x: 5 }, 5, 3], null];
+

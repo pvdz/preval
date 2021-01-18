@@ -94,3 +94,13 @@ tmpArg_3 = { x: 1, a: 2, b: 3 };
 tmpArg_2 = f(tmpArg_3, 10);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

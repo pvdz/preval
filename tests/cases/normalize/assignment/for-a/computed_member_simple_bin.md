@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-for (a[$('x')] = b + c;;);
+for (a[$('x')] = b + c;false;);
 $(a, b, c);
 `````
 
@@ -32,7 +32,7 @@ let c = 3;
   tmpAssignedComputedObj = tmpAssignMemLhsObj;
   tmpAssignedComputedProp = $('x');
   tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -50,6 +50,17 @@ tmpAssignMemRhs = 5;
 tmpAssignedComputedObj = tmpAssignMemLhsObj;
 tmpAssignedComputedProp = $('x');
 tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-while (true) {}
+while (false) {}
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [{ x: 10, undefined: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], [{ x: 10, undefined: 5 }, 5, 3], null];
+

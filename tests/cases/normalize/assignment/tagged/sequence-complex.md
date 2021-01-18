@@ -48,3 +48,12 @@ tmpArg_1 = 3;
 $(tmpArg, tmpArg_1);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ c: 2 }], "<crash[ Cannot set property 'c' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

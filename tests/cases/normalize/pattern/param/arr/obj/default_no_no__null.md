@@ -42,3 +42,12 @@ var tmpArg;
 tmpArg = f(null, 100);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

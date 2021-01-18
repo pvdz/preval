@@ -51,3 +51,14 @@ tmpArg = 500 + tmpBinaryRight;
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[505], [{ x: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[505], [{ x: 5 }, 5, 3], null];
+

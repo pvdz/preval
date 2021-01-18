@@ -30,3 +30,12 @@ let a = c;
 `````js filename=intro
 (10).x = 20;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

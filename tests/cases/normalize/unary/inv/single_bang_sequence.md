@@ -38,3 +38,12 @@ tmpUnaryArg = $(x);
 tmpArg = !tmpUnaryArg;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['foo'], [true], null];
+
+Normalized calls: Same
+
+Final output calls: Same

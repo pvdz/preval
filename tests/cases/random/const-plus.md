@@ -31,3 +31,12 @@ $(xyz);
 `````js filename=intro
 $('aba');
 `````
+
+## Result
+
+Should call `$` with:
+[['aba'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

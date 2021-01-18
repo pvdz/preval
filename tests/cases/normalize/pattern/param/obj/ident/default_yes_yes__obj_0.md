@@ -84,3 +84,13 @@ tmpArg_2 = { x: 0 };
 tmpArg_1 = f(tmpArg_2, 10);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

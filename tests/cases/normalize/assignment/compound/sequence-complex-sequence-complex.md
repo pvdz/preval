@@ -73,3 +73,15 @@ tmpAssignMemRhs_2 = tmpBinaryLeft_1 * tmpAssignMemRhs;
 tmpAssignMemLhsObj_2.c = tmpAssignMemRhs_2;
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ c: 2 }], "<crash[ Cannot read property 'c' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[{ c: 2 }], [{ c: 2 }], "<crash[ Cannot read property 'c' of undefined ]>"];
+
+Final output calls: BAD!!
+[[{ c: 2 }], [{ c: 2 }], "<crash[ Cannot read property 'c' of undefined ]>"];
+

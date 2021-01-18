@@ -38,3 +38,12 @@ a = arrPatternSplat[0];
 x = arrPatternSplat.slice(1);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[[2, 3]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -66,3 +66,12 @@ if (tmpTernaryTest) {
 arrPatternSplat_1 = [...arrPatternStep];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

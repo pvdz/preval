@@ -63,3 +63,14 @@ for (tmpForInLhsNode in {}) {
 }
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 10 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ x: 10 }, 5, 3], null];
+

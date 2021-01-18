@@ -33,3 +33,12 @@ tmpNewObj = $();
 tmpArg = new tmpNewObj();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], '<crash[ <ref> is not a constructor ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

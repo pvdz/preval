@@ -79,3 +79,15 @@ tmpArg = { [tmpComputedKey]: 1000 };
 $(tmpArg);
 $(a, b, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ '10,20,30': 1000 }], [10, 20, 20, 30, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

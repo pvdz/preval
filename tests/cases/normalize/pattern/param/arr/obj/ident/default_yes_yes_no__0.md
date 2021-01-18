@@ -84,3 +84,15 @@ var tmpArg_1;
 tmpArg_1 = f(0);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ undefined is not a function ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

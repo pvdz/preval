@@ -67,3 +67,15 @@ tmpArg = [tmpElement];
 $(tmpArg);
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[[[10, 20, 30]]], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[[20]], [20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[[20]], [20, 10, 20, [10, 20, 30]], null];
+

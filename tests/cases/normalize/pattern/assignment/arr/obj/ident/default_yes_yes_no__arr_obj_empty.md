@@ -84,3 +84,12 @@ if (tmpTernaryTest_1) {
 }
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

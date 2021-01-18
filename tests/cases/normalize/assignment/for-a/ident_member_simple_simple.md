@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3;
-for (a = b.x = c;;);
+for (a = b.x = c;false;);
 $(a, b, c);
 `````
 
@@ -25,7 +25,7 @@ let c = 3;
 {
   b.x = c;
   a = c;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -37,6 +37,15 @@ let a = 1;
 let b = { x: 2 };
 b.x = 3;
 a = 3;
-while (true) {}
+while (false) {}
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3, { x: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

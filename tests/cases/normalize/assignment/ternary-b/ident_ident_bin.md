@@ -67,3 +67,14 @@ if (tmpTernaryTest) {
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[true], [false], [1, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[true], [false], [1, 2, 7], null];
+

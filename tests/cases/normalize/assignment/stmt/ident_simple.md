@@ -33,3 +33,12 @@ let a = 1;
 a = 2;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

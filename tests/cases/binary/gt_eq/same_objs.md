@@ -32,3 +32,12 @@ const x = {};
 tmpArg = x >= x;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[true], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -88,3 +88,13 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [null], [null], null];
+
+Normalized calls: BAD?!
+[[2], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

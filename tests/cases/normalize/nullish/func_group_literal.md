@@ -67,3 +67,13 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [null], null];
+
+Normalized calls: BAD?!
+[[20], [null], null];
+
+Final output calls: Same

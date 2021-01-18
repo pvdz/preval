@@ -46,3 +46,15 @@ tmpArg_1 = [, , , 1, 20, 30];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[['ok'], null];
+
+Final output calls: BAD!!
+[['ok'], null];
+

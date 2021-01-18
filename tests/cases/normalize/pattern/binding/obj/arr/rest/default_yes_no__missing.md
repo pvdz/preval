@@ -56,3 +56,13 @@ const arrPatternSplat = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[['pass']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['pass']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

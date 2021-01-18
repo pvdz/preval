@@ -37,3 +37,12 @@ const b = tmpBindingInit.toString;
 const c = b.length;
 $(c);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], "<crash[ Cannot read property 'toString' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

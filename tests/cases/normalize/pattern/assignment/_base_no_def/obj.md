@@ -30,3 +30,12 @@ let x = 10;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

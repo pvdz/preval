@@ -85,3 +85,15 @@ var tmpArg_1;
 tmpArg_1 = f();
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [{ a: {} }], [null], null];
+
+Normalized calls: BAD?!
+[[], '<crash[ Assignment to constant variable. ]>'];
+
+Final output calls: BAD!!
+[[], '<crash[ Assignment to constant variable. ]>'];
+

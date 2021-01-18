@@ -55,3 +55,12 @@ tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], [{ x: 2 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

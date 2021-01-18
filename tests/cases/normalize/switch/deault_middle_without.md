@@ -232,3 +232,12 @@ tmpSwitchBreak: {
   }
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[10], [20], [30], [40], [50], null];
+
+Normalized calls: Same
+
+Final output calls: Same

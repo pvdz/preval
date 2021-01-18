@@ -108,3 +108,15 @@ var tmpArg_2;
 tmpArg_2 = f(1, 2, 3, 200);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ $ is not a function ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

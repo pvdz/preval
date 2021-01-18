@@ -88,3 +88,15 @@ if (tmpTernaryTest_2) {
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [{ a: { b: {} } }], null];
+
+Normalized calls: BAD?!
+[[], '<crash[ Assignment to constant variable. ]>'];
+
+Final output calls: BAD!!
+[[], '<crash[ Assignment to constant variable. ]>'];
+

@@ -41,3 +41,15 @@ tmpAssignedComputedObj = tmpAssignMemLhsObj;
 tmpAssignedComputedProp = $(2);
 tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[1], [3], [2], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Final output calls: BAD!!
+[[1], [3], [2], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+

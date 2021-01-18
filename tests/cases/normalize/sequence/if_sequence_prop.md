@@ -37,3 +37,12 @@ if (ifTestTmp) {
   $(3);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], "<crash[ Cannot read property 'foo' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -50,3 +50,13 @@ if (ifTestTmp) {
 }
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[''], null];
+
+Normalized calls: BAD?!
+[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+
+Final output calls: Same

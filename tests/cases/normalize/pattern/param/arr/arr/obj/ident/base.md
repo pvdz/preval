@@ -60,3 +60,12 @@ tmpArg_1 = [tmpElement, 40, 50];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

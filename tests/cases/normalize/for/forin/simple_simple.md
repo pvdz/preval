@@ -35,3 +35,12 @@ for (a in b) {
   $(a);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], ['y'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

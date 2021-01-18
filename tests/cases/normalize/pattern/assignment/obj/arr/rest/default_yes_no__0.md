@@ -64,3 +64,12 @@ arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[['pass']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

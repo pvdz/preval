@@ -49,3 +49,12 @@ tmpAssignedComputedObj[tmpAssignedComputedProp] = 5;
 throw 5;
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], '<crash[ 5 ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

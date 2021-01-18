@@ -55,3 +55,13 @@ if (ifTestTmp) {
 [...arrPatternStep];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

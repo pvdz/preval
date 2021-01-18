@@ -71,3 +71,15 @@ let tmpStmtArg = b;
 throw tmpStmtArg;
 $(a, b, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ 10,20,30 ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

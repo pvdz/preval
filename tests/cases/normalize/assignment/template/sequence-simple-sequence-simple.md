@@ -59,3 +59,12 @@ tmpArg = `abc ${
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc 3 def'], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

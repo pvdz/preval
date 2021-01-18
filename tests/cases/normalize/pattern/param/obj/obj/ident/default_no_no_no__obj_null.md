@@ -46,3 +46,12 @@ tmpArg_1 = { x: null, b: 11, c: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'y' of null ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

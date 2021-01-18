@@ -34,3 +34,12 @@ export function g(x_1) {
 var tmpArg;
 export const x = ((tmpArg = f()), $(tmpArg));
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

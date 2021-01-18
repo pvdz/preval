@@ -53,3 +53,12 @@ tmpAssignMemRhs_1 = tmpBinaryLeft * tmpAssignMemRhs;
 tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 10 }], "<crash[ Cannot read property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

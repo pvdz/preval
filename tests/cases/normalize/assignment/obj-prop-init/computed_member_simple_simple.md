@@ -51,3 +51,12 @@ tmpArg = { foo: tmpObjPropValue };
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [{ foo: 2 }], [{ x: 10, undefined: 2 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

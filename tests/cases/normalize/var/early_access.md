@@ -33,3 +33,12 @@ $(x);
 x = 10;
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], [10], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -27,3 +27,12 @@ var tmpArg;
 tmpArg = 'undefined';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['undefined'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

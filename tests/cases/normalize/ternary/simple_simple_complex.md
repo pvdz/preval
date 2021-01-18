@@ -47,3 +47,13 @@ let b;
 b = $(5);
 $(a, b);
 `````
+
+## Result
+
+Should call `$` with:
+[[5], [2, null], null];
+
+Normalized calls: BAD?!
+[[5], [2, 3], null];
+
+Final output calls: Same

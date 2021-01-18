@@ -47,3 +47,12 @@ tmpBinaryRight = b.y;
 a = 'Identifier' === tmpBinaryRight;
 $(a);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -37,3 +37,12 @@ let b = { c: 2 };
 export default (1, (tmpAssignMemLhsObj = $(b)), (tmpAssignMemRhs = 3), (tmpAssignMemLhsObj.c = tmpAssignMemRhs));
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

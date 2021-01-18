@@ -60,3 +60,12 @@ arrPatternSplat_2 = [...arrPatternStep_1];
 x = arrPatternSplat_2.slice(0);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2, 3]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -56,3 +56,12 @@ var tmpArg;
 tmpArg = f({}, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

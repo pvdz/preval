@@ -71,3 +71,12 @@ tmpArg_1 = g();
 tmpArg_2 = h();
 $(tmpArg, tmpArg_1, tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [], [], [null, null, null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -33,3 +33,12 @@ tmpUnaryArg = Date.length;
 tmpArg = !tmpUnaryArg;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], null];
+
+Normalized calls: Same
+
+Final output calls: Same

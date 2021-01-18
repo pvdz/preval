@@ -41,3 +41,14 @@ tmpArg = `abc ${((tmpAssignMemLhsObj = a), (tmpAssignMemRhs = 5), (tmpAssignMemL
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc 5 def'], [{ x: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['abc 5 def'], [{ x: 5 }, 5, 3], null];
+

@@ -59,3 +59,12 @@ tmpNewObj = function () {
 tmpNewObj();
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[10, 20, [10, 20, 30]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

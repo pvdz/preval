@@ -80,3 +80,12 @@ tmpBindInitMemberObject.x = tmpBindInitRhs;
 a = tmpBindInitRhs;
 $(5, a);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [2, 20], [5, 20], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -62,3 +62,15 @@ tmpArg_1 = [tmpElement, 10];
 tmpArg = f(tmpArg_1, 100);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ a: 1, b: 2, c: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

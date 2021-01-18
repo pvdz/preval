@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3;
-for (a = ($(b), c);;);
+for (a = ($(b), c);false;);
 $(a, b, c);
 `````
 
@@ -25,7 +25,7 @@ let c = 3;
 {
   $(b);
   a = c;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -36,6 +36,15 @@ $(a, b, c);
 let a = 1;
 $(2);
 a = 3;
-while (true) {}
+while (false) {}
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -30,3 +30,12 @@ const bindingPatternArrRoot = [, , 1];
 [...bindingPatternArrRoot];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

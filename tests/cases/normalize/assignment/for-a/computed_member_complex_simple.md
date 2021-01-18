@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-for ($(a)[$('x')] = b;;);
+for ($(a)[$('x')] = b;false;);
 $(a, b, c);
 `````
 
@@ -32,7 +32,7 @@ let c = 3;
   tmpAssignedComputedObj = tmpAssignMemLhsObj;
   tmpAssignedComputedProp = $('x');
   tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -50,6 +50,15 @@ tmpAssignMemRhs = 2;
 tmpAssignedComputedObj = tmpAssignMemLhsObj;
 tmpAssignedComputedProp = $('x');
 tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-while (true) {}
+while (false) {}
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 10 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

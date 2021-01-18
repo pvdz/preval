@@ -64,3 +64,13 @@ var tmpArg_1;
 tmpArg_1 = f('', 10);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['fail']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

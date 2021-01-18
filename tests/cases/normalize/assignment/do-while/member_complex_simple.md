@@ -68,3 +68,15 @@ do {
 } while (ifTestTmp);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[1], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Final output calls: BAD!!
+[[1], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+

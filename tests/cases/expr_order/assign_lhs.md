@@ -43,3 +43,12 @@ tmpBinaryLeft = tmpNestedComplexRhs;
 let j = tmpBinaryLeft + i;
 $(j);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

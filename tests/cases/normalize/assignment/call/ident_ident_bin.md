@@ -51,3 +51,14 @@ tmpArg = tmpNestedComplexRhs;
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[7], [7, 7, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[7], [7, 7, 7], null];
+

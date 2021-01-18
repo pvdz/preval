@@ -25,3 +25,12 @@
 `````js filename=intro
 [1, 2, 3];
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

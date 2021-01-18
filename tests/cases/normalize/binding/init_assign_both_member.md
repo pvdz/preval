@@ -33,3 +33,12 @@ let a = tmpBindInitRhs;
 let tmpBindInitRhs = (20).x;
 (10).x = tmpBindInitRhs;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

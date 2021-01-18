@@ -12,7 +12,8 @@
 
 `````js filename=intro
 let a = 1, b = 2, x = 1, y = 2, z = [10, 20, 30];
-for (;;[a, b] = [, x, y] = z);
+let n = 1;
+for (;n-->0;  [a, b] = [, x, y] = z);
 $(a, b, x, y, z);
 `````
 
@@ -20,6 +21,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -29,17 +32,28 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+let n = 1;
 {
   while (true) {
-    arrAssignPatternRhs_1 = z;
-    arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-    x = arrPatternSplat_1[1];
-    tmpNestedComplexRhs = arrPatternSplat_1[2];
-    y = tmpNestedComplexRhs;
-    arrAssignPatternRhs = tmpNestedComplexRhs;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    a = arrPatternSplat[0];
-    b = arrPatternSplat[1];
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        arrAssignPatternRhs_1 = z;
+        arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+        x = arrPatternSplat_1[1];
+        tmpNestedComplexRhs = arrPatternSplat_1[2];
+        y = tmpNestedComplexRhs;
+        arrAssignPatternRhs = tmpNestedComplexRhs;
+        arrPatternSplat = [...arrAssignPatternRhs];
+        a = arrPatternSplat[0];
+        b = arrPatternSplat[1];
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, x, y, z);
@@ -49,6 +63,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -58,16 +74,37 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+let n = 1;
 while (true) {
-  arrAssignPatternRhs_1 = z;
-  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-  x = arrPatternSplat_1[1];
-  tmpNestedComplexRhs = arrPatternSplat_1[2];
-  y = tmpNestedComplexRhs;
-  arrAssignPatternRhs = tmpNestedComplexRhs;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    arrAssignPatternRhs_1 = z;
+    arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+    x = arrPatternSplat_1[1];
+    tmpNestedComplexRhs = arrPatternSplat_1[2];
+    y = tmpNestedComplexRhs;
+    arrAssignPatternRhs = tmpNestedComplexRhs;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+  } else {
+    break;
+  }
 }
 $(a, b, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[10, 20, 20, 30, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[1, 2, 1, 2, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[1, 2, 1, 2, [10, 20, 30]], null];
+

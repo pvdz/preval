@@ -12,7 +12,8 @@
 
 `````js filename=intro
 let a = 1, x = 1, y = 2, z = [10, 20, 30];
-for (;;a = [x, y] = z);
+let n = 1;
+for (;n-->0;  a = [x, y] = z);
 $(a, x, y, z);
 `````
 
@@ -20,20 +21,33 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+let n = 1;
 {
   while (true) {
-    arrAssignPatternRhs = z;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    tmpNestedComplexRhs = arrPatternSplat[1];
-    y = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        arrAssignPatternRhs = z;
+        arrPatternSplat = [...arrAssignPatternRhs];
+        x = arrPatternSplat[0];
+        tmpNestedComplexRhs = arrPatternSplat[1];
+        y = tmpNestedComplexRhs;
+        a = tmpNestedComplexRhs;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, x, y, z);
@@ -43,19 +57,42 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+let n = 1;
 while (true) {
-  arrAssignPatternRhs = z;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    tmpNestedComplexRhs = arrPatternSplat[1];
+    y = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[1, 1, 2, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[1, 1, 2, [10, 20, 30]], null];
+

@@ -55,3 +55,12 @@ tmpArg = tmpNestedComplexRhs;
 $(...tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ Found non-callable @@iterator ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

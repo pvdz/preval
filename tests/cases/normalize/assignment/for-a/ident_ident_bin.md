@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3, d = 4;
-for (a = b = c + d;;);
+for (a = b = c + d;false;);
 $(a, b, c);
 `````
 
@@ -28,7 +28,7 @@ let d = 4;
   tmpNestedComplexRhs = c + d;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -42,6 +42,17 @@ let b = 2;
 tmpNestedComplexRhs = 7;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-while (true) {}
+while (false) {}
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[7, 7, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[7, 7, 7], null];
+

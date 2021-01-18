@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f() {
-  return $(global??foo);
+  return $("foo"??foo);
 }
 $(f());
 `````
@@ -22,14 +22,15 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
+  var tmpNullish;
   var tmpTernaryTest;
   {
-    global = global;
-    tmpTernaryTest = global == null;
+    tmpNullish = 'foo';
+    tmpTernaryTest = tmpNullish == null;
     if (tmpTernaryTest) {
       tmpArg = foo;
     } else {
-      tmpArg = global;
+      tmpArg = tmpNullish;
     }
     let tmpStmtArg = $(tmpArg);
     return tmpStmtArg;
@@ -45,13 +46,14 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpArg;
+  var tmpNullish;
   var tmpTernaryTest;
-  global = global;
-  tmpTernaryTest = global == null;
+  tmpNullish = 'foo';
+  tmpTernaryTest = tmpNullish == null;
   if (tmpTernaryTest) {
     tmpArg = foo;
   } else {
-    tmpArg = global;
+    tmpArg = tmpNullish;
   }
   let tmpStmtArg = $(tmpArg);
   return tmpStmtArg;
@@ -60,3 +62,12 @@ var tmpArg_1;
 tmpArg_1 = f();
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['foo'], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

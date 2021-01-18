@@ -37,3 +37,12 @@ let b = 2;
 export default ((tmpNestedComplexRhs = 7), (b = tmpNestedComplexRhs), (a = tmpNestedComplexRhs));
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

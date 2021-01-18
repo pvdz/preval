@@ -42,3 +42,12 @@ tmpObjPropValue = new Map(tmpArg_1);
 tmpObjPropValue_1 = fdata.name;
 ({ modules: tmpObjPropValue, main: tmpObjPropValue_1 });
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

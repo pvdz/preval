@@ -43,3 +43,14 @@ $('a');
 a = 5;
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], [5, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['a'], [5, 5, 3], null];
+

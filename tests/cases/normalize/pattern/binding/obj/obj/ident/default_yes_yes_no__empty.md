@@ -71,3 +71,13 @@ if (ifTestTmp_1) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[[{ y: 'fail2' }], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[{ y: 'fail2' }], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

@@ -36,3 +36,12 @@ arr.push(1);
 arr.push(2);
 $(arr);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -52,3 +52,12 @@ if (tmpTernaryTest) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[['fail'], ['bad'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

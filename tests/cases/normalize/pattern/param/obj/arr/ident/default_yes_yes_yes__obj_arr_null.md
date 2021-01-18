@@ -118,3 +118,13 @@ tmpArg_3 = { x: tmpObjPropValue_1, a: 11, b: 12 };
 tmpArg_2 = f(tmpArg_3, 10);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

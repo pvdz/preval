@@ -58,3 +58,12 @@ tmpArg_1 = $(10);
 tmpArg_2 = $(20);
 f(tmpArg, tmpArg_1, tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[10], [20], null];
+
+Normalized calls: Same
+
+Final output calls: Same

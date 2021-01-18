@@ -108,3 +108,13 @@ var tmpArg_2;
 tmpArg_2 = f('abc', 10);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ y: 'pass2' }], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

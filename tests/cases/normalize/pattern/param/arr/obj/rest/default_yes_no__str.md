@@ -66,3 +66,15 @@ var tmpArg_1;
 tmpArg_1 = f('abc', 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ 0: 'a' }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

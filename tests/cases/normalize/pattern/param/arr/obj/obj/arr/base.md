@@ -70,3 +70,12 @@ tmpArg_1 = [tmpElement, 10];
 tmpArg = f(tmpArg_1, 100);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

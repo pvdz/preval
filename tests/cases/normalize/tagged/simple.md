@@ -33,3 +33,12 @@ tmpArg = ['abc ', ' def'];
 tmpArg_1 = $(1);
 $(tmpArg, tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [['abc ', ' def'], null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

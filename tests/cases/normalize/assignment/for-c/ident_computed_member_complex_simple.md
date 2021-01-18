@@ -12,24 +12,38 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3;
-for (;;a = $(b)[$('x')] = c);
+let n = 1;
+for (;n-->0;  a = $(b)[$('x')] = c);
 $(a, b, c);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
+let n = 1;
 {
   while (true) {
-    tmpNestedAssignComMemberObj = $(b);
-    tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-    a = c;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        tmpNestedAssignComMemberObj = $(b);
+        tmpNestedAssignComMemberProp = $('x');
+        tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
+        a = c;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, c);
@@ -38,15 +52,38 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 let a = 1;
 let b = { x: 2 };
+let n = 1;
 while (true) {
-  tmpNestedAssignComMemberObj = $(b);
-  tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    tmpNestedAssignComMemberObj = $(b);
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    a = 3;
+  } else {
+    break;
+  }
 }
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[1, { x: 2 }, 3], null];
+
+Final output calls: BAD!!
+[[1, { x: 2 }, 3], null];
+

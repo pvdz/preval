@@ -64,3 +64,12 @@ arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -48,3 +48,12 @@ const objPatternNoDefault = arrPatternStep.x;
 const y = objPatternNoDefault.y;
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -80,3 +80,12 @@ if (tmpTernaryTest_1) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[[['pass2']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

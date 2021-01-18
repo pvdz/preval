@@ -30,3 +30,12 @@ $(obj);
 const obj = { x: 10 };
 $(obj);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 10 }], null];
+
+Normalized calls: Same
+
+Final output calls: Same

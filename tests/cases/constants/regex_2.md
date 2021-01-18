@@ -36,3 +36,12 @@ $(bar);
 $(/foo/g);
 $(/foo/g);
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], [{}], null];
+
+Normalized calls: Same
+
+Final output calls: Same

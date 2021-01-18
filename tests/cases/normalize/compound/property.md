@@ -92,3 +92,12 @@ tmpAssignMemRhs = tmpBinaryLeft_2 + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
+
+## Result
+
+Should call `$` with:
+[[5, 'read;write[5];'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

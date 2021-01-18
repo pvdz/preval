@@ -56,3 +56,12 @@ tmpBinaryLeft = tmpAssignMemLhsObj.foo;
 tmpAssignMemRhs_1 = tmpBinaryLeft + tmpAssignMemRhs;
 tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs_1;
 `````
+
+## Result
+
+Should call `$` with:
+[[], null];
+
+Normalized calls: Same
+
+Final output calls: Same

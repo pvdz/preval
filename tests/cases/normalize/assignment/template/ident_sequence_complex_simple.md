@@ -39,3 +39,12 @@ tmpArg = `abc ${($(2), (tmpNestedAssignObj = $(3)), (tmpNestedAssignObj.x = 3), 
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

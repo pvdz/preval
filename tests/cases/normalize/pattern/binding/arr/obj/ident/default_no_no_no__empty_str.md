@@ -33,3 +33,12 @@ const arrPatternStep = arrPatternSplat[0];
 arrPatternStep.x;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

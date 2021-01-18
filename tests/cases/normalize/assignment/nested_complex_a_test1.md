@@ -48,3 +48,12 @@ tmpAssignMemLhsObj = $(a);
 tmpAssignMemRhs = b;
 tmpAssignMemLhsObj.length = tmpAssignMemRhs;
 `````
+
+## Result
+
+Should call `$` with:
+[[20], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

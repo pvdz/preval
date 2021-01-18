@@ -30,3 +30,15 @@ const bindingPatternObjRoot = { x: undefined, b: 11, c: 12 };
 bindingPatternObjRoot.x;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure property 'x' of '{(intermediate value)(intermediate value)(intermediate value)}' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

@@ -40,3 +40,12 @@ tmpNestedAssignObj.length = b;
 tmpArg = b;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[20], '<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

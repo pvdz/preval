@@ -63,3 +63,12 @@ tmpArg = 500 + tmpBinaryRight;
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

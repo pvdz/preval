@@ -266,3 +266,12 @@ tmpMemberComplexObj = new Map(tmpArg_1);
 tmpArg = tmpMemberComplexObj.get('$');
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['$'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

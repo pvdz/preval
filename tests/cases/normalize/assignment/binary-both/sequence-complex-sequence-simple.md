@@ -81,3 +81,12 @@ tmpArg = tmpBinaryLeft + tmpBinaryRight;
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ c: 3 }], "<crash[ Cannot set property 'c' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

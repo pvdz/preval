@@ -38,3 +38,15 @@ x = x - 1;
 tmpArg = x;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: BAD?!
+[[0], null];
+
+Final output calls: BAD!!
+[[0], null];
+

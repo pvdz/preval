@@ -63,3 +63,15 @@ y = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[['a'], [20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[['a'], [20, 10, 20, [10, 20, 30]], null];
+

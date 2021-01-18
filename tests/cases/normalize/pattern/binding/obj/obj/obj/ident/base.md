@@ -46,3 +46,12 @@ const objPatternNoDefault_1 = objPatternNoDefault.y;
 const z = objPatternNoDefault_1.z;
 $(z);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

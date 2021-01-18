@@ -49,3 +49,14 @@ tmpNewObj = function () {
 tmpNewObj();
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ x: 5 }, 5, 3], null];
+

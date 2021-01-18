@@ -77,3 +77,12 @@ for (tmpForOfLhsNode of []) {
 }
 $(a, b, 3, 4);
 `````
+
+## Result
+
+Should call `$` with:
+[[1, { x: 2 }, 3, 4], null];
+
+Normalized calls: Same
+
+Final output calls: Same

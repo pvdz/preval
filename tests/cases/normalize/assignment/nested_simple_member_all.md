@@ -66,3 +66,12 @@ tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpArg = tmpNestedAssignMemberRhs;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1 }], [{ x: 2 }], [{ x: 3 }], "<crash[ Cannot read property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

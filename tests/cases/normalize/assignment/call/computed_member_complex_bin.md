@@ -51,3 +51,12 @@ tmpArg = tmpNestedAssignCompMemberRhs;
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 10 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

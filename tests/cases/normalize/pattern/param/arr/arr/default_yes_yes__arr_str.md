@@ -92,3 +92,13 @@ tmpArg_3 = ['abc', 4, 5];
 tmpArg_2 = f(tmpArg_3, 200);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

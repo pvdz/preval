@@ -60,3 +60,12 @@ tmpArg_1 = { a: 1, b: 2, c: 3 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

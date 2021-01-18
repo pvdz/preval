@@ -88,3 +88,12 @@ if (tmpTernaryTest_1) {
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

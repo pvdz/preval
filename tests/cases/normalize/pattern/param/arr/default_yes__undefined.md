@@ -58,3 +58,13 @@ var tmpArg;
 tmpArg = f(undefined, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[['pass'], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

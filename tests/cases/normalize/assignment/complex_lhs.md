@@ -33,3 +33,12 @@ tmpAssignMemLhsObj = $({});
 tmpAssignMemRhs = 10;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], "<crash[ Cannot set property 'foo' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

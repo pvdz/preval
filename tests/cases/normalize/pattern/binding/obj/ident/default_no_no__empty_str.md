@@ -29,3 +29,12 @@ $(x);
 const x = ''.x;
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

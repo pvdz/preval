@@ -36,3 +36,12 @@ tmpArg = $(2);
 tmpArg_1 = $(3);
 $(tmpArg, tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], [null, null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

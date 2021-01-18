@@ -88,3 +88,13 @@ tmpArg_2 = [undefined, 20, 30];
 tmpArg_1 = f(tmpArg_2, 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 'pass2' }], "<crash[ Cannot read property 'x' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[{ x: 'pass2' }], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

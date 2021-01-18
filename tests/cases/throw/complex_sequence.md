@@ -46,3 +46,12 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], '<crash[ undefined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

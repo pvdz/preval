@@ -56,3 +56,13 @@ var tmpArg;
 tmpArg = f('xyz', 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['xyz'], null];
+
+Normalized calls: BAD?!
+[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+
+Final output calls: Same

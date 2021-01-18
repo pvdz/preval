@@ -79,26 +79,38 @@ function runTestCase(
     lastError = e;
   }
 
-  // TODO: eval stuff. We can't do this until we morph or exclude loops.
-  //const evalled = { in: undefined, $in: [], norm: undefined, $norm: [], out: undefined, $out: [] };
-  //function ev(key, stack) {
-  //  const $stack = stack;
-  //  function $(...args) {
-  //    $stack.push(args);
-  //    return args[0];
-  //  }
-  //  try {
-  //    evalled[key] = eval(output.normalized.intro);
-  //  } catch {
-  //    evalled[key] = '<crash>';
-  //  }
-  //}
-  //ev('in', evalled.$in);
-  //ev('norm', evalled.$norm);
-  //ev('out', evalled.$out);
-  //if (withOutput) {
-  //  console.log('\n\nEvalled output:', evalled);
-  //}
+  const evalled = { $in: [], $norm: [], $out: [] };
+  function ev(desc, fdata, stack) {
+    try {
+      let before = true;
+      function $(...a) {
+        if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
+        stack.push(a);
+      }
+      const returns = new Function('$', fdata.intro)($);
+      before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
+      stack.push(returns);
+
+      if (withOutput) {
+        console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
+      }
+
+    } catch (e) {
+      const msg = String(e?.message ?? e)
+        .replace(/^.*is not a constructor.*$/, '<ref> is not a constructor')
+        .replace(/^.*is not iterable.*$/, '<ref> is not iterable')
+        .replace(/^.* is not defined.*$/, '<ref> is not defined');
+      stack.push('<crash[ ' + msg + ' ]>');
+
+      if (withOutput) {
+        console.log('\n\nEvaluated $ calls for ' + desc + ':', stack.concat(e?.message ?? e));
+      }
+    }
+  }
+  ev('input', fin, evalled.$in);
+  ev('normalized', output.normalized, evalled.$norm);
+  ev('output', output.files, evalled.$out);
+
   //if (!lastError) {
   //  const jin = JSON.stringify([evalled.in, evalled.$in]);
   //  if (jin !== JSON.stringify([evalled.norm, evalled.$norm])) {
@@ -107,9 +119,9 @@ function runTestCase(
   //    lastError = new Error('Eval mismatch between input and normalized code');
   //  }
   //}
-  const evalled = null
 
   if (withOutput) {
+    console.log('\n')
     console.groupEnd();
   }
 

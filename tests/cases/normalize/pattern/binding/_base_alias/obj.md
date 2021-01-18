@@ -24,3 +24,12 @@ const a = bindingPatternObjRoot.x;
 `````js filename=intro
 (1).x;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

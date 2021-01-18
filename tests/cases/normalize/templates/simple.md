@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = `abc ${$(1)} def`;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], ['abc undefined def'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

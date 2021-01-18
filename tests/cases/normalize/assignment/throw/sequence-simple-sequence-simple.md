@@ -53,3 +53,12 @@ tmpBindInitMemberObject.c = 3;
 throw 3;
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ 3 ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

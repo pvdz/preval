@@ -50,3 +50,12 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 a = 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -73,3 +73,13 @@ if (ifTestTmp_1) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail2']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['fail2']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

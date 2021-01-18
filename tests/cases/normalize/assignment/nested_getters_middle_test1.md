@@ -30,3 +30,12 @@ const b = { get foo() {} };
 `````js filename=intro
 ({ get foo() {} });
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

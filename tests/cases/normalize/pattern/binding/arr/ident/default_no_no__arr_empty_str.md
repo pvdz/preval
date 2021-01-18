@@ -32,3 +32,12 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[''], null];
+
+Normalized calls: Same
+
+Final output calls: Same

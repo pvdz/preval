@@ -87,3 +87,12 @@ tmpArg = tmpBinaryLeft + tmpBinaryRight;
 $(tmpArg);
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

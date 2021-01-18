@@ -74,3 +74,15 @@ tmpArg = f();
 $(tmpArg);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[5], [{ x: 5 }, 2, 3], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[5], [{ x: 5 }, 5, 3], null];
+

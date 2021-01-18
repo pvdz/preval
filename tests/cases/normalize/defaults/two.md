@@ -98,3 +98,13 @@ $(tmpArg_2);
 tmpArg_3 = f('x', 'y');
 $(tmpArg_3);
 `````
+
+## Result
+
+Should call `$` with:
+[[['foo', 'bar']], [['x', 'bar']], [['foo', 'y']], [['x', 'y']], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

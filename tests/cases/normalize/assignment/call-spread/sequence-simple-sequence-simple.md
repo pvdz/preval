@@ -55,3 +55,12 @@ tmpArg = tmpNestedAssignMemberRhs;
 $(...tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ Found non-callable @@iterator ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

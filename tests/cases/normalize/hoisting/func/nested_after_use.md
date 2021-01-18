@@ -55,3 +55,12 @@ var tmpArg;
 tmpArg = g();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [null], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

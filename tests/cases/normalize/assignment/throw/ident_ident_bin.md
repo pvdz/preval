@@ -47,3 +47,12 @@ let tmpStmtArg = a;
 throw tmpStmtArg;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ 7 ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -72,3 +72,12 @@ objPatternNoDefault = arrPatternStep_1.x;
 arrPatternSplat_2 = [...objPatternNoDefault];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

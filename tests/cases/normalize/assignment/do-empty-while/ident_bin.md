@@ -12,19 +12,23 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3;
-do {} while (a = b + c);
+do {} while (a = b + $(c));
 $(a, b, c);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = 2;
 let c = 3;
 while (true) {
   {
-    a = b + c;
+    tmpBinaryLeft = b;
+    tmpBinaryRight = $(c);
+    a = tmpBinaryLeft + tmpBinaryRight;
     let ifTestTmp = a;
     if (ifTestTmp) {
     } else {
@@ -38,14 +42,27 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 while (true) {
-  a = 5;
+  tmpBinaryLeft = 2;
+  tmpBinaryRight = $(3);
+  a = tmpBinaryLeft + tmpBinaryRight;
   let ifTestTmp = a;
   if (ifTestTmp) {
   } else {
     break;
   }
 }
-$(a, 5, 3);
+$(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [null, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

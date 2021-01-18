@@ -80,3 +80,12 @@ if (tmpTernaryTest_1) {
 }
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ y: 'pass2' }], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

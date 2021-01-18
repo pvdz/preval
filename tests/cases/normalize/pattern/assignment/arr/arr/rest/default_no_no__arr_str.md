@@ -44,3 +44,12 @@ arrPatternSplat_1 = [...arrPatternStep];
 x = arrPatternSplat_1.slice(0);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[['a', 'b', 'c']], null];
+
+Normalized calls: Same
+
+Final output calls: Same

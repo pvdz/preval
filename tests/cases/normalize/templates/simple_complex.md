@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = `abc ${10} ${$(20)} def`;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[20], ['abc 10 undefined def'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {x: 2}, c = 3, d = 4;
+let a = 1, b = {x: 2}, c = 0, d = 0;
 while (a = b.x = c + d);
 $(a, b, c);
 `````
@@ -23,8 +23,8 @@ var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
 let b = { x: 2 };
-let c = 3;
-let d = 4;
+let c = 0;
+let d = 0;
 while (true) {
   {
     tmpNestedAssignMemberObj = b;
@@ -50,7 +50,7 @@ let a = 1;
 let b = { x: 2 };
 while (true) {
   tmpNestedAssignMemberObj = b;
-  tmpNestedAssignMemberRhs = 7;
+  tmpNestedAssignMemberRhs = 0;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
   let ifTestTmp = a;
@@ -59,5 +59,14 @@ while (true) {
     break;
   }
 }
-$(a, b, 7);
+$(a, b, 0);
 `````
+
+## Result
+
+Should call `$` with:
+[[0, { x: 0 }, 0], null];
+
+Normalized calls: Same
+
+Final output calls: Same

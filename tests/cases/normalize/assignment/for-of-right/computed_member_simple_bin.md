@@ -56,3 +56,12 @@ for (tmpForOfLhsDecl of 5) {
 }
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

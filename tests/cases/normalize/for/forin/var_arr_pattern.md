@@ -41,3 +41,12 @@ for (tmpForInLhsDecl in tmpForInRhs) {
   $(x);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[null], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -43,3 +43,12 @@ foo_2: {
   break foo_2;
 }
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -57,3 +57,15 @@ b.c = d;
 a = d;
 $(a, b, d);
 `````
+
+## Result
+
+Should call `$` with:
+[['b.set'], [3, null, null], null];
+
+Normalized calls: BAD?!
+[['b.set'], [null, null, null], null];
+
+Final output calls: BAD!!
+[['b.set'], [null, null, null], null];
+

@@ -88,3 +88,15 @@ if (tmpTernaryTest_2) {
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'c' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[null], null];
+
+Final output calls: BAD!!
+[[null], null];
+

@@ -44,3 +44,12 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 objPatternNoDefault.y;
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

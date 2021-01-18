@@ -36,3 +36,12 @@ const obj = { foo: tmpObjPropValue };
 tmpArg = { ...obj };
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ foo: { bar: 10 } }], null];
+
+Normalized calls: Same
+
+Final output calls: Same

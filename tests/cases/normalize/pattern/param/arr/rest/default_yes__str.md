@@ -64,3 +64,13 @@ var tmpArg_1;
 tmpArg_1 = f('abc', 200);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[['a', 'b', 'c']], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

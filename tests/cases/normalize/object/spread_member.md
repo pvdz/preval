@@ -40,3 +40,12 @@ tmpObjSpreadArg = obj.foo;
 tmpArg = { ...tmpObjSpreadArg };
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ bar: 10 }], null];
+
+Normalized calls: Same
+
+Final output calls: Same

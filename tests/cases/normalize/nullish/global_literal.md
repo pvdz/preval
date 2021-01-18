@@ -11,21 +11,20 @@
 ## Input
 
 `````js filename=intro
-$('foo'??length);
+$(parseInt??length);
 `````
 
 ## Normalized
 
 `````js filename=intro
 var tmpArg;
-var tmpNullish;
 var tmpTernaryTest;
-tmpNullish = 'foo';
-tmpTernaryTest = tmpNullish == null;
+parseInt = parseInt;
+tmpTernaryTest = parseInt == null;
 if (tmpTernaryTest) {
   tmpArg = length;
 } else {
-  tmpArg = tmpNullish;
+  tmpArg = parseInt;
 }
 $(tmpArg);
 `````
@@ -34,14 +33,22 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpNullish;
 var tmpTernaryTest;
-tmpNullish = 'foo';
-tmpTernaryTest = tmpNullish == null;
+parseInt = parseInt;
+tmpTernaryTest = parseInt == null;
 if (tmpTernaryTest) {
   tmpArg = length;
 } else {
-  tmpArg = tmpNullish;
+  tmpArg = parseInt;
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

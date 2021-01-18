@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3, d = 4;
-for (a = b.x = c + d;;);
+for (a = b.x = c + d;false;);
 $(a, b, c);
 `````
 
@@ -30,7 +30,7 @@ let d = 4;
   tmpNestedAssignMemberRhs = c + d;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -46,6 +46,17 @@ tmpNestedAssignMemberObj = b;
 tmpNestedAssignMemberRhs = 7;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
-while (true) {}
+while (false) {}
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[7, { x: 7 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[7, { x: 7 }, 7], null];
+

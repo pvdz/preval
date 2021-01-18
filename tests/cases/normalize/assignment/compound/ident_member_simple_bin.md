@@ -57,3 +57,15 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 a = a * tmpNestedAssignMemberRhs;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[9, { x: 9 }, 3], null];
+
+Normalized calls: BAD?!
+[[7, { x: 9 }, 3], null];
+
+Final output calls: BAD!!
+[[7, { x: 9 }, 7], null];
+

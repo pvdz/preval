@@ -53,3 +53,12 @@ export default ((arrAssignPatternRhs = z),
 (a = tmpNestedComplexRhs));
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

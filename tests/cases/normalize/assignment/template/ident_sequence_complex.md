@@ -37,3 +37,12 @@ tmpArg = `abc ${($(2), (a = $(3)))} def`;
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3], ['abc undefined def'], [null, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -62,3 +62,12 @@ var tmpArg;
 tmpArg = g();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

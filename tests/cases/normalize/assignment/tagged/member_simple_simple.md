@@ -43,3 +43,12 @@ tmpArg_1 = 2;
 $(tmpArg, tmpArg_1);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[['abc ', ' def'], 2], [{ x: 2 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

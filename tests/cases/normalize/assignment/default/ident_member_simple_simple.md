@@ -46,3 +46,12 @@ b.x = 3;
 a = 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], [3, { x: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -52,3 +52,15 @@ if (ifTestTmp) {
 }
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[[{ x: 'pass' }], ['ok'], null];
+
+Final output calls: BAD!!
+[[{ x: 'pass' }], ['ok'], null];
+

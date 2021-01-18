@@ -60,3 +60,12 @@ if (ifTestTmp_1) {
   }
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[-1], [1], [2], [4], null];
+
+Normalized calls: Same
+
+Final output calls: Same

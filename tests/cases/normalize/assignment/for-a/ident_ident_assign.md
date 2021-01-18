@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3, d = 4;
-for (a = b = $(c).y = $(d);;);
+for (a = b = $(c).y = $(d);false;);
 $(a, b, c);
 `````
 
@@ -33,7 +33,7 @@ let d = 4;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -52,6 +52,15 @@ tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-while (true) {}
+while (false) {}
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [4], "<crash[ Cannot set property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

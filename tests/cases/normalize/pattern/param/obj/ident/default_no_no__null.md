@@ -40,3 +40,15 @@ var tmpArg;
 tmpArg = f(null, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure property 'x' of 'object null' as it is null. ]>"];
+
+Normalized calls: BAD?!
+["<crash[ Cannot read property 'x' of null ]>"];
+
+Final output calls: BAD!!
+["<crash[ Cannot read property 'x' of null ]>"];
+

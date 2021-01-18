@@ -74,3 +74,13 @@ if (ifTestTmp_1) {
 }
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

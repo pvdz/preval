@@ -73,3 +73,14 @@ tmpArg = tmpBinaryLeft + tmpBinaryRight;
 $(tmpArg);
 $(a, 8, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], ['x'], [10], [{ x: 10, undefined: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], ['x'], [16], [{ x: 10, undefined: 8 }, 8, 3], null];
+

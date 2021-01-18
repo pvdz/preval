@@ -27,3 +27,12 @@ $(bar);
 `````js filename=intro
 $('six');
 `````
+
+## Result
+
+Should call `$` with:
+[['six'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

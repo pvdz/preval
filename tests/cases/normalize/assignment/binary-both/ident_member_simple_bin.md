@@ -79,3 +79,14 @@ tmpArg = tmpBinaryLeft + tmpBinaryRight;
 $(tmpArg);
 $(a, b, 11);
 `````
+
+## Result
+
+Should call `$` with:
+[[14], [7, { x: 7 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[22], [11, { x: 11 }, 11], null];
+

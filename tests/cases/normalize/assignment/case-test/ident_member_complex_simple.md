@@ -80,3 +80,14 @@ tmpSwitchBreak: {
 }
 $(1, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ x: 2 }], '<crash[ <ref> is not defined ]>'];
+

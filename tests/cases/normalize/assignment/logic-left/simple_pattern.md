@@ -71,3 +71,15 @@ if (tmpAssignLogicStmtOr) {
 $(tmpArg);
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[true], [null], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[true], [null], [20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[true], [null], [20, 10, 20, [10, 20, 30]], null];
+

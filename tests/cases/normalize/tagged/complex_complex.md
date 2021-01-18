@@ -37,3 +37,12 @@ tmpArg_1 = $(10);
 tmpArg_2 = $(20);
 $(tmpArg, tmpArg_1, tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[10], [20], [['abc ', ' ', ' def'], null, null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

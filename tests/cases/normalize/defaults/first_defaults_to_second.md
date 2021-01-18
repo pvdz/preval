@@ -98,3 +98,15 @@ $(tmpArg_2);
 tmpArg_3 = f('x', 'y');
 $(tmpArg_3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot access 'b' before initialization ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[['bar', 'bar']], [['x', 'bar']], [['y', 'y']], [['x', 'y']], null];
+

@@ -38,3 +38,12 @@ const arrPatternStep = arrPatternSplat[0];
 [...arrPatternStep];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

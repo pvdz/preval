@@ -31,3 +31,12 @@ tmpUnaryArg = -0;
 tmpArg = -tmpUnaryArg;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], null];
+
+Normalized calls: Same
+
+Final output calls: Same

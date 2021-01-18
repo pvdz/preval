@@ -33,3 +33,12 @@ $(4);
 $(5);
 $(6);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], [4], [5], [6], null];
+
+Normalized calls: Same
+
+Final output calls: Same

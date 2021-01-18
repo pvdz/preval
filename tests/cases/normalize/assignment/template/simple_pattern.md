@@ -61,3 +61,15 @@ tmpArg = `abc ${
 $(tmpArg);
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc 10,20,30 def'], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[['abc 20 def'], [20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[['abc 20 def'], [20, 10, 20, [10, 20, 30]], null];
+

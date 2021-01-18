@@ -28,3 +28,12 @@ $(a);
 `````js filename=intro
 $(4);
 `````
+
+## Result
+
+Should call `$` with:
+[[4], null];
+
+Normalized calls: Same
+
+Final output calls: Same

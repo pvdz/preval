@@ -56,3 +56,15 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], "<crash[ Cannot destructure '(intermediate value)(intermediate value)(intermediate value)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['pass'], ['ok'], null];
+
+Final output calls: BAD!!
+[['pass'], ['ok'], null];
+

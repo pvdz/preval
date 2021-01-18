@@ -32,3 +32,15 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternRest(objPatternNoDefault, []);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

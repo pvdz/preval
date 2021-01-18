@@ -60,3 +60,12 @@ for (tmpForOfLhsDecl of 3) {
 }
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -79,3 +79,15 @@ if (tmpTernaryTest) {
 $(tmpArg);
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], [[10, 20, 30]], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[false], [20], [20, 10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[false], [20], [20, 10, 20, [10, 20, 30]], null];
+

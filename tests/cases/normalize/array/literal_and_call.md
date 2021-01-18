@@ -31,3 +31,12 @@ tmpElement = $();
 tmpArg = [100, tmpElement];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [[100, null]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

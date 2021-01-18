@@ -64,3 +64,12 @@ if (tmpTernaryTest) {
 }
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

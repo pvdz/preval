@@ -108,3 +108,13 @@ var tmpArg_2;
 tmpArg_2 = f(undefined, 200);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[['pass3']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['pass3']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

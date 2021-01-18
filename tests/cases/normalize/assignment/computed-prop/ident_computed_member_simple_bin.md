@@ -66,3 +66,14 @@ tmpAssignedComputedProp = tmpNestedComplexRhs;
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [7, { x: 2, undefined: 7 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], [7, { x: 2, undefined: 7 }, 7], null];
+

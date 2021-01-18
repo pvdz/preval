@@ -35,3 +35,12 @@ a = $(1);
 b = $(2);
 c = $(3);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

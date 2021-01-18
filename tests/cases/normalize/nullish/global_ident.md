@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-$(global??foo);
+$(parseInt??foo);
 `````
 
 ## Normalized
@@ -19,12 +19,12 @@ $(global??foo);
 `````js filename=intro
 var tmpArg;
 var tmpTernaryTest;
-global = global;
-tmpTernaryTest = global == null;
+parseInt = parseInt;
+tmpTernaryTest = parseInt == null;
 if (tmpTernaryTest) {
   tmpArg = foo;
 } else {
-  tmpArg = global;
+  tmpArg = parseInt;
 }
 $(tmpArg);
 `````
@@ -34,12 +34,21 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpTernaryTest;
-global = global;
-tmpTernaryTest = global == null;
+parseInt = parseInt;
+tmpTernaryTest = parseInt == null;
 if (tmpTernaryTest) {
   tmpArg = foo;
 } else {
-  tmpArg = global;
+  tmpArg = parseInt;
 }
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

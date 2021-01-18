@@ -64,3 +64,12 @@ tmpBinaryRight = tmpMemberComplexObj_1.y;
 a = tmpBinaryLeft === tmpBinaryRight;
 $(a);
 `````
+
+## Result
+
+Should call `$` with:
+[[30], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

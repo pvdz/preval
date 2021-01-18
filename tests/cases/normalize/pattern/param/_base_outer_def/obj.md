@@ -37,3 +37,12 @@ function g($tdz$__pattern) {
 `````js filename=intro
 
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

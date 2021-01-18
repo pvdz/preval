@@ -40,3 +40,12 @@ for (a of tmpForOfRhs) {
   $(a);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, y: 2 }], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

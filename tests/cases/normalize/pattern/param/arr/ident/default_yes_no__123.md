@@ -60,3 +60,15 @@ var tmpArg;
 tmpArg = f(1, 2, 3, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ undefined is not a function ]>'];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

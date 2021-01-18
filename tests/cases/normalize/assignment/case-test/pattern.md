@@ -83,3 +83,14 @@ tmpSwitchBreak: {
 }
 $(1, 2, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[10, 20, [10, 20, 30]], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[1, 2, [10, 20, 30]], null];
+

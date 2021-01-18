@@ -49,3 +49,12 @@ export default ((tmpAssignMemLhsObj = a),
 (tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs));
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

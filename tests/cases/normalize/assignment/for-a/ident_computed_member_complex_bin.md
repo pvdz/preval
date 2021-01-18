@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3, d = 4;
-for (a = $(b)[$('x')] = c + d;;);
+for (a = $(b)[$('x')] = c + d;false;);
 $(a, b, c);
 `````
 
@@ -32,7 +32,7 @@ let d = 4;
   tmpNestedAssignCompMemberRhs = c + d;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   a = tmpNestedAssignCompMemberRhs;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -50,6 +50,15 @@ tmpNestedAssignCompMemberProp = $('x');
 tmpNestedAssignCompMemberRhs = 7;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 a = tmpNestedAssignCompMemberRhs;
-while (true) {}
+while (false) {}
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], ['x'], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

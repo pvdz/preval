@@ -51,3 +51,12 @@ tmpAssignedComputedProp = $('x');
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 2;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['x'], [{ x: 10, undefined: 2 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

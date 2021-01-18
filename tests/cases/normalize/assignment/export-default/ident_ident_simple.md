@@ -34,3 +34,12 @@ let b = 2;
 export default ((b = 3), (a = 3));
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

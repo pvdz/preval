@@ -32,3 +32,15 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 objPatternRest(objPatternNoDefault, []);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'undefined' of null ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

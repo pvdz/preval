@@ -36,3 +36,12 @@ const arrPatternSplat_1 = [...arrPatternStep];
 const x = arrPatternSplat_1.slice(0);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

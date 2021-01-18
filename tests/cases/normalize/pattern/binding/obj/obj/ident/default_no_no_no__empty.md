@@ -31,3 +31,12 @@ const objPatternNoDefault = (1).x;
 objPatternNoDefault.y;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

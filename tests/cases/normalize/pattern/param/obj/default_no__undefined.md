@@ -35,3 +35,15 @@ var tmpArg;
 tmpArg = 'bad';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

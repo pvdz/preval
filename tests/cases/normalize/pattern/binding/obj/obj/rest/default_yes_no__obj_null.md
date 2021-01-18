@@ -54,3 +54,15 @@ if (ifTestTmp) {
 objPatternRest(objPatternAfterDefault, []);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

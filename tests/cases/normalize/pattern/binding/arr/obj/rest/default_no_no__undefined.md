@@ -33,3 +33,12 @@ const arrPatternStep = arrPatternSplat[0];
 const x = objPatternRest(arrPatternStep, []);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

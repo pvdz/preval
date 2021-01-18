@@ -28,3 +28,12 @@ const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

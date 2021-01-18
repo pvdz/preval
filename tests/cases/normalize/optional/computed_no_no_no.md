@@ -40,3 +40,12 @@ tmpMemberComplexObj = tmpMemberComplexObj_1[c];
 tmpArg = tmpMemberComplexObj[d];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -50,3 +50,12 @@ tmpMemberComplexObj = tmpMemberComplexObj_1.b;
 tmpArg = tmpMemberComplexObj.c;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

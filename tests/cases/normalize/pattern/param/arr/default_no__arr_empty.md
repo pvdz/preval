@@ -36,3 +36,14 @@ var tmpArg;
 tmpArg = 'bad';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['bad'], null];
+

@@ -62,3 +62,12 @@ if (tmpTernaryTest) {
 arrPatternSplat = [...objPatternAfterDefault];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -59,3 +59,14 @@ tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCom
 a = tmpNestedAssignCompMemberRhs;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['x'], [7, { x: 2, undefined: 7 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['a'], ['x'], [7, { x: 2, undefined: 7 }, 7], null];
+

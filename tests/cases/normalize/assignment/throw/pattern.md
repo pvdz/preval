@@ -51,3 +51,15 @@ let tmpStmtArg = y;
 throw tmpStmtArg;
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ 10,20,30 ]>'];
+
+Normalized calls: BAD?!
+['<crash[ 20 ]>'];
+
+Final output calls: BAD!!
+['<crash[ 20 ]>'];
+

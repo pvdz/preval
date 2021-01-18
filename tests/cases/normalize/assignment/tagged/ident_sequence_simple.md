@@ -49,3 +49,12 @@ tmpArg_1 = tmpNestedComplexRhs;
 $(tmpArg, tmpArg_1);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [['abc ', ' def'], 3], [3, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

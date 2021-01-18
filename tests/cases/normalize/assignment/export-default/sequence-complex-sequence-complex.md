@@ -51,3 +51,12 @@ export default (1,
 (tmpAssignMemLhsObj.c = tmpAssignMemRhs));
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -33,3 +33,12 @@ if (!void $(1)) $(2);
 $(1);
 $(2);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

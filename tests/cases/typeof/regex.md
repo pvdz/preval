@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = 'object';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['object'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

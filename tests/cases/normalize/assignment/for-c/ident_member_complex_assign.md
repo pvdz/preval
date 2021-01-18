@@ -12,13 +12,16 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3, d = 4;
-for (;;a = $(b).x = $(c).y = $(d));
+let n = 1;
+for (;n-->0;  a = $(b).x = $(c).y = $(d));
 $(a, b, c, d);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberObj_1;
@@ -27,15 +30,26 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
+let n = 1;
 {
   while (true) {
-    tmpNestedAssignMemberObj = $(b);
-    tmpNestedAssignMemberObj_1 = $(c);
-    tmpNestedAssignMemberRhs_1 = $(d);
-    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-    a = tmpNestedAssignMemberRhs;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        tmpNestedAssignMemberObj = $(b);
+        tmpNestedAssignMemberObj_1 = $(c);
+        tmpNestedAssignMemberRhs_1 = $(d);
+        tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+        tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+        tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+        a = tmpNestedAssignMemberRhs;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, c, d);
@@ -44,20 +58,43 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
 let b = { x: 2 };
+let n = 1;
 while (true) {
-  tmpNestedAssignMemberObj = $(b);
-  tmpNestedAssignMemberObj_1 = $(3);
-  tmpNestedAssignMemberRhs_1 = $(4);
-  tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  a = tmpNestedAssignMemberRhs;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    tmpNestedAssignMemberObj = $(b);
+    tmpNestedAssignMemberObj_1 = $(3);
+    tmpNestedAssignMemberRhs_1 = $(4);
+    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
+  } else {
+    break;
+  }
 }
 $(a, b, 3, 4);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], [3], [4], "<crash[ Cannot set property 'y' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[1, { x: 2 }, 3, 4], null];
+
+Final output calls: BAD!!
+[[1, { x: 2 }, 3, 4], null];
+

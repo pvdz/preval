@@ -48,3 +48,15 @@ tmpArg_1 = ['abc', 20, 30];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

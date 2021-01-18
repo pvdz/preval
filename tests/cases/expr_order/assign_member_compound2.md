@@ -44,3 +44,12 @@ a = a + tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpNestedComplexRhs;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
+
+## Result
+
+Should call `$` with:
+[[], null];
+
+Normalized calls: Same
+
+Final output calls: Same

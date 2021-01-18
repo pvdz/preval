@@ -31,3 +31,12 @@ let a = b;
 let b = 10;
 b = (20).x;
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

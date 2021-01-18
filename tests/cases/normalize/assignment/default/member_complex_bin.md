@@ -51,3 +51,12 @@ tmpAssignMemRhs = 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

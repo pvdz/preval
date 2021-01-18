@@ -27,3 +27,14 @@ var tmpArg;
 tmpArg = -2;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[-1], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[-2], null];
+

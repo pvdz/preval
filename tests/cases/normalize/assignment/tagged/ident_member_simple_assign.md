@@ -69,3 +69,12 @@ tmpArg_1 = tmpNestedComplexRhs;
 $(tmpArg, tmpArg_1);
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [4], "<crash[ Cannot set property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

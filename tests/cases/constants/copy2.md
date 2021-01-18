@@ -29,3 +29,12 @@ $(wow);
 `````js filename=intro
 $('five');
 `````
+
+## Result
+
+Should call `$` with:
+[['five'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

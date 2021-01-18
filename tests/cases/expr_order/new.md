@@ -44,3 +44,12 @@ i = tmpNestedComplexRhs;
 tmpArg_1 = tmpNestedComplexRhs;
 new $(tmpArg, tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[0, 1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -63,3 +63,13 @@ if (ifTestTmp_1) {
 }
 $(a, b);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [3], [0], [5], [null, null], null];
+
+Normalized calls: BAD?!
+[[1], [3], [0], [5], [2, 3], null];
+
+Final output calls: Same

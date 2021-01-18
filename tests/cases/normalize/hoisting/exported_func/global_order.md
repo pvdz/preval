@@ -69,3 +69,12 @@ tmpArg_1 = g();
 tmpArg_2 = h();
 $(tmpArg, tmpArg_1, tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

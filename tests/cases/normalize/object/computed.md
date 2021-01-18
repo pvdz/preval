@@ -38,3 +38,12 @@ tmpObjPropValue = $(2);
 const obj = { [tmpComputedKey]: tmpObjPropValue };
 $(obj);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [{}], null];
+
+Normalized calls: Same
+
+Final output calls: Same

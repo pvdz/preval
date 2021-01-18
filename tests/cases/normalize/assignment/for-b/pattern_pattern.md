@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, x = 1, y = 2, z = [10, 20, 30];
-for (;[a, b] = [, x, y] = z;);
+for (;[a, b] = [, x, y] = $(z););
 $(a, b, x, y, z);
 `````
 
@@ -32,7 +32,7 @@ let z = [10, 20, 30];
 {
   while (true) {
     {
-      arrAssignPatternRhs_1 = z;
+      arrAssignPatternRhs_1 = $(z);
       arrPatternSplat_1 = [...arrAssignPatternRhs_1];
       x = arrPatternSplat_1[1];
       tmpNestedComplexRhs = arrPatternSplat_1[2];
@@ -66,7 +66,7 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 while (true) {
-  arrAssignPatternRhs_1 = z;
+  arrAssignPatternRhs_1 = $(z);
   arrPatternSplat_1 = [...arrAssignPatternRhs_1];
   x = arrPatternSplat_1[1];
   tmpNestedComplexRhs = arrPatternSplat_1[2];
@@ -83,3 +83,12 @@ while (true) {
 }
 $(a, b, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

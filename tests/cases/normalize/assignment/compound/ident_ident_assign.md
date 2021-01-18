@@ -63,3 +63,15 @@ b = b - tmpNestedComplexRhs;
 a = a * tmpNestedComplexRhs;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[3], [4], "<crash[ Cannot read property 'y' of undefined ]>"];
+
+Final output calls: BAD!!
+[[3], [4], "<crash[ Cannot read property 'y' of undefined ]>"];
+

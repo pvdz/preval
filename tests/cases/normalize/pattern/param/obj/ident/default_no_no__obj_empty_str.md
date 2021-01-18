@@ -44,3 +44,12 @@ tmpArg_1 = { x: '' };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[''], null];
+
+Normalized calls: Same
+
+Final output calls: Same

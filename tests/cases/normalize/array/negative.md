@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = [-100];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[[-100]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -33,3 +33,12 @@ const arr = [];
 arr.push(1);
 $(arr);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

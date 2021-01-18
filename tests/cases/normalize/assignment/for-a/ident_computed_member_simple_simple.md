@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3;
-for (a = b[$('x')] = c;;);
+for (a = b[$('x')] = c;false;);
 $(a, b, c);
 `````
 
@@ -29,7 +29,7 @@ let c = 3;
   tmpNestedAssignComMemberProp = $('x');
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
   a = c;
-  while (true) {}
+  while (false) {}
 }
 $(a, b, c);
 `````
@@ -45,6 +45,15 @@ tmpNestedAssignComMemberObj = b;
 tmpNestedAssignComMemberProp = $('x');
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 a = 3;
-while (true) {}
+while (false) {}
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [3, { x: 2, undefined: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

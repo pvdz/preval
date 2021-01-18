@@ -60,3 +60,15 @@ if (tmpTernaryTest) {
 y = objPatternRest(objPatternAfterDefault, []);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+[[{ a: 'fail' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[[{ a: 'fail' }], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[{ a: 'fail' }], '<crash[ <ref> is not defined ]>'];
+

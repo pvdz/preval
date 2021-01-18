@@ -32,3 +32,12 @@ const x = {};
 tmpArg = x != x;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], null];
+
+Normalized calls: Same
+
+Final output calls: Same

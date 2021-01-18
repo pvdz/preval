@@ -50,3 +50,12 @@ tmpArg_1 = ['abc', 4, 5];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

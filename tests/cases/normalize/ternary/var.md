@@ -40,3 +40,13 @@ let foo;
 foo = 2;
 $(foo);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

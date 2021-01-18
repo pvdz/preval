@@ -40,3 +40,15 @@ var tmpArg;
 tmpArg = f('abc', 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure property 'x' of 'undefined' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

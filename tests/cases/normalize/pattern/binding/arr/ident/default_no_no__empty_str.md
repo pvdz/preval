@@ -31,3 +31,12 @@ const arrPatternSplat = [...''];
 const x = arrPatternSplat[0];
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

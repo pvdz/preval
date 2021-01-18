@@ -59,3 +59,15 @@ tmpArg = 500 + tmpBinaryRight;
 $(tmpArg);
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[['50010,20,30'], [10, 20, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[[520], [10, 20, [10, 20, 30]], null];
+
+Final output calls: BAD!!
+[[520], [10, 20, [10, 20, 30]], null];
+

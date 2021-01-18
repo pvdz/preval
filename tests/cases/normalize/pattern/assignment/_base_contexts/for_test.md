@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-for ({ x } = 1;;) y;
+for ({ x } = 1;false;) y;
 `````
 
 ## Normalized
@@ -19,7 +19,7 @@ var objAssignPatternRhs;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
-  while (true) {
+  while (false) {
     y;
   }
 }
@@ -31,5 +31,14 @@ var objAssignPatternRhs;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
-while (true) {}
+while (false) {}
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

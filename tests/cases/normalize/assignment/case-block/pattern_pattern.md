@@ -100,3 +100,15 @@ tmpSwitchBreak: {
 }
 $(1, 2, 1, 2, z);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['a'], [10, 20, 20, 30, [10, 20, 30]], null];
+
+Normalized calls: BAD?!
+[['a'], ['a'], '<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+[['a'], '<crash[ <ref> is not defined ]>'];
+

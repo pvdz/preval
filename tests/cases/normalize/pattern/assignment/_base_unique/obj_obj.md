@@ -43,3 +43,12 @@ objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 z_1 = objPatternNoDefault_1.z;
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

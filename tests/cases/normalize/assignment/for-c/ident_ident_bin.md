@@ -12,23 +12,37 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3, d = 4;
-for (;;a = b = c + d);
+let n = 1;
+for (;n-->0;  a = b = c + d);
 $(a, b, c);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
+let n = 1;
 {
   while (true) {
-    tmpNestedComplexRhs = c + d;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        tmpNestedComplexRhs = c + d;
+        b = tmpNestedComplexRhs;
+        a = tmpNestedComplexRhs;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, c);
@@ -37,13 +51,36 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
+let n = 1;
 while (true) {
-  tmpNestedComplexRhs = 7;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    tmpNestedComplexRhs = 7;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[7, 7, 3], null];
+
+Normalized calls: BAD?!
+[[1, 2, 3], null];
+
+Final output calls: BAD!!
+[[1, 2, 7], null];
+

@@ -62,3 +62,15 @@ var tmpArg_1;
 tmpArg_1 = f();
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ a: 'pass' }], "<crash[ Cannot destructure '(intermediate value)(intermediate value)(intermediate value)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+

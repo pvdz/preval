@@ -49,3 +49,12 @@ tmpArg = { [tmpComputedKey]: 1000 };
 $(tmpArg);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3], [{ undefined: 1000 }], [null, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

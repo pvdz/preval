@@ -38,3 +38,15 @@ arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[['ok'], null];
+
+Final output calls: BAD!!
+[['ok'], null];
+

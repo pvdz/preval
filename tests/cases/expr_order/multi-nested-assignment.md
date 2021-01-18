@@ -11,7 +11,6 @@
 ## Input
 
 `````js filename=intro
-function $(...a) { console.log('$:', a); return a[0]; } 
 var a = function(){ $('a'); return 1; }
 var b = function(){ $('b'); a = 21; return 2; }
 var c = function(){ $('c'); a = 31; b = 32; return 3; }
@@ -24,13 +23,6 @@ $(a, b, c, d, e);
 ## Normalized
 
 `````js filename=intro
-function $_1(...a_1) {
-  console.log('$:', a_1);
-  {
-    let tmpStmtArg = a_1[0];
-    return tmpStmtArg;
-  }
-}
 var a;
 var b;
 var c;
@@ -45,29 +37,29 @@ var tmpNestedAssignMemberRhs_1;
 var tmpNestedAssignMemberObj_2;
 var tmpNestedAssignMemberRhs_2;
 a = function () {
-  $_1('a');
+  $('a');
   return 1;
 };
 b = function () {
-  $_1('b');
+  $('b');
   a = 21;
   return 2;
 };
 c = function () {
-  $_1('c');
+  $('c');
   a = 31;
   b = 32;
   return 3;
 };
 d = function () {
-  $_1('d');
+  $('d');
   a = 41;
   b = 42;
   c = 43;
   return 4;
 };
 e = function () {
-  $_1('e');
+  $('e');
   a = 51;
   b = 52;
   c = 53;
@@ -86,17 +78,12 @@ tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpAssignMemRhs = tmpNestedAssignMemberRhs;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-$_1(a, b, c, d, e);
+$(a, b, c, d, e);
 `````
 
 ## Output
 
 `````js filename=intro
-function $_1(...a_1) {
-  console.log('$:', a_1);
-  let tmpStmtArg = a_1[0];
-  return tmpStmtArg;
-}
 var a;
 var b;
 var c;
@@ -111,29 +98,29 @@ var tmpNestedAssignMemberRhs_1;
 var tmpNestedAssignMemberObj_2;
 var tmpNestedAssignMemberRhs_2;
 a = function () {
-  $_1('a');
+  $('a');
   return 1;
 };
 b = function () {
-  $_1('b');
+  $('b');
   a = 21;
   return 2;
 };
 c = function () {
-  $_1('c');
+  $('c');
   a = 31;
   b = 32;
   return 3;
 };
 d = function () {
-  $_1('d');
+  $('d');
   a = 41;
   b = 42;
   c = 43;
   return 4;
 };
 e = function () {
-  $_1('e');
+  $('e');
   a = 51;
   b = 52;
   c = 53;
@@ -152,5 +139,14 @@ tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpAssignMemRhs = tmpNestedAssignMemberRhs;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-$_1(a, b, c, d, e);
+$(a, b, c, d, e);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['b'], ['c'], ['d'], ['e'], [51, 52, 53, 54, null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

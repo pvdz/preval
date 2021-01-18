@@ -36,3 +36,12 @@ objPatternNoDefault = objAssignPatternRhs.x;
 y = objPatternNoDefault.y;
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

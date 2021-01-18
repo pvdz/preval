@@ -44,3 +44,12 @@ tmpBinaryRight = (3).foo;
 a = tmpBinaryLeft * tmpBinaryRight;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[null, { x: 2 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

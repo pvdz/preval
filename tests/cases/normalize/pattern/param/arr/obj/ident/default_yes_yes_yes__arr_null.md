@@ -114,3 +114,13 @@ tmpArg_3 = [null, 20, 30];
 tmpArg_2 = f(tmpArg_3, 200);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'x' of null ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

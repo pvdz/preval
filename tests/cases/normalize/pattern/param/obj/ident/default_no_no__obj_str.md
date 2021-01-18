@@ -44,3 +44,12 @@ tmpArg_1 = { x: 'abc' };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

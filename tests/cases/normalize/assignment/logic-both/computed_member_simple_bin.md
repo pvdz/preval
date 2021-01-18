@@ -85,3 +85,14 @@ if (tmpAssignLogicStmtOr) {
 $(tmpArg);
 $(a, 8, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], ['x'], [5], [{ x: 10, undefined: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], ['x'], [8], [{ x: 10, undefined: 8 }, 8, 3], null];
+

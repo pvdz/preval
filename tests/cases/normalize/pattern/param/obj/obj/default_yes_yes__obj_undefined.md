@@ -92,3 +92,15 @@ tmpArg_3 = { x: undefined, b: 11, c: 12 };
 tmpArg_2 = f(tmpArg_3, 10);
 $(tmpArg_2);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[[{ x: 'pass' }], ['ok'], null];
+

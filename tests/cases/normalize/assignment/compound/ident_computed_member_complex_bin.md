@@ -61,3 +61,12 @@ tmpAssignMemLhsObj[tmpNestedAssignCompMemberProp] = tmpAssignMemRhs;
 a = a * tmpNestedAssignCompMemberRhs;
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 2 }], ['x'], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

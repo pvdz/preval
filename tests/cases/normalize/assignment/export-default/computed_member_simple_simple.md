@@ -37,3 +37,12 @@ let a = { x: 10 };
 export default ((tmpAssignedComputedObj = a), (tmpAssignedComputedProp = $('x')), (tmpAssignedComputedObj[tmpAssignedComputedProp] = 2));
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

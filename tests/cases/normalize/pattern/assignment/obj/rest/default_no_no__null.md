@@ -32,3 +32,15 @@ objAssignPatternRhs = null;
 x = objPatternRest(objAssignPatternRhs, []);
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure 'null' as it is null. ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

@@ -40,3 +40,15 @@ let ifTestTmp = tmpBindingInit.foo;
 if (ifTestTmp) {
 }
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: BAD?!
+["<crash[ Cannot read property 'foo' of undefined ]>"];
+
+Final output calls: BAD!!
+["<crash[ Cannot read property 'foo' of undefined ]>"];
+

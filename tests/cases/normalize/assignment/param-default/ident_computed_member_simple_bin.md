@@ -82,3 +82,15 @@ tmpArg = f();
 $(tmpArg);
 $(a, b, 7);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [7], [7, { x: 2, undefined: 7 }, 3], null];
+
+Normalized calls: BAD?!
+[['x'], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[['x'], [7], [7, { x: 2, undefined: 7 }, 7], null];
+

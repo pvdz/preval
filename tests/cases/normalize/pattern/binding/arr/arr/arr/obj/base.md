@@ -60,3 +60,12 @@ const arrPatternSplat_3 = [...arrPatternStep_2];
 arrPatternSplat_3[0];
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

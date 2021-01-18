@@ -58,3 +58,13 @@ const arrPatternSplat_1 = [...arrPatternStep];
 const x = arrPatternSplat_1.slice(0);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[[null, null, 1]], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

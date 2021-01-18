@@ -31,3 +31,12 @@ const arrPatternSplat = [...null];
 arrPatternSplat[0];
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

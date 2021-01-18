@@ -31,3 +31,15 @@ var tmpComputedProp;
 var tmpMemberSeqAssign;
 ((tmpComputedProp = $(2)), (tmpMemberComplexObj = $(1)), (tmpMemberSeqAssign = tmpMemberComplexObj), tmpMemberSeqAssign)[tmpComputedProp];
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[2], [1], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+
+Final output calls: BAD!!
+[[2], [1], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+

@@ -42,3 +42,12 @@ var tmpArg;
 tmpArg = f('abc', 100);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['bad'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

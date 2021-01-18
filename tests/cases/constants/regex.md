@@ -33,3 +33,12 @@ $(bar);
 `````js filename=intro
 $(/foo/g);
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], null];
+
+Normalized calls: Same
+
+Final output calls: Same

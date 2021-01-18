@@ -38,3 +38,12 @@ tmpMemberComplexObj = $(a);
 tmpArg = tmpMemberComplexObj.length;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[20], "<crash[ Cannot read property 'length' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

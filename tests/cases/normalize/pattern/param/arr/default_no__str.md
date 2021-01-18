@@ -36,3 +36,12 @@ var tmpArg;
 tmpArg = 'ok';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

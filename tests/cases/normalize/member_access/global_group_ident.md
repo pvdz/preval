@@ -30,3 +30,12 @@ const a = { x: 1 };
 const y = a.x;
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

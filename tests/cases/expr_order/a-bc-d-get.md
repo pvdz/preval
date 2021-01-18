@@ -13,7 +13,7 @@
 `````js filename=intro
 let a = 1;
 let b = {
-    get c()  { throw 'should not be called'; }, 
+    get c()  { $('should not be called'); }, 
 };
 let d = 3;
 // This should _NOT_ crash. The getter is not invoked.
@@ -27,7 +27,7 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
-    throw 'should not be called';
+    $('should not be called');
   },
 };
 let d = 3;
@@ -42,10 +42,19 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
-    throw 'should not be called';
+    $('should not be called');
   },
 };
 b.c = 3;
 a = 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3, {}, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

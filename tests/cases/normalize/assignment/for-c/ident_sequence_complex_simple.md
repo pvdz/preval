@@ -12,23 +12,37 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3;
-for (;;a = ($(b), $(c)).x = c);
+let n = 1;
+for (;n-->0;  a = ($(b), $(c)).x = c);
 $(a, b, c);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignObj;
 let a = 1;
 let b = 2;
 let c = 3;
+let n = 1;
 {
   while (true) {
-    $(b);
-    tmpNestedAssignObj = $(c);
-    tmpNestedAssignObj.x = c;
-    a = c;
+    {
+      tmpPostfixArg = n;
+      n = n - 1;
+      tmpBinaryLeft = n;
+      let ifTestTmp = tmpBinaryLeft > 0;
+      if (ifTestTmp) {
+        $(b);
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignObj.x = c;
+        a = c;
+      } else {
+        break;
+      }
+    }
   }
 }
 $(a, b, c);
@@ -37,13 +51,36 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
+var tmpPostfixArg;
 var tmpNestedAssignObj;
 let a = 1;
+let n = 1;
 while (true) {
-  $(2);
-  tmpNestedAssignObj = $(3);
-  tmpNestedAssignObj.x = 3;
-  a = 3;
+  tmpPostfixArg = n;
+  n = n - 1;
+  tmpBinaryLeft = n;
+  let ifTestTmp = tmpBinaryLeft > 0;
+  if (ifTestTmp) {
+    $(2);
+    tmpNestedAssignObj = $(3);
+    tmpNestedAssignObj.x = 3;
+    a = 3;
+  } else {
+    break;
+  }
 }
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], [3], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: BAD?!
+[[1, 2, 3], null];
+
+Final output calls: BAD!!
+[[1, 2, 3], null];
+

@@ -35,3 +35,12 @@ if (ifTestTmp) {
   $(3);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

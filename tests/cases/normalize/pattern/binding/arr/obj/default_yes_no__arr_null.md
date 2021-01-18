@@ -50,3 +50,15 @@ if (ifTestTmp) {
 }
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

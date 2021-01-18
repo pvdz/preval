@@ -48,3 +48,12 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -68,3 +68,13 @@ tmpArg_2 = { x: undefined, a: 11, b: 12 };
 tmpArg_1 = f(tmpArg_2, 10);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[[['fail']], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: BAD?!
+[[['fail']], '<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

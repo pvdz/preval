@@ -67,3 +67,15 @@ for (tmpForOfLhsDecl of tmpForOfRhs) {
 }
 $(a, x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot access 'x' before initialization ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not iterable ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not iterable ]>'];
+

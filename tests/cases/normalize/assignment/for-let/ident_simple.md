@@ -41,3 +41,14 @@ while (false) {}
 $(2);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[2], [2, 2, 3], null];
+

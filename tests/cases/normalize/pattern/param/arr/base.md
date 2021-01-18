@@ -40,3 +40,12 @@ tmpArg_1 = [1, 2, 3];
 tmpArg = 'ok';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

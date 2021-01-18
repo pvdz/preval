@@ -27,3 +27,12 @@ var tmpArg;
 tmpArg = 'boolean';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['boolean'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

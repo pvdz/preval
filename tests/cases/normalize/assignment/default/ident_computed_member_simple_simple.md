@@ -54,3 +54,12 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 a = 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['x'], [3, { x: 2, undefined: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

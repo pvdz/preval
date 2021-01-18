@@ -43,3 +43,12 @@ for (tmpForInLhsDecl in tmpForInRhs) {
   $(x);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['b'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

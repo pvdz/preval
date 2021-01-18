@@ -27,3 +27,12 @@ var tmpArg;
 tmpArg = 'ab';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['ab'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

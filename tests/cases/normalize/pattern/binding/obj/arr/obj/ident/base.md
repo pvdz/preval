@@ -44,3 +44,12 @@ const arrPatternStep = arrPatternSplat[0];
 const y = arrPatternStep.y;
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[2], null];
+
+Normalized calls: Same
+
+Final output calls: Same

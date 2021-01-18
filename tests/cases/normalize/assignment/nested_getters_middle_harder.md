@@ -154,3 +154,12 @@ function f() {
 }
 f();
 `````
+
+## Result
+
+Should call `$` with:
+[[6], [3], [null], [null], [2], [null], [3], [4], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -56,3 +56,12 @@ if (tmpTernaryTest) {
 }
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], null];
+
+Normalized calls: Same
+
+Final output calls: Same

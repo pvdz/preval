@@ -50,3 +50,12 @@ tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
 tmpArg = f(tmpArg_1, 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['abc'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

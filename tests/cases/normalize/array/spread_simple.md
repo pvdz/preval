@@ -31,3 +31,12 @@ var tmpArg;
 tmpArg = [...'foo'];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[['f', 'o', 'o']], null];
+
+Normalized calls: Same
+
+Final output calls: Same

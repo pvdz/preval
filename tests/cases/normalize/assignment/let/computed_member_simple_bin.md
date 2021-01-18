@@ -48,3 +48,14 @@ tmpAssignedComputedObj[tmpAssignedComputedProp] = 5;
 $(5);
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [5], [{ x: 10, undefined: 5 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], [5], [{ x: 10, undefined: 5 }, 5, 3], null];
+

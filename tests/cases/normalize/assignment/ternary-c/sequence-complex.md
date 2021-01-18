@@ -60,3 +60,12 @@ if (tmpTernaryTest) {
 $(tmpArg);
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], [{ c: 2 }], "<crash[ Cannot set property 'c' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

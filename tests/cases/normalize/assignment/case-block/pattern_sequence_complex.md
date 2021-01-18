@@ -89,3 +89,14 @@ tmpSwitchBreak: {
 }
 $(1, 2, z);
 `````
+
+## Result
+
+Should call `$` with:
+[['a'], ['a'], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['a'], '<crash[ <ref> is not defined ]>'];
+

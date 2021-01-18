@@ -58,3 +58,12 @@ if (tmpAssignLogicStmtOr) {
 $(tmpArg);
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[true], [{ x: 2 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

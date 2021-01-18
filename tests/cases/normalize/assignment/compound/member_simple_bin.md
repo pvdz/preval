@@ -53,3 +53,14 @@ tmpAssignMemRhs_1 = tmpBinaryLeft * tmpAssignMemRhs;
 tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 50 }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[[{ x: 50 }, 5, 3], null];
+

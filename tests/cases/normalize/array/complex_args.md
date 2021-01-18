@@ -43,3 +43,12 @@ tmpElement_2 = tmpMemberComplexObj.length;
 tmpArg = [tmpElement, tmpElement_1, tmpElement_2];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [[10, null, 0]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

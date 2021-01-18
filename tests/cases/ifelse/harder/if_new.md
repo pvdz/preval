@@ -35,3 +35,12 @@ if (ifTestTmp) {
   $(2);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[1], '<crash[ <ref> is not a constructor ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

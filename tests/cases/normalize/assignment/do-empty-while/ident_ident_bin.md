@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = 2, c = 3, d = 4;
+let a = 1, b = 2, c = 0, d = 0;
 do {} while (a = b = c + d);
 $(a, b, c);
 `````
@@ -22,8 +22,8 @@ $(a, b, c);
 var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
-let c = 3;
-let d = 4;
+let c = 0;
+let d = 0;
 while (true) {
   {
     tmpNestedComplexRhs = c + d;
@@ -46,7 +46,7 @@ var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 while (true) {
-  tmpNestedComplexRhs = 7;
+  tmpNestedComplexRhs = 0;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;
@@ -55,5 +55,14 @@ while (true) {
     break;
   }
 }
-$(a, b, 7);
+$(a, b, 0);
 `````
+
+## Result
+
+Should call `$` with:
+[[0, 0, 0], null];
+
+Normalized calls: Same
+
+Final output calls: Same

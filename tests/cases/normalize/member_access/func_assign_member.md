@@ -54,3 +54,12 @@ var tmpArg;
 tmpArg = f();
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], "<crash[ Cannot read property 'foo' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

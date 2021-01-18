@@ -70,3 +70,15 @@ do {
 } while (ifTestTmp);
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], [2], [3], [null, 2, 3], null];
+
+Normalized calls: BAD?!
+[[1], [2], [3], [null, 2, 3], null];
+
+Final output calls: BAD!!
+[[1], [2], [3], [null, 2, 3], null];
+

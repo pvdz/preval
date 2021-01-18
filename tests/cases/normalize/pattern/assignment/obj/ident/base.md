@@ -32,3 +32,12 @@ objAssignPatternRhs = { x: 1, b: 2, c: 3 };
 x = objAssignPatternRhs.x;
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], null];
+
+Normalized calls: Same
+
+Final output calls: Same

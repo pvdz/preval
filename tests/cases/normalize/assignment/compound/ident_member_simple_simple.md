@@ -48,3 +48,15 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 a = a * 3;
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[5, { x: 5 }, 3], null];
+
+Normalized calls: BAD?!
+[[3, { x: 5 }, 3], null];
+
+Final output calls: BAD!!
+[[3, { x: 5 }, 3], null];
+

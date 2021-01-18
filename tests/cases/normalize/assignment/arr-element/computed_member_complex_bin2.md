@@ -47,3 +47,12 @@ tmpElement = tmpNestedAssignCompMemberRhs;
 tmpArg = [tmpElement];
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [3], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

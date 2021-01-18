@@ -50,3 +50,12 @@ const arrPatternSplat_1 = [...objPatternNoDefault];
 const y = arrPatternSplat_1.slice(0);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2, 3]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

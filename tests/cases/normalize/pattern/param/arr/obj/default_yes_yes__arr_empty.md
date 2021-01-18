@@ -82,3 +82,15 @@ var tmpArg_1;
 tmpArg_1 = f([]);
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['pass'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+[['pass'], ['ok'], null];
+

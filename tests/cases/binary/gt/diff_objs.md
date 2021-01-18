@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = {} > {};
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[false], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -38,3 +38,12 @@ var tmpArg;
 tmpArg = f(1, 2, 3);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2, 3]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

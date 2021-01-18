@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, d = 0;
 do {} while ((a, b).c = d);
 $(a, b, c, d);
 `````
@@ -23,7 +23,7 @@ var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
-let d = 3;
+let d = 0;
 while (true) {
   {
     a;
@@ -48,8 +48,18 @@ var tmpAssignMemRhs;
 let b = { c: 2 };
 while (true) {
   tmpAssignMemLhsObj = b;
-  tmpAssignMemRhs = 3;
+  tmpAssignMemRhs = 0;
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  break;
 }
-$(1, b, c, 3);
+$(1, b, c, 0);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

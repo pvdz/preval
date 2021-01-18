@@ -38,3 +38,12 @@ let ifTestTmp = x;
 if (ifTestTmp) {
 }
 `````
+
+## Result
+
+Should call `$` with:
+[null];
+
+Normalized calls: Same
+
+Final output calls: Same

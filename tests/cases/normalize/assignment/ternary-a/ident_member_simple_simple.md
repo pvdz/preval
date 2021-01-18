@@ -58,3 +58,12 @@ if (tmpTernaryTest) {
 $(tmpArg);
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[true], [3, { x: 3 }, 3], null];
+
+Normalized calls: Same
+
+Final output calls: Same

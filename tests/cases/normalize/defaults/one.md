@@ -62,3 +62,13 @@ $(tmpArg);
 tmpArg_1 = f();
 $(tmpArg_1);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], ['foo'], null];
+
+Normalized calls: BAD?!
+[[20], [20], null];
+
+Final output calls: Same

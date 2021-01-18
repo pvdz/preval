@@ -33,3 +33,12 @@ let a = { x: 10 };
 export default a.x = 2;
 $(a, 2, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

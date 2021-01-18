@@ -35,3 +35,12 @@ x = $(1);
 x = $(2);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[1], [2], [null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

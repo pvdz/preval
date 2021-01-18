@@ -45,3 +45,12 @@ tmpArg_3 = tmpMemberComplexObj.length;
 tmpArg = new Array(tmpArg_1, tmpArg_2, tmpArg_3);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[], [[10, null, 0]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

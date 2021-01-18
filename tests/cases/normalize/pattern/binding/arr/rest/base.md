@@ -32,3 +32,12 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat.slice(0);
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[[[1, 2, 3]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

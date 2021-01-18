@@ -44,3 +44,15 @@ const arrPatternStep = arrPatternSplat[0];
 const y = objPatternRest(arrPatternStep, []);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, y: 2, c: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

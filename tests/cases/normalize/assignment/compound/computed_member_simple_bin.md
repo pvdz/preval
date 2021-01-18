@@ -61,3 +61,14 @@ tmpAssignMemRhs_1 = tmpBinaryLeft * tmpAssignMemRhs;
 tmpAssignMemLhsObj_1[tmpAssignedComputedProp] = tmpAssignMemRhs_1;
 $(a, 5, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], [{ x: 10, undefined: null }, 2, 3], null];
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+[['x'], [{ x: 10, undefined: null }, 5, 3], null];
+

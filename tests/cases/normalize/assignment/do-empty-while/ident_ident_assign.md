@@ -11,8 +11,8 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = 2, c = 3, d = 4;
-do {} while (a = b = $(c).y = $(d));
+let a = 1, b = 2, c = 0, d = 0;
+do {} while (a = b = $(c).y = d);
 $(a, b, c);
 `````
 
@@ -20,18 +20,16 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 let a = 1;
 let b = 2;
-let c = 3;
-let d = 4;
+let c = 0;
+let d = 0;
 while (true) {
   {
-    tmpNestedAssignMemberObj = $(c);
-    tmpNestedAssignMemberRhs = $(d);
-    tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignObj.y = d;
+    tmpNestedComplexRhs = d;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;
     let ifTestTmp = a;
@@ -48,15 +46,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 let a = 1;
 let b = 2;
 while (true) {
-  tmpNestedAssignMemberObj = $(3);
-  tmpNestedAssignMemberRhs = $(4);
-  tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-  tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+  tmpNestedAssignObj = $(0);
+  tmpNestedAssignObj.y = 0;
+  tmpNestedComplexRhs = 0;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;
@@ -65,5 +61,14 @@ while (true) {
     break;
   }
 }
-$(a, b, 3);
+$(a, b, 0);
 `````
+
+## Result
+
+Should call `$` with:
+[[0], "<crash[ Cannot set property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

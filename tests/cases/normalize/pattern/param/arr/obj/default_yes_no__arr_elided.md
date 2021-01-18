@@ -64,3 +64,15 @@ tmpArg_1 = [, , , 1, 20, 30];
 tmpArg = f(tmpArg_1, 200);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['fail'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['fail'], ['ok'], null];
+
+Final output calls: BAD!!
+[['fail'], ['ok'], null];
+

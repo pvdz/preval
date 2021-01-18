@@ -51,3 +51,12 @@ export default ((tmpNestedAssignMemberObj = $(3)),
 (a = tmpNestedComplexRhs));
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Unexpected token 'export' ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

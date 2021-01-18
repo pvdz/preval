@@ -29,3 +29,15 @@ $('bad');
 'abc'.x;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure property 'x' of '\"abc\"' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['bad'], null];
+
+Final output calls: BAD!!
+[['bad'], null];
+

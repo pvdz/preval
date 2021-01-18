@@ -28,3 +28,12 @@ $(x);
 let x = 'foo'.toString();
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[['foo'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

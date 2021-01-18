@@ -29,3 +29,12 @@ var tmpArg;
 tmpArg = ['abc ', ' ', ' def'];
 $(tmpArg, 10, 20);
 `````
+
+## Result
+
+Should call `$` with:
+[[['abc ', ' ', ' def'], 10, 20], null];
+
+Normalized calls: Same
+
+Final output calls: Same

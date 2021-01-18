@@ -28,3 +28,12 @@ $('ok');
 ({ a: 1, b: 2, c: 3 });
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['ok'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

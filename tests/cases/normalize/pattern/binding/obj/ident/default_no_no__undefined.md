@@ -29,3 +29,15 @@ $('bad');
 undefined.x;
 $('bad');
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot destructure property 'x' of 'undefined' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+["<crash[ Cannot read property 'x' of undefined ]>"];
+
+Final output calls: BAD!!
+["<crash[ Cannot read property 'x' of undefined ]>"];
+

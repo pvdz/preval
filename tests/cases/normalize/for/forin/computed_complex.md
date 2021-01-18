@@ -61,3 +61,12 @@ for (tmpForInLhsNode in tmpForInRhs) {
   $(a);
 }
 `````
+
+## Result
+
+Should call `$` with:
+[[{ x: 1, y: 2 }], null];
+
+Normalized calls: Same
+
+Final output calls: Same

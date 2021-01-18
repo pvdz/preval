@@ -39,3 +39,12 @@ var tmpArg;
 tmpArg = 'x';
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[['x'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

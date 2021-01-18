@@ -49,3 +49,12 @@ for (tmpForOfLhsDecl of tmpForOfRhs) {
 }
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not iterable ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

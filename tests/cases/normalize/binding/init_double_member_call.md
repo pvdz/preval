@@ -32,3 +32,12 @@ tmpMemberComplexObj = 'foo'.length;
 let x = tmpMemberComplexObj.toString();
 $(x);
 `````
+
+## Result
+
+Should call `$` with:
+[['3'], null];
+
+Normalized calls: Same
+
+Final output calls: Same

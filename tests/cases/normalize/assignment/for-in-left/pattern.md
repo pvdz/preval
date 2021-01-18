@@ -67,3 +67,12 @@ for (tmpForInLhsNode in {}) {
 }
 $(x, y, z);
 `````
+
+## Result
+
+Should call `$` with:
+[[1, 2, [10, 20, 30]], null];
+
+Normalized calls: Same
+
+Final output calls: Same

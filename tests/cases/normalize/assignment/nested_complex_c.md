@@ -58,3 +58,12 @@ a = tmpNestedComplexRhs;
 tmpArg = tmpNestedComplexRhs;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[[]], "<crash[ Cannot read property 'length' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

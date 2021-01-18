@@ -54,3 +54,12 @@ tmpAssignMemRhs_1 = tmpBinaryLeft * tmpAssignMemRhs;
 tmpAssignMemLhsObj_1.c = tmpAssignMemRhs_1;
 $(1, b, c, 3);
 `````
+
+## Result
+
+Should call `$` with:
+['<crash[ <ref> is not defined ]>'];
+
+Normalized calls: Same
+
+Final output calls: Same

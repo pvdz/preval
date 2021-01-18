@@ -58,3 +58,15 @@ if (tmpTernaryTest) {
 }
 $('ok');
 `````
+
+## Result
+
+Should call `$` with:
+[['fail'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+
+Normalized calls: BAD?!
+[['fail'], ['ok'], null];
+
+Final output calls: BAD!!
+[['fail'], ['ok'], null];
+

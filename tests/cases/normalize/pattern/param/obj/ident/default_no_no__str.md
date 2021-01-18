@@ -40,3 +40,12 @@ var tmpArg;
 tmpArg = f('abc', 10);
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+[[null], null];
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -67,3 +67,12 @@ while (true) {
 }
 $(a, b, 3);
 `````
+
+## Result
+
+Should call `$` with:
+[[3], [4], "<crash[ Cannot set property 'y' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

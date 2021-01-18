@@ -52,3 +52,15 @@ objPatternNoDefault_1 = objPatternNoDefault.y;
 z = objPatternRest(objPatternNoDefault_1, []);
 $(z);
 `````
+
+## Result
+
+Should call `$` with:
+[[{ z: 1, a: 2, b: 3 }], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

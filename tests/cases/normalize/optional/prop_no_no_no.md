@@ -40,3 +40,12 @@ tmpMemberComplexObj = tmpMemberComplexObj_1.c;
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
+
+## Result
+
+Should call `$` with:
+["<crash[ Cannot read property 'c' of undefined ]>"];
+
+Normalized calls: Same
+
+Final output calls: Same

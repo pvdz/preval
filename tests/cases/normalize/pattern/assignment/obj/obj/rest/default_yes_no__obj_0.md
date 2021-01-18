@@ -60,3 +60,15 @@ if (tmpTernaryTest) {
 y = objPatternRest(objPatternAfterDefault, []);
 $(y);
 `````
+
+## Result
+
+Should call `$` with:
+[[{}], null];
+
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: BAD!!
+['<crash[ <ref> is not defined ]>'];
+

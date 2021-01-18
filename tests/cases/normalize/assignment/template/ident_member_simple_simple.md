@@ -20,10 +20,11 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-tmpArg = `abc ${((b.x = c), (a = c))} def`;
+tmpArg = `abc ${((tmpNestedPropAssignRhs = c), (b.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -32,9 +33,10 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-tmpArg = `abc ${((b.x = 3), (a = 3))} def`;
+tmpArg = `abc ${((tmpNestedPropAssignRhs = 3), (b.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

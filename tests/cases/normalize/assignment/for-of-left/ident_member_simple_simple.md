@@ -22,14 +22,16 @@ $(a, b, c);
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    b.x = c;
-    tmpNestedComplexRhs = c;
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
     a = tmpNestedComplexRhs;
     tmpAssignMemLhsObj = tmpNestedComplexRhs;
     tmpAssignMemRhs = tmpForOfLhsNode;
@@ -45,12 +47,14 @@ $(a, b, c);
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of []) {
-  b.x = 3;
-  tmpNestedComplexRhs = 3;
+  tmpNestedPropAssignRhs = 3;
+  b.x = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   tmpAssignMemLhsObj = tmpNestedComplexRhs;
   tmpAssignMemRhs = tmpForOfLhsNode;

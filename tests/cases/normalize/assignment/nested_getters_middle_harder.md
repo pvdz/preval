@@ -71,6 +71,7 @@ function f() {
   var tmpNestedAssignMemberRhs;
   var tmpArg_1;
   var tmpArg_2;
+  var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -102,8 +103,9 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  b.foo = 4;
-  tmpArg_2 = 4;
+  tmpNestedPropAssignRhs = 4;
+  b.foo = tmpNestedPropAssignRhs;
+  tmpArg_2 = tmpNestedPropAssignRhs;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }
@@ -120,6 +122,7 @@ function f() {
   var tmpNestedAssignMemberRhs;
   var tmpArg_1;
   var tmpArg_2;
+  var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -147,8 +150,9 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  b.foo = 4;
-  tmpArg_2 = 4;
+  tmpNestedPropAssignRhs = 4;
+  b.foo = tmpNestedPropAssignRhs;
+  tmpArg_2 = tmpNestedPropAssignRhs;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }

@@ -19,13 +19,15 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 0;
 while (true) {
   {
-    b.x = c;
-    a = c;
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     let ifTestTmp = a;
     if (ifTestTmp) {
     } else {
@@ -39,11 +41,13 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 while (true) {
-  b.x = 0;
-  a = 0;
+  tmpNestedPropAssignRhs = 0;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
   } else {

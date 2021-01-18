@@ -19,6 +19,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpArg;
 let a = { x: 10 };
 let b = 2;
@@ -27,8 +28,9 @@ let c = 3;
   a.x = b;
   let tmpAssignLogicStmtOr = b;
   if (tmpAssignLogicStmtOr) {
-    a.x = b;
-    tmpArg = b;
+    tmpNestedPropAssignRhs = b;
+    a.x = tmpNestedPropAssignRhs;
+    tmpArg = tmpNestedPropAssignRhs;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -40,11 +42,13 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpArg;
 let a = { x: 10 };
 a.x = 2;
-a.x = 2;
-tmpArg = 2;
+tmpNestedPropAssignRhs = 2;
+a.x = tmpNestedPropAssignRhs;
+tmpArg = tmpNestedPropAssignRhs;
 $(tmpArg);
 $(a, 2, 3);
 `````

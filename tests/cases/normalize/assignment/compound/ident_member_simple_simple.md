@@ -19,33 +19,37 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
+tmpNestedPropAssignRhs = c;
 tmpAssignMemLhsObj = b;
 tmpBinaryLeft = b.x;
-tmpAssignMemRhs = tmpBinaryLeft + c;
+tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = a * c;
+a = a * tmpNestedPropAssignRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
+tmpNestedPropAssignRhs = 3;
 tmpAssignMemLhsObj = b;
 tmpBinaryLeft = b.x;
-tmpAssignMemRhs = tmpBinaryLeft + 3;
+tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = a * 3;
+a = a * tmpNestedPropAssignRhs;
 $(a, b, 3);
 `````
 

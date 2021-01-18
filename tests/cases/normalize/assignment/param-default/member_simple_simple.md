@@ -23,13 +23,15 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedPropAssignRhs;
   {
     let foo;
     {
       let ifTestTmp = $tdz$__foo === undefined;
       if (ifTestTmp) {
-        a.x = b;
-        foo = b;
+        tmpNestedPropAssignRhs = b;
+        a.x = tmpNestedPropAssignRhs;
+        foo = tmpNestedPropAssignRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -50,11 +52,13 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedPropAssignRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    a.x = 2;
-    foo = 2;
+    tmpNestedPropAssignRhs = 2;
+    a.x = tmpNestedPropAssignRhs;
+    foo = tmpNestedPropAssignRhs;
   } else {
     foo = $tdz$__foo;
   }

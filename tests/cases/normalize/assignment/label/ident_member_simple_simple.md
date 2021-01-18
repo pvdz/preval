@@ -19,12 +19,14 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  b.x = c;
-  a = c;
+  tmpNestedPropAssignRhs = c;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
 }
 $(a, b, c);
 `````
@@ -32,10 +34,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-b.x = 3;
-a = 3;
+tmpNestedPropAssignRhs = 3;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, 3);
 `````
 

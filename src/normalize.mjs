@@ -128,6 +128,7 @@ const VERBOSE_TRACING = true;
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - statement that is identifier / literal (?)
+  - templates appear not to be normalized yet? see tests/cases/normalize/assignment/template/ident_member_simple_simple.md
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -2668,16 +2669,20 @@ export function phaseNormalize(fdata, fname) {
             }
 
             // We must be left with `a = b.c = d` or `a = b[c] = d`, which must all be simple nodes
+            // The assignment to `b.c` could trigger a setter that could update `d` so cache it too
             ASSERT(!isComplexNode(b));
             ASSERT(!lhs.computed || !isComplexNode(c));
             ASSERT(!isComplexNode(d));
             rule('Nested assignment to property where all nodes are simple must be split up');
-            example('a = b.c = d', 'b.c = d, a = d');
+            example('a = b.c = d', 'tmp = d, b.c = tmp, a = tmp'); // TODO: are we happier/better off with one or two uses of `tmp`?
             before(node);
 
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropAssignRhs', true);
+
             const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(lhs, d, node.right.operator),
-              AST.assignmentExpression(a, d, node.operator),
+              AST.assignmentExpression(tmpName, d),
+              AST.assignmentExpression(lhs, tmpName, node.right.operator),
+              AST.assignmentExpression(a, tmpName, node.operator),
             );
 
             crumbSet(1, newNode);

@@ -66,8 +66,10 @@ f();
 function f() {
   var tmpArg;
   var tmpNestedComplexRhs;
+  var tmpNestedPropAssignRhs;
   var tmpArg_1;
   var tmpArg_2;
+  var tmpNestedPropAssignRhs_1;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -86,8 +88,9 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  b.foo = 5;
-  tmpNestedComplexRhs = 5;
+  tmpNestedPropAssignRhs = 5;
+  b.foo = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   tmpArg = tmpNestedComplexRhs;
   $(tmpArg);
@@ -97,8 +100,9 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  b.foo = 4;
-  tmpArg_2 = 4;
+  tmpNestedPropAssignRhs_1 = 4;
+  b.foo = tmpNestedPropAssignRhs_1;
+  tmpArg_2 = tmpNestedPropAssignRhs_1;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }
@@ -111,8 +115,10 @@ f();
 function f() {
   var tmpArg;
   var tmpNestedComplexRhs;
+  var tmpNestedPropAssignRhs;
   var tmpArg_1;
   var tmpArg_2;
+  var tmpNestedPropAssignRhs_1;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -127,8 +133,9 @@ function f() {
   console.log('-------- bound');
   let a = 1;
   console.log('-------- let 1');
-  b.foo = 5;
-  tmpNestedComplexRhs = 5;
+  tmpNestedPropAssignRhs = 5;
+  b.foo = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   tmpArg = tmpNestedComplexRhs;
   $(tmpArg);
@@ -138,8 +145,9 @@ function f() {
   tmpArg_1 = b.foo;
   $(tmpArg_1);
   console.log('-------- a.foo');
-  b.foo = 4;
-  tmpArg_2 = 4;
+  tmpNestedPropAssignRhs_1 = 4;
+  b.foo = tmpNestedPropAssignRhs_1;
+  tmpArg_2 = tmpNestedPropAssignRhs_1;
   $(tmpArg_2);
   console.log('-------- a.foo = 4');
 }

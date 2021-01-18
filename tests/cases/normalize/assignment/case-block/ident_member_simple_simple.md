@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -39,8 +40,9 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          b.x = c;
-          a = c;
+          tmpNestedPropAssignRhs = c;
+          b.x = tmpNestedPropAssignRhs;
+          a = tmpNestedPropAssignRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -69,8 +71,9 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        b.x = c;
-        a = c;
+        tmpNestedPropAssignRhs = c;
+        b.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

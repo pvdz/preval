@@ -24,6 +24,7 @@ $(a, b, d);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
@@ -31,22 +32,25 @@ let b = {
   },
 };
 let d = 3;
-b.c = d;
-a = d;
+tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, d);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
     $('should not be called');
   },
 };
-b.c = 3;
-a = 3;
+tmpNestedPropAssignRhs = 3;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, 3);
 `````
 

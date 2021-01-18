@@ -22,13 +22,15 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignedComputedObj;
 var tmpAssignedComputedProp;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 let obj = {};
 tmpAssignedComputedObj = obj;
-a.x = b;
-tmpAssignedComputedProp = b;
+tmpNestedPropAssignRhs = b;
+a.x = tmpNestedPropAssignRhs;
+tmpAssignedComputedProp = tmpNestedPropAssignRhs;
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
 $(a, b, c);
 `````
@@ -38,11 +40,13 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignedComputedObj;
 var tmpAssignedComputedProp;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let obj = {};
 tmpAssignedComputedObj = obj;
-a.x = 2;
-tmpAssignedComputedProp = 2;
+tmpNestedPropAssignRhs = 2;
+a.x = tmpNestedPropAssignRhs;
+tmpAssignedComputedProp = tmpNestedPropAssignRhs;
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
 $(a, 2, 3);
 `````

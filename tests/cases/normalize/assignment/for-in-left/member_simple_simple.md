@@ -21,14 +21,16 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    a.x = b;
-    tmpAssignMemLhsObj = b;
+    tmpNestedPropAssignRhs = b;
+    a.x = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
     tmpAssignMemRhs = tmpForInLhsNode;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
@@ -41,11 +43,13 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
-  a.x = 2;
-  tmpAssignMemLhsObj = 2;
+  tmpNestedPropAssignRhs = 2;
+  a.x = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
   tmpAssignMemRhs = tmpForInLhsNode;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 }

@@ -22,6 +22,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -34,8 +35,9 @@ let n = 1;
       tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
-        b.x = c;
-        a = c;
+        tmpNestedPropAssignRhs = c;
+        b.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
       } else {
         break;
       }
@@ -50,6 +52,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let n = 1;
@@ -59,8 +62,9 @@ while (true) {
   tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
-    b.x = 3;
-    a = 3;
+    tmpNestedPropAssignRhs = 3;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
   } else {
     break;
   }

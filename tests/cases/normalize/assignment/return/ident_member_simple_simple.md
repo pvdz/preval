@@ -24,9 +24,11 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpNewObj = function () {
+  var tmpNestedPropAssignRhs;
   {
-    b.x = c;
-    a = c;
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     let tmpStmtArg = a;
     return tmpStmtArg;
   }
@@ -42,8 +44,10 @@ var tmpNewObj;
 let a = 1;
 let b = { x: 2 };
 tmpNewObj = function () {
-  b.x = 3;
-  a = 3;
+  var tmpNestedPropAssignRhs;
+  tmpNestedPropAssignRhs = 3;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   let tmpStmtArg = a;
   return tmpStmtArg;
 };

@@ -20,6 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpBinaryRight;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -29,8 +30,9 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      a.x = b;
-      tmpBinaryRight = b;
+      tmpNestedPropAssignRhs = b;
+      a.x = tmpNestedPropAssignRhs;
+      tmpBinaryRight = tmpNestedPropAssignRhs;
       ifTestTmp = 1 === tmpBinaryRight;
     }
     if (ifTestTmp) {
@@ -56,8 +58,9 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      a.x = b;
-      tmpBinaryRight = b;
+      tmpNestedPropAssignRhs = b;
+      a.x = tmpNestedPropAssignRhs;
+      tmpBinaryRight = tmpNestedPropAssignRhs;
       ifTestTmp = 1 === tmpBinaryRight;
     }
     if (ifTestTmp) {

@@ -13,7 +13,7 @@
 `````js filename=intro
 let a = 1;
 let b = {
-    get c()  { $('b.get'); b = null; d = null; return 5; }, 
+    get c()  { $('b.get'); b = undefined; d = undefined; return 5; },
     set c(x) { $('b.set'); b = null; d = null; return 7; },
 };
 let d = 3;
@@ -26,12 +26,13 @@ $(a, b, d);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
     $('b.get');
-    b = null;
-    d = null;
+    b = undefined;
+    d = undefined;
     return 5;
   },
   set c(x) {
@@ -42,20 +43,22 @@ let b = {
   },
 };
 let d = 3;
-b.c = d;
-a = d;
+tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, d);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
     $('b.get');
-    b = null;
-    d = null;
+    b = undefined;
+    d = undefined;
     return 5;
   },
   set c(x) {
@@ -66,8 +69,9 @@ let b = {
   },
 };
 let d = 3;
-b.c = d;
-a = d;
+tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, d);
 `````
 
@@ -76,9 +80,6 @@ $(a, b, d);
 Should call `$` with:
 [['b.set'], [3, null, null], null];
 
-Normalized calls: BAD?!
-[['b.set'], [null, null, null], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['b.set'], [null, null, null], null];
-
+Final output calls: Same

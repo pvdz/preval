@@ -19,6 +19,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -28,8 +29,9 @@ let c = 3;
     let tmpFallthrough = false;
     {
       ('default case:');
-      b.x = c;
-      a = c;
+      tmpNestedPropAssignRhs = c;
+      b.x = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
     }
   }
 }
@@ -39,11 +41,13 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 $('a');
-b.x = 3;
-a = 3;
+tmpNestedPropAssignRhs = 3;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, 3);
 `````
 

@@ -19,14 +19,16 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
   let tmpForOfLhsDecl;
   {
-    b.x = c;
-    a = c;
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     const tmpForOfRhs = a;
     for (tmpForOfLhsDecl of tmpForOfRhs) {
       let x = tmpForOfLhsDecl;
@@ -39,11 +41,13 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let tmpForOfLhsDecl;
-b.x = 3;
-a = 3;
+tmpNestedPropAssignRhs = 3;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 const tmpForOfRhs = a;
 for (tmpForOfLhsDecl of tmpForOfRhs) {
 }

@@ -19,6 +19,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
@@ -36,8 +37,9 @@ let c = 3;
     tmpAssignMemRhs = b;
     tmpAssignedComputedObj = tmpAssignMemLhsObj;
     tmpAssignedComputedProp = $('x');
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-    tmpArg = tmpAssignMemRhs;
+    tmpNestedPropAssignRhs = tmpAssignMemRhs;
+    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
+    tmpArg = tmpNestedPropAssignRhs;
   }
 }
 $(tmpArg);
@@ -47,6 +49,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
@@ -61,8 +64,9 @@ if (tmpAssignLogicStmtOr) {
   tmpAssignMemRhs = 2;
   tmpAssignedComputedObj = tmpAssignMemLhsObj;
   tmpAssignedComputedProp = $('x');
-  tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
-  tmpArg = tmpAssignMemRhs;
+  tmpNestedPropAssignRhs = tmpAssignMemRhs;
+  tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
+  tmpArg = tmpNestedPropAssignRhs;
 }
 $(tmpArg);
 $(a, 2, 3);

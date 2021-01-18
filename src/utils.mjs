@@ -1,4 +1,5 @@
 import Prettier from 'prettier';
+import { printer } from '../lib/printer.mjs';
 
 const colorLess = typeof process !== 'undefined' && process.argv.includes('-C');
 
@@ -80,7 +81,7 @@ export function printNode(node) {
   // return `${t}${path.nodes[i].name ? '<' + path.nodes[i].name + '>' : ''}${t === 'Literal' ? '<' + path.nodes[i].raw + '>' : ''}${path.props[i+1] && `[${path.props[i+1]}]` || ''}`
 }
 
-const VERBOSE = true;
+let VERBOSE = true;
 
 const Console = {
   log: (...args) => console.log(...args),
@@ -90,7 +91,8 @@ const Console = {
   dir: (...args) => console.dir(...args),
 };
 
-export function setStdio(handler) {
+export function setStdio(handler, verbose = VERBOSE) {
+  VERBOSE = verbose;
   Console.log = (...args) => handler('L', ...args);
   Console.error = (...args) => handler('E', ...args);
   Console.group = (...args) => handler('G', ...args);
@@ -99,6 +101,7 @@ export function setStdio(handler) {
 }
 
 export function clearStdio() {
+  VERBOSE = true;
   Console.log = (...args) => console.log(...args);
   Console.error = (...args) => console.log(...args);
   Console.group = (...args) => console.group(...args);
@@ -126,7 +129,12 @@ export function dir(...args) {
 }
 
 // Debugging
-export function fmat(code) {
+export function tmat(ast, shouldPrint = VERBOSE) {
+  if (shouldPrint) return printer(ast);
+  return '<verbose=false>';
+}
+export function fmat(code, shouldPrint = VERBOSE) {
+  if (!shouldPrint) return '<verbose=false>';
   try {
     return Prettier.format(code, {
       parser: 'babel',

@@ -1,6 +1,5 @@
-import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RESET, fmat } from './utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RESET, tmat, fmat } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from './$p.mjs';
@@ -9,7 +8,7 @@ import { $p } from './$p.mjs';
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req) {
+export function phase1(fdata, resolve, req, verbose) {
   const ast = fdata.tenkoOutput.ast;
 
   const funcStack = [];
@@ -664,7 +663,7 @@ export function phase1(fdata, resolve, req) {
     [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
   );
 
-  log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
 
   log('End of phase 1');
   groupEnd();

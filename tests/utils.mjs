@@ -128,8 +128,8 @@ export function fmat(code) {
 
 export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
   const shouldBeOutput = fmat(JSON.stringify(evalled.$in))
-  const normalizedOutput = fmat(JSON.stringify(evalled.$norm));
-  const finalOutput = fmat(JSON.stringify(evalled.$out));
+  const normalizedOutput = evalled.$norm === 'Same' ? 'Same' : fmat(JSON.stringify(evalled.$norm));
+  const finalOutput = evalled.$out === 'Same' ? 'Same' : fmat(JSON.stringify(evalled.$out));
   const content =
     mdHead +
     '\n\n' +

@@ -30,16 +30,23 @@ const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
 
-let pass = 0;
+console.time('Total test time');
 let snap = 0; // snapshot fail
 let fail = 0; // crash
+let badNorm = 0; // evaluation of normalized code does not match input
+let badFinal = 0; // evaluation of final output does not match input
 testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 }, i));
 
 console.log(
-  `Suite finished, ${GREEN}${pass} tests passed${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
+  `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
     fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
+  }${
+    badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''
+  }${
+    badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
   }`,
 );
+console.timeEnd('Total test time');
 
 function runTestCase(
   { md, mdHead, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
@@ -67,6 +74,7 @@ function runTestCase(
     output = preval({
       entryPointFile: 'intro',
       stdio: withOutput ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
+      verbose: withOutput, // do not bother to pretty print between steps and whatever if we're not printing it anyways
       resolve(filePath) {
         return filePath;
       },
@@ -94,7 +102,6 @@ function runTestCase(
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
       }
-
     } catch (e) {
       const msg = String(e?.message ?? e)
         .replace(/^.*is not a constructor.*$/, '<ref> is not a constructor')
@@ -121,7 +128,7 @@ function runTestCase(
   //}
 
   if (withOutput) {
-    console.log('\n')
+    console.log('\n');
     console.groupEnd();
   }
 
@@ -166,6 +173,9 @@ function runTestCase(
       fs.writeFileSync(fname, md2, 'utf8');
     }
   }
+
+  if (md2.includes('BAD?!')) ++badNorm;
+  else if (md2.includes('BAD!!')) ++badFinal;
 
   if (withOutput) {
     console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');

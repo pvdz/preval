@@ -1,6 +1,4 @@
-import { printer } from '../lib/printer.mjs';
-import { ASSERT, DIM, BOLD, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
-import { $p } from './$p.mjs';
+import { ASSERT, DIM, BOLD, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from './utils.mjs';
 import * as AST from './ast.mjs';
 import globals from './globals.mjs';
 
@@ -147,15 +145,15 @@ function example(from, to, condition) {
 }
 
 function before(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, printer(node));
+  if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, tmat(node));
 }
 
 function source(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, printer(node));
+  if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, tmat(node));
 }
 
 function after(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'After :' + RESET, printer(node));
+  if (VERBOSE_TRACING) log(YELLOW + 'After :' + RESET, tmat(node));
 }
 
 export function phaseNormalize(fdata, fname) {
@@ -283,7 +281,7 @@ export function phaseNormalize(fdata, fname) {
     // Clear usage/update lists because mutations may have affected them
     fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.updates = []), (meta.usages = [])));
     stmt(null, 'ast', -1, ast);
-    log('\nCurrent state\n--------------\n' + fmat(printer(ast)) + '\n--------------\n');
+    log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');

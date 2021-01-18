@@ -1,6 +1,4 @@
-import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, fmat, printNode } from './utils.mjs';
-import { printer } from '../lib/printer.mjs';
-import { $p } from './$p.mjs';
+import { ASSERT, DIM, BOLD, RESET, BLUE, dir, group, groupEnd, log, tmat, fmat } from './utils.mjs';
 import * as AST from './ast.mjs';
 
 // This phase runs after phase 2 and is supposed to quickly run through aggregated things
@@ -56,7 +54,7 @@ export function phase3(program, fdata, resolve, req) {
     }
   });
 
-  log('\nCurrent state\n--------------\n' + fmat(printer(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
   log('End of phase3');
   groupEnd();

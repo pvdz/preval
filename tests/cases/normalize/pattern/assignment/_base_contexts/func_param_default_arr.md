@@ -20,7 +20,6 @@ const f = (a = [ x ] = 1) => { return a };
 const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var tmpNestedComplexRhs;
   {
     let a;
     {
@@ -28,9 +27,8 @@ const f = ($tdz$__a) => {
       if (ifTestTmp) {
         arrAssignPatternRhs = 1;
         arrPatternSplat = [...arrAssignPatternRhs];
-        tmpNestedComplexRhs = arrPatternSplat[0];
-        x = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
+        x = arrPatternSplat[0];
+        a = arrAssignPatternRhs;
       } else {
         a = $tdz$__a;
       }
@@ -46,15 +44,13 @@ const f = ($tdz$__a) => {
 ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var tmpNestedComplexRhs;
   let a;
   let ifTestTmp = $tdz$__a === undefined;
   if (ifTestTmp) {
     arrAssignPatternRhs = 1;
     arrPatternSplat = [...arrAssignPatternRhs];
-    tmpNestedComplexRhs = arrPatternSplat[0];
-    x = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    x = arrPatternSplat[0];
+    a = arrAssignPatternRhs;
   } else {
     a = $tdz$__a;
   }

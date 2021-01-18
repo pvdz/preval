@@ -44,7 +44,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[20], '<crash[ <ref> is not defined ]>'];
+[[[10, 20, 30]], "<crash[ Cannot set property 'length' of undefined ]>"];
 
 Normalized calls: Same
 

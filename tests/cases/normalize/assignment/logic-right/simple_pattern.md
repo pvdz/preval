@@ -20,7 +20,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -36,9 +35,8 @@ let z = [10, 20, 30];
     arrAssignPatternRhs = z;
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    tmpNestedComplexRhs_1 = arrPatternSplat[1];
-    y = tmpNestedComplexRhs_1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = arrAssignPatternRhs;
     a = tmpNestedComplexRhs;
     tmpArg = tmpNestedComplexRhs;
   }
@@ -51,7 +49,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -66,9 +63,8 @@ if (tmpAssignLogicStmtOr) {
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs_1 = arrPatternSplat[1];
-  y = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  y = arrPatternSplat[1];
+  tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
   tmpArg = tmpNestedComplexRhs;
 }
@@ -81,9 +77,6 @@ $(a, x, y, z);
 Should call `$` with:
 [[true], [[10, 20, 30]], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[true], [20], [20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[true], [20], [20, 10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

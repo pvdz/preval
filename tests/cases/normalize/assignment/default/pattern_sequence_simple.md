@@ -36,6 +36,7 @@ let z = [10, 20, 30];
       arrPatternSplat = [...arrAssignPatternRhs];
       x = arrPatternSplat[0];
       y = arrPatternSplat[1];
+      arrAssignPatternRhs;
     }
   }
 }

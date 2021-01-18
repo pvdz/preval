@@ -20,7 +20,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs_1;
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
@@ -45,9 +44,8 @@ do {
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs_1 = arrPatternSplat[1];
-  y = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  y = arrPatternSplat[1];
+  tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);
@@ -57,7 +55,6 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs_1;
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
@@ -80,9 +77,8 @@ do {
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs_1 = arrPatternSplat[1];
-  y = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  y = arrPatternSplat[1];
+  tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);

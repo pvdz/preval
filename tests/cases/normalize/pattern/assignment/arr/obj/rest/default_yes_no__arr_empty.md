@@ -37,6 +37,7 @@ if (tmpTernaryTest) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 x = objPatternRest(arrPatternStep, []);
+arrAssignPatternRhs;
 $(x);
 `````
 

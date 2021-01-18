@@ -20,8 +20,6 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
 var tmpAssignedComputedObj;
 var tmpAssignedComputedProp;
 var arrAssignPatternRhs;
@@ -38,14 +36,12 @@ tmpAssignedComputedObj = obj;
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
-tmpNestedComplexRhs = arrPatternSplat_1[2];
-y = tmpNestedComplexRhs;
-arrAssignPatternRhs = tmpNestedComplexRhs;
+y = arrPatternSplat_1[2];
+arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
-tmpNestedComplexRhs_1 = arrPatternSplat[1];
-b = tmpNestedComplexRhs_1;
-tmpAssignedComputedProp = tmpNestedComplexRhs_1;
+b = arrPatternSplat[1];
+tmpAssignedComputedProp = arrAssignPatternRhs;
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
 $(a, b, x, y, z);
 `````
@@ -53,8 +49,6 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
 var tmpAssignedComputedObj;
 var tmpAssignedComputedProp;
 var arrAssignPatternRhs;
@@ -71,14 +65,12 @@ tmpAssignedComputedObj = obj;
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
-tmpNestedComplexRhs = arrPatternSplat_1[2];
-y = tmpNestedComplexRhs;
-arrAssignPatternRhs = tmpNestedComplexRhs;
+y = arrPatternSplat_1[2];
+arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
-tmpNestedComplexRhs_1 = arrPatternSplat[1];
-b = tmpNestedComplexRhs_1;
-tmpAssignedComputedProp = tmpNestedComplexRhs_1;
+b = arrPatternSplat[1];
+tmpAssignedComputedProp = arrAssignPatternRhs;
 tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
 $(a, b, x, y, z);
 `````
@@ -88,9 +80,6 @@ $(a, b, x, y, z);
 Should call `$` with:
 [[10, 20, 20, 30, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

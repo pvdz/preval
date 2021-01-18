@@ -33,7 +33,7 @@ let z = [10, 20, 30];
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    const tmpForInRhs = y;
+    const tmpForInRhs = arrAssignPatternRhs;
     for (tmpForInLhsDecl in tmpForInRhs) {
       let x = tmpForInLhsDecl;
     }
@@ -57,7 +57,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpForInRhs = y;
+const tmpForInRhs = arrAssignPatternRhs;
 for (tmpForInLhsDecl in tmpForInRhs) {
   let x = tmpForInLhsDecl;
 }

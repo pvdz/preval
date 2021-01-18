@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
@@ -30,9 +29,8 @@ let z = [10, 20, 30];
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  a = arrAssignPatternRhs;
   while (false) {}
 }
 $(a, x, y, z);
@@ -41,7 +39,6 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
@@ -51,9 +48,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+a = arrAssignPatternRhs;
 while (false) {}
 $(a, x, y, z);
 `````
@@ -63,9 +59,6 @@ $(a, x, y, z);
 Should call `$` with:
 [[[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[20, 10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

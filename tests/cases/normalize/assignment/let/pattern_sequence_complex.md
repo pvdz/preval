@@ -31,7 +31,7 @@ arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat = y;
+let wat = arrAssignPatternRhs;
 $(wat);
 $(x, y, z);
 `````
@@ -50,7 +50,7 @@ arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat = y;
+let wat = arrAssignPatternRhs;
 $(wat);
 $(x, y, z);
 `````

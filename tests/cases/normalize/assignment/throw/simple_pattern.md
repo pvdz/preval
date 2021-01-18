@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
@@ -30,9 +29,8 @@ let z = [10, 20, 30];
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  a = arrAssignPatternRhs;
   let tmpStmtArg = a;
   throw tmpStmtArg;
 }
@@ -42,7 +40,6 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
@@ -52,9 +49,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+a = arrAssignPatternRhs;
 let tmpStmtArg = a;
 throw tmpStmtArg;
 $(a, x, y, z);
@@ -65,9 +61,6 @@ $(a, x, y, z);
 Should call `$` with:
 ['<crash[ 10,20,30 ]>'];
 
-Normalized calls: BAD?!
-['<crash[ 20 ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ 20 ]>'];
-
+Final output calls: Same

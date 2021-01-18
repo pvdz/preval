@@ -26,7 +26,11 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 tmpArg = `abc ${
-  ((arrAssignPatternRhs = z), (arrPatternSplat = [...arrAssignPatternRhs]), (x = arrPatternSplat[0]), (y = arrPatternSplat[1]))
+  ((arrAssignPatternRhs = z),
+  (arrPatternSplat = [...arrAssignPatternRhs]),
+  (x = arrPatternSplat[0]),
+  (y = arrPatternSplat[1]),
+  arrAssignPatternRhs)
 } def`;
 $(tmpArg);
 $(x, y, z);
@@ -42,7 +46,11 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 tmpArg = `abc ${
-  ((arrAssignPatternRhs = z), (arrPatternSplat = [...arrAssignPatternRhs]), (x = arrPatternSplat[0]), (y = arrPatternSplat[1]))
+  ((arrAssignPatternRhs = z),
+  (arrPatternSplat = [...arrAssignPatternRhs]),
+  (x = arrPatternSplat[0]),
+  (y = arrPatternSplat[1]),
+  arrAssignPatternRhs)
 } def`;
 $(tmpArg);
 $(x, y, z);
@@ -53,9 +61,6 @@ $(x, y, z);
 Should call `$` with:
 [['abc 10,20,30 def'], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[['abc 20 def'], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['abc 20 def'], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

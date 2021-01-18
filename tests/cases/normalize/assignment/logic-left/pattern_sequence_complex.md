@@ -32,7 +32,7 @@ let z = [10, 20, 30];
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let tmpAssignLogicStmtOr = y;
+  let tmpAssignLogicStmtOr = arrAssignPatternRhs;
   if (tmpAssignLogicStmtOr) {
     tmpArg = $(true);
   } else {
@@ -58,7 +58,7 @@ arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let tmpAssignLogicStmtOr = y;
+let tmpAssignLogicStmtOr = arrAssignPatternRhs;
 if (tmpAssignLogicStmtOr) {
   tmpArg = $(true);
 } else {

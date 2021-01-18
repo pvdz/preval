@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
@@ -35,9 +34,8 @@ if (tmpTernaryTest) {
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  tmpTernaryAlternate = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  tmpTernaryAlternate = arrAssignPatternRhs;
   tmpArg = tmpTernaryAlternate;
 }
 $(tmpArg);
@@ -47,7 +45,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
@@ -63,9 +60,8 @@ if (tmpTernaryTest) {
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  tmpTernaryAlternate = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  tmpTernaryAlternate = arrAssignPatternRhs;
   tmpArg = tmpTernaryAlternate;
 }
 $(tmpArg);
@@ -77,9 +73,6 @@ $(x, y, z);
 Should call `$` with:
 [[false], [[10, 20, 30]], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[false], [20], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[false], [20], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

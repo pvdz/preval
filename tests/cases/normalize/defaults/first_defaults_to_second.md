@@ -105,7 +105,7 @@ Should call `$` with:
 ["<crash[ Cannot access 'b' before initialization ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[[[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], null];
 
 Final output calls: BAD!!
 [[['bar', 'bar']], [['x', 'bar']], [['y', 'y']], [['x', 'y']], null];

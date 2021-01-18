@@ -45,10 +45,9 @@ if (ifTestTmp) {
 ## Result
 
 Should call `$` with:
-['<crash[ <ref> is not defined ]>'];
-
-Normalized calls: Same
-
-Final output calls: BAD!!
 [null];
 
+Normalized calls: BAD?!
+['<crash[ <ref> is not defined ]>'];
+
+Final output calls: Same

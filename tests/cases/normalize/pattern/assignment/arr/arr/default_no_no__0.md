@@ -26,6 +26,7 @@ arrAssignPatternRhs = 0;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
+arrAssignPatternRhs;
 $('bad');
 `````
 

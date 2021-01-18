@@ -2,7 +2,7 @@
 
 # simple_pattern.md
 
-> normalize > assignment > if > simple_pattern
+> normalize > assignment > for-c > simple_pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 
@@ -11,9 +11,9 @@
 ## Input
 
 `````js filename=intro
-let a = 1, x = 1, y = 2, z = [10, 20, 30];
-if (a = [x, y] = z) ;
-$(a, x, y, z);
+let a = 1, b = 1, c = [10];
+a = [b] = c;
+$(a, b, c);
 `````
 
 ## Normalized
@@ -22,15 +22,13 @@ $(a, x, y, z);
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs = z;
+let b = 1;
+let c = [10];
+arrAssignPatternRhs = c;
 arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
+b = arrPatternSplat[0];
 a = arrAssignPatternRhs;
-$(a, x, y, z);
+$(a, b, c);
 `````
 
 ## Output
@@ -39,21 +37,19 @@ $(a, x, y, z);
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs = z;
+let b = 1;
+let c = [10];
+arrAssignPatternRhs = c;
 arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
+b = arrPatternSplat[0];
 a = arrAssignPatternRhs;
-$(a, x, y, z);
+$(a, b, c);
 `````
 
 ## Result
 
 Should call `$` with:
-[[[10, 20, 30], 10, 20, [10, 20, 30]], null];
+[[[10], 10, [10]], null];
 
 Normalized calls: Same
 

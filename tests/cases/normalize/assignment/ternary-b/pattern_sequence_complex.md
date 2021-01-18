@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
@@ -35,9 +34,8 @@ if (tmpTernaryTest) {
   arrAssignPatternRhs = $(z);
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  tmpTernaryConsequent = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  tmpTernaryConsequent = arrAssignPatternRhs;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = false;
@@ -49,7 +47,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
@@ -65,9 +62,8 @@ if (tmpTernaryTest) {
   arrAssignPatternRhs = $(z);
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  tmpTernaryConsequent = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  tmpTernaryConsequent = arrAssignPatternRhs;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = false;

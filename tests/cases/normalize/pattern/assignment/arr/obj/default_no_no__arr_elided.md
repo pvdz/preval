@@ -24,6 +24,7 @@ var arrPatternStep;
 arrAssignPatternRhs = [, , , 1, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
+arrAssignPatternRhs;
 $('ok');
 `````
 

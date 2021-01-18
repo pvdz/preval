@@ -42,7 +42,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[20], "<crash[ Cannot read property 'length' of undefined ]>"];
+[[[10, 20, 30]], "<crash[ Cannot read property 'length' of undefined ]>"];
 
 Normalized calls: Same
 

@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs_1;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
@@ -37,9 +36,8 @@ tmpSwitchBreak: {
       arrAssignPatternRhs = z;
       arrPatternSplat = [...arrAssignPatternRhs];
       x = arrPatternSplat[0];
-      tmpNestedComplexRhs_1 = arrPatternSplat[1];
-      y = tmpNestedComplexRhs_1;
-      tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+      y = arrPatternSplat[1];
+      tmpNestedComplexRhs = arrAssignPatternRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;
@@ -70,9 +68,8 @@ tmpSwitchBreak: {
       arrAssignPatternRhs = z;
       arrPatternSplat = [...arrAssignPatternRhs];
       x = arrPatternSplat[0];
-      tmpNestedComplexRhs_1 = arrPatternSplat[1];
-      y = tmpNestedComplexRhs_1;
-      tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+      y = arrPatternSplat[1];
+      tmpNestedComplexRhs = arrAssignPatternRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;
@@ -95,8 +92,7 @@ $(1, 1, 2, z);
 Should call `$` with:
 [[[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [[1, 1, 2, [10, 20, 30]], null];

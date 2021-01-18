@@ -25,6 +25,7 @@ arrAssignPatternRhs = null;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 x = objPatternRest(arrPatternStep, []);
+arrAssignPatternRhs;
 $(x);
 `````
 

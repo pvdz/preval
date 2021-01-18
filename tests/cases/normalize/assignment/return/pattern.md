@@ -31,7 +31,7 @@ tmpNewObj = function () {
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    let tmpStmtArg = y;
+    let tmpStmtArg = arrAssignPatternRhs;
     return tmpStmtArg;
   }
 };
@@ -53,7 +53,7 @@ tmpNewObj = function () {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let tmpStmtArg = y;
+  let tmpStmtArg = arrAssignPatternRhs;
   return tmpStmtArg;
 };
 tmpNewObj();

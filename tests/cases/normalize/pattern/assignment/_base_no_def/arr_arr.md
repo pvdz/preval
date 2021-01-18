@@ -26,6 +26,7 @@ arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
 x = arrPatternSplat_1[0];
+arrAssignPatternRhs;
 `````
 
 ## Output

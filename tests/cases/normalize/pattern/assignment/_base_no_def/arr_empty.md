@@ -29,6 +29,7 @@ var arrPatternSplat;
 let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
+arrAssignPatternRhs;
 `````
 
 ## Output

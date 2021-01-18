@@ -29,7 +29,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat = y;
+let wat = arrAssignPatternRhs;
 $(wat);
 $(x, y, z);
 `````
@@ -46,7 +46,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat = y;
+let wat = arrAssignPatternRhs;
 $(wat);
 $(x, y, z);
 `````
@@ -56,9 +56,6 @@ $(x, y, z);
 Should call `$` with:
 [[[10, 20, 30]], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[20], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[20], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

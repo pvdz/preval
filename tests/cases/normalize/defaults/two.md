@@ -105,6 +105,6 @@ Should call `$` with:
 [[['foo', 'bar']], [['x', 'bar']], [['foo', 'y']], [['x', 'y']], null];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[[[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], null];
 
 Final output calls: Same

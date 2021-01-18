@@ -30,6 +30,7 @@ let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
+arrAssignPatternRhs;
 `````
 
 ## Output

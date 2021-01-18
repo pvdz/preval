@@ -96,5 +96,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
+[[{ c: 2 }], '<crash[ <ref> is not defined ]>'];
 

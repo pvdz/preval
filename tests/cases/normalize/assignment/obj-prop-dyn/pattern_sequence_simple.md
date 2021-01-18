@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpComputedKey;
 var arrAssignPatternRhs;
@@ -32,9 +31,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpComputedKey = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpComputedKey = arrAssignPatternRhs;
 tmpArg = { [tmpComputedKey]: 1000 };
 $(tmpArg);
 $(x, y, z);
@@ -43,7 +41,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpComputedKey;
 var arrAssignPatternRhs;
@@ -56,9 +53,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpComputedKey = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpComputedKey = arrAssignPatternRhs;
 tmpArg = { [tmpComputedKey]: 1000 };
 $(tmpArg);
 $(x, y, z);
@@ -69,9 +65,6 @@ $(x, y, z);
 Should call `$` with:
 [[1], [2], [{ '10,20,30': 1000 }], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[1], [2], [{ 20: 1000 }], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [2], [{ 20: 1000 }], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

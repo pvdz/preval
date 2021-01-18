@@ -30,7 +30,7 @@ let z = [10, 20, 30];
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let wat_1 = y;
+  let wat_1 = arrAssignPatternRhs;
   while (false) {}
 }
 $(wat_1);
@@ -49,7 +49,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat_1 = y;
+let wat_1 = arrAssignPatternRhs;
 while (false) {}
 $(wat_1);
 $(x, y, z);
@@ -63,5 +63,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[20], [10, 20, [10, 20, 30]], null];
+[[[10, 20, 30]], [10, 20, [10, 20, 30]], null];
 

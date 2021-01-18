@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs_1;
 var tmpArg;
 var tmpElement;
 var tmpNestedComplexRhs;
@@ -32,9 +31,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs_1 = arrPatternSplat[1];
-y = tmpNestedComplexRhs_1;
-tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+y = arrPatternSplat[1];
+tmpNestedComplexRhs = arrAssignPatternRhs;
 a = tmpNestedComplexRhs;
 tmpElement = tmpNestedComplexRhs;
 tmpArg = [...tmpElement];
@@ -45,7 +43,6 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs_1;
 var tmpArg;
 var tmpElement;
 var tmpNestedComplexRhs;
@@ -58,9 +55,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs_1 = arrPatternSplat[1];
-y = tmpNestedComplexRhs_1;
-tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+y = arrPatternSplat[1];
+tmpNestedComplexRhs = arrAssignPatternRhs;
 a = tmpNestedComplexRhs;
 tmpElement = tmpNestedComplexRhs;
 tmpArg = [...tmpElement];
@@ -73,9 +69,6 @@ $(a, x, y, z);
 Should call `$` with:
 [[[10, 20, 30]], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

@@ -23,6 +23,7 @@ var arrPatternSplat;
 arrAssignPatternRhs = ['abc'];
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
+arrAssignPatternRhs;
 $(x);
 `````
 

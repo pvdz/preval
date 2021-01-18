@@ -94,6 +94,9 @@ $(tmpArg);
 Should call `$` with:
 ['<crash[ <ref> is not defined ]>'];
 
-Normalized calls: Same
+Normalized calls: BAD?!
+[[null], null];
 
-Final output calls: Same
+Final output calls: BAD!!
+[[null], null];
+

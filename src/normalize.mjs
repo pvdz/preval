@@ -127,6 +127,7 @@ const VERBOSE_TRACING = true;
   - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
+  - statement that is identifier / literal (?)
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -2380,11 +2381,12 @@ export function phaseNormalize(fdata, fname) {
 
           if (newBindings.length) {
             rule('Assignment arr patterns not allowed, non-empty');
-            log('- `[x] = y()` --> `var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
+            example('[x] = y()','var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp');
             before(node);
 
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+            // Final step in sequence must still be origina rhs (`a = [x] = y` will assign `y` to `a`, not `x`)
 
             const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
 
@@ -2396,6 +2398,7 @@ export function phaseNormalize(fdata, fname) {
               if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
+            expressions.push(AST.identifier(rhsTmpName));
             const newNode = AST.sequenceExpression(expressions);
 
             crumbSet(1, newNode);

@@ -34,6 +34,7 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
+arrAssignPatternRhs;
 $('ok');
 `````
 

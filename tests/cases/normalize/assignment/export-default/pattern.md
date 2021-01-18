@@ -27,7 +27,8 @@ let z = [10, 20, 30];
 export default ((arrAssignPatternRhs = z),
 (arrPatternSplat = [...arrAssignPatternRhs]),
 (x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]));
+(y = arrPatternSplat[1]),
+arrAssignPatternRhs);
 $(x, y, z);
 `````
 
@@ -42,7 +43,8 @@ let z = [10, 20, 30];
 export default ((arrAssignPatternRhs = z),
 (arrPatternSplat = [...arrAssignPatternRhs]),
 (x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]));
+(y = arrPatternSplat[1]),
+arrAssignPatternRhs);
 $(x, y, z);
 `````
 

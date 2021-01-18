@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var tmpArg;
@@ -30,9 +29,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpTernaryTest = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpTernaryTest = arrAssignPatternRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
@@ -45,7 +43,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var tmpArg;
@@ -56,9 +53,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpTernaryTest = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpTernaryTest = arrAssignPatternRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {

@@ -26,6 +26,7 @@ tmpElement = { x: 1, y: 2, z: 3 };
 arrAssignPatternRhs = [tmpElement, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
+arrAssignPatternRhs;
 $('ok');
 `````
 

@@ -38,6 +38,7 @@ if (tmpTernaryTest) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 arrPatternSplat_1 = [...arrPatternStep];
+arrAssignPatternRhs;
 $('ok');
 `````
 

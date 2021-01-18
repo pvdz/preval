@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -31,9 +30,8 @@ $(y);
 arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpArg = arrAssignPatternRhs;
 $(...tmpArg);
 $(x, y, z);
 `````
@@ -41,7 +39,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -53,9 +50,8 @@ $(y);
 arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpArg = arrAssignPatternRhs;
 $(...tmpArg);
 $(x, y, z);
 `````

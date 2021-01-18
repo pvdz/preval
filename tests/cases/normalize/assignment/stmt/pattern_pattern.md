@@ -19,7 +19,6 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -32,19 +31,18 @@ let z = [10, 20, 30];
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
-tmpNestedComplexRhs = arrPatternSplat_1[2];
-y = tmpNestedComplexRhs;
-arrAssignPatternRhs = tmpNestedComplexRhs;
+y = arrPatternSplat_1[2];
+arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
+arrAssignPatternRhs;
 $(a, b, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -57,9 +55,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
-tmpNestedComplexRhs = arrPatternSplat_1[2];
-y = tmpNestedComplexRhs;
-arrAssignPatternRhs = tmpNestedComplexRhs;
+y = arrPatternSplat_1[2];
+arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
@@ -71,9 +68,6 @@ $(a, b, x, y, z);
 Should call `$` with:
 [[10, 20, 20, 30, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

@@ -76,7 +76,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-['<crash[ <ref> is not defined ]>'];
+[[null], null];
 
 Normalized calls: Same
 

@@ -25,7 +25,6 @@ $(x, y, z);
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var tmpNestedComplexRhs;
   {
     let foo;
     {
@@ -36,9 +35,8 @@ function f($tdz$__foo) {
         arrAssignPatternRhs = $(z);
         arrPatternSplat = [...arrAssignPatternRhs];
         x = arrPatternSplat[0];
-        tmpNestedComplexRhs = arrPatternSplat[1];
-        y = tmpNestedComplexRhs;
-        foo = tmpNestedComplexRhs;
+        y = arrPatternSplat[1];
+        foo = arrAssignPatternRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -61,7 +59,6 @@ $(x, y, z);
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  var tmpNestedComplexRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
@@ -70,9 +67,8 @@ function f($tdz$__foo) {
     arrAssignPatternRhs = $(z);
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    tmpNestedComplexRhs = arrPatternSplat[1];
-    y = tmpNestedComplexRhs;
-    foo = tmpNestedComplexRhs;
+    y = arrPatternSplat[1];
+    foo = arrAssignPatternRhs;
   } else {
     foo = $tdz$__foo;
   }

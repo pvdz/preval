@@ -28,6 +28,7 @@ do {
   arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
+  arrAssignPatternRhs;
   ifTestTmp = x + y;
 } while (ifTestTmp);
 `````

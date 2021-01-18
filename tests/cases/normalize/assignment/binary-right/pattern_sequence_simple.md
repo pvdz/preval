@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpBinaryRight;
 var tmpArg_1;
@@ -34,9 +33,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpBinaryRight_1 = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpBinaryRight_1 = arrAssignPatternRhs;
 tmpArg_1 = 500 + tmpBinaryRight_1;
 tmpBinaryRight = $(tmpArg_1);
 tmpArg = 500 + tmpBinaryRight;
@@ -47,7 +45,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpBinaryRight;
 var tmpArg_1;
@@ -62,9 +59,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpBinaryRight_1 = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpBinaryRight_1 = arrAssignPatternRhs;
 tmpArg_1 = 500 + tmpBinaryRight_1;
 tmpBinaryRight = $(tmpArg_1);
 tmpArg = 500 + tmpBinaryRight;
@@ -77,9 +73,6 @@ $(x, y, z);
 Should call `$` with:
 [[1], [2], ['50010,20,30'], [null], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[1], [2], [520], [null], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [2], [520], [null], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

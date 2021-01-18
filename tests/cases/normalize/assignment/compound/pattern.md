@@ -28,6 +28,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
+arrAssignPatternRhs;
 $(x, y, z);
 `````
 

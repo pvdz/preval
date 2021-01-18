@@ -30,6 +30,7 @@ if (tmpTernaryTest) {
 } else {
   x = objPatternBeforeDefault;
 }
+arrAssignPatternRhs;
 `````
 
 ## Output

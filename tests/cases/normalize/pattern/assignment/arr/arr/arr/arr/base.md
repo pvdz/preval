@@ -40,6 +40,7 @@ arrPatternStep_1 = arrPatternSplat_1[0];
 arrPatternSplat_2 = [...arrPatternStep_1];
 arrPatternStep_2 = arrPatternSplat_2[0];
 arrPatternSplat_3 = [...arrPatternStep_2];
+arrAssignPatternRhs;
 $('ok');
 `````
 

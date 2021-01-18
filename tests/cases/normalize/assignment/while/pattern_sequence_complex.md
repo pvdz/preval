@@ -32,7 +32,7 @@ while (true) {
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    let ifTestTmp = y;
+    let ifTestTmp = arrAssignPatternRhs;
     if (ifTestTmp) {
     } else {
       break;
@@ -57,7 +57,7 @@ while (true) {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let ifTestTmp = y;
+  let ifTestTmp = arrAssignPatternRhs;
   if (ifTestTmp) {
   } else {
     break;

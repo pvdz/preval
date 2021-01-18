@@ -69,6 +69,6 @@ Should call `$` with:
 [['x'], ['foo'], null];
 
 Normalized calls: BAD?!
-[[20], [20], null];
+[[[10, 20, 30]], [[10, 20, 30]], null];
 
 Final output calls: Same

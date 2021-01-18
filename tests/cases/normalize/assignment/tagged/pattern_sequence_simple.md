@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg_1;
 var arrAssignPatternRhs;
@@ -33,9 +32,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpArg_1 = arrAssignPatternRhs;
 $(tmpArg, tmpArg_1);
 $(x, y, z);
 `````
@@ -43,7 +41,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg_1;
 var arrAssignPatternRhs;
@@ -57,9 +54,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpArg_1 = arrAssignPatternRhs;
 $(tmpArg, tmpArg_1);
 $(x, y, z);
 `````
@@ -78,9 +74,6 @@ Should call `$` with:
   null,
 ];
 
-Normalized calls: BAD?!
-[[1], [2], [['abc ', ' def'], 20], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [2], [['abc ', ' def'], 20], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

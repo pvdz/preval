@@ -27,8 +27,6 @@ function f($tdz$__foo) {
   var arrPatternSplat;
   var arrAssignPatternRhs_1;
   var arrPatternSplat_1;
-  var tmpNestedComplexRhs;
-  var tmpNestedComplexRhs_1;
   {
     let foo;
     {
@@ -37,14 +35,12 @@ function f($tdz$__foo) {
         arrAssignPatternRhs_1 = z;
         arrPatternSplat_1 = [...arrAssignPatternRhs_1];
         x = arrPatternSplat_1[1];
-        tmpNestedComplexRhs = arrPatternSplat_1[2];
-        y = tmpNestedComplexRhs;
-        arrAssignPatternRhs = tmpNestedComplexRhs;
+        y = arrPatternSplat_1[2];
+        arrAssignPatternRhs = arrAssignPatternRhs_1;
         arrPatternSplat = [...arrAssignPatternRhs];
         a = arrPatternSplat[0];
-        tmpNestedComplexRhs_1 = arrPatternSplat[1];
-        b = tmpNestedComplexRhs_1;
-        foo = tmpNestedComplexRhs_1;
+        b = arrPatternSplat[1];
+        foo = arrAssignPatternRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -71,22 +67,18 @@ function f($tdz$__foo) {
   var arrPatternSplat;
   var arrAssignPatternRhs_1;
   var arrPatternSplat_1;
-  var tmpNestedComplexRhs;
-  var tmpNestedComplexRhs_1;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     arrAssignPatternRhs_1 = z;
     arrPatternSplat_1 = [...arrAssignPatternRhs_1];
     x = arrPatternSplat_1[1];
-    tmpNestedComplexRhs = arrPatternSplat_1[2];
-    y = tmpNestedComplexRhs;
-    arrAssignPatternRhs = tmpNestedComplexRhs;
+    y = arrPatternSplat_1[2];
+    arrAssignPatternRhs = arrAssignPatternRhs_1;
     arrPatternSplat = [...arrAssignPatternRhs];
     a = arrPatternSplat[0];
-    tmpNestedComplexRhs_1 = arrPatternSplat[1];
-    b = tmpNestedComplexRhs_1;
-    foo = tmpNestedComplexRhs_1;
+    b = arrPatternSplat[1];
+    foo = arrAssignPatternRhs;
   } else {
     foo = $tdz$__foo;
   }
@@ -109,8 +101,6 @@ Should call `$` with:
 [[[10, 20, 30]], [10, 20, 20, 30, [10, 20, 30]], null];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+['<crash[ <ref> is not defined ]>'];
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

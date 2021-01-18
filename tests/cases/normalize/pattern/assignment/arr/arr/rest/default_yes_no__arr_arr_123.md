@@ -39,6 +39,7 @@ if (tmpTernaryTest) {
 }
 arrPatternSplat_1 = [...arrPatternStep];
 x = arrPatternSplat_1.slice(0);
+arrAssignPatternRhs;
 $(x);
 `````
 

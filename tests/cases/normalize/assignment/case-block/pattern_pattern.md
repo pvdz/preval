@@ -19,7 +19,6 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var arrAssignPatternRhs;
@@ -49,12 +48,12 @@ let z = [10, 20, 30];
           arrAssignPatternRhs_1 = z;
           arrPatternSplat_1 = [...arrAssignPatternRhs_1];
           x = arrPatternSplat_1[1];
-          tmpNestedComplexRhs = arrPatternSplat_1[2];
-          y = tmpNestedComplexRhs;
-          arrAssignPatternRhs = tmpNestedComplexRhs;
+          y = arrPatternSplat_1[2];
+          arrAssignPatternRhs = arrAssignPatternRhs_1;
           arrPatternSplat = [...arrAssignPatternRhs];
           a = arrPatternSplat[0];
           b = arrPatternSplat[1];
+          arrAssignPatternRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -86,12 +85,12 @@ tmpSwitchBreak: {
         arrAssignPatternRhs_1 = z;
         arrPatternSplat_1 = [...arrAssignPatternRhs_1];
         x = arrPatternSplat_1[1];
-        tmpNestedComplexRhs = arrPatternSplat_1[2];
-        y = tmpNestedComplexRhs;
-        arrAssignPatternRhs = tmpNestedComplexRhs;
+        y = arrPatternSplat_1[2];
+        arrAssignPatternRhs = arrAssignPatternRhs_1;
         arrPatternSplat = [...arrAssignPatternRhs];
         a = arrPatternSplat[0];
         b = arrPatternSplat[1];
+        arrAssignPatternRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -106,8 +105,7 @@ $(1, 2, 1, 2, z);
 Should call `$` with:
 [['a'], ['a'], [10, 20, 20, 30, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[['a'], ['a'], '<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [['a'], '<crash[ <ref> is not defined ]>'];

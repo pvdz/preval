@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpObjPropValue;
 var arrAssignPatternRhs;
@@ -32,9 +31,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpObjPropValue = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpObjPropValue = arrAssignPatternRhs;
 tmpArg = { foo: tmpObjPropValue };
 $(tmpArg);
 $(x, y, z);
@@ -43,7 +41,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpObjPropValue;
 var arrAssignPatternRhs;
@@ -56,9 +53,8 @@ $(y);
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-tmpObjPropValue = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+tmpObjPropValue = arrAssignPatternRhs;
 tmpArg = { foo: tmpObjPropValue };
 $(tmpArg);
 $(x, y, z);
@@ -69,9 +65,6 @@ $(x, y, z);
 Should call `$` with:
 [[1], [2], [{ foo: [10, 20, 30] }], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[1], [2], [{ foo: 20 }], [10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [2], [{ foo: 20 }], [10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

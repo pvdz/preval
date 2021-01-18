@@ -31,7 +31,8 @@ tmpArg = `abc ${
   (arrAssignPatternRhs = $(z)),
   (arrPatternSplat = [...arrAssignPatternRhs]),
   (x = arrPatternSplat[0]),
-  (y = arrPatternSplat[1]))
+  (y = arrPatternSplat[1]),
+  arrAssignPatternRhs)
 } def`;
 $(tmpArg);
 $(x, y, z);
@@ -52,7 +53,8 @@ tmpArg = `abc ${
   (arrAssignPatternRhs = $(z)),
   (arrPatternSplat = [...arrAssignPatternRhs]),
   (x = arrPatternSplat[0]),
-  (y = arrPatternSplat[1]))
+  (y = arrPatternSplat[1]),
+  arrAssignPatternRhs)
 } def`;
 $(tmpArg);
 $(x, y, z);

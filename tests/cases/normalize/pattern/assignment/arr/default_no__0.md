@@ -22,6 +22,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 arrAssignPatternRhs = 0;
 arrPatternSplat = [...arrAssignPatternRhs];
+arrAssignPatternRhs;
 $('bad');
 `````
 

@@ -29,7 +29,7 @@ let z = [10, 20, 30];
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let tmpStmtArg = y;
+  let tmpStmtArg = arrAssignPatternRhs;
   throw tmpStmtArg;
 }
 $(x, y, z);
@@ -47,7 +47,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let tmpStmtArg = y;
+let tmpStmtArg = arrAssignPatternRhs;
 throw tmpStmtArg;
 $(x, y, z);
 `````
@@ -57,9 +57,6 @@ $(x, y, z);
 Should call `$` with:
 ['<crash[ 10,20,30 ]>'];
 
-Normalized calls: BAD?!
-['<crash[ 20 ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ 20 ]>'];
-
+Final output calls: Same

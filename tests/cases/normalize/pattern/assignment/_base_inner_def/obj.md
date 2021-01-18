@@ -47,7 +47,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
-['<crash[ <ref> is not defined ]>'];
+[null];
 
 Normalized calls: Same
 

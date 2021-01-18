@@ -19,7 +19,6 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpBinaryRight;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -35,9 +34,8 @@ tmpSwitchBreak: {
       arrAssignPatternRhs = z;
       arrPatternSplat = [...arrAssignPatternRhs];
       x = arrPatternSplat[0];
-      tmpNestedComplexRhs = arrPatternSplat[1];
-      y = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
+      y = arrPatternSplat[1];
+      tmpBinaryRight = arrAssignPatternRhs;
       ifTestTmp = 1 === tmpBinaryRight;
     }
     if (ifTestTmp) {
@@ -66,9 +64,8 @@ tmpSwitchBreak: {
       arrAssignPatternRhs = z;
       arrPatternSplat = [...arrAssignPatternRhs];
       x = arrPatternSplat[0];
-      tmpNestedComplexRhs = arrPatternSplat[1];
-      y = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
+      y = arrPatternSplat[1];
+      tmpBinaryRight = arrAssignPatternRhs;
       ifTestTmp = 1 === tmpBinaryRight;
     }
     if (ifTestTmp) {

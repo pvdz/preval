@@ -31,7 +31,7 @@ let z = [10, 20, 30];
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    const tmpForOfRhs = y;
+    const tmpForOfRhs = arrAssignPatternRhs;
     for (tmpForOfLhsDecl of tmpForOfRhs) {
       let x = tmpForOfLhsDecl;
     }
@@ -53,7 +53,7 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpForOfRhs = y;
+const tmpForOfRhs = arrAssignPatternRhs;
 for (tmpForOfLhsDecl of tmpForOfRhs) {
   let x = tmpForOfLhsDecl;
 }
@@ -66,8 +66,8 @@ Should call `$` with:
 ["<crash[ Cannot access 'x' before initialization ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+[[10, 20, [10, 20, 30]], null];
 
 Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
+[[10, 20, [10, 20, 30]], null];
 

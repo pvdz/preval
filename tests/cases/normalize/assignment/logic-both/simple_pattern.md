@@ -20,8 +20,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
-var tmpNestedComplexRhs_2;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -35,19 +33,17 @@ let z = [10, 20, 30];
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  a = arrAssignPatternRhs;
   let tmpAssignLogicStmtOr = a;
   if (tmpAssignLogicStmtOr) {
     arrAssignPatternRhs_1 = z;
     arrPatternSplat_1 = [...arrAssignPatternRhs_1];
     x = arrPatternSplat_1[0];
-    tmpNestedComplexRhs_2 = arrPatternSplat_1[1];
-    y = tmpNestedComplexRhs_2;
-    tmpNestedComplexRhs_1 = tmpNestedComplexRhs_2;
-    a = tmpNestedComplexRhs_1;
-    tmpArg = tmpNestedComplexRhs_1;
+    y = arrPatternSplat_1[1];
+    tmpNestedComplexRhs = arrAssignPatternRhs_1;
+    a = tmpNestedComplexRhs;
+    tmpArg = tmpNestedComplexRhs;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -60,8 +56,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
-var tmpNestedComplexRhs_2;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -74,19 +68,17 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+a = arrAssignPatternRhs;
 let tmpAssignLogicStmtOr = a;
 if (tmpAssignLogicStmtOr) {
   arrAssignPatternRhs_1 = z;
   arrPatternSplat_1 = [...arrAssignPatternRhs_1];
   x = arrPatternSplat_1[0];
-  tmpNestedComplexRhs_2 = arrPatternSplat_1[1];
-  y = tmpNestedComplexRhs_2;
-  tmpNestedComplexRhs_1 = tmpNestedComplexRhs_2;
-  a = tmpNestedComplexRhs_1;
-  tmpArg = tmpNestedComplexRhs_1;
+  y = arrPatternSplat_1[1];
+  tmpNestedComplexRhs = arrAssignPatternRhs_1;
+  a = tmpNestedComplexRhs;
+  tmpArg = tmpNestedComplexRhs;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }
@@ -99,9 +91,6 @@ $(a, x, y, z);
 Should call `$` with:
 [[[10, 20, 30]], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[20], [20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[20], [20, 10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

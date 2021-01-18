@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var arrAssignPatternRhs;
@@ -46,9 +45,8 @@ let z = [10, 20, 30];
           arrAssignPatternRhs = z;
           arrPatternSplat = [...arrAssignPatternRhs];
           x = arrPatternSplat[0];
-          tmpNestedComplexRhs = arrPatternSplat[1];
-          y = tmpNestedComplexRhs;
-          a = tmpNestedComplexRhs;
+          y = arrPatternSplat[1];
+          a = arrAssignPatternRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -80,9 +78,8 @@ tmpSwitchBreak: {
         arrAssignPatternRhs = z;
         arrPatternSplat = [...arrAssignPatternRhs];
         x = arrPatternSplat[0];
-        tmpNestedComplexRhs = arrPatternSplat[1];
-        y = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
+        y = arrPatternSplat[1];
+        a = arrAssignPatternRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -97,8 +94,7 @@ $(1, 1, 2, z);
 Should call `$` with:
 [['a'], ['a'], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[['a'], ['a'], [20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [['a'], '<crash[ <ref> is not defined ]>'];

@@ -42,6 +42,7 @@ let n = 1;
         arrPatternSplat = [...arrAssignPatternRhs];
         x = arrPatternSplat[0];
         y = arrPatternSplat[1];
+        arrAssignPatternRhs;
       } else {
         break;
       }

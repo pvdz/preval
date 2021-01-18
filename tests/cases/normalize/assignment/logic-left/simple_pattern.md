@@ -19,7 +19,6 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -31,9 +30,8 @@ let z = [10, 20, 30];
   arrAssignPatternRhs = z;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  tmpNestedComplexRhs = arrPatternSplat[1];
-  y = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  y = arrPatternSplat[1];
+  a = arrAssignPatternRhs;
   let tmpAssignLogicStmtOr = a;
   if (tmpAssignLogicStmtOr) {
     tmpArg = $(true);
@@ -48,7 +46,6 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -59,9 +56,8 @@ let z = [10, 20, 30];
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-tmpNestedComplexRhs = arrPatternSplat[1];
-y = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+y = arrPatternSplat[1];
+a = arrAssignPatternRhs;
 let tmpAssignLogicStmtOr = a;
 if (tmpAssignLogicStmtOr) {
   tmpArg = $(true);
@@ -77,9 +73,6 @@ $(a, x, y, z);
 Should call `$` with:
 [[true], [null], [[10, 20, 30], 10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-[[true], [null], [20, 10, 20, [10, 20, 30]], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[true], [null], [20, 10, 20, [10, 20, 30]], null];
-
+Final output calls: Same

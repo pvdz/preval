@@ -24,16 +24,14 @@ function f(tmpParamPattern) {
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = { a: 'fail' };
-        arrPatternStep = $(tmpArg);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { a: 'fail' };
+      arrPatternStep = $(tmpArg);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let x = objPatternRest(arrPatternStep, []);

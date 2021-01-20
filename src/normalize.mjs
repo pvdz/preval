@@ -699,21 +699,21 @@ export function phaseNormalize(fdata, fname) {
             --i; // revisit (recursively)
           } else if (init.type === 'ConditionalExpression') {
             rule('Conditional / ternary expressions should not be var init');
-            if (node.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
-            if (node.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-            if (node.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+            if (e.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
+            if (e.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
+            if (e.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
             before(init);
 
-            const newNode = AST.blockStatement(
-              AST.variableDeclaration(id.name, undefined, dnode.kind === 'const' ? 'let' : dnode.kind),
-              AST.ifStatement(
-                init.test,
-                AST.expressionStatement(AST.assignmentExpression(id.name, init.consequent)),
-                AST.expressionStatement(AST.assignmentExpression(id.name, init.alternate)),
-              ),
+            const newNode = AST.ifStatement(
+              init.test,
+              AST.expressionStatement(AST.assignmentExpression(id.name, init.consequent)),
+              AST.expressionStatement(AST.assignmentExpression(id.name, init.alternate)),
             );
-            node.body[i] = newNode;
+            dnode.init = null;
+            if (e.kind === 'const') e.kind = 'let';
+            node.body.splice(i+1, 0, newNode);
 
+            after(node.body[i]);
             after(newNode);
             changed = true;
             --i; // revisit
@@ -746,7 +746,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           --i; // revisit (recursively)
         } else if (e.argument.type === 'ConditionalExpression') {
-          rule('Conditional / ternary expressions should not be var init');
+          rule('Conditional / ternary expressions should not be return argument');
           if (node.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
           if (node.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
           if (node.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');

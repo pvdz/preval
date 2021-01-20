@@ -23,16 +23,14 @@ var tmpArg;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault;
 {
-  let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { a: 'fail' };
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { a: 'fail' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
 const y = objPatternRest(objPatternAfterDefault, []);

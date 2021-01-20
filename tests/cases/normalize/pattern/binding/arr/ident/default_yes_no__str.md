@@ -21,15 +21,13 @@ $(x);
 const bindingPatternArrRoot = 'abc';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let x;
 {
-  let x;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = $('fail');
-    } else {
-      x = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    x = $('fail');
+  } else {
+    x = arrPatternBeforeDefault;
   }
 }
 $(x);
@@ -55,7 +53,6 @@ $(x);
 Should call `$` with:
 [['a'], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

@@ -23,15 +23,13 @@ $(f([[, , 1], 4, 5], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        arrPatternStep = $('pass');
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      arrPatternStep = $('pass');
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -78,7 +76,6 @@ $(tmpArg);
 Should call `$` with:
 [[[null, null, 1]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

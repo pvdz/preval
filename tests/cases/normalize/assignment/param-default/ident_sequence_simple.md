@@ -23,17 +23,15 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        $(b);
-        a = c;
-        foo = c;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      $(b);
+      a = c;
+      foo = c;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -74,7 +72,6 @@ $(a, 2, 3);
 Should call `$` with:
 [[2], [3], [3, 2, 3], null];
 
-Normalized calls: BAD?!
-[[2], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

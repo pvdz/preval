@@ -22,29 +22,25 @@ $(f([]));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpArg = ['fail2'];
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail2'];
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        arrPatternStep = $('pass');
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      arrPatternStep = $('pass');
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   return 'ok';
@@ -89,7 +85,7 @@ Should call `$` with:
 [['pass'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[['pass'], ['ok'], null];
 
 Final output calls: BAD!!
 [['pass'], ['ok'], null];

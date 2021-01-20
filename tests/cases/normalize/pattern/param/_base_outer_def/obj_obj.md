@@ -16,15 +16,13 @@ function i({x: {y: {z}}} = d ) { return z }
 
 `````js filename=intro
 function i($tdz$__pattern) {
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        $tdz$__pattern_after_default = d;
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      $tdz$__pattern_after_default = d;
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternNoDefault = $tdz$__pattern_after_default.x;

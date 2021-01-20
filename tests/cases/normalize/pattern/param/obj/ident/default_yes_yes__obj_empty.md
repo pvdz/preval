@@ -22,28 +22,24 @@ $(f({}, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpArg = { x: 'fail2' };
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpArg = { x: 'fail2' };
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        x = $('pass');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return x;
@@ -86,7 +82,6 @@ $(tmpArg_1);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

@@ -24,13 +24,11 @@ var tmpTernaryTest;
 2;
 tmpNullish = 3;
 tmpTernaryTest = tmpNullish == null;
-{
-  let y;
-  if (tmpTernaryTest) {
-    y = foo;
-  } else {
-    y = tmpNullish;
-  }
+let y;
+if (tmpTernaryTest) {
+  y = foo;
+} else {
+  y = tmpNullish;
 }
 $(y);
 `````
@@ -56,7 +54,6 @@ $(y);
 Should call `$` with:
 [[3], null];
 
-Normalized calls: BAD?!
-[[20], null];
+Normalized calls: Same
 
 Final output calls: Same

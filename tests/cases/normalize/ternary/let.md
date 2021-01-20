@@ -22,13 +22,11 @@ $(foo);
 let a = 1;
 let b = 2;
 let c = 3;
-{
-  let foo;
-  if (a) {
-    foo = b;
-  } else {
-    foo = c;
-  }
+let foo;
+if (a) {
+  foo = b;
+} else {
+  foo = c;
 }
 $(foo);
 `````
@@ -46,7 +44,6 @@ $(foo);
 Should call `$` with:
 [[2], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

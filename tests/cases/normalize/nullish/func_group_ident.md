@@ -27,13 +27,11 @@ function f() {
   1;
   tmpNullish = a;
   tmpTernaryTest = tmpNullish == null;
-  {
-    let y;
-    if (tmpTernaryTest) {
-      y = x;
-    } else {
-      y = tmpNullish;
-    }
+  let y;
+  if (tmpTernaryTest) {
+    y = x;
+  } else {
+    y = tmpNullish;
   }
   {
     let tmpStmtArg = $(y);
@@ -73,7 +71,6 @@ $(tmpArg);
 Should call `$` with:
 [[{ x: 1 }], [null], null];
 
-Normalized calls: BAD?!
-[[20], [null], null];
+Normalized calls: Same
 
 Final output calls: Same

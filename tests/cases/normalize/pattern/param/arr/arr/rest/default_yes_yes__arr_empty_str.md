@@ -21,28 +21,24 @@ $(f(['', 4, 5], 200));
 
 `````js filename=intro
 function f($tdz$__pattern) {
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        $tdz$__pattern_after_default = $('fail2');
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      $tdz$__pattern_after_default = $('fail2');
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        arrPatternStep = $('fail');
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      arrPatternStep = $('fail');
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -92,7 +88,6 @@ $(tmpArg);
 Should call `$` with:
 [[[]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

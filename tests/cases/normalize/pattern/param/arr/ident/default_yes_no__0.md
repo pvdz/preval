@@ -23,15 +23,13 @@ $(f(0, 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        x = $('fail');
-      } else {
-        x = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = $('fail');
+    } else {
+      x = arrPatternBeforeDefault;
     }
   }
   return 'bad';

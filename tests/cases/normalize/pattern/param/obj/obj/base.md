@@ -21,27 +21,23 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        $tdz$__pattern_after_default = b;
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      $tdz$__pattern_after_default = b;
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        objPatternAfterDefault = a;
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      objPatternAfterDefault = a;
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   return 'ok';
@@ -90,7 +86,6 @@ $(tmpArg);
 Should call `$` with:
 [['ok'], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

@@ -21,15 +21,13 @@ $(f());
 
 `````js filename=intro
 function f($tdz$__a) {
+  let a;
   {
-    let a;
-    {
-      let ifTestTmp = $tdz$__a === undefined;
-      if (ifTestTmp) {
-        a = 'foo';
-      } else {
-        a = $tdz$__a;
-      }
+    let ifTestTmp = $tdz$__a === undefined;
+    if (ifTestTmp) {
+      a = 'foo';
+    } else {
+      a = $tdz$__a;
     }
   }
   return a;
@@ -68,7 +66,6 @@ $(tmpArg_1);
 Should call `$` with:
 [['x'], ['foo'], null];
 
-Normalized calls: BAD?!
-[[[10, 20, 30]], [[10, 20, 30]], null];
+Normalized calls: Same
 
 Final output calls: Same

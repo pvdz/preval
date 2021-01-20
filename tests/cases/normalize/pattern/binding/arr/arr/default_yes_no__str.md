@@ -22,16 +22,14 @@ var tmpArg;
 const bindingPatternArrRoot = 'abc';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep;
 {
-  let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['fail2'];
-      arrPatternStep = $(tmpArg);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = ['fail2'];
+    arrPatternStep = $(tmpArg);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
 }
 const arrPatternSplat_1 = [...arrPatternStep];
@@ -61,7 +59,6 @@ $('ok');
 Should call `$` with:
 [['ok'], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

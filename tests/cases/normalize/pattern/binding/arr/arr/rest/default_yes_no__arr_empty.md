@@ -21,15 +21,13 @@ $(x);
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep;
 {
-  let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      arrPatternStep = $('pass');
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    arrPatternStep = $('pass');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
 }
 const arrPatternSplat_1 = [...arrPatternStep];
@@ -60,7 +58,6 @@ $(x);
 Should call `$` with:
 [['pass'], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-[['pass'], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

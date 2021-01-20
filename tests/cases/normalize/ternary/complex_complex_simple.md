@@ -19,26 +19,22 @@ $(a, b)
 ## Normalized
 
 `````js filename=intro
+let a;
 {
-  let a;
-  {
-    let ifTestTmp = $(1);
-    if (ifTestTmp) {
-      a = $(2);
-    } else {
-      a = 3;
-    }
+  let ifTestTmp = $(1);
+  if (ifTestTmp) {
+    a = $(2);
+  } else {
+    a = 3;
   }
 }
+let b;
 {
-  let b;
-  {
-    let ifTestTmp_1 = $(0);
-    if (ifTestTmp_1) {
-      b = $(4);
-    } else {
-      b = 5;
-    }
+  let ifTestTmp_1 = $(0);
+  if (ifTestTmp_1) {
+    b = $(4);
+  } else {
+    b = 5;
   }
 }
 $(a, b);
@@ -69,7 +65,6 @@ $(a, b);
 Should call `$` with:
 [[1], [0], [3, 5], null];
 
-Normalized calls: BAD?!
-[[1], [0], [2, 3], null];
+Normalized calls: Same
 
 Final output calls: Same

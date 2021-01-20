@@ -24,14 +24,12 @@ const a = { x: 1 };
 1;
 tmpOptionalChaining = a;
 tmpTernaryTest = tmpOptionalChaining == null;
-{
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.x;
-    y = tmpTernaryAlternate;
-  }
+let y;
+if (tmpTernaryTest) {
+  y = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining.x;
+  y = tmpTernaryAlternate;
 }
 $(y);
 `````
@@ -60,7 +58,6 @@ $(y);
 Should call `$` with:
 [[1], null];
 
-Normalized calls: BAD?!
-[[20], null];
+Normalized calls: Same
 
 Final output calls: Same

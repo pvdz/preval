@@ -24,16 +24,14 @@ function f(tmpParamPattern) {
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = ['fail2'];
-        arrPatternStep = $(tmpArg);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail2'];
+      arrPatternStep = $(tmpArg);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -76,7 +74,6 @@ $(tmpArg_1);
 Should call `$` with:
 [['ok'], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

@@ -21,16 +21,14 @@ $('ok');
 var tmpArg;
 const bindingPatternObjRoot = { x: undefined, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault;
 {
-  let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { x: 'pass' };
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { x: 'pass' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
 $('ok');

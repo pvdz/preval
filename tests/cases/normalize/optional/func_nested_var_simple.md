@@ -32,24 +32,20 @@ function f() {
   const a = 10;
   tmpOptionalChaining = $(2);
   tmpTernaryTest = tmpOptionalChaining == null;
-  {
-    let b;
-    if (tmpTernaryTest) {
-      b = undefined;
-    } else {
-      tmpTernaryAlternate = tmpOptionalChaining.toString;
-      b = tmpTernaryAlternate;
-    }
+  let b;
+  if (tmpTernaryTest) {
+    b = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.toString;
+    b = tmpTernaryAlternate;
   }
   tmpTernaryTest_1 = b == null;
-  {
-    let c;
-    if (tmpTernaryTest_1) {
-      c = undefined;
-    } else {
-      tmpTernaryAlternate_1 = b.length;
-      c = tmpTernaryAlternate_1;
-    }
+  let c;
+  if (tmpTernaryTest_1) {
+    c = undefined;
+  } else {
+    tmpTernaryAlternate_1 = b.length;
+    c = tmpTernaryAlternate_1;
   }
   {
     let tmpStmtArg = $(c);
@@ -100,7 +96,6 @@ $(tmpArg);
 Should call `$` with:
 [[2], [null], [null], null];
 
-Normalized calls: BAD?!
-[[2], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

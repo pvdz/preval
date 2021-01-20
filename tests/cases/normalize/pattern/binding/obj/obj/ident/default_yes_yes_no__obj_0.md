@@ -21,28 +21,24 @@ $(y);
 var tmpArg;
 const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault;
 {
-  let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { y: 'fail2' };
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { y: 'fail2' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
 const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+let y;
 {
-  let y;
-  {
-    let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-    if (ifTestTmp_1) {
-      y = $('pass');
-    } else {
-      y = objPatternBeforeDefault_1;
-    }
+  let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
+  if (ifTestTmp_1) {
+    y = $('pass');
+  } else {
+    y = objPatternBeforeDefault_1;
   }
 }
 $(y);
@@ -78,7 +74,6 @@ $(y);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

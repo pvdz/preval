@@ -24,28 +24,24 @@ function f(tmpParamPattern) {
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = { x: 'pass2' };
-        arrPatternStep = $(tmpArg);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { x: 'pass2' };
+      arrPatternStep = $(tmpArg);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let objPatternBeforeDefault = arrPatternStep.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        x = $('pass');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return x;
@@ -94,7 +90,6 @@ $(tmpArg_1);
 Should call `$` with:
 [[{ x: 'pass2' }], "<crash[ Cannot read property 'x' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{ x: 'pass2' }], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

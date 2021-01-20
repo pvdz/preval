@@ -23,15 +23,13 @@ tmpObjPropValue = { x: 1, y: 0, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
+let y;
 {
-  let y;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      y = $('fail');
-    } else {
-      y = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault;
   }
 }
 $(y);
@@ -60,7 +58,6 @@ $(y);
 Should call `$` with:
 [[0], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

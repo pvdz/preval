@@ -17,15 +17,13 @@ function g({ x = b } ) { return x }
 `````js filename=intro
 function g(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        x = b;
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = b;
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return x;

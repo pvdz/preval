@@ -23,15 +23,13 @@ $(f([0, 201], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        x = $('pass');
-      } else {
-        x = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = $('pass');
+    } else {
+      x = arrPatternBeforeDefault;
     }
   }
   return x;
@@ -70,7 +68,6 @@ $(tmpArg);
 Should call `$` with:
 [[0], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

@@ -23,28 +23,24 @@ $(f({ x: { x: 1, y: null, z: 3 }, b: 11, c: 12 }, 10));
 function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = { y: 'fail2' };
-        objPatternAfterDefault = $(tmpArg);
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { y: 'fail2' };
+      objPatternAfterDefault = $(tmpArg);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  let y;
   {
-    let y;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-      if (ifTestTmp_1) {
-        y = $('fail');
-      } else {
-        y = objPatternBeforeDefault_1;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
+    if (ifTestTmp_1) {
+      y = $('fail');
+    } else {
+      y = objPatternBeforeDefault_1;
     }
   }
   return y;
@@ -96,7 +92,6 @@ $(tmpArg_1);
 Should call `$` with:
 [[null], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

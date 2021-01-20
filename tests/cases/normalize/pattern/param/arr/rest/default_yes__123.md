@@ -22,16 +22,14 @@ $(f(1, 2, 3, 200));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpArg = ['pass'];
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['pass'];
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
@@ -71,7 +69,7 @@ Should call `$` with:
 ['<crash[ $ is not a function ]>'];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+['<crash[ <ref> is not iterable ]>'];
 
 Final output calls: BAD!!
 ['<crash[ <ref> is not iterable ]>'];

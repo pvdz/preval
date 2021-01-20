@@ -23,16 +23,14 @@ $(f('', 10));
 function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = { x: 'pass' };
-        objPatternAfterDefault = $(tmpArg);
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { x: 'pass' };
+      objPatternAfterDefault = $(tmpArg);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   return 'ok';

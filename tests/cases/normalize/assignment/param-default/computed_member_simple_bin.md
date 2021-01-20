@@ -27,20 +27,18 @@ function f($tdz$__foo) {
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
   var tmpNestedAssignObj;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpAssignComputedObj = a;
-        tmpAssignComputedProp = $('x');
-        tmpAssignComputedRhs = b + c;
-        tmpNestedAssignObj = tmpAssignComputedObj;
-        tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        foo = tmpAssignComputedRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpAssignComputedObj = a;
+      tmpAssignComputedProp = $('x');
+      tmpAssignComputedRhs = b + c;
+      tmpNestedAssignObj = tmpAssignComputedObj;
+      tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      foo = tmpAssignComputedRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -88,8 +86,7 @@ $(a, 5, 3);
 Should call `$` with:
 [['x'], [5], [{ x: 10, undefined: 5 }, 2, 3], null];
 
-Normalized calls: BAD?!
-[['x'], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [['x'], [5], [{ x: 10, undefined: 5 }, 5, 3], null];

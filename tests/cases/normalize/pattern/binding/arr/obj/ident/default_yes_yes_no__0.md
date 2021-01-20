@@ -22,28 +22,24 @@ var tmpArg;
 const bindingPatternArrRoot = 0;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep;
 {
-  let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { x: 'fail2' };
-      arrPatternStep = $(tmpArg);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = { x: 'fail2' };
+    arrPatternStep = $(tmpArg);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
 }
 const objPatternBeforeDefault = arrPatternStep.x;
+let x;
 {
-  let x;
-  {
-    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
-      x = $('pass');
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp_1) {
+    x = $('pass');
+  } else {
+    x = objPatternBeforeDefault;
   }
 }
 $('bad');

@@ -25,14 +25,12 @@ var tmpTernaryAlternate;
 2;
 tmpOptionalChaining = 3;
 tmpTernaryTest = tmpOptionalChaining == null;
-{
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.foo;
-    y = tmpTernaryAlternate;
-  }
+let y;
+if (tmpTernaryTest) {
+  y = undefined;
+} else {
+  tmpTernaryAlternate = tmpOptionalChaining.foo;
+  y = tmpTernaryAlternate;
 }
 $(y);
 `````
@@ -60,7 +58,6 @@ $(y);
 Should call `$` with:
 [[null], null];
 
-Normalized calls: BAD?!
-[[20], null];
+Normalized calls: Same
 
 Final output calls: Same

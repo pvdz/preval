@@ -21,15 +21,13 @@ $('bad');
 const bindingPatternObjRoot = '';
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
+let y;
 {
-  let y;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      y = $('fail');
-    } else {
-      y = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault;
   }
 }
 $('bad');

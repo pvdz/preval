@@ -28,24 +28,20 @@ const a = 10;
 a;
 tmpNullish = $(2);
 tmpTernaryTest = tmpNullish == null;
-{
-  let b;
-  if (tmpTernaryTest) {
-    b = toString;
-  } else {
-    b = tmpNullish;
-  }
+let b;
+if (tmpTernaryTest) {
+  b = toString;
+} else {
+  b = tmpNullish;
 }
 1;
 tmpNullish_1 = b;
 tmpTernaryTest_1 = tmpNullish_1 == null;
-{
-  let c;
-  if (tmpTernaryTest_1) {
-    c = length;
-  } else {
-    c = tmpNullish_1;
-  }
+let c;
+if (tmpTernaryTest_1) {
+  c = length;
+} else {
+  c = tmpNullish_1;
 }
 $(c);
 `````
@@ -81,7 +77,6 @@ $(c);
 Should call `$` with:
 [[2], [null], null];
 
-Normalized calls: BAD?!
-[[2], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

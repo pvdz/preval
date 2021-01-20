@@ -21,15 +21,13 @@ $(f());
 
 `````js filename=intro
 function f($tdz$__pattern) {
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        $tdz$__pattern_after_default = $('pass');
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      $tdz$__pattern_after_default = $('pass');
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   return 'ok';

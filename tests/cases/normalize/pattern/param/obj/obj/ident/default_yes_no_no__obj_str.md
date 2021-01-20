@@ -23,15 +23,13 @@ $(f({ x: 'abc', b: 11, c: 12 }, 10));
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
+  let y;
   {
-    let y;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        y = $('pass');
-      } else {
-        y = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      y = $('pass');
+    } else {
+      y = objPatternBeforeDefault;
     }
   }
   return y;
@@ -70,7 +68,6 @@ $(tmpArg);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-[['pass'], [{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

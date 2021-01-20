@@ -23,13 +23,11 @@ const a = { x: 1 };
 1;
 tmpNullish = a;
 tmpTernaryTest = tmpNullish == null;
-{
-  let y;
-  if (tmpTernaryTest) {
-    y = x;
-  } else {
-    y = tmpNullish;
-  }
+let y;
+if (tmpTernaryTest) {
+  y = x;
+} else {
+  y = tmpNullish;
 }
 $(y);
 `````
@@ -56,7 +54,6 @@ $(y);
 Should call `$` with:
 [[{ x: 1 }], null];
 
-Normalized calls: BAD?!
-[[20], null];
+Normalized calls: Same
 
 Final output calls: Same

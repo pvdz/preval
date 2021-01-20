@@ -20,15 +20,13 @@ $(x);
 `````js filename=intro
 const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let x;
 {
-  let x;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = $('fail');
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    x = $('fail');
+  } else {
+    x = objPatternBeforeDefault;
   }
 }
 $(x);
@@ -54,7 +52,6 @@ $(x);
 Should call `$` with:
 [[1], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

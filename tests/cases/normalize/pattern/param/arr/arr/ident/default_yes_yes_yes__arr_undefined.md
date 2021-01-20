@@ -23,43 +23,37 @@ $(f([undefined, 4, 5], 200));
 function f($tdz$__pattern) {
   var tmpArg;
   var tmpArg_1;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpArg = ['fail3'];
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail3'];
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        tmpArg_1 = ['pass2'];
-        arrPatternStep = $(tmpArg_1);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = ['pass2'];
+      arrPatternStep = $(tmpArg_1);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let arrPatternSplat_1 = [...arrPatternStep];
   let arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp_2 = arrPatternBeforeDefault_1 === undefined;
-      if (ifTestTmp_2) {
-        x = $('fail');
-      } else {
-        x = arrPatternBeforeDefault_1;
-      }
+    let ifTestTmp_2 = arrPatternBeforeDefault_1 === undefined;
+    if (ifTestTmp_2) {
+      x = $('fail');
+    } else {
+      x = arrPatternBeforeDefault_1;
     }
   }
   return x;
@@ -118,7 +112,6 @@ $(tmpArg_2);
 Should call `$` with:
 [[['pass2']], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

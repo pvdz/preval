@@ -20,18 +20,16 @@ const f = (a = { x } = 1) => { return a };
 const f = ($tdz$__a) => {
   var objAssignPatternRhs;
   var tmpNestedComplexRhs;
+  let a;
   {
-    let a;
-    {
-      let ifTestTmp = $tdz$__a === undefined;
-      if (ifTestTmp) {
-        objAssignPatternRhs = 1;
-        tmpNestedComplexRhs = objAssignPatternRhs.x;
-        x = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
-      } else {
-        a = $tdz$__a;
-      }
+    let ifTestTmp = $tdz$__a === undefined;
+    if (ifTestTmp) {
+      objAssignPatternRhs = 1;
+      tmpNestedComplexRhs = objAssignPatternRhs.x;
+      x = tmpNestedComplexRhs;
+      a = tmpNestedComplexRhs;
+    } else {
+      a = $tdz$__a;
     }
   }
   return a;

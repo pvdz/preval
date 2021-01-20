@@ -21,29 +21,25 @@ $(y);
 var tmpArg;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault;
 {
-  let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['fail2'];
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = ['fail2'];
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let y;
 {
-  let y;
-  {
-    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
-      y = 'fail';
-    } else {
-      y = arrPatternBeforeDefault;
-    }
+  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp_1) {
+    y = 'fail';
+  } else {
+    y = arrPatternBeforeDefault;
   }
 }
 $(y);
@@ -80,7 +76,6 @@ $(y);
 Should call `$` with:
 [['a'], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

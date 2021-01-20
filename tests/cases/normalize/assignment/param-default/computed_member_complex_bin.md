@@ -27,20 +27,18 @@ function f($tdz$__foo) {
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
   var tmpNestedAssignObj;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpAssignComputedObj = $(a);
-        tmpAssignComputedProp = $('x');
-        tmpAssignComputedRhs = b + c;
-        tmpNestedAssignObj = tmpAssignComputedObj;
-        tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        foo = tmpAssignComputedRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpAssignComputedObj = $(a);
+      tmpAssignComputedProp = $('x');
+      tmpAssignComputedRhs = b + c;
+      tmpNestedAssignObj = tmpAssignComputedObj;
+      tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      foo = tmpAssignComputedRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;

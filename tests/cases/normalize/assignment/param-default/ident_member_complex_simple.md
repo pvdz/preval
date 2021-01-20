@@ -24,18 +24,16 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignObj;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedAssignObj = $(b);
-        tmpNestedAssignObj.x = c;
-        a = c;
-        foo = c;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignObj.x = c;
+      a = c;
+      foo = c;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;

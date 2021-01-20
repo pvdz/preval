@@ -30,23 +30,19 @@ function f() {
   const a = 10;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;
-  {
-    let b;
-    if (tmpTernaryTest) {
-      b = toString;
-    } else {
-      b = tmpNullish;
-    }
+  let b;
+  if (tmpTernaryTest) {
+    b = toString;
+  } else {
+    b = tmpNullish;
   }
   b = b;
   tmpTernaryTest_1 = b == null;
-  {
-    let c;
-    if (tmpTernaryTest_1) {
-      c = length;
-    } else {
-      c = b;
-    }
+  let c;
+  if (tmpTernaryTest_1) {
+    c = length;
+  } else {
+    c = b;
   }
   {
     let tmpStmtArg = $(c);
@@ -94,7 +90,6 @@ $(tmpArg);
 Should call `$` with:
 [[2], [null], [null], null];
 
-Normalized calls: BAD?!
-[[2], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

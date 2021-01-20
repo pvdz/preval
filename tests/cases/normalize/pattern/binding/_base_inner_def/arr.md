@@ -18,15 +18,13 @@ const [ x = a ] = 1;
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let x;
 {
-  let x;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = a;
-    } else {
-      x = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    x = a;
+  } else {
+    x = arrPatternBeforeDefault;
   }
 }
 `````

@@ -24,43 +24,37 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpElement;
   var tmpArg_1;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpElement = { x: 'fail3' };
-        tmpArg = [tmpElement];
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpElement = { x: 'fail3' };
+      tmpArg = [tmpElement];
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        tmpArg_1 = { x: 'fail2' };
-        arrPatternStep = $(tmpArg_1);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = { x: 'fail2' };
+      arrPatternStep = $(tmpArg_1);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let objPatternBeforeDefault = arrPatternStep.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp_2 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_2) {
-        x = $('pass');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp_2 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_2) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return 'bad';
@@ -117,7 +111,7 @@ Should call `$` with:
 ['<crash[ $ is not a function ]>'];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+['<crash[ <ref> is not iterable ]>'];
 
 Final output calls: BAD!!
 ['<crash[ <ref> is not iterable ]>'];

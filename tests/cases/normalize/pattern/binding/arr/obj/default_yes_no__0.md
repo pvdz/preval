@@ -21,15 +21,13 @@ $('bad');
 const bindingPatternArrRoot = 0;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep;
 {
-  let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      arrPatternStep = $('fail');
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    arrPatternStep = $('fail');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
 }
 $('bad');

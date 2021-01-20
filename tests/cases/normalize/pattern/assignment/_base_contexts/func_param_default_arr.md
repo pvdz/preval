@@ -20,18 +20,16 @@ const f = (a = [ x ] = 1) => { return a };
 const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
+  let a;
   {
-    let a;
-    {
-      let ifTestTmp = $tdz$__a === undefined;
-      if (ifTestTmp) {
-        arrAssignPatternRhs = 1;
-        arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        a = arrAssignPatternRhs;
-      } else {
-        a = $tdz$__a;
-      }
+    let ifTestTmp = $tdz$__a === undefined;
+    if (ifTestTmp) {
+      arrAssignPatternRhs = 1;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      a = arrAssignPatternRhs;
+    } else {
+      a = $tdz$__a;
     }
   }
   return a;

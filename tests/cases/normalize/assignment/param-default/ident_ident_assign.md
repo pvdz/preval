@@ -26,21 +26,19 @@ function f($tdz$__foo) {
   var tmpNestedComplexRhs;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedAssignMemberObj = $(c);
-        tmpNestedAssignMemberRhs = $(d);
-        tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-        tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-        b = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
-        foo = tmpNestedComplexRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedAssignMemberObj = $(c);
+      tmpNestedAssignMemberRhs = $(d);
+      tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
+      tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+      b = tmpNestedComplexRhs;
+      a = tmpNestedComplexRhs;
+      foo = tmpNestedComplexRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;

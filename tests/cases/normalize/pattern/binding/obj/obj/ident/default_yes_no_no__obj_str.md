@@ -21,15 +21,13 @@ $(y);
 const bindingPatternObjRoot = { x: 'abc', b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
+let y;
 {
-  let y;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      y = $('pass');
-    } else {
-      y = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    y = $('pass');
+  } else {
+    y = objPatternBeforeDefault;
   }
 }
 $(y);
@@ -56,7 +54,6 @@ $(y);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-[['pass'], [{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

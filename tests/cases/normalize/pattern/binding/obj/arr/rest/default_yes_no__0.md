@@ -21,16 +21,14 @@ $(y);
 var tmpArg;
 const bindingPatternObjRoot = 0;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault;
 {
-  let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['pass'];
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  let ifTestTmp = objPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    tmpArg = ['pass'];
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
 const arrPatternSplat = [...objPatternAfterDefault];
@@ -61,7 +59,6 @@ $(y);
 Should call `$` with:
 [[['pass']], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-[[['pass']], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

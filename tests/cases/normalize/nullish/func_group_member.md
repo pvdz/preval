@@ -26,13 +26,11 @@ function f() {
   2;
   tmpNullish = $();
   tmpTernaryTest = tmpNullish == null;
-  {
-    let y;
-    if (tmpTernaryTest) {
-      y = foo;
-    } else {
-      y = tmpNullish;
-    }
+  let y;
+  if (tmpTernaryTest) {
+    y = foo;
+  } else {
+    y = tmpNullish;
   }
   {
     let tmpStmtArg = $(y);

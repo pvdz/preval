@@ -23,15 +23,13 @@ $(f({}, 10));
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
+  let y;
   {
-    let y;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        y = $('fail');
-      } else {
-        y = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      y = $('fail');
+    } else {
+      y = objPatternBeforeDefault;
     }
   }
   return 'bad';

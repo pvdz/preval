@@ -22,15 +22,13 @@ $(f(0, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        x = $('pass');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return x;
@@ -64,7 +62,6 @@ $(tmpArg);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-[['pass'], [{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

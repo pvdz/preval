@@ -25,21 +25,19 @@ $(x, y, z);
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
   var arrPatternSplat;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        $(x);
-        $(y);
-        arrAssignPatternRhs = $(z);
-        arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        y = arrPatternSplat[1];
-        foo = arrAssignPatternRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      $(x);
+      $(y);
+      arrAssignPatternRhs = $(z);
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      foo = arrAssignPatternRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;

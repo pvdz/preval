@@ -22,15 +22,13 @@ $(f());
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = objPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        x = $('fail');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp = objPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      x = $('fail');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return 'bad';

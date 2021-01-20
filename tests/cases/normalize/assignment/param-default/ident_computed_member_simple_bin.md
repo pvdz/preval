@@ -26,20 +26,18 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberObj;
   var tmpNestedAssignCompMemberProp;
   var tmpNestedAssignCompMemberRhs;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedAssignCompMemberObj = b;
-        tmpNestedAssignCompMemberProp = $('x');
-        tmpNestedAssignCompMemberRhs = c + d;
-        tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-        a = tmpNestedAssignCompMemberRhs;
-        foo = tmpNestedAssignCompMemberRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedAssignCompMemberObj = b;
+      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignCompMemberRhs = c + d;
+      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+      a = tmpNestedAssignCompMemberRhs;
+      foo = tmpNestedAssignCompMemberRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -88,8 +86,7 @@ $(a, b, 7);
 Should call `$` with:
 [['x'], [7], [7, { x: 2, undefined: 7 }, 3], null];
 
-Normalized calls: BAD?!
-[['x'], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [['x'], [7], [7, { x: 2, undefined: 7 }, 7], null];

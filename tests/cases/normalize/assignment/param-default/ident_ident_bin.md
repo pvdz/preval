@@ -24,18 +24,16 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedComplexRhs;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedComplexRhs = c + d;
-        b = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
-        foo = tmpNestedComplexRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedComplexRhs = c + d;
+      b = tmpNestedComplexRhs;
+      a = tmpNestedComplexRhs;
+      foo = tmpNestedComplexRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -80,8 +78,7 @@ $(a, b, 7);
 Should call `$` with:
 [[7], [7, 7, 3], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [[7], [7, 7, 7], null];

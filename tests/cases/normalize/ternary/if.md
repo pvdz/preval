@@ -23,13 +23,11 @@ let a = 1;
 let b = 2;
 let c = 3;
 {
-  {
-    let ifTestTmp;
-    if (a) {
-      ifTestTmp = b;
-    } else {
-      ifTestTmp = c;
-    }
+  let ifTestTmp;
+  if (a) {
+    ifTestTmp = b;
+  } else {
+    ifTestTmp = c;
   }
   if (ifTestTmp) {
     $(100);
@@ -56,7 +54,6 @@ if (ifTestTmp) {
 Should call `$` with:
 [[100], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

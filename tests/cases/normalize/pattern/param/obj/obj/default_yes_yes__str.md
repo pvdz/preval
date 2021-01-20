@@ -24,30 +24,26 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpObjPropValue;
   var tmpArg_1;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpObjPropValue = { y: 'fail2' };
-        tmpArg = { x: tmpObjPropValue };
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpObjPropValue = { y: 'fail2' };
+      tmpArg = { x: tmpObjPropValue };
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        tmpArg_1 = { x: 'pass' };
-        objPatternAfterDefault = $(tmpArg_1);
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = { x: 'pass' };
+      objPatternAfterDefault = $(tmpArg_1);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   return 'ok';
@@ -95,7 +91,7 @@ Should call `$` with:
 [[{ x: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[[{ x: 'pass' }], ['ok'], null];
 
 Final output calls: BAD!!
 [[{ x: 'pass' }], ['ok'], null];

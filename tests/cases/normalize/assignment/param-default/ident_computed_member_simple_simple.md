@@ -25,19 +25,17 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedAssignComMemberObj = b;
-        tmpNestedAssignComMemberProp = $('x');
-        tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-        a = c;
-        foo = c;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedAssignComMemberObj = b;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
+      a = c;
+      foo = c;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -83,7 +81,6 @@ $(a, b, 3);
 Should call `$` with:
 [['x'], [3], [3, { x: 2, undefined: 3 }, 3], null];
 
-Normalized calls: BAD?!
-[['x'], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

@@ -21,15 +21,13 @@ $('bad');
 const bindingPatternArrRoot = [0, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep;
 {
-  let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      arrPatternStep = $('fail');
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  let ifTestTmp = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp) {
+    arrPatternStep = $('fail');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
 }
 const arrPatternSplat_1 = [...arrPatternStep];
@@ -60,7 +58,6 @@ $('bad');
 Should call `$` with:
 ['<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

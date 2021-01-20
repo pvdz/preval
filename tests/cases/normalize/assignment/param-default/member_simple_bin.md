@@ -26,19 +26,17 @@ function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
   var tmpAssignMemRhs;
   var tmpNestedAssignObj;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpAssignMemLhsObj = a;
-        tmpAssignMemRhs = b + c;
-        tmpNestedAssignObj = tmpAssignMemLhsObj;
-        tmpNestedAssignObj.x = tmpAssignMemRhs;
-        foo = tmpAssignMemRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpAssignMemLhsObj = a;
+      tmpAssignMemRhs = b + c;
+      tmpNestedAssignObj = tmpAssignMemLhsObj;
+      tmpNestedAssignObj.x = tmpAssignMemRhs;
+      foo = tmpAssignMemRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -84,8 +82,7 @@ $(a, 5, 3);
 Should call `$` with:
 [[5], [{ x: 5 }, 2, 3], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [[5], [{ x: 5 }, 5, 3], null];

@@ -34,28 +34,24 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
   let arrPatternStep_3 = arrPatternSplat_3[0];
   let arrPatternSplat_4 = [...arrPatternStep_3];
   let arrPatternBeforeDefault = arrPatternSplat_4[0];
+  let arrPatternStep_4;
   {
-    let arrPatternStep_4;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        arrPatternStep_4 = y;
-      } else {
-        arrPatternStep_4 = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      arrPatternStep_4 = y;
+    } else {
+      arrPatternStep_4 = arrPatternBeforeDefault;
     }
   }
   let arrPatternSplat_5 = [...arrPatternStep_4];
   let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
-      if (ifTestTmp_1) {
-        foo = x_1;
-      } else {
-        foo = arrPatternBeforeDefault_1;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
+    if (ifTestTmp_1) {
+      foo = x_1;
+    } else {
+      foo = arrPatternBeforeDefault_1;
     }
   }
 }

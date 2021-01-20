@@ -23,26 +23,22 @@ $(f('x', 'y')); // [x, y]
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
+  let b;
   {
-    let b;
-    {
-      let ifTestTmp = $tdz$__b === undefined;
-      if (ifTestTmp) {
-        b = 'bar';
-      } else {
-        b = $tdz$__b;
-      }
+    let ifTestTmp = $tdz$__b === undefined;
+    if (ifTestTmp) {
+      b = 'bar';
+    } else {
+      b = $tdz$__b;
     }
   }
+  let a;
   {
-    let a;
-    {
-      let ifTestTmp_1 = $tdz$__a === undefined;
-      if (ifTestTmp_1) {
-        a = b;
-      } else {
-        a = $tdz$__a;
-      }
+    let ifTestTmp_1 = $tdz$__a === undefined;
+    if (ifTestTmp_1) {
+      a = b;
+    } else {
+      a = $tdz$__a;
     }
   }
   {
@@ -105,7 +101,7 @@ Should call `$` with:
 ["<crash[ Cannot access 'b' before initialization ]>"];
 
 Normalized calls: BAD?!
-[[[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], [[[10, 20, 30], 20]], null];
+[[['bar', 'bar']], [['x', 'bar']], [['y', 'y']], [['x', 'y']], null];
 
 Final output calls: BAD!!
 [[['bar', 'bar']], [['x', 'bar']], [['y', 'y']], [['x', 'y']], null];

@@ -24,42 +24,36 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpObjPropValue;
   var tmpArg_1;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpObjPropValue = { y: 'fail3' };
-        tmpArg = { x: tmpObjPropValue };
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpObjPropValue = { y: 'fail3' };
+      tmpArg = { x: tmpObjPropValue };
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        tmpArg_1 = { y: 'fail2' };
-        objPatternAfterDefault = $(tmpArg_1);
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = { y: 'fail2' };
+      objPatternAfterDefault = $(tmpArg_1);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  let y;
   {
-    let y;
-    {
-      let ifTestTmp_2 = objPatternBeforeDefault_1 === undefined;
-      if (ifTestTmp_2) {
-        y = $('fail');
-      } else {
-        y = objPatternBeforeDefault_1;
-      }
+    let ifTestTmp_2 = objPatternBeforeDefault_1 === undefined;
+    if (ifTestTmp_2) {
+      y = $('fail');
+    } else {
+      y = objPatternBeforeDefault_1;
     }
   }
   return y;
@@ -122,7 +116,6 @@ $(tmpArg_2);
 Should call `$` with:
 [[''], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

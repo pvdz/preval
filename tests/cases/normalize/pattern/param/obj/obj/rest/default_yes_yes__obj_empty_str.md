@@ -24,30 +24,26 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpObjPropValue;
   var tmpArg_1;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpObjPropValue = { a: 'fail2' };
-        tmpArg = { x: tmpObjPropValue };
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpObjPropValue = { a: 'fail2' };
+      tmpArg = { x: tmpObjPropValue };
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternAfterDefault;
   {
-    let objPatternAfterDefault;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        tmpArg_1 = { a: 'fail' };
-        objPatternAfterDefault = $(tmpArg_1);
-      } else {
-        objPatternAfterDefault = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = { a: 'fail' };
+      objPatternAfterDefault = $(tmpArg_1);
+    } else {
+      objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
   let y = objPatternRest(objPatternAfterDefault, []);

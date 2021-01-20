@@ -22,29 +22,25 @@ $(f(undefined, 100));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
+  let $tdz$__pattern_after_default;
   {
-    let $tdz$__pattern_after_default;
-    {
-      let ifTestTmp = $tdz$__pattern === undefined;
-      if (ifTestTmp) {
-        tmpArg = ['fail2'];
-        $tdz$__pattern_after_default = $(tmpArg);
-      } else {
-        $tdz$__pattern_after_default = $tdz$__pattern;
-      }
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpArg = ['fail2'];
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        arrPatternStep = $('pass');
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      arrPatternStep = $('pass');
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   return 'ok';
@@ -88,7 +84,6 @@ $(tmpArg_1);
 Should call `$` with:
 [[['fail2']], '<crash[ <ref> is not iterable ]>'];
 
-Normalized calls: BAD?!
-[[['fail2']], '<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

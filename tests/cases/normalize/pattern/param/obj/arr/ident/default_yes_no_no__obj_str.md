@@ -24,15 +24,13 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let y;
   {
-    let y;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        y = 'fail';
-      } else {
-        y = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      y = 'fail';
+    } else {
+      y = arrPatternBeforeDefault;
     }
   }
   return y;
@@ -72,7 +70,6 @@ $(tmpArg);
 Should call `$` with:
 [['a'], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

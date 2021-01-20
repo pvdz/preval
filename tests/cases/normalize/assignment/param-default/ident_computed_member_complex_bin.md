@@ -26,20 +26,18 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberObj;
   var tmpNestedAssignCompMemberProp;
   var tmpNestedAssignCompMemberRhs;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        tmpNestedAssignCompMemberObj = $(b);
-        tmpNestedAssignCompMemberProp = $('x');
-        tmpNestedAssignCompMemberRhs = c + d;
-        tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-        a = tmpNestedAssignCompMemberRhs;
-        foo = tmpNestedAssignCompMemberRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      tmpNestedAssignCompMemberObj = $(b);
+      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignCompMemberRhs = c + d;
+      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+      a = tmpNestedAssignCompMemberRhs;
+      foo = tmpNestedAssignCompMemberRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;

@@ -24,28 +24,24 @@ function f(tmpParamPattern) {
   var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep;
   {
-    let arrPatternStep;
-    {
-      let ifTestTmp = arrPatternBeforeDefault === undefined;
-      if (ifTestTmp) {
-        tmpArg = { x: 'fail2' };
-        arrPatternStep = $(tmpArg);
-      } else {
-        arrPatternStep = arrPatternBeforeDefault;
-      }
+    let ifTestTmp = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp) {
+      tmpArg = { x: 'fail2' };
+      arrPatternStep = $(tmpArg);
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
     }
   }
   let objPatternBeforeDefault = arrPatternStep.x;
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-      if (ifTestTmp_1) {
-        x = $('pass');
-      } else {
-        x = objPatternBeforeDefault;
-      }
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      x = $('pass');
+    } else {
+      x = objPatternBeforeDefault;
     }
   }
   return x;
@@ -94,7 +90,6 @@ $(tmpArg_1);
 Should call `$` with:
 [['pass'], [null], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

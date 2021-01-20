@@ -24,18 +24,16 @@ $(a, b, c, d);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignObj;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        a;
-        tmpNestedAssignObj = b;
-        tmpNestedAssignObj.c = d;
-        foo = d;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      a;
+      tmpNestedAssignObj = b;
+      tmpNestedAssignObj.c = d;
+      foo = d;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -77,7 +75,6 @@ $(1, b, c, 3);
 Should call `$` with:
 [[3], '<crash[ <ref> is not defined ]>'];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

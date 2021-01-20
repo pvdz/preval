@@ -21,15 +21,13 @@ $(f(null, 200));
 
 `````js filename=intro
 function f($tdz$__x) {
+  let x;
   {
-    let x;
-    {
-      let ifTestTmp = $tdz$__x === undefined;
-      if (ifTestTmp) {
-        x = 'fail';
-      } else {
-        x = $tdz$__x;
-      }
+    let ifTestTmp = $tdz$__x === undefined;
+    if (ifTestTmp) {
+      x = 'fail';
+    } else {
+      x = $tdz$__x;
     }
   }
   return x;
@@ -62,7 +60,6 @@ $(tmpArg);
 Should call `$` with:
 [[null], null];
 
-Normalized calls: BAD?!
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+Normalized calls: Same
 
 Final output calls: Same

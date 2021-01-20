@@ -25,19 +25,17 @@ $(x, y, z);
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
   var arrPatternSplat;
+  let foo;
   {
-    let foo;
-    {
-      let ifTestTmp = $tdz$__foo === undefined;
-      if (ifTestTmp) {
-        arrAssignPatternRhs = z;
-        arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        y = arrPatternSplat[1];
-        foo = arrAssignPatternRhs;
-      } else {
-        foo = $tdz$__foo;
-      }
+    let ifTestTmp = $tdz$__foo === undefined;
+    if (ifTestTmp) {
+      arrAssignPatternRhs = z;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      foo = arrAssignPatternRhs;
+    } else {
+      foo = $tdz$__foo;
     }
   }
   return foo;
@@ -84,7 +82,6 @@ $(x, y, z);
 Should call `$` with:
 [[[10, 20, 30]], [10, 20, [10, 20, 30]], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

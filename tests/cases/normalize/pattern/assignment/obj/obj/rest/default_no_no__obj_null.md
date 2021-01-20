@@ -43,8 +43,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of null ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[['bad'], null];
 
 Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
+[['bad'], null];
 

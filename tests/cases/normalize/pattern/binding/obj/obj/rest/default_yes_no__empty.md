@@ -58,8 +58,8 @@ Should call `$` with:
 [[{ a: 'fail' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-[[{ a: 'fail' }], '<crash[ <ref> is not defined ]>'];
+[[{ a: 'fail' }], ['bad'], null];
 
 Final output calls: BAD!!
-[[{ a: 'fail' }], '<crash[ <ref> is not defined ]>'];
+[[{ a: 'fail' }], ['bad'], null];
 

@@ -52,9 +52,6 @@ $(z);
 Should call `$` with:
 [[{ z: 1, a: 2, b: 3 }], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
-
+Final output calls: Same

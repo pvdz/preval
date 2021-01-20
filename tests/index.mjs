@@ -95,7 +95,13 @@ function runTestCase(
         if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
         stack.push(a);
       }
-      const returns = new Function('$', fdata.intro)($);
+      function objPatternRest(obj, withoutTheseProps) {
+        // Ugly hack that will work. Rest is a shallow clone.
+        const clone = {...obj};
+        withoutTheseProps.forEach(name => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
+        return clone;
+      }
+      const returns = new Function('$', 'objPatternRest', fdata.intro)($, objPatternRest);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(returns);
 

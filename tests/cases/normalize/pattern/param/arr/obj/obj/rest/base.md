@@ -68,9 +68,6 @@ $(tmpArg);
 Should call `$` with:
 [[{ a: 1, b: 2, c: 3 }], null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
-
+Final output calls: Same

@@ -67,8 +67,8 @@ Should call `$` with:
 [[{ a: 'pass' }], "<crash[ Cannot destructure '(intermediate value)(intermediate value)(intermediate value)' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+[[{ a: 'pass' }], [{}], null];
 
 Final output calls: BAD!!
-[[{ a: 'pass' }], '<crash[ <ref> is not defined ]>'];
+[[{ a: 'pass' }], [{}], null];
 

@@ -39,8 +39,8 @@ Should call `$` with:
 ["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[[{}], null];
 
 Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
+[[{}], null];
 

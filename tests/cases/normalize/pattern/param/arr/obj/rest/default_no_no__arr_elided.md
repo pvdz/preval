@@ -55,8 +55,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+[[{}], null];
 
 Final output calls: BAD!!
-['<crash[ <ref> is not defined ]>'];
+[[{}], null];
 

@@ -20,8 +20,9 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -32,25 +33,29 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let obj = {};
-tmpAssignedComputedObj = obj;
-arrAssignPatternRhs_1 = z;
-arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-x = arrPatternSplat_1[1];
-y = arrPatternSplat_1[2];
-arrAssignPatternRhs = arrAssignPatternRhs_1;
-arrPatternSplat = [...arrAssignPatternRhs];
-a = arrPatternSplat[0];
-b = arrPatternSplat[1];
-tmpAssignedComputedProp = arrAssignPatternRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+{
+  tmpAssignComputedObj = obj;
+  arrAssignPatternRhs_1 = z;
+  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+  x = arrPatternSplat_1[1];
+  y = arrPatternSplat_1[2];
+  arrAssignPatternRhs = arrAssignPatternRhs_1;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
+  tmpAssignComputedProp = arrAssignPatternRhs;
+  tmpAssignComputedRhs = 1000;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 $(a, b, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -61,7 +66,7 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let obj = {};
-tmpAssignedComputedObj = obj;
+tmpAssignComputedObj = obj;
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
@@ -70,8 +75,9 @@ arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
-tmpAssignedComputedProp = arrAssignPatternRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+tmpAssignComputedProp = arrAssignPatternRhs;
+tmpAssignComputedRhs = 1000;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, b, x, y, z);
 `````
 

@@ -36,15 +36,19 @@ let d = 4;
 tmpNestedAssignMemberObj = $(b);
 tmpNestedAssignMemberObj_1 = $(c);
 tmpNestedAssignMemberRhs_1 = $(d);
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj_1;
-tmpBinaryLeft = tmpNestedAssignMemberObj_1.y;
-tmpAssignMemRhs = tmpBinaryLeft - tmpNestedAssignMemberRhs_1;
-tmpAssignMemLhsObj.y = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = tmpNestedAssignMemberObj_1;
+  tmpBinaryLeft = tmpNestedAssignMemberObj_1.y;
+  tmpAssignMemRhs = tmpBinaryLeft - tmpNestedAssignMemberRhs_1;
+  tmpAssignMemLhsObj.y = tmpAssignMemRhs;
+}
 tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-tmpAssignMemLhsObj_1 = tmpNestedAssignMemberObj;
-tmpBinaryLeft_1 = tmpNestedAssignMemberObj.x;
-tmpAssignMemRhs_1 = tmpBinaryLeft_1 + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
+{
+  tmpAssignMemLhsObj_1 = tmpNestedAssignMemberObj;
+  tmpBinaryLeft_1 = tmpNestedAssignMemberObj.x;
+  tmpAssignMemRhs_1 = tmpBinaryLeft_1 + tmpNestedAssignMemberRhs;
+  tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
+}
 a = a * tmpNestedAssignMemberRhs;
 $(a, b, c, d);
 `````

@@ -19,8 +19,6 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
@@ -29,10 +27,10 @@ let d = 3;
   {
     a;
     let tmpBindInitMemberObject = $(b);
-    a;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      b.c = d;
+    }
     let tmpBindInitRhs = d;
     tmpBindInitMemberObject.c = tmpBindInitRhs;
     const tmpForOfRhs = tmpBindInitRhs;
@@ -47,14 +45,10 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 let tmpForOfLhsDecl;
 let tmpBindInitMemberObject = $(b);
-tmpAssignMemLhsObj = b;
-tmpAssignMemRhs = 3;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+b.c = 3;
 tmpBindInitMemberObject.c = 3;
 for (tmpForOfLhsDecl of 3) {
 }

@@ -29,13 +29,15 @@ let c = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    tmpNestedPropAssignRhs = c;
-    b.x = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-    a = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
-    tmpAssignMemRhs = tmpForInLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpNestedPropAssignRhs = c;
+      b.x = tmpNestedPropAssignRhs;
+      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+      a = tmpNestedComplexRhs;
+      tmpAssignMemLhsObj = tmpNestedComplexRhs;
+      tmpAssignMemRhs = tmpForInLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c);

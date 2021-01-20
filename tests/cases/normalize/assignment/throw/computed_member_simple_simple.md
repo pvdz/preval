@@ -19,15 +19,19 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  tmpAssignedComputedObj = a;
-  tmpAssignedComputedProp = $('x');
-  tmpAssignedComputedObj[tmpAssignedComputedProp] = b;
+  {
+    tmpAssignComputedObj = a;
+    tmpAssignComputedProp = $('x');
+    tmpAssignComputedRhs = b;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  }
   let tmpStmtArg = b;
   throw tmpStmtArg;
 }
@@ -37,12 +41,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
-tmpAssignedComputedObj = a;
-tmpAssignedComputedProp = $('x');
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 2;
+tmpAssignComputedObj = a;
+tmpAssignComputedProp = $('x');
+tmpAssignComputedRhs = 2;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 throw 2;
 $(a, 2, 3);
 `````

@@ -30,10 +30,12 @@ let c = 3;
 $(b);
 tmpNestedAssignMemberObj = $(c);
 tmpNestedAssignMemberRhs = $(c);
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-tmpBinaryLeft = tmpNestedAssignMemberObj.x;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
+  tmpBinaryLeft = tmpNestedAssignMemberObj.x;
+  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 a = a * tmpNestedAssignMemberRhs;
 $(a, b, c);
 `````

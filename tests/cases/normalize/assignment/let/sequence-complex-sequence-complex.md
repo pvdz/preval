@@ -26,10 +26,14 @@ let b = { c: 2 };
 let d = 3;
 a;
 let tmpBindInitMemberObject = $(b);
-a;
-tmpAssignMemLhsObj = $(b);
-tmpAssignMemRhs = d;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+{
+  a;
+  {
+    tmpAssignMemLhsObj = $(b);
+    tmpAssignMemRhs = d;
+    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  }
+}
 let tmpBindInitRhs = d;
 tmpBindInitMemberObject.c = tmpBindInitRhs;
 let wat = tmpBindInitRhs;

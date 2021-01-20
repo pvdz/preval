@@ -19,38 +19,60 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+var tmpCompoundAssignComputedObj;
+var tmpCompoundAssignComputedProp;
+var tmpCompoundAssignComputedRhs;
+var tmpAssignComputedObj_1;
+var tmpAssignComputedProp_1;
+var tmpAssignComputedRhs_1;
 var tmpBinaryLeft;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpAssignedComputedObj = a;
-tmpAssignedComputedProp = $('x');
-tmpAssignMemLhsObj = tmpAssignedComputedObj;
-tmpBinaryLeft = tmpAssignedComputedObj[tmpAssignedComputedProp];
-tmpAssignMemRhs = tmpBinaryLeft * b;
-tmpAssignMemLhsObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
+tmpAssignComputedObj = a;
+tmpAssignComputedProp = $('x');
+tmpAssignComputedRhs = b;
+tmpCompoundAssignComputedObj = tmpAssignComputedObj;
+tmpCompoundAssignComputedProp = tmpAssignComputedProp;
+tmpCompoundAssignComputedRhs = tmpAssignComputedRhs;
+{
+  tmpAssignComputedObj_1 = tmpCompoundAssignComputedObj;
+  tmpAssignComputedProp_1 = tmpCompoundAssignComputedProp;
+  tmpBinaryLeft = tmpCompoundAssignComputedObj[tmpCompoundAssignComputedProp];
+  tmpAssignComputedRhs_1 = tmpBinaryLeft * tmpCompoundAssignComputedRhs;
+  tmpAssignComputedObj_1[tmpAssignComputedProp_1] = tmpAssignComputedRhs_1;
+}
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+var tmpCompoundAssignComputedObj;
+var tmpCompoundAssignComputedProp;
+var tmpCompoundAssignComputedRhs;
+var tmpAssignComputedObj_1;
+var tmpAssignComputedProp_1;
+var tmpAssignComputedRhs_1;
 var tmpBinaryLeft;
 let a = { x: 10 };
-tmpAssignedComputedObj = a;
-tmpAssignedComputedProp = $('x');
-tmpAssignMemLhsObj = tmpAssignedComputedObj;
-tmpBinaryLeft = tmpAssignedComputedObj[tmpAssignedComputedProp];
-tmpAssignMemRhs = tmpBinaryLeft * 2;
-tmpAssignMemLhsObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
+tmpAssignComputedObj = a;
+tmpAssignComputedProp = $('x');
+tmpAssignComputedRhs = 2;
+tmpCompoundAssignComputedObj = tmpAssignComputedObj;
+tmpCompoundAssignComputedProp = tmpAssignComputedProp;
+tmpCompoundAssignComputedRhs = tmpAssignComputedRhs;
+tmpAssignComputedObj_1 = tmpCompoundAssignComputedObj;
+tmpAssignComputedProp_1 = tmpCompoundAssignComputedProp;
+tmpBinaryLeft = tmpCompoundAssignComputedObj[tmpCompoundAssignComputedProp];
+tmpAssignComputedRhs_1 = tmpBinaryLeft * tmpCompoundAssignComputedRhs;
+tmpAssignComputedObj_1[tmpAssignComputedProp_1] = tmpAssignComputedRhs_1;
 $(a, 2, 3);
 `````
 

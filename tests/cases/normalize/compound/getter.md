@@ -26,10 +26,12 @@ var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpArg;
 const obj = { x: 0 };
-tmpAssignMemLhsObj = obj;
-tmpBinaryLeft = obj.x;
-tmpAssignMemRhs = tmpBinaryLeft + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = obj;
+  tmpBinaryLeft = obj.x;
+  tmpAssignMemRhs = tmpBinaryLeft + 5;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 tmpArg = obj.x;
 $(tmpArg);
 `````

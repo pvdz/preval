@@ -21,8 +21,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -41,9 +42,12 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          tmpAssignedComputedObj = a;
-          tmpAssignedComputedProp = $('x');
-          tmpAssignedComputedObj[tmpAssignedComputedProp] = b;
+          {
+            tmpAssignComputedObj = a;
+            tmpAssignComputedProp = $('x');
+            tmpAssignComputedRhs = b;
+            tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+          }
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -72,9 +76,12 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        tmpAssignedComputedObj = a;
-        tmpAssignedComputedProp = $('x');
-        tmpAssignedComputedObj[tmpAssignedComputedProp] = b;
+        {
+          tmpAssignComputedObj = a;
+          tmpAssignComputedProp = $('x');
+          tmpAssignComputedRhs = b;
+          tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+        }
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

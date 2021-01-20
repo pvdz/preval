@@ -20,20 +20,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpArg = `abc ${
-  ((tmpAssignMemLhsObj = a),
-  (tmpAssignMemRhs = b + c),
-  (tmpAssignedComputedObj = tmpAssignMemLhsObj),
-  (tmpAssignedComputedProp = $('x')),
-  (tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs))
-} def`;
+tmpArg = `abc ${(((tmpAssignComputedObj = a), (tmpAssignComputedProp = $('x')), (tmpAssignComputedRhs = b + c), tmpAssignComputedObj)[
+  tmpAssignComputedProp
+] = tmpAssignComputedRhs)} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -42,18 +37,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
-tmpArg = `abc ${
-  ((tmpAssignMemLhsObj = a),
-  (tmpAssignMemRhs = 5),
-  (tmpAssignedComputedObj = tmpAssignMemLhsObj),
-  (tmpAssignedComputedProp = $('x')),
-  (tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs))
-} def`;
+tmpArg = `abc ${(((tmpAssignComputedObj = a), (tmpAssignComputedProp = $('x')), (tmpAssignComputedRhs = 5), tmpAssignComputedObj)[
+  tmpAssignComputedProp
+] = tmpAssignComputedRhs)} def`;
 $(tmpArg);
 $(a, 5, 3);
 `````

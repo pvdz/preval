@@ -31,10 +31,12 @@ let c = 3;
 let d = 4;
 tmpNestedAssignMemberObj = $(c);
 tmpNestedAssignMemberRhs = $(d);
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-tmpBinaryLeft = tmpNestedAssignMemberObj.y;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.y = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
+  tmpBinaryLeft = tmpNestedAssignMemberObj.y;
+  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
+  tmpAssignMemLhsObj.y = tmpAssignMemRhs;
+}
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 b = b - tmpNestedComplexRhs;
 a = a * tmpNestedComplexRhs;

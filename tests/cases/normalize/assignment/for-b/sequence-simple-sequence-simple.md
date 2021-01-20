@@ -19,8 +19,6 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 0;
@@ -29,10 +27,10 @@ let d = 0;
     {
       a;
       let tmpBindInitMemberObject = b;
-      a;
-      tmpAssignMemLhsObj = b;
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      {
+        a;
+        b.c = d;
+      }
       let tmpBindInitRhs = d;
       tmpBindInitMemberObject.c = tmpBindInitRhs;
       let ifTestTmp = tmpBindInitRhs;
@@ -49,14 +47,10 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 while (true) {
   let tmpBindInitMemberObject = b;
-  tmpAssignMemLhsObj = b;
-  tmpAssignMemRhs = 0;
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  b.c = 0;
   tmpBindInitMemberObject.c = 0;
   break;
 }

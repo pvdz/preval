@@ -20,8 +20,9 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -30,23 +31,27 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let obj = {};
-tmpAssignedComputedObj = obj;
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-tmpNestedComplexRhs = arrAssignPatternRhs;
-a = tmpNestedComplexRhs;
-tmpAssignedComputedProp = tmpNestedComplexRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+{
+  tmpAssignComputedObj = obj;
+  arrAssignPatternRhs = z;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  tmpNestedComplexRhs = arrAssignPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpAssignComputedProp = tmpNestedComplexRhs;
+  tmpAssignComputedRhs = 1000;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 $(a, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -55,15 +60,16 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let obj = {};
-tmpAssignedComputedObj = obj;
+tmpAssignComputedObj = obj;
 arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpNestedComplexRhs = arrAssignPatternRhs;
 a = tmpNestedComplexRhs;
-tmpAssignedComputedProp = tmpNestedComplexRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+tmpAssignComputedProp = tmpNestedComplexRhs;
+tmpAssignComputedRhs = 1000;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, x, y, z);
 `````
 

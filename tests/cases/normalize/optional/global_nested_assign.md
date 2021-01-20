@@ -30,9 +30,11 @@ var tmpTernaryAlternate_1;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
-tmpAssignMemLhsObj = obj.a;
-tmpAssignMemRhs = 15;
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = obj.a;
+  tmpAssignMemRhs = 15;
+  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+}
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;

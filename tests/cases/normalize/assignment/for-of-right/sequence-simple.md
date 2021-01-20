@@ -19,18 +19,16 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
 {
   let tmpForOfLhsDecl;
   {
-    a;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      b.c = d;
+    }
     const tmpForOfRhs = d;
     for (tmpForOfLhsDecl of tmpForOfRhs) {
       let x = tmpForOfLhsDecl;
@@ -43,13 +41,9 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 let tmpForOfLhsDecl;
-tmpAssignMemLhsObj = b;
-tmpAssignMemRhs = 3;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+b.c = 3;
 for (tmpForOfLhsDecl of 3) {
 }
 $(1, b, c, 3);

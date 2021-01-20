@@ -30,13 +30,15 @@ let d = 4;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    tmpNestedComplexRhs_1 = c + d;
-    b = tmpNestedComplexRhs_1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs_1;
-    a = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
-    tmpAssignMemRhs = tmpForInLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpNestedComplexRhs_1 = c + d;
+      b = tmpNestedComplexRhs_1;
+      tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+      a = tmpNestedComplexRhs;
+      tmpAssignMemLhsObj = tmpNestedComplexRhs;
+      tmpAssignMemRhs = tmpForInLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c);

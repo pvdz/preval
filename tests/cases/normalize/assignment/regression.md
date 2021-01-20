@@ -22,15 +22,19 @@ var x;
 var a;
 var b;
 var c;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 x = {};
 a = 1;
 b = 2;
 c = 3;
-tmpAssignedComputedObj = x;
-tmpAssignedComputedProp = a + b;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = c;
+{
+  tmpAssignComputedObj = x;
+  tmpAssignComputedProp = a + b;
+  tmpAssignComputedRhs = c;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 `````
 
 ## Output
@@ -40,15 +44,17 @@ var x;
 var a;
 var b;
 var c;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 x = {};
 a = 1;
 b = 2;
 c = 3;
-tmpAssignedComputedObj = x;
-tmpAssignedComputedProp = a + b;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = c;
+tmpAssignComputedObj = x;
+tmpAssignComputedProp = a + b;
+tmpAssignComputedRhs = c;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Result

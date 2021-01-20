@@ -19,8 +19,6 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
@@ -30,10 +28,10 @@ let d = 3;
     let tmpFallthrough = false;
     {
       ('default case:');
-      a;
-      tmpAssignMemLhsObj = b;
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      {
+        a;
+        b.c = d;
+      }
     }
   }
 }
@@ -43,13 +41,9 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 $('a');
-tmpAssignMemLhsObj = b;
-tmpAssignMemRhs = 3;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+b.c = 3;
 $(1, b, c, 3);
 `````
 

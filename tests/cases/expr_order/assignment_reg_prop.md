@@ -19,9 +19,11 @@ $(1).x = $(2);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-tmpAssignMemLhsObj = $(1);
-tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = $(1);
+  tmpAssignMemRhs = $(2);
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 `````
 
 ## Output

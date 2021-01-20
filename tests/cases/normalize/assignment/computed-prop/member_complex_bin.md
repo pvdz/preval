@@ -20,38 +20,44 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 let obj = {};
-tmpAssignedComputedObj = obj;
-tmpNestedAssignMemberObj = $(a);
-tmpNestedAssignMemberRhs = b + c;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-tmpAssignedComputedProp = tmpNestedAssignMemberRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+{
+  tmpAssignComputedObj = obj;
+  tmpNestedAssignMemberObj = $(a);
+  tmpNestedAssignMemberRhs = b + c;
+  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+  tmpAssignComputedProp = tmpNestedAssignMemberRhs;
+  tmpAssignComputedRhs = 1000;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
 let obj = {};
-tmpAssignedComputedObj = obj;
+tmpAssignComputedObj = obj;
 tmpNestedAssignMemberObj = $(a);
 tmpNestedAssignMemberRhs = 5;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-tmpAssignedComputedProp = tmpNestedAssignMemberRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+tmpAssignComputedProp = tmpNestedAssignMemberRhs;
+tmpAssignComputedRhs = 1000;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, 5, 3);
 `````
 

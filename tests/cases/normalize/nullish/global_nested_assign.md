@@ -28,9 +28,11 @@ var tmpTernaryTest_1;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
-tmpAssignMemLhsObj = obj.a;
-tmpAssignMemRhs = 15;
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = obj.a;
+  tmpAssignMemRhs = 15;
+  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+}
 obj = obj;
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {

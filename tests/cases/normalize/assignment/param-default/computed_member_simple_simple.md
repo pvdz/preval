@@ -23,19 +23,21 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
-  var tmpNestedPropAssignRhs;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
+  var tmpNestedAssignObj;
   {
     let foo;
     {
       let ifTestTmp = $tdz$__foo === undefined;
       if (ifTestTmp) {
-        tmpAssignedComputedObj = a;
-        tmpAssignedComputedProp = $('x');
-        tmpNestedPropAssignRhs = b;
-        tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-        foo = tmpNestedPropAssignRhs;
+        tmpAssignComputedObj = a;
+        tmpAssignComputedProp = $('x');
+        tmpAssignComputedRhs = b;
+        tmpNestedAssignObj = tmpAssignComputedObj;
+        tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+        foo = tmpAssignComputedRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -56,17 +58,19 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
-  var tmpNestedPropAssignRhs;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
+  var tmpNestedAssignObj;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    tmpAssignedComputedObj = a;
-    tmpAssignedComputedProp = $('x');
-    tmpNestedPropAssignRhs = 2;
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-    foo = tmpNestedPropAssignRhs;
+    tmpAssignComputedObj = a;
+    tmpAssignComputedProp = $('x');
+    tmpAssignComputedRhs = 2;
+    tmpNestedAssignObj = tmpAssignComputedObj;
+    tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    foo = tmpAssignComputedRhs;
   } else {
     foo = $tdz$__foo;
   }

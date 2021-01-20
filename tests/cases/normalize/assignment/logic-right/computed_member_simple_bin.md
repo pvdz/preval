@@ -19,12 +19,11 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
+var tmpNestedAssignObj;
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -33,13 +32,12 @@ let c = 3;
   if (tmpAssignLogicStmtOr) {
     tmpArg = tmpAssignLogicStmtOr;
   } else {
-    tmpAssignMemLhsObj = a;
-    tmpAssignMemRhs = b + c;
-    tmpAssignedComputedObj = tmpAssignMemLhsObj;
-    tmpAssignedComputedProp = $('x');
-    tmpNestedPropAssignRhs = tmpAssignMemRhs;
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-    tmpArg = tmpNestedPropAssignRhs;
+    tmpAssignComputedObj = a;
+    tmpAssignComputedProp = $('x');
+    tmpAssignComputedRhs = b + c;
+    tmpNestedAssignObj = tmpAssignComputedObj;
+    tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    tmpArg = tmpAssignComputedRhs;
   }
 }
 $(tmpArg);
@@ -49,24 +47,22 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
+var tmpNestedAssignObj;
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {
   tmpArg = tmpAssignLogicStmtOr;
 } else {
-  tmpAssignMemLhsObj = a;
-  tmpAssignMemRhs = 5;
-  tmpAssignedComputedObj = tmpAssignMemLhsObj;
-  tmpAssignedComputedProp = $('x');
-  tmpNestedPropAssignRhs = tmpAssignMemRhs;
-  tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-  tmpArg = tmpNestedPropAssignRhs;
+  tmpAssignComputedObj = a;
+  tmpAssignComputedProp = $('x');
+  tmpAssignComputedRhs = 5;
+  tmpNestedAssignObj = tmpAssignComputedObj;
+  tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpArg = tmpAssignComputedRhs;
 }
 $(tmpArg);
 $(a, 5, 3);

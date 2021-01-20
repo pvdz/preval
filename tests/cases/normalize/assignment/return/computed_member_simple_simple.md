@@ -24,12 +24,16 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpNewObj = function () {
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
   {
-    tmpAssignedComputedObj = a;
-    tmpAssignedComputedProp = $('x');
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = b;
+    {
+      tmpAssignComputedObj = a;
+      tmpAssignComputedProp = $('x');
+      tmpAssignComputedRhs = b;
+      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    }
     let tmpStmtArg = b;
     return tmpStmtArg;
   }
@@ -44,11 +48,13 @@ $(a, b, c);
 var tmpNewObj;
 let a = { x: 10 };
 tmpNewObj = function () {
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
-  tmpAssignedComputedObj = a;
-  tmpAssignedComputedProp = $('x');
-  tmpAssignedComputedObj[tmpAssignedComputedProp] = 2;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
+  tmpAssignComputedObj = a;
+  tmpAssignComputedProp = $('x');
+  tmpAssignComputedRhs = 2;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   return 2;
 };
 tmpNewObj();

@@ -34,9 +34,11 @@ $(a).length = b;
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-tmpAssignMemLhsObj = $(a);
-tmpAssignMemRhs = b;
-tmpAssignMemLhsObj.length = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemRhs = b;
+  tmpAssignMemLhsObj.length = tmpAssignMemRhs;
+}
 `````
 
 ## Output

@@ -17,29 +17,27 @@ $(1)[$(2)] = $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
-tmpAssignMemLhsObj = $(1);
-tmpAssignMemRhs = $(3);
-tmpAssignedComputedObj = tmpAssignMemLhsObj;
-tmpAssignedComputedProp = $(2);
-tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+{
+  tmpAssignComputedObj = $(1);
+  tmpAssignComputedProp = $(2);
+  tmpAssignComputedRhs = $(3);
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
-tmpAssignMemLhsObj = $(1);
-tmpAssignMemRhs = $(3);
-tmpAssignedComputedObj = tmpAssignMemLhsObj;
-tmpAssignedComputedProp = $(2);
-tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+tmpAssignComputedObj = $(1);
+tmpAssignComputedProp = $(2);
+tmpAssignComputedRhs = $(3);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Result
@@ -47,9 +45,6 @@ tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpAssignMemRhs;
 Should call `$` with:
 [[1], [2], [3], "<crash[ Cannot set property 'undefined' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[1], [3], [2], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1], [3], [2], "<crash[ Cannot set property 'undefined' of undefined ]>"];
-
+Final output calls: Same

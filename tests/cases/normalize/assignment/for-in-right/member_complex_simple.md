@@ -27,9 +27,11 @@ let c = 3;
 {
   let tmpForInLhsDecl;
   {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemRhs = b;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemRhs = b;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
     const tmpForInRhs = b;
     for (tmpForInLhsDecl in tmpForInRhs) {
       let x = tmpForInLhsDecl;

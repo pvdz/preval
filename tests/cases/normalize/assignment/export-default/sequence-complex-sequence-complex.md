@@ -31,7 +31,7 @@ a,
 (tmpNestedAssignObj = $(b)),
 (tmpNestedAssignObj.c = d),
 (tmpAssignMemRhs = d),
-(tmpAssignMemLhsObj.c = tmpAssignMemRhs));
+tmpAssignMemLhsObj).c = tmpAssignMemRhs;
 $(a, b, c, d);
 `````
 
@@ -48,7 +48,7 @@ export default (1,
 (tmpNestedAssignObj = $(b)),
 (tmpNestedAssignObj.c = 3),
 (tmpAssignMemRhs = 3),
-(tmpAssignMemLhsObj.c = tmpAssignMemRhs));
+tmpAssignMemLhsObj).c = tmpAssignMemRhs;
 $(1, b, c, 3);
 `````
 

@@ -23,23 +23,21 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
-  var tmpNestedPropAssignRhs;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
+  var tmpNestedAssignObj;
   {
     let foo;
     {
       let ifTestTmp = $tdz$__foo === undefined;
       if (ifTestTmp) {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemRhs = b;
-        tmpAssignedComputedObj = tmpAssignMemLhsObj;
-        tmpAssignedComputedProp = $('x');
-        tmpNestedPropAssignRhs = tmpAssignMemRhs;
-        tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-        foo = tmpNestedPropAssignRhs;
+        tmpAssignComputedObj = $(a);
+        tmpAssignComputedProp = $('x');
+        tmpAssignComputedRhs = b;
+        tmpNestedAssignObj = tmpAssignComputedObj;
+        tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+        foo = tmpAssignComputedRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -60,21 +58,19 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
-  var tmpAssignedComputedObj;
-  var tmpAssignedComputedProp;
-  var tmpNestedPropAssignRhs;
+  var tmpAssignComputedObj;
+  var tmpAssignComputedProp;
+  var tmpAssignComputedRhs;
+  var tmpNestedAssignObj;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemRhs = 2;
-    tmpAssignedComputedObj = tmpAssignMemLhsObj;
-    tmpAssignedComputedProp = $('x');
-    tmpNestedPropAssignRhs = tmpAssignMemRhs;
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpNestedPropAssignRhs;
-    foo = tmpNestedPropAssignRhs;
+    tmpAssignComputedObj = $(a);
+    tmpAssignComputedProp = $('x');
+    tmpAssignComputedRhs = 2;
+    tmpNestedAssignObj = tmpAssignComputedObj;
+    tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    foo = tmpAssignComputedRhs;
   } else {
     foo = $tdz$__foo;
   }

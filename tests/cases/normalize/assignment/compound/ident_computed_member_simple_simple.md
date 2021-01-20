@@ -21,18 +21,22 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpNestedAssignComMemberObj = b;
 tmpNestedAssignComMemberProp = $('x');
-tmpAssignMemLhsObj = tmpNestedAssignComMemberObj;
-tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
-tmpAssignMemRhs = tmpBinaryLeft + c;
-tmpAssignMemLhsObj[tmpNestedAssignComMemberProp] = tmpAssignMemRhs;
+{
+  tmpAssignComputedObj = tmpNestedAssignComMemberObj;
+  tmpAssignComputedProp = tmpNestedAssignComMemberProp;
+  tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
+  tmpAssignComputedRhs = tmpBinaryLeft + c;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 a = a * c;
 $(a, b, c);
 `````
@@ -42,17 +46,19 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignComMemberObj = b;
 tmpNestedAssignComMemberProp = $('x');
-tmpAssignMemLhsObj = tmpNestedAssignComMemberObj;
+tmpAssignComputedObj = tmpNestedAssignComMemberObj;
+tmpAssignComputedProp = tmpNestedAssignComMemberProp;
 tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
-tmpAssignMemRhs = tmpBinaryLeft + 3;
-tmpAssignMemLhsObj[tmpNestedAssignComMemberProp] = tmpAssignMemRhs;
+tmpAssignComputedRhs = tmpBinaryLeft + 3;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 a = a * 3;
 $(a, b, 3);
 `````

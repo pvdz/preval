@@ -19,17 +19,15 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 0;
 while (true) {
   {
-    a;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      b.c = d;
+    }
     let ifTestTmp = d;
     if (ifTestTmp) {
     } else {
@@ -43,13 +41,9 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 while (true) {
-  tmpAssignMemLhsObj = b;
-  tmpAssignMemRhs = 0;
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  b.c = 0;
   break;
 }
 $(1, b, c, 0);

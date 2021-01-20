@@ -27,10 +27,14 @@ let d = 3;
 {
   let tmpForOfLhsDecl;
   {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      {
+        tmpAssignMemLhsObj = $(b);
+        tmpAssignMemRhs = d;
+        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      }
+    }
     const tmpForOfRhs = d;
     for (tmpForOfLhsDecl of tmpForOfRhs) {
       let x = tmpForOfLhsDecl;

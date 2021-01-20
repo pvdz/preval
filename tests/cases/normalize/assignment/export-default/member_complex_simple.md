@@ -24,7 +24,7 @@ var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-export default ((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = b), (tmpAssignMemLhsObj.x = tmpAssignMemRhs));
+export default ((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = b), tmpAssignMemLhsObj).x = tmpAssignMemRhs;
 $(a, b, c);
 `````
 
@@ -34,7 +34,7 @@ $(a, b, c);
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 let a = { x: 10 };
-export default ((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = 2), (tmpAssignMemLhsObj.x = tmpAssignMemRhs));
+export default ((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = 2), tmpAssignMemLhsObj).x = tmpAssignMemRhs;
 $(a, 2, 3);
 `````
 

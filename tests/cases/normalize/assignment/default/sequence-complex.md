@@ -30,10 +30,14 @@ let d = 3;
     let tmpFallthrough = false;
     {
       ('default case:');
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      {
+        a;
+        {
+          tmpAssignMemLhsObj = $(b);
+          tmpAssignMemRhs = d;
+          tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        }
+      }
     }
   }
 }

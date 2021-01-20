@@ -20,8 +20,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs_1;
 let a = 1;
@@ -29,33 +30,38 @@ let b = 2;
 let c = 3;
 let d = 4;
 let obj = {};
-tmpAssignedComputedObj = obj;
-tmpNestedComplexRhs_1 = c + d;
-b = tmpNestedComplexRhs_1;
-tmpNestedComplexRhs = tmpNestedComplexRhs_1;
-a = tmpNestedComplexRhs;
-tmpAssignedComputedProp = tmpNestedComplexRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+{
+  tmpAssignComputedObj = obj;
+  tmpNestedComplexRhs_1 = c + d;
+  b = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  a = tmpNestedComplexRhs;
+  tmpAssignComputedProp = tmpNestedComplexRhs;
+  tmpAssignComputedRhs = 1000;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs_1;
 let a = 1;
 let b = 2;
 let obj = {};
-tmpAssignedComputedObj = obj;
+tmpAssignComputedObj = obj;
 tmpNestedComplexRhs_1 = 7;
 b = tmpNestedComplexRhs_1;
 tmpNestedComplexRhs = tmpNestedComplexRhs_1;
 a = tmpNestedComplexRhs;
-tmpAssignedComputedProp = tmpNestedComplexRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+tmpAssignComputedProp = tmpNestedComplexRhs;
+tmpAssignComputedRhs = 1000;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, b, 7);
 `````
 

@@ -24,11 +24,13 @@ var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 let a = {};
-tmpAssignMemLhsObj = a;
-tmpNestedComplexRhs = $();
-a = tmpNestedComplexRhs;
-tmpAssignMemRhs = tmpNestedComplexRhs;
-tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = a;
+  tmpNestedComplexRhs = $();
+  a = tmpNestedComplexRhs;
+  tmpAssignMemRhs = tmpNestedComplexRhs;
+  tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+}
 `````
 
 ## Output

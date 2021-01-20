@@ -19,10 +19,14 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-$(1);
-tmpAssignMemLhsObj = $(2);
-tmpAssignMemRhs = 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  $(1);
+  {
+    tmpAssignMemLhsObj = $(2);
+    tmpAssignMemRhs = 1;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
+}
 `````
 
 ## Output

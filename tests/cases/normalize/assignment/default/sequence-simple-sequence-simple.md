@@ -31,13 +31,17 @@ let d = 3;
     let tmpFallthrough = false;
     {
       ('default case:');
-      a;
-      tmpAssignMemLhsObj = b;
-      a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignObj.c = d;
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      {
+        a;
+        {
+          tmpAssignMemLhsObj = b;
+          a;
+          tmpNestedAssignObj = b;
+          tmpNestedAssignObj.c = d;
+          tmpAssignMemRhs = d;
+          tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        }
+      }
     }
   }
 }

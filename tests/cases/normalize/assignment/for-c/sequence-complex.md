@@ -36,10 +36,14 @@ let n = 1;
       tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
-        a;
-        tmpAssignMemLhsObj = $(b);
-        tmpAssignMemRhs = d;
-        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        {
+          a;
+          {
+            tmpAssignMemLhsObj = $(b);
+            tmpAssignMemRhs = d;
+            tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+          }
+        }
       } else {
         break;
       }

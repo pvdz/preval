@@ -27,10 +27,14 @@ tmpNewObj = function () {
   var tmpAssignMemLhsObj;
   var tmpAssignMemRhs;
   {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      {
+        tmpAssignMemLhsObj = $(b);
+        tmpAssignMemRhs = d;
+        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      }
+    }
     let tmpStmtArg = d;
     return tmpStmtArg;
   }

@@ -30,16 +30,18 @@ let d = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    a;
-    tmpNestedAssignMemberObj = $(b);
-    a;
-    tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.c = d;
-    tmpNestedAssignMemberRhs = d;
-    tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-    tmpAssignMemLhsObj = tmpNestedAssignMemberRhs;
-    tmpAssignMemRhs = tmpForOfLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      a;
+      tmpNestedAssignMemberObj = $(b);
+      a;
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignObj.c = d;
+      tmpNestedAssignMemberRhs = d;
+      tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+      tmpAssignMemLhsObj = tmpNestedAssignMemberRhs;
+      tmpAssignMemRhs = tmpForOfLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c, d);

@@ -41,9 +41,11 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          tmpAssignMemLhsObj = $(a);
-          tmpAssignMemRhs = b + c;
-          tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+          {
+            tmpAssignMemLhsObj = $(a);
+            tmpAssignMemRhs = b + c;
+            tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+          }
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -72,9 +74,11 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemRhs = b + c;
-        tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+        {
+          tmpAssignMemLhsObj = $(a);
+          tmpAssignMemRhs = b + c;
+          tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+        }
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

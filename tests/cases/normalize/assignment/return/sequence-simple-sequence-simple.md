@@ -24,15 +24,13 @@ let a = 1;
 let b = { c: 2 };
 let d = 3;
 tmpNewObj = function () {
-  var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
   {
     a;
     let tmpBindInitMemberObject = b;
-    a;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      b.c = d;
+    }
     let tmpBindInitRhs = d;
     tmpBindInitMemberObject.c = tmpBindInitRhs;
     let tmpStmtArg = tmpBindInitRhs;
@@ -49,12 +47,8 @@ $(a, b, c, d);
 var tmpNewObj;
 let b = { c: 2 };
 tmpNewObj = function () {
-  var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
   let tmpBindInitMemberObject = b;
-  tmpAssignMemLhsObj = b;
-  tmpAssignMemRhs = 3;
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  b.c = 3;
   tmpBindInitMemberObject.c = 3;
   return 3;
 };

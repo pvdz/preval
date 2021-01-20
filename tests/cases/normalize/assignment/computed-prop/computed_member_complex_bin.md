@@ -20,8 +20,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -29,33 +30,38 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 let obj = {};
-tmpAssignedComputedObj = obj;
-tmpNestedAssignCompMemberObj = $(a);
-tmpNestedAssignCompMemberProp = $('x');
-tmpNestedAssignCompMemberRhs = b + c;
-tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-tmpAssignedComputedProp = tmpNestedAssignCompMemberRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+{
+  tmpAssignComputedObj = obj;
+  tmpNestedAssignCompMemberObj = $(a);
+  tmpNestedAssignCompMemberProp = $('x');
+  tmpNestedAssignCompMemberRhs = b + c;
+  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+  tmpAssignComputedProp = tmpNestedAssignCompMemberRhs;
+  tmpAssignComputedRhs = 1000;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+}
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
 let a = { x: 10 };
 let obj = {};
-tmpAssignedComputedObj = obj;
+tmpAssignComputedObj = obj;
 tmpNestedAssignCompMemberObj = $(a);
 tmpNestedAssignCompMemberProp = $('x');
 tmpNestedAssignCompMemberRhs = 5;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-tmpAssignedComputedProp = tmpNestedAssignCompMemberRhs;
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 1000;
+tmpAssignComputedProp = tmpNestedAssignCompMemberRhs;
+tmpAssignComputedRhs = 1000;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, 5, 3);
 `````
 

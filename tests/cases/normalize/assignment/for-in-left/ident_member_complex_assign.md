@@ -33,17 +33,19 @@ let d = 4;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    tmpNestedAssignMemberObj = $(b);
-    tmpNestedAssignMemberObj_1 = $(c);
-    tmpNestedAssignMemberRhs_1 = $(d);
-    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-    a = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
-    tmpAssignMemRhs = tmpForInLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpNestedAssignMemberObj = $(b);
+      tmpNestedAssignMemberObj_1 = $(c);
+      tmpNestedAssignMemberRhs_1 = $(d);
+      tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+      tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+      a = tmpNestedComplexRhs;
+      tmpAssignMemLhsObj = tmpNestedComplexRhs;
+      tmpAssignMemRhs = tmpForInLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c, d);

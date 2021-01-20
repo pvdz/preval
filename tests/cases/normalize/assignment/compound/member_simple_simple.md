@@ -25,10 +25,12 @@ var tmpBinaryLeft;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpAssignMemLhsObj = a;
-tmpBinaryLeft = a.x;
-tmpAssignMemRhs = tmpBinaryLeft * b;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = a;
+  tmpBinaryLeft = a.x;
+  tmpAssignMemRhs = tmpBinaryLeft * b;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 $(a, b, c);
 `````
 

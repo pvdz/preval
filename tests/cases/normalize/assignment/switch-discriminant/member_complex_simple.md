@@ -25,9 +25,11 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  tmpAssignMemLhsObj = $(a);
-  tmpAssignMemRhs = b;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  {
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemRhs = b;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
   const tmpSwitchTest = b;
   {
     let tmpFallthrough = false;

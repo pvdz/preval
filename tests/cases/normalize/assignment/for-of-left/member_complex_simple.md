@@ -28,11 +28,13 @@ let c = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    tmpNestedAssignObj = $(a);
-    tmpNestedAssignObj.x = b;
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = tmpForOfLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpNestedAssignObj = $(a);
+      tmpNestedAssignObj.x = b;
+      tmpAssignMemLhsObj = b;
+      tmpAssignMemRhs = tmpForOfLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c);

@@ -21,8 +21,6 @@ $(a, b, c, d);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
@@ -41,10 +39,10 @@ let d = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          a;
-          tmpAssignMemLhsObj = b;
-          tmpAssignMemRhs = d;
-          tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+          {
+            a;
+            b.c = d;
+          }
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -73,10 +71,10 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        a;
-        tmpAssignMemLhsObj = b;
-        tmpAssignMemRhs = d;
-        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        {
+          a;
+          b.c = d;
+        }
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

@@ -26,9 +26,11 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  tmpAssignMemLhsObj = $(a);
-  tmpAssignMemRhs = b + c;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  {
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemRhs = b + c;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
   let tmpAssignLogicStmtOr = tmpAssignMemRhs;
   if (tmpAssignLogicStmtOr) {
     tmpArg = $(true);

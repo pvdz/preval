@@ -25,10 +25,14 @@ let a = 1;
 let b = { c: 2 };
 let d = 3;
 {
-  a;
-  tmpAssignMemLhsObj = $(b);
-  tmpAssignMemRhs = d;
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  {
+    a;
+    {
+      tmpAssignMemLhsObj = $(b);
+      tmpAssignMemRhs = d;
+      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    }
+  }
 }
 $(a, b, c, d);
 `````

@@ -27,10 +27,12 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpNestedPropAssignRhs = c;
-tmpAssignMemLhsObj = b;
-tmpBinaryLeft = b.x;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = b;
+  tmpBinaryLeft = b.x;
+  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 a = a * tmpNestedPropAssignRhs;
 $(a, b, c);
 `````

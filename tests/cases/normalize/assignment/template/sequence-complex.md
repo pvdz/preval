@@ -25,7 +25,7 @@ var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
-tmpArg = `abc ${(a, (tmpAssignMemLhsObj = $(b)), (tmpAssignMemRhs = d), (tmpAssignMemLhsObj.c = tmpAssignMemRhs))} def`;
+tmpArg = `abc ${((a, (tmpAssignMemLhsObj = $(b)), (tmpAssignMemRhs = d), tmpAssignMemLhsObj).c = tmpAssignMemRhs)} def`;
 $(tmpArg);
 $(a, b, c, d);
 `````
@@ -37,7 +37,7 @@ var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 let b = { c: 2 };
-tmpArg = `abc ${(1, (tmpAssignMemLhsObj = $(b)), (tmpAssignMemRhs = 3), (tmpAssignMemLhsObj.c = tmpAssignMemRhs))} def`;
+tmpArg = `abc ${((1, (tmpAssignMemLhsObj = $(b)), (tmpAssignMemRhs = 3), tmpAssignMemLhsObj).c = tmpAssignMemRhs)} def`;
 $(tmpArg);
 $(1, b, c, 3);
 `````

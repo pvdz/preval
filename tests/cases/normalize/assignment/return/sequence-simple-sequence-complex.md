@@ -29,10 +29,14 @@ tmpNewObj = function () {
   {
     a;
     let tmpBindInitMemberObject = b;
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    {
+      a;
+      {
+        tmpAssignMemLhsObj = $(b);
+        tmpAssignMemRhs = d;
+        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      }
+    }
     let tmpBindInitRhs = d;
     tmpBindInitMemberObject.c = tmpBindInitRhs;
     let tmpStmtArg = tmpBindInitRhs;

@@ -29,9 +29,11 @@ let b = { x: 1, y: 2 };
   {
     const tmpForInRhs = $(b);
     for (tmpForInLhsNode in tmpForInRhs) {
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+      {
+        tmpAssignMemLhsObj = $(a);
+        tmpAssignMemRhs = tmpForInLhsNode;
+        tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+      }
       tmpArg = a.x;
       $(tmpArg);
     }

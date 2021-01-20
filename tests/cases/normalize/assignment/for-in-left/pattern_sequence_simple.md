@@ -29,15 +29,17 @@ let z = [10, 20, 30];
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    $(x);
-    $(y);
-    arrAssignPatternRhs = z;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    tmpAssignMemLhsObj = arrAssignPatternRhs;
-    tmpAssignMemRhs = tmpForInLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      $(x);
+      $(y);
+      arrAssignPatternRhs = z;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      tmpAssignMemLhsObj = arrAssignPatternRhs;
+      tmpAssignMemRhs = tmpForInLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(x, y, z);

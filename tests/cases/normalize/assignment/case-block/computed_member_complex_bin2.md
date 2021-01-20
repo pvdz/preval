@@ -1,8 +1,8 @@
 # Preval test case
 
-# member_complex_simple.md
+# computed_member_complex_bin.md
 
-> normalize > assignment > case-block > member_complex_simple
+> normalize > assignment > case-block > computed_member_complex_bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 
@@ -12,7 +12,11 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-switch ($('a')) { case $('a'): $(a).x = b; break; }
+switch ($('a', 1)) {
+  case $('a', 2): 
+    a['x'] = b + c;
+  break;
+}
 $(a, b, c);
 `````
 
@@ -21,13 +25,14 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  const tmpSwitchTest = $('a');
+  const tmpSwitchTest = $('a', 1);
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     {
@@ -35,16 +40,17 @@ let c = 3;
       if (ifTestTmp) {
       } else {
         tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
+        tmpBinaryRight = $('a', 2);
         ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
       }
       if (ifTestTmp) {
         ('case 0:');
         {
           {
-            tmpAssignMemLhsObj = $(a);
-            tmpAssignMemRhs = b;
-            tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+            tmpAssignComputedObj = a;
+            tmpAssignComputedProp = 'x';
+            tmpAssignComputedRhs = b + c;
+            tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
           }
           break tmpSwitchBreak;
         }
@@ -60,7 +66,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { x: 10 };
-$('a');
+$('a', 1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
@@ -68,16 +74,17 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
+      tmpBinaryRight = $('a', 2);
       ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
     }
     if (ifTestTmp) {
       ('case 0:');
       {
         {
-          tmpAssignMemLhsObj = $(a);
-          tmpAssignMemRhs = b;
-          tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+          tmpAssignComputedObj = a;
+          tmpAssignComputedProp = 'x';
+          tmpAssignComputedRhs = b + c;
+          tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
         }
         break tmpSwitchBreak;
       }
@@ -91,10 +98,10 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[['a'], ['a'], [{ x: 10 }], "<crash[ Cannot set property 'x' of undefined ]>"];
+[['a', 1], ['a', 2], [{ x: 5 }, 2, 3], null];
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['a'], '<crash[ <ref> is not defined ]>'];
+[['a', 1], '<crash[ <ref> is not defined ]>'];
 

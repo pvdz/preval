@@ -22,8 +22,6 @@ $(a, b, c, d);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let d = 3;
@@ -36,10 +34,10 @@ let n = 1;
       tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
-        a;
-        tmpAssignMemLhsObj = b;
-        tmpAssignMemRhs = d;
-        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        {
+          a;
+          b.c = d;
+        }
       } else {
         break;
       }
@@ -54,8 +52,6 @@ $(a, b, c, d);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 let n = 1;
 while (true) {
@@ -64,9 +60,7 @@ while (true) {
   tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
-    tmpAssignMemLhsObj = b;
-    tmpAssignMemRhs = 3;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    b.c = 3;
   } else {
     break;
   }

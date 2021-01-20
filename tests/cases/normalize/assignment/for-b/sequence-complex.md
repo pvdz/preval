@@ -27,10 +27,14 @@ let d = 3;
 {
   while (true) {
     {
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+      {
+        a;
+        {
+          tmpAssignMemLhsObj = $(b);
+          tmpAssignMemRhs = d;
+          tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        }
+      }
       let ifTestTmp = d;
       if (ifTestTmp) {
       } else {

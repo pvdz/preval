@@ -25,7 +25,7 @@ $(a, b, c, d);
 function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
   var tmpAssignMemRhs;
-  var tmpNestedPropAssignRhs;
+  var tmpNestedAssignObj;
   {
     let foo;
     {
@@ -34,9 +34,9 @@ function f($tdz$__foo) {
         a;
         tmpAssignMemLhsObj = $(b);
         tmpAssignMemRhs = d;
-        tmpNestedPropAssignRhs = tmpAssignMemRhs;
-        tmpAssignMemLhsObj.c = tmpNestedPropAssignRhs;
-        foo = tmpNestedPropAssignRhs;
+        tmpNestedAssignObj = tmpAssignMemLhsObj;
+        tmpNestedAssignObj.c = tmpAssignMemRhs;
+        foo = tmpAssignMemRhs;
       } else {
         foo = $tdz$__foo;
       }
@@ -59,15 +59,15 @@ $(a, b, c, d);
 function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
   var tmpAssignMemRhs;
-  var tmpNestedPropAssignRhs;
+  var tmpNestedAssignObj;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = $(b);
     tmpAssignMemRhs = 3;
-    tmpNestedPropAssignRhs = tmpAssignMemRhs;
-    tmpAssignMemLhsObj.c = tmpNestedPropAssignRhs;
-    foo = tmpNestedPropAssignRhs;
+    tmpNestedAssignObj = tmpAssignMemLhsObj;
+    tmpNestedAssignObj.c = tmpAssignMemRhs;
+    foo = tmpAssignMemRhs;
   } else {
     foo = $tdz$__foo;
   }

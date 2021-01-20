@@ -30,9 +30,11 @@ function f() {
   tmpObjPropValue_1 = $();
   tmpObjPropValue = { b: tmpObjPropValue_1 };
   const obj = { a: tmpObjPropValue };
-  tmpAssignMemLhsObj = obj.a;
-  tmpAssignMemRhs = 15;
-  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+  {
+    tmpAssignMemLhsObj = obj.a;
+    tmpAssignMemRhs = 15;
+    tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+  }
   {
     tmpMemberComplexObj = obj.a;
     tmpArg = tmpMemberComplexObj.b;

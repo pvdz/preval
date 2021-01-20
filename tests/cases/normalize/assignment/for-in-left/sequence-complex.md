@@ -28,12 +28,14 @@ let d = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    a;
-    tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.c = d;
-    tmpAssignMemLhsObj = d;
-    tmpAssignMemRhs = tmpForInLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      a;
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignObj.c = d;
+      tmpAssignMemLhsObj = d;
+      tmpAssignMemRhs = tmpForInLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, c, d);

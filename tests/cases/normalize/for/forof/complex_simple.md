@@ -27,9 +27,11 @@ let b = { x: 1, y: 2 };
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of b) {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemRhs = tmpForOfLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemRhs = tmpForOfLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
     tmpArg = a.x;
     $(tmpArg);
   }

@@ -26,9 +26,11 @@ let b = 2;
 let c = 3;
 while (true) {
   {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemRhs = b;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemRhs = b;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
     let ifTestTmp = b;
     if (ifTestTmp) {
     } else {

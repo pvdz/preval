@@ -54,10 +54,12 @@ const obj = {
     return a;
   },
 };
-tmpAssignMemLhsObj = obj;
-tmpBinaryLeft_2 = obj.x;
-tmpAssignMemRhs = tmpBinaryLeft_2 + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = obj;
+  tmpBinaryLeft_2 = obj.x;
+  tmpAssignMemRhs = tmpBinaryLeft_2 + 5;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 $(a, s);
 `````
 

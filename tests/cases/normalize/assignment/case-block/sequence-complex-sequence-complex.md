@@ -42,13 +42,17 @@ let d = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          a;
-          tmpAssignMemLhsObj = $(b);
-          a;
-          tmpNestedAssignObj = $(b);
-          tmpNestedAssignObj.c = d;
-          tmpAssignMemRhs = d;
-          tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+          {
+            a;
+            {
+              tmpAssignMemLhsObj = $(b);
+              a;
+              tmpNestedAssignObj = $(b);
+              tmpNestedAssignObj.c = d;
+              tmpAssignMemRhs = d;
+              tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+            }
+          }
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -77,13 +81,17 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        a;
-        tmpAssignMemLhsObj = $(b);
-        a;
-        tmpNestedAssignObj = $(b);
-        tmpNestedAssignObj.c = d;
-        tmpAssignMemRhs = d;
-        tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+        {
+          a;
+          {
+            tmpAssignMemLhsObj = $(b);
+            a;
+            tmpNestedAssignObj = $(b);
+            tmpNestedAssignObj.c = d;
+            tmpAssignMemRhs = d;
+            tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+          }
+        }
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

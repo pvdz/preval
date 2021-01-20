@@ -19,8 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -29,9 +30,12 @@ let c = 3;
   {
     let tmpBindInitMemberObject = a;
     let tmpBindInitRhs = b + c;
-    tmpAssignedComputedObj = tmpBindInitMemberObject;
-    tmpAssignedComputedProp = $('x');
-    tmpAssignedComputedObj[tmpAssignedComputedProp] = tmpBindInitRhs;
+    {
+      tmpAssignComputedObj = tmpBindInitMemberObject;
+      tmpAssignComputedProp = $('x');
+      tmpAssignComputedRhs = tmpBindInitRhs;
+      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    }
     const tmpForInRhs = tmpBindInitRhs;
     for (tmpForInLhsDecl in tmpForInRhs) {
       let x = tmpForInLhsDecl;
@@ -44,14 +48,16 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignedComputedObj;
-var tmpAssignedComputedProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
 let a = { x: 10 };
 let tmpForInLhsDecl;
 let tmpBindInitMemberObject = a;
-tmpAssignedComputedObj = tmpBindInitMemberObject;
-tmpAssignedComputedProp = $('x');
-tmpAssignedComputedObj[tmpAssignedComputedProp] = 5;
+tmpAssignComputedObj = tmpBindInitMemberObject;
+tmpAssignComputedProp = $('x');
+tmpAssignComputedRhs = 5;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 for (tmpForInLhsDecl in 5) {
 }
 $(a, 5, 3);

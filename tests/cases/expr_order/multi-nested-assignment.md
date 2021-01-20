@@ -66,18 +66,20 @@ e = function () {
   d = 54;
   return 5;
 };
-tmpAssignMemLhsObj = a();
-tmpNestedAssignMemberObj = b();
-tmpNestedAssignMemberObj_1 = c();
-tmpNestedAssignMemberObj_2 = d();
-tmpNestedAssignMemberRhs_2 = e();
-tmpNestedAssignMemberObj_2.x = tmpNestedAssignMemberRhs_2;
-tmpNestedAssignMemberRhs_1 = tmpNestedAssignMemberRhs_2;
-tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-tmpAssignMemRhs = tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = a();
+  tmpNestedAssignMemberObj = b();
+  tmpNestedAssignMemberObj_1 = c();
+  tmpNestedAssignMemberObj_2 = d();
+  tmpNestedAssignMemberRhs_2 = e();
+  tmpNestedAssignMemberObj_2.x = tmpNestedAssignMemberRhs_2;
+  tmpNestedAssignMemberRhs_1 = tmpNestedAssignMemberRhs_2;
+  tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+  tmpAssignMemRhs = tmpNestedAssignMemberRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 $(a, b, c, d, e);
 `````
 

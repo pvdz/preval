@@ -25,9 +25,11 @@ var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpAssignMemLhsObj = $(a);
-tmpAssignMemRhs = b;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+{
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemRhs = b;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+}
 let wat = b;
 $(wat);
 $(a, b, c);

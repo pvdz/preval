@@ -33,17 +33,19 @@ let z = [10, 20, 30];
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    arrAssignPatternRhs_1 = z;
-    arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-    x = arrPatternSplat_1[1];
-    y = arrPatternSplat_1[2];
-    arrAssignPatternRhs = arrAssignPatternRhs_1;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    a = arrPatternSplat[0];
-    b = arrPatternSplat[1];
-    tmpAssignMemLhsObj = arrAssignPatternRhs;
-    tmpAssignMemRhs = tmpForOfLhsNode;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    {
+      arrAssignPatternRhs_1 = z;
+      arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+      x = arrPatternSplat_1[1];
+      y = arrPatternSplat_1[2];
+      arrAssignPatternRhs = arrAssignPatternRhs_1;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
+      tmpAssignMemLhsObj = arrAssignPatternRhs;
+      tmpAssignMemRhs = tmpForOfLhsNode;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    }
   }
 }
 $(a, b, x, y, z);

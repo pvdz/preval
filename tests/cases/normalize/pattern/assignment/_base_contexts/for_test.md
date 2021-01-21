@@ -19,6 +19,7 @@ var objAssignPatternRhs;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
+  objAssignPatternRhs;
   while (false) {
     y;
   }

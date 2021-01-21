@@ -33,6 +33,7 @@ if (tmpTernaryTest) {
 } else {
   y = arrPatternBeforeDefault;
 }
+objAssignPatternRhs;
 $('bad');
 `````
 

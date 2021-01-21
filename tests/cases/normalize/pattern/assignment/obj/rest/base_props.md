@@ -27,6 +27,7 @@ b = objAssignPatternRhs.b;
 tmpArg = objAssignPatternRhs;
 tmpArg_1 = ['a', 'b'];
 x = objPatternRest(tmpArg, tmpArg_1, 'x');
+objAssignPatternRhs;
 $(x);
 `````
 

@@ -21,7 +21,7 @@ let y;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
-  let tmpBindingInit = x;
+  let tmpBindingInit = objAssignPatternRhs;
   let ifTestTmp = tmpBindingInit.foo;
   if (ifTestTmp) {
     y;
@@ -35,7 +35,7 @@ let y;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
-let tmpBindingInit = x;
+let tmpBindingInit = objAssignPatternRhs;
 let ifTestTmp = tmpBindingInit.foo;
 if (ifTestTmp) {
 }
@@ -46,9 +46,6 @@ if (ifTestTmp) {
 Should call `$` with:
  - 0: undefined
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'foo' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'foo' of undefined ]>"];
-
+Final output calls: Same

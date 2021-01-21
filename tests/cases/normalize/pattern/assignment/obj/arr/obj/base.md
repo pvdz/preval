@@ -43,6 +43,7 @@ arrPatternStep = arrPatternSplat[0];
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('ok');
 `````
 

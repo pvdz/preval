@@ -27,6 +27,7 @@ var objAssignPatternRhs;
 }
 objAssignPatternRhs = 1;
 a_1 = objAssignPatternRhs.x;
+objAssignPatternRhs;
 {
   let a_2 = 1;
 }

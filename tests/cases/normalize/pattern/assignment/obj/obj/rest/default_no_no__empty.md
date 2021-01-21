@@ -23,6 +23,7 @@ var objPatternNoDefault;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 y = objPatternRest(objPatternNoDefault, [], undefined);
+objAssignPatternRhs;
 $('bad');
 `````
 

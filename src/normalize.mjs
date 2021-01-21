@@ -2391,7 +2391,7 @@ export function phaseNormalize(fdata, fname) {
           if (newBindings.length) {
             rule('Assignment obj patterns not allowed');
             before(node);
-            log('- `({x} = y())` --> `var tmp; tmp = y(), x = tmp.x`');
+            log('- `({x} = y())` --> `tmp = y(), x = tmp.x, tmp`');
 
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
@@ -2406,6 +2406,7 @@ export function phaseNormalize(fdata, fname) {
               if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
               expressions.push(AST.assignmentExpression(name, expr));
             });
+            expressions.push(AST.identifier(rhsTmpName));
             const newNode = AST.sequenceExpression(expressions);
             crumbSet(1, newNode);
             after(newNode);

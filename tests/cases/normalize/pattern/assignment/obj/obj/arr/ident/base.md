@@ -35,6 +35,7 @@ objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 arrPatternSplat = [...objPatternNoDefault_1];
 z = arrPatternSplat[0];
+objAssignPatternRhs;
 $(z);
 `````
 

@@ -26,6 +26,7 @@ objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 z = objPatternNoDefault_1.z;
+objAssignPatternRhs;
 `````
 
 ## Output

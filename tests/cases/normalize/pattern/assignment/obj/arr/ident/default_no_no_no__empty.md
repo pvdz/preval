@@ -25,6 +25,7 @@ objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
+objAssignPatternRhs;
 $('bad');
 `````
 

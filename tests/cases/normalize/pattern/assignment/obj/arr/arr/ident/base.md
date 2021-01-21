@@ -33,6 +33,7 @@ arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
 y = arrPatternSplat_1[0];
+objAssignPatternRhs;
 $(y);
 `````
 

@@ -35,6 +35,7 @@ objPatternNoDefault = objAssignPatternRhs.x;
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('ok');
 `````
 

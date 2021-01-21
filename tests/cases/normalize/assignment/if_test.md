@@ -9,40 +9,52 @@
 ## Input
 
 `````js filename=intro
-let y;
-if (({ x } = 1)) y;
+let x;
+if (({ x } = { x: $(1) })) $(2);
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
 var objAssignPatternRhs;
-let y;
+var tmpObjPropValue;
+let x;
 {
-  objAssignPatternRhs = 1;
+  tmpObjPropValue = $(1);
+  objAssignPatternRhs = { x: tmpObjPropValue };
   x = objAssignPatternRhs.x;
-  let ifTestTmp = x;
+  let ifTestTmp = objAssignPatternRhs;
   if (ifTestTmp) {
-    y;
+    $(2);
   }
 }
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
 var objAssignPatternRhs;
-objAssignPatternRhs = 1;
+var tmpObjPropValue;
+let x;
+tmpObjPropValue = $(1);
+objAssignPatternRhs = { x: tmpObjPropValue };
 x = objAssignPatternRhs.x;
-let ifTestTmp = x;
+let ifTestTmp = objAssignPatternRhs;
 if (ifTestTmp) {
+  $(2);
 }
+$(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - 0: 1
+ - 1: 2
+ - 2: null
+ - 3: undefined
 
 Normalized calls: Same
 

@@ -4,37 +4,36 @@
 
 > normalize > pattern > param > _base > obj
 >
-> Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
+> Testing simple pattern normalizations
 
 ## Input
 
 `````js filename=intro
-{ let x = 1; }
-({ x } = 1);
-{ let x = 1; }
+({ x } = 1).foo
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpMemberComplexObj;
 var objAssignPatternRhs;
 {
-  let x = 1;
-}
-objAssignPatternRhs = 1;
-x_1 = objAssignPatternRhs.x;
-objAssignPatternRhs;
-{
-  let x_2 = 1;
+  objAssignPatternRhs = 1;
+  x = objAssignPatternRhs.x;
+  tmpMemberComplexObj = objAssignPatternRhs;
+  tmpMemberComplexObj.foo;
 }
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpMemberComplexObj;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
-x_1 = objAssignPatternRhs.x;
+x = objAssignPatternRhs.x;
+tmpMemberComplexObj = objAssignPatternRhs;
+tmpMemberComplexObj.foo;
 `````
 
 ## Result

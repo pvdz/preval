@@ -26,6 +26,7 @@ tmpObjPropValue = ['abc'];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
+objAssignPatternRhs;
 $('ok');
 `````
 

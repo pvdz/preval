@@ -38,6 +38,7 @@ if (tmpTernaryTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 arrPatternSplat = [...objPatternAfterDefault];
+objAssignPatternRhs;
 $('ok');
 `````
 

@@ -40,6 +40,7 @@ objPatternNoDefault_1 = objPatternNoDefault.y;
 arrPatternSplat = [...objPatternNoDefault_1];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
+objAssignPatternRhs;
 $('ok');
 `````
 

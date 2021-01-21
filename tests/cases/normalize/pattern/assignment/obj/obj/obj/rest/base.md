@@ -33,6 +33,7 @@ objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 z = objPatternRest(objPatternNoDefault_1, [], undefined);
+objAssignPatternRhs;
 $(z);
 `````
 

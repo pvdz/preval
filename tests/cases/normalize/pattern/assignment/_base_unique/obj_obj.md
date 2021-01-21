@@ -27,6 +27,7 @@ objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
 z_1 = objPatternNoDefault_1.z;
+objAssignPatternRhs;
 {
   let z_2 = 1;
 }

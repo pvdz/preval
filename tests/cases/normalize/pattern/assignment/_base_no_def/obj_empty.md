@@ -30,6 +30,7 @@ objAssignPatternRhs = 1;
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 `````
 
 ## Output

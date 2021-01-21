@@ -19,15 +19,13 @@ const f = (a = { x } = 1) => { return a };
 `````js filename=intro
 const f = ($tdz$__a) => {
   var objAssignPatternRhs;
-  var tmpNestedComplexRhs;
   let a;
   {
     let ifTestTmp = $tdz$__a === undefined;
     if (ifTestTmp) {
       objAssignPatternRhs = 1;
-      tmpNestedComplexRhs = objAssignPatternRhs.x;
-      x = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
+      x = objAssignPatternRhs.x;
+      a = objAssignPatternRhs;
     } else {
       a = $tdz$__a;
     }
@@ -41,14 +39,12 @@ const f = ($tdz$__a) => {
 `````js filename=intro
 ($tdz$__a) => {
   var objAssignPatternRhs;
-  var tmpNestedComplexRhs;
   let a;
   let ifTestTmp = $tdz$__a === undefined;
   if (ifTestTmp) {
     objAssignPatternRhs = 1;
-    tmpNestedComplexRhs = objAssignPatternRhs.x;
-    x = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    x = objAssignPatternRhs.x;
+    a = objAssignPatternRhs;
   } else {
     a = $tdz$__a;
   }

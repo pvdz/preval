@@ -51,6 +51,7 @@ objPatternNoDefault_2 = objPatternNoDefault_1.z;
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('ok');
 `````
 

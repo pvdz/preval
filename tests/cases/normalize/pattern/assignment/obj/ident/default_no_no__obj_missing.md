@@ -21,6 +21,7 @@ $(x);
 var objAssignPatternRhs;
 objAssignPatternRhs = { b: 2, c: 3 };
 x = objAssignPatternRhs.x;
+objAssignPatternRhs;
 $(x);
 `````
 

@@ -21,6 +21,7 @@ $('bad');
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
+objAssignPatternRhs;
 $('bad');
 `````
 

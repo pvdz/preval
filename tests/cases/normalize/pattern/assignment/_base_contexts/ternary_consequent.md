@@ -20,6 +20,7 @@ var objAssignPatternRhs;
   if (a) {
     objAssignPatternRhs = 1;
     x = objAssignPatternRhs.x;
+    objAssignPatternRhs;
   } else {
     c;
   }

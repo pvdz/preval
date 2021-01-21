@@ -53,6 +53,7 @@ objPatternNoDefault_1 = arrPatternStep.y;
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('ok');
 `````
 

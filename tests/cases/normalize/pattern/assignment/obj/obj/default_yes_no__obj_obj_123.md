@@ -49,6 +49,7 @@ if (tmpTernaryTest) {
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('ok');
 `````
 

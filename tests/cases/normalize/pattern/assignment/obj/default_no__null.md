@@ -33,6 +33,7 @@ objAssignPatternRhs = null;
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
 }
+objAssignPatternRhs;
 $('bad');
 `````
 

@@ -37,6 +37,7 @@ if (tmpTernaryTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 y = objPatternRest(objPatternAfterDefault, [], undefined);
+objAssignPatternRhs;
 $(y);
 `````
 

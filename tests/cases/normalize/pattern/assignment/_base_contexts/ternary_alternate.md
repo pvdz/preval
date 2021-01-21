@@ -22,6 +22,7 @@ var objAssignPatternRhs;
   } else {
     objAssignPatternRhs = 1;
     x = objAssignPatternRhs.x;
+    objAssignPatternRhs;
   }
 }
 `````

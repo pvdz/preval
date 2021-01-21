@@ -37,6 +37,7 @@ if (tmpTernaryTest) {
 }
 arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
+objAssignPatternRhs;
 $('bad');
 `````
 

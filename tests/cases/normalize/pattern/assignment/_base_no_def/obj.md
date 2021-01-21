@@ -20,6 +20,7 @@ var objAssignPatternRhs;
 let x = 10;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
+objAssignPatternRhs;
 `````
 
 ## Output

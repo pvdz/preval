@@ -27,6 +27,7 @@ objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 y_1 = arrPatternSplat[0];
+objAssignPatternRhs;
 {
   let y_2 = 1;
 }

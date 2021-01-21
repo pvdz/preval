@@ -30,6 +30,14 @@ function f($tdz$__pattern) {
       $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
+  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = $tdz$__pattern_after_default === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+  }
   return 'bad';
 }
 var tmpArg;
@@ -48,6 +56,14 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
+  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = $tdz$__pattern_after_default === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+  }
   return 'bad';
 }
 var tmpArg;
@@ -58,11 +74,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '(intermediate value)(intermediate value)(intermediate value)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

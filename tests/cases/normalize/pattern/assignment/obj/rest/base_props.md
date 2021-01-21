@@ -26,7 +26,7 @@ a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
 tmpArg = objAssignPatternRhs;
 tmpArg_1 = ['a', 'b'];
-x = objPatternRest(tmpArg, tmpArg_1);
+x = objPatternRest(tmpArg, tmpArg_1, 'x');
 $(x);
 `````
 
@@ -41,7 +41,7 @@ a = objAssignPatternRhs.a;
 b = objAssignPatternRhs.b;
 tmpArg = objAssignPatternRhs;
 tmpArg_1 = ['a', 'b'];
-x = objPatternRest(tmpArg, tmpArg_1);
+x = objPatternRest(tmpArg, tmpArg_1, 'x');
 $(x);
 `````
 

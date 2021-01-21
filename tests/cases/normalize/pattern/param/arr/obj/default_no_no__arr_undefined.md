@@ -23,6 +23,14 @@ $(f([undefined, 20, 30], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -37,7 +45,15 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
-  arrPatternSplat[0];
+  let arrPatternStep = arrPatternSplat[0];
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -53,8 +69,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

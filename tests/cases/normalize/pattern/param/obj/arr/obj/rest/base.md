@@ -24,7 +24,7 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let y = objPatternRest(arrPatternStep, []);
+  let y = objPatternRest(arrPatternStep, [], undefined);
   return y;
 }
 var tmpArg;
@@ -45,7 +45,7 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let y = objPatternRest(arrPatternStep, []);
+  let y = objPatternRest(arrPatternStep, [], undefined);
   return y;
 }
 var tmpArg;

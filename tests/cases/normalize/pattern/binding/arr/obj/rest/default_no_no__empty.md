@@ -21,7 +21,7 @@ $(x);
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 
@@ -30,7 +30,7 @@ $(x);
 `````js filename=intro
 const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 

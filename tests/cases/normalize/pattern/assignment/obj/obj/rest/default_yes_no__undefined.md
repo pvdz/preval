@@ -34,7 +34,7 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, []);
+y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 
@@ -57,7 +57,7 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, []);
+y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 

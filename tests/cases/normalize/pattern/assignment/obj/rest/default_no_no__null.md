@@ -20,7 +20,7 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 objAssignPatternRhs = null;
-x = objPatternRest(objAssignPatternRhs, []);
+x = objPatternRest(objAssignPatternRhs, [], 'x');
 $('bad');
 `````
 
@@ -29,18 +29,15 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 objAssignPatternRhs = null;
-x = objPatternRest(objAssignPatternRhs, []);
+x = objPatternRest(objAssignPatternRhs, [], 'x');
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'null' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

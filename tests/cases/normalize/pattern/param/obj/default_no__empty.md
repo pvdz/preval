@@ -21,6 +21,14 @@ $(f());
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  let objPatternCrashTest = tmpParamPattern === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = tmpParamPattern === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = tmpParamPattern.cannotDestructureThis;
+  }
   return 'bad';
 }
 var tmpArg;
@@ -31,19 +39,27 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+function f(tmpParamPattern) {
+  let objPatternCrashTest = tmpParamPattern === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = tmpParamPattern === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = tmpParamPattern.cannotDestructureThis;
+  }
+  return 'bad';
+}
 var tmpArg;
-tmpArg = 'bad';
+tmpArg = f();
 $(tmpArg);
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

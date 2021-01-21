@@ -19,25 +19,22 @@ $('bad');
 
 `````js filename=intro
 const bindingPatternObjRoot = null;
-const x = objPatternRest(bindingPatternObjRoot, []);
+const x = objPatternRest(bindingPatternObjRoot, [], 'x');
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-objPatternRest(null, []);
+objPatternRest(null, [], 'x');
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'null' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

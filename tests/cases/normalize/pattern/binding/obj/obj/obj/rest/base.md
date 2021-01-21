@@ -29,7 +29,7 @@ tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
-const z = objPatternRest(objPatternNoDefault_1, []);
+const z = objPatternRest(objPatternNoDefault_1, [], undefined);
 $(z);
 `````
 
@@ -43,7 +43,7 @@ tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault_1 = objPatternNoDefault.y;
-const z = objPatternRest(objPatternNoDefault_1, []);
+const z = objPatternRest(objPatternNoDefault_1, [], undefined);
 $(z);
 `````
 

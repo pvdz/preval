@@ -43,6 +43,14 @@ function f($tdz$__pattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg_1;
@@ -75,6 +83,14 @@ function f($tdz$__pattern) {
     arrPatternStep = $('fail');
   } else {
     arrPatternStep = arrPatternBeforeDefault;
+  }
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
   }
   return 'ok';
 }

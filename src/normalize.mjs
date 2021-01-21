@@ -711,7 +711,7 @@ export function phaseNormalize(fdata, fname) {
             );
             dnode.init = null;
             if (e.kind === 'const') e.kind = 'let';
-            node.body.splice(i+1, 0, newNode);
+            node.body.splice(i + 1, 0, newNode);
 
             after(node.body[i]);
             after(newNode);
@@ -2101,7 +2101,7 @@ export function phaseNormalize(fdata, fname) {
           const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
           const nameStack = [bindingPatternRootName];
           const newBindings = [];
-          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var');
+          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
 
           if (newBindings.length) {
             log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
@@ -2369,7 +2369,7 @@ export function phaseNormalize(fdata, fname) {
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
 
-          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings, 'assign');
+          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings, 'assign', true);
 
           if (newBindings.length) {
             rule('Assignment obj patterns not allowed');
@@ -3659,7 +3659,7 @@ export function phaseNormalize(fdata, fname) {
     superCallStack.pop();
   }
 
-  function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings, kind) {
+  function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings, kind, top = false) {
     // kind = param, var, assign
     group('- walkObjectPattern', kind);
 
@@ -3667,6 +3667,7 @@ export function phaseNormalize(fdata, fname) {
       log('- prop', i, ';', propNode.type);
 
       if (propNode.type === 'RestElement') {
+        log('  - rest prop');
         // Yes, it's Element.
         // This is a "leaf" node. Rest properties cannot be patterns and cannot have a default
         // `function f({a, ...b}){ return b; }`
@@ -3686,6 +3687,7 @@ export function phaseNormalize(fdata, fname) {
           AST.callExpression(BUILTIN_REST_HANDLER_NAME, [
             AST.identifier(cacheNameStack[cacheNameStack.length - 1]),
             AST.arrayExpression(node.properties.filter((n) => n !== propNode).map((n) => AST.literal(n.key.name))),
+            top ? AST.literal(restName) : AST.identifier('undefined'),
           ]),
         ]);
 
@@ -3696,8 +3698,6 @@ export function phaseNormalize(fdata, fname) {
 
       let valueNode = propNode.value;
       if (propNode.value.type === 'AssignmentPattern') {
-        log('The object pattern had a default. Preparing to compile that into statement.');
-
         // `function({x = y})`
         // -> We'll first transform the `x` part. Afterwards we'll know what the binding name
         //    of that step will be. Then we'll add a check to see if that's `undefined` and
@@ -3715,6 +3715,8 @@ export function phaseNormalize(fdata, fname) {
 
         // The param value before applying the default value checks
         const paramNameBeforeDefault = createFreshVarInCurrentRootScope('objPatternBeforeDefault');
+        log('  - Regular prop `' + propNode.key.name + '` with default');
+        log('  - Stored into `' + paramNameBeforeDefault + '`');
 
         // If this is a leaf then use the actual name, otherwise use a placeholder
         const paramNameAfterDefault =
@@ -3742,6 +3744,8 @@ export function phaseNormalize(fdata, fname) {
         const paramNameWithoutDefault =
           valueNode.type === 'Identifier' ? valueNode.name : createFreshVarInCurrentRootScope('objPatternNoDefault');
         cacheNameStack.push(paramNameWithoutDefault);
+        log('  - Regular prop `' + propNode.key.name + '` without default');
+        log('  - Stored into `' + paramNameWithoutDefault + '`');
 
         // Store the property in this name. It's a regular property access and the previous step should
         // be cached already. So read it from that cache.
@@ -3763,6 +3767,21 @@ export function phaseNormalize(fdata, fname) {
 
       cacheNameStack.pop();
     });
+
+    if (!node.properties.length) {
+      // No properties so we need to explicitly make sure it throws if the value is null/undefined
+      const paramNameBeforeDefault = createFreshVarInCurrentRootScope('objPatternCrashTest'); // Unused. Should eliminate easily.
+      const lastThing = cacheNameStack[cacheNameStack.length - 1];
+      newBindings.push([
+        paramNameBeforeDefault,
+        FRESH,
+        AST.logicalExpression(
+          '&&',
+          AST.logicalExpression('||', AST.binaryExpression('===', lastThing, 'undefined'), AST.binaryExpression('===', lastThing, 'null')),
+          AST.memberExpression(lastThing, 'cannotDestructureThis'),
+        ),
+      ]);
+    }
 
     groupEnd();
   }

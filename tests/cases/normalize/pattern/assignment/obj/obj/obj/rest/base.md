@@ -32,7 +32,7 @@ tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault_1, []);
+z = objPatternRest(objPatternNoDefault_1, [], undefined);
 $(z);
 `````
 
@@ -49,7 +49,7 @@ tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault_1, []);
+z = objPatternRest(objPatternNoDefault_1, [], undefined);
 $(z);
 `````
 

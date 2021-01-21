@@ -21,6 +21,7 @@ $('bad');
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternCrashTest;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
@@ -33,6 +34,18 @@ if (tmpTernaryTest) {
   objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
+}
+{
+  let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objPatternAfterDefault === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
 }
 $('bad');
 `````
@@ -43,6 +56,7 @@ $('bad');
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternCrashTest;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
@@ -56,17 +70,24 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
+let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objPatternAfterDefault === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-[[{ x: 'fail' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+[[{ x: 'fail' }], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{ x: 'fail' }], ['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ x: 'fail' }], ['bad'], null];
-
+Final output calls: Same

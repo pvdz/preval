@@ -20,13 +20,29 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = 'abc';
 const objPatternNoDefault = bindingPatternObjRoot.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-'abc'.x;
+const objPatternNoDefault = 'abc'.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 
@@ -36,8 +52,8 @@ Should call `$` with:
 ["<crash[ Cannot destructure property 'x' of '\"abc\"' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

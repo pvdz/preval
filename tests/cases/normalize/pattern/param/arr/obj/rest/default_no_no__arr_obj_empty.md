@@ -23,7 +23,7 @@ $(f([{}, 20, 30], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg;
@@ -39,7 +39,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg;

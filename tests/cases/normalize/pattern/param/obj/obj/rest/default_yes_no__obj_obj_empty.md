@@ -33,7 +33,7 @@ function f(tmpParamPattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return y;
 }
 var tmpArg_1;
@@ -57,7 +57,7 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return y;
 }
 var tmpArg_1;

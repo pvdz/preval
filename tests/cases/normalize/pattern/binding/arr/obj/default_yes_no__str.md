@@ -30,6 +30,14 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -44,6 +52,14 @@ if (ifTestTmp) {
   arrPatternStep = $('pass');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
+}
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 }
 $('ok');
 `````

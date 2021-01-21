@@ -22,7 +22,7 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 objAssignPatternRhs = { x: '', b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 $(y);
 `````
 
@@ -33,7 +33,7 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 objAssignPatternRhs = { x: '', b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 $(y);
 `````
 

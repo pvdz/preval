@@ -26,7 +26,7 @@ const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
-const y = objPatternRest(arrPatternStep, []);
+const y = objPatternRest(arrPatternStep, [], undefined);
 $(y);
 `````
 
@@ -41,7 +41,7 @@ const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
-const y = objPatternRest(arrPatternStep, []);
+const y = objPatternRest(arrPatternStep, [], undefined);
 $(y);
 `````
 

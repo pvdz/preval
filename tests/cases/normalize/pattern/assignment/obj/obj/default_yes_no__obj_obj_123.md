@@ -21,6 +21,7 @@ $('ok');
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
@@ -36,6 +37,18 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
+{
+  let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objPatternAfterDefault === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 $('ok');
 `````
 
@@ -45,6 +58,7 @@ $('ok');
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
@@ -59,6 +73,16 @@ if (tmpTernaryTest) {
   objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
+}
+let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objPatternAfterDefault === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('ok');
 `````

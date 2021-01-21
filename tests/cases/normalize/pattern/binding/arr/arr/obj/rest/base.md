@@ -27,7 +27,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat_1 = [...arrPatternStep];
 const arrPatternStep_1 = arrPatternSplat_1[0];
-const x = objPatternRest(arrPatternStep_1, []);
+const x = objPatternRest(arrPatternStep_1, [], undefined);
 $(x);
 `````
 
@@ -43,7 +43,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat_1 = [...arrPatternStep];
 const arrPatternStep_1 = arrPatternSplat_1[0];
-const x = objPatternRest(arrPatternStep_1, []);
+const x = objPatternRest(arrPatternStep_1, [], undefined);
 $(x);
 `````
 

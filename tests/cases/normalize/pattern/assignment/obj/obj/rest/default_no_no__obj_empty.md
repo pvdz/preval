@@ -22,7 +22,7 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 objAssignPatternRhs = {};
 objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 
@@ -33,7 +33,7 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 objAssignPatternRhs = {};
 objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 
@@ -43,8 +43,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

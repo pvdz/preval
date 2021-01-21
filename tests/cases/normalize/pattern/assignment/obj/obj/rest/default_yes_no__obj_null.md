@@ -34,7 +34,7 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, []);
+y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 
@@ -57,18 +57,15 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, []);
+y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

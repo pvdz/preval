@@ -21,6 +21,14 @@ $('bad');
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('bad');
 `````
 
@@ -28,7 +36,15 @@ $('bad');
 
 `````js filename=intro
 const arrPatternSplat = [...1];
-arrPatternSplat[0];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('bad');
 `````
 

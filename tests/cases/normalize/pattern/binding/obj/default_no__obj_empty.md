@@ -18,14 +18,30 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-({});
+const bindingPatternObjRoot = {};
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+}
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-({});
+const bindingPatternObjRoot = {};
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+}
 $('ok');
 `````
 

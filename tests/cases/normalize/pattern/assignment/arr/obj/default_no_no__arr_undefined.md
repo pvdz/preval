@@ -21,9 +21,22 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
+var objPatternCrashTest;
 arrAssignPatternRhs = [undefined, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
+{
+  let tmpAssignLogicStmtOr = arrPatternStep === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = arrPatternStep === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 arrAssignPatternRhs;
 $('ok');
 `````
@@ -34,9 +47,20 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
+var objPatternCrashTest;
 arrAssignPatternRhs = [undefined, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
+let tmpAssignLogicStmtOr = arrPatternStep === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = arrPatternStep === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('ok');
 `````
 
@@ -46,8 +70,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

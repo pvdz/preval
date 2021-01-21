@@ -40,9 +40,7 @@ testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length =
 console.log(
   `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
     fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
-  }${
-    badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''
-  }${
+  }${badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''}${
     badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
   }`,
 );
@@ -95,10 +93,20 @@ function runTestCase(
         if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
         stack.push(a);
       }
-      function objPatternRest(obj, withoutTheseProps) {
+      function objPatternRest(obj, withoutTheseProps, propName) {
         // Ugly hack that will work. Rest is a shallow clone.
-        const clone = {...obj};
-        withoutTheseProps.forEach(name => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
+        if (obj === null || obj === undefined) {
+          // This is what would happen at runtime.
+          if (propName) {
+            const {
+              [propName]: {},
+            } = obj;
+          } else {
+            const {} = obj;
+          }
+        }
+        const clone = { ...obj };
+        withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
         return clone;
       }
       const returns = new Function('$', 'objPatternRest', fdata.intro)($, objPatternRest);
@@ -112,7 +120,13 @@ function runTestCase(
       const msg = String(e?.message ?? e)
         .replace(/^.*is not a constructor.*$/, '<ref> is not a constructor')
         .replace(/^.*is not iterable.*$/, '<ref> is not iterable')
-        .replace(/^.* is not defined.*$/, '<ref> is not defined');
+        .replace(/^.* is not defined.*$/, '<ref> is not defined')
+        // Make the error in the real test the same as what we would throw after normalization
+        .replace(/^.*Cannot destructure '[^']*?' as it is (undefined|null)./, "Cannot read property 'cannotDestructureThis' of $1")
+        .replace(
+          /^.*Cannot destructure property '[^']*?' of '(?:undefined|object null)' as it is (undefined|null)./,
+          "Cannot read property 'cannotDestructureThis' of $1",
+        );
       stack.push('<crash[ ' + msg + ' ]>');
 
       if (withOutput) {

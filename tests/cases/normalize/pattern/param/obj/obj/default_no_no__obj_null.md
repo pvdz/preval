@@ -22,6 +22,14 @@ $(f({ x: null, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternCrashTest = objPatternNoDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  }
   return 'bad';
 }
 var tmpArg;
@@ -35,7 +43,15 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  tmpParamPattern.x;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternCrashTest = objPatternNoDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  }
   return 'bad';
 }
 var tmpArg;
@@ -48,11 +64,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure property 'x' of 'object null' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

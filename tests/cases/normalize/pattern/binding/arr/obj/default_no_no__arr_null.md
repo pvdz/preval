@@ -21,6 +21,14 @@ $('ok');
 const bindingPatternArrRoot = [null, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -29,7 +37,15 @@ $('ok');
 `````js filename=intro
 const bindingPatternArrRoot = [null, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -39,8 +55,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of null ]>"];
 
 Normalized calls: BAD?!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
 Final output calls: BAD!!
-[['ok'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 

@@ -22,7 +22,7 @@ $(f(null, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, []);
+  let y = objPatternRest(objPatternNoDefault, [], undefined);
   return 'bad';
 }
 var tmpArg;
@@ -35,7 +35,7 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  objPatternRest(objPatternNoDefault, []);
+  objPatternRest(objPatternNoDefault, [], undefined);
   return 'bad';
 }
 var tmpArg;

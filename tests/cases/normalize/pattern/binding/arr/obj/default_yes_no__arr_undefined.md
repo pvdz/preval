@@ -30,6 +30,14 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -46,17 +54,22 @@ if (ifTestTmp) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+}
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
-[['fail'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+[['fail'], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[['fail'], ['ok'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['fail'], ['ok'], null];
-
+Final output calls: Same

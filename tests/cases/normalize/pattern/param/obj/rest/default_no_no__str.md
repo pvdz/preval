@@ -32,7 +32,7 @@ function f($tdz$__pattern) {
       $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
-  let x = objPatternRest($tdz$__pattern_after_default, []);
+  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
 var tmpArg_1;
@@ -53,7 +53,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let x = objPatternRest($tdz$__pattern_after_default, []);
+  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
 var tmpArg_1;

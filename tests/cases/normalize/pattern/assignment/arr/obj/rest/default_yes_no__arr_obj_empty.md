@@ -36,7 +36,7 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-x = objPatternRest(arrPatternStep, []);
+x = objPatternRest(arrPatternStep, [], undefined);
 arrAssignPatternRhs;
 $(x);
 `````
@@ -62,7 +62,7 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-x = objPatternRest(arrPatternStep, []);
+x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 

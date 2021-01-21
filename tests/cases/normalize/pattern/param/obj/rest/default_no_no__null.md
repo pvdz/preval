@@ -32,7 +32,7 @@ function f($tdz$__pattern) {
       $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
-  let x = objPatternRest($tdz$__pattern_after_default, []);
+  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return 'bad';
 }
 var tmpArg_1;
@@ -53,7 +53,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  objPatternRest($tdz$__pattern_after_default, []);
+  objPatternRest($tdz$__pattern_after_default, [], undefined);
   return 'bad';
 }
 var tmpArg_1;
@@ -64,11 +64,8 @@ $(tmpArg_1);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '(intermediate value)(intermediate value)(intermediate value)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

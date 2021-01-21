@@ -34,7 +34,7 @@ arrAssignPatternRhs = [tmpElement, 10];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 objPatternNoDefault = arrPatternStep.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 arrAssignPatternRhs;
 $(y);
 `````
@@ -54,7 +54,7 @@ arrAssignPatternRhs = [tmpElement, 10];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 objPatternNoDefault = arrPatternStep.x;
-y = objPatternRest(objPatternNoDefault, []);
+y = objPatternRest(objPatternNoDefault, [], undefined);
 $(y);
 `````
 

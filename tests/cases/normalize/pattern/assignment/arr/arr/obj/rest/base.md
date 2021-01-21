@@ -32,7 +32,7 @@ arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
 arrPatternStep_1 = arrPatternSplat_1[0];
-x = objPatternRest(arrPatternStep_1, []);
+x = objPatternRest(arrPatternStep_1, [], undefined);
 arrAssignPatternRhs;
 $(x);
 `````
@@ -54,7 +54,7 @@ arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
 arrPatternStep_1 = arrPatternSplat_1[0];
-x = objPatternRest(arrPatternStep_1, []);
+x = objPatternRest(arrPatternStep_1, [], undefined);
 $(x);
 `````
 

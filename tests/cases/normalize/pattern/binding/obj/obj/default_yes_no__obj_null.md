@@ -31,6 +31,14 @@ let objPatternAfterDefault;
     objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 
@@ -48,17 +56,22 @@ if (ifTestTmp) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

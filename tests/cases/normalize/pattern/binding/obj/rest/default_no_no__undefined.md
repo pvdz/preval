@@ -19,25 +19,22 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = undefined;
-const x = objPatternRest(bindingPatternObjRoot, []);
+const x = objPatternRest(bindingPatternObjRoot, [], 'x');
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = objPatternRest(undefined, []);
+const x = objPatternRest(undefined, [], 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{}], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{}], null];
-
+Final output calls: Same

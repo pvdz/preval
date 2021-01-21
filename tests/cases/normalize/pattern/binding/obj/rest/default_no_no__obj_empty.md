@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = {};
-const x = objPatternRest(bindingPatternObjRoot, []);
+const x = objPatternRest(bindingPatternObjRoot, [], 'x');
 $(x);
 `````
 
@@ -27,7 +27,7 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = {};
-const x = objPatternRest(bindingPatternObjRoot, []);
+const x = objPatternRest(bindingPatternObjRoot, [], 'x');
 $(x);
 `````
 

@@ -23,7 +23,7 @@ $(f([], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg;
@@ -37,7 +37,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg;
@@ -51,8 +51,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

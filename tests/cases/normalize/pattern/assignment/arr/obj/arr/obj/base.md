@@ -28,6 +28,7 @@ var arrPatternStep;
 var objPatternNoDefault;
 var arrPatternSplat_1;
 var arrPatternStep_1;
+var objPatternCrashTest;
 var tmpElement;
 var tmpObjPropValue;
 var tmpElement_1;
@@ -40,6 +41,18 @@ arrPatternStep = arrPatternSplat[0];
 objPatternNoDefault = arrPatternStep.x;
 arrPatternSplat_1 = [...objPatternNoDefault];
 arrPatternStep_1 = arrPatternSplat_1[0];
+{
+  let tmpAssignLogicStmtOr = arrPatternStep_1 === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = arrPatternStep_1 === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 arrAssignPatternRhs;
 $('ok');
 `````
@@ -53,6 +66,7 @@ var arrPatternStep;
 var objPatternNoDefault;
 var arrPatternSplat_1;
 var arrPatternStep_1;
+var objPatternCrashTest;
 var tmpElement;
 var tmpObjPropValue;
 var tmpElement_1;
@@ -65,6 +79,16 @@ arrPatternStep = arrPatternSplat[0];
 objPatternNoDefault = arrPatternStep.x;
 arrPatternSplat_1 = [...objPatternNoDefault];
 arrPatternStep_1 = arrPatternSplat_1[0];
+let tmpAssignLogicStmtOr = arrPatternStep_1 === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = arrPatternStep_1 === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('ok');
 `````
 

@@ -47,7 +47,7 @@ function f($tdz$__pattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg_2;
@@ -83,7 +83,7 @@ function f($tdz$__pattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg_2;
@@ -96,11 +96,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[{ a: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+[[{ a: 'pass' }], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{ a: 'pass' }], [{}], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ a: 'pass' }], [{}], null];
-
+Final output calls: Same

@@ -30,7 +30,7 @@ objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
-y = objPatternRest(arrPatternStep, []);
+y = objPatternRest(arrPatternStep, [], undefined);
 $(y);
 `````
 
@@ -49,7 +49,7 @@ objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
-y = objPatternRest(arrPatternStep, []);
+y = objPatternRest(arrPatternStep, [], undefined);
 $(y);
 `````
 

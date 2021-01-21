@@ -32,6 +32,14 @@ const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -47,7 +55,15 @@ tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-arrPatternStep.x;
+const objPatternNoDefault = arrPatternStep.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('ok');
 `````
 

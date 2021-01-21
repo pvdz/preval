@@ -20,6 +20,14 @@ $('ok');
 `````js filename=intro
 const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -27,7 +35,15 @@ $('ok');
 
 `````js filename=intro
 const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
-bindingPatternObjRoot.x;
+const objPatternNoDefault = bindingPatternObjRoot.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('ok');
 `````
 

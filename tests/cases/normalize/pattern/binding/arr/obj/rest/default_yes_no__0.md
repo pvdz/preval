@@ -32,7 +32,7 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $('bad');
 `````
 
@@ -50,7 +50,7 @@ if (ifTestTmp) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-objPatternRest(arrPatternStep, []);
+objPatternRest(arrPatternStep, [], undefined);
 $('bad');
 `````
 

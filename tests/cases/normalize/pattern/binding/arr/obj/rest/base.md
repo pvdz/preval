@@ -23,7 +23,7 @@ tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 
@@ -35,7 +35,7 @@ tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 

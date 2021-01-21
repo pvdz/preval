@@ -20,8 +20,21 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
+var objPatternCrashTest;
 objAssignPatternRhs = '';
 objPatternNoDefault = objAssignPatternRhs.x;
+{
+  let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objPatternNoDefault === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 $('bad');
 `````
 
@@ -30,8 +43,19 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
+var objPatternCrashTest;
 objAssignPatternRhs = '';
 objPatternNoDefault = objAssignPatternRhs.x;
+let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objPatternNoDefault === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('bad');
 `````
 
@@ -41,8 +65,8 @@ Should call `$` with:
 ["<crash[ Cannot destructure property 'x' of '\"\"' as it is undefined. ]>"];
 
 Normalized calls: BAD?!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

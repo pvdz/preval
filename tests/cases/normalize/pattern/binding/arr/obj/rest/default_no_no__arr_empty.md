@@ -21,7 +21,7 @@ $(x);
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 
@@ -31,7 +31,7 @@ $(x);
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, []);
+const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 
@@ -41,8 +41,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

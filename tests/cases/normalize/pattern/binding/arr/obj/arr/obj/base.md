@@ -34,6 +34,14 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 const arrPatternSplat_1 = [...objPatternNoDefault];
 const arrPatternStep_1 = arrPatternSplat_1[0];
+let objPatternCrashTest = arrPatternStep_1 === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep_1 === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -51,7 +59,15 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 const arrPatternSplat_1 = [...objPatternNoDefault];
-arrPatternSplat_1[0];
+const arrPatternStep_1 = arrPatternSplat_1[0];
+let objPatternCrashTest = arrPatternStep_1 === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep_1 === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+}
 $('ok');
 `````
 

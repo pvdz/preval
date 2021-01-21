@@ -19,14 +19,14 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = '';
-const x = objPatternRest(bindingPatternObjRoot, []);
+const x = objPatternRest(bindingPatternObjRoot, [], 'x');
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = objPatternRest('', []);
+const x = objPatternRest('', [], 'x');
 $(x);
 `````
 

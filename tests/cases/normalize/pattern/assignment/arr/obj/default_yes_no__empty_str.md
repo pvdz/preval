@@ -22,6 +22,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
+var objPatternCrashTest;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 arrAssignPatternRhs = '';
@@ -33,6 +34,18 @@ if (tmpTernaryTest) {
   arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
+}
+{
+  let tmpAssignLogicStmtOr = arrPatternStep === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = arrPatternStep === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
 }
 arrAssignPatternRhs;
 $('ok');
@@ -45,6 +58,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
+var objPatternCrashTest;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 arrAssignPatternRhs = '';
@@ -57,17 +71,24 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
+let tmpAssignLogicStmtOr = arrPatternStep === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = arrPatternStep === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
-[['pass'], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+[['pass'], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[['pass'], ['ok'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['pass'], ['ok'], null];
-
+Final output calls: Same

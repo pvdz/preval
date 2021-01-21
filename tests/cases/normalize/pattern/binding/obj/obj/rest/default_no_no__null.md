@@ -20,7 +20,7 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = null;
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, []);
+const y = objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 
@@ -28,7 +28,7 @@ $('bad');
 
 `````js filename=intro
 const objPatternNoDefault = null.x;
-objPatternRest(objPatternNoDefault, []);
+objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 

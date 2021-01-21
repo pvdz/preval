@@ -20,8 +20,21 @@ $('ok');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
+var objPatternCrashTest;
 objAssignPatternRhs = { x: 0, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
+{
+  let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objPatternNoDefault === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 $('ok');
 `````
 
@@ -30,8 +43,19 @@ $('ok');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
+var objPatternCrashTest;
 objAssignPatternRhs = { x: 0, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
+let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objPatternNoDefault === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('ok');
 `````
 

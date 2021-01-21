@@ -20,7 +20,7 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 objAssignPatternRhs = undefined;
-x = objPatternRest(objAssignPatternRhs, []);
+x = objPatternRest(objAssignPatternRhs, [], 'x');
 $(x);
 `````
 
@@ -29,18 +29,15 @@ $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 objAssignPatternRhs = undefined;
-x = objPatternRest(objAssignPatternRhs, []);
+x = objPatternRest(objAssignPatternRhs, [], 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{}], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{}], null];
-
+Final output calls: Same

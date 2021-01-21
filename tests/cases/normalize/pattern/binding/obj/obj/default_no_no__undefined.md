@@ -20,13 +20,29 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = undefined;
 const objPatternNoDefault = bindingPatternObjRoot.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-undefined.x;
+const objPatternNoDefault = undefined.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
 $('bad');
 `````
 

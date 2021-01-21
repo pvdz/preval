@@ -23,6 +23,14 @@ $(f([{ x: 1, y: 2, z: 3 }, 20, 30], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -39,7 +47,15 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
-  arrPatternSplat[0];
+  let arrPatternStep = arrPatternSplat[0];
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;

@@ -22,6 +22,14 @@ $(f({ x: '', b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternCrashTest = objPatternNoDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -35,7 +43,15 @@ $(tmpArg);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  tmpParamPattern.x;
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternCrashTest = objPatternNoDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;

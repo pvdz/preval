@@ -18,14 +18,40 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-({ a: 1, b: 2, c: 3 });
+var objAssignPatternRhs;
+var objPatternCrashTest;
+objAssignPatternRhs = { a: 1, b: 2, c: 3 };
+{
+  let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objAssignPatternRhs === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-({ a: 1, b: 2, c: 3 });
+var objAssignPatternRhs;
+var objPatternCrashTest;
+objAssignPatternRhs = { a: 1, b: 2, c: 3 };
+let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objAssignPatternRhs === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('ok');
 `````
 

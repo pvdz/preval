@@ -18,24 +18,37 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-null;
+const bindingPatternObjRoot = null;
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
+let objPatternCrashTest = false;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = true;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = null.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'null' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

@@ -18,23 +18,38 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-undefined;
+const bindingPatternObjRoot = undefined;
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
+let objPatternCrashTest = false;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = false;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = undefined.cannotDestructureThis;
+}
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
 [['bad'], null];

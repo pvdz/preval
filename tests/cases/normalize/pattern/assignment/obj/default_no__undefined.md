@@ -18,24 +18,48 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-undefined;
+var objAssignPatternRhs;
+var objPatternCrashTest;
+objAssignPatternRhs = undefined;
+{
+  let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
+  if (tmpAssignLogicStmtOr) {
+  } else {
+    tmpAssignLogicStmtOr = objAssignPatternRhs === null;
+  }
+  if (tmpAssignLogicStmtOr) {
+    objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
+  } else {
+    objPatternCrashTest = tmpAssignLogicStmtOr;
+  }
+}
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
+var objAssignPatternRhs;
+var objPatternCrashTest;
+objAssignPatternRhs = undefined;
+let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
+if (tmpAssignLogicStmtOr) {
+} else {
+  tmpAssignLogicStmtOr = objAssignPatternRhs === null;
+}
+if (tmpAssignLogicStmtOr) {
+  objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
+} else {
+  objPatternCrashTest = tmpAssignLogicStmtOr;
+}
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure 'undefined' as it is undefined. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

@@ -21,6 +21,14 @@ $(f('', 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
+  let objPatternCrashTest = tmpParamPattern === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = tmpParamPattern === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = tmpParamPattern.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -31,8 +39,19 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+function f(tmpParamPattern) {
+  let objPatternCrashTest = tmpParamPattern === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = tmpParamPattern === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = tmpParamPattern.cannotDestructureThis;
+  }
+  return 'ok';
+}
 var tmpArg;
-tmpArg = 'ok';
+tmpArg = f('', 10);
 $(tmpArg);
 `````
 

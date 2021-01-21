@@ -46,6 +46,14 @@ function f($tdz$__pattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
+  let objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg_2;
@@ -78,6 +86,14 @@ function f($tdz$__pattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
+  let objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg_2;
@@ -88,11 +104,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[{ x: 'pass' }], "<crash[ Cannot destructure '$(...)' as it is undefined. ]>"];
+[[{ x: 'pass' }], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
-Normalized calls: BAD?!
-[[{ x: 'pass' }], ['ok'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ x: 'pass' }], ['ok'], null];
-
+Final output calls: Same

@@ -46,7 +46,7 @@ function f($tdz$__pattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return 'bad';
 }
 var tmpArg_2;
@@ -79,7 +79,7 @@ function f($tdz$__pattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  objPatternRest(objPatternAfterDefault, []);
+  objPatternRest(objPatternAfterDefault, [], undefined);
   return 'bad';
 }
 var tmpArg_2;

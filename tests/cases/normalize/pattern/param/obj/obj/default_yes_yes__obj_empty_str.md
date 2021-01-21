@@ -46,6 +46,14 @@ function f($tdz$__pattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
+  let objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg_2;
@@ -79,6 +87,14 @@ function f($tdz$__pattern) {
     objPatternAfterDefault = $(tmpArg_1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
+  }
+  let objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
   }
   return 'ok';
 }

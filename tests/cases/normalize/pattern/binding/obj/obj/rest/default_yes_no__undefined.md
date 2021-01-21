@@ -31,7 +31,7 @@ let objPatternAfterDefault;
     objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
-const y = objPatternRest(objPatternAfterDefault, []);
+const y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 
@@ -48,7 +48,7 @@ if (ifTestTmp) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-objPatternRest(objPatternAfterDefault, []);
+objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
 `````
 

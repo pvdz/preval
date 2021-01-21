@@ -47,7 +47,7 @@ function f($tdz$__pattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return 'bad';
 }
 var tmpArg_2;
@@ -83,7 +83,7 @@ function f($tdz$__pattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  objPatternRest(arrPatternStep, []);
+  objPatternRest(arrPatternStep, [], undefined);
   return 'bad';
 }
 var tmpArg_2;
@@ -96,11 +96,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

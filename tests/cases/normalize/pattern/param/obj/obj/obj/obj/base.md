@@ -30,6 +30,14 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault_1 = objPatternNoDefault.y;
   let objPatternNoDefault_2 = objPatternNoDefault_1.z;
+  let objPatternCrashTest = objPatternNoDefault_2 === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault_2 === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault_2.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -51,7 +59,15 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault_1 = objPatternNoDefault.y;
-  objPatternNoDefault_1.z;
+  let objPatternNoDefault_2 = objPatternNoDefault_1.z;
+  let objPatternCrashTest = objPatternNoDefault_2 === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternNoDefault_2 === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault_2.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;

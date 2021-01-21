@@ -22,7 +22,7 @@ $(f({ x: undefined, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, []);
+  let y = objPatternRest(objPatternNoDefault, [], undefined);
   return 'bad';
 }
 var tmpArg;
@@ -37,7 +37,7 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  objPatternRest(objPatternNoDefault, []);
+  objPatternRest(objPatternNoDefault, [], undefined);
   return 'bad';
 }
 var tmpArg;
@@ -53,8 +53,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

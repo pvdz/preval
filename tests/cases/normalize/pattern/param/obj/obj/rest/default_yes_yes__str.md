@@ -11,54 +11,86 @@
 ## Input
 
 `````js filename=intro
-function f({ x: { ...y } = 1 }) {
+function f({ x: { ...y } = $({ a: 'pass' }) } = $({ x: { a: 'fail2' } })) {
   return y;
 }
-f('abc');
+$(f('abc', 10));
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  let objPatternBeforeDefault = tmpParamPattern.x;
+function f($tdz$__pattern) {
+  var tmpArg;
+  var tmpObjPropValue;
+  var tmpArg_1;
+  let $tdz$__pattern_after_default;
+  {
+    let ifTestTmp = $tdz$__pattern === undefined;
+    if (ifTestTmp) {
+      tmpObjPropValue = { a: 'fail2' };
+      tmpArg = { x: tmpObjPropValue };
+      $tdz$__pattern_after_default = $(tmpArg);
+    } else {
+      $tdz$__pattern_after_default = $tdz$__pattern;
+    }
+  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
   {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      objPatternAfterDefault = 1;
+    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp_1) {
+      tmpArg_1 = { a: 'pass' };
+      objPatternAfterDefault = $(tmpArg_1);
     } else {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return y;
 }
-f('abc');
+var tmpArg_2;
+tmpArg_2 = f('abc', 10);
+$(tmpArg_2);
 `````
 
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
-  let ifTestTmp = objPatternBeforeDefault === undefined;
+function f($tdz$__pattern) {
+  var tmpArg;
+  var tmpObjPropValue;
+  var tmpArg_1;
+  let $tdz$__pattern_after_default;
+  let ifTestTmp = $tdz$__pattern === undefined;
   if (ifTestTmp) {
-    objPatternAfterDefault = 1;
+    tmpObjPropValue = { a: 'fail2' };
+    tmpArg = { x: tmpObjPropValue };
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternAfterDefault;
+  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp_1) {
+    tmpArg_1 = { a: 'pass' };
+    objPatternAfterDefault = $(tmpArg_1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return y;
 }
-f('abc');
+var tmpArg_2;
+tmpArg_2 = f('abc', 10);
+$(tmpArg_2);
 `````
 
 ## Result
 
 Should call `$` with:
-[null];
+[[{ a: 'pass' }], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Normalized calls: Same
 

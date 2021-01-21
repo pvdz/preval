@@ -33,7 +33,7 @@ function f(tmpParamPattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
-  let y = objPatternRest(objPatternAfterDefault, []);
+  let y = objPatternRest(objPatternAfterDefault, [], undefined);
   return 'bad';
 }
 var tmpArg_1;
@@ -57,7 +57,7 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  objPatternRest(objPatternAfterDefault, []);
+  objPatternRest(objPatternAfterDefault, [], undefined);
   return 'bad';
 }
 var tmpArg_1;
@@ -70,11 +70,8 @@ $(tmpArg_1);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure '$(...)' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Normalized calls: BAD?!
-[['bad'], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[['bad'], null];
-
+Final output calls: Same

@@ -31,6 +31,14 @@ let objPatternAfterDefault;
     objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+}
 $('ok');
 `````
 
@@ -47,6 +55,14 @@ if (ifTestTmp) {
   objPatternAfterDefault = a;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
+}
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
 }
 $('ok');
 `````

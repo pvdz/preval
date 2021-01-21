@@ -24,7 +24,7 @@ var arrPatternStep;
 arrAssignPatternRhs = [null, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-x = objPatternRest(arrPatternStep, []);
+x = objPatternRest(arrPatternStep, [], undefined);
 arrAssignPatternRhs;
 $(x);
 `````
@@ -38,7 +38,7 @@ var arrPatternStep;
 arrAssignPatternRhs = [null, 20, 30];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-x = objPatternRest(arrPatternStep, []);
+x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
 `````
 
@@ -48,8 +48,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of null ]>"];
 
 Normalized calls: BAD?!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
 Final output calls: BAD!!
-[[{}], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 

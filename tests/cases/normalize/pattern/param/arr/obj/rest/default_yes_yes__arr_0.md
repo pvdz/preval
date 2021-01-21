@@ -47,7 +47,7 @@ function f($tdz$__pattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg_2;
@@ -83,7 +83,7 @@ function f($tdz$__pattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let x = objPatternRest(arrPatternStep, []);
+  let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
 }
 var tmpArg_2;

@@ -20,7 +20,7 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, []);
+const y = objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 
@@ -29,7 +29,7 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-objPatternRest(objPatternNoDefault, []);
+objPatternRest(objPatternNoDefault, [], undefined);
 $('bad');
 `````
 
@@ -39,8 +39,8 @@ Should call `$` with:
 ["<crash[ Cannot read property 'undefined' of undefined ]>"];
 
 Normalized calls: BAD?!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 
 Final output calls: BAD!!
-[['bad'], null];
+["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
 

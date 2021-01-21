@@ -30,6 +30,14 @@ function f($tdz$__pattern) {
       $tdz$__pattern_after_default = $tdz$__pattern;
     }
   }
+  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = $tdz$__pattern_after_default === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -49,6 +57,14 @@ function f($tdz$__pattern) {
     $tdz$__pattern_after_default = $('fail');
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
+  }
+  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = $tdz$__pattern_after_default === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
   }
   return 'ok';
 }

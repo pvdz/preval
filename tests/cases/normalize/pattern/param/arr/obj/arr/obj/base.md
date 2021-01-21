@@ -30,6 +30,14 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = arrPatternStep.x;
   let arrPatternSplat_1 = [...objPatternNoDefault];
   let arrPatternStep_1 = arrPatternSplat_1[0];
+  let objPatternCrashTest = arrPatternStep_1 === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep_1 === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;
@@ -53,7 +61,15 @@ function f(tmpParamPattern) {
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;
   let arrPatternSplat_1 = [...objPatternNoDefault];
-  arrPatternSplat_1[0];
+  let arrPatternStep_1 = arrPatternSplat_1[0];
+  let objPatternCrashTest = arrPatternStep_1 === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep_1 === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  }
   return 'ok';
 }
 var tmpArg;

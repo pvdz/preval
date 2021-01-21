@@ -20,7 +20,7 @@ $(y);
 `````js filename=intro
 const bindingPatternObjRoot = { x: '', b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, []);
+const y = objPatternRest(objPatternNoDefault, [], undefined);
 $(y);
 `````
 
@@ -29,7 +29,7 @@ $(y);
 `````js filename=intro
 const bindingPatternObjRoot = { x: '', b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, []);
+const y = objPatternRest(objPatternNoDefault, [], undefined);
 $(y);
 `````
 

@@ -667,6 +667,23 @@ export function phaseNormalize(fdata, fname) {
               after(newNode);
             }
           }
+        } else if (expr.type === 'MemberExpression' && expr.object.type === 'SequenceExpression') {
+          // This is more likely to be an artifact or test than anything else, but still.
+          rule('Statement property on group should be split');
+          example('(a(), b()).c', 'a(); b().c', () => !expr.computed);
+          example('(a(), b())[c()]', 'a(); b()[c()]', () => expr.computed);
+          before(expr);
+
+          const xps = expr.object.expressions;
+          const newNode = AST.blockStatement(
+            ...xps.slice(0, -1).map((n) => AST.expressionStatement(n)),
+            AST.expressionStatement(AST.memberExpression(xps[xps.length - 1], expr.property, expr.computed)),
+          );
+          node.body[i] = newNode;
+
+          after(newNode);
+          changed = true;
+          _stmt(newNode);
         }
       } else if (e.type === 'VariableDeclaration') {
         if (e.declarations.length > 1) {

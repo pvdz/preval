@@ -1,17 +1,22 @@
 # Preval test case
 
-# computed_prop.md
+# ident_computed_member_complex_assign.md
 
-> expr_order > computed_prop
+> normalize > assignment > stmt > ident_computed_member_complex_assign
 >
-> The object is evaluated before the computed property
+> Assignments of all kinds should be normalized in all circumstances
+
+The computed property should be evaluated after the object, not before.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(1)[$(2)];
+let x;
+x = $(1)[$(2)];
+$(3);
+$(x); 
 `````
 
 ## Normalized
@@ -20,12 +25,13 @@ $(1)[$(2)];
 var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
-{
-  tmpMemberComplexObj = $(1);
-  tmpComputedObj = tmpMemberComplexObj;
-  tmpComputedProp = $(2);
-  tmpComputedObj[tmpComputedProp];
-}
+let x;
+tmpMemberComplexObj = $(1);
+tmpComputedObj = tmpMemberComplexObj;
+tmpComputedProp = $(2);
+x = tmpComputedObj[tmpComputedProp];
+$(3);
+$(x);
 `````
 
 ## Output
@@ -34,10 +40,13 @@ var tmpComputedProp;
 var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+let x;
 tmpMemberComplexObj = $(1);
 tmpComputedObj = tmpMemberComplexObj;
 tmpComputedProp = $(2);
-tmpComputedObj[tmpComputedProp];
+x = tmpComputedObj[tmpComputedProp];
+$(3);
+$(x);
 `````
 
 ## Result

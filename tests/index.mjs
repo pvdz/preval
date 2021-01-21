@@ -134,10 +134,14 @@ function runTestCase(
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack.concat(e?.message ?? e));
       }
     }
+
+    // The closure persist so when serializing it might still add elements to the original stack
+    // To prevent these changes, we shallow copy and store the current state.
+    return stack.slice(0);
   }
-  ev('input', fin, evalled.$in);
-  ev('normalized', output.normalized, evalled.$norm);
-  ev('output', output.files, evalled.$out);
+  evalled.$in = ev('input', fin, evalled.$in);
+  evalled.$norm = ev('normalized', output.normalized, evalled.$norm);
+  evalled.$out = ev('output', output.files, evalled.$out);
 
   //if (!lastError) {
   //  const jin = JSON.stringify([evalled.in, evalled.$in]);

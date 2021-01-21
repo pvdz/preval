@@ -71,7 +71,6 @@ Should call `$` with:
  - 1: 2,505
  - 2: 505,{"c":5}
  - 3: undefined
- - 4: 1
 
 Normalized calls: Same
 

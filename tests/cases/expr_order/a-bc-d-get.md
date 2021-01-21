@@ -59,7 +59,6 @@ $(a, b, 3);
 Should call `$` with:
  - 0: 3,{},3
  - 1: undefined
- - 2: "should not be called"
 
 Normalized calls: Same
 

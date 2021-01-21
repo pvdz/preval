@@ -124,7 +124,7 @@ function runTestCase(
         // Make the error in the real test the same as what we would throw after normalization
         .replace(/^.*Cannot destructure '[^']*?' as it is (undefined|null)./, "Cannot read property 'cannotDestructureThis' of $1")
         .replace(
-          /^.*Cannot destructure property '[^']*?' of '(?:undefined|object null)' as it is (undefined|null)./,
+          /^.*Cannot destructure property '[^']*?' of '[^']*?' as it is (undefined|null)./,
           "Cannot read property 'cannotDestructureThis' of $1",
         );
       stack.push('<crash[ ' + msg + ' ]>');

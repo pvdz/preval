@@ -50,11 +50,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure property 'x' of '{(intermediate value)(intermediate value)(intermediate value)}' as it is null. ]>"];
-
-Normalized calls: BAD?!
 ["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
+Normalized calls: Same
 
+Final output calls: Same

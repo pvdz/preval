@@ -33,7 +33,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot destructure property 'x' of 'null' as it is null. ]>"];
+["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
 
 Normalized calls: BAD?!
 ["<crash[ Cannot read property 'x' of null ]>"];

@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+let x = 1, b = 2, c = 3;
 ({ x } = 1) ? b : c;
 `````
 
@@ -16,6 +17,9 @@
 
 `````js filename=intro
 var objAssignPatternRhs;
+let x = 1;
+let b = 2;
+let c = 3;
 {
   {
     objAssignPatternRhs = 1;
@@ -34,6 +38,7 @@ var objAssignPatternRhs;
 
 `````js filename=intro
 var objAssignPatternRhs;
+let x = 1;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 let ifTestTmp = x;
@@ -47,7 +52,6 @@ if (ifTestTmp) {
 Should call `$` with:
 [null];
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not defined ]>'];
+Normalized calls: Same
 
 Final output calls: Same

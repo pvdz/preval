@@ -1,19 +1,21 @@
 # Preval test case
 
-# ident_member_simple_simple.md
+# ident_computed_member_complex_assign.md
 
-> normalize > assignment > stmt > ident_member_simple_simple
+> normalize > assignment > stmt > ident_computed_member_complex_assign
 >
 > Assignments of all kinds should be normalized in all circumstances
+
+Test case to demonstrate that `a = b += c` assigns `b+c` to `a`, not just `c`.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let a = 1, b = {x: 2}, c = 3;
-a *= b.x += c;
-$(a, b, c);
+let a = 1, b = {x: 2};
+a = b.x += 500
+$(a, b);
 `````
 
 ## Normalized
@@ -23,12 +25,11 @@ var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
-let c = 3;
 tmpBinaryLeft = b.x;
-tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + c;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + 500;
 b.x = tmpNestedPropCompoundComplexRhs;
-a = a * tmpNestedPropCompoundComplexRhs;
-$(a, b, c);
+a = tmpNestedPropCompoundComplexRhs;
+$(a, b);
 `````
 
 ## Output
@@ -39,16 +40,16 @@ var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 tmpBinaryLeft = b.x;
-tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + 3;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + 500;
 b.x = tmpNestedPropCompoundComplexRhs;
-a = a * tmpNestedPropCompoundComplexRhs;
-$(a, b, 3);
+a = tmpNestedPropCompoundComplexRhs;
+$(a, b);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,{"x":5},3
+ - 0: 502,{"x":502}
  - 1: undefined
 
 Normalized calls: Same

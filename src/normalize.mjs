@@ -2646,6 +2646,27 @@ export function phaseNormalize(fdata, fname) {
               break;
             }
 
+            if (node.right.operator !== '=') {
+              // This is a = b *= c with all idents
+              rule('Nested compound assignment with all idents must be split');
+              example('a = b *= c', 'tmp = b * c, b = tmp, c = tmp');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedCompoundComplexRhs', true);
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), b, c)),
+                AST.assignmentExpression(b, tmpName),
+                AST.assignmentExpression(a, tmpName, node.operator),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
             // This is a = b = c with all idents
             rule('Nested assignment with all idents must be split');
             example('a = b = c', 'b = c, a = c');
@@ -2773,6 +2794,27 @@ export function phaseNormalize(fdata, fname) {
 
             // We must be left with `a = b.c = d` or `a = b[c] = d`, which must all be simple nodes
             // The assignment to `b.c` could trigger a setter that could update `d` so cache it too
+
+            if (node.right.operator !== '=') {
+              rule('Nested compound prop assignment with all idents must be split');
+              example('a = b.x *= c', 'tmp = b.x * c, b = tmp, c = tmp');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropCompoundComplexRhs', true);
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), lhs, d)),
+                AST.assignmentExpression(lhs, tmpName),
+                AST.assignmentExpression(a, tmpName, node.operator),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
             ASSERT(!isComplexNode(b));
             ASSERT(!lhs.computed || !isComplexNode(c));
             ASSERT(!isComplexNode(d));

@@ -19,39 +19,29 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-tmpNestedPropAssignRhs = c;
-{
-  tmpAssignMemLhsObj = b;
-  tmpBinaryLeft = b.x;
-  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
-a = a * tmpNestedPropAssignRhs;
+tmpBinaryLeft = b.x;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + c;
+b.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
-tmpNestedPropAssignRhs = 3;
-tmpAssignMemLhsObj = b;
 tmpBinaryLeft = b.x;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedPropAssignRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = a * tmpNestedPropAssignRhs;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + 3;
+b.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 3);
 `````
 
@@ -61,9 +51,6 @@ Should call `$` with:
  - 0: 5,{"x":5},3
  - 1: undefined
 
-Normalized calls: BAD?!
-[[3, { x: 5 }, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[3, { x: 5 }, 3], null];
-
+Final output calls: Same

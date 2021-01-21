@@ -1,19 +1,21 @@
 # Preval test case
 
-# ident_ident_simple.md
+# ident_computed_member_complex_assign.md
 
-> normalize > assignment > stmt > ident_ident_simple
+> normalize > assignment > stmt > ident_computed_member_complex_assign
 >
 > Assignments of all kinds should be normalized in all circumstances
+
+Test case to demonstrate that `a = b += c` assigns `b+c` to `a`, not just `c`.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let a = 1, b = 2, c = 3;
-a *= b += c;
-$(a, b, c);
+let a = 1, b = 2;
+a = b += 500
+$(a, b);
 `````
 
 ## Normalized
@@ -22,11 +24,10 @@ $(a, b, c);
 var tmpNestedCompoundComplexRhs;
 let a = 1;
 let b = 2;
-let c = 3;
-tmpNestedCompoundComplexRhs = b + c;
+tmpNestedCompoundComplexRhs = b + 500;
 b = tmpNestedCompoundComplexRhs;
-a = a * tmpNestedCompoundComplexRhs;
-$(a, b, c);
+a = tmpNestedCompoundComplexRhs;
+$(a, b);
 `````
 
 ## Output
@@ -35,16 +36,16 @@ $(a, b, c);
 var tmpNestedCompoundComplexRhs;
 let a = 1;
 let b = 2;
-tmpNestedCompoundComplexRhs = b + 3;
+tmpNestedCompoundComplexRhs = b + 500;
 b = tmpNestedCompoundComplexRhs;
-a = a * tmpNestedCompoundComplexRhs;
-$(a, b, 3);
+a = tmpNestedCompoundComplexRhs;
+$(a, b);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,5,3
+ - 0: 502,502
  - 1: undefined
 
 Normalized calls: Same

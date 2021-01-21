@@ -23,22 +23,22 @@ $(f('x', 'y'));
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let b;
-  {
-    let ifTestTmp = $tdz$__b === undefined;
-    if (ifTestTmp) {
-      b = 'bar';
-    } else {
-      b = $tdz$__b;
-    }
-  }
   let a;
   {
-    let ifTestTmp_1 = $tdz$__a === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp = $tdz$__a === undefined;
+    if (ifTestTmp) {
       a = 'foo';
     } else {
       a = $tdz$__a;
+    }
+  }
+  let b;
+  {
+    let ifTestTmp_1 = $tdz$__b === undefined;
+    if (ifTestTmp_1) {
+      b = 'bar';
+    } else {
+      b = $tdz$__b;
     }
   }
   {
@@ -64,19 +64,19 @@ $(tmpArg_3);
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let b;
-  let ifTestTmp = $tdz$__b === undefined;
-  if (ifTestTmp) {
-    b = 'bar';
-  } else {
-    b = $tdz$__b;
-  }
   let a;
-  let ifTestTmp_1 = $tdz$__a === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp = $tdz$__a === undefined;
+  if (ifTestTmp) {
     a = 'foo';
   } else {
     a = $tdz$__a;
+  }
+  let b;
+  let ifTestTmp_1 = $tdz$__b === undefined;
+  if (ifTestTmp_1) {
+    b = 'bar';
+  } else {
+    b = $tdz$__b;
   }
   let tmpStmtArg = [a, b];
   return tmpStmtArg;

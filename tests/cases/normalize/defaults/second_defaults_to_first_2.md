@@ -9,14 +9,10 @@
 ## Input
 
 `````js filename=intro
-function f(a = "foo", b = a) { 
-  return [a, b]; 
+function f(a = 1, b = a) { 
 }
 
-$(f()); // [foo, foo]
-$(f('x')); // [x, x]
-$(f(undefined, 'y')); // [foo, y]
-$(f('x', 'y')); // [x, y]
+f()
 `````
 
 ## Normalized
@@ -27,7 +23,7 @@ function f($tdz$__a, $tdz$__b) {
   {
     let ifTestTmp = $tdz$__a === undefined;
     if (ifTestTmp) {
-      a = 'foo';
+      a = 1;
     } else {
       a = $tdz$__a;
     }
@@ -41,23 +37,8 @@ function f($tdz$__a, $tdz$__b) {
       b = $tdz$__b;
     }
   }
-  {
-    let tmpStmtArg = [a, b];
-    return tmpStmtArg;
-  }
 }
-var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
-tmpArg = f();
-$(tmpArg);
-tmpArg_1 = f('x');
-$(tmpArg_1);
-tmpArg_2 = f(undefined, 'y');
-$(tmpArg_2);
-tmpArg_3 = f('x', 'y');
-$(tmpArg_3);
+f();
 `````
 
 ## Output
@@ -67,7 +48,7 @@ function f($tdz$__a, $tdz$__b) {
   let a;
   let ifTestTmp = $tdz$__a === undefined;
   if (ifTestTmp) {
-    a = 'foo';
+    a = 1;
   } else {
     a = $tdz$__a;
   }
@@ -78,27 +59,14 @@ function f($tdz$__a, $tdz$__b) {
   } else {
     b = $tdz$__b;
   }
-  let tmpStmtArg = [a, b];
-  return tmpStmtArg;
 }
-var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
-tmpArg = f();
-$(tmpArg);
-tmpArg_1 = f('x');
-$(tmpArg_1);
-tmpArg_2 = f(undefined, 'y');
-$(tmpArg_2);
-tmpArg_3 = f('x', 'y');
-$(tmpArg_3);
+f();
 `````
 
 ## Result
 
 Should call `$` with:
-[[['foo', 'foo']], [['x', 'x']], [['foo', 'y']], [['x', 'y']], null];
+[null];
 
 Normalized calls: Same
 

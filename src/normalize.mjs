@@ -702,7 +702,7 @@ export function phaseNormalize(fdata, fname) {
             if (e.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
             if (e.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
             if (e.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-            before(init);
+            before(e);
 
             const newNode = AST.ifStatement(
               init.test,
@@ -3916,6 +3916,11 @@ export function phaseNormalize(fdata, fname) {
     let hasRest = false;
     let paramBindingNames = []; // Includes names inside pattern
 
+    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+    // Array<name, expr>
+    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+    const newBindings = [];
+
     funcNode.params.forEach((pnode, i) => {
       if (pnode.type === 'RestElement') {
         log('- Rest param');
@@ -3926,11 +3931,6 @@ export function phaseNormalize(fdata, fname) {
         meta.usages.push(pnode.argument);
         return;
       }
-
-      // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-      // Array<name, expr>
-      // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-      const newBindings = [];
 
       // Node to represent the cache of the current property/element step
       const cacheNameStack = [];
@@ -3943,6 +3943,7 @@ export function phaseNormalize(fdata, fname) {
       if (pnode.type === 'AssignmentPattern') {
         rule('Func params must not have inits/defaults');
         log('- `function f(x = y()) {}` --> `function f(tmp) { x = tmp === undefined ? y() : tmp; }');
+        before({...funcNode, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>')))});
 
         // Param defaults. Rewrite to be inside the function
         // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
@@ -4068,15 +4069,15 @@ export function phaseNormalize(fdata, fname) {
           ASSERT(false, 'wat else?', pnode);
         }
       }
-
-      if (newBindings.length) {
-        log('Params were transformed somehow, injecting new nodes into body');
-        funcNode.body.body.unshift(
-          AST.variableDeclarationFromDeclaration(newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init))),
-        );
-        changed = true;
-      }
     });
+
+    if (newBindings.length) {
+      log('Params were transformed somehow, injecting new nodes into body');
+      funcNode.body.body.unshift(
+        AST.variableDeclarationFromDeclaration(newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init))),
+      );
+      changed = true;
+    }
 
     groupEnd();
 

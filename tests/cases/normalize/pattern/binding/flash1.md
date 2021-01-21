@@ -22,8 +22,6 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 
 `````js filename=intro
 function x_1(tmpParamPattern, tmpParamPattern_1) {
-  let objPatternNoDefault = tmpParamPattern_1.x;
-  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -54,6 +52,8 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
       foo = arrPatternBeforeDefault_1;
     }
   }
+  let objPatternNoDefault = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
 }
 `````
 
@@ -61,8 +61,6 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 
 `````js filename=intro
 function x_1(tmpParamPattern, tmpParamPattern_1) {
-  let objPatternNoDefault = tmpParamPattern_1.x;
-  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat_1 = [...arrPatternStep];
@@ -89,6 +87,8 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
   } else {
     foo = arrPatternBeforeDefault_1;
   }
+  let objPatternNoDefault = tmpParamPattern_1.x;
+  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
 }
 `````
 

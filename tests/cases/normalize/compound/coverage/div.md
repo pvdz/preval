@@ -36,7 +36,8 @@ $(a);
 ## Result
 
 Should call `$` with:
-[[0.5], null];
+ - 0: 0.5
+ - 1: undefined
 
 Normalized calls: Same
 

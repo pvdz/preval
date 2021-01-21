@@ -49,7 +49,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[1], [2], '<crash[ null ]>'];
+ - 0: 1
+ - 1: 2
+ - 2: <crash[ null ]>
 
 Normalized calls: Same
 

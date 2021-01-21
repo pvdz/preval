@@ -34,7 +34,8 @@ $(obj);
 ## Result
 
 Should call `$` with:
-[[{ x: 10 }], null];
+ - 0: {"x":10}
+ - 1: undefined
 
 Normalized calls: Same
 

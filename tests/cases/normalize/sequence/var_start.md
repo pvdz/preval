@@ -32,7 +32,8 @@ $(6);
 ## Result
 
 Should call `$` with:
-[[6], null];
+ - 0: 6
+ - 1: undefined
 
 Normalized calls: Same
 

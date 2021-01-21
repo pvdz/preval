@@ -54,7 +54,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
-[['ok'], null];
+ - 0: "ok"
+ - 1: undefined
 
 Normalized calls: Same
 

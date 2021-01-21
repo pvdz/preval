@@ -78,7 +78,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[['x'], null];
+ - 0: "x"
+ - 1: undefined
 
 Normalized calls: Same
 

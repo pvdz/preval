@@ -48,7 +48,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[['function String() { [native code] }'], null];
+ - 0: "function String() { [native code] }"
+ - 1: undefined
 
 Normalized calls: Same
 

@@ -40,7 +40,8 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[[5, 5, 3], null];
+ - 0: 5,5,3
+ - 1: undefined
 
 Normalized calls: BAD?!
 [[3, 5, 3], null];

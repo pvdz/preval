@@ -48,7 +48,8 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[[null, { x: 2 }, 3], null];
+ - 0: null,{"x":2},3
+ - 1: undefined
 
 Normalized calls: Same
 

@@ -59,7 +59,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[], [15], null];
+ - 0: 
+ - 1: 15
+ - 2: undefined
 
 Normalized calls: Same
 

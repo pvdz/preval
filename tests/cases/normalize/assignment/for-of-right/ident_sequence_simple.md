@@ -52,7 +52,8 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[[2], '<crash[ <ref> is not iterable ]>'];
+ - 0: 2
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

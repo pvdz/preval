@@ -59,7 +59,9 @@ $(x, y, z);
 ## Result
 
 Should call `$` with:
-[[1], [2], '<crash[ 10,20,30 ]>'];
+ - 0: 1
+ - 1: 2
+ - 2: <crash[ 10,20,30 ]>
 
 Normalized calls: Same
 

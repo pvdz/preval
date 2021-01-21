@@ -110,7 +110,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[{ y: 'pass2' }], "<crash[ Cannot read property 'y' of undefined ]>"];
+ - 0: {"y":"pass2"}
+ - 1: <crash[ Cannot read property 'y' of undefined ]>
 
 Normalized calls: Same
 

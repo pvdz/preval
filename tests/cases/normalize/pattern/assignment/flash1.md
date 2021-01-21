@@ -95,7 +95,7 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 ## Result
 
 Should call `$` with:
-[null];
+ - 0: undefined
 
 Normalized calls: Same
 

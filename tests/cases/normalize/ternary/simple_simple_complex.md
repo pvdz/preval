@@ -47,7 +47,9 @@ $(a, b);
 ## Result
 
 Should call `$` with:
-[[5], [2, null], null];
+ - 0: 5
+ - 1: 2,null
+ - 2: undefined
 
 Normalized calls: Same
 

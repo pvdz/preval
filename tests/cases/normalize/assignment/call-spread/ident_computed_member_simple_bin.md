@@ -63,7 +63,8 @@ $(a, b, 7);
 ## Result
 
 Should call `$` with:
-[['x'], '<crash[ Found non-callable @@iterator ]>'];
+ - 0: "x"
+ - 1: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

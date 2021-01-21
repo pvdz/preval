@@ -50,7 +50,9 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[['a'], [3, 3, 3], null];
+ - 0: "a"
+ - 1: 3,3,3
+ - 2: undefined
 
 Normalized calls: Same
 

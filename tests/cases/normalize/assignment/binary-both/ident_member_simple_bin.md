@@ -83,7 +83,9 @@ $(a, b, 11);
 ## Result
 
 Should call `$` with:
-[[14], [7, { x: 7 }, 3], null];
+ - 0: 14
+ - 1: 7,{"x":7},3
+ - 2: undefined
 
 Normalized calls: Same
 

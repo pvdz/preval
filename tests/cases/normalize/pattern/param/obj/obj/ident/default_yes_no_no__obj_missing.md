@@ -66,7 +66,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'y' of undefined ]>"];
+ - 0: <crash[ Cannot read property 'y' of undefined ]>
 
 Normalized calls: Same
 

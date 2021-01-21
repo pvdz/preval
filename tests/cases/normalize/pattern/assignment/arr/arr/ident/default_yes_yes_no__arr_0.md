@@ -93,7 +93,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
-['<crash[ <ref> is not iterable ]>'];
+ - 0: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

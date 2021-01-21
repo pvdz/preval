@@ -94,7 +94,7 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
+ - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
 
 Normalized calls: Same
 

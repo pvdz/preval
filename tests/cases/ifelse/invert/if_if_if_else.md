@@ -64,7 +64,11 @@ if (ifTestTmp_1) {
 ## Result
 
 Should call `$` with:
-[[-1], [1], [2], [4], null];
+ - 0: -1
+ - 1: 1
+ - 2: 2
+ - 3: 4
+ - 4: undefined
 
 Normalized calls: Same
 

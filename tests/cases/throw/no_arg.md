@@ -42,7 +42,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-['<crash[ function f(){ \n  throw f;\n} ]>'];
+ - 0: <crash[ function f(){ \n  throw f;\n} ]>
 
 Normalized calls: BAD?!
 ['<crash[ function f() {throw f;} ]>'];

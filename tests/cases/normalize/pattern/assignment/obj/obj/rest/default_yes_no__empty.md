@@ -64,7 +64,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
-[[{ a: 'fail' }], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+ - 0: {"a":"fail"}
+ - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
 
 Normalized calls: Same
 

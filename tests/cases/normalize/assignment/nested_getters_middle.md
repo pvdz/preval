@@ -157,7 +157,14 @@ f();
 ## Result
 
 Should call `$` with:
-[[3], [5], [5], [2], [null], [3], [4], null];
+ - 0: 3
+ - 1: 5
+ - 2: 5
+ - 3: 2
+ - 4: null
+ - 5: 3
+ - 6: 4
+ - 7: undefined
 
 Normalized calls: Same
 

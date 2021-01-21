@@ -82,7 +82,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[['fail'], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+ - 0: "fail"
+ - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
 
 Normalized calls: Same
 

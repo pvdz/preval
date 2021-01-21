@@ -31,7 +31,8 @@ $(5);
 ## Result
 
 Should call `$` with:
-[[5], null];
+ - 0: 5
+ - 1: undefined
 
 Normalized calls: Same
 

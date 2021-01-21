@@ -34,7 +34,8 @@ $(y);
 ## Result
 
 Should call `$` with:
-[[], "<crash[ Cannot read property 'foo' of undefined ]>"];
+ - 0: 
+ - 1: <crash[ Cannot read property 'foo' of undefined ]>
 
 Normalized calls: Same
 

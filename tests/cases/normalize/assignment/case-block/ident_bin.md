@@ -80,7 +80,10 @@ $(1, 2, 3);
 ## Result
 
 Should call `$` with:
-[['a'], ['a'], [5, 2, 3], null];
+ - 0: "a"
+ - 1: "a"
+ - 2: 5,2,3
+ - 3: undefined
 
 Normalized calls: Same
 

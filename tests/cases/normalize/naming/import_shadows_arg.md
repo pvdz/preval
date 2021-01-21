@@ -38,7 +38,7 @@ export const x = ((tmpArg = f()), $(tmpArg));
 ## Result
 
 Should call `$` with:
-["<crash[ Unexpected token 'export' ]>"];
+ - 0: <crash[ Unexpected token 'export' ]>
 
 Normalized calls: Same
 

@@ -37,7 +37,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[['foo'], '<crash[ <ref> is not iterable ]>'];
+ - 0: "foo"
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

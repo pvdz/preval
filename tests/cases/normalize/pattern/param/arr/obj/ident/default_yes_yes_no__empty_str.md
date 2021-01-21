@@ -84,7 +84,8 @@ $(tmpArg_1);
 ## Result
 
 Should call `$` with:
-[[{ x: 'pass2' }], "<crash[ Cannot read property 'x' of undefined ]>"];
+ - 0: {"x":"pass2"}
+ - 1: <crash[ Cannot read property 'x' of undefined ]>
 
 Normalized calls: Same
 

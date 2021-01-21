@@ -62,7 +62,9 @@ f(tmpArg, tmpArg_1, tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[10], [20], null];
+ - 0: 10
+ - 1: 20
+ - 2: undefined
 
 Normalized calls: Same
 

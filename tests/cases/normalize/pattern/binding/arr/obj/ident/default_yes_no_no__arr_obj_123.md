@@ -58,7 +58,8 @@ $(x);
 ## Result
 
 Should call `$` with:
-[[1], null];
+ - 0: 1
+ - 1: undefined
 
 Normalized calls: Same
 

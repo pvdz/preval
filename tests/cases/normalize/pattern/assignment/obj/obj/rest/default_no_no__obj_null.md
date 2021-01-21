@@ -40,7 +40,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'undefined' of null ]>"];
+ - 0: <crash[ Cannot read property 'undefined' of null ]>
 
 Normalized calls: BAD?!
 ["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];

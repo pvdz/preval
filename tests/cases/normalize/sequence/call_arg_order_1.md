@@ -40,7 +40,11 @@ $(tmpArg, tmpArg_1);
 ## Result
 
 Should call `$` with:
-[[1], [2], [3], [null, null], null];
+ - 0: 1
+ - 1: 2
+ - 2: 3
+ - 3: null,null
+ - 4: undefined
 
 Normalized calls: Same
 

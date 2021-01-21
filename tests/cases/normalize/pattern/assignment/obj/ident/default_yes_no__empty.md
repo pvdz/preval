@@ -56,7 +56,9 @@ $('bad');
 ## Result
 
 Should call `$` with:
-[['fail'], ['bad'], null];
+ - 0: "fail"
+ - 1: "bad"
+ - 2: undefined
 
 Normalized calls: Same
 

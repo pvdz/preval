@@ -75,7 +75,11 @@ $(a, b, 7);
 ## Result
 
 Should call `$` with:
-[['x'], [507], [null], [7, { x: 2, undefined: 7 }, 3], null];
+ - 0: "x"
+ - 1: 507
+ - 2: null
+ - 3: 7,{"x":2,"undefined":7},3
+ - 4: undefined
 
 Normalized calls: Same
 

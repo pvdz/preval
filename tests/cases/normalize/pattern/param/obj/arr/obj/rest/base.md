@@ -62,7 +62,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[{ x: 1, y: 2, c: 3 }], null];
+ - 0: {"x":1,"y":2,"c":3}
+ - 1: undefined
 
 Normalized calls: Same
 

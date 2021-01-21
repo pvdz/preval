@@ -57,7 +57,9 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[[3, {}, 3], null];
+ - 0: 3,{},3
+ - 1: undefined
+ - 2: "should not be called"
 
 Normalized calls: Same
 

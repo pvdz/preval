@@ -70,7 +70,10 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[[false], [3], [3, { x: 3 }, 3], null];
+ - 0: false
+ - 1: 3
+ - 2: 3,{"x":3},3
+ - 3: undefined
 
 Normalized calls: Same
 

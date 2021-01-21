@@ -59,7 +59,10 @@ $(x, y, z);
 ## Result
 
 Should call `$` with:
-[[1], [2], [10, 20, [10, 20, 30]], null];
+ - 0: 1
+ - 1: 2
+ - 2: 10,20,[10,20,30]
+ - 3: undefined
 
 Normalized calls: Same
 

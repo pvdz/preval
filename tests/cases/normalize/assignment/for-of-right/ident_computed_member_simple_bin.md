@@ -66,7 +66,8 @@ $(a, b, 7);
 ## Result
 
 Should call `$` with:
-[['x'], '<crash[ <ref> is not iterable ]>'];
+ - 0: "x"
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

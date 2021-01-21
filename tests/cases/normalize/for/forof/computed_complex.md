@@ -63,7 +63,8 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
 ## Result
 
 Should call `$` with:
-[[{ x: 1, y: 2 }], '<crash[ <ref> is not iterable ]>'];
+ - 0: {"x":1,"y":2}
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

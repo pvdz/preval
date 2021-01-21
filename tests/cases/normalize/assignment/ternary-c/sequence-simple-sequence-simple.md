@@ -75,7 +75,9 @@ $(1, b, c, 3);
 ## Result
 
 Should call `$` with:
-[[false], [3], '<crash[ <ref> is not defined ]>'];
+ - 0: false
+ - 1: 3
+ - 2: <crash[ <ref> is not defined ]>
 
 Normalized calls: Same
 

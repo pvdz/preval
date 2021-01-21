@@ -47,7 +47,9 @@ for (tmpForInLhsDecl in tmpForInRhs) {
 ## Result
 
 Should call `$` with:
-[['a'], ['b'], null];
+ - 0: "a"
+ - 1: "b"
+ - 2: undefined
 
 Normalized calls: Same
 

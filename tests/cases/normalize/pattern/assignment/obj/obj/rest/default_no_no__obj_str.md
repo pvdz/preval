@@ -40,7 +40,8 @@ $(y);
 ## Result
 
 Should call `$` with:
-[[{ 0: 'a', 1: 'b', 2: 'c' }], null];
+ - 0: {"0":"a","1":"b","2":"c"}
+ - 1: undefined
 
 Normalized calls: Same
 

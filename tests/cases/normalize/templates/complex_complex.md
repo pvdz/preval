@@ -33,7 +33,10 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[10], [20], ['abc undefined undefined def'], null];
+ - 0: 10
+ - 1: 20
+ - 2: "abc undefined undefined def"
+ - 3: undefined
 
 Normalized calls: Same
 

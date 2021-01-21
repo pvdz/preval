@@ -108,7 +108,7 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-['<crash[ $ is not a function ]>'];
+ - 0: <crash[ $ is not a function ]>
 
 Normalized calls: BAD?!
 ['<crash[ <ref> is not iterable ]>'];

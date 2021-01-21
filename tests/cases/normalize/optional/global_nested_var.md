@@ -83,7 +83,9 @@ $(c);
 ## Result
 
 Should call `$` with:
-[[2], [null], null];
+ - 0: 2
+ - 1: null
+ - 2: undefined
 
 Normalized calls: Same
 

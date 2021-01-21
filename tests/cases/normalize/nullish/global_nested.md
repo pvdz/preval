@@ -72,7 +72,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[], [{ a: {} }], null];
+ - 0: 
+ - 1: {"a":{}}
+ - 2: undefined
 
 Normalized calls: BAD?!
 [[], '<crash[ Assignment to constant variable. ]>'];

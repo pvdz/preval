@@ -50,7 +50,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[10], null];
+ - 0: 10
+ - 1: undefined
 
 Normalized calls: Same
 

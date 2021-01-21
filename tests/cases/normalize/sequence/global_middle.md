@@ -37,7 +37,13 @@ $(6);
 ## Result
 
 Should call `$` with:
-[[1], [2], [3], [4], [5], [6], null];
+ - 0: 1
+ - 1: 2
+ - 2: 3
+ - 3: 4
+ - 4: 5
+ - 5: 6
+ - 6: undefined
 
 Normalized calls: Same
 

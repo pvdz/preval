@@ -39,7 +39,8 @@ if (ifTestTmp) {
 ## Result
 
 Should call `$` with:
-[[1], '<crash[ <ref> is not a constructor ]>'];
+ - 0: 1
+ - 1: <crash[ <ref> is not a constructor ]>
 
 Normalized calls: Same
 

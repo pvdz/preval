@@ -98,7 +98,7 @@ $(tmpArg_3);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot access 'b' before initialization ]>"];
+ - 0: <crash[ Cannot access 'b' before initialization ]>
 
 Normalized calls: Same
 

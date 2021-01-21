@@ -40,7 +40,9 @@ $(/foo/g);
 ## Result
 
 Should call `$` with:
-[[{}], [{}], null];
+ - 0: {}
+ - 1: {}
+ - 2: undefined
 
 Normalized calls: Same
 

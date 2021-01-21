@@ -87,7 +87,8 @@ $(a, b, 3, 4);
 ## Result
 
 Should call `$` with:
-[[{ x: 2 }], "<crash[ Cannot read property 'x' of undefined ]>"];
+ - 0: {"x":2}
+ - 1: <crash[ Cannot read property 'x' of undefined ]>
 
 Normalized calls: BAD?!
 [[{ x: 2 }], [3], [4], "<crash[ Cannot read property 'y' of undefined ]>"];

@@ -92,7 +92,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[{ 0: 'a' }], null];
+ - 0: {"0":"a"}
+ - 1: undefined
 
 Normalized calls: Same
 

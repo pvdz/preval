@@ -52,7 +52,8 @@ $(y);
 ## Result
 
 Should call `$` with:
-[[{ x: 1 }], null];
+ - 0: {"x":1}
+ - 1: undefined
 
 Normalized calls: Same
 

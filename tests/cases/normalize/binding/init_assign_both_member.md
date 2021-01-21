@@ -37,7 +37,7 @@ let tmpBindInitRhs = (20).x;
 ## Result
 
 Should call `$` with:
-[null];
+ - 0: undefined
 
 Normalized calls: Same
 

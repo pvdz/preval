@@ -51,7 +51,9 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[[502], [{ x: 2 }, 2, 3], null];
+ - 0: 502
+ - 1: {"x":2},2,3
+ - 2: undefined
 
 Normalized calls: Same
 

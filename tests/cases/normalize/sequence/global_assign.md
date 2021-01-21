@@ -43,7 +43,9 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 ## Result
 
 Should call `$` with:
-[[1], [2], "<crash[ Cannot set property 'x' of undefined ]>"];
+ - 0: 1
+ - 1: 2
+ - 2: <crash[ Cannot set property 'x' of undefined ]>
 
 Normalized calls: Same
 

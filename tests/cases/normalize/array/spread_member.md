@@ -41,7 +41,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[['t', 'o', 'S', 't', 'r', 'i', 'n', 'g']], null];
+ - 0: ["t","o","S","t","r","i","n","g"]
+ - 1: undefined
 
 Normalized calls: Same
 

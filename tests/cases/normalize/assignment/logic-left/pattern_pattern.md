@@ -83,7 +83,10 @@ $(a, b, x, y, z);
 ## Result
 
 Should call `$` with:
-[[true], [null], [10, 20, 20, 30, [10, 20, 30]], null];
+ - 0: true
+ - 1: null
+ - 2: 10,20,20,30,[10,20,30]
+ - 3: undefined
 
 Normalized calls: Same
 

@@ -65,7 +65,9 @@ $(a, b, d);
 ## Result
 
 Should call `$` with:
-[['b.set'], [3, null, null], null];
+ - 0: "b.set"
+ - 1: 3,null,null
+ - 2: undefined
 
 Normalized calls: Same
 

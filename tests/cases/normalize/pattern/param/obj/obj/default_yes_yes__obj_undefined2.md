@@ -60,7 +60,7 @@ f(tmpArg);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+ - 0: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
 
 Normalized calls: Same
 

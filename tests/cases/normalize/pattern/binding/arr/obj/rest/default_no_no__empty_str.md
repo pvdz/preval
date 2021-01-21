@@ -37,7 +37,7 @@ $(x);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'undefined' of undefined ]>"];
+ - 0: <crash[ Cannot read property 'undefined' of undefined ]>
 
 Normalized calls: BAD?!
 ["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];

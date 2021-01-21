@@ -92,7 +92,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[[{ a: 'pass2' }]], '<crash[ <ref> is not iterable ]>'];
+ - 0: [{"a":"pass2"}]
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

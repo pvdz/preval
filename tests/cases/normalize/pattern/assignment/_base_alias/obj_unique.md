@@ -43,7 +43,7 @@ a_1 = objAssignPatternRhs.x;
 ## Result
 
 Should call `$` with:
-[null];
+ - 0: undefined
 
 Normalized calls: Same
 

@@ -44,7 +44,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[{ bar: 10 }], null];
+ - 0: {"bar":10}
+ - 1: undefined
 
 Normalized calls: Same
 

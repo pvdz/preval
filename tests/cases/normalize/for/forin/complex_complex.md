@@ -63,7 +63,8 @@ for (tmpForInLhsNode in tmpForInRhs) {
 ## Result
 
 Should call `$` with:
-[[{ x: 1, y: 2 }], null];
+ - 0: {"x":1,"y":2}
+ - 1: undefined
 
 Normalized calls: Same
 

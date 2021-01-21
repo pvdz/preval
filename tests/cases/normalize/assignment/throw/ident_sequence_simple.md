@@ -45,7 +45,8 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[[2], '<crash[ 3 ]>'];
+ - 0: 2
+ - 1: <crash[ 3 ]>
 
 Normalized calls: Same
 

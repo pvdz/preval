@@ -68,7 +68,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
-[['pass'], "<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+ - 0: "pass"
+ - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
 
 Normalized calls: Same
 

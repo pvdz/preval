@@ -98,7 +98,11 @@ $(tmpArg_3);
 ## Result
 
 Should call `$` with:
-[[['foo', 'foo']], [['x', 'x']], [['foo', 'y']], [['x', 'y']], null];
+ - 0: ["foo","foo"]
+ - 1: ["x","x"]
+ - 2: ["foo","y"]
+ - 3: ["x","y"]
+ - 4: undefined
 
 Normalized calls: Same
 

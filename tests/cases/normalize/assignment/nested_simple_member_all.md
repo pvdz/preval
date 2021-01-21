@@ -70,7 +70,10 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[{ x: 1 }], [{ x: 2 }], [{ x: 3 }], "<crash[ Cannot read property 'x' of undefined ]>"];
+ - 0: {"x":1}
+ - 1: {"x":2}
+ - 2: {"x":3}
+ - 3: <crash[ Cannot read property 'x' of undefined ]>
 
 Normalized calls: Same
 

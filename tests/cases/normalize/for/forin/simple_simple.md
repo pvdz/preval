@@ -39,7 +39,9 @@ for (a in b) {
 ## Result
 
 Should call `$` with:
-[['x'], ['y'], null];
+ - 0: "x"
+ - 1: "y"
+ - 2: undefined
 
 Normalized calls: Same
 

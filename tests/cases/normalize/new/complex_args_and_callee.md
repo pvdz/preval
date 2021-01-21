@@ -53,7 +53,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[], [], '<crash[ <ref> is not a constructor ]>'];
+ - 0: 
+ - 1: 
+ - 2: <crash[ <ref> is not a constructor ]>
 
 Normalized calls: Same
 

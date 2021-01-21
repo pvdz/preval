@@ -47,7 +47,9 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[[{ foo: 2 }], [2, 2, 3], null];
+ - 0: {"foo":2}
+ - 1: 2,2,3
+ - 2: undefined
 
 Normalized calls: Same
 

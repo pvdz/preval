@@ -104,7 +104,8 @@ if (ifTestTmp_1) {
 ## Result
 
 Should call `$` with:
-[[4], null];
+ - 0: 4
+ - 1: undefined
 
 Normalized calls: Same
 

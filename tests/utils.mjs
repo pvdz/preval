@@ -127,9 +127,10 @@ export function fmat(code) {
 }
 
 export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
-  const shouldBeOutput = fmat(JSON.stringify(evalled.$in))
-  const normalizedOutput = evalled.$norm === 'Same' ? 'Same' : fmat(JSON.stringify(evalled.$norm));
-  const finalOutput = evalled.$out === 'Same' ? 'Same' : fmat(JSON.stringify(evalled.$out));
+  const shouldBeOutput = fmat(JSON.stringify(evalled.$in));
+  const printOutput = evalled.$in.map((s, i) => ' - ' + i + ': ' + (s && JSON.stringify(s).slice(1, -1))).join('\n');
+  const normalizedOutput = fmat(JSON.stringify(evalled.$norm));
+  const finalOutput = fmat(JSON.stringify(evalled.$out));
   const content =
     mdHead +
     '\n\n' +
@@ -174,13 +175,18 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     //  .join('\n\n') +
     '\n\n## Output\n\n' +
     Object.keys(output.files)
-    .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-    .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-    .join('\n\n') +
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
+      .join('\n\n') +
     '\n\n## Result\n\n' +
-    'Should call `$` with:\n' + shouldBeOutput + '\n' +
-    'Normalized calls:' + (shouldBeOutput === normalizedOutput ? ' Same\n' : (' BAD?!\n' + normalizedOutput)) + '\n' +
-    'Final output calls:' + (shouldBeOutput === finalOutput ? ' Same' : (' BAD!!\n' + finalOutput)) +
+    'Should call `$` with:\n' +
+    printOutput +
+    '\n\n' +
+    'Normalized calls:' +
+    (shouldBeOutput === normalizedOutput ? ' Same\n' : ' BAD?!\n' + normalizedOutput) +
+    '\n' +
+    'Final output calls:' +
+    (shouldBeOutput === finalOutput ? ' Same' : ' BAD!!\n' + finalOutput) +
     '\n';
 
   return content;

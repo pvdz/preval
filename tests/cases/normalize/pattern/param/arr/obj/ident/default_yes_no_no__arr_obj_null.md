@@ -72,7 +72,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[null], null];
+ - 0: null
+ - 1: undefined
 
 Normalized calls: Same
 

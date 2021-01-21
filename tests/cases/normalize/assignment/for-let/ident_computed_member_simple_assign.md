@@ -76,7 +76,11 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
-[['x'], [3], ['y'], [4], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+ - 0: "x"
+ - 1: 3
+ - 2: "y"
+ - 3: 4
+ - 4: <crash[ Cannot set property 'undefined' of undefined ]>
 
 Normalized calls: Same
 

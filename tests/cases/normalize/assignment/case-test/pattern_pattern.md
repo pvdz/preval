@@ -96,7 +96,8 @@ $(1, 2, 1, 2, z);
 ## Result
 
 Should call `$` with:
-[[10, 20, 20, 30, [10, 20, 30]], null];
+ - 0: 10,20,20,30,[10,20,30]
+ - 1: undefined
 
 Normalized calls: Same
 

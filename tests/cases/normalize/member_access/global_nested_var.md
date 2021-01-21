@@ -41,7 +41,8 @@ $(c);
 ## Result
 
 Should call `$` with:
-[[2], "<crash[ Cannot read property 'toString' of undefined ]>"];
+ - 0: 2
+ - 1: <crash[ Cannot read property 'toString' of undefined ]>
 
 Normalized calls: Same
 

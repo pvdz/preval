@@ -62,7 +62,9 @@ $(x, y, z);
 ## Result
 
 Should call `$` with:
-[[1], [2], '<crash[ <ref> is not defined ]>'];
+ - 0: 1
+ - 1: 2
+ - 2: <crash[ <ref> is not defined ]>
 
 Normalized calls: Same
 

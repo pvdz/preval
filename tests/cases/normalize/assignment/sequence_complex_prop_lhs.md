@@ -55,7 +55,8 @@ $(a);
 ## Result
 
 Should call `$` with:
-[[{ y: 10 }], "<crash[ Cannot read property 'y' of undefined ]>"];
+ - 0: {"y":10}
+ - 1: <crash[ Cannot read property 'y' of undefined ]>
 
 Normalized calls: Same
 

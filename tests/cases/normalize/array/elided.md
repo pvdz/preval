@@ -39,7 +39,10 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[], [], [[1, null, null, 2, null, null, null]], null];
+ - 0: 
+ - 1: 
+ - 2: [1,null,null,2,null,null,null]
+ - 3: undefined
 
 Normalized calls: Same
 

@@ -44,7 +44,11 @@ c = $();
 ## Result
 
 Should call `$` with:
-[[null, null, null], [], [], [], null];
+ - 0: null,null,null
+ - 1: 
+ - 2: 
+ - 3: 
+ - 4: undefined
 
 Normalized calls: Same
 

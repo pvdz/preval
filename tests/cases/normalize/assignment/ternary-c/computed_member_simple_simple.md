@@ -67,7 +67,11 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
-[[false], ['x'], [2], [{ x: 10, undefined: 2 }, 2, 3], null];
+ - 0: false
+ - 1: "x"
+ - 2: 2
+ - 3: {"x":10,"undefined":2},2,3
+ - 4: undefined
 
 Normalized calls: Same
 

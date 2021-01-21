@@ -41,7 +41,8 @@ $(x);
 ## Result
 
 Should call `$` with:
-[[[null, null, null, 1]], null];
+ - 0: [null,null,null,1]
+ - 1: undefined
 
 Normalized calls: Same
 

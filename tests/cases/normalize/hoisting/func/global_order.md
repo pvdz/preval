@@ -75,7 +75,11 @@ $(tmpArg, tmpArg_1, tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[], [], [], [null, null, null], null];
+ - 0: 
+ - 1: 
+ - 2: 
+ - 3: null,null,null
+ - 4: undefined
 
 Normalized calls: Same
 

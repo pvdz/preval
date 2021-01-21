@@ -51,7 +51,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[null], [null], null];
+ - 0: null
+ - 1: null
+ - 2: undefined
 
 Normalized calls: Same
 

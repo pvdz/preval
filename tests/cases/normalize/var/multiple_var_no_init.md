@@ -40,7 +40,10 @@ $(undefined);
 ## Result
 
 Should call `$` with:
-[[null], [null], [null], null];
+ - 0: null
+ - 1: null
+ - 2: null
+ - 3: undefined
 
 Normalized calls: Same
 

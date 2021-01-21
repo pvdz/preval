@@ -53,7 +53,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[], '<crash[ (1 , 2 , $(...)) is not a function ]>'];
+ - 0: 
+ - 1: <crash[ (1 , 2 , $(...)) is not a function ]>
 
 Normalized calls: BAD?!
 [[], '<crash[ tmpNewObj is not a function ]>'];

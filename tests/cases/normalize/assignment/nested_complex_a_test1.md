@@ -54,7 +54,8 @@ tmpAssignMemLhsObj.length = tmpAssignMemRhs;
 ## Result
 
 Should call `$` with:
-[[[10, 20, 30]], "<crash[ Cannot set property 'length' of undefined ]>"];
+ - 0: [10,20,30]
+ - 1: <crash[ Cannot set property 'length' of undefined ]>
 
 Normalized calls: Same
 

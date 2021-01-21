@@ -52,7 +52,8 @@ if (ifTestTmp) {
 ## Result
 
 Should call `$` with:
-[[100], null];
+ - 0: 100
+ - 1: undefined
 
 Normalized calls: Same
 

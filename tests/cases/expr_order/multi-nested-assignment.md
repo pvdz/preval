@@ -147,7 +147,13 @@ $(a, b, c, d, e);
 ## Result
 
 Should call `$` with:
-[['a'], ['b'], ['c'], ['d'], ['e'], [51, 52, 53, 54, null], null];
+ - 0: "a"
+ - 1: "b"
+ - 2: "c"
+ - 3: "d"
+ - 4: "e"
+ - 5: 51,52,53,54,null
+ - 6: undefined
 
 Normalized calls: Same
 

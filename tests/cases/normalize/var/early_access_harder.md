@@ -51,7 +51,9 @@ $(x);
 ## Result
 
 Should call `$` with:
-[[null], [10], null];
+ - 0: null
+ - 1: 10
+ - 2: undefined
 
 Normalized calls: Same
 

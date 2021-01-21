@@ -51,7 +51,9 @@ $(a, 5, 3);
 ## Result
 
 Should call `$` with:
-[[['abc ', ' def'], 5], [5, 2, 3], null];
+ - 0: ["abc "," def"],5
+ - 1: 5,2,3
+ - 2: undefined
 
 Normalized calls: Same
 

@@ -43,7 +43,10 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 ## Result
 
 Should call `$` with:
-[[1], [2], [3], "<crash[ Cannot set property 'undefined' of undefined ]>"];
+ - 0: 1
+ - 1: 2
+ - 2: 3
+ - 3: <crash[ Cannot set property 'undefined' of undefined ]>
 
 Normalized calls: Same
 

@@ -29,7 +29,8 @@ $();
 ## Result
 
 Should call `$` with:
-[[], null];
+ - 0: 
+ - 1: undefined
 
 Normalized calls: Same
 

@@ -45,7 +45,7 @@ $(x);
 ## Result
 
 Should call `$` with:
-['<crash[ undefined is not a function ]>'];
+ - 0: <crash[ undefined is not a function ]>
 
 Normalized calls: BAD?!
 ['<crash[ <ref> is not iterable ]>'];

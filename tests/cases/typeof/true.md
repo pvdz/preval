@@ -31,7 +31,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[['boolean'], null];
+ - 0: "boolean"
+ - 1: undefined
 
 Normalized calls: Same
 

@@ -64,7 +64,8 @@ $(y);
 ## Result
 
 Should call `$` with:
-[['pass'], null];
+ - 0: "pass"
+ - 1: undefined
 
 Normalized calls: Same
 

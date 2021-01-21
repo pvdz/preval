@@ -121,7 +121,9 @@ tmpSwitchBreak: {
 ## Result
 
 Should call `$` with:
-[[3], [4], null];
+ - 0: 3
+ - 1: 4
+ - 2: undefined
 
 Normalized calls: Same
 

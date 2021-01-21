@@ -35,7 +35,9 @@ var tmpMemberSeqAssign;
 ## Result
 
 Should call `$` with:
-[[1], [2], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+ - 0: 1
+ - 1: 2
+ - 2: <crash[ Cannot read property 'undefined' of undefined ]>
 
 Normalized calls: BAD?!
 [[2], [1], "<crash[ Cannot read property 'undefined' of undefined ]>"];

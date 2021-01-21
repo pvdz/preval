@@ -33,7 +33,8 @@ $(tmpArg, 10, 20);
 ## Result
 
 Should call `$` with:
-[[['abc ', ' ', ' def'], 10, 20], null];
+ - 0: ["abc "," "," def"],10,20
+ - 1: undefined
 
 Normalized calls: Same
 

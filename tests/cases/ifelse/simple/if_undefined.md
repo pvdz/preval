@@ -29,7 +29,7 @@ if (undefined) {
 ## Result
 
 Should call `$` with:
-[null];
+ - 0: undefined
 
 Normalized calls: Same
 

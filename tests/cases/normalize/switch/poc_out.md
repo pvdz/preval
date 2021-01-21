@@ -171,7 +171,10 @@ exit: {
 ## Result
 
 Should call `$` with:
-[[1], ['A'], ['B'], null];
+ - 0: 1
+ - 1: "A"
+ - 2: "B"
+ - 3: undefined
 
 Normalized calls: Same
 

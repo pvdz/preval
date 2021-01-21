@@ -35,7 +35,8 @@ $('aba');
 ## Result
 
 Should call `$` with:
-[['aba'], null];
+ - 0: "aba"
+ - 1: undefined
 
 Normalized calls: Same
 

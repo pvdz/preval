@@ -268,7 +268,14 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-[[1], [1], [8], [3], [5], [6], [null], null];
+ - 0: 1
+ - 1: 1
+ - 2: 8
+ - 3: 3
+ - 4: 5
+ - 5: 6
+ - 6: null
+ - 7: undefined
 
 Normalized calls: Same
 

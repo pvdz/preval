@@ -106,7 +106,8 @@ $(tmpArg_2);
 ## Result
 
 Should call `$` with:
-[[['pass3']], '<crash[ <ref> is not iterable ]>'];
+ - 0: ["pass3"]
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

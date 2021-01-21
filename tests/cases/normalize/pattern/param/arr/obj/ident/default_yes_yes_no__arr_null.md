@@ -88,7 +88,7 @@ $(tmpArg_1);
 ## Result
 
 Should call `$` with:
-["<crash[ Cannot read property 'x' of null ]>"];
+ - 0: <crash[ Cannot read property 'x' of null ]>
 
 Normalized calls: Same
 

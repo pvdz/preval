@@ -48,7 +48,7 @@ $(1, b, c, 3);
 ## Result
 
 Should call `$` with:
-['<crash[ Found non-callable @@iterator ]>'];
+ - 0: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

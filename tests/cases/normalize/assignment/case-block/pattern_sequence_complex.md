@@ -95,7 +95,12 @@ $(1, 2, z);
 ## Result
 
 Should call `$` with:
-[['a'], ['a'], [1], [2], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+ - 0: "a"
+ - 1: "a"
+ - 2: 1
+ - 3: 2
+ - 4: [10,20,30]
+ - 5: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

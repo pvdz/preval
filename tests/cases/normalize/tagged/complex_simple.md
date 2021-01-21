@@ -37,7 +37,9 @@ $(tmpArg, tmpArg_1, 20);
 ## Result
 
 Should call `$` with:
-[[10], [['abc ', ' ', ' def'], null, 20], null];
+ - 0: 10
+ - 1: ["abc "," "," def"],null,20
+ - 2: undefined
 
 Normalized calls: Same
 

@@ -120,7 +120,7 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
-['<crash[ a is not a function ]>'];
+ - 0: <crash[ a is not a function ]>
 
 Normalized calls: Same
 

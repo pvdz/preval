@@ -98,7 +98,8 @@ $(a, s);
 ## Result
 
 Should call `$` with:
-[[5, 'read;write[5];'], null];
+ - 0: 5,"read;write[5];"
+ - 1: undefined
 
 Normalized calls: Same
 

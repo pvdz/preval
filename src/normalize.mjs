@@ -3188,13 +3188,18 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.computed && isComplexNode(node.property)) {
           rule('Expression of computed property must be simple');
-          example('a[b()]', '(tmp = b(), a)[tmp]');
+          example('a[b()]', '(tmp = a, tmp2 = b(), tmp)[tmp]');
           before(node);
 
-          const tmpName = createFreshVarInCurrentRootScope('tmpComputedProp', true);
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpComputedObj', true);
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpComputedProp', true);
           const newNode = AST.memberExpression(
-            AST.sequenceExpression(AST.assignmentExpression(tmpName, node.property), node.object),
-            tmpName,
+            AST.sequenceExpression(
+              AST.assignmentExpression(tmpNameObj, node.object),
+              AST.assignmentExpression(tmpNameProp, node.property),
+              AST.identifier(tmpNameObj),
+            ),
+            tmpNameProp,
             true,
           );
 
@@ -3943,7 +3948,7 @@ export function phaseNormalize(fdata, fname) {
       if (pnode.type === 'AssignmentPattern') {
         rule('Func params must not have inits/defaults');
         log('- `function f(x = y()) {}` --> `function f(tmp) { x = tmp === undefined ? y() : tmp; }');
-        before({...funcNode, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>')))});
+        before({ ...funcNode, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
 
         // Param defaults. Rewrite to be inside the function
         // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }

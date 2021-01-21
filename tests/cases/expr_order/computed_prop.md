@@ -18,18 +18,18 @@ $(1)[$(2)];
 
 `````js filename=intro
 var tmpMemberComplexObj;
+var tmpComputedObj;
 var tmpComputedProp;
-var tmpMemberSeqAssign;
-((tmpComputedProp = $(2)), (tmpMemberComplexObj = $(1)), (tmpMemberSeqAssign = tmpMemberComplexObj), tmpMemberSeqAssign)[tmpComputedProp];
+((tmpMemberComplexObj = $(1)), (tmpComputedObj = tmpMemberComplexObj), (tmpComputedProp = $(2)), tmpComputedObj)[tmpComputedProp];
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpMemberComplexObj;
+var tmpComputedObj;
 var tmpComputedProp;
-var tmpMemberSeqAssign;
-((tmpComputedProp = $(2)), (tmpMemberComplexObj = $(1)), (tmpMemberSeqAssign = tmpMemberComplexObj), tmpMemberSeqAssign)[tmpComputedProp];
+((tmpMemberComplexObj = $(1)), (tmpComputedObj = tmpMemberComplexObj), (tmpComputedProp = $(2)), tmpComputedObj)[tmpComputedProp];
 `````
 
 ## Result
@@ -39,9 +39,6 @@ Should call `$` with:
  - 1: 2
  - 2: <crash[ Cannot read property 'undefined' of undefined ]>
 
-Normalized calls: BAD?!
-[[2], [1], "<crash[ Cannot read property 'undefined' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[2], [1], "<crash[ Cannot read property 'undefined' of undefined ]>"];
-
+Final output calls: Same

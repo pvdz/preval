@@ -24,6 +24,7 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpTernaryTest_1;
 var tmpTernaryAlternate_1;
+var tmpComputedObj;
 var tmpComputedProp;
 var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
@@ -39,6 +40,7 @@ tmpTernaryTest_1 = tmpOptionalChaining == null;
 if (tmpTernaryTest_1) {
   tmpArg = undefined;
 } else {
+  tmpComputedObj = tmpOptionalChaining;
   tmpTernaryTest_2 = c == null;
   if (tmpTernaryTest_2) {
     tmpComputedProp = undefined;
@@ -46,7 +48,7 @@ if (tmpTernaryTest_1) {
     tmpTernaryAlternate_2 = c[d];
     tmpComputedProp = tmpTernaryAlternate_2;
   }
-  tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp];
+  tmpTernaryAlternate_1 = tmpComputedObj[tmpComputedProp];
   tmpArg = tmpTernaryAlternate_1;
 }
 $(tmpArg);
@@ -61,6 +63,7 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpTernaryTest_1;
 var tmpTernaryAlternate_1;
+var tmpComputedObj;
 var tmpComputedProp;
 var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
@@ -76,6 +79,7 @@ tmpTernaryTest_1 = tmpOptionalChaining == null;
 if (tmpTernaryTest_1) {
   tmpArg = undefined;
 } else {
+  tmpComputedObj = tmpOptionalChaining;
   tmpTernaryTest_2 = c == null;
   if (tmpTernaryTest_2) {
     tmpComputedProp = undefined;
@@ -83,7 +87,7 @@ if (tmpTernaryTest_1) {
     tmpTernaryAlternate_2 = c[d];
     tmpComputedProp = tmpTernaryAlternate_2;
   }
-  tmpTernaryAlternate_1 = tmpOptionalChaining[tmpComputedProp];
+  tmpTernaryAlternate_1 = tmpComputedObj[tmpComputedProp];
   tmpArg = tmpTernaryAlternate_1;
 }
 $(tmpArg);

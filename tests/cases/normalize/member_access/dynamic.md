@@ -17,10 +17,12 @@ $(obj[$()]);
 
 `````js filename=intro
 var tmpArg;
+var tmpComputedObj;
 var tmpComputedProp;
 const obj = { foo: 10 };
+tmpComputedObj = obj;
 tmpComputedProp = $();
-tmpArg = obj[tmpComputedProp];
+tmpArg = tmpComputedObj[tmpComputedProp];
 $(tmpArg);
 `````
 
@@ -28,10 +30,12 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
+var tmpComputedObj;
 var tmpComputedProp;
 const obj = { foo: 10 };
+tmpComputedObj = obj;
 tmpComputedProp = $();
-tmpArg = obj[tmpComputedProp];
+tmpArg = tmpComputedObj[tmpComputedProp];
 $(tmpArg);
 `````
 

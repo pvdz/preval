@@ -22,6 +22,7 @@ $(a, b, c);
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -32,8 +33,9 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
     } else {
       tmpNestedAssignObj = $(b);
-      tmpNestedAssignObj.x = c;
-      tmpNestedComplexRhs = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;
@@ -62,8 +64,9 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
     } else {
       tmpNestedAssignObj = $(b);
-      tmpNestedAssignObj.x = c;
-      tmpNestedComplexRhs = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;

@@ -20,7 +20,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -31,17 +30,14 @@ let z = [10, 20, 30];
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      arrAssignPatternRhs = z;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      tmpNestedComplexRhs = arrAssignPatternRhs;
-      a = tmpNestedComplexRhs;
-      tmpAssignMemLhsObj = tmpNestedComplexRhs;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = arrAssignPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, x, y, z);
@@ -51,7 +47,6 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -68,8 +63,7 @@ for (tmpForInLhsNode in {}) {
   tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
   tmpAssignMemLhsObj = tmpNestedComplexRhs;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, x, y, z);
 `````

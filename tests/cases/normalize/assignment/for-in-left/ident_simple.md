@@ -20,19 +20,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      a = b;
-      tmpAssignMemLhsObj = b;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    a = b;
+    tmpAssignMemLhsObj = b;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, b, c);
@@ -42,14 +38,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
   a = 2;
   tmpAssignMemLhsObj = 2;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, 2, 3);
 `````

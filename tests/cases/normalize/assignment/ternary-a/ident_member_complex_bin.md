@@ -20,6 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpArg;
@@ -28,7 +29,8 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpNestedAssignMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = c + d;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -47,13 +49,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = 7;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

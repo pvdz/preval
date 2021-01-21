@@ -21,11 +21,10 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpArg = `abc ${(((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = b), tmpAssignMemLhsObj).x = tmpAssignMemRhs)} def`;
+tmpArg = `abc ${((tmpAssignMemLhsObj = $(a)), (tmpAssignMemLhsObj.x = b))} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -35,9 +34,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
-tmpArg = `abc ${(((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = 2), tmpAssignMemLhsObj).x = tmpAssignMemRhs)} def`;
+tmpArg = `abc ${((tmpAssignMemLhsObj = $(a)), (tmpAssignMemLhsObj.x = 2))} def`;
 $(tmpArg);
 $(a, 2, 3);
 `````

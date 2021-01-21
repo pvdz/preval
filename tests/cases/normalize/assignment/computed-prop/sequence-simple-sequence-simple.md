@@ -19,51 +19,53 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-{
-  tmpAssignComputedObj = obj;
-  a;
-  tmpNestedAssignMemberObj = b;
-  a;
-  tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = d;
-  tmpNestedAssignMemberRhs = d;
-  tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-  tmpAssignComputedProp = tmpNestedAssignMemberRhs;
-  tmpAssignComputedRhs = 1000;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
+tmpAssignComMemLhsObj = obj;
+a;
+tmpNestedAssignObj = b;
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+a;
+tmpNestedAssignObj_1 = b;
+tmpNestedPropAssignRhs = d;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+tmpAssignComMemLhsProp = tmpNestedAssignMemberRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
 $(a, b, c, d);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
-tmpAssignComputedObj = obj;
-tmpNestedAssignMemberObj = b;
+tmpAssignComMemLhsObj = obj;
 tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 3;
-tmpNestedAssignMemberRhs = 3;
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignObj_1 = b;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
 tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-tmpAssignComputedProp = tmpNestedAssignMemberRhs;
-tmpAssignComputedRhs = 1000;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsProp = tmpNestedAssignMemberRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
 $(1, b, 'unused', 3);
 `````
 

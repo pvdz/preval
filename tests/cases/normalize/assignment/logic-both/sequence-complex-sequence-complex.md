@@ -19,39 +19,49 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignObj_2;
+var tmpNestedPropAssignRhs_2;
 var tmpArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpNestedAssignObj;
 var tmpAssignMemLhsObj_1;
+var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
+var tmpAssignMemLhsObj_3;
+var tmpAssignMemLhsObj_4;
 var tmpAssignMemRhs_1;
+var tmpAssignMemLhsObj_5;
 var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 {
-  {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    a;
-    tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.c = d;
-    tmpAssignMemRhs = d;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-  }
+  a;
+  tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+  a;
+  tmpNestedAssignObj = $(b);
+  tmpNestedPropAssignRhs = d;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpAssignMemRhs = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+  tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
   let tmpAssignLogicStmtOr = tmpAssignMemRhs;
   if (tmpAssignLogicStmtOr) {
     a;
-    tmpAssignMemLhsObj_1 = $(b);
+    tmpAssignMemLhsObj_3 = $(b);
+    tmpAssignMemLhsObj_4 = tmpAssignMemLhsObj_3;
     a;
     tmpNestedAssignObj_1 = $(b);
-    tmpNestedAssignObj_1.c = d;
-    tmpAssignMemRhs_1 = d;
-    tmpNestedAssignObj_2 = tmpAssignMemLhsObj_1;
-    tmpNestedAssignObj_2.c = tmpAssignMemRhs_1;
-    tmpArg = tmpAssignMemRhs_1;
+    tmpNestedPropAssignRhs_1 = d;
+    tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs_1;
+    tmpAssignMemRhs_1 = tmpNestedPropAssignRhs_1;
+    tmpAssignMemLhsObj_5 = tmpAssignMemLhsObj_4;
+    tmpNestedPropAssignRhs_2 = tmpAssignMemRhs_1;
+    tmpAssignMemLhsObj_5.c = tmpNestedPropAssignRhs_2;
+    tmpArg = tmpNestedPropAssignRhs_2;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -63,29 +73,41 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignObj_2;
+var tmpNestedPropAssignRhs_2;
 var tmpArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpNestedAssignObj;
 var tmpAssignMemLhsObj_1;
+var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
+var tmpAssignMemLhsObj_3;
+var tmpAssignMemLhsObj_4;
 var tmpAssignMemRhs_1;
+var tmpAssignMemLhsObj_5;
 var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 let b = { c: 2 };
 tmpAssignMemLhsObj = $(b);
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
 tmpNestedAssignObj = $(b);
-tmpNestedAssignObj.c = 3;
-tmpAssignMemRhs = 3;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+tmpAssignMemRhs = tmpNestedPropAssignRhs;
+tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
 let tmpAssignLogicStmtOr = tmpAssignMemRhs;
 if (tmpAssignLogicStmtOr) {
-  tmpAssignMemLhsObj_1 = $(b);
+  tmpAssignMemLhsObj_3 = $(b);
+  tmpAssignMemLhsObj_4 = tmpAssignMemLhsObj_3;
   tmpNestedAssignObj_1 = $(b);
-  tmpNestedAssignObj_1.c = 3;
-  tmpAssignMemRhs_1 = 3;
-  tmpNestedAssignObj_2 = tmpAssignMemLhsObj_1;
-  tmpNestedAssignObj_2.c = tmpAssignMemRhs_1;
-  tmpArg = tmpAssignMemRhs_1;
+  tmpNestedPropAssignRhs_1 = 3;
+  tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs_1;
+  tmpAssignMemRhs_1 = tmpNestedPropAssignRhs_1;
+  tmpAssignMemLhsObj_5 = tmpAssignMemLhsObj_4;
+  tmpNestedPropAssignRhs_2 = tmpAssignMemRhs_1;
+  tmpAssignMemLhsObj_5.c = tmpNestedPropAssignRhs_2;
+  tmpArg = tmpNestedPropAssignRhs_2;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

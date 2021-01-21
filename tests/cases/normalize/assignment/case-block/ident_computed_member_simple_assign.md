@@ -21,9 +21,14 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignObj;
+var tmpNestedAssignComMemberObj_1;
+var tmpNestedAssignComMemberProp_1;
 var tmpNestedAssignCompMemberObj_1;
 var tmpNestedAssignCompMemberProp_1;
 var tmpNestedAssignCompMemberRhs_1;
@@ -46,10 +51,15 @@ let d = 4;
       if (ifTestTmp) {
         ('case 0:');
         {
-          tmpNestedAssignCompMemberObj = b;
-          tmpNestedAssignCompMemberProp = $('x');
-          tmpNestedAssignCompMemberObj_1 = $(c);
-          tmpNestedAssignCompMemberProp_1 = $('y');
+          tmpNestedAssignComMemberObj = b;
+          tmpNestedAssignComMemberProp = $('x');
+          tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+          tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+          tmpNestedAssignObj = $(c);
+          tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj;
+          tmpNestedAssignComMemberProp_1 = $('y');
+          tmpNestedAssignCompMemberObj_1 = tmpNestedAssignComMemberObj_1;
+          tmpNestedAssignCompMemberProp_1 = tmpNestedAssignComMemberProp_1;
           tmpNestedAssignCompMemberRhs_1 = $(d);
           tmpNestedAssignCompMemberObj_1[tmpNestedAssignCompMemberProp_1] = tmpNestedAssignCompMemberRhs_1;
           tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs_1;
@@ -83,10 +93,15 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        tmpNestedAssignCompMemberObj = b;
-        tmpNestedAssignCompMemberProp = $('x');
-        tmpNestedAssignCompMemberObj_1 = $(c);
-        tmpNestedAssignCompMemberProp_1 = $('y');
+        tmpNestedAssignComMemberObj = b;
+        tmpNestedAssignComMemberProp = $('x');
+        tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+        tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj;
+        tmpNestedAssignComMemberProp_1 = $('y');
+        tmpNestedAssignCompMemberObj_1 = tmpNestedAssignComMemberObj_1;
+        tmpNestedAssignCompMemberProp_1 = tmpNestedAssignComMemberProp_1;
         tmpNestedAssignCompMemberRhs_1 = $(d);
         tmpNestedAssignCompMemberObj_1[tmpNestedAssignCompMemberProp_1] = tmpNestedAssignCompMemberRhs_1;
         tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs_1;

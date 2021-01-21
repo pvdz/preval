@@ -23,8 +23,11 @@ $(a, b, c, d);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -40,14 +43,15 @@ let n = 1;
       if (ifTestTmp) {
         {
           a;
-          {
-            tmpAssignMemLhsObj = $(b);
-            a;
-            tmpNestedAssignObj = b;
-            tmpNestedAssignObj.c = d;
-            tmpAssignMemRhs = d;
-            tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-          }
+          tmpAssignMemLhsObj = $(b);
+          tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+          a;
+          tmpNestedAssignObj = b;
+          tmpNestedPropAssignRhs = d;
+          tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+          tmpAssignMemRhs = tmpNestedPropAssignRhs;
+          tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+          tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
         }
       } else {
         break;
@@ -64,8 +68,11 @@ $(a, b, c, d);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let n = 1;
 while (true) {
@@ -75,10 +82,13 @@ while (true) {
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = $(b);
+    tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
     tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 3;
-    tmpAssignMemRhs = 3;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    tmpNestedPropAssignRhs = 3;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpAssignMemRhs = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+    tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
   } else {
     break;
   }

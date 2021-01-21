@@ -19,28 +19,30 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj_2;
 var tmpAssignMemRhs_1;
+var tmpAssignMemLhsObj_3;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  {
-    tmpAssignMemLhsObj = a;
-    tmpAssignMemRhs = b + c;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
+  tmpAssignMemLhsObj = a;
+  tmpAssignMemRhs = b + c;
+  tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+  tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
   let tmpAssignLogicStmtOr = tmpAssignMemRhs;
   if (tmpAssignLogicStmtOr) {
-    tmpAssignMemLhsObj_1 = a;
+    tmpAssignMemLhsObj_2 = a;
     tmpAssignMemRhs_1 = b + c;
-    tmpNestedAssignObj = tmpAssignMemLhsObj_1;
-    tmpNestedAssignObj.x = tmpAssignMemRhs_1;
-    tmpArg = tmpAssignMemRhs_1;
+    tmpAssignMemLhsObj_3 = tmpAssignMemLhsObj_2;
+    tmpNestedPropAssignRhs = tmpAssignMemRhs_1;
+    tmpAssignMemLhsObj_3.x = tmpNestedPropAssignRhs;
+    tmpArg = tmpNestedPropAssignRhs;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -52,23 +54,27 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
 var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj_2;
 var tmpAssignMemRhs_1;
+var tmpAssignMemLhsObj_3;
 let a = { x: 10 };
 tmpAssignMemLhsObj = a;
 tmpAssignMemRhs = 8;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
 let tmpAssignLogicStmtOr = tmpAssignMemRhs;
 if (tmpAssignLogicStmtOr) {
-  tmpAssignMemLhsObj_1 = a;
+  tmpAssignMemLhsObj_2 = a;
   tmpAssignMemRhs_1 = 8;
-  tmpNestedAssignObj = tmpAssignMemLhsObj_1;
-  tmpNestedAssignObj.x = tmpAssignMemRhs_1;
-  tmpArg = tmpAssignMemRhs_1;
+  tmpAssignMemLhsObj_3 = tmpAssignMemLhsObj_2;
+  tmpNestedPropAssignRhs = tmpAssignMemRhs_1;
+  tmpAssignMemLhsObj_3.x = tmpNestedPropAssignRhs;
+  tmpArg = tmpNestedPropAssignRhs;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

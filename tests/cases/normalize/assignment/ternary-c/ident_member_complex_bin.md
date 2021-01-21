@@ -23,6 +23,7 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -33,7 +34,8 @@ tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedAssignMemberObj = $(b);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = c + d;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -52,6 +54,7 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -60,7 +63,8 @@ tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedAssignMemberObj = $(b);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = 7;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

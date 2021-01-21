@@ -20,25 +20,33 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignComMemberObj_1;
 var tmpNestedAssignComMemberProp_1;
+var tmpNestedPropAssignRhs_1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  tmpNestedAssignComMemberObj = $(b);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignComMemberObj = tmpNestedAssignObj;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-  a = c;
-  let tmpAssignLogicStmtOr = c;
+  tmpNestedPropAssignRhs = c;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpAssignLogicStmtOr = tmpNestedPropAssignRhs;
   if (tmpAssignLogicStmtOr) {
-    tmpNestedAssignComMemberObj_1 = $(b);
+    tmpNestedAssignObj_1 = $(b);
+    tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj_1;
     tmpNestedAssignComMemberProp_1 = $('x');
-    tmpNestedAssignComMemberObj_1[tmpNestedAssignComMemberProp_1] = c;
-    a = c;
-    tmpArg = c;
+    tmpNestedPropAssignRhs_1 = c;
+    tmpNestedAssignComMemberObj_1[tmpNestedAssignComMemberProp_1] = tmpNestedPropAssignRhs_1;
+    a = tmpNestedPropAssignRhs_1;
+    tmpArg = tmpNestedPropAssignRhs_1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -51,21 +59,34 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignComMemberObj_1;
 var tmpNestedAssignComMemberProp_1;
+var tmpNestedPropAssignRhs_1;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignComMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-a = 3;
-tmpNestedAssignComMemberObj_1 = $(b);
-tmpNestedAssignComMemberProp_1 = $('x');
-tmpNestedAssignComMemberObj_1[tmpNestedAssignComMemberProp_1] = 3;
-a = 3;
-tmpArg = 3;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpAssignLogicStmtOr = tmpNestedPropAssignRhs;
+if (tmpAssignLogicStmtOr) {
+  tmpNestedAssignObj_1 = $(b);
+  tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj_1;
+  tmpNestedAssignComMemberProp_1 = $('x');
+  tmpNestedPropAssignRhs_1 = 3;
+  tmpNestedAssignComMemberObj_1[tmpNestedAssignComMemberProp_1] = tmpNestedPropAssignRhs_1;
+  a = tmpNestedPropAssignRhs_1;
+  tmpArg = tmpNestedPropAssignRhs_1;
+} else {
+  tmpArg = tmpAssignLogicStmtOr;
+}
 $(tmpArg);
 $(a, b, 3);
 `````

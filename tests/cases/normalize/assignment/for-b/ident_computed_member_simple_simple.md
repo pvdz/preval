@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -29,8 +30,9 @@ let c = 3;
     {
       tmpNestedAssignComMemberObj = b;
       tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-      a = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
       let ifTestTmp = a;
       if (ifTestTmp) {
       } else {
@@ -47,13 +49,15 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 while (true) {
   tmpNestedAssignComMemberObj = b;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   let ifTestTmp = a;
   if (ifTestTmp) {
   } else {

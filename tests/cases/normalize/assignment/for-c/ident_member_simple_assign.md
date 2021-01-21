@@ -24,6 +24,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
@@ -40,7 +41,8 @@ let n = 1;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         tmpNestedAssignMemberObj = b;
-        tmpNestedAssignMemberObj_1 = $(c);
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
         tmpNestedAssignMemberRhs_1 = $(d);
         tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
         tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
@@ -62,6 +64,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
@@ -74,7 +77,8 @@ while (true) {
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpNestedAssignMemberObj = b;
-    tmpNestedAssignMemberObj_1 = $(3);
+    tmpNestedAssignObj = $(3);
+    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs_1 = $(4);
     tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
     tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;

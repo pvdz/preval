@@ -20,7 +20,6 @@ $(obj?.a?.b);
 var tmpObjPropValue;
 var tmpObjPropValue_1;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -30,11 +29,8 @@ var tmpTernaryAlternate_1;
 tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
-{
-  tmpAssignMemLhsObj = obj.a;
-  tmpAssignMemRhs = 15;
-  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-}
+tmpAssignMemLhsObj = obj.a;
+tmpAssignMemLhsObj.b = 15;
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;
@@ -58,7 +54,6 @@ $(tmpArg);
 var tmpObjPropValue;
 var tmpObjPropValue_1;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -69,8 +64,7 @@ tmpObjPropValue_1 = $();
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };
 tmpAssignMemLhsObj = obj.a;
-tmpAssignMemRhs = 15;
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj.b = 15;
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;

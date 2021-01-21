@@ -22,8 +22,11 @@ $(a, b, c, d);
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -45,14 +48,15 @@ let d = 3;
         {
           {
             a;
-            {
-              tmpAssignMemLhsObj = $(b);
-              a;
-              tmpNestedAssignObj = b;
-              tmpNestedAssignObj.c = d;
-              tmpAssignMemRhs = d;
-              tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-            }
+            tmpAssignMemLhsObj = $(b);
+            tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+            a;
+            tmpNestedAssignObj = b;
+            tmpNestedPropAssignRhs = d;
+            tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+            tmpAssignMemRhs = tmpNestedPropAssignRhs;
+            tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+            tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
           }
           break tmpSwitchBreak;
         }
@@ -84,14 +88,15 @@ tmpSwitchBreak: {
       {
         {
           a;
-          {
-            tmpAssignMemLhsObj = $(b);
-            a;
-            tmpNestedAssignObj = b;
-            tmpNestedAssignObj.c = d;
-            tmpAssignMemRhs = d;
-            tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-          }
+          tmpAssignMemLhsObj = $(b);
+          tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+          a;
+          tmpNestedAssignObj = b;
+          tmpNestedPropAssignRhs = d;
+          tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+          tmpAssignMemRhs = tmpNestedPropAssignRhs;
+          tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+          tmpAssignMemLhsObj_2.c = tmpAssignMemRhs;
         }
         break tmpSwitchBreak;
       }

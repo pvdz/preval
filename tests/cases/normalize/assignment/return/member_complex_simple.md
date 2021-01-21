@@ -25,13 +25,9 @@ let b = 2;
 let c = 3;
 tmpNewObj = function () {
   var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
   {
-    {
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignMemRhs = b;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = b;
     let tmpStmtArg = b;
     return tmpStmtArg;
   }
@@ -47,10 +43,8 @@ var tmpNewObj;
 let a = { x: 10 };
 tmpNewObj = function () {
   var tmpAssignMemLhsObj;
-  var tmpAssignMemRhs;
   tmpAssignMemLhsObj = $(a);
-  tmpAssignMemRhs = 2;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = 2;
   return 2;
 };
 tmpNewObj();

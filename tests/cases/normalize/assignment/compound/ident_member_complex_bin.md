@@ -19,44 +19,38 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpNestedAssignMemberObj = $(b);
-tmpNestedAssignMemberRhs = c + d;
-{
-  tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-  tmpBinaryLeft = tmpNestedAssignMemberObj.x;
-  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
-a = a * tmpNestedAssignMemberRhs;
+tmpNestedAssignObj = $(b);
+tmpBinaryLeft = tmpNestedAssignObj.x;
+tmpBinaryRight = c + d;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = $(b);
-tmpNestedAssignMemberRhs = 7;
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-tmpBinaryLeft = tmpNestedAssignMemberObj.x;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = a * tmpNestedAssignMemberRhs;
+tmpNestedAssignObj = $(b);
+tmpBinaryLeft = tmpNestedAssignObj.x;
+tmpBinaryRight = 7;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 7);
 `````
 
@@ -67,9 +61,8 @@ Should call `$` with:
  - 1: 9,{"x":9},3
  - 2: undefined
 
-Normalized calls: BAD?!
-[[{ x: 9 }], [7, { x: 9 }, 3], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[[{ x: 9 }], [7, { x: 9 }, 7], null];
+[[{ x: 9 }], [9, { x: 9 }, 7], null];
 

@@ -19,16 +19,14 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpCompoundAssignObj;
-var tmpCompoundAssignRhs;
-var tmpNestedAssignObj;
 var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs_1;
 var tmpBinaryLeft;
-var tmpAssignMemLhsObj_2;
-var tmpAssignMemRhs_2;
+var tmpBinaryRight;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft_1;
 let a = 1;
 let b = { c: 2 };
@@ -36,24 +34,18 @@ let c = 'unused';
 let d = 3;
 {
   a;
+  tmpCompoundAssignLhs = b.c;
   tmpAssignMemLhsObj = b;
+  tmpBinaryLeft = tmpCompoundAssignLhs;
   a;
   tmpNestedAssignObj = b;
-  {
-    tmpAssignMemLhsObj_1 = tmpNestedAssignObj;
-    tmpBinaryLeft = tmpNestedAssignObj.c;
-    tmpAssignMemRhs_1 = tmpBinaryLeft + d;
-    tmpAssignMemLhsObj_1.c = tmpAssignMemRhs_1;
-  }
-  tmpAssignMemRhs = d;
-  tmpCompoundAssignObj = tmpAssignMemLhsObj;
-  tmpCompoundAssignRhs = tmpAssignMemRhs;
-  {
-    tmpAssignMemLhsObj_2 = tmpCompoundAssignObj;
-    tmpBinaryLeft_1 = tmpCompoundAssignObj.c;
-    tmpAssignMemRhs_2 = tmpBinaryLeft_1 * tmpCompoundAssignRhs;
-    tmpAssignMemLhsObj_2.c = tmpAssignMemRhs_2;
-  }
+  tmpBinaryLeft_1 = tmpNestedAssignObj.c;
+  tmpNestedPropCompoundComplexRhs = tmpBinaryLeft_1 + d;
+  tmpNestedAssignObj.c = tmpNestedPropCompoundComplexRhs;
+  tmpBinaryRight = tmpNestedPropCompoundComplexRhs;
+  tmpAssignMemRhs = tmpBinaryLeft * tmpBinaryRight;
+  tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+  tmpAssignMemLhsObj_1.c = tmpAssignMemRhs;
 }
 $(a, b, c, d);
 `````
@@ -61,31 +53,27 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpCompoundAssignObj;
-var tmpCompoundAssignRhs;
-var tmpNestedAssignObj;
 var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs_1;
 var tmpBinaryLeft;
-var tmpAssignMemLhsObj_2;
-var tmpAssignMemRhs_2;
+var tmpBinaryRight;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft_1;
 let b = { c: 2 };
+tmpCompoundAssignLhs = b.c;
 tmpAssignMemLhsObj = b;
+tmpBinaryLeft = tmpCompoundAssignLhs;
 tmpNestedAssignObj = b;
-tmpAssignMemLhsObj_1 = tmpNestedAssignObj;
-tmpBinaryLeft = tmpNestedAssignObj.c;
-tmpAssignMemRhs_1 = tmpBinaryLeft + 3;
-tmpAssignMemLhsObj_1.c = tmpAssignMemRhs_1;
-tmpAssignMemRhs = 3;
-tmpCompoundAssignObj = tmpAssignMemLhsObj;
-tmpCompoundAssignRhs = tmpAssignMemRhs;
-tmpAssignMemLhsObj_2 = tmpCompoundAssignObj;
-tmpBinaryLeft_1 = tmpCompoundAssignObj.c;
-tmpAssignMemRhs_2 = tmpBinaryLeft_1 * tmpCompoundAssignRhs;
-tmpAssignMemLhsObj_2.c = tmpAssignMemRhs_2;
+tmpBinaryLeft_1 = tmpNestedAssignObj.c;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft_1 + 3;
+tmpNestedAssignObj.c = tmpNestedPropCompoundComplexRhs;
+tmpBinaryRight = tmpNestedPropCompoundComplexRhs;
+tmpAssignMemRhs = tmpBinaryLeft * tmpBinaryRight;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.c = tmpAssignMemRhs;
 $(1, b, 'unused', 3);
 `````
 
@@ -95,9 +83,6 @@ Should call `$` with:
  - 0: 1,{"c":10},"unused",3
  - 1: undefined
 
-Normalized calls: BAD?!
-[[1, { c: 15 }, 'unused', 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[1, { c: 15 }, 'unused', 3], null];
-
+Final output calls: Same

@@ -20,7 +20,6 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -28,11 +27,8 @@ let d = 3;
 {
   {
     a;
-    {
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemRhs = d;
-      tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-    }
+    tmpAssignMemLhsObj = $(b);
+    tmpAssignMemLhsObj.c = d;
   }
   const tmpSwitchTest = d;
   {
@@ -46,11 +42,9 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 tmpAssignMemLhsObj = $(b);
-tmpAssignMemRhs = 3;
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+tmpAssignMemLhsObj.c = 3;
 $(1, b, 'unused', 3);
 `````
 

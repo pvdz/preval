@@ -19,6 +19,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -28,7 +29,8 @@ let d = 4;
 {
   let tmpForInLhsDecl;
   {
-    tmpNestedAssignMemberObj = $(b);
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = c + d;
     tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
     a = tmpNestedAssignMemberRhs;
@@ -44,12 +46,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
 let b = { x: 2 };
 let tmpForInLhsDecl;
-tmpNestedAssignMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = 7;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;

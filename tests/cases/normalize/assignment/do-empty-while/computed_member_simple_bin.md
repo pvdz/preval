@@ -19,9 +19,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -29,12 +28,9 @@ while (true) {
   {
     let tmpBindInitMemberObject = a;
     let tmpBindInitRhs = b + c;
-    {
-      tmpAssignComputedObj = tmpBindInitMemberObject;
-      tmpAssignComputedProp = $('x');
-      tmpAssignComputedRhs = tmpBindInitRhs;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    }
+    tmpAssignComMemLhsObj = tmpBindInitMemberObject;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpBindInitRhs;
     let ifTestTmp = tmpBindInitRhs;
     if (ifTestTmp) {
     } else {
@@ -48,16 +44,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 while (true) {
   let tmpBindInitMemberObject = a;
-  tmpAssignComputedObj = tmpBindInitMemberObject;
-  tmpAssignComputedProp = $('x');
-  tmpAssignComputedRhs = 5;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComMemLhsObj = tmpBindInitMemberObject;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 5;
 }
 $(a, 5, 3);
 `````

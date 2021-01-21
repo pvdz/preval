@@ -20,25 +20,23 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      $(b);
-      tmpNestedAssignObj = $(c);
-      tmpNestedAssignObj.x = c;
-      tmpNestedComplexRhs = c;
-      a = tmpNestedComplexRhs;
-      tmpAssignMemLhsObj = tmpNestedComplexRhs;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    $(b);
+    tmpNestedAssignObj = $(c);
+    tmpNestedPropAssignRhs = c;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    a = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, b, c);
@@ -48,20 +46,20 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
   $(2);
   tmpNestedAssignObj = $(3);
-  tmpNestedAssignObj.x = 3;
-  tmpNestedComplexRhs = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   tmpAssignMemLhsObj = tmpNestedComplexRhs;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, 2, 3);
 `````

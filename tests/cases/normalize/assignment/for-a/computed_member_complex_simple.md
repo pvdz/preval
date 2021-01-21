@@ -19,19 +19,17 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  {
-    tmpAssignComputedObj = $(a);
-    tmpAssignComputedProp = $('x');
-    tmpAssignComputedRhs = b;
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
   while (false) {}
 }
 $(a, b, c);
@@ -40,14 +38,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
-tmpAssignComputedObj = $(a);
-tmpAssignComputedProp = $('x');
-tmpAssignComputedRhs = 2;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj = $(a);
+tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+tmpAssignComMemLhsProp = $('x');
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 while (false) {}
 $(a, 2, 3);
 `````

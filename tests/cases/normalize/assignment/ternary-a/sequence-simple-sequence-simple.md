@@ -19,9 +19,11 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = 1;
@@ -29,11 +31,13 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 a;
-tmpNestedAssignMemberObj = b;
-a;
 tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = d;
-tmpNestedAssignMemberRhs = d;
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+a;
+tmpNestedAssignObj_1 = b;
+tmpNestedPropAssignRhs = d;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
 tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
 tmpTernaryTest = tmpNestedAssignMemberRhs;
 if (tmpTernaryTest) {
@@ -48,16 +52,20 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let b = { c: 2 };
-tmpNestedAssignMemberObj = b;
 tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 3;
-tmpNestedAssignMemberRhs = 3;
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignObj_1 = b;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
 tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
 tmpTernaryTest = tmpNestedAssignMemberRhs;
 if (tmpTernaryTest) {

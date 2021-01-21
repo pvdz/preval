@@ -20,10 +20,11 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -31,18 +32,17 @@ let d = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    {
-      a;
-      tmpNestedAssignMemberObj = b;
-      a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignObj.c = d;
-      tmpNestedAssignMemberRhs = d;
-      tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-      tmpAssignMemLhsObj = tmpNestedAssignMemberRhs;
-      tmpAssignMemRhs = tmpForOfLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    a;
+    tmpNestedAssignObj = b;
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    a;
+    tmpNestedAssignObj_1 = b;
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+    tmpAssignMemLhsObj = tmpNestedAssignMemberRhs;
+    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
 $(a, b, c, d);
@@ -52,21 +52,23 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of []) {
-  tmpNestedAssignMemberObj = b;
   tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 3;
-  tmpNestedAssignMemberRhs = 3;
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
+  tmpNestedAssignObj_1 = b;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+  tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
   tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
   tmpAssignMemLhsObj = tmpNestedAssignMemberRhs;
-  tmpAssignMemRhs = tmpForOfLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(1, b, 'unused', 3);
 `````

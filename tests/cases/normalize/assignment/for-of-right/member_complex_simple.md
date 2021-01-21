@@ -20,18 +20,14 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
   let tmpForOfLhsDecl;
   {
-    {
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignMemRhs = b;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = b;
     const tmpForOfRhs = b;
     for (tmpForOfLhsDecl of tmpForOfRhs) {
       let x = tmpForOfLhsDecl;
@@ -45,12 +41,10 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 let tmpForOfLhsDecl;
 tmpAssignMemLhsObj = $(a);
-tmpAssignMemRhs = 2;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = 2;
 for (tmpForOfLhsDecl of 2) {
 }
 $(a, 2, 3);

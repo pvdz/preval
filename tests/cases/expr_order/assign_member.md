@@ -22,15 +22,15 @@ a.foo = a = $();
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
 var tmpNestedComplexRhs;
 let a = {};
-{
-  tmpAssignMemLhsObj = a;
-  tmpNestedComplexRhs = $();
-  a = tmpNestedComplexRhs;
-  tmpAssignMemRhs = tmpNestedComplexRhs;
-  tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
-}
+tmpAssignMemLhsObj = a;
+tmpNestedComplexRhs = $();
+a = tmpNestedComplexRhs;
+tmpAssignMemRhs = tmpNestedComplexRhs;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
 `````
 
 ## Output
@@ -38,13 +38,15 @@ let a = {};
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
 var tmpNestedComplexRhs;
 let a = {};
 tmpAssignMemLhsObj = a;
 tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpNestedComplexRhs;
-tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
 `````
 
 ## Result

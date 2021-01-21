@@ -22,6 +22,7 @@ $(a, b, c);
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -41,8 +42,9 @@ let c = 3;
         ('case 0:');
         {
           tmpNestedAssignObj = $(b);
-          tmpNestedAssignObj.x = c;
-          a = c;
+          tmpNestedPropAssignRhs = c;
+          tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+          a = tmpNestedPropAssignRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -72,8 +74,9 @@ tmpSwitchBreak: {
       ('case 0:');
       {
         tmpNestedAssignObj = $(b);
-        tmpNestedAssignObj.x = c;
-        a = c;
+        tmpNestedPropAssignRhs = c;
+        tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

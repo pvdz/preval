@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = 2, c = 3, d = 4;
+let a = 10, b = 2, c = 3, d = 4;
 a *= b -= $(c).y += $(d);
 $(a, b, c);
 `````
@@ -20,26 +20,24 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-let a = 1;
+var tmpBinaryRight;
+var tmpNestedCompoundComplexRhs;
+let a = 10;
 let b = 2;
 let c = 3;
 let d = 4;
-tmpNestedAssignMemberObj = $(c);
-tmpNestedAssignMemberRhs = $(d);
-{
-  tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-  tmpBinaryLeft = tmpNestedAssignMemberObj.y;
-  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-  tmpAssignMemLhsObj.y = tmpAssignMemRhs;
-}
-tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-b = b - tmpNestedComplexRhs;
-a = a * tmpNestedComplexRhs;
+tmpNestedAssignObj = $(c);
+tmpBinaryLeft = tmpNestedAssignObj.y;
+tmpBinaryRight = $(d);
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.y = tmpNestedPropCompoundComplexRhs;
+tmpNestedComplexRhs = tmpNestedPropCompoundComplexRhs;
+tmpNestedCompoundComplexRhs = b - tmpNestedComplexRhs;
+b = tmpNestedCompoundComplexRhs;
+a = a * tmpNestedCompoundComplexRhs;
 $(a, b, c);
 `````
 
@@ -47,22 +45,22 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-let a = 1;
+var tmpBinaryRight;
+var tmpNestedCompoundComplexRhs;
+let a = 10;
 let b = 2;
-tmpNestedAssignMemberObj = $(3);
-tmpNestedAssignMemberRhs = $(4);
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-tmpBinaryLeft = tmpNestedAssignMemberObj.y;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.y = tmpAssignMemRhs;
-tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-b = b - tmpNestedComplexRhs;
-a = a * tmpNestedComplexRhs;
+tmpNestedAssignObj = $(3);
+tmpBinaryLeft = tmpNestedAssignObj.y;
+tmpBinaryRight = $(4);
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.y = tmpNestedPropCompoundComplexRhs;
+tmpNestedComplexRhs = tmpNestedPropCompoundComplexRhs;
+tmpNestedCompoundComplexRhs = b - tmpNestedComplexRhs;
+b = tmpNestedCompoundComplexRhs;
+a = a * tmpNestedCompoundComplexRhs;
 $(a, b, 3);
 `````
 
@@ -74,9 +72,6 @@ Should call `$` with:
  - 2: null,null,3
  - 3: undefined
 
-Normalized calls: BAD?!
-[[3], [4], [4, -2, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[3], [4], [4, -2, 3], null];
-
+Final output calls: Same

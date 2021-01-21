@@ -20,7 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -30,15 +31,14 @@ let c = 3;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      tmpNestedAssignCompMemberObj = a;
-      tmpNestedAssignCompMemberProp = $('x');
-      tmpNestedAssignCompMemberRhs = b + c;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      tmpAssignMemLhsObj = tmpNestedAssignCompMemberRhs;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpNestedAssignComMemberObj = a;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignCompMemberRhs = b + c;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    tmpAssignMemLhsObj = tmpNestedAssignCompMemberRhs;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, b, c);
@@ -48,20 +48,22 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
 let a = { x: 10 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
-  tmpNestedAssignCompMemberObj = a;
-  tmpNestedAssignCompMemberProp = $('x');
+  tmpNestedAssignComMemberObj = a;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = 5;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   tmpAssignMemLhsObj = tmpNestedAssignCompMemberRhs;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, 5, 3);
 `````

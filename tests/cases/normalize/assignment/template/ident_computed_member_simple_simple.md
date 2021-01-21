@@ -22,14 +22,16 @@ $(a, b, c);
 var tmpArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpArg = `abc ${
   ((tmpNestedAssignComMemberObj = b),
   (tmpNestedAssignComMemberProp = $('x')),
-  (tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c),
-  (a = c))
+  (tmpNestedPropAssignRhs = c),
+  (tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs),
+  (a = tmpNestedPropAssignRhs))
 } def`;
 $(tmpArg);
 $(a, b, c);
@@ -41,13 +43,15 @@ $(a, b, c);
 var tmpArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 tmpArg = `abc ${
   ((tmpNestedAssignComMemberObj = b),
   (tmpNestedAssignComMemberProp = $('x')),
-  (tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3),
-  (a = 3))
+  (tmpNestedPropAssignRhs = 3),
+  (tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs),
+  (a = tmpNestedPropAssignRhs))
 } def`;
 $(tmpArg);
 $(a, b, 3);

@@ -22,6 +22,7 @@ $(a, b, c);
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs_1;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -34,7 +35,8 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignMemberObj = $(c);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs = $(d);
       tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
       tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;
@@ -66,7 +68,8 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignMemberObj = $(c);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs = $(d);
       tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
       tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;

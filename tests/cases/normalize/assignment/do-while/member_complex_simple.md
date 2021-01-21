@@ -24,6 +24,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -39,8 +40,9 @@ do {
     }
   }
   tmpNestedAssignObj = $(a);
-  tmpNestedAssignObj.x = b;
-  ifTestTmp = b;
+  tmpNestedPropAssignRhs = b;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  ifTestTmp = tmpNestedPropAssignRhs;
 } while (ifTestTmp);
 $(a, b, c);
 `````
@@ -52,6 +54,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let n = 0;
 do {
@@ -63,8 +66,9 @@ do {
     break;
   }
   tmpNestedAssignObj = $(a);
-  tmpNestedAssignObj.x = 2;
-  ifTestTmp = 2;
+  tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  ifTestTmp = tmpNestedPropAssignRhs;
 } while (ifTestTmp);
 $(a, 2, 3);
 `````

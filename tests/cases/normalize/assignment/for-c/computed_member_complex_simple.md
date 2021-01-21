@@ -22,9 +22,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -37,12 +37,10 @@ let n = 1;
       tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
-        {
-          tmpAssignComputedObj = $(a);
-          tmpAssignComputedProp = $('x');
-          tmpAssignComputedRhs = b;
-          tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        }
+        tmpAssignMemLhsObj = $(a);
+        tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+        tmpAssignComMemLhsProp = $('x');
+        tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
       } else {
         break;
       }
@@ -57,9 +55,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let n = 1;
 while (true) {
@@ -68,10 +66,10 @@ while (true) {
   tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
-    tmpAssignComputedObj = $(a);
-    tmpAssignComputedProp = $('x');
-    tmpAssignComputedRhs = 2;
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
   } else {
     break;
   }

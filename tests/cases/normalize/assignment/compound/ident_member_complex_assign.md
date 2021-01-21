@@ -19,68 +19,56 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs_1;
+var tmpBinaryRight;
+var tmpNestedAssignObj_1;
+var tmpNestedPropCompoundComplexRhs_1;
 var tmpBinaryLeft_1;
+var tmpBinaryRight_1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpNestedAssignMemberObj = $(b);
-tmpNestedAssignMemberObj_1 = $(c);
-tmpNestedAssignMemberRhs_1 = $(d);
-{
-  tmpAssignMemLhsObj = tmpNestedAssignMemberObj_1;
-  tmpBinaryLeft = tmpNestedAssignMemberObj_1.y;
-  tmpAssignMemRhs = tmpBinaryLeft - tmpNestedAssignMemberRhs_1;
-  tmpAssignMemLhsObj.y = tmpAssignMemRhs;
-}
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-{
-  tmpAssignMemLhsObj_1 = tmpNestedAssignMemberObj;
-  tmpBinaryLeft_1 = tmpNestedAssignMemberObj.x;
-  tmpAssignMemRhs_1 = tmpBinaryLeft_1 + tmpNestedAssignMemberRhs;
-  tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
-}
-a = a * tmpNestedAssignMemberRhs;
+tmpNestedAssignObj = $(b);
+tmpBinaryLeft = tmpNestedAssignObj.x;
+tmpNestedAssignObj_1 = $(c);
+tmpBinaryLeft_1 = tmpNestedAssignObj_1.y;
+tmpBinaryRight_1 = $(d);
+tmpNestedPropCompoundComplexRhs_1 = tmpBinaryLeft_1 - tmpBinaryRight_1;
+tmpNestedAssignObj_1.y = tmpNestedPropCompoundComplexRhs_1;
+tmpBinaryRight = tmpNestedPropCompoundComplexRhs_1;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c, d);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs_1;
+var tmpBinaryRight;
+var tmpNestedAssignObj_1;
+var tmpNestedPropCompoundComplexRhs_1;
 var tmpBinaryLeft_1;
+var tmpBinaryRight_1;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = $(b);
-tmpNestedAssignMemberObj_1 = $(3);
-tmpNestedAssignMemberRhs_1 = $(4);
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj_1;
-tmpBinaryLeft = tmpNestedAssignMemberObj_1.y;
-tmpAssignMemRhs = tmpBinaryLeft - tmpNestedAssignMemberRhs_1;
-tmpAssignMemLhsObj.y = tmpAssignMemRhs;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-tmpAssignMemLhsObj_1 = tmpNestedAssignMemberObj;
-tmpBinaryLeft_1 = tmpNestedAssignMemberObj.x;
-tmpAssignMemRhs_1 = tmpBinaryLeft_1 + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj_1.x = tmpAssignMemRhs_1;
-a = a * tmpNestedAssignMemberRhs;
+tmpNestedAssignObj = $(b);
+tmpBinaryLeft = tmpNestedAssignObj.x;
+tmpNestedAssignObj_1 = $(3);
+tmpBinaryLeft_1 = tmpNestedAssignObj_1.y;
+tmpBinaryRight_1 = $(4);
+tmpNestedPropCompoundComplexRhs_1 = tmpBinaryLeft_1 - tmpBinaryRight_1;
+tmpNestedAssignObj_1.y = tmpNestedPropCompoundComplexRhs_1;
+tmpBinaryRight = tmpNestedPropCompoundComplexRhs_1;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 3, 4);
 `````
 
@@ -93,9 +81,6 @@ Should call `$` with:
  - 3: null,{"x":null},3,4
  - 4: undefined
 
-Normalized calls: BAD?!
-[[{ x: 6 }], [3], [4], [4, { x: 6 }, 3, 4], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ x: 6 }], [3], [4], [4, { x: 6 }, 3, 4], null];
-
+Final output calls: Same

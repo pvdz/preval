@@ -20,7 +20,6 @@ for ($(a).x of $(b)) $(a.x);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
@@ -29,11 +28,8 @@ let b = { x: 1, y: 2 };
   {
     const tmpForOfRhs = $(b);
     for (tmpForOfLhsNode of tmpForOfRhs) {
-      {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemRhs = tmpForOfLhsNode;
-        tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-      }
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemLhsObj.x = tmpForOfLhsNode;
       tmpArg = a.x;
       $(tmpArg);
     }
@@ -45,7 +41,6 @@ let b = { x: 1, y: 2 };
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
@@ -53,8 +48,7 @@ let tmpForOfLhsNode;
 const tmpForOfRhs = $(b);
 for (tmpForOfLhsNode of tmpForOfRhs) {
   tmpAssignMemLhsObj = $(a);
-  tmpAssignMemRhs = tmpForOfLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   tmpArg = a.x;
   $(tmpArg);
 }

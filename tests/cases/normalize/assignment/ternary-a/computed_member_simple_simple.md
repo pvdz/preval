@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = { x: 10 };
@@ -28,8 +29,9 @@ let b = 2;
 let c = 3;
 tmpNestedAssignComMemberObj = a;
 tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = b;
-tmpTernaryTest = b;
+tmpNestedPropAssignRhs = b;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+tmpTernaryTest = tmpNestedPropAssignRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
@@ -44,13 +46,15 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = { x: 10 };
 tmpNestedAssignComMemberObj = a;
 tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 2;
-tmpTernaryTest = 2;
+tmpNestedPropAssignRhs = 2;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+tmpTernaryTest = tmpNestedPropAssignRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {

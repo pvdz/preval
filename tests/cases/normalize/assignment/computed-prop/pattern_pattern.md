@@ -20,9 +20,8 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrAssignPatternRhs_1;
@@ -33,40 +32,7 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let obj = {};
-{
-  tmpAssignComputedObj = obj;
-  arrAssignPatternRhs_1 = z;
-  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-  x = arrPatternSplat_1[1];
-  y = arrPatternSplat_1[2];
-  arrAssignPatternRhs = arrAssignPatternRhs_1;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-  tmpAssignComputedProp = arrAssignPatternRhs;
-  tmpAssignComputedRhs = 1000;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
-$(a, b, x, y, z);
-`````
-
-## Output
-
-`````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrAssignPatternRhs_1;
-var arrPatternSplat_1;
-let a = 1;
-let b = 2;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let obj = {};
-tmpAssignComputedObj = obj;
+tmpAssignComMemLhsObj = obj;
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
@@ -75,9 +41,37 @@ arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
-tmpAssignComputedProp = arrAssignPatternRhs;
-tmpAssignComputedRhs = 1000;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsProp = arrAssignPatternRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
+$(a, b, x, y, z);
+`````
+
+## Output
+
+`````js filename=intro
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
+var arrAssignPatternRhs;
+var arrPatternSplat;
+var arrAssignPatternRhs_1;
+var arrPatternSplat_1;
+let a = 1;
+let b = 2;
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+let obj = {};
+tmpAssignComMemLhsObj = obj;
+arrAssignPatternRhs_1 = z;
+arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+x = arrPatternSplat_1[1];
+y = arrPatternSplat_1[2];
+arrAssignPatternRhs = arrAssignPatternRhs_1;
+arrPatternSplat = [...arrAssignPatternRhs];
+a = arrPatternSplat[0];
+b = arrPatternSplat[1];
+tmpAssignComMemLhsProp = arrAssignPatternRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
 $(a, b, x, y, z);
 `````
 

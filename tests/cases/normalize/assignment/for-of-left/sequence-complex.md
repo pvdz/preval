@@ -20,8 +20,8 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -29,14 +29,12 @@ let d = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    {
-      a;
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignObj.c = d;
-      tmpAssignMemLhsObj = d;
-      tmpAssignMemRhs = tmpForOfLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    a;
+    tmpNestedAssignObj = $(b);
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
 $(a, b, c, d);
@@ -46,16 +44,16 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of []) {
   tmpNestedAssignObj = $(b);
-  tmpNestedAssignObj.c = 3;
-  tmpAssignMemLhsObj = 3;
-  tmpAssignMemRhs = tmpForOfLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(1, b, 'unused', 3);
 `````

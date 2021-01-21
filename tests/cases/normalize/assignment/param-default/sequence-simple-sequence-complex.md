@@ -24,22 +24,28 @@ $(a, b, c, d);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
+  var tmpAssignMemLhsObj_1;
   var tmpAssignMemRhs;
+  var tmpAssignMemLhsObj_2;
   var tmpNestedAssignObj;
-  var tmpNestedAssignObj_1;
+  var tmpNestedPropAssignRhs;
+  var tmpNestedPropAssignRhs_1;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
       a;
       tmpAssignMemLhsObj = b;
+      tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
       a;
       tmpNestedAssignObj = $(b);
-      tmpNestedAssignObj.c = d;
-      tmpAssignMemRhs = d;
-      tmpNestedAssignObj_1 = tmpAssignMemLhsObj;
-      tmpNestedAssignObj_1.c = tmpAssignMemRhs;
-      foo = tmpAssignMemRhs;
+      tmpNestedPropAssignRhs = d;
+      tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+      tmpAssignMemRhs = tmpNestedPropAssignRhs;
+      tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+      tmpNestedPropAssignRhs_1 = tmpAssignMemRhs;
+      tmpAssignMemLhsObj_2.c = tmpNestedPropAssignRhs_1;
+      foo = tmpNestedPropAssignRhs_1;
     } else {
       foo = $tdz$__foo;
     }
@@ -61,19 +67,25 @@ $(a, b, c, d);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
+  var tmpAssignMemLhsObj_1;
   var tmpAssignMemRhs;
+  var tmpAssignMemLhsObj_2;
   var tmpNestedAssignObj;
-  var tmpNestedAssignObj_1;
+  var tmpNestedPropAssignRhs;
+  var tmpNestedPropAssignRhs_1;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = b;
+    tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
     tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.c = 3;
-    tmpAssignMemRhs = 3;
-    tmpNestedAssignObj_1 = tmpAssignMemLhsObj;
-    tmpNestedAssignObj_1.c = tmpAssignMemRhs;
-    foo = tmpAssignMemRhs;
+    tmpNestedPropAssignRhs = 3;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpAssignMemRhs = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+    tmpNestedPropAssignRhs_1 = tmpAssignMemRhs;
+    tmpAssignMemLhsObj_2.c = tmpNestedPropAssignRhs_1;
+    foo = tmpNestedPropAssignRhs_1;
   } else {
     foo = $tdz$__foo;
   }

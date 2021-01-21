@@ -20,9 +20,11 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpBinaryRight;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -34,11 +36,13 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
     } else {
       a;
-      tmpNestedAssignMemberObj = $(b);
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignObj.c = d;
-      tmpNestedAssignMemberRhs = d;
+      tmpNestedAssignObj_1 = b;
+      tmpNestedPropAssignRhs = d;
+      tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+      tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
       tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
       tmpBinaryRight = tmpNestedAssignMemberRhs;
       ifTestTmp = 1 === tmpBinaryRight;
@@ -67,11 +71,13 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
     } else {
       a;
-      tmpNestedAssignMemberObj = $(b);
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignObj.c = d;
-      tmpNestedAssignMemberRhs = d;
+      tmpNestedAssignObj_1 = b;
+      tmpNestedPropAssignRhs = d;
+      tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+      tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
       tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
       tmpBinaryRight = tmpNestedAssignMemberRhs;
       ifTestTmp = 1 === tmpBinaryRight;

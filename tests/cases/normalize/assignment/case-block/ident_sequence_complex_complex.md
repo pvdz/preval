@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -42,7 +43,8 @@ let c = 3;
         ('case 0:');
         {
           $(b);
-          tmpNestedAssignMemberObj = $(c);
+          tmpNestedAssignObj = $(c);
+          tmpNestedAssignMemberObj = tmpNestedAssignObj;
           tmpNestedAssignMemberRhs = $(c);
           tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
           a = tmpNestedAssignMemberRhs;
@@ -74,7 +76,8 @@ tmpSwitchBreak: {
       ('case 0:');
       {
         $(b);
-        tmpNestedAssignMemberObj = $(c);
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignMemberObj = tmpNestedAssignObj;
         tmpNestedAssignMemberRhs = $(c);
         tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
         a = tmpNestedAssignMemberRhs;

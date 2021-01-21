@@ -19,47 +19,41 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-tmpNestedAssignComMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $('x');
-{
-  tmpAssignComputedObj = tmpNestedAssignComMemberObj;
-  tmpAssignComputedProp = tmpNestedAssignComMemberProp;
-  tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
-  tmpAssignComputedRhs = tmpBinaryLeft - c;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
-a = a * c;
+tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft - c;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignComMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $('x');
-tmpAssignComputedObj = tmpNestedAssignComMemberObj;
-tmpAssignComputedProp = tmpNestedAssignComMemberProp;
 tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
-tmpAssignComputedRhs = tmpBinaryLeft - 3;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-a = a * 3;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft - 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 3);
 `````
 
@@ -71,9 +65,6 @@ Should call `$` with:
  - 2: -1,{"x":-1},3
  - 3: undefined
 
-Normalized calls: BAD?!
-[[{ x: -1 }], ['x'], [3, { x: -1 }, 3], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[{ x: -1 }], ['x'], [3, { x: -1 }, 3], null];
-
+Final output calls: Same

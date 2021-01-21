@@ -20,8 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -32,17 +33,16 @@ let d = 4;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      tmpNestedAssignCompMemberObj = b;
-      tmpNestedAssignCompMemberProp = $('x');
-      tmpNestedAssignCompMemberRhs = c + d;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedComplexRhs;
-      tmpAssignMemLhsObj = tmpNestedComplexRhs;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpNestedAssignComMemberObj = b;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignCompMemberRhs = c + d;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, b, c);
@@ -52,8 +52,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -61,15 +62,16 @@ let a = 1;
 let b = { x: 2 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
-  tmpNestedAssignCompMemberObj = b;
-  tmpNestedAssignCompMemberProp = $('x');
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = 7;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
   a = tmpNestedComplexRhs;
   tmpAssignMemLhsObj = tmpNestedComplexRhs;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, b, 7);
 `````

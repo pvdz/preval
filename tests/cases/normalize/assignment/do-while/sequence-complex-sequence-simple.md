@@ -23,9 +23,11 @@ $(a, b, c, d);
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -42,11 +44,13 @@ do {
     }
   }
   a;
-  tmpNestedAssignMemberObj = $(b);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   a;
-  tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = d;
-  tmpNestedAssignMemberRhs = d;
+  tmpNestedAssignObj_1 = b;
+  tmpNestedPropAssignRhs = d;
+  tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+  tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
   tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
   ifTestTmp = tmpNestedAssignMemberRhs;
 } while (ifTestTmp);
@@ -59,9 +63,11 @@ $(a, b, c, d);
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
+var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let n = 0;
 do {
@@ -72,10 +78,12 @@ do {
   if (ifTestTmp_1) {
     break;
   }
-  tmpNestedAssignMemberObj = $(b);
-  tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 3;
-  tmpNestedAssignMemberRhs = 3;
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
+  tmpNestedAssignObj_1 = b;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+  tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
   tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
   ifTestTmp = tmpNestedAssignMemberRhs;
 } while (ifTestTmp);

@@ -52,17 +52,28 @@ var c;
 var d;
 var e;
 var tmpArg_1;
+var tmpNestedAssignObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignObj_1;
+var tmpNestedAssignComMemberObj_1;
+var tmpNestedAssignComMemberProp_1;
 var tmpNestedAssignCompMemberObj_1;
 var tmpNestedAssignCompMemberProp_1;
 var tmpNestedAssignCompMemberRhs_1;
+var tmpNestedAssignObj_2;
+var tmpNestedAssignComMemberObj_2;
+var tmpNestedAssignComMemberProp_2;
 var tmpNestedAssignCompMemberObj_2;
 var tmpNestedAssignCompMemberProp_2;
 var tmpNestedAssignCompMemberRhs_2;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj_3;
+var tmpNestedAssignComMemberObj_3;
+var tmpNestedAssignComMemberProp_3;
+var tmpNestedPropAssignRhs;
 obja = {
   get a() {
     $$('a.get');
@@ -142,16 +153,27 @@ d = function () {
   return objd;
 };
 e = 12345;
-tmpNestedAssignCompMemberObj = a();
-tmpNestedAssignCompMemberProp = $$('a');
-tmpNestedAssignCompMemberObj_1 = b();
-tmpNestedAssignCompMemberProp_1 = $$('b');
-tmpNestedAssignCompMemberObj_2 = c();
-tmpNestedAssignCompMemberProp_2 = $$('c');
-tmpNestedAssignComMemberObj = d();
-tmpNestedAssignComMemberProp = $$('d');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = e;
-tmpNestedAssignCompMemberRhs_2 = e;
+tmpNestedAssignObj = a();
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+tmpNestedAssignComMemberProp = $$('a');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignObj_1 = b();
+tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj_1;
+tmpNestedAssignComMemberProp_1 = $$('b');
+tmpNestedAssignCompMemberObj_1 = tmpNestedAssignComMemberObj_1;
+tmpNestedAssignCompMemberProp_1 = tmpNestedAssignComMemberProp_1;
+tmpNestedAssignObj_2 = c();
+tmpNestedAssignComMemberObj_2 = tmpNestedAssignObj_2;
+tmpNestedAssignComMemberProp_2 = $$('c');
+tmpNestedAssignCompMemberObj_2 = tmpNestedAssignComMemberObj_2;
+tmpNestedAssignCompMemberProp_2 = tmpNestedAssignComMemberProp_2;
+tmpNestedAssignObj_3 = d();
+tmpNestedAssignComMemberObj_3 = tmpNestedAssignObj_3;
+tmpNestedAssignComMemberProp_3 = $$('d');
+tmpNestedPropAssignRhs = e;
+tmpNestedAssignComMemberObj_3[tmpNestedAssignComMemberProp_3] = tmpNestedPropAssignRhs;
+tmpNestedAssignCompMemberRhs_2 = tmpNestedPropAssignRhs;
 tmpNestedAssignCompMemberObj_2[tmpNestedAssignCompMemberProp_2] = tmpNestedAssignCompMemberRhs_2;
 tmpNestedAssignCompMemberRhs_1 = tmpNestedAssignCompMemberRhs_2;
 tmpNestedAssignCompMemberObj_1[tmpNestedAssignCompMemberProp_1] = tmpNestedAssignCompMemberRhs_1;
@@ -183,17 +205,28 @@ var c;
 var d;
 var e;
 var tmpArg_1;
+var tmpNestedAssignObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignObj_1;
+var tmpNestedAssignComMemberObj_1;
+var tmpNestedAssignComMemberProp_1;
 var tmpNestedAssignCompMemberObj_1;
 var tmpNestedAssignCompMemberProp_1;
 var tmpNestedAssignCompMemberRhs_1;
+var tmpNestedAssignObj_2;
+var tmpNestedAssignComMemberObj_2;
+var tmpNestedAssignComMemberProp_2;
 var tmpNestedAssignCompMemberObj_2;
 var tmpNestedAssignCompMemberProp_2;
 var tmpNestedAssignCompMemberRhs_2;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj_3;
+var tmpNestedAssignComMemberObj_3;
+var tmpNestedAssignComMemberProp_3;
+var tmpNestedPropAssignRhs;
 obja = {
   get a() {
     $$('a.get');
@@ -273,16 +306,27 @@ d = function () {
   return objd;
 };
 e = 12345;
-tmpNestedAssignCompMemberObj = a();
-tmpNestedAssignCompMemberProp = $$('a');
-tmpNestedAssignCompMemberObj_1 = b();
-tmpNestedAssignCompMemberProp_1 = $$('b');
-tmpNestedAssignCompMemberObj_2 = c();
-tmpNestedAssignCompMemberProp_2 = $$('c');
-tmpNestedAssignComMemberObj = d();
-tmpNestedAssignComMemberProp = $$('d');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = e;
-tmpNestedAssignCompMemberRhs_2 = e;
+tmpNestedAssignObj = a();
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+tmpNestedAssignComMemberProp = $$('a');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignObj_1 = b();
+tmpNestedAssignComMemberObj_1 = tmpNestedAssignObj_1;
+tmpNestedAssignComMemberProp_1 = $$('b');
+tmpNestedAssignCompMemberObj_1 = tmpNestedAssignComMemberObj_1;
+tmpNestedAssignCompMemberProp_1 = tmpNestedAssignComMemberProp_1;
+tmpNestedAssignObj_2 = c();
+tmpNestedAssignComMemberObj_2 = tmpNestedAssignObj_2;
+tmpNestedAssignComMemberProp_2 = $$('c');
+tmpNestedAssignCompMemberObj_2 = tmpNestedAssignComMemberObj_2;
+tmpNestedAssignCompMemberProp_2 = tmpNestedAssignComMemberProp_2;
+tmpNestedAssignObj_3 = d();
+tmpNestedAssignComMemberObj_3 = tmpNestedAssignObj_3;
+tmpNestedAssignComMemberProp_3 = $$('d');
+tmpNestedPropAssignRhs = e;
+tmpNestedAssignComMemberObj_3[tmpNestedAssignComMemberProp_3] = tmpNestedPropAssignRhs;
+tmpNestedAssignCompMemberRhs_2 = tmpNestedPropAssignRhs;
 tmpNestedAssignCompMemberObj_2[tmpNestedAssignCompMemberProp_2] = tmpNestedAssignCompMemberRhs_2;
 tmpNestedAssignCompMemberRhs_1 = tmpNestedAssignCompMemberRhs_2;
 tmpNestedAssignCompMemberObj_1[tmpNestedAssignCompMemberProp_1] = tmpNestedAssignCompMemberRhs_1;
@@ -314,117 +358,6 @@ Should call `$` with:
  - 14: ["$:",[{"a":110},{"b":100},{"c":100},{"d":100}],3200,4300,null,"faila",{"a":110},{"b":100},{"c":100},{"d":100},"::",{"a":110},{"b":100},{"c":100},{"d":100}]
  - 15: undefined
 
-Normalized calls: BAD?!
-[
-  [['$:', ['a'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a']],
-  [['$:', ['a'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a']],
-  [['$:', ['b'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b']],
-  [['$:', ['b'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b']],
-  [['$:', ['c'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c']],
-  [['$:', ['c'], 32, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c']],
-  [['$:', ['d'], 32, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd']],
-  [['$:', ['d'], 42, 43, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd']],
-  [['$:', ['d.set', 12345], 42, 43, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd.set', 12345]],
-  [['$:', ['c.set', 'faild'], 4200, 4300, null, 'faild', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c.set', 'faild']],
-  [['$:', ['b.set', 'faild'], 3200, 4300, null, 'failc', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b.set', 'faild']],
-  [['$:', ['a.set', 'faild'], 3200, 4300, null, 'failb', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a.set', 'faild']],
-  [['$:', ['faild'], 3200, 4300, null, 'faila', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'faild']],
-  [
-    [
-      '$:',
-      [2100, 3200, 4300, null, 'faila'],
-      3200,
-      4300,
-      null,
-      'faila',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-      '::',
-      2100,
-      3200,
-      4300,
-      null,
-      'faila',
-    ],
-  ],
-  [
-    [
-      '$:',
-      [{ a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }],
-      3200,
-      4300,
-      null,
-      'faila',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-      '::',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-    ],
-  ],
-  null,
-];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[
-  [['$:', ['a'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a']],
-  [['$:', ['a'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a']],
-  [['$:', ['b'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b']],
-  [['$:', ['b'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b']],
-  [['$:', ['c'], null, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c']],
-  [['$:', ['c'], 32, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c']],
-  [['$:', ['d'], 32, null, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd']],
-  [['$:', ['d'], 42, 43, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd']],
-  [['$:', ['d.set', 12345], 42, 43, null, 12345, { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'd.set', 12345]],
-  [['$:', ['c.set', 'faild'], 4200, 4300, null, 'faild', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'c.set', 'faild']],
-  [['$:', ['b.set', 'faild'], 3200, 4300, null, 'failc', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'b.set', 'faild']],
-  [['$:', ['a.set', 'faild'], 3200, 4300, null, 'failb', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'a.set', 'faild']],
-  [['$:', ['faild'], 3200, 4300, null, 'faila', { a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }, '::', 'faild']],
-  [
-    [
-      '$:',
-      [2100, 3200, 4300, null, 'faila'],
-      3200,
-      4300,
-      null,
-      'faila',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-      '::',
-      2100,
-      3200,
-      4300,
-      null,
-      'faila',
-    ],
-  ],
-  [
-    [
-      '$:',
-      [{ a: 110 }, { b: 100 }, { c: 100 }, { d: 100 }],
-      3200,
-      4300,
-      null,
-      'faila',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-      '::',
-      { a: 110 },
-      { b: 100 },
-      { c: 100 },
-      { d: 100 },
-    ],
-  ],
-  null,
-];
-
+Final output calls: Same

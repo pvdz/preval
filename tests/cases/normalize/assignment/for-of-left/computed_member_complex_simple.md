@@ -20,23 +20,23 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    {
-      tmpNestedAssignComMemberObj = $(a);
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = b;
-      tmpAssignMemLhsObj = b;
-      tmpAssignMemRhs = tmpForOfLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpNestedAssignObj = $(a);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedPropAssignRhs = b;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
 $(a, b, c);
@@ -46,18 +46,20 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of []) {
-  tmpNestedAssignComMemberObj = $(a);
+  tmpNestedAssignObj = $(a);
+  tmpNestedAssignComMemberObj = tmpNestedAssignObj;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 2;
-  tmpAssignMemLhsObj = 2;
-  tmpAssignMemRhs = tmpForOfLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, 2, 3);
 `````

@@ -24,14 +24,16 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignObj;
+  var tmpNestedPropAssignRhs;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
       tmpNestedAssignObj = $(b);
-      tmpNestedAssignObj.x = c;
-      a = c;
-      foo = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
+      foo = tmpNestedPropAssignRhs;
     } else {
       foo = $tdz$__foo;
     }
@@ -52,13 +54,15 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignObj;
+  var tmpNestedPropAssignRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.x = 3;
-    a = 3;
-    foo = 3;
+    tmpNestedPropAssignRhs = 3;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    foo = tmpNestedPropAssignRhs;
   } else {
     foo = $tdz$__foo;
   }

@@ -20,19 +20,25 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 export default (a,
 (tmpAssignMemLhsObj = b),
+(tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
 a,
 (tmpNestedAssignObj = $(b)),
-(tmpNestedAssignObj.c = d),
-(tmpAssignMemRhs = d),
-tmpAssignMemLhsObj).c = tmpAssignMemRhs;
+(tmpNestedPropAssignRhs = d),
+(tmpNestedAssignObj.c = tmpNestedPropAssignRhs),
+(tmpAssignMemRhs = tmpNestedPropAssignRhs),
+(tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
+(tmpAssignMemLhsObj_2.c = tmpAssignMemRhs));
 $(a, b, c, d);
 `````
 
@@ -40,16 +46,22 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 export default (1,
 (tmpAssignMemLhsObj = b),
+(tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
 1,
 (tmpNestedAssignObj = $(b)),
-(tmpNestedAssignObj.c = 3),
-(tmpAssignMemRhs = 3),
-tmpAssignMemLhsObj).c = tmpAssignMemRhs;
+(tmpNestedPropAssignRhs = 3),
+(tmpNestedAssignObj.c = tmpNestedPropAssignRhs),
+(tmpAssignMemRhs = tmpNestedPropAssignRhs),
+(tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
+(tmpAssignMemLhsObj_2.c = tmpAssignMemRhs));
 $(1, b, 'unused', 3);
 `````
 

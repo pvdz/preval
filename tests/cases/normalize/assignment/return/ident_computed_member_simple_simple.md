@@ -26,11 +26,13 @@ let c = 3;
 tmpNewObj = function () {
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  var tmpNestedPropAssignRhs;
   {
     tmpNestedAssignComMemberObj = b;
     tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-    a = c;
+    tmpNestedPropAssignRhs = c;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     let tmpStmtArg = a;
     return tmpStmtArg;
   }
@@ -48,10 +50,12 @@ let b = { x: 2 };
 tmpNewObj = function () {
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  var tmpNestedPropAssignRhs;
   tmpNestedAssignComMemberObj = b;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   let tmpStmtArg = a;
   return tmpStmtArg;
 };

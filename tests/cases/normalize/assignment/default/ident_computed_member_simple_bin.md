@@ -19,6 +19,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -32,8 +34,10 @@ let d = 4;
     let tmpFallthrough = false;
     {
       ('default case:');
-      tmpNestedAssignCompMemberObj = b;
-      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignComMemberObj = b;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
       tmpNestedAssignCompMemberRhs = c + d;
       tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
       a = tmpNestedAssignCompMemberRhs;
@@ -46,14 +50,18 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
 let a = 1;
 let b = { x: 2 };
 $('a');
-tmpNestedAssignCompMemberObj = b;
-tmpNestedAssignCompMemberProp = $('x');
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
 tmpNestedAssignCompMemberRhs = 7;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 a = tmpNestedAssignCompMemberRhs;

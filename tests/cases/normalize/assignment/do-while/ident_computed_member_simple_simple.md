@@ -26,6 +26,7 @@ var tmpPostfixArg;
 var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -42,8 +43,9 @@ do {
   }
   tmpNestedAssignComMemberObj = b;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-  tmpNestedComplexRhs = c;
+  tmpNestedPropAssignRhs = c;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);
@@ -59,6 +61,7 @@ var tmpPostfixArg;
 var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let n = 0;
@@ -72,8 +75,9 @@ do {
   }
   tmpNestedAssignComMemberObj = b;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  tmpNestedComplexRhs = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);

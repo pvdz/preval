@@ -20,14 +20,16 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpNestedAssignObj = $(a);
-tmpNestedAssignObj.x = b;
-tmpTernaryTest = b;
+tmpNestedPropAssignRhs = b;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+tmpTernaryTest = tmpNestedPropAssignRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
@@ -41,12 +43,14 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = { x: 10 };
 tmpNestedAssignObj = $(a);
-tmpNestedAssignObj.x = 2;
-tmpTernaryTest = 2;
+tmpNestedPropAssignRhs = 2;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+tmpTernaryTest = tmpNestedPropAssignRhs;
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {

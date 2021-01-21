@@ -18,22 +18,28 @@ $(1).x = $(2);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
-{
-  tmpAssignMemLhsObj = $(1);
-  tmpAssignMemRhs = $(2);
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
+var tmpAssignMemLhsObj_2;
+tmpAssignMemLhsObj = $(1);
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 tmpAssignMemLhsObj = $(1);
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
 `````
 
 ## Result

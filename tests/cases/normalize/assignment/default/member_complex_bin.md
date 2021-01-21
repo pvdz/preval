@@ -20,7 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -30,11 +32,11 @@ let c = 3;
     let tmpFallthrough = false;
     {
       ('default case:');
-      {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemRhs = b + c;
-        tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-      }
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+      tmpAssignMemRhs = b + c;
+      tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+      tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
     }
   }
 }
@@ -45,12 +47,16 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 let a = { x: 10 };
 $('a');
 tmpAssignMemLhsObj = $(a);
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
 $(a, 5, 3);
 `````
 

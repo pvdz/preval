@@ -19,11 +19,14 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -35,13 +38,16 @@ let d = 3;
   } else {
     a;
     tmpAssignMemLhsObj = $(b);
+    tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
     a;
     tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.c = d;
-    tmpAssignMemRhs = d;
-    tmpNestedAssignObj_1 = tmpAssignMemLhsObj;
-    tmpNestedAssignObj_1.c = tmpAssignMemRhs;
-    tmpArg = tmpAssignMemRhs;
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpAssignMemRhs = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+    tmpNestedPropAssignRhs_1 = tmpAssignMemRhs;
+    tmpAssignMemLhsObj_2.c = tmpNestedPropAssignRhs_1;
+    tmpArg = tmpNestedPropAssignRhs_1;
   }
 }
 $(tmpArg);
@@ -51,23 +57,29 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {
   tmpArg = tmpAssignLogicStmtOr;
 } else {
   tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
   tmpNestedAssignObj = $(b);
-  tmpNestedAssignObj.c = 3;
-  tmpAssignMemRhs = 3;
-  tmpNestedAssignObj_1 = tmpAssignMemLhsObj;
-  tmpNestedAssignObj_1.c = tmpAssignMemRhs;
-  tmpArg = tmpAssignMemRhs;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpAssignMemRhs = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
+  tmpNestedPropAssignRhs_1 = tmpAssignMemRhs;
+  tmpAssignMemLhsObj_2.c = tmpNestedPropAssignRhs_1;
+  tmpArg = tmpNestedPropAssignRhs_1;
 }
 $(tmpArg);
 $(1, b, 'unused', 3);

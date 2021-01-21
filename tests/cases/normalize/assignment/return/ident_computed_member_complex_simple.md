@@ -24,13 +24,17 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpNewObj = function () {
+  var tmpNestedAssignObj;
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  var tmpNestedPropAssignRhs;
   {
-    tmpNestedAssignComMemberObj = $(b);
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
     tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-    a = c;
+    tmpNestedPropAssignRhs = c;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     let tmpStmtArg = a;
     return tmpStmtArg;
   }
@@ -46,12 +50,16 @@ var tmpNewObj;
 let a = 1;
 let b = { x: 2 };
 tmpNewObj = function () {
+  var tmpNestedAssignObj;
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
-  tmpNestedAssignComMemberObj = $(b);
+  var tmpNestedPropAssignRhs;
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignComMemberObj = tmpNestedAssignObj;
   tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   let tmpStmtArg = a;
   return tmpStmtArg;
 };

@@ -21,11 +21,19 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpArg = `abc ${(((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = b + c), tmpAssignMemLhsObj).x = tmpAssignMemRhs)} def`;
+tmpArg = `abc ${
+  ((tmpAssignMemLhsObj = $(a)),
+  (tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
+  (tmpAssignMemRhs = b + c),
+  (tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
+  (tmpAssignMemLhsObj_2.x = tmpAssignMemRhs))
+} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -35,9 +43,17 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj_1;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_2;
 let a = { x: 10 };
-tmpArg = `abc ${(((tmpAssignMemLhsObj = $(a)), (tmpAssignMemRhs = 5), tmpAssignMemLhsObj).x = tmpAssignMemRhs)} def`;
+tmpArg = `abc ${
+  ((tmpAssignMemLhsObj = $(a)),
+  (tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
+  (tmpAssignMemRhs = 5),
+  (tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
+  (tmpAssignMemLhsObj_2.x = tmpAssignMemRhs))
+} def`;
 $(tmpArg);
 $(a, 5, 3);
 `````

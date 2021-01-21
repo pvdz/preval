@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = 2;
 let c = 0;
@@ -28,8 +29,9 @@ let d = 0;
 while (true) {
   {
     tmpNestedAssignObj = $(c);
-    tmpNestedAssignObj.y = d;
-    tmpNestedComplexRhs = d;
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;
     let ifTestTmp = a;
@@ -47,12 +49,14 @@ $(a, b, c);
 `````js filename=intro
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = 2;
 while (true) {
   tmpNestedAssignObj = $(0);
-  tmpNestedAssignObj.y = 0;
-  tmpNestedComplexRhs = 0;
+  tmpNestedPropAssignRhs = 0;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   let ifTestTmp = a;

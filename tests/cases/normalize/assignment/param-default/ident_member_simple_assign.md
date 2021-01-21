@@ -25,6 +25,7 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj_1;
   var tmpNestedAssignMemberRhs_1;
   let foo;
@@ -32,7 +33,8 @@ function f($tdz$__foo) {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
       tmpNestedAssignMemberObj = b;
-      tmpNestedAssignMemberObj_1 = $(c);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs_1 = $(d);
       tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
       tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
@@ -61,13 +63,15 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj_1;
   var tmpNestedAssignMemberRhs_1;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     tmpNestedAssignMemberObj = b;
-    tmpNestedAssignMemberObj_1 = $(3);
+    tmpNestedAssignObj = $(3);
+    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs_1 = $(4);
     tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
     tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;

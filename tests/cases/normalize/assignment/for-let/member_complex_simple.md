@@ -20,16 +20,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemRhs = b;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = b;
   let wat = b;
   while (false) {
     $(wat);
@@ -42,11 +38,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 tmpAssignMemLhsObj = $(a);
-tmpAssignMemRhs = 2;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = 2;
 while (false) {
   $(2);
 }

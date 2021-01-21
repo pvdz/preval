@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -31,9 +32,10 @@ let c = 3;
   } else {
     $(b);
     tmpNestedAssignObj = $(c);
-    tmpNestedAssignObj.x = c;
-    a = c;
-    tmpArg = c;
+    tmpNestedPropAssignRhs = c;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    tmpArg = tmpNestedPropAssignRhs;
   }
 }
 $(tmpArg);
@@ -45,6 +47,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {
@@ -52,9 +55,10 @@ if (tmpAssignLogicStmtOr) {
 } else {
   $(2);
   tmpNestedAssignObj = $(3);
-  tmpNestedAssignObj.x = 3;
-  a = 3;
-  tmpArg = 3;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  tmpArg = tmpNestedPropAssignRhs;
 }
 $(tmpArg);
 $(a, 2, 3);

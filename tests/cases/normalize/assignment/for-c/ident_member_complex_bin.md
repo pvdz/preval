@@ -22,6 +22,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -37,7 +38,8 @@ let n = 1;
       tmpBinaryLeft = tmpPostfixArg;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
-        tmpNestedAssignMemberObj = $(b);
+        tmpNestedAssignObj = $(b);
+        tmpNestedAssignMemberObj = tmpNestedAssignObj;
         tmpNestedAssignMemberRhs = c + d;
         tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
         a = tmpNestedAssignMemberRhs;
@@ -55,6 +57,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -66,7 +69,8 @@ while (true) {
   tmpBinaryLeft = tmpPostfixArg;
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
-    tmpNestedAssignMemberObj = $(b);
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = 7;
     tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
     a = tmpNestedAssignMemberRhs;

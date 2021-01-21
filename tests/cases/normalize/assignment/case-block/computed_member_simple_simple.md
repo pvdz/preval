@@ -21,9 +21,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -42,12 +41,9 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          {
-            tmpAssignComputedObj = a;
-            tmpAssignComputedProp = $('x');
-            tmpAssignComputedRhs = b;
-            tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-          }
+          tmpAssignComMemLhsObj = a;
+          tmpAssignComMemLhsProp = $('x');
+          tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -76,12 +72,9 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        {
-          tmpAssignComputedObj = a;
-          tmpAssignComputedProp = $('x');
-          tmpAssignComputedRhs = b;
-          tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        }
+        tmpAssignComMemLhsObj = a;
+        tmpAssignComMemLhsProp = $('x');
+        tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

@@ -24,13 +24,15 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedComplexRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
-      tmpNestedAssignMemberObj = $(c);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs = $(d);
       tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
       tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -58,12 +60,14 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedComplexRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    tmpNestedAssignMemberObj = $(3);
+    tmpNestedAssignObj = $(3);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = $(4);
     tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
     tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

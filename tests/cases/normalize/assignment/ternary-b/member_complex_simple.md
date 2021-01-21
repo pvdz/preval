@@ -23,14 +23,16 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpTernaryTest = $(true);
 if (tmpTernaryTest) {
   tmpNestedAssignObj = $(a);
-  tmpNestedAssignObj.x = b;
-  tmpTernaryConsequent = b;
+  tmpNestedPropAssignRhs = b;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  tmpTernaryConsequent = tmpNestedPropAssignRhs;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = false;
@@ -46,12 +48,14 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 tmpTernaryTest = $(true);
 if (tmpTernaryTest) {
   tmpNestedAssignObj = $(a);
-  tmpNestedAssignObj.x = 2;
-  tmpTernaryConsequent = 2;
+  tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  tmpTernaryConsequent = tmpNestedPropAssignRhs;
   tmpArg = tmpTernaryConsequent;
 } else {
   tmpArg = false;

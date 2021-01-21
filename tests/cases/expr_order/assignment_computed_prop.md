@@ -17,27 +17,41 @@ $(1)[$(2)] = $(3);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-{
-  tmpAssignComputedObj = $(1);
-  tmpAssignComputedProp = $(2);
-  tmpAssignComputedRhs = $(3);
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
+var tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj = $(1);
+tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+tmpAssignComMemLhsProp = $(2);
+tmpAssignComputedObj = tmpAssignComMemLhsObj;
+tmpAssignComputedProp = tmpAssignComMemLhsProp;
+tmpAssignComputedRhs = $(3);
+tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-tmpAssignComputedObj = $(1);
-tmpAssignComputedProp = $(2);
+var tmpAssignMemLhsObj_1;
+tmpAssignMemLhsObj = $(1);
+tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+tmpAssignComMemLhsProp = $(2);
+tmpAssignComputedObj = tmpAssignComMemLhsObj;
+tmpAssignComputedProp = tmpAssignComMemLhsProp;
 tmpAssignComputedRhs = $(3);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Result

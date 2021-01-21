@@ -22,19 +22,15 @@ var x;
 var a;
 var b;
 var c;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 x = {};
 a = 1;
 b = 2;
 c = 3;
-{
-  tmpAssignComputedObj = x;
-  tmpAssignComputedProp = a + b;
-  tmpAssignComputedRhs = c;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
+tmpAssignComMemLhsObj = x;
+tmpAssignComMemLhsProp = a + b;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 `````
 
 ## Output
@@ -44,17 +40,15 @@ var x;
 var a;
 var b;
 var c;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 x = {};
 a = 1;
 b = 2;
 c = 3;
-tmpAssignComputedObj = x;
-tmpAssignComputedProp = a + b;
-tmpAssignComputedRhs = c;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsObj = x;
+tmpAssignComMemLhsProp = a + b;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 `````
 
 ## Result

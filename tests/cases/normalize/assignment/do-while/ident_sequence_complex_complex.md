@@ -24,6 +24,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -41,7 +42,8 @@ do {
     }
   }
   $(b);
-  tmpNestedAssignMemberObj = $(c);
+  tmpNestedAssignObj = $(c);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(c);
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -58,6 +60,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -71,7 +74,8 @@ do {
     break;
   }
   $(2);
-  tmpNestedAssignMemberObj = $(3);
+  tmpNestedAssignObj = $(3);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(3);
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

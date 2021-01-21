@@ -24,16 +24,12 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpNewObj = function () {
-  var tmpAssignComputedObj;
-  var tmpAssignComputedProp;
-  var tmpAssignComputedRhs;
+  var tmpAssignComMemLhsObj;
+  var tmpAssignComMemLhsProp;
   {
-    {
-      tmpAssignComputedObj = a;
-      tmpAssignComputedProp = $('x');
-      tmpAssignComputedRhs = b;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    }
+    tmpAssignComMemLhsObj = a;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
     let tmpStmtArg = b;
     return tmpStmtArg;
   }
@@ -48,13 +44,11 @@ $(a, b, c);
 var tmpNewObj;
 let a = { x: 10 };
 tmpNewObj = function () {
-  var tmpAssignComputedObj;
-  var tmpAssignComputedProp;
-  var tmpAssignComputedRhs;
-  tmpAssignComputedObj = a;
-  tmpAssignComputedProp = $('x');
-  tmpAssignComputedRhs = 2;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  var tmpAssignComMemLhsObj;
+  var tmpAssignComMemLhsProp;
+  tmpAssignComMemLhsObj = a;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
   return 2;
 };
 tmpNewObj();

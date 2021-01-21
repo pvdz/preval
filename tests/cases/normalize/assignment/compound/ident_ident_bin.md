@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = 2, c = 3, d = 4;
+let a = 10, b = 2, c = 3, d = 4;
 a *= b += c + d;
 $(a, b, c);
 `````
@@ -20,13 +20,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-let a = 1;
+var tmpNestedCompoundComplexRhs;
+let a = 10;
 let b = 2;
 let c = 3;
 let d = 4;
 tmpNestedComplexRhs = c + d;
-b = b + tmpNestedComplexRhs;
-a = a * tmpNestedComplexRhs;
+tmpNestedCompoundComplexRhs = b + tmpNestedComplexRhs;
+b = tmpNestedCompoundComplexRhs;
+a = a * tmpNestedCompoundComplexRhs;
 $(a, b, c);
 `````
 
@@ -34,23 +36,24 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-let a = 1;
+var tmpNestedCompoundComplexRhs;
+let a = 10;
 let b = 2;
 tmpNestedComplexRhs = 7;
-b = b + tmpNestedComplexRhs;
-a = a * tmpNestedComplexRhs;
+tmpNestedCompoundComplexRhs = b + tmpNestedComplexRhs;
+b = tmpNestedCompoundComplexRhs;
+a = a * tmpNestedCompoundComplexRhs;
 $(a, b, 7);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 9,9,3
+ - 0: 90,9,3
  - 1: undefined
 
-Normalized calls: BAD?!
-[[7, 9, 3], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, 9, 7], null];
+[[90, 9, 7], null];
 

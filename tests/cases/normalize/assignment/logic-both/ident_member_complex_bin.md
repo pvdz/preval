@@ -20,8 +20,10 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
@@ -29,13 +31,15 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignMemberObj = $(b);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = c + d;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
   let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
   if (tmpAssignLogicStmtOr) {
-    tmpNestedAssignMemberObj_1 = $(b);
+    tmpNestedAssignObj_1 = $(b);
+    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
     tmpNestedAssignMemberRhs_1 = c + d;
     tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
     a = tmpNestedAssignMemberRhs_1;
@@ -52,19 +56,23 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = $(b);
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = 11;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
 let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
 if (tmpAssignLogicStmtOr) {
-  tmpNestedAssignMemberObj_1 = $(b);
+  tmpNestedAssignObj_1 = $(b);
+  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
   tmpNestedAssignMemberRhs_1 = 11;
   tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
   a = tmpNestedAssignMemberRhs_1;

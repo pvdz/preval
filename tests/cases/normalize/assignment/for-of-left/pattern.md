@@ -20,7 +20,6 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
@@ -29,15 +28,12 @@ let z = [10, 20, 30];
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of []) {
-    {
-      arrAssignPatternRhs = z;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      tmpAssignMemLhsObj = arrAssignPatternRhs;
-      tmpAssignMemRhs = tmpForOfLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpAssignMemLhsObj = arrAssignPatternRhs;
+    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
 $(x, y, z);
@@ -47,7 +43,6 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
@@ -60,8 +55,7 @@ for (tmpForOfLhsNode of []) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpAssignMemLhsObj = arrAssignPatternRhs;
-  tmpAssignMemRhs = tmpForOfLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(x, y, z);
 `````

@@ -20,15 +20,15 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
+var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 {
-  {
-    a;
-    b.c = d;
-  }
+  a;
+  tmpAssignMemLhsObj = b;
+  tmpAssignMemLhsObj.c = d;
   let tmpAssignLogicStmtOr = d;
   if (tmpAssignLogicStmtOr) {
     tmpArg = $(true);
@@ -44,8 +44,10 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
+var tmpAssignMemLhsObj;
 let b = { c: 2 };
-b.c = 3;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = 3;
 tmpArg = $(true);
 $(tmpArg);
 $(1, b, 'unused', 3);

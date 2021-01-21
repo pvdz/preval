@@ -20,6 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpBinaryRight;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -32,8 +34,10 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignCompMemberObj = a;
-      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignComMemberObj = a;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
       tmpNestedAssignCompMemberRhs = b + c;
       tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
       tmpBinaryRight = tmpNestedAssignCompMemberRhs;
@@ -62,8 +66,10 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignCompMemberObj = a;
-      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignComMemberObj = a;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
       tmpNestedAssignCompMemberRhs = b + c;
       tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
       tmpBinaryRight = tmpNestedAssignCompMemberRhs;

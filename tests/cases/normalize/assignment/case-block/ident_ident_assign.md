@@ -22,6 +22,7 @@ $(a, b, c);
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -43,7 +44,8 @@ let d = 4;
       if (ifTestTmp) {
         ('case 0:');
         {
-          tmpNestedAssignMemberObj = $(c);
+          tmpNestedAssignObj = $(c);
+          tmpNestedAssignMemberObj = tmpNestedAssignObj;
           tmpNestedAssignMemberRhs = $(d);
           tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
           tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -76,7 +78,8 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        tmpNestedAssignMemberObj = $(c);
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignMemberObj = tmpNestedAssignObj;
         tmpNestedAssignMemberRhs = $(d);
         tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
         tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

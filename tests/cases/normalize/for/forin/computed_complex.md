@@ -19,9 +19,9 @@ for ($(a)[$('foo')] in $(b)) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = {};
 let b = { x: 1, y: 2 };
 {
@@ -29,12 +29,10 @@ let b = { x: 1, y: 2 };
   {
     const tmpForInRhs = $(b);
     for (tmpForInLhsNode in tmpForInRhs) {
-      {
-        tmpAssignComputedObj = $(a);
-        tmpAssignComputedProp = $('foo');
-        tmpAssignComputedRhs = tmpForInLhsNode;
-        tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      }
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+      tmpAssignComMemLhsProp = $('foo');
+      tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
       $(a);
     }
   }
@@ -44,18 +42,18 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 let a = {};
 let b = { x: 1, y: 2 };
 let tmpForInLhsNode;
 const tmpForInRhs = $(b);
 for (tmpForInLhsNode in tmpForInRhs) {
-  tmpAssignComputedObj = $(a);
-  tmpAssignComputedProp = $('foo');
-  tmpAssignComputedRhs = tmpForInLhsNode;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+  tmpAssignComMemLhsProp = $('foo');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
   $(a);
 }
 `````

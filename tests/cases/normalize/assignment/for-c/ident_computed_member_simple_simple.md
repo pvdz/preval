@@ -24,6 +24,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -38,8 +39,9 @@ let n = 1;
       if (ifTestTmp) {
         tmpNestedAssignComMemberObj = b;
         tmpNestedAssignComMemberProp = $('x');
-        tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-        a = c;
+        tmpNestedPropAssignRhs = c;
+        tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
       } else {
         break;
       }
@@ -56,6 +58,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let n = 1;
@@ -67,8 +70,9 @@ while (true) {
   if (ifTestTmp) {
     tmpNestedAssignComMemberObj = b;
     tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-    a = 3;
+    tmpNestedPropAssignRhs = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
   } else {
     break;
   }

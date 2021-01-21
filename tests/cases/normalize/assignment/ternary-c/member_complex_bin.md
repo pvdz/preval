@@ -22,6 +22,7 @@ $(a, b, c);
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
@@ -31,7 +32,8 @@ tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedAssignMemberObj = $(a);
+  tmpNestedAssignObj = $(a);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = b + c;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpTernaryAlternate = tmpNestedAssignMemberRhs;
@@ -47,6 +49,7 @@ $(a, b, c);
 var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
@@ -54,7 +57,8 @@ tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedAssignMemberObj = $(a);
+  tmpNestedAssignObj = $(a);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = 5;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpTernaryAlternate = tmpNestedAssignMemberRhs;

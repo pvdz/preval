@@ -23,6 +23,7 @@ var tmpBinaryRight;
 var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -34,8 +35,9 @@ tmpSwitchBreak: {
     } else {
       tmpNestedAssignComMemberObj = b;
       tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-      tmpNestedComplexRhs = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;
@@ -65,8 +67,9 @@ tmpSwitchBreak: {
     } else {
       tmpNestedAssignComMemberObj = b;
       tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
-      tmpNestedComplexRhs = c;
+      tmpNestedPropAssignRhs = c;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
       a = tmpNestedComplexRhs;
       tmpBinaryRight = tmpNestedComplexRhs;
       ifTestTmp = 1 === tmpBinaryRight;

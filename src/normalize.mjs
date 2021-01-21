@@ -2485,51 +2485,80 @@ export function phaseNormalize(fdata, fname) {
           const b = node.left.property;
           const c = node.right;
 
-          if (node.operator !== '=' && isComplexNode(a)) {
-            // Must simplify the object because we'll duplicate that when eliminating the compound
+          if (isComplexNode(a)) {
+            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
+            rule('Assignment to member expression must have simple lhs');
+            example('a().b = c()', '(tmp = a(), tmp2.b = c()', () => !node.computed);
+            example('a()[b()] = c()', '(tmp = a(), tmp2[b()] = c()', () => node.computed);
+            before(node);
+
+            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj', true);
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(tmpNameObj, a), // tmp = a()
+              AST.assignmentExpression(
+                AST.memberExpression(tmpNameObj, b, lhs.computed), // tmp.b or tmp[b()]
+                c,
+                node.operator, // tmp.b = tmp2
+              ),
+            );
+
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+            break;
+          }
+
+          if (node.left.computed && isComplexNode(b)) {
+            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
+            rule('Assignment to computed property must have simple property node');
+            example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
+            before(node);
+
+            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignComMemLhsObj', true);
+            const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignComMemLhsProp', true);
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(tmpNameObj, a), // tmp = a()
+              AST.assignmentExpression(tmpNameProp, b), // tmp2 = b()
+              AST.assignmentExpression(
+                AST.memberExpression(tmpNameObj, tmpNameProp, lhs.computed), // tmp[tmp2]
+                c,
+                node.operator, // tmp[b] = c()
+              ),
+            );
+
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+            break;
+          }
+
+          if (node.operator !== '=') {
             // The compound assignment is not assignable so no need to return an assignment or assignable
+            // The a and b ought to be simple at this point. It's not relevant whether or not it's computed.
 
-            if (lhs.computed) {
-              rule('Compound assignment to computed property must have simple object node');
-              example('a()[b()] = c()', 'tmp = a(), tmp2 = b(), tmp3 = c, tmp[tmp2] += tmp3');
-              before(node);
+            rule('Compound assignment to property must be regular assignment');
+            example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()');
+            before(node);
 
-              const tmpNameObj = createFreshVarInCurrentRootScope('tmpCompoundAssignComputedObj', true);
-              const tmpNameProp = createFreshVarInCurrentRootScope('tmpCompoundAssignComputedProp', true);
-              const tmpNameRhs = createFreshVarInCurrentRootScope('tmpCompoundAssignComputedRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-                AST.assignmentExpression(tmpNameProp, b), // tmp2 = b()
-                AST.assignmentExpression(tmpNameRhs, c), // tmp3 = c()
-                AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs, node.operator), // tmp[tmo2] = tmp3
-              );
+            const tmpNameLhs = createFreshVarInCurrentRootScope('tmpCompoundAssignLhs', true);
+            const newNode = AST.sequenceExpression(
+              AST.assignmentExpression(tmpNameLhs, AST.memberExpression(a, b, lhs.computed)), // tmp = a.b or tmp = a[b]
+              AST.assignmentExpression(
+                AST.memberExpression(a, b, lhs.computed),
+                AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
+              ), // tmp.b = tmp2 or tmp[b] = tmp2
+            );
 
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
 
-              _expr(newNode);
-              break;
-            } else {
-              rule('Compound assignment to regular property must have simple object node');
-              example('a().b = c()', 'tmp = a(), tmp2 = c(), tmp.b = tmp2');
-              before(node);
-
-              const tmpNameObj = createFreshVarInCurrentRootScope('tmpCompoundAssignObj', true);
-              const tmpNameRhs = createFreshVarInCurrentRootScope('tmpCompoundAssignRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-                AST.assignmentExpression(tmpNameRhs, c), // tmp2 = c()
-                AST.assignmentExpression(AST.memberExpression(tmpNameObj, b), tmpNameRhs, node.operator), // tmp.b = tmp2
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
+            _expr(newNode);
+            break;
           }
 
           if (lhs.computed && (isComplexNode(a, node.operator === '=') || isComplexNode(b) || isComplexNode(c))) {
@@ -2626,16 +2655,16 @@ export function phaseNormalize(fdata, fname) {
             const c = node.right.right;
 
             if (isComplexNode(c)) {
-              // In this case, b is only read, so we don't need to cache even if c() would change it
+              // In this case, b is only set, so we don't need to cache even if c() would change it
               rule('The rhs.rhs of a nested assignment must be simple');
-              example('a = b = c()', 'tmp = c(), b = tmp, a = tmp');
+              example('a = b = c()', 'tmp = c(), a = b = tmp', () => node.right.operator === '=');
+              example('a = b += c()', 'tmp = c(), a = b += tmp', () => node.right.operator !== '=');
               before(node);
 
               const tmpName = createFreshVarInCurrentRootScope('tmpNestedComplexRhs', true);
               const newNode = AST.sequenceExpression(
                 AST.assignmentExpression(tmpName, c),
-                AST.assignmentExpression(b, tmpName, node.right.operator),
-                AST.assignmentExpression(a, tmpName, node.operator),
+                AST.assignmentExpression(a, AST.assignmentExpression(b, tmpName, node.right.operator), node.operator),
               );
 
               crumbSet(1, newNode);
@@ -2687,9 +2716,87 @@ export function phaseNormalize(fdata, fname) {
 
           if (lhs.type === 'MemberExpression') {
             // a = b.c = d
+            // `$(1)[$(2)] = $(3)` is evaluated in 1, 2, 3 order
             const b = lhs.object;
             const c = lhs.property;
             const d = node.right.right;
+
+            if (isComplexNode(b)) {
+              // Even if c is computed, b would be evaluated before c so we don't need to preserve its before-value.
+              rule('The object of a nested property assignment must be a simple node');
+              example('a = b().c = d', 'tmp = b(), a = tmp.c = d()', () => !lhs.computed);
+              example('a = b()[c] = d', 'tmp = b(), a = tmp[c()] = d()', () => lhs.computed);
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignObj', true);
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, b),
+                AST.assignmentExpression(
+                  a,
+                  AST.assignmentExpression(AST.memberExpression(tmpName, c, lhs.computed), d, node.right.operator),
+                  node.operator,
+                ),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
+            if (lhs.computed && isComplexNode(c)) {
+              // In this case we only need to store b in a var first, since the execution of c may change it after the fact
+              // (so we must store the value before evaluating c) but we don't have to care if calling b or c changes the
+              // value of d since that would always be evaluated last.
+              rule('The property of a nested assignment to a computed property must be a simple node');
+              example('a = b[c()] = d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => !b.computed);
+              before(node);
+
+              const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberObj', true);
+              const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberProp', true);
+
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpNameObj, b),
+                AST.assignmentExpression(tmpNameProp, c),
+                AST.assignmentExpression(
+                  a,
+                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), d, node.right.operator),
+                  node.operator,
+                ),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
+
+            // We must be left with `a = b.c = d()` or `a = b[c] = d()`, which must all be simple nodes except d
+            // and which may be a compound assignment. We need to check that first to preserve get/set order.
+
+            if (node.right.operator !== '=') {
+              rule('Nested compound prop assignment with all idents must be split');
+              example('a = b.x *= c', 'tmp = b.x * c, b = tmp, c = tmp');
+              before(node);
+
+              const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropCompoundComplexRhs', true);
+              const newNode = AST.sequenceExpression(
+                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), lhs, d)),
+                AST.assignmentExpression(lhs, tmpName),
+                AST.assignmentExpression(a, tmpName, node.operator),
+              );
+
+              crumbSet(1, newNode);
+              after(newNode);
+              changed = true;
+
+              _expr(newNode);
+              break;
+            }
 
             if (isComplexNode(d)) {
               if (lhs.computed) {
@@ -2740,78 +2847,6 @@ export function phaseNormalize(fdata, fname) {
                 _expr(newNode);
               }
 
-              break;
-            }
-
-            if (lhs.computed && isComplexNode(c)) {
-              // In this case, d is known to be simple (scrubbed above), and we only need to store b in a var first, since
-              // the execution of c may change it after the fact (so we must store the value before evaluating c) but we
-              // don't have to care if calling b or c changes the value of d since that would always be evaluated last.
-              rule('The property of a nested assignment to a computed property must be a simple node');
-              example('a = b[c()] = d', 'tmp = b, tmp2 = c(), tmp[tmp2] = d, a = d', () => !b.computed);
-              before(node);
-
-              const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberObj', true);
-              const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberProp', true);
-
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpNameObj, b),
-                AST.assignmentExpression(tmpNameProp, c),
-                AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), d, node.right.operator),
-                AST.assignmentExpression(a, d, node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            if (isComplexNode(b)) {
-              // In this case c is neither computed nor complex, d is simple, and we only need to put b in a tmp var.
-              // Even if c is computed, b would be evaluated before c so we don't need to preserve its before-value.
-              rule('The object of a nested property assignment must be a simple node');
-              example('a = b().c = d', 'tmp = b(), tmp.c = d, a = d', () => !lhs.computed);
-              example('a = b()[c] = d', 'tmp = b(), tmp[c] = d, a = d', () => lhs.computed);
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignObj', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, b),
-                AST.assignmentExpression(AST.memberExpression(tmpName, c, lhs.computed), d, node.right.operator),
-                AST.assignmentExpression(a, d, node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            // We must be left with `a = b.c = d` or `a = b[c] = d`, which must all be simple nodes
-            // The assignment to `b.c` could trigger a setter that could update `d` so cache it too
-
-            if (node.right.operator !== '=') {
-              rule('Nested compound prop assignment with all idents must be split');
-              example('a = b.x *= c', 'tmp = b.x * c, b = tmp, c = tmp');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropCompoundComplexRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), lhs, d)),
-                AST.assignmentExpression(lhs, tmpName),
-                AST.assignmentExpression(a, tmpName, node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
               break;
             }
 
@@ -2962,18 +2997,11 @@ export function phaseNormalize(fdata, fname) {
 
         // Start with right complex because if it is, it must also outline left regardless (`x = n + ++n`)
         if (isComplexNode(node.right)) {
-          rule('Binary expression right must be simple');
-          log('- `a === c.b` --> `(tmp = a, tmp2 = c.b, tmp === tmp2)`');
-          log('- `a === b()` --> `(tmp = a = tmp2 = b(), tmp === tmp2)`');
-          log('- `a === (b, c).x` --> `(tmp = a, tmp2 = (b, c).x, tmp === tmp2)`');
-          log('- `n === ++n` --> `(tmp = n, tmp2 = ++n, tmp === tmp2)`');
-          log('- `5 === b()` --> `(tmp = b(), 5 === tmp)`');
-          before(node);
+          if (isImmutable(node.left)) {
+            rule('Binary expression right must be simple');
+            example('5 === b()', '(tmp = b(), 5 === tmp2)');
+            before(node);
 
-          if (
-            node.left.type === 'Literal' ||
-            (node.left.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(node.left.name))
-          ) {
             // The lhs is an immutable value. No need to store it in a temporary variable for safety
             const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
             const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
@@ -2985,15 +3013,17 @@ export function phaseNormalize(fdata, fname) {
 
             _expr(newNode);
           } else {
+            rule('Binary expression right must be simple');
+            example('a === b()', '(tmp = a = tmp2 = b(), tmp === tmp2)');
+            before(node);
+
             const tmpNameLeft = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
             const tmpNameRight = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
             const newNode = AST.sequenceExpression(
               AST.assignmentExpression(tmpNameLeft, node.left),
               AST.assignmentExpression(tmpNameRight, node.right),
-              node,
+              AST.binaryExpression(node.operator, tmpNameLeft, tmpNameRight),
             );
-            node.left = AST.identifier(tmpNameLeft);
-            node.right = AST.identifier(tmpNameRight);
             crumbSet(1, newNode);
 
             after(newNode);

@@ -21,14 +21,14 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-{
-  tmpAssignMemLhsObj = a;
-  tmpAssignMemRhs = b + c;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
+tmpAssignMemLhsObj = a;
+tmpAssignMemRhs = b + c;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
 $(a, b, c);
 `````
 
@@ -37,10 +37,12 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
+var tmpAssignMemLhsObj_1;
 let a = { x: 10 };
 tmpAssignMemLhsObj = a;
 tmpAssignMemRhs = 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
 $(a, 5, 3);
 `````
 

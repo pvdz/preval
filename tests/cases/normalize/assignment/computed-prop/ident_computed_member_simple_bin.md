@@ -20,10 +20,11 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -32,44 +33,45 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 let obj = {};
-{
-  tmpAssignComputedObj = obj;
-  tmpNestedAssignCompMemberObj = b;
-  tmpNestedAssignCompMemberProp = $('x');
-  tmpNestedAssignCompMemberRhs = c + d;
-  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
-  a = tmpNestedComplexRhs;
-  tmpAssignComputedProp = tmpNestedComplexRhs;
-  tmpAssignComputedRhs = 1000;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
+tmpAssignComMemLhsObj = obj;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignCompMemberRhs = c + d;
+tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+a = tmpNestedComplexRhs;
+tmpAssignComMemLhsProp = tmpNestedComplexRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
 let a = 1;
 let b = { x: 2 };
 let obj = {};
-tmpAssignComputedObj = obj;
-tmpNestedAssignCompMemberObj = b;
-tmpNestedAssignCompMemberProp = $('x');
+tmpAssignComMemLhsObj = obj;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
 tmpNestedAssignCompMemberRhs = 7;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
 a = tmpNestedComplexRhs;
-tmpAssignComputedProp = tmpNestedComplexRhs;
-tmpAssignComputedRhs = 1000;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsProp = tmpNestedComplexRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 1000;
 $(a, b, 7);
 `````
 

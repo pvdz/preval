@@ -18,22 +18,16 @@ $({}).foo = 10;
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-{
-  tmpAssignMemLhsObj = $({});
-  tmpAssignMemRhs = 10;
-  tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
-}
+tmpAssignMemLhsObj = $({});
+tmpAssignMemLhsObj.foo = 10;
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 tmpAssignMemLhsObj = $({});
-tmpAssignMemRhs = 10;
-tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj.foo = 10;
 `````
 
 ## Result

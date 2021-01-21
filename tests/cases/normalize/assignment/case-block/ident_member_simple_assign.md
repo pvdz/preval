@@ -23,6 +23,7 @@ var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
@@ -45,7 +46,8 @@ let d = 4;
         ('case 0:');
         {
           tmpNestedAssignMemberObj = b;
-          tmpNestedAssignMemberObj_1 = $(c);
+          tmpNestedAssignObj = $(c);
+          tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
           tmpNestedAssignMemberRhs_1 = $(d);
           tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
           tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
@@ -80,7 +82,8 @@ tmpSwitchBreak: {
       ('case 0:');
       {
         tmpNestedAssignMemberObj = b;
-        tmpNestedAssignMemberObj_1 = $(c);
+        tmpNestedAssignObj = $(c);
+        tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
         tmpNestedAssignMemberRhs_1 = $(d);
         tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
         tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;

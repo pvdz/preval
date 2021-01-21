@@ -19,52 +19,42 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpNestedAssignCompMemberObj = b;
-tmpNestedAssignCompMemberProp = $('x');
-tmpNestedAssignCompMemberRhs = c + d;
-{
-  tmpAssignComputedObj = tmpNestedAssignCompMemberObj;
-  tmpAssignComputedProp = tmpNestedAssignCompMemberProp;
-  tmpBinaryLeft = tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp];
-  tmpAssignComputedRhs = tmpBinaryLeft * tmpNestedAssignCompMemberRhs;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-}
-a = a * tmpNestedAssignCompMemberRhs;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
+tmpBinaryRight = c + d;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft * tmpBinaryRight;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignCompMemberObj = b;
-tmpNestedAssignCompMemberProp = $('x');
-tmpNestedAssignCompMemberRhs = 7;
-tmpAssignComputedObj = tmpNestedAssignCompMemberObj;
-tmpAssignComputedProp = tmpNestedAssignCompMemberProp;
-tmpBinaryLeft = tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp];
-tmpAssignComputedRhs = tmpBinaryLeft * tmpNestedAssignCompMemberRhs;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-a = a * tmpNestedAssignCompMemberRhs;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpBinaryLeft = tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp];
+tmpBinaryRight = 7;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft * tmpBinaryRight;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 7);
 `````
 
@@ -75,9 +65,8 @@ Should call `$` with:
  - 1: 14,{"x":14},3
  - 2: undefined
 
-Normalized calls: BAD?!
-[['x'], [7, { x: 14 }, 3], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[['x'], [7, { x: 14 }, 7], null];
+[['x'], [14, { x: 14 }, 7], null];
 

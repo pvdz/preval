@@ -23,7 +23,6 @@ $(a, b, c, d);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -39,11 +38,8 @@ let n = 1;
       if (ifTestTmp) {
         {
           a;
-          {
-            tmpAssignMemLhsObj = $(b);
-            tmpAssignMemRhs = d;
-            tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-          }
+          tmpAssignMemLhsObj = $(b);
+          tmpAssignMemLhsObj.c = d;
         }
       } else {
         break;
@@ -60,7 +56,6 @@ $(a, b, c, d);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let b = { c: 2 };
 let n = 1;
 while (true) {
@@ -70,8 +65,7 @@ while (true) {
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpAssignMemLhsObj = $(b);
-    tmpAssignMemRhs = 3;
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+    tmpAssignMemLhsObj.c = 3;
   } else {
     break;
   }

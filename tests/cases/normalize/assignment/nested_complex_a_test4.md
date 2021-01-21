@@ -24,9 +24,11 @@ $($(a).length = b);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 tmpNestedAssignObj = $(a);
-tmpNestedAssignObj.length = b;
-tmpArg = b;
+tmpNestedPropAssignRhs = b;
+tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
+tmpArg = tmpNestedPropAssignRhs;
 $(tmpArg);
 `````
 
@@ -35,9 +37,11 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 tmpNestedAssignObj = $(a);
-tmpNestedAssignObj.length = b;
-tmpArg = b;
+tmpNestedPropAssignRhs = b;
+tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
+tmpArg = tmpNestedPropAssignRhs;
 $(tmpArg);
 `````
 

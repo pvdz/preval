@@ -19,19 +19,21 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-export default (a, b).c = d;
+export default (a, (tmpAssignMemLhsObj = b), (tmpAssignMemLhsObj.c = d));
 $(a, b, c, d);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let b = { c: 2 };
-export default (1, b).c = 3;
+export default (1, (tmpAssignMemLhsObj = b), (tmpAssignMemLhsObj.c = 3));
 $(1, b, 'unused', 3);
 `````
 

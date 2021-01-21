@@ -19,44 +19,34 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpNestedAssignMemberObj = b;
-tmpNestedAssignMemberRhs = c + d;
-{
-  tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-  tmpBinaryLeft = tmpNestedAssignMemberObj.x;
-  tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
-a = a * tmpNestedAssignMemberRhs;
+tmpBinaryLeft = b.x;
+tmpBinaryRight = c + d;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+b.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
+var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = b;
-tmpNestedAssignMemberRhs = 7;
-tmpAssignMemLhsObj = tmpNestedAssignMemberObj;
-tmpBinaryLeft = tmpNestedAssignMemberObj.x;
-tmpAssignMemRhs = tmpBinaryLeft + tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = a * tmpNestedAssignMemberRhs;
+tmpBinaryLeft = b.x;
+tmpBinaryRight = 7;
+tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
+b.x = tmpNestedPropCompoundComplexRhs;
+a = a * tmpNestedPropCompoundComplexRhs;
 $(a, b, 7);
 `````
 
@@ -66,9 +56,8 @@ Should call `$` with:
  - 0: 9,{"x":9},3
  - 1: undefined
 
-Normalized calls: BAD?!
-[[7, { x: 9 }, 3], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, { x: 9 }, 7], null];
+[[9, { x: 9 }, 7], null];
 

@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -33,7 +34,8 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignMemberObj = $(b);
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs = c + d;
       tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
       tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -64,7 +66,8 @@ tmpSwitchBreak: {
     let ifTestTmp = tmpFallthrough;
     if (ifTestTmp) {
     } else {
-      tmpNestedAssignMemberObj = $(b);
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
       tmpNestedAssignMemberRhs = c + d;
       tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
       tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

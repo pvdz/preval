@@ -24,6 +24,8 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -42,8 +44,10 @@ do {
       break;
     }
   }
-  tmpNestedAssignCompMemberObj = b;
-  tmpNestedAssignCompMemberProp = $('x');
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = c + d;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
@@ -60,6 +64,8 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
@@ -74,8 +80,10 @@ do {
   if (ifTestTmp_1) {
     break;
   }
-  tmpNestedAssignCompMemberObj = b;
-  tmpNestedAssignCompMemberProp = $('x');
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = 7;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;

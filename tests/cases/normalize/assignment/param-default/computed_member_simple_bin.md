@@ -23,20 +23,26 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpAssignComMemLhsObj;
+  var tmpAssignComMemLhsProp;
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
-  var tmpNestedAssignObj;
+  var tmpAssignMemLhsObj;
+  var tmpNestedPropAssignRhs;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
-      tmpAssignComputedObj = a;
-      tmpAssignComputedProp = $('x');
+      tmpAssignComMemLhsObj = a;
+      tmpAssignComMemLhsProp = $('x');
+      tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      tmpAssignComputedProp = tmpAssignComMemLhsProp;
       tmpAssignComputedRhs = b + c;
-      tmpNestedAssignObj = tmpAssignComputedObj;
-      tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      foo = tmpAssignComputedRhs;
+      tmpAssignMemLhsObj = tmpAssignComputedObj;
+      tmpNestedPropAssignRhs = tmpAssignComputedRhs;
+      tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+      foo = tmpNestedPropAssignRhs;
     } else {
       foo = $tdz$__foo;
     }
@@ -56,19 +62,25 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpAssignComMemLhsObj;
+  var tmpAssignComMemLhsProp;
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
-  var tmpNestedAssignObj;
+  var tmpAssignMemLhsObj;
+  var tmpNestedPropAssignRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    tmpAssignComputedObj = a;
-    tmpAssignComputedProp = $('x');
+    tmpAssignComMemLhsObj = a;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    tmpAssignComputedProp = tmpAssignComMemLhsProp;
     tmpAssignComputedRhs = 5;
-    tmpNestedAssignObj = tmpAssignComputedObj;
-    tmpNestedAssignObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    foo = tmpAssignComputedRhs;
+    tmpAssignMemLhsObj = tmpAssignComputedObj;
+    tmpNestedPropAssignRhs = tmpAssignComputedRhs;
+    tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+    foo = tmpNestedPropAssignRhs;
   } else {
     foo = $tdz$__foo;
   }

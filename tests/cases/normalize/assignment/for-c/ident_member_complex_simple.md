@@ -23,6 +23,7 @@ $(a, b, c);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -36,8 +37,9 @@ let n = 1;
       let ifTestTmp = tmpBinaryLeft > 0;
       if (ifTestTmp) {
         tmpNestedAssignObj = $(b);
-        tmpNestedAssignObj.x = c;
-        a = c;
+        tmpNestedPropAssignRhs = c;
+        tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
       } else {
         break;
       }
@@ -53,6 +55,7 @@ $(a, b, c);
 var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let n = 1;
@@ -63,8 +66,9 @@ while (true) {
   let ifTestTmp = tmpBinaryLeft > 0;
   if (ifTestTmp) {
     tmpNestedAssignObj = $(b);
-    tmpNestedAssignObj.x = 3;
-    a = 3;
+    tmpNestedPropAssignRhs = 3;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
   } else {
     break;
   }

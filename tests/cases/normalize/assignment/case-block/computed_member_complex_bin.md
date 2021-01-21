@@ -25,9 +25,13 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpAssignMemLhsObj;
+var tmpAssignComMemLhsObj;
+var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj_1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -46,12 +50,14 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          {
-            tmpAssignComputedObj = $(a);
-            tmpAssignComputedProp = $('x');
-            tmpAssignComputedRhs = b + c;
-            tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-          }
+          tmpAssignMemLhsObj = $(a);
+          tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+          tmpAssignComMemLhsProp = $('x');
+          tmpAssignComputedObj = tmpAssignComMemLhsObj;
+          tmpAssignComputedProp = tmpAssignComMemLhsProp;
+          tmpAssignComputedRhs = b + c;
+          tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+          tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -80,12 +86,14 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        {
-          tmpAssignComputedObj = $(a);
-          tmpAssignComputedProp = $('x');
-          tmpAssignComputedRhs = b + c;
-          tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        }
+        tmpAssignMemLhsObj = $(a);
+        tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+        tmpAssignComMemLhsProp = $('x');
+        tmpAssignComputedObj = tmpAssignComMemLhsObj;
+        tmpAssignComputedProp = tmpAssignComMemLhsProp;
+        tmpAssignComputedRhs = b + c;
+        tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+        tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

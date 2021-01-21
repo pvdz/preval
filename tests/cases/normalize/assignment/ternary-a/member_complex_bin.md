@@ -19,6 +19,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpArg;
@@ -26,7 +27,8 @@ var tmpTernaryTest;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-tmpNestedAssignMemberObj = $(a);
+tmpNestedAssignObj = $(a);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = b + c;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpTernaryTest = tmpNestedAssignMemberRhs;
@@ -42,12 +44,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpArg;
 var tmpTernaryTest;
 let a = { x: 10 };
-tmpNestedAssignMemberObj = $(a);
+tmpNestedAssignObj = $(a);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = 5;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpTernaryTest = tmpNestedAssignMemberRhs;

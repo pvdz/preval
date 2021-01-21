@@ -22,7 +22,6 @@ $(a, b, c);
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -41,11 +40,8 @@ let c = 3;
       if (ifTestTmp) {
         ('case 0:');
         {
-          {
-            tmpAssignMemLhsObj = $(a);
-            tmpAssignMemRhs = b;
-            tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-          }
+          tmpAssignMemLhsObj = $(a);
+          tmpAssignMemLhsObj.x = b;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -74,11 +70,8 @@ tmpSwitchBreak: {
     if (ifTestTmp) {
       ('case 0:');
       {
-        {
-          tmpAssignMemLhsObj = $(a);
-          tmpAssignMemRhs = b;
-          tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-        }
+        tmpAssignMemLhsObj = $(a);
+        tmpAssignMemLhsObj.x = b;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

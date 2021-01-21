@@ -20,13 +20,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 $(b);
 tmpNestedAssignObj = $(c);
-tmpNestedAssignObj.x = c;
-a = c;
+tmpNestedPropAssignRhs = c;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, c);
 `````
 
@@ -34,11 +36,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 $(2);
 tmpNestedAssignObj = $(3);
-tmpNestedAssignObj.x = 3;
-a = 3;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, 2, 3);
 `````
 

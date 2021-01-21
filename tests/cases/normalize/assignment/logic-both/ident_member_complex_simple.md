@@ -21,20 +21,24 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
   tmpNestedAssignObj = $(b);
-  tmpNestedAssignObj.x = c;
-  a = c;
-  let tmpAssignLogicStmtOr = c;
+  tmpNestedPropAssignRhs = c;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpAssignLogicStmtOr = tmpNestedPropAssignRhs;
   if (tmpAssignLogicStmtOr) {
     tmpNestedAssignObj_1 = $(b);
-    tmpNestedAssignObj_1.x = c;
-    a = c;
-    tmpArg = c;
+    tmpNestedPropAssignRhs_1 = c;
+    tmpNestedAssignObj_1.x = tmpNestedPropAssignRhs_1;
+    a = tmpNestedPropAssignRhs_1;
+    tmpArg = tmpNestedPropAssignRhs_1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -48,16 +52,25 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 var tmpNestedAssignObj_1;
+var tmpNestedPropAssignRhs_1;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignObj = $(b);
-tmpNestedAssignObj.x = 3;
-a = 3;
-tmpNestedAssignObj_1 = $(b);
-tmpNestedAssignObj_1.x = 3;
-a = 3;
-tmpArg = 3;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpAssignLogicStmtOr = tmpNestedPropAssignRhs;
+if (tmpAssignLogicStmtOr) {
+  tmpNestedAssignObj_1 = $(b);
+  tmpNestedPropAssignRhs_1 = 3;
+  tmpNestedAssignObj_1.x = tmpNestedPropAssignRhs_1;
+  a = tmpNestedPropAssignRhs_1;
+  tmpArg = tmpNestedPropAssignRhs_1;
+} else {
+  tmpArg = tmpAssignLogicStmtOr;
+}
 $(tmpArg);
 $(a, b, 3);
 `````

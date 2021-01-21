@@ -23,6 +23,7 @@ $(a, b, c);
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
@@ -39,7 +40,8 @@ do {
       break;
     }
   }
-  tmpNestedAssignMemberObj = $(a);
+  tmpNestedAssignObj = $(a);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = b + c;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   ifTestTmp = tmpNestedAssignMemberRhs;
@@ -53,6 +55,7 @@ $(a, b, c);
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = { x: 10 };
@@ -65,7 +68,8 @@ do {
   if (ifTestTmp_1) {
     break;
   }
-  tmpNestedAssignMemberObj = $(a);
+  tmpNestedAssignObj = $(a);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = 5;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   ifTestTmp = tmpNestedAssignMemberRhs;

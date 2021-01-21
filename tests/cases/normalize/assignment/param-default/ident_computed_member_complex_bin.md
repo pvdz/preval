@@ -23,6 +23,9 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedAssignObj;
+  var tmpNestedAssignComMemberObj;
+  var tmpNestedAssignComMemberProp;
   var tmpNestedAssignCompMemberObj;
   var tmpNestedAssignCompMemberProp;
   var tmpNestedAssignCompMemberRhs;
@@ -30,8 +33,11 @@ function f($tdz$__foo) {
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
-      tmpNestedAssignCompMemberObj = $(b);
-      tmpNestedAssignCompMemberProp = $('x');
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
       tmpNestedAssignCompMemberRhs = c + d;
       tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
       a = tmpNestedAssignCompMemberRhs;
@@ -56,14 +62,20 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedAssignObj;
+  var tmpNestedAssignComMemberObj;
+  var tmpNestedAssignComMemberProp;
   var tmpNestedAssignCompMemberObj;
   var tmpNestedAssignCompMemberProp;
   var tmpNestedAssignCompMemberRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
-    tmpNestedAssignCompMemberObj = $(b);
-    tmpNestedAssignCompMemberProp = $('x');
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
     tmpNestedAssignCompMemberRhs = 7;
     tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
     a = tmpNestedAssignCompMemberRhs;

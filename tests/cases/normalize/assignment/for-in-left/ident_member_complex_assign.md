@@ -20,10 +20,11 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
@@ -33,19 +34,18 @@ let d = 4;
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in {}) {
-    {
-      tmpNestedAssignMemberObj = $(b);
-      tmpNestedAssignMemberObj_1 = $(c);
-      tmpNestedAssignMemberRhs_1 = $(d);
-      tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-      a = tmpNestedComplexRhs;
-      tmpAssignMemLhsObj = tmpNestedComplexRhs;
-      tmpAssignMemRhs = tmpForInLhsNode;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignObj_1 = $(c);
+    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
+    tmpNestedAssignMemberRhs_1 = $(d);
+    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+    a = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
 $(a, b, c, d);
@@ -55,18 +55,21 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
 let b = { x: 2 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in {}) {
-  tmpNestedAssignMemberObj = $(b);
-  tmpNestedAssignMemberObj_1 = $(3);
+  tmpNestedAssignObj = $(b);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
+  tmpNestedAssignObj_1 = $(3);
+  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
   tmpNestedAssignMemberRhs_1 = $(4);
   tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
   tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
@@ -74,8 +77,7 @@ for (tmpForInLhsNode in {}) {
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   a = tmpNestedComplexRhs;
   tmpAssignMemLhsObj = tmpNestedComplexRhs;
-  tmpAssignMemRhs = tmpForInLhsNode;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, b, 3, 4);
 `````

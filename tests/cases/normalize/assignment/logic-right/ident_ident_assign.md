@@ -21,6 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -32,7 +33,8 @@ let d = 4;
   if (tmpAssignLogicStmtOr) {
     tmpArg = tmpAssignLogicStmtOr;
   } else {
-    tmpNestedAssignMemberObj = $(c);
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = $(d);
     tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
     tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -50,6 +52,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedComplexRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
@@ -58,7 +61,8 @@ let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {
   tmpArg = tmpAssignLogicStmtOr;
 } else {
-  tmpNestedAssignMemberObj = $(3);
+  tmpNestedAssignObj = $(3);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(4);
   tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

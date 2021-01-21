@@ -26,10 +26,12 @@ let c = 3;
 let d = 4;
 tmpNewObj = function () {
   var tmpNestedComplexRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
   {
-    tmpNestedAssignMemberObj = $(c);
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = $(d);
     tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
     tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
@@ -51,9 +53,11 @@ let a = 1;
 let b = 2;
 tmpNewObj = function () {
   var tmpNestedComplexRhs;
+  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  tmpNestedAssignMemberObj = $(3);
+  tmpNestedAssignObj = $(3);
+  tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(4);
   tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;

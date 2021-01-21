@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3, d = 4;
-for (let wat = a = b = $(c).y = $(d); false;);
-$(wat);
+for (let wat = a = b = $(c).y = $(d); false;) $(wat);
 $(a, b, c);
 `````
 
@@ -34,10 +33,11 @@ let d = 4;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let wat_1 = a;
-  while (false) {}
+  let wat = a;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -55,9 +55,10 @@ tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let wat_1 = a;
-while (false) {}
-$(wat_1);
+let wat = a;
+while (false) {
+  $(wat);
+}
 $(a, b, 3);
 `````
 

@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, x = 1, y = 2, z = [10, 20, 30];
-for (let wat = [a, b] = [, x, y] = z; false;);
-$(wat);
+for (let wat = [a, b] = [, x, y] = z; false;) $(wat);
 $(a, b, x, y, z);
 `````
 
@@ -38,10 +37,11 @@ let z = [10, 20, 30];
   arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
-  let wat_1 = arrAssignPatternRhs;
-  while (false) {}
+  let wat = arrAssignPatternRhs;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, x, y, z);
 `````
 
@@ -65,19 +65,19 @@ arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
-let wat_1 = arrAssignPatternRhs;
-while (false) {}
-$(wat_1);
+let wat = arrAssignPatternRhs;
+while (false) {
+  $(wat);
+}
 $(a, b, x, y, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - 0: 10,20,20,30,[10,20,30]
+ - 1: undefined
 
 Normalized calls: Same
 
-Final output calls: BAD!!
-[[[10, 20, 30]], [10, 20, 20, 30, [10, 20, 30]], null];
-
+Final output calls: Same

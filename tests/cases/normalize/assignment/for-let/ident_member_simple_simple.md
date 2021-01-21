@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3;
-for (let wat = a = b.x = c; false;);
-$(wat);
+for (let wat = a = b.x = c; false;) $(wat);
 $(a, b, c);
 `````
 
@@ -28,10 +27,11 @@ let c = 3;
   tmpNestedPropAssignRhs = c;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let wat_1 = a;
-  while (false) {}
+  let wat = a;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -44,19 +44,19 @@ let b = { x: 2 };
 tmpNestedPropAssignRhs = 3;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let wat_1 = a;
-while (false) {}
-$(wat_1);
+let wat = a;
+while (false) {
+  $(wat);
+}
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - 0: 3,{"x":3},3
+ - 1: undefined
 
 Normalized calls: Same
 
-Final output calls: BAD!!
-[[3], [3, { x: 3 }, 3], null];
-
+Final output calls: Same

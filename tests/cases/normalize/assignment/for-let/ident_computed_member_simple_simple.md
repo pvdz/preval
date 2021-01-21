@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3;
-for (let wat = a = b[$('x')] = c; false;);
-$(wat);
+for (let wat = a = b[$('x')] = c; false;) $(wat);
 $(a, b, c);
 `````
 
@@ -30,10 +29,11 @@ let c = 3;
   tmpNestedAssignComMemberProp = $('x');
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = c;
   a = c;
-  let wat_1 = a;
-  while (false) {}
+  let wat = a;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -48,9 +48,10 @@ tmpNestedAssignComMemberObj = b;
 tmpNestedAssignComMemberProp = $('x');
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 a = 3;
-let wat_1 = a;
-while (false) {}
-$(wat_1);
+let wat = a;
+while (false) {
+  $(wat);
+}
 $(a, b, 3);
 `````
 
@@ -58,10 +59,9 @@ $(a, b, 3);
 
 Should call `$` with:
  - 0: "x"
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 3,{"x":2,"undefined":3},3
+ - 2: undefined
 
 Normalized calls: Same
 
-Final output calls: BAD!!
-[['x'], [3], [3, { x: 2, undefined: 3 }, 3], null];
-
+Final output calls: Same

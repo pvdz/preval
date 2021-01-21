@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $($(false) ? true : ((a, $(b)).c = d));
 $(a, b, c, d);
 `````
@@ -25,6 +25,7 @@ var tmpTernaryAlternate;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
@@ -58,7 +59,7 @@ if (tmpTernaryTest) {
   tmpArg = tmpTernaryAlternate;
 }
 $(tmpArg);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

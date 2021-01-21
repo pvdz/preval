@@ -11,9 +11,9 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 switch ($('a')) { case $('a'): (a, b).c = (a, b).c = d; break; }
-$(a, b, c, d);
+$(a, b, d);
 `````
 
 ## Normalized
@@ -26,6 +26,7 @@ var tmpAssignMemRhs;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 {
   const tmpSwitchTest = $('a');
@@ -60,7 +61,7 @@ let d = 3;
     }
   }
 }
-$(a, b, c, d);
+$(a, b, d);
 `````
 
 ## Output
@@ -98,7 +99,7 @@ tmpSwitchBreak: {
     }
   }
 }
-$(1, b, c, 3);
+$(1, b, 3);
 `````
 
 ## Result
@@ -106,7 +107,8 @@ $(1, b, c, 3);
 Should call `$` with:
  - 0: "a"
  - 1: "a"
- - 2: <crash[ <ref> is not defined ]>
+ - 2: 1,{"c":3},3
+ - 3: undefined
 
 Normalized calls: Same
 

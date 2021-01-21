@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = 2, c = 3;
-for (let wat = a = ($(b), $(c)); false;);
-$(wat);
+for (let wat = a = ($(b), $(c)); false;) $(wat);
 $(a, b, c);
 `````
 
@@ -26,10 +25,11 @@ let c = 3;
 {
   $(b);
   a = $(c);
-  let wat_1 = a;
-  while (false) {}
+  let wat = a;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -39,9 +39,10 @@ $(a, b, c);
 let a = 1;
 $(2);
 a = $(3);
-let wat_1 = a;
-while (false) {}
-$(wat_1);
+let wat = a;
+while (false) {
+  $(wat);
+}
 $(a, 2, 3);
 `````
 
@@ -50,10 +51,9 @@ $(a, 2, 3);
 Should call `$` with:
  - 0: 2
  - 1: 3
- - 2: <crash[ <ref> is not defined ]>
+ - 2: null,2,3
+ - 3: undefined
 
 Normalized calls: Same
 
-Final output calls: BAD!!
-[[2], [3], [null], [null, 2, 3], null];
-
+Final output calls: Same

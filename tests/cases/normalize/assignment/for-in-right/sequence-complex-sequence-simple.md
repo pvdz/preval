@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 for (let x in ((a, $(b)).c = (a, b).c = d));
 $(a, b, c, d);
 `````
@@ -21,6 +21,7 @@ $(a, b, c, d);
 `````js filename=intro
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 {
   let tmpForInLhsDecl;
@@ -52,7 +53,7 @@ b.c = 3;
 tmpBindInitMemberObject.c = 3;
 for (tmpForInLhsDecl in 3) {
 }
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

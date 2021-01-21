@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 0;
+let a = 1, b = {c: 2}, c = 'unused', d = 0;
 do {} while ((a, b).c = (a, b).c = d);
 $(a, b, c, d);
 `````
@@ -21,6 +21,7 @@ $(a, b, c, d);
 `````js filename=intro
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 0;
 while (true) {
   {
@@ -52,13 +53,14 @@ while (true) {
   tmpBindInitMemberObject.c = 0;
   break;
 }
-$(1, b, c, 0);
+$(1, b, 'unused', 0);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - 0: 1,{"c":0},"unused",0
+ - 1: undefined
 
 Normalized calls: Same
 

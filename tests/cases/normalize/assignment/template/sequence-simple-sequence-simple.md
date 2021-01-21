@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $(`abc ${(a, b).c = (a, b).c = d} def`);
 $(a, b, c, d);
 `````
@@ -25,6 +25,7 @@ var tmpAssignMemRhs;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 tmpArg = `abc ${((a,
 (tmpAssignMemLhsObj = b),
@@ -53,14 +54,15 @@ tmpArg = `abc ${((1,
 (tmpAssignMemRhs = 3),
 tmpAssignMemLhsObj).c = tmpAssignMemRhs)} def`;
 $(tmpArg);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result
 
 Should call `$` with:
  - 0: "abc 3 def"
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 1,{"c":3},"unused",3
+ - 2: undefined
 
 Normalized calls: Same
 

@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-for (let wat = $(a)[$('x')] = b; false;);
-$(wat);
+for (let wat = $(a)[$('x')] = b; false;) $(wat);
 $(a, b, c);
 `````
 
@@ -33,10 +32,11 @@ let c = 3;
     tmpAssignComputedRhs = b;
     tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   }
-  let wat_1 = b;
-  while (false) {}
+  let wat = b;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -51,8 +51,9 @@ tmpAssignComputedObj = $(a);
 tmpAssignComputedProp = $('x');
 tmpAssignComputedRhs = 2;
 tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-while (false) {}
-$(2);
+while (false) {
+  $(2);
+}
 $(a, 2, 3);
 `````
 

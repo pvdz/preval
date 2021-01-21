@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $(...( (a, $(b)).c = d ));
 $(a, b, c, d);
 `````
@@ -23,6 +23,7 @@ var tmpArg;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 a;
 tmpNestedAssignObj = $(b);
@@ -42,7 +43,7 @@ tmpNestedAssignObj = $(b);
 tmpNestedAssignObj.c = 3;
 tmpArg = 3;
 $(...tmpArg);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

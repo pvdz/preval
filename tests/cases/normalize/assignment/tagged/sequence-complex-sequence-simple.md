@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $`abc ${(a, $(b)).c = (a, b).c = d} def`;
 $(a, b, c, d);
 `````
@@ -26,6 +26,7 @@ var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 tmpArg = ['abc ', ' def'];
 a;
@@ -57,7 +58,7 @@ tmpNestedAssignMemberRhs = 3;
 tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
 tmpArg_1 = tmpNestedAssignMemberRhs;
 $(tmpArg, tmpArg_1);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

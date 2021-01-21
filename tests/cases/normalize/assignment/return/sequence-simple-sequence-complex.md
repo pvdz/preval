@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 (function(){ return (a, b).c = (a, $(b)).c = d; })();
 $(a, b, c, d);
 `````
@@ -22,6 +22,7 @@ $(a, b, c, d);
 var tmpNewObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 tmpNewObj = function () {
   var tmpAssignMemLhsObj;
@@ -63,7 +64,7 @@ tmpNewObj = function () {
   return 3;
 };
 tmpNewObj();
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $(((a, b).c = d) + 500);
 $(a, b, c, d);
 `````
@@ -24,6 +24,7 @@ var tmpBinaryLeft;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 a;
 tmpNestedAssignObj = b;
@@ -46,14 +47,15 @@ tmpNestedAssignObj.c = 3;
 tmpBinaryLeft = 3;
 tmpArg = tmpBinaryLeft + 500;
 $(tmpArg);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result
 
 Should call `$` with:
  - 0: 503
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 1,{"c":3},"unused",3
+ - 2: undefined
 
 Normalized calls: Same
 

@@ -11,9 +11,9 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $($(false) ? true : ((a, b).c = (a, b).c = d));
-$(a, b, c, d);
+$(a, b, d);
 `````
 
 ## Normalized
@@ -27,6 +27,7 @@ var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
@@ -43,7 +44,7 @@ if (tmpTernaryTest) {
   tmpArg = tmpTernaryAlternate;
 }
 $(tmpArg);
-$(a, b, c, d);
+$(a, b, d);
 `````
 
 ## Output
@@ -69,7 +70,7 @@ if (tmpTernaryTest) {
   tmpArg = tmpTernaryAlternate;
 }
 $(tmpArg);
-$(1, b, c, 3);
+$(1, b, 3);
 `````
 
 ## Result
@@ -77,7 +78,8 @@ $(1, b, c, 3);
 Should call `$` with:
  - 0: false
  - 1: 3
- - 2: <crash[ <ref> is not defined ]>
+ - 2: 1,{"c":3},3
+ - 3: undefined
 
 Normalized calls: Same
 

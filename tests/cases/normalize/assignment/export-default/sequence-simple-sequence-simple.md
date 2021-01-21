@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 export default (a, b).c = (a, b).c = d;
 $(a, b, c, d);
 `````
@@ -24,6 +24,7 @@ var tmpAssignMemRhs;
 var tmpNestedAssignObj;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 export default (a,
 (tmpAssignMemLhsObj = b),
@@ -49,7 +50,7 @@ export default (1,
 (tmpNestedAssignObj.c = 3),
 (tmpAssignMemRhs = 3),
 tmpAssignMemLhsObj).c = tmpAssignMemRhs;
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

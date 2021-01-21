@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = {x: 10}, b = 2, c = 3;
-for (let wat = $(a).x = b + c; false;);
-$(wat);
+for (let wat = $(a).x = b + c; false;) $(wat);
 $(a, b, c);
 `````
 
@@ -27,10 +26,11 @@ let c = 3;
   let tmpBindInitMemberObject = $(a);
   let tmpBindInitRhs = b + c;
   tmpBindInitMemberObject.x = tmpBindInitRhs;
-  let wat_1 = tmpBindInitRhs;
-  while (false) {}
+  let wat = tmpBindInitRhs;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c);
 `````
 
@@ -40,8 +40,9 @@ $(a, b, c);
 let a = { x: 10 };
 let tmpBindInitMemberObject = $(a);
 tmpBindInitMemberObject.x = 5;
-while (false) {}
-$(5);
+while (false) {
+  $(5);
+}
 $(a, 5, 3);
 `````
 

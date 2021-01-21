@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let x = 1, y = 2, z = [10, 20, 30];
-for (let wat = [x, y] = ($(x), $(y), $(z)); false;);
-$(wat);
+for (let wat = [x, y] = ($(x), $(y), $(z)); false;) $(wat);
 $(x, y, z);
 `````
 
@@ -32,10 +31,11 @@ let z = [10, 20, 30];
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let wat_1 = arrAssignPatternRhs;
-  while (false) {}
+  let wat = arrAssignPatternRhs;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(x, y, z);
 `````
 
@@ -53,9 +53,10 @@ arrAssignPatternRhs = $(z);
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-let wat_1 = arrAssignPatternRhs;
-while (false) {}
-$(wat_1);
+let wat = arrAssignPatternRhs;
+while (false) {
+  $(wat);
+}
 $(x, y, z);
 `````
 

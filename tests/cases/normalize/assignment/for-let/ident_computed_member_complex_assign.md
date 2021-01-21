@@ -12,8 +12,7 @@
 
 `````js filename=intro
 let a = 1, b = {x: 2}, c = 3, d = 4;
-for (let wat = a = $(b)[$('x')] = $(c)[$('y')] = $(d); false;);
-$(wat);
+for (let wat = a = $(b)[$('x')] = $(c)[$('y')] = $(d); false;) $(wat);
 $(a, b, c, d);
 `````
 
@@ -40,10 +39,11 @@ let d = 4;
   tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs_1;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   a = tmpNestedAssignCompMemberRhs;
-  let wat_1 = a;
-  while (false) {}
+  let wat = a;
+  while (false) {
+    $(wat);
+  }
 }
-$(wat_1);
 $(a, b, c, d);
 `````
 
@@ -67,9 +67,10 @@ tmpNestedAssignCompMemberObj_1[tmpNestedAssignCompMemberProp_1] = tmpNestedAssig
 tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs_1;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 a = tmpNestedAssignCompMemberRhs;
-let wat_1 = a;
-while (false) {}
-$(wat_1);
+let wat = a;
+while (false) {
+  $(wat);
+}
 $(a, b, 3, 4);
 `````
 

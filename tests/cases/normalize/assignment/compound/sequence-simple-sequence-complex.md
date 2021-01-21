@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 (a, b).c *= (a, $(b)).c += d;
 $(a, b, c, d);
 `````
@@ -32,6 +32,7 @@ var tmpAssignMemRhs_2;
 var tmpBinaryLeft_1;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 {
   a;
@@ -85,7 +86,7 @@ tmpAssignMemLhsObj_2 = tmpCompoundAssignObj;
 tmpBinaryLeft_1 = tmpCompoundAssignObj.c;
 tmpAssignMemRhs_2 = tmpBinaryLeft_1 * tmpCompoundAssignRhs;
 tmpAssignMemLhsObj_2.c = tmpAssignMemRhs_2;
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result

@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a = 1, b = {c: 2}, d = 3;
+let a = 1, b = {c: 2}, c = 'unused', d = 3;
 $($(true) || ((a, b).c = d));
 $(a, b, c, d);
 `````
@@ -23,6 +23,7 @@ var tmpNestedAssignObj;
 var tmpArg;
 let a = 1;
 let b = { c: 2 };
+let c = 'unused';
 let d = 3;
 {
   let tmpAssignLogicStmtOr = $(true);
@@ -54,7 +55,7 @@ if (tmpAssignLogicStmtOr) {
   tmpArg = 3;
 }
 $(tmpArg);
-$(1, b, c, 3);
+$(1, b, 'unused', 3);
 `````
 
 ## Result
@@ -62,7 +63,8 @@ $(1, b, c, 3);
 Should call `$` with:
  - 0: true
  - 1: 3
- - 2: <crash[ <ref> is not defined ]>
+ - 2: 1,{"c":3},"unused",3
+ - 3: undefined
 
 Normalized calls: Same
 

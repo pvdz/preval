@@ -45,7 +45,7 @@ tmpComputedObj[tmpComputedProp];
 Should call `$` with:
  - 0: 1
  - 1: 2
- - 2: <crash[ Cannot read property 'undefined' of undefined ]>
+ - 2: undefined
 
 Normalized calls: Same
 

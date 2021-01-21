@@ -66,10 +66,14 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":2}
+ - 0: {"x":-1}
  - 1: "x"
- - 2: <crash[ Cannot read property 'undefined' of undefined ]>
+ - 2: -1,{"x":-1},3
+ - 3: undefined
 
-Normalized calls: Same
+Normalized calls: BAD?!
+[[{ x: -1 }], ['x'], [3, { x: -1 }, 3], null];
 
-Final output calls: Same
+Final output calls: BAD!!
+[[{ x: -1 }], ['x'], [3, { x: -1 }, 3], null];
+

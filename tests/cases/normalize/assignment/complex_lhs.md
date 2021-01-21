@@ -39,8 +39,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: <crash[ Cannot set property 'foo' of undefined ]>
+ - 0: {"foo":10}
+ - 1: undefined
 
 Normalized calls: Same
 

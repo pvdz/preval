@@ -89,8 +89,12 @@ Should call `$` with:
  - 1: 3
  - 2: "y"
  - 3: 4
- - 4: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 4: -2,{"x":-2},3
+ - 5: undefined
 
-Normalized calls: Same
+Normalized calls: BAD?!
+[['x'], [3], ['y'], [4], [4, { x: -2 }, 3], null];
 
-Final output calls: Same
+Final output calls: BAD!!
+[['x'], [3], ['y'], [4], [4, { x: -2 }, 3], null];
+

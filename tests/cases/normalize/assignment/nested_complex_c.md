@@ -63,7 +63,8 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: []
- - 1: <crash[ Cannot read property 'length' of undefined ]>
+ - 1: 0
+ - 2: undefined
 
 Normalized calls: Same
 

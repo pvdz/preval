@@ -68,12 +68,13 @@ $(a, 5, 3);
 
 Should call `$` with:
  - 0: true
- - 1: false
- - 2: {"x":10},2,3
- - 3: undefined
+ - 1: {"x":5}
+ - 2: 5
+ - 3: {"x":5},2,3
+ - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], [false], [{ x: 10 }, 5, 3], null];
+[[true], [{ x: 5 }], [5], [{ x: 5 }, 5, 3], null];
 

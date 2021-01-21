@@ -65,10 +65,9 @@ if (ifTestTmp_1) {
 
 Should call `$` with:
  - 0: -1
- - 1: 1
- - 2: 2
- - 3: 4
- - 4: undefined
+ - 1: 0
+ - 2: 1
+ - 3: undefined
 
 Normalized calls: Same
 

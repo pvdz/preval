@@ -80,11 +80,11 @@ Should call `$` with:
  - 0: "x"
  - 1: "x"
  - 2: 10
- - 3: {"x":10,"undefined":5},2,3
+ - 3: {"x":5},2,3
  - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['x'], ['x'], [16], [{ x: 10, undefined: 8 }, 8, 3], null];
+[['x'], ['x'], [16], [{ x: 8 }, 8, 3], null];
 

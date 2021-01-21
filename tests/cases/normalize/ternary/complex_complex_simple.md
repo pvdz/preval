@@ -64,9 +64,10 @@ $(a, b);
 
 Should call `$` with:
  - 0: 1
- - 1: 0
- - 2: 3,5
- - 3: undefined
+ - 1: 2
+ - 2: 0
+ - 3: 2,5
+ - 4: undefined
 
 Normalized calls: Same
 

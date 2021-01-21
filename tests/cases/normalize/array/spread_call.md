@@ -38,7 +38,8 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: "foo"
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: ["f","o","o"]
+ - 2: undefined
 
 Normalized calls: Same
 

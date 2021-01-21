@@ -45,7 +45,9 @@ for (a in tmpForInRhs) {
 
 Should call `$` with:
  - 0: {"x":1,"y":2}
- - 1: undefined
+ - 1: "x"
+ - 2: "y"
+ - 3: undefined
 
 Normalized calls: Same
 

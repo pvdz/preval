@@ -55,7 +55,7 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: 1
- - 1: null
+ - 1: 2
  - 2: undefined
 
 Normalized calls: Same

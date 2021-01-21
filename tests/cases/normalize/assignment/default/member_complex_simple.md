@@ -58,8 +58,9 @@ $(a, 2, 3);
 
 Should call `$` with:
  - 0: "a"
- - 1: {"x":10}
- - 2: <crash[ Cannot set property 'x' of undefined ]>
+ - 1: {"x":2}
+ - 2: {"x":2},2,3
+ - 3: undefined
 
 Normalized calls: Same
 

@@ -74,7 +74,7 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: true
- - 3: null
+ - 3: true
  - 4: 10,20,[10,20,30]
  - 5: undefined
 

@@ -67,7 +67,9 @@ $(a, b, 3);
 Should call `$` with:
  - 0: 3
  - 1: 4
- - 2: <crash[ Cannot set property 'y' of undefined ]>
+ - 2: 4
+ - 3: 4,4,3
+ - 4: undefined
 
 Normalized calls: Same
 

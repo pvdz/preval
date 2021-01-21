@@ -42,7 +42,8 @@ $(c);
 
 Should call `$` with:
  - 0: 2
- - 1: <crash[ Cannot read property 'toString' of undefined ]>
+ - 1: 1
+ - 2: undefined
 
 Normalized calls: Same
 

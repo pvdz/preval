@@ -88,7 +88,8 @@ $('bad');
 
 Should call `$` with:
  - 0: {"x":"fail"}
- - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - 1: "bad"
+ - 2: undefined
 
 Normalized calls: Same
 

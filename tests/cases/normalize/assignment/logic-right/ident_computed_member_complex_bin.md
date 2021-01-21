@@ -72,10 +72,12 @@ $(a, b, 7);
 
 Should call `$` with:
  - 0: true
- - 1: {"x":2}
- - 2: "x"
- - 3: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 1: true
+ - 2: 1,{"x":2},3
+ - 3: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+[[true], [true], [1, { x: 2 }, 7], null];
+

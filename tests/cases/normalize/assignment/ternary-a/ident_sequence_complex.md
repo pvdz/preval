@@ -63,8 +63,8 @@ $(a, 2, 3);
 Should call `$` with:
  - 0: 2
  - 1: 3
- - 2: false
- - 3: null,2,3
+ - 2: true
+ - 3: 3,2,3
  - 4: undefined
 
 Normalized calls: Same

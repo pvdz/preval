@@ -91,10 +91,11 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: [10,20,30]
- - 3: <crash[ <ref> is not iterable ]>
+ - 3: 10,20,[10,20,30]
+ - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[20], [30], [[10, 20, 30]], '<crash[ <ref> is not iterable ]>'];
+[[20], [30], [[10, 20, 30]], [1, 2, [10, 20, 30]], null];
 

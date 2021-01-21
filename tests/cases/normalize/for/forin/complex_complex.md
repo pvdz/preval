@@ -64,7 +64,11 @@ for (tmpForInLhsNode in tmpForInRhs) {
 
 Should call `$` with:
  - 0: {"x":1,"y":2}
- - 1: undefined
+ - 1: {"x":"y"}
+ - 2: "x"
+ - 3: {"x":"y"}
+ - 4: "y"
+ - 5: undefined
 
 Normalized calls: Same
 

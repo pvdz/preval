@@ -72,12 +72,12 @@ $(a, b, 7);
 
 Should call `$` with:
  - 0: "x"
- - 1: null,{"x":2,"undefined":null},3
+ - 1: 14,{"x":14},3
  - 2: undefined
 
 Normalized calls: BAD?!
-[['x'], [7, { x: 2, undefined: null }, 3], null];
+[['x'], [7, { x: 14 }, 3], null];
 
 Final output calls: BAD!!
-[['x'], [7, { x: 2, undefined: null }, 7], null];
+[['x'], [7, { x: 14 }, 7], null];
 

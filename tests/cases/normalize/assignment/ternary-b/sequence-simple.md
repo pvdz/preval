@@ -66,8 +66,8 @@ $(1, b, 'unused', 3);
 
 Should call `$` with:
  - 0: true
- - 1: false
- - 2: 1,{"c":2},"unused",3
+ - 1: 3
+ - 2: 1,{"c":3},"unused",3
  - 3: undefined
 
 Normalized calls: Same

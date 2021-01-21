@@ -90,7 +90,8 @@ $(x);
 
 Should call `$` with:
  - 0: {"x":"pass2"}
- - 1: <crash[ Cannot read property 'x' of undefined ]>
+ - 1: "pass2"
+ - 2: undefined
 
 Normalized calls: Same
 

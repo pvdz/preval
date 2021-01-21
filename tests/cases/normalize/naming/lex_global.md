@@ -41,9 +41,9 @@ $(a);
 
 Should call `$` with:
  - 0: 1
- - 1: null
+ - 1: 1
  - 2: 1
- - 3: null
+ - 3: 1
  - 4: undefined
 
 Normalized calls: Same

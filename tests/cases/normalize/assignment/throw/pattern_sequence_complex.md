@@ -62,7 +62,7 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: [10,20,30]
- - 3: <crash[ <ref> is not iterable ]>
+ - 3: <crash[ 10,20,30 ]>
 
 Normalized calls: Same
 

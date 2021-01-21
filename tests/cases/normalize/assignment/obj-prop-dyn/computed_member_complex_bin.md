@@ -59,10 +59,14 @@ $(a, 5, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
+ - 0: {"x":5}
  - 1: "x"
- - 2: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 2: {"5":1000}
+ - 3: {"x":5},2,3
+ - 4: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+[[{ x: 5 }], ['x'], [{ 5: 1000 }], [{ x: 5 }, 5, 3], null];
+

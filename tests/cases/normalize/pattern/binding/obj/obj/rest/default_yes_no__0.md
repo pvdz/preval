@@ -56,7 +56,8 @@ $(y);
 
 Should call `$` with:
  - 0: {"a":"pass"}
- - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - 1: {"a":"pass"}
+ - 2: undefined
 
 Normalized calls: Same
 

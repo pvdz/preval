@@ -100,10 +100,11 @@ $(1, b, 3, 4);
 Should call `$` with:
  - 0: "a"
  - 1: "a"
- - 2: {"x":2}
+ - 2: {"x":4}
  - 3: 3
  - 4: 4
- - 5: <crash[ Cannot set property 'y' of undefined ]>
+ - 5: 4,{"x":4},3,4
+ - 6: undefined
 
 Normalized calls: Same
 

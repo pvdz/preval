@@ -43,7 +43,7 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: "foo"
- - 1: true
+ - 1: false
  - 2: undefined
 
 Normalized calls: Same

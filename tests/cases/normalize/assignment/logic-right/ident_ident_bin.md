@@ -64,12 +64,12 @@ $(a, b, 7);
 
 Should call `$` with:
  - 0: true
- - 1: 7
- - 2: 7,7,3
+ - 1: true
+ - 2: 1,2,3
  - 3: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], [7], [7, 7, 7], null];
+[[true], [true], [1, 2, 7], null];
 

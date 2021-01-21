@@ -92,6 +92,7 @@ function runTestCase(
       function $(...a) {
         if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
         stack.push(a);
+        return a[0];
       }
       function objPatternRest(obj, withoutTheseProps, propName) {
         // Ugly hack that will work. Rest is a shallow clone.

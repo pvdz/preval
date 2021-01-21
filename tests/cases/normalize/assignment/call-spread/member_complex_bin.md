@@ -51,8 +51,8 @@ $(a, 5, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: <crash[ Cannot set property 'x' of undefined ]>
+ - 0: {"x":5}
+ - 1: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

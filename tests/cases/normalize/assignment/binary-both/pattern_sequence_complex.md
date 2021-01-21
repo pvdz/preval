@@ -86,7 +86,12 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: [10,20,30]
- - 3: <crash[ <ref> is not iterable ]>
+ - 3: 10
+ - 4: 20
+ - 5: [10,20,30]
+ - 6: "10,20,3010,20,30"
+ - 7: 10,20,[10,20,30]
+ - 8: undefined
 
 Normalized calls: Same
 

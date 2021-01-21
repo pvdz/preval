@@ -84,8 +84,8 @@ $(a, b, x, y, z);
 
 Should call `$` with:
  - 0: true
- - 1: [10,20,30]
- - 2: 10,20,20,30,[10,20,30]
+ - 1: true
+ - 2: 1,2,1,2,[10,20,30]
  - 3: undefined
 
 Normalized calls: Same

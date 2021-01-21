@@ -88,8 +88,9 @@ $(1, b, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":2}
- - 1: <crash[ Cannot set property 'x' of undefined ]>
+ - 0: {"x":7}
+ - 1: 7,{"x":7},3
+ - 2: undefined
 
 Normalized calls: Same
 

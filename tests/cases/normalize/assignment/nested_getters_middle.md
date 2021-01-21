@@ -161,7 +161,7 @@ Should call `$` with:
  - 1: 5
  - 2: 5
  - 3: 2
- - 4: null
+ - 4: 2
  - 5: 3
  - 6: 4
  - 7: undefined

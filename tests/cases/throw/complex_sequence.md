@@ -53,7 +53,7 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: 3
- - 3: <crash[ undefined ]>
+ - 3: <crash[ 3 ]>
 
 Normalized calls: Same
 

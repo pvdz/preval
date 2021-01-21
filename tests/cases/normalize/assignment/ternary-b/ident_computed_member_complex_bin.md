@@ -80,12 +80,14 @@ $(a, b, 7);
 
 Should call `$` with:
  - 0: true
- - 1: false
- - 2: 1,{"x":2},3
- - 3: undefined
+ - 1: {"x":7}
+ - 2: "x"
+ - 3: 7
+ - 4: 7,{"x":7},3
+ - 5: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], [false], [1, { x: 2 }, 7], null];
+[[true], [{ x: 7 }], ['x'], [7], [7, { x: 7 }, 7], null];
 

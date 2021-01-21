@@ -177,10 +177,12 @@ tmpSwitchBreak: {
 
 Should call `$` with:
  - 0: 1
- - 1: 2
- - 2: 3
+ - 1: "A"
+ - 2: "B"
  - 3: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+[[1], [2], [3], null];
+

@@ -34,7 +34,7 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: 20
- - 1: "abc 10 undefined def"
+ - 1: "abc 10 20 def"
  - 2: undefined
 
 Normalized calls: Same

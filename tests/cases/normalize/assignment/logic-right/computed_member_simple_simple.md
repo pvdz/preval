@@ -72,10 +72,9 @@ $(a, 2, 3);
 
 Should call `$` with:
  - 0: true
- - 1: "x"
- - 2: 2
- - 3: {"x":10,"undefined":2},2,3
- - 4: undefined
+ - 1: true
+ - 2: {"x":10},2,3
+ - 3: undefined
 
 Normalized calls: Same
 

@@ -94,11 +94,11 @@ Should call `$` with:
  - 0: "x"
  - 1: "x"
  - 2: 14
- - 3: 7,{"x":2,"undefined":7},3
+ - 3: 7,{"x":7},3
  - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['x'], ['x'], [22], [11, { x: 2, undefined: 11 }, 11], null];
+[['x'], ['x'], [22], [11, { x: 11 }, 11], null];
 

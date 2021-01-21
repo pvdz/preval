@@ -81,7 +81,7 @@ Should call `$` with:
  - 1: 3
  - 2: "y"
  - 3: 4
- - 4: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 4: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

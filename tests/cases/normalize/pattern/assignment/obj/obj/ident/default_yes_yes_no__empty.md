@@ -86,7 +86,8 @@ $('bad');
 
 Should call `$` with:
  - 0: {"y":"fail2"}
- - 1: <crash[ Cannot read property 'y' of undefined ]>
+ - 1: "bad"
+ - 2: undefined
 
 Normalized calls: Same
 

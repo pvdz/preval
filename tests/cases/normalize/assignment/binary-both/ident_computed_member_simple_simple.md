@@ -85,7 +85,7 @@ Should call `$` with:
  - 0: "x"
  - 1: "x"
  - 2: 6
- - 3: 3,{"x":2,"undefined":3},3
+ - 3: 3,{"x":3},3
  - 4: undefined
 
 Normalized calls: Same

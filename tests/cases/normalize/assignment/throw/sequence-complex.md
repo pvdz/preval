@@ -56,8 +56,8 @@ $(1, b, 'unused', 3);
 ## Result
 
 Should call `$` with:
- - 0: {"c":2}
- - 1: <crash[ Cannot set property 'c' of undefined ]>
+ - 0: {"c":3}
+ - 1: <crash[ 3 ]>
 
 Normalized calls: Same
 

@@ -91,9 +91,10 @@ $(1, b, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":2}
+ - 0: {"x":7}
  - 1: "x"
- - 2: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 2: 7,{"x":7},3
+ - 3: undefined
 
 Normalized calls: Same
 

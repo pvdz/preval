@@ -43,7 +43,7 @@ Should call `$` with:
  - 0: 1
  - 1: 2
  - 2: 3
- - 3: null,null
+ - 3: 2,3
  - 4: undefined
 
 Normalized calls: Same

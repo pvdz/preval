@@ -94,7 +94,8 @@ $(x);
 
 Should call `$` with:
  - 0: ["pass2"]
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: "pass2"
+ - 2: undefined
 
 Normalized calls: Same
 

@@ -58,8 +58,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: <crash[ Cannot set property 'x' of undefined ]>
+ - 0: {"x":30}
+ - 1: 30
+ - 2: undefined
 
 Normalized calls: Same
 

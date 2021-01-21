@@ -110,7 +110,7 @@ $(tmpArg_1);
 Should call `$` with:
  - 0: 
  - 1: 15
- - 2: null
+ - 2: 15
  - 3: undefined
 
 Normalized calls: Same

@@ -72,10 +72,9 @@ $(x, y, z);
 
 Should call `$` with:
  - 0: true
- - 1: 1
- - 2: 2
- - 3: [10,20,30]
- - 4: <crash[ <ref> is not iterable ]>
+ - 1: true
+ - 2: 1,2,[10,20,30]
+ - 3: undefined
 
 Normalized calls: Same
 

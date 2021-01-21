@@ -93,7 +93,9 @@ Should call `$` with:
  - 0: 0
  - 1: 3
  - 2: 4
- - 3: <crash[ Cannot set property 'y' of undefined ]>
+ - 3: 1
+ - 4: 4,4,3
+ - 5: undefined
 
 Normalized calls: Same
 

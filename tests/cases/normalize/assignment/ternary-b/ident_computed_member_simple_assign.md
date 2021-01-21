@@ -94,9 +94,13 @@ $(a, b, 3);
 
 Should call `$` with:
  - 0: true
- - 1: false
- - 2: 1,{"x":2},3
- - 3: undefined
+ - 1: "x"
+ - 2: 3
+ - 3: "y"
+ - 4: 4
+ - 5: 4
+ - 6: 4,{"x":4},3
+ - 7: undefined
 
 Normalized calls: Same
 

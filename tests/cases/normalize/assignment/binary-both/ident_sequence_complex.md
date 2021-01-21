@@ -69,8 +69,8 @@ Should call `$` with:
  - 1: 3
  - 2: 2
  - 3: 3
- - 4: null
- - 5: null,2,3
+ - 4: 6
+ - 5: 3,2,3
  - 6: undefined
 
 Normalized calls: Same

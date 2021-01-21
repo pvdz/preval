@@ -88,7 +88,9 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: [10,20,30]
- - 4: <crash[ <ref> is not iterable ]>
+ - 4: 1
+ - 5: 10,20,[10,20,30]
+ - 6: undefined
 
 Normalized calls: Same
 

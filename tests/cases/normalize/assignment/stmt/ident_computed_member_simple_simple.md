@@ -49,7 +49,7 @@ $(a, b, 3);
 
 Should call `$` with:
  - 0: "x"
- - 1: 3,{"x":2,"undefined":3},3
+ - 1: 3,{"x":3},3
  - 2: undefined
 
 Normalized calls: Same

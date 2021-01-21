@@ -84,12 +84,13 @@ $(1, b, 'unused', 3);
 ## Result
 
 Should call `$` with:
- - 0: {"c":2}
- - 1: <crash[ Cannot read property 'c' of undefined ]>
+ - 0: {"c":10}
+ - 1: 1,{"c":10},"unused",3
+ - 2: undefined
 
 Normalized calls: BAD?!
-[[{ c: 5 }], "<crash[ Cannot read property 'c' of undefined ]>"];
+[[{ c: 15 }], [1, { c: 15 }, 'unused', 3], null];
 
 Final output calls: BAD!!
-[[{ c: 5 }], "<crash[ Cannot read property 'c' of undefined ]>"];
+[[{ c: 15 }], [1, { c: 15 }, 'unused', 3], null];
 

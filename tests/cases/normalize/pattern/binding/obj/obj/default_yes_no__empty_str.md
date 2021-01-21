@@ -70,7 +70,8 @@ $('ok');
 
 Should call `$` with:
  - 0: {"x":"pass"}
- - 1: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - 1: "ok"
+ - 2: undefined
 
 Normalized calls: Same
 

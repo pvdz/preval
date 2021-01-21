@@ -54,7 +54,7 @@ $(x);
 
 Should call `$` with:
  - 0: "pass"
- - 1: null
+ - 1: "pass"
  - 2: undefined
 
 Normalized calls: Same

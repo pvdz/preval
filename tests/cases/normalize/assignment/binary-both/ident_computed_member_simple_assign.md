@@ -123,7 +123,13 @@ Should call `$` with:
  - 1: 3
  - 2: "y"
  - 3: 4
- - 4: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 4: "x"
+ - 5: 3
+ - 6: "y"
+ - 7: 4
+ - 8: 8
+ - 9: 4,{"x":4},3
+ - 10: undefined
 
 Normalized calls: Same
 

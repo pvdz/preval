@@ -59,8 +59,11 @@ for (tmpForInLhsNode in b) {
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: <crash[ Cannot set property 'x' of undefined ]>
+ - 0: {"x":"y"}
+ - 1: "x"
+ - 2: {"x":"y"}
+ - 3: "y"
+ - 4: undefined
 
 Normalized calls: Same
 

@@ -38,7 +38,7 @@ $(tmpArg, 10, tmpArg_1);
 
 Should call `$` with:
  - 0: 20
- - 1: ["abc "," "," def"],10,null
+ - 1: ["abc "," "," def"],10,20
  - 2: undefined
 
 Normalized calls: Same

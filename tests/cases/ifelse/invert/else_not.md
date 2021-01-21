@@ -41,7 +41,7 @@ if (ifTestTmp) {
 
 Should call `$` with:
  - 0: 1
- - 1: 2
+ - 1: 3
  - 2: undefined
 
 Normalized calls: Same

@@ -43,7 +43,7 @@ if (ifTestTmp) {
 Should call `$` with:
  - 0: 1
  - 1: 2
- - 2: <crash[ Cannot read property 'foo' of undefined ]>
+ - 2: undefined
 
 Normalized calls: Same
 

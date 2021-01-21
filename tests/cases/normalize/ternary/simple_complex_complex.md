@@ -49,7 +49,7 @@ $(a, b);
 Should call `$` with:
  - 0: 2
  - 1: 5
- - 2: null,null
+ - 2: 2,5
  - 3: undefined
 
 Normalized calls: Same

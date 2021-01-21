@@ -70,7 +70,10 @@ Should call `$` with:
  - 0: 2
  - 1: 3
  - 2: 3
- - 3: <crash[ Cannot set property 'x' of undefined ]>
+ - 3: true
+ - 4: true
+ - 5: 3,2,3
+ - 6: undefined
 
 Normalized calls: Same
 

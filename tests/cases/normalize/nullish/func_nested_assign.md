@@ -104,7 +104,7 @@ $(tmpArg_1);
 Should call `$` with:
  - 0: 
  - 1: {"a":{"b":15}}
- - 2: null
+ - 2: {"a":{"b":15}}
  - 3: undefined
 
 Normalized calls: BAD?!

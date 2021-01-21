@@ -55,7 +55,7 @@ $(1, b, 'unused', 3);
 
 Should call `$` with:
  - 0: true
- - 1: null
+ - 1: true
  - 2: 1,{"c":3},"unused",3
  - 3: undefined
 

@@ -51,7 +51,7 @@ $(a, 2, 3);
 Should call `$` with:
  - 0: 2
  - 1: 3
- - 2: <crash[ <ref> is not iterable ]>
+ - 2: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

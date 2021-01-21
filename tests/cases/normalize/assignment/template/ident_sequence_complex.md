@@ -43,8 +43,8 @@ $(a, 2, 3);
 Should call `$` with:
  - 0: 2
  - 1: 3
- - 2: "abc undefined def"
- - 3: null,2,3
+ - 2: "abc 3 def"
+ - 3: 3,2,3
  - 4: undefined
 
 Normalized calls: Same

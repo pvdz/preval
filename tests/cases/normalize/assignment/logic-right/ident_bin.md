@@ -60,12 +60,12 @@ $(a, 5, 3);
 
 Should call `$` with:
  - 0: true
- - 1: 5
- - 2: 5,2,3
+ - 1: true
+ - 2: 1,2,3
  - 3: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], [5], [5, 5, 3], null];
+[[true], [true], [1, 5, 3], null];
 

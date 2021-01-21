@@ -102,7 +102,8 @@ Should call `$` with:
  - 1: "a"
  - 2: 3
  - 3: 4
- - 4: <crash[ Cannot set property 'y' of undefined ]>
+ - 4: 4,{"x":4},3
+ - 5: undefined
 
 Normalized calls: Same
 

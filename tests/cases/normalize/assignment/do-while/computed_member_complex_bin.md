@@ -81,10 +81,14 @@ $(a, 5, 3);
 
 Should call `$` with:
  - 0: 0
- - 1: {"x":10}
+ - 1: {"x":5}
  - 2: "x"
- - 3: <crash[ Cannot set property 'undefined' of undefined ]>
+ - 3: 1
+ - 4: {"x":5},2,3
+ - 5: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+[[0], [{ x: 5 }], ['x'], [1], [{ x: 5 }, 5, 3], null];
+

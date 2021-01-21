@@ -74,11 +74,11 @@ Should call `$` with:
  - 0: false
  - 1: "x"
  - 2: 5
- - 3: {"x":10,"undefined":5},2,3
+ - 3: {"x":5},2,3
  - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[false], ['x'], [5], [{ x: 10, undefined: 5 }, 5, 3], null];
+[[false], ['x'], [5], [{ x: 5 }, 5, 3], null];
 

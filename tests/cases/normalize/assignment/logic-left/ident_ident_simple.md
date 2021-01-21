@@ -54,7 +54,7 @@ $(a, b, 3);
 
 Should call `$` with:
  - 0: true
- - 1: null
+ - 1: true
  - 2: 3,3,3
  - 3: undefined
 

@@ -86,7 +86,7 @@ Should call `$` with:
  - 1: "a"
  - 2: 2
  - 3: 3
- - 4: null,2,3
+ - 4: 3,2,3
  - 5: undefined
 
 Normalized calls: Same

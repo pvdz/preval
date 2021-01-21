@@ -108,7 +108,8 @@ Should call `$` with:
  - 0: "a"
  - 1: "a"
  - 2: {"c":3}
- - 3: <crash[ Cannot set property 'c' of undefined ]>
+ - 3: 1,{"c":3},"unused",3
+ - 4: undefined
 
 Normalized calls: Same
 

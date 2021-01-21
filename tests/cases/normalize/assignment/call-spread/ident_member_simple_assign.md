@@ -71,7 +71,7 @@ $(a, b, 3);
 Should call `$` with:
  - 0: 3
  - 1: 4
- - 2: <crash[ Cannot set property 'y' of undefined ]>
+ - 2: <crash[ Found non-callable @@iterator ]>
 
 Normalized calls: Same
 

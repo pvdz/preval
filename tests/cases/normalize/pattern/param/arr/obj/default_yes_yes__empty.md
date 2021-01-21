@@ -99,7 +99,8 @@ $(tmpArg_1);
 
 Should call `$` with:
  - 0: ["fail2"]
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: "bad"
+ - 2: undefined
 
 Normalized calls: Same
 

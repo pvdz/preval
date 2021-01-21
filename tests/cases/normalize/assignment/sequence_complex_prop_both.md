@@ -69,7 +69,9 @@ $(a);
 
 Should call `$` with:
  - 0: 30
- - 1: <crash[ Cannot read property 'y' of undefined ]>
+ - 1: {"y":10}
+ - 2: false
+ - 3: undefined
 
 Normalized calls: Same
 

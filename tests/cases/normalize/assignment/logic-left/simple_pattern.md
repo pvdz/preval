@@ -72,7 +72,7 @@ $(a, x, y, z);
 
 Should call `$` with:
  - 0: true
- - 1: null
+ - 1: true
  - 2: [10,20,30],10,20,[10,20,30]
  - 3: undefined
 

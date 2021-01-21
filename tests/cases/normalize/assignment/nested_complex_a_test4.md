@@ -44,8 +44,9 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: [10,20,30]
- - 1: <crash[ Cannot set property 'length' of undefined ]>
+ - 0: [10,20,30,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+ - 1: 20
+ - 2: undefined
 
 Normalized calls: Same
 

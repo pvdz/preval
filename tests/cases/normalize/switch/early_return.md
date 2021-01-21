@@ -206,7 +206,7 @@ Should call `$` with:
  - 2: 3
  - 3: 5
  - 4: 6
- - 5: null
+ - 5: 6
  - 6: undefined
 
 Normalized calls: Same

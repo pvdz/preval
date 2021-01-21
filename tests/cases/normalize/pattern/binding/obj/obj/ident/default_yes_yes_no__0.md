@@ -72,7 +72,8 @@ $(y);
 
 Should call `$` with:
  - 0: {"y":"pass2"}
- - 1: <crash[ Cannot read property 'y' of undefined ]>
+ - 1: "pass2"
+ - 2: undefined
 
 Normalized calls: Same
 

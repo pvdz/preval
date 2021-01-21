@@ -107,7 +107,8 @@ $(tmpArg_2);
 
 Should call `$` with:
  - 0: {"x":{"y":"pass3"}}
- - 1: <crash[ Cannot read property 'x' of undefined ]>
+ - 1: "pass3"
+ - 2: undefined
 
 Normalized calls: Same
 

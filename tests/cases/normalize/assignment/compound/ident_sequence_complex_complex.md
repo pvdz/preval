@@ -65,11 +65,13 @@ $(a, 2, 3);
 Should call `$` with:
  - 0: 2
  - 1: 3
- - 2: <crash[ Cannot read property 'x' of undefined ]>
+ - 2: 3
+ - 3: null,2,3
+ - 4: undefined
 
 Normalized calls: BAD?!
-[[2], [3], [3], "<crash[ Cannot read property 'x' of undefined ]>"];
+[[2], [3], [3], [3, 2, 3], null];
 
 Final output calls: BAD!!
-[[2], [3], [3], "<crash[ Cannot read property 'x' of undefined ]>"];
+[[2], [3], [3], [3, 2, 3], null];
 

@@ -58,9 +58,13 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":2}
- - 1: <crash[ Cannot read property 'x' of undefined ]>
+ - 0: {"x":5}
+ - 1: 5,{"x":5},3
+ - 2: undefined
 
-Normalized calls: Same
+Normalized calls: BAD?!
+[[{ x: 5 }], [3, { x: 5 }, 3], null];
 
-Final output calls: Same
+Final output calls: BAD!!
+[[{ x: 5 }], [3, { x: 5 }, 3], null];
+

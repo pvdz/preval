@@ -57,7 +57,8 @@ $('ok');
 
 Should call `$` with:
  - 0: ["fail"]
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: "ok"
+ - 2: undefined
 
 Normalized calls: Same
 

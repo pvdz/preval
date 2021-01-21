@@ -73,10 +73,10 @@ $(a, b, 3, 4);
 ## Result
 
 Should call `$` with:
- - 0: {"x":2}
+ - 0: {"x":4}
  - 1: 3
  - 2: 4
- - 3: <crash[ Cannot set property 'y' of undefined ]>
+ - 3: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

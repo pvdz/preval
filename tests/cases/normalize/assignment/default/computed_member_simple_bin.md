@@ -63,11 +63,11 @@ $(a, 5, 3);
 Should call `$` with:
  - 0: "a"
  - 1: "x"
- - 2: {"x":10,"undefined":5},2,3
+ - 2: {"x":5},2,3
  - 3: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['a'], ['x'], [{ x: 10, undefined: 5 }, 5, 3], null];
+[['a'], ['x'], [{ x: 5 }, 5, 3], null];
 

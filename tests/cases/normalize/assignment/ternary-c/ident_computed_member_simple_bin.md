@@ -82,11 +82,11 @@ Should call `$` with:
  - 0: false
  - 1: "x"
  - 2: 7
- - 3: 7,{"x":2,"undefined":7},3
+ - 3: 7,{"x":7},3
  - 4: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[false], ['x'], [7], [7, { x: 2, undefined: 7 }, 7], null];
+[[false], ['x'], [7], [7, { x: 7 }, 7], null];
 

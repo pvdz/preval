@@ -70,7 +70,7 @@ $(tmpArg);
 
 Should call `$` with:
  - 0: {"x":1}
- - 1: null
+ - 1: {"x":1}
  - 2: undefined
 
 Normalized calls: Same

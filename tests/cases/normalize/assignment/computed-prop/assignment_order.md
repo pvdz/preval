@@ -54,7 +54,9 @@ $(x);
 Should call `$` with:
  - 0: 1
  - 1: 2
- - 2: <crash[ Cannot read property 'undefined' of undefined ]>
+ - 2: 3
+ - 3: null
+ - 4: undefined
 
 Normalized calls: Same
 

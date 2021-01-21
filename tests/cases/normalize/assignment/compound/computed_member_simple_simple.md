@@ -80,7 +80,7 @@ $(a, 2, 3);
 
 Should call `$` with:
  - 0: "x"
- - 1: {"x":10,"undefined":null},2,3
+ - 1: {"x":20},2,3
  - 2: undefined
 
 Normalized calls: Same

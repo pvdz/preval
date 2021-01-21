@@ -40,8 +40,7 @@ if (tmpLogicStmtOr) {
 
 Should call `$` with:
  - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: undefined
 
 Normalized calls: Same
 

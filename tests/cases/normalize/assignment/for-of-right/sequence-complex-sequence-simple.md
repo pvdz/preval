@@ -60,7 +60,7 @@ $(1, b, 'unused', 3);
 
 Should call `$` with:
  - 0: {"c":3}
- - 1: <crash[ Cannot set property 'c' of undefined ]>
+ - 1: <crash[ <ref> is not iterable ]>
 
 Normalized calls: Same
 

@@ -271,11 +271,10 @@ Should call `$` with:
  - 0: 1
  - 1: 1
  - 2: 8
- - 3: 3
- - 4: 5
- - 5: 6
- - 6: null
- - 7: undefined
+ - 3: 9
+ - 4: 10
+ - 5: 10
+ - 6: undefined
 
 Normalized calls: Same
 

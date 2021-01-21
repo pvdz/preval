@@ -96,5 +96,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[20], [30], [1, 2, [10, 20, 30]], null];
+[[10], [20], [1, 2, [10, 20, 30]], null];
 

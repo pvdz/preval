@@ -95,7 +95,8 @@ Should call `$` with:
  - 2: 2
  - 3: 3
  - 4: 3
- - 5: <crash[ Cannot set property 'x' of undefined ]>
+ - 5: 3,2,3
+ - 6: undefined
 
 Normalized calls: Same
 

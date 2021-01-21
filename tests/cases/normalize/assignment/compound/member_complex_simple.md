@@ -59,8 +59,9 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: <crash[ Cannot read property 'x' of undefined ]>
+ - 0: {"x":20}
+ - 1: {"x":20},2,3
+ - 2: undefined
 
 Normalized calls: Same
 

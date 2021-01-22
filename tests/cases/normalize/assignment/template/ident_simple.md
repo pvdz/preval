@@ -20,10 +20,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 let a = 1;
 let b = 2;
 let c = 3;
-tmpArg = `abc ${(a = b)} def`;
+a = b;
+tmpTemplateExpr = b;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -32,8 +35,11 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 let a = 1;
-tmpArg = `abc ${(a = 2)} def`;
+a = 2;
+tmpTemplateExpr = 2;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, 2, 3);
 `````

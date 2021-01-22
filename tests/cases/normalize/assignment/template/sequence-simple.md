@@ -20,12 +20,19 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
+var tmpTemplateExpr;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-tmpArg = `abc ${(a, (tmpAssignMemLhsObj = b), (tmpAssignMemLhsObj.c = d))} def`;
+a;
+tmpNestedAssignObj = b;
+tmpNestedPropAssignRhs = d;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+tmpTemplateExpr = tmpNestedPropAssignRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c, d);
 `````
@@ -34,9 +41,15 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
+var tmpTemplateExpr;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
-tmpArg = `abc ${(1, (tmpAssignMemLhsObj = b), (tmpAssignMemLhsObj.c = 3))} def`;
+tmpNestedAssignObj = b;
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+tmpTemplateExpr = tmpNestedPropAssignRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(1, b, 'unused', 3);
 `````

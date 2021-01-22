@@ -18,7 +18,11 @@ $(`abc ${ $(10) } ${ $(20) } def`);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = `abc ${$(10)} ${$(20)} def`;
+var tmpTemplateExpr;
+var tmpTemplateExpr_1;
+tmpTemplateExpr = $(10);
+tmpTemplateExpr_1 = $(20);
+tmpArg = `abc ${tmpTemplateExpr} ${tmpTemplateExpr_1} def`;
 $(tmpArg);
 `````
 
@@ -26,7 +30,11 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = `abc ${$(10)} ${$(20)} def`;
+var tmpTemplateExpr;
+var tmpTemplateExpr_1;
+tmpTemplateExpr = $(10);
+tmpTemplateExpr_1 = $(20);
+tmpArg = `abc ${tmpTemplateExpr} ${tmpTemplateExpr_1} def`;
 $(tmpArg);
 `````
 

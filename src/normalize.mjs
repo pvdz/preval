@@ -126,7 +126,6 @@ const VERBOSE_TRACING = true;
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - statement that is identifier / literal (?)
-  - templates appear not to be normalized yet? see tests/cases/normalize/assignment/template/ident_member_simple_simple.md
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -3703,10 +3702,37 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
 
           _expr(newNode);
-        } else {
-          node.expressions.forEach((enode, i) => {
+          break;
+        }
+
+        const group = [];
+
+        node.expressions.forEach((enode, i) => {
+          if (isComplexNode(enode)) {
+            rule('Expressions inside a template must be simple nodes');
+            example('`a${f()}b`', '(tmp = f(), `a${f()}b`)');
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpTemplateExpr', true);
+
+            group.push(AST.assignmentExpression(tmpName, enode));
+            node.expressions[i] = AST.identifier(tmpName);
+          } else {
             expr(node, 'expressions', i, enode);
-          });
+          }
+        });
+
+        if (group.length) {
+          before(node);
+
+          const newNode = AST.sequenceExpression(...group, node);
+
+          crumbSet(1, newNode);
+
+          after(newNode);
+          changed = true;
+
+          _expr(newNode);
+          break;
         }
 
         break;

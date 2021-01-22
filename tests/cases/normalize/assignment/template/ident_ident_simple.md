@@ -20,10 +20,16 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
-tmpArg = `abc ${((b = c), (a = c))} def`;
+b = c;
+tmpNestedComplexRhs = c;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -32,9 +38,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
-tmpArg = `abc ${((b = 3), (a = 3))} def`;
+b = 3;
+tmpNestedComplexRhs = 3;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

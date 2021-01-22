@@ -20,28 +20,27 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpTemplateExpr;
 var tmpNestedAssignObj;
+var tmpNestedAssignMemberObj;
+var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-tmpArg = `abc ${
-  (a,
-  (tmpAssignMemLhsObj = $(b)),
-  (tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
-  a,
-  (tmpNestedAssignObj = $(b)),
-  (tmpNestedPropAssignRhs = d),
-  (tmpNestedAssignObj.c = tmpNestedPropAssignRhs),
-  (tmpAssignMemRhs = tmpNestedPropAssignRhs),
-  (tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
-  (tmpAssignMemLhsObj_2.c = tmpAssignMemRhs))
-} def`;
+a;
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+a;
+tmpNestedAssignObj_1 = $(b);
+tmpNestedPropAssignRhs = d;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+tmpTemplateExpr = tmpNestedAssignMemberRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c, d);
 `````
@@ -50,25 +49,22 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
-var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpTemplateExpr;
 var tmpNestedAssignObj;
+var tmpNestedAssignMemberObj;
+var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj_1;
 var tmpNestedPropAssignRhs;
 let b = { c: 2 };
-tmpArg = `abc ${
-  (1,
-  (tmpAssignMemLhsObj = $(b)),
-  (tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj),
-  1,
-  (tmpNestedAssignObj = $(b)),
-  (tmpNestedPropAssignRhs = 3),
-  (tmpNestedAssignObj.c = tmpNestedPropAssignRhs),
-  (tmpAssignMemRhs = tmpNestedPropAssignRhs),
-  (tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1),
-  (tmpAssignMemLhsObj_2.c = tmpAssignMemRhs))
-} def`;
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignObj_1 = $(b);
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj_1.c = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+tmpTemplateExpr = tmpNestedAssignMemberRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(1, b, 'unused', 3);
 `````

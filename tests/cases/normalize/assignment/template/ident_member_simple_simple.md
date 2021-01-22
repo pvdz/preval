@@ -20,11 +20,18 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-tmpArg = `abc ${((tmpNestedPropAssignRhs = c), (b.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))} def`;
+tmpNestedPropAssignRhs = c;
+b.x = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -33,10 +40,17 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-tmpArg = `abc ${((tmpNestedPropAssignRhs = 3), (b.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))} def`;
+tmpNestedPropAssignRhs = 3;
+b.x = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

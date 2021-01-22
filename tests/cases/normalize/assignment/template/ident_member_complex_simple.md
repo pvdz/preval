@@ -20,14 +20,20 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-tmpArg = `abc ${
-  ((tmpNestedAssignObj = $(b)), (tmpNestedPropAssignRhs = c), (tmpNestedAssignObj.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))
-} def`;
+tmpNestedAssignObj = $(b);
+tmpNestedPropAssignRhs = c;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -36,13 +42,19 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-tmpArg = `abc ${
-  ((tmpNestedAssignObj = $(b)), (tmpNestedPropAssignRhs = 3), (tmpNestedAssignObj.x = tmpNestedPropAssignRhs), (a = tmpNestedPropAssignRhs))
-} def`;
+tmpNestedAssignObj = $(b);
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

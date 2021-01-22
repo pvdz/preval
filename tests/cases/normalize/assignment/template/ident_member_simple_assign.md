@@ -20,6 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
@@ -29,16 +31,17 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpArg = `abc ${
-  ((tmpNestedAssignMemberObj = b),
-  (tmpNestedAssignObj = $(c)),
-  (tmpNestedAssignMemberObj_1 = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs_1 = $(d)),
-  (tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1),
-  (tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1),
-  (tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs),
-  (a = tmpNestedAssignMemberRhs))
-} def`;
+tmpNestedAssignMemberObj = b;
+tmpNestedAssignObj = $(c);
+tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs_1 = $(d);
+tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -47,6 +50,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
@@ -54,16 +59,17 @@ var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
 let b = { x: 2 };
-tmpArg = `abc ${
-  ((tmpNestedAssignMemberObj = b),
-  (tmpNestedAssignObj = $(3)),
-  (tmpNestedAssignMemberObj_1 = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs_1 = $(4)),
-  (tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1),
-  (tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1),
-  (tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs),
-  (a = tmpNestedAssignMemberRhs))
-} def`;
+tmpNestedAssignMemberObj = b;
+tmpNestedAssignObj = $(3);
+tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs_1 = $(4);
+tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

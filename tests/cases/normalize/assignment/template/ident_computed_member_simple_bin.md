@@ -20,6 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
@@ -29,15 +31,16 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-tmpArg = `abc ${
-  ((tmpNestedAssignComMemberObj = b),
-  (tmpNestedAssignComMemberProp = $('x')),
-  (tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj),
-  (tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp),
-  (tmpNestedAssignCompMemberRhs = c + d),
-  (tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs),
-  (a = tmpNestedAssignCompMemberRhs))
-} def`;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignCompMemberRhs = c + d;
+tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -46,6 +49,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
+var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
@@ -53,15 +58,16 @@ var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
 let a = 1;
 let b = { x: 2 };
-tmpArg = `abc ${
-  ((tmpNestedAssignComMemberObj = b),
-  (tmpNestedAssignComMemberProp = $('x')),
-  (tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj),
-  (tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp),
-  (tmpNestedAssignCompMemberRhs = 7),
-  (tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs),
-  (a = tmpNestedAssignCompMemberRhs))
-} def`;
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignCompMemberRhs = 7;
+tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 7);
 `````

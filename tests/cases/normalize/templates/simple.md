@@ -18,7 +18,9 @@ $(`abc ${ $(1) } def`);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = `abc ${$(1)} def`;
+var tmpTemplateExpr;
+tmpTemplateExpr = $(1);
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 `````
 
@@ -26,7 +28,9 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-tmpArg = `abc ${$(1)} def`;
+var tmpTemplateExpr;
+tmpTemplateExpr = $(1);
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 `````
 

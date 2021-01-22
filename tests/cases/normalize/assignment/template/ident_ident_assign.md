@@ -20,7 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 var tmpNestedComplexRhs;
+var tmpNestedComplexRhs_1;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
@@ -28,15 +30,16 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-tmpArg = `abc ${
-  ((tmpNestedAssignObj = $(c)),
-  (tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(d)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpNestedComplexRhs = tmpNestedAssignMemberRhs),
-  (b = tmpNestedComplexRhs),
-  (a = tmpNestedComplexRhs))
-} def`;
+tmpNestedAssignObj = $(c);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs = $(d);
+tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
+tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;
+b = tmpNestedComplexRhs_1;
+tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, c);
 `````
@@ -45,21 +48,24 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 var tmpNestedComplexRhs;
+var tmpNestedComplexRhs_1;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 let a = 1;
 let b = 2;
-tmpArg = `abc ${
-  ((tmpNestedAssignObj = $(3)),
-  (tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(4)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpNestedComplexRhs = tmpNestedAssignMemberRhs),
-  (b = tmpNestedComplexRhs),
-  (a = tmpNestedComplexRhs))
-} def`;
+tmpNestedAssignObj = $(3);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs = $(4);
+tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
+tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;
+b = tmpNestedComplexRhs_1;
+tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+a = tmpNestedComplexRhs;
+tmpTemplateExpr = tmpNestedComplexRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(a, b, 3);
 `````

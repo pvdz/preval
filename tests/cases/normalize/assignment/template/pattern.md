@@ -20,18 +20,18 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-tmpArg = `abc ${
-  ((arrAssignPatternRhs = z),
-  (arrPatternSplat = [...arrAssignPatternRhs]),
-  (x = arrPatternSplat[0]),
-  (y = arrPatternSplat[1]),
-  arrAssignPatternRhs)
-} def`;
+arrAssignPatternRhs = z;
+arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+tmpTemplateExpr = arrAssignPatternRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(x, y, z);
 `````
@@ -40,18 +40,18 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpArg;
+var tmpTemplateExpr;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-tmpArg = `abc ${
-  ((arrAssignPatternRhs = z),
-  (arrPatternSplat = [...arrAssignPatternRhs]),
-  (x = arrPatternSplat[0]),
-  (y = arrPatternSplat[1]),
-  arrAssignPatternRhs)
-} def`;
+arrAssignPatternRhs = z;
+arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+tmpTemplateExpr = arrAssignPatternRhs;
+tmpArg = `abc ${tmpTemplateExpr} def`;
 $(tmpArg);
 $(x, y, z);
 `````

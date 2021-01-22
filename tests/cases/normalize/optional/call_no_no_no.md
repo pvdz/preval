@@ -11,18 +11,43 @@
 ## Input
 
 `````js filename=intro
-const a = {};
+function a() {
+  const a = {
+    a(){ return a; },
+    b(){ return a; },
+    c(){ return a; },
+    d(){ return a; }
+  };
+
+  return a;
+}
 $(a().b().c().d);
 `````
 
 ## Normalized
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj_1;
 var tmpMemberComplexObj_2;
-const a = {};
 tmpMemberComplexObj_2 = a();
 tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
 tmpMemberComplexObj = tmpMemberComplexObj_1.c();
@@ -33,11 +58,27 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj_1;
 var tmpMemberComplexObj_2;
-const a = {};
 tmpMemberComplexObj_2 = a();
 tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
 tmpMemberComplexObj = tmpMemberComplexObj_1.c();
@@ -48,7 +89,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ a is not a function ]>
+ - 0: null
+ - 1: undefined
 
 Normalized calls: Same
 

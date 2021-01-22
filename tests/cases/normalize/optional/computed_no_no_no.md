@@ -11,17 +11,25 @@
 ## Input
 
 `````js filename=intro
-const a = {};
+const a = {b: {c: {d: 10}}};
+const b = 'b', c = 'c', d = 'd';
 $(a[b][c][d]);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpArg;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj_1;
-const a = {};
+tmpObjPropValue_1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue_1 };
+const a = { b: tmpObjPropValue };
+const b = 'b';
+const c = 'c';
+const d = 'd';
 tmpMemberComplexObj_1 = a[b];
 tmpMemberComplexObj = tmpMemberComplexObj_1[c];
 tmpArg = tmpMemberComplexObj[d];
@@ -31,20 +39,25 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpArg;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj_1;
-const a = {};
-tmpMemberComplexObj_1 = a[b];
-tmpMemberComplexObj = tmpMemberComplexObj_1[c];
-tmpArg = tmpMemberComplexObj[d];
+tmpObjPropValue_1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue_1 };
+const a = { b: tmpObjPropValue };
+tmpMemberComplexObj_1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - 0: 10
+ - 1: undefined
 
 Normalized calls: Same
 

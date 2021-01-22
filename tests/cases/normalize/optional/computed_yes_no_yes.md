@@ -11,13 +11,16 @@
 ## Input
 
 `````js filename=intro
-const a = {};
+const a = {b: {c: {d: 10}}};
+const b = 'b', c = 'c', d = 'd';
 $(a?.[b][c]?.[d]);
 `````
 
 ## Normalized
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -28,7 +31,12 @@ var tmpComputedObj;
 var tmpComputedProp;
 var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
-const a = {};
+tmpObjPropValue_1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue_1 };
+const a = { b: tmpObjPropValue };
+const b = 'b';
+const c = 'c';
+const d = 'd';
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;
@@ -57,6 +65,8 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+var tmpObjPropValue;
+var tmpObjPropValue_1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
@@ -67,12 +77,14 @@ var tmpComputedObj;
 var tmpComputedProp;
 var tmpTernaryTest_2;
 var tmpTernaryAlternate_2;
-const a = {};
+tmpObjPropValue_1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue_1 };
+const a = { b: tmpObjPropValue };
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining = undefined;
 } else {
-  tmpTernaryAlternate = a[b];
+  tmpTernaryAlternate = a.b;
   tmpOptionalChaining = tmpTernaryAlternate;
 }
 tmpTernaryTest_1 = tmpOptionalChaining == null;
@@ -80,11 +92,11 @@ if (tmpTernaryTest_1) {
   tmpArg = undefined;
 } else {
   tmpComputedObj = tmpOptionalChaining;
-  tmpTernaryTest_2 = c == null;
+  tmpTernaryTest_2 = false;
   if (tmpTernaryTest_2) {
     tmpComputedProp = undefined;
   } else {
-    tmpTernaryAlternate_2 = c[d];
+    tmpTernaryAlternate_2 = 'c'.d;
     tmpComputedProp = tmpTernaryAlternate_2;
   }
   tmpTernaryAlternate_1 = tmpComputedObj[tmpComputedProp];
@@ -96,7 +108,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - 0: 10
+ - 1: undefined
 
 Normalized calls: BAD?!
 [[null], null];

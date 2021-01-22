@@ -11,13 +11,39 @@
 ## Input
 
 `````js filename=intro
-const a = {};
+function a() {
+  const a = {
+    a(){ return a; },
+    b(){ return a; },
+    c(){ return a; },
+    d(){ return a; }
+  };
+
+  return a;
+}
 $(a().b().c?.().d);
 `````
 
 ## Normalized
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining_1;
@@ -27,7 +53,6 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpTernaryTest_1;
 var tmpTernaryAlternate_1;
-const a = {};
 tmpMemberComplexObj_1 = a();
 tmpMemberComplexObj = tmpMemberComplexObj_1.b();
 tmpOptionalChaining_1 = tmpMemberComplexObj.c;
@@ -51,6 +76,23 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining_1;
@@ -60,7 +102,6 @@ var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpTernaryTest_1;
 var tmpTernaryAlternate_1;
-const a = {};
 tmpMemberComplexObj_1 = a();
 tmpMemberComplexObj = tmpMemberComplexObj_1.b();
 tmpOptionalChaining_1 = tmpMemberComplexObj.c;
@@ -84,7 +125,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ a is not a function ]>
+ - 0: null
+ - 1: undefined
 
 Normalized calls: Same
 

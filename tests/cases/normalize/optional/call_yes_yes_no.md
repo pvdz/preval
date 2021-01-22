@@ -11,13 +11,39 @@
 ## Input
 
 `````js filename=intro
-const a = {};
+function a() {
+  const a = {
+    a(){ return a; },
+    b(){ return a; },
+    c(){ return a; },
+    d(){ return a; }
+  };
+
+  return a;
+}
 $(a?.().b?.().c().d);
 `````
 
 ## Normalized
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining_1;
@@ -36,7 +62,6 @@ var tmpTernaryTest_4;
 var tmpTernaryAlternate_4;
 var tmpTernaryTest_5;
 var tmpTernaryAlternate_5;
-const a = {};
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining_4 = undefined;
@@ -85,6 +110,23 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+function a() {
+  const a_1 = {
+    a() {
+      return a_1;
+    },
+    b() {
+      return a_1;
+    },
+    c() {
+      return a_1;
+    },
+    d() {
+      return a_1;
+    },
+  };
+  return a_1;
+}
 var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining_1;
@@ -103,7 +145,6 @@ var tmpTernaryTest_4;
 var tmpTernaryAlternate_4;
 var tmpTernaryTest_5;
 var tmpTernaryAlternate_5;
-const a = {};
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
   tmpOptionalChaining_4 = undefined;
@@ -152,7 +193,8 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ a is not a function ]>
+ - 0: null
+ - 1: undefined
 
 Normalized calls: Same
 

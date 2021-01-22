@@ -10,7 +10,7 @@
 
 `````js filename=intro
 function f() {
-  const y = (1, 2, $())()
+  const y = (1, 2, $(parseInt))()
   return $(y);
 }
 $(f());
@@ -23,7 +23,7 @@ function f() {
   var tmpNewObj;
   1;
   2;
-  tmpNewObj = $();
+  tmpNewObj = $(parseInt);
   const y = tmpNewObj();
   {
     let tmpStmtArg = $(y);
@@ -40,7 +40,7 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   var tmpNewObj;
-  tmpNewObj = $();
+  tmpNewObj = $(parseInt);
   const y = tmpNewObj();
   let tmpStmtArg = $(y);
   return tmpStmtArg;
@@ -53,12 +53,11 @@ $(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: <crash[ (1 , 2 , $(...)) is not a function ]>
+ - 0: null
+ - 1: null
+ - 2: null
+ - 3: undefined
 
-Normalized calls: BAD?!
-[[], '<crash[ tmpNewObj is not a function ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[], '<crash[ tmpNewObj is not a function ]>'];
-
+Final output calls: Same

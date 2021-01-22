@@ -9,7 +9,9 @@
 ## Input
 
 `````js filename=intro
-([[ x = a ]] = 1);
+const a = 10;
+([[ x = a ]] = [[]]);
+$(a);
 `````
 
 ## Normalized
@@ -21,7 +23,8 @@ var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternBeforeDefault;
 var tmpTernaryTest;
-arrAssignPatternRhs = 1;
+const a = 10;
+arrAssignPatternRhs = [[]];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
@@ -33,6 +36,7 @@ if (tmpTernaryTest) {
   x = arrPatternBeforeDefault;
 }
 arrAssignPatternRhs;
+$(a);
 `````
 
 ## Output
@@ -44,27 +48,26 @@ var arrPatternStep;
 var arrPatternSplat_1;
 var arrPatternBeforeDefault;
 var tmpTernaryTest;
-arrAssignPatternRhs = 1;
+arrAssignPatternRhs = [[]];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
 arrPatternSplat_1 = [...arrPatternStep];
 arrPatternBeforeDefault = arrPatternSplat_1[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
 if (tmpTernaryTest) {
-  x = a;
+  x = 10;
 } else {
   x = arrPatternBeforeDefault;
 }
+$(10);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 0: 10
+ - 1: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

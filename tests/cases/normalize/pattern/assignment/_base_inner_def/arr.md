@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-([ x = a ] = 1);
+([ x = a ] = [1]);
 `````
 
 ## Normalized
@@ -19,7 +19,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var tmpTernaryTest;
-arrAssignPatternRhs = 1;
+arrAssignPatternRhs = [1];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
@@ -38,7 +38,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var tmpTernaryTest;
-arrAssignPatternRhs = 1;
+arrAssignPatternRhs = [1];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
 tmpTernaryTest = arrPatternBeforeDefault === undefined;
@@ -52,11 +52,8 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 0: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

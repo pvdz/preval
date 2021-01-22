@@ -31,10 +31,8 @@ let d = 3;
     tmpAssignMemLhsObj.c = d;
   }
   const tmpForInDeclRhs = d;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c, d);
@@ -47,10 +45,8 @@ var tmpAssignMemLhsObj;
 let b = { c: 2 };
 tmpAssignMemLhsObj = $(b);
 tmpAssignMemLhsObj.c = 3;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in 3) {
-  x = tmpForInDeclLhs;
+for (x in 3) {
 }
 $(1, b, 'unused', 3);
 `````

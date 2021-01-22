@@ -26,14 +26,10 @@ let x = 1;
 let y = 1;
 {
   const tmpForInDeclRhs = [x];
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
-    {
-      let y_1 = 2;
-      $(x);
-    }
+  for (x in tmpForInDeclRhs) {
+    let y_1 = 2;
+    $(x);
   }
 }
 `````
@@ -43,10 +39,8 @@ let y = 1;
 `````js filename=intro
 let x = 1;
 const tmpForInDeclRhs = [x];
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  x = tmpForInDeclLhs;
+for (x in tmpForInDeclRhs) {
   $(x);
 }
 `````

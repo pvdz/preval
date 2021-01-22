@@ -24,9 +24,9 @@ var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
 {
-  let tmpForOfLhsNode;
+  const tmpForOfRhs = $(b);
   {
-    const tmpForOfRhs = $(b);
+    let tmpForOfLhsNode;
     for (tmpForOfLhsNode of tmpForOfRhs) {
       tmpAssignMemLhsObj = $(a);
       tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -44,8 +44,8 @@ var tmpAssignMemLhsObj;
 var tmpArg;
 let a = {};
 let b = { x: 1, y: 2 };
-let tmpForOfLhsNode;
 const tmpForOfRhs = $(b);
+let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

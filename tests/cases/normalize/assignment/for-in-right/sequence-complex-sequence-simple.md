@@ -33,10 +33,8 @@ let d = 3;
   let tmpBindInitRhs = d;
   tmpBindInitMemberObject.c = tmpBindInitRhs;
   const tmpForInDeclRhs = tmpBindInitRhs;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c, d);
@@ -49,10 +47,8 @@ let b = { c: 2 };
 let tmpBindInitMemberObject = $(b);
 b.c = 3;
 tmpBindInitMemberObject.c = 3;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in 3) {
-  x = tmpForInDeclLhs;
+for (x in 3) {
 }
 $(1, b, 'unused', 3);
 `````

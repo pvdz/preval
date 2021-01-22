@@ -19,11 +19,11 @@ for (let {x} in {a: 1, b: 2}) $(x);
 `````js filename=intro
 var objAssignPatternRhs;
 {
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let tmpForInDeclLhs;
+  const tmpForInPatDeclRhs = { a: 1, b: 2 };
+  let tmpForInPatDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    objAssignPatternRhs = tmpForInDeclLhs;
+  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+    objAssignPatternRhs = tmpForInPatDeclLhs;
     x = objAssignPatternRhs.x;
     objAssignPatternRhs;
     $(x);
@@ -35,11 +35,11 @@ var objAssignPatternRhs;
 
 `````js filename=intro
 var objAssignPatternRhs;
-const tmpForInDeclRhs = { a: 1, b: 2 };
-let tmpForInDeclLhs;
+const tmpForInPatDeclRhs = { a: 1, b: 2 };
+let tmpForInPatDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  objAssignPatternRhs = tmpForInDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  objAssignPatternRhs = tmpForInPatDeclLhs;
   x = objAssignPatternRhs.x;
   $(x);
 }

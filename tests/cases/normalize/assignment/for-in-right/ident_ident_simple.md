@@ -26,10 +26,8 @@ let c = 3;
   b = c;
   a = c;
   const tmpForInDeclRhs = a;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c);
@@ -43,10 +41,8 @@ let b = 2;
 b = 3;
 a = 3;
 const tmpForInDeclRhs = a;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  x = tmpForInDeclLhs;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, 3);
 `````

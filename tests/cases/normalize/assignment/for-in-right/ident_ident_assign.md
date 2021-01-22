@@ -36,10 +36,8 @@ let d = 4;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   const tmpForInDeclRhs = a;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c);
@@ -62,10 +60,8 @@ tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 const tmpForInDeclRhs = a;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  x = tmpForInDeclLhs;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, 3);
 `````

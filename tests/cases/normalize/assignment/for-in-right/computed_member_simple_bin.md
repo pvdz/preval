@@ -31,10 +31,8 @@ let c = 3;
   tmpAssignComMemLhsProp = $('x');
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpBindInitRhs;
   const tmpForInDeclRhs = tmpBindInitRhs;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c);
@@ -50,10 +48,8 @@ let tmpBindInitMemberObject = a;
 tmpAssignComMemLhsObj = tmpBindInitMemberObject;
 tmpAssignComMemLhsProp = $('x');
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 5;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in 5) {
-  x = tmpForInDeclLhs;
+for (x in 5) {
 }
 $(a, 5, 3);
 `````

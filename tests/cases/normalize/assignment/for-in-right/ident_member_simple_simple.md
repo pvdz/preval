@@ -28,10 +28,8 @@ let c = 3;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   const tmpForInDeclRhs = a;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, b, c);
@@ -47,10 +45,8 @@ tmpNestedPropAssignRhs = 3;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 const tmpForInDeclRhs = a;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  x = tmpForInDeclLhs;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, 3);
 `````

@@ -25,17 +25,14 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 {
-  let tmpForOfLhsDecl;
   {
-    {
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemLhsObj.c = d;
-    }
-    const tmpForOfRhs = d;
-    for (tmpForOfLhsDecl of tmpForOfRhs) {
-      let x = tmpForOfLhsDecl;
-    }
+    a;
+    tmpAssignMemLhsObj = $(b);
+    tmpAssignMemLhsObj.c = d;
+  }
+  const tmpForOfDeclRhs = d;
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
 $(a, b, c, d);
@@ -46,10 +43,10 @@ $(a, b, c, d);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 let b = { c: 2 };
-let tmpForOfLhsDecl;
 tmpAssignMemLhsObj = $(b);
 tmpAssignMemLhsObj.c = 3;
-for (tmpForOfLhsDecl of 3) {
+let x;
+for (x of 3) {
 }
 $(1, b, 'unused', 3);
 `````

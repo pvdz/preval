@@ -1425,7 +1425,16 @@ export function phaseNormalize(fdata, fname) {
         break;
       }
 
+      case 'ForOfStatement': {
+        // Same transformation as for-in
+        // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
+        if (node.await) {
+          TOFIX;
+        }
+      }
+      // fallthrough
       case 'ForInStatement': {
+        const forin = node.type === 'ForInStatement';
         // https://pvdz.ee/weblog/439
         // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
         // Pattern bindings complicate the transform because I want to retain the TDZ errors if the original code contains them.
@@ -1442,70 +1451,149 @@ export function phaseNormalize(fdata, fname) {
         if (node.left.type === 'VariableDeclaration') {
           const vardecl = node.left;
 
-          rule('Left side of for-in must not be var decl');
-          example(
-            'for (let x in y) z()',
-            '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { x = tmp2; z(); } }',
-            () => vardecl.declarations[0].id.type === 'Identifier',
-          );
-          example(
-            'for (let [x] in y) z()',
-            '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { [x] = tmp2; z(); } }',
-            () => vardecl.declarations[0].id.type === 'ArrayPattern',
-          );
-          example(
-            'for (let {x} in y) z()',
-            '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { {x} = tmp2; z(); } }',
-            () => vardecl.declarations[0].id.type === 'ObjectPattern',
-          );
-          example('for (let x in x);', '{ let tmp = x; let x; for (x in tmp2); }');
-          before(node);
+          if (vardecl.declarations[0].id.type === 'Identifier') {
+            if (forin) {
+              rule('Left side of for-in must not be var decl, ident');
+              example('for (let x in y) z()', '{ let tmp = y; let x; for (x in tmp) { z(); } }');
+              example('for (let x in x);', '{ let tmp = x; let x; for (x in tmp); }');
+            } else {
+              rule('Left side of for-of must not be var decl, ident');
+              example('for (let x of y) z()', '{ let tmp = y; let x; for (x of tmp) { z(); } }');
+              example('for (let x of x);', '{ let tmp = x; let x; for (x of tmp2); }');
+            }
+            before(node);
 
-          ASSERT(vardecl.declarations.length === 1, 'for header var decls can only have one binding');
-          ASSERT(
-            vardecl.declarations[0].init === null,
-            'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
-          );
+            ASSERT(vardecl.declarations.length === 1, 'for header var decls can only have one binding');
+            ASSERT(
+              vardecl.declarations[0].init === null,
+              'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
+            );
 
-          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpForInDeclRhs');
-          const tmpNameLhs = createFreshVarInCurrentRootScope('tmpForInDeclLhs');
-          const boundNames = discoverBoundNames(node.left);
-          log('- Pattern bound these names:', boundNames);
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
-            AST.variableDeclaration(tmpNameLhs),
-            // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
-            AST.variableDeclarationFromDeclaration(
-              boundNames.map((name) => AST.variableDeclarator(name, undefined, vardecl.kind === 'const' ? 'let' : vardecl.kind)),
-            ),
-            AST.forInStatement(
-              tmpNameLhs,
-              tmpNameRhs,
-              AST.blockStatement(
-                AST.expressionStatement(AST.assignmentExpression(vardecl.declarations[0].id, tmpNameLhs)), // x = tmp2, or [x] = tmp2, or {x} = tmp2
-                node.body,
+            const tmpNameRhs = createFreshVarInCurrentRootScope(forin ? 'tmpForInDeclRhs' : 'tmpForOfDeclRhs');
+            const lhsName = vardecl.declarations[0].id.name;
+            const newNode = AST.blockStatement(
+              AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
+              // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
+              AST.variableDeclaration(vardecl.declarations[0].id.name),
+              forin ? AST.forInStatement(lhsName, tmpNameRhs, node.body) : AST.forOfStatement(lhsName, tmpNameRhs, node.body),
+            );
+
+            crumbSet(1, newNode);
+
+            changed = true;
+            after(newNode);
+
+            _stmt(newNode);
+            break;
+          } else {
+            // pattern
+            if (forin) {
+              rule('Left side of for-in must not be var decl');
+              example(
+                'for (let [x] in y) z()',
+                '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { [x] = tmp2; z(); } }',
+                () => vardecl.declarations[0].id.type === 'ArrayPattern',
+              );
+              example(
+                'for (let {x} in y) z()',
+                '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { {x} = tmp2; z(); } }',
+                () => vardecl.declarations[0].id.type === 'ObjectPattern',
+              );
+              example(
+                'for (let {x} in x);',
+                '{ let tmp = x; let x; for ({x} in tmp2); }',
+                () => vardecl.declarations[0].id.type === 'ObjectPattern',
+              );
+              example(
+                'for (let [x] in x);',
+                '{ let tmp = x; let x; for ([x] in tmp2); }',
+                () => vardecl.declarations[0].id.type === 'ArrayPattern',
+              );
+            } else {
+              rule('Left side of for-of must not be var decl');
+              example(
+                'for (let [x] of y) z()',
+                '{ let tmp = y; let x; let tmp2; for (tmp2 of tmp) { [x] = tmp2; z(); } }',
+                () => vardecl.declarations[0].id.type === 'ArrayPattern',
+              );
+              example(
+                'for (let {x} of y) z()',
+                '{ let tmp = y; let x; let tmp2; for (tmp2 of tmp) { {x} = tmp2; z(); } }',
+                () => vardecl.declarations[0].id.type === 'ObjectPattern',
+              );
+              example(
+                'for (let {x} of x);',
+                '{ let tmp = x; let x; for ({x} of tmp2); }',
+                () => vardecl.declarations[0].id.type === 'ObjectPattern',
+              );
+              example(
+                'for (let [x] of x);',
+                '{ let tmp = x; let x; for ([x] of tmp2); }',
+                () => vardecl.declarations[0].id.type === 'ArrayPattern',
+              );
+            }
+            before(node);
+
+            ASSERT(vardecl.declarations.length === 1, 'for header var decls can only have one binding');
+            ASSERT(
+              vardecl.declarations[0].init === null,
+              'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
+            );
+
+            const tmpNameRhs = createFreshVarInCurrentRootScope(forin ? 'tmpForInPatDeclRhs' : 'tmpForOfPatDeclRhs');
+            const tmpNameLhs = createFreshVarInCurrentRootScope(forin ? 'tmpForInPatDeclLhs' : 'tmpForOfPatDeclLhs');
+            const boundNames = discoverBoundNames(node.left);
+            log('- Pattern bound these names:', boundNames);
+            const newNode = AST.blockStatement(
+              AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
+              AST.variableDeclaration(tmpNameLhs),
+              // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
+              AST.variableDeclarationFromDeclaration(
+                boundNames.map((name) => AST.variableDeclarator(name, undefined, vardecl.kind === 'const' ? 'let' : vardecl.kind)),
               ),
-            ),
-          );
+              forin
+                ? AST.forInStatement(
+                    tmpNameLhs,
+                    tmpNameRhs,
+                    AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(vardecl.declarations[0].id, tmpNameLhs)), // x = tmp2, or [x] = tmp2, or {x} = tmp2
+                      node.body,
+                    ),
+                  )
+                : AST.forOfStatement(
+                    tmpNameLhs,
+                    tmpNameRhs,
+                    AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(vardecl.declarations[0].id, tmpNameLhs)), // x = tmp2, or [x] = tmp2, or {x} = tmp2
+                      node.body,
+                    ),
+                  ),
+            );
 
-          crumbSet(1, newNode);
+            crumbSet(1, newNode);
 
-          changed = true;
-          after(newNode);
+            changed = true;
+            after(newNode);
 
-          _stmt(newNode);
-          break;
+            _stmt(newNode);
+            break;
+          }
         }
 
         if (isComplexNode(node.right)) {
-          rule('Right side of `for-in` without decl must be simple');
-          example('for (x in y());', '{ let tmp = y(); for (x in tmp); }');
+          if (forin) {
+            rule('Right side of `for-in` without decl must be simple');
+            example('for (x in y());', '{ let tmp = y(); for (x in tmp); }');
+          } else {
+            rule('Right side of `for-of` without decl must be simple');
+            example('for (x of y());', '{ let tmp = y(); for (x of tmp); }');
+          }
           before(node);
 
-          const tmpName = createFreshVarInCurrentRootScope('tmpForInRhs');
+          const tmpName = createFreshVarInCurrentRootScope(forin ? 'tmpForInRhs' : 'tmpForOfRhs');
           const newNode = AST.blockStatement(
             AST.variableDeclaration(tmpName, node.right, 'const'),
-            AST.forInStatement(node.left, tmpName, node.body),
+            forin ? AST.forInStatement(node.left, tmpName, node.body) : AST.forOfStatement(node.left, tmpName, node.body),
           );
 
           crumbSet(1, newNode);
@@ -1521,21 +1609,35 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.left.type !== 'Identifier') {
           // Move to inside assignment and let other transforms deal with complexity
-          rule('Left side of for-in must be simple');
-          example('for (x().prop in y) z()', '{ let tmp; for (tmp in y) { x().prop = tmp; z(); } }');
-          example('for (x()[prop] in y) z()', '{ let tmp; for (tmp in y) { x()[prop] = tmp; z(); } }');
-          example('for ([x] in y) z()', '{ let tmp; for (tmp in y) { [x] = tmp; z(); } }');
-          example('for ({x} in y) z()', '{ let tmp; for (tmp in y) { {x} = tmp; z(); } }');
+          if (forin) {
+            rule('Left side of for-in must be simple');
+            example('for (x().prop in y) z()', '{ let tmp; for (tmp of y) { x().prop = tmp; z(); } }');
+            example('for (x()[prop] in y) z()', '{ let tmp; for (tmp of y) { x()[prop] = tmp; z(); } }');
+            example('for ([x] in y) z()', '{ let tmp; for (tmp of y) { [x] = tmp; z(); } }');
+            example('for ({x} in y) z()', '{ let tmp; for (tmp of y) { {x} = tmp; z(); } }');
+          } else {
+            rule('Left side of for-of must be simple');
+            example('for (x().prop of y) z()', '{ let tmp; for (tmp of y) { x().prop = tmp; z(); } }');
+            example('for (x()[prop] of y) z()', '{ let tmp; for (tmp of y) { x()[prop] = tmp; z(); } }');
+            example('for ([x] of y) z()', '{ let tmp; for (tmp of y) { [x] = tmp; z(); } }');
+            example('for ({x} of y) z()', '{ let tmp; for (tmp of y) { {x} = tmp; z(); } }');
+          }
           before(node);
 
-          const tmpName = createFreshVarInCurrentRootScope('tmpForInLhsNode');
+          const tmpName = createFreshVarInCurrentRootScope(forin ? 'tmpForInLhsNode' : 'tmpForOfLhsNode');
           const newNode = AST.blockStatement(
             AST.variableDeclaration(tmpName),
-            AST.forInStatement(
-              tmpName,
-              node.right,
-              AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
-            ),
+            forin
+              ? AST.forInStatement(
+                  tmpName,
+                  node.right,
+                  AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
+                )
+              : AST.forOfStatement(
+                  tmpName,
+                  node.right,
+                  AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
+                ),
           );
 
           crumbSet(1, newNode);
@@ -1567,111 +1669,6 @@ export function phaseNormalize(fdata, fname) {
           meta.updates.push(node.left); // lhs is written to
         }
         // expr(node, 'left', -1, node.left); // I don't think it should?
-        stmt(node, 'body', -1, node.body);
-        break;
-      }
-
-      case 'ForOfStatement': {
-        // TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.
-        if (node.await) {
-          TOFIX;
-        }
-
-        // There's no real advantage into transforming a for-of with empty body to something else so we don't
-        // TODO: are we happier with for-in/of normalized to `for (a in b)` or `for (let a in b)`? Either is possible.
-
-        if (node.left.type === 'VariableDeclaration') {
-          rule('Left side of for-of must not be var decl');
-          log('- `for (let x of y) z()` --> `{ let tmp; for (tmp of y) { let x = tmp; z(); } }`');
-          log('- `for (let [x] of y) z()` --> `{ let tmp; for (tmp of y) { let [x] = tmp; z(); } }`');
-          log('- `for (let {x} of y) z()` --> `{ let tmp; for (tmp of y) { let {x} = tmp; z(); } }`');
-          before(node);
-
-          const vardecl = node.left;
-          const tmpName = createFreshVarInCurrentRootScope('tmpForOfLhsDecl');
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpName, undefined, vardecl.kind === 'const' ? 'let' : vardecl.kind),
-            AST.forOfStatement(tmpName, node.right, AST.blockStatement(vardecl, node.body)),
-          );
-          ASSERT(vardecl.declarations.length === 1, 'for header var decls can only have one binding');
-          ASSERT(
-            vardecl.declarations[0].init === null,
-            'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
-          );
-          vardecl.declarations[0].init = AST.identifier(tmpName); // `var [x]` -> `var [x] = tmpName;`
-
-          crumbSet(1, newNode);
-
-          changed = true;
-          after(newNode);
-
-          _stmt(newNode);
-          break;
-        }
-
-        if (isComplexNode(node.left)) {
-          // The lhs must be a valid lhs as per the parser so we can assume it's either a pattern, an ident, or
-          // a member expression. The patterns ought to be transformed away and we don't care about the idents.
-          // Member expressions should have their object be normalized.
-
-          rule('Left side of for-of must be simple');
-          log('- `for (x().x of y) z()` --> `{ let tmp; for (tmp of y) { x().x = tmp; z(); } }`');
-          log('- `for (foo[x] of y) z()` --> `{ let tmp; for (tmp of y) { foo[x] = tmp; z(); } }`');
-          log('- `for ([x] of y) z()` --> `{ let tmp; for (tmp of y) { [x] = tmp; z(); } }`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpForOfLhsNode');
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpName),
-            AST.forOfStatement(
-              tmpName,
-              node.right,
-              AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
-            ),
-          );
-
-          crumbSet(1, newNode);
-
-          changed = true;
-          after(newNode);
-
-          _stmt(newNode);
-          break;
-        }
-
-        if (node.body.type !== 'BlockStatement') {
-          rule('For-of sub-statement must be block');
-          log('- `for (x of y) z` --> `for (x of y) {z}`');
-
-          node.body = AST.blockStatement(node.body);
-          changed = true;
-        }
-
-        if (isComplexNode(node.right)) {
-          rule('Rhs of `for-of` must be simple');
-          log('- `for (x of y()) ;` --> `{ let tmp = y(); for (x of tmp) ; }`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpForOfRhs');
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpName, node.right, 'const'),
-            AST.forOfStatement(node.left, tmpName, node.body),
-          );
-
-          crumbSet(1, newNode);
-
-          changed = true;
-          after(newNode);
-
-          _stmt(newNode);
-          break;
-        }
-
-        expr(node, 'right', -1, node.right);
-        if (node.left.type === 'VariableDeclaration') {
-        } else {
-          expr(node, 'left', -1, node.left);
-        }
         stmt(node, 'body', -1, node.body);
         break;
       }

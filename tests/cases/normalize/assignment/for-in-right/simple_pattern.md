@@ -32,10 +32,8 @@ let z = [10, 20, 30];
   y = arrPatternSplat[1];
   a = arrAssignPatternRhs;
   const tmpForInDeclRhs = a;
-  let tmpForInDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    x = tmpForInDeclLhs;
+  for (x in tmpForInDeclRhs) {
   }
 }
 $(a, x, y, z);
@@ -56,10 +54,8 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = arrAssignPatternRhs;
 const tmpForInDeclRhs = a;
-let tmpForInDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  x = tmpForInDeclLhs;
+for (x in tmpForInDeclRhs) {
 }
 $(a, x, y, z);
 `````

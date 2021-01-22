@@ -25,15 +25,12 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let tmpForOfLhsDecl;
-  {
-    tmpNestedComplexRhs = c + d;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    const tmpForOfRhs = a;
-    for (tmpForOfLhsDecl of tmpForOfRhs) {
-      let x = tmpForOfLhsDecl;
-    }
+  tmpNestedComplexRhs = c + d;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  const tmpForOfDeclRhs = a;
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
 $(a, b, c);
@@ -45,12 +42,12 @@ $(a, b, c);
 var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
-let tmpForOfLhsDecl;
 tmpNestedComplexRhs = 7;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-const tmpForOfRhs = a;
-for (tmpForOfLhsDecl of tmpForOfRhs) {
+const tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, b, 7);
 `````

@@ -25,9 +25,9 @@ var tmpAssignComMemLhsProp;
 let a = {};
 let b = { x: 1, y: 2 };
 {
-  let tmpForOfLhsNode;
+  const tmpForOfRhs = $(b);
   {
-    const tmpForOfRhs = $(b);
+    let tmpForOfLhsNode;
     for (tmpForOfLhsNode of tmpForOfRhs) {
       tmpAssignMemLhsObj = $(a);
       tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
@@ -47,8 +47,8 @@ var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 let a = {};
 let b = { x: 1, y: 2 };
-let tmpForOfLhsNode;
 const tmpForOfRhs = $(b);
+let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   tmpAssignMemLhsObj = $(a);
   tmpAssignComMemLhsObj = tmpAssignMemLhsObj;

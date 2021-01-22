@@ -20,11 +20,11 @@ for (let [x] in {a: 1, b: 2}) $(x);
 var arrAssignPatternRhs;
 var arrPatternSplat;
 {
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let tmpForInDeclLhs;
+  const tmpForInPatDeclRhs = { a: 1, b: 2 };
+  let tmpForInPatDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    arrAssignPatternRhs = tmpForInDeclLhs;
+  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+    arrAssignPatternRhs = tmpForInPatDeclLhs;
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
@@ -38,11 +38,11 @@ var arrPatternSplat;
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-const tmpForInDeclRhs = { a: 1, b: 2 };
-let tmpForInDeclLhs;
+const tmpForInPatDeclRhs = { a: 1, b: 2 };
+let tmpForInPatDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  arrAssignPatternRhs = tmpForInDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  arrAssignPatternRhs = tmpForInPatDeclLhs;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);

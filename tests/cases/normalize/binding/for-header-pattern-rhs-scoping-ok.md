@@ -27,11 +27,11 @@ var arrPatternSplat;
 let x = 1;
 let y = {};
 {
-  const tmpForInDeclRhs = [y];
-  let tmpForInDeclLhs;
+  const tmpForInPatDeclRhs = [y];
+  let tmpForInPatDeclLhs;
   let x;
-  for (tmpForInDeclLhs in tmpForInDeclRhs) {
-    arrAssignPatternRhs = tmpForInDeclLhs;
+  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+    arrAssignPatternRhs = tmpForInPatDeclLhs;
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
@@ -50,11 +50,11 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
 let y = {};
-const tmpForInDeclRhs = [y];
-let tmpForInDeclLhs;
+const tmpForInPatDeclRhs = [y];
+let tmpForInPatDeclLhs;
 let x;
-for (tmpForInDeclLhs in tmpForInDeclRhs) {
-  arrAssignPatternRhs = tmpForInDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  arrAssignPatternRhs = tmpForInPatDeclLhs;
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);

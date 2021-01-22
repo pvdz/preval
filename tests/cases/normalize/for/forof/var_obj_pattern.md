@@ -17,16 +17,18 @@ for (let [x] of {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrPatternSplat;
 {
-  let tmpForOfLhsDecl;
-  {
-    const tmpForOfRhs = { a: 1, b: 2 };
-    for (tmpForOfLhsDecl of tmpForOfRhs) {
-      let bindingPatternArrRoot = tmpForOfLhsDecl;
-      let arrPatternSplat = [...bindingPatternArrRoot];
-      let x = arrPatternSplat[0];
-      $(x);
-    }
+  const tmpForOfPatDeclRhs = { a: 1, b: 2 };
+  let tmpForOfPatDeclLhs;
+  let x;
+  for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
+    arrAssignPatternRhs = tmpForOfPatDeclLhs;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    arrAssignPatternRhs;
+    $(x);
   }
 }
 `````
@@ -34,12 +36,15 @@ for (let [x] of {a: 1, b: 2}) $(x);
 ## Output
 
 `````js filename=intro
-let tmpForOfLhsDecl;
-const tmpForOfRhs = { a: 1, b: 2 };
-for (tmpForOfLhsDecl of tmpForOfRhs) {
-  let bindingPatternArrRoot = tmpForOfLhsDecl;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x = arrPatternSplat[0];
+var arrAssignPatternRhs;
+var arrPatternSplat;
+const tmpForOfPatDeclRhs = { a: 1, b: 2 };
+let tmpForOfPatDeclLhs;
+let x;
+for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
+  arrAssignPatternRhs = tmpForOfPatDeclLhs;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
   $(x);
 }
 `````

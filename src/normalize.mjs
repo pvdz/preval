@@ -2078,7 +2078,7 @@ export function phaseNormalize(fdata, fname) {
                     }),
                   ),
                 ),
-                AST.expressionStatement(AST.assignmentExpression(tmpDef, 'true')),
+                AST.expressionStatement(AST.assignmentExpression(tmpDef, 'false')),
               ),
               // } while()
               AST.binaryExpression('===', tmpFall, 'false'),

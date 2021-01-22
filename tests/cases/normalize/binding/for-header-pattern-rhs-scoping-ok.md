@@ -1,17 +1,22 @@
 # Preval test case
 
-# simple_complex.md
+# for-header-rhs-scoping.md
 
-> normalize > for > forin > simple_complex
+> normalize > binding > for-header-rhs-scoping
 >
-> For-in must be normalized
+> The RHS of a for-of and for-in are scoped to the special for-header scope, not the scope that wraps the statement. As such, the `x` is tdz'd and it the `[x,y]` part should result in a runtime tdz error over accessing `x`.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-for (let [x] in {a: 1, b: 2}) $(x);
+let x = 1;
+let y = {};
+for (let [x] in [y]) {
+  let y = 2;
+  $(x);
+}
 `````
 
 ## Normalized
@@ -19,8 +24,10 @@ for (let [x] in {a: 1, b: 2}) $(x);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
+let x = 1;
+let y = {};
 {
-  const tmpForInDeclRhs = { a: 1, b: 2 };
+  const tmpForInDeclRhs = [y];
   let tmpForInDeclLhs;
   let x;
   for (tmpForInDeclLhs in tmpForInDeclRhs) {
@@ -28,7 +35,10 @@ var arrPatternSplat;
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
-    $(x);
+    {
+      let y_1 = 2;
+      $(x);
+    }
   }
 }
 `````
@@ -38,7 +48,9 @@ var arrPatternSplat;
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-const tmpForInDeclRhs = { a: 1, b: 2 };
+let x = 1;
+let y = {};
+const tmpForInDeclRhs = [y];
 let tmpForInDeclLhs;
 let x;
 for (tmpForInDeclLhs in tmpForInDeclRhs) {
@@ -52,10 +64,11 @@ for (tmpForInDeclLhs in tmpForInDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "b"
- - 2: undefined
+ - 0: "0"
+ - 1: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+["<crash[ Identifier 'x' has already been declared ]>"];
+

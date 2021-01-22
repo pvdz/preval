@@ -29,20 +29,19 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 {
-  let tmpForInLhsDecl;
-  {
-    arrAssignPatternRhs_1 = z;
-    arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-    x = arrPatternSplat_1[1];
-    y = arrPatternSplat_1[2];
-    arrAssignPatternRhs = arrAssignPatternRhs_1;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    a = arrPatternSplat[0];
-    b = arrPatternSplat[1];
-    const tmpForInRhs = arrAssignPatternRhs;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+  arrAssignPatternRhs_1 = z;
+  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
+  x = arrPatternSplat_1[1];
+  y = arrPatternSplat_1[2];
+  arrAssignPatternRhs = arrAssignPatternRhs_1;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
+  const tmpForInDeclRhs = arrAssignPatternRhs;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, x, y, z);
@@ -60,7 +59,6 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let tmpForInLhsDecl;
 arrAssignPatternRhs_1 = z;
 arrPatternSplat_1 = [...arrAssignPatternRhs_1];
 x = arrPatternSplat_1[1];
@@ -69,9 +67,11 @@ arrAssignPatternRhs = arrAssignPatternRhs_1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
-const tmpForInRhs = arrAssignPatternRhs;
-for (tmpForInLhsDecl in tmpForInRhs) {
-  let x = tmpForInLhsDecl;
+const tmpForInDeclRhs = arrAssignPatternRhs;
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in tmpForInDeclRhs) {
+  x = tmpForInDeclLhs;
 }
 $(a, b, x, y, z);
 `````
@@ -81,9 +81,8 @@ $(a, b, x, y, z);
 Should call `$` with:
  - 0: <crash[ Cannot access 'x' before initialization ]>
 
-Normalized calls: BAD?!
-[[10, 20, 20, 30, [10, 20, 30]], null];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[[10, 20, 20, 30, [10, 20, 30]], null];
+["<crash[ Identifier 'x' has already been declared ]>"];
 

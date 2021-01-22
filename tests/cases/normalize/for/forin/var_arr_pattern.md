@@ -17,15 +17,16 @@ for (let {x} in {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
+var objAssignPatternRhs;
 {
-  let tmpForInLhsDecl;
-  {
-    const tmpForInRhs = { a: 1, b: 2 };
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let bindingPatternObjRoot = tmpForInLhsDecl;
-      let x = bindingPatternObjRoot.x;
-      $(x);
-    }
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    objAssignPatternRhs = tmpForInDeclLhs;
+    x = objAssignPatternRhs.x;
+    objAssignPatternRhs;
+    $(x);
   }
 }
 `````
@@ -33,11 +34,13 @@ for (let {x} in {a: 1, b: 2}) $(x);
 ## Output
 
 `````js filename=intro
-let tmpForInLhsDecl;
-const tmpForInRhs = { a: 1, b: 2 };
-for (tmpForInLhsDecl in tmpForInRhs) {
-  let bindingPatternObjRoot = tmpForInLhsDecl;
-  let x = bindingPatternObjRoot.x;
+var objAssignPatternRhs;
+const tmpForInDeclRhs = { a: 1, b: 2 };
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in tmpForInDeclRhs) {
+  objAssignPatternRhs = tmpForInDeclLhs;
+  x = objAssignPatternRhs.x;
   $(x);
 }
 `````

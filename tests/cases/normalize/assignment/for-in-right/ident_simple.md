@@ -23,13 +23,12 @@ let a = 1;
 let b = 2;
 let c = 3;
 {
-  let tmpForInLhsDecl;
-  {
-    a = b;
-    const tmpForInRhs = b;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+  a = b;
+  const tmpForInDeclRhs = b;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c);
@@ -39,9 +38,11 @@ $(a, b, c);
 
 `````js filename=intro
 let a = 1;
-let tmpForInLhsDecl;
 a = 2;
-for (tmpForInLhsDecl in 2) {
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in 2) {
+  x = tmpForInDeclLhs;
 }
 $(a, 2, 3);
 `````

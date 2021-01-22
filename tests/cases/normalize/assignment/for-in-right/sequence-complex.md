@@ -25,17 +25,16 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 {
-  let tmpForInLhsDecl;
   {
-    {
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemLhsObj.c = d;
-    }
-    const tmpForInRhs = d;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+    a;
+    tmpAssignMemLhsObj = $(b);
+    tmpAssignMemLhsObj.c = d;
+  }
+  const tmpForInDeclRhs = d;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c, d);
@@ -46,10 +45,12 @@ $(a, b, c, d);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 let b = { c: 2 };
-let tmpForInLhsDecl;
 tmpAssignMemLhsObj = $(b);
 tmpAssignMemLhsObj.c = 3;
-for (tmpForInLhsDecl in 3) {
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in 3) {
+  x = tmpForInDeclLhs;
 }
 $(1, b, 'unused', 3);
 `````

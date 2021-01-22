@@ -24,20 +24,19 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 {
-  let tmpForInLhsDecl;
+  a;
+  let tmpBindInitMemberObject = $(b);
   {
     a;
-    let tmpBindInitMemberObject = $(b);
-    {
-      a;
-      b.c = d;
-    }
-    let tmpBindInitRhs = d;
-    tmpBindInitMemberObject.c = tmpBindInitRhs;
-    const tmpForInRhs = tmpBindInitRhs;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+    b.c = d;
+  }
+  let tmpBindInitRhs = d;
+  tmpBindInitMemberObject.c = tmpBindInitRhs;
+  const tmpForInDeclRhs = tmpBindInitRhs;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c, d);
@@ -47,11 +46,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 let b = { c: 2 };
-let tmpForInLhsDecl;
 let tmpBindInitMemberObject = $(b);
 b.c = 3;
 tmpBindInitMemberObject.c = 3;
-for (tmpForInLhsDecl in 3) {
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in 3) {
+  x = tmpForInDeclLhs;
 }
 $(1, b, 'unused', 3);
 `````

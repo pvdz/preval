@@ -26,16 +26,15 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
-  let tmpForInLhsDecl;
-  {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-    tmpAssignComMemLhsProp = $('x');
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-    const tmpForInRhs = b;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+  const tmpForInDeclRhs = b;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c);
@@ -48,12 +47,14 @@ var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 let a = { x: 10 };
-let tmpForInLhsDecl;
 tmpAssignMemLhsObj = $(a);
 tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
 tmpAssignComMemLhsProp = $('x');
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-for (tmpForInLhsDecl in 2) {
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in 2) {
+  x = tmpForInDeclLhs;
 }
 $(a, 2, 3);
 `````

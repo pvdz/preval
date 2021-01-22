@@ -29,20 +29,19 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let tmpForInLhsDecl;
-  {
-    tmpNestedAssignMemberObj = b;
-    tmpNestedAssignObj = $(c);
-    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
-    tmpNestedAssignMemberRhs_1 = $(d);
-    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-    a = tmpNestedAssignMemberRhs;
-    const tmpForInRhs = a;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+  tmpNestedAssignMemberObj = b;
+  tmpNestedAssignObj = $(c);
+  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
+  tmpNestedAssignMemberRhs_1 = $(d);
+  tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+  a = tmpNestedAssignMemberRhs;
+  const tmpForInDeclRhs = a;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c);
@@ -58,7 +57,6 @@ var tmpNestedAssignMemberObj_1;
 var tmpNestedAssignMemberRhs_1;
 let a = 1;
 let b = { x: 2 };
-let tmpForInLhsDecl;
 tmpNestedAssignMemberObj = b;
 tmpNestedAssignObj = $(3);
 tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
@@ -67,8 +65,11 @@ tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
 tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
-const tmpForInRhs = a;
-for (tmpForInLhsDecl in tmpForInRhs) {
+const tmpForInDeclRhs = a;
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in tmpForInDeclRhs) {
+  x = tmpForInDeclLhs;
 }
 $(a, b, 3);
 `````

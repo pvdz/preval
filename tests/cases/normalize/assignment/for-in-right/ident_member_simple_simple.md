@@ -24,15 +24,14 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  let tmpForInLhsDecl;
-  {
-    tmpNestedPropAssignRhs = c;
-    b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    const tmpForInRhs = a;
-    for (tmpForInLhsDecl in tmpForInRhs) {
-      let x = tmpForInLhsDecl;
-    }
+  tmpNestedPropAssignRhs = c;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  const tmpForInDeclRhs = a;
+  let tmpForInDeclLhs;
+  let x;
+  for (tmpForInDeclLhs in tmpForInDeclRhs) {
+    x = tmpForInDeclLhs;
   }
 }
 $(a, b, c);
@@ -44,12 +43,14 @@ $(a, b, c);
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-let tmpForInLhsDecl;
 tmpNestedPropAssignRhs = 3;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-const tmpForInRhs = a;
-for (tmpForInLhsDecl in tmpForInRhs) {
+const tmpForInDeclRhs = a;
+let tmpForInDeclLhs;
+let x;
+for (tmpForInDeclLhs in tmpForInDeclRhs) {
+  x = tmpForInDeclLhs;
 }
 $(a, b, 3);
 `````

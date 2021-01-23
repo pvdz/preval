@@ -246,7 +246,7 @@ export function newExpression(callee, args) {
 }
 
 export function returnStatement(argument = null) {
-  if (typeof argument === 'string') argument = AST.identifier(argument);
+  if (typeof argument === 'string') argument = identifier(argument);
 
   return {
     type: 'ReturnStatement',
@@ -309,6 +309,16 @@ export function switchStatement(discriminant, cases) {
     discriminant,
     cases,
     $p: $p,
+  };
+}
+
+export function throwStatement(argument = null) {
+  if (typeof argument === 'string') argument = identifier(argument);
+
+  return {
+    type: 'ThrowStatement',
+    argument,
+    $p: $p(),
   };
 }
 

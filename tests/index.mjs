@@ -14,9 +14,11 @@ import {
   ORANGE,
   GOOD,
   BAD,
-  fromMarkdownCase,
-  toMarkdownCase,
   fmat,
+  fromMarkdownCase,
+  toEvaluationResult,
+  toMarkdownCase,
+  toNormalizedResult,
 } from './utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
@@ -35,7 +37,7 @@ let snap = 0; // snapshot fail
 let fail = 0; // crash
 let badNorm = 0; // evaluation of normalized code does not match input
 let badFinal = 0; // evaluation of final output does not match input
-testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 }, i));
+testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 
 console.log(
   `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
@@ -87,10 +89,12 @@ function runTestCase(
 
   const evalled = { $in: [], $norm: [], $out: [] };
   function ev(desc, fdata, stack) {
+    if (!fdata) return stack.slice(0);
     try {
       let before = true;
       function $(...a) {
         if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
+        //stack.push(String(a));
         stack.push(a);
         return a[0];
       }
@@ -140,17 +144,10 @@ function runTestCase(
     return stack.slice(0);
   }
   evalled.$in = ev('input', fin, evalled.$in);
-  evalled.$norm = ev('normalized', output.normalized, evalled.$norm);
-  evalled.$out = ev('output', output.files, evalled.$out);
-
-  //if (!lastError) {
-  //  const jin = JSON.stringify([evalled.in, evalled.$in]);
-  //  if (jin !== JSON.stringify([evalled.norm, evalled.$norm])) {
-  //    lastError = new Error('Eval mismatch between input and normalized code');
-  //  } else if (jin !== JSON.stringify([evalled.out, evalled.$out])) {
-  //    lastError = new Error('Eval mismatch between input and normalized code');
-  //  }
-  //}
+  evalled.$norm = ev('normalized', output?.normalized, evalled.$norm);
+  if (!CONFIG.onlyNormalized) {
+    evalled.$out = ev('output', output?.files, evalled.$out);
+  }
 
   if (withOutput) {
     console.log('\n');
@@ -186,26 +183,33 @@ function runTestCase(
     throw new Error('the test failed...');
   }
 
-  const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled });
-  if (md2 !== md) {
-    ++snap;
-
-    if (CONFIG.fileVerbatim) {
-      console.log('Not writing result:');
-      console.log(md2);
-      console.log();
-    } else {
-      fs.writeFileSync(fname, md2, 'utf8');
-    }
-  }
-
-  if (md2.includes('BAD?!')) ++badNorm;
-  else if (md2.includes('BAD!!')) ++badFinal;
-
-  if (withOutput) {
-    console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
+  if (CONFIG.onlyNormalized) {
+    console.log('Not writing result. Showing normalized results:');
+    console.log(toNormalizedResult(output.normalized));
     console.log();
-    console.log(md2);
-    console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
+    console.log(toEvaluationResult(evalled, output.files, true));
+  } else {
+    const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled });
+    if (md2 !== md) {
+      ++snap;
+
+      if (CONFIG.fileVerbatim) {
+        console.log('Not writing result:');
+        console.log(md2);
+        console.log();
+      } else {
+        fs.writeFileSync(fname, md2, 'utf8');
+      }
+    }
+
+    if (md2.includes('BAD?!')) ++badNorm;
+    else if (md2.includes('BAD!!')) ++badFinal;
+
+    if (withOutput) {
+      console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
+      console.log();
+      console.log(md2);
+      console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
+    }
   }
 }

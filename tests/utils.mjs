@@ -126,11 +126,39 @@ export function fmat(code) {
   }
 }
 
-export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
+export function toNormalizedResult(obj) {
+  return (
+    '\n\n## Normalized\n\n' +
+    Object.keys(obj)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
+      .join('\n\n')
+  );
+}
+export function toEvaluationResult(evalled, files, skipFinal) {
   const shouldBeOutput = fmat(JSON.stringify(evalled.$in));
   const printOutput = evalled.$in.map((s, i) => ' - ' + i + ': ' + (s && JSON.stringify(s).slice(1, -1))).join('\n');
   const normalizedOutput = fmat(JSON.stringify(evalled.$norm));
   const finalOutput = fmat(JSON.stringify(evalled.$out));
+
+  return (
+    '\n\n## Output\n\n' +
+    Object.keys(files)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````js filename=' + key + '\n' + fmat(files[key]).trim() + '\n`````')
+      .join('\n\n') +
+    '\n\n## Result\n\n' +
+    'Should call `$` with:\n' +
+    printOutput +
+    '\n\n' +
+    'Normalized calls:' +
+    (shouldBeOutput === normalizedOutput ? ' Same\n' : ' BAD?!\n' + normalizedOutput) +
+    '\n' +
+    (skipFinal ? '' : 'Final output calls:' + (shouldBeOutput === finalOutput ? ' Same' : ' BAD!!\n' + finalOutput) + '\n')
+  );
+}
+
+export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
   const content =
     mdHead +
     '\n\n' +
@@ -142,11 +170,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     //evalled.$in.length +
     //'x):\n' +
     //evalled.$in.map((obj) => '\n - ' + JSON.stringify(obj)).join(',') +
-    '\n\n## Normalized\n\n' +
-    Object.keys(output.normalized)
-      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-      .map((key) => '`````js filename=' + key + '\n' + fmat(output.normalized[key]).trim() + '\n`````')
-      .join('\n\n') +
+    toNormalizedResult(output.normalized) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +
     //Object.keys(output.files)
@@ -173,21 +197,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     //      '\n`````',
     //  )
     //  .join('\n\n') +
-    '\n\n## Output\n\n' +
-    Object.keys(output.files)
-      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-      .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-      .join('\n\n') +
-    '\n\n## Result\n\n' +
-    'Should call `$` with:\n' +
-    printOutput +
-    '\n\n' +
-    'Normalized calls:' +
-    (shouldBeOutput === normalizedOutput ? ' Same\n' : ' BAD?!\n' + normalizedOutput) +
-    '\n' +
-    'Final output calls:' +
-    (shouldBeOutput === finalOutput ? ' Same' : ' BAD!!\n' + finalOutput) +
-    '\n';
+    toEvaluationResult(evalled, output.files);
 
   return content;
 }

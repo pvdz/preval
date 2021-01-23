@@ -16,6 +16,7 @@ set -e # Exit on error
 ACTION=''
 ACTION_ARG=''
 PARAM_NO_COLOR=''
+PARAM_NORM=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -103,6 +104,10 @@ Preval CLI Toolkit help:
       shift
       PARAM_NO_COLOR="-C"
       ;;
+    -n)
+      # Only show normalized output
+      PARAM_NORM='-n'
+      ;;
 
     *)
       echo "p: Unsupported action or option... \`$1\` Use --help for options"
@@ -131,7 +136,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}"
     ;;
 esac
 set +x

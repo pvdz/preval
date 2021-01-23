@@ -42,6 +42,12 @@ export function parseTestArgs() {
         break;
       }
 
+      case '-n': {
+        // Only output the normalized code
+        config.onlyNormalized = true;
+        break;
+      }
+
       default: {
         throw new Error('Unknown parameter: ' + param);
       }

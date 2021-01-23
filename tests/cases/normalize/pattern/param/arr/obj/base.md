@@ -34,11 +34,11 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 tmpElement = { x: 1, y: 2, z: 3 };
-tmpArg_1 = [tmpElement, 20, 30];
-tmpArg = f(tmpArg_1, 200);
+tmpArg$1 = [tmpElement, 20, 30];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -59,11 +59,11 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 tmpElement = { x: 1, y: 2, z: 3 };
-tmpArg_1 = [tmpElement, 20, 30];
-tmpArg = f(tmpArg_1, 200);
+tmpArg$1 = [tmpElement, 20, 30];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

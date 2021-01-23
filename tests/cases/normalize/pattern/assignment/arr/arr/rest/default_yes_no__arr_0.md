@@ -22,7 +22,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 arrAssignPatternRhs = [0, 4, 5];
@@ -35,8 +35,8 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1.slice(0);
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1.slice(0);
 arrAssignPatternRhs;
 $('bad');
 `````
@@ -48,7 +48,7 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 arrAssignPatternRhs = [0, 4, 5];
@@ -61,8 +61,8 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1.slice(0);
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1.slice(0);
 $('bad');
 `````
 

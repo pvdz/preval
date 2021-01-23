@@ -23,7 +23,7 @@ $(f('abc', 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
+  let arrPatternSplat$1 = [...arrPatternStep];
   return 'ok';
 }
 var tmpArg;

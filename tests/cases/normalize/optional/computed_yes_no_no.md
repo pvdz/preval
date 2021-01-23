@@ -20,19 +20,19 @@ $(a?.[b][c][d]);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
 var tmpComputedObj;
 var tmpComputedProp;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 const b = 'b';
 const c = 'c';
@@ -44,20 +44,20 @@ if (tmpTernaryTest) {
   tmpTernaryAlternate = a[b];
   tmpOptionalChaining = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining == null;
+if (tmpTernaryTest$1) {
   tmpArg = undefined;
 } else {
   tmpComputedObj = tmpOptionalChaining;
-  tmpTernaryTest_2 = c == null;
-  if (tmpTernaryTest_2) {
+  tmpTernaryTest$2 = c == null;
+  if (tmpTernaryTest$2) {
     tmpComputedProp = undefined;
   } else {
-    tmpTernaryAlternate_2 = c[d];
-    tmpComputedProp = tmpTernaryAlternate_2;
+    tmpTernaryAlternate$2 = c[d];
+    tmpComputedProp = tmpTernaryAlternate$2;
   }
-  tmpTernaryAlternate_1 = tmpComputedObj[tmpComputedProp];
-  tmpArg = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpComputedObj[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate$1;
 }
 $(tmpArg);
 `````
@@ -66,19 +66,19 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
 var tmpComputedObj;
 var tmpComputedProp;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
@@ -87,20 +87,20 @@ if (tmpTernaryTest) {
   tmpTernaryAlternate = a.b;
   tmpOptionalChaining = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining == null;
+if (tmpTernaryTest$1) {
   tmpArg = undefined;
 } else {
   tmpComputedObj = tmpOptionalChaining;
-  tmpTernaryTest_2 = false;
-  if (tmpTernaryTest_2) {
+  tmpTernaryTest$2 = false;
+  if (tmpTernaryTest$2) {
     tmpComputedProp = undefined;
   } else {
-    tmpTernaryAlternate_2 = 'c'.d;
-    tmpComputedProp = tmpTernaryAlternate_2;
+    tmpTernaryAlternate$2 = 'c'.d;
+    tmpComputedProp = tmpTernaryAlternate$2;
   }
-  tmpTernaryAlternate_1 = tmpComputedObj[tmpComputedProp];
-  tmpArg = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpComputedObj[tmpComputedProp];
+  tmpArg = tmpTernaryAlternate$1;
 }
 $(tmpArg);
 `````

@@ -32,7 +32,7 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
-const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 $('ok');
 `````
 

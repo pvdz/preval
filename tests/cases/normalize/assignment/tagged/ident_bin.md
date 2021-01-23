@@ -20,7 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
@@ -28,8 +28,8 @@ let c = 3;
 tmpArg = ['abc ', ' def'];
 tmpNestedComplexRhs = b + c;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, b, c);
 `````
 
@@ -37,14 +37,14 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 let a = 1;
 tmpArg = ['abc ', ' def'];
 tmpNestedComplexRhs = 5;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, 5, 3);
 `````
 

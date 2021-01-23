@@ -33,25 +33,25 @@ function f(tmpParamPattern) {
       objPatternAfterDefault = objPatternBeforeDefault;
     }
   }
-  let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   let y;
   {
-    let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = objPatternBeforeDefault$1 === undefined;
+    if (ifTestTmp$1) {
       y = $('pass');
     } else {
-      y = objPatternBeforeDefault_1;
+      y = objPatternBeforeDefault$1;
     }
   }
   return y;
 }
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: undefined, z: 3 };
-tmpArg_2 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg_1 = f(tmpArg_2, 10);
-$(tmpArg_1);
+tmpArg$2 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg$1 = f(tmpArg$2, 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -68,23 +68,23 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   let y;
-  let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = objPatternBeforeDefault$1 === undefined;
+  if (ifTestTmp$1) {
     y = $('pass');
   } else {
-    y = objPatternBeforeDefault_1;
+    y = objPatternBeforeDefault$1;
   }
   return y;
 }
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: undefined, z: 3 };
-tmpArg_2 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg_1 = f(tmpArg_2, 10);
-$(tmpArg_1);
+tmpArg$2 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg$1 = f(tmpArg$2, 10);
+$(tmpArg$1);
 `````
 
 ## Result

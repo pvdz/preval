@@ -32,15 +32,15 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
 let x;
 {
-  let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
+  if (ifTestTmp$1) {
     x = $('fail');
   } else {
-    x = arrPatternBeforeDefault_1;
+    x = arrPatternBeforeDefault$1;
   }
 }
 $(x);
@@ -60,14 +60,14 @@ if (ifTestTmp) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
 let x;
-let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
+if (ifTestTmp$1) {
   x = $('fail');
 } else {
-  x = arrPatternBeforeDefault_1;
+  x = arrPatternBeforeDefault$1;
 }
 $(x);
 `````

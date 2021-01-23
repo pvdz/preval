@@ -19,13 +19,13 @@ let x = 10;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1[0];
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1[0];
 arrAssignPatternRhs;
 `````
 
@@ -35,13 +35,13 @@ arrAssignPatternRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1[0];
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1[0];
 `````
 
 ## Result

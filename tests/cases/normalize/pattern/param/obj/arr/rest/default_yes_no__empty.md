@@ -37,9 +37,9 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return 'bad';
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -60,9 +60,9 @@ function f(tmpParamPattern) {
   arrPatternSplat.slice(0);
   return 'bad';
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

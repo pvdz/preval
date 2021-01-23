@@ -22,14 +22,14 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpAssignMemLhsObj;
   var tmpArg;
   var tmpNullish;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
@@ -41,8 +41,8 @@ function f() {
     } else {
       tmpNullish = obj;
     }
-    tmpTernaryTest_1 = tmpNullish == null;
-    if (tmpTernaryTest_1) {
+    tmpTernaryTest$1 = tmpNullish == null;
+    if (tmpTernaryTest$1) {
       tmpArg = b;
     } else {
       tmpArg = tmpNullish;
@@ -51,9 +51,9 @@ function f() {
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -61,14 +61,14 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpAssignMemLhsObj;
   var tmpArg;
   var tmpNullish;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
@@ -79,8 +79,8 @@ function f() {
   } else {
     tmpNullish = obj;
   }
-  tmpTernaryTest_1 = tmpNullish == null;
-  if (tmpTernaryTest_1) {
+  tmpTernaryTest$1 = tmpNullish == null;
+  if (tmpTernaryTest$1) {
     tmpArg = b;
   } else {
     tmpArg = tmpNullish;
@@ -88,9 +88,9 @@ function f() {
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

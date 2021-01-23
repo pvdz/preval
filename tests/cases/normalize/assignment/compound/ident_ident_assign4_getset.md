@@ -36,9 +36,9 @@ $('final:', a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
@@ -72,7 +72,7 @@ let c = {
   },
 };
 tmpAssignMemLhsObj = $(a, 'a()');
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpNestedAssignObj = $(b, 'b()');
 tmpBinaryLeft = tmpNestedAssignObj.x;
 tmpMemberComplexObj = $(c, 'c()');
@@ -80,8 +80,8 @@ tmpBinaryRight = tmpMemberComplexObj.x;
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 $('final:', a, b, c);
 `````
 
@@ -89,9 +89,9 @@ $('final:', a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
@@ -125,7 +125,7 @@ let c = {
   },
 };
 tmpAssignMemLhsObj = $(a, 'a()');
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpNestedAssignObj = $(b, 'b()');
 tmpBinaryLeft = tmpNestedAssignObj.x;
 tmpMemberComplexObj = $(c, 'c()');
@@ -133,8 +133,8 @@ tmpBinaryRight = tmpMemberComplexObj.x;
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 $('final:', a, b, c);
 `````
 

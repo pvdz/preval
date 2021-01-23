@@ -23,15 +23,15 @@ $(f([[1, 2, 3], 4, 5], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
+  let arrPatternSplat$1 = [...arrPatternStep];
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 tmpElement = [1, 2, 3];
-tmpArg_1 = [tmpElement, 4, 5];
-tmpArg = f(tmpArg_1, 200);
+tmpArg$1 = [tmpElement, 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -45,11 +45,11 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 tmpElement = [1, 2, 3];
-tmpArg_1 = [tmpElement, 4, 5];
-tmpArg = f(tmpArg_1, 200);
+tmpArg$1 = [tmpElement, 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

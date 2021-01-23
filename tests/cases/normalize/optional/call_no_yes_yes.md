@@ -46,47 +46,47 @@ function a() {
 }
 var tmpArg;
 var tmpOptionalChaining;
-var tmpOptionalChaining_1;
-var tmpOptionalChaining_2;
-var tmpOptionalChaining_3;
+var tmpOptionalChaining$1;
+var tmpOptionalChaining$2;
+var tmpOptionalChaining$3;
 var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-var tmpTernaryTest_3;
-var tmpTernaryAlternate_3;
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+var tmpTernaryTest$3;
+var tmpTernaryAlternate$3;
 tmpMemberComplexObj = a();
-tmpOptionalChaining_3 = tmpMemberComplexObj.b;
-tmpTernaryTest = tmpOptionalChaining_3 == null;
+tmpOptionalChaining$3 = tmpMemberComplexObj.b;
+tmpTernaryTest = tmpOptionalChaining$3 == null;
 if (tmpTernaryTest) {
-  tmpOptionalChaining_2 = undefined;
+  tmpOptionalChaining$2 = undefined;
 } else {
-  tmpTernaryAlternate = tmpOptionalChaining_3();
-  tmpOptionalChaining_2 = tmpTernaryAlternate;
+  tmpTernaryAlternate = tmpOptionalChaining$3();
+  tmpOptionalChaining$2 = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining_2 == null;
-if (tmpTernaryTest_1) {
-  tmpOptionalChaining_1 = undefined;
+tmpTernaryTest$1 = tmpOptionalChaining$2 == null;
+if (tmpTernaryTest$1) {
+  tmpOptionalChaining$1 = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining_2.c;
-  tmpOptionalChaining_1 = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining$2.c;
+  tmpOptionalChaining$1 = tmpTernaryAlternate$1;
 }
-tmpTernaryTest_2 = tmpOptionalChaining_1 == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpOptionalChaining$1 == null;
+if (tmpTernaryTest$2) {
   tmpOptionalChaining = undefined;
 } else {
-  tmpTernaryAlternate_2 = tmpOptionalChaining_1();
-  tmpOptionalChaining = tmpTernaryAlternate_2;
+  tmpTernaryAlternate$2 = tmpOptionalChaining$1();
+  tmpOptionalChaining = tmpTernaryAlternate$2;
 }
-tmpTernaryTest_3 = tmpOptionalChaining == null;
-if (tmpTernaryTest_3) {
+tmpTernaryTest$3 = tmpOptionalChaining == null;
+if (tmpTernaryTest$3) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_3 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate_3;
+  tmpTernaryAlternate$3 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate$3;
 }
 $(tmpArg);
 `````
@@ -113,47 +113,47 @@ function a() {
 }
 var tmpArg;
 var tmpOptionalChaining;
-var tmpOptionalChaining_1;
-var tmpOptionalChaining_2;
-var tmpOptionalChaining_3;
+var tmpOptionalChaining$1;
+var tmpOptionalChaining$2;
+var tmpOptionalChaining$3;
 var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-var tmpTernaryTest_3;
-var tmpTernaryAlternate_3;
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+var tmpTernaryTest$3;
+var tmpTernaryAlternate$3;
 tmpMemberComplexObj = a();
-tmpOptionalChaining_3 = tmpMemberComplexObj.b;
-tmpTernaryTest = tmpOptionalChaining_3 == null;
+tmpOptionalChaining$3 = tmpMemberComplexObj.b;
+tmpTernaryTest = tmpOptionalChaining$3 == null;
 if (tmpTernaryTest) {
-  tmpOptionalChaining_2 = undefined;
+  tmpOptionalChaining$2 = undefined;
 } else {
-  tmpTernaryAlternate = tmpOptionalChaining_3();
-  tmpOptionalChaining_2 = tmpTernaryAlternate;
+  tmpTernaryAlternate = tmpOptionalChaining$3();
+  tmpOptionalChaining$2 = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining_2 == null;
-if (tmpTernaryTest_1) {
-  tmpOptionalChaining_1 = undefined;
+tmpTernaryTest$1 = tmpOptionalChaining$2 == null;
+if (tmpTernaryTest$1) {
+  tmpOptionalChaining$1 = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining_2.c;
-  tmpOptionalChaining_1 = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining$2.c;
+  tmpOptionalChaining$1 = tmpTernaryAlternate$1;
 }
-tmpTernaryTest_2 = tmpOptionalChaining_1 == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpOptionalChaining$1 == null;
+if (tmpTernaryTest$2) {
   tmpOptionalChaining = undefined;
 } else {
-  tmpTernaryAlternate_2 = tmpOptionalChaining_1();
-  tmpOptionalChaining = tmpTernaryAlternate_2;
+  tmpTernaryAlternate$2 = tmpOptionalChaining$1();
+  tmpOptionalChaining = tmpTernaryAlternate$2;
 }
-tmpTernaryTest_3 = tmpOptionalChaining == null;
-if (tmpTernaryTest_3) {
+tmpTernaryTest$3 = tmpOptionalChaining == null;
+if (tmpTernaryTest$3) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_3 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate_3;
+  tmpTernaryAlternate$3 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate$3;
 }
 $(tmpArg);
 `````

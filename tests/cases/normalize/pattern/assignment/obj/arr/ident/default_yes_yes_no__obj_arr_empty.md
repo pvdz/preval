@@ -26,7 +26,7 @@ var arrPatternBeforeDefault;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
+var tmpTernaryTest$1;
 objAssignPatternRhs = { x: [], a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
@@ -39,8 +39,8 @@ if (tmpTernaryTest) {
 }
 arrPatternSplat = [...objPatternAfterDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest$1) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;
@@ -60,7 +60,7 @@ var arrPatternBeforeDefault;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
+var tmpTernaryTest$1;
 objAssignPatternRhs = { x: [], a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
@@ -73,8 +73,8 @@ if (tmpTernaryTest) {
 }
 arrPatternSplat = [...objPatternAfterDefault];
 arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest_1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpTernaryTest$1) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;

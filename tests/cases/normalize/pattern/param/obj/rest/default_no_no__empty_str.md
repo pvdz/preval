@@ -35,9 +35,9 @@ function f($tdz$__pattern) {
   let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
-var tmpArg_1;
-tmpArg_1 = f('', 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f('', 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -56,9 +56,9 @@ function f($tdz$__pattern) {
   let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
-var tmpArg_1;
-tmpArg_1 = f('', 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f('', 10);
+$(tmpArg$1);
 `````
 
 ## Result

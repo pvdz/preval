@@ -22,13 +22,13 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternBeforeDefault_1;
+var arrPatternSplat$1;
+var arrPatternBeforeDefault$1;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
-var tmpTernaryConsequent_1;
+var tmpTernaryTest$1;
+var tmpTernaryConsequent$1;
 arrAssignPatternRhs = [undefined, 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
@@ -40,14 +40,14 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
-tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
-if (tmpTernaryTest_1) {
-  tmpTernaryConsequent_1 = $('fail');
-  x = tmpTernaryConsequent_1;
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  x = tmpTernaryConsequent$1;
 } else {
-  x = arrPatternBeforeDefault_1;
+  x = arrPatternBeforeDefault$1;
 }
 arrAssignPatternRhs;
 $(x);
@@ -60,13 +60,13 @@ var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternBeforeDefault;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternBeforeDefault_1;
+var arrPatternSplat$1;
+var arrPatternBeforeDefault$1;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
-var tmpTernaryConsequent_1;
+var tmpTernaryTest$1;
+var tmpTernaryConsequent$1;
 arrAssignPatternRhs = [undefined, 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
@@ -78,14 +78,14 @@ if (tmpTernaryTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternBeforeDefault_1 = arrPatternSplat_1[0];
-tmpTernaryTest_1 = arrPatternBeforeDefault_1 === undefined;
-if (tmpTernaryTest_1) {
-  tmpTernaryConsequent_1 = $('fail');
-  x = tmpTernaryConsequent_1;
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  x = tmpTernaryConsequent$1;
 } else {
-  x = arrPatternBeforeDefault_1;
+  x = arrPatternBeforeDefault$1;
 }
 $(x);
 `````

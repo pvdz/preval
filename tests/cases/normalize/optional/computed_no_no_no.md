@@ -20,18 +20,18 @@ $(a[b][c][d]);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpMemberComplexObj$1;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 const b = 'b';
 const c = 'c';
 const d = 'd';
-tmpMemberComplexObj_1 = a[b];
-tmpMemberComplexObj = tmpMemberComplexObj_1[c];
+tmpMemberComplexObj$1 = a[b];
+tmpMemberComplexObj = tmpMemberComplexObj$1[c];
 tmpArg = tmpMemberComplexObj[d];
 $(tmpArg);
 `````
@@ -40,15 +40,15 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpMemberComplexObj$1;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
-tmpMemberComplexObj_1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpMemberComplexObj$1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj$1.c;
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````

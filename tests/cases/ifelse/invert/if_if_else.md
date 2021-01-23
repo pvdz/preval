@@ -24,8 +24,8 @@ if (!$(1))
   if (ifTestTmp) {
   } else {
     {
-      let ifTestTmp_1 = $(2);
-      if (ifTestTmp_1) {
+      let ifTestTmp$1 = $(2);
+      if (ifTestTmp$1) {
         $(3);
       } else {
         $(4);
@@ -41,8 +41,8 @@ if (!$(1))
 let ifTestTmp = $(1);
 if (ifTestTmp) {
 } else {
-  let ifTestTmp_1 = $(2);
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $(2);
+  if (ifTestTmp$1) {
     $(3);
   } else {
     $(4);

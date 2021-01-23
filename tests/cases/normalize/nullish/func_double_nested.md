@@ -21,34 +21,34 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
-  var tmpObjPropValue_2;
+  var tmpObjPropValue$1;
+  var tmpObjPropValue$2;
   var tmpArg;
   var tmpNullish;
-  var tmpNullish_1;
+  var tmpNullish$1;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  var tmpTernaryTest_2;
-  tmpObjPropValue_2 = $();
-  tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  var tmpTernaryTest$2;
+  tmpObjPropValue$2 = $();
+  tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   {
     obj = obj;
     tmpTernaryTest = obj == null;
     if (tmpTernaryTest) {
-      tmpNullish_1 = a;
+      tmpNullish$1 = a;
     } else {
-      tmpNullish_1 = obj;
+      tmpNullish$1 = obj;
     }
-    tmpTernaryTest_1 = tmpNullish_1 == null;
-    if (tmpTernaryTest_1) {
+    tmpTernaryTest$1 = tmpNullish$1 == null;
+    if (tmpTernaryTest$1) {
       tmpNullish = b;
     } else {
-      tmpNullish = tmpNullish_1;
+      tmpNullish = tmpNullish$1;
     }
-    tmpTernaryTest_2 = tmpNullish == null;
-    if (tmpTernaryTest_2) {
+    tmpTernaryTest$2 = tmpNullish == null;
+    if (tmpTernaryTest$2) {
       tmpArg = c;
     } else {
       tmpArg = tmpNullish;
@@ -57,9 +57,9 @@ function f() {
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -67,33 +67,33 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
-  var tmpObjPropValue_2;
+  var tmpObjPropValue$1;
+  var tmpObjPropValue$2;
   var tmpArg;
   var tmpNullish;
-  var tmpNullish_1;
+  var tmpNullish$1;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
-  var tmpTernaryTest_2;
-  tmpObjPropValue_2 = $();
-  tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  var tmpTernaryTest$2;
+  tmpObjPropValue$2 = $();
+  tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   obj = obj;
   tmpTernaryTest = obj == null;
   if (tmpTernaryTest) {
-    tmpNullish_1 = a;
+    tmpNullish$1 = a;
   } else {
-    tmpNullish_1 = obj;
+    tmpNullish$1 = obj;
   }
-  tmpTernaryTest_1 = tmpNullish_1 == null;
-  if (tmpTernaryTest_1) {
+  tmpTernaryTest$1 = tmpNullish$1 == null;
+  if (tmpTernaryTest$1) {
     tmpNullish = b;
   } else {
-    tmpNullish = tmpNullish_1;
+    tmpNullish = tmpNullish$1;
   }
-  tmpTernaryTest_2 = tmpNullish == null;
-  if (tmpTernaryTest_2) {
+  tmpTernaryTest$2 = tmpNullish == null;
+  if (tmpTernaryTest$2) {
     tmpArg = c;
   } else {
     tmpArg = tmpNullish;
@@ -101,9 +101,9 @@ function f() {
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

@@ -20,9 +20,9 @@ $(a, b, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
@@ -30,14 +30,14 @@ let a = { x: 1 };
 let b = { x: 10 };
 let d = 1000;
 tmpAssignMemLhsObj = $(a, 'a');
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpBinaryLeft = b.x;
 tmpBinaryRight = $(d, 'd');
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 b.x = tmpNestedPropCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 $(a, b, d);
 `````
 
@@ -45,23 +45,23 @@ $(a, b, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 let a = { x: 1 };
 let b = { x: 10 };
 tmpAssignMemLhsObj = $(a, 'a');
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpBinaryLeft = b.x;
 tmpBinaryRight = $(1000, 'd');
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 b.x = tmpNestedPropCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 $(a, b, 1000);
 `````
 

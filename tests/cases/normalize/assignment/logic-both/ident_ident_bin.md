@@ -21,7 +21,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -32,10 +32,10 @@ let d = 4;
   a = tmpNestedComplexRhs;
   let tmpAssignLogicStmtOr = tmpNestedComplexRhs;
   if (tmpAssignLogicStmtOr) {
-    tmpNestedComplexRhs_1 = c + d;
-    b = tmpNestedComplexRhs_1;
-    a = tmpNestedComplexRhs_1;
-    tmpArg = tmpNestedComplexRhs_1;
+    tmpNestedComplexRhs$1 = c + d;
+    b = tmpNestedComplexRhs$1;
+    a = tmpNestedComplexRhs$1;
+    tmpArg = tmpNestedComplexRhs$1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -49,7 +49,7 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 let a = 1;
 let b = 2;
 tmpNestedComplexRhs = 11;
@@ -57,10 +57,10 @@ b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpAssignLogicStmtOr = tmpNestedComplexRhs;
 if (tmpAssignLogicStmtOr) {
-  tmpNestedComplexRhs_1 = 11;
-  b = tmpNestedComplexRhs_1;
-  a = tmpNestedComplexRhs_1;
-  tmpArg = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs$1 = 11;
+  b = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs$1;
+  tmpArg = tmpNestedComplexRhs$1;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

@@ -23,14 +23,14 @@ In particular, the pattern's "y" should be replaced with a different name.
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 {
   let a = 1;
 }
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-a_1 = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+a_1 = objPatternNoDefault$1.z;
 objAssignPatternRhs;
 {
   let a_2 = 1;
@@ -42,11 +42,11 @@ objAssignPatternRhs;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-a_1 = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+a_1 = objPatternNoDefault$1.z;
 `````
 
 ## Result

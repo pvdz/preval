@@ -60,10 +60,10 @@ switch (6) {
 
 `````js filename=intro
 var tmpBinaryRight;
-var tmpBinaryRight_1;
-var tmpBinaryRight_2;
-var tmpBinaryRight_3;
-var tmpBinaryRight_4;
+var tmpBinaryRight$1;
+var tmpBinaryRight$2;
+var tmpBinaryRight$3;
+var tmpBinaryRight$4;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
@@ -83,13 +83,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      tmpBinaryRight_1 = $(20);
-      ifTestTmp_1 = 6 === tmpBinaryRight_1;
+      tmpBinaryRight$1 = $(20);
+      ifTestTmp$1 = 6 === tmpBinaryRight$1;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         $(2);
@@ -98,13 +98,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_2 = tmpFallthrough;
-    if (ifTestTmp_2) {
+    let ifTestTmp$2 = tmpFallthrough;
+    if (ifTestTmp$2) {
     } else {
-      tmpBinaryRight_2 = $(30);
-      ifTestTmp_2 = 6 === tmpBinaryRight_2;
+      tmpBinaryRight$2 = $(30);
+      ifTestTmp$2 = 6 === tmpBinaryRight$2;
     }
-    if (ifTestTmp_2) {
+    if (ifTestTmp$2) {
       ('case 2:');
       {
         $(3);
@@ -113,13 +113,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_3 = tmpFallthrough;
-    if (ifTestTmp_3) {
+    let ifTestTmp$3 = tmpFallthrough;
+    if (ifTestTmp$3) {
     } else {
-      tmpBinaryRight_3 = $(40);
-      ifTestTmp_3 = 6 === tmpBinaryRight_3;
+      tmpBinaryRight$3 = $(40);
+      ifTestTmp$3 = 6 === tmpBinaryRight$3;
     }
-    if (ifTestTmp_3) {
+    if (ifTestTmp$3) {
       ('case 3:');
       {
         $(4);
@@ -129,13 +129,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_4 = tmpFallthrough;
-    if (ifTestTmp_4) {
+    let ifTestTmp$4 = tmpFallthrough;
+    if (ifTestTmp$4) {
     } else {
-      tmpBinaryRight_4 = $(50);
-      ifTestTmp_4 = 6 === tmpBinaryRight_4;
+      tmpBinaryRight$4 = $(50);
+      ifTestTmp$4 = 6 === tmpBinaryRight$4;
     }
-    if (ifTestTmp_4) {
+    if (ifTestTmp$4) {
       ('case 4:');
       {
         $(5);
@@ -169,13 +169,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      tmpBinaryRight_1 = $(20);
-      ifTestTmp_1 = 6 === tmpBinaryRight_1;
+      tmpBinaryRight$1 = $(20);
+      ifTestTmp$1 = 6 === tmpBinaryRight$1;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         $(2);
@@ -184,13 +184,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_2 = tmpFallthrough;
-    if (ifTestTmp_2) {
+    let ifTestTmp$2 = tmpFallthrough;
+    if (ifTestTmp$2) {
     } else {
-      tmpBinaryRight_2 = $(30);
-      ifTestTmp_2 = 6 === tmpBinaryRight_2;
+      tmpBinaryRight$2 = $(30);
+      ifTestTmp$2 = 6 === tmpBinaryRight$2;
     }
-    if (ifTestTmp_2) {
+    if (ifTestTmp$2) {
       ('case 2:');
       {
         $(3);
@@ -199,13 +199,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_3 = tmpFallthrough;
-    if (ifTestTmp_3) {
+    let ifTestTmp$3 = tmpFallthrough;
+    if (ifTestTmp$3) {
     } else {
-      tmpBinaryRight_3 = $(40);
-      ifTestTmp_3 = 6 === tmpBinaryRight_3;
+      tmpBinaryRight$3 = $(40);
+      ifTestTmp$3 = 6 === tmpBinaryRight$3;
     }
-    if (ifTestTmp_3) {
+    if (ifTestTmp$3) {
       ('case 3:');
       {
         $(4);
@@ -215,13 +215,13 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_4 = tmpFallthrough;
-    if (ifTestTmp_4) {
+    let ifTestTmp$4 = tmpFallthrough;
+    if (ifTestTmp$4) {
     } else {
-      tmpBinaryRight_4 = $(50);
-      ifTestTmp_4 = 6 === tmpBinaryRight_4;
+      tmpBinaryRight$4 = $(50);
+      ifTestTmp$4 = 6 === tmpBinaryRight$4;
     }
-    if (ifTestTmp_4) {
+    if (ifTestTmp$4) {
       ('case 4:');
       {
         $(5);

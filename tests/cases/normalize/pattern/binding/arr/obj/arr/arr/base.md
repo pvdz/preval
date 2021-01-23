@@ -24,17 +24,17 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = [1, 2, 3];
-tmpObjPropValue = [tmpElement_1, 10];
+var tmpElement$1;
+tmpElement$1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement$1, 10];
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const arrPatternSplat_1 = [...objPatternNoDefault];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const arrPatternSplat_2 = [...arrPatternStep_1];
+const arrPatternSplat$1 = [...objPatternNoDefault];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
 $('ok');
 `````
 
@@ -43,17 +43,17 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = [1, 2, 3];
-tmpObjPropValue = [tmpElement_1, 10];
+var tmpElement$1;
+tmpElement$1 = [1, 2, 3];
+tmpObjPropValue = [tmpElement$1, 10];
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const arrPatternSplat_1 = [...objPatternNoDefault];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-[...arrPatternStep_1];
+const arrPatternSplat$1 = [...objPatternNoDefault];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+[...arrPatternStep$1];
 $('ok');
 `````
 

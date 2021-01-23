@@ -37,8 +37,8 @@ let arrPatternStep;
 const objPatternBeforeDefault = arrPatternStep.x;
 let x;
 {
-  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     x = $('fail');
   } else {
     x = objPatternBeforeDefault;
@@ -66,8 +66,8 @@ if (ifTestTmp) {
 }
 const objPatternBeforeDefault = arrPatternStep.x;
 let x;
-let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+if (ifTestTmp$1) {
   x = $('fail');
 } else {
   x = objPatternBeforeDefault;

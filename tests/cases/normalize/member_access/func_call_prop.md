@@ -28,9 +28,9 @@ function f() {
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -44,9 +44,9 @@ function f() {
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

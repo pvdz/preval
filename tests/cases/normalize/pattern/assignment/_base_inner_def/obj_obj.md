@@ -17,13 +17,13 @@
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 var objPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-objPatternBeforeDefault = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+objPatternBeforeDefault = objPatternNoDefault$1.z;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 if (tmpTernaryTest) {
   z = a;
@@ -38,13 +38,13 @@ objAssignPatternRhs;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 var objPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-objPatternBeforeDefault = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+objPatternBeforeDefault = objPatternNoDefault$1.z;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
 if (tmpTernaryTest) {
   z = a;

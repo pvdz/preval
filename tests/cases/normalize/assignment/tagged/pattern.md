@@ -20,7 +20,7 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
@@ -31,8 +31,8 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpArg_1 = arrAssignPatternRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = arrAssignPatternRhs;
+$(tmpArg, tmpArg$1);
 $(x, y, z);
 `````
 
@@ -40,7 +40,7 @@ $(x, y, z);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 let x = 1;
@@ -51,8 +51,8 @@ arrAssignPatternRhs = z;
 arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpArg_1 = arrAssignPatternRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = arrAssignPatternRhs;
+$(tmpArg, tmpArg$1);
 $(x, y, z);
 `````
 

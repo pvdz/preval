@@ -26,7 +26,7 @@ $(f());
 function f() {
   var tmpNullish;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
+  var tmpTernaryTest$1;
   const a = 10;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;
@@ -37,9 +37,9 @@ function f() {
     b = tmpNullish;
   }
   b = b;
-  tmpTernaryTest_1 = b == null;
+  tmpTernaryTest$1 = b == null;
   let c;
-  if (tmpTernaryTest_1) {
+  if (tmpTernaryTest$1) {
     c = length;
   } else {
     c = b;
@@ -60,7 +60,7 @@ $(tmpArg);
 function f() {
   var tmpNullish;
   var tmpTernaryTest;
-  var tmpTernaryTest_1;
+  var tmpTernaryTest$1;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;
   let b;
@@ -70,9 +70,9 @@ function f() {
     b = tmpNullish;
   }
   b = b;
-  tmpTernaryTest_1 = b == null;
+  tmpTernaryTest$1 = b == null;
   let c;
-  if (tmpTernaryTest_1) {
+  if (tmpTernaryTest$1) {
     c = length;
   } else {
     c = b;

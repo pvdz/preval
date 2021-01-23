@@ -23,8 +23,8 @@ $(f([, , , , 4, 5], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternBeforeDefault = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternBeforeDefault = arrPatternSplat$1[0];
   let x;
   {
     let ifTestTmp = arrPatternBeforeDefault === undefined;
@@ -37,9 +37,9 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [, , , , 4, 5];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [, , , , 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -49,8 +49,8 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternBeforeDefault = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternBeforeDefault = arrPatternSplat$1[0];
   let x;
   let ifTestTmp = arrPatternBeforeDefault === undefined;
   if (ifTestTmp) {
@@ -61,9 +61,9 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [, , , , 4, 5];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [, , , , 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

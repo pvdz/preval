@@ -26,7 +26,7 @@ const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 $('ok');
 `````
 

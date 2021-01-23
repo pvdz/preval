@@ -22,29 +22,29 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternStep_1;
+var arrPatternSplat$1;
+var arrPatternStep$1;
 var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpElement = [tmpElement_1, 14];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternStep_1 = arrPatternSplat_1[0];
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternStep$1 = arrPatternSplat$1[0];
 {
-  let tmpAssignLogicStmtOr = arrPatternStep_1 === undefined;
+  let tmpAssignLogicStmtOr = arrPatternStep$1 === undefined;
   if (tmpAssignLogicStmtOr) {
   } else {
-    tmpAssignLogicStmtOr = arrPatternStep_1 === null;
+    tmpAssignLogicStmtOr = arrPatternStep$1 === null;
   }
   if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+    objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
   } else {
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
@@ -60,28 +60,28 @@ var objAssignPatternRhs;
 var objPatternNoDefault;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternStep_1;
+var arrPatternSplat$1;
+var arrPatternStep$1;
 var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpElement = [tmpElement_1, 14];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];
 objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternStep_1 = arrPatternSplat_1[0];
-let tmpAssignLogicStmtOr = arrPatternStep_1 === undefined;
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternStep$1 = arrPatternSplat$1[0];
+let tmpAssignLogicStmtOr = arrPatternStep$1 === undefined;
 if (tmpAssignLogicStmtOr) {
 } else {
-  tmpAssignLogicStmtOr = arrPatternStep_1 === null;
+  tmpAssignLogicStmtOr = arrPatternStep$1 === null;
 }
 if (tmpAssignLogicStmtOr) {
-  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
 } else {
   objPatternCrashTest = tmpAssignLogicStmtOr;
 }

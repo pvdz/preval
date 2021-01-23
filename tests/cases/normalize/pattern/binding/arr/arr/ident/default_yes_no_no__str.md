@@ -21,8 +21,8 @@ $(x);
 const bindingPatternArrRoot = 'abc';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 {
   let ifTestTmp = arrPatternBeforeDefault === undefined;
@@ -40,8 +40,8 @@ $(x);
 `````js filename=intro
 const arrPatternSplat = [...'abc'];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 let ifTestTmp = arrPatternBeforeDefault === undefined;
 if (ifTestTmp) {

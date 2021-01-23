@@ -22,8 +22,8 @@ const {x: {y: {z}}} = 1;
 }
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-const z = objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const z = objPatternNoDefault$1.z;
 {
   let z_2 = 1;
 }
@@ -33,8 +33,8 @@ const z = objPatternNoDefault_1.z;
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+objPatternNoDefault$1.z;
 `````
 
 ## Result

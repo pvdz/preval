@@ -33,8 +33,8 @@ function f($tdz$__pattern) {
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
   {
-    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp$1) {
       objPatternAfterDefault = a;
     } else {
       objPatternAfterDefault = objPatternBeforeDefault;
@@ -51,11 +51,11 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -72,8 +72,8 @@ function f($tdz$__pattern) {
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
-  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     objPatternAfterDefault = a;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -89,11 +89,11 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

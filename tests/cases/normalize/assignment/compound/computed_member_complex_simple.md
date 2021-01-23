@@ -26,7 +26,7 @@ var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -37,8 +37,8 @@ tmpCompoundAssignLhs = tmpAssignComMemLhsObj[tmpAssignComMemLhsProp];
 tmpAssignComputedObj = tmpAssignComMemLhsObj;
 tmpAssignComputedProp = tmpAssignComMemLhsProp;
 tmpAssignComputedRhs = tmpCompoundAssignLhs * b;
-tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, b, c);
 `````
 
@@ -52,7 +52,7 @@ var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 tmpAssignMemLhsObj = $(a);
 tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
@@ -61,8 +61,8 @@ tmpCompoundAssignLhs = tmpAssignComMemLhsObj[tmpAssignComMemLhsProp];
 tmpAssignComputedObj = tmpAssignComMemLhsObj;
 tmpAssignComputedProp = tmpAssignComMemLhsProp;
 tmpAssignComputedRhs = tmpCompoundAssignLhs * 2;
-tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, 2, 3);
 `````
 

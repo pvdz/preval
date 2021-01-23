@@ -36,12 +36,12 @@ function f(x) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 tmpArg = ['abc ', ' ', ' def'];
-tmpArg_1 = $(10);
-tmpArg_2 = $(20);
-f(tmpArg, tmpArg_1, tmpArg_2);
+tmpArg$1 = $(10);
+tmpArg$2 = $(20);
+f(tmpArg, tmpArg$1, tmpArg$2);
 `````
 
 ## Output
@@ -51,12 +51,12 @@ function f(x) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 tmpArg = ['abc ', ' ', ' def'];
-tmpArg_1 = $(10);
-tmpArg_2 = $(20);
-f(tmpArg, tmpArg_1, tmpArg_2);
+tmpArg$1 = $(10);
+tmpArg$2 = $(20);
+f(tmpArg, tmpArg$1, tmpArg$2);
 `````
 
 ## Result

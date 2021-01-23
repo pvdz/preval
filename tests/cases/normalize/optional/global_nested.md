@@ -17,15 +17,15 @@ $(obj?.a?.b);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-tmpObjPropValue_1 = $();
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+tmpObjPropValue$1 = $();
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
@@ -34,12 +34,12 @@ if (tmpTernaryTest) {
   tmpTernaryAlternate = obj.a;
   tmpOptionalChaining = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining == null;
+if (tmpTernaryTest$1) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining.b;
-  tmpArg = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining.b;
+  tmpArg = tmpTernaryAlternate$1;
 }
 $(tmpArg);
 `````
@@ -48,15 +48,15 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-tmpObjPropValue_1 = $();
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+tmpObjPropValue$1 = $();
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
@@ -65,12 +65,12 @@ if (tmpTernaryTest) {
   tmpTernaryAlternate = obj.a;
   tmpOptionalChaining = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining == null;
+if (tmpTernaryTest$1) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining.b;
-  tmpArg = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining.b;
+  tmpArg = tmpTernaryAlternate$1;
 }
 $(tmpArg);
 `````

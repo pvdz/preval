@@ -26,19 +26,19 @@ $(f({ x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let arrPatternSplat = [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let arrPatternSplat = [...objPatternNoDefault$1];
   let z = arrPatternSplat.slice(0);
   return z;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = [1, 2, 3];
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = [1, 2, 3];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -47,19 +47,19 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let arrPatternSplat = [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let arrPatternSplat = [...objPatternNoDefault$1];
   let z = arrPatternSplat.slice(0);
   return z;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = [1, 2, 3];
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = [1, 2, 3];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

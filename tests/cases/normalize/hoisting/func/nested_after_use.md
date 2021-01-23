@@ -30,9 +30,9 @@ function g() {
       return tmpReturnArg;
     }
   }
-  var tmpArg_1;
-  tmpArg_1 = f(1);
-  $(tmpArg_1);
+  var tmpArg$1;
+  tmpArg$1 = f(1);
+  $(tmpArg$1);
 }
 var tmpArg;
 tmpArg = g();
@@ -47,9 +47,9 @@ function g() {
     let tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg_1;
-  tmpArg_1 = f(1);
-  $(tmpArg_1);
+  var tmpArg$1;
+  tmpArg$1 = f(1);
+  $(tmpArg$1);
 }
 var tmpArg;
 tmpArg = g();

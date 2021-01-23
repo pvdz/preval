@@ -35,8 +35,8 @@ const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y;
 {
-  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     y = 'fail';
   } else {
     y = arrPatternBeforeDefault;
@@ -61,8 +61,8 @@ if (ifTestTmp) {
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y;
-let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+if (ifTestTmp$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;

@@ -27,8 +27,8 @@ function f() {
   var tmpOptionalChaining;
   var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest_1;
-  var tmpTernaryAlternate_1;
+  var tmpTernaryTest$1;
+  var tmpTernaryAlternate$1;
   const a = 10;
   tmpOptionalChaining = $(2);
   tmpTernaryTest = tmpOptionalChaining == null;
@@ -39,13 +39,13 @@ function f() {
     tmpTernaryAlternate = tmpOptionalChaining.toString;
     b = tmpTernaryAlternate;
   }
-  tmpTernaryTest_1 = b == null;
+  tmpTernaryTest$1 = b == null;
   let c;
-  if (tmpTernaryTest_1) {
+  if (tmpTernaryTest$1) {
     c = undefined;
   } else {
-    tmpTernaryAlternate_1 = b.length;
-    c = tmpTernaryAlternate_1;
+    tmpTernaryAlternate$1 = b.length;
+    c = tmpTernaryAlternate$1;
   }
   {
     let tmpReturnArg = $(c);
@@ -64,8 +64,8 @@ function f() {
   var tmpOptionalChaining;
   var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest_1;
-  var tmpTernaryAlternate_1;
+  var tmpTernaryTest$1;
+  var tmpTernaryAlternate$1;
   tmpOptionalChaining = $(2);
   tmpTernaryTest = tmpOptionalChaining == null;
   let b;
@@ -75,13 +75,13 @@ function f() {
     tmpTernaryAlternate = tmpOptionalChaining.toString;
     b = tmpTernaryAlternate;
   }
-  tmpTernaryTest_1 = b == null;
+  tmpTernaryTest$1 = b == null;
   let c;
-  if (tmpTernaryTest_1) {
+  if (tmpTernaryTest$1) {
     c = undefined;
   } else {
-    tmpTernaryAlternate_1 = b.length;
-    c = tmpTernaryAlternate_1;
+    tmpTernaryAlternate$1 = b.length;
+    c = tmpTernaryAlternate$1;
   }
   let tmpReturnArg = $(c);
   return tmpReturnArg;

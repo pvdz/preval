@@ -18,14 +18,14 @@ let x = 10, y = 20, z = 30;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 let x = 10;
 let y = 20;
 let z = 30;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+z = objPatternNoDefault$1.z;
 objAssignPatternRhs;
 `````
 
@@ -34,12 +34,12 @@ objAssignPatternRhs;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 let z = 30;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+z = objPatternNoDefault$1.z;
 `````
 
 ## Result

@@ -23,7 +23,7 @@ a.foo += a = $();
 var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
@@ -35,8 +35,8 @@ tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
 tmpBinaryRight = tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpBinaryLeft + tmpBinaryRight;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 `````
 
 ## Output
@@ -45,7 +45,7 @@ tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
 var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
@@ -57,8 +57,8 @@ tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
 tmpBinaryRight = tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpBinaryLeft + tmpBinaryRight;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 `````
 
 ## Result

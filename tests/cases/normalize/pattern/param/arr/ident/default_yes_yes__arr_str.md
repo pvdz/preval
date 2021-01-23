@@ -34,8 +34,8 @@ function f($tdz$__pattern) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let x;
   {
-    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp$1) {
       x = $('fail');
     } else {
       x = arrPatternBeforeDefault;
@@ -44,9 +44,9 @@ function f($tdz$__pattern) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = ['xyz', 201];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = ['xyz', 201];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -64,8 +64,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let x;
-  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     x = $('fail');
   } else {
     x = arrPatternBeforeDefault;
@@ -73,9 +73,9 @@ function f($tdz$__pattern) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = ['xyz', 201];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = ['xyz', 201];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

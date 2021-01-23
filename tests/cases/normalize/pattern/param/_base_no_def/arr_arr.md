@@ -18,8 +18,8 @@ function i([[ x ]]) { return x }
 function i(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1[0];
   return x;
 }
 `````

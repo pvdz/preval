@@ -23,22 +23,22 @@ $(f([[[[1, 2, 3], 4, 5], 20, 30], 40, 50], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let arrPatternSplat_2 = [...arrPatternStep_1];
-  let x = arrPatternSplat_2[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let arrPatternSplat$2 = [...arrPatternStep$1];
+  let x = arrPatternSplat$2[0];
   return x;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-tmpElement_2 = [1, 2, 3];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
-tmpArg_1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg_1, 200);
+var tmpElement$1;
+var tmpElement$2;
+tmpElement$2 = [1, 2, 3];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
+tmpArg$1 = [tmpElement, 40, 50];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -48,22 +48,22 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let arrPatternSplat_2 = [...arrPatternStep_1];
-  let x = arrPatternSplat_2[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let arrPatternSplat$2 = [...arrPatternStep$1];
+  let x = arrPatternSplat$2[0];
   return x;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-tmpElement_2 = [1, 2, 3];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
-tmpArg_1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg_1, 200);
+var tmpElement$1;
+var tmpElement$2;
+tmpElement$2 = [1, 2, 3];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
+tmpArg$1 = [tmpElement, 40, 50];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

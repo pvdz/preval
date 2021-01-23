@@ -20,7 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
@@ -34,8 +34,8 @@ tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $('x');
 tmpNestedPropAssignRhs = b;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpArg_1 = tmpNestedPropAssignRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedPropAssignRhs;
+$(tmpArg, tmpArg$1);
 $(a, b, c);
 `````
 
@@ -43,7 +43,7 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
@@ -55,8 +55,8 @@ tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $('x');
 tmpNestedPropAssignRhs = 2;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpArg_1 = tmpNestedPropAssignRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedPropAssignRhs;
+$(tmpArg, tmpArg$1);
 $(a, 2, 3);
 `````
 

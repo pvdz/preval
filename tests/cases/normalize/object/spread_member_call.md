@@ -18,7 +18,7 @@ $({...obj.foo()});
 ## Normalized
 
 `````js filename=intro
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjSpreadArg;
 const obj = {
   foo() {
@@ -31,14 +31,14 @@ const obj = {
   },
 };
 tmpObjSpreadArg = obj.foo();
-tmpArg_1 = { ...tmpObjSpreadArg };
-$(tmpArg_1);
+tmpArg$1 = { ...tmpObjSpreadArg };
+$(tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjSpreadArg;
 const obj = {
   foo() {
@@ -49,8 +49,8 @@ const obj = {
   },
 };
 tmpObjSpreadArg = obj.foo();
-tmpArg_1 = { ...tmpObjSpreadArg };
-$(tmpArg_1);
+tmpArg$1 = { ...tmpObjSpreadArg };
+$(tmpArg$1);
 `````
 
 ## Result

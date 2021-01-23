@@ -26,8 +26,8 @@ $(f({ x: { x: 13, y: [{ a: 1, b: 2, c: 3 }, 15], z: 14 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let arrPatternSplat = [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let arrPatternSplat = [...objPatternNoDefault$1];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
@@ -40,15 +40,15 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpElement;
 tmpElement = { a: 1, b: 2, c: 3 };
-tmpObjPropValue_1 = [tmpElement, 15];
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpObjPropValue$1 = [tmpElement, 15];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -57,8 +57,8 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let arrPatternSplat = [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let arrPatternSplat = [...objPatternNoDefault$1];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
@@ -71,15 +71,15 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpElement;
 tmpElement = { a: 1, b: 2, c: 3 };
-tmpObjPropValue_1 = [tmpElement, 15];
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
-tmpArg_1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpObjPropValue$1 = [tmpElement, 15];
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
+tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

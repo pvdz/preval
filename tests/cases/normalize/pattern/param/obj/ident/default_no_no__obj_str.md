@@ -25,9 +25,9 @@ function f(tmpParamPattern) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = { x: 'abc' };
-tmpArg = f(tmpArg_1, 10);
+var tmpArg$1;
+tmpArg$1 = { x: 'abc' };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -39,9 +39,9 @@ function f(tmpParamPattern) {
   return x;
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = { x: 'abc' };
-tmpArg = f(tmpArg_1, 10);
+var tmpArg$1;
+tmpArg$1 = { x: 'abc' };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

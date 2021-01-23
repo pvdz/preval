@@ -22,8 +22,8 @@ $(c);
 `````js filename=intro
 var tmpNullish;
 var tmpTernaryTest;
-var tmpNullish_1;
-var tmpTernaryTest_1;
+var tmpNullish$1;
+var tmpTernaryTest$1;
 const a = 10;
 a;
 tmpNullish = $(2);
@@ -35,13 +35,13 @@ if (tmpTernaryTest) {
   b = tmpNullish;
 }
 1;
-tmpNullish_1 = b;
-tmpTernaryTest_1 = tmpNullish_1 == null;
+tmpNullish$1 = b;
+tmpTernaryTest$1 = tmpNullish$1 == null;
 let c;
-if (tmpTernaryTest_1) {
+if (tmpTernaryTest$1) {
   c = length;
 } else {
-  c = tmpNullish_1;
+  c = tmpNullish$1;
 }
 $(c);
 `````
@@ -51,8 +51,8 @@ $(c);
 `````js filename=intro
 var tmpNullish;
 var tmpTernaryTest;
-var tmpNullish_1;
-var tmpTernaryTest_1;
+var tmpNullish$1;
+var tmpTernaryTest$1;
 tmpNullish = $(2);
 tmpTernaryTest = tmpNullish == null;
 let b;
@@ -61,13 +61,13 @@ if (tmpTernaryTest) {
 } else {
   b = tmpNullish;
 }
-tmpNullish_1 = b;
-tmpTernaryTest_1 = tmpNullish_1 == null;
+tmpNullish$1 = b;
+tmpTernaryTest$1 = tmpNullish$1 == null;
 let c;
-if (tmpTernaryTest_1) {
+if (tmpTernaryTest$1) {
   c = length;
 } else {
-  c = tmpNullish_1;
+  c = tmpNullish$1;
 }
 $(c);
 `````

@@ -19,7 +19,7 @@ x.y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var a;
 var b;
 var c;
@@ -33,22 +33,22 @@ var y;
 tmpArg = x;
 a = b.c;
 d = e[f];
-tmpArg_1 = g.h;
-x.y(tmpArg, 8, ...tmpArg_1);
+tmpArg$1 = g.h;
+x.y(tmpArg, 8, ...tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var a;
 var d;
 tmpArg = undefined;
 a = undefined.c;
 d = undefined[undefined];
-tmpArg_1 = undefined.h;
-undefined.y(tmpArg, 8, ...tmpArg_1);
+tmpArg$1 = undefined.h;
+undefined.y(tmpArg, 8, ...tmpArg$1);
 `````
 
 ## Result

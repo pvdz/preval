@@ -35,11 +35,11 @@ function f($tdz$__pattern) {
   let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
-var tmpArg_1;
-var tmpArg_2;
-tmpArg_2 = { x: 1, b: 2, c: 3 };
-tmpArg_1 = f(tmpArg_2, 10);
-$(tmpArg_1);
+var tmpArg$1;
+var tmpArg$2;
+tmpArg$2 = { x: 1, b: 2, c: 3 };
+tmpArg$1 = f(tmpArg$2, 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -58,11 +58,11 @@ function f($tdz$__pattern) {
   let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
 }
-var tmpArg_1;
-var tmpArg_2;
-tmpArg_2 = { x: 1, b: 2, c: 3 };
-tmpArg_1 = f(tmpArg_2, 10);
-$(tmpArg_1);
+var tmpArg$1;
+var tmpArg$2;
+tmpArg$2 = { x: 1, b: 2, c: 3 };
+tmpArg$1 = f(tmpArg$2, 10);
+$(tmpArg$1);
 `````
 
 ## Result

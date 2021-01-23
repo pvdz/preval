@@ -20,16 +20,16 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 var tmpArg;
 var tmpTernaryTest;
 let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-tmpNestedComplexRhs_1 = c + d;
-b = tmpNestedComplexRhs_1;
-tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+tmpNestedComplexRhs$1 = c + d;
+b = tmpNestedComplexRhs$1;
+tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpTernaryTest = tmpNestedComplexRhs;
 if (tmpTernaryTest) {
@@ -45,14 +45,14 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 var tmpArg;
 var tmpTernaryTest;
 let a = 1;
 let b = 2;
-tmpNestedComplexRhs_1 = 7;
-b = tmpNestedComplexRhs_1;
-tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+tmpNestedComplexRhs$1 = 7;
+b = tmpNestedComplexRhs$1;
+tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpTernaryTest = tmpNestedComplexRhs;
 if (tmpTernaryTest) {

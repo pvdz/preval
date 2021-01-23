@@ -64,12 +64,12 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      ifTestTmp_1 = 1 === 'no';
+      ifTestTmp$1 = 1 === 'no';
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         break tmpSwitchBreak;
@@ -107,12 +107,12 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      ifTestTmp_1 = 1 === 'no';
+      ifTestTmp$1 = 1 === 'no';
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         break tmpSwitchBreak;

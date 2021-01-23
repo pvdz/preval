@@ -24,15 +24,15 @@ $(z);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault_1, [], undefined);
+objPatternNoDefault$1 = objPatternNoDefault.y;
+z = objPatternRest(objPatternNoDefault$1, [], undefined);
 objAssignPatternRhs;
 $(z);
 `````
@@ -42,15 +42,15 @@ $(z);
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault_1, [], undefined);
+objPatternNoDefault$1 = objPatternNoDefault.y;
+z = objPatternRest(objPatternNoDefault$1, [], undefined);
 $(z);
 `````
 

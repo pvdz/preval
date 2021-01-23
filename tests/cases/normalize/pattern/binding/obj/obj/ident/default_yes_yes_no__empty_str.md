@@ -31,14 +31,14 @@ let objPatternAfterDefault;
     objPatternAfterDefault = objPatternBeforeDefault;
   }
 }
-const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 let y;
 {
-  let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = objPatternBeforeDefault$1 === undefined;
+  if (ifTestTmp$1) {
     y = $('fail');
   } else {
-    y = objPatternBeforeDefault_1;
+    y = objPatternBeforeDefault$1;
   }
 }
 $(y);
@@ -57,13 +57,13 @@ if (ifTestTmp) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const objPatternBeforeDefault_1 = objPatternAfterDefault.y;
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 let y;
-let ifTestTmp_1 = objPatternBeforeDefault_1 === undefined;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = objPatternBeforeDefault$1 === undefined;
+if (ifTestTmp$1) {
   y = $('fail');
 } else {
-  y = objPatternBeforeDefault_1;
+  y = objPatternBeforeDefault$1;
 }
 $(y);
 `````

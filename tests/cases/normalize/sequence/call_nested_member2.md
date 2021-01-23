@@ -19,15 +19,15 @@ obj.a.b();
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpMemberComplexObj;
-tmpObjPropValue_1 = () => {
+tmpObjPropValue$1 = () => {
   {
     let tmpReturnArg = $(1);
     return tmpReturnArg;
   }
 };
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpMemberComplexObj = obj.a;
 tmpMemberComplexObj.b();
@@ -37,13 +37,13 @@ tmpMemberComplexObj.b();
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpMemberComplexObj;
-tmpObjPropValue_1 = () => {
+tmpObjPropValue$1 = () => {
   let tmpReturnArg = $(1);
   return tmpReturnArg;
 };
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpMemberComplexObj = obj.a;
 tmpMemberComplexObj.b();

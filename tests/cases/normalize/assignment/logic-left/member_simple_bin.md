@@ -22,15 +22,15 @@ $(a, b, c);
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 {
   tmpAssignMemLhsObj = a;
   tmpAssignMemRhs = b + c;
-  tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-  tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   let tmpAssignLogicStmtOr = tmpAssignMemRhs;
   if (tmpAssignLogicStmtOr) {
     tmpArg = $(true);
@@ -48,12 +48,12 @@ $(a, b, c);
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 tmpAssignMemLhsObj = a;
 tmpAssignMemRhs = 5;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 let tmpAssignLogicStmtOr = tmpAssignMemRhs;
 if (tmpAssignLogicStmtOr) {
   tmpArg = $(true);

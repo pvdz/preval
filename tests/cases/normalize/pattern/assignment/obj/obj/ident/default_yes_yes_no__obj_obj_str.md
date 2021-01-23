@@ -21,13 +21,13 @@ $(y);
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var objPatternBeforeDefault_1;
+var objPatternBeforeDefault$1;
 var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
-var tmpTernaryConsequent_1;
+var tmpTernaryTest$1;
+var tmpTernaryConsequent$1;
 tmpObjPropValue = { x: 1, y: 'abc', z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
@@ -39,13 +39,13 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-objPatternBeforeDefault_1 = objPatternAfterDefault.y;
-tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
-if (tmpTernaryTest_1) {
-  tmpTernaryConsequent_1 = $('fail');
-  y = tmpTernaryConsequent_1;
+objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  y = tmpTernaryConsequent$1;
 } else {
-  y = objPatternBeforeDefault_1;
+  y = objPatternBeforeDefault$1;
 }
 objAssignPatternRhs;
 $(y);
@@ -57,13 +57,13 @@ $(y);
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var objPatternBeforeDefault_1;
+var objPatternBeforeDefault$1;
 var tmpObjPropValue;
 var tmpTernaryTest;
 var tmpTernaryConsequent;
 var tmpArg;
-var tmpTernaryTest_1;
-var tmpTernaryConsequent_1;
+var tmpTernaryTest$1;
+var tmpTernaryConsequent$1;
 tmpObjPropValue = { x: 1, y: 'abc', z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
@@ -75,13 +75,13 @@ if (tmpTernaryTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-objPatternBeforeDefault_1 = objPatternAfterDefault.y;
-tmpTernaryTest_1 = objPatternBeforeDefault_1 === undefined;
-if (tmpTernaryTest_1) {
-  tmpTernaryConsequent_1 = $('fail');
-  y = tmpTernaryConsequent_1;
+objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  y = tmpTernaryConsequent$1;
 } else {
-  y = objPatternBeforeDefault_1;
+  y = objPatternBeforeDefault$1;
 }
 $(y);
 `````

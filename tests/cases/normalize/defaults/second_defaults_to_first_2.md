@@ -30,8 +30,8 @@ function f($tdz$__a, $tdz$__b) {
   }
   let b;
   {
-    let ifTestTmp_1 = $tdz$__b === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = $tdz$__b === undefined;
+    if (ifTestTmp$1) {
       b = a;
     } else {
       b = $tdz$__b;
@@ -53,8 +53,8 @@ function f($tdz$__a, $tdz$__b) {
     a = $tdz$__a;
   }
   let b;
-  let ifTestTmp_1 = $tdz$__b === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $tdz$__b === undefined;
+  if (ifTestTmp$1) {
     b = a;
   } else {
     b = $tdz$__b;

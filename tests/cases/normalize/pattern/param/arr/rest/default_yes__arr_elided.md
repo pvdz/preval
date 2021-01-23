@@ -36,11 +36,11 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg_1;
-var tmpArg_2;
-tmpArg_2 = [, , , 1];
-tmpArg_1 = f(tmpArg_2, 200);
-$(tmpArg_1);
+var tmpArg$1;
+var tmpArg$2;
+tmpArg$2 = [, , , 1];
+tmpArg$1 = f(tmpArg$2, 200);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -60,11 +60,11 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg_1;
-var tmpArg_2;
-tmpArg_2 = [, , , 1];
-tmpArg_1 = f(tmpArg_2, 200);
-$(tmpArg_1);
+var tmpArg$1;
+var tmpArg$2;
+tmpArg$2 = [, , , 1];
+tmpArg$1 = f(tmpArg$2, 200);
+$(tmpArg$1);
 `````
 
 ## Result

@@ -18,12 +18,12 @@ $(obj.a.b);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpAssignMemLhsObj;
 var tmpArg;
 var tmpMemberComplexObj;
-tmpObjPropValue_1 = $();
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue$1 = $();
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpAssignMemLhsObj = obj.a;
 tmpAssignMemLhsObj.b = 15;
@@ -36,12 +36,12 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpAssignMemLhsObj;
 var tmpArg;
 var tmpMemberComplexObj;
-tmpObjPropValue_1 = $();
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue$1 = $();
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
 tmpAssignMemLhsObj = obj.a;
 tmpAssignMemLhsObj.b = 15;

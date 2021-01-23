@@ -18,20 +18,20 @@ $`abc ${ 10 } ${ $(20) } def`;
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = ['abc ', ' ', ' def'];
-tmpArg_1 = $(20);
-$(tmpArg, 10, tmpArg_1);
+tmpArg$1 = $(20);
+$(tmpArg, 10, tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = ['abc ', ' ', ' def'];
-tmpArg_1 = $(20);
-$(tmpArg, 10, tmpArg_1);
+tmpArg$1 = $(20);
+$(tmpArg, 10, tmpArg$1);
 `````
 
 ## Result

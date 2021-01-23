@@ -21,12 +21,12 @@ $('bad');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1[0];
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1[0];
 arrAssignPatternRhs;
 $('bad');
 `````
@@ -37,12 +37,12 @@ $('bad');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-x = arrPatternSplat_1[0];
+arrPatternSplat$1 = [...arrPatternStep];
+x = arrPatternSplat$1[0];
 $('bad');
 `````
 

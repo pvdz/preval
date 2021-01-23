@@ -30,20 +30,20 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault_1 = arrPatternStep.y;
-  let arrPatternSplat_1 = [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = arrPatternStep.y;
+  let arrPatternSplat$1 = [...objPatternNoDefault$1];
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 var tmpElement;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = [1, 2, 3];
-tmpElement = { x: 15, y: tmpObjPropValue_1, c: 16 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = [1, 2, 3];
+tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
 tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg_1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -54,20 +54,20 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault_1 = arrPatternStep.y;
-  [...objPatternNoDefault_1];
+  let objPatternNoDefault$1 = arrPatternStep.y;
+  [...objPatternNoDefault$1];
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 var tmpElement;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = [1, 2, 3];
-tmpElement = { x: 15, y: tmpObjPropValue_1, c: 16 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = [1, 2, 3];
+tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
 tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg_1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

@@ -201,9 +201,9 @@ export function phaseNormalize(fdata, fname) {
     // Create a (module) globally unique name. Then use that name for the local scope.
     let n = 0;
     if (fdata.globallyUniqueNamingRegistery.has(name)) {
-      while (fdata.globallyUniqueNamingRegistery.has(name + '_' + ++n));
+      while (fdata.globallyUniqueNamingRegistery.has(name + '$' + ++n));
     }
-    return n ? name + '_' + n : name;
+    return n ? name + '$' + n : name;
   }
 
   function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
@@ -265,9 +265,9 @@ export function phaseNormalize(fdata, fname) {
   function createNewUniqueLabel(name) {
     let n = 0;
     if (fdata.globallyUniqueLabelRegistery.has(name)) {
-      while (fdata.globallyUniqueLabelRegistery.has(name + '_' + ++n));
+      while (fdata.globallyUniqueLabelRegistery.has(name + '$' + ++n));
     }
-    return n ? name + '_' + n : name;
+    return n ? name + '$' + n : name;
   }
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');

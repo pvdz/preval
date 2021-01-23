@@ -34,12 +34,12 @@ function f(tmpParamPattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
+  let arrPatternSplat$1 = [...arrPatternStep];
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f([], 200);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f([], 200);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -60,9 +60,9 @@ function f(tmpParamPattern) {
   [...arrPatternStep];
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f([], 200);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f([], 200);
+$(tmpArg$1);
 `````
 
 ## Result

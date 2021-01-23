@@ -21,8 +21,8 @@ function i({x: {y: {z}}}) {
 `````js filename=intro
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let z_1 = objPatternNoDefault_1.z;
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let z_1 = objPatternNoDefault$1.z;
   {
     let z_2 = 2;
   }

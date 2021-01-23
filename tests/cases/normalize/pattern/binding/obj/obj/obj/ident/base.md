@@ -23,13 +23,13 @@ $(z);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-const z = objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const z = objPatternNoDefault$1.z;
 $(z);
 `````
 
@@ -37,13 +37,13 @@ $(z);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-const z = objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const z = objPatternNoDefault$1.z;
 $(z);
 `````
 

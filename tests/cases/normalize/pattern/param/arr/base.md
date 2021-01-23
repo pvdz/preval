@@ -25,9 +25,9 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [1, 2, 3];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [1, 2, 3];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -35,8 +35,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [1, 2, 3];
+var tmpArg$1;
+tmpArg$1 = [1, 2, 3];
 tmpArg = 'ok';
 $(tmpArg);
 `````

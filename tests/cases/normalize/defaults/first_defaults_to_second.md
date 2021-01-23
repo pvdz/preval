@@ -34,8 +34,8 @@ function f($tdz$__a, $tdz$__b) {
   }
   let b;
   {
-    let ifTestTmp_1 = $tdz$__b === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = $tdz$__b === undefined;
+    if (ifTestTmp$1) {
       b = 'bar';
     } else {
       b = $tdz$__b;
@@ -47,17 +47,17 @@ function f($tdz$__a, $tdz$__b) {
   }
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
+var tmpArg$1;
+var tmpArg$2;
+var tmpArg$3;
 tmpArg = f();
 $(tmpArg);
-tmpArg_1 = f('x');
-$(tmpArg_1);
-tmpArg_2 = f(undefined, 'y');
-$(tmpArg_2);
-tmpArg_3 = f('x', 'y');
-$(tmpArg_3);
+tmpArg$1 = f('x');
+$(tmpArg$1);
+tmpArg$2 = f(undefined, 'y');
+$(tmpArg$2);
+tmpArg$3 = f('x', 'y');
+$(tmpArg$3);
 `````
 
 ## Output
@@ -72,8 +72,8 @@ function f($tdz$__a, $tdz$__b) {
     a = $tdz$__a;
   }
   let b;
-  let ifTestTmp_1 = $tdz$__b === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $tdz$__b === undefined;
+  if (ifTestTmp$1) {
     b = 'bar';
   } else {
     b = $tdz$__b;
@@ -82,17 +82,17 @@ function f($tdz$__a, $tdz$__b) {
   return tmpReturnArg;
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
+var tmpArg$1;
+var tmpArg$2;
+var tmpArg$3;
 tmpArg = f();
 $(tmpArg);
-tmpArg_1 = f('x');
-$(tmpArg_1);
-tmpArg_2 = f(undefined, 'y');
-$(tmpArg_2);
-tmpArg_3 = f('x', 'y');
-$(tmpArg_3);
+tmpArg$1 = f('x');
+$(tmpArg$1);
+tmpArg$2 = f(undefined, 'y');
+$(tmpArg$2);
+tmpArg$3 = f('x', 'y');
+$(tmpArg$3);
 `````
 
 ## Result

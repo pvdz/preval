@@ -47,10 +47,10 @@ $(f());
 function f() {
   var tmpBinaryLeft;
   var tmpBinaryRight;
-  var tmpBinaryLeft_1;
-  var tmpBinaryRight_1;
-  var tmpBinaryLeft_2;
-  var tmpBinaryRight_2;
+  var tmpBinaryLeft$1;
+  var tmpBinaryRight$1;
+  var tmpBinaryLeft$2;
+  var tmpBinaryRight$2;
   {
     const tmpSwitchTest = $(1);
     tmpSwitchBreak: {
@@ -71,22 +71,22 @@ function f() {
         }
       }
       {
-        let ifTestTmp_1 = tmpFallthrough;
-        if (ifTestTmp_1) {
+        let ifTestTmp$1 = tmpFallthrough;
+        if (ifTestTmp$1) {
         } else {
           tmpBinaryLeft = tmpSwitchTest;
           tmpBinaryRight = $(1);
-          ifTestTmp_1 = tmpBinaryLeft === tmpBinaryRight;
+          ifTestTmp$1 = tmpBinaryLeft === tmpBinaryRight;
         }
-        if (ifTestTmp_1) {
+        if (ifTestTmp$1) {
           ('case 1:');
           {
             {
-              let ifTestTmp_2 = $(8);
-              if (ifTestTmp_2) {
+              let ifTestTmp$2 = $(8);
+              if (ifTestTmp$2) {
                 {
-                  let ifTestTmp_3 = $(9);
-                  if (ifTestTmp_3) {
+                  let ifTestTmp$3 = $(9);
+                  if (ifTestTmp$3) {
                     {
                       let tmpReturnArg = $(10);
                       return tmpReturnArg;
@@ -96,13 +96,13 @@ function f() {
                   }
                 }
                 {
-                  let ifTestTmp_4 = $(2);
-                  if (ifTestTmp_4) {
+                  let ifTestTmp$4 = $(2);
+                  if (ifTestTmp$4) {
                     $(13);
                   } else {
                     {
-                      let tmpReturnArg_1 = $(14);
-                      return tmpReturnArg_1;
+                      let tmpReturnArg$1 = $(14);
+                      return tmpReturnArg$1;
                     }
                   }
                 }
@@ -114,34 +114,34 @@ function f() {
         }
       }
       {
-        let ifTestTmp_5 = tmpFallthrough;
-        if (ifTestTmp_5) {
+        let ifTestTmp$5 = tmpFallthrough;
+        if (ifTestTmp$5) {
         } else {
-          tmpBinaryLeft_1 = tmpSwitchTest;
-          tmpBinaryRight_1 = $(4);
-          ifTestTmp_5 = tmpBinaryLeft_1 === tmpBinaryRight_1;
+          tmpBinaryLeft$1 = tmpSwitchTest;
+          tmpBinaryRight$1 = $(4);
+          ifTestTmp$5 = tmpBinaryLeft$1 === tmpBinaryRight$1;
         }
-        if (ifTestTmp_5) {
+        if (ifTestTmp$5) {
           ('case 2:');
           {
             $(5);
             {
-              let tmpReturnArg_2 = $(6);
-              return tmpReturnArg_2;
+              let tmpReturnArg$2 = $(6);
+              return tmpReturnArg$2;
             }
           }
           tmpFallthrough = true;
         }
       }
       {
-        let ifTestTmp_6 = tmpFallthrough;
-        if (ifTestTmp_6) {
+        let ifTestTmp$6 = tmpFallthrough;
+        if (ifTestTmp$6) {
         } else {
-          tmpBinaryLeft_2 = tmpSwitchTest;
-          tmpBinaryRight_2 = $(7);
-          ifTestTmp_6 = tmpBinaryLeft_2 === tmpBinaryRight_2;
+          tmpBinaryLeft$2 = tmpSwitchTest;
+          tmpBinaryRight$2 = $(7);
+          ifTestTmp$6 = tmpBinaryLeft$2 === tmpBinaryRight$2;
         }
-        if (ifTestTmp_6) {
+        if (ifTestTmp$6) {
           ('case 3:');
           {
             break tmpSwitchBreak;
@@ -180,22 +180,22 @@ function f() {
       }
     }
     {
-      let ifTestTmp_1 = tmpFallthrough;
-      if (ifTestTmp_1) {
+      let ifTestTmp$1 = tmpFallthrough;
+      if (ifTestTmp$1) {
       } else {
         tmpBinaryLeft = tmpSwitchTest;
         tmpBinaryRight = $(1);
-        ifTestTmp_1 = tmpBinaryLeft === tmpBinaryRight;
+        ifTestTmp$1 = tmpBinaryLeft === tmpBinaryRight;
       }
-      if (ifTestTmp_1) {
+      if (ifTestTmp$1) {
         ('case 1:');
         {
           {
-            let ifTestTmp_2 = $(8);
-            if (ifTestTmp_2) {
+            let ifTestTmp$2 = $(8);
+            if (ifTestTmp$2) {
               {
-                let ifTestTmp_3 = $(9);
-                if (ifTestTmp_3) {
+                let ifTestTmp$3 = $(9);
+                if (ifTestTmp$3) {
                   {
                     let tmpReturnArg = $(10);
                     return tmpReturnArg;
@@ -205,13 +205,13 @@ function f() {
                 }
               }
               {
-                let ifTestTmp_4 = $(2);
-                if (ifTestTmp_4) {
+                let ifTestTmp$4 = $(2);
+                if (ifTestTmp$4) {
                   $(13);
                 } else {
                   {
-                    let tmpReturnArg_1 = $(14);
-                    return tmpReturnArg_1;
+                    let tmpReturnArg$1 = $(14);
+                    return tmpReturnArg$1;
                   }
                 }
               }
@@ -223,34 +223,34 @@ function f() {
       }
     }
     {
-      let ifTestTmp_5 = tmpFallthrough;
-      if (ifTestTmp_5) {
+      let ifTestTmp$5 = tmpFallthrough;
+      if (ifTestTmp$5) {
       } else {
-        tmpBinaryLeft_1 = tmpSwitchTest;
-        tmpBinaryRight_1 = $(4);
-        ifTestTmp_5 = tmpBinaryLeft_1 === tmpBinaryRight_1;
+        tmpBinaryLeft$1 = tmpSwitchTest;
+        tmpBinaryRight$1 = $(4);
+        ifTestTmp$5 = tmpBinaryLeft$1 === tmpBinaryRight$1;
       }
-      if (ifTestTmp_5) {
+      if (ifTestTmp$5) {
         ('case 2:');
         {
           $(5);
           {
-            let tmpReturnArg_2 = $(6);
-            return tmpReturnArg_2;
+            let tmpReturnArg$2 = $(6);
+            return tmpReturnArg$2;
           }
         }
         tmpFallthrough = true;
       }
     }
     {
-      let ifTestTmp_6 = tmpFallthrough;
-      if (ifTestTmp_6) {
+      let ifTestTmp$6 = tmpFallthrough;
+      if (ifTestTmp$6) {
       } else {
-        tmpBinaryLeft_2 = tmpSwitchTest;
-        tmpBinaryRight_2 = $(7);
-        ifTestTmp_6 = tmpBinaryLeft_2 === tmpBinaryRight_2;
+        tmpBinaryLeft$2 = tmpSwitchTest;
+        tmpBinaryRight$2 = $(7);
+        ifTestTmp$6 = tmpBinaryLeft$2 === tmpBinaryRight$2;
       }
-      if (ifTestTmp_6) {
+      if (ifTestTmp$6) {
         ('case 3:');
         {
           break tmpSwitchBreak;

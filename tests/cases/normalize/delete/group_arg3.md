@@ -21,14 +21,14 @@ $(typeof foo)
 `````js filename=intro
 var foo;
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 foo = 1;
 null;
 foo;
 tmpArg = true;
 $(tmpArg);
-tmpArg_1 = typeof foo;
-$(tmpArg_1);
+tmpArg$1 = typeof foo;
+$(tmpArg$1);
 `````
 
 ## Output
@@ -36,12 +36,12 @@ $(tmpArg_1);
 `````js filename=intro
 var foo;
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 foo = 1;
 tmpArg = true;
 $(tmpArg);
-tmpArg_1 = typeof foo;
-$(tmpArg_1);
+tmpArg$1 = typeof foo;
+$(tmpArg$1);
 `````
 
 ## Result

@@ -22,8 +22,8 @@ $(x, y, z);
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrAssignPatternRhs_1;
-var arrPatternSplat_1;
+var arrAssignPatternRhs$1;
+var arrPatternSplat$1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
@@ -34,11 +34,11 @@ let z = [10, 20, 30];
   y = arrPatternSplat[1];
   let tmpAssignLogicStmtOr = arrAssignPatternRhs;
   if (tmpAssignLogicStmtOr) {
-    arrAssignPatternRhs_1 = z;
-    arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-    x = arrPatternSplat_1[0];
-    y = arrPatternSplat_1[1];
-    tmpArg = arrAssignPatternRhs_1;
+    arrAssignPatternRhs$1 = z;
+    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+    x = arrPatternSplat$1[0];
+    y = arrPatternSplat$1[1];
+    tmpArg = arrAssignPatternRhs$1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -53,8 +53,8 @@ $(x, y, z);
 var tmpArg;
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrAssignPatternRhs_1;
-var arrPatternSplat_1;
+var arrAssignPatternRhs$1;
+var arrPatternSplat$1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
@@ -64,11 +64,11 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 let tmpAssignLogicStmtOr = arrAssignPatternRhs;
 if (tmpAssignLogicStmtOr) {
-  arrAssignPatternRhs_1 = z;
-  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-  x = arrPatternSplat_1[0];
-  y = arrPatternSplat_1[1];
-  tmpArg = arrAssignPatternRhs_1;
+  arrAssignPatternRhs$1 = z;
+  arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+  x = arrPatternSplat$1[0];
+  y = arrPatternSplat$1[1];
+  tmpArg = arrAssignPatternRhs$1;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

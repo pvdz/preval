@@ -41,12 +41,12 @@ switch (1) {
       }
     }
     {
-      let ifTestTmp_1 = tmpFallthrough;
-      if (ifTestTmp_1) {
+      let ifTestTmp$1 = tmpFallthrough;
+      if (ifTestTmp$1) {
       } else {
-        ifTestTmp_1 = 1 === 2;
+        ifTestTmp$1 = 1 === 2;
       }
-      if (ifTestTmp_1) {
+      if (ifTestTmp$1) {
         ('case 1:');
         {
           $(a);
@@ -72,12 +72,12 @@ if (ifTestTmp) {
   a = 1;
   tmpFallthrough = true;
 }
-let ifTestTmp_1 = tmpFallthrough;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = tmpFallthrough;
+if (ifTestTmp$1) {
 } else {
-  ifTestTmp_1 = false;
+  ifTestTmp$1 = false;
 }
-if (ifTestTmp_1) {
+if (ifTestTmp$1) {
   $(a);
   tmpFallthrough = true;
 }

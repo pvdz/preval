@@ -30,7 +30,7 @@ const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const arrPatternSplat_1 = [...objPatternNoDefault];
+const arrPatternSplat$1 = [...objPatternNoDefault];
 $('ok');
 `````
 

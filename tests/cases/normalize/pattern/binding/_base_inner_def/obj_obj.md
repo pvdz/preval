@@ -17,8 +17,8 @@ const {x: {y: {z = a }}} = 1;
 `````js filename=intro
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-const objPatternBeforeDefault = objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault$1.z;
 let z;
 {
   let ifTestTmp = objPatternBeforeDefault === undefined;
@@ -34,8 +34,8 @@ let z;
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-const objPatternBeforeDefault = objPatternNoDefault_1.z;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault$1.z;
 let z;
 let ifTestTmp = objPatternBeforeDefault === undefined;
 if (ifTestTmp) {

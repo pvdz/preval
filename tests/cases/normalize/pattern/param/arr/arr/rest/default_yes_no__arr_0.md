@@ -32,14 +32,14 @@ function f(tmpParamPattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [0, 4, 5];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [0, 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -56,14 +56,14 @@ function f(tmpParamPattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [0, 4, 5];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [0, 4, 5];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

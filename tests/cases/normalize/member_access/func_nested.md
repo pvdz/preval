@@ -21,11 +21,11 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpArg;
   var tmpMemberComplexObj;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   {
     tmpMemberComplexObj = obj.a;
@@ -34,9 +34,9 @@ function f() {
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -44,20 +44,20 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpArg;
   var tmpMemberComplexObj;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   tmpMemberComplexObj = obj.a;
   tmpArg = tmpMemberComplexObj.b;
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

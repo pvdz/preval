@@ -22,8 +22,8 @@ $(a, b, c);
 var tmpArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -35,11 +35,11 @@ let d = 4;
   a = tmpNestedAssignMemberRhs;
   let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
   if (tmpAssignLogicStmtOr) {
-    tmpNestedAssignMemberObj_1 = b;
-    tmpNestedAssignMemberRhs_1 = c + d;
-    tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
-    a = tmpNestedAssignMemberRhs_1;
-    tmpArg = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignMemberObj$1 = b;
+    tmpNestedAssignMemberRhs$1 = c + d;
+    tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
+    a = tmpNestedAssignMemberRhs$1;
+    tmpArg = tmpNestedAssignMemberRhs$1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -54,8 +54,8 @@ $(a, b, c);
 var tmpArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignMemberObj = b;
@@ -64,11 +64,11 @@ tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
 let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
 if (tmpAssignLogicStmtOr) {
-  tmpNestedAssignMemberObj_1 = b;
-  tmpNestedAssignMemberRhs_1 = 11;
-  tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
-  a = tmpNestedAssignMemberRhs_1;
-  tmpArg = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberObj$1 = b;
+  tmpNestedAssignMemberRhs$1 = 11;
+  tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
+  a = tmpNestedAssignMemberRhs$1;
+  tmpArg = tmpNestedAssignMemberRhs$1;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

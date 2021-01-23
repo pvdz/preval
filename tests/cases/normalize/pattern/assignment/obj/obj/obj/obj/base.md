@@ -26,27 +26,27 @@ $('ok');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
-var objPatternNoDefault_2;
+var objPatternNoDefault$1;
+var objPatternNoDefault$2;
 var objPatternCrashTest;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-var tmpObjPropValue_2;
-tmpObjPropValue_2 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue_1 = { z: tmpObjPropValue_2, a: 15, b: 16 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
+tmpObjPropValue$2 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue$1 = { z: tmpObjPropValue$2, a: 15, b: 16 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-objPatternNoDefault_2 = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+objPatternNoDefault$2 = objPatternNoDefault$1.z;
 {
-  let tmpAssignLogicStmtOr = objPatternNoDefault_2 === undefined;
+  let tmpAssignLogicStmtOr = objPatternNoDefault$2 === undefined;
   if (tmpAssignLogicStmtOr) {
   } else {
-    tmpAssignLogicStmtOr = objPatternNoDefault_2 === null;
+    tmpAssignLogicStmtOr = objPatternNoDefault$2 === null;
   }
   if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objPatternNoDefault_2.cannotDestructureThis;
+    objPatternCrashTest = objPatternNoDefault$2.cannotDestructureThis;
   } else {
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
@@ -60,26 +60,26 @@ $('ok');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
-var objPatternNoDefault_2;
+var objPatternNoDefault$1;
+var objPatternNoDefault$2;
 var objPatternCrashTest;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-var tmpObjPropValue_2;
-tmpObjPropValue_2 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue_1 = { z: tmpObjPropValue_2, a: 15, b: 16 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 14 };
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
+tmpObjPropValue$2 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue$1 = { z: tmpObjPropValue$2, a: 15, b: 16 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-objPatternNoDefault_2 = objPatternNoDefault_1.z;
-let tmpAssignLogicStmtOr = objPatternNoDefault_2 === undefined;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+objPatternNoDefault$2 = objPatternNoDefault$1.z;
+let tmpAssignLogicStmtOr = objPatternNoDefault$2 === undefined;
 if (tmpAssignLogicStmtOr) {
 } else {
-  tmpAssignLogicStmtOr = objPatternNoDefault_2 === null;
+  tmpAssignLogicStmtOr = objPatternNoDefault$2 === null;
 }
 if (tmpAssignLogicStmtOr) {
-  objPatternCrashTest = objPatternNoDefault_2.cannotDestructureThis;
+  objPatternCrashTest = objPatternNoDefault$2.cannotDestructureThis;
 } else {
   objPatternCrashTest = tmpAssignLogicStmtOr;
 }

@@ -22,8 +22,8 @@ function i([[ x ]]) {
 function i(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x_1 = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x_1 = arrPatternSplat$1[0];
   {
     let x_2 = 2;
   }

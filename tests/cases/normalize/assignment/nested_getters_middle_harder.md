@@ -69,8 +69,8 @@ function f() {
   var tmpNestedComplexRhs;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  var tmpArg_1;
-  var tmpArg_2;
+  var tmpArg$1;
+  var tmpArg$2;
   var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {
@@ -82,8 +82,8 @@ function f() {
     },
     set foo(x) {
       {
-        let tmpReturnArg_1 = $(3);
-        return tmpReturnArg_1;
+        let tmpReturnArg$1 = $(3);
+        return tmpReturnArg$1;
       }
     },
   };
@@ -100,13 +100,13 @@ function f() {
   console.log('-------- test case');
   $(a);
   console.log('-------- a');
-  tmpArg_1 = b.foo;
-  $(tmpArg_1);
+  tmpArg$1 = b.foo;
+  $(tmpArg$1);
   console.log('-------- a.foo');
   tmpNestedPropAssignRhs = 4;
   b.foo = tmpNestedPropAssignRhs;
-  tmpArg_2 = tmpNestedPropAssignRhs;
-  $(tmpArg_2);
+  tmpArg$2 = tmpNestedPropAssignRhs;
+  $(tmpArg$2);
   console.log('-------- a.foo = 4');
 }
 f();
@@ -120,8 +120,8 @@ function f() {
   var tmpNestedComplexRhs;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  var tmpArg_1;
-  var tmpArg_2;
+  var tmpArg$1;
+  var tmpArg$2;
   var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {
@@ -130,8 +130,8 @@ function f() {
       return tmpReturnArg;
     },
     set foo(x) {
-      let tmpReturnArg_1 = $(3);
-      return tmpReturnArg_1;
+      let tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
     },
   };
   console.log('-------- bound');
@@ -147,13 +147,13 @@ function f() {
   console.log('-------- test case');
   $(a);
   console.log('-------- a');
-  tmpArg_1 = b.foo;
-  $(tmpArg_1);
+  tmpArg$1 = b.foo;
+  $(tmpArg$1);
   console.log('-------- a.foo');
   tmpNestedPropAssignRhs = 4;
   b.foo = tmpNestedPropAssignRhs;
-  tmpArg_2 = tmpNestedPropAssignRhs;
-  $(tmpArg_2);
+  tmpArg$2 = tmpNestedPropAssignRhs;
+  $(tmpArg$2);
   console.log('-------- a.foo = 4');
 }
 f();

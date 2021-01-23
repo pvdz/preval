@@ -20,42 +20,42 @@ $(a?.[b]?.[c]?.[d]);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
-var tmpOptionalChaining_1;
+var tmpOptionalChaining$1;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 const b = 'b';
 const c = 'c';
 const d = 'd';
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpOptionalChaining_1 = undefined;
+  tmpOptionalChaining$1 = undefined;
 } else {
   tmpTernaryAlternate = a[b];
-  tmpOptionalChaining_1 = tmpTernaryAlternate;
+  tmpOptionalChaining$1 = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
+if (tmpTernaryTest$1) {
   tmpOptionalChaining = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining_1[c];
-  tmpOptionalChaining = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining$1[c];
+  tmpOptionalChaining = tmpTernaryAlternate$1;
 }
-tmpTernaryTest_2 = tmpOptionalChaining == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpOptionalChaining == null;
+if (tmpTernaryTest$2) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_2 = tmpOptionalChaining[d];
-  tmpArg = tmpTernaryAlternate_2;
+  tmpTernaryAlternate$2 = tmpOptionalChaining[d];
+  tmpArg = tmpTernaryAlternate$2;
 }
 $(tmpArg);
 `````
@@ -64,39 +64,39 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
-var tmpOptionalChaining_1;
+var tmpOptionalChaining$1;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest_1;
-var tmpTernaryAlternate_1;
-var tmpTernaryTest_2;
-var tmpTernaryAlternate_2;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+var tmpTernaryTest$1;
+var tmpTernaryAlternate$1;
+var tmpTernaryTest$2;
+var tmpTernaryAlternate$2;
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpOptionalChaining_1 = undefined;
+  tmpOptionalChaining$1 = undefined;
 } else {
   tmpTernaryAlternate = a.b;
-  tmpOptionalChaining_1 = tmpTernaryAlternate;
+  tmpOptionalChaining$1 = tmpTernaryAlternate;
 }
-tmpTernaryTest_1 = tmpOptionalChaining_1 == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
+if (tmpTernaryTest$1) {
   tmpOptionalChaining = undefined;
 } else {
-  tmpTernaryAlternate_1 = tmpOptionalChaining_1.c;
-  tmpOptionalChaining = tmpTernaryAlternate_1;
+  tmpTernaryAlternate$1 = tmpOptionalChaining$1.c;
+  tmpOptionalChaining = tmpTernaryAlternate$1;
 }
-tmpTernaryTest_2 = tmpOptionalChaining == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpOptionalChaining == null;
+if (tmpTernaryTest$2) {
   tmpArg = undefined;
 } else {
-  tmpTernaryAlternate_2 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate_2;
+  tmpTernaryAlternate$2 = tmpOptionalChaining.d;
+  tmpArg = tmpTernaryAlternate$2;
 }
 $(tmpArg);
 `````

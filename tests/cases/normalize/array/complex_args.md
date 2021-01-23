@@ -17,14 +17,14 @@ $([5 + 5, $(), Array.prototype.length]);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
+var tmpElement$1;
+var tmpElement$2;
 var tmpMemberComplexObj;
 tmpElement = 5 + 5;
-tmpElement_1 = $();
+tmpElement$1 = $();
 tmpMemberComplexObj = Array.prototype;
-tmpElement_2 = tmpMemberComplexObj.length;
-tmpArg = [tmpElement, tmpElement_1, tmpElement_2];
+tmpElement$2 = tmpMemberComplexObj.length;
+tmpArg = [tmpElement, tmpElement$1, tmpElement$2];
 $(tmpArg);
 `````
 
@@ -33,14 +33,14 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
+var tmpElement$1;
+var tmpElement$2;
 var tmpMemberComplexObj;
 tmpElement = 10;
-tmpElement_1 = $();
+tmpElement$1 = $();
 tmpMemberComplexObj = Array.prototype;
-tmpElement_2 = tmpMemberComplexObj.length;
-tmpArg = [tmpElement, tmpElement_1, tmpElement_2];
+tmpElement$2 = tmpMemberComplexObj.length;
+tmpArg = [tmpElement, tmpElement$1, tmpElement$2];
 $(tmpArg);
 `````
 

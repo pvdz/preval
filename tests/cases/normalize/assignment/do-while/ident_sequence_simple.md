@@ -33,8 +33,8 @@ do {
     tmpPostfixArg = n;
     n = n + 1;
     tmpArg = tmpPostfixArg;
-    let ifTestTmp_1 = $(tmpArg);
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = $(tmpArg);
+    if (ifTestTmp$1) {
       break;
     }
   }
@@ -59,8 +59,8 @@ do {
   tmpPostfixArg = n;
   n = n + 1;
   tmpArg = tmpPostfixArg;
-  let ifTestTmp_1 = $(tmpArg);
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $(tmpArg);
+  if (ifTestTmp$1) {
     break;
   }
   $(2);

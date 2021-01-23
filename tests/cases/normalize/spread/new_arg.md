@@ -19,7 +19,7 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -32,22 +32,22 @@ let y = 9;
 tmpArg = x;
 a = b.c;
 d = e[f];
-tmpArg_1 = g.h;
-new y(tmpArg, 8, ...tmpArg_1);
+tmpArg$1 = g.h;
+new y(tmpArg, 8, ...tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let a = 1;
 let d = 4;
 tmpArg = x;
 a = (2).c;
 d = (5)[6];
-tmpArg_1 = (7).h;
-new 9(tmpArg, 8, ...tmpArg_1);
+tmpArg$1 = (7).h;
+new 9(tmpArg, 8, ...tmpArg$1);
 `````
 
 ## Result

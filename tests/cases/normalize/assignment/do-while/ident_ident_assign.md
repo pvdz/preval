@@ -24,7 +24,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
@@ -38,8 +38,8 @@ do {
     tmpPostfixArg = n;
     n = n + 1;
     tmpArg = tmpPostfixArg;
-    let ifTestTmp_1 = $(tmpArg);
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = $(tmpArg);
+    if (ifTestTmp$1) {
       break;
     }
   }
@@ -47,9 +47,9 @@ do {
   tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(d);
   tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-  tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;
-  b = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs$1 = tmpNestedAssignMemberRhs;
+  b = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);
@@ -63,7 +63,7 @@ var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
@@ -74,17 +74,17 @@ do {
   tmpPostfixArg = n;
   n = n + 1;
   tmpArg = tmpPostfixArg;
-  let ifTestTmp_1 = $(tmpArg);
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $(tmpArg);
+  if (ifTestTmp$1) {
     break;
   }
   tmpNestedAssignObj = $(3);
   tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = $(4);
   tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-  tmpNestedComplexRhs_1 = tmpNestedAssignMemberRhs;
-  b = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs$1 = tmpNestedAssignMemberRhs;
+  b = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs;
   ifTestTmp = tmpNestedComplexRhs;
 } while (ifTestTmp);

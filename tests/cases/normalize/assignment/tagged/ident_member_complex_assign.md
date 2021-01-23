@@ -20,14 +20,14 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj_1;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignObj$1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -35,16 +35,16 @@ let d = 4;
 tmpArg = ['abc ', ' def'];
 tmpNestedAssignObj = $(b);
 tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj_1 = $(c);
-tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-tmpNestedAssignMemberRhs_1 = $(d);
-tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignObj$1 = $(c);
+tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+tmpNestedAssignMemberRhs$1 = $(d);
+tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, b, c, d);
 `````
 
@@ -52,29 +52,29 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj_1;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignObj$1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 tmpArg = ['abc ', ' def'];
 tmpNestedAssignObj = $(b);
 tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj_1 = $(3);
-tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-tmpNestedAssignMemberRhs_1 = $(4);
-tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+tmpNestedAssignObj$1 = $(3);
+tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+tmpNestedAssignMemberRhs$1 = $(4);
+tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, b, 3, 4);
 `````
 

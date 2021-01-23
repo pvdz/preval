@@ -41,9 +41,9 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = { a: 1, b: 2, c: 3 };
-tmpArg = f(tmpArg_1, 10);
+var tmpArg$1;
+tmpArg$1 = { a: 1, b: 2, c: 3 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -69,9 +69,9 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = { a: 1, b: 2, c: 3 };
-tmpArg = f(tmpArg_1, 10);
+var tmpArg$1;
+tmpArg$1 = { a: 1, b: 2, c: 3 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

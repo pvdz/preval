@@ -20,26 +20,26 @@ $(a??b??c??d);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpNullish_1;
+var tmpNullish$1;
 var tmpTernaryTest;
-var tmpTernaryTest_1;
-var tmpTernaryTest_2;
+var tmpTernaryTest$1;
+var tmpTernaryTest$2;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpNullish_1 = b;
+  tmpNullish$1 = b;
 } else {
-  tmpNullish_1 = a;
+  tmpNullish$1 = a;
 }
-tmpTernaryTest_1 = tmpNullish_1 == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpNullish$1 == null;
+if (tmpTernaryTest$1) {
   tmpNullish = c;
 } else {
-  tmpNullish = tmpNullish_1;
+  tmpNullish = tmpNullish$1;
 }
-tmpTernaryTest_2 = tmpNullish == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpNullish == null;
+if (tmpTernaryTest$2) {
   tmpArg = d;
 } else {
   tmpArg = tmpNullish;
@@ -52,26 +52,26 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpNullish_1;
+var tmpNullish$1;
 var tmpTernaryTest;
-var tmpTernaryTest_1;
-var tmpTernaryTest_2;
+var tmpTernaryTest$1;
+var tmpTernaryTest$2;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
 if (tmpTernaryTest) {
-  tmpNullish_1 = b;
+  tmpNullish$1 = b;
 } else {
-  tmpNullish_1 = a;
+  tmpNullish$1 = a;
 }
-tmpTernaryTest_1 = tmpNullish_1 == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpNullish$1 == null;
+if (tmpTernaryTest$1) {
   tmpNullish = c;
 } else {
-  tmpNullish = tmpNullish_1;
+  tmpNullish = tmpNullish$1;
 }
-tmpTernaryTest_2 = tmpNullish == null;
-if (tmpTernaryTest_2) {
+tmpTernaryTest$2 = tmpNullish == null;
+if (tmpTernaryTest$2) {
   tmpArg = d;
 } else {
   tmpArg = tmpNullish;

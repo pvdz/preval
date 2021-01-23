@@ -31,13 +31,13 @@ function g() {
   }
   function f() {
     {
-      let tmpReturnArg_1 = $(2);
-      return tmpReturnArg_1;
+      let tmpReturnArg$1 = $(2);
+      return tmpReturnArg$1;
     }
   }
-  var tmpArg_1;
-  tmpArg_1 = f(3);
-  $(tmpArg_1);
+  var tmpArg$1;
+  tmpArg$1 = f(3);
+  $(tmpArg$1);
 }
 var tmpArg;
 tmpArg = g();
@@ -53,12 +53,12 @@ function g() {
     return tmpReturnArg;
   }
   function f() {
-    let tmpReturnArg_1 = $(2);
-    return tmpReturnArg_1;
+    let tmpReturnArg$1 = $(2);
+    return tmpReturnArg$1;
   }
-  var tmpArg_1;
-  tmpArg_1 = f(3);
-  $(tmpArg_1);
+  var tmpArg$1;
+  tmpArg$1 = f(3);
+  $(tmpArg$1);
 }
 var tmpArg;
 tmpArg = g();

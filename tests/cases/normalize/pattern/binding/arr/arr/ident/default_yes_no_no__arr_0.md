@@ -21,8 +21,8 @@ $('bad');
 const bindingPatternArrRoot = [0, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 {
   let ifTestTmp = arrPatternBeforeDefault === undefined;
@@ -41,8 +41,8 @@ $('bad');
 const bindingPatternArrRoot = [0, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 let ifTestTmp = arrPatternBeforeDefault === undefined;
 if (ifTestTmp) {

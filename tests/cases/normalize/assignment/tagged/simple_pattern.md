@@ -20,7 +20,7 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -35,8 +35,8 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpNestedComplexRhs = arrAssignPatternRhs;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, x, y, z);
 `````
 
@@ -44,7 +44,7 @@ $(a, x, y, z);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
@@ -59,8 +59,8 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpNestedComplexRhs = arrAssignPatternRhs;
 a = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 $(a, x, y, z);
 `````
 

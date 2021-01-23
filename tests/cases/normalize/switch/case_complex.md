@@ -32,7 +32,7 @@ switch (1) {
 
 `````js filename=intro
 var tmpBinaryRight;
-var tmpBinaryRight_1;
+var tmpBinaryRight$1;
 {
   let tmpFallthrough = false;
   {
@@ -51,13 +51,13 @@ var tmpBinaryRight_1;
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      tmpBinaryRight_1 = $(2);
-      ifTestTmp_1 = 1 === tmpBinaryRight_1;
+      tmpBinaryRight$1 = $(2);
+      ifTestTmp$1 = 1 === tmpBinaryRight$1;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         $(22);
@@ -72,7 +72,7 @@ var tmpBinaryRight_1;
 
 `````js filename=intro
 var tmpBinaryRight;
-var tmpBinaryRight_1;
+var tmpBinaryRight$1;
 let tmpFallthrough = false;
 let ifTestTmp = tmpFallthrough;
 if (ifTestTmp) {
@@ -84,13 +84,13 @@ if (ifTestTmp) {
   $(11);
   tmpFallthrough = true;
 }
-let ifTestTmp_1 = tmpFallthrough;
-if (ifTestTmp_1) {
+let ifTestTmp$1 = tmpFallthrough;
+if (ifTestTmp$1) {
 } else {
-  tmpBinaryRight_1 = $(2);
-  ifTestTmp_1 = 1 === tmpBinaryRight_1;
+  tmpBinaryRight$1 = $(2);
+  ifTestTmp$1 = 1 === tmpBinaryRight$1;
 }
-if (ifTestTmp_1) {
+if (ifTestTmp$1) {
   $(22);
   tmpFallthrough = true;
 }

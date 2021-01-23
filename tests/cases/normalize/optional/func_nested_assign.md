@@ -22,16 +22,16 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpAssignMemLhsObj;
   var tmpArg;
   var tmpOptionalChaining;
   var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest_1;
-  var tmpTernaryAlternate_1;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  var tmpTernaryAlternate$1;
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
@@ -43,20 +43,20 @@ function f() {
       tmpTernaryAlternate = obj.a;
       tmpOptionalChaining = tmpTernaryAlternate;
     }
-    tmpTernaryTest_1 = tmpOptionalChaining == null;
-    if (tmpTernaryTest_1) {
+    tmpTernaryTest$1 = tmpOptionalChaining == null;
+    if (tmpTernaryTest$1) {
       tmpArg = undefined;
     } else {
-      tmpTernaryAlternate_1 = tmpOptionalChaining.b;
-      tmpArg = tmpTernaryAlternate_1;
+      tmpTernaryAlternate$1 = tmpOptionalChaining.b;
+      tmpArg = tmpTernaryAlternate$1;
     }
     let tmpReturnArg = $(tmpArg);
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -64,16 +64,16 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
+  var tmpObjPropValue$1;
   var tmpAssignMemLhsObj;
   var tmpArg;
   var tmpOptionalChaining;
   var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest_1;
-  var tmpTernaryAlternate_1;
-  tmpObjPropValue_1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpTernaryTest$1;
+  var tmpTernaryAlternate$1;
+  tmpObjPropValue$1 = $();
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
@@ -84,19 +84,19 @@ function f() {
     tmpTernaryAlternate = obj.a;
     tmpOptionalChaining = tmpTernaryAlternate;
   }
-  tmpTernaryTest_1 = tmpOptionalChaining == null;
-  if (tmpTernaryTest_1) {
+  tmpTernaryTest$1 = tmpOptionalChaining == null;
+  if (tmpTernaryTest$1) {
     tmpArg = undefined;
   } else {
-    tmpTernaryAlternate_1 = tmpOptionalChaining.b;
-    tmpArg = tmpTernaryAlternate_1;
+    tmpTernaryAlternate$1 = tmpOptionalChaining.b;
+    tmpArg = tmpTernaryAlternate$1;
   }
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

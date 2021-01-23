@@ -56,106 +56,106 @@ $(
 `````js filename=intro
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpArg_1;
-var tmpArg_2;
-var tmpMemberComplexObj_1;
+var tmpArg$1;
+var tmpArg$2;
+var tmpMemberComplexObj$1;
 var tmpElement;
-var tmpMemberComplexObj_2;
-var tmpArg_3;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-var tmpElement_4;
-var tmpElement_5;
-var tmpElement_6;
-var tmpElement_7;
-var tmpElement_8;
-var tmpElement_9;
-var tmpElement_10;
-var tmpElement_11;
-var tmpElement_12;
-var tmpElement_13;
-var tmpElement_14;
-var tmpElement_15;
-var tmpElement_16;
-var tmpElement_17;
-var tmpElement_18;
-var tmpElement_19;
-var tmpElement_20;
-var tmpElement_21;
-var tmpElement_22;
-var tmpElement_23;
-var tmpElement_24;
-var tmpElement_25;
-var tmpElement_26;
-var tmpElement_27;
-tmpArg_2 = (k) => {
+var tmpMemberComplexObj$2;
+var tmpArg$3;
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+var tmpElement$4;
+var tmpElement$5;
+var tmpElement$6;
+var tmpElement$7;
+var tmpElement$8;
+var tmpElement$9;
+var tmpElement$10;
+var tmpElement$11;
+var tmpElement$12;
+var tmpElement$13;
+var tmpElement$14;
+var tmpElement$15;
+var tmpElement$16;
+var tmpElement$17;
+var tmpElement$18;
+var tmpElement$19;
+var tmpElement$20;
+var tmpElement$21;
+var tmpElement$22;
+var tmpElement$23;
+var tmpElement$24;
+var tmpElement$25;
+var tmpElement$26;
+var tmpElement$27;
+tmpArg$2 = (k) => {
   {
     let tmpReturnArg = [k, k];
     return tmpReturnArg;
   }
 };
-tmpElement_1 = ['clearInterval', 'global.clearInterval'];
-tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];
-tmpElement_3 = ['console', 'global.console'];
-tmpElement_4 = ['false', 'boolean'];
-tmpElement_5 = ['null', 'null'];
-tmpElement_6 = ['this', 'undefined'];
-tmpElement_7 = ['parseInt', 'global.parseInt'];
-tmpElement_8 = ['parseFloat', 'global.parseFloat'];
-tmpElement_9 = ['setInterval', 'global.setInterval'];
-tmpElement_10 = ['setTimeout', 'global.setTimeout'];
-tmpElement_11 = ['true', 'boolean'];
-tmpElement_12 = ['undefined', 'undefined'];
-tmpElement_13 = ['Array', 'Array'];
-tmpElement_14 = ['Boolean', 'Boolean'];
-tmpElement_15 = ['Date', 'Date'];
-tmpElement_16 = ['Error', 'Error'];
-tmpElement_17 = ['Infinity', 'number'];
-tmpElement_18 = ['JSON', 'JSON'];
-tmpElement_19 = ['Math', 'Math'];
-tmpElement_20 = ['Map', 'Map'];
-tmpElement_21 = ['NaN', 'NaN'];
-tmpElement_22 = ['Number', 'Number'];
-tmpElement_23 = ['Object', 'Object'];
-tmpElement_24 = ['RegExp', 'RegExp'];
-tmpElement_25 = ['Set', 'Set'];
-tmpElement_26 = ['String', 'String'];
-tmpElement_27 = ['$', '$'];
-tmpArg_3 = [
-  tmpElement_1,
-  tmpElement_2,
-  tmpElement_3,
-  tmpElement_4,
-  tmpElement_5,
-  tmpElement_6,
-  tmpElement_7,
-  tmpElement_8,
-  tmpElement_9,
-  tmpElement_10,
-  tmpElement_11,
-  tmpElement_12,
-  tmpElement_13,
-  tmpElement_14,
-  tmpElement_15,
-  tmpElement_16,
-  tmpElement_17,
-  tmpElement_18,
-  tmpElement_19,
-  tmpElement_20,
-  tmpElement_21,
-  tmpElement_22,
-  tmpElement_23,
-  tmpElement_24,
-  tmpElement_25,
-  tmpElement_26,
-  tmpElement_27,
+tmpElement$1 = ['clearInterval', 'global.clearInterval'];
+tmpElement$2 = ['clearTimeout', 'global.clearTimeout'];
+tmpElement$3 = ['console', 'global.console'];
+tmpElement$4 = ['false', 'boolean'];
+tmpElement$5 = ['null', 'null'];
+tmpElement$6 = ['this', 'undefined'];
+tmpElement$7 = ['parseInt', 'global.parseInt'];
+tmpElement$8 = ['parseFloat', 'global.parseFloat'];
+tmpElement$9 = ['setInterval', 'global.setInterval'];
+tmpElement$10 = ['setTimeout', 'global.setTimeout'];
+tmpElement$11 = ['true', 'boolean'];
+tmpElement$12 = ['undefined', 'undefined'];
+tmpElement$13 = ['Array', 'Array'];
+tmpElement$14 = ['Boolean', 'Boolean'];
+tmpElement$15 = ['Date', 'Date'];
+tmpElement$16 = ['Error', 'Error'];
+tmpElement$17 = ['Infinity', 'number'];
+tmpElement$18 = ['JSON', 'JSON'];
+tmpElement$19 = ['Math', 'Math'];
+tmpElement$20 = ['Map', 'Map'];
+tmpElement$21 = ['NaN', 'NaN'];
+tmpElement$22 = ['Number', 'Number'];
+tmpElement$23 = ['Object', 'Object'];
+tmpElement$24 = ['RegExp', 'RegExp'];
+tmpElement$25 = ['Set', 'Set'];
+tmpElement$26 = ['String', 'String'];
+tmpElement$27 = ['$', '$'];
+tmpArg$3 = [
+  tmpElement$1,
+  tmpElement$2,
+  tmpElement$3,
+  tmpElement$4,
+  tmpElement$5,
+  tmpElement$6,
+  tmpElement$7,
+  tmpElement$8,
+  tmpElement$9,
+  tmpElement$10,
+  tmpElement$11,
+  tmpElement$12,
+  tmpElement$13,
+  tmpElement$14,
+  tmpElement$15,
+  tmpElement$16,
+  tmpElement$17,
+  tmpElement$18,
+  tmpElement$19,
+  tmpElement$20,
+  tmpElement$21,
+  tmpElement$22,
+  tmpElement$23,
+  tmpElement$24,
+  tmpElement$25,
+  tmpElement$26,
+  tmpElement$27,
 ];
-tmpMemberComplexObj_2 = new Map(tmpArg_3);
-tmpElement = tmpMemberComplexObj_2.keys();
-tmpMemberComplexObj_1 = [...tmpElement, 'module'];
-tmpArg_1 = tmpMemberComplexObj_1.map(tmpArg_2);
-tmpMemberComplexObj = new Map(tmpArg_1);
+tmpMemberComplexObj$2 = new Map(tmpArg$3);
+tmpElement = tmpMemberComplexObj$2.keys();
+tmpMemberComplexObj$1 = [...tmpElement, 'module'];
+tmpArg$1 = tmpMemberComplexObj$1.map(tmpArg$2);
+tmpMemberComplexObj = new Map(tmpArg$1);
 tmpArg = tmpMemberComplexObj.get('$');
 $(tmpArg);
 `````
@@ -165,104 +165,104 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpArg_1;
-var tmpArg_2;
-var tmpMemberComplexObj_1;
+var tmpArg$1;
+var tmpArg$2;
+var tmpMemberComplexObj$1;
 var tmpElement;
-var tmpMemberComplexObj_2;
-var tmpArg_3;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-var tmpElement_4;
-var tmpElement_5;
-var tmpElement_6;
-var tmpElement_7;
-var tmpElement_8;
-var tmpElement_9;
-var tmpElement_10;
-var tmpElement_11;
-var tmpElement_12;
-var tmpElement_13;
-var tmpElement_14;
-var tmpElement_15;
-var tmpElement_16;
-var tmpElement_17;
-var tmpElement_18;
-var tmpElement_19;
-var tmpElement_20;
-var tmpElement_21;
-var tmpElement_22;
-var tmpElement_23;
-var tmpElement_24;
-var tmpElement_25;
-var tmpElement_26;
-var tmpElement_27;
-tmpArg_2 = (k) => {
+var tmpMemberComplexObj$2;
+var tmpArg$3;
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+var tmpElement$4;
+var tmpElement$5;
+var tmpElement$6;
+var tmpElement$7;
+var tmpElement$8;
+var tmpElement$9;
+var tmpElement$10;
+var tmpElement$11;
+var tmpElement$12;
+var tmpElement$13;
+var tmpElement$14;
+var tmpElement$15;
+var tmpElement$16;
+var tmpElement$17;
+var tmpElement$18;
+var tmpElement$19;
+var tmpElement$20;
+var tmpElement$21;
+var tmpElement$22;
+var tmpElement$23;
+var tmpElement$24;
+var tmpElement$25;
+var tmpElement$26;
+var tmpElement$27;
+tmpArg$2 = (k) => {
   let tmpReturnArg = [k, k];
   return tmpReturnArg;
 };
-tmpElement_1 = ['clearInterval', 'global.clearInterval'];
-tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];
-tmpElement_3 = ['console', 'global.console'];
-tmpElement_4 = ['false', 'boolean'];
-tmpElement_5 = ['null', 'null'];
-tmpElement_6 = ['this', 'undefined'];
-tmpElement_7 = ['parseInt', 'global.parseInt'];
-tmpElement_8 = ['parseFloat', 'global.parseFloat'];
-tmpElement_9 = ['setInterval', 'global.setInterval'];
-tmpElement_10 = ['setTimeout', 'global.setTimeout'];
-tmpElement_11 = ['true', 'boolean'];
-tmpElement_12 = ['undefined', 'undefined'];
-tmpElement_13 = ['Array', 'Array'];
-tmpElement_14 = ['Boolean', 'Boolean'];
-tmpElement_15 = ['Date', 'Date'];
-tmpElement_16 = ['Error', 'Error'];
-tmpElement_17 = ['Infinity', 'number'];
-tmpElement_18 = ['JSON', 'JSON'];
-tmpElement_19 = ['Math', 'Math'];
-tmpElement_20 = ['Map', 'Map'];
-tmpElement_21 = ['NaN', 'NaN'];
-tmpElement_22 = ['Number', 'Number'];
-tmpElement_23 = ['Object', 'Object'];
-tmpElement_24 = ['RegExp', 'RegExp'];
-tmpElement_25 = ['Set', 'Set'];
-tmpElement_26 = ['String', 'String'];
-tmpElement_27 = ['$', '$'];
-tmpArg_3 = [
-  tmpElement_1,
-  tmpElement_2,
-  tmpElement_3,
-  tmpElement_4,
-  tmpElement_5,
-  tmpElement_6,
-  tmpElement_7,
-  tmpElement_8,
-  tmpElement_9,
-  tmpElement_10,
-  tmpElement_11,
-  tmpElement_12,
-  tmpElement_13,
-  tmpElement_14,
-  tmpElement_15,
-  tmpElement_16,
-  tmpElement_17,
-  tmpElement_18,
-  tmpElement_19,
-  tmpElement_20,
-  tmpElement_21,
-  tmpElement_22,
-  tmpElement_23,
-  tmpElement_24,
-  tmpElement_25,
-  tmpElement_26,
-  tmpElement_27,
+tmpElement$1 = ['clearInterval', 'global.clearInterval'];
+tmpElement$2 = ['clearTimeout', 'global.clearTimeout'];
+tmpElement$3 = ['console', 'global.console'];
+tmpElement$4 = ['false', 'boolean'];
+tmpElement$5 = ['null', 'null'];
+tmpElement$6 = ['this', 'undefined'];
+tmpElement$7 = ['parseInt', 'global.parseInt'];
+tmpElement$8 = ['parseFloat', 'global.parseFloat'];
+tmpElement$9 = ['setInterval', 'global.setInterval'];
+tmpElement$10 = ['setTimeout', 'global.setTimeout'];
+tmpElement$11 = ['true', 'boolean'];
+tmpElement$12 = ['undefined', 'undefined'];
+tmpElement$13 = ['Array', 'Array'];
+tmpElement$14 = ['Boolean', 'Boolean'];
+tmpElement$15 = ['Date', 'Date'];
+tmpElement$16 = ['Error', 'Error'];
+tmpElement$17 = ['Infinity', 'number'];
+tmpElement$18 = ['JSON', 'JSON'];
+tmpElement$19 = ['Math', 'Math'];
+tmpElement$20 = ['Map', 'Map'];
+tmpElement$21 = ['NaN', 'NaN'];
+tmpElement$22 = ['Number', 'Number'];
+tmpElement$23 = ['Object', 'Object'];
+tmpElement$24 = ['RegExp', 'RegExp'];
+tmpElement$25 = ['Set', 'Set'];
+tmpElement$26 = ['String', 'String'];
+tmpElement$27 = ['$', '$'];
+tmpArg$3 = [
+  tmpElement$1,
+  tmpElement$2,
+  tmpElement$3,
+  tmpElement$4,
+  tmpElement$5,
+  tmpElement$6,
+  tmpElement$7,
+  tmpElement$8,
+  tmpElement$9,
+  tmpElement$10,
+  tmpElement$11,
+  tmpElement$12,
+  tmpElement$13,
+  tmpElement$14,
+  tmpElement$15,
+  tmpElement$16,
+  tmpElement$17,
+  tmpElement$18,
+  tmpElement$19,
+  tmpElement$20,
+  tmpElement$21,
+  tmpElement$22,
+  tmpElement$23,
+  tmpElement$24,
+  tmpElement$25,
+  tmpElement$26,
+  tmpElement$27,
 ];
-tmpMemberComplexObj_2 = new Map(tmpArg_3);
-tmpElement = tmpMemberComplexObj_2.keys();
-tmpMemberComplexObj_1 = [...tmpElement, 'module'];
-tmpArg_1 = tmpMemberComplexObj_1.map(tmpArg_2);
-tmpMemberComplexObj = new Map(tmpArg_1);
+tmpMemberComplexObj$2 = new Map(tmpArg$3);
+tmpElement = tmpMemberComplexObj$2.keys();
+tmpMemberComplexObj$1 = [...tmpElement, 'module'];
+tmpArg$1 = tmpMemberComplexObj$1.map(tmpArg$2);
+tmpMemberComplexObj = new Map(tmpArg$1);
 tmpArg = tmpMemberComplexObj.get('$');
 $(tmpArg);
 `````

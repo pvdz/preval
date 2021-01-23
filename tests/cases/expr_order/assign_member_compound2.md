@@ -22,7 +22,7 @@ a.foo = a += $();
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedComplexRhs;
 var tmpNestedCompoundComplexRhs;
 let a = {};
@@ -31,8 +31,8 @@ tmpNestedComplexRhs = $();
 tmpNestedCompoundComplexRhs = a + tmpNestedComplexRhs;
 a = tmpNestedCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedCompoundComplexRhs;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 `````
 
 ## Output
@@ -40,7 +40,7 @@ tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedComplexRhs;
 var tmpNestedCompoundComplexRhs;
 let a = {};
@@ -49,8 +49,8 @@ tmpNestedComplexRhs = $();
 tmpNestedCompoundComplexRhs = a + tmpNestedComplexRhs;
 a = tmpNestedCompoundComplexRhs;
 tmpAssignMemRhs = tmpNestedCompoundComplexRhs;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 `````
 
 ## Result

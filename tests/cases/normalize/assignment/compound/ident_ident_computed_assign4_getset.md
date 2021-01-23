@@ -41,7 +41,7 @@ var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
@@ -94,8 +94,8 @@ tmpBinaryRight = tmpComputedObj[tmpComputedProp];
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
 tmpAssignComputedRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $('final:', a, b, c);
 `````
 
@@ -108,7 +108,7 @@ var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
@@ -161,8 +161,8 @@ tmpBinaryRight = tmpComputedObj[tmpComputedProp];
 tmpNestedPropCompoundComplexRhs = tmpBinaryLeft + tmpBinaryRight;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropCompoundComplexRhs;
 tmpAssignComputedRhs = tmpNestedPropCompoundComplexRhs;
-tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $('final:', a, b, c);
 `````
 

@@ -35,7 +35,7 @@ $(a, s); // 5, 'read;write[5]'
 var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let s = '';
 let a = 0;
 const obj = {
@@ -46,10 +46,10 @@ const obj = {
   set x(v) {
     var tmpBinaryLeft;
     var tmpBinaryRight;
-    var tmpBinaryLeft_1;
+    var tmpBinaryLeft$1;
     tmpBinaryLeft = s;
-    tmpBinaryLeft_1 = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft_1 + '];';
+    tmpBinaryLeft$1 = 'write[' + v;
+    tmpBinaryRight = tmpBinaryLeft$1 + '];';
     s = tmpBinaryLeft + tmpBinaryRight;
     a = a + v;
     return a;
@@ -58,8 +58,8 @@ const obj = {
 tmpCompoundAssignLhs = obj.x;
 tmpAssignMemLhsObj = obj;
 tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
@@ -69,7 +69,7 @@ $(a, s);
 var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let s = '';
 let a = 0;
 const obj = {
@@ -80,10 +80,10 @@ const obj = {
   set x(v) {
     var tmpBinaryLeft;
     var tmpBinaryRight;
-    var tmpBinaryLeft_1;
+    var tmpBinaryLeft$1;
     tmpBinaryLeft = s;
-    tmpBinaryLeft_1 = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft_1 + '];';
+    tmpBinaryLeft$1 = 'write[' + v;
+    tmpBinaryRight = tmpBinaryLeft$1 + '];';
     s = tmpBinaryLeft + tmpBinaryRight;
     a = a + v;
     return a;
@@ -92,8 +92,8 @@ const obj = {
 tmpCompoundAssignLhs = obj.x;
 tmpAssignMemLhsObj = obj;
 tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj_1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, s);
 `````
 

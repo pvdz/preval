@@ -21,26 +21,26 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
-  var tmpObjPropValue_2;
+  var tmpObjPropValue$1;
+  var tmpObjPropValue$2;
   var tmpArg;
   var tmpMemberComplexObj;
-  var tmpMemberComplexObj_1;
-  tmpObjPropValue_2 = $();
-  tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpMemberComplexObj$1;
+  tmpObjPropValue$2 = $();
+  tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
   {
-    tmpMemberComplexObj_1 = obj.a;
-    tmpMemberComplexObj = tmpMemberComplexObj_1.b;
+    tmpMemberComplexObj$1 = obj.a;
+    tmpMemberComplexObj = tmpMemberComplexObj$1.b;
     tmpArg = tmpMemberComplexObj.c;
     let tmpReturnArg = $(tmpArg);
     return tmpReturnArg;
   }
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -48,24 +48,24 @@ $(tmpArg_1);
 `````js filename=intro
 function f() {
   var tmpObjPropValue;
-  var tmpObjPropValue_1;
-  var tmpObjPropValue_2;
+  var tmpObjPropValue$1;
+  var tmpObjPropValue$2;
   var tmpArg;
   var tmpMemberComplexObj;
-  var tmpMemberComplexObj_1;
-  tmpObjPropValue_2 = $();
-  tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-  tmpObjPropValue = { b: tmpObjPropValue_1 };
+  var tmpMemberComplexObj$1;
+  tmpObjPropValue$2 = $();
+  tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+  tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
-  tmpMemberComplexObj_1 = obj.a;
-  tmpMemberComplexObj = tmpMemberComplexObj_1.b;
+  tmpMemberComplexObj$1 = obj.a;
+  tmpMemberComplexObj = tmpMemberComplexObj$1.b;
   tmpArg = tmpMemberComplexObj.c;
   let tmpReturnArg = $(tmpArg);
   return tmpReturnArg;
 }
-var tmpArg_1;
-tmpArg_1 = f();
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

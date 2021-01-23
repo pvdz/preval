@@ -21,38 +21,38 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 ## Normalized
 
 `````js filename=intro
-function x_1(tmpParamPattern, tmpParamPattern_1) {
+function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let arrPatternSplat_2 = [...arrPatternStep_1];
-  let arrPatternStep_2 = arrPatternSplat_2[0];
-  let arrPatternSplat_3 = [...arrPatternStep_2];
-  let arrPatternStep_3 = arrPatternSplat_3[0];
-  let arrPatternSplat_4 = [...arrPatternStep_3];
-  let arrPatternBeforeDefault = arrPatternSplat_4[0];
-  let arrPatternStep_4;
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let arrPatternSplat$2 = [...arrPatternStep$1];
+  let arrPatternStep$2 = arrPatternSplat$2[0];
+  let arrPatternSplat$3 = [...arrPatternStep$2];
+  let arrPatternStep$3 = arrPatternSplat$3[0];
+  let arrPatternSplat$4 = [...arrPatternStep$3];
+  let arrPatternBeforeDefault = arrPatternSplat$4[0];
+  let arrPatternStep$4;
   {
     let ifTestTmp = arrPatternBeforeDefault === undefined;
     if (ifTestTmp) {
-      arrPatternStep_4 = y;
+      arrPatternStep$4 = y;
     } else {
-      arrPatternStep_4 = arrPatternBeforeDefault;
+      arrPatternStep$4 = arrPatternBeforeDefault;
     }
   }
-  let arrPatternSplat_5 = [...arrPatternStep_4];
-  let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
+  let arrPatternSplat$5 = [...arrPatternStep$4];
+  let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
   let foo;
   {
-    let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
+    if (ifTestTmp$1) {
       foo = x_1;
     } else {
-      foo = arrPatternBeforeDefault_1;
+      foo = arrPatternBeforeDefault$1;
     }
   }
-  let objPatternNoDefault = tmpParamPattern_1.x;
+  let objPatternNoDefault = tmpParamPattern$1.x;
   let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
 }
 `````
@@ -60,34 +60,34 @@ function x_1(tmpParamPattern, tmpParamPattern_1) {
 ## Output
 
 `````js filename=intro
-function x_1(tmpParamPattern, tmpParamPattern_1) {
+function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let arrPatternSplat_2 = [...arrPatternStep_1];
-  let arrPatternStep_2 = arrPatternSplat_2[0];
-  let arrPatternSplat_3 = [...arrPatternStep_2];
-  let arrPatternStep_3 = arrPatternSplat_3[0];
-  let arrPatternSplat_4 = [...arrPatternStep_3];
-  let arrPatternBeforeDefault = arrPatternSplat_4[0];
-  let arrPatternStep_4;
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let arrPatternSplat$2 = [...arrPatternStep$1];
+  let arrPatternStep$2 = arrPatternSplat$2[0];
+  let arrPatternSplat$3 = [...arrPatternStep$2];
+  let arrPatternStep$3 = arrPatternSplat$3[0];
+  let arrPatternSplat$4 = [...arrPatternStep$3];
+  let arrPatternBeforeDefault = arrPatternSplat$4[0];
+  let arrPatternStep$4;
   let ifTestTmp = arrPatternBeforeDefault === undefined;
   if (ifTestTmp) {
-    arrPatternStep_4 = y;
+    arrPatternStep$4 = y;
   } else {
-    arrPatternStep_4 = arrPatternBeforeDefault;
+    arrPatternStep$4 = arrPatternBeforeDefault;
   }
-  let arrPatternSplat_5 = [...arrPatternStep_4];
-  let arrPatternBeforeDefault_1 = arrPatternSplat_5[0];
+  let arrPatternSplat$5 = [...arrPatternStep$4];
+  let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
   let foo;
-  let ifTestTmp_1 = arrPatternBeforeDefault_1 === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
+  if (ifTestTmp$1) {
     foo = x_1;
   } else {
-    foo = arrPatternBeforeDefault_1;
+    foo = arrPatternBeforeDefault$1;
   }
-  let objPatternNoDefault = tmpParamPattern_1.x;
+  let objPatternNoDefault = tmpParamPattern$1.x;
   let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
 }
 `````

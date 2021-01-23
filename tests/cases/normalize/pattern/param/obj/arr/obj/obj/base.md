@@ -30,27 +30,27 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault_1 = arrPatternStep.y;
-  let objPatternCrashTest = objPatternNoDefault_1 === undefined;
+  let objPatternNoDefault$1 = arrPatternStep.y;
+  let objPatternCrashTest = objPatternNoDefault$1 === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = objPatternNoDefault_1 === null;
+    objPatternCrashTest = objPatternNoDefault$1 === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternNoDefault_1.cannotDestructureThis;
+    objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
   }
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 var tmpElement;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { a: 1, b: 2, c: 3 };
-tmpElement = { x: 15, y: tmpObjPropValue_1, c: 16 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
+tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
 tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg_1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 
@@ -61,27 +61,27 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault_1 = arrPatternStep.y;
-  let objPatternCrashTest = objPatternNoDefault_1 === undefined;
+  let objPatternNoDefault$1 = arrPatternStep.y;
+  let objPatternCrashTest = objPatternNoDefault$1 === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = objPatternNoDefault_1 === null;
+    objPatternCrashTest = objPatternNoDefault$1 === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternNoDefault_1.cannotDestructureThis;
+    objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
   }
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpObjPropValue;
 var tmpElement;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { a: 1, b: 2, c: 3 };
-tmpElement = { x: 15, y: tmpObjPropValue_1, c: 16 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
+tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
 tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg_1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg_1, 10);
+tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
+tmpArg = f(tmpArg$1, 10);
 $(tmpArg);
 `````
 

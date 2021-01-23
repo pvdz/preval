@@ -33,11 +33,11 @@ function f($tdz$__a) {
   return a;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = f('x');
 $(tmpArg);
-tmpArg_1 = f();
-$(tmpArg_1);
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -54,11 +54,11 @@ function f($tdz$__a) {
   return a;
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = f('x');
 $(tmpArg);
-tmpArg_1 = f();
-$(tmpArg_1);
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

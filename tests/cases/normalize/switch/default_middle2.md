@@ -44,13 +44,13 @@ var tmpBinaryLeft;
         {
           ('case 0');
           {
-            let ifTestTmp_1 = tmpSwitchFallthrough;
-            if (ifTestTmp_1) {
+            let ifTestTmp$1 = tmpSwitchFallthrough;
+            if (ifTestTmp$1) {
             } else {
               tmpBinaryLeft = $(30);
-              ifTestTmp_1 = tmpBinaryLeft === tmpSwitchValue;
+              ifTestTmp$1 = tmpBinaryLeft === tmpSwitchValue;
             }
-            if (ifTestTmp_1) {
+            if (ifTestTmp$1) {
               {
               }
               tmpSwitchFallthrough = true;
@@ -80,13 +80,13 @@ do {
   if (tmpSwitchFallthrough) {
     tmpSwitchFallthrough = true;
   }
-  let ifTestTmp_1 = tmpSwitchFallthrough;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = tmpSwitchFallthrough;
+  if (ifTestTmp$1) {
   } else {
     tmpBinaryLeft = $(30);
-    ifTestTmp_1 = tmpBinaryLeft === 6;
+    ifTestTmp$1 = tmpBinaryLeft === 6;
   }
-  if (ifTestTmp_1) {
+  if (ifTestTmp$1) {
     tmpSwitchFallthrough = true;
   }
   tmpSwitchCheckCases = false;

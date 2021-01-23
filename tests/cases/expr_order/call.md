@@ -26,13 +26,13 @@ $(i, ++i);
 `````js filename=intro
 var tmpNestedComplexRhs;
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let i = 0;
 tmpArg = i;
 tmpNestedComplexRhs = i + 1;
 i = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 `````
 
 ## Output
@@ -40,13 +40,13 @@ $(tmpArg, tmpArg_1);
 `````js filename=intro
 var tmpNestedComplexRhs;
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let i = 0;
 tmpArg = i;
 tmpNestedComplexRhs = i + 1;
 i = tmpNestedComplexRhs;
-tmpArg_1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = tmpNestedComplexRhs;
+$(tmpArg, tmpArg$1);
 `````
 
 ## Result

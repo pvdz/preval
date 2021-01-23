@@ -24,7 +24,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
@@ -48,8 +48,8 @@ let n = 1;
           tmpNestedPropAssignRhs = d;
           tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
           tmpAssignMemRhs = tmpNestedPropAssignRhs;
-          tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-          tmpAssignMemLhsObj_1.c = tmpAssignMemRhs;
+          tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+          tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
         }
       } else {
         break;
@@ -67,7 +67,7 @@ var tmpBinaryLeft;
 var tmpPostfixArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let b = { c: 2 };
@@ -83,8 +83,8 @@ while (true) {
     tmpNestedPropAssignRhs = 3;
     tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
     tmpAssignMemRhs = tmpNestedPropAssignRhs;
-    tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
-    tmpAssignMemLhsObj_1.c = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
   } else {
     break;
   }

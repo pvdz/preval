@@ -21,8 +21,8 @@ $(a, b, x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrAssignPatternRhs_1;
-var arrPatternSplat_1;
+var arrAssignPatternRhs$1;
+var arrPatternSplat$1;
 let a = 1;
 let b = 2;
 let x = 1;
@@ -31,11 +31,11 @@ let z = [10, 20, 30];
 {
   while (true) {
     {
-      arrAssignPatternRhs_1 = $(z);
-      arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-      x = arrPatternSplat_1[1];
-      y = arrPatternSplat_1[2];
-      arrAssignPatternRhs = arrAssignPatternRhs_1;
+      arrAssignPatternRhs$1 = $(z);
+      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+      x = arrPatternSplat$1[1];
+      y = arrPatternSplat$1[2];
+      arrAssignPatternRhs = arrAssignPatternRhs$1;
       arrPatternSplat = [...arrAssignPatternRhs];
       a = arrPatternSplat[0];
       b = arrPatternSplat[1];
@@ -55,19 +55,19 @@ $(a, b, x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrAssignPatternRhs_1;
-var arrPatternSplat_1;
+var arrAssignPatternRhs$1;
+var arrPatternSplat$1;
 let a = 1;
 let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 while (true) {
-  arrAssignPatternRhs_1 = $(z);
-  arrPatternSplat_1 = [...arrAssignPatternRhs_1];
-  x = arrPatternSplat_1[1];
-  y = arrPatternSplat_1[2];
-  arrAssignPatternRhs = arrAssignPatternRhs_1;
+  arrAssignPatternRhs$1 = $(z);
+  arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+  x = arrPatternSplat$1[1];
+  y = arrPatternSplat$1[2];
+  arrAssignPatternRhs = arrAssignPatternRhs$1;
   arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];

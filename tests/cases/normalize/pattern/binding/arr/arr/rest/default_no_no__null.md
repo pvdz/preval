@@ -21,8 +21,8 @@ $(x);
 const bindingPatternArrRoot = null;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const x = arrPatternSplat_1.slice(0);
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
@@ -31,8 +31,8 @@ $(x);
 `````js filename=intro
 const arrPatternSplat = [...null];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const x = arrPatternSplat_1.slice(0);
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 

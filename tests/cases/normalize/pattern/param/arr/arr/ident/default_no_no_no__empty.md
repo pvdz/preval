@@ -23,8 +23,8 @@ $(f());
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1[0];
   return 'bad';
 }
 var tmpArg;
@@ -38,8 +38,8 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  arrPatternSplat$1[0];
   return 'bad';
 }
 var tmpArg;

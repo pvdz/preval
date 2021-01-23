@@ -17,11 +17,11 @@
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-a = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+a = objPatternNoDefault$1.z;
 objAssignPatternRhs;
 `````
 
@@ -30,11 +30,11 @@ objAssignPatternRhs;
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var objPatternNoDefault_1;
+var objPatternNoDefault$1;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault_1 = objPatternNoDefault.y;
-a = objPatternNoDefault_1.z;
+objPatternNoDefault$1 = objPatternNoDefault.y;
+a = objPatternNoDefault$1.z;
 `````
 
 ## Result

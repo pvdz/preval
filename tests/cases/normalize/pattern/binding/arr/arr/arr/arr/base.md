@@ -19,19 +19,19 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-tmpElement_2 = [1, 2, 3];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+tmpElement$2 = [1, 2, 3];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const arrPatternSplat_2 = [...arrPatternStep_1];
-const arrPatternStep_2 = arrPatternSplat_2[0];
-const arrPatternSplat_3 = [...arrPatternStep_2];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
+const arrPatternStep$2 = arrPatternSplat$2[0];
+const arrPatternSplat$3 = [...arrPatternStep$2];
 $('ok');
 `````
 
@@ -39,19 +39,19 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-tmpElement_2 = [1, 2, 3];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+tmpElement$2 = [1, 2, 3];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const arrPatternSplat_2 = [...arrPatternStep_1];
-const arrPatternStep_2 = arrPatternSplat_2[0];
-[...arrPatternStep_2];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
+const arrPatternStep$2 = arrPatternSplat$2[0];
+[...arrPatternStep$2];
 $('ok');
 `````
 

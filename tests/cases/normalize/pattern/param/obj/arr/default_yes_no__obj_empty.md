@@ -36,9 +36,9 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternAfterDefault];
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f({}, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f({}, 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -58,9 +58,9 @@ function f(tmpParamPattern) {
   [...objPatternAfterDefault];
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f({}, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f({}, 10);
+$(tmpArg$1);
 `````
 
 ## Result

@@ -35,8 +35,8 @@ function f($tdz$__pattern) {
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let x;
   {
-    let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+    if (ifTestTmp$1) {
       x = $('fail');
     } else {
       x = objPatternBeforeDefault;
@@ -44,9 +44,9 @@ function f($tdz$__pattern) {
   }
   return x;
 }
-var tmpArg_1;
-tmpArg_1 = f(undefined, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f(undefined, 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -64,17 +64,17 @@ function f($tdz$__pattern) {
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let x;
-  let ifTestTmp_1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     x = $('fail');
   } else {
     x = objPatternBeforeDefault;
   }
   return x;
 }
-var tmpArg_1;
-tmpArg_1 = f(undefined, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f(undefined, 10);
+$(tmpArg$1);
 `````
 
 ## Result

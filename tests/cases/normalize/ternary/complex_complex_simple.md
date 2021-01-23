@@ -30,8 +30,8 @@ let a;
 }
 let b;
 {
-  let ifTestTmp_1 = $(0);
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $(0);
+  if (ifTestTmp$1) {
     b = $(4);
   } else {
     b = 5;
@@ -51,8 +51,8 @@ if (ifTestTmp) {
   a = 3;
 }
 let b;
-let ifTestTmp_1 = $(0);
-if (ifTestTmp_1) {
+let ifTestTmp$1 = $(0);
+if (ifTestTmp$1) {
   b = $(4);
 } else {
   b = 5;

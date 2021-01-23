@@ -20,25 +20,25 @@ $(typeof foo)
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let foo = 1;
 null;
 foo;
 tmpArg = true;
 $(tmpArg);
-tmpArg_1 = typeof foo;
-$(tmpArg_1);
+tmpArg$1 = typeof foo;
+$(tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = true;
 $(tmpArg);
-tmpArg_1 = 'number';
-$(tmpArg_1);
+tmpArg$1 = 'number';
+$(tmpArg$1);
 `````
 
 ## Result

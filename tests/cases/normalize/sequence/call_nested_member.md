@@ -19,21 +19,21 @@ obj.a.b.c();
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-var tmpObjPropValue_2;
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-tmpObjPropValue_2 = () => {
+var tmpMemberComplexObj$1;
+tmpObjPropValue$2 = () => {
   {
     let tmpReturnArg = $(1);
     return tmpReturnArg;
   }
 };
-tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
-tmpMemberComplexObj_1 = obj.a;
-tmpMemberComplexObj = tmpMemberComplexObj_1.b;
+tmpMemberComplexObj$1 = obj.a;
+tmpMemberComplexObj = tmpMemberComplexObj$1.b;
 tmpMemberComplexObj.c();
 `````
 
@@ -41,19 +41,19 @@ tmpMemberComplexObj.c();
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-var tmpObjPropValue_2;
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-tmpObjPropValue_2 = () => {
+var tmpMemberComplexObj$1;
+tmpObjPropValue$2 = () => {
   let tmpReturnArg = $(1);
   return tmpReturnArg;
 };
-tmpObjPropValue_1 = { c: tmpObjPropValue_2 };
-tmpObjPropValue = { b: tmpObjPropValue_1 };
+tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
+tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
-tmpMemberComplexObj_1 = obj.a;
-tmpMemberComplexObj = tmpMemberComplexObj_1.b;
+tmpMemberComplexObj$1 = obj.a;
+tmpMemberComplexObj = tmpMemberComplexObj$1.b;
 tmpMemberComplexObj.c();
 `````
 

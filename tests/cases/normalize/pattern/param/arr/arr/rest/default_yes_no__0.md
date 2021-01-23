@@ -32,8 +32,8 @@ function f(tmpParamPattern) {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;
@@ -54,8 +54,8 @@ function f(tmpParamPattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;

@@ -36,8 +36,8 @@ function f($tdz$__pattern) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
   {
-    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp$1) {
       arrPatternStep = $('pass');
     } else {
       arrPatternStep = arrPatternBeforeDefault;
@@ -53,9 +53,9 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f('abc', 100);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f('abc', 100);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -74,8 +74,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     arrPatternStep = $('pass');
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -90,9 +90,9 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg_1;
-tmpArg_1 = f('abc', 100);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f('abc', 100);
+$(tmpArg$1);
 `````
 
 ## Result

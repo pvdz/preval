@@ -21,7 +21,7 @@ $(a??b??c.d);
 var tmpArg;
 var tmpNullish;
 var tmpTernaryTest;
-var tmpTernaryTest_1;
+var tmpTernaryTest$1;
 var tmpTernaryConsequent;
 const a = {};
 a = a;
@@ -31,8 +31,8 @@ if (tmpTernaryTest) {
 } else {
   tmpNullish = a;
 }
-tmpTernaryTest_1 = tmpNullish == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpNullish == null;
+if (tmpTernaryTest$1) {
   tmpTernaryConsequent = c.d;
   tmpArg = tmpTernaryConsequent;
 } else {
@@ -47,7 +47,7 @@ $(tmpArg);
 var tmpArg;
 var tmpNullish;
 var tmpTernaryTest;
-var tmpTernaryTest_1;
+var tmpTernaryTest$1;
 var tmpTernaryConsequent;
 const a = {};
 a = a;
@@ -57,8 +57,8 @@ if (tmpTernaryTest) {
 } else {
   tmpNullish = a;
 }
-tmpTernaryTest_1 = tmpNullish == null;
-if (tmpTernaryTest_1) {
+tmpTernaryTest$1 = tmpNullish == null;
+if (tmpTernaryTest$1) {
   tmpTernaryConsequent = c.d;
   tmpArg = tmpTernaryConsequent;
 } else {

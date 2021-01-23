@@ -31,7 +31,7 @@ var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -56,8 +56,8 @@ let c = 3;
           tmpAssignComputedObj = tmpAssignComMemLhsObj;
           tmpAssignComputedProp = tmpAssignComMemLhsProp;
           tmpAssignComputedRhs = b + c;
-          tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-          tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+          tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+          tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
           break tmpSwitchBreak;
         }
         tmpFallthrough = true;
@@ -92,8 +92,8 @@ tmpSwitchBreak: {
         tmpAssignComputedObj = tmpAssignComMemLhsObj;
         tmpAssignComputedProp = tmpAssignComMemLhsProp;
         tmpAssignComputedRhs = b + c;
-        tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
-        tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+        tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+        tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;

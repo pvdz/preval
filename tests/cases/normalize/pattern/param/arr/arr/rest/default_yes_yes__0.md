@@ -34,15 +34,15 @@ function f($tdz$__pattern) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
   {
-    let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+    if (ifTestTmp$1) {
       arrPatternStep = $('fail');
     } else {
       arrPatternStep = arrPatternBeforeDefault;
     }
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let x = arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;
@@ -64,14 +64,14 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp_1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
+  if (ifTestTmp$1) {
     arrPatternStep = $('fail');
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let arrPatternSplat_1 = [...arrPatternStep];
-  arrPatternSplat_1.slice(0);
+  let arrPatternSplat$1 = [...arrPatternStep];
+  arrPatternSplat$1.slice(0);
   return 'bad';
 }
 var tmpArg;

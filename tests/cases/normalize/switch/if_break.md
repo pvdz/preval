@@ -52,12 +52,12 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      ifTestTmp_1 = 1 === 4;
+      ifTestTmp$1 = 1 === 4;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         {
@@ -98,12 +98,12 @@ tmpSwitchBreak: {
     }
   }
   {
-    let ifTestTmp_1 = tmpFallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = tmpFallthrough;
+    if (ifTestTmp$1) {
     } else {
-      ifTestTmp_1 = 1 === 4;
+      ifTestTmp$1 = 1 === 4;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       ('case 1:');
       {
         {

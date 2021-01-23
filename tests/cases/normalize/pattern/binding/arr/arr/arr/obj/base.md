@@ -19,29 +19,29 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-tmpElement_3 = { x: 1 };
-tmpElement_2 = [tmpElement_3, 6, 7];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+tmpElement$3 = { x: 1 };
+tmpElement$2 = [tmpElement$3, 6, 7];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const arrPatternSplat_2 = [...arrPatternStep_1];
-const arrPatternStep_2 = arrPatternSplat_2[0];
-const arrPatternSplat_3 = [...arrPatternStep_2];
-const arrPatternStep_3 = arrPatternSplat_3[0];
-let objPatternCrashTest = arrPatternStep_3 === undefined;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
+const arrPatternStep$2 = arrPatternSplat$2[0];
+const arrPatternSplat$3 = [...arrPatternStep$2];
+const arrPatternStep$3 = arrPatternSplat$3[0];
+let objPatternCrashTest = arrPatternStep$3 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep_3 === null;
+  objPatternCrashTest = arrPatternStep$3 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep_3.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$3.cannotDestructureThis;
 }
 $('ok');
 `````
@@ -50,29 +50,29 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-tmpElement_3 = { x: 1 };
-tmpElement_2 = [tmpElement_3, 6, 7];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+tmpElement$3 = { x: 1 };
+tmpElement$2 = [tmpElement$3, 6, 7];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const arrPatternSplat_2 = [...arrPatternStep_1];
-const arrPatternStep_2 = arrPatternSplat_2[0];
-const arrPatternSplat_3 = [...arrPatternStep_2];
-const arrPatternStep_3 = arrPatternSplat_3[0];
-let objPatternCrashTest = arrPatternStep_3 === undefined;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
+const arrPatternStep$2 = arrPatternSplat$2[0];
+const arrPatternSplat$3 = [...arrPatternStep$2];
+const arrPatternStep$3 = arrPatternSplat$3[0];
+let objPatternCrashTest = arrPatternStep$3 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep_3 === null;
+  objPatternCrashTest = arrPatternStep$3 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep_3.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$3.cannotDestructureThis;
 }
 $('ok');
 `````

@@ -21,11 +21,11 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 arrAssignPatternRhs = ['abc', 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
+arrPatternSplat$1 = [...arrPatternStep];
 arrAssignPatternRhs;
 $('ok');
 `````
@@ -36,11 +36,11 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
+var arrPatternSplat$1;
 arrAssignPatternRhs = ['abc', 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
+arrPatternSplat$1 = [...arrPatternStep];
 $('ok');
 `````
 

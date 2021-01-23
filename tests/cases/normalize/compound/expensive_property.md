@@ -31,15 +31,15 @@ function superExpensiveFunction() {
 }
 var tmpAssignMemLhsObj;
 var tmpCompoundAssignLhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 tmpAssignMemLhsObj = superExpensiveFunction();
 tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 `````
 
 ## Output
@@ -51,15 +51,15 @@ function superExpensiveFunction() {
 }
 var tmpAssignMemLhsObj;
 var tmpCompoundAssignLhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 var tmpAssignMemRhs;
-var tmpAssignMemLhsObj_2;
+var tmpAssignMemLhsObj$2;
 tmpAssignMemLhsObj = superExpensiveFunction();
 tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-tmpAssignMemLhsObj_1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj_2 = tmpAssignMemLhsObj_1;
-tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 `````
 
 ## Result

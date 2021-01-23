@@ -20,14 +20,14 @@ $(a[b][c]?.[d]);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 const b = 'b';
 const c = 'c';
@@ -48,14 +48,14 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 var tmpArg;
 var tmpOptionalChaining;
 var tmpMemberComplexObj;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
-tmpObjPropValue_1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue_1 };
+tmpObjPropValue$1 = { d: 10 };
+tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
 tmpMemberComplexObj = a.b;
 tmpOptionalChaining = tmpMemberComplexObj.c;

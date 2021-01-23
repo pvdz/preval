@@ -27,23 +27,23 @@ export function f() {
 }
 export function g() {
   {
-    let tmpReturnArg_1 = $();
-    return tmpReturnArg_1;
+    let tmpReturnArg$1 = $();
+    return tmpReturnArg$1;
   }
 }
 export function h() {
   {
-    let tmpReturnArg_2 = $();
-    return tmpReturnArg_2;
+    let tmpReturnArg$2 = $();
+    return tmpReturnArg$2;
   }
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 tmpArg = f();
-tmpArg_1 = g();
-tmpArg_2 = h();
-$(tmpArg, tmpArg_1, tmpArg_2);
+tmpArg$1 = g();
+tmpArg$2 = h();
+$(tmpArg, tmpArg$1, tmpArg$2);
 `````
 
 ## Output
@@ -54,20 +54,20 @@ export function f() {
   return tmpReturnArg;
 }
 export function g() {
-  let tmpReturnArg_1 = $();
-  return tmpReturnArg_1;
+  let tmpReturnArg$1 = $();
+  return tmpReturnArg$1;
 }
 export function h() {
-  let tmpReturnArg_2 = $();
-  return tmpReturnArg_2;
+  let tmpReturnArg$2 = $();
+  return tmpReturnArg$2;
 }
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
+var tmpArg$1;
+var tmpArg$2;
 tmpArg = f();
-tmpArg_1 = g();
-tmpArg_2 = h();
-$(tmpArg, tmpArg_1, tmpArg_2);
+tmpArg$1 = g();
+tmpArg$2 = h();
+$(tmpArg, tmpArg$1, tmpArg$2);
 `````
 
 ## Result

@@ -67,9 +67,9 @@ function f() {
   var tmpArg;
   var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
-  var tmpArg_1;
-  var tmpArg_2;
-  var tmpNestedPropAssignRhs_1;
+  var tmpArg$1;
+  var tmpArg$2;
+  var tmpNestedPropAssignRhs$1;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -80,8 +80,8 @@ function f() {
     },
     set foo(x) {
       {
-        let tmpReturnArg_1 = $(3);
-        return tmpReturnArg_1;
+        let tmpReturnArg$1 = $(3);
+        return tmpReturnArg$1;
       }
     },
   };
@@ -97,13 +97,13 @@ function f() {
   console.log('-------- test case');
   $(a);
   console.log('-------- a');
-  tmpArg_1 = b.foo;
-  $(tmpArg_1);
+  tmpArg$1 = b.foo;
+  $(tmpArg$1);
   console.log('-------- a.foo');
-  tmpNestedPropAssignRhs_1 = 4;
-  b.foo = tmpNestedPropAssignRhs_1;
-  tmpArg_2 = tmpNestedPropAssignRhs_1;
-  $(tmpArg_2);
+  tmpNestedPropAssignRhs$1 = 4;
+  b.foo = tmpNestedPropAssignRhs$1;
+  tmpArg$2 = tmpNestedPropAssignRhs$1;
+  $(tmpArg$2);
   console.log('-------- a.foo = 4');
 }
 f();
@@ -116,9 +116,9 @@ function f() {
   var tmpArg;
   var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
-  var tmpArg_1;
-  var tmpArg_2;
-  var tmpNestedPropAssignRhs_1;
+  var tmpArg$1;
+  var tmpArg$2;
+  var tmpNestedPropAssignRhs$1;
   console.log('-------- start');
   const b = {
     get foo() {
@@ -126,8 +126,8 @@ function f() {
       return tmpReturnArg;
     },
     set foo(x) {
-      let tmpReturnArg_1 = $(3);
-      return tmpReturnArg_1;
+      let tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
     },
   };
   console.log('-------- bound');
@@ -142,13 +142,13 @@ function f() {
   console.log('-------- test case');
   $(a);
   console.log('-------- a');
-  tmpArg_1 = b.foo;
-  $(tmpArg_1);
+  tmpArg$1 = b.foo;
+  $(tmpArg$1);
   console.log('-------- a.foo');
-  tmpNestedPropAssignRhs_1 = 4;
-  b.foo = tmpNestedPropAssignRhs_1;
-  tmpArg_2 = tmpNestedPropAssignRhs_1;
-  $(tmpArg_2);
+  tmpNestedPropAssignRhs$1 = 4;
+  b.foo = tmpNestedPropAssignRhs$1;
+  tmpArg$2 = tmpNestedPropAssignRhs$1;
+  $(tmpArg$2);
   console.log('-------- a.foo = 4');
 }
 f();

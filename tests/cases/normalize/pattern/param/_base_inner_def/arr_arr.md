@@ -18,8 +18,8 @@ function i([[ x = a ]]) { return x }
 function i(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat_1 = [...arrPatternStep];
-  let arrPatternBeforeDefault = arrPatternSplat_1[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let arrPatternBeforeDefault = arrPatternSplat$1[0];
   let x;
   {
     let ifTestTmp = arrPatternBeforeDefault === undefined;

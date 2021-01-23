@@ -20,10 +20,10 @@ $(a.b.c.d);
 `````js filename=intro
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
+var tmpMemberComplexObj$1;
 const a = {};
-tmpMemberComplexObj_1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpMemberComplexObj$1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj$1.c;
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
@@ -33,10 +33,10 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
+var tmpMemberComplexObj$1;
 const a = {};
-tmpMemberComplexObj_1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj_1.c;
+tmpMemberComplexObj$1 = a.b;
+tmpMemberComplexObj = tmpMemberComplexObj$1.c;
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````

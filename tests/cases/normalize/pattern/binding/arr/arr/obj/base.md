@@ -19,21 +19,21 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { x: 1 };
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+tmpElement$1 = { x: 1 };
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-let objPatternCrashTest = arrPatternStep_1 === undefined;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+let objPatternCrashTest = arrPatternStep$1 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep_1 === null;
+  objPatternCrashTest = arrPatternStep$1 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
 }
 $('ok');
 `````
@@ -42,21 +42,21 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { x: 1 };
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+tmpElement$1 = { x: 1 };
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-let objPatternCrashTest = arrPatternStep_1 === undefined;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+let objPatternCrashTest = arrPatternStep$1 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep_1 === null;
+  objPatternCrashTest = arrPatternStep$1 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
 }
 $('ok');
 `````

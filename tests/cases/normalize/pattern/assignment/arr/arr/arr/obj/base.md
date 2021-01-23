@@ -21,38 +21,38 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternStep_1;
-var arrPatternSplat_2;
-var arrPatternStep_2;
-var arrPatternSplat_3;
-var arrPatternStep_3;
+var arrPatternSplat$1;
+var arrPatternStep$1;
+var arrPatternSplat$2;
+var arrPatternStep$2;
+var arrPatternSplat$3;
+var arrPatternStep$3;
 var objPatternCrashTest;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-tmpElement_3 = { x: 1 };
-tmpElement_2 = [tmpElement_3, 6, 7];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+tmpElement$3 = { x: 1 };
+tmpElement$2 = [tmpElement$3, 6, 7];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 arrAssignPatternRhs = [tmpElement, 40, 50];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternStep_1 = arrPatternSplat_1[0];
-arrPatternSplat_2 = [...arrPatternStep_1];
-arrPatternStep_2 = arrPatternSplat_2[0];
-arrPatternSplat_3 = [...arrPatternStep_2];
-arrPatternStep_3 = arrPatternSplat_3[0];
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternStep$1 = arrPatternSplat$1[0];
+arrPatternSplat$2 = [...arrPatternStep$1];
+arrPatternStep$2 = arrPatternSplat$2[0];
+arrPatternSplat$3 = [...arrPatternStep$2];
+arrPatternStep$3 = arrPatternSplat$3[0];
 {
-  let tmpAssignLogicStmtOr = arrPatternStep_3 === undefined;
+  let tmpAssignLogicStmtOr = arrPatternStep$3 === undefined;
   if (tmpAssignLogicStmtOr) {
   } else {
-    tmpAssignLogicStmtOr = arrPatternStep_3 === null;
+    tmpAssignLogicStmtOr = arrPatternStep$3 === null;
   }
   if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = arrPatternStep_3.cannotDestructureThis;
+    objPatternCrashTest = arrPatternStep$3.cannotDestructureThis;
   } else {
     objPatternCrashTest = tmpAssignLogicStmtOr;
   }
@@ -67,37 +67,37 @@ $('ok');
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var arrPatternStep;
-var arrPatternSplat_1;
-var arrPatternStep_1;
-var arrPatternSplat_2;
-var arrPatternStep_2;
-var arrPatternSplat_3;
-var arrPatternStep_3;
+var arrPatternSplat$1;
+var arrPatternStep$1;
+var arrPatternSplat$2;
+var arrPatternStep$2;
+var arrPatternSplat$3;
+var arrPatternStep$3;
 var objPatternCrashTest;
 var tmpElement;
-var tmpElement_1;
-var tmpElement_2;
-var tmpElement_3;
-tmpElement_3 = { x: 1 };
-tmpElement_2 = [tmpElement_3, 6, 7];
-tmpElement_1 = [tmpElement_2, 4, 5];
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+var tmpElement$2;
+var tmpElement$3;
+tmpElement$3 = { x: 1 };
+tmpElement$2 = [tmpElement$3, 6, 7];
+tmpElement$1 = [tmpElement$2, 4, 5];
+tmpElement = [tmpElement$1, 20, 30];
 arrAssignPatternRhs = [tmpElement, 40, 50];
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternStep = arrPatternSplat[0];
-arrPatternSplat_1 = [...arrPatternStep];
-arrPatternStep_1 = arrPatternSplat_1[0];
-arrPatternSplat_2 = [...arrPatternStep_1];
-arrPatternStep_2 = arrPatternSplat_2[0];
-arrPatternSplat_3 = [...arrPatternStep_2];
-arrPatternStep_3 = arrPatternSplat_3[0];
-let tmpAssignLogicStmtOr = arrPatternStep_3 === undefined;
+arrPatternSplat$1 = [...arrPatternStep];
+arrPatternStep$1 = arrPatternSplat$1[0];
+arrPatternSplat$2 = [...arrPatternStep$1];
+arrPatternStep$2 = arrPatternSplat$2[0];
+arrPatternSplat$3 = [...arrPatternStep$2];
+arrPatternStep$3 = arrPatternSplat$3[0];
+let tmpAssignLogicStmtOr = arrPatternStep$3 === undefined;
 if (tmpAssignLogicStmtOr) {
 } else {
-  tmpAssignLogicStmtOr = arrPatternStep_3 === null;
+  tmpAssignLogicStmtOr = arrPatternStep$3 === null;
 }
 if (tmpAssignLogicStmtOr) {
-  objPatternCrashTest = arrPatternStep_3.cannotDestructureThis;
+  objPatternCrashTest = arrPatternStep$3.cannotDestructureThis;
 } else {
   objPatternCrashTest = tmpAssignLogicStmtOr;
 }

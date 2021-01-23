@@ -23,9 +23,9 @@ var tmpArg;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj_1;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignObj$1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -39,12 +39,12 @@ let c = 3;
   let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
   if (tmpAssignLogicStmtOr) {
     $(b);
-    tmpNestedAssignObj_1 = $(c);
-    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-    tmpNestedAssignMemberRhs_1 = $(c);
-    tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
-    a = tmpNestedAssignMemberRhs_1;
-    tmpArg = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignObj$1 = $(c);
+    tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignMemberRhs$1 = $(c);
+    tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
+    a = tmpNestedAssignMemberRhs$1;
+    tmpArg = tmpNestedAssignMemberRhs$1;
   } else {
     tmpArg = tmpAssignLogicStmtOr;
   }
@@ -60,9 +60,9 @@ var tmpArg;
 var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj_1;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignObj$1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 $(2);
 tmpNestedAssignObj = $(3);
@@ -73,12 +73,12 @@ a = tmpNestedAssignMemberRhs;
 let tmpAssignLogicStmtOr = tmpNestedAssignMemberRhs;
 if (tmpAssignLogicStmtOr) {
   $(2);
-  tmpNestedAssignObj_1 = $(3);
-  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-  tmpNestedAssignMemberRhs_1 = $(3);
-  tmpNestedAssignMemberObj_1.x = tmpNestedAssignMemberRhs_1;
-  a = tmpNestedAssignMemberRhs_1;
-  tmpArg = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignObj$1 = $(3);
+  tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+  tmpNestedAssignMemberRhs$1 = $(3);
+  tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
+  a = tmpNestedAssignMemberRhs$1;
+  tmpArg = tmpNestedAssignMemberRhs$1;
 } else {
   tmpArg = tmpAssignLogicStmtOr;
 }

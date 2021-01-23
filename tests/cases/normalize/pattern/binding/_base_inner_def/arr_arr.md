@@ -18,8 +18,8 @@ const [[ x = a ]] = 1;
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 {
   let ifTestTmp = arrPatternBeforeDefault === undefined;
@@ -36,8 +36,8 @@ let x;
 `````js filename=intro
 const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat_1[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
 let ifTestTmp = arrPatternBeforeDefault === undefined;
 if (ifTestTmp) {

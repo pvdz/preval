@@ -23,7 +23,7 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -32,9 +32,9 @@ tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedComplexRhs_1 = c + d;
-  b = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs$1 = c + d;
+  b = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs;
   tmpTernaryAlternate = tmpNestedComplexRhs;
   tmpArg = tmpTernaryAlternate;
@@ -50,16 +50,16 @@ var tmpArg;
 var tmpTernaryTest;
 var tmpTernaryAlternate;
 var tmpNestedComplexRhs;
-var tmpNestedComplexRhs_1;
+var tmpNestedComplexRhs$1;
 let a = 1;
 let b = 2;
 tmpTernaryTest = $(false);
 if (tmpTernaryTest) {
   tmpArg = true;
 } else {
-  tmpNestedComplexRhs_1 = 7;
-  b = tmpNestedComplexRhs_1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs_1;
+  tmpNestedComplexRhs$1 = 7;
+  b = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs;
   tmpTernaryAlternate = tmpNestedComplexRhs;
   tmpArg = tmpTernaryAlternate;

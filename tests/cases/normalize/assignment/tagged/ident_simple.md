@@ -20,14 +20,14 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let a = 1;
 let b = 2;
 let c = 3;
 tmpArg = ['abc ', ' def'];
 a = b;
-tmpArg_1 = b;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = b;
+$(tmpArg, tmpArg$1);
 $(a, b, c);
 `````
 
@@ -35,12 +35,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 let a = 1;
 tmpArg = ['abc ', ' def'];
 a = 2;
-tmpArg_1 = 2;
-$(tmpArg, tmpArg_1);
+tmpArg$1 = 2;
+$(tmpArg, tmpArg$1);
 $(a, 2, 3);
 `````
 

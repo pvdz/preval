@@ -21,26 +21,26 @@ const program = {
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 tmpElement_1 = fdata.name;
 tmpElement = [tmpElement_1, fdata];
 tmpArg_1 = [tmpElement];
 tmpObjPropValue = new Map(tmpArg_1);
-tmpObjPropValue_1 = fdata.name;
-const program = { modules: tmpObjPropValue, main: tmpObjPropValue_1 };
+tmpObjPropValue$1 = fdata.name;
+const program = { modules: tmpObjPropValue, main: tmpObjPropValue$1 };
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpObjPropValue;
-var tmpObjPropValue_1;
+var tmpObjPropValue$1;
 tmpElement_1 = fdata.name;
 tmpElement = [tmpElement_1, fdata];
 tmpArg_1 = [tmpElement];
 tmpObjPropValue = new Map(tmpArg_1);
-tmpObjPropValue_1 = fdata.name;
-({ modules: tmpObjPropValue, main: tmpObjPropValue_1 });
+tmpObjPropValue$1 = fdata.name;
+({ modules: tmpObjPropValue, main: tmpObjPropValue$1 });
 `````
 
 ## Result

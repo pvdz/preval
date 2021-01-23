@@ -26,8 +26,8 @@ function i($tdz$__pattern) {
     }
   }
   let objPatternNoDefault = $tdz$__pattern_after_default.x;
-  let objPatternNoDefault_1 = objPatternNoDefault.y;
-  let z = objPatternNoDefault_1.z;
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let z = objPatternNoDefault$1.z;
   return z;
 }
 `````

@@ -28,28 +28,28 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;
-  let arrPatternSplat_1 = [...objPatternNoDefault];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let objPatternCrashTest = arrPatternStep_1 === undefined;
+  let arrPatternSplat$1 = [...objPatternNoDefault];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let objPatternCrashTest = arrPatternStep$1 === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = arrPatternStep_1 === null;
+    objPatternCrashTest = arrPatternStep$1 === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+    objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
   }
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = [tmpElement_1, 12];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = [tmpElement$1, 12];
 tmpElement = { x: tmpObjPropValue, y: 11 };
-tmpArg_1 = [tmpElement, 10];
-tmpArg = f(tmpArg_1, 100);
+tmpArg$1 = [tmpElement, 10];
+tmpArg = f(tmpArg$1, 100);
 $(tmpArg);
 `````
 
@@ -60,28 +60,28 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;
-  let arrPatternSplat_1 = [...objPatternNoDefault];
-  let arrPatternStep_1 = arrPatternSplat_1[0];
-  let objPatternCrashTest = arrPatternStep_1 === undefined;
+  let arrPatternSplat$1 = [...objPatternNoDefault];
+  let arrPatternStep$1 = arrPatternSplat$1[0];
+  let objPatternCrashTest = arrPatternStep$1 === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = arrPatternStep_1 === null;
+    objPatternCrashTest = arrPatternStep$1 === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep_1.cannotDestructureThis;
+    objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
   }
   return 'ok';
 }
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = [tmpElement_1, 12];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = [tmpElement$1, 12];
 tmpElement = { x: tmpObjPropValue, y: 11 };
-tmpArg_1 = [tmpElement, 10];
-tmpArg = f(tmpArg_1, 100);
+tmpArg$1 = [tmpElement, 10];
+tmpArg = f(tmpArg$1, 100);
 $(tmpArg);
 `````
 

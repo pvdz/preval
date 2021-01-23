@@ -26,20 +26,20 @@ function f($tdz$__foo) {
   var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj_1;
-  var tmpNestedAssignMemberObj_1;
-  var tmpNestedAssignMemberRhs_1;
+  var tmpNestedAssignObj$1;
+  var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs$1;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
     if (ifTestTmp) {
       tmpNestedAssignObj = $(b);
       tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignObj_1 = $(c);
-      tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-      tmpNestedAssignMemberRhs_1 = $(d);
-      tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+      tmpNestedAssignObj$1 = $(c);
+      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+      tmpNestedAssignMemberRhs$1 = $(d);
+      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
       tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
       a = tmpNestedAssignMemberRhs;
       foo = tmpNestedAssignMemberRhs;
@@ -66,19 +66,19 @@ function f($tdz$__foo) {
   var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj_1;
-  var tmpNestedAssignMemberObj_1;
-  var tmpNestedAssignMemberRhs_1;
+  var tmpNestedAssignObj$1;
+  var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs$1;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {
     tmpNestedAssignObj = $(b);
     tmpNestedAssignMemberObj = tmpNestedAssignObj;
-    tmpNestedAssignObj_1 = $(3);
-    tmpNestedAssignMemberObj_1 = tmpNestedAssignObj_1;
-    tmpNestedAssignMemberRhs_1 = $(4);
-    tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+    tmpNestedAssignObj$1 = $(3);
+    tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignMemberRhs$1 = $(4);
+    tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
     tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
     a = tmpNestedAssignMemberRhs;
     foo = tmpNestedAssignMemberRhs;

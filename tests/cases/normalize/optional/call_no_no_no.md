@@ -46,11 +46,11 @@ function a() {
 }
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-var tmpMemberComplexObj_2;
-tmpMemberComplexObj_2 = a();
-tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
-tmpMemberComplexObj = tmpMemberComplexObj_1.c();
+var tmpMemberComplexObj$1;
+var tmpMemberComplexObj$2;
+tmpMemberComplexObj$2 = a();
+tmpMemberComplexObj$1 = tmpMemberComplexObj$2.b();
+tmpMemberComplexObj = tmpMemberComplexObj$1.c();
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````
@@ -77,11 +77,11 @@ function a() {
 }
 var tmpArg;
 var tmpMemberComplexObj;
-var tmpMemberComplexObj_1;
-var tmpMemberComplexObj_2;
-tmpMemberComplexObj_2 = a();
-tmpMemberComplexObj_1 = tmpMemberComplexObj_2.b();
-tmpMemberComplexObj = tmpMemberComplexObj_1.c();
+var tmpMemberComplexObj$1;
+var tmpMemberComplexObj$2;
+tmpMemberComplexObj$2 = a();
+tmpMemberComplexObj$1 = tmpMemberComplexObj$2.b();
+tmpMemberComplexObj = tmpMemberComplexObj$1.c();
 tmpArg = tmpMemberComplexObj.d;
 $(tmpArg);
 `````

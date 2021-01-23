@@ -19,15 +19,15 @@ $(x);
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { x: 1 };
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+tmpElement$1 = { x: 1 };
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const x = arrPatternStep_1.x;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const x = arrPatternStep$1.x;
 $(x);
 `````
 
@@ -35,15 +35,15 @@ $(x);
 
 `````js filename=intro
 var tmpElement;
-var tmpElement_1;
-tmpElement_1 = { x: 1 };
-tmpElement = [tmpElement_1, 20, 30];
+var tmpElement$1;
+tmpElement$1 = { x: 1 };
+tmpElement = [tmpElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat_1 = [...arrPatternStep];
-const arrPatternStep_1 = arrPatternSplat_1[0];
-const x = arrPatternStep_1.x;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const x = arrPatternStep$1.x;
 $(x);
 `````
 

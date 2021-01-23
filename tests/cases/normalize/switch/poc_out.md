@@ -57,10 +57,10 @@ exit: {
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpBinaryLeft_1;
-var tmpBinaryRight_1;
-var tmpBinaryLeft_2;
-var tmpBinaryRight_2;
+var tmpBinaryLeft$1;
+var tmpBinaryRight$1;
+var tmpBinaryLeft$2;
+var tmpBinaryRight$2;
 let x;
 let fallthrough = false;
 exit: {
@@ -80,14 +80,14 @@ exit: {
     }
   }
   {
-    let ifTestTmp_1 = fallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = fallthrough;
+    if (ifTestTmp$1) {
     } else {
-      tmpBinaryLeft_1 = x;
-      tmpBinaryRight_1 = $(2);
-      ifTestTmp_1 = tmpBinaryLeft_1 === tmpBinaryRight_1;
+      tmpBinaryLeft$1 = x;
+      tmpBinaryRight$1 = $(2);
+      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       {
         $('B');
         break exit;
@@ -96,14 +96,14 @@ exit: {
     }
   }
   {
-    let ifTestTmp_2 = fallthrough;
-    if (ifTestTmp_2) {
+    let ifTestTmp$2 = fallthrough;
+    if (ifTestTmp$2) {
     } else {
-      tmpBinaryLeft_2 = x;
-      tmpBinaryRight_2 = $(3);
-      ifTestTmp_2 = tmpBinaryLeft_2 === tmpBinaryRight_2;
+      tmpBinaryLeft$2 = x;
+      tmpBinaryRight$2 = $(3);
+      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
     }
-    if (ifTestTmp_2) {
+    if (ifTestTmp$2) {
       {
         $('C');
         break exit;
@@ -134,14 +134,14 @@ exit: {
     }
   }
   {
-    let ifTestTmp_1 = fallthrough;
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = fallthrough;
+    if (ifTestTmp$1) {
     } else {
-      tmpBinaryLeft_1 = x;
-      tmpBinaryRight_1 = $(2);
-      ifTestTmp_1 = tmpBinaryLeft_1 === tmpBinaryRight_1;
+      tmpBinaryLeft$1 = x;
+      tmpBinaryRight$1 = $(2);
+      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
     }
-    if (ifTestTmp_1) {
+    if (ifTestTmp$1) {
       {
         $('B');
         break exit;
@@ -150,14 +150,14 @@ exit: {
     }
   }
   {
-    let ifTestTmp_2 = fallthrough;
-    if (ifTestTmp_2) {
+    let ifTestTmp$2 = fallthrough;
+    if (ifTestTmp$2) {
     } else {
-      tmpBinaryLeft_2 = x;
-      tmpBinaryRight_2 = $(3);
-      ifTestTmp_2 = tmpBinaryLeft_2 === tmpBinaryRight_2;
+      tmpBinaryLeft$2 = x;
+      tmpBinaryRight$2 = $(3);
+      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
     }
-    if (ifTestTmp_2) {
+    if (ifTestTmp$2) {
       {
         $('C');
         break exit;

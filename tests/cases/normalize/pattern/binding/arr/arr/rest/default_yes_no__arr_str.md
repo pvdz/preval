@@ -30,8 +30,8 @@ let arrPatternStep;
     arrPatternStep = arrPatternBeforeDefault;
   }
 }
-const arrPatternSplat_1 = [...arrPatternStep];
-const x = arrPatternSplat_1.slice(0);
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
@@ -48,8 +48,8 @@ if (ifTestTmp) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const arrPatternSplat_1 = [...arrPatternStep];
-const x = arrPatternSplat_1.slice(0);
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 

@@ -27,7 +27,7 @@ var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -42,9 +42,9 @@ let c = 3;
     tmpAssignComputedObj = tmpAssignComMemLhsObj;
     tmpAssignComputedProp = tmpAssignComMemLhsProp;
     tmpAssignComputedRhs = b + c;
-    tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+    tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
     tmpNestedPropAssignRhs = tmpAssignComputedRhs;
-    tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
     tmpArg = tmpNestedPropAssignRhs;
   }
 }
@@ -63,7 +63,7 @@ var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj_1;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {
@@ -75,9 +75,9 @@ if (tmpAssignLogicStmtOr) {
   tmpAssignComputedObj = tmpAssignComMemLhsObj;
   tmpAssignComputedProp = tmpAssignComMemLhsProp;
   tmpAssignComputedRhs = 5;
-  tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+  tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
   tmpNestedPropAssignRhs = tmpAssignComputedRhs;
-  tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
   tmpArg = tmpNestedPropAssignRhs;
 }
 $(tmpArg);

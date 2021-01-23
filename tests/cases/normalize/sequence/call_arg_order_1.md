@@ -19,22 +19,22 @@ $(($(1), $(2)), $(3));
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 $(1);
 tmpArg = $(2);
-tmpArg_1 = $(3);
-$(tmpArg, tmpArg_1);
+tmpArg$1 = $(3);
+$(tmpArg, tmpArg$1);
 `````
 
 ## Output
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
+var tmpArg$1;
 $(1);
 tmpArg = $(2);
-tmpArg_1 = $(3);
-$(tmpArg, tmpArg_1);
+tmpArg$1 = $(3);
+$(tmpArg, tmpArg$1);
 `````
 
 ## Result

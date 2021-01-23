@@ -29,7 +29,7 @@ function f($tdz$__foo) {
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
-  var tmpAssignMemLhsObj_1;
+  var tmpAssignMemLhsObj$1;
   var tmpNestedPropAssignRhs;
   let foo;
   {
@@ -41,9 +41,9 @@ function f($tdz$__foo) {
       tmpAssignComputedObj = tmpAssignComMemLhsObj;
       tmpAssignComputedProp = tmpAssignComMemLhsProp;
       tmpAssignComputedRhs = b + c;
-      tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+      tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
       tmpNestedPropAssignRhs = tmpAssignComputedRhs;
-      tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+      tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
       foo = tmpNestedPropAssignRhs;
     } else {
       foo = $tdz$__foo;
@@ -70,7 +70,7 @@ function f($tdz$__foo) {
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
-  var tmpAssignMemLhsObj_1;
+  var tmpAssignMemLhsObj$1;
   var tmpNestedPropAssignRhs;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
@@ -81,9 +81,9 @@ function f($tdz$__foo) {
     tmpAssignComputedObj = tmpAssignComMemLhsObj;
     tmpAssignComputedProp = tmpAssignComMemLhsProp;
     tmpAssignComputedRhs = 5;
-    tmpAssignMemLhsObj_1 = tmpAssignComputedObj;
+    tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
     tmpNestedPropAssignRhs = tmpAssignComputedRhs;
-    tmpAssignMemLhsObj_1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
+    tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpNestedPropAssignRhs;
     foo = tmpNestedPropAssignRhs;
   } else {
     foo = $tdz$__foo;

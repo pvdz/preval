@@ -43,9 +43,9 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg_1;
-tmpArg_1 = f(null, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f(null, 10);
+$(tmpArg$1);
 `````
 
 ## Output
@@ -72,9 +72,9 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg_1;
-tmpArg_1 = f(null, 10);
-$(tmpArg_1);
+var tmpArg$1;
+tmpArg$1 = f(null, 10);
+$(tmpArg$1);
 `````
 
 ## Result

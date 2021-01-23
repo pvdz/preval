@@ -26,22 +26,22 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 31 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 31 };
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-let objPatternCrashTest = objPatternNoDefault_1 === undefined;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+let objPatternCrashTest = objPatternNoDefault$1 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault_1 === null;
+  objPatternCrashTest = objPatternNoDefault$1 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault_1.cannotDestructureThis;
+  objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
 }
 $('ok');
 `````
@@ -51,22 +51,22 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpObjPropValue_1;
-tmpObjPropValue_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue_1, z: 31 };
+var tmpObjPropValue$1;
+tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 31 };
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const objPatternNoDefault_1 = objPatternNoDefault.y;
-let objPatternCrashTest = objPatternNoDefault_1 === undefined;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+let objPatternCrashTest = objPatternNoDefault$1 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault_1 === null;
+  objPatternCrashTest = objPatternNoDefault$1 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault_1.cannotDestructureThis;
+  objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
 }
 $('ok');
 `````

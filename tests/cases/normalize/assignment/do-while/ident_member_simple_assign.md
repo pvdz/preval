@@ -27,8 +27,8 @@ var tmpNestedComplexRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -39,17 +39,17 @@ do {
     tmpPostfixArg = n;
     n = n + 1;
     tmpArg = tmpPostfixArg;
-    let ifTestTmp_1 = $(tmpArg);
-    if (ifTestTmp_1) {
+    let ifTestTmp$1 = $(tmpArg);
+    if (ifTestTmp$1) {
       break;
     }
   }
   tmpNestedAssignMemberObj = b;
   tmpNestedAssignObj = $(c);
-  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs_1 = $(d);
-  tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
+  tmpNestedAssignMemberRhs$1 = $(d);
+  tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   a = tmpNestedComplexRhs;
@@ -68,8 +68,8 @@ var tmpNestedComplexRhs;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
-var tmpNestedAssignMemberObj_1;
-var tmpNestedAssignMemberRhs_1;
+var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
 let n = 0;
@@ -77,16 +77,16 @@ do {
   tmpPostfixArg = n;
   n = n + 1;
   tmpArg = tmpPostfixArg;
-  let ifTestTmp_1 = $(tmpArg);
-  if (ifTestTmp_1) {
+  let ifTestTmp$1 = $(tmpArg);
+  if (ifTestTmp$1) {
     break;
   }
   tmpNestedAssignMemberObj = b;
   tmpNestedAssignObj = $(3);
-  tmpNestedAssignMemberObj_1 = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs_1 = $(4);
-  tmpNestedAssignMemberObj_1.y = tmpNestedAssignMemberRhs_1;
-  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
+  tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
+  tmpNestedAssignMemberRhs$1 = $(4);
+  tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   a = tmpNestedComplexRhs;

@@ -24,9 +24,9 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = [tmpElement_1, 12];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = [tmpElement$1, 12];
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
@@ -48,9 +48,9 @@ $('ok');
 `````js filename=intro
 var tmpElement;
 var tmpObjPropValue;
-var tmpElement_1;
-tmpElement_1 = { a: 1, b: 2, c: 3 };
-tmpObjPropValue = [tmpElement_1, 12];
+var tmpElement$1;
+tmpElement$1 = { a: 1, b: 2, c: 3 };
+tmpObjPropValue = [tmpElement$1, 12];
 tmpElement = { x: tmpObjPropValue, y: 11 };
 const bindingPatternArrRoot = [tmpElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];

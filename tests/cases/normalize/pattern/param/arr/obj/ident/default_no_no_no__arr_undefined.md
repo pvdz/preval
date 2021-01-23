@@ -27,9 +27,9 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [undefined, 20, 30];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [undefined, 20, 30];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 
@@ -43,9 +43,9 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg;
-var tmpArg_1;
-tmpArg_1 = [undefined, 20, 30];
-tmpArg = f(tmpArg_1, 200);
+var tmpArg$1;
+tmpArg$1 = [undefined, 20, 30];
+tmpArg = f(tmpArg$1, 200);
 $(tmpArg);
 `````
 

@@ -31,12 +31,12 @@ function f() {
 }
 var tmpArg;
 var x;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = f();
 $(tmpArg);
 x = 10;
-tmpArg_1 = f();
-$(tmpArg_1);
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Output
@@ -47,12 +47,12 @@ function f() {
 }
 var tmpArg;
 var x;
-var tmpArg_1;
+var tmpArg$1;
 tmpArg = f();
 $(tmpArg);
 x = 10;
-tmpArg_1 = f();
-$(tmpArg_1);
+tmpArg$1 = f();
+$(tmpArg$1);
 `````
 
 ## Result

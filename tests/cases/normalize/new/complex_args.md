@@ -18,15 +18,15 @@ $(new Array(5 + 5, $(), Array.prototype.length));
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
+var tmpArg$1;
+var tmpArg$2;
+var tmpArg$3;
 var tmpMemberComplexObj;
-tmpArg_1 = 5 + 5;
-tmpArg_2 = $();
+tmpArg$1 = 5 + 5;
+tmpArg$2 = $();
 tmpMemberComplexObj = Array.prototype;
-tmpArg_3 = tmpMemberComplexObj.length;
-tmpArg = new Array(tmpArg_1, tmpArg_2, tmpArg_3);
+tmpArg$3 = tmpMemberComplexObj.length;
+tmpArg = new Array(tmpArg$1, tmpArg$2, tmpArg$3);
 $(tmpArg);
 `````
 
@@ -34,15 +34,15 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpArg_1;
-var tmpArg_2;
-var tmpArg_3;
+var tmpArg$1;
+var tmpArg$2;
+var tmpArg$3;
 var tmpMemberComplexObj;
-tmpArg_1 = 10;
-tmpArg_2 = $();
+tmpArg$1 = 10;
+tmpArg$2 = $();
 tmpMemberComplexObj = Array.prototype;
-tmpArg_3 = tmpMemberComplexObj.length;
-tmpArg = new Array(tmpArg_1, tmpArg_2, tmpArg_3);
+tmpArg$3 = tmpMemberComplexObj.length;
+tmpArg = new Array(tmpArg$1, tmpArg$2, tmpArg$3);
 $(tmpArg);
 `````
 

@@ -19,15 +19,15 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
+var tmpBinaryLeft$1;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft$1;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -53,15 +53,15 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
+var tmpBinaryLeft$1;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft$1;
 let b = { c: 2 };
 tmpCompoundAssignLhs = b.c;
 tmpAssignMemLhsObj = b;

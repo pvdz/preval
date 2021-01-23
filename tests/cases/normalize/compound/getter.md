@@ -21,11 +21,11 @@ $(obj.x); // 5
 ## Normalized
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignMemLhsObj$1;
 var tmpArg;
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 const obj = { x: 0 };
 tmpCompoundAssignLhs = obj.x;
 tmpAssignMemLhsObj = obj;
@@ -39,11 +39,11 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignMemLhsObj$1;
 var tmpArg;
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 const obj = { x: 0 };
 tmpCompoundAssignLhs = obj.x;
 tmpAssignMemLhsObj = obj;

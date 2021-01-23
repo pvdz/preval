@@ -20,9 +20,9 @@ new $(i, ++i);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg$1;
+var tmpNestedComplexRhs;
 let i = 0;
 tmpArg = i;
 tmpNestedComplexRhs = i + 1;
@@ -34,9 +34,9 @@ new $(tmpArg, tmpArg$1);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
 var tmpArg$1;
+var tmpNestedComplexRhs;
 let i = 0;
 tmpArg = i;
 tmpNestedComplexRhs = i + 1;

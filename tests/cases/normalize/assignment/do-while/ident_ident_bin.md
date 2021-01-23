@@ -22,9 +22,9 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;
+var tmpPostfixArg;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -54,9 +54,9 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;
+var tmpPostfixArg;
 let a = 1;
 let b = 2;
 let n = 0;

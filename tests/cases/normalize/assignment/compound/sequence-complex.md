@@ -20,10 +20,10 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -44,10 +44,10 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 let b = { c: 2 };
 tmpAssignMemLhsObj = $(b);
 tmpCompoundAssignLhs = tmpAssignMemLhsObj.c;

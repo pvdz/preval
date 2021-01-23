@@ -23,8 +23,8 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpObjPropValue;
 var tmpElement$1;
+var tmpObjPropValue;
 tmpElement$1 = [1, 2, 3];
 tmpObjPropValue = [tmpElement$1, 10];
 tmpElement = { x: tmpObjPropValue, y: 11 };
@@ -42,8 +42,8 @@ $('ok');
 
 `````js filename=intro
 var tmpElement;
-var tmpObjPropValue;
 var tmpElement$1;
+var tmpObjPropValue;
 tmpElement$1 = [1, 2, 3];
 tmpObjPropValue = [tmpElement$1, 10];
 tmpElement = { x: tmpObjPropValue, y: 11 };

@@ -20,8 +20,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
 var tmpArg;
 var tmpTernaryTest;
@@ -52,8 +52,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
 var tmpArg;
 var tmpTernaryTest;

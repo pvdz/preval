@@ -21,10 +21,10 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropAssignRhs;
 var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignComMemberProp$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 let b = { x: 2 };
@@ -56,10 +56,10 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropAssignRhs;
 var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignComMemberProp$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 let b = { x: 2 };

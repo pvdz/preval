@@ -20,13 +20,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
 var tmpNestedPropAssignRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -55,13 +55,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
 var tmpNestedPropAssignRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let b = { c: 2 };
 tmpTernaryTest = $(true);
 if (tmpTernaryTest) {

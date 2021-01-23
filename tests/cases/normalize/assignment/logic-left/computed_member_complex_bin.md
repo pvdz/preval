@@ -20,12 +20,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
@@ -54,12 +54,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 tmpAssignMemLhsObj = $(a);

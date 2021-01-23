@@ -26,6 +26,7 @@ function f(tmpParamPattern) {
   return x;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f('abc', 200);
 $(tmpArg);
 `````

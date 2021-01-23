@@ -32,10 +32,10 @@ $(a, s); // 5, 'read;write[5]'
 ## Normalized
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 let s = '';
 let a = 0;
 const obj = {
@@ -45,8 +45,8 @@ const obj = {
   },
   set x(v) {
     var tmpBinaryLeft;
-    var tmpBinaryRight;
     var tmpBinaryLeft$1;
+    var tmpBinaryRight;
     tmpBinaryLeft = s;
     tmpBinaryLeft$1 = 'write[' + v;
     tmpBinaryRight = tmpBinaryLeft$1 + '];';
@@ -66,10 +66,10 @@ $(a, s);
 ## Output
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpCompoundAssignLhs;
 let s = '';
 let a = 0;
 const obj = {
@@ -79,8 +79,8 @@ const obj = {
   },
   set x(v) {
     var tmpBinaryLeft;
-    var tmpBinaryRight;
     var tmpBinaryLeft$1;
+    var tmpBinaryRight;
     tmpBinaryLeft = s;
     tmpBinaryLeft$1 = 'write[' + v;
     tmpBinaryRight = tmpBinaryLeft$1 + '];';

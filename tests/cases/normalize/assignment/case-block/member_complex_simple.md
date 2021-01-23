@@ -19,9 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignMemLhsObj;
 let a = { x: 10 };
 let b = 2;
 let c = 3;

@@ -19,8 +19,8 @@ $(x??[20]);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 const x = 10;
 x = x;
 tmpTernaryTest = x == null;
@@ -37,8 +37,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 const x = 10;
 x = x;
 tmpTernaryTest = x == null;

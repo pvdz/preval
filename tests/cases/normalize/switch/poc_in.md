@@ -54,10 +54,10 @@ switch (x) {
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpBinaryRight;
 var tmpBinaryLeft$1;
-var tmpBinaryRight$1;
 var tmpBinaryLeft$2;
+var tmpBinaryRight;
+var tmpBinaryRight$1;
 var tmpBinaryRight$2;
 let x = 1;
 tmpSwitchBreak: {

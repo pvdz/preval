@@ -20,9 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpNestedPropAssignRhs;
+var tmpTernaryAlternate;
+var tmpTernaryTest;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -43,9 +43,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpNestedPropAssignRhs;
+var tmpTernaryAlternate;
+var tmpTernaryTest;
 let a = { x: 10 };
 tmpTernaryTest = $(false);
 if (tmpTernaryTest) {

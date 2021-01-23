@@ -18,10 +18,10 @@ $(a);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var arrPatternSplat$1;
 var arrPatternBeforeDefault;
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternStep;
 var tmpTernaryTest;
 const a = 10;
 arrAssignPatternRhs = [[]];
@@ -43,10 +43,10 @@ $(a);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var arrPatternSplat$1;
 var arrPatternBeforeDefault;
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternStep;
 var tmpTernaryTest;
 arrAssignPatternRhs = [[]];
 arrPatternSplat = [...arrAssignPatternRhs];

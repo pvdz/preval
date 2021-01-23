@@ -18,11 +18,11 @@ obj.a.b.c();
 ## Normalized
 
 `````js filename=intro
+var tmpMemberComplexObj;
+var tmpMemberComplexObj$1;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
 tmpObjPropValue$2 = () => {
   {
     let tmpReturnArg = $(1);
@@ -40,11 +40,11 @@ tmpMemberComplexObj.c();
 ## Output
 
 `````js filename=intro
+var tmpMemberComplexObj;
+var tmpMemberComplexObj$1;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
 tmpObjPropValue$2 = () => {
   let tmpReturnArg = $(1);
   return tmpReturnArg;

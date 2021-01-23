@@ -15,8 +15,8 @@ f({ x } = 1);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 var objAssignPatternRhs;
+var tmpArg;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 tmpArg = objAssignPatternRhs;
@@ -26,8 +26,8 @@ f(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpArg;
 var objAssignPatternRhs;
+var tmpArg;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 tmpArg = objAssignPatternRhs;

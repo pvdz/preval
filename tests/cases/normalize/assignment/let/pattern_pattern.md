@@ -21,8 +21,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
 let a = 1;
 let b = 2;
@@ -46,8 +46,8 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
 let a = 1;
 let b = 2;

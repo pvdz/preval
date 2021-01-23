@@ -23,9 +23,9 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternCrashTest;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
@@ -53,9 +53,9 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternCrashTest;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };

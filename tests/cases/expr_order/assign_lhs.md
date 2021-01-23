@@ -21,8 +21,8 @@ $(j);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpBinaryLeft;
+var tmpNestedComplexRhs;
 let i = 0;
 tmpNestedComplexRhs = i + 1;
 i = tmpNestedComplexRhs;
@@ -34,8 +34,8 @@ $(j);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpBinaryLeft;
+var tmpNestedComplexRhs;
 let i = 0;
 tmpNestedComplexRhs = i + 1;
 i = tmpNestedComplexRhs;

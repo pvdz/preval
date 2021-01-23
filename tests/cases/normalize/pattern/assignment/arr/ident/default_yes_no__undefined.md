@@ -19,10 +19,10 @@ $('bad');
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var tmpTernaryTest;
+var arrPatternSplat;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
@@ -41,10 +41,10 @@ $('bad');
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var tmpTernaryTest;
+var arrPatternSplat;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 arrAssignPatternRhs = undefined;
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];

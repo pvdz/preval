@@ -25,12 +25,12 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 tmpNewObj = function () {
-  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj$1;
   var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs;
   var tmpNestedAssignMemberRhs$1;
+  var tmpNestedAssignObj;
+  var tmpNestedAssignObj$1;
   {
     tmpNestedAssignObj = $(b);
     tmpNestedAssignMemberObj = tmpNestedAssignObj;
@@ -56,12 +56,12 @@ var tmpNewObj;
 let a = 1;
 let b = { x: 2 };
 tmpNewObj = function () {
-  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj$1;
   var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs;
   var tmpNestedAssignMemberRhs$1;
+  var tmpNestedAssignObj;
+  var tmpNestedAssignObj$1;
   tmpNestedAssignObj = $(b);
   tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignObj$1 = $(3);

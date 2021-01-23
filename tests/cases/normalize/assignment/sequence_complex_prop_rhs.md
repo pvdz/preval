@@ -21,9 +21,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
+var tmpObjPropValue;
 let a = 0;
 let b = 1;
 tmpObjPropValue = { y: 10 };
@@ -38,9 +38,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
+var tmpObjPropValue;
 let a = 0;
 let b = 1;
 tmpObjPropValue = { y: 10 };

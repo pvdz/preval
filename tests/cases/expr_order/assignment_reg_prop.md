@@ -19,8 +19,8 @@ $(1).x = $(2);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 tmpAssignMemLhsObj = $(1);
 tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = $(2);
@@ -33,8 +33,8 @@ tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 tmpAssignMemLhsObj = $(1);
 tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpAssignMemRhs = $(2);

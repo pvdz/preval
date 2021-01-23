@@ -15,8 +15,8 @@
 ## Normalized
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var objAssignPatternRhs;
+var tmpMemberComplexObj;
 {
   objAssignPatternRhs = 1;
   x = objAssignPatternRhs.x;
@@ -28,8 +28,8 @@ var objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var objAssignPatternRhs;
+var tmpMemberComplexObj;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
 tmpMemberComplexObj = objAssignPatternRhs;

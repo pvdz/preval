@@ -23,8 +23,8 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpNestedPropCompoundComplexRhs;
 let a = 1;
 let b = {
   get c() {
@@ -45,8 +45,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
+var tmpNestedPropCompoundComplexRhs;
 let a = 1;
 let b = {
   get c() {

@@ -19,14 +19,14 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -45,14 +45,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 tmpAssignMemLhsObj = $(a);
 tmpAssignComMemLhsObj = tmpAssignMemLhsObj;

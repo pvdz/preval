@@ -12,8 +12,8 @@
 $(f(), g(), h());
 
 export function f() { return $(); }
-export function g() { return $(); }
 export function h() { return $(); }
+export function g() { return $(); }
 `````
 
 ## Normalized
@@ -40,10 +40,16 @@ export function h() {
 var tmpArg;
 var tmpArg$1;
 var tmpArg$2;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
 tmpArg = f();
 tmpArg$1 = g();
 tmpArg$2 = h();
 $(tmpArg, tmpArg$1, tmpArg$2);
+('<hoisted func decl `f`>');
+('<hoisted func decl `h`>');
+('<hoisted func decl `g`>');
 `````
 
 ## Output

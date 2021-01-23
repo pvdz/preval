@@ -20,8 +20,8 @@ $(f?.());
 `````js filename=intro
 var f;
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 f = undefined;
 tmpTernaryTest = f == null;
 if (tmpTernaryTest) {
@@ -38,8 +38,8 @@ $(tmpArg);
 `````js filename=intro
 var f;
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 f = undefined;
 tmpTernaryTest = f == null;
 if (tmpTernaryTest) {

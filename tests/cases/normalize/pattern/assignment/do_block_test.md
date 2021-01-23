@@ -17,9 +17,9 @@ $(p, q);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var ifTestTmp;
 let a = 1;
 let b = [10, 20];
 let x = 3;
@@ -40,9 +40,9 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var ifTestTmp;
 let b = [10, 20];
 let p;
 let q;

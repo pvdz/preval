@@ -24,9 +24,9 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 tmpNewObj = function () {
-  var tmpNestedAssignObj;
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  var tmpNestedAssignObj;
   var tmpNestedPropAssignRhs;
   {
     tmpNestedAssignObj = $(b);
@@ -50,9 +50,9 @@ var tmpNewObj;
 let a = 1;
 let b = { x: 2 };
 tmpNewObj = function () {
-  var tmpNestedAssignObj;
   var tmpNestedAssignComMemberObj;
   var tmpNestedAssignComMemberProp;
+  var tmpNestedAssignObj;
   var tmpNestedPropAssignRhs;
   tmpNestedAssignObj = $(b);
   tmpNestedAssignComMemberObj = tmpNestedAssignObj;

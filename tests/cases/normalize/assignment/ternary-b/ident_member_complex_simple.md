@@ -20,11 +20,11 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -48,11 +48,11 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedComplexRhs;
 var tmpNestedAssignObj;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
 tmpTernaryTest = $(true);

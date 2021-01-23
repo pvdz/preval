@@ -19,12 +19,12 @@ $(y);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpObjPropValue;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
@@ -45,12 +45,12 @@ $(y);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var tmpObjPropValue;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpObjPropValue;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;

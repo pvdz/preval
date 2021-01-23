@@ -16,9 +16,9 @@
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternBeforeDefault;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var objPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;
@@ -37,9 +37,9 @@ objAssignPatternRhs;
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternBeforeDefault;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var objPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;

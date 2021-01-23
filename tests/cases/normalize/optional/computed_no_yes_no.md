@@ -19,15 +19,15 @@ $(a[b]?.[c][d]);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
-var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining$1;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest$1;
 var tmpTernaryAlternate$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 tmpObjPropValue$1 = { d: 10 };
 tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };
@@ -55,15 +55,15 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+var tmpArg;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
-var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining$1;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest$1;
 var tmpTernaryAlternate$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 tmpObjPropValue$1 = { d: 10 };
 tmpObjPropValue = { c: tmpObjPropValue$1 };
 const a = { b: tmpObjPropValue };

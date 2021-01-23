@@ -22,8 +22,8 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpOptionalChaining;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
+  var tmpTernaryTest;
   const a = { x: 1 };
   1;
   tmpOptionalChaining = a;
@@ -41,6 +41,8 @@ function f() {
   }
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f();
 $(tmpArg);
 `````
@@ -50,8 +52,8 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   var tmpOptionalChaining;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
+  var tmpTernaryTest;
   const a = { x: 1 };
   tmpOptionalChaining = a;
   tmpTernaryTest = tmpOptionalChaining == null;

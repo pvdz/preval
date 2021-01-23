@@ -30,13 +30,18 @@ function f() {
   return x;
 }
 var tmpArg;
-var x;
 var tmpArg$1;
+var x;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `x` decl without init>');
+('<hoisted var `x` decl without init>');
 tmpArg = f();
 $(tmpArg);
 x = 10;
 tmpArg$1 = f();
 $(tmpArg$1);
+('<hoisted func decl `f`>');
 `````
 
 ## Output
@@ -46,8 +51,8 @@ function f() {
   return x;
 }
 var tmpArg;
-var x;
 var tmpArg$1;
+var x;
 tmpArg = f();
 $(tmpArg);
 x = 10;

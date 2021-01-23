@@ -33,6 +33,7 @@ function f($tdz$__x) {
   return x;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f(1, 2, 3, 200);
 $(tmpArg);
 `````

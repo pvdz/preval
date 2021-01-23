@@ -18,9 +18,9 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
 objAssignPatternRhs = { x: undefined, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];
@@ -31,9 +31,9 @@ $('bad');
 ## Output
 
 `````js filename=intro
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
 objAssignPatternRhs = { x: undefined, a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 arrPatternSplat = [...objPatternNoDefault];

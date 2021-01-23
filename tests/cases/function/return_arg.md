@@ -26,6 +26,7 @@ function f(x) {
   return x;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f(1);
 $(tmpArg);
 `````

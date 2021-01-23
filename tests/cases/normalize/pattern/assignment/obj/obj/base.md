@@ -19,8 +19,8 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternBeforeDefault;
 var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpTernaryTest;
@@ -53,8 +53,8 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
+var objPatternBeforeDefault;
 var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpTernaryTest;

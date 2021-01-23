@@ -28,13 +28,17 @@ export function g() {
       return tmpReturnArg;
     }
   }
-  var tmpArg$1;
-  tmpArg$1 = f(1);
-  $(tmpArg$1);
+  var tmpArg;
+  ('<hoisted var `tmpArg` decl without init>');
+  tmpArg = f(1);
+  $(tmpArg);
+  ('<hoisted func decl `f`>');
 }
-var tmpArg;
-tmpArg = g();
-$(tmpArg);
+var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+tmpArg$1 = g();
+$(tmpArg$1);
+('<hoisted func decl `g`>');
 `````
 
 ## Output
@@ -45,13 +49,13 @@ export function g() {
     let tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg$1;
-  tmpArg$1 = f(1);
-  $(tmpArg$1);
+  var tmpArg;
+  tmpArg = f(1);
+  $(tmpArg);
 }
-var tmpArg;
-tmpArg = g();
-$(tmpArg);
+var tmpArg$1;
+tmpArg$1 = g();
+$(tmpArg$1);
 `````
 
 ## Result

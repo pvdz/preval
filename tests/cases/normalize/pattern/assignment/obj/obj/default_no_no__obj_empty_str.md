@@ -19,8 +19,8 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternNoDefault;
 var objPatternCrashTest;
+var objPatternNoDefault;
 objAssignPatternRhs = { x: '', b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 {
@@ -43,8 +43,8 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternNoDefault;
 var objPatternCrashTest;
+var objPatternNoDefault;
 objAssignPatternRhs = { x: '', b: 11, c: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
 let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;

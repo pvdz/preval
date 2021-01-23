@@ -20,12 +20,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -57,12 +57,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
 let a = 1;
 $(2);
 tmpNestedAssignObj = $(3);

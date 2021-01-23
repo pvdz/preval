@@ -21,8 +21,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };
@@ -53,8 +53,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
 let a = 1;
 let b = { x: 2 };

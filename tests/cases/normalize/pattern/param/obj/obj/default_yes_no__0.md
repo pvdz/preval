@@ -44,6 +44,8 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = f(0, 10);
 $(tmpArg$1);
 `````

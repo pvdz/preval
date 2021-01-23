@@ -21,9 +21,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
@@ -45,9 +45,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };

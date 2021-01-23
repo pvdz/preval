@@ -29,6 +29,10 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg$1;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = ['abc', 4, 5];
 tmpArg = f(tmpArg$1, 200);
 $(tmpArg);

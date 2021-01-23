@@ -19,9 +19,9 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -45,9 +45,9 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignMemLhsObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
 let tmpAssignLogicStmtOr = $(true);
 if (tmpAssignLogicStmtOr) {

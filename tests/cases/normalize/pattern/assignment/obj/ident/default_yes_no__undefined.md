@@ -20,8 +20,8 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 objAssignPatternRhs = undefined;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
@@ -40,8 +40,8 @@ $('bad');
 `````js filename=intro
 var objAssignPatternRhs;
 var objPatternBeforeDefault;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 objAssignPatternRhs = undefined;
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;

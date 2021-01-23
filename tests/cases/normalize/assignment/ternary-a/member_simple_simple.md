@@ -19,8 +19,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
+var tmpNestedPropAssignRhs;
 var tmpTernaryTest;
 let a = { x: 10 };
 let b = 2;
@@ -40,8 +40,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
+var tmpNestedPropAssignRhs;
 var tmpTernaryTest;
 let a = { x: 10 };
 tmpNestedPropAssignRhs = 2;

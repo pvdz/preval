@@ -22,12 +22,12 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpPostfixArg;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -58,12 +58,12 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpPostfixArg;
 let a = { x: 10 };
 let n = 0;
 do {

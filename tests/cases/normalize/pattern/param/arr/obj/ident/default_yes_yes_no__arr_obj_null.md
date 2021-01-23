@@ -49,6 +49,12 @@ function f(tmpParamPattern) {
 var tmpArg$1;
 var tmpArg$2;
 var tmpElement;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpElement` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpElement` decl without init>');
 tmpElement = { x: null, y: 2, z: 3 };
 tmpArg$2 = [tmpElement, 20, 30];
 tmpArg$1 = f(tmpArg$2, 200);

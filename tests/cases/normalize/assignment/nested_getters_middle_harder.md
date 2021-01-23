@@ -66,11 +66,11 @@ f();
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpNestedComplexRhs;
-  var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
   var tmpArg$1;
   var tmpArg$2;
+  var tmpNestedAssignMemberObj;
+  var tmpNestedAssignMemberRhs;
+  var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {
@@ -117,11 +117,11 @@ f();
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpNestedComplexRhs;
-  var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
   var tmpArg$1;
   var tmpArg$2;
+  var tmpNestedAssignMemberObj;
+  var tmpNestedAssignMemberRhs;
+  var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
   console.log('-------- start');
   const b = {

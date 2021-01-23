@@ -19,8 +19,8 @@ $(y);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 1;
 2;
 tmpOptionalChaining = 3;
@@ -39,8 +39,8 @@ $(y);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpOptionalChaining = 3;
 tmpTernaryTest = tmpOptionalChaining == null;
 let y;

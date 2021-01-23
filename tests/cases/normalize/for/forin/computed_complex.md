@@ -19,9 +19,9 @@ for ($(a)[$('foo')] in $(b)) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 {
@@ -42,9 +42,9 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);

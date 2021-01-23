@@ -18,10 +18,10 @@ $(y);
 ## Normalized
 
 `````js filename=intro
+var arrPatternBeforeDefault;
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
-var arrPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = { x: '', a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;
@@ -40,10 +40,10 @@ $(y);
 ## Output
 
 `````js filename=intro
+var arrPatternBeforeDefault;
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
-var arrPatternBeforeDefault;
 var tmpTernaryTest;
 objAssignPatternRhs = { x: '', a: 11, b: 12 };
 objPatternNoDefault = objAssignPatternRhs.x;

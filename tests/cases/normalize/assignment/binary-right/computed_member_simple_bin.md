@@ -20,8 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
@@ -49,8 +49,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;

@@ -18,9 +18,9 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpElement;
 var tmpElement$1;
+var tmpObjPropValue;
 tmpElement$1 = [1, 2, 3];
 tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];
@@ -37,9 +37,9 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpElement;
 var tmpElement$1;
+var tmpObjPropValue;
 tmpElement$1 = [1, 2, 3];
 tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];

@@ -22,8 +22,8 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
+  var tmpTernaryTest;
   {
     tmpTernaryTest = global == null;
     if (tmpTernaryTest) {
@@ -37,6 +37,9 @@ function f() {
   }
 }
 var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = f();
 $(tmpArg$1);
 `````
@@ -46,8 +49,8 @@ $(tmpArg$1);
 `````js filename=intro
 function f() {
   var tmpArg;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
+  var tmpTernaryTest;
   tmpTernaryTest = global == null;
   if (tmpTernaryTest) {
     tmpArg = undefined;

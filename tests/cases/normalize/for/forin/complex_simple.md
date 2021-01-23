@@ -19,8 +19,8 @@ for ($(a).x in b) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpArg;
+var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 {
@@ -37,8 +37,8 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpArg;
+var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 let tmpForInLhsNode;

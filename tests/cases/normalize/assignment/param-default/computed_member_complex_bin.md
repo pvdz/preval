@@ -23,12 +23,12 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignMemLhsObj;
   var tmpAssignComMemLhsObj;
   var tmpAssignComMemLhsProp;
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
+  var tmpAssignMemLhsObj;
   var tmpAssignMemLhsObj$1;
   var tmpNestedPropAssignRhs;
   let foo;
@@ -52,9 +52,11 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 $(a, b, c);
@@ -64,12 +66,12 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
-  var tmpAssignMemLhsObj;
   var tmpAssignComMemLhsObj;
   var tmpAssignComMemLhsProp;
   var tmpAssignComputedObj;
   var tmpAssignComputedProp;
   var tmpAssignComputedRhs;
+  var tmpAssignMemLhsObj;
   var tmpAssignMemLhsObj$1;
   var tmpNestedPropAssignRhs;
   let foo;

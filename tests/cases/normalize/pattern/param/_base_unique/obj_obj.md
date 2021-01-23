@@ -29,6 +29,7 @@ function i(tmpParamPattern) {
   return z_1;
 }
 let z = 1;
+('<hoisted func decl `i`>');
 `````
 
 ## Output

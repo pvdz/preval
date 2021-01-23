@@ -18,8 +18,8 @@ $(global?.foo);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpTernaryTest = global == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;
@@ -34,8 +34,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpTernaryTest = global == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;

@@ -20,13 +20,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpBinaryRight;
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;

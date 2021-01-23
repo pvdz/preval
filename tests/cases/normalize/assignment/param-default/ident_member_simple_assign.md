@@ -24,10 +24,10 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs;
   var tmpNestedAssignMemberRhs$1;
+  var tmpNestedAssignObj;
   let foo;
   {
     let ifTestTmp = $tdz$__foo === undefined;
@@ -48,10 +48,12 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 $(a, b, c);
@@ -62,10 +64,10 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
-  var tmpNestedAssignMemberRhs;
-  var tmpNestedAssignObj;
   var tmpNestedAssignMemberObj$1;
+  var tmpNestedAssignMemberRhs;
   var tmpNestedAssignMemberRhs$1;
+  var tmpNestedAssignObj;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;
   if (ifTestTmp) {

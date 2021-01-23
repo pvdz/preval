@@ -19,8 +19,8 @@ $(a.b.c??d);
 
 `````js filename=intro
 var tmpArg;
-var tmpNullish;
 var tmpMemberComplexObj;
+var tmpNullish;
 var tmpTernaryTest;
 const a = {};
 tmpMemberComplexObj = a.b;
@@ -38,8 +38,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpNullish;
 var tmpMemberComplexObj;
+var tmpNullish;
 var tmpTernaryTest;
 const a = {};
 tmpMemberComplexObj = a.b;

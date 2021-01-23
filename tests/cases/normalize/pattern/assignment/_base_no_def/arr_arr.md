@@ -18,8 +18,8 @@ let x = 10;
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrPatternStep;
 var arrPatternSplat$1;
+var arrPatternStep;
 let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];
@@ -34,8 +34,8 @@ arrAssignPatternRhs;
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrPatternStep;
 var arrPatternSplat$1;
+var arrPatternStep;
 let x = 10;
 arrAssignPatternRhs = 1;
 arrPatternSplat = [...arrAssignPatternRhs];

@@ -16,10 +16,10 @@ $(obj.a.b);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
 var tmpArg;
 var tmpMemberComplexObj;
+var tmpObjPropValue;
+var tmpObjPropValue$1;
 tmpObjPropValue$1 = $();
 tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };
@@ -31,10 +31,10 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
 var tmpArg;
 var tmpMemberComplexObj;
+var tmpObjPropValue;
+var tmpObjPropValue$1;
 tmpObjPropValue$1 = $();
 tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };

@@ -20,9 +20,9 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -53,9 +53,9 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 var tmpBinaryLeft;
 var tmpPostfixArg;
-var tmpAssignMemLhsObj;
 let b = { c: 2 };
 let n = 1;
 while (true) {

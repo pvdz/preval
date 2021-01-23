@@ -19,20 +19,20 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberRhs$1;
 var tmpArg;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignComMemberProp$1;
+var tmpNestedAssignCompMemberObj;
+var tmpNestedAssignCompMemberObj$1;
+var tmpNestedAssignCompMemberProp;
+var tmpNestedAssignCompMemberProp$1;
+var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignCompMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedComplexRhs;
 var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
@@ -67,20 +67,20 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberRhs$1;
 var tmpArg;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignComMemberProp$1;
+var tmpNestedAssignCompMemberObj;
+var tmpNestedAssignCompMemberObj$1;
+var tmpNestedAssignCompMemberProp;
+var tmpNestedAssignCompMemberProp$1;
+var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignCompMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedComplexRhs;
 var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };

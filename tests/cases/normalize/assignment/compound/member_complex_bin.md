@@ -20,12 +20,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -44,12 +44,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 tmpAssignMemLhsObj = $(a);
 tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;

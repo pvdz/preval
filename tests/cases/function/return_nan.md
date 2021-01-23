@@ -22,6 +22,7 @@ function f() {
   return NaN;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f();
 $(tmpArg);
 `````

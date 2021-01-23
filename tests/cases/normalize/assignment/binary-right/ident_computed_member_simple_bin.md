@@ -20,15 +20,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
-var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -53,15 +53,15 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
-var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignComMemberObj = b;

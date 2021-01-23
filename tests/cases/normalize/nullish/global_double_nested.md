@@ -16,12 +16,12 @@ $(obj??a??b??c);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
 var tmpArg;
 var tmpNullish;
 var tmpNullish$1;
+var tmpObjPropValue;
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
 var tmpTernaryTest;
 var tmpTernaryTest$1;
 var tmpTernaryTest$2;
@@ -54,12 +54,12 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
 var tmpArg;
 var tmpNullish;
 var tmpNullish$1;
+var tmpObjPropValue;
+var tmpObjPropValue$1;
+var tmpObjPropValue$2;
 var tmpTernaryTest;
 var tmpTernaryTest$1;
 var tmpTernaryTest$2;

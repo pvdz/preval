@@ -35,22 +35,22 @@ $('final:', a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');
@@ -102,22 +102,22 @@ $('final:', a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');

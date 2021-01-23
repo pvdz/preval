@@ -27,6 +27,10 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg$1;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = { x: 1, a: 2, b: 3 };
 tmpArg = f(tmpArg$1, 10);
 $(tmpArg);

@@ -22,9 +22,9 @@ $(5, a);
 ## Normalized
 
 `````js filename=intro
+var a;
 var b;
 var c;
-var a;
 b = {
   get x() {
     $(1);
@@ -53,9 +53,9 @@ $(5, a);
 ## Output
 
 `````js filename=intro
+var a;
 var b;
 var c;
-var a;
 b = {
   get x() {
     $(1);

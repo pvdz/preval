@@ -19,15 +19,15 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 var arrAssignPatternRhs$2;
-var arrPatternSplat$2;
 var arrAssignPatternRhs$3;
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternSplat$2;
 var arrPatternSplat$3;
+var tmpArg;
 let a = 1;
 let b = 2;
 let x = 1;
@@ -64,15 +64,15 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpArg;
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 var arrAssignPatternRhs$2;
-var arrPatternSplat$2;
 var arrAssignPatternRhs$3;
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternSplat$2;
 var arrPatternSplat$3;
+var tmpArg;
 let a = 1;
 let b = 2;
 let x = 1;

@@ -22,12 +22,12 @@ $(a, b, c, d);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -62,12 +62,12 @@ $(a, b, c, d);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let b = { c: 2 };
 let n = 0;
 do {

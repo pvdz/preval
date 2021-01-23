@@ -19,9 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;
-var tmpArg;
 var tmpTernaryTest;
 let a = 1;
 let b = 2;
@@ -44,9 +44,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpArg;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;
-var tmpArg;
 var tmpTernaryTest;
 let a = 1;
 let b = 2;

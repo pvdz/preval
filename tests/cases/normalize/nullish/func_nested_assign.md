@@ -21,11 +21,11 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpArg;
+  var tmpAssignMemLhsObj;
+  var tmpNullish;
   var tmpObjPropValue;
   var tmpObjPropValue$1;
-  var tmpAssignMemLhsObj;
-  var tmpArg;
-  var tmpNullish;
   var tmpTernaryTest;
   var tmpTernaryTest$1;
   tmpObjPropValue$1 = $();
@@ -52,6 +52,8 @@ function f() {
   }
 }
 var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = f();
 $(tmpArg$1);
 `````
@@ -60,11 +62,11 @@ $(tmpArg$1);
 
 `````js filename=intro
 function f() {
+  var tmpArg;
+  var tmpAssignMemLhsObj;
+  var tmpNullish;
   var tmpObjPropValue;
   var tmpObjPropValue$1;
-  var tmpAssignMemLhsObj;
-  var tmpArg;
-  var tmpNullish;
   var tmpTernaryTest;
   var tmpTernaryTest$1;
   tmpObjPropValue$1 = $();

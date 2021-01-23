@@ -19,13 +19,13 @@ $(x);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var arrPatternStep;
+var arrPatternSplat;
 var arrPatternSplat$1;
+var arrPatternStep;
 var tmpElement;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpElement = [1, 2, 3];
 arrAssignPatternRhs = [tmpElement, 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];
@@ -47,13 +47,13 @@ $(x);
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var arrPatternStep;
+var arrPatternSplat;
 var arrPatternSplat$1;
+var arrPatternStep;
 var tmpElement;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpElement = [1, 2, 3];
 arrAssignPatternRhs = [tmpElement, 4, 5];
 arrPatternSplat = [...arrAssignPatternRhs];

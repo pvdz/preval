@@ -36,25 +36,25 @@ $('final:', a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
-var tmpMemberComplexObj;
+var tmpCompoundAssignLhs;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');
@@ -109,25 +109,25 @@ $('final:', a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedAssignObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
-var tmpMemberComplexObj;
+var tmpCompoundAssignLhs;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
+var tmpNestedAssignComMemberObj;
+var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');

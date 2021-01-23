@@ -19,11 +19,11 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
+var tmpArg;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
@@ -54,11 +54,11 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpArg;
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrAssignPatternRhs$1;
+var arrPatternSplat;
 var arrPatternSplat$1;
+var tmpArg;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];

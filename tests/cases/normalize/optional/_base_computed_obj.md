@@ -20,10 +20,10 @@ $(f?.[x]);
 
 `````js filename=intro
 var f;
-var x;
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
+var x;
 f = { 10: 20 };
 x = 10;
 tmpTernaryTest = f == null;
@@ -40,10 +40,10 @@ $(tmpArg);
 
 `````js filename=intro
 var f;
-var x;
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
+var x;
 f = { 10: 20 };
 x = 10;
 tmpTernaryTest = f == null;

@@ -41,17 +41,25 @@ function f() {
       return tmpReturnArg$2;
     }
   }
+  var tmpArg;
   var tmpArg$1;
   var tmpArg$2;
-  var tmpArg$3;
-  tmpArg$1 = f_1();
-  tmpArg$2 = g();
-  tmpArg$3 = h();
-  $(tmpArg$1, tmpArg$2, tmpArg$3);
+  ('<hoisted var `tmpArg` decl without init>');
+  ('<hoisted var `tmpArg$1` decl without init>');
+  ('<hoisted var `tmpArg$2` decl without init>');
+  tmpArg = f_1();
+  tmpArg$1 = g();
+  tmpArg$2 = h();
+  $(tmpArg, tmpArg$1, tmpArg$2);
+  ('<hoisted func decl `f`>');
+  ('<hoisted func decl `g`>');
+  ('<hoisted func decl `h`>');
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+var tmpArg$3;
+('<hoisted var `tmpArg$3` decl without init>');
+tmpArg$3 = f();
+$(tmpArg$3);
+('<hoisted func decl `f`>');
 `````
 
 ## Output
@@ -70,17 +78,17 @@ function f() {
     let tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
+  var tmpArg;
   var tmpArg$1;
   var tmpArg$2;
-  var tmpArg$3;
-  tmpArg$1 = f_1();
-  tmpArg$2 = g();
-  tmpArg$3 = h();
-  $(tmpArg$1, tmpArg$2, tmpArg$3);
+  tmpArg = f_1();
+  tmpArg$1 = g();
+  tmpArg$2 = h();
+  $(tmpArg, tmpArg$1, tmpArg$2);
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+var tmpArg$3;
+tmpArg$3 = f();
+$(tmpArg$3);
 `````
 
 ## Result

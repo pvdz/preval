@@ -133,6 +133,10 @@ const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 const FRESH = true;
 const OLD = false;
 
+const HOISTING_FUNC = 'func';
+const HOISTING_VAR = 'var';
+const HOISTING_AFTER = 'after';
+
 function rule(desc, ...rest) {
   if (desc.slice(-1) === '"') fixme;
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
@@ -279,7 +283,7 @@ export function phaseNormalize(fdata, fname) {
     fdata.globallyUniqueLabelRegistery = new Map();
     // Clear usage/update lists because mutations may have affected them
     fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.updates = []), (meta.usages = [])));
-    stmt(null, 'ast', -1, ast);
+    stmt(null, 'ast', -1, ast, false, HOISTING_FUNC, false);
     log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
@@ -864,7 +868,7 @@ export function phaseNormalize(fdata, fname) {
     // - Break up variable declarations that declare multiple bindings
     // - Break up var inits that are assignments
 
-    log('ensureVarDeclsCreateOneBinding');
+    group('ensureVarDeclsCreateOneBinding(' + body.length + 'x)');
 
     let i = 0;
     while (i < body.length) {
@@ -987,6 +991,102 @@ export function phaseNormalize(fdata, fname) {
       }
       ++i;
     }
+
+    groupEnd();
+  }
+
+  function hoisting(body) {
+    // Body should be the node.body of Program or node.body.body of a function node
+    // Make sure body is not being traversed
+
+    group('Hoisting(' + body.length + 'x)');
+
+    let stage = HOISTING_FUNC;
+    let funcs = 0;
+    let vars = 0;
+    for (let i = 0; i < body.length; ++i) {
+      const snode = body[i];
+      if (
+        snode.type === 'FunctionDeclaration' ||
+        (snode.type === 'ExportNamedDeclaration' && snode.declaration.type === 'FunctionDeclaration') ||
+        (snode.type === 'ExportDefaultDeclaration' && snode.declaration.type === 'FunctionDeclaration' && snode.declaration.id)
+      ) {
+        const id = snode.type === 'FunctionDeclaration' ? snode.id : snode.declaration.id;
+        log(' -', i, 'is func decl:', snode.type);
+
+        if (stage === HOISTING_FUNC) {
+          log('  - Within func hoisting area so noop');
+        } else {
+          // we are no longer in the hoisting segment so move it in there
+          body[i] = AST.expressionStatement(AST.literal('<hoisted func decl `' + id.name + '`>'));
+          body.splice(funcs, 0, snode);
+          log('  - Injected at index', funcs);
+          ++i;
+        }
+
+        ++funcs;
+      } else if (
+        (snode.type === 'VariableDeclaration' && snode.kind === 'var') ||
+        (snode.type === 'ExportNamedDeclaration' && snode.declaration.type === 'VariableDeclaration' && snode.declaration.kind === 'var')
+      ) {
+        log(' -', i, 'is a var decl:', snode.type);
+        const decl = snode.type === 'VariableDeclaration' ? snode.declarations[0] : snode.declaration.declarations[0];
+
+        if (stage === HOISTING_VAR && !decl.init) {
+          log('  - Within var hoisting area so noop');
+        } else if (stage === HOISTING_FUNC && !decl.init) {
+          log('  - Within var hoisting area so noop');
+          stage = HOISTING_VAR;
+        } else {
+          if (decl.init) {
+            log('  - Var has an init so needs to be split up');
+          }
+          if (stage === HOISTING_FUNC) {
+            // ok, put us past the function segment
+            stage = HOISTING_VAR;
+          }
+
+          const names = discoverBoundNames(snode); // binding patterns may still exist at this point
+          log('  - Names:', names);
+          log('  - Injected from index', funcs + vars);
+
+          // we are no longer in the hoisting segment so drop the var keyword and create the decl there
+          body[i] = decl.init
+            ? AST.expressionStatement(AST.assignmentExpression(decl.id, decl.init))
+            : AST.expressionStatement(AST.literal('<hoisted var `' + names + '` decl without init>'));
+          body.splice(funcs + vars, 0, ...names.map((name) => AST.variableDeclaration(name, undefined, 'var')));
+          i += names.length;
+        }
+        ++vars;
+      } else {
+        log(' -', i, 'is not a relevant hoisting target;', snode.type);
+        stage = HOISTING_AFTER;
+      }
+    }
+
+    // Reinsert ordered
+    body
+      .slice(0, funcs)
+      .sort((a, b) => {
+        const A = a.type === 'FunctionDeclaration' ? a.id.name : a.declaration.id.name;
+        const B = b.type === 'FunctionDeclaration' ? b.id.name : b.declaration.id.name;
+        return A < B ? -1 : A > B ? 1 : 0;
+      })
+      .forEach((node, i) => {
+        body[i] = node;
+      });
+    body
+      .slice(funcs, funcs + vars)
+      .sort((a, b) => {
+        const A = a.type === 'VariableDeclaration' ? a.declarations[0].id.name : a.declaration.declarations[0].id.name;
+        const B = b.type === 'VariableDeclaration' ? b.declarations[0].id.name : b.declaration.declarations[0].id.name;
+        return A < B ? -1 : A > B ? 1 : 0;
+      })
+      .forEach((node, i) => {
+        body[funcs + i] = node;
+      });
+
+    groupEnd();
   }
 
   function normalizeCallArgsChangedSomething(node, isNew) {
@@ -1163,7 +1263,7 @@ export function phaseNormalize(fdata, fname) {
     }
   }
 
-  function stmt(parent, prop, index, node, isExport, stillHoisting, isFunctionBody) {
+  function stmt(parent, prop, index, node, isExport, isFunctionBody) {
     ASSERT(
       parent === null ||
         index === 'body' ||
@@ -1177,11 +1277,11 @@ export function phaseNormalize(fdata, fname) {
     );
 
     crumb(parent, prop, index);
-    _stmt(node, isExport, stillHoisting, isFunctionBody);
+    _stmt(node, isExport, isFunctionBody);
     uncrumb(parent, prop, index);
   }
 
-  function _stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
+  function _stmt(node, isExport = false, isFunctionBody) {
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
       funcStack.push(node);
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
@@ -1191,7 +1291,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
-    __stmt(node, isExport, stillHoisting, isFunctionBody);
+    __stmt(node, isExport, isFunctionBody);
     groupEnd();
 
     if (node.type === 'FunctionDeclaration' || node.type === 'Program') {
@@ -1215,7 +1315,7 @@ export function phaseNormalize(fdata, fname) {
     }
   }
 
-  function __stmt(node, isExport = false, stillHoisting = false, isFunctionBody) {
+  function __stmt(node, isExport = false, isFunctionBody) {
     if (node.$scope || (node.type === 'TryStatement' && node.handler)) {
       if (node.$scope) lexScopeStack.push(node);
       else lexScopeStack.push(node.handler);
@@ -1223,26 +1323,12 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'BlockStatement': {
+        hoisting(node.body);
         ensureVarDeclsCreateOneBinding(node.body);
         statementifyExpressions(node);
 
-        let hoisting = !!isFunctionBody;
         node.body.forEach((cnode, i) => {
-          if (
-            hoisting &&
-            (cnode.type !== 'VariableDeclaration' ||
-              cnode.kind !== 'var' ||
-              cnode.declarations.length !== 1 ||
-              cnode.declarations[0].init) &&
-            cnode.type !== 'FunctionDeclaration' &&
-            (cnode.type !== 'ExportNamedDeclaration' || !cnode.declaration || cnode.declaration.type !== 'FunctionDeclaration')
-          ) {
-            // We don't consider var statements with inits to be normalized for hoisting
-            // We don't consider var statements that declare multiple bindings to be normalized for hoisting
-            // Exported functions are still hoisted the same as regular function declarations are hoisted
-            hoisting = false;
-          }
-          stmt(node, 'body', i, cnode, false, hoisting);
+          stmt(node, 'body', i, cnode);
         });
         break;
       }
@@ -1654,7 +1740,10 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.id) expr(node, 'id', -1, node.id);
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
-        stmt(node, 'body', -1, node.body, false, false, true);
+
+        hoisting(node.body.body);
+
+        stmt(node, 'body', -1, node.body, false, true);
 
         // TODO: dont move the functions if they're already hoisted
         rule('All function declarations must be at the top');
@@ -1748,7 +1837,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           after(node);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           break;
         }
 
@@ -1766,7 +1855,7 @@ export function phaseNormalize(fdata, fname) {
           after(newNode);
           changed = true;
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           break;
         }
 
@@ -1827,24 +1916,10 @@ export function phaseNormalize(fdata, fname) {
       case 'Program': {
         ensureVarDeclsCreateOneBinding(node.body);
         statementifyExpressions(node);
+        hoisting(node.body);
 
-        let hoisting = true; // false at first body element that is neither a noop var statement nor a func decl
         node.body.forEach((cnode, i) => {
-          if (
-            hoisting &&
-            (cnode.type !== 'VariableDeclaration' ||
-              cnode.kind !== 'var' ||
-              cnode.declarations.length !== 1 ||
-              cnode.declarations[0].init) &&
-            cnode.type !== 'FunctionDeclaration' &&
-            (cnode.type !== 'ExportNamedDeclaration' || !cnode.declaration || cnode.declaration.type !== 'FunctionDeclaration')
-          ) {
-            // We don't consider var statements with inits to be normalized for hoisting
-            // We don't consider var statements that declare multiple bindings to be normalized for hoisting
-            // Exported functions are still hoisted the same as regular function declarations are hoisted
-            hoisting = false;
-          }
-          stmt(node, 'body', i, cnode, false, hoisting);
+          stmt(node, 'body', i, cnode, false);
         });
 
         break;
@@ -1859,20 +1934,17 @@ export function phaseNormalize(fdata, fname) {
 
         if (isComplexNode(node.argument)) {
           rule('Return argument must be simple');
-          example('return $()','{ let tmp = $(); return tmp; }');
+          example('return $()', '{ let tmp = $(); return tmp; }');
           before(node);
 
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
           const tmpName = createFreshVarInCurrentRootScope('tmpReturnArg');
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpName, node.argument),
-            AST.returnStatement(tmpName)
-          );
+          const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), AST.returnStatement(tmpName));
 
           crumbSet(1, newNode);
           after(newNode);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           changed = true;
           break;
         }
@@ -1910,7 +1982,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           after(newNode);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           break;
         }
 
@@ -1977,7 +2049,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           after(newNode); // omit this one?
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           break;
         }
 
@@ -2082,7 +2154,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           after(newNode);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
         } else {
           // Note: discriminant is normalized at this point
           rule('Switch cases must normalize to labeled if-else');
@@ -2140,7 +2212,7 @@ export function phaseNormalize(fdata, fname) {
           changed = true;
           after(newNode);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
         }
 
         break;
@@ -2149,20 +2221,17 @@ export function phaseNormalize(fdata, fname) {
       case 'ThrowStatement': {
         if (isComplexNode(node.argument)) {
           rule('Throw argument must be simple');
-          example('throw $()','{ let tmp = $(); throw tmp; }');
+          example('throw $()', '{ let tmp = $(); throw tmp; }');
           before(node);
 
           // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
           const tmpName = createFreshVarInCurrentRootScope('tmpThrowArg');
-          const newNode = AST.blockStatement(
-            AST.variableDeclaration(tmpName, node.argument),
-            AST.throwStatement(tmpName)
-          );
+          const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), AST.throwStatement(tmpName));
 
           crumbSet(1, newNode);
           after(newNode);
 
-          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          _stmt(newNode, isExport, isFunctionBody);
           changed = true;
           break;
         }
@@ -2241,40 +2310,6 @@ export function phaseNormalize(fdata, fname) {
           ASSERT(false, 'wat is dis', [dnode.id.type], node);
         }
 
-        if (kind === 'var') {
-          if (stillHoisting) {
-            log('This is a var but we are still hoisting so it should be a noop var decl of one binding. Skipping normalization.');
-          } else {
-            rule('Var bindings must be declared at the top');
-            log('- `var x = y;` --> `var x; ...; x = y;`');
-            log('- `var` statement declared these names:', names);
-
-            // Note: patterns may still introduce multiple bindings before they get normalized.
-            // TODO: if we enforce the pattern normalization to happen before reaching this point then patterns are not a concern...
-            funcStack[funcStack.length - 1].$p.varBindingsToInject.push(
-              AST.variableDeclaration(
-                names.map((name) => AST.identifier(name)),
-                null,
-                'var',
-              ),
-            );
-
-            // TODO: drop individual declarators, if not the whole thing
-            if (node.declarations.every((enode) => !enode.init)) {
-              // If none of the bindings had an init, this is dead code. Drop the decl
-              crumbSet(1, AST.emptyStatement());
-            } else {
-              // Don't hate me. The printer does not validate the AST. It just assumes the structure is valid and prints verbatim.
-              node.kind = ''; // This removes the `var` when printing, causing a sequence expression (or simple assignment)
-            }
-
-            // We explicitly track whether we are still in a hoisting header, and if so, will skip this normalization step
-            // So we should not have to worry about running this optimization over and over again.
-            changed = true;
-            changedHere = true;
-          }
-        }
-
         if (!changedHere && node.declarations.length === 1 && node.declarations[0].init) {
           const decl = node.declarations[0];
           const init = decl.init;
@@ -2313,7 +2348,7 @@ export function phaseNormalize(fdata, fname) {
 
         if (changedHere) {
           const node = crumbGet(1);
-          _stmt(node, isExport, stillHoisting, isFunctionBody);
+          _stmt(node, isExport, isFunctionBody);
         } else if (dnode.init) {
           expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
         }
@@ -3085,11 +3120,9 @@ export function phaseNormalize(fdata, fname) {
           after(node);
         }
 
-        ensureVarDeclsCreateOneBinding(node.body.body);
-
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
-        stmt(node, 'body', -1, node.body, false, false, true);
+        stmt(node, 'body', -1, node.body, false, true);
 
         break;
       }
@@ -3263,7 +3296,9 @@ export function phaseNormalize(fdata, fname) {
       case 'FunctionExpression': {
         const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
-        stmt(node, 'body', -1, node.body, false, false, true);
+        hoisting(node.body.body);
+
+        stmt(node, 'body', -1, node.body, false, true);
 
         break;
       }

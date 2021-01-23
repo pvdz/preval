@@ -20,9 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
@@ -46,9 +46,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let tmpForInLhsNode;

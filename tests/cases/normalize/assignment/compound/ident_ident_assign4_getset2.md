@@ -35,17 +35,17 @@ $('final:', a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
+var tmpBinaryLeft$1;
 var tmpBinaryRight;
+var tmpBinaryRight$1;
+var tmpCompoundAssignLhs;
+var tmpMemberComplexObj;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft$1;
-var tmpBinaryRight$1;
-var tmpMemberComplexObj;
 let a = {
   get x() {
     $('a.x.get');
@@ -94,17 +94,17 @@ $('final:', a, b, c);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
+var tmpBinaryLeft$1;
 var tmpBinaryRight;
+var tmpBinaryRight$1;
+var tmpCompoundAssignLhs;
+var tmpMemberComplexObj;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft$1;
-var tmpBinaryRight$1;
-var tmpMemberComplexObj;
 let a = {
   get x() {
     $('a.x.get');

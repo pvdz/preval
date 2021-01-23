@@ -43,9 +43,11 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 $(x, y, z);

@@ -20,8 +20,8 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
@@ -46,8 +46,8 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let b = { c: 2 };

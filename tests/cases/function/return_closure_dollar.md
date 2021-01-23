@@ -29,7 +29,9 @@ function f() {
   return x;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 const x = $();
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 `````

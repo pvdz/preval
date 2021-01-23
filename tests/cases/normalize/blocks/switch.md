@@ -25,14 +25,14 @@ switch ($(1)) {
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpBinaryRight;
 var tmpBinaryLeft$1;
-var tmpBinaryRight$1;
 var tmpBinaryLeft$2;
-var tmpBinaryRight$2;
 var tmpBinaryLeft$3;
-var tmpBinaryRight$3;
 var tmpBinaryLeft$4;
+var tmpBinaryRight;
+var tmpBinaryRight$1;
+var tmpBinaryRight$2;
+var tmpBinaryRight$3;
 var tmpBinaryRight$4;
 {
   const tmpSwitchTest = $(1);

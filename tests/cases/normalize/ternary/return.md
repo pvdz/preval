@@ -32,6 +32,7 @@ function f() {
   }
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f();
 $(tmpArg);
 `````

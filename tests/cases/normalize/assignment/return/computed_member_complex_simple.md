@@ -24,9 +24,9 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpNewObj = function () {
-  var tmpAssignMemLhsObj;
   var tmpAssignComMemLhsObj;
   var tmpAssignComMemLhsProp;
+  var tmpAssignMemLhsObj;
   {
     tmpAssignMemLhsObj = $(a);
     tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
@@ -46,9 +46,9 @@ $(a, b, c);
 var tmpNewObj;
 let a = { x: 10 };
 tmpNewObj = function () {
-  var tmpAssignMemLhsObj;
   var tmpAssignComMemLhsObj;
   var tmpAssignComMemLhsProp;
+  var tmpAssignMemLhsObj;
   tmpAssignMemLhsObj = $(a);
   tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
   tmpAssignComMemLhsProp = $('x');

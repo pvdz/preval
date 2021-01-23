@@ -21,11 +21,11 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
 var tmpAssignMemLhsObj;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -45,11 +45,11 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
-var tmpCompoundAssignLhs;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
 var tmpAssignMemLhsObj;
+var tmpCompoundAssignLhs;
 let a = { x: 10 };
 tmpAssignComMemLhsObj = a;
 tmpAssignComMemLhsProp = $('x');

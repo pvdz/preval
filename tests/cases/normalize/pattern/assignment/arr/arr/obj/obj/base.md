@@ -26,11 +26,11 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrPatternStep;
 var arrPatternSplat$1;
+var arrPatternStep;
 var arrPatternStep$1;
-var objPatternNoDefault;
 var objPatternCrashTest;
+var objPatternNoDefault;
 var tmpElement;
 var tmpElement$1;
 var tmpObjPropValue;
@@ -64,11 +64,11 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var arrPatternStep;
 var arrPatternSplat$1;
+var arrPatternStep;
 var arrPatternStep$1;
-var objPatternNoDefault;
 var objPatternCrashTest;
+var objPatternNoDefault;
 var tmpElement;
 var tmpElement$1;
 var tmpObjPropValue;

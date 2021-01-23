@@ -18,8 +18,8 @@ $(--x);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
+var tmpNestedComplexRhs;
 let x = 1;
 tmpNestedComplexRhs = x - 1;
 x = tmpNestedComplexRhs;
@@ -30,8 +30,8 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
+var tmpNestedComplexRhs;
 let x = 1;
 tmpNestedComplexRhs = x - 1;
 x = tmpNestedComplexRhs;

@@ -23,8 +23,10 @@ export function f() {
   }
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f(1);
 $(tmpArg);
+('<hoisted func decl `f`>');
 `````
 
 ## Output

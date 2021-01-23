@@ -21,13 +21,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpPostfixArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpPostfixArg;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -63,13 +63,13 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpPostfixArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpPostfixArg;
 let a = 1;
 let b = { x: 2 };
 let n = 1;

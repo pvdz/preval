@@ -22,9 +22,9 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpPostfixArg;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -52,9 +52,9 @@ $(a, b, c);
 `````js filename=intro
 var ifTestTmp;
 var tmpArg;
-var tmpPostfixArg;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpPostfixArg;
 let a = { x: 10 };
 let n = 0;
 do {

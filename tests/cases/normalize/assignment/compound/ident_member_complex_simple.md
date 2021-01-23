@@ -19,9 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -36,9 +36,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpBinaryLeft;
 var tmpNestedAssignObj;
 var tmpNestedPropCompoundComplexRhs;
-var tmpBinaryLeft;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignObj = $(b);

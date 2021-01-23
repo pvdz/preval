@@ -21,11 +21,11 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj$1;
+var tmpObjPropValue;
 let a = 0;
 let b = 1;
 tmpObjPropValue = { y: 10 };
@@ -45,11 +45,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
 var tmpMemberComplexObj$1;
+var tmpObjPropValue;
 let a = 0;
 let b = 1;
 tmpObjPropValue = { y: 10 };

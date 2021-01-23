@@ -21,11 +21,11 @@ $(a, b, d);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedPropCompoundComplexRhs;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpNestedPropCompoundComplexRhs;
 let a = { x: 1 };
 let b = { x: 10 };
 let d = 1000;
@@ -46,11 +46,11 @@ $(a, b, d);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedPropCompoundComplexRhs;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpNestedPropCompoundComplexRhs;
 let a = { x: 1 };
 let b = { x: 10 };
 tmpAssignMemLhsObj = $(a, 'a');

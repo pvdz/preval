@@ -19,11 +19,11 @@ $(y);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 objAssignPatternRhs = 'abc';
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;
@@ -43,11 +43,11 @@ $(y);
 
 `````js filename=intro
 var objAssignPatternRhs;
-var objPatternBeforeDefault;
 var objPatternAfterDefault;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 objAssignPatternRhs = 'abc';
 objPatternBeforeDefault = objAssignPatternRhs.x;
 tmpTernaryTest = objPatternBeforeDefault === undefined;

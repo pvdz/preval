@@ -34,6 +34,8 @@ function f($tdz$__a) {
 }
 var tmpArg;
 var tmpArg$1;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg = f('x');
 $(tmpArg);
 tmpArg$1 = f();

@@ -20,12 +20,12 @@ a.foo += a = $();
 ## Normalized
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 var tmpNestedComplexRhs;
 let a = {};
 tmpCompoundAssignLhs = a.foo;
@@ -42,12 +42,12 @@ tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-var tmpCompoundAssignLhs;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
+var tmpCompoundAssignLhs;
 var tmpNestedComplexRhs;
 let a = {};
 tmpCompoundAssignLhs = a.foo;

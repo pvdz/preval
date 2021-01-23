@@ -19,8 +19,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -42,8 +42,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var tmpArg;
+var tmpNestedComplexRhs;
 let a = 1;
 a = 8;
 let tmpAssignLogicStmtOr = a;

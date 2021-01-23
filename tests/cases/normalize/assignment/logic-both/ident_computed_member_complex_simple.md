@@ -20,13 +20,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropAssignRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignComMemberProp$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 let b = { x: 2 };
@@ -59,13 +59,13 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedPropAssignRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignComMemberObj$1;
+var tmpNestedAssignComMemberProp;
 var tmpNestedAssignComMemberProp$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 let b = { x: 2 };

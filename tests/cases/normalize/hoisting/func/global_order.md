@@ -42,10 +42,16 @@ function h() {
 var tmpArg;
 var tmpArg$1;
 var tmpArg$2;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
 tmpArg = f();
 tmpArg$1 = g();
 tmpArg$2 = h();
 $(tmpArg, tmpArg$1, tmpArg$2);
+('<hoisted func decl `f`>');
+('<hoisted func decl `g`>');
+('<hoisted func decl `h`>');
 `````
 
 ## Output

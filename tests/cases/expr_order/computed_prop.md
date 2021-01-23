@@ -17,9 +17,9 @@ $(1)[$(2)];
 ## Normalized
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
 {
   tmpMemberComplexObj = $(1);
   tmpComputedObj = tmpMemberComplexObj;
@@ -31,9 +31,9 @@ var tmpComputedProp;
 ## Output
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
 tmpMemberComplexObj = $(1);
 tmpComputedObj = tmpMemberComplexObj;
 tmpComputedProp = $(2);

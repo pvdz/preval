@@ -21,9 +21,9 @@ $(a, b, c);
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };

@@ -16,9 +16,9 @@ let x = 10, y = 20;
 ## Normalized
 
 `````js filename=intro
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
 let x = 10;
 let y = 20;
 objAssignPatternRhs = 1;
@@ -31,9 +31,9 @@ objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
+var arrPatternSplat;
 var objAssignPatternRhs;
 var objPatternNoDefault;
-var arrPatternSplat;
 let y = 20;
 objAssignPatternRhs = 1;
 objPatternNoDefault = objAssignPatternRhs.x;

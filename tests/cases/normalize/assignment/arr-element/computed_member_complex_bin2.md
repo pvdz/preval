@@ -19,12 +19,12 @@ $([ $(1)[$(2)] = $(3) ]);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignObj;
 tmpNestedAssignObj = $(1);
 tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $(2);
@@ -42,12 +42,12 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpNestedAssignObj;
 tmpNestedAssignObj = $(1);
 tmpNestedAssignComMemberObj = tmpNestedAssignObj;
 tmpNestedAssignComMemberProp = $(2);

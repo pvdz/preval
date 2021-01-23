@@ -37,13 +37,13 @@ $('final:', a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedAssignObj;
-var tmpNestedPropCompoundComplexRhs;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');
@@ -90,13 +90,13 @@ $('final:', a, b, c);
 `````js filename=intro
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedAssignObj;
-var tmpNestedPropCompoundComplexRhs;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpMemberComplexObj;
+var tmpNestedAssignObj;
+var tmpNestedPropCompoundComplexRhs;
 let a = {
   get x() {
     $('a.x.get');

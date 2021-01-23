@@ -16,18 +16,18 @@ $(obj?.a?.b?.c);
 ## Normalized
 
 `````js filename=intro
+var tmpArg;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
-var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining$1;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest$1;
 var tmpTernaryAlternate$1;
-var tmpTernaryTest$2;
 var tmpTernaryAlternate$2;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
+var tmpTernaryTest$2;
 tmpObjPropValue$2 = $();
 tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
 tmpObjPropValue = { b: tmpObjPropValue$1 };
@@ -59,18 +59,18 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
+var tmpArg;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
-var tmpArg;
 var tmpOptionalChaining;
 var tmpOptionalChaining$1;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
-var tmpTernaryTest$1;
 var tmpTernaryAlternate$1;
-var tmpTernaryTest$2;
 var tmpTernaryAlternate$2;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
+var tmpTernaryTest$2;
 tmpObjPropValue$2 = $();
 tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
 tmpObjPropValue = { b: tmpObjPropValue$1 };

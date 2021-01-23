@@ -19,10 +19,10 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var tmpBinaryLeft;
+var tmpBinaryRight;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];

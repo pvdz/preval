@@ -19,15 +19,15 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrAssignPatternRhs$1;
+var arrPatternSplat;
+var arrPatternSplat$1;
 var tmpArg;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
-var arrAssignPatternRhs;
-var arrPatternSplat;
 var tmpNestedComplexRhs$1;
-var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 let a = 1;
 let x = 1;
 let y = 2;
@@ -54,15 +54,15 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrAssignPatternRhs$1;
+var arrPatternSplat;
+var arrPatternSplat$1;
 var tmpArg;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 var tmpNestedComplexRhs;
-var arrAssignPatternRhs;
-var arrPatternSplat;
 var tmpNestedComplexRhs$1;
-var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 let a = 1;
 let x = 1;
 let y = 2;

@@ -19,9 +19,9 @@ $(a??b.c.d);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpMemberComplexObj;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;
@@ -39,9 +39,9 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
 var tmpMemberComplexObj;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const a = {};
 a = a;
 tmpTernaryTest = a == null;

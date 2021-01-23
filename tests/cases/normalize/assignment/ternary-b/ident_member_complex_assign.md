@@ -20,15 +20,15 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedComplexRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -58,15 +58,15 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj$1;
 var tmpNestedAssignMemberObj$1;
+var tmpNestedAssignMemberRhs;
 var tmpNestedAssignMemberRhs$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedComplexRhs;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 let a = 1;
 let b = { x: 2 };
 tmpTernaryTest = $(true);

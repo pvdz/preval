@@ -21,8 +21,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpPostfixArg;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -51,8 +51,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpBinaryLeft;
-var tmpPostfixArg;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let a = 1;
 let b = { x: 2 };
 let n = 1;

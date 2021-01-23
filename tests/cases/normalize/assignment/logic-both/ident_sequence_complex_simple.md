@@ -21,8 +21,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
-var tmpNestedPropAssignRhs;
 var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 let b = 2;
@@ -54,8 +54,8 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpNestedAssignObj;
-var tmpNestedPropAssignRhs;
 var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
 let a = 1;
 $(2);

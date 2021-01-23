@@ -18,14 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternAfterDefault;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var arrPatternSplat;
+var objAssignPatternRhs;
+var objPatternAfterDefault;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 objAssignPatternRhs = { x: undefined, a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;
@@ -52,14 +52,14 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternAfterDefault;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
-var tmpTernaryTest;
-var tmpTernaryConsequent;
+var arrPatternSplat;
+var objAssignPatternRhs;
+var objPatternAfterDefault;
+var objPatternBeforeDefault;
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 objAssignPatternRhs = { x: undefined, a: 11, b: 12 };
 objPatternBeforeDefault = objAssignPatternRhs.x;

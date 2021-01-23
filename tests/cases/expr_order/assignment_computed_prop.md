@@ -17,12 +17,12 @@ $(1)[$(2)] = $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 tmpAssignMemLhsObj = $(1);
 tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
@@ -37,12 +37,12 @@ tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
 tmpAssignMemLhsObj = $(1);
 tmpAssignComMemLhsObj = tmpAssignMemLhsObj;

@@ -19,10 +19,10 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var tmpArg;
+var tmpNestedComplexRhs;
 var tmpTernaryTest;
 let a = 1;
 let x = 1;
@@ -47,10 +47,10 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
 var tmpArg;
+var tmpNestedComplexRhs;
 var tmpTernaryTest;
 let a = 1;
 let x = 1;

@@ -17,8 +17,8 @@ $(parseInt(15)?.foo);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpOptionalChaining = parseInt(15);
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {
@@ -35,8 +35,8 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpOptionalChaining = parseInt(15);
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {

@@ -19,12 +19,12 @@ $('ok');
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
+var arrPatternSplat;
 var arrPatternStep;
 var objPatternCrashTest;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 arrAssignPatternRhs = '';
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];
@@ -55,12 +55,12 @@ $('ok');
 
 `````js filename=intro
 var arrAssignPatternRhs;
-var arrPatternSplat;
 var arrPatternBeforeDefault;
+var arrPatternSplat;
 var arrPatternStep;
 var objPatternCrashTest;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 arrAssignPatternRhs = '';
 arrPatternSplat = [...arrAssignPatternRhs];
 arrPatternBeforeDefault = arrPatternSplat[0];

@@ -19,8 +19,8 @@ $(x?.length);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 const x = 10;
 tmpTernaryTest = x == null;
 if (tmpTernaryTest) {
@@ -36,8 +36,8 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpTernaryTest = false;
 if (tmpTernaryTest) {
   tmpArg = undefined;

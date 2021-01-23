@@ -19,8 +19,8 @@ $('foo'?.length);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpOptionalChaining = 'foo';
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {
@@ -37,8 +37,8 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpOptionalChaining = 'foo';
 tmpTernaryTest = tmpOptionalChaining == null;
 if (tmpTernaryTest) {

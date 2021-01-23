@@ -19,9 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
@@ -47,9 +47,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignObj;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };

@@ -18,8 +18,8 @@ $({...obj.foo});
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpArg;
+var tmpObjPropValue;
 var tmpObjSpreadArg;
 tmpObjPropValue = { bar: 10 };
 const obj = { foo: tmpObjPropValue };
@@ -31,8 +31,8 @@ $(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpArg;
+var tmpObjPropValue;
 var tmpObjSpreadArg;
 tmpObjPropValue = { bar: 10 };
 const obj = { foo: tmpObjPropValue };

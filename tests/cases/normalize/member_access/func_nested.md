@@ -20,10 +20,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpObjPropValue;
-  var tmpObjPropValue$1;
   var tmpArg;
   var tmpMemberComplexObj;
+  var tmpObjPropValue;
+  var tmpObjPropValue$1;
   tmpObjPropValue$1 = $();
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
@@ -35,6 +35,8 @@ function f() {
   }
 }
 var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = f();
 $(tmpArg$1);
 `````
@@ -43,10 +45,10 @@ $(tmpArg$1);
 
 `````js filename=intro
 function f() {
-  var tmpObjPropValue;
-  var tmpObjPropValue$1;
   var tmpArg;
   var tmpMemberComplexObj;
+  var tmpObjPropValue;
+  var tmpObjPropValue$1;
   tmpObjPropValue$1 = $();
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };

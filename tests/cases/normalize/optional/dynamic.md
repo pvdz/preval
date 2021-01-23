@@ -17,10 +17,10 @@ $(obj?.[$()]);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpTernaryAlternate;
+var tmpTernaryTest;
 const obj = { foo: 10 };
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {
@@ -38,10 +38,10 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpTernaryAlternate;
+var tmpTernaryTest;
 const obj = { foo: 10 };
 tmpTernaryTest = obj == null;
 if (tmpTernaryTest) {

@@ -33,6 +33,7 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = { x: null };
 f(tmpArg);
 `````

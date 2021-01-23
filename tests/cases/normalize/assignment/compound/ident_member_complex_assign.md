@@ -19,14 +19,14 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignObj;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedAssignObj$1;
-var tmpNestedPropCompoundComplexRhs$1;
 var tmpBinaryLeft$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedPropCompoundComplexRhs;
+var tmpNestedPropCompoundComplexRhs$1;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -48,14 +48,14 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignObj;
-var tmpNestedPropCompoundComplexRhs;
 var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedAssignObj$1;
-var tmpNestedPropCompoundComplexRhs$1;
 var tmpBinaryLeft$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
+var tmpNestedAssignObj;
+var tmpNestedAssignObj$1;
+var tmpNestedPropCompoundComplexRhs;
+var tmpNestedPropCompoundComplexRhs$1;
 let a = 1;
 let b = { x: 2 };
 tmpNestedAssignObj = $(b);

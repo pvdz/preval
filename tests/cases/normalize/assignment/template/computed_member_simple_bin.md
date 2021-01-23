@@ -20,12 +20,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTemplateExpr;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpTemplateExpr;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -45,12 +45,12 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpTemplateExpr;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
 var tmpNestedAssignCompMemberProp;
 var tmpNestedAssignCompMemberRhs;
+var tmpTemplateExpr;
 let a = { x: 10 };
 tmpNestedAssignComMemberObj = a;
 tmpNestedAssignComMemberProp = $('x');

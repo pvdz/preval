@@ -21,8 +21,8 @@ $(c);
 
 `````js filename=intro
 var tmpNullish;
-var tmpTernaryTest;
 var tmpNullish$1;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 const a = 10;
 a;
@@ -50,8 +50,8 @@ $(c);
 
 `````js filename=intro
 var tmpNullish;
-var tmpTernaryTest;
 var tmpNullish$1;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 tmpNullish = $(2);
 tmpTernaryTest = tmpNullish == null;

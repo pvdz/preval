@@ -25,10 +25,10 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternCrashTest;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
 var objPatternNoDefault$2;
-var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
@@ -59,10 +59,10 @@ $('ok');
 
 `````js filename=intro
 var objAssignPatternRhs;
+var objPatternCrashTest;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
 var objPatternNoDefault$2;
-var objPatternCrashTest;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;

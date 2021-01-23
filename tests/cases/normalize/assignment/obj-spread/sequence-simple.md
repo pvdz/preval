@@ -20,9 +20,9 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpObjSpreadArg;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
+var tmpObjSpreadArg;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -41,9 +41,9 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpArg;
-var tmpObjSpreadArg;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
+var tmpObjSpreadArg;
 let b = { c: 2 };
 tmpNestedAssignObj = b;
 tmpNestedPropAssignRhs = 3;

@@ -13,8 +13,8 @@
 `````js filename=intro
 $(a, b, c);
 var a = $();
-var b = $();
 var c = $();
+var b = $();
 `````
 
 ## Normalized
@@ -25,8 +25,8 @@ var b;
 var c;
 $(a, b, c);
 a = $();
-b = $();
 c = $();
+b = $();
 `````
 
 ## Output
@@ -37,8 +37,8 @@ var b;
 var c;
 $(a, b, c);
 a = $();
-b = $();
 c = $();
+b = $();
 `````
 
 ## Result

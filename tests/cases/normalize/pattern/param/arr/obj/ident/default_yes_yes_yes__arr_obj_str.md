@@ -22,8 +22,8 @@ $(f([{ x: 'abc', y: 2, z: 3 }, 20, 30], 200));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpElement;
   var tmpArg$1;
+  var tmpElement;
   let $tdz$__pattern_after_default;
   {
     let ifTestTmp = $tdz$__pattern === undefined;
@@ -62,6 +62,12 @@ function f($tdz$__pattern) {
 var tmpArg$2;
 var tmpArg$3;
 var tmpElement$1;
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpArg$3` decl without init>');
+('<hoisted var `tmpElement$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpArg$3` decl without init>');
+('<hoisted var `tmpElement$1` decl without init>');
 tmpElement$1 = { x: 'abc', y: 2, z: 3 };
 tmpArg$3 = [tmpElement$1, 20, 30];
 tmpArg$2 = f(tmpArg$3, 200);
@@ -73,8 +79,8 @@ $(tmpArg$2);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpElement;
   var tmpArg$1;
+  var tmpElement;
   let $tdz$__pattern_after_default;
   let ifTestTmp = $tdz$__pattern === undefined;
   if (ifTestTmp) {

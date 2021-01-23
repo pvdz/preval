@@ -22,13 +22,13 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrAssignPatternRhs$1;
+var arrPatternSplat;
+var arrPatternSplat$1;
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 let a = 1;
 let b = 2;
 let x = 1;
@@ -61,13 +61,13 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrAssignPatternRhs$1;
+var arrPatternSplat;
+var arrPatternSplat$1;
 var ifTestTmp;
 var tmpArg;
 var tmpPostfixArg;
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrAssignPatternRhs$1;
-var arrPatternSplat$1;
 let a = 1;
 let b = 2;
 let x = 1;

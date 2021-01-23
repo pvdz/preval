@@ -28,16 +28,18 @@ $(f(1));
 function f(x) {
   function g() {
     {
-      let tmpReturnArg$1 = $();
-      return tmpReturnArg$1;
+      let tmpReturnArg = $();
+      return tmpReturnArg;
     }
   }
   {
-    let tmpReturnArg = g();
-    return tmpReturnArg;
+    let tmpReturnArg$1 = g();
+    return tmpReturnArg$1;
   }
+  ('<hoisted func decl `g`>');
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f(1);
 $(tmpArg);
 `````
@@ -47,11 +49,11 @@ $(tmpArg);
 `````js filename=intro
 function f(x) {
   function g() {
-    let tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
-  let tmpReturnArg = g();
-  return tmpReturnArg;
+  let tmpReturnArg$1 = g();
+  return tmpReturnArg$1;
 }
 var tmpArg;
 tmpArg = f(1);

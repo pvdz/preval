@@ -49,6 +49,8 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg$2;
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
 tmpArg$2 = f();
 $(tmpArg$2);
 `````

@@ -25,8 +25,8 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpNullish;
-  var tmpTernaryTest;
   var tmpNullish$1;
+  var tmpTernaryTest;
   var tmpTernaryTest$1;
   const a = 10;
   a;
@@ -53,6 +53,7 @@ function f() {
   }
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f();
 $(tmpArg);
 `````
@@ -62,8 +63,8 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   var tmpNullish;
-  var tmpTernaryTest;
   var tmpNullish$1;
+  var tmpTernaryTest;
   var tmpTernaryTest$1;
   tmpNullish = $(2);
   tmpTernaryTest = tmpNullish == null;

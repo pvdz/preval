@@ -24,9 +24,9 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var arrPatternSplat$1;
 var arrPatternStep;
 var objPatternNoDefault;
-var arrPatternSplat$1;
 var tmpElement;
 var tmpObjPropValue;
 tmpObjPropValue = [1, 2, 3];
@@ -45,9 +45,9 @@ $('ok');
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var arrPatternSplat$1;
 var arrPatternStep;
 var objPatternNoDefault;
-var arrPatternSplat$1;
 var tmpElement;
 var tmpObjPropValue;
 tmpObjPropValue = [1, 2, 3];

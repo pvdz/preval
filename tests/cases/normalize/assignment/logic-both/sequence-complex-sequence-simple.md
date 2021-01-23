@@ -19,20 +19,20 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs$2;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedAssignObj;
-var tmpNestedPropAssignRhs;
 var tmpAssignMemLhsObj$3;
 var tmpAssignMemLhsObj$4;
-var tmpAssignMemRhs$1;
 var tmpAssignMemLhsObj$5;
+var tmpAssignMemRhs;
+var tmpAssignMemRhs$1;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
+var tmpNestedPropAssignRhs$2;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -73,20 +73,20 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs$2;
 var tmpArg;
 var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$2;
-var tmpNestedAssignObj;
-var tmpNestedPropAssignRhs;
 var tmpAssignMemLhsObj$3;
 var tmpAssignMemLhsObj$4;
-var tmpAssignMemRhs$1;
 var tmpAssignMemLhsObj$5;
+var tmpAssignMemRhs;
+var tmpAssignMemRhs$1;
+var tmpNestedAssignObj;
 var tmpNestedAssignObj$1;
+var tmpNestedPropAssignRhs;
 var tmpNestedPropAssignRhs$1;
+var tmpNestedPropAssignRhs$2;
 let b = { c: 2 };
 tmpAssignMemLhsObj = $(b);
 tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;

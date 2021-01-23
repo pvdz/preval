@@ -18,11 +18,11 @@ for (var a = 1; ; ) $(d);
 ## Normalized
 
 `````js filename=intro
-var a;
 let b = 2;
 let c = 3;
 let d = 4;
 {
+  var a;
   a = 1;
   while (true) {
     $(d);

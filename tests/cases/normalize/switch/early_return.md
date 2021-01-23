@@ -33,10 +33,10 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpBinaryLeft;
-  var tmpBinaryRight;
   var tmpBinaryLeft$1;
-  var tmpBinaryRight$1;
   var tmpBinaryLeft$2;
+  var tmpBinaryRight;
+  var tmpBinaryRight$1;
   var tmpBinaryRight$2;
   {
     const tmpSwitchTest = $(1);
@@ -113,6 +113,8 @@ function f() {
   }
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
 tmpArg = f();
 $(tmpArg);
 `````

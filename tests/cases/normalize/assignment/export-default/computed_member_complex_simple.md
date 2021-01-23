@@ -19,9 +19,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignMemLhsObj;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -35,9 +35,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignMemLhsObj;
 let a = { x: 10 };
 export default ((tmpAssignMemLhsObj = $(a)),
 (tmpAssignComMemLhsObj = tmpAssignMemLhsObj),

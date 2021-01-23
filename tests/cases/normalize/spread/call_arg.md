@@ -18,8 +18,6 @@ x.y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
 var a;
 var b;
 var c;
@@ -28,6 +26,8 @@ var e;
 var f;
 var g;
 var h;
+var tmpArg;
+var tmpArg$1;
 var x;
 var y;
 tmpArg = x;
@@ -40,10 +40,10 @@ x.y(tmpArg, 8, ...tmpArg$1);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
 var a;
 var d;
+var tmpArg;
+var tmpArg$1;
 tmpArg = undefined;
 a = undefined.c;
 d = undefined[undefined];

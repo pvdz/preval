@@ -18,8 +18,8 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpArg;
+var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
@@ -40,8 +40,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpArg;
+var tmpObjPropValue;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;

@@ -22,8 +22,17 @@ function f() {
   return 10;
 }
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpTernaryAlternate` decl without init>');
+('<hoisted var `tmpTernaryTest` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpTernaryAlternate` decl without init>');
+('<hoisted var `tmpTernaryTest` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpTernaryAlternate` decl without init>');
+('<hoisted var `tmpTernaryTest` decl without init>');
 tmpTernaryTest = f == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;
@@ -41,8 +50,8 @@ function f() {
   return 10;
 }
 var tmpArg;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 tmpTernaryTest = f == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;

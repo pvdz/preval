@@ -20,18 +20,18 @@ $(f());
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObjPropValue;
   var tmpObjPropValue$1;
   var tmpObjPropValue$2;
-  var tmpArg;
   var tmpOptionalChaining;
   var tmpOptionalChaining$1;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest$1;
   var tmpTernaryAlternate$1;
-  var tmpTernaryTest$2;
   var tmpTernaryAlternate$2;
+  var tmpTernaryTest;
+  var tmpTernaryTest$1;
+  var tmpTernaryTest$2;
   tmpObjPropValue$2 = $();
   tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
   tmpObjPropValue = { b: tmpObjPropValue$1 };
@@ -63,6 +63,9 @@ function f() {
   }
 }
 var tmpArg$1;
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
 tmpArg$1 = f();
 $(tmpArg$1);
 `````
@@ -71,18 +74,18 @@ $(tmpArg$1);
 
 `````js filename=intro
 function f() {
+  var tmpArg;
   var tmpObjPropValue;
   var tmpObjPropValue$1;
   var tmpObjPropValue$2;
-  var tmpArg;
   var tmpOptionalChaining;
   var tmpOptionalChaining$1;
-  var tmpTernaryTest;
   var tmpTernaryAlternate;
-  var tmpTernaryTest$1;
   var tmpTernaryAlternate$1;
-  var tmpTernaryTest$2;
   var tmpTernaryAlternate$2;
+  var tmpTernaryTest;
+  var tmpTernaryTest$1;
+  var tmpTernaryTest$2;
   tmpObjPropValue$2 = $();
   tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
   tmpObjPropValue = { b: tmpObjPropValue$1 };

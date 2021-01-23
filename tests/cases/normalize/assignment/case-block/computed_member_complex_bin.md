@@ -23,15 +23,15 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpAssignMemLhsObj;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
 var tmpAssignComputedObj;
 var tmpAssignComputedProp;
 var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
 var tmpAssignMemLhsObj$1;
+var tmpBinaryLeft;
+var tmpBinaryRight;
 let a = { x: 10 };
 let b = 2;
 let c = 3;

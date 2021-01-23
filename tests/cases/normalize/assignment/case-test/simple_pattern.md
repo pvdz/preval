@@ -19,10 +19,10 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryRight;
-var tmpNestedComplexRhs;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var tmpBinaryRight;
+var tmpNestedComplexRhs;
 let a = 1;
 let x = 1;
 let y = 2;

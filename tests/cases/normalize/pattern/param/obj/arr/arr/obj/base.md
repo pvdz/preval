@@ -38,9 +38,19 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg$1;
-var tmpObjPropValue;
 var tmpElement;
 var tmpElement$1;
+var tmpObjPropValue;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpElement` decl without init>');
+('<hoisted var `tmpElement$1` decl without init>');
+('<hoisted var `tmpObjPropValue` decl without init>');
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpElement` decl without init>');
+('<hoisted var `tmpElement$1` decl without init>');
+('<hoisted var `tmpObjPropValue` decl without init>');
 tmpElement$1 = { a: 1, b: 2, c: 3 };
 tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];
@@ -70,9 +80,9 @@ function f(tmpParamPattern) {
 }
 var tmpArg;
 var tmpArg$1;
-var tmpObjPropValue;
 var tmpElement;
 var tmpElement$1;
+var tmpObjPropValue;
 tmpElement$1 = { a: 1, b: 2, c: 3 };
 tmpElement = [tmpElement$1, 14];
 tmpObjPropValue = [tmpElement, 13];

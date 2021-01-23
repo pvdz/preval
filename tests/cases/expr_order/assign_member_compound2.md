@@ -21,8 +21,8 @@ a.foo = a += $();
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var tmpNestedCompoundComplexRhs;
 let a = {};
@@ -39,8 +39,8 @@ tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpNestedComplexRhs;
 var tmpNestedCompoundComplexRhs;
 let a = {};

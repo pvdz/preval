@@ -18,8 +18,8 @@ $(y);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 const a = { x: 1 };
 1;
 tmpOptionalChaining = a;
@@ -38,8 +38,8 @@ $(y);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 const a = { x: 1 };
 tmpOptionalChaining = a;
 tmpTernaryTest = tmpOptionalChaining == null;

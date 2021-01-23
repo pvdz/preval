@@ -24,8 +24,8 @@ $(a, b, x, y, z);
 `````js filename=intro
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
-  var arrPatternSplat;
   var arrAssignPatternRhs$1;
+  var arrPatternSplat;
   var arrPatternSplat$1;
   let foo;
   {
@@ -47,11 +47,13 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
+('<hoisted var `tmpArg` decl without init>');
 let a = 1;
 let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 $(a, b, x, y, z);
@@ -62,8 +64,8 @@ $(a, b, x, y, z);
 `````js filename=intro
 function f($tdz$__foo) {
   var arrAssignPatternRhs;
-  var arrPatternSplat;
   var arrAssignPatternRhs$1;
+  var arrPatternSplat;
   var arrPatternSplat$1;
   let foo;
   let ifTestTmp = $tdz$__foo === undefined;

@@ -20,9 +20,9 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpBinaryRight;
-var tmpNestedComplexRhs;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
+var tmpNestedComplexRhs;
 var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };

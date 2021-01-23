@@ -20,8 +20,8 @@ $(a??b.c??d);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 const a = {};
 a = a;
@@ -46,8 +46,8 @@ $(tmpArg);
 `````js filename=intro
 var tmpArg;
 var tmpNullish;
-var tmpTernaryTest;
 var tmpTernaryConsequent;
+var tmpTernaryTest;
 var tmpTernaryTest$1;
 const a = {};
 a = a;

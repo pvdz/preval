@@ -19,9 +19,9 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var tmpAssignMemLhsObj;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
@@ -44,9 +44,9 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 var arrAssignPatternRhs;
 var arrPatternSplat;
+var tmpAssignMemLhsObj;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];

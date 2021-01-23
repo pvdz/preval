@@ -21,10 +21,10 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpArg$1;
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
+var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -46,10 +46,10 @@ $(a, b, c);
 `````js filename=intro
 var tmpArg;
 var tmpArg$1;
-var tmpNestedComplexRhs;
-var tmpNestedAssignObj;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
+var tmpNestedAssignObj;
+var tmpNestedComplexRhs;
 let a = 1;
 tmpArg = ['abc ', ' def'];
 $(2);

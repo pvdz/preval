@@ -27,8 +27,8 @@ let y = 2;
 let z = [10, 20, 30];
 tmpNewObj = function () {
   var arrAssignPatternRhs;
-  var arrPatternSplat;
   var arrAssignPatternRhs$1;
+  var arrPatternSplat;
   var arrPatternSplat$1;
   {
     arrAssignPatternRhs$1 = z;
@@ -58,8 +58,8 @@ let y = 2;
 let z = [10, 20, 30];
 tmpNewObj = function () {
   var arrAssignPatternRhs;
-  var arrPatternSplat;
   var arrAssignPatternRhs$1;
+  var arrPatternSplat;
   var arrPatternSplat$1;
   arrAssignPatternRhs$1 = z;
   arrPatternSplat$1 = [...arrAssignPatternRhs$1];

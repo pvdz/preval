@@ -24,8 +24,8 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpElement;
+var tmpObjPropValue;
 var tmpObjPropValue$1;
 tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
 tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
@@ -49,8 +49,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
 var tmpElement;
+var tmpObjPropValue;
 var tmpObjPropValue$1;
 tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
 tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };

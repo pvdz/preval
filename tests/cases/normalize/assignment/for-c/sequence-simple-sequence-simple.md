@@ -20,13 +20,13 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpPostfixArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpBinaryLeft;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
@@ -63,13 +63,13 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpPostfixArg;
 var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
 var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
+var tmpBinaryLeft;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
+var tmpPostfixArg;
 let b = { c: 2 };
 let n = 1;
 while (true) {

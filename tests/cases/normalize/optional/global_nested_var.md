@@ -21,11 +21,11 @@ $(c);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpOptionalChaining$1;
-var tmpTernaryTest$1;
+var tmpTernaryAlternate;
 var tmpTernaryAlternate$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const a = 10;
 a;
 tmpOptionalChaining = $(2);
@@ -54,11 +54,11 @@ $(c);
 
 `````js filename=intro
 var tmpOptionalChaining;
-var tmpTernaryTest;
-var tmpTernaryAlternate;
 var tmpOptionalChaining$1;
-var tmpTernaryTest$1;
+var tmpTernaryAlternate;
 var tmpTernaryAlternate$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 tmpOptionalChaining = $(2);
 tmpTernaryTest = tmpOptionalChaining == null;
 let b;

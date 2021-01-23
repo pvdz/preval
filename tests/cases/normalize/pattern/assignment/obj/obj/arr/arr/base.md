@@ -22,15 +22,15 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternStep;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var arrPatternSplat;
-var arrPatternStep;
-var arrPatternSplat$1;
+var tmpElement;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
-var tmpElement;
 tmpElement = [1, 2, 3];
 tmpObjPropValue$1 = [tmpElement, 15];
 tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
@@ -47,15 +47,15 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var arrPatternSplat;
+var arrPatternSplat$1;
+var arrPatternStep;
 var objAssignPatternRhs;
 var objPatternNoDefault;
 var objPatternNoDefault$1;
-var arrPatternSplat;
-var arrPatternStep;
-var arrPatternSplat$1;
+var tmpElement;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
-var tmpElement;
 tmpElement = [1, 2, 3];
 tmpObjPropValue$1 = [tmpElement, 15];
 tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };

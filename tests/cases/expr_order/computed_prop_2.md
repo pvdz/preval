@@ -27,11 +27,11 @@ var c;
 ## Normalized
 
 `````js filename=intro
-var tmpComputedObj;
-var tmpComputedProp;
 var a;
 var b;
 var c;
+var tmpComputedObj;
+var tmpComputedProp;
 {
   a = $(1);
   b = a;
@@ -47,11 +47,11 @@ var c;
 ## Output
 
 `````js filename=intro
-var tmpComputedObj;
-var tmpComputedProp;
 var a;
 var b;
 var c;
+var tmpComputedObj;
+var tmpComputedProp;
 a = $(1);
 b = a;
 c = $(2);

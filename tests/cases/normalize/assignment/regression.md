@@ -18,12 +18,12 @@ x[a + b] = c;
 ## Normalized
 
 `````js filename=intro
-var x;
 var a;
 var b;
 var c;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var x;
 x = {};
 a = 1;
 b = 2;
@@ -36,12 +36,12 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 ## Output
 
 `````js filename=intro
-var x;
 var a;
 var b;
 var c;
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var x;
 x = {};
 a = 1;
 b = 2;

@@ -22,9 +22,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
 let x;
 tmpMemberComplexObj = $(1);
 tmpComputedObj = tmpMemberComplexObj;
@@ -37,9 +37,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-var tmpMemberComplexObj;
 var tmpComputedObj;
 var tmpComputedProp;
+var tmpMemberComplexObj;
 let x;
 tmpMemberComplexObj = $(1);
 tmpComputedObj = tmpMemberComplexObj;

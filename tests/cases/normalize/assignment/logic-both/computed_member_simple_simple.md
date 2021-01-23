@@ -19,12 +19,12 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
 var tmpAssignComMemLhsObj$1;
+var tmpAssignComMemLhsProp;
 var tmpAssignComMemLhsProp$1;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
@@ -50,12 +50,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 var tmpArg;
 var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
 var tmpAssignComMemLhsObj$1;
+var tmpAssignComMemLhsProp;
 var tmpAssignComMemLhsProp$1;
+var tmpNestedPropAssignRhs;
 let a = { x: 10 };
 tmpAssignComMemLhsObj = a;
 tmpAssignComMemLhsProp = $('x');

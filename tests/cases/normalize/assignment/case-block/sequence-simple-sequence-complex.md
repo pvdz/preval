@@ -19,11 +19,11 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 var tmpBinaryLeft;
 var tmpBinaryRight;
-var tmpAssignMemLhsObj;
-var tmpAssignMemRhs;
-var tmpAssignMemLhsObj$1;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 let a = 1;

@@ -38,6 +38,9 @@ function f(x) {
 var tmpArg;
 var tmpArg$1;
 var tmpArg$2;
+('<hoisted var `tmpArg` decl without init>');
+('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
 tmpArg = ['abc ', ' ', ' def'];
 tmpArg$1 = $(10);
 tmpArg$2 = $(20);

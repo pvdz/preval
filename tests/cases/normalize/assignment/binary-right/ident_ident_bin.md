@@ -20,8 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;
@@ -45,8 +45,8 @@ $(a, b, c);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryRight;
 var tmpArg$1;
+var tmpBinaryRight;
 var tmpBinaryRight$1;
 var tmpNestedComplexRhs;
 var tmpNestedComplexRhs$1;

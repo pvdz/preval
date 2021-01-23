@@ -22,8 +22,8 @@ $(f(null, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpObjPropValue;
   var tmpArg$1;
+  var tmpObjPropValue;
   let $tdz$__pattern_after_default;
   {
     let ifTestTmp = $tdz$__pattern === undefined;
@@ -51,6 +51,8 @@ function f($tdz$__pattern) {
   return 'bad';
 }
 var tmpArg$2;
+('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted var `tmpArg$2` decl without init>');
 tmpArg$2 = f(null, 10);
 $(tmpArg$2);
 `````
@@ -60,8 +62,8 @@ $(tmpArg$2);
 `````js filename=intro
 function f($tdz$__pattern) {
   var tmpArg;
-  var tmpObjPropValue;
   var tmpArg$1;
+  var tmpObjPropValue;
   let $tdz$__pattern_after_default;
   let ifTestTmp = $tdz$__pattern === undefined;
   if (ifTestTmp) {

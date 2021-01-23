@@ -19,10 +19,10 @@ $(a.b.c?.d);
 
 `````js filename=intro
 var tmpArg;
-var tmpOptionalChaining;
 var tmpMemberComplexObj;
-var tmpTernaryTest;
+var tmpOptionalChaining;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 const a = {};
 tmpMemberComplexObj = a.b;
 tmpOptionalChaining = tmpMemberComplexObj.c;
@@ -40,10 +40,10 @@ $(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpOptionalChaining;
 var tmpMemberComplexObj;
-var tmpTernaryTest;
+var tmpOptionalChaining;
 var tmpTernaryAlternate;
+var tmpTernaryTest;
 const a = {};
 tmpMemberComplexObj = a.b;
 tmpOptionalChaining = tmpMemberComplexObj.c;

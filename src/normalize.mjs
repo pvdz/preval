@@ -3743,6 +3743,80 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UnaryExpression': {
+        if (node.operator === 'delete') {
+          // This one is tricky because the result can not be "just an identifier". Unfortunately, it can be pretty
+          // much anything else, including a sequence (`delete (a,b)`). So worst case we can target that.
+          // Ultimately I think we should consider if the current target is a member expression. If so we keep that
+          // and normalize the object/property when necessary. For anything else, ehh, `delete true.x`?
+          // We should make sure runtime errors persist.
+
+          const arg = node.argument;
+
+          if (arg.type === 'MemberExpression') {
+            if (arg.computed) {
+              if (isComplexNode(arg.object) || isComplexNode(arg.property)) {
+                rule('Argument of delete must be simple computed member expression with simple property');
+                example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
+                before(node);
+
+                const tmpNameObj = createFreshVarInCurrentRootScope('tmpDeleteCompObj', true);
+                const tmpNameProp = createFreshVarInCurrentRootScope('tmpDeleteCompProp', true);
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(tmpNameObj, arg.object),
+                  AST.assignmentExpression(tmpNameProp, arg.property),
+                  AST.unaryExpression('delete', AST.memberExpression(tmpNameObj, tmpNameProp, true)),
+                );
+
+                crumbSet(1, newNode);
+                after(newNode);
+                changed = true;
+
+                _expr(newNode);
+                break;
+              }
+            } else {
+              if (isComplexNode(arg.object)) {
+                rule('Argument of delete must be simple member expression');
+                example('delete f().x', 'tmp = f(), delete tmp.x', () => !arg.computed);
+                before(node);
+
+                const tmpName = createFreshVarInCurrentRootScope('tmpDeleteObj', true);
+                const newNode = AST.sequenceExpression(
+                  AST.assignmentExpression(tmpName, arg.object),
+                  AST.unaryExpression('delete', AST.memberExpression(tmpName, arg.property)),
+                );
+
+                crumbSet(1, newNode);
+                after(newNode);
+                changed = true;
+
+                _expr(newNode);
+                break;
+              }
+            }
+
+            // Regular visit arg then return
+            expr(node, 'argument', -1, node.argument);
+            break;
+          } else {
+            // You cannot delete a plain identifier and there's no point in deleting anything else
+            // Replace this expression with a temporary variable and a bogus group.
+            // Since `delete` returns whether or not the property exists after the operation, the result must be `true`
+            rule('Delete argument can not be complex');
+            example('delete f()', 'f(), true');
+            before(node);
+
+            const newNode = AST.sequenceExpression(node.argument, AST.identifier('true'));
+
+            crumbSet(1, newNode);
+            after(newNode);
+            changed = true;
+
+            _expr(newNode);
+            break;
+          }
+        }
+
         if (node.argument.type === 'SequenceExpression') {
           rule('Unary argument cannot be sequence');
           log('- `!(a, b)` --> `(a, !b)`');
@@ -3751,8 +3825,8 @@ export function phaseNormalize(fdata, fname) {
 
           const exprs = node.argument.expressions;
           const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.unaryExpression(node.operator, exprs[exprs.length - 1]));
-          crumbSet(1, newNode);
 
+          crumbSet(1, newNode);
           after(newNode);
           changed = true;
 

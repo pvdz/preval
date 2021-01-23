@@ -24,8 +24,8 @@ function f() {
   $(1);
   $(2);
   {
-    let tmpStmtArg = $(3);
-    return tmpStmtArg;
+    let tmpReturnArg = $(3);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -39,8 +39,8 @@ $(tmpArg);
 function f() {
   $(1);
   $(2);
-  let tmpStmtArg = $(3);
-  return tmpStmtArg;
+  let tmpReturnArg = $(3);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

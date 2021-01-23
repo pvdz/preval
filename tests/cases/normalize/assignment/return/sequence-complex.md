@@ -32,8 +32,8 @@ tmpNewObj = function () {
       tmpAssignMemLhsObj = $(b);
       tmpAssignMemLhsObj.c = d;
     }
-    let tmpStmtArg = d;
-    return tmpStmtArg;
+    let tmpReturnArg = d;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

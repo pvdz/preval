@@ -23,8 +23,8 @@ $(f());
 function f() {
   $(1);
   {
-    let tmpStmtArg = $(2);
-    return tmpStmtArg;
+    let tmpReturnArg = $(2);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -37,8 +37,8 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   $(1);
-  let tmpStmtArg = $(2);
-  return tmpStmtArg;
+  let tmpReturnArg = $(2);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

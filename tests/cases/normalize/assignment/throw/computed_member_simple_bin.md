@@ -30,8 +30,8 @@ let c = 3;
   tmpAssignComMemLhsObj = tmpBindInitMemberObject;
   tmpAssignComMemLhsProp = $('x');
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpBindInitRhs;
-  let tmpStmtArg = tmpBindInitRhs;
-  throw tmpStmtArg;
+  let tmpThrowArg = tmpBindInitRhs;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````

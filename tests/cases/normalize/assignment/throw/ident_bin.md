@@ -24,8 +24,8 @@ let b = 2;
 let c = 3;
 {
   a = b + c;
-  let tmpStmtArg = a;
-  throw tmpStmtArg;
+  let tmpThrowArg = a;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````
@@ -35,8 +35,8 @@ $(a, b, c);
 `````js filename=intro
 let a = 1;
 a = 5;
-let tmpStmtArg = a;
-throw tmpStmtArg;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, 5, 3);
 `````
 

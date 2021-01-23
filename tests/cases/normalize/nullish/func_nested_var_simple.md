@@ -45,8 +45,8 @@ function f() {
     c = b;
   }
   {
-    let tmpStmtArg = $(c);
-    return tmpStmtArg;
+    let tmpReturnArg = $(c);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -77,8 +77,8 @@ function f() {
   } else {
     c = b;
   }
-  let tmpStmtArg = $(c);
-  return tmpStmtArg;
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

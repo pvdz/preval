@@ -30,8 +30,8 @@ let d = 3;
     tmpAssignMemLhsObj = $(b);
     tmpAssignMemLhsObj.c = d;
   }
-  let tmpStmtArg = d;
-  throw tmpStmtArg;
+  let tmpThrowArg = d;
+  throw tmpThrowArg;
 }
 $(a, b, c, d);
 `````

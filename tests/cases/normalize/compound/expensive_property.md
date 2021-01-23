@@ -25,8 +25,8 @@ superExpensiveFunction().x += 5;
 `````js filename=intro
 function superExpensiveFunction() {
   {
-    let tmpStmtArg = $();
-    return tmpStmtArg;
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
 }
 var tmpAssignMemLhsObj;
@@ -46,8 +46,8 @@ tmpAssignMemLhsObj_2.x = tmpAssignMemRhs;
 
 `````js filename=intro
 function superExpensiveFunction() {
-  let tmpStmtArg = $();
-  return tmpStmtArg;
+  let tmpReturnArg = $();
+  return tmpReturnArg;
 }
 var tmpAssignMemLhsObj;
 var tmpCompoundAssignLhs;

@@ -88,8 +88,8 @@ function f() {
                   let ifTestTmp_3 = $(9);
                   if (ifTestTmp_3) {
                     {
-                      let tmpStmtArg = $(10);
-                      return tmpStmtArg;
+                      let tmpReturnArg = $(10);
+                      return tmpReturnArg;
                     }
                   } else {
                     $(11);
@@ -101,8 +101,8 @@ function f() {
                     $(13);
                   } else {
                     {
-                      let tmpStmtArg_1 = $(14);
-                      return tmpStmtArg_1;
+                      let tmpReturnArg_1 = $(14);
+                      return tmpReturnArg_1;
                     }
                   }
                 }
@@ -126,8 +126,8 @@ function f() {
           {
             $(5);
             {
-              let tmpStmtArg_2 = $(6);
-              return tmpStmtArg_2;
+              let tmpReturnArg_2 = $(6);
+              return tmpReturnArg_2;
             }
           }
           tmpFallthrough = true;
@@ -197,8 +197,8 @@ function f() {
                 let ifTestTmp_3 = $(9);
                 if (ifTestTmp_3) {
                   {
-                    let tmpStmtArg = $(10);
-                    return tmpStmtArg;
+                    let tmpReturnArg = $(10);
+                    return tmpReturnArg;
                   }
                 } else {
                   $(11);
@@ -210,8 +210,8 @@ function f() {
                   $(13);
                 } else {
                   {
-                    let tmpStmtArg_1 = $(14);
-                    return tmpStmtArg_1;
+                    let tmpReturnArg_1 = $(14);
+                    return tmpReturnArg_1;
                   }
                 }
               }
@@ -235,8 +235,8 @@ function f() {
         {
           $(5);
           {
-            let tmpStmtArg_2 = $(6);
-            return tmpStmtArg_2;
+            let tmpReturnArg_2 = $(6);
+            return tmpReturnArg_2;
           }
         }
         tmpFallthrough = true;

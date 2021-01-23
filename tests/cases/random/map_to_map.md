@@ -91,8 +91,8 @@ var tmpElement_26;
 var tmpElement_27;
 tmpArg_2 = (k) => {
   {
-    let tmpStmtArg = [k, k];
-    return tmpStmtArg;
+    let tmpReturnArg = [k, k];
+    return tmpReturnArg;
   }
 };
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
@@ -199,8 +199,8 @@ var tmpElement_25;
 var tmpElement_26;
 var tmpElement_27;
 tmpArg_2 = (k) => {
-  let tmpStmtArg = [k, k];
-  return tmpStmtArg;
+  let tmpReturnArg = [k, k];
+  return tmpReturnArg;
 };
 tmpElement_1 = ['clearInterval', 'global.clearInterval'];
 tmpElement_2 = ['clearTimeout', 'global.clearTimeout'];

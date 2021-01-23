@@ -27,8 +27,8 @@ tmpNewObj = function () {
   {
     b = c;
     a = c;
-    let tmpStmtArg = a;
-    return tmpStmtArg;
+    let tmpReturnArg = a;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -44,8 +44,8 @@ let b = 2;
 tmpNewObj = function () {
   b = 3;
   a = 3;
-  let tmpStmtArg = a;
-  return tmpStmtArg;
+  let tmpReturnArg = a;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, 3);

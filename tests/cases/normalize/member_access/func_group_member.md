@@ -25,8 +25,8 @@ function f() {
   const tmpBindingInit = $();
   const y = tmpBindingInit.foo;
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -40,8 +40,8 @@ $(tmpArg);
 function f() {
   const tmpBindingInit = $();
   const y = tmpBindingInit.foo;
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

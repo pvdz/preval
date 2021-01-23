@@ -26,8 +26,8 @@ let c = 3;
 tmpNewObj = function () {
   {
     a = b + c;
-    let tmpStmtArg = a;
-    return tmpStmtArg;
+    let tmpReturnArg = a;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -41,8 +41,8 @@ var tmpNewObj;
 let a = 1;
 tmpNewObj = function () {
   a = 5;
-  let tmpStmtArg = a;
-  return tmpStmtArg;
+  let tmpReturnArg = a;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, 5, 3);

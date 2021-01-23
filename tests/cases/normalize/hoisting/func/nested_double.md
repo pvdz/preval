@@ -25,14 +25,14 @@ function g() {
 function g() {
   function f() {
     {
-      let tmpStmtArg = $(1);
-      return tmpStmtArg;
+      let tmpReturnArg = $(1);
+      return tmpReturnArg;
     }
   }
   function f() {
     {
-      let tmpStmtArg_1 = $(2);
-      return tmpStmtArg_1;
+      let tmpReturnArg_1 = $(2);
+      return tmpReturnArg_1;
     }
   }
   var tmpArg_1;
@@ -49,12 +49,12 @@ $(tmpArg);
 `````js filename=intro
 function g() {
   function f() {
-    let tmpStmtArg = $(1);
-    return tmpStmtArg;
+    let tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
   function f() {
-    let tmpStmtArg_1 = $(2);
-    return tmpStmtArg_1;
+    let tmpReturnArg_1 = $(2);
+    return tmpReturnArg_1;
   }
   var tmpArg_1;
   tmpArg_1 = f(3);

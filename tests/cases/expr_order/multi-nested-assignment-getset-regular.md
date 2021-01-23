@@ -41,8 +41,8 @@ function $$(...a_1) {
   tmpArg_1 = { depth: null };
   $(tmpArg, tmpArg_1);
   {
-    let tmpStmtArg = a_1[0];
-    return tmpStmtArg;
+    let tmpReturnArg = a_1[0];
+    return tmpReturnArg;
   }
 }
 var obja;
@@ -199,8 +199,8 @@ function $$(...a_1) {
   tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
   tmpArg_1 = { depth: null };
   $(tmpArg, tmpArg_1);
-  let tmpStmtArg = a_1[0];
-  return tmpStmtArg;
+  let tmpReturnArg = a_1[0];
+  return tmpReturnArg;
 }
 var obja;
 var objb;

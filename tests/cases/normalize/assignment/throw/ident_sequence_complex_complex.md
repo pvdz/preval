@@ -32,8 +32,8 @@ let c = 3;
   tmpNestedAssignMemberRhs = $(c);
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  let tmpStmtArg = a;
-  throw tmpStmtArg;
+  let tmpThrowArg = a;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````
@@ -51,8 +51,8 @@ tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = $(3);
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
-let tmpStmtArg = a;
-throw tmpStmtArg;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, 2, 3);
 `````
 

@@ -28,8 +28,8 @@ let d = 3;
     a;
     b.c = d;
   }
-  let tmpStmtArg = d;
-  throw tmpStmtArg;
+  let tmpThrowArg = d;
+  throw tmpThrowArg;
 }
 $(a, b, c, d);
 `````

@@ -25,8 +25,8 @@ const obj = {
     var tmpArg;
     {
       tmpArg = { x: 1 };
-      let tmpStmtArg = $(tmpArg);
-      return tmpStmtArg;
+      let tmpReturnArg = $(tmpArg);
+      return tmpReturnArg;
     }
   },
 };
@@ -44,8 +44,8 @@ const obj = {
   foo() {
     var tmpArg;
     tmpArg = { x: 1 };
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   },
 };
 tmpObjSpreadArg = obj.foo();

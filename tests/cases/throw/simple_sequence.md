@@ -24,8 +24,8 @@ function f() {
   {
     $(1);
     $(2);
-    let tmpStmtArg = null;
-    throw tmpStmtArg;
+    let tmpThrowArg = null;
+    throw tmpThrowArg;
   }
 }
 var tmpArg;

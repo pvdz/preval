@@ -1163,29 +1163,6 @@ export function phaseNormalize(fdata, fname) {
     }
   }
 
-  function normalizeReturnThrowArg(node, isExport, stillHoisting, isFunctionBody) {
-    // Input should be a statement node with .argument (return, throw)
-    // If the arg is complex, it will outline the arg and replace the node a block
-
-    if (isComplexNode(node.argument)) {
-      rule('Statement.argument must be simple');
-      log('- `throw $()` --> `{ let tmp = $(); throw tmp; }`');
-      log('- `return $()` --> `{ let tmp = $(); return tmp; }`');
-
-      // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-      const tmpName = createFreshVarInCurrentRootScope('tmpStmtArg');
-      const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), node);
-      node.argument = AST.identifier(tmpName);
-      crumbSet(1, newNode);
-
-      _stmt(newNode, isExport, stillHoisting, isFunctionBody);
-      changed = true;
-      return true;
-    }
-
-    return false;
-  }
-
   function stmt(parent, prop, index, node, isExport, stillHoisting, isFunctionBody) {
     ASSERT(
       parent === null ||
@@ -1880,7 +1857,23 @@ export function phaseNormalize(fdata, fname) {
           node.argument = AST.identifier('undefined');
         }
 
-        if (normalizeReturnThrowArg(node, false, false, isFunctionBody)) {
+        if (isComplexNode(node.argument)) {
+          rule('Return argument must be simple');
+          example('return $()','{ let tmp = $(); return tmp; }');
+          before(node);
+
+          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+          const tmpName = createFreshVarInCurrentRootScope('tmpReturnArg');
+          const newNode = AST.blockStatement(
+            AST.variableDeclaration(tmpName, node.argument),
+            AST.returnStatement(tmpName)
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          changed = true;
           break;
         }
 
@@ -2154,7 +2147,23 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ThrowStatement': {
-        if (normalizeReturnThrowArg(node, false, false, isFunctionBody)) {
+        if (isComplexNode(node.argument)) {
+          rule('Throw argument must be simple');
+          example('throw $()','{ let tmp = $(); throw tmp; }');
+          before(node);
+
+          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+          const tmpName = createFreshVarInCurrentRootScope('tmpThrowArg');
+          const newNode = AST.blockStatement(
+            AST.variableDeclaration(tmpName, node.argument),
+            AST.throwStatement(tmpName)
+          );
+
+          crumbSet(1, newNode);
+          after(newNode);
+
+          _stmt(newNode, isExport, stillHoisting, isFunctionBody);
+          changed = true;
           break;
         }
 

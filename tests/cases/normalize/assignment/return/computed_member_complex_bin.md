@@ -32,8 +32,8 @@ tmpNewObj = function () {
     tmpAssignComMemLhsObj = tmpBindInitMemberObject;
     tmpAssignComMemLhsProp = $('x');
     tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpBindInitRhs;
-    let tmpStmtArg = tmpBindInitRhs;
-    return tmpStmtArg;
+    let tmpReturnArg = tmpBindInitRhs;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

@@ -35,8 +35,8 @@ function f() {
     y = tmpNullish;
   }
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -58,8 +58,8 @@ function f() {
   } else {
     y = tmpNullish;
   }
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

@@ -86,8 +86,8 @@ function f() {
           {
             $(5);
             {
-              let tmpStmtArg = $(6);
-              return tmpStmtArg;
+              let tmpReturnArg = $(6);
+              return tmpReturnArg;
             }
           }
           tmpFallthrough = true;
@@ -168,8 +168,8 @@ function f() {
         {
           $(5);
           {
-            let tmpStmtArg = $(6);
-            return tmpStmtArg;
+            let tmpReturnArg = $(6);
+            return tmpReturnArg;
           }
         }
         tmpFallthrough = true;

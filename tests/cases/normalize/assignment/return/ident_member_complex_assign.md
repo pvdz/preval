@@ -41,8 +41,8 @@ tmpNewObj = function () {
     tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
     tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
     a = tmpNestedAssignMemberRhs;
-    let tmpStmtArg = a;
-    return tmpStmtArg;
+    let tmpReturnArg = a;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -71,8 +71,8 @@ tmpNewObj = function () {
   tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs_1;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  let tmpStmtArg = a;
-  return tmpStmtArg;
+  let tmpReturnArg = a;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, 3, 4);

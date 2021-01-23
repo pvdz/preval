@@ -20,8 +20,8 @@ function f(x, y) {
 function f(x, y) {
   {
     x = y;
-    let tmpStmtArg = y;
-    return tmpStmtArg;
+    let tmpReturnArg = y;
+    return tmpReturnArg;
   }
 }
 `````

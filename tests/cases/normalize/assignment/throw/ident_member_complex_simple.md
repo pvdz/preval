@@ -29,8 +29,8 @@ let c = 3;
   tmpNestedPropAssignRhs = c;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let tmpStmtArg = a;
-  throw tmpStmtArg;
+  let tmpThrowArg = a;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````
@@ -46,8 +46,8 @@ tmpNestedAssignObj = $(b);
 tmpNestedPropAssignRhs = 3;
 tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpStmtArg = a;
-throw tmpStmtArg;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, b, 3);
 `````
 

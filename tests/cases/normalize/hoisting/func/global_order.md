@@ -23,20 +23,20 @@ function h() { return $(); }
 `````js filename=intro
 function f() {
   {
-    let tmpStmtArg = $();
-    return tmpStmtArg;
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
 }
 function g() {
   {
-    let tmpStmtArg_1 = $();
-    return tmpStmtArg_1;
+    let tmpReturnArg_1 = $();
+    return tmpReturnArg_1;
   }
 }
 function h() {
   {
-    let tmpStmtArg_2 = $();
-    return tmpStmtArg_2;
+    let tmpReturnArg_2 = $();
+    return tmpReturnArg_2;
   }
 }
 var tmpArg;
@@ -52,16 +52,16 @@ $(tmpArg, tmpArg_1, tmpArg_2);
 
 `````js filename=intro
 function f() {
-  let tmpStmtArg = $();
-  return tmpStmtArg;
+  let tmpReturnArg = $();
+  return tmpReturnArg;
 }
 function g() {
-  let tmpStmtArg_1 = $();
-  return tmpStmtArg_1;
+  let tmpReturnArg_1 = $();
+  return tmpReturnArg_1;
 }
 function h() {
-  let tmpStmtArg_2 = $();
-  return tmpStmtArg_2;
+  let tmpReturnArg_2 = $();
+  return tmpReturnArg_2;
 }
 var tmpArg;
 var tmpArg_1;

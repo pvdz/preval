@@ -28,13 +28,13 @@ $(f(1));
 function f(x) {
   function g() {
     {
-      let tmpStmtArg_1 = $();
-      return tmpStmtArg_1;
+      let tmpReturnArg_1 = $();
+      return tmpReturnArg_1;
     }
   }
   {
-    let tmpStmtArg = g();
-    return tmpStmtArg;
+    let tmpReturnArg = g();
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -47,11 +47,11 @@ $(tmpArg);
 `````js filename=intro
 function f(x) {
   function g() {
-    let tmpStmtArg_1 = $();
-    return tmpStmtArg_1;
+    let tmpReturnArg_1 = $();
+    return tmpReturnArg_1;
   }
-  let tmpStmtArg = g();
-  return tmpStmtArg;
+  let tmpReturnArg = g();
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f(1);

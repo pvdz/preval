@@ -30,8 +30,8 @@ function f() {
   tmpMemberComplexObj = $();
   y = tmpMemberComplexObj.foo;
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -47,8 +47,8 @@ function f() {
   var y;
   tmpMemberComplexObj = $();
   y = tmpMemberComplexObj.foo;
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

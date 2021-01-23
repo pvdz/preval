@@ -25,8 +25,8 @@ function f() {
   1;
   const y = a.x;
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -40,8 +40,8 @@ $(tmpArg);
 function f() {
   const a = { x: 1 };
   const y = a.x;
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

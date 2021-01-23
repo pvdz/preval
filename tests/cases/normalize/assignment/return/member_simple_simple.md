@@ -26,8 +26,8 @@ let c = 3;
 tmpNewObj = function () {
   {
     a.x = b;
-    let tmpStmtArg = b;
-    return tmpStmtArg;
+    let tmpReturnArg = b;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

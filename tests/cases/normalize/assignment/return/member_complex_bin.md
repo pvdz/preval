@@ -28,8 +28,8 @@ tmpNewObj = function () {
     let tmpBindInitMemberObject = $(a);
     let tmpBindInitRhs = b + c;
     tmpBindInitMemberObject.x = tmpBindInitRhs;
-    let tmpStmtArg = tmpBindInitRhs;
-    return tmpStmtArg;
+    let tmpReturnArg = tmpBindInitRhs;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

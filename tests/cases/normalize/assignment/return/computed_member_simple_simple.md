@@ -30,8 +30,8 @@ tmpNewObj = function () {
     tmpAssignComMemLhsObj = a;
     tmpAssignComMemLhsProp = $('x');
     tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-    let tmpStmtArg = b;
-    return tmpStmtArg;
+    let tmpReturnArg = b;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

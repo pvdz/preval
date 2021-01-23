@@ -29,8 +29,8 @@ tmpNewObj = function () {
     tmpNestedPropAssignRhs = c;
     b.x = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;
-    let tmpStmtArg = a;
-    return tmpStmtArg;
+    let tmpReturnArg = a;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -48,8 +48,8 @@ tmpNewObj = function () {
   tmpNestedPropAssignRhs = 3;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let tmpStmtArg = a;
-  return tmpStmtArg;
+  let tmpReturnArg = a;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, 3);

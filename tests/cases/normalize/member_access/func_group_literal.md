@@ -26,8 +26,8 @@ function f() {
   2;
   const y = (3).foo;
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -40,8 +40,8 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   const y = (3).foo;
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

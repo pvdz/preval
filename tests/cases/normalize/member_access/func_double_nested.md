@@ -34,8 +34,8 @@ function f() {
     tmpMemberComplexObj_1 = obj.a;
     tmpMemberComplexObj = tmpMemberComplexObj_1.b;
     tmpArg = tmpMemberComplexObj.c;
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   }
 }
 var tmpArg_1;
@@ -60,8 +60,8 @@ function f() {
   tmpMemberComplexObj_1 = obj.a;
   tmpMemberComplexObj = tmpMemberComplexObj_1.b;
   tmpArg = tmpMemberComplexObj.c;
-  let tmpStmtArg = $(tmpArg);
-  return tmpStmtArg;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

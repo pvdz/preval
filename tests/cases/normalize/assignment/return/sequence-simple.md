@@ -30,8 +30,8 @@ tmpNewObj = function () {
       a;
       b.c = d;
     }
-    let tmpStmtArg = d;
-    return tmpStmtArg;
+    let tmpReturnArg = d;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

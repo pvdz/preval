@@ -76,14 +76,14 @@ function f() {
   const b = {
     get foo() {
       {
-        let tmpStmtArg = $(2);
-        return tmpStmtArg;
+        let tmpReturnArg = $(2);
+        return tmpReturnArg;
       }
     },
     set foo(x) {
       {
-        let tmpStmtArg_1 = $(3);
-        return tmpStmtArg_1;
+        let tmpReturnArg_1 = $(3);
+        return tmpReturnArg_1;
       }
     },
   };
@@ -126,12 +126,12 @@ function f() {
   console.log('-------- start');
   const b = {
     get foo() {
-      let tmpStmtArg = $(2);
-      return tmpStmtArg;
+      let tmpReturnArg = $(2);
+      return tmpReturnArg;
     },
     set foo(x) {
-      let tmpStmtArg_1 = $(3);
-      return tmpStmtArg_1;
+      let tmpReturnArg_1 = $(3);
+      return tmpReturnArg_1;
     },
   };
   console.log('-------- bound');

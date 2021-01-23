@@ -24,8 +24,8 @@ export function g() {
 export function g() {
   function f() {
     {
-      let tmpStmtArg = $(2);
-      return tmpStmtArg;
+      let tmpReturnArg = $(2);
+      return tmpReturnArg;
     }
   }
   var tmpArg_1;
@@ -42,8 +42,8 @@ $(tmpArg);
 `````js filename=intro
 export function g() {
   function f() {
-    let tmpStmtArg = $(2);
-    return tmpStmtArg;
+    let tmpReturnArg = $(2);
+    return tmpReturnArg;
   }
   var tmpArg_1;
   tmpArg_1 = f(1);

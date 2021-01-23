@@ -24,8 +24,8 @@ function f() {
   $(1);
   {
     let tmpBindingInit = $(2);
-    let tmpStmtArg = tmpBindingInit.foo;
-    return tmpStmtArg;
+    let tmpReturnArg = tmpBindingInit.foo;
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -39,8 +39,8 @@ $(tmpArg);
 function f() {
   $(1);
   let tmpBindingInit = $(2);
-  let tmpStmtArg = tmpBindingInit.foo;
-  return tmpStmtArg;
+  let tmpReturnArg = tmpBindingInit.foo;
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

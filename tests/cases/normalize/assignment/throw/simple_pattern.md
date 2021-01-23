@@ -31,8 +31,8 @@ let z = [10, 20, 30];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = arrAssignPatternRhs;
-  let tmpStmtArg = a;
-  throw tmpStmtArg;
+  let tmpThrowArg = a;
+  throw tmpThrowArg;
 }
 $(a, x, y, z);
 `````
@@ -51,8 +51,8 @@ arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = arrAssignPatternRhs;
-let tmpStmtArg = a;
-throw tmpStmtArg;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, x, y, z);
 `````
 

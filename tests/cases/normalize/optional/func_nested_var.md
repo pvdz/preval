@@ -52,8 +52,8 @@ function f() {
     c = tmpTernaryAlternate_1;
   }
   {
-    let tmpStmtArg = $(c);
-    return tmpStmtArg;
+    let tmpReturnArg = $(c);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -89,8 +89,8 @@ function f() {
     tmpTernaryAlternate_1 = tmpOptionalChaining_1.length;
     c = tmpTernaryAlternate_1;
   }
-  let tmpStmtArg = $(c);
-  return tmpStmtArg;
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

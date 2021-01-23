@@ -42,8 +42,8 @@ function f($tdz$__a, $tdz$__b) {
     }
   }
   {
-    let tmpStmtArg = [a, b];
-    return tmpStmtArg;
+    let tmpReturnArg = [a, b];
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -78,8 +78,8 @@ function f($tdz$__a, $tdz$__b) {
   } else {
     b = $tdz$__b;
   }
-  let tmpStmtArg = [a, b];
-  return tmpStmtArg;
+  let tmpReturnArg = [a, b];
+  return tmpReturnArg;
 }
 var tmpArg;
 var tmpArg_1;

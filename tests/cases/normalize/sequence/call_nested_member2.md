@@ -23,8 +23,8 @@ var tmpObjPropValue_1;
 var tmpMemberComplexObj;
 tmpObjPropValue_1 = () => {
   {
-    let tmpStmtArg = $(1);
-    return tmpStmtArg;
+    let tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
 };
 tmpObjPropValue = { b: tmpObjPropValue_1 };
@@ -40,8 +40,8 @@ var tmpObjPropValue;
 var tmpObjPropValue_1;
 var tmpMemberComplexObj;
 tmpObjPropValue_1 = () => {
-  let tmpStmtArg = $(1);
-  return tmpStmtArg;
+  let tmpReturnArg = $(1);
+  return tmpReturnArg;
 };
 tmpObjPropValue = { b: tmpObjPropValue_1 };
 const obj = { a: tmpObjPropValue };

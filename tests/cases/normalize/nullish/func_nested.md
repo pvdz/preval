@@ -43,8 +43,8 @@ function f() {
     } else {
       tmpArg = tmpNullish;
     }
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   }
 }
 var tmpArg_1;
@@ -78,8 +78,8 @@ function f() {
   } else {
     tmpArg = tmpNullish;
   }
-  let tmpStmtArg = $(tmpArg);
-  return tmpStmtArg;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

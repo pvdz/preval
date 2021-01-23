@@ -31,8 +31,8 @@ tmpNewObj = function () {
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    let tmpStmtArg = arrAssignPatternRhs;
-    return tmpStmtArg;
+    let tmpReturnArg = arrAssignPatternRhs;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -53,8 +53,8 @@ tmpNewObj = function () {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let tmpStmtArg = arrAssignPatternRhs;
-  return tmpStmtArg;
+  let tmpReturnArg = arrAssignPatternRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(x, y, z);

@@ -24,8 +24,8 @@ function f() {
   {
     $(1);
     $(2);
-    let tmpStmtArg = $(3);
-    throw tmpStmtArg;
+    let tmpThrowArg = $(3);
+    throw tmpThrowArg;
   }
 }
 var tmpArg;
@@ -39,8 +39,8 @@ $(tmpArg);
 function f() {
   $(1);
   $(2);
-  let tmpStmtArg = $(3);
-  throw tmpStmtArg;
+  let tmpThrowArg = $(3);
+  throw tmpThrowArg;
 }
 var tmpArg;
 tmpArg = f();

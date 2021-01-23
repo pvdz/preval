@@ -34,8 +34,8 @@ tmpNewObj = function () {
     }
     let tmpBindInitRhs = d;
     tmpBindInitMemberObject.c = tmpBindInitRhs;
-    let tmpStmtArg = tmpBindInitRhs;
-    return tmpStmtArg;
+    let tmpReturnArg = tmpBindInitRhs;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();

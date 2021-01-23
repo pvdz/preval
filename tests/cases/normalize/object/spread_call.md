@@ -24,8 +24,8 @@ function f() {
   var tmpArg;
   {
     tmpArg = { x: 1 };
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   }
 }
 var tmpArg_1;
@@ -41,8 +41,8 @@ $(tmpArg_1);
 function f() {
   var tmpArg;
   tmpArg = { x: 1 };
-  let tmpStmtArg = $(tmpArg);
-  return tmpStmtArg;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg_1;
 var tmpObjSpreadArg;

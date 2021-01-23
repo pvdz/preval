@@ -24,8 +24,8 @@ let b = 2;
 let c = 3;
 {
   a = b;
-  let tmpStmtArg = b;
-  throw tmpStmtArg;
+  let tmpThrowArg = b;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````

@@ -26,8 +26,8 @@ function f() {
   tmpNewObj = $(parseInt);
   const y = tmpNewObj();
   {
-    let tmpStmtArg = $(y);
-    return tmpStmtArg;
+    let tmpReturnArg = $(y);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -42,8 +42,8 @@ function f() {
   var tmpNewObj;
   tmpNewObj = $(parseInt);
   const y = tmpNewObj();
-  let tmpStmtArg = $(y);
-  return tmpStmtArg;
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

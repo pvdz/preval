@@ -26,8 +26,8 @@ let c = 3;
 {
   tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = b;
-  let tmpStmtArg = b;
-  throw tmpStmtArg;
+  let tmpThrowArg = b;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````

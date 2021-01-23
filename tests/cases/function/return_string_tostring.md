@@ -24,8 +24,8 @@ $(f());
 `````js filename=intro
 function f() {
   {
-    let tmpStmtArg = String.toString();
-    return tmpStmtArg;
+    let tmpReturnArg = String.toString();
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -37,8 +37,8 @@ $(tmpArg);
 
 `````js filename=intro
 function f() {
-  let tmpStmtArg = String.toString();
-  return tmpStmtArg;
+  let tmpReturnArg = String.toString();
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f();

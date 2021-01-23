@@ -27,20 +27,20 @@ export function f() {
 export function f() {
   function f_1() {
     {
-      let tmpStmtArg = $();
-      return tmpStmtArg;
+      let tmpReturnArg = $();
+      return tmpReturnArg;
     }
   }
   function g() {
     {
-      let tmpStmtArg_1 = $();
-      return tmpStmtArg_1;
+      let tmpReturnArg_1 = $();
+      return tmpReturnArg_1;
     }
   }
   function h() {
     {
-      let tmpStmtArg_2 = $();
-      return tmpStmtArg_2;
+      let tmpReturnArg_2 = $();
+      return tmpReturnArg_2;
     }
   }
   var tmpArg_1;
@@ -61,16 +61,16 @@ $(tmpArg);
 `````js filename=intro
 export function f() {
   function f_1() {
-    let tmpStmtArg = $();
-    return tmpStmtArg;
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
   function g() {
-    let tmpStmtArg_1 = $();
-    return tmpStmtArg_1;
+    let tmpReturnArg_1 = $();
+    return tmpReturnArg_1;
   }
   function h() {
-    let tmpStmtArg_2 = $();
-    return tmpStmtArg_2;
+    let tmpReturnArg_2 = $();
+    return tmpReturnArg_2;
   }
   var tmpArg_1;
   var tmpArg_2;

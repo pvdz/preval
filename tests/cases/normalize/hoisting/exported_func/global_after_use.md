@@ -18,8 +18,8 @@ export function f() { return $(2); }
 `````js filename=intro
 export function f() {
   {
-    let tmpStmtArg = $(2);
-    return tmpStmtArg;
+    let tmpReturnArg = $(2);
+    return tmpReturnArg;
   }
 }
 var tmpArg;
@@ -31,8 +31,8 @@ $(tmpArg);
 
 `````js filename=intro
 export function f() {
-  let tmpStmtArg = $(2);
-  return tmpStmtArg;
+  let tmpReturnArg = $(2);
+  return tmpReturnArg;
 }
 var tmpArg;
 tmpArg = f(1);

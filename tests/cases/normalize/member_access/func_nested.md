@@ -30,8 +30,8 @@ function f() {
   {
     tmpMemberComplexObj = obj.a;
     tmpArg = tmpMemberComplexObj.b;
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   }
 }
 var tmpArg_1;
@@ -52,8 +52,8 @@ function f() {
   const obj = { a: tmpObjPropValue };
   tmpMemberComplexObj = obj.a;
   tmpArg = tmpMemberComplexObj.b;
-  let tmpStmtArg = $(tmpArg);
-  return tmpStmtArg;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

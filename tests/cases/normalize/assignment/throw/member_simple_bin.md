@@ -26,8 +26,8 @@ let c = 3;
   let tmpBindInitMemberObject = a;
   let tmpBindInitRhs = b + c;
   tmpBindInitMemberObject.x = tmpBindInitRhs;
-  let tmpStmtArg = tmpBindInitRhs;
-  throw tmpStmtArg;
+  let tmpThrowArg = tmpBindInitRhs;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````

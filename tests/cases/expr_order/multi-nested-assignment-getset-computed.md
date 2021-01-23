@@ -39,8 +39,8 @@ function $$(...a_1) {
   tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
   $(tmpArg);
   {
-    let tmpStmtArg = a_1[0];
-    return tmpStmtArg;
+    let tmpReturnArg = a_1[0];
+    return tmpReturnArg;
   }
 }
 var obja;
@@ -219,8 +219,8 @@ function $$(...a_1) {
   var tmpArg;
   tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
   $(tmpArg);
-  let tmpStmtArg = a_1[0];
-  return tmpStmtArg;
+  let tmpReturnArg = a_1[0];
+  return tmpReturnArg;
 }
 var obja;
 var objb;

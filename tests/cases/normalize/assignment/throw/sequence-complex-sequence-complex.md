@@ -34,8 +34,8 @@ let d = 3;
   }
   let tmpBindInitRhs = d;
   tmpBindInitMemberObject.c = tmpBindInitRhs;
-  let tmpStmtArg = tmpBindInitRhs;
-  throw tmpStmtArg;
+  let tmpThrowArg = tmpBindInitRhs;
+  throw tmpThrowArg;
 }
 $(a, b, c, d);
 `````

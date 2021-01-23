@@ -25,8 +25,8 @@ let c = 3;
 {
   b = c;
   a = c;
-  let tmpStmtArg = a;
-  throw tmpStmtArg;
+  let tmpThrowArg = a;
+  throw tmpThrowArg;
 }
 $(a, b, c);
 `````
@@ -38,8 +38,8 @@ let a = 1;
 let b = 2;
 b = 3;
 a = 3;
-let tmpStmtArg = a;
-throw tmpStmtArg;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, b, 3);
 `````
 

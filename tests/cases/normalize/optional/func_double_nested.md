@@ -58,8 +58,8 @@ function f() {
       tmpTernaryAlternate_2 = tmpOptionalChaining.c;
       tmpArg = tmpTernaryAlternate_2;
     }
-    let tmpStmtArg = $(tmpArg);
-    return tmpStmtArg;
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   }
 }
 var tmpArg_1;
@@ -108,8 +108,8 @@ function f() {
     tmpTernaryAlternate_2 = tmpOptionalChaining.c;
     tmpArg = tmpTernaryAlternate_2;
   }
-  let tmpStmtArg = $(tmpArg);
-  return tmpStmtArg;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg_1;
 tmpArg_1 = f();

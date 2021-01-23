@@ -37,8 +37,8 @@ tmpNewObj = function () {
     tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;
-    let tmpStmtArg = a;
-    return tmpStmtArg;
+    let tmpReturnArg = a;
+    return tmpReturnArg;
   }
 };
 tmpNewObj();
@@ -63,8 +63,8 @@ tmpNewObj = function () {
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let tmpStmtArg = a;
-  return tmpStmtArg;
+  let tmpReturnArg = a;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, 3);

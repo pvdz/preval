@@ -28,7 +28,7 @@ function f() {
   }
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 ('use strict');
 ('<hoisted func decl `f`>');
 tmpArg = f();

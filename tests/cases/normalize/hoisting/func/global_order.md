@@ -42,9 +42,9 @@ function h() {
 var tmpArg;
 var tmpArg$1;
 var tmpArg$2;
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted func decl `f`>');
+('<hoisted func decl `g`>');
+('<hoisted func decl `h`>');
 tmpArg = f();
 tmpArg$1 = g();
 tmpArg$2 = h();

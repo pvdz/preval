@@ -42,7 +42,7 @@ function top() {
   $(6);
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `top`>');
 tmpArg = top();
 $(tmpArg);
 `````

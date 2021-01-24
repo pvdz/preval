@@ -22,7 +22,7 @@ function f() {
   return Infinity;
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 `````

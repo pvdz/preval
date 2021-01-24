@@ -38,10 +38,7 @@ function f(tmpParamPattern) {
 }
 var tmpArg$1;
 var tmpArg$2;
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$2 = { x: 'abc', a: 11, b: 12 };
 tmpArg$1 = f(tmpArg$2, 10);
 $(tmpArg$1);

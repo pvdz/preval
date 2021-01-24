@@ -54,7 +54,7 @@ function f($tdz$__pattern) {
   return 'ok';
 }
 var tmpArg$1;
-('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$1 = f(undefined, 100);
 $(tmpArg$1);
 `````

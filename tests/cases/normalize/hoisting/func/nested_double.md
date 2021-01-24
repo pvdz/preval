@@ -30,7 +30,7 @@ function g() {
     }
   }
   var tmpArg;
-  ('<hoisted var `tmpArg` decl without init>');
+  ('<hoisted func decl `f`>');
   ('<eliminated duplicate func decl `f`>');
   ('<hoisted func decl `f`>');
   tmpArg = f(3);
@@ -39,7 +39,7 @@ function g() {
   ('<hoisted func decl `f`>');
 }
 var tmpArg$1;
-('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted func decl `g`>');
 tmpArg$1 = g();
 $(tmpArg$1);
 ('<hoisted func decl `g`>');

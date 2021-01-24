@@ -32,7 +32,7 @@ function f(tmpParamPattern) {
   return 'ok';
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg = f(0, 10);
 $(tmpArg);
 `````

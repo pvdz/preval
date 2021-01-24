@@ -60,8 +60,7 @@ function f($tdz$__pattern) {
   return x;
 }
 var tmpArg$2;
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$2 = f('abc');
 $(tmpArg$2);
 `````

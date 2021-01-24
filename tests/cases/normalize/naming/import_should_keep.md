@@ -33,6 +33,8 @@ export function g(x_2) {
   return x_2;
 }
 var tmpArg;
+('<hoisted func decl `f`>');
+('<hoisted func decl `g`>');
 export class c {}
 export const x = ((tmpArg = f()), $(tmpArg));
 `````

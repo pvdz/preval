@@ -41,7 +41,7 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];

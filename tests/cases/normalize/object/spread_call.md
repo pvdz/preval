@@ -30,10 +30,7 @@ function f() {
 }
 var tmpArg$1;
 var tmpObjSpreadArg;
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpObjSpreadArg` decl without init>');
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpObjSpreadArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpObjSpreadArg = f();
 tmpArg$1 = { ...tmpObjSpreadArg };
 $(tmpArg$1);

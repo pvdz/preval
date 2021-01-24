@@ -32,10 +32,6 @@ function f() {
 var tmpArg;
 var tmpArg$1;
 var x;
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `x` decl without init>');
-('<hoisted var `x` decl without init>');
 tmpArg = f();
 $(tmpArg);
 x = 10;

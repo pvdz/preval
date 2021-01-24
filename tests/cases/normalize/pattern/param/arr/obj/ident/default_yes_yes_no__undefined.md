@@ -47,8 +47,7 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg$1;
-('<hoisted var `tmpArg$1` decl without init>');
-('<hoisted var `tmpArg$1` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$1 = f(undefined);
 $(tmpArg$1);
 `````

@@ -61,12 +61,7 @@ function f($tdz$__pattern) {
 var tmpArg$2;
 var tmpArg$3;
 var tmpObjPropValue$1;
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$3` decl without init>');
-('<hoisted var `tmpObjPropValue$1` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$3` decl without init>');
-('<hoisted var `tmpObjPropValue$1` decl without init>');
+('<hoisted func decl `f`>');
 tmpObjPropValue$1 = { x: 1, y: 0, z: 3 };
 tmpArg$3 = { x: tmpObjPropValue$1, b: 11, c: 12 };
 tmpArg$2 = f(tmpArg$3, 10);

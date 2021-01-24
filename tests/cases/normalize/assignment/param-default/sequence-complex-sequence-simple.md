@@ -53,7 +53,7 @@ function f($tdz$__foo) {
   return foo;
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';

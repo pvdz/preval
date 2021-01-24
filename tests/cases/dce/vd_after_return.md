@@ -33,7 +33,7 @@ function f(x) {
   g = $();
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg = f(1);
 $(tmpArg);
 `````

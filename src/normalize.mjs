@@ -300,7 +300,9 @@ export function phaseNormalize(fdata, fname) {
         if (node.name !== uniqueName) {
           rule('All bindings are globally unique');
           log('- Updating name `' + node.name + '` to the unique name `' + uniqueName + '`');
+          before(node);
           node.name = uniqueName;
+          after(node);
         }
       });
     }
@@ -1009,9 +1011,10 @@ export function phaseNormalize(fdata, fname) {
     const varNames = [];
     for (let i = 0; i < body.length; ++i) {
       const snode = body[i];
+
       if (
         snode.type === 'FunctionDeclaration' ||
-        (snode.type === 'ExportNamedDeclaration' && snode.declaration.type === 'FunctionDeclaration') ||
+        (snode.type === 'ExportNamedDeclaration' && snode.declaration && snode.declaration && snode.declaration.type === 'FunctionDeclaration') ||
         (snode.type === 'ExportDefaultDeclaration' && snode.declaration.type === 'FunctionDeclaration' && snode.declaration.id)
       ) {
         const id = snode.type === 'FunctionDeclaration' ? snode.id : snode.declaration.id;
@@ -1031,7 +1034,7 @@ export function phaseNormalize(fdata, fname) {
         ++funcs;
       } else if (
         (snode.type === 'VariableDeclaration' && snode.kind === 'var') ||
-        (snode.type === 'ExportNamedDeclaration' && snode.declaration.type === 'VariableDeclaration' && snode.declaration.kind === 'var')
+        (snode.type === 'ExportNamedDeclaration' && snode.declaration && snode.declaration.type === 'VariableDeclaration' && snode.declaration.kind === 'var')
       ) {
         log(' -', i, 'is a var decl:', snode.type);
         const decl = snode.type === 'VariableDeclaration' ? snode.declarations[0] : snode.declaration.declarations[0];
@@ -1315,7 +1318,6 @@ export function phaseNormalize(fdata, fname) {
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
-      node.$p.funcBindingsToInject = [];
     }
 
     group(DIM + 'stmt(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
@@ -1332,13 +1334,6 @@ export function phaseNormalize(fdata, fname) {
         // TODO: dedupe decls. Make sure multiple var statements for the same name are collapsed and prefer func decls
         (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
         node.$p.varBindingsToInject.length = 0;
-      }
-      // Put func decls at the top
-      if (node.$p.funcBindingsToInject.length) {
-        // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
-        // Inject all the decls, without init, at the start of the function. Order matters.
-        (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
-        node.$p.funcBindingsToInject.length = 0;
       }
     }
   }
@@ -1772,28 +1767,6 @@ export function phaseNormalize(fdata, fname) {
         hoisting(node.body.body);
 
         stmt(node, 'body', -1, node.body, false, true);
-
-        // TODO: dont move the functions if they're already hoisted
-        rule('All function declarations must be at the top');
-        ASSERT(funcStack[funcStack.length - 1] === node, 'top of funcStack should be the current node');
-        const meta = getMetaForBindingName(node.id, true);
-        if (meta.isExport) {
-          const parent = crumbGet(2);
-          ASSERT(
-            parent.type === 'ExportNamedDeclaration',
-            'phase1 should have made sure that if the meta says isExport that the parent is a ExportNamedDeclaration',
-            parent.type,
-            node.id?.name,
-          );
-          log(
-            'Replace the exported func decl node with an empty statement and put the parent on a list to be prepended to the function body',
-          );
-          funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(parent);
-          crumbSet(2, AST.emptyStatement());
-        } else {
-          funcStack[funcStack.length - 2].$p.funcBindingsToInject.push(node);
-          crumbSet(1, AST.emptyStatement());
-        }
 
         break;
       }
@@ -2461,7 +2434,6 @@ export function phaseNormalize(fdata, fname) {
       node.$p.pure = true; // Output depends on input, nothing else, no observable side effects
       node.$p.returns = []; // all return nodes, and `undefined` if there's an implicit return too
       node.$p.varBindingsToInject = [];
-      node.$p.funcBindingsToInject = [];
     }
 
     group(DIM + 'expr(' + RESET + BLUE + node.type + RESET + DIM + ')' + RESET);
@@ -2491,14 +2463,6 @@ export function phaseNormalize(fdata, fname) {
           log('Prepending', node.$p.varBindingsToInject.size, 'var decls');
           (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.varBindingsToInject);
           node.$p.varBindingsToInject.length = 0;
-        }
-        // Put func decls at the top
-        if (node.$p.funcBindingsToInject.length) {
-          // TODO: dedupe func decls with the same name. Still legal when nested in another function (not in global). Last one wins. Rest is dead code.
-          // Inject all the decls, without init, at the start of the function. Order matters.
-          log('Prepending', node.$p.funcBindingsToInject.size, 'func decls');
-          (node.type === 'Program' ? node.body : node.body.body).unshift(...node.$p.funcBindingsToInject);
-          node.$p.funcBindingsToInject.length = 0;
         }
       }
     }

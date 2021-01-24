@@ -25,7 +25,7 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 `````

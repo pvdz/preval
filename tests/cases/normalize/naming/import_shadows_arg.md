@@ -22,6 +22,7 @@ export function g(x_1) {
   return x_1;
 }
 var tmpArg;
+('<hoisted func decl `g`>');
 export const x = ((tmpArg = f()), $(tmpArg));
 `````
 

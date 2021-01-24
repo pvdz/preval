@@ -22,14 +22,7 @@ function g() {}
 var tmpArg;
 var tmpBinaryLeft;
 var tmpTernaryTest;
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpBinaryLeft` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpBinaryLeft` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
+('<hoisted func decl `g`>');
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {

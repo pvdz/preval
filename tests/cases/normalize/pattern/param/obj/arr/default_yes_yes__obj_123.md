@@ -51,10 +51,7 @@ function f($tdz$__pattern) {
 }
 var tmpArg$2;
 var tmpArg$3;
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$3` decl without init>');
-('<hoisted var `tmpArg$2` decl without init>');
-('<hoisted var `tmpArg$3` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$3 = { x: 1, a: 2, b: 3 };
 tmpArg$2 = f(tmpArg$3, 10);
 $(tmpArg$2);

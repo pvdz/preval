@@ -24,15 +24,7 @@ function f() {
 var tmpArg;
 var tmpTernaryAlternate;
 var tmpTernaryTest;
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpTernaryAlternate` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpTernaryAlternate` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
-('<hoisted var `tmpArg` decl without init>');
-('<hoisted var `tmpTernaryAlternate` decl without init>');
-('<hoisted var `tmpTernaryTest` decl without init>');
+('<hoisted func decl `f`>');
 tmpTernaryTest = f == null;
 if (tmpTernaryTest) {
   tmpArg = undefined;

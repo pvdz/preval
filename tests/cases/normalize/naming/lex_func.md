@@ -41,7 +41,7 @@ function f() {
   return a;
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg = f();
 $(tmpArg);
 `````

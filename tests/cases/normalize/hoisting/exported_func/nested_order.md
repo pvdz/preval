@@ -46,9 +46,9 @@ export function f() {
   var tmpArg;
   var tmpArg$1;
   var tmpArg$2;
-  ('<hoisted var `tmpArg` decl without init>');
-  ('<hoisted var `tmpArg$1` decl without init>');
-  ('<hoisted var `tmpArg$2` decl without init>');
+  ('<hoisted func decl `f`>');
+  ('<hoisted func decl `g`>');
+  ('<hoisted func decl `h`>');
   tmpArg = f_1();
   tmpArg$1 = g();
   tmpArg$2 = h();
@@ -58,7 +58,7 @@ export function f() {
   ('<hoisted func decl `h`>');
 }
 var tmpArg$3;
-('<hoisted var `tmpArg$3` decl without init>');
+('<hoisted func decl `f`>');
 tmpArg$3 = f();
 $(tmpArg$3);
 ('<hoisted func decl `f`>');

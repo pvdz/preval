@@ -27,7 +27,7 @@ function f() {
   return x;
 }
 var tmpArg;
-('<hoisted var `tmpArg` decl without init>');
+('<hoisted func decl `f`>');
 const x = 'x';
 ('<hoisted func decl `f`>');
 tmpArg = f();

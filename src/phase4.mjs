@@ -740,16 +740,18 @@ export function phase4(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        log('Name: `' + node.name + '`, unique name: `' + node.name + '`');
-        const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
-        log('This ident has', meta?.updates.length, 'updates and', meta?.usages.length, 'usages');
-        if (meta.updates.length === 1) {
-          const update = meta.updates.pop();
-          const updateTo = update.index >= 0 ? update.parent[update.prop][update.index] : update.parent[update.prop];
-          log('Updates to', updateTo.type);
-          if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(update.name))) {
-            log('Update was a literal. Replacing occurrence with this literal'); // TODO: what about long strings?
-            crumbSet(1, update);
+        if (node.name !== 'arguments') { // TODO
+          log('Name: `' + node.name + '`, unique name: `' + node.name + '`');
+          const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
+          log('This ident has', meta?.updates.length, 'updates and', meta?.usages.length, 'usages');
+          if (meta.updates.length === 1) {
+            const update = meta.updates.pop();
+            const updateTo = update.index >= 0 ? update.parent[update.prop][update.index] : update.parent[update.prop];
+            log('Updates to', updateTo.type);
+            if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(update.name))) {
+              log('Update was a literal. Replacing occurrence with this literal'); // TODO: what about long strings?
+              crumbSet(1, update);
+            }
           }
         }
 

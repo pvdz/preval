@@ -14,6 +14,9 @@ const VERBOSE_TRACING = true;
     - No shadowing on any level or even between scopes. Lexical scoping becomes irrelevant.
   - Hoists var statements and function declarations to the top of their scope
     - Currently adds complexity because a variable can have two values. But the final system must be able to cope with this so I'm ok with this for now.
+    - Duplicate names are eliminated, preferring functions over vars
+    - Duplicate functions are reduced to one function
+    - Vars and funcs are ordered (within each group)
   - All sub-statements are forced to be blocks
     - We'll let the final formatting undo this step.
     - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
@@ -126,6 +129,7 @@ const VERBOSE_TRACING = true;
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - statement that is identifier / literal (?)
+  - arguments (ehh)
  */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -3184,6 +3188,10 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'CallExpression': {
+        // If call is statement
+        // If call is var init
+        // if call is rhs of assignment of expression statement
+
         if (!normalizeCallArgsChangedSomething(node, false)) {
           if (!normalizeCalleeChangedSomething(node, false)) {
             node.arguments.some((anode, i) => {
@@ -3296,10 +3304,12 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'Identifier': {
-        const meta = getMetaForBindingName(node);
-        ASSERT(meta, 'expecting meta for', node);
-        log('Recording a usage for `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
-        meta.usages.push(node);
+        if (node.name !== 'arguments') { // TODO
+          const meta = getMetaForBindingName(node);
+          ASSERT(meta, 'expecting meta for', node);
+          log('Recording a usage for `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
+          meta.usages.push(node);
+        }
         break;
       }
 

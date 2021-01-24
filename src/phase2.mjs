@@ -1004,16 +1004,18 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
-        ASSERT(meta, 'meta data should exist for this name', node.name, meta);
-        log('Marking `' + node.name + '` as being used');
-        meta.usages.push({
-          parent: crumbsNode[crumbsNode.length - 1],
-          prop: crumbsProp[crumbsProp.length - 1],
-          index: crumbsIndex[crumbsIndex.length - 1],
-        });
+        if (node.name !== 'arguments') { // TODO
+          const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
+          ASSERT(meta, 'meta data should exist for this name', node.name, meta);
+          log('Marking `' + node.name + '` as being used');
+          meta.usages.push({
+            parent: crumbsNode[crumbsNode.length - 1],
+            prop: crumbsProp[crumbsProp.length - 1],
+            index: crumbsIndex[crumbsIndex.length - 1],
+          });
 
-        //funcStack[funcStack.length - 1].$p.pure = false; // TODO: what edge cases break this? closures probably? especially if the value is returned
+          //funcStack[funcStack.length - 1].$p.pure = false; // TODO: what edge cases break this? closures probably? especially if the value is returned
+        }
 
         break;
       }

@@ -998,12 +998,15 @@ export function phaseNormalize(fdata, fname) {
   function hoisting(body) {
     // Body should be the node.body of Program or node.body.body of a function node
     // Make sure body is not being traversed
+    // TODO: maybe this should be its own phase as we shouldn't need to do this more than once
 
     group('Hoisting(' + body.length + 'x)');
 
     let stage = HOISTING_FUNC;
     let funcs = 0;
     let vars = 0;
+    const funcNames = [];
+    const varNames = [];
     for (let i = 0; i < body.length; ++i) {
       const snode = body[i];
       if (
@@ -1012,6 +1015,7 @@ export function phaseNormalize(fdata, fname) {
         (snode.type === 'ExportDefaultDeclaration' && snode.declaration.type === 'FunctionDeclaration' && snode.declaration.id)
       ) {
         const id = snode.type === 'FunctionDeclaration' ? snode.id : snode.declaration.id;
+        funcNames.push(id.name);
         log(' -', i, 'is func decl:', snode.type);
 
         if (stage === HOISTING_FUNC) {
@@ -1031,6 +1035,9 @@ export function phaseNormalize(fdata, fname) {
       ) {
         log(' -', i, 'is a var decl:', snode.type);
         const decl = snode.type === 'VariableDeclaration' ? snode.declarations[0] : snode.declaration.declarations[0];
+        const names = discoverBoundNames(snode); // binding patterns may still exist at this point
+        log('  - Names:', names);
+        varNames.push(...names);
 
         if (stage === HOISTING_VAR && !decl.init) {
           log('  - Within var hoisting area so noop');
@@ -1046,8 +1053,6 @@ export function phaseNormalize(fdata, fname) {
             stage = HOISTING_VAR;
           }
 
-          const names = discoverBoundNames(snode); // binding patterns may still exist at this point
-          log('  - Names:', names);
           log('  - Injected from index', funcs + vars);
 
           // we are no longer in the hoisting segment so drop the var keyword and create the decl there
@@ -1064,7 +1069,6 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    // Reinsert ordered
     body
       .slice(0, funcs)
       .sort((a, b) => {
@@ -1072,19 +1076,43 @@ export function phaseNormalize(fdata, fname) {
         const B = b.type === 'FunctionDeclaration' ? b.id.name : b.declaration.id.name;
         return A < B ? -1 : A > B ? 1 : 0;
       })
-      .forEach((node, i) => {
-        body[i] = node;
-      });
-    body
-      .slice(funcs, funcs + vars)
-      .sort((a, b) => {
-        const A = a.type === 'VariableDeclaration' ? a.declarations[0].id.name : a.declaration.declarations[0].id.name;
-        const B = b.type === 'VariableDeclaration' ? b.declarations[0].id.name : b.declaration.declarations[0].id.name;
-        return A < B ? -1 : A > B ? 1 : 0;
-      })
-      .forEach((node, i) => {
-        body[funcs + i] = node;
-      });
+      .forEach((node, i) => (body[i] = node));
+
+    // Replace all var decls with fresh ones. Deals with ordering, deduping, and func-name-deduping.
+    // All these var decls should not have an init at this point.
+    const varNameSet = new Set();
+    body.splice(
+      funcs,
+      vars,
+      ...varNames
+        .filter((name) => {
+          if (funcNames.includes(name)) return false;
+          if (varNameSet.has(name)) return false;
+          varNameSet.add(name);
+          return true;
+        })
+        .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
+        .map((name) => AST.variableDeclaration(name, undefined, 'var')),
+    );
+
+    // If two functions have the same name then only the last one is not dead code
+    const seenNames = new Set();
+    const funcNodes = body.slice(0, funcs);
+    for (let i = funcNodes.length - 1; i >= 0; --i) {
+      const node = funcNodes[i];
+      const name =
+        node.type === 'FunctionDeclaration'
+          ? node.id.name
+          : node.declaration.type === 'FunctionDeclaration'
+          ? node.declaration.id.name
+          : ASSERT(false);
+
+      if (seenNames.has(name)) {
+        body[i] = AST.expressionStatement(AST.literal('<eliminated duplicate func decl `' + name + '`>'));
+      } else {
+        seenNames.add(name);
+      }
+    }
 
     groupEnd();
   }

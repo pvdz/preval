@@ -19,7 +19,6 @@ var x = $(2);
 
 `````js filename=intro
 var x;
-var x;
 x = $(1);
 x = $(2);
 `````
@@ -27,7 +26,6 @@ x = $(2);
 ## Output
 
 `````js filename=intro
-var x;
 var x;
 x = $(1);
 x = $(2);

@@ -23,18 +23,14 @@ export function g() {
 export function g() {
   function f() {
     {
-      let tmpReturnArg = $(1);
+      let tmpReturnArg = $(2);
       return tmpReturnArg;
-    }
-  }
-  function f() {
-    {
-      let tmpReturnArg$1 = $(2);
-      return tmpReturnArg$1;
     }
   }
   var tmpArg;
   ('<hoisted var `tmpArg` decl without init>');
+  ('<eliminated duplicate func decl `f`>');
+  ('<hoisted func decl `f`>');
   tmpArg = f(3);
   $(tmpArg);
   ('<hoisted func decl `f`>');
@@ -52,12 +48,8 @@ $(tmpArg$1);
 `````js filename=intro
 export function g() {
   function f() {
-    let tmpReturnArg = $(1);
+    let tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
-  function f() {
-    let tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
   }
   var tmpArg;
   tmpArg = f(3);

@@ -15,11 +15,9 @@ for (x in $(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpForInRhs = $(1);
-  for (x in tmpForInRhs) {
-    $(2);
-  }
+const tmpForInRhs = $(1);
+for (x in tmpForInRhs) {
+  $(2);
 }
 `````
 

@@ -24,17 +24,15 @@ var tmpAssignComMemLhsProp;
 var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
+const tmpForOfRhs = $(b);
 {
-  const tmpForOfRhs = $(b);
-  {
-    let tmpForOfLhsNode;
-    for (tmpForOfLhsNode of tmpForOfRhs) {
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-      tmpAssignComMemLhsProp = $('foo');
-      tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
-      $(a);
-    }
+  let tmpForOfLhsNode;
+  for (tmpForOfLhsNode of tmpForOfRhs) {
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+    tmpAssignComMemLhsProp = $('foo');
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
+    $(a);
   }
 }
 `````

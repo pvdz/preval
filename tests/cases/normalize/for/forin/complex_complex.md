@@ -23,16 +23,14 @@ var tmpArg;
 var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
+const tmpForInRhs = $(b);
 {
-  const tmpForInRhs = $(b);
-  {
-    let tmpForInLhsNode;
-    for (tmpForInLhsNode in tmpForInRhs) {
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignMemLhsObj.x = tmpForInLhsNode;
-      tmpArg = a.x;
-      $(tmpArg);
-    }
+  let tmpForInLhsNode;
+  for (tmpForInLhsNode in tmpForInRhs) {
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
+    tmpArg = a.x;
+    $(tmpArg);
   }
 }
 `````

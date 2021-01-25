@@ -20,12 +20,10 @@ for (a in $({x: 1, y: 2})) $(a);
 `````js filename=intro
 var tmpArg;
 let a;
-{
-  tmpArg = { x: 1, y: 2 };
-  const tmpForInRhs = $(tmpArg);
-  for (a in tmpForInRhs) {
-    $(a);
-  }
+tmpArg = { x: 1, y: 2 };
+const tmpForInRhs = $(tmpArg);
+for (a in tmpForInRhs) {
+  $(a);
 }
 `````
 

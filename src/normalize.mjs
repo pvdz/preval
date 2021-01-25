@@ -1586,118 +1586,9 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'VariableDeclaration': {
-        if (node.declarations.length !== 1) {
-          log('Encountered a var decl with multiple decls (', node.declarations.length, '). Waiting for next pass to visit them.');
-          changed = true;
-          break;
-        }
-
-        let changedHere = false;
-        const kind = node.kind;
+        ASSERT(node.declarations.length === 1, 'should be normalized');
         const dnode = node.declarations[0];
-        const names = [];
-
-        // The paramNode can be either an Identifier or a pattern of sorts
-        if (dnode.id.type === 'Identifier') {
-          const meta = getMetaForBindingName(dnode.id);
-          meta.usages.push(dnode.id);
-          names.push(dnode.id.name);
-        } else if (dnode.id.type === 'ArrayPattern') {
-          rold('Binding patterns not allowed'); // TODO: this is duplicate
-          log('- `let [x] = y()` --> `let tmp = y(), tmp1 = [...tmp], x = tmp1[0]`');
-
-          const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternArrRoot');
-          const nameStack = [bindingPatternRootName];
-          const newBindings = [];
-          funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
-
-          if (newBindings.length) {
-            log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
-            node.declarations = [
-              AST.variableDeclarator(bindingPatternRootName, dnode.init),
-              ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
-            ];
-            changed = true;
-            changedHere = true;
-          } else if (dnode.init) {
-            log('There were no bindings so replacing the var declaration with its init');
-            crumbSet(1, AST.expressionStatement(dnode.init));
-            changed = true;
-            changedHere = true;
-          } else {
-            ASSERT(false, 'binding patterns are required to have an init');
-          }
-        } else if (dnode.id.type === 'ObjectPattern') {
-          rold('Binding patterns not allowed'); // TODO: this is duplicate
-          log('- `var {x} = y()` --> `var tmp = y(), x = obj.x`');
-
-          const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
-          const nameStack = [bindingPatternRootName];
-          const newBindings = [];
-          funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
-
-          if (newBindings.length) {
-            log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
-            node.declarations = [
-              AST.variableDeclarator(bindingPatternRootName, dnode.init),
-              ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
-            ];
-            changed = true;
-            changedHere = true;
-          } else if (dnode.init) {
-            log('There were no bindings so replacing the var declaration with its init');
-            crumbSet(1, AST.expressionStatement(dnode.init));
-            changed = true;
-            changedHere = true;
-          }
-        } else {
-          console.dir(node, { depth: null });
-          ASSERT(false, 'wat is dis', [dnode.id.type], node);
-        }
-
-        if (!changedHere && node.declarations.length === 1 && node.declarations[0].init) {
-          const decl = node.declarations[0];
-          const init = decl.init;
-          if (init.type === 'MemberExpression' && isComplexNode(init.object)) {
-            if (init.object.type === 'SequenceExpression' && !isComplexNode(init.object.expressions[init.object.expressions.length - 1])) {
-              rold('Var init cannot be member expression on sequence with trailing node simple');
-              log('- `var a = (f(), x).b` --> `f(); var a = x.b`');
-              before(node);
-
-              const mem = init;
-              const seq = init.object;
-              const prop = init.property;
-              const tmpName = createFreshVarInCurrentRootScope('tmpPseudoExprStmt');
-              node.declarations.unshift(AST.variableDeclarator(tmpName, AST.sequenceExpression(seq.expressions.slice(0, -1))));
-              decl.init = AST.memberExpression(seq.expressions[seq.expressions.length - 1], prop, mem.computed);
-              after(node);
-              changed = true;
-              changedHere = true;
-            } else {
-              rold('Var init cannot be member expression with complex object');
-              log('- `var a = f().b` --> `var tmp = $(), a = tmp.b`');
-              before(node);
-
-              const mem = init;
-              const obj = init.object;
-              const prop = init.property;
-              const tmpName = createFreshVarInCurrentRootScope('tmpBindingInit');
-              node.declarations.unshift(AST.variableDeclarator(tmpName, obj));
-              decl.init = AST.memberExpression(tmpName, prop, mem.computed);
-              after(node);
-              changed = true;
-              changedHere = true;
-            }
-          }
-        }
-
-        if (changedHere) {
-          const node = crumbGet(1);
-          _stmt(node, isExport, isFunctionBody);
-        } else if (dnode.init) {
-          expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
-        }
-
+        if (dnode.init) expr2(node, 'declarations', 0, dnode, 'init', -1, dnode.init);
         break;
       }
 
@@ -3769,7 +3660,6 @@ export function phaseNormalize(fdata, fname) {
 
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-
       if (jumpTable(cnode, body, i)) {
         changed = true;
         --i;
@@ -3805,6 +3695,8 @@ export function phaseNormalize(fdata, fname) {
         return transformSwitchStatement(node, body, i);
       case 'ThrowStatement':
         return transformThrowStatement(node, body, i);
+      case 'VariableDeclaration':
+        return transformVariableDeclaration(node, body, i);
     }
 
     return false;
@@ -4435,6 +4327,139 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       return true;
+    }
+
+    return false;
+  }
+  function transformVariableDeclaration(node, body, i) {
+    if (node.declarations.length !== 1) {
+      rule('Var binding decls must introduce one binding');
+      log('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var')
+      log('let a = 1, b = 2', 'let a = 1; var b = 2', () => node.kind === 'let')
+      log('const a = 1, b = 2', 'const a = 1; var b = 2', () => node.kind === 'const')
+      before(node);
+
+      const newNodes = node.declarations.map(dec => AST.variableDeclarationFromDeclaration(dec, node.kind));
+      body.splice(i, 1, ...newNodes);
+
+      newNodes.forEach(n => after(n));
+      return true;
+    }
+
+    const dnode = node.declarations[0];
+
+    if (dnode.id.type === 'ArrayPattern') {
+      rule('Binding array patterns not allowed');
+      example('let [x] = y()', 'let tmp = y(), tmp1 = [...tmp], x = tmp1[0]');
+      before(node);
+
+      const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternArrRoot'); // TODO: rename to tmp prefix
+      const nameStack = [bindingPatternRootName];
+      const newBindings = [];
+      funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
+
+      if (newBindings.length) {
+        log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
+        node.declarations = [
+          AST.variableDeclarator(bindingPatternRootName, dnode.init),
+          ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
+        ];
+
+        after(node);
+        return true;
+      }
+
+      ASSERT(dnode.init, 'binding patterns are required to have an init');
+
+      log('There were no bindings so replacing the var declaration with its init');
+      const newNode = AST.expressionStatement(dnode.init);
+      body[i] = newNode;
+
+      after(newNode);
+      return true;
+    }
+
+    if (dnode.id.type === 'ObjectPattern') {
+      rule('Binding object patterns not allowed');
+      example('var {x} = y()', 'var tmp = y(), x = obj.x');
+      before(node);
+
+      const bindingPatternRootName = createFreshVarInCurrentRootScope('bindingPatternObjRoot');
+      const nameStack = [bindingPatternRootName];
+      const newBindings = [];
+      funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
+
+      if (newBindings.length) {
+        log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
+        node.declarations = [
+          AST.variableDeclarator(bindingPatternRootName, dnode.init),
+          ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
+        ];
+
+        after(node);
+        return true;
+      }
+
+      ASSERT(dnode.init, 'binding patterns are required to have an init');
+
+      log('There were no bindings so replacing the var declaration with its init');
+      const newNode = AST.expressionStatement(dnode.init);
+      body[i] = newNode;
+
+      after(newNode);
+      return true;
+    }
+
+    if (dnode.id.type !== 'Identifier') {
+      console.dir(node, { depth: null });
+      ASSERT(
+        false,
+        'The paramNode can be either an Identifier or a pattern of sorts, and we checked the pattern above',
+        [dnode.id.type],
+        node,
+      );
+    }
+
+    const meta = getMetaForBindingName(dnode.id);
+    meta.usages.push(dnode.id);
+
+    if (node.declarations[0].init) {
+      const decl = node.declarations[0];
+      const init = decl.init;
+
+      if (init.type === 'MemberExpression' && isComplexNode(init.object)) {
+        if (init.object.type === 'SequenceExpression' && !isComplexNode(init.object.expressions[init.object.expressions.length - 1])) {
+          rule('Var init cannot be member expression on sequence with trailing node simple');
+          example('var a = (f(), x).b', 'f(); var a = x.b', () => !init.computed);
+          example('var a = (f(), x)[b()]', 'f(); var a = x[b()]', () => init.computed);
+          before(node);
+
+          const mem = init;
+          const seq = init.object;
+          const prop = init.property;
+          const newNode = AST.expressionStatement(AST.sequenceExpression(seq.expressions.slice(0, -1)));
+          body.splice(i, 0, newNode);
+          decl.init = AST.memberExpression(seq.expressions[seq.expressions.length - 1], prop, mem.computed);
+
+          after(node);
+          return true;
+        }
+
+        rule('Var init cannot be member expression with complex object');
+        example('var a = f().b','var tmp = $(), a = tmp.b');
+        before(node);
+
+        const mem = init;
+        const obj = init.object;
+        const prop = init.property;
+        const tmpName = createFreshVarInCurrentRootScope('tmpBindingInit');
+        const newNode = AST.variableDeclaration(tmpName, obj, 'const');
+        body.splice(i, 0, newNode);
+        decl.init = AST.memberExpression(tmpName, prop, mem.computed);
+
+        after(node);
+        return true;
+      }
     }
 
     return false;

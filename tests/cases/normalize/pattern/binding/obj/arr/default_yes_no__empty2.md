@@ -18,12 +18,15 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  objPatternAfterDefault = ['fail'];
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = ['fail'];
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -34,11 +37,14 @@ $('ok');
 ## Output
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  objPatternAfterDefault = ['fail'];
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = ['fail'];
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

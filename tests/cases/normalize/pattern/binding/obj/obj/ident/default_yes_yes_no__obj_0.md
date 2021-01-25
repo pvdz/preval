@@ -19,21 +19,27 @@ $(y);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { y: 'fail2' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
 let y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $('pass');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('pass');
+  y = tmpTernaryConsequent$1;
 } else {
   y = objPatternBeforeDefault$1;
 }
@@ -44,21 +50,27 @@ $(y);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { y: 'fail2' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
 let y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $('pass');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('pass');
+  y = tmpTernaryConsequent$1;
 } else {
   y = objPatternBeforeDefault$1;
 }

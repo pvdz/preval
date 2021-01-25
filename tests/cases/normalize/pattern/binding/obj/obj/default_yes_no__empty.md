@@ -19,13 +19,16 @@ $('bad');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'fail' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -44,12 +47,15 @@ $('bad');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'fail' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

@@ -19,14 +19,17 @@ $('ok');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternArrRoot = '';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['pass2'];
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -38,13 +41,16 @@ $('ok');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const arrPatternSplat = [...''];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['pass2'];
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }

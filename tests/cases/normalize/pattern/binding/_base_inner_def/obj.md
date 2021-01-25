@@ -15,11 +15,12 @@ const { x = b } = 1;
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;
@@ -29,10 +30,11 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
+var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;

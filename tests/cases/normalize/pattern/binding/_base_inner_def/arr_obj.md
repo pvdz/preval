@@ -15,13 +15,14 @@ const [{ x = a }] = 1;
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryTest;
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   x = a;
 } else {
   x = objPatternBeforeDefault;
@@ -31,12 +32,13 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
+var tmpTernaryTest;
 const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   x = a;
 } else {
   x = objPatternBeforeDefault;

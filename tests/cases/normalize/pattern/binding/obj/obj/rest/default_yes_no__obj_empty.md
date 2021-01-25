@@ -19,13 +19,16 @@ $(y);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = {};
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { a: 'pass' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -37,13 +40,16 @@ $(y);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = {};
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { a: 'pass' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

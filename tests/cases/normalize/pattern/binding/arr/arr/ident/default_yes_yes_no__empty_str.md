@@ -19,23 +19,29 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const bindingPatternArrRoot = '';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['pass2'];
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
 let x;
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  x = $('fail');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  x = tmpTernaryConsequent$1;
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -46,22 +52,28 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const arrPatternSplat = [...''];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['pass2'];
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
 let x;
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  x = $('fail');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('fail');
+  x = tmpTernaryConsequent$1;
 } else {
   x = arrPatternBeforeDefault$1;
 }

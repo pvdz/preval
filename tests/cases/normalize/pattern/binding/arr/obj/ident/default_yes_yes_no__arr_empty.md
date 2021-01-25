@@ -19,22 +19,28 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'pass2' };
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest$1 = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  x = $('pass');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('pass');
+  x = tmpTernaryConsequent$1;
 } else {
   x = objPatternBeforeDefault;
 }
@@ -45,22 +51,28 @@ $(x);
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryConsequent$1;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'pass2' };
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest$1 = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  x = $('pass');
+if (tmpTernaryTest$1) {
+  tmpTernaryConsequent$1 = $('pass');
+  x = tmpTernaryConsequent$1;
 } else {
   x = objPatternBeforeDefault;
 }

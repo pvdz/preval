@@ -18,12 +18,15 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = { b: 2, c: 3 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
 } else {
   x = objPatternBeforeDefault;
 }
@@ -33,12 +36,15 @@ $(x);
 ## Output
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = { b: 2, c: 3 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
 } else {
   x = objPatternBeforeDefault;
 }

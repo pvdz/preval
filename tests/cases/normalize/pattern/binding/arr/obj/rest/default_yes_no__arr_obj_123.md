@@ -20,15 +20,18 @@ $(x);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { a: 'fail' };
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -41,15 +44,18 @@ $(x);
 `````js filename=intro
 var tmpArg;
 var tmpElement;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 tmpElement = { x: 1, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let arrPatternStep;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { a: 'fail' };
-  arrPatternStep = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  arrPatternStep = tmpTernaryConsequent;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }

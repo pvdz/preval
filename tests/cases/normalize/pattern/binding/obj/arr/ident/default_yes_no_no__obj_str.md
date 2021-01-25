@@ -18,13 +18,14 @@ $(y);
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let y;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -35,13 +36,14 @@ $(y);
 ## Output
 
 `````js filename=intro
+var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest = arrPatternBeforeDefault === undefined;
 let y;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;

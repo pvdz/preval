@@ -19,13 +19,16 @@ $('bad');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'fail' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -44,13 +47,16 @@ $('bad');
 
 `````js filename=intro
 var tmpArg;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = { x: 'fail' };
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

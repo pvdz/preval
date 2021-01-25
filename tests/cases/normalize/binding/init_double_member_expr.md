@@ -18,7 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let tmpBindingInit = 'foo'.length;
+const tmpBindingInit = 'foo'.length;
 let x = tmpBindingInit.toString;
 $(x);
 `````
@@ -26,7 +26,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let tmpBindingInit = 'foo'.length;
+const tmpBindingInit = 'foo'.length;
 let x = tmpBindingInit.toString;
 $(x);
 `````

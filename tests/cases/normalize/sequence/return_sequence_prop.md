@@ -22,7 +22,7 @@ $(f());
 `````js filename=intro
 function f() {
   $(1);
-  let tmpBindingInit = $(2);
+  const tmpBindingInit = $(2);
   let tmpReturnArg = tmpBindingInit.foo;
   return tmpReturnArg;
 }
@@ -37,7 +37,7 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   $(1);
-  let tmpBindingInit = $(2);
+  const tmpBindingInit = $(2);
   let tmpReturnArg = tmpBindingInit.foo;
   return tmpReturnArg;
 }

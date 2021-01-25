@@ -19,12 +19,13 @@ $('ok');
 
 `````js filename=intro
 var tmpObjPropValue;
+var tmpTernaryTest;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   objPatternAfterDefault = a;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -44,12 +45,13 @@ $('ok');
 
 `````js filename=intro
 var tmpObjPropValue;
+var tmpTernaryTest;
 tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   objPatternAfterDefault = a;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

@@ -18,14 +18,17 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternArrRoot = [, , , 1, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
 } else {
   x = objPatternBeforeDefault;
 }
@@ -35,14 +38,17 @@ $('bad');
 ## Output
 
 `````js filename=intro
+var tmpTernaryConsequent;
+var tmpTernaryTest;
 const bindingPatternArrRoot = [, , , 1, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
+if (tmpTernaryTest) {
+  tmpTernaryConsequent = $('pass');
+  x = tmpTernaryConsequent;
 } else {
   x = objPatternBeforeDefault;
 }

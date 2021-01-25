@@ -20,22 +20,26 @@ $(y);
 `````js filename=intro
 var tmpArg;
 var tmpObjPropValue;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 tmpObjPropValue = [''];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['fail2'];
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
 let y;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
+if (tmpTernaryTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -48,22 +52,26 @@ $(y);
 `````js filename=intro
 var tmpArg;
 var tmpObjPropValue;
+var tmpTernaryConsequent;
+var tmpTernaryTest;
+var tmpTernaryTest$1;
 tmpObjPropValue = [''];
 const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
+tmpTernaryTest = objPatternBeforeDefault === undefined;
 let objPatternAfterDefault;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
+if (tmpTernaryTest) {
   tmpArg = ['fail2'];
-  objPatternAfterDefault = $(tmpArg);
+  tmpTernaryConsequent = $(tmpArg);
+  objPatternAfterDefault = tmpTernaryConsequent;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
+tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
 let y;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
+if (tmpTernaryTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;

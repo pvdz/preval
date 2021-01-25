@@ -27,6 +27,7 @@ function f($tdz$__foo) {
   var tmpNestedAssignMemberRhs;
   var tmpNestedAssignObj;
   var tmpNestedComplexRhs;
+  var tmpNestedComplexRhs$1;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
@@ -34,8 +35,9 @@ function f($tdz$__foo) {
     tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = $(d);
     tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-    b = tmpNestedComplexRhs;
+    tmpNestedComplexRhs$1 = tmpNestedAssignMemberRhs;
+    b = tmpNestedComplexRhs$1;
+    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
     a = tmpNestedComplexRhs;
     foo = tmpNestedComplexRhs;
   } else {
@@ -63,6 +65,7 @@ function f($tdz$__foo) {
   var tmpNestedAssignMemberRhs;
   var tmpNestedAssignObj;
   var tmpNestedComplexRhs;
+  var tmpNestedComplexRhs$1;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
@@ -70,8 +73,9 @@ function f($tdz$__foo) {
     tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignMemberRhs = $(4);
     tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-    b = tmpNestedComplexRhs;
+    tmpNestedComplexRhs$1 = tmpNestedAssignMemberRhs;
+    b = tmpNestedComplexRhs$1;
+    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
     a = tmpNestedComplexRhs;
     foo = tmpNestedComplexRhs;
   } else {

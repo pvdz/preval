@@ -132,6 +132,7 @@ const VERBOSE_TRACING = true;
   - arguments (ehh)
   - TODO: broken: var decl hoisting wont find stuff nested inside other blocks or sub-statements (loops, switch, try), I think?
   - TODO: loops that are direct children of labels are significant
+  - TODO: are func params made unique multiple times?
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -1488,7 +1489,21 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.id) expr(node, 'id', -1, node.id);
 
-        const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
+        node.params.forEach((pnode) => {
+          if (pnode.type === 'RestElement') {
+            log('- Rest param, recording usage for `' + pnode.argument.name + '`');
+            const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
+            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            meta.usages.push(pnode.argument);
+            return;
+          }
+
+          ASSERT(pnode.type === 'Identifier', 'args should be normalized', pnode);
+
+          log('- Ident param, recording usage for `' + pnode.name + '`');
+          const meta = getMetaForBindingName(pnode);
+          meta.usages.push(pnode);
+        });
 
         stmt(node, 'body', -1, node.body, undefined, true);
 
@@ -3664,6 +3679,8 @@ export function phaseNormalize(fdata, fname) {
         return transformForxStatement(node, body, i, true);
       case 'ForOfStatement':
         return transformForxStatement(node, body, i, false);
+      case 'FunctionDeclaration':
+        return transformFunctionDeclaration(node, body, i);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
       case 'ReturnStatement':
@@ -3957,6 +3974,157 @@ export function phaseNormalize(fdata, fname) {
 
       node.body = AST.blockStatement(node.body);
 
+      return true;
+    }
+
+    return false;
+  }
+  function transformFunctionDeclaration(node, body, i) {
+    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+    // Array<name, expr>
+    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+    const newBindings = [];
+
+    node.params.forEach((pnode, i) => {
+      if (pnode.type === 'RestElement') {
+        return false;
+      }
+
+      // Node to represent the cache of the current property/element step
+      const cacheNameStack = [];
+
+      // Now there's basically two states: a param with a default or without a default. The params with a default
+      // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
+      // continue to process the left value. Otherwise, put null on the stack and process the node itself.
+      // See https://gist.github.com/pvdz/dc2c0a477cc276d1b9e6e2ddbb417135 for a brute force set of test cases
+      // See https://gist.github.com/pvdz/867502f6ed2dd902d061c82e38a81181 for the hack to regenerate them
+      if (pnode.type === 'AssignmentPattern') {
+        rule('Func params must not have inits/defaults');
+        example('function f(x = y()) {}', 'function f(tmp) { x = tmp === undefined ? y() : tmp; }');
+        before({ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
+
+        // Param defaults. Rewrite to be inside the function
+        // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
+        // function f(a=b, b=1){}
+        //   ->
+        // function f($a, $b){
+        //   let a = $a === undefined ? $b : $a; // b is tdz'd, mimicking the default behavior.
+        //   let b = $b === undefined ? 1 : $a;
+        // }
+        // The let bindings solely exist to catch reference errors thrown by default param handling
+        // One small source of trouble is that params are var bindings, not let. The default behavior is special.
+        // This transform would break functions that contain another var declaration for the same name.
+
+        ASSERT(
+          pnode.left.type === 'Identifier' || pnode.left.type === 'ObjectPattern' || pnode.left.type === 'ArrayPattern',
+          'wat node now?',
+          pnode.left,
+        );
+        ASSERT(!node.expression, 'expression arrows ought to be blocks by now');
+
+        if (pnode.left.type === 'Identifier') {
+          // ident param with default
+
+          const newParamName = createFreshVarInCurrentRootScope('$tdz$__' + pnode.left.name);
+          cacheNameStack.push(newParamName);
+
+          log('Replacing param default with a local variable');
+          const newIdentNode = AST.identifier(newParamName);
+          node.params[i] = newIdentNode;
+
+          // Put new nodes at the start of the function body
+          newBindings.push([
+            pnode.left.name,
+            OLD,
+            // `param === undefined ? init : param`
+            AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
+          ]);
+
+          return;
+        }
+
+        // pattern param with default
+
+        // Param name to hold the object to destructure
+        const newParamName = createFreshVarInCurrentRootScope('$tdz$__pattern');
+        cacheNameStack.push(newParamName);
+        log('Replacing param default with a local variable');
+        const newIdentNode = AST.identifier(newParamName);
+        node.params[i] = newIdentNode;
+
+        // Create unique var containing the initial param value after resolving default values
+        const undefaultName = createFreshVarInCurrentRootScope('$tdz$__pattern_after_default');
+        cacheNameStack.push(undefaultName);
+        log('Replacing param default with a local variable');
+        const undefaultNameNode = AST.identifier(undefaultName);
+
+        // Put new nodes at the start of the function body
+        newBindings.push([
+          undefaultNameNode,
+          FRESH,
+          // `param === undefined ? init : param`
+          AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
+        ]);
+
+        // Then walk the whole pattern.
+        // - At every step of the pattern create code that stores the value of that step in a tmp variable.
+        // - Store the tmp var in a stack (pop it when walking out)
+        // - A leaf node should be able to access the property from the binding name at the top of the stack
+
+        if (pnode.left.type === 'ObjectPattern') {
+          rule('Func params must not be object patterns');
+          example('function({x}) {}', 'function(tmp) { var x = tmp.x; }');
+
+          funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings, 'param');
+        } else if (pnode.left.type === 'ArrayPattern') {
+          rule('Func params must not be array patterns');
+          example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
+
+          funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings, 'param');
+        } else {
+          ASSERT(false, 'what else?', pnode.left);
+        }
+        return;
+      }
+
+      // Param has no default
+
+      if (pnode.type === 'Identifier') {
+        // This is already simple so nothing to do here
+        log('- Ident param;', '`' + pnode.name + '`');
+        return;
+      }
+
+      ASSERT(pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern', 'wat else?', pnode);
+
+      const newParamName = createFreshVarInCurrentRootScope('tmpParamPattern');
+      cacheNameStack.push(newParamName);
+      log('- Replacing the pattern param with', '`' + newParamName + '`');
+      // Replace the pattern with a variable that receives the whole object
+      const newIdentNode = AST.identifier(newParamName);
+      node.params[i] = newIdentNode;
+
+      // Then walk the whole pattern.
+      // - At every step of the pattern create code that stores the value of that step in a tmp variable.
+      // - Store the tmp var in a stack (pop it when walking out)
+      // - A leaf node should be able to access the property from the binding name at the top of the stack
+
+      if (pnode.type === 'ObjectPattern') {
+        rold('Func params must not be array patterns');
+        log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
+        funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings, 'param');
+      } else if (pnode.type === 'ArrayPattern') {
+        rold('Func params must not be array patterns');
+        log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
+        funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings, 'param');
+      } else {
+        ASSERT(false, 'dunno wat dis is', pnode);
+      }
+    });
+
+    if (newBindings.length) {
+      log('Params were transformed somehow, injecting new nodes into body');
+      node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
       return true;
     }
 
@@ -4313,15 +4481,15 @@ export function phaseNormalize(fdata, fname) {
   function transformVariableDeclaration(node, body, i) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
-      log('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var')
-      log('let a = 1, b = 2', 'let a = 1; var b = 2', () => node.kind === 'let')
-      log('const a = 1, b = 2', 'const a = 1; var b = 2', () => node.kind === 'const')
+      log('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
+      log('let a = 1, b = 2', 'let a = 1; var b = 2', () => node.kind === 'let');
+      log('const a = 1, b = 2', 'const a = 1; var b = 2', () => node.kind === 'const');
       before(node);
 
-      const newNodes = node.declarations.map(dec => AST.variableDeclarationFromDeclaration(dec, node.kind));
+      const newNodes = node.declarations.map((dec) => AST.variableDeclarationFromDeclaration(dec, node.kind));
       body.splice(i, 1, ...newNodes);
 
-      newNodes.forEach(n => after(n));
+      newNodes.forEach((n) => after(n));
       return true;
     }
 
@@ -4425,7 +4593,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         rule('Var init cannot be member expression with complex object');
-        example('var a = f().b','var tmp = $(), a = tmp.b');
+        example('var a = f().b', 'var tmp = $(), a = tmp.b');
         before(node);
 
         const mem = init;
@@ -4458,7 +4626,7 @@ export function phaseNormalize(fdata, fname) {
 
     if (node.body.type !== 'BlockStatement') {
       rule('While sub-statement must be block');
-      example('while (x) y','while (x) { y }');
+      example('while (x) y', 'while (x) { y }');
       before(node);
 
       const newNode = AST.blockStatement(node.body);

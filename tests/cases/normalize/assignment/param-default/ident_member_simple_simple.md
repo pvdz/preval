@@ -23,14 +23,16 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
     tmpNestedPropAssignRhs = c;
     b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    foo = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    a = tmpNestedComplexRhs;
+    foo = tmpNestedComplexRhs;
   } else {
     foo = $tdz$__foo;
   }
@@ -51,14 +53,16 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__foo) {
+  var tmpNestedComplexRhs;
   var tmpNestedPropAssignRhs;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
     tmpNestedPropAssignRhs = 3;
     b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    foo = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    a = tmpNestedComplexRhs;
+    foo = tmpNestedComplexRhs;
   } else {
     foo = $tdz$__foo;
   }

@@ -34,6 +34,7 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs;
   var tmpNestedAssignCompMemberRhs$1;
   var tmpNestedAssignObj;
+  var tmpNestedComplexRhs;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
@@ -50,8 +51,9 @@ function f($tdz$__foo) {
     tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
     tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
     tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-    a = tmpNestedAssignCompMemberRhs;
-    foo = tmpNestedAssignCompMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedComplexRhs;
+    foo = tmpNestedComplexRhs;
   } else {
     foo = $tdz$__foo;
   }
@@ -84,6 +86,7 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs;
   var tmpNestedAssignCompMemberRhs$1;
   var tmpNestedAssignObj;
+  var tmpNestedComplexRhs;
   let foo;
   const tmpIfTest = $tdz$__foo === undefined;
   if (tmpIfTest) {
@@ -100,8 +103,9 @@ function f($tdz$__foo) {
     tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
     tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
     tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-    a = tmpNestedAssignCompMemberRhs;
-    foo = tmpNestedAssignCompMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedComplexRhs;
+    foo = tmpNestedComplexRhs;
   } else {
     foo = $tdz$__foo;
   }

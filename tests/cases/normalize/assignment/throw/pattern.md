@@ -24,14 +24,12 @@ var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  arrAssignPatternRhs = z;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  let tmpThrowArg = arrAssignPatternRhs;
-  throw tmpThrowArg;
-}
+arrAssignPatternRhs = z;
+arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+let tmpThrowArg = arrAssignPatternRhs;
+throw tmpThrowArg;
 $(x, y, z);
 `````
 

@@ -24,15 +24,11 @@ let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-{
-  {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemLhsObj.c = d;
-  }
-  let tmpThrowArg = d;
-  throw tmpThrowArg;
-}
+a;
+tmpAssignMemLhsObj = $(b);
+tmpAssignMemLhsObj.c = d;
+let tmpThrowArg = d;
+throw tmpThrowArg;
 $(a, b, c, d);
 `````
 

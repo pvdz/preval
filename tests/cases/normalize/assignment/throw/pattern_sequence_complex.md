@@ -24,16 +24,14 @@ var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  $(x);
-  $(y);
-  arrAssignPatternRhs = $(z);
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  let tmpThrowArg = arrAssignPatternRhs;
-  throw tmpThrowArg;
-}
+$(x);
+$(y);
+arrAssignPatternRhs = $(z);
+arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+let tmpThrowArg = arrAssignPatternRhs;
+throw tmpThrowArg;
 $(x, y, z);
 `````
 

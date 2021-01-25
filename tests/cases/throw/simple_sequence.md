@@ -21,12 +21,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    $(1);
-    $(2);
-    let tmpThrowArg = null;
-    throw tmpThrowArg;
-  }
+  $(1);
+  $(2);
+  let tmpThrowArg = null;
+  throw tmpThrowArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

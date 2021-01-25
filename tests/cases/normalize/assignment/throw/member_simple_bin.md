@@ -19,26 +19,34 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-{
-  let tmpBindInitMemberObject = a;
-  let tmpBindInitRhs = b + c;
-  tmpBindInitMemberObject.x = tmpBindInitRhs;
-  let tmpThrowArg = tmpBindInitRhs;
-  throw tmpThrowArg;
-}
+tmpAssignMemLhsObj = a;
+tmpAssignMemRhs = b + c;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+let tmpThrowArg = tmpAssignMemRhs;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 let a = { x: 10 };
-let tmpBindInitMemberObject = a;
-tmpBindInitMemberObject.x = 5;
-throw 5;
+tmpAssignMemLhsObj = a;
+tmpAssignMemRhs = 5;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+let tmpThrowArg = tmpAssignMemRhs;
+throw tmpThrowArg;
 $(a, 5, 3);
 `````
 

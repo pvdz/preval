@@ -24,13 +24,11 @@ var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-{
-  tmpAssignComMemLhsObj = a;
-  tmpAssignComMemLhsProp = $('x');
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-  let tmpThrowArg = b;
-  throw tmpThrowArg;
-}
+tmpAssignComMemLhsObj = a;
+tmpAssignComMemLhsProp = $('x');
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+let tmpThrowArg = b;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 

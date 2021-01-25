@@ -1581,23 +1581,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ThrowStatement': {
-        if (isComplexNode(node.argument)) {
-          rold('Throw argument must be simple');
-          example('throw $()', '{ let tmp = $(); throw tmp; }');
-          before(node);
-
-          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-          const tmpName = createFreshVarInCurrentRootScope('tmpThrowArg');
-          const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), AST.throwStatement(tmpName));
-
-          crumbSet(1, newNode);
-          after(newNode);
-
-          _stmt(newNode, isExport, isFunctionBody);
-          changed = true;
-          break;
-        }
-
         expr(node, 'argument', -1, node.argument);
         break;
       }
@@ -3820,6 +3803,8 @@ export function phaseNormalize(fdata, fname) {
         return transformReturnStatement(node, body, i);
       case 'SwitchStatement':
         return transformSwitchStatement(node, body, i);
+      case 'ThrowStatement':
+        return transformThrowStatement(node, body, i);
     }
 
     return false;
@@ -4436,5 +4421,22 @@ export function phaseNormalize(fdata, fname) {
 
     after(newNode);
     return true;
+  }
+  function transformThrowStatement(node, body, i) {
+    if (isComplexNode(node.argument)) {
+      rold('Throw argument must be simple');
+      example('throw $()', 'let tmp = $(); throw tmp;');
+      before(node);
+
+      const tmpName = createFreshVarInCurrentRootScope('tmpThrowArg');
+      const newNode = AST.variableDeclaration(tmpName, node.argument);
+      body.splice(i, 0, newNode);
+      node.argument = AST.identifier(tmpName);
+
+      after(newNode);
+      return true;
+    }
+
+    return false;
   }
 }

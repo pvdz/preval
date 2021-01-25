@@ -19,26 +19,26 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-{
-  {
-    a;
-    b.c = d;
-  }
-  let tmpThrowArg = d;
-  throw tmpThrowArg;
-}
+a;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = d;
+let tmpThrowArg = d;
+throw tmpThrowArg;
 $(a, b, c, d);
 `````
 
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let b = { c: 2 };
-b.c = 3;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = 3;
 throw 3;
 $(1, b, 'unused', 3);
 `````

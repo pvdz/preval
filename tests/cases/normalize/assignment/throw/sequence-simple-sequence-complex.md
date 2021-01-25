@@ -20,23 +20,27 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-{
-  a;
-  let tmpBindInitMemberObject = b;
-  {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemLhsObj.c = d;
-  }
-  let tmpBindInitRhs = d;
-  tmpBindInitMemberObject.c = tmpBindInitRhs;
-  let tmpThrowArg = tmpBindInitRhs;
-  throw tmpThrowArg;
-}
+a;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+a;
+tmpNestedAssignObj = $(b);
+tmpNestedPropAssignRhs = d;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+tmpAssignMemRhs = tmpNestedPropAssignRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.c = tmpAssignMemRhs;
+let tmpThrowArg = tmpAssignMemRhs;
+throw tmpThrowArg;
 $(a, b, c, d);
 `````
 
@@ -44,12 +48,22 @@ $(a, b, c, d);
 
 `````js filename=intro
 var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
+var tmpNestedAssignObj;
+var tmpNestedPropAssignRhs;
 let b = { c: 2 };
-let tmpBindInitMemberObject = b;
-tmpAssignMemLhsObj = $(b);
-tmpAssignMemLhsObj.c = 3;
-tmpBindInitMemberObject.c = 3;
-throw 3;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+tmpNestedAssignObj = $(b);
+tmpNestedPropAssignRhs = 3;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+tmpAssignMemRhs = tmpNestedPropAssignRhs;
+tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+tmpAssignMemLhsObj$2.c = tmpAssignMemRhs;
+let tmpThrowArg = tmpAssignMemRhs;
+throw tmpThrowArg;
 $(1, b, 'unused', 3);
 `````
 

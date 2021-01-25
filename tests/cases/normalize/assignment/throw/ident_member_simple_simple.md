@@ -23,13 +23,11 @@ var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-{
-  tmpNestedPropAssignRhs = c;
-  b.x = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpThrowArg = a;
-  throw tmpThrowArg;
-}
+tmpNestedPropAssignRhs = c;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpThrowArg = tmpNestedPropAssignRhs;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 
@@ -42,7 +40,7 @@ let b = { x: 2 };
 tmpNestedPropAssignRhs = 3;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpThrowArg = a;
+let tmpThrowArg = tmpNestedPropAssignRhs;
 throw tmpThrowArg;
 $(a, b, 3);
 `````

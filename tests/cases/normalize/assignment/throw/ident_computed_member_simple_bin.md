@@ -28,17 +28,15 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-{
-  tmpNestedAssignComMemberObj = b;
-  tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-  tmpNestedAssignCompMemberRhs = c + d;
-  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  a = tmpNestedAssignCompMemberRhs;
-  let tmpThrowArg = a;
-  throw tmpThrowArg;
-}
+tmpNestedAssignComMemberObj = b;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+tmpNestedAssignCompMemberRhs = c + d;
+tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+a = tmpNestedAssignCompMemberRhs;
+let tmpThrowArg = tmpNestedAssignCompMemberRhs;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 
@@ -59,7 +57,7 @@ tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
 tmpNestedAssignCompMemberRhs = 7;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 a = tmpNestedAssignCompMemberRhs;
-let tmpThrowArg = a;
+let tmpThrowArg = tmpNestedAssignCompMemberRhs;
 throw tmpThrowArg;
 $(a, b, 7);
 `````

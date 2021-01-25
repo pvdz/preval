@@ -25,15 +25,13 @@ let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  arrAssignPatternRhs = z;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = arrAssignPatternRhs;
-  let tmpThrowArg = a;
-  throw tmpThrowArg;
-}
+arrAssignPatternRhs = z;
+arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+a = arrAssignPatternRhs;
+let tmpThrowArg = a;
+throw tmpThrowArg;
 $(a, x, y, z);
 `````
 

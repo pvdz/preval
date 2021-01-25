@@ -26,15 +26,13 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-{
-  tmpNestedAssignObj = $(b);
-  tmpNestedAssignMemberObj = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs = c + d;
-  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  a = tmpNestedAssignMemberRhs;
-  let tmpThrowArg = a;
-  throw tmpThrowArg;
-}
+tmpNestedAssignObj = $(b);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs = c + d;
+tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+a = tmpNestedAssignMemberRhs;
+let tmpThrowArg = tmpNestedAssignMemberRhs;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 
@@ -51,7 +49,7 @@ tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = 7;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
-let tmpThrowArg = a;
+let tmpThrowArg = tmpNestedAssignMemberRhs;
 throw tmpThrowArg;
 $(a, b, 7);
 `````

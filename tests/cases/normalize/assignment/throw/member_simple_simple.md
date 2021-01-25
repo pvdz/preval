@@ -22,11 +22,9 @@ $(a, b, c);
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-{
-  a.x = b;
-  let tmpThrowArg = b;
-  throw tmpThrowArg;
-}
+a.x = b;
+let tmpThrowArg = b;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 

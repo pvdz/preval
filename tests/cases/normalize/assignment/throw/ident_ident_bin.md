@@ -24,13 +24,11 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-{
-  tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  let tmpThrowArg = a;
-  throw tmpThrowArg;
-}
+tmpNestedComplexRhs = c + d;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+let tmpThrowArg = tmpNestedComplexRhs;
+throw tmpThrowArg;
 $(a, b, c);
 `````
 
@@ -43,7 +41,7 @@ let b = 2;
 tmpNestedComplexRhs = 7;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpThrowArg = a;
+let tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
 $(a, b, 7);
 `````

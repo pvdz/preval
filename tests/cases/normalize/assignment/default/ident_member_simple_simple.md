@@ -23,16 +23,14 @@ var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpNestedPropAssignRhs = c;
-      b.x = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-    }
+    ('default case:');
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
   }
 }
 $(a, b, c);

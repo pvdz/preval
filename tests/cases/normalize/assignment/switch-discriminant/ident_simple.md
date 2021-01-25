@@ -22,12 +22,10 @@ $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
+a = b;
+const tmpSwitchTest = b;
 {
-  a = b;
-  const tmpSwitchTest = b;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

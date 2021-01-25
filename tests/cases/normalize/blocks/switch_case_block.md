@@ -23,26 +23,24 @@ switch ($(1)) {
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
+const tmpSwitchTest = $(1);
 {
-  const tmpSwitchTest = $(1);
-  {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $(2);
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (tmpIfTest) {
-      ('case 0:');
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $(2);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
       {
-        {
-          $(3);
-        }
+        $(3);
       }
-      tmpFallthrough = true;
     }
+    tmpFallthrough = true;
   }
 }
 `````

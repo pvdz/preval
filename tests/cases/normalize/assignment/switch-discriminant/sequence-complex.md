@@ -24,16 +24,12 @@ let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
+a;
+tmpAssignMemLhsObj = $(b);
+tmpAssignMemLhsObj.c = d;
+const tmpSwitchTest = d;
 {
-  {
-    a;
-    tmpAssignMemLhsObj = $(b);
-    tmpAssignMemLhsObj.c = d;
-  }
-  const tmpSwitchTest = d;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c, d);
 `````

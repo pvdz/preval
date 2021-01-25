@@ -28,21 +28,19 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpNestedAssignMemberObj = b;
-      tmpNestedAssignObj = $(c);
-      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
-      tmpNestedAssignMemberRhs$1 = $(d);
-      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      a = tmpNestedAssignMemberRhs;
-    }
+    ('default case:');
+    tmpNestedAssignMemberObj = b;
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
+    tmpNestedAssignMemberRhs$1 = $(d);
+    tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
   }
 }
 $(a, b, c);

@@ -28,22 +28,20 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      arrAssignPatternRhs$1 = z;
-      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      arrAssignPatternRhs = arrAssignPatternRhs$1;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      arrAssignPatternRhs;
-    }
+    ('default case:');
+    arrAssignPatternRhs$1 = z;
+    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+    x = arrPatternSplat$1[1];
+    y = arrPatternSplat$1[2];
+    arrAssignPatternRhs = arrAssignPatternRhs$1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+    arrAssignPatternRhs;
   }
 }
 $(a, b, x, y, z);

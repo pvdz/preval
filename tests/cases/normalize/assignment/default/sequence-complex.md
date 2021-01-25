@@ -24,17 +24,15 @@ let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
+    ('default case:');
     {
-      ('default case:');
-      {
-        a;
-        tmpAssignMemLhsObj = $(b);
-        tmpAssignMemLhsObj.c = d;
-      }
+      a;
+      tmpAssignMemLhsObj = $(b);
+      tmpAssignMemLhsObj.c = d;
     }
   }
 }

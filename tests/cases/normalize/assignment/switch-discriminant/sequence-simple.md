@@ -19,19 +19,17 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
+a;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = d;
+const tmpSwitchTest = d;
 {
-  {
-    a;
-    b.c = d;
-  }
-  const tmpSwitchTest = d;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c, d);
 `````
@@ -39,8 +37,10 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let b = { c: 2 };
-b.c = 3;
+tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = 3;
 $(1, b, 'unused', 3);
 `````
 

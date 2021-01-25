@@ -36,38 +36,36 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-{
-  const tmpSwitchTest = $('a');
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+const tmpSwitchTest = $('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpNestedAssignComMemberObj = b;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
+      tmpNestedAssignComMemberProp$1 = $('y');
+      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+      tmpNestedAssignCompMemberRhs$1 = $(d);
+      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+      a = tmpNestedAssignCompMemberRhs;
+      break tmpSwitchBreak;
     }
-    if (tmpIfTest) {
-      ('case 0:');
-      {
-        tmpNestedAssignComMemberObj = b;
-        tmpNestedAssignComMemberProp = $('x');
-        tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-        tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-        tmpNestedAssignObj = $(c);
-        tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
-        tmpNestedAssignComMemberProp$1 = $('y');
-        tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-        tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-        tmpNestedAssignCompMemberRhs$1 = $(d);
-        tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-        tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-        tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-        a = tmpNestedAssignCompMemberRhs;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c);

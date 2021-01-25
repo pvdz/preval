@@ -23,15 +23,13 @@ var tmpAssignMemLhsObj;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpAssignMemLhsObj = $(a);
-      tmpAssignMemLhsObj.x = b;
-    }
+    ('default case:');
+    tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = b;
   }
 }
 $(a, b, c);

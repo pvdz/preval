@@ -27,30 +27,28 @@ var tmpNestedAssignObj;
 let a = 1;
 let b = 2;
 let c = 3;
-{
-  const tmpSwitchTest = $('a');
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+const tmpSwitchTest = $('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(b);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignMemberRhs = $(c);
+      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+      a = tmpNestedAssignMemberRhs;
+      break tmpSwitchBreak;
     }
-    if (tmpIfTest) {
-      ('case 0:');
-      {
-        $(b);
-        tmpNestedAssignObj = $(c);
-        tmpNestedAssignMemberObj = tmpNestedAssignObj;
-        tmpNestedAssignMemberRhs = $(c);
-        tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-        a = tmpNestedAssignMemberRhs;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c);

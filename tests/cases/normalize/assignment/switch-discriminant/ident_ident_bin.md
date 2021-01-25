@@ -24,14 +24,12 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
+tmpNestedComplexRhs = c + d;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+const tmpSwitchTest = tmpNestedComplexRhs;
 {
-  tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  const tmpSwitchTest = a;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

@@ -24,16 +24,14 @@ var tmpAssignComMemLhsProp;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpAssignComMemLhsObj = a;
-      tmpAssignComMemLhsProp = $('x');
-      tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-    }
+    ('default case:');
+    tmpAssignComMemLhsObj = a;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
   }
 }
 $(a, b, c);

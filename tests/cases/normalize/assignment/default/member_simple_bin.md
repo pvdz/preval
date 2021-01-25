@@ -25,17 +25,15 @@ var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpAssignMemLhsObj = a;
-      tmpAssignMemRhs = b + c;
-      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-      tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-    }
+    ('default case:');
+    tmpAssignMemLhsObj = a;
+    tmpAssignMemRhs = b + c;
+    tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 $(a, b, c);

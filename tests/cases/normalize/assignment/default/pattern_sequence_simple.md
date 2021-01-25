@@ -24,20 +24,18 @@ var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      $(x);
-      $(y);
-      arrAssignPatternRhs = z;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      arrAssignPatternRhs;
-    }
+    ('default case:');
+    $(x);
+    $(y);
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    arrAssignPatternRhs;
   }
 }
 $(x, y, z);

@@ -24,27 +24,25 @@ switch ($(1)) {
 `````js filename=intro
 var tmpBinaryLeft;
 var tmpBinaryRight;
-{
-  const tmpSwitchTest = $(1);
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $(2);
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (tmpIfTest) {
-      ('case 0:');
+const tmpSwitchTest = $(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $(2);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
       {
-        {
-          $(3);
-        }
-        break tmpSwitchBreak;
+        $(3);
       }
-      tmpFallthrough = true;
+      break tmpSwitchBreak;
     }
+    tmpFallthrough = true;
   }
 }
 `````

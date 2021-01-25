@@ -22,17 +22,15 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpSwitchTest = $(1);
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
+const tmpSwitchTest = $(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
     {
-      ('default case:');
-      {
-        $(3);
-      }
-      break tmpSwitchBreak;
+      $(3);
     }
+    break tmpSwitchBreak;
   }
 }
 `````

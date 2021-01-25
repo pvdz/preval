@@ -26,31 +26,29 @@ var tmpBinaryRight;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  const tmpSwitchTest = $('a');
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+const tmpSwitchTest = $('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(x);
+      $(y);
+      arrAssignPatternRhs = z;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      arrAssignPatternRhs;
+      break tmpSwitchBreak;
     }
-    if (tmpIfTest) {
-      ('case 0:');
-      {
-        $(x);
-        $(y);
-        arrAssignPatternRhs = z;
-        arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        y = arrPatternSplat[1];
-        arrAssignPatternRhs;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(x, y, z);

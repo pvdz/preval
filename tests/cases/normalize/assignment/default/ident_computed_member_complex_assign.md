@@ -35,28 +35,26 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-      tmpNestedAssignObj$1 = $(c);
-      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-      tmpNestedAssignComMemberProp$1 = $('y');
-      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-      tmpNestedAssignCompMemberRhs$1 = $(d);
-      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedAssignCompMemberRhs;
-    }
+    ('default case:');
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignObj$1 = $(c);
+    tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignComMemberProp$1 = $('y');
+    tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+    tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+    tmpNestedAssignCompMemberRhs$1 = $(d);
+    tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedAssignCompMemberRhs;
   }
 }
 $(a, b, c, d);

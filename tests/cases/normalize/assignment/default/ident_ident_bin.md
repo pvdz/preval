@@ -24,16 +24,14 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpNestedComplexRhs = c + d;
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
-    }
+    ('default case:');
+    tmpNestedComplexRhs = c + d;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
   }
 }
 $(a, b, c);

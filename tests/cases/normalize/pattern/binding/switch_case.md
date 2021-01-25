@@ -1,0 +1,83 @@
+# Preval test case
+
+# switch_case.md
+
+> normalize > pattern > binding > switch_case
+>
+> Scope of a switch block is shared between all cases so bindings need to be hoisted above it
+
+#TODO
+
+## Input
+
+`````js filename=intro
+switch (0) {
+  case 0:
+    let [a, b] = [10, 20];
+    $(a, b);
+}
+`````
+
+## Normalized
+
+`````js filename=intro
+var arrAssignPatternRhs;
+var arrPatternSplat;
+{
+  let a;
+  let b;
+  {
+    let tmpFallthrough = false;
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = 0 === 0;
+    }
+    if (tmpIfTest) {
+      ('case 0:');
+      {
+        arrAssignPatternRhs = [10, 20];
+        arrPatternSplat = [...arrAssignPatternRhs];
+        a = arrPatternSplat[0];
+        b = arrPatternSplat[1];
+        arrAssignPatternRhs;
+        $(a, b);
+      }
+      tmpFallthrough = true;
+    }
+  }
+}
+`````
+
+## Output
+
+`````js filename=intro
+var arrAssignPatternRhs;
+var arrPatternSplat;
+let a;
+let b;
+let tmpFallthrough = false;
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
+} else {
+  tmpIfTest = true;
+}
+if (tmpIfTest) {
+  arrAssignPatternRhs = [10, 20];
+  arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
+  $(a, b);
+  tmpFallthrough = true;
+}
+`````
+
+## Result
+
+Should call `$` with:
+ - 0: 10,20
+ - 1: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

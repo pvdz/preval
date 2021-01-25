@@ -30,31 +30,29 @@ var tmpBinaryRight;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
-{
-  const tmpSwitchTest = $('a');
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+const tmpSwitchTest = $('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpAssignComMemLhsObj = a;
+      tmpAssignComMemLhsProp = $('x');
+      tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      tmpAssignComputedProp = tmpAssignComMemLhsProp;
+      tmpAssignComputedRhs = b + c;
+      tmpAssignMemLhsObj = tmpAssignComputedObj;
+      tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      break tmpSwitchBreak;
     }
-    if (tmpIfTest) {
-      ('case 0:');
-      {
-        tmpAssignComMemLhsObj = a;
-        tmpAssignComMemLhsProp = $('x');
-        tmpAssignComputedObj = tmpAssignComMemLhsObj;
-        tmpAssignComputedProp = tmpAssignComMemLhsProp;
-        tmpAssignComputedRhs = b + c;
-        tmpAssignMemLhsObj = tmpAssignComputedObj;
-        tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c);

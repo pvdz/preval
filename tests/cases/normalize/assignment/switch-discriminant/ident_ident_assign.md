@@ -27,18 +27,16 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
+tmpNestedAssignObj = $(c);
+tmpNestedAssignMemberObj = tmpNestedAssignObj;
+tmpNestedAssignMemberRhs = $(d);
+tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
+tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+const tmpSwitchTest = tmpNestedComplexRhs;
 {
-  tmpNestedAssignObj = $(c);
-  tmpNestedAssignMemberObj = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs = $(d);
-  tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-  tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  const tmpSwitchTest = a;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

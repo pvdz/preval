@@ -26,17 +26,15 @@ var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
+tmpNestedAssignObj = $(b);
+tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+tmpNestedAssignComMemberProp = $('x');
+tmpNestedPropAssignRhs = c;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+const tmpSwitchTest = tmpNestedPropAssignRhs;
 {
-  tmpNestedAssignObj = $(b);
-  tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-  tmpNestedAssignComMemberProp = $('x');
-  tmpNestedPropAssignRhs = c;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  const tmpSwitchTest = a;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

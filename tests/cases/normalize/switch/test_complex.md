@@ -19,11 +19,9 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
+const tmpSwitchTest = $(1);
 {
-  const tmpSwitchTest = $(1);
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 `````
 

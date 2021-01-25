@@ -25,28 +25,26 @@ let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 3;
-{
-  const tmpSwitchTest = $('a');
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (tmpIfTest) {
-      ('case 0:');
+const tmpSwitchTest = $('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
       {
-        {
-          a;
-          b.c = d;
-        }
-        break tmpSwitchBreak;
+        a;
+        b.c = d;
       }
-      tmpFallthrough = true;
+      break tmpSwitchBreak;
     }
+    tmpFallthrough = true;
   }
 }
 $(a, b, d);

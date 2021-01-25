@@ -25,15 +25,13 @@ var tmpAssignMemLhsObj;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+tmpAssignMemLhsObj = $(a);
+tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+tmpAssignComMemLhsProp = $('x');
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+const tmpSwitchTest = b;
 {
-  tmpAssignMemLhsObj = $(a);
-  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-  tmpAssignComMemLhsProp = $('x');
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-  const tmpSwitchTest = b;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

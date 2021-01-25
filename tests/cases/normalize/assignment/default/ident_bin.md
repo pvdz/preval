@@ -22,14 +22,12 @@ $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      a = b + c;
-    }
+    ('default case:');
+    a = b + c;
   }
 }
 $(a, b, c);

@@ -24,15 +24,13 @@ var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
+tmpNestedAssignObj = $(b);
+tmpNestedPropAssignRhs = c;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+const tmpSwitchTest = tmpNestedPropAssignRhs;
 {
-  tmpNestedAssignObj = $(b);
-  tmpNestedPropAssignRhs = c;
-  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  const tmpSwitchTest = a;
-  {
-    let tmpFallthrough = false;
-  }
+  let tmpFallthrough = false;
 }
 $(a, b, c);
 `````

@@ -28,20 +28,18 @@ var tmpAssignMemLhsObj;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
+const tmpSwitchTest = $('a');
 {
-  const tmpSwitchTest = $('a');
+  let tmpFallthrough = false;
   {
-    let tmpFallthrough = false;
-    {
-      ('default case:');
-      tmpAssignComMemLhsObj = a;
-      tmpAssignComMemLhsProp = $('x');
-      tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      tmpAssignComputedProp = tmpAssignComMemLhsProp;
-      tmpAssignComputedRhs = b + c;
-      tmpAssignMemLhsObj = tmpAssignComputedObj;
-      tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    }
+    ('default case:');
+    tmpAssignComMemLhsObj = a;
+    tmpAssignComMemLhsProp = $('x');
+    tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    tmpAssignComputedRhs = b + c;
+    tmpAssignMemLhsObj = tmpAssignComputedObj;
+    tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   }
 }
 $(a, b, c);

@@ -32,9 +32,9 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
+var arrAssignPatternRhs;
+var arrPatternSplat;
 {
-  let bindingPatternArrRoot;
-  let arrPatternSplat;
   let x;
   {
     let tmpFallthrough = false;
@@ -46,9 +46,10 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        bindingPatternArrRoot = [4, 5, 6];
-        arrPatternSplat = [...bindingPatternArrRoot];
+        arrAssignPatternRhs = [4, 5, 6];
+        arrPatternSplat = [...arrAssignPatternRhs];
         x = arrPatternSplat[0];
+        arrAssignPatternRhs;
       }
       tmpFallthrough = true;
     }
@@ -71,8 +72,8 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot;
-let arrPatternSplat;
+var arrAssignPatternRhs;
+var arrPatternSplat;
 let x;
 let tmpFallthrough = false;
 let tmpIfTest = tmpFallthrough;
@@ -81,8 +82,8 @@ if (tmpIfTest) {
   tmpIfTest = true;
 }
 if (tmpIfTest) {
-  bindingPatternArrRoot = [4, 5, 6];
-  arrPatternSplat = [...bindingPatternArrRoot];
+  arrAssignPatternRhs = [4, 5, 6];
+  arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   tmpFallthrough = true;
 }

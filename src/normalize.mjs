@@ -1593,29 +1593,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'WhileStatement': {
-        if (isComplexNode(node.test)) {
-          rold('While test must be simple node');
-          example('while (f()) z()', 'while (true) { if (f()) z(); else break; }');
-          before(node);
-
-          const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
-
-          crumbSet(1, newNode);
-
-          changed = true;
-          after(newNode);
-
-          _stmt(newNode);
-          break;
-        }
-
-        if (node.body.type !== 'BlockStatement') {
-          rold('While sub-statement must be block');
-          log('- `while (x) y` --> `while (x) { y }`');
-
-          node.body = AST.blockStatement(node.body);
-        }
-
         expr(node, 'test', -1, node.test);
         stmt(node, 'body', -1, node.body);
         break;
@@ -3697,6 +3674,8 @@ export function phaseNormalize(fdata, fname) {
         return transformThrowStatement(node, body, i);
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i);
+      case 'WhileStatement':
+        return transformWhileStatement(node, body, i);
     }
 
     return false;
@@ -4082,7 +4061,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (isComplexNode(node.argument)) {
-      rold('Return argument must be simple');
+      rule('Return argument must be simple');
       example('return $()', 'let tmp = $(); return tmp;');
       before(node);
 
@@ -4316,7 +4295,7 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformThrowStatement(node, body, i) {
     if (isComplexNode(node.argument)) {
-      rold('Throw argument must be simple');
+      rule('Throw argument must be simple');
       example('throw $()', 'let tmp = $(); throw tmp;');
       before(node);
 
@@ -4460,6 +4439,33 @@ export function phaseNormalize(fdata, fname) {
         after(node);
         return true;
       }
+    }
+
+    return false;
+  }
+  function transformWhileStatement(node, body, i) {
+    if (isComplexNode(node.test)) {
+      rule('While test must be simple node');
+      example('while (f()) z()', 'while (true) { if (f()) z(); else break; }');
+      before(node);
+
+      const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
+      body[i] = newNode;
+
+      after(newNode);
+      return true;
+    }
+
+    if (node.body.type !== 'BlockStatement') {
+      rule('While sub-statement must be block');
+      example('while (x) y','while (x) { y }');
+      before(node);
+
+      const newNode = AST.blockStatement(node.body);
+      node.body = newNode;
+
+      after(node);
+      return true;
     }
 
     return false;

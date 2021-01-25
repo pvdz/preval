@@ -22,11 +22,9 @@ $(f());
 `````js filename=intro
 function f() {
   var tmpArg;
-  {
-    tmpArg = global.foo;
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
-  }
+  tmpArg = global.foo;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

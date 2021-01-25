@@ -40,10 +40,8 @@ function $$(...a_1) {
   tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
   tmpArg$1 = { depth: null };
   $(tmpArg, tmpArg$1);
-  {
-    let tmpReturnArg = a_1[0];
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = a_1[0];
+  return tmpReturnArg;
 }
 var a;
 var b;

@@ -44,10 +44,8 @@ function f() {
   } else {
     c = b;
   }
-  {
-    let tmpReturnArg = $(c);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

@@ -24,22 +24,16 @@ function f() {
 `````js filename=intro
 function f() {
   function f_1() {
-    {
-      let tmpReturnArg = $();
-      return tmpReturnArg;
-    }
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
   function g() {
-    {
-      let tmpReturnArg$1 = $();
-      return tmpReturnArg$1;
-    }
+    let tmpReturnArg$1 = $();
+    return tmpReturnArg$1;
   }
   function h() {
-    {
-      let tmpReturnArg$2 = $();
-      return tmpReturnArg$2;
-    }
+    let tmpReturnArg$2 = $();
+    return tmpReturnArg$2;
   }
   var tmpArg;
   var tmpArg$1;

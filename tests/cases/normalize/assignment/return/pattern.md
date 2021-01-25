@@ -26,14 +26,12 @@ let z = [10, 20, 30];
 tmpNewObj = function () {
   var arrAssignPatternRhs;
   var arrPatternSplat;
-  {
-    arrAssignPatternRhs = z;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    let tmpReturnArg = arrAssignPatternRhs;
-    return tmpReturnArg;
-  }
+  arrAssignPatternRhs = z;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  let tmpReturnArg = arrAssignPatternRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(x, y, z);

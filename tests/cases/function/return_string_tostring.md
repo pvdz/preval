@@ -23,10 +23,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let tmpReturnArg = String.toString();
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = String.toString();
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

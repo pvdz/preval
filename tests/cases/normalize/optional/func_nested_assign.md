@@ -35,24 +35,22 @@ function f() {
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
-  {
-    tmpTernaryTest = obj == null;
-    if (tmpTernaryTest) {
-      tmpOptionalChaining = undefined;
-    } else {
-      tmpTernaryAlternate = obj.a;
-      tmpOptionalChaining = tmpTernaryAlternate;
-    }
-    tmpTernaryTest$1 = tmpOptionalChaining == null;
-    if (tmpTernaryTest$1) {
-      tmpArg = undefined;
-    } else {
-      tmpTernaryAlternate$1 = tmpOptionalChaining.b;
-      tmpArg = tmpTernaryAlternate$1;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  tmpTernaryTest = obj == null;
+  if (tmpTernaryTest) {
+    tmpOptionalChaining = undefined;
+  } else {
+    tmpTernaryAlternate = obj.a;
+    tmpOptionalChaining = tmpTernaryAlternate;
   }
+  tmpTernaryTest$1 = tmpOptionalChaining == null;
+  if (tmpTernaryTest$1) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate$1 = tmpOptionalChaining.b;
+    tmpArg = tmpTernaryAlternate$1;
+  }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

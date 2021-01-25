@@ -25,10 +25,8 @@ function f() {
   2;
   tmpNewObj = $(parseInt);
   const y = tmpNewObj();
-  {
-    let tmpReturnArg = $(y);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

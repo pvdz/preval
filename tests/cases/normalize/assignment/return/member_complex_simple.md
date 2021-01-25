@@ -25,12 +25,10 @@ let b = 2;
 let c = 3;
 tmpNewObj = function () {
   var tmpAssignMemLhsObj;
-  {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = b;
-    let tmpReturnArg = b;
-    return tmpReturnArg;
-  }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = b;
+  let tmpReturnArg = b;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);

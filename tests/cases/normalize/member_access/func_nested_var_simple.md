@@ -28,10 +28,8 @@ function f() {
   const tmpBindingInit = $(2);
   const b = tmpBindingInit.toString;
   const c = b.length;
-  {
-    let tmpReturnArg = $(c);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

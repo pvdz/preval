@@ -24,11 +24,9 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 tmpNewObj = function () {
-  {
-    a.x = b;
-    let tmpReturnArg = b;
-    return tmpReturnArg;
-  }
+  a.x = b;
+  let tmpReturnArg = b;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);

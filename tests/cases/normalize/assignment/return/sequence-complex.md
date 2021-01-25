@@ -26,15 +26,11 @@ let c = 'unused';
 let d = 3;
 tmpNewObj = function () {
   var tmpAssignMemLhsObj;
-  {
-    {
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemLhsObj.c = d;
-    }
-    let tmpReturnArg = d;
-    return tmpReturnArg;
-  }
+  a;
+  tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj.c = d;
+  let tmpReturnArg = d;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c, d);

@@ -29,23 +29,21 @@ function f() {
   tmpObjPropValue$1 = $();
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
-  {
-    obj = obj;
-    tmpTernaryTest = obj == null;
-    if (tmpTernaryTest) {
-      tmpNullish = a;
-    } else {
-      tmpNullish = obj;
-    }
-    tmpTernaryTest$1 = tmpNullish == null;
-    if (tmpTernaryTest$1) {
-      tmpArg = b;
-    } else {
-      tmpArg = tmpNullish;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  obj = obj;
+  tmpTernaryTest = obj == null;
+  if (tmpTernaryTest) {
+    tmpNullish = a;
+  } else {
+    tmpNullish = obj;
   }
+  tmpTernaryTest$1 = tmpNullish == null;
+  if (tmpTernaryTest$1) {
+    tmpArg = b;
+  } else {
+    tmpArg = tmpNullish;
+  }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

@@ -25,10 +25,8 @@ function g() {
 `````js filename=intro
 function g() {
   function f() {
-    {
-      let tmpReturnArg = $(2);
-      return tmpReturnArg;
-    }
+    let tmpReturnArg = $(2);
+    return tmpReturnArg;
   }
   var tmpArg;
   ('<hoisted func decl `f`>');

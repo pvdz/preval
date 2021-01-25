@@ -25,14 +25,12 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 tmpNewObj = function () {
-  {
-    {
-      a;
-      b.c = d;
-    }
-    let tmpReturnArg = d;
-    return tmpReturnArg;
-  }
+  var tmpAssignMemLhsObj;
+  a;
+  tmpAssignMemLhsObj = b;
+  tmpAssignMemLhsObj.c = d;
+  let tmpReturnArg = d;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c, d);
@@ -44,7 +42,9 @@ $(a, b, c, d);
 var tmpNewObj;
 let b = { c: 2 };
 tmpNewObj = function () {
-  b.c = 3;
+  var tmpAssignMemLhsObj;
+  tmpAssignMemLhsObj = b;
+  tmpAssignMemLhsObj.c = 3;
   return 3;
 };
 tmpNewObj();

@@ -23,10 +23,8 @@ $(f());
 function f() {
   $(1);
   $(2);
-  {
-    let tmpReturnArg = $(3);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(3);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

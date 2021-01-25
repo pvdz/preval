@@ -37,10 +37,8 @@ function $$(...a_1) {
   var tmpArg;
   tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
   $(tmpArg);
-  {
-    let tmpReturnArg = a_1[0];
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = a_1[0];
+  return tmpReturnArg;
 }
 var a;
 var b;

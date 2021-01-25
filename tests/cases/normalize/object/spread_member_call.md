@@ -23,11 +23,9 @@ var tmpObjSpreadArg;
 const obj = {
   foo() {
     var tmpArg;
-    {
-      tmpArg = { x: 1 };
-      let tmpReturnArg = $(tmpArg);
-      return tmpReturnArg;
-    }
+    tmpArg = { x: 1 };
+    let tmpReturnArg = $(tmpArg);
+    return tmpReturnArg;
   },
 };
 tmpObjSpreadArg = obj.foo();

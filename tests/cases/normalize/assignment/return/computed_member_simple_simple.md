@@ -26,13 +26,11 @@ let c = 3;
 tmpNewObj = function () {
   var tmpAssignComMemLhsObj;
   var tmpAssignComMemLhsProp;
-  {
-    tmpAssignComMemLhsObj = a;
-    tmpAssignComMemLhsProp = $('x');
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-    let tmpReturnArg = b;
-    return tmpReturnArg;
-  }
+  tmpAssignComMemLhsObj = a;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+  let tmpReturnArg = b;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);

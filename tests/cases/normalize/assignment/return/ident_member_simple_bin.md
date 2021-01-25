@@ -27,14 +27,12 @@ let d = 4;
 tmpNewObj = function () {
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
-  {
-    tmpNestedAssignMemberObj = b;
-    tmpNestedAssignMemberRhs = c + d;
-    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-    a = tmpNestedAssignMemberRhs;
-    let tmpReturnArg = a;
-    return tmpReturnArg;
-  }
+  tmpNestedAssignMemberObj = b;
+  tmpNestedAssignMemberRhs = c + d;
+  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+  a = tmpNestedAssignMemberRhs;
+  let tmpReturnArg = tmpNestedAssignMemberRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);
@@ -53,7 +51,7 @@ tmpNewObj = function () {
   tmpNestedAssignMemberRhs = 7;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  let tmpReturnArg = a;
+  let tmpReturnArg = tmpNestedAssignMemberRhs;
   return tmpReturnArg;
 };
 tmpNewObj();

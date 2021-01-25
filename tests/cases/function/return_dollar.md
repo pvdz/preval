@@ -27,10 +27,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let tmpReturnArg = $();
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $();
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

@@ -22,10 +22,8 @@ var tmpMemberComplexObj;
 var tmpObjPropValue;
 var tmpObjPropValue$1;
 tmpObjPropValue$1 = () => {
-  {
-    let tmpReturnArg = $(1);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(1);
+  return tmpReturnArg;
 };
 tmpObjPropValue = { b: tmpObjPropValue$1 };
 const obj = { a: tmpObjPropValue };

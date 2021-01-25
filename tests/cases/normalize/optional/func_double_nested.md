@@ -36,31 +36,29 @@ function f() {
   tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
-  {
-    tmpTernaryTest = obj == null;
-    if (tmpTernaryTest) {
-      tmpOptionalChaining$1 = undefined;
-    } else {
-      tmpTernaryAlternate = obj.a;
-      tmpOptionalChaining$1 = tmpTernaryAlternate;
-    }
-    tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-    if (tmpTernaryTest$1) {
-      tmpOptionalChaining = undefined;
-    } else {
-      tmpTernaryAlternate$1 = tmpOptionalChaining$1.b;
-      tmpOptionalChaining = tmpTernaryAlternate$1;
-    }
-    tmpTernaryTest$2 = tmpOptionalChaining == null;
-    if (tmpTernaryTest$2) {
-      tmpArg = undefined;
-    } else {
-      tmpTernaryAlternate$2 = tmpOptionalChaining.c;
-      tmpArg = tmpTernaryAlternate$2;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  tmpTernaryTest = obj == null;
+  if (tmpTernaryTest) {
+    tmpOptionalChaining$1 = undefined;
+  } else {
+    tmpTernaryAlternate = obj.a;
+    tmpOptionalChaining$1 = tmpTernaryAlternate;
   }
+  tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
+  if (tmpTernaryTest$1) {
+    tmpOptionalChaining = undefined;
+  } else {
+    tmpTernaryAlternate$1 = tmpOptionalChaining$1.b;
+    tmpOptionalChaining = tmpTernaryAlternate$1;
+  }
+  tmpTernaryTest$2 = tmpOptionalChaining == null;
+  if (tmpTernaryTest$2) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate$2 = tmpOptionalChaining.c;
+    tmpArg = tmpTernaryAlternate$2;
+  }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

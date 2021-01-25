@@ -21,12 +21,10 @@ $(f());
 function f() {
   var tmpArg;
   var tmpMemberComplexObj;
-  {
-    tmpMemberComplexObj = parseInt(15);
-    tmpArg = tmpMemberComplexObj.foo;
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
-  }
+  tmpMemberComplexObj = parseInt(15);
+  tmpArg = tmpMemberComplexObj.foo;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

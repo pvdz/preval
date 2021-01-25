@@ -27,15 +27,11 @@ $(f(1));
 `````js filename=intro
 function f(x) {
   function g() {
-    {
-      let tmpReturnArg = $();
-      return tmpReturnArg;
-    }
+    let tmpReturnArg = $();
+    return tmpReturnArg;
   }
-  {
-    let tmpReturnArg$1 = g();
-    return tmpReturnArg$1;
-  }
+  let tmpReturnArg$1 = g();
+  return tmpReturnArg$1;
   ('<hoisted func decl `g`>');
 }
 var tmpArg;

@@ -1509,6 +1509,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'LabeledStatement': {
+        // TODO: this needs more thinking, more test cases. Especially around loops/continue
         if (
           !['BlockStatement', 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'].includes(
             node.body.type,
@@ -1556,29 +1557,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ReturnStatement': {
-        if (!node.argument) {
-          rold('Return argument must exist');
-          log('- `return;` --> `return undefined;`');
-          node.argument = AST.identifier('undefined');
-        }
-
-        if (isComplexNode(node.argument)) {
-          rold('Return argument must be simple');
-          example('return $()', '{ let tmp = $(); return tmp; }');
-          before(node);
-
-          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-          const tmpName = createFreshVarInCurrentRootScope('tmpReturnArg');
-          const newNode = AST.blockStatement(AST.variableDeclaration(tmpName, node.argument), AST.returnStatement(tmpName));
-
-          crumbSet(1, newNode);
-          after(newNode);
-
-          _stmt(newNode, isExport, isFunctionBody);
-          changed = true;
-          break;
-        }
-
         expr(node, 'argument', -1, node.argument);
         break;
       }
@@ -4084,6 +4062,8 @@ export function phaseNormalize(fdata, fname) {
         return transformForxStatement(node, body, i, false);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
+      case 'ReturnStatement':
+        return transformReturnStatement(node, body, i);
     }
 
     return false;
@@ -4450,6 +4430,36 @@ export function phaseNormalize(fdata, fname) {
       after(newNode);
       after(node);
 
+      return true;
+    }
+
+    return false;
+  }
+  function transformReturnStatement(node, body, i) {
+    if (!node.argument) {
+      rule('Return argument must exist');
+      example('return;','return undefined;');
+      before(node);
+
+      node.argument = AST.identifier('undefined');
+
+      after(node);
+
+      return true;
+    }
+
+    if (isComplexNode(node.argument)) {
+      rold('Return argument must be simple');
+      example('return $()', 'let tmp = $(); return tmp;');
+      before(node);
+
+      // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
+      const tmpName = createFreshVarInCurrentRootScope('tmpReturnArg');
+      const newNode = AST.variableDeclaration(tmpName, node.argument)
+      body.splice(i, 0, newNode);
+      node.argument = AST.identifier(tmpName);
+
+      after(newNode);
       return true;
     }
 

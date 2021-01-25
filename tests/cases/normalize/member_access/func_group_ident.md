@@ -24,10 +24,8 @@ function f() {
   const a = { x: 1 };
   1;
   const y = a.x;
-  {
-    let tmpReturnArg = $(y);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

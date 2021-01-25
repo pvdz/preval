@@ -24,17 +24,15 @@ function f() {
   var tmpArg;
   var tmpTernaryAlternate;
   var tmpTernaryTest;
-  {
-    tmpTernaryTest = global == null;
-    if (tmpTernaryTest) {
-      tmpArg = undefined;
-    } else {
-      tmpTernaryAlternate = global.foo;
-      tmpArg = tmpTernaryAlternate;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  tmpTernaryTest = global == null;
+  if (tmpTernaryTest) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate = global.foo;
+    tmpArg = tmpTernaryAlternate;
   }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

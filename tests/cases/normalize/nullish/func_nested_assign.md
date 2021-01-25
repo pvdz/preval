@@ -33,23 +33,21 @@ function f() {
   const obj = { a: tmpObjPropValue };
   tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
-  {
-    obj = obj;
-    tmpTernaryTest = obj == null;
-    if (tmpTernaryTest) {
-      tmpNullish = a;
-    } else {
-      tmpNullish = obj;
-    }
-    tmpTernaryTest$1 = tmpNullish == null;
-    if (tmpTernaryTest$1) {
-      tmpArg = b;
-    } else {
-      tmpArg = tmpNullish;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  obj = obj;
+  tmpTernaryTest = obj == null;
+  if (tmpTernaryTest) {
+    tmpNullish = a;
+  } else {
+    tmpNullish = obj;
   }
+  tmpTernaryTest$1 = tmpNullish == null;
+  if (tmpTernaryTest$1) {
+    tmpArg = b;
+  } else {
+    tmpArg = tmpNullish;
+  }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

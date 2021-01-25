@@ -24,12 +24,10 @@ let a = 1;
 let b = 2;
 let c = 3;
 tmpNewObj = function () {
-  {
-    b = c;
-    a = c;
-    let tmpReturnArg = a;
-    return tmpReturnArg;
-  }
+  b = c;
+  a = c;
+  let tmpReturnArg = c;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);
@@ -44,8 +42,7 @@ let b = 2;
 tmpNewObj = function () {
   b = 3;
   a = 3;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return 3;
 };
 tmpNewObj();
 $(a, b, 3);

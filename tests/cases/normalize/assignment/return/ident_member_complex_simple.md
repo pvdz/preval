@@ -26,14 +26,12 @@ let c = 3;
 tmpNewObj = function () {
   var tmpNestedAssignObj;
   var tmpNestedPropAssignRhs;
-  {
-    tmpNestedAssignObj = $(b);
-    tmpNestedPropAssignRhs = c;
-    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    let tmpReturnArg = a;
-    return tmpReturnArg;
-  }
+  tmpNestedAssignObj = $(b);
+  tmpNestedPropAssignRhs = c;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpReturnArg = tmpNestedPropAssignRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);
@@ -52,7 +50,7 @@ tmpNewObj = function () {
   tmpNestedPropAssignRhs = 3;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let tmpReturnArg = a;
+  let tmpReturnArg = tmpNestedPropAssignRhs;
   return tmpReturnArg;
 };
 tmpNewObj();

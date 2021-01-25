@@ -26,13 +26,11 @@ let c = 3;
 let d = 4;
 tmpNewObj = function () {
   var tmpNestedComplexRhs;
-  {
-    tmpNestedComplexRhs = c + d;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    let tmpReturnArg = a;
-    return tmpReturnArg;
-  }
+  tmpNestedComplexRhs = c + d;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  let tmpReturnArg = tmpNestedComplexRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);
@@ -49,7 +47,7 @@ tmpNewObj = function () {
   tmpNestedComplexRhs = 7;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let tmpReturnArg = a;
+  let tmpReturnArg = tmpNestedComplexRhs;
   return tmpReturnArg;
 };
 tmpNewObj();

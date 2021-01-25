@@ -33,29 +33,27 @@ function f() {
   tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
-  {
-    obj = obj;
-    tmpTernaryTest = obj == null;
-    if (tmpTernaryTest) {
-      tmpNullish$1 = a;
-    } else {
-      tmpNullish$1 = obj;
-    }
-    tmpTernaryTest$1 = tmpNullish$1 == null;
-    if (tmpTernaryTest$1) {
-      tmpNullish = b;
-    } else {
-      tmpNullish = tmpNullish$1;
-    }
-    tmpTernaryTest$2 = tmpNullish == null;
-    if (tmpTernaryTest$2) {
-      tmpArg = c;
-    } else {
-      tmpArg = tmpNullish;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  obj = obj;
+  tmpTernaryTest = obj == null;
+  if (tmpTernaryTest) {
+    tmpNullish$1 = a;
+  } else {
+    tmpNullish$1 = obj;
   }
+  tmpTernaryTest$1 = tmpNullish$1 == null;
+  if (tmpTernaryTest$1) {
+    tmpNullish = b;
+  } else {
+    tmpNullish = tmpNullish$1;
+  }
+  tmpTernaryTest$2 = tmpNullish == null;
+  if (tmpTernaryTest$2) {
+    tmpArg = c;
+  } else {
+    tmpArg = tmpNullish;
+  }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

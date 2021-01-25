@@ -75,16 +75,12 @@ function f() {
   console.log('-------- start');
   const b = {
     get foo() {
-      {
-        let tmpReturnArg = $(2);
-        return tmpReturnArg;
-      }
+      let tmpReturnArg = $(2);
+      return tmpReturnArg;
     },
     set foo(x) {
-      {
-        let tmpReturnArg$1 = $(3);
-        return tmpReturnArg$1;
-      }
+      let tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
     },
   };
   console.log('-------- bound');

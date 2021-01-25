@@ -47,10 +47,8 @@ function f() {
   } else {
     c = tmpNullish$1;
   }
-  {
-    let tmpReturnArg = $(c);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

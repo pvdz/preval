@@ -82,10 +82,8 @@ function f() {
           if (tmpIfTest$2) {
             const tmpIfTest$3 = $(9);
             if (tmpIfTest$3) {
-              {
-                let tmpReturnArg = $(10);
-                return tmpReturnArg;
-              }
+              let tmpReturnArg = $(10);
+              return tmpReturnArg;
             } else {
               $(11);
             }
@@ -93,10 +91,8 @@ function f() {
             if (tmpIfTest$4) {
               $(13);
             } else {
-              {
-                let tmpReturnArg$1 = $(14);
-                return tmpReturnArg$1;
-              }
+              let tmpReturnArg$1 = $(14);
+              return tmpReturnArg$1;
             }
           }
           $(3);
@@ -114,10 +110,8 @@ function f() {
         ('case 2:');
         {
           $(5);
-          {
-            let tmpReturnArg$2 = $(6);
-            return tmpReturnArg$2;
-          }
+          let tmpReturnArg$2 = $(6);
+          return tmpReturnArg$2;
         }
         tmpFallthrough = true;
       }
@@ -178,10 +172,8 @@ function f() {
         if (tmpIfTest$2) {
           const tmpIfTest$3 = $(9);
           if (tmpIfTest$3) {
-            {
-              let tmpReturnArg = $(10);
-              return tmpReturnArg;
-            }
+            let tmpReturnArg = $(10);
+            return tmpReturnArg;
           } else {
             $(11);
           }
@@ -189,10 +181,8 @@ function f() {
           if (tmpIfTest$4) {
             $(13);
           } else {
-            {
-              let tmpReturnArg$1 = $(14);
-              return tmpReturnArg$1;
-            }
+            let tmpReturnArg$1 = $(14);
+            return tmpReturnArg$1;
           }
         }
         $(3);
@@ -210,10 +200,8 @@ function f() {
       ('case 2:');
       {
         $(5);
-        {
-          let tmpReturnArg$2 = $(6);
-          return tmpReturnArg$2;
-        }
+        let tmpReturnArg$2 = $(6);
+        return tmpReturnArg$2;
       }
       tmpFallthrough = true;
     }

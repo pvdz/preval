@@ -33,10 +33,8 @@ function f() {
   } else {
     y = tmpNullish;
   }
-  {
-    let tmpReturnArg = $(y);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

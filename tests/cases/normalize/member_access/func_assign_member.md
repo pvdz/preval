@@ -29,10 +29,8 @@ function f() {
   2;
   tmpMemberComplexObj = $();
   y = tmpMemberComplexObj.foo;
-  {
-    let tmpReturnArg = $(y);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

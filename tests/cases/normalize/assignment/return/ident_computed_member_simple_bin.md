@@ -30,17 +30,15 @@ tmpNewObj = function () {
   var tmpNestedAssignCompMemberObj;
   var tmpNestedAssignCompMemberProp;
   var tmpNestedAssignCompMemberRhs;
-  {
-    tmpNestedAssignComMemberObj = b;
-    tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-    tmpNestedAssignCompMemberRhs = c + d;
-    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-    a = tmpNestedAssignCompMemberRhs;
-    let tmpReturnArg = a;
-    return tmpReturnArg;
-  }
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+  tmpNestedAssignCompMemberRhs = c + d;
+  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+  a = tmpNestedAssignCompMemberRhs;
+  let tmpReturnArg = tmpNestedAssignCompMemberRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c);
@@ -65,7 +63,7 @@ tmpNewObj = function () {
   tmpNestedAssignCompMemberRhs = 7;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   a = tmpNestedAssignCompMemberRhs;
-  let tmpReturnArg = a;
+  let tmpReturnArg = tmpNestedAssignCompMemberRhs;
   return tmpReturnArg;
 };
 tmpNewObj();

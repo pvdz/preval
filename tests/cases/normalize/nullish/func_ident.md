@@ -24,17 +24,15 @@ function f() {
   var tmpArg;
   var tmpNullish;
   var tmpTernaryTest;
-  {
-    tmpNullish = 'foo';
-    tmpTernaryTest = tmpNullish == null;
-    if (tmpTernaryTest) {
-      tmpArg = foo;
-    } else {
-      tmpArg = tmpNullish;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  tmpNullish = 'foo';
+  tmpTernaryTest = tmpNullish == null;
+  if (tmpTernaryTest) {
+    tmpArg = foo;
+  } else {
+    tmpArg = tmpNullish;
   }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

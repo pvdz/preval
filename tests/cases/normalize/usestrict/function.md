@@ -21,10 +21,8 @@ $(f());
 `````js filename=intro
 function f() {
   'use strict';
-  {
-    let tmpReturnArg = $();
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $();
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

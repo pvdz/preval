@@ -25,18 +25,16 @@ function f() {
   var tmpOptionalChaining;
   var tmpTernaryAlternate;
   var tmpTernaryTest;
-  {
-    tmpOptionalChaining = 'foo';
-    tmpTernaryTest = tmpOptionalChaining == null;
-    if (tmpTernaryTest) {
-      tmpArg = undefined;
-    } else {
-      tmpTernaryAlternate = tmpOptionalChaining.length;
-      tmpArg = tmpTernaryAlternate;
-    }
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
+  tmpOptionalChaining = 'foo';
+  tmpTernaryTest = tmpOptionalChaining == null;
+  if (tmpTernaryTest) {
+    tmpArg = undefined;
+  } else {
+    tmpTernaryAlternate = tmpOptionalChaining.length;
+    tmpArg = tmpTernaryAlternate;
   }
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

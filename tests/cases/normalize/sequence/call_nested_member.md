@@ -24,10 +24,8 @@ var tmpObjPropValue;
 var tmpObjPropValue$1;
 var tmpObjPropValue$2;
 tmpObjPropValue$2 = () => {
-  {
-    let tmpReturnArg = $(1);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(1);
+  return tmpReturnArg;
 };
 tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
 tmpObjPropValue = { b: tmpObjPropValue$1 };

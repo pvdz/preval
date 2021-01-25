@@ -37,10 +37,8 @@ function f() {
     tmpTernaryAlternate = tmpOptionalChaining.foo;
     y = tmpTernaryAlternate;
   }
-  {
-    let tmpReturnArg = $(y);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(y);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

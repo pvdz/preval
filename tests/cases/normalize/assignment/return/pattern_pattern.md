@@ -30,18 +30,16 @@ tmpNewObj = function () {
   var arrAssignPatternRhs$1;
   var arrPatternSplat;
   var arrPatternSplat$1;
-  {
-    arrAssignPatternRhs$1 = z;
-    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-    x = arrPatternSplat$1[1];
-    y = arrPatternSplat$1[2];
-    arrAssignPatternRhs = arrAssignPatternRhs$1;
-    arrPatternSplat = [...arrAssignPatternRhs];
-    a = arrPatternSplat[0];
-    b = arrPatternSplat[1];
-    let tmpReturnArg = arrAssignPatternRhs;
-    return tmpReturnArg;
-  }
+  arrAssignPatternRhs$1 = z;
+  arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+  x = arrPatternSplat$1[1];
+  y = arrPatternSplat$1[2];
+  arrAssignPatternRhs = arrAssignPatternRhs$1;
+  arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
+  let tmpReturnArg = arrAssignPatternRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, x, y, z);

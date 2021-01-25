@@ -37,10 +37,8 @@ function f($tdz$__a, $tdz$__b) {
   } else {
     b = $tdz$__b;
   }
-  {
-    let tmpReturnArg = [a, b];
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = [a, b];
+  return tmpReturnArg;
 }
 var tmpArg;
 var tmpArg$1;

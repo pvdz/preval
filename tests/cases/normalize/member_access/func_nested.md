@@ -27,12 +27,10 @@ function f() {
   tmpObjPropValue$1 = $();
   tmpObjPropValue = { b: tmpObjPropValue$1 };
   const obj = { a: tmpObjPropValue };
-  {
-    tmpMemberComplexObj = obj.a;
-    tmpArg = tmpMemberComplexObj.b;
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
-  }
+  tmpMemberComplexObj = obj.a;
+  tmpArg = tmpMemberComplexObj.b;
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 ('<hoisted func decl `f`>');

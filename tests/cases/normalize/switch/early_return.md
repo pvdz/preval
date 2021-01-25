@@ -80,10 +80,8 @@ function f() {
         ('case 2:');
         {
           $(5);
-          {
-            let tmpReturnArg = $(6);
-            return tmpReturnArg;
-          }
+          let tmpReturnArg = $(6);
+          return tmpReturnArg;
         }
         tmpFallthrough = true;
       }
@@ -155,10 +153,8 @@ function f() {
       ('case 2:');
       {
         $(5);
-        {
-          let tmpReturnArg = $(6);
-          return tmpReturnArg;
-        }
+        let tmpReturnArg = $(6);
+        return tmpReturnArg;
       }
       tmpFallthrough = true;
     }

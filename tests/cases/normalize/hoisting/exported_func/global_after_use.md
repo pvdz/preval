@@ -17,10 +17,8 @@ export function f() { return $(2); }
 
 `````js filename=intro
 export function f() {
-  {
-    let tmpReturnArg = $(2);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(2);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

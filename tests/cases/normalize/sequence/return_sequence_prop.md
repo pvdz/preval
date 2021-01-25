@@ -22,11 +22,9 @@ $(f());
 `````js filename=intro
 function f() {
   $(1);
-  {
-    let tmpBindingInit = $(2);
-    let tmpReturnArg = tmpBindingInit.foo;
-    return tmpReturnArg;
-  }
+  let tmpBindingInit = $(2);
+  let tmpReturnArg = tmpBindingInit.foo;
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

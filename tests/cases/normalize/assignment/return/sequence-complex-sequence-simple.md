@@ -25,18 +25,24 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 tmpNewObj = function () {
-  {
-    a;
-    let tmpBindInitMemberObject = $(b);
-    {
-      a;
-      b.c = d;
-    }
-    let tmpBindInitRhs = d;
-    tmpBindInitMemberObject.c = tmpBindInitRhs;
-    let tmpReturnArg = tmpBindInitRhs;
-    return tmpReturnArg;
-  }
+  var tmpAssignMemLhsObj;
+  var tmpAssignMemLhsObj$1;
+  var tmpAssignMemLhsObj$2;
+  var tmpAssignMemRhs;
+  var tmpNestedAssignObj;
+  var tmpNestedPropAssignRhs;
+  a;
+  tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  a;
+  tmpNestedAssignObj = b;
+  tmpNestedPropAssignRhs = d;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpAssignMemRhs = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+  tmpAssignMemLhsObj$2.c = tmpAssignMemRhs;
+  let tmpReturnArg = tmpAssignMemRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(a, b, c, d);
@@ -48,10 +54,22 @@ $(a, b, c, d);
 var tmpNewObj;
 let b = { c: 2 };
 tmpNewObj = function () {
-  let tmpBindInitMemberObject = $(b);
-  b.c = 3;
-  tmpBindInitMemberObject.c = 3;
-  return 3;
+  var tmpAssignMemLhsObj;
+  var tmpAssignMemLhsObj$1;
+  var tmpAssignMemLhsObj$2;
+  var tmpAssignMemRhs;
+  var tmpNestedAssignObj;
+  var tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  tmpNestedAssignObj = b;
+  tmpNestedPropAssignRhs = 3;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpAssignMemRhs = tmpNestedPropAssignRhs;
+  tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+  tmpAssignMemLhsObj$2.c = tmpAssignMemRhs;
+  let tmpReturnArg = tmpAssignMemRhs;
+  return tmpReturnArg;
 };
 tmpNewObj();
 $(1, b, 'unused', 3);

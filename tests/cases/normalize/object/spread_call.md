@@ -22,11 +22,9 @@ $({...f()});
 `````js filename=intro
 function f() {
   var tmpArg;
-  {
-    tmpArg = { x: 1 };
-    let tmpReturnArg = $(tmpArg);
-    return tmpReturnArg;
-  }
+  tmpArg = { x: 1 };
+  let tmpReturnArg = $(tmpArg);
+  return tmpReturnArg;
 }
 var tmpArg$1;
 var tmpObjSpreadArg;

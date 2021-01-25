@@ -90,10 +90,8 @@ var tmpMemberComplexObj;
 var tmpMemberComplexObj$1;
 var tmpMemberComplexObj$2;
 tmpArg$2 = (k) => {
-  {
-    let tmpReturnArg = [k, k];
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = [k, k];
+  return tmpReturnArg;
 };
 tmpElement$1 = ['clearInterval', 'global.clearInterval'];
 tmpElement$2 = ['clearTimeout', 'global.clearTimeout'];

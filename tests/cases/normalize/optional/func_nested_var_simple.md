@@ -47,10 +47,8 @@ function f() {
     tmpTernaryAlternate$1 = b.length;
     c = tmpTernaryAlternate$1;
   }
-  {
-    let tmpReturnArg = $(c);
-    return tmpReturnArg;
-  }
+  let tmpReturnArg = $(c);
+  return tmpReturnArg;
 }
 var tmpArg;
 ('<hoisted func decl `f`>');

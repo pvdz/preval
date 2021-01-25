@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedComplexRhs;
 var tmpPostfixArg;
 let a = 1;
@@ -39,16 +39,16 @@ do {
   $(b);
   tmpNestedComplexRhs = $(c);
   a = tmpNestedComplexRhs;
-  ifTestTmp = tmpNestedComplexRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedComplexRhs;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedComplexRhs;
 var tmpPostfixArg;
 let a = 1;
@@ -64,8 +64,8 @@ do {
   $(2);
   tmpNestedComplexRhs = $(3);
   a = tmpNestedComplexRhs;
-  ifTestTmp = tmpNestedComplexRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedComplexRhs;
+} while (tmpDoWhileTest);
 $(a, 2, 3);
 `````
 

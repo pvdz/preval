@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let a = 1;
 let b = 2;
@@ -36,16 +36,16 @@ do {
     break;
   }
   a = b;
-  ifTestTmp = b;
-} while (ifTestTmp);
+  tmpDoWhileTest = b;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let a = 1;
 let n = 0;
@@ -58,8 +58,8 @@ do {
     break;
   }
   a = 2;
-  ifTestTmp = 2;
-} while (ifTestTmp);
+  tmpDoWhileTest = 2;
+} while (tmpDoWhileTest);
 $(a, 2, 3);
 `````
 

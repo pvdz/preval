@@ -24,8 +24,8 @@ var arrAssignPatternRhs;
 var arrAssignPatternRhs$1;
 var arrPatternSplat;
 var arrPatternSplat$1;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let a = 1;
 let b = 2;
@@ -49,8 +49,8 @@ do {
   arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
-  ifTestTmp = arrAssignPatternRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = arrAssignPatternRhs;
+} while (tmpDoWhileTest);
 $(a, b, x, y, z);
 `````
 
@@ -61,8 +61,8 @@ var arrAssignPatternRhs;
 var arrAssignPatternRhs$1;
 var arrPatternSplat;
 var arrPatternSplat$1;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let a = 1;
 let b = 2;
@@ -86,8 +86,8 @@ do {
   arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
-  ifTestTmp = arrAssignPatternRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = arrAssignPatternRhs;
+} while (tmpDoWhileTest);
 $(a, b, x, y, z);
 `````
 

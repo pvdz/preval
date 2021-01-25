@@ -1399,47 +1399,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'DoWhileStatement': {
-        if (node.body.type !== 'BlockStatement') {
-          rold('Do-while sub-statement must be block');
-          log('- `do x; while(y);` --> `do { x; } while(y);`');
-
-          crumb(node, 'body', -1);
-          crumbSet(1, AST.blockStatement(node.body));
-          uncrumb(node, 'body', -1);
-
-          changed = true;
-        }
-
-        if (node.body.body.length === 0) {
-          // Note: cannot eliminate a loop because the expression is expected to be called in repeat
-          rold('Do-while cannot have empty body');
-          example('do {} while (x);', 'while(x);');
-          before(node);
-
-          const newNode = AST.whileStatement(node.test, AST.blockStatement());
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _stmt(newNode);
-          break;
-        }
-
-        if (isComplexNode(node.test)) {
-          // `do { ... } while (x+y);`
-          // -> `var tmp; ... do { tmp = x+y; } while (tmp);`
-          // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-
-          rold('Do-while test node must be simple');
-          log('- `do { ... } while (x+y);` --> `do { ... var tmp = x+y; } while (tmp);`');
-          const tmpName = createFreshVarInCurrentRootScope('ifTestTmp', true);
-
-          node.body.body.push(AST.expressionStatement(AST.assignmentExpression(tmpName, node.test)));
-          node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
-          changed = true;
-        }
-
         stmt(node, 'body', -1, node.body);
         expr(node, 'test', -1, node.test);
 
@@ -1494,28 +1453,12 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'EmptyStatement': {
+        ASSERT(false, 'I dont think these can be validly left behind? sub-statements must be blocks so what legal case is left here?');
         break;
       }
 
       case 'ForStatement': {
-        rold('Regular `for` loops must be `while`');
-        log('- `for (a; b; c) d;` -> `{ a; while (b) { d; c; } }');
-        before(node);
-
-        const newNode = AST.blockStatement(
-          node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
-          AST.whileStatement(
-            node.test || 'true',
-            AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
-          ),
-        );
-
-        crumbSet(1, newNode);
-
-        changed = true;
-        after(newNode);
-
-        _stmt(newNode);
+        ASSERT(false, 'the `for` statement should be transformed to a `while`');
         break;
       }
 
@@ -4340,12 +4283,32 @@ export function phaseNormalize(fdata, fname) {
       const cnode = body[i];
 
       switch (cnode.type) {
+        case 'DoWhileStatement': {
+          if (transformDoWhileStatement(cnode, body, i)) {
+            changed = true;
+            --i;
+            continue;
+          }
+          break;
+        }
         case 'EmptyStatement': {
           rule('Drop empty statements inside a block');
           example('{;}', '{}');
           body.splice(i, 1);
           --i;
           continue;
+        }
+        case 'ExpressionStatement': {
+          // TODO
+          break;
+        }
+        case 'ForStatement': {
+          if (transformForStatement(cnode, body, i)) {
+            changed = true;
+            --i;
+            continue;
+          }
+          break;
         }
         case 'IfStatement': {
           if (transformIfStatement(cnode, body, i)) {
@@ -4360,12 +4323,78 @@ export function phaseNormalize(fdata, fname) {
     }
   }
 
+  function transformDoWhileStatement(node, body, i) {
+    // Would love to merge the while's into one, but how...
+    // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
+    // `while (f()) {}` --> `if (f()) { do {} while(f()); }`
+    // `for (a(); b(); c()) d();` --> `a(); if (b()) { do { d(); c(); } while (b());`
+
+    if (node.body.type !== 'BlockStatement') {
+      rule('Do-while sub-statement must be block');
+      example('do x; while(y);','do { x; } while(y);');
+      before(node);
+
+      const newNode = AST.blockStatement(node.body);
+      node.body = newNode;
+
+      after(node);
+      return true;
+    }
+
+    if (node.body.body.length === 0) {
+      // Note: cannot eliminate a loop because the test expression is expected to be called repeatedly
+      rule('Do-while cannot have empty body');
+      example('do {} while (x);', 'while(x);');
+      before(node);
+
+      const newNode = AST.whileStatement(node.test, AST.blockStatement());
+      body[i] = newNode;
+
+      after(newNode);
+      return true;
+    }
+
+    if (isComplexNode(node.test)) {
+      rule('Do-while test node must be simple');
+      example('do { f(); } while (x+y);','var tmp; do { f(); tmp = x+y; } while (tmp);`');
+      before(node);
+
+      const tmpName = createFreshVarInCurrentRootScope('tmpDoWhileTest', true);
+
+      const newNode = AST.expressionStatement(AST.assignmentExpression(tmpName, node.test));
+      node.body.body.push(newNode);
+      node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
+
+      after(node);
+      return true;
+    }
+
+    return false;
+  }
+  function transformForStatement(node, body, i) {
+    rule('Regular `for` loops must be `while`');
+    example('for (a(); b(); c()) d();','{ a(); while (b()) { d(); c(); } }');
+    before(node);
+
+    const newNode = AST.blockStatement(
+      node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
+      AST.whileStatement(
+        node.test || 'true',
+        AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
+      ),
+    );
+    body[i] = newNode;
+
+    after(newNode);
+
+    return true;
+  }
   function transformIfStatement(node, body, i) {
     if (node.test.type === 'UnaryExpression' && node.test.operator === '!') {
       // It's kind of redundant since there are plenty of cases where we'll need to deal with
       // the test in an abstracted form (like `if (!a && !b)` or smth). So maybe I'll drop this one later.
       rule('The test of an if cannot be invert');
-      example('if (!x) y;', 'if (x) z; else y;', () => !node.alternate);
+      example('if (!x) y;', 'if (x) ; else y;', () => !node.alternate);
       example('if (!x) y; else z;', 'if (x) z; else y;', () => node.alternate);
       before(node);
 
@@ -4415,7 +4444,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (!node.alternate && node.consequent.body.length === 0) {
-      rule('Body of if may not be empty unless it has an else');
+      rule('Body of if without else may not be empty');
       example('if (x()) {}', 'x();');
       before(node);
 

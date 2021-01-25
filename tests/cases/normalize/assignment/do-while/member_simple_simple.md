@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedPropAssignRhs;
 var tmpPostfixArg;
 let a = { x: 10 };
@@ -38,16 +38,16 @@ do {
   }
   tmpNestedPropAssignRhs = b;
   a.x = tmpNestedPropAssignRhs;
-  ifTestTmp = tmpNestedPropAssignRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedPropAssignRhs;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedPropAssignRhs;
 var tmpPostfixArg;
 let a = { x: 10 };
@@ -62,8 +62,8 @@ do {
   }
   tmpNestedPropAssignRhs = 2;
   a.x = tmpNestedPropAssignRhs;
-  ifTestTmp = tmpNestedPropAssignRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedPropAssignRhs;
+} while (tmpDoWhileTest);
 $(a, 2, 3);
 `````
 

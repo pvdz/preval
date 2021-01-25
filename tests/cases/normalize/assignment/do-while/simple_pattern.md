@@ -22,8 +22,8 @@ $(a, x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedComplexRhs;
 var tmpPostfixArg;
 let a = 1;
@@ -45,8 +45,8 @@ do {
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
-  ifTestTmp = tmpNestedComplexRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedComplexRhs;
+} while (tmpDoWhileTest);
 $(a, x, y, z);
 `````
 
@@ -55,8 +55,8 @@ $(a, x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedComplexRhs;
 var tmpPostfixArg;
 let a = 1;
@@ -78,8 +78,8 @@ do {
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = arrAssignPatternRhs;
   a = tmpNestedComplexRhs;
-  ifTestTmp = tmpNestedComplexRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedComplexRhs;
+} while (tmpDoWhileTest);
 $(a, x, y, z);
 `````
 

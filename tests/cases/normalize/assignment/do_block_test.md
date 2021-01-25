@@ -16,7 +16,7 @@ do { $(a); b; } while (x + y);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
+var tmpDoWhileTest;
 let a = 1;
 let b = 2;
 let x = 3;
@@ -24,18 +24,18 @@ let y = 4;
 do {
   $(a);
   b;
-  ifTestTmp = x + y;
-} while (ifTestTmp);
+  tmpDoWhileTest = x + y;
+} while (tmpDoWhileTest);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
+var tmpDoWhileTest;
 do {
   $(1);
-  ifTestTmp = 7;
-} while (ifTestTmp);
+  tmpDoWhileTest = 7;
+} while (tmpDoWhileTest);
 `````
 
 ## Result

@@ -72,12 +72,12 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpBinaryLeft;
 var tmpBinaryLeft$1;
 var tmpBinaryLeft$2;
 var tmpBinaryLeft$3;
 var tmpBinaryLeft$4;
+var tmpDoWhileTest;
 {
   let tmpSwitchValue = 6;
   let tmpSwitchCheckCases = true;
@@ -179,20 +179,20 @@ var tmpBinaryLeft$4;
       }
     }
     tmpSwitchCheckCases = false;
-    ifTestTmp = tmpSwitchFallthrough === false;
-  } while (ifTestTmp);
+    tmpDoWhileTest = tmpSwitchFallthrough === false;
+  } while (tmpDoWhileTest);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpBinaryLeft;
 var tmpBinaryLeft$1;
 var tmpBinaryLeft$2;
 var tmpBinaryLeft$3;
 var tmpBinaryLeft$4;
+var tmpDoWhileTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
 do {
@@ -258,8 +258,8 @@ do {
     tmpSwitchFallthrough = true;
   }
   tmpSwitchCheckCases = false;
-  ifTestTmp = tmpSwitchFallthrough === false;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpSwitchFallthrough === false;
+} while (tmpDoWhileTest);
 `````
 
 ## Result

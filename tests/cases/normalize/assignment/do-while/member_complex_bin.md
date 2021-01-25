@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
@@ -42,16 +42,16 @@ do {
   tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = b + c;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  ifTestTmp = tmpNestedAssignMemberRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedAssignMemberRhs;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignMemberObj;
 var tmpNestedAssignMemberRhs;
 var tmpNestedAssignObj;
@@ -70,8 +70,8 @@ do {
   tmpNestedAssignMemberObj = tmpNestedAssignObj;
   tmpNestedAssignMemberRhs = 5;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  ifTestTmp = tmpNestedAssignMemberRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedAssignMemberRhs;
+} while (tmpDoWhileTest);
 $(a, 5, 3);
 `````
 

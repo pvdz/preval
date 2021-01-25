@@ -16,21 +16,21 @@ while ($(2));
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
+var tmpDoWhileTest;
 do {
   $(1);
-  ifTestTmp = $(2);
-} while (ifTestTmp);
+  tmpDoWhileTest = $(2);
+} while (tmpDoWhileTest);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
+var tmpDoWhileTest;
 do {
   $(1);
-  ifTestTmp = $(2);
-} while (ifTestTmp);
+  tmpDoWhileTest = $(2);
+} while (tmpDoWhileTest);
 `````
 
 ## Result

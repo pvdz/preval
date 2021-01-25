@@ -22,8 +22,8 @@ $(x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let x = 1;
 let y = 2;
@@ -41,8 +41,8 @@ do {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  ifTestTmp = arrAssignPatternRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = arrAssignPatternRhs;
+} while (tmpDoWhileTest);
 $(x, y, z);
 `````
 
@@ -51,8 +51,8 @@ $(x, y, z);
 `````js filename=intro
 var arrAssignPatternRhs;
 var arrPatternSplat;
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpPostfixArg;
 let x = 1;
 let y = 2;
@@ -70,8 +70,8 @@ do {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  ifTestTmp = arrAssignPatternRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = arrAssignPatternRhs;
+} while (tmpDoWhileTest);
 $(x, y, z);
 `````
 

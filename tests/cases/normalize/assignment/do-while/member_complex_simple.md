@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 var tmpPostfixArg;
@@ -40,16 +40,16 @@ do {
   tmpNestedAssignObj = $(a);
   tmpNestedPropAssignRhs = b;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-  ifTestTmp = tmpNestedPropAssignRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedPropAssignRhs;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignObj;
 var tmpNestedPropAssignRhs;
 var tmpPostfixArg;
@@ -66,8 +66,8 @@ do {
   tmpNestedAssignObj = $(a);
   tmpNestedPropAssignRhs = 2;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-  ifTestTmp = tmpNestedPropAssignRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedPropAssignRhs;
+} while (tmpDoWhileTest);
 $(a, 2, 3);
 `````
 

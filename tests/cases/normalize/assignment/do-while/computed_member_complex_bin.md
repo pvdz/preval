@@ -20,8 +20,8 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
@@ -48,16 +48,16 @@ do {
   tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = b + c;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  ifTestTmp = tmpNestedAssignCompMemberRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedAssignCompMemberRhs;
+} while (tmpDoWhileTest);
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var ifTestTmp;
 var tmpArg;
+var tmpDoWhileTest;
 var tmpNestedAssignComMemberObj;
 var tmpNestedAssignComMemberProp;
 var tmpNestedAssignCompMemberObj;
@@ -82,8 +82,8 @@ do {
   tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
   tmpNestedAssignCompMemberRhs = 5;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  ifTestTmp = tmpNestedAssignCompMemberRhs;
-} while (ifTestTmp);
+  tmpDoWhileTest = tmpNestedAssignCompMemberRhs;
+} while (tmpDoWhileTest);
 $(a, 5, 3);
 `````
 

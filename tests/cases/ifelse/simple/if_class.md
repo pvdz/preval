@@ -15,19 +15,17 @@ if (class{}) $();
 ## Normalized
 
 `````js filename=intro
-{
-  let ifTestTmp = class {};
-  if (ifTestTmp) {
-    $();
-  }
+const tmpIfTest = class {};
+if (tmpIfTest) {
+  $();
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let ifTestTmp = class {};
-if (ifTestTmp) {
+const tmpIfTest = class {};
+if (tmpIfTest) {
   $();
 }
 `````

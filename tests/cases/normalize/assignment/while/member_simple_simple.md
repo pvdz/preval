@@ -23,13 +23,11 @@ let a = { x: 10 };
 let b = 0;
 let c = 3;
 while (true) {
-  {
-    a.x = b;
-    let ifTestTmp = b;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  a.x = b;
+  const tmpIfTest = b;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);

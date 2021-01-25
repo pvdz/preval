@@ -20,13 +20,11 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
 let z;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    z = a;
-  } else {
-    z = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  z = a;
+} else {
+  z = objPatternBeforeDefault;
 }
 `````
 
@@ -37,8 +35,8 @@ const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
 let z;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;

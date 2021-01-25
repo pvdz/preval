@@ -34,14 +34,12 @@ let y = 2;
 let z = [10, 20, 30];
 let n = 0;
 do {
-  {
-    tmpPostfixArg = n;
-    n = n + 1;
-    tmpArg = tmpPostfixArg;
-    let ifTestTmp$1 = $(tmpArg);
-    if (ifTestTmp$1) {
-      break;
-    }
+  tmpPostfixArg = n;
+  n = n + 1;
+  tmpArg = tmpPostfixArg;
+  const tmpIfTest = $(tmpArg);
+  if (tmpIfTest) {
+    break;
   }
   arrAssignPatternRhs$1 = z;
   arrPatternSplat$1 = [...arrAssignPatternRhs$1];
@@ -76,8 +74,8 @@ do {
   tmpPostfixArg = n;
   n = n + 1;
   tmpArg = tmpPostfixArg;
-  let ifTestTmp$1 = $(tmpArg);
-  if (ifTestTmp$1) {
+  const tmpIfTest = $(tmpArg);
+  if (tmpIfTest) {
     break;
   }
   arrAssignPatternRhs$1 = z;

@@ -25,15 +25,13 @@ let b = 2;
 let c = 0;
 let d = 0;
 while (true) {
-  {
-    tmpNestedComplexRhs = c + d;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpNestedComplexRhs = c + d;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  const tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -49,8 +47,8 @@ while (true) {
   tmpNestedComplexRhs = 0;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

@@ -24,6 +24,8 @@ let b = 2;
 let c = 3;
 $(b);
 a = $(c);
+const tmpIfTest = a;
+tmpIfTest;
 $(a, b, c);
 `````
 

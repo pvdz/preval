@@ -35,27 +35,25 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs$1;
   var tmpNestedAssignObj;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedAssignComMemberObj = b;
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-      tmpNestedAssignObj = $(c);
-      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
-      tmpNestedAssignComMemberProp$1 = $('y');
-      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-      tmpNestedAssignCompMemberRhs$1 = $(d);
-      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedAssignCompMemberRhs;
-      foo = tmpNestedAssignCompMemberRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedAssignComMemberObj = b;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp$1 = $('y');
+    tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+    tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+    tmpNestedAssignCompMemberRhs$1 = $(d);
+    tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedAssignCompMemberRhs;
+    foo = tmpNestedAssignCompMemberRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -87,8 +85,8 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs$1;
   var tmpNestedAssignObj;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedAssignComMemberObj = b;
     tmpNestedAssignComMemberProp = $('x');
     tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;

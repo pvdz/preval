@@ -23,12 +23,10 @@ while (true) {
   x = x;
   x = x * x;
   x = x.x;
-  {
-    let ifTestTmp = x.x(x);
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  const tmpIfTest = x.x(x);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 `````
@@ -42,8 +40,8 @@ while (true) {
   x = x;
   x = x * x;
   x = x.x;
-  let ifTestTmp = x.x(x);
-  if (ifTestTmp) {
+  const tmpIfTest = x.x(x);
+  if (tmpIfTest) {
   } else {
     break;
   }

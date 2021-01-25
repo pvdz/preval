@@ -28,6 +28,8 @@ tmpNestedAssignObj = $(b);
 tmpNestedPropAssignRhs = c;
 tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
+const tmpIfTest = tmpNestedPropAssignRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

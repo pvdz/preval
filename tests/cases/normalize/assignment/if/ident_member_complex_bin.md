@@ -31,6 +31,8 @@ tmpNestedAssignMemberObj = tmpNestedAssignObj;
 tmpNestedAssignMemberRhs = c + d;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
+const tmpIfTest = tmpNestedAssignMemberRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

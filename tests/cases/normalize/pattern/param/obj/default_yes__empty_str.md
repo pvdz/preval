@@ -22,13 +22,11 @@ $(f('', 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      $tdz$__pattern_after_default = $('pass');
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = $('pass');
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
   if (objPatternCrashTest) {
@@ -51,8 +49,8 @@ $(tmpArg);
 `````js filename=intro
 function f($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     $tdz$__pattern_after_default = $('pass');
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;

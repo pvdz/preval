@@ -24,14 +24,12 @@ $(a);
 `````js filename=intro
 let a = $(1);
 while (true) {
-  {
-    let ifTestTmp = a < 10;
-    if (ifTestTmp) {
-      a = a + 1;
-      $(a);
-    } else {
-      break;
-    }
+  const tmpIfTest = a < 10;
+  if (tmpIfTest) {
+    a = a + 1;
+    $(a);
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,8 +40,8 @@ $(a);
 `````js filename=intro
 let a = $(1);
 while (true) {
-  let ifTestTmp = a < 10;
-  if (ifTestTmp) {
+  const tmpIfTest = a < 10;
+  if (tmpIfTest) {
     a = a + 1;
     $(a);
   } else {

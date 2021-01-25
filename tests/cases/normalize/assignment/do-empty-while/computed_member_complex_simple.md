@@ -26,16 +26,14 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 while (true) {
-  {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-    tmpAssignComMemLhsProp = $('x');
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
-    let ifTestTmp = b;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+  const tmpIfTest = b;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);

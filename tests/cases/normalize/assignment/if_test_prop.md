@@ -18,14 +18,12 @@ if (({ x } = 1).foo) y;
 `````js filename=intro
 var objAssignPatternRhs;
 let y;
-{
-  objAssignPatternRhs = 1;
-  x = objAssignPatternRhs.x;
-  let tmpBindingInit = objAssignPatternRhs;
-  let ifTestTmp = tmpBindingInit.foo;
-  if (ifTestTmp) {
-    y;
-  }
+objAssignPatternRhs = 1;
+x = objAssignPatternRhs.x;
+const tmpBindingInit = objAssignPatternRhs;
+const tmpIfTest = tmpBindingInit.foo;
+if (tmpIfTest) {
+  y;
 }
 `````
 
@@ -35,9 +33,9 @@ let y;
 var objAssignPatternRhs;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
-let tmpBindingInit = objAssignPatternRhs;
-let ifTestTmp = tmpBindingInit.foo;
-if (ifTestTmp) {
+const tmpBindingInit = objAssignPatternRhs;
+const tmpIfTest = tmpBindingInit.foo;
+if (tmpIfTest) {
 }
 `````
 

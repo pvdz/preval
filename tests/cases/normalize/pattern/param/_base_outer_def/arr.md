@@ -17,13 +17,11 @@ function f([ x ] = b) { return x }
 `````js filename=intro
 function f($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      $tdz$__pattern_after_default = b;
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = b;
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let x = arrPatternSplat[0];

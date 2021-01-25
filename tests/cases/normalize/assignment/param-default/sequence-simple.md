@@ -26,17 +26,15 @@ function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
   var tmpNestedPropAssignRhs;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      a;
-      tmpAssignMemLhsObj = b;
-      tmpNestedPropAssignRhs = d;
-      tmpAssignMemLhsObj.c = tmpNestedPropAssignRhs;
-      foo = tmpNestedPropAssignRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    a;
+    tmpAssignMemLhsObj = b;
+    tmpNestedPropAssignRhs = d;
+    tmpAssignMemLhsObj.c = tmpNestedPropAssignRhs;
+    foo = tmpNestedPropAssignRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -59,8 +57,8 @@ function f($tdz$__foo) {
   var tmpAssignMemLhsObj;
   var tmpNestedPropAssignRhs;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpAssignMemLhsObj = b;
     tmpNestedPropAssignRhs = 3;
     tmpAssignMemLhsObj.c = tmpNestedPropAssignRhs;

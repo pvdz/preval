@@ -29,19 +29,17 @@ let d = 3;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        {
-          a;
-          b.c = d;
-        }
-      } else {
-        break;
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      {
+        a;
+        b.c = d;
       }
+    } else {
+      break;
     }
   }
 }
@@ -59,8 +57,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     b.c = 3;
   } else {
     break;

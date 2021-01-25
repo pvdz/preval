@@ -19,13 +19,11 @@ const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let x;
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = a;
-  } else {
-    x = arrPatternBeforeDefault;
-  }
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = a;
+} else {
+  x = arrPatternBeforeDefault;
 }
 `````
 
@@ -35,8 +33,8 @@ let x;
 const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let x;
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = a;
 } else {
   x = arrPatternBeforeDefault;

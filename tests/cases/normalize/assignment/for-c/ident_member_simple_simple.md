@@ -29,18 +29,16 @@ let c = 3;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        tmpNestedPropAssignRhs = c;
-        b.x = tmpNestedPropAssignRhs;
-        a = tmpNestedPropAssignRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      tmpNestedPropAssignRhs = c;
+      b.x = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
+    } else {
+      break;
     }
   }
 }
@@ -60,8 +58,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     tmpNestedPropAssignRhs = 3;
     b.x = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;

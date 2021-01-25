@@ -64,52 +64,46 @@ var tmpBinaryRight$2;
 let x;
 let fallthrough = false;
 exit: {
-  {
-    let ifTestTmp = fallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = x;
-      tmpBinaryRight = $(1);
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (ifTestTmp) {
-      {
-        $('A');
-      }
-      fallthrough = true;
-    }
+  let tmpIfTest = fallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = x;
+    tmpBinaryRight = $(1);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
   }
-  {
-    let ifTestTmp$1 = fallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      tmpBinaryLeft$1 = x;
-      tmpBinaryRight$1 = $(2);
-      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  if (tmpIfTest) {
+    {
+      $('A');
     }
-    if (ifTestTmp$1) {
-      {
-        $('B');
-        break exit;
-      }
-      fallthrough = true;
-    }
+    fallthrough = true;
   }
-  {
-    let ifTestTmp$2 = fallthrough;
-    if (ifTestTmp$2) {
-    } else {
-      tmpBinaryLeft$2 = x;
-      tmpBinaryRight$2 = $(3);
-      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  let tmpIfTest$1 = fallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpBinaryLeft$1 = x;
+    tmpBinaryRight$1 = $(2);
+    tmpIfTest$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  }
+  if (tmpIfTest$1) {
+    {
+      $('B');
+      break exit;
     }
-    if (ifTestTmp$2) {
-      {
-        $('C');
-        break exit;
-      }
-      fallthrough = true;
+    fallthrough = true;
+  }
+  let tmpIfTest$2 = fallthrough;
+  if (tmpIfTest$2) {
+  } else {
+    tmpBinaryLeft$2 = x;
+    tmpBinaryRight$2 = $(3);
+    tmpIfTest$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  }
+  if (tmpIfTest$2) {
+    {
+      $('C');
+      break exit;
     }
+    fallthrough = true;
   }
 }
 `````
@@ -118,52 +112,46 @@ exit: {
 
 `````js filename=intro
 exit: {
-  {
-    let ifTestTmp = fallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = x;
-      tmpBinaryRight = $(1);
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (ifTestTmp) {
-      {
-        $('A');
-      }
-      fallthrough = true;
-    }
+  let tmpIfTest = fallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = x;
+    tmpBinaryRight = $(1);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
   }
-  {
-    let ifTestTmp$1 = fallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      tmpBinaryLeft$1 = x;
-      tmpBinaryRight$1 = $(2);
-      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  if (tmpIfTest) {
+    {
+      $('A');
     }
-    if (ifTestTmp$1) {
-      {
-        $('B');
-        break exit;
-      }
-      fallthrough = true;
-    }
+    fallthrough = true;
   }
-  {
-    let ifTestTmp$2 = fallthrough;
-    if (ifTestTmp$2) {
-    } else {
-      tmpBinaryLeft$2 = x;
-      tmpBinaryRight$2 = $(3);
-      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  let tmpIfTest$1 = fallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpBinaryLeft$1 = x;
+    tmpBinaryRight$1 = $(2);
+    tmpIfTest$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  }
+  if (tmpIfTest$1) {
+    {
+      $('B');
+      break exit;
     }
-    if (ifTestTmp$2) {
-      {
-        $('C');
-        break exit;
-      }
-      fallthrough = true;
+    fallthrough = true;
+  }
+  let tmpIfTest$2 = fallthrough;
+  if (tmpIfTest$2) {
+  } else {
+    tmpBinaryLeft$2 = x;
+    tmpBinaryRight$2 = $(3);
+    tmpIfTest$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  }
+  if (tmpIfTest$2) {
+    {
+      $('C');
+      break exit;
     }
+    fallthrough = true;
   }
 }
 `````

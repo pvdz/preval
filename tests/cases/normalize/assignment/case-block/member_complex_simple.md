@@ -29,23 +29,21 @@ let c = 3;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
+    } else {
+      tmpBinaryLeft = tmpSwitchTest;
+      tmpBinaryRight = $('a');
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    }
+    if (tmpIfTest) {
+      ('case 0:');
+      {
+        tmpAssignMemLhsObj = $(a);
+        tmpAssignMemLhsObj.x = b;
+        break tmpSwitchBreak;
       }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          tmpAssignMemLhsObj = $(a);
-          tmpAssignMemLhsObj.x = b;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
+      tmpFallthrough = true;
     }
   }
 }
@@ -59,23 +57,21 @@ let a = { x: 10 };
 $('a');
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemLhsObj.x = b;
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemLhsObj.x = b;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, 2, 3);

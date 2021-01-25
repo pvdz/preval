@@ -41,58 +41,14 @@ let d = 4;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          tmpNestedAssignObj = $(b);
-          tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-          tmpNestedAssignComMemberProp = $('x');
-          tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-          tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-          tmpNestedAssignObj$1 = $(c);
-          tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-          tmpNestedAssignComMemberProp$1 = $('y');
-          tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-          tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-          tmpNestedAssignCompMemberRhs$1 = $(d);
-          tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-          tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-          tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-          a = tmpNestedAssignCompMemberRhs;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
-    }
-  }
-}
-$(a, b, c, d);
-`````
-
-## Output
-
-`````js filename=intro
-let b = { x: 2 };
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
     }
-    if (ifTestTmp) {
+    if (tmpIfTest) {
       ('case 0:');
       {
         tmpNestedAssignObj = $(b);
@@ -114,6 +70,46 @@ tmpSwitchBreak: {
       }
       tmpFallthrough = true;
     }
+  }
+}
+$(a, b, c, d);
+`````
+
+## Output
+
+`````js filename=intro
+let b = { x: 2 };
+$('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+      tmpNestedAssignObj$1 = $(c);
+      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
+      tmpNestedAssignComMemberProp$1 = $('y');
+      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+      tmpNestedAssignCompMemberRhs$1 = $(d);
+      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+      a = tmpNestedAssignCompMemberRhs;
+      break tmpSwitchBreak;
+    }
+    tmpFallthrough = true;
   }
 }
 $(1, b, 3, 4);

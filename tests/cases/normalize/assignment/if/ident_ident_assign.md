@@ -34,6 +34,8 @@ tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
 tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
+const tmpIfTest = tmpNestedComplexRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

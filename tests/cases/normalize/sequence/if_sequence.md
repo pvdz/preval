@@ -18,11 +18,9 @@ if (($(1), $(2))) $(3);
 
 `````js filename=intro
 $(1);
-{
-  let ifTestTmp = $(2);
-  if (ifTestTmp) {
-    $(3);
-  }
+const tmpIfTest = $(2);
+if (tmpIfTest) {
+  $(3);
 }
 `````
 
@@ -30,8 +28,8 @@ $(1);
 
 `````js filename=intro
 $(1);
-let ifTestTmp = $(2);
-if (ifTestTmp) {
+const tmpIfTest = $(2);
+if (tmpIfTest) {
   $(3);
 }
 `````

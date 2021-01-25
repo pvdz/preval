@@ -25,16 +25,14 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 while (true) {
-  {
-    arrAssignPatternRhs = $(z);
-    arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    let ifTestTmp = arrAssignPatternRhs;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  arrAssignPatternRhs = $(z);
+  arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  const tmpIfTest = arrAssignPatternRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(x, y, z);
@@ -53,8 +51,8 @@ while (true) {
   arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  let ifTestTmp = arrAssignPatternRhs;
-  if (ifTestTmp) {
+  const tmpIfTest = arrAssignPatternRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

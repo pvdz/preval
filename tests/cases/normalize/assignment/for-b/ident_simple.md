@@ -24,13 +24,11 @@ let b = 0;
 let c = 3;
 {
   while (true) {
-    {
-      a = b;
-      let ifTestTmp = b;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    a = b;
+    const tmpIfTest = b;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }

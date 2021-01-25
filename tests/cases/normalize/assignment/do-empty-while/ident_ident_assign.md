@@ -27,18 +27,16 @@ let b = 2;
 let c = 0;
 let d = 0;
 while (true) {
-  {
-    tmpNestedAssignObj = $(c);
-    tmpNestedPropAssignRhs = d;
-    tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpNestedAssignObj = $(c);
+  tmpNestedPropAssignRhs = d;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  const tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -59,8 +57,8 @@ while (true) {
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

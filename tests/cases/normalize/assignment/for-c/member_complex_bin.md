@@ -32,20 +32,18 @@ let c = 3;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        tmpAssignMemLhsObj = $(a);
-        tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-        tmpAssignMemRhs = b + c;
-        tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-        tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      tmpAssignMemLhsObj = $(a);
+      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+      tmpAssignMemRhs = b + c;
+      tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+      tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+    } else {
+      break;
     }
   }
 }
@@ -67,8 +65,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     tmpAssignMemLhsObj = $(a);
     tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     tmpAssignMemRhs = 5;

@@ -26,24 +26,22 @@ let b = 2;
 let c = 3;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      b = c;
-      tmpNestedComplexRhs = c;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    b = c;
+    tmpNestedComplexRhs = c;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c);
@@ -54,24 +52,22 @@ $(a, b, c);
 `````js filename=intro
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      b = c;
-      tmpNestedComplexRhs = c;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    b = c;
+    tmpNestedComplexRhs = c;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, 2, 3);

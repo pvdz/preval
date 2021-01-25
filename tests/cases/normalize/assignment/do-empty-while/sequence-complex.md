@@ -25,17 +25,13 @@ let b = { c: 2 };
 let c = 'unused';
 let d = 3;
 while (true) {
-  {
-    {
-      a;
-      tmpAssignMemLhsObj = $(b);
-      tmpAssignMemLhsObj.c = d;
-    }
-    let ifTestTmp = d;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  a;
+  tmpAssignMemLhsObj = $(b);
+  tmpAssignMemLhsObj.c = d;
+  const tmpIfTest = d;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c, d);

@@ -30,6 +30,8 @@ tmpNestedAssignComMemberProp = $('x');
 tmpNestedPropAssignRhs = c;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
+const tmpIfTest = tmpNestedPropAssignRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

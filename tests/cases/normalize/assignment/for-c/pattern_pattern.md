@@ -34,24 +34,22 @@ let z = [10, 20, 30];
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        arrAssignPatternRhs$1 = z;
-        arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-        x = arrPatternSplat$1[1];
-        y = arrPatternSplat$1[2];
-        arrAssignPatternRhs = arrAssignPatternRhs$1;
-        arrPatternSplat = [...arrAssignPatternRhs];
-        a = arrPatternSplat[0];
-        b = arrPatternSplat[1];
-        arrAssignPatternRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      arrAssignPatternRhs$1 = z;
+      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+      x = arrPatternSplat$1[1];
+      y = arrPatternSplat$1[2];
+      arrAssignPatternRhs = arrAssignPatternRhs$1;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
+      arrAssignPatternRhs;
+    } else {
+      break;
     }
   }
 }
@@ -77,8 +75,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     arrAssignPatternRhs$1 = z;
     arrPatternSplat$1 = [...arrAssignPatternRhs$1];
     x = arrPatternSplat$1[1];

@@ -23,6 +23,8 @@ let a = 1;
 let b = 2;
 let c = 3;
 a = b + c;
+const tmpIfTest = a;
+tmpIfTest;
 $(a, b, c);
 `````
 

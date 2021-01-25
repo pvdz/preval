@@ -31,30 +31,28 @@ let c = 'unused';
 let d = 3;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      a;
-      tmpNestedAssignObj$1 = b;
-      tmpNestedPropAssignRhs = d;
-      tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs;
-      tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
-      tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-      tmpBinaryRight = tmpNestedAssignMemberRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    a;
+    tmpNestedAssignObj = b;
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    a;
+    tmpNestedAssignObj$1 = b;
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+    tmpBinaryRight = tmpNestedAssignMemberRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c, d);
@@ -66,30 +64,28 @@ $(a, b, c, d);
 let b = { c: 2 };
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      a;
-      tmpNestedAssignObj = b;
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      a;
-      tmpNestedAssignObj$1 = b;
-      tmpNestedPropAssignRhs = d;
-      tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs;
-      tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
-      tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
-      tmpBinaryRight = tmpNestedAssignMemberRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    a;
+    tmpNestedAssignObj = b;
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    a;
+    tmpNestedAssignObj$1 = b;
+    tmpNestedPropAssignRhs = d;
+    tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberRhs = tmpNestedPropAssignRhs;
+    tmpNestedAssignMemberObj.c = tmpNestedAssignMemberRhs;
+    tmpBinaryRight = tmpNestedAssignMemberRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, b, 'unused', 3);

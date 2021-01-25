@@ -17,13 +17,11 @@ function g({ x } = b ) { return x }
 `````js filename=intro
 function g($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      $tdz$__pattern_after_default = b;
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = b;
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let x = $tdz$__pattern_after_default.x;
   return x;

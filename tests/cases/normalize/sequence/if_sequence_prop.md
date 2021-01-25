@@ -18,12 +18,10 @@ if (($(1), $(2)).foo) $(3);
 
 `````js filename=intro
 $(1);
-{
-  let tmpBindingInit = $(2);
-  let ifTestTmp = tmpBindingInit.foo;
-  if (ifTestTmp) {
-    $(3);
-  }
+const tmpBindingInit = $(2);
+const tmpIfTest = tmpBindingInit.foo;
+if (tmpIfTest) {
+  $(3);
 }
 `````
 
@@ -31,9 +29,9 @@ $(1);
 
 `````js filename=intro
 $(1);
-let tmpBindingInit = $(2);
-let ifTestTmp = tmpBindingInit.foo;
-if (ifTestTmp) {
+const tmpBindingInit = $(2);
+const tmpIfTest = tmpBindingInit.foo;
+if (tmpIfTest) {
   $(3);
 }
 `````

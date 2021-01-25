@@ -20,14 +20,12 @@ $(x);
 var objAssignPatternRhs;
 var tmpObjPropValue;
 let x;
-{
-  tmpObjPropValue = $(1);
-  objAssignPatternRhs = { x: tmpObjPropValue };
-  x = objAssignPatternRhs.x;
-  let ifTestTmp = objAssignPatternRhs;
-  if (ifTestTmp) {
-    $(2);
-  }
+tmpObjPropValue = $(1);
+objAssignPatternRhs = { x: tmpObjPropValue };
+x = objAssignPatternRhs.x;
+const tmpIfTest = objAssignPatternRhs;
+if (tmpIfTest) {
+  $(2);
 }
 $(x);
 `````
@@ -41,8 +39,8 @@ let x;
 tmpObjPropValue = $(1);
 objAssignPatternRhs = { x: tmpObjPropValue };
 x = objAssignPatternRhs.x;
-let ifTestTmp = objAssignPatternRhs;
-if (ifTestTmp) {
+const tmpIfTest = objAssignPatternRhs;
+if (tmpIfTest) {
   $(2);
 }
 $(x);

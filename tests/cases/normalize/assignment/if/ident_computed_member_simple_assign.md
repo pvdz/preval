@@ -48,6 +48,8 @@ tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssig
 tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
 tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
 a = tmpNestedAssignCompMemberRhs;
+const tmpIfTest = tmpNestedAssignCompMemberRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

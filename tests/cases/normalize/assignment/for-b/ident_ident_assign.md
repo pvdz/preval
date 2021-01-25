@@ -29,19 +29,17 @@ let c = 3;
 let d = 4;
 {
   while (true) {
-    {
-      tmpNestedAssignObj = $(c);
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignMemberRhs = $(d);
-      tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-      tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignMemberRhs = $(d);
+    tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+    const tmpIfTest = tmpNestedComplexRhs;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -65,8 +63,8 @@ while (true) {
   tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

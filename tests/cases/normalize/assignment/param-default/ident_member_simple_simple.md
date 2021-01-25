@@ -25,16 +25,14 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedPropAssignRhs;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedPropAssignRhs = c;
-      b.x = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-      foo = tmpNestedPropAssignRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    foo = tmpNestedPropAssignRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -55,8 +53,8 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedPropAssignRhs;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedPropAssignRhs = 3;
     b.x = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;

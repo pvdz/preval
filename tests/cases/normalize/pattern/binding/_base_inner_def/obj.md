@@ -18,13 +18,11 @@ const { x = b } = 1;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = b;
-  } else {
-    x = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = b;
+} else {
+  x = objPatternBeforeDefault;
 }
 `````
 
@@ -33,8 +31,8 @@ let x;
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;

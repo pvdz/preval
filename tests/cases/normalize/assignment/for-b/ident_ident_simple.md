@@ -24,14 +24,12 @@ let b = 2;
 let c = 0;
 {
   while (true) {
-    {
-      b = c;
-      a = c;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    b = c;
+    a = c;
+    const tmpIfTest = c;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -46,11 +44,7 @@ let b = 2;
 while (true) {
   b = 0;
   a = 0;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
-  } else {
-    break;
-  }
+  break;
 }
 $(a, b, 0);
 `````

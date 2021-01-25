@@ -21,13 +21,11 @@ const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = a;
-  } else {
-    x = arrPatternBeforeDefault;
-  }
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = a;
+} else {
+  x = arrPatternBeforeDefault;
 }
 `````
 
@@ -39,8 +37,8 @@ const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x;
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = a;
 } else {
   x = arrPatternBeforeDefault;

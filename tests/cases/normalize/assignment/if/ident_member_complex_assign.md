@@ -38,6 +38,8 @@ tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
 tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
 tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
 a = tmpNestedAssignMemberRhs;
+const tmpIfTest = tmpNestedAssignMemberRhs;
+tmpIfTest;
 $(a, b, c, d);
 `````
 

@@ -25,27 +25,23 @@ function f($tdz$__pattern) {
   var tmpArg$1;
   var tmpElement;
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      tmpElement = { a: 'fail2' };
-      tmpArg = [tmpElement];
-      $tdz$__pattern_after_default = $(tmpArg);
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    tmpElement = { a: 'fail2' };
+    tmpArg = [tmpElement];
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  {
-    let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp$1) {
-      tmpArg$1 = { a: 'fail' };
-      arrPatternStep = $(tmpArg$1);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    tmpArg$1 = { a: 'fail' };
+    arrPatternStep = $(tmpArg$1);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
   let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
@@ -64,8 +60,8 @@ function f($tdz$__pattern) {
   var tmpArg$1;
   var tmpElement;
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     tmpElement = { a: 'fail2' };
     tmpArg = [tmpElement];
     $tdz$__pattern_after_default = $(tmpArg);
@@ -75,8 +71,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
     tmpArg$1 = { a: 'fail' };
     arrPatternStep = $(tmpArg$1);
   } else {

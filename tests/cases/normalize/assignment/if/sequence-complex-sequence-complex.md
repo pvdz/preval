@@ -39,6 +39,8 @@ tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 tmpAssignMemRhs = tmpNestedPropAssignRhs;
 tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
 tmpAssignMemLhsObj$2.c = tmpAssignMemRhs;
+const tmpIfTest = tmpAssignMemRhs;
+tmpIfTest;
 $(a, b, c, d);
 `````
 

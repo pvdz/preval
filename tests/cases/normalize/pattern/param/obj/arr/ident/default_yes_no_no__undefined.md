@@ -25,13 +25,11 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let y;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      y = 'fail';
-    } else {
-      y = arrPatternBeforeDefault;
-    }
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    y = 'fail';
+  } else {
+    y = arrPatternBeforeDefault;
   }
   return 'bad';
 }
@@ -49,8 +47,8 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let y;
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     y = 'fail';
   } else {
     y = arrPatternBeforeDefault;

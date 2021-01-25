@@ -19,21 +19,19 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let a = 1;
 let b = { c: 2 };
 let c = 'unused';
 let d = 0;
 while (true) {
-  {
-    {
-      a;
-      b.c = d;
-    }
-    let ifTestTmp = d;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  a;
+  tmpAssignMemLhsObj = b;
+  tmpAssignMemLhsObj.c = d;
+  const tmpIfTest = d;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c, d);
@@ -42,9 +40,11 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
 let b = { c: 2 };
 while (true) {
-  b.c = 0;
+  tmpAssignMemLhsObj = b;
+  tmpAssignMemLhsObj.c = 0;
   break;
 }
 $(1, b, 'unused', 0);

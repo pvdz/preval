@@ -24,26 +24,22 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpArg$1;
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['fail3'];
-      $tdz$__pattern_after_default = $(tmpArg);
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    tmpArg = ['fail3'];
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  {
-    let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp$1) {
-      tmpArg$1 = ['fail2'];
-      arrPatternStep = $(tmpArg$1);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    tmpArg$1 = ['fail2'];
+    arrPatternStep = $(tmpArg$1);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   return 'bad';
@@ -63,8 +59,8 @@ function f($tdz$__pattern) {
   var tmpArg;
   var tmpArg$1;
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     tmpArg = ['fail3'];
     $tdz$__pattern_after_default = $(tmpArg);
   } else {
@@ -73,8 +69,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
     tmpArg$1 = ['fail2'];
     arrPatternStep = $(tmpArg$1);
   } else {

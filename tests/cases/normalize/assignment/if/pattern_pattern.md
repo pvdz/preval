@@ -36,7 +36,8 @@ arrAssignPatternRhs = arrAssignPatternRhs$1;
 arrPatternSplat = [...arrAssignPatternRhs];
 a = arrPatternSplat[0];
 b = arrPatternSplat[1];
-arrAssignPatternRhs;
+const tmpIfTest = arrAssignPatternRhs;
+tmpIfTest;
 $(a, b, x, y, z);
 `````
 

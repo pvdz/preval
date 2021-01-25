@@ -22,13 +22,11 @@ const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    y = $('fail');
-  } else {
-    y = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
+} else {
+  y = objPatternBeforeDefault;
 }
 $('bad');
 `````
@@ -39,8 +37,8 @@ $('bad');
 const objPatternNoDefault = (1).x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = $('fail');
 } else {
   y = objPatternBeforeDefault;

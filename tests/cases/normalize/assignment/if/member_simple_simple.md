@@ -23,6 +23,8 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 a.x = b;
+const tmpIfTest = b;
+tmpIfTest;
 $(a, b, c);
 `````
 

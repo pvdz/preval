@@ -87,37 +87,33 @@ var tmpBinaryLeft$4;
       ('Cases before the default case');
       {
         ('case 0');
-        {
-          let ifTestTmp$1 = tmpSwitchFallthrough;
-          if (ifTestTmp$1) {
-          } else {
-            tmpBinaryLeft = $(10);
-            ifTestTmp$1 = tmpBinaryLeft === tmpSwitchValue;
+        let tmpIfTest = tmpSwitchFallthrough;
+        if (tmpIfTest) {
+        } else {
+          tmpBinaryLeft = $(10);
+          tmpIfTest = tmpBinaryLeft === tmpSwitchValue;
+        }
+        if (tmpIfTest) {
+          {
+            $(1);
+            break;
           }
-          if (ifTestTmp$1) {
-            {
-              $(1);
-              break;
-            }
-            tmpSwitchFallthrough = true;
-          }
+          tmpSwitchFallthrough = true;
         }
       }
       {
         ('case 1');
-        {
-          let ifTestTmp$2 = tmpSwitchFallthrough;
-          if (ifTestTmp$2) {
-          } else {
-            tmpBinaryLeft$1 = $(20);
-            ifTestTmp$2 = tmpBinaryLeft$1 === tmpSwitchValue;
+        let tmpIfTest$1 = tmpSwitchFallthrough;
+        if (tmpIfTest$1) {
+        } else {
+          tmpBinaryLeft$1 = $(20);
+          tmpIfTest$1 = tmpBinaryLeft$1 === tmpSwitchValue;
+        }
+        if (tmpIfTest$1) {
+          {
+            $(2);
           }
-          if (ifTestTmp$2) {
-            {
-              $(2);
-            }
-            tmpSwitchFallthrough = true;
-          }
+          tmpSwitchFallthrough = true;
         }
       }
     } else {
@@ -135,55 +131,49 @@ var tmpBinaryLeft$4;
         ('cases after the default case');
         {
           ('case 0');
-          {
-            let ifTestTmp$3 = tmpSwitchFallthrough;
-            if (ifTestTmp$3) {
-            } else {
-              tmpBinaryLeft$2 = $(30);
-              ifTestTmp$3 = tmpBinaryLeft$2 === tmpSwitchValue;
+          let tmpIfTest$2 = tmpSwitchFallthrough;
+          if (tmpIfTest$2) {
+          } else {
+            tmpBinaryLeft$2 = $(30);
+            tmpIfTest$2 = tmpBinaryLeft$2 === tmpSwitchValue;
+          }
+          if (tmpIfTest$2) {
+            {
+              $(3);
             }
-            if (ifTestTmp$3) {
-              {
-                $(3);
-              }
-              tmpSwitchFallthrough = true;
-            }
+            tmpSwitchFallthrough = true;
           }
         }
         {
           ('case 1');
-          {
-            let ifTestTmp$4 = tmpSwitchFallthrough;
-            if (ifTestTmp$4) {
-            } else {
-              tmpBinaryLeft$3 = $(40);
-              ifTestTmp$4 = tmpBinaryLeft$3 === tmpSwitchValue;
+          let tmpIfTest$3 = tmpSwitchFallthrough;
+          if (tmpIfTest$3) {
+          } else {
+            tmpBinaryLeft$3 = $(40);
+            tmpIfTest$3 = tmpBinaryLeft$3 === tmpSwitchValue;
+          }
+          if (tmpIfTest$3) {
+            {
+              $(4);
+              break;
             }
-            if (ifTestTmp$4) {
-              {
-                $(4);
-                break;
-              }
-              tmpSwitchFallthrough = true;
-            }
+            tmpSwitchFallthrough = true;
           }
         }
         {
           ('case 2');
-          {
-            let ifTestTmp$5 = tmpSwitchFallthrough;
-            if (ifTestTmp$5) {
-            } else {
-              tmpBinaryLeft$4 = $(50);
-              ifTestTmp$5 = tmpBinaryLeft$4 === tmpSwitchValue;
+          let tmpIfTest$4 = tmpSwitchFallthrough;
+          if (tmpIfTest$4) {
+          } else {
+            tmpBinaryLeft$4 = $(50);
+            tmpIfTest$4 = tmpBinaryLeft$4 === tmpSwitchValue;
+          }
+          if (tmpIfTest$4) {
+            {
+              $(5);
+              break;
             }
-            if (ifTestTmp$5) {
-              {
-                $(5);
-                break;
-              }
-              tmpSwitchFallthrough = true;
-            }
+            tmpSwitchFallthrough = true;
           }
         }
       }
@@ -207,24 +197,24 @@ let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
 do {
   if (tmpSwitchCheckCases) {
-    let ifTestTmp$1 = tmpSwitchFallthrough;
-    if (ifTestTmp$1) {
+    let tmpIfTest = tmpSwitchFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = $(10);
-      ifTestTmp$1 = tmpBinaryLeft === 6;
+      tmpIfTest = tmpBinaryLeft === 6;
     }
-    if (ifTestTmp$1) {
+    if (tmpIfTest) {
       $(1);
       break;
       tmpSwitchFallthrough = true;
     }
-    let ifTestTmp$2 = tmpSwitchFallthrough;
-    if (ifTestTmp$2) {
+    let tmpIfTest$1 = tmpSwitchFallthrough;
+    if (tmpIfTest$1) {
     } else {
       tmpBinaryLeft$1 = $(20);
-      ifTestTmp$2 = tmpBinaryLeft$1 === 6;
+      tmpIfTest$1 = tmpBinaryLeft$1 === 6;
     }
-    if (ifTestTmp$2) {
+    if (tmpIfTest$1) {
       $(2);
       tmpSwitchFallthrough = true;
     }
@@ -235,34 +225,34 @@ do {
     $('d');
     tmpSwitchFallthrough = true;
   }
-  let ifTestTmp$3 = tmpSwitchFallthrough;
-  if (ifTestTmp$3) {
+  let tmpIfTest$2 = tmpSwitchFallthrough;
+  if (tmpIfTest$2) {
   } else {
     tmpBinaryLeft$2 = $(30);
-    ifTestTmp$3 = tmpBinaryLeft$2 === 6;
+    tmpIfTest$2 = tmpBinaryLeft$2 === 6;
   }
-  if (ifTestTmp$3) {
+  if (tmpIfTest$2) {
     $(3);
     tmpSwitchFallthrough = true;
   }
-  let ifTestTmp$4 = tmpSwitchFallthrough;
-  if (ifTestTmp$4) {
+  let tmpIfTest$3 = tmpSwitchFallthrough;
+  if (tmpIfTest$3) {
   } else {
     tmpBinaryLeft$3 = $(40);
-    ifTestTmp$4 = tmpBinaryLeft$3 === 6;
+    tmpIfTest$3 = tmpBinaryLeft$3 === 6;
   }
-  if (ifTestTmp$4) {
+  if (tmpIfTest$3) {
     $(4);
     break;
     tmpSwitchFallthrough = true;
   }
-  let ifTestTmp$5 = tmpSwitchFallthrough;
-  if (ifTestTmp$5) {
+  let tmpIfTest$4 = tmpSwitchFallthrough;
+  if (tmpIfTest$4) {
   } else {
     tmpBinaryLeft$4 = $(50);
-    ifTestTmp$5 = tmpBinaryLeft$4 === 6;
+    tmpIfTest$4 = tmpBinaryLeft$4 === 6;
   }
-  if (ifTestTmp$5) {
+  if (tmpIfTest$4) {
     $(5);
     break;
     tmpSwitchFallthrough = true;

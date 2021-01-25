@@ -38,35 +38,31 @@ switch (1) {
   let x;
   {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        ifTestTmp = 1 === 1;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          bindingPatternArrRoot = [4, 5, 6];
-          arrPatternSplat = [...bindingPatternArrRoot];
-          x = arrPatternSplat[0];
-        }
-        tmpFallthrough = true;
-      }
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = 1 === 1;
     }
-    {
-      let ifTestTmp$1 = tmpFallthrough;
-      if (ifTestTmp$1) {
-      } else {
-        ifTestTmp$1 = 1 === 2;
+    if (tmpIfTest) {
+      ('case 0:');
+      {
+        bindingPatternArrRoot = [4, 5, 6];
+        arrPatternSplat = [...bindingPatternArrRoot];
+        x = arrPatternSplat[0];
       }
-      if (ifTestTmp$1) {
-        ('case 1:');
-        {
-          $(x);
-        }
-        tmpFallthrough = true;
+      tmpFallthrough = true;
+    }
+    let tmpIfTest$1 = tmpFallthrough;
+    if (tmpIfTest$1) {
+    } else {
+      tmpIfTest$1 = 1 === 2;
+    }
+    if (tmpIfTest$1) {
+      ('case 1:');
+      {
+        $(x);
       }
+      tmpFallthrough = true;
     }
   }
 }
@@ -79,23 +75,23 @@ let bindingPatternArrRoot;
 let arrPatternSplat;
 let x;
 let tmpFallthrough = false;
-let ifTestTmp = tmpFallthrough;
-if (ifTestTmp) {
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
 } else {
-  ifTestTmp = true;
+  tmpIfTest = true;
 }
-if (ifTestTmp) {
+if (tmpIfTest) {
   bindingPatternArrRoot = [4, 5, 6];
   arrPatternSplat = [...bindingPatternArrRoot];
   x = arrPatternSplat[0];
   tmpFallthrough = true;
 }
-let ifTestTmp$1 = tmpFallthrough;
-if (ifTestTmp$1) {
+let tmpIfTest$1 = tmpFallthrough;
+if (tmpIfTest$1) {
 } else {
-  ifTestTmp$1 = false;
+  tmpIfTest$1 = false;
 }
-if (ifTestTmp$1) {
+if (tmpIfTest$1) {
   $(x);
   tmpFallthrough = true;
 }

@@ -34,54 +34,14 @@ let d = 3;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          {
-            a;
-            tmpAssignMemLhsObj = b;
-            a;
-            tmpNestedAssignObj = $(b);
-            tmpNestedPropAssignRhs = d;
-            tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-            tmpAssignMemRhs = tmpNestedPropAssignRhs;
-            tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-            tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
-          }
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
-    }
-  }
-}
-$(a, b, c, d);
-`````
-
-## Output
-
-`````js filename=intro
-let b = { c: 2 };
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
     }
-    if (ifTestTmp) {
+    if (tmpIfTest) {
       ('case 0:');
       {
         {
@@ -99,6 +59,42 @@ tmpSwitchBreak: {
       }
       tmpFallthrough = true;
     }
+  }
+}
+$(a, b, c, d);
+`````
+
+## Output
+
+`````js filename=intro
+let b = { c: 2 };
+$('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      {
+        a;
+        tmpAssignMemLhsObj = b;
+        a;
+        tmpNestedAssignObj = $(b);
+        tmpNestedPropAssignRhs = d;
+        tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+        tmpAssignMemRhs = tmpNestedPropAssignRhs;
+        tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+        tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
+      }
+      break tmpSwitchBreak;
+    }
+    tmpFallthrough = true;
   }
 }
 $(1, b, 'unused', 3);

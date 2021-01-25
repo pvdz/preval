@@ -28,25 +28,23 @@ let b = 2;
 let c = 3;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpNestedAssignObj = $(a);
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignMemberRhs = b + c;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      tmpBinaryRight = tmpNestedAssignMemberRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpNestedAssignObj = $(a);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignMemberRhs = b + c;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    tmpBinaryRight = tmpNestedAssignMemberRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c);
@@ -58,25 +56,23 @@ $(a, b, c);
 let a = { x: 10 };
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpNestedAssignObj = $(a);
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignMemberRhs = b + c;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      tmpBinaryRight = tmpNestedAssignMemberRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpNestedAssignObj = $(a);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignMemberRhs = b + c;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    tmpBinaryRight = tmpNestedAssignMemberRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, 2, 3);

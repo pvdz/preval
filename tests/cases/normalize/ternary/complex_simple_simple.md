@@ -20,22 +20,18 @@ $(a, b)
 
 `````js filename=intro
 let a;
-{
-  let ifTestTmp = $(1);
-  if (ifTestTmp) {
-    a = 2;
-  } else {
-    a = 3;
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = 2;
+} else {
+  a = 3;
 }
 let b;
-{
-  let ifTestTmp$1 = $(0);
-  if (ifTestTmp$1) {
-    b = 4;
-  } else {
-    b = 5;
-  }
+const tmpIfTest$1 = $(0);
+if (tmpIfTest$1) {
+  b = 4;
+} else {
+  b = 5;
 }
 $(a, b);
 `````
@@ -44,15 +40,15 @@ $(a, b);
 
 `````js filename=intro
 let a;
-let ifTestTmp = $(1);
-if (ifTestTmp) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   a = 2;
 } else {
   a = 3;
 }
 let b;
-let ifTestTmp$1 = $(0);
-if (ifTestTmp$1) {
+const tmpIfTest$1 = $(0);
+if (tmpIfTest$1) {
   b = 4;
 } else {
   b = 5;

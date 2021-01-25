@@ -19,18 +19,14 @@ if (!$(1))
 ## Normalized
 
 `````js filename=intro
-{
-  let ifTestTmp = $(1);
-  if (ifTestTmp) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+} else {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    $(3);
   } else {
-    {
-      let ifTestTmp$1 = $(2);
-      if (ifTestTmp$1) {
-        $(3);
-      } else {
-        $(4);
-      }
-    }
+    $(4);
   }
 }
 `````
@@ -38,11 +34,11 @@ if (!$(1))
 ## Output
 
 `````js filename=intro
-let ifTestTmp = $(1);
-if (ifTestTmp) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
 } else {
-  let ifTestTmp$1 = $(2);
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
     $(3);
   } else {
     $(4);

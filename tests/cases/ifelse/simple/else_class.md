@@ -16,21 +16,19 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-{
-  let ifTestTmp = class {};
-  if (ifTestTmp) {
-    $(1);
-  } else {
-    $(2);
-  }
+const tmpIfTest = class {};
+if (tmpIfTest) {
+  $(1);
+} else {
+  $(2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let ifTestTmp = class {};
-if (ifTestTmp) {
+const tmpIfTest = class {};
+if (tmpIfTest) {
   $(1);
 } else {
   $(2);

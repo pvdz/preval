@@ -20,15 +20,13 @@ const f = (a = { x } = 1) => { return a };
 const f = ($tdz$__a) => {
   var objAssignPatternRhs;
   let a;
-  {
-    let ifTestTmp = $tdz$__a === undefined;
-    if (ifTestTmp) {
-      objAssignPatternRhs = 1;
-      x = objAssignPatternRhs.x;
-      a = objAssignPatternRhs;
-    } else {
-      a = $tdz$__a;
-    }
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    objAssignPatternRhs = 1;
+    x = objAssignPatternRhs.x;
+    a = objAssignPatternRhs;
+  } else {
+    a = $tdz$__a;
   }
   return a;
 };
@@ -40,8 +38,8 @@ const f = ($tdz$__a) => {
 ($tdz$__a) => {
   var objAssignPatternRhs;
   let a;
-  let ifTestTmp = $tdz$__a === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
     objAssignPatternRhs = 1;
     x = objAssignPatternRhs.x;
     a = objAssignPatternRhs;

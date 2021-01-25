@@ -30,20 +30,18 @@ let c = 3;
 let d = 4;
 {
   while (true) {
-    {
-      tmpNestedAssignMemberObj = b;
-      tmpNestedAssignObj = $(c);
-      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
-      tmpNestedAssignMemberRhs$1 = $(d);
-      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      a = tmpNestedAssignMemberRhs;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    tmpNestedAssignMemberObj = b;
+    tmpNestedAssignObj = $(c);
+    tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
+    tmpNestedAssignMemberRhs$1 = $(d);
+    tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
+    const tmpIfTest = tmpNestedAssignMemberRhs;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -69,8 +67,8 @@ while (true) {
   tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedAssignMemberRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

@@ -25,16 +25,14 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedComplexRhs;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedComplexRhs = c + d;
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
-      foo = tmpNestedComplexRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedComplexRhs = c + d;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+    foo = tmpNestedComplexRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -56,8 +54,8 @@ $(a, b, c);
 function f($tdz$__foo) {
   var tmpNestedComplexRhs;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedComplexRhs = 7;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;

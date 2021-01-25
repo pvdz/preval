@@ -24,15 +24,13 @@ let a = 1;
 let b = { x: 2 };
 let c = 0;
 while (true) {
-  {
-    tmpNestedPropAssignRhs = c;
-    b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpNestedPropAssignRhs = c;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  const tmpIfTest = tmpNestedPropAssignRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -48,8 +46,8 @@ while (true) {
   tmpNestedPropAssignRhs = 0;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedPropAssignRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

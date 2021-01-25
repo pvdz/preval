@@ -43,18 +43,16 @@ var tmpBinaryLeft;
         ('cases after the default case');
         {
           ('case 0');
-          {
-            let ifTestTmp$1 = tmpSwitchFallthrough;
-            if (ifTestTmp$1) {
-            } else {
-              tmpBinaryLeft = $(30);
-              ifTestTmp$1 = tmpBinaryLeft === tmpSwitchValue;
+          let tmpIfTest = tmpSwitchFallthrough;
+          if (tmpIfTest) {
+          } else {
+            tmpBinaryLeft = $(30);
+            tmpIfTest = tmpBinaryLeft === tmpSwitchValue;
+          }
+          if (tmpIfTest) {
+            {
             }
-            if (ifTestTmp$1) {
-              {
-              }
-              tmpSwitchFallthrough = true;
-            }
+            tmpSwitchFallthrough = true;
           }
         }
       }
@@ -80,13 +78,13 @@ do {
   if (tmpSwitchFallthrough) {
     tmpSwitchFallthrough = true;
   }
-  let ifTestTmp$1 = tmpSwitchFallthrough;
-  if (ifTestTmp$1) {
+  let tmpIfTest = tmpSwitchFallthrough;
+  if (tmpIfTest) {
   } else {
     tmpBinaryLeft = $(30);
-    ifTestTmp$1 = tmpBinaryLeft === 6;
+    tmpIfTest = tmpBinaryLeft === 6;
   }
-  if (ifTestTmp$1) {
+  if (tmpIfTest) {
     tmpSwitchFallthrough = true;
   }
   tmpSwitchCheckCases = false;

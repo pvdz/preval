@@ -34,23 +34,21 @@ let d = 4;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        tmpNestedAssignMemberObj = b;
-        tmpNestedAssignObj = $(c);
-        tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
-        tmpNestedAssignMemberRhs$1 = $(d);
-        tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-        tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-        tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-        a = tmpNestedAssignMemberRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      tmpNestedAssignMemberObj = b;
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
+      tmpNestedAssignMemberRhs$1 = $(d);
+      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
+      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+      a = tmpNestedAssignMemberRhs;
+    } else {
+      break;
     }
   }
 }
@@ -74,8 +72,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     tmpNestedAssignMemberObj = b;
     tmpNestedAssignObj = $(3);
     tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;

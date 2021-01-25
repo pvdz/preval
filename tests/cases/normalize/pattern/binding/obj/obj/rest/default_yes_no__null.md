@@ -22,14 +22,12 @@ var tmpArg;
 const bindingPatternObjRoot = null;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = { a: 'fail' };
-    objPatternAfterDefault = $(tmpArg);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  tmpArg = { a: 'fail' };
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 const y = objPatternRest(objPatternAfterDefault, [], undefined);
 $('bad');
@@ -41,8 +39,8 @@ $('bad');
 var tmpArg;
 const objPatternBeforeDefault = null.x;
 let objPatternAfterDefault;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   tmpArg = { a: 'fail' };
   objPatternAfterDefault = $(tmpArg);
 } else {

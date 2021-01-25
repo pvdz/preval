@@ -23,14 +23,12 @@ $(f(undefined, 10));
 function f($tdz$__pattern) {
   var tmpArg;
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      tmpArg = { a: 'pass' };
-      $tdz$__pattern_after_default = $(tmpArg);
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    tmpArg = { a: 'pass' };
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
   return x;
@@ -47,8 +45,8 @@ $(tmpArg$1);
 function f($tdz$__pattern) {
   var tmpArg;
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     tmpArg = { a: 'pass' };
     $tdz$__pattern_after_default = $(tmpArg);
   } else {

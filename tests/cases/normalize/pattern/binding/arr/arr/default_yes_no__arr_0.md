@@ -23,14 +23,12 @@ const bindingPatternArrRoot = [0, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep;
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = ['fail2'];
-    arrPatternStep = $(tmpArg);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  tmpArg = ['fail2'];
+  arrPatternStep = $(tmpArg);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 $('bad');
@@ -44,8 +42,8 @@ const bindingPatternArrRoot = [0, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep;
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   tmpArg = ['fail2'];
   arrPatternStep = $(tmpArg);
 } else {

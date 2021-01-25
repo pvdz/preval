@@ -25,26 +25,22 @@ function f($tdz$__pattern) {
   var tmpArg$1;
   var tmpObjPropValue;
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      tmpObjPropValue = { y: 'fail2' };
-      tmpArg = { x: tmpObjPropValue };
-      $tdz$__pattern_after_default = $(tmpArg);
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    tmpObjPropValue = { y: 'fail2' };
+    tmpArg = { x: tmpObjPropValue };
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
-  {
-    let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp$1) {
-      tmpArg$1 = { x: 'pass' };
-      objPatternAfterDefault = $(tmpArg$1);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    tmpArg$1 = { x: 'pass' };
+    objPatternAfterDefault = $(tmpArg$1);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternCrashTest = objPatternAfterDefault === undefined;
   if (objPatternCrashTest) {
@@ -72,8 +68,8 @@ function f($tdz$__pattern) {
   var tmpArg$1;
   var tmpObjPropValue;
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     tmpObjPropValue = { y: 'fail2' };
     tmpArg = { x: tmpObjPropValue };
     $tdz$__pattern_after_default = $(tmpArg);
@@ -82,8 +78,8 @@ function f($tdz$__pattern) {
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
-  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
     tmpArg$1 = { x: 'pass' };
     objPatternAfterDefault = $(tmpArg$1);
   } else {

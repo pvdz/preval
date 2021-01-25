@@ -23,13 +23,11 @@ $(f());
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
   let x;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = $('fail');
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    x = $('fail');
+  } else {
+    x = objPatternBeforeDefault;
   }
   return 'bad';
 }
@@ -45,8 +43,8 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
   let x;
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     x = $('fail');
   } else {
     x = objPatternBeforeDefault;

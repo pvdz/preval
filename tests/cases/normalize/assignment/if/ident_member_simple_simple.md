@@ -26,6 +26,8 @@ let c = 3;
 tmpNestedPropAssignRhs = c;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
+const tmpIfTest = tmpNestedPropAssignRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

@@ -23,13 +23,11 @@ a: b: c: {
 a: {
   b: {
     {
-      {
-        let ifTestTmp = $(1);
-        if (ifTestTmp) {
-          break a;
-        } else {
-          break b;
-        }
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        break a;
+      } else {
+        break b;
       }
     }
   }
@@ -42,13 +40,11 @@ a: {
 a: {
   b: {
     {
-      {
-        let ifTestTmp = $(1);
-        if (ifTestTmp) {
-          break a;
-        } else {
-          break b;
-        }
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        break a;
+      } else {
+        break b;
       }
     }
   }

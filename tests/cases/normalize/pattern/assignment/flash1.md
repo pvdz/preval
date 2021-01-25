@@ -33,24 +33,20 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat$4 = [...arrPatternStep$3];
   let arrPatternBeforeDefault = arrPatternSplat$4[0];
   let arrPatternStep$4;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      arrPatternStep$4 = y;
-    } else {
-      arrPatternStep$4 = arrPatternBeforeDefault;
-    }
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    arrPatternStep$4 = y;
+  } else {
+    arrPatternStep$4 = arrPatternBeforeDefault;
   }
   let arrPatternSplat$5 = [...arrPatternStep$4];
   let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
   let foo;
-  {
-    let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
-    if (ifTestTmp$1) {
-      foo = x_1;
-    } else {
-      foo = arrPatternBeforeDefault$1;
-    }
+  const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+  if (tmpIfTest$1) {
+    foo = x_1;
+  } else {
+    foo = arrPatternBeforeDefault$1;
   }
   let objPatternNoDefault = tmpParamPattern$1.x;
   let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
@@ -72,8 +68,8 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat$4 = [...arrPatternStep$3];
   let arrPatternBeforeDefault = arrPatternSplat$4[0];
   let arrPatternStep$4;
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     arrPatternStep$4 = y;
   } else {
     arrPatternStep$4 = arrPatternBeforeDefault;
@@ -81,8 +77,8 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat$5 = [...arrPatternStep$4];
   let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
   let foo;
-  let ifTestTmp$1 = arrPatternBeforeDefault$1 === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+  if (tmpIfTest$1) {
     foo = x_1;
   } else {
     foo = arrPatternBeforeDefault$1;

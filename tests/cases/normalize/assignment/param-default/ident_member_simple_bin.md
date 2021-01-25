@@ -26,17 +26,15 @@ function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedAssignMemberObj = b;
-      tmpNestedAssignMemberRhs = c + d;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      a = tmpNestedAssignMemberRhs;
-      foo = tmpNestedAssignMemberRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedAssignMemberObj = b;
+    tmpNestedAssignMemberRhs = c + d;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
+    foo = tmpNestedAssignMemberRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -59,8 +57,8 @@ function f($tdz$__foo) {
   var tmpNestedAssignMemberObj;
   var tmpNestedAssignMemberRhs;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedAssignMemberObj = b;
     tmpNestedAssignMemberRhs = 7;
     tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;

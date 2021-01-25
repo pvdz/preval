@@ -27,6 +27,8 @@ let d = 4;
 tmpNestedComplexRhs = c + d;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
+const tmpIfTest = tmpNestedComplexRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

@@ -21,16 +21,14 @@ const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
   let a;
-  {
-    let ifTestTmp = $tdz$__a === undefined;
-    if (ifTestTmp) {
-      arrAssignPatternRhs = 1;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      a = arrAssignPatternRhs;
-    } else {
-      a = $tdz$__a;
-    }
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    arrAssignPatternRhs = 1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    a = arrAssignPatternRhs;
+  } else {
+    a = $tdz$__a;
   }
   return a;
 };
@@ -43,8 +41,8 @@ const f = ($tdz$__a) => {
   var arrAssignPatternRhs;
   var arrPatternSplat;
   let a;
-  let ifTestTmp = $tdz$__a === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
     arrAssignPatternRhs = 1;
     arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];

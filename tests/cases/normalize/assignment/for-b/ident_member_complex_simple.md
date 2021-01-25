@@ -26,16 +26,14 @@ let b = { x: 2 };
 let c = 3;
 {
   while (true) {
-    {
-      tmpNestedAssignObj = $(b);
-      tmpNestedPropAssignRhs = c;
-      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    tmpNestedAssignObj = $(b);
+    tmpNestedPropAssignRhs = c;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    const tmpIfTest = tmpNestedPropAssignRhs;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -54,8 +52,8 @@ while (true) {
   tmpNestedPropAssignRhs = 3;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedPropAssignRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

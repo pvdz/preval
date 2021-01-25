@@ -35,52 +35,14 @@ let d = 4;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          tmpNestedAssignObj = $(b);
-          tmpNestedAssignMemberObj = tmpNestedAssignObj;
-          tmpNestedAssignObj$1 = $(c);
-          tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-          tmpNestedAssignMemberRhs$1 = $(d);
-          tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-          tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-          tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-          a = tmpNestedAssignMemberRhs;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
-    }
-  }
-}
-$(a, b, c, d);
-`````
-
-## Output
-
-`````js filename=intro
-let b = { x: 2 };
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
     }
-    if (ifTestTmp) {
+    if (tmpIfTest) {
       ('case 0:');
       {
         tmpNestedAssignObj = $(b);
@@ -96,6 +58,40 @@ tmpSwitchBreak: {
       }
       tmpFallthrough = true;
     }
+  }
+}
+$(a, b, c, d);
+`````
+
+## Output
+
+`````js filename=intro
+let b = { x: 2 };
+$('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignObj$1 = $(c);
+      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+      tmpNestedAssignMemberRhs$1 = $(d);
+      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
+      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+      a = tmpNestedAssignMemberRhs;
+      break tmpSwitchBreak;
+    }
+    tmpFallthrough = true;
   }
 }
 $(1, b, 3, 4);

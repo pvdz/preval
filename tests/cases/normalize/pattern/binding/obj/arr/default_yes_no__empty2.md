@@ -21,13 +21,11 @@ $('ok');
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    objPatternAfterDefault = ['fail'];
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  objPatternAfterDefault = ['fail'];
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 $('ok');
@@ -38,8 +36,8 @@ $('ok');
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   objPatternAfterDefault = ['fail'];
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

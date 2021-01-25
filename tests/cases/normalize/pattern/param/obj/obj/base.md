@@ -22,23 +22,19 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      $tdz$__pattern_after_default = b;
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = b;
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
-  {
-    let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp$1) {
-      objPatternAfterDefault = a;
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    objPatternAfterDefault = a;
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternCrashTest = objPatternAfterDefault === undefined;
   if (objPatternCrashTest) {
@@ -65,16 +61,16 @@ $(tmpArg);
 `````js filename=intro
 function f($tdz$__pattern) {
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     $tdz$__pattern_after_default = b;
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault;
-  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
     objPatternAfterDefault = a;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;

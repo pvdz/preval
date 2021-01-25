@@ -23,13 +23,11 @@ tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    objPatternAfterDefault = a;
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  objPatternAfterDefault = a;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 let objPatternCrashTest = objPatternAfterDefault === undefined;
 if (objPatternCrashTest) {
@@ -50,8 +48,8 @@ tmpObjPropValue = { x: 1, y: 2, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   objPatternAfterDefault = a;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

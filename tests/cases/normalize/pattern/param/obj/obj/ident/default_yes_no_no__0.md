@@ -24,13 +24,11 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
   let y;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      y = $('fail');
-    } else {
-      y = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault;
   }
   return 'bad';
 }
@@ -47,8 +45,8 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
   let y;
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     y = $('fail');
   } else {
     y = objPatternBeforeDefault;

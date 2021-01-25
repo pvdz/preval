@@ -26,17 +26,15 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 while (true) {
-  {
-    tmpNestedAssignComMemberObj = b;
-    tmpNestedAssignComMemberProp = $('x');
-    tmpNestedPropAssignRhs = c;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedPropAssignRhs = c;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  const tmpIfTest = tmpNestedPropAssignRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -56,8 +54,8 @@ while (true) {
   tmpNestedPropAssignRhs = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedPropAssignRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

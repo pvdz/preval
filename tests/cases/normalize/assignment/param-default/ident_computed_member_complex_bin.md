@@ -30,21 +30,19 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs;
   var tmpNestedAssignObj;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-      tmpNestedAssignCompMemberRhs = c + d;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedAssignCompMemberRhs;
-      foo = tmpNestedAssignCompMemberRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignCompMemberRhs = c + d;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedAssignCompMemberRhs;
+    foo = tmpNestedAssignCompMemberRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -71,8 +69,8 @@ function f($tdz$__foo) {
   var tmpNestedAssignCompMemberRhs;
   var tmpNestedAssignObj;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedAssignObj = $(b);
     tmpNestedAssignComMemberObj = tmpNestedAssignObj;
     tmpNestedAssignComMemberProp = $('x');

@@ -20,13 +20,11 @@ function i(tmpParamPattern) {
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let objPatternBeforeDefault = objPatternNoDefault$1.z;
   let z;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      z = a;
-    } else {
-      z = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    z = a;
+  } else {
+    z = objPatternBeforeDefault;
   }
   return z;
 }

@@ -19,19 +19,23 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 while (true) {
-  {
-    let tmpBindInitMemberObject = $(a);
-    let tmpBindInitRhs = b + c;
-    tmpBindInitMemberObject.x = tmpBindInitRhs;
-    let ifTestTmp = tmpBindInitRhs;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  tmpAssignMemRhs = b + c;
+  tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+  tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+  const tmpIfTest = tmpAssignMemRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -40,10 +44,22 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemLhsObj$2;
+var tmpAssignMemRhs;
 let a = { x: 10 };
 while (true) {
-  let tmpBindInitMemberObject = $(a);
-  tmpBindInitMemberObject.x = 5;
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  tmpAssignMemRhs = 5;
+  tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+  tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+  const tmpIfTest = tmpAssignMemRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
 }
 $(a, 5, 3);
 `````

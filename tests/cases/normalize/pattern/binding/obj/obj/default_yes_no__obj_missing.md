@@ -22,14 +22,12 @@ var tmpArg;
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = { x: 'pass' };
-    objPatternAfterDefault = $(tmpArg);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  tmpArg = { x: 'pass' };
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 let objPatternCrashTest = objPatternAfterDefault === undefined;
 if (objPatternCrashTest) {
@@ -49,8 +47,8 @@ var tmpArg;
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   tmpArg = { x: 'pass' };
   objPatternAfterDefault = $(tmpArg);
 } else {

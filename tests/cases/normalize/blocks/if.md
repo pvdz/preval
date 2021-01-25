@@ -15,19 +15,17 @@ if ($(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-{
-  let ifTestTmp = $(1);
-  if (ifTestTmp) {
-    $(2);
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let ifTestTmp = $(1);
-if (ifTestTmp) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   $(2);
 }
 `````

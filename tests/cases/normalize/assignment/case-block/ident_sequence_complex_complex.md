@@ -31,48 +31,14 @@ let c = 3;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          $(b);
-          tmpNestedAssignObj = $(c);
-          tmpNestedAssignMemberObj = tmpNestedAssignObj;
-          tmpNestedAssignMemberRhs = $(c);
-          tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-          a = tmpNestedAssignMemberRhs;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
-    }
-  }
-}
-$(a, b, c);
-`````
-
-## Output
-
-`````js filename=intro
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
     }
-    if (ifTestTmp) {
+    if (tmpIfTest) {
       ('case 0:');
       {
         $(b);
@@ -85,6 +51,36 @@ tmpSwitchBreak: {
       }
       tmpFallthrough = true;
     }
+  }
+}
+$(a, b, c);
+`````
+
+## Output
+
+`````js filename=intro
+$('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(b);
+      tmpNestedAssignObj = $(c);
+      tmpNestedAssignMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignMemberRhs = $(c);
+      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+      a = tmpNestedAssignMemberRhs;
+      break tmpSwitchBreak;
+    }
+    tmpFallthrough = true;
   }
 }
 $(1, 2, 3);

@@ -18,13 +18,11 @@ function g({ x = b } ) { return x }
 function g(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
   let x;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = b;
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    x = b;
+  } else {
+    x = objPatternBeforeDefault;
   }
   return x;
 }

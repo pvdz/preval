@@ -28,14 +28,12 @@ let b = 2;
 let c = 3;
 let n = 0;
 do {
-  {
-    tmpPostfixArg = n;
-    n = n + 1;
-    tmpArg = tmpPostfixArg;
-    let ifTestTmp$1 = $(tmpArg);
-    if (ifTestTmp$1) {
-      break;
-    }
+  tmpPostfixArg = n;
+  n = n + 1;
+  tmpArg = tmpPostfixArg;
+  const tmpIfTest = $(tmpArg);
+  if (tmpIfTest) {
+    break;
   }
   a = b;
   ifTestTmp = b;
@@ -55,8 +53,8 @@ do {
   tmpPostfixArg = n;
   n = n + 1;
   tmpArg = tmpPostfixArg;
-  let ifTestTmp$1 = $(tmpArg);
-  if (ifTestTmp$1) {
+  const tmpIfTest = $(tmpArg);
+  if (tmpIfTest) {
     break;
   }
   a = 2;

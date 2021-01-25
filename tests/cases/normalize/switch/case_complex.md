@@ -35,35 +35,31 @@ var tmpBinaryRight;
 var tmpBinaryRight$1;
 {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryRight = $(1);
-      ifTestTmp = 1 === tmpBinaryRight;
-    }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $(11);
-      }
-      tmpFallthrough = true;
-    }
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryRight = $(1);
+    tmpIfTest = 1 === tmpBinaryRight;
   }
-  {
-    let ifTestTmp$1 = tmpFallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      tmpBinaryRight$1 = $(2);
-      ifTestTmp$1 = 1 === tmpBinaryRight$1;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(11);
     }
-    if (ifTestTmp$1) {
-      ('case 1:');
-      {
-        $(22);
-      }
-      tmpFallthrough = true;
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpBinaryRight$1 = $(2);
+    tmpIfTest$1 = 1 === tmpBinaryRight$1;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      $(22);
     }
+    tmpFallthrough = true;
   }
 }
 `````
@@ -74,23 +70,23 @@ var tmpBinaryRight$1;
 var tmpBinaryRight;
 var tmpBinaryRight$1;
 let tmpFallthrough = false;
-let ifTestTmp = tmpFallthrough;
-if (ifTestTmp) {
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
 } else {
   tmpBinaryRight = $(1);
-  ifTestTmp = 1 === tmpBinaryRight;
+  tmpIfTest = 1 === tmpBinaryRight;
 }
-if (ifTestTmp) {
+if (tmpIfTest) {
   $(11);
   tmpFallthrough = true;
 }
-let ifTestTmp$1 = tmpFallthrough;
-if (ifTestTmp$1) {
+let tmpIfTest$1 = tmpFallthrough;
+if (tmpIfTest$1) {
 } else {
   tmpBinaryRight$1 = $(2);
-  ifTestTmp$1 = 1 === tmpBinaryRight$1;
+  tmpIfTest$1 = 1 === tmpBinaryRight$1;
 }
-if (ifTestTmp$1) {
+if (tmpIfTest$1) {
   $(22);
   tmpFallthrough = true;
 }

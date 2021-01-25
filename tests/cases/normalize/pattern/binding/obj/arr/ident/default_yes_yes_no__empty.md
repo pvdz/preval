@@ -22,25 +22,21 @@ var tmpArg;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = ['fail2'];
-    objPatternAfterDefault = $(tmpArg);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  tmpArg = ['fail2'];
+  objPatternAfterDefault = $(tmpArg);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y;
-{
-  let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
-    y = 'fail';
-  } else {
-    y = arrPatternBeforeDefault;
-  }
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  y = 'fail';
+} else {
+  y = arrPatternBeforeDefault;
 }
 $('bad');
 `````
@@ -51,8 +47,8 @@ $('bad');
 var tmpArg;
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   tmpArg = ['fail2'];
   objPatternAfterDefault = $(tmpArg);
 } else {
@@ -61,8 +57,8 @@ if (ifTestTmp) {
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y;
-let ifTestTmp$1 = arrPatternBeforeDefault === undefined;
-if (ifTestTmp$1) {
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;

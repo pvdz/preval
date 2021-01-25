@@ -17,19 +17,17 @@ if ([].length) $();
 ## Normalized
 
 `````js filename=intro
-{
-  let ifTestTmp = [].length;
-  if (ifTestTmp) {
-    $();
-  }
+const tmpIfTest = [].length;
+if (tmpIfTest) {
+  $();
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let ifTestTmp = [].length;
-if (ifTestTmp) {
+const tmpIfTest = [].length;
+if (tmpIfTest) {
   $();
 }
 `````

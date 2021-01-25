@@ -30,22 +30,20 @@ function f($tdz$__foo) {
   var tmpNestedAssignObj;
   var tmpNestedAssignObj$1;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignObj$1 = $(c);
-      tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-      tmpNestedAssignMemberRhs$1 = $(d);
-      tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      a = tmpNestedAssignMemberRhs;
-      foo = tmpNestedAssignMemberRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignObj$1 = $(c);
+    tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignMemberRhs$1 = $(d);
+    tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
+    foo = tmpNestedAssignMemberRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -72,8 +70,8 @@ function f($tdz$__foo) {
   var tmpNestedAssignObj;
   var tmpNestedAssignObj$1;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     tmpNestedAssignObj = $(b);
     tmpNestedAssignMemberObj = tmpNestedAssignObj;
     tmpNestedAssignObj$1 = $(3);

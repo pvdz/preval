@@ -34,50 +34,14 @@ let c = 3;
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-      }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          tmpAssignComMemLhsObj = a;
-          tmpAssignComMemLhsProp = $('x');
-          tmpAssignComputedObj = tmpAssignComMemLhsObj;
-          tmpAssignComputedProp = tmpAssignComMemLhsProp;
-          tmpAssignComputedRhs = b + c;
-          tmpAssignMemLhsObj = tmpAssignComputedObj;
-          tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
-    }
-  }
-}
-$(a, b, c);
-`````
-
-## Output
-
-`````js filename=intro
-let a = { x: 10 };
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
     } else {
       tmpBinaryLeft = tmpSwitchTest;
       tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
     }
-    if (ifTestTmp) {
+    if (tmpIfTest) {
       ('case 0:');
       {
         tmpAssignComMemLhsObj = a;
@@ -91,6 +55,38 @@ tmpSwitchBreak: {
       }
       tmpFallthrough = true;
     }
+  }
+}
+$(a, b, c);
+`````
+
+## Output
+
+`````js filename=intro
+let a = { x: 10 };
+$('a');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpAssignComMemLhsObj = a;
+      tmpAssignComMemLhsProp = $('x');
+      tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      tmpAssignComputedProp = tmpAssignComMemLhsProp;
+      tmpAssignComputedRhs = b + c;
+      tmpAssignMemLhsObj = tmpAssignComputedObj;
+      tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      break tmpSwitchBreak;
+    }
+    tmpFallthrough = true;
   }
 }
 $(a, 2, 3);

@@ -25,15 +25,13 @@ let a = 1;
 let b = 2;
 let c = 3;
 while (true) {
-  {
-    tmpBinaryLeft = b;
-    tmpBinaryRight = $(c);
-    a = tmpBinaryLeft + tmpBinaryRight;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpBinaryLeft = b;
+  tmpBinaryRight = $(c);
+  a = tmpBinaryLeft + tmpBinaryRight;
+  const tmpIfTest = a;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -49,8 +47,8 @@ while (true) {
   tmpBinaryLeft = 2;
   tmpBinaryRight = $(3);
   a = tmpBinaryLeft + tmpBinaryRight;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }

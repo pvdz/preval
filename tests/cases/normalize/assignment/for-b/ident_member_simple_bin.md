@@ -27,16 +27,14 @@ let c = 0;
 let d = 0;
 {
   while (true) {
-    {
-      tmpNestedAssignMemberObj = b;
-      tmpNestedAssignMemberRhs = c + d;
-      tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-      a = tmpNestedAssignMemberRhs;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    tmpNestedAssignMemberObj = b;
+    tmpNestedAssignMemberRhs = c + d;
+    tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
+    a = tmpNestedAssignMemberRhs;
+    const tmpIfTest = tmpNestedAssignMemberRhs;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -55,8 +53,8 @@ while (true) {
   tmpNestedAssignMemberRhs = 0;
   tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
   a = tmpNestedAssignMemberRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedAssignMemberRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

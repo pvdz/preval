@@ -27,6 +27,8 @@ let c = 3;
 tmpAssignComMemLhsObj = a;
 tmpAssignComMemLhsProp = $('x');
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = b;
+const tmpIfTest = b;
+tmpIfTest;
 $(a, b, c);
 `````
 

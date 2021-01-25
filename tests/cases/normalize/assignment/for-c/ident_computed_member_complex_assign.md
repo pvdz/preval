@@ -41,30 +41,28 @@ let d = 4;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        tmpNestedAssignObj = $(b);
-        tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-        tmpNestedAssignComMemberProp = $('x');
-        tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-        tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-        tmpNestedAssignObj$1 = $(c);
-        tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-        tmpNestedAssignComMemberProp$1 = $('y');
-        tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-        tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-        tmpNestedAssignCompMemberRhs$1 = $(d);
-        tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-        tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-        tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-        a = tmpNestedAssignCompMemberRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      tmpNestedAssignObj = $(b);
+      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+      tmpNestedAssignComMemberProp = $('x');
+      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+      tmpNestedAssignObj$1 = $(c);
+      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
+      tmpNestedAssignComMemberProp$1 = $('y');
+      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+      tmpNestedAssignCompMemberRhs$1 = $(d);
+      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+      a = tmpNestedAssignCompMemberRhs;
+    } else {
+      break;
     }
   }
 }
@@ -95,8 +93,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     tmpNestedAssignObj = $(b);
     tmpNestedAssignComMemberObj = tmpNestedAssignObj;
     tmpNestedAssignComMemberProp = $('x');

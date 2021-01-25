@@ -23,14 +23,12 @@ $(f('abc', 200));
 function f($tdz$__pattern) {
   var tmpArg;
   let $tdz$__pattern_after_default;
-  {
-    let ifTestTmp = $tdz$__pattern === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['fail'];
-      $tdz$__pattern_after_default = $(tmpArg);
-    } else {
-      $tdz$__pattern_after_default = $tdz$__pattern;
-    }
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    tmpArg = ['fail'];
+    $tdz$__pattern_after_default = $(tmpArg);
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let x = arrPatternSplat.slice(0);
@@ -48,8 +46,8 @@ $(tmpArg$1);
 function f($tdz$__pattern) {
   var tmpArg;
   let $tdz$__pattern_after_default;
-  let ifTestTmp = $tdz$__pattern === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
     tmpArg = ['fail'];
     $tdz$__pattern_after_default = $(tmpArg);
   } else {

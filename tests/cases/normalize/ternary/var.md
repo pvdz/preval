@@ -23,7 +23,6 @@ var foo;
 let a = 1;
 let b = 2;
 let c = 3;
-('<hoisted var `foo` decl without init>');
 if (a) {
   foo = b;
 } else {

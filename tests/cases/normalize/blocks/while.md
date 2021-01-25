@@ -18,13 +18,11 @@ while ($(1)) $(2);
 
 `````js filename=intro
 while (true) {
-  {
-    let ifTestTmp = $(1);
-    if (ifTestTmp) {
-      $(2);
-    } else {
-      break;
-    }
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $(2);
+  } else {
+    break;
   }
 }
 `````
@@ -33,8 +31,8 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  let ifTestTmp = $(1);
-  if (ifTestTmp) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
     $(2);
   } else {
     break;

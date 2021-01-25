@@ -17,12 +17,10 @@ if (void $(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-{
-  $(1);
-  let ifTestTmp = undefined;
-  if (ifTestTmp) {
-    $(2);
-  }
+$(1);
+const tmpIfTest = undefined;
+if (tmpIfTest) {
+  $(2);
 }
 `````
 

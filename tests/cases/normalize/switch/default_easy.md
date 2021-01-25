@@ -22,19 +22,17 @@ switch (1) {
 `````js filename=intro
 {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      ifTestTmp = 1 === 1;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(1);
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $(1);
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
   {
     ('default case:');
@@ -47,12 +45,12 @@ switch (1) {
 
 `````js filename=intro
 let tmpFallthrough = false;
-let ifTestTmp = tmpFallthrough;
-if (ifTestTmp) {
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
 } else {
-  ifTestTmp = true;
+  tmpIfTest = true;
 }
-if (ifTestTmp) {
+if (tmpIfTest) {
   $(1);
   tmpFallthrough = true;
 }

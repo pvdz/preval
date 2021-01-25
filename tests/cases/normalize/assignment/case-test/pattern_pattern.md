@@ -31,29 +31,27 @@ let y = 2;
 let z = [10, 20, 30];
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      arrAssignPatternRhs$1 = z;
-      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      arrAssignPatternRhs = arrAssignPatternRhs$1;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      tmpBinaryRight = arrAssignPatternRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    arrAssignPatternRhs$1 = z;
+    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+    x = arrPatternSplat$1[1];
+    y = arrPatternSplat$1[2];
+    arrAssignPatternRhs = arrAssignPatternRhs$1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+    tmpBinaryRight = arrAssignPatternRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, x, y, z);
@@ -65,29 +63,27 @@ $(a, b, x, y, z);
 let z = [10, 20, 30];
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      arrAssignPatternRhs$1 = z;
-      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      arrAssignPatternRhs = arrAssignPatternRhs$1;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      tmpBinaryRight = arrAssignPatternRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    arrAssignPatternRhs$1 = z;
+    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+    x = arrPatternSplat$1[1];
+    y = arrPatternSplat$1[2];
+    arrAssignPatternRhs = arrAssignPatternRhs$1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+    tmpBinaryRight = arrAssignPatternRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, 2, 1, 2, z);

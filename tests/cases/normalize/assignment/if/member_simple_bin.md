@@ -29,6 +29,8 @@ tmpAssignMemLhsObj = a;
 tmpAssignMemRhs = b + c;
 tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+const tmpIfTest = tmpAssignMemRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

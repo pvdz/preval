@@ -17,14 +17,12 @@ else $(3);
 
 `````js filename=intro
 var tmpNewObj;
-{
-  tmpNewObj = $(1);
-  let ifTestTmp = new tmpNewObj();
-  if (ifTestTmp) {
-    $(2);
-  } else {
-    $(3);
-  }
+tmpNewObj = $(1);
+const tmpIfTest = new tmpNewObj();
+if (tmpIfTest) {
+  $(2);
+} else {
+  $(3);
 }
 `````
 
@@ -33,8 +31,8 @@ var tmpNewObj;
 `````js filename=intro
 var tmpNewObj;
 tmpNewObj = $(1);
-let ifTestTmp = new tmpNewObj();
-if (ifTestTmp) {
+const tmpIfTest = new tmpNewObj();
+if (tmpIfTest) {
   $(2);
 } else {
   $(3);

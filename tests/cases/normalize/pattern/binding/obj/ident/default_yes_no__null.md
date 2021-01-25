@@ -21,13 +21,11 @@ $('bad');
 const bindingPatternObjRoot = null;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let x;
-{
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = $('fail');
-  } else {
-    x = objPatternBeforeDefault;
-  }
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
+} else {
+  x = objPatternBeforeDefault;
 }
 $('bad');
 `````
@@ -37,8 +35,8 @@ $('bad');
 `````js filename=intro
 const objPatternBeforeDefault = null.x;
 let x;
-let ifTestTmp = objPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = $('fail');
 } else {
   x = objPatternBeforeDefault;

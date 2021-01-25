@@ -21,21 +21,27 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 let b = 2;
 let c = 3;
 while (true) {
-  {
-    let tmpBindInitMemberObject = $(a);
-    let tmpBindInitRhs = b + c;
-    tmpAssignComMemLhsObj = tmpBindInitMemberObject;
-    tmpAssignComMemLhsProp = $('x');
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpBindInitRhs;
-    let ifTestTmp = tmpBindInitRhs;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
+  tmpAssignComMemLhsProp = $('x');
+  tmpAssignComputedObj = tmpAssignComMemLhsObj;
+  tmpAssignComputedProp = tmpAssignComMemLhsProp;
+  tmpAssignComputedRhs = b + c;
+  tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+  tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpIfTest = tmpAssignComputedRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -46,12 +52,26 @@ $(a, b, c);
 `````js filename=intro
 var tmpAssignComMemLhsObj;
 var tmpAssignComMemLhsProp;
+var tmpAssignComputedObj;
+var tmpAssignComputedProp;
+var tmpAssignComputedRhs;
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
 let a = { x: 10 };
 while (true) {
-  let tmpBindInitMemberObject = $(a);
-  tmpAssignComMemLhsObj = tmpBindInitMemberObject;
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
   tmpAssignComMemLhsProp = $('x');
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 5;
+  tmpAssignComputedObj = tmpAssignComMemLhsObj;
+  tmpAssignComputedProp = tmpAssignComMemLhsProp;
+  tmpAssignComputedRhs = 5;
+  tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
+  tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpIfTest = tmpAssignComputedRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
 }
 $(a, 5, 3);
 `````

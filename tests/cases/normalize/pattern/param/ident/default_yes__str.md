@@ -22,13 +22,11 @@ $(f('xyz', 200));
 `````js filename=intro
 function f($tdz$__x) {
   let x;
-  {
-    let ifTestTmp = $tdz$__x === undefined;
-    if (ifTestTmp) {
-      x = 'fail';
-    } else {
-      x = $tdz$__x;
-    }
+  const tmpIfTest = $tdz$__x === undefined;
+  if (tmpIfTest) {
+    x = 'fail';
+  } else {
+    x = $tdz$__x;
   }
   return x;
 }
@@ -43,8 +41,8 @@ $(tmpArg);
 `````js filename=intro
 function f($tdz$__x) {
   let x;
-  let ifTestTmp = $tdz$__x === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__x === undefined;
+  if (tmpIfTest) {
     x = 'fail';
   } else {
     x = $tdz$__x;

@@ -22,27 +22,25 @@ else $(200);
 let a = 1;
 let b = 2;
 let c = 3;
-{
-  let ifTestTmp;
-  if (a) {
-    ifTestTmp = b;
-  } else {
-    ifTestTmp = c;
-  }
-  if (ifTestTmp) {
-    $(100);
-  } else {
-    $(200);
-  }
+let tmpIfTest;
+if (a) {
+  tmpIfTest = b;
+} else {
+  tmpIfTest = c;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let ifTestTmp;
-ifTestTmp = 2;
-if (ifTestTmp) {
+let tmpIfTest;
+tmpIfTest = 2;
+if (tmpIfTest) {
   $(100);
 } else {
   $(200);

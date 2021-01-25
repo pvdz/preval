@@ -23,13 +23,11 @@ let a = 1;
 let b = 0;
 let c = 0;
 while (true) {
-  {
-    a = b + c;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  a = b + c;
+  const tmpIfTest = a;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -41,8 +39,8 @@ $(a, b, c);
 let a = 1;
 while (true) {
   a = 0;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }

@@ -62,55 +62,49 @@ var tmpBinaryRight$2;
 let x = 1;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = x;
-      tmpBinaryRight = $(1);
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('A');
-      }
-      tmpFallthrough = true;
-    }
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = x;
+    tmpBinaryRight = $(1);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
   }
-  {
-    let ifTestTmp$1 = tmpFallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      tmpBinaryLeft$1 = x;
-      tmpBinaryRight$1 = $(2);
-      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('A');
     }
-    if (ifTestTmp$1) {
-      ('case 1:');
-      {
-        $('B');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
-  {
-    let ifTestTmp$2 = tmpFallthrough;
-    if (ifTestTmp$2) {
-    } else {
-      tmpBinaryLeft$2 = x;
-      tmpBinaryRight$2 = $(3);
-      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpBinaryLeft$1 = x;
+    tmpBinaryRight$1 = $(2);
+    tmpIfTest$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      $('B');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp$2) {
-      ('case 2:');
-      {
-        $('C');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$2 = tmpFallthrough;
+  if (tmpIfTest$2) {
+  } else {
+    tmpBinaryLeft$2 = x;
+    tmpBinaryRight$2 = $(3);
+    tmpIfTest$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  }
+  if (tmpIfTest$2) {
+    ('case 2:');
+    {
+      $('C');
+      break tmpSwitchBreak;
     }
+    tmpFallthrough = true;
   }
 }
 `````
@@ -120,55 +114,49 @@ tmpSwitchBreak: {
 `````js filename=intro
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = x;
-      tmpBinaryRight = $(1);
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
-    }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('A');
-      }
-      tmpFallthrough = true;
-    }
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = x;
+    tmpBinaryRight = $(1);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
   }
-  {
-    let ifTestTmp$1 = tmpFallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      tmpBinaryLeft$1 = x;
-      tmpBinaryRight$1 = $(2);
-      ifTestTmp$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('A');
     }
-    if (ifTestTmp$1) {
-      ('case 1:');
-      {
-        $('B');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
-  {
-    let ifTestTmp$2 = tmpFallthrough;
-    if (ifTestTmp$2) {
-    } else {
-      tmpBinaryLeft$2 = x;
-      tmpBinaryRight$2 = $(3);
-      ifTestTmp$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpBinaryLeft$1 = x;
+    tmpBinaryRight$1 = $(2);
+    tmpIfTest$1 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      $('B');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp$2) {
-      ('case 2:');
-      {
-        $('C');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$2 = tmpFallthrough;
+  if (tmpIfTest$2) {
+  } else {
+    tmpBinaryLeft$2 = x;
+    tmpBinaryRight$2 = $(3);
+    tmpIfTest$2 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+  }
+  if (tmpIfTest$2) {
+    ('case 2:');
+    {
+      $('C');
+      break tmpSwitchBreak;
     }
+    tmpFallthrough = true;
   }
 }
 `````

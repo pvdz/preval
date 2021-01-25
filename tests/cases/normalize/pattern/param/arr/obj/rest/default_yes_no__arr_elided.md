@@ -25,14 +25,12 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { a: 'pass' };
-      arrPatternStep = $(tmpArg);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    tmpArg = { a: 'pass' };
+    arrPatternStep = $(tmpArg);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
   let x = objPatternRest(arrPatternStep, [], undefined);
   return x;
@@ -53,8 +51,8 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     tmpArg = { a: 'pass' };
     arrPatternStep = $(tmpArg);
   } else {

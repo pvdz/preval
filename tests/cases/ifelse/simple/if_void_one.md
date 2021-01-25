@@ -15,12 +15,10 @@ if (void 1) $();
 ## Normalized
 
 `````js filename=intro
-{
-  1;
-  let ifTestTmp = undefined;
-  if (ifTestTmp) {
-    $();
-  }
+1;
+const tmpIfTest = undefined;
+if (tmpIfTest) {
+  $();
 }
 `````
 

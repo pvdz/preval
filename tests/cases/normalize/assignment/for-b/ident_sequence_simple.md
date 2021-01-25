@@ -24,14 +24,12 @@ let b = 2;
 let c = 3;
 {
   while (true) {
-    {
-      $(b);
-      a = c;
-      let ifTestTmp = a;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    $(b);
+    a = c;
+    const tmpIfTest = c;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -45,11 +43,6 @@ let a = 1;
 while (true) {
   $(2);
   a = 3;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
-  } else {
-    break;
-  }
 }
 $(a, 2, 3);
 `````

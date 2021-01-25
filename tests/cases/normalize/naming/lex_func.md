@@ -29,11 +29,9 @@ function f() {
   {
     let a_1 = $(1);
     $(a_1);
-    {
-      let ifTestTmp = $();
-      if (ifTestTmp) {
-        return a_1;
-      }
+    const tmpIfTest = $();
+    if (tmpIfTest) {
+      return a_1;
     }
   }
   let a = $(1);
@@ -52,8 +50,8 @@ $(tmpArg);
 function f() {
   let a_1 = $(1);
   $(a_1);
-  let ifTestTmp = $();
-  if (ifTestTmp) {
+  const tmpIfTest = $();
+  if (tmpIfTest) {
     return a_1;
   }
   let a = $(1);

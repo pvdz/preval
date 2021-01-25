@@ -30,26 +30,24 @@ let z = [10, 20, 30];
   const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     let tmpFallthrough = false;
-    {
-      let ifTestTmp = tmpFallthrough;
-      if (ifTestTmp) {
-      } else {
-        tmpBinaryLeft = tmpSwitchTest;
-        tmpBinaryRight = $('a');
-        ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
+    } else {
+      tmpBinaryLeft = tmpSwitchTest;
+      tmpBinaryRight = $('a');
+      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    }
+    if (tmpIfTest) {
+      ('case 0:');
+      {
+        arrAssignPatternRhs = z;
+        arrPatternSplat = [...arrAssignPatternRhs];
+        x = arrPatternSplat[0];
+        y = arrPatternSplat[1];
+        arrAssignPatternRhs;
+        break tmpSwitchBreak;
       }
-      if (ifTestTmp) {
-        ('case 0:');
-        {
-          arrAssignPatternRhs = z;
-          arrPatternSplat = [...arrAssignPatternRhs];
-          x = arrPatternSplat[0];
-          y = arrPatternSplat[1];
-          arrAssignPatternRhs;
-          break tmpSwitchBreak;
-        }
-        tmpFallthrough = true;
-      }
+      tmpFallthrough = true;
     }
   }
 }
@@ -63,26 +61,24 @@ let z = [10, 20, 30];
 $('a');
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = tmpSwitchTest;
+    tmpBinaryRight = $('a');
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      arrAssignPatternRhs = z;
+      arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      arrAssignPatternRhs;
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        arrAssignPatternRhs = z;
-        arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        y = arrPatternSplat[1];
-        arrAssignPatternRhs;
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, 2, z);

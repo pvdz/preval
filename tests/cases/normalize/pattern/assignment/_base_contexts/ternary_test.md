@@ -21,15 +21,13 @@ let x = 1;
 let b = 2;
 let c = 3;
 {
-  {
-    objAssignPatternRhs = 1;
-    x = objAssignPatternRhs.x;
-    let ifTestTmp = objAssignPatternRhs;
-    if (ifTestTmp) {
-      b;
-    } else {
-      c;
-    }
+  objAssignPatternRhs = 1;
+  x = objAssignPatternRhs.x;
+  const tmpIfTest = objAssignPatternRhs;
+  if (tmpIfTest) {
+    b;
+  } else {
+    c;
   }
 }
 `````
@@ -41,8 +39,8 @@ var objAssignPatternRhs;
 let x = 1;
 objAssignPatternRhs = 1;
 x = objAssignPatternRhs.x;
-let ifTestTmp = objAssignPatternRhs;
-if (ifTestTmp) {
+const tmpIfTest = objAssignPatternRhs;
+if (tmpIfTest) {
 } else {
 }
 `````

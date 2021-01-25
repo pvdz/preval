@@ -22,13 +22,11 @@ const bindingPatternArrRoot = [null, 201];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let x;
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    x = $('pass');
-  } else {
-    x = arrPatternBeforeDefault;
-  }
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
+} else {
+  x = arrPatternBeforeDefault;
 }
 $(x);
 `````
@@ -40,8 +38,8 @@ const bindingPatternArrRoot = [null, 201];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let x;
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = $('pass');
 } else {
   x = arrPatternBeforeDefault;

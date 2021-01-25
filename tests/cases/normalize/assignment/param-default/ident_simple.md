@@ -24,14 +24,12 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      a = b;
-      foo = b;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    a = b;
+    foo = b;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -51,8 +49,8 @@ $(a, b, c);
 `````js filename=intro
 function f($tdz$__foo) {
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     a = 2;
     foo = 2;
   } else {

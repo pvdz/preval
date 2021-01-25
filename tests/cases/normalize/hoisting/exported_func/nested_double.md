@@ -28,7 +28,6 @@ export function g() {
     }
   }
   var tmpArg;
-  ('<hoisted func decl `f`>');
   ('<eliminated duplicate func decl `f`>');
   ('<hoisted func decl `f`>');
   tmpArg = f(3);

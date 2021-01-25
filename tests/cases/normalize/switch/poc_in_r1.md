@@ -28,21 +28,19 @@ var tmpBinaryRight;
 let x = 1;
 {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpBinaryLeft = x;
-      tmpBinaryRight = $(1);
-      ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpBinaryLeft = x;
+    tmpBinaryRight = $(1);
+    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('A');
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('A');
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 `````
@@ -53,14 +51,14 @@ let x = 1;
 var tmpBinaryLeft;
 var tmpBinaryRight;
 let tmpFallthrough = false;
-let ifTestTmp = tmpFallthrough;
-if (ifTestTmp) {
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
 } else {
   tmpBinaryLeft = 1;
   tmpBinaryRight = $(1);
-  ifTestTmp = tmpBinaryLeft === tmpBinaryRight;
+  tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
 }
-if (ifTestTmp) {
+if (tmpIfTest) {
   $('A');
   tmpFallthrough = true;
 }

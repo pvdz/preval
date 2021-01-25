@@ -25,24 +25,20 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  {
-    let ifTestTmp = arrPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { x: 'pass2' };
-      arrPatternStep = $(tmpArg);
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    tmpArg = { x: 'pass2' };
+    arrPatternStep = $(tmpArg);
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
   }
   let objPatternBeforeDefault = arrPatternStep.x;
   let x;
-  {
-    let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-    if (ifTestTmp$1) {
-      x = $('pass');
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    x = $('pass');
+  } else {
+    x = objPatternBeforeDefault;
   }
   return x;
 }
@@ -60,8 +56,8 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep;
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     tmpArg = { x: 'pass2' };
     arrPatternStep = $(tmpArg);
   } else {
@@ -69,8 +65,8 @@ function f(tmpParamPattern) {
   }
   let objPatternBeforeDefault = arrPatternStep.x;
   let x;
-  let ifTestTmp$1 = objPatternBeforeDefault === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
     x = $('pass');
   } else {
     x = objPatternBeforeDefault;

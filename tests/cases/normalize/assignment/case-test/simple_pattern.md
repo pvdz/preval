@@ -29,27 +29,25 @@ let y = 2;
 let z = [10, 20, 30];
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      arrAssignPatternRhs = z;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      tmpNestedComplexRhs = arrAssignPatternRhs;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = arrAssignPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, x, y, z);
@@ -61,27 +59,25 @@ $(a, x, y, z);
 let z = [10, 20, 30];
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      arrAssignPatternRhs = z;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      tmpNestedComplexRhs = arrAssignPatternRhs;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    arrAssignPatternRhs = z;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = arrAssignPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, 1, 2, z);

@@ -18,14 +18,12 @@ for ($(1); $(2); $(3)) $(4);
 {
   $(1);
   while (true) {
-    {
-      let ifTestTmp = $(2);
-      if (ifTestTmp) {
-        $(4);
-        $(3);
-      } else {
-        break;
-      }
+    const tmpIfTest = $(2);
+    if (tmpIfTest) {
+      $(4);
+      $(3);
+    } else {
+      break;
     }
   }
 }
@@ -36,8 +34,8 @@ for ($(1); $(2); $(3)) $(4);
 `````js filename=intro
 $(1);
 while (true) {
-  let ifTestTmp = $(2);
-  if (ifTestTmp) {
+  const tmpIfTest = $(2);
+  if (tmpIfTest) {
     $(4);
     $(3);
   } else {

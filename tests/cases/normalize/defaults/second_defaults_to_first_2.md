@@ -20,22 +20,18 @@ f()
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
   let a;
-  {
-    let ifTestTmp = $tdz$__a === undefined;
-    if (ifTestTmp) {
-      a = 1;
-    } else {
-      a = $tdz$__a;
-    }
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    a = 1;
+  } else {
+    a = $tdz$__a;
   }
   let b;
-  {
-    let ifTestTmp$1 = $tdz$__b === undefined;
-    if (ifTestTmp$1) {
-      b = a;
-    } else {
-      b = $tdz$__b;
-    }
+  const tmpIfTest$1 = $tdz$__b === undefined;
+  if (tmpIfTest$1) {
+    b = a;
+  } else {
+    b = $tdz$__b;
   }
 }
 f();
@@ -46,15 +42,15 @@ f();
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
   let a;
-  let ifTestTmp = $tdz$__a === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
     a = 1;
   } else {
     a = $tdz$__a;
   }
   let b;
-  let ifTestTmp$1 = $tdz$__b === undefined;
-  if (ifTestTmp$1) {
+  const tmpIfTest$1 = $tdz$__b === undefined;
+  if (tmpIfTest$1) {
     b = a;
   } else {
     b = $tdz$__b;

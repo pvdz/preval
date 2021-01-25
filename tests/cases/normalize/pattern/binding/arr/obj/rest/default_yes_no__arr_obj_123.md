@@ -25,14 +25,12 @@ const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep;
-{
-  let ifTestTmp = arrPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
-    tmpArg = { a: 'fail' };
-    arrPatternStep = $(tmpArg);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  tmpArg = { a: 'fail' };
+  arrPatternStep = $(tmpArg);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
 }
 const x = objPatternRest(arrPatternStep, [], undefined);
 $(x);
@@ -48,8 +46,8 @@ const bindingPatternArrRoot = [tmpElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep;
-let ifTestTmp = arrPatternBeforeDefault === undefined;
-if (ifTestTmp) {
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   tmpArg = { a: 'fail' };
   arrPatternStep = $(tmpArg);
 } else {

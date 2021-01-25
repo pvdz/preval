@@ -24,14 +24,12 @@ let a = { x: 10 };
 let b = 2;
 let c = 3;
 while (true) {
-  {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = b;
-    let ifTestTmp = b;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = b;
+  const tmpIfTest = b;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);

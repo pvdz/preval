@@ -19,20 +19,22 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 let a = { x: 10 };
 let b = 0;
 let c = 0;
 {
   while (true) {
-    {
-      let tmpBindInitMemberObject = a;
-      let tmpBindInitRhs = b + c;
-      tmpBindInitMemberObject.x = tmpBindInitRhs;
-      let ifTestTmp = tmpBindInitRhs;
-      if (ifTestTmp) {
-      } else {
-        break;
-      }
+    tmpAssignMemLhsObj = a;
+    tmpAssignMemRhs = b + c;
+    tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    const tmpIfTest = tmpAssignMemRhs;
+    if (tmpIfTest) {
+    } else {
+      break;
     }
   }
 }
@@ -42,11 +44,20 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+var tmpAssignMemLhsObj;
+var tmpAssignMemLhsObj$1;
+var tmpAssignMemRhs;
 let a = { x: 10 };
 while (true) {
-  let tmpBindInitMemberObject = a;
-  tmpBindInitMemberObject.x = 0;
-  break;
+  tmpAssignMemLhsObj = a;
+  tmpAssignMemRhs = 0;
+  tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  const tmpIfTest = tmpAssignMemRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
 }
 $(a, 0, 0);
 `````

@@ -30,18 +30,16 @@ let d = 4;
 let n = 1;
 {
   while (true) {
-    {
-      tmpPostfixArg = n;
-      n = n - 1;
-      tmpBinaryLeft = tmpPostfixArg;
-      let ifTestTmp = tmpBinaryLeft > 0;
-      if (ifTestTmp) {
-        tmpNestedComplexRhs = c + d;
-        b = tmpNestedComplexRhs;
-        a = tmpNestedComplexRhs;
-      } else {
-        break;
-      }
+    tmpPostfixArg = n;
+    n = n - 1;
+    tmpBinaryLeft = tmpPostfixArg;
+    const tmpIfTest = tmpBinaryLeft > 0;
+    if (tmpIfTest) {
+      tmpNestedComplexRhs = c + d;
+      b = tmpNestedComplexRhs;
+      a = tmpNestedComplexRhs;
+    } else {
+      break;
     }
   }
 }
@@ -61,8 +59,8 @@ while (true) {
   tmpPostfixArg = n;
   n = n - 1;
   tmpBinaryLeft = tmpPostfixArg;
-  let ifTestTmp = tmpBinaryLeft > 0;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpBinaryLeft > 0;
+  if (tmpIfTest) {
     tmpNestedComplexRhs = 7;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;

@@ -20,13 +20,11 @@ function h(tmpParamPattern) {
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
   let x;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      x = a;
-    } else {
-      x = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    x = a;
+  } else {
+    x = objPatternBeforeDefault;
   }
   return x;
 }

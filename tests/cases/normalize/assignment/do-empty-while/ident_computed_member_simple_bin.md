@@ -29,19 +29,17 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 while (true) {
-  {
-    tmpNestedAssignComMemberObj = b;
-    tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-    tmpNestedAssignCompMemberRhs = c + d;
-    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-    a = tmpNestedAssignCompMemberRhs;
-    let ifTestTmp = a;
-    if (ifTestTmp) {
-    } else {
-      break;
-    }
+  tmpNestedAssignComMemberObj = b;
+  tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+  tmpNestedAssignCompMemberRhs = c + d;
+  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+  a = tmpNestedAssignCompMemberRhs;
+  const tmpIfTest = tmpNestedAssignCompMemberRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -65,8 +63,8 @@ while (true) {
   tmpNestedAssignCompMemberRhs = 7;
   tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
   a = tmpNestedAssignCompMemberRhs;
-  let ifTestTmp = a;
-  if (ifTestTmp) {
+  const tmpIfTest = tmpNestedAssignCompMemberRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }

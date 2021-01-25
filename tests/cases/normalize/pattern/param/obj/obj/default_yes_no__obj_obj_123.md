@@ -24,14 +24,12 @@ function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = { x: 'fail' };
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    tmpArg = { x: 'fail' };
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternCrashTest = objPatternAfterDefault === undefined;
   if (objPatternCrashTest) {
@@ -60,8 +58,8 @@ function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault;
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     tmpArg = { x: 'fail' };
     objPatternAfterDefault = $(tmpArg);
   } else {

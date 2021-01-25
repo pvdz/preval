@@ -32,43 +32,39 @@ switch (1) {
 `````js filename=intro
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      ifTestTmp = 1 === 1;
-    }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        {
-          if (2) {
-            $(3);
-            break tmpSwitchBreak;
-          }
-        }
-      }
-      tmpFallthrough = true;
-    }
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  {
-    let ifTestTmp$1 = tmpFallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      ifTestTmp$1 = 1 === 4;
-    }
-    if (ifTestTmp$1) {
-      ('case 1:');
+  if (tmpIfTest) {
+    ('case 0:');
+    {
       {
-        {
-          if (5) {
-            $(6);
-            break tmpSwitchBreak;
-          }
+        if (2) {
+          $(3);
+          break tmpSwitchBreak;
         }
       }
-      tmpFallthrough = true;
     }
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpIfTest$1 = 1 === 4;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      {
+        if (5) {
+          $(6);
+          break tmpSwitchBreak;
+        }
+      }
+    }
+    tmpFallthrough = true;
   }
 }
 `````
@@ -78,43 +74,39 @@ tmpSwitchBreak: {
 `````js filename=intro
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      ifTestTmp = 1 === 1;
-    }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        {
-          if (2) {
-            $(3);
-            break tmpSwitchBreak;
-          }
-        }
-      }
-      tmpFallthrough = true;
-    }
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  {
-    let ifTestTmp$1 = tmpFallthrough;
-    if (ifTestTmp$1) {
-    } else {
-      ifTestTmp$1 = 1 === 4;
-    }
-    if (ifTestTmp$1) {
-      ('case 1:');
+  if (tmpIfTest) {
+    ('case 0:');
+    {
       {
-        {
-          if (5) {
-            $(6);
-            break tmpSwitchBreak;
-          }
+        if (2) {
+          $(3);
+          break tmpSwitchBreak;
         }
       }
-      tmpFallthrough = true;
     }
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpIfTest$1 = 1 === 4;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      {
+        if (5) {
+          $(6);
+          break tmpSwitchBreak;
+        }
+      }
+    }
+    tmpFallthrough = true;
   }
 }
 `````

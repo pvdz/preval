@@ -35,6 +35,8 @@ tmpAssignComputedProp = tmpAssignComMemLhsProp;
 tmpAssignComputedRhs = b + c;
 tmpAssignMemLhsObj = tmpAssignComputedObj;
 tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpIfTest = tmpAssignComputedRhs;
+tmpIfTest;
 $(a, b, c);
 `````
 

@@ -39,37 +39,35 @@ let c = 3;
 let d = 4;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-      tmpNestedAssignObj$1 = $(c);
-      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-      tmpNestedAssignComMemberProp$1 = $('y');
-      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-      tmpNestedAssignCompMemberRhs$1 = $(d);
-      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignObj$1 = $(c);
+    tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignComMemberProp$1 = $('y');
+    tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+    tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+    tmpNestedAssignCompMemberRhs$1 = $(d);
+    tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(a, b, c, d);
@@ -81,37 +79,35 @@ $(a, b, c, d);
 let b = { x: 2 };
 tmpSwitchBreak: {
   let tmpFallthrough = false;
-  {
-    let ifTestTmp = tmpFallthrough;
-    if (ifTestTmp) {
-    } else {
-      tmpNestedAssignObj = $(b);
-      tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-      tmpNestedAssignComMemberProp = $('x');
-      tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-      tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-      tmpNestedAssignObj$1 = $(c);
-      tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-      tmpNestedAssignComMemberProp$1 = $('y');
-      tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-      tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-      tmpNestedAssignCompMemberRhs$1 = $(d);
-      tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-      tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-      tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
-      a = tmpNestedComplexRhs;
-      tmpBinaryRight = tmpNestedComplexRhs;
-      ifTestTmp = 1 === tmpBinaryRight;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpNestedAssignObj = $(b);
+    tmpNestedAssignComMemberObj = tmpNestedAssignObj;
+    tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
+    tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
+    tmpNestedAssignObj$1 = $(c);
+    tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
+    tmpNestedAssignComMemberProp$1 = $('y');
+    tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
+    tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
+    tmpNestedAssignCompMemberRhs$1 = $(d);
+    tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
+    tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
+    tmpNestedComplexRhs = tmpNestedAssignCompMemberRhs;
+    a = tmpNestedComplexRhs;
+    tmpBinaryRight = tmpNestedComplexRhs;
+    tmpIfTest = 1 === tmpBinaryRight;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('yes');
+      break tmpSwitchBreak;
     }
-    if (ifTestTmp) {
-      ('case 0:');
-      {
-        $('yes');
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
+    tmpFallthrough = true;
   }
 }
 $(1, b, 3, 4);

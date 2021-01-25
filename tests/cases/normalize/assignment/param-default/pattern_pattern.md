@@ -28,21 +28,19 @@ function f($tdz$__foo) {
   var arrPatternSplat;
   var arrPatternSplat$1;
   let foo;
-  {
-    let ifTestTmp = $tdz$__foo === undefined;
-    if (ifTestTmp) {
-      arrAssignPatternRhs$1 = z;
-      arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      arrAssignPatternRhs = arrAssignPatternRhs$1;
-      arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      foo = arrAssignPatternRhs;
-    } else {
-      foo = $tdz$__foo;
-    }
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
+    arrAssignPatternRhs$1 = z;
+    arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+    x = arrPatternSplat$1[1];
+    y = arrPatternSplat$1[2];
+    arrAssignPatternRhs = arrAssignPatternRhs$1;
+    arrPatternSplat = [...arrAssignPatternRhs];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+    foo = arrAssignPatternRhs;
+  } else {
+    foo = $tdz$__foo;
   }
   return foo;
 }
@@ -68,8 +66,8 @@ function f($tdz$__foo) {
   var arrPatternSplat;
   var arrPatternSplat$1;
   let foo;
-  let ifTestTmp = $tdz$__foo === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = $tdz$__foo === undefined;
+  if (tmpIfTest) {
     arrAssignPatternRhs$1 = z;
     arrPatternSplat$1 = [...arrAssignPatternRhs$1];
     x = arrPatternSplat$1[1];

@@ -24,14 +24,12 @@ function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault;
-  {
-    let ifTestTmp = objPatternBeforeDefault === undefined;
-    if (ifTestTmp) {
-      tmpArg = ['pass'];
-      objPatternAfterDefault = $(tmpArg);
-    } else {
-      objPatternAfterDefault = objPatternBeforeDefault;
-    }
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    tmpArg = ['pass'];
+    objPatternAfterDefault = $(tmpArg);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   let y = arrPatternSplat.slice(0);
@@ -52,8 +50,8 @@ function f(tmpParamPattern) {
   var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault;
-  let ifTestTmp = objPatternBeforeDefault === undefined;
-  if (ifTestTmp) {
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
     tmpArg = ['pass'];
     objPatternAfterDefault = $(tmpArg);
   } else {

@@ -27,6 +27,8 @@ let d = 3;
 a;
 tmpAssignMemLhsObj = b;
 tmpAssignMemLhsObj.c = d;
+const tmpIfTest = d;
+tmpIfTest;
 $(a, b, c, d);
 `````
 

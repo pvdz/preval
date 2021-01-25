@@ -4055,61 +4055,38 @@ export function phaseNormalize(fdata, fname) {
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
 
-      switch (cnode.type) {
-        case 'DoWhileStatement': {
-          if (transformDoWhileStatement(cnode, body, i)) {
-            changed = true;
-            --i;
-            continue;
-          }
-          break;
-        }
-        case 'EmptyStatement': {
-          rule('Drop empty statements inside a block');
-          example('{;}', '{}');
-          body.splice(i, 1);
-          --i;
-          continue;
-        }
-        case 'ExpressionStatement': {
-          // TODO
-          break;
-        }
-        case 'ForStatement': {
-          if (transformForStatement(cnode, body, i)) {
-            changed = true;
-            --i;
-            continue;
-          }
-          break;
-        }
-        case 'ForInStatement': {
-          if (transformForxStatement(cnode, body, i, true)) {
-            changed = true;
-            --i;
-            continue;
-          }
-          break;
-        }
-        case 'ForOfStatement': {
-          if (transformForxStatement(cnode, body, i, false)) {
-            changed = true;
-            --i;
-            continue;
-          }
-          break;
-        }
-        case 'IfStatement': {
-          if (transformIfStatement(cnode, body, i)) {
-            changed = true;
-            --i;
-            continue;
-          }
-          break;
-        }
+      if (jumpTable(cnode, body, i)) {
+        changed = true;
+        --i;
+        continue;
       }
+
       stmt(block, 'body', i, cnode, false, false);
     }
+  }
+  function jumpTable(node, body, i) {
+    switch (node.type) {
+      case 'DoWhileStatement':
+        return transformDoWhileStatement(node, body, i);
+      case 'EmptyStatement': {
+        rule('Drop empty statements inside a block');
+        example('{;}', '{}');
+        body.splice(i, 1);
+        return true;
+      }
+      case 'ExpressionStatement':
+        return false; // TODO
+      case 'ForStatement':
+        return transformForStatement(node, body, i);
+      case 'ForInStatement':
+        return transformForxStatement(node, body, i, true);
+      case 'ForOfStatement':
+        return transformForxStatement(node, body, i, false);
+      case 'IfStatement':
+        return transformIfStatement(node, body, i);
+    }
+
+    return false;
   }
 
   function transformDoWhileStatement(node, body, i) {

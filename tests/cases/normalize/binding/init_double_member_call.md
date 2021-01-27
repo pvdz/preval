@@ -18,18 +18,16 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpMemberComplexObj;
-tmpMemberComplexObj = 'foo'.length;
-let x = tmpMemberComplexObj.toString();
+const tmpCallObj = 'foo'.length;
+let x = tmpCallObj.toString();
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpMemberComplexObj;
-tmpMemberComplexObj = 'foo'.length;
-let x = tmpMemberComplexObj.toString();
+const tmpCallObj = 'foo'.length;
+let x = tmpCallObj.toString();
 $(x);
 `````
 

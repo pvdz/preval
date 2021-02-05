@@ -35,12 +35,12 @@ $$(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 function $$(...a_1) {
-  var tmpArg;
-  var tmpArg$1;
-  tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  tmpArg$1 = { depth: null };
-  $(tmpArg, tmpArg$1);
-  let tmpReturnArg = a_1[0];
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
+  const tmpObjLitVal = null;
+  const tmpCalleeParam$1 = { depth: tmpObjLitVal };
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }
 var a;
@@ -53,19 +53,6 @@ var objb;
 var objc;
 var objd;
 var obje;
-var tmpArg$2;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberObj$2;
-var tmpNestedAssignMemberObj$3;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignMemberRhs$2;
-var tmpNestedAssignMemberRhs$3;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
-var tmpNestedAssignObj$3;
 obja = {
   get a() {
     $$('a.get');
@@ -166,24 +153,29 @@ e = function () {
   d = 54;
   return obje;
 };
-tmpNestedAssignObj = a();
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj$1 = b();
-tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignObj$2 = c();
-tmpNestedAssignMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignObj$3 = d();
-tmpNestedAssignMemberObj$3 = tmpNestedAssignObj$3;
-tmpNestedAssignMemberRhs$3 = e();
-tmpNestedAssignMemberObj$3.d = tmpNestedAssignMemberRhs$3;
-tmpNestedAssignMemberRhs$2 = tmpNestedAssignMemberRhs$3;
-tmpNestedAssignMemberObj$2.c = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberRhs$1 = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberObj$1.b = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberObj.a = tmpNestedAssignMemberRhs;
-tmpArg$2 = tmpNestedAssignMemberRhs;
-$$(tmpArg$2);
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$2;
+const tmpNestedAssignObj = a();
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = b();
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignObj$2 = c();
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignObj$3 = d();
+let tmpNestedAssignPropRhs$3 = e();
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$3;
+tmpNestedAssignObj$3.d = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignObj$2.c = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.b = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.a = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$2 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$2);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````
@@ -192,12 +184,11 @@ $$(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 function $$(...a_1) {
-  var tmpArg;
-  var tmpArg$1;
-  tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  tmpArg$1 = { depth: null };
-  $(tmpArg, tmpArg$1);
-  let tmpReturnArg = a_1[0];
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
+  const tmpCalleeParam$1 = { depth: null };
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }
 var a;
@@ -210,19 +201,6 @@ var objb;
 var objc;
 var objd;
 var obje;
-var tmpArg$2;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberObj$2;
-var tmpNestedAssignMemberObj$3;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignMemberRhs$2;
-var tmpNestedAssignMemberRhs$3;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
-var tmpNestedAssignObj$3;
 obja = {
   get a() {
     $$('a.get');
@@ -323,24 +301,29 @@ e = function () {
   d = 54;
   return obje;
 };
-tmpNestedAssignObj = a();
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj$1 = b();
-tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignObj$2 = c();
-tmpNestedAssignMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignObj$3 = d();
-tmpNestedAssignMemberObj$3 = tmpNestedAssignObj$3;
-tmpNestedAssignMemberRhs$3 = e();
-tmpNestedAssignMemberObj$3.d = tmpNestedAssignMemberRhs$3;
-tmpNestedAssignMemberRhs$2 = tmpNestedAssignMemberRhs$3;
-tmpNestedAssignMemberObj$2.c = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberRhs$1 = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberObj$1.b = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberObj.a = tmpNestedAssignMemberRhs;
-tmpArg$2 = tmpNestedAssignMemberRhs;
-$$(tmpArg$2);
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$2;
+const tmpNestedAssignObj = a();
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = b();
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignObj$2 = c();
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignObj$3 = d();
+let tmpNestedAssignPropRhs$3 = e();
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$3;
+tmpNestedAssignObj$3.d = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignObj$2.c = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.b = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.a = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$2 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$2);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````
@@ -348,19 +331,7 @@ $$(obja, objb, objc, objd, obje);
 ## Result
 
 Should call `$` with:
- - 0: ["$:",["a"],null,null,null,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","a"],{"depth":null}
- - 1: ["$:",["b"],null,null,null,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","b"],{"depth":null}
- - 2: ["$:",["c"],null,null,null,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","c"],{"depth":null}
- - 3: ["$:",["d"],32,null,null,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","d"],{"depth":null}
- - 4: ["$:",["e"],42,43,null,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","e"],{"depth":null}
- - 5: ["$:",["d.set",{"e":100}],52,53,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","d.set",{"e":100}],{"depth":null}
- - 6: ["$:",["c.set",{"e":100}],4200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","c.set",{"e":100}],{"depth":null}
- - 7: ["$:",["b.set",{"e":100}],3200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","b.set",{"e":100}],{"depth":null}
- - 8: ["$:",["a.set",{"e":100}],3200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::","a.set",{"e":100}],{"depth":null}
- - 9: ["$:",[{"e":100}],3200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::",{"e":100}],{"depth":null}
- - 10: ["$:",[2100,3200,4300,54,null],3200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::",2100,3200,4300,54,null],{"depth":null}
- - 11: ["$:",[{"a":110},{"b":100},{"c":100},{"d":100},{"e":100}],3200,4300,54,null,{"a":110},{"b":100},{"c":100},{"d":100},{"e":100},"::",{"a":110},{"b":100},{"c":100},{"d":100},{"e":100}],{"depth":null}
- - 12: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

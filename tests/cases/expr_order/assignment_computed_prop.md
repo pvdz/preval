@@ -17,50 +17,32 @@ $(1)[$(2)] = $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj = $(1);
-tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-tmpAssignComMemLhsProp = $(2);
-tmpAssignComputedObj = tmpAssignComMemLhsObj;
-tmpAssignComputedProp = tmpAssignComMemLhsProp;
-tmpAssignComputedRhs = $(3);
-tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignComMemLhsObj = $(1);
+const tmpAssignComMemLhsProp = $(2);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpAssignComputedRhs = $(3);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj = $(1);
-tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-tmpAssignComMemLhsProp = $(2);
-tmpAssignComputedObj = tmpAssignComMemLhsObj;
-tmpAssignComputedProp = tmpAssignComMemLhsProp;
-tmpAssignComputedRhs = $(3);
-tmpAssignMemLhsObj$1 = tmpAssignComputedObj;
-tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignComMemLhsObj = $(1);
+const tmpAssignComMemLhsProp = $(2);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpAssignComputedRhs = $(3);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 3
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

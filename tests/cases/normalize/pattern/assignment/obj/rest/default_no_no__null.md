@@ -18,26 +18,29 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = null;
-x = objPatternRest(objAssignPatternRhs, [], 'x');
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = null;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = null;
-x = objPatternRest(objAssignPatternRhs, [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam$1 = [];
+x = tmpCallCallee(null, tmpCalleeParam$1, 'x');
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -18,26 +18,22 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest$1) {
+let y = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -48,26 +44,22 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest$1) {
+let y = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -78,8 +70,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: undefined
+ - 1: 'a'
+ - eval returned: undefined
 
 Normalized calls: Same
 

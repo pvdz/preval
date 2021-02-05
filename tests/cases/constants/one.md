@@ -29,8 +29,8 @@ $('five');
 ## Result
 
 Should call `$` with:
- - 0: "five"
- - 1: undefined
+ - 1: 'five'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,17 +21,14 @@ In particular, the pattern's "y" should be replaced with a different name.
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
 {
-  let a = 1;
+  let a_1 = 1;
 }
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
+const tmpAssignObjPatternRhs = 1;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault$1.z;
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 {
   let a_2 = 1;
 }
@@ -40,19 +37,16 @@ objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
+let a_1 = 1;
+const objPatternNoDefault = (1).x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault$1.z;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -21,7 +21,7 @@ $(f());
 
 `````js filename=intro
 function f($tdz$__a) {
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
     a = 'foo';
@@ -30,20 +30,19 @@ function f($tdz$__a) {
   }
   return a;
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg = f('x');
-$(tmpArg);
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('x');
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__a) {
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
     a = 'foo';
@@ -52,20 +51,20 @@ function f($tdz$__a) {
   }
   return a;
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg = f('x');
-$(tmpArg);
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('x');
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: "foo"
- - 2: undefined
+ - 1: 'x'
+ - 2: 'foo'
+ - eval returned: undefined
 
 Normalized calls: Same
 

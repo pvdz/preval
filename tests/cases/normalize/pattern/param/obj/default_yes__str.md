@@ -21,7 +21,7 @@ $(f('abc', 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('fail');
@@ -38,17 +38,16 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('abc', 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('fail');
@@ -65,16 +64,16 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg;
-tmpArg = f('abc', 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

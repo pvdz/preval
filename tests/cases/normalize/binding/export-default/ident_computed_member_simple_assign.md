@@ -19,77 +19,51 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-export let a =
-  ((tmpAssignComMemLhsObj = b),
-  (tmpAssignComMemLhsProp = $('x')),
-  (((tmpAssignComputedObj = tmpAssignComMemLhsObj),
-  (tmpAssignComputedProp = tmpAssignComMemLhsProp),
-  ((tmpNestedAssignObj = $(c)),
-  ((tmpNestedAssignComMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignComMemberProp = $('y')),
-  ((tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj),
-  (tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp),
-  (tmpNestedAssignCompMemberRhs = $(d)),
-  (tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs),
-  (tmpAssignComputedRhs = tmpNestedAssignCompMemberRhs)))),
-  (tmpAssignMemLhsObj = tmpAssignComputedObj)),
-  (tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs)));
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = $(c);
+const tmpNestedAssignComMemberProp$1 = $('y');
+let tmpNestedAssignPropRhs$1 = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
-export let a =
-  ((tmpAssignComMemLhsObj = b),
-  (tmpAssignComMemLhsProp = $('x')),
-  (((tmpAssignComputedObj = tmpAssignComMemLhsObj),
-  (tmpAssignComputedProp = tmpAssignComMemLhsProp),
-  ((tmpNestedAssignObj = $(3)),
-  ((tmpNestedAssignComMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignComMemberProp = $('y')),
-  ((tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj),
-  (tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp),
-  (tmpNestedAssignCompMemberRhs = $(4)),
-  (tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs),
-  (tmpAssignComputedRhs = tmpNestedAssignCompMemberRhs)))),
-  (tmpAssignMemLhsObj = tmpAssignComputedObj)),
-  (tmpAssignMemLhsObj[tmpAssignComputedProp] = tmpAssignComputedRhs)));
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = $(3);
+const tmpNestedAssignComMemberProp$1 = $('y');
+let tmpNestedAssignPropRhs$1 = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

@@ -35,10 +35,10 @@ $(a);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
+ - 1: 1
  - 2: 2
- - 3: undefined
+ - 3: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

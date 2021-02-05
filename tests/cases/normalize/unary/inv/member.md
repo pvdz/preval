@@ -17,28 +17,26 @@ $(!Date.length);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpUnaryArg;
-tmpUnaryArg = Date.length;
-tmpArg = !tmpUnaryArg;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = Date.length;
+const tmpCalleeParam = !tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpUnaryArg;
-tmpUnaryArg = Date.length;
-tmpArg = !tmpUnaryArg;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = Date.length;
+const tmpCalleeParam = !tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

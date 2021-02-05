@@ -18,7 +18,8 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [{}, 20, 30];
+const tmpArrElement = {};
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 let objPatternCrashTest = arrPatternStep === undefined;
@@ -35,7 +36,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [{}, 20, 30];
+const tmpArrElement = {};
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 let objPatternCrashTest = arrPatternStep === undefined;
@@ -52,8 +54,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

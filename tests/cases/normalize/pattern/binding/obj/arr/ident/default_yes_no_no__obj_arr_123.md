@@ -18,16 +18,14 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpTernaryTest;
-tmpObjPropValue = [1, 2, 3];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [1, 2, 3];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -38,16 +36,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpTernaryTest;
-tmpObjPropValue = [1, 2, 3];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [1, 2, 3];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -58,8 +54,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

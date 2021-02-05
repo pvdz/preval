@@ -18,7 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null };
+const tmpObjLitVal = null;
+const bindingPatternObjRoot = { x: tmpObjLitVal };
 const x = bindingPatternObjRoot.x;
 $(x);
 `````
@@ -34,8 +35,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

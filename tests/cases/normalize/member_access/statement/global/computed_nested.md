@@ -16,23 +16,19 @@ obj['a'].b;
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-const tmpCompObj = obj['a'];
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCompObj = obj.a;
 tmpCompObj.b;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
 const tmpCompObj = obj.a;
 tmpCompObj.b;
 `````
@@ -40,8 +36,8 @@ tmpCompObj.b;
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: undefined
+ - 1: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

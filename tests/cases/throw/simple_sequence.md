@@ -26,10 +26,9 @@ function f() {
   let tmpThrowArg = null;
   throw tmpThrowArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -40,17 +39,17 @@ function f() {
   $(2);
   throw null;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: <crash[ null ]>
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ null ]>')
 
 Normalized calls: Same
 

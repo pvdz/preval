@@ -27,10 +27,14 @@ function f(tmpParamPattern) {
   let x = arrPatternSplat$1.slice(0);
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(null, 4, 5, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = null;
+const tmpCalleeParam$2 = 4;
+const tmpCalleeParam$3 = 5;
+const tmpCalleeParam$4 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -43,15 +47,16 @@ function f(tmpParamPattern) {
   let x = arrPatternSplat$1.slice(0);
   return x;
 }
-var tmpArg;
-tmpArg = f(null, 4, 5, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam = tmpCallCallee$1(null, 4, 5, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

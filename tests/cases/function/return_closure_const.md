@@ -26,27 +26,25 @@ $(f());
 function f() {
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
 const x = 'x';
 ('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'x';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('x');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: undefined
+ - 1: 'x'
+ - eval returned: undefined
 
 Normalized calls: Same
 

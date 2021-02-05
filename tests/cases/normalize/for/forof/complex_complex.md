@@ -19,18 +19,17 @@ for ($(a).x of $(b)) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    tmpAssignMemLhsObj = $(a);
+    const tmpAssignMemLhsObj = $(a);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-    tmpArg = a.x;
-    $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = a.x;
+    tmpCallCallee(tmpCalleeParam);
   }
 }
 `````
@@ -38,25 +37,24 @@ const tmpForOfRhs = $(b);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  tmpAssignMemLhsObj = $(a);
+  const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  tmpArg = a.x;
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = a.x;
+  tmpCallCallee(tmpCalleeParam);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: { x: '1', y: '2' }
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

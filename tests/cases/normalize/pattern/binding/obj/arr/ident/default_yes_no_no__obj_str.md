@@ -18,14 +18,13 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -36,14 +35,13 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc', a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -54,8 +52,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: undefined
+ - 1: 'a'
+ - eval returned: undefined
 
 Normalized calls: Same
 

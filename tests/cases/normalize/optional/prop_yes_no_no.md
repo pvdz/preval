@@ -18,85 +18,40 @@ $(a?.b.c.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryAlternate$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
 const a = {};
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining$1 = undefined;
-} else {
-  tmpTernaryAlternate = a.b;
-  tmpOptionalChaining$1 = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.b;
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest$1) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1.c;
-  tmpOptionalChaining = tmpTernaryAlternate$1;
-}
-tmpTernaryTest$2 = tmpOptionalChaining == null;
-if (tmpTernaryTest$2) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$2 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$2;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryAlternate$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
 const a = {};
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining$1 = undefined;
-} else {
-  tmpTernaryAlternate = a.b;
-  tmpOptionalChaining$1 = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.b;
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest$1) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1.c;
-  tmpOptionalChaining = tmpTernaryAlternate$1;
-}
-tmpTernaryTest$2 = tmpOptionalChaining == null;
-if (tmpTernaryTest$2) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$2 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$2;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'c' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-[[null], null];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[null], null];
-
+Final output calls: Same

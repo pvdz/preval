@@ -18,18 +18,12 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [1, 2, 3];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = [1, 2, 3];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault;
 }
@@ -40,18 +34,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [1, 2, 3];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = [1, 2, 3];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault;
 }
@@ -61,8 +49,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

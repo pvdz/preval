@@ -15,25 +15,20 @@ a ? ({ x } = 1) : c;
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-{
-  if (a) {
-    objAssignPatternRhs = 1;
-    x = objAssignPatternRhs.x;
-    objAssignPatternRhs;
-  } else {
-    c;
-  }
+if (a) {
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+  tmpAssignObjPatternRhs;
+} else {
+  c;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
 if (a) {
-  objAssignPatternRhs = 1;
-  x = objAssignPatternRhs.x;
+  x = (1).x;
 } else {
 }
 `````
@@ -41,10 +36,9 @@ if (a) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[null];
-
+ - eval returned: undefined

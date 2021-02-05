@@ -25,19 +25,17 @@ function g() {
 `````js filename=intro
 function g() {
   function f() {
-    let tmpReturnArg = $(2);
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg;
-  ('<hoisted func decl `f`>');
-  tmpArg = f(1);
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(1);
+  tmpCallCallee(tmpCalleeParam);
   ('<hoisted func decl `f`>');
 }
-var tmpArg$1;
-('<hoisted func decl `g`>');
-tmpArg$1 = g();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 ('<hoisted func decl `g`>');
 `````
 
@@ -46,25 +44,25 @@ $(tmpArg$1);
 `````js filename=intro
 function g() {
   function f() {
-    let tmpReturnArg = $(2);
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg;
-  tmpArg = f(1);
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(1);
+  tmpCallCallee(tmpCalleeParam);
 }
-var tmpArg$1;
-tmpArg$1 = g();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2
  - 1: 2
- - 2: null
+ - 2: 2
  - 3: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

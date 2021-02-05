@@ -18,7 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [null];
+const tmpArrElement = null;
+const bindingPatternArrRoot = [tmpArrElement];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
 $(x);
@@ -36,8 +37,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

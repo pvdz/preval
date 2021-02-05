@@ -20,40 +20,32 @@ a.foo = a = $();
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpNestedComplexRhs;
 let a = {};
-tmpAssignMemLhsObj = a;
-tmpNestedComplexRhs = $();
+const tmpAssignMemLhsObj = a;
+let tmpAssignMemRhs;
+const tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpNestedComplexRhs;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpNestedComplexRhs;
 let a = {};
-tmpAssignMemLhsObj = a;
-tmpNestedComplexRhs = $();
+const tmpAssignMemLhsObj = a;
+let tmpAssignMemRhs;
+const tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
 tmpAssignMemRhs = tmpNestedComplexRhs;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: undefined
+ - 1: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

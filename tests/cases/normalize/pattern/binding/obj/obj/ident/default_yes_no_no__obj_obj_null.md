@@ -18,18 +18,16 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal$1 = 1;
+const tmpObjLitVal$2 = null;
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+let y = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
@@ -39,18 +37,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal = { x: 1, y: null, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+let y = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
@@ -60,8 +54,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

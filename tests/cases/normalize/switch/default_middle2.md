@@ -20,7 +20,6 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
 var tmpDoWhileTest;
 {
   let tmpSwitchValue = 6;
@@ -46,8 +45,8 @@ var tmpDoWhileTest;
           let tmpIfTest = tmpSwitchFallthrough;
           if (tmpIfTest) {
           } else {
-            tmpBinaryLeft = $(30);
-            tmpIfTest = tmpBinaryLeft === tmpSwitchValue;
+            const tmpBinLhs = $(30);
+            tmpIfTest = tmpBinLhs === tmpSwitchValue;
           }
           if (tmpIfTest) {
             {
@@ -66,7 +65,6 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
 var tmpDoWhileTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
@@ -81,8 +79,8 @@ do {
   let tmpIfTest = tmpSwitchFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryLeft = $(30);
-    tmpIfTest = tmpBinaryLeft === 6;
+    const tmpBinLhs = $(30);
+    tmpIfTest = tmpBinLhs === 6;
   }
   if (tmpIfTest) {
     tmpSwitchFallthrough = true;
@@ -95,8 +93,8 @@ do {
 ## Result
 
 Should call `$` with:
- - 0: 30
- - 1: undefined
+ - 1: 30
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -17,40 +17,34 @@ $(global?.foo);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpTernaryTest = global == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = global.foo;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = global;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpTernaryTest = global == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = global.foo;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = global;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

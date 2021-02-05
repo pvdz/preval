@@ -15,24 +15,24 @@ $(-/1/);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = -/1/;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = /1/;
+const tmpCalleeParam = -tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = NaN;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(NaN);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: NaN
+ - eval returned: undefined
 
 Normalized calls: Same
 

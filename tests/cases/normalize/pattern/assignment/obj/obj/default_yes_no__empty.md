@@ -18,68 +18,49 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var objPatternCrashTest;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { x: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = 1;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-{
-  let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = objPatternAfterDefault === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
 }
-objAssignPatternRhs;
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+}
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var objPatternCrashTest;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { x: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const objPatternBeforeDefault = (1).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-let tmpAssignLogicStmtOr = objPatternAfterDefault === undefined;
-if (tmpAssignLogicStmtOr) {
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = objPatternAfterDefault === null;
+  objPatternCrashTest = objPatternAfterDefault === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('bad');
 `````
@@ -87,9 +68,9 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: {"x":"fail"}
- - 1: "bad"
- - 2: undefined
+ - 1: { x: '"fail"' }
+ - 2: 'bad'
+ - eval returned: undefined
 
 Normalized calls: Same
 

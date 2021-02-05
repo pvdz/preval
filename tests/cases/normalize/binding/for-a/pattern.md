@@ -18,44 +18,41 @@ for (let [x, y] = z;false;) $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 {
-  arrAssignPatternRhs = z;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  arrAssignPatternRhs;
-  while (false) {}
+  let bindingPatternArrRoot = z;
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let x = arrPatternSplat[0];
+  let y = arrPatternSplat[1];
+  while (false) {
+    $(x, y, z);
+  }
 }
-$(x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-while (false) {}
-$(x, y, z);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
+while (false) {
+  $(x, y, z);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10,20,[10,20,30]
- - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")

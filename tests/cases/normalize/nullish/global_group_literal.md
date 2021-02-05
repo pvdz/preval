@@ -18,17 +18,12 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
 1;
 2;
-tmpNullish = 3;
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = 3;
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = foo;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -36,15 +31,10 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
-tmpNullish = 3;
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = 3;
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = foo;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -52,8 +42,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: undefined
+ - 1: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

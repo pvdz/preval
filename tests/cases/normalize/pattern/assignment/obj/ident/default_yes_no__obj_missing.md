@@ -18,36 +18,26 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = { b: 2, c: 3 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = { b: 2, c: 3 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = { b: 2, c: 3 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = { b: 2, c: 3 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -57,9 +47,9 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: "pass"
- - 2: undefined
+ - 1: 'pass'
+ - 2: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -15,14 +15,13 @@ const {x: {y: {z = a }}} = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let z;
-if (tmpTernaryTest) {
+let z = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;
@@ -32,13 +31,12 @@ if (tmpTernaryTest) {
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let z;
-if (tmpTernaryTest) {
+let z = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;
@@ -48,7 +46,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

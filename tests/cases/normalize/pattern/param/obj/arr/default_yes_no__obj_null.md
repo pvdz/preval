@@ -21,55 +21,56 @@ $(f({ x: null, a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   return 'bad';
 }
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = { x: null, a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal = null;
+const tmpCalleeParam$2 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   [...objPatternAfterDefault];
   return 'bad';
 }
-var tmpArg$1;
-var tmpArg$2;
-tmpArg$2 = { x: null, a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = { x: null, a: 11, b: 12 };
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

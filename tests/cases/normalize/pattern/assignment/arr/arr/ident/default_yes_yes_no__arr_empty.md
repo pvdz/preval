@@ -18,34 +18,23 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternBeforeDefault$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-arrAssignPatternRhs = [];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = [];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -56,34 +45,23 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternBeforeDefault$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-arrAssignPatternRhs = [];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = [];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -93,9 +71,9 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: ["pass2"]
- - 1: "pass2"
- - 2: undefined
+ - 1: ['pass2']
+ - 2: 'pass2'
+ - eval returned: undefined
 
 Normalized calls: Same
 

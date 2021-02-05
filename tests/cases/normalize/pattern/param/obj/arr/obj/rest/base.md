@@ -24,19 +24,21 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let y = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpObjPropValue;
-('<hoisted func decl `f`>');
-tmpElement = { x: 1, y: 2, c: 3 };
-tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpArrElement = { x: 1, y: 2, c: 3 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpCalleeParam$4 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$5 = 10;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -46,25 +48,26 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
-  let y = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpObjPropValue;
-tmpElement = { x: 1, y: 2, c: 3 };
-tmpObjPropValue = [tmpElement, 13, 14];
-tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpArrElement = { x: 1, y: 2, c: 3 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpCalleeParam$4 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 10);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2,"c":3}
- - 1: undefined
+ - 1: { x: '1', y: '2', c: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

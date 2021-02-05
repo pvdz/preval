@@ -35,20 +35,16 @@ function i(tmpParamPattern) {
   }
   return a_1;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-('<hoisted func decl `i`>');
 let a = 1;
 ('<hoisted func decl `i`>');
-tmpObjPropValue$2 = { a: 10 };
-tmpObjPropValue$1 = { z: tmpObjPropValue$2 };
-tmpObjPropValue = { y: tmpObjPropValue$1 };
-tmpArg$1 = { x: tmpObjPropValue };
-tmpArg = i(tmpArg$1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = i;
+const tmpObjLitVal$2 = { a: 10 };
+const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+const tmpCalleeParam$1 = { x: tmpObjLitVal };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -60,24 +56,21 @@ function i(tmpParamPattern) {
   let a_1 = objPatternNoDefault$1.z;
   return a_1;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-tmpObjPropValue$2 = { a: 10 };
-tmpObjPropValue$1 = { z: tmpObjPropValue$2 };
-tmpObjPropValue = { y: tmpObjPropValue$1 };
-tmpArg$1 = { x: tmpObjPropValue };
-tmpArg = i(tmpArg$1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = i;
+const tmpObjLitVal$2 = { a: 10 };
+const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+const tmpCalleeParam$1 = { x: tmpObjLitVal };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"a":10}
- - 1: undefined
+ - 1: { a: '10' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

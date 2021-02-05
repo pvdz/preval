@@ -50,8 +50,7 @@ $(a, b, d, f, h, x);
 ## Result
 
 Should call `$` with:
- - 0: null,null,null,null,null,null
- - 1: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

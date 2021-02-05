@@ -18,17 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternArrRoot = 0;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -38,16 +35,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const arrPatternSplat = [...0];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -57,7 +51,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

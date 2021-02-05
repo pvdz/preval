@@ -19,22 +19,28 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = 'abc';
-const x = objPatternRest(bindingPatternObjRoot, [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = bindingPatternObjRoot;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = objPatternRest('abc', [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam$1 = [];
+const x = tmpCallCallee('abc', tmpCalleeParam$1, 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a","1":"b","2":"c"}
- - 1: undefined
+ - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

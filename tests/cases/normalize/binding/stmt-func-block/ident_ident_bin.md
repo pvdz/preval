@@ -20,34 +20,58 @@ let b = 2, c = 3, d = 4;
 }
 $(f());
 `````
+
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-let d = 4;
-a = b = c + d;
-$(a, b, c);
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = 2;
+    let c = 3;
+    let d = 4;
+    let a;
+    const tmpNestedComplexRhs = c + d;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+    $(a, b, c);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-a = b = 7;
-$(a, b, 7);
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = 2;
+    let a;
+    b = 7;
+    a = 7;
+    $(a, b, 7);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 7,7,3
- - 1: undefined
+ - 1: true
+ - 2: 7, 7, 3
+ - 3: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, 7, 7], null];
-
+ - 1: true
+ - 2: 7, 7, 7
+ - 3: undefined
+ - eval returned: undefined

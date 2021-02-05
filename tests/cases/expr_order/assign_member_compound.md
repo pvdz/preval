@@ -20,52 +20,38 @@ a.foo += a = $();
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpCompoundAssignLhs;
-var tmpNestedComplexRhs;
 let a = {};
-tmpCompoundAssignLhs = a.foo;
-tmpAssignMemLhsObj = a;
-tmpBinaryLeft = tmpCompoundAssignLhs;
-tmpNestedComplexRhs = $();
+const tmpCompoundAssignLhs = a.foo;
+const tmpAssignMemLhsObj = a;
+const tmpBinBothLhs = tmpCompoundAssignLhs;
+let tmpBinBothRhs;
+const tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
-tmpBinaryRight = tmpNestedComplexRhs;
-tmpAssignMemRhs = tmpBinaryLeft + tmpBinaryRight;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
+tmpBinBothRhs = tmpNestedComplexRhs;
+const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpCompoundAssignLhs;
-var tmpNestedComplexRhs;
 let a = {};
-tmpCompoundAssignLhs = a.foo;
-tmpAssignMemLhsObj = a;
-tmpBinaryLeft = tmpCompoundAssignLhs;
-tmpNestedComplexRhs = $();
+const tmpCompoundAssignLhs = a.foo;
+const tmpAssignMemLhsObj = a;
+const tmpBinBothLhs = tmpCompoundAssignLhs;
+let tmpBinBothRhs;
+const tmpNestedComplexRhs = $();
 a = tmpNestedComplexRhs;
-tmpBinaryRight = tmpNestedComplexRhs;
-tmpAssignMemRhs = tmpBinaryLeft + tmpBinaryRight;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.foo = tmpAssignMemRhs;
+tmpBinBothRhs = tmpNestedComplexRhs;
+const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: undefined
+ - 1: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

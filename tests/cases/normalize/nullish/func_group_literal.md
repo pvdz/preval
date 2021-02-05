@@ -22,55 +22,44 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
   1;
   2;
-  tmpNullish = 3;
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = 3;
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = foo;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
-  tmpNullish = 3;
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = 3;
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = foo;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
  - 1: 3
- - 2: undefined
+ - 2: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

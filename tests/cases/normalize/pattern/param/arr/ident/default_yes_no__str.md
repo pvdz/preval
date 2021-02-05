@@ -23,7 +23,7 @@ $(f('abc', 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x;
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('fail');
@@ -32,10 +32,9 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('abc', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -44,7 +43,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x;
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('fail');
@@ -53,16 +52,16 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-tmpArg = f('abc', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: undefined
+ - 1: 'a'
+ - eval returned: undefined
 
 Normalized calls: Same
 

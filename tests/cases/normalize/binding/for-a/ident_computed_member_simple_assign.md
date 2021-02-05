@@ -18,85 +18,63 @@ for (let a = b[$('x')] = $(c)[$('y')] = $(d);false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignCompMemberRhs$1;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignComMemberObj = b;
-  tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-  tmpNestedAssignObj = $(c);
-  tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
-  tmpNestedAssignComMemberProp$1 = $('y');
-  tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-  tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-  tmpNestedAssignCompMemberRhs$1 = $(d);
-  tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-  tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  a = tmpNestedAssignCompMemberRhs;
-  while (false) {}
+  let a;
+  const tmpNestedAssignComMemberObj = b;
+  const tmpNestedAssignComMemberProp = $('x');
+  let tmpNestedAssignPropRhs;
+  const tmpNestedAssignComMemberObj$1 = $(c);
+  const tmpNestedAssignComMemberProp$1 = $('y');
+  let tmpNestedAssignPropRhs$1 = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+  a = tmpNestedPropAssignRhs$1;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignCompMemberRhs$1;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignComMemberObj = b;
-tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-tmpNestedAssignObj = $(3);
-tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj;
-tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-tmpNestedAssignCompMemberRhs$1 = $(4);
-tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-a = tmpNestedAssignCompMemberRhs;
-while (false) {}
-$(a, b, 3);
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = $(3);
+const tmpNestedAssignComMemberProp$1 = $('y');
+let tmpNestedAssignPropRhs$1 = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+while (false) {
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: 3
- - 2: "y"
- - 3: 4
- - 4: 4,{"x":4},3
- - 5: undefined
+ - 1: 'x'
+ - 2: 3
+ - 3: 'y'
+ - 4: 4
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

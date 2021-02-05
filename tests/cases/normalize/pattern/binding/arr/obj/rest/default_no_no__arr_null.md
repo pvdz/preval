@@ -18,10 +18,15 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = [null, 20, 30];
+const tmpArrElement = null;
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $(x);
 `````
 
@@ -31,18 +36,18 @@ $(x);
 const bindingPatternArrRoot = [null, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
-
+Final output calls: Same

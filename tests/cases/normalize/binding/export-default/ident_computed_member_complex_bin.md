@@ -19,55 +19,37 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-export let a =
-  ((tmpAssignMemLhsObj = $(b)),
-  ((tmpAssignComMemLhsObj = tmpAssignMemLhsObj),
-  (tmpAssignComMemLhsProp = $('x')),
-  (((tmpAssignComputedObj = tmpAssignComMemLhsObj),
-  (tmpAssignComputedProp = tmpAssignComMemLhsProp),
-  (tmpAssignComputedRhs = c + d),
-  (tmpAssignMemLhsObj$1 = tmpAssignComputedObj)),
-  (tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs))));
+let a;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs = c + d;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignComputedObj;
-var tmpAssignComputedProp;
-var tmpAssignComputedRhs;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
 let b = { x: 2 };
-export let a =
-  ((tmpAssignMemLhsObj = $(b)),
-  ((tmpAssignComMemLhsObj = tmpAssignMemLhsObj),
-  (tmpAssignComMemLhsProp = $('x')),
-  (((tmpAssignComputedObj = tmpAssignComMemLhsObj),
-  (tmpAssignComputedProp = tmpAssignComMemLhsProp),
-  (tmpAssignComputedRhs = 7),
-  (tmpAssignMemLhsObj$1 = tmpAssignComputedObj)),
-  (tmpAssignMemLhsObj$1[tmpAssignComputedProp] = tmpAssignComputedRhs))));
+let a;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+a = 7;
+export { a };
 $(a, b, 7);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

@@ -17,28 +17,26 @@ $([...true.toString()]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = true.toString();
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrSpread = true.toString();
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = true.toString();
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrSpread = true.toString();
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["t","r","u","e"]
- - 1: undefined
+ - 1: ['t', 'r', 'u', 'e']
+ - eval returned: undefined
 
 Normalized calls: Same
 

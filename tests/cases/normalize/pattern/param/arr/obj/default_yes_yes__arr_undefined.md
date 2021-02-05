@@ -21,18 +21,18 @@ $(f([undefined, 20, 30], 200));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
@@ -49,30 +49,30 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = [undefined, 20, 30];
-tmpArg$1 = f(tmpArg$2, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = [undefined, 20, 30];
+const tmpCalleeParam$3 = 200;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
@@ -89,19 +89,19 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg$1;
-var tmpArg$2;
-tmpArg$2 = [undefined, 20, 30];
-tmpArg$1 = f(tmpArg$2, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = [undefined, 20, 30];
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "fail"
- - 1: "ok"
- - 2: undefined
+ - 1: 'fail'
+ - 2: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

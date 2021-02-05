@@ -24,48 +24,35 @@ superExpensiveFunction().x += 5;
 
 `````js filename=intro
 function superExpensiveFunction() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
-('<hoisted func decl `superExpensiveFunction`>');
-tmpAssignMemLhsObj = superExpensiveFunction();
-tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = superExpensiveFunction();
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
 function superExpensiveFunction() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
-tmpAssignMemLhsObj = superExpensiveFunction();
-tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = superExpensiveFunction();
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: <crash[ Cannot read property 'x' of undefined ]>
+ - 1: 
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -19,39 +19,32 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-arrAssignPatternRhs;
-$(x, y, z);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+let b = arrPatternSplat[1];
+$(a, b, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-$(x, y, z);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+let b = arrPatternSplat[1];
+$(a, b, 1, 2, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10,20,[10,20,30]
- - 1: undefined
+ - 1: 10, 20, 1, 2, [10, 20, 30]
+ - eval returned: undefined
 
 Normalized calls: Same
 

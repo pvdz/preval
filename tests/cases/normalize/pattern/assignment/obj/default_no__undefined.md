@@ -18,40 +18,29 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-objAssignPatternRhs = undefined;
-{
-  let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = objAssignPatternRhs === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const tmpAssignObjPatternRhs = undefined;
+let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = tmpAssignObjPatternRhs === null;
 }
-objAssignPatternRhs;
+if (objPatternCrashTest) {
+  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+}
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-objAssignPatternRhs = undefined;
-let tmpAssignLogicStmtOr = objAssignPatternRhs === undefined;
-if (tmpAssignLogicStmtOr) {
+let objPatternCrashTest = false;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = objAssignPatternRhs === null;
+  objPatternCrashTest = false;
 }
-if (tmpAssignLogicStmtOr) {
-  objPatternCrashTest = objAssignPatternRhs.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
+if (objPatternCrashTest) {
+  objPatternCrashTest = undefined.cannotDestructureThis;
 }
 $('bad');
 `````
@@ -59,8 +48,10 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'bad'
+ - eval returned: undefined

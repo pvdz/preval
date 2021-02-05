@@ -18,20 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [null, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const tmpArrElement = null;
+const arrAssignPatternRhs = [tmpArrElement, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -42,20 +36,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [null, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = [null, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -65,7 +52,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

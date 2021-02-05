@@ -18,10 +18,10 @@ for (a of $({x: 1, y: 2})) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 let a;
-tmpArg = { x: 1, y: 2 };
-const tmpForOfRhs = $(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = { x: 1, y: 2 };
+const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 for (a of tmpForOfRhs) {
   $(a);
 }
@@ -30,10 +30,10 @@ for (a of tmpForOfRhs) {
 ## Output
 
 `````js filename=intro
-var tmpArg;
 let a;
-tmpArg = { x: 1, y: 2 };
-const tmpForOfRhs = $(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = { x: 1, y: 2 };
+const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 for (a of tmpForOfRhs) {
   $(a);
 }
@@ -42,8 +42,8 @@ for (a of tmpForOfRhs) {
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: { x: '1', y: '2' }
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

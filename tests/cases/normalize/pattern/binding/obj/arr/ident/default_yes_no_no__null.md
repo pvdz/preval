@@ -18,14 +18,13 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = null;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -36,13 +35,12 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternNoDefault = null.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -53,7 +51,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

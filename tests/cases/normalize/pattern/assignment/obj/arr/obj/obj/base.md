@@ -24,68 +24,45 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpElement;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
-tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
-tmpObjPropValue = [tmpElement, 13, 14];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault$1 = arrPatternStep.y;
-{
-  let tmpAssignLogicStmtOr = objPatternNoDefault$1 === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = objPatternNoDefault$1 === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const tmpObjLitVal$1 = 15;
+const tmpObjLitVal$2 = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault$1 = arrPatternStep.y;
+let objPatternCrashTest = objPatternNoDefault$1 === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault$1 === null;
 }
-objAssignPatternRhs;
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
+}
+tmpAssignObjPatternRhs;
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpElement;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { a: 1, b: 2, c: 3 };
-tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
-tmpObjPropValue = [tmpElement, 13, 14];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault$1 = arrPatternStep.y;
-let tmpAssignLogicStmtOr = objPatternNoDefault$1 === undefined;
-if (tmpAssignLogicStmtOr) {
+const tmpObjLitVal$2 = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: 15, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault$1 = arrPatternStep.y;
+let objPatternCrashTest = objPatternNoDefault$1 === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = objPatternNoDefault$1 === null;
+  objPatternCrashTest = objPatternNoDefault$1 === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('ok');
 `````
@@ -93,8 +70,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

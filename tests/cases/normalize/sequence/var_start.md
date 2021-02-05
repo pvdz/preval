@@ -32,8 +32,8 @@ $(6);
 ## Result
 
 Should call `$` with:
- - 0: 6
- - 1: undefined
+ - 1: 6
+ - eval returned: undefined
 
 Normalized calls: Same
 

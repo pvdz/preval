@@ -19,8 +19,6 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let a = 1;
 let b = 2;
 let c = 3;
@@ -32,14 +30,19 @@ const tmpSwitchTest = $('a');
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
     } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+      const tmpBinBothLhs = tmpSwitchTest;
+      const tmpBinBothRhs = $('a');
+      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
       ('case 0:');
       {
-        a = ($(b), $(c)).x = $(c);
+        $(b);
+        const tmpNestedAssignObj = $(c);
+        let tmpNestedAssignPropRhs = $(c);
+        const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+        tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -60,14 +63,19 @@ tmpSwitchBreak: {
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryLeft = tmpSwitchTest;
-    tmpBinaryRight = $('a');
-    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $('a');
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
     {
-      a = ($(b), $(c)).x = $(c);
+      $(b);
+      const tmpNestedAssignObj = $(c);
+      let tmpNestedAssignPropRhs = $(c);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
@@ -79,16 +87,15 @@ $(a, 2, 3);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "a"
- - 2: 2
- - 3: 3
+ - 1: 'a'
+ - 2: 'a'
+ - 3: 2
  - 4: 3
- - 5: 1,2,3
- - 6: undefined
+ - 5: 3
+ - 6: 1, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'a' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

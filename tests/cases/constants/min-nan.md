@@ -35,8 +35,8 @@ $(bar);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: -Infinity
+ - eval returned: undefined
 
 Normalized calls: Same
 

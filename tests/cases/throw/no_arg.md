@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f(){ 
-  throw f;
+  throw 'x';
 }
 $(f());
 `````
@@ -21,33 +21,27 @@ $(f());
 
 `````js filename=intro
 function f() {
-  throw f;
+  throw 'x';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
-  throw f;
-}
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(undefined);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ function f(){ \n  throw f;\n} ]>
+ - eval returned: ('<crash[ x ]>')
 
-Normalized calls: BAD?!
-['<crash[ function f() {throw f;} ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
-['<crash[ function f() {throw f;} ]>'];
-
+ - 1: undefined
+ - eval returned: undefined

@@ -16,38 +16,32 @@ obj.a.b.c;
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-tmpObjPropValue$2 = $();
-tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-const tmpBindingInit = obj.a;
-const tmpCompObj = tmpBindingInit.b;
+const tmpObjLitVal$2 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCompObj$1 = obj.a;
+const tmpCompObj = tmpCompObj$1.b;
 tmpCompObj.c;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-tmpObjPropValue$2 = $();
-tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-const tmpBindingInit = obj.a;
-const tmpCompObj = tmpBindingInit.b;
+const tmpObjLitVal$2 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCompObj$1 = obj.a;
+const tmpCompObj = tmpCompObj$1.b;
 tmpCompObj.c;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: undefined
+ - 1: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

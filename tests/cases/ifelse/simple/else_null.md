@@ -16,7 +16,8 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if (null) {
+const tmpIfTest = null;
+if (tmpIfTest) {
   $(1);
 } else {
   $(2);
@@ -32,8 +33,8 @@ $(2);
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: undefined
+ - 1: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

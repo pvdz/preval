@@ -39,10 +39,10 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: {"y":1}
- - 1: {"y":1}
- - 2: {"y":1}
- - 3: undefined
+ - 1: { y: '1' }
+ - 2: { y: '1' }
+ - 3: { y: '1' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

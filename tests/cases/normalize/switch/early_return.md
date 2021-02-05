@@ -32,12 +32,6 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpBinaryLeft;
-  var tmpBinaryLeft$1;
-  var tmpBinaryLeft$2;
-  var tmpBinaryRight;
-  var tmpBinaryRight$1;
-  var tmpBinaryRight$2;
   const tmpSwitchTest = $(1);
   tmpSwitchBreak: {
     let tmpFallthrough = false;
@@ -57,9 +51,9 @@ function f() {
     let tmpIfTest$1 = tmpFallthrough;
     if (tmpIfTest$1) {
     } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $(1);
-      tmpIfTest$1 = tmpBinaryLeft === tmpBinaryRight;
+      const tmpBinBothLhs = tmpSwitchTest;
+      const tmpBinBothRhs = $(1);
+      tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest$1) {
       ('case 1:');
@@ -71,15 +65,15 @@ function f() {
     let tmpIfTest$2 = tmpFallthrough;
     if (tmpIfTest$2) {
     } else {
-      tmpBinaryLeft$1 = tmpSwitchTest;
-      tmpBinaryRight$1 = $(4);
-      tmpIfTest$2 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+      const tmpBinBothLhs$1 = tmpSwitchTest;
+      const tmpBinBothRhs$1 = $(4);
+      tmpIfTest$2 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
     }
     if (tmpIfTest$2) {
       ('case 2:');
       {
         $(5);
-        let tmpReturnArg = $(6);
+        const tmpReturnArg = $(6);
         return tmpReturnArg;
       }
       tmpFallthrough = true;
@@ -87,9 +81,9 @@ function f() {
     let tmpIfTest$3 = tmpFallthrough;
     if (tmpIfTest$3) {
     } else {
-      tmpBinaryLeft$2 = tmpSwitchTest;
-      tmpBinaryRight$2 = $(7);
-      tmpIfTest$3 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+      const tmpBinBothLhs$2 = tmpSwitchTest;
+      const tmpBinBothRhs$2 = $(7);
+      tmpIfTest$3 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
     }
     if (tmpIfTest$3) {
       ('case 3:');
@@ -100,10 +94,9 @@ function f() {
     }
   }
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -129,9 +122,9 @@ function f() {
     let tmpIfTest$1 = tmpFallthrough;
     if (tmpIfTest$1) {
     } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $(1);
-      tmpIfTest$1 = tmpBinaryLeft === tmpBinaryRight;
+      const tmpBinBothLhs = tmpSwitchTest;
+      const tmpBinBothRhs = $(1);
+      tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest$1) {
       ('case 1:');
@@ -143,15 +136,15 @@ function f() {
     let tmpIfTest$2 = tmpFallthrough;
     if (tmpIfTest$2) {
     } else {
-      tmpBinaryLeft$1 = tmpSwitchTest;
-      tmpBinaryRight$1 = $(4);
-      tmpIfTest$2 = tmpBinaryLeft$1 === tmpBinaryRight$1;
+      const tmpBinBothLhs$1 = tmpSwitchTest;
+      const tmpBinBothRhs$1 = $(4);
+      tmpIfTest$2 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
     }
     if (tmpIfTest$2) {
       ('case 2:');
       {
         $(5);
-        let tmpReturnArg = $(6);
+        const tmpReturnArg = $(6);
         return tmpReturnArg;
       }
       tmpFallthrough = true;
@@ -159,9 +152,9 @@ function f() {
     let tmpIfTest$3 = tmpFallthrough;
     if (tmpIfTest$3) {
     } else {
-      tmpBinaryLeft$2 = tmpSwitchTest;
-      tmpBinaryRight$2 = $(7);
-      tmpIfTest$3 = tmpBinaryLeft$2 === tmpBinaryRight$2;
+      const tmpBinBothLhs$2 = tmpSwitchTest;
+      const tmpBinBothRhs$2 = $(7);
+      tmpIfTest$3 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
     }
     if (tmpIfTest$3) {
       ('case 3:');
@@ -172,24 +165,24 @@ function f() {
     }
   }
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
  - 1: 1
- - 2: 3
- - 3: 5
- - 4: 6
+ - 2: 1
+ - 3: 3
+ - 4: 5
  - 5: 6
- - 6: undefined
+ - 6: 6
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[1], '<crash[ <ref> is not defined ]>'];
-
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

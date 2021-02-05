@@ -19,45 +19,37 @@ $(a[b][c][d]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
 const b = 'b';
 const c = 'c';
 const d = 'd';
-tmpMemberComplexObj$1 = a[b];
-tmpMemberComplexObj = tmpMemberComplexObj$1[c];
-tmpArg = tmpMemberComplexObj[d];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCompObj$1 = a[b];
+const tmpCompObj = tmpCompObj$1[c];
+const tmpCalleeParam = tmpCompObj[d];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
-tmpMemberComplexObj$1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj$1.c;
-tmpArg = tmpMemberComplexObj.d;
-$(tmpArg);
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
+const tmpCallCallee = $;
+const tmpCompObj$1 = a.b;
+const tmpCompObj = tmpCompObj$1.c;
+const tmpCalleeParam = tmpCompObj.d;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

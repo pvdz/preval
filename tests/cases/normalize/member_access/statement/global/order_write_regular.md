@@ -24,14 +24,15 @@ $(obj).x = 30;
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
     $(20);
   },
 };
-$(obj).x = 30;
+const tmpAssignMemLhsObj = $(obj);
+tmpAssignMemLhsObj.x = 30;
 `````
 
 ## Output
@@ -39,22 +40,23 @@ $(obj).x = 30;
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
     $(20);
   },
 };
-$(obj).x = 30;
+const tmpAssignMemLhsObj = $(obj);
+tmpAssignMemLhsObj.x = 30;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: 20
- - 2: undefined
+ - 1: { x: '<get/set>' }
+ - 2: 20
+ - eval returned: undefined
 
 Normalized calls: Same
 

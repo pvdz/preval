@@ -24,36 +24,36 @@ $(i, ++i);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpNestedComplexRhs;
 let i = 0;
-tmpArg = i;
-tmpNestedComplexRhs = i + 1;
+const tmpCallCallee = $;
+const tmpCalleeParam = i;
+let tmpCalleeParam$1;
+const tmpNestedCompoundLhs = i;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 i = tmpNestedComplexRhs;
-tmpArg$1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg$1);
+tmpCalleeParam$1 = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpNestedComplexRhs;
 let i = 0;
-tmpArg = i;
-tmpNestedComplexRhs = i + 1;
+const tmpCallCallee = $;
+const tmpCalleeParam = i;
+let tmpCalleeParam$1;
+const tmpNestedCompoundLhs = i;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 i = tmpNestedComplexRhs;
-tmpArg$1 = tmpNestedComplexRhs;
-$(tmpArg, tmpArg$1);
+tmpCalleeParam$1 = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 0,1
- - 1: undefined
+ - 1: 0, 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

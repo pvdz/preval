@@ -21,7 +21,7 @@ $(f(1, 2, 3, 200));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('pass2');
@@ -30,7 +30,7 @@ function f($tdz$__pattern) {
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
@@ -41,17 +41,16 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat$1.slice(0);
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(1, 2, 3, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1, 2, 3, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('pass2');
@@ -60,7 +59,7 @@ function f($tdz$__pattern) {
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
@@ -71,19 +70,16 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat$1.slice(0);
   return x;
 }
-var tmpArg;
-tmpArg = f(1, 2, 3, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1, 2, 3, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ $ is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

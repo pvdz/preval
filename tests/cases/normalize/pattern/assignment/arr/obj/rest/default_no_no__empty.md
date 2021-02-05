@@ -11,20 +11,24 @@
 ## Input
 
 `````js filename=intro
-([{ ...x }] = 1);
+let x = 100;
+([{ ...x }] = [{}]);
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-x = objPatternRest(arrPatternStep, [], undefined);
+let x = 100;
+const tmpArrElement = {};
+const arrAssignPatternRhs = [tmpArrElement];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 arrAssignPatternRhs;
 $(x);
 `````
@@ -32,24 +36,24 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-x = objPatternRest(arrPatternStep, [], undefined);
+let x = 100;
+const tmpArrElement = {};
+const arrAssignPatternRhs = [tmpArrElement];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 1: {}
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

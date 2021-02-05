@@ -21,24 +21,23 @@ $(f({ x: [, , , 1], a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = ['fail2'];
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = ['fail2'];
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = ['fail'];
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = ['fail'];
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -46,38 +45,36 @@ function f($tdz$__pattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$2;
-var tmpArg$3;
-var tmpObjPropValue$1;
-('<hoisted func decl `f`>');
-tmpObjPropValue$1 = [, , , 1];
-tmpArg$3 = { x: tmpObjPropValue$1, a: 11, b: 12 };
-tmpArg$2 = f(tmpArg$3, 10);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpObjLitVal$1 = [, , , 1];
+const tmpCalleeParam$3 = { x: tmpObjLitVal$1, a: 11, b: 12 };
+const tmpCalleeParam$4 = 10;
+const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$4);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = ['fail2'];
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = ['fail2'];
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = ['fail'];
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = ['fail'];
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -85,20 +82,19 @@ function f($tdz$__pattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$2;
-var tmpArg$3;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = [, , , 1];
-tmpArg$3 = { x: tmpObjPropValue$1, a: 11, b: 12 };
-tmpArg$2 = f(tmpArg$3, 10);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpObjLitVal$1 = [, , , 1];
+const tmpCalleeParam$3 = { x: tmpObjLitVal$1, a: 11, b: 12 };
+const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, 10);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: [null,null,null,1]
- - 1: undefined
+ - 1: [undefined, undefined, undefined, 1]
+ - eval returned: undefined
 
 Normalized calls: Same
 

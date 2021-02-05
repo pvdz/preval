@@ -18,36 +18,25 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = null;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = null;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = null;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const objPatternBeforeDefault = null.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -57,7 +46,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

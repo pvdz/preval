@@ -135,11 +135,27 @@ export function toNormalizedResult(obj) {
       .join('\n\n')
   );
 }
+
 export function toEvaluationResult(evalled, files, skipFinal) {
-  const shouldBeOutput = fmat(JSON.stringify(evalled.$in));
-  const printOutput = evalled.$in.map((s, i) => ' - ' + i + ': ' + (s && JSON.stringify(s).slice(1, -1))).join('\n');
-  const normalizedOutput = fmat(JSON.stringify(evalled.$norm));
-  const finalOutput = fmat(JSON.stringify(evalled.$out));
+  function printStack(stack) {
+    return stack
+      .map((s, i) => {
+        let code = fmat('(' + s + ')').slice(0, -2); // drop newline and semi
+        if (code[0] === '"' || code[0] === "'") code = code.slice(1, -1);
+        if (code[0] === '[' && code[code.length - 1] === ']') code = code.slice(1, -1);
+        return ' - ' + (i === stack.length - 1 ? 'eval returned: ' : i + 1 + ': ') + code;
+      })
+      .join('\n');
+  }
+
+  const printOutput = printStack(evalled.$in);
+  const normalizedOutput = printStack(evalled.$norm);
+  const finalOutput = printStack(evalled.$out);
+
+  const normalizedEvalResult = printOutput === normalizedOutput ? ' Same' : ' BAD?!\n' + normalizedOutput;
+  const finalEvalResult = skipFinal
+    ? ''
+    : 'Final output calls:' + (printOutput === finalOutput ? ' Same\n' : ' BAD!!\n' + finalOutput + '\n');
 
   return (
     '\n\n## Output\n\n' +
@@ -152,9 +168,9 @@ export function toEvaluationResult(evalled, files, skipFinal) {
     printOutput +
     '\n\n' +
     'Normalized calls:' +
-    (shouldBeOutput === normalizedOutput ? ' Same\n' : ' BAD?!\n' + normalizedOutput) +
-    '\n' +
-    (skipFinal ? '' : 'Final output calls:' + (shouldBeOutput === finalOutput ? ' Same' : ' BAD!!\n' + finalOutput) + '\n')
+    normalizedEvalResult +
+    '\n\n' +
+    finalEvalResult
   );
 }
 

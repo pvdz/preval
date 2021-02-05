@@ -24,7 +24,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -33,12 +33,12 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = [undefined, 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = [undefined, 20, 30];
+const tmpCalleeParam$2 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -48,7 +48,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -57,17 +57,17 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg$1 = [undefined, 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = [undefined, 20, 30];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

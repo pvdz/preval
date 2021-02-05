@@ -18,34 +18,23 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = undefined;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = undefined;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-{
-  let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = arrPatternStep === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 }
 arrAssignPatternRhs;
 $('ok');
@@ -54,32 +43,22 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = undefined;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  arrPatternStep = tmpTernaryConsequent;
+const arrPatternSplat = [...undefined];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-if (tmpAssignLogicStmtOr) {
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = arrPatternStep === null;
+  objPatternCrashTest = arrPatternStep === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('ok');
 `````
@@ -87,7 +66,7 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

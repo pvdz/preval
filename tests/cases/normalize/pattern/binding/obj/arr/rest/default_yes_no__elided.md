@@ -18,19 +18,15 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = [, , , 1];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [, , , 1];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['fail'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -42,19 +38,15 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = [, , , 1];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [, , , 1];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['fail'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
@@ -66,8 +58,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: [null,null,null,1]
- - 1: undefined
+ - 1: [undefined, undefined, undefined, 1]
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,25 +21,23 @@ $(f());
 function f() {
   return NaN;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = NaN;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(NaN);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: NaN
+ - eval returned: undefined
 
 Normalized calls: Same
 

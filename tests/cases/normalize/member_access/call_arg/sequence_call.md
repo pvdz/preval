@@ -19,8 +19,8 @@ $(($(1), $(2)).toString);
 `````js filename=intro
 const tmpCallCallee = $;
 $(1);
-const tmpBindingInit = $(2);
-const tmpCalleeParam = tmpBindingInit.toString;
+const tmpCompObj = $(2);
+const tmpCalleeParam = tmpCompObj.toString;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -29,18 +29,17 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCallCallee = $;
 $(1);
-const tmpBindingInit = $(2);
-const tmpCalleeParam = tmpBindingInit.toString;
+const tmpCompObj = $(2);
+const tmpCalleeParam = tmpCompObj.toString;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: null
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

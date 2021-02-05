@@ -18,14 +18,10 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-arrAssignPatternRhs = [undefined, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const arrAssignPatternRhs = [undefined, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
 arrAssignPatternRhs;
 $('bad');
 `````
@@ -33,21 +29,17 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-arrAssignPatternRhs = [undefined, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const arrAssignPatternRhs = [undefined, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+[...arrPatternStep];
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

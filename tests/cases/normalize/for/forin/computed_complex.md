@@ -19,18 +19,14 @@ for ($(a)[$('foo')] in $(b)) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-    tmpAssignComMemLhsProp = $('foo');
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $('foo');
     tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
     $(a);
   }
@@ -40,17 +36,13 @@ const tmpForInRhs = $(b);
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
 let tmpForInLhsNode;
 for (tmpForInLhsNode in tmpForInRhs) {
-  tmpAssignMemLhsObj = $(a);
-  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-  tmpAssignComMemLhsProp = $('foo');
+  const tmpAssignComMemLhsObj = $(a);
+  const tmpAssignComMemLhsProp = $('foo');
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
   $(a);
 }
@@ -59,14 +51,14 @@ for (tmpForInLhsNode in tmpForInRhs) {
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: {"foo":"y"}
- - 2: "foo"
- - 3: {"foo":"y"}
- - 4: {"foo":"y"}
- - 5: "foo"
- - 6: {"foo":"y"}
- - 7: undefined
+ - 1: { x: '1', y: '2' }
+ - 2: {}
+ - 3: 'foo'
+ - 4: { foo: '"x"' }
+ - 5: { foo: '"x"' }
+ - 6: 'foo'
+ - 7: { foo: '"y"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

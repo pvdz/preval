@@ -15,38 +15,27 @@
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
-objPatternBeforeDefault = objPatternNoDefault$1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpAssignObjPatternRhs = 1;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault$1.z;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
-objPatternBeforeDefault = objPatternNoDefault$1.z;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const objPatternNoDefault = (1).x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternBeforeDefault = objPatternNoDefault$1.z;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   z = a;
 } else {
   z = objPatternBeforeDefault;
@@ -56,7 +45,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -19,7 +19,7 @@ function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let objPatternBeforeDefault = objPatternNoDefault$1.z;
-  let z;
+  let z = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     z = a;
@@ -39,7 +39,7 @@ function i(tmpParamPattern) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

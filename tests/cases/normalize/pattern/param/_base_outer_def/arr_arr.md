@@ -16,7 +16,7 @@ function i([[ x ]] = c ) { return x }
 
 `````js filename=intro
 function i($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = c;
@@ -40,7 +40,7 @@ function i($tdz$__pattern) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

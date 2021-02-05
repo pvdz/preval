@@ -11,53 +11,55 @@
 ## Input
 
 `````js filename=intro
-const f = (a = [ x ] = 1) => { return a };
+const f = (a = [ x ] = [100]) => { return $(a) };
+f();
 `````
 
 ## Normalized
 
 `````js filename=intro
 const f = ($tdz$__a) => {
-  var arrAssignPatternRhs;
-  var arrPatternSplat;
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
-    arrAssignPatternRhs = 1;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const tmpNestedAssignArrPatternRhs = [100];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
-    a = arrAssignPatternRhs;
+    a = tmpNestedAssignArrPatternRhs;
   } else {
     a = $tdz$__a;
   }
-  return a;
+  const tmpReturnArg = $(a);
+  return tmpReturnArg;
 };
+f();
 `````
 
 ## Output
 
 `````js filename=intro
-($tdz$__a) => {
-  var arrAssignPatternRhs;
-  var arrPatternSplat;
-  let a;
+const f = ($tdz$__a) => {
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
-    arrAssignPatternRhs = 1;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const tmpNestedAssignArrPatternRhs = [100];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
-    a = arrAssignPatternRhs;
+    a = tmpNestedAssignArrPatternRhs;
   } else {
     a = $tdz$__a;
   }
-  return a;
+  const tmpReturnArg = $(a);
+  return tmpReturnArg;
 };
+f();
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - 1: [100]
+ - eval returned: undefined
 
 Normalized calls: Same
 

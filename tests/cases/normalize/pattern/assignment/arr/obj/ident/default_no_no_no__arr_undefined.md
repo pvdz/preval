@@ -18,12 +18,9 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = [undefined, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrAssignPatternRhs = [undefined, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 arrAssignPatternRhs;
 $('bad');
@@ -32,12 +29,9 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = [undefined, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrAssignPatternRhs = [undefined, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 $('bad');
 `````
@@ -45,7 +39,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

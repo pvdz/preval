@@ -15,14 +15,13 @@ const {x: [ y = a ]} = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = a;
 } else {
   y = arrPatternBeforeDefault;
@@ -32,13 +31,12 @@ if (tmpTernaryTest) {
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = a;
 } else {
   y = arrPatternBeforeDefault;
@@ -48,7 +46,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

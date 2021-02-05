@@ -36,8 +36,8 @@ $(a);
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: undefined
+ - 1: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

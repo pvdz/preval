@@ -17,27 +17,26 @@ $(delete $(1));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
+const tmpCallCallee = $;
 $(1);
-tmpArg = true;
-$(tmpArg);
+const tmpCalleeParam = true;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
+const tmpCallCallee = $;
 $(1);
-tmpArg = true;
-$(tmpArg);
+tmpCallCallee(true);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: true
- - 2: undefined
+ - 1: 1
+ - 2: true
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,12 +18,9 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = null;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrAssignPatternRhs = null;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 arrAssignPatternRhs;
 $('bad');
@@ -32,12 +29,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = null;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat = [...null];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 $('bad');
 `````
@@ -45,7 +38,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

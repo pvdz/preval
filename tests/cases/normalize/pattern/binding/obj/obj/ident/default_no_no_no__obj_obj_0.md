@@ -18,9 +18,8 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-tmpObjPropValue = { x: 1, y: 0, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal = { x: 1, y: 0, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternNoDefault.y;
 $(y);
@@ -29,9 +28,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-tmpObjPropValue = { x: 1, y: 0, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal = { x: 1, y: 0, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternNoDefault.y;
 $(y);
@@ -40,8 +38,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 0
- - 1: undefined
+ - 1: 0
+ - eval returned: undefined
 
 Normalized calls: Same
 

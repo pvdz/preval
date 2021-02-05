@@ -18,7 +18,7 @@ function f([ x = a ]) { return x }
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x;
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = a;
@@ -38,7 +38,7 @@ function f(tmpParamPattern) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

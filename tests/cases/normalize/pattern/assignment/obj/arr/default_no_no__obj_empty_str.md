@@ -18,33 +18,27 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: '', a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = { x: '', a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+tmpAssignObjPatternRhs;
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: '', a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
+const tmpAssignObjPatternRhs = { x: '', a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+[...objPatternNoDefault];
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

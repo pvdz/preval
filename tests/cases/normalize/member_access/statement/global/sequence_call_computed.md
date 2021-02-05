@@ -18,7 +18,8 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = ($(1), $(2));
+$(1);
+const tmpCompObj = $(2);
 const tmpCompProp = $('toString');
 tmpCompObj[tmpCompProp];
 $(c);
@@ -27,7 +28,8 @@ $(c);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = ($(1), $(2));
+$(1);
+const tmpCompObj = $(2);
 const tmpCompProp = $('toString');
 tmpCompObj[tmpCompProp];
 $(c);
@@ -36,10 +38,10 @@ $(c);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: "toString"
- - 3: <crash[ <ref> is not defined ]>
+ - 1: 1
+ - 2: 2
+ - 3: 'toString'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

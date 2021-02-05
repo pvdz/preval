@@ -16,35 +16,28 @@ let x = 10, y = 20;
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
 let x = 10;
 let y = 20;
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
+const tmpAssignObjPatternRhs = 1;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
 let y = 20;
-objAssignPatternRhs = 1;
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
+const objPatternNoDefault = (1).x;
+const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

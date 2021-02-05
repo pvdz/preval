@@ -37,13 +37,13 @@ $(6);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 3
- - 3: 4
- - 4: 5
- - 5: 6
- - 6: undefined
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - 4: 4
+ - 5: 5
+ - 6: 6
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,26 +18,18 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpElement;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpElement = [1, 2, 3];
-arrAssignPatternRhs = [tmpElement, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+const tmpArrElement = [1, 2, 3];
+const arrAssignPatternRhs = [tmpArrElement, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 arrAssignPatternRhs;
 $(x);
@@ -46,26 +38,18 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpElement;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpElement = [1, 2, 3];
-arrAssignPatternRhs = [tmpElement, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+const tmpArrElement = [1, 2, 3];
+const arrAssignPatternRhs = [tmpArrElement, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 $(x);
 `````
@@ -73,8 +57,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: [1,2,3]
- - 1: undefined
+ - 1: [1, 2, 3]
+ - eval returned: undefined
 
 Normalized calls: Same
 

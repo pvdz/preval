@@ -24,10 +24,9 @@ function f(tmpParamPattern) {
   let x = tmpParamPattern.x;
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(0, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -37,16 +36,16 @@ function f(tmpParamPattern) {
   let x = tmpParamPattern.x;
   return x;
 }
-var tmpArg;
-tmpArg = f(0, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,27 +18,25 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = { b: 2, c: 3 };
-x = objAssignPatternRhs.x;
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = { b: 2, c: 3 };
+x = tmpAssignObjPatternRhs.x;
+tmpAssignObjPatternRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = { b: 2, c: 3 };
-x = objAssignPatternRhs.x;
+const tmpAssignObjPatternRhs = { b: 2, c: 3 };
+x = tmpAssignObjPatternRhs.x;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

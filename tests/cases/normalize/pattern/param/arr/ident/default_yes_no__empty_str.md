@@ -23,7 +23,7 @@ $(f('', 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x;
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -32,10 +32,9 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -44,7 +43,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x;
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -53,17 +52,17 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: "pass"
- - 2: undefined
+ - 1: 'pass'
+ - 2: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

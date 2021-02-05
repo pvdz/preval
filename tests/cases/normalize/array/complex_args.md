@@ -15,41 +15,32 @@ $([5 + 5, $(), Array.prototype.length]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-var tmpMemberComplexObj;
-tmpElement = 5 + 5;
-tmpElement$1 = $();
-tmpMemberComplexObj = Array.prototype;
-tmpElement$2 = tmpMemberComplexObj.length;
-tmpArg = [tmpElement, tmpElement$1, tmpElement$2];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement = 5 + 5;
+const tmpArrElement$1 = $();
+const tmpCompObj = Array.prototype;
+const tmpArrElement$2 = tmpCompObj.length;
+const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-var tmpMemberComplexObj;
-tmpElement = 10;
-tmpElement$1 = $();
-tmpMemberComplexObj = Array.prototype;
-tmpElement$2 = tmpMemberComplexObj.length;
-tmpArg = [tmpElement, tmpElement$1, tmpElement$2];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement$1 = $();
+const tmpCompObj = Array.prototype;
+const tmpArrElement$2 = tmpCompObj.length;
+const tmpCalleeParam = [10, tmpArrElement$1, tmpArrElement$2];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: [10,null,0]
- - 2: undefined
+ - 1: 
+ - 2: [10, undefined, 0]
+ - eval returned: undefined
 
 Normalized calls: Same
 

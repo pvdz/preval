@@ -18,26 +18,19 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = ['', 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = ['', 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 arrAssignPatternRhs;
 $('ok');
 `````
@@ -45,34 +38,27 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = ['', 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = ['', 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+[...arrPatternStep];
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

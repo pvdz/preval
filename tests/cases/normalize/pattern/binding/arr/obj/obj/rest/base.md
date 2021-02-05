@@ -22,38 +22,41 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement = { x: tmpObjPropValue, y: 11 };
-const bindingPatternArrRoot = [tmpElement, 10];
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: tmpObjLitVal, y: 11 };
+const bindingPatternArrRoot = [tmpArrElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement = { x: tmpObjPropValue, y: 11 };
-const bindingPatternArrRoot = [tmpElement, 10];
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: tmpObjLitVal, y: 11 };
+const bindingPatternArrRoot = [tmpArrElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"a":1,"b":2,"c":3}
- - 1: undefined
+ - 1: { a: '1', b: '2', c: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

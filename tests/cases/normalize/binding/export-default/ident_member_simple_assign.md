@@ -19,53 +19,45 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-export let a =
-  (((tmpAssignMemLhsObj = b),
-  ((tmpNestedAssignObj = $(c)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(d)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpAssignMemRhs = tmpNestedAssignMemberRhs))),
-  (tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj)),
-  (tmpAssignMemLhsObj$1.x = tmpAssignMemRhs));
+let a;
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj = $(c);
+let tmpNestedAssignPropRhs$1 = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
-export let a =
-  (((tmpAssignMemLhsObj = b),
-  ((tmpNestedAssignObj = $(3)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(4)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpAssignMemRhs = tmpNestedAssignMemberRhs))),
-  (tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj)),
-  (tmpAssignMemLhsObj$1.x = tmpAssignMemRhs));
+let a;
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs$1 = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

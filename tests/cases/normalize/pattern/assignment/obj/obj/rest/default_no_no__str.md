@@ -18,34 +18,33 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = 'abc';
-objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = 'abc';
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = 'abc';
-objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
+const objPatternNoDefault = 'abc'.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
-
+Final output calls: Same

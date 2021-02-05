@@ -18,30 +18,24 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = undefined;
-x = objAssignPatternRhs.x;
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = undefined;
+x = tmpAssignObjPatternRhs.x;
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = undefined;
-x = objAssignPatternRhs.x;
+x = undefined.x;
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'x' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'x' of undefined ]>"];
-
+Final output calls: Same

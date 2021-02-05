@@ -13,7 +13,7 @@
   let a = $(1);
   $(a);
 }
-let a = $(1);
+let a = $(2);
 $(a);
 `````
 
@@ -24,7 +24,7 @@ $(a);
   let a_1 = $(1);
   $(a_1);
 }
-let a = $(1);
+let a = $(2);
 $(a);
 `````
 
@@ -33,18 +33,18 @@ $(a);
 `````js filename=intro
 let a_1 = $(1);
 $(a_1);
-let a = $(1);
+let a = $(2);
 $(a);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
  - 1: 1
  - 2: 1
- - 3: 1
- - 4: undefined
+ - 3: 2
+ - 4: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

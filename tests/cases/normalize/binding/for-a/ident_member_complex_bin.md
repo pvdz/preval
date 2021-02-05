@@ -18,50 +18,44 @@ for (let a = $(b).x = c + d;false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignObj = $(b);
-  tmpNestedAssignMemberObj = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs = c + d;
-  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  a = tmpNestedAssignMemberRhs;
-  while (false) {}
+  let a;
+  const tmpNestedAssignObj = $(b);
+  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignObj = $(b);
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignMemberRhs = 7;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-a = tmpNestedAssignMemberRhs;
-while (false) {}
-$(a, b, 7);
+let a;
+const tmpNestedAssignObj = $(b);
+tmpNestedAssignObj.x = 7;
+a = 7;
+while (false) {
+  $(a, b, 7);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":7}
- - 1: 7,{"x":7},3
- - 2: undefined
+ - 1: { x: '2' }
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[{ x: 7 }], [7, { x: 7 }, 7], null];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

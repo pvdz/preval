@@ -15,29 +15,28 @@ $([100, $()]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = $();
-tmpArg = [100, tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement = 100;
+const tmpArrElement$1 = $();
+const tmpCalleeParam = [tmpArrElement, tmpArrElement$1];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = $();
-tmpArg = [100, tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement$1 = $();
+const tmpCalleeParam = [100, tmpArrElement$1];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: [100,null]
- - 2: undefined
+ - 1: 
+ - 2: [100, undefined]
+ - eval returned: undefined
 
 Normalized calls: Same
 

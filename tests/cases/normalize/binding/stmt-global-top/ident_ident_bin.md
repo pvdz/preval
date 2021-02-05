@@ -19,31 +19,34 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-let a = b = c + d;
+let a;
+const tmpNestedComplexRhs = c + d;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = 2;
-let a = b = 7;
+let a;
+b = 7;
+a = 7;
 $(a, b, 7);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 7,7,3
- - 1: undefined
+ - 1: 7, 7, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, 7, 7], null];
-
+ - 1: 7, 7, 7
+ - eval returned: undefined

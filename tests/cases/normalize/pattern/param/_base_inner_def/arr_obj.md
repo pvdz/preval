@@ -19,7 +19,7 @@ function h(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = a;
@@ -39,7 +39,7 @@ function h(tmpParamPattern) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

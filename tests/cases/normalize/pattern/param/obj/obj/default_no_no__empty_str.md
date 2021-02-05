@@ -32,10 +32,9 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('', 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -53,15 +52,15 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg;
-tmpArg = f('', 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

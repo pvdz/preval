@@ -11,27 +11,20 @@
 ## Input
 
 `````js filename=intro
-([{ x = $('pass') }] = 1);
+([{ x = $('pass') }] = 1); // Expect to crash
 $('bad');
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = 1;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -42,20 +35,12 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternBeforeDefault;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  x = tmpTernaryConsequent;
+const arrPatternSplat = [...1];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternBeforeDefault = arrPatternStep.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('pass');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -65,11 +50,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

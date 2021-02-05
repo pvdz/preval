@@ -17,37 +17,27 @@ $(1).x = $(2);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-tmpAssignMemLhsObj = $(1);
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = $(1);
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-tmpAssignMemLhsObj = $(1);
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = $(1);
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,59 +18,55 @@ for (let a = b.x = $(c).y = $(d);false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignMemberObj = b;
-  tmpNestedAssignObj = $(c);
-  tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs$1 = $(d);
-  tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-  tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  a = tmpNestedAssignMemberRhs;
-  while (false) {}
+  let a;
+  let tmpNestedAssignPropRhs;
+  const tmpNestedAssignObj = $(c);
+  let tmpNestedAssignPropRhs$1 = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs$1;
+  a = tmpNestedPropAssignRhs$1;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignObj;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = b;
-tmpNestedAssignObj = $(3);
-tmpNestedAssignMemberObj$1 = tmpNestedAssignObj;
-tmpNestedAssignMemberRhs$1 = $(4);
-tmpNestedAssignMemberObj$1.y = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-a = tmpNestedAssignMemberRhs;
-while (false) {}
-$(a, b, 3);
+let a;
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs$1 = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+while (false) {
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 4
- - 2: 4,{"x":4},3
- - 3: undefined
+ - 1: 3
+ - 2: 4
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

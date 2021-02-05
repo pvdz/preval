@@ -19,7 +19,6 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let a = 1;
 let b = 2;
 let c = 3;
 let a = b + c;
@@ -29,19 +28,17 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let a = 5;
-$(a, 5, 3);
+$(5, 5, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,2,3
- - 1: undefined
+ - 1: 5, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[5, 5, 3], null];
-
+ - 1: 5, 5, 3
+ - eval returned: undefined

@@ -19,7 +19,8 @@ $(($(1), 2).foo);
 `````js filename=intro
 const tmpCallCallee = $;
 $(1);
-const tmpCalleeParam = (2).foo;
+const tmpCompObj = 2;
+const tmpCalleeParam = tmpCompObj.foo;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,9 +36,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: null
+ - 1: 1
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

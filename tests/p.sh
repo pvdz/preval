@@ -17,6 +17,7 @@ ACTION=''
 ACTION_ARG=''
 PARAM_NO_COLOR=''
 PARAM_NORM=''
+PARAM_FAST=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -50,9 +51,12 @@ Preval CLI Toolkit help:
  u               Run all test files and just write output
  U               Run all test files and force write output (ignores ASSERT failures)
  m               Run all tests and ask for update one-by-one
+ fast            Omit many of the expression variation tests (ignores about 18k auto generated tests)
 
  --node-bin=path Use this node binary to run stuff
-        "
+ -C              Do not print colors
+ -n              Only show normalized output
+         "
       exit
       ;;
 
@@ -109,6 +113,11 @@ Preval CLI Toolkit help:
       PARAM_NORM='-n'
       ;;
 
+    fast)
+      # Skip a bunch of test variations
+      PARAM_FAST='fast'
+      ;;
+
     *)
       echo "p: Unsupported action or option... \`$1\` Use --help for options"
       exit 1
@@ -136,7 +145,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}"
     ;;
 esac
 set +x

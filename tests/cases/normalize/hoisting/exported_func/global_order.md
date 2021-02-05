@@ -20,27 +20,22 @@ export function g() { return $(); }
 
 `````js filename=intro
 export function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
 export function g() {
-  let tmpReturnArg$1 = $();
+  const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 }
 export function h() {
-  let tmpReturnArg$2 = $();
+  const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-('<hoisted func decl `g`>');
-('<hoisted func decl `h`>');
-tmpArg = f();
-tmpArg$1 = g();
-tmpArg$2 = h();
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+const tmpCalleeParam$1 = g();
+const tmpCalleeParam$2 = h();
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 ('<hoisted func decl `f`>');
 ('<hoisted func decl `h`>');
 ('<hoisted func decl `g`>');
@@ -50,30 +45,28 @@ $(tmpArg, tmpArg$1, tmpArg$2);
 
 `````js filename=intro
 export function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
 export function g() {
-  let tmpReturnArg$1 = $();
+  const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 }
 export function h() {
-  let tmpReturnArg$2 = $();
+  const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-tmpArg = f();
-tmpArg$1 = g();
-tmpArg$2 = h();
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+const tmpCalleeParam$1 = g();
+const tmpCalleeParam$2 = h();
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

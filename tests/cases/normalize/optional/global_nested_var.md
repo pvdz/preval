@@ -20,32 +20,20 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = 10;
+let b = undefined;
 a;
-tmpOptionalChaining = $(2);
-tmpTernaryTest = tmpOptionalChaining == null;
-let b;
-if (tmpTernaryTest) {
-  b = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.toString;
-  b = tmpTernaryAlternate;
+const tmpChainRootProp = $(2);
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
 }
+let c = undefined;
 1;
-tmpOptionalChaining$1 = b;
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-let c;
-if (tmpTernaryTest$1) {
-  c = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1.length;
-  c = tmpTernaryAlternate$1;
+const tmpChainRootProp$1 = b;
+if (tmpChainRootProp$1) {
+  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+  c = tmpChainElementObject$1;
 }
 $(c);
 `````
@@ -53,29 +41,17 @@ $(c);
 ## Output
 
 `````js filename=intro
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpOptionalChaining = $(2);
-tmpTernaryTest = tmpOptionalChaining == null;
-let b;
-if (tmpTernaryTest) {
-  b = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.toString;
-  b = tmpTernaryAlternate;
+let b = undefined;
+const tmpChainRootProp = $(2);
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
 }
-tmpOptionalChaining$1 = b;
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-let c;
-if (tmpTernaryTest$1) {
-  c = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1.length;
-  c = tmpTernaryAlternate$1;
+let c = undefined;
+const tmpChainRootProp$1 = b;
+if (tmpChainRootProp$1) {
+  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+  c = tmpChainElementObject$1;
 }
 $(c);
 `````
@@ -83,9 +59,9 @@ $(c);
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: 1
- - 2: undefined
+ - 1: 2
+ - 2: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

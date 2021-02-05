@@ -15,24 +15,23 @@ $('b' < 'a');
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'b' < 'a';
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = 'b' < 'a';
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = false;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(false);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

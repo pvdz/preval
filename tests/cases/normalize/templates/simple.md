@@ -17,29 +17,27 @@ $(`abc ${ $(1) } def`);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTemplateExpr;
-tmpTemplateExpr = $(1);
-tmpArg = `abc ${tmpTemplateExpr} def`;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpTemplateExpr = $(1);
+const tmpCalleeParam = `abc ${tmpTemplateExpr} def`;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTemplateExpr;
-tmpTemplateExpr = $(1);
-tmpArg = `abc ${tmpTemplateExpr} def`;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpTemplateExpr = $(1);
+const tmpCalleeParam = `abc ${tmpTemplateExpr} def`;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: "abc 1 def"
- - 2: undefined
+ - 1: 1
+ - 2: 'abc 1 def'
+ - eval returned: undefined
 
 Normalized calls: Same
 

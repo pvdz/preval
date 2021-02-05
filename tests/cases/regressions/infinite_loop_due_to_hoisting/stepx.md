@@ -61,7 +61,7 @@ f(tmpArg);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -11,50 +11,48 @@
 ## Input
 
 `````js filename=intro
-function f(){}
-$(f?.());
+function f(...args){ $('f', args); }
+$(f?.(1, 2, 3));
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f() {}
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-('<hoisted func decl `f`>');
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = f();
-  tmpArg = tmpTernaryAlternate;
+function f(...args) {
+  $('f', args);
 }
-$(tmpArg);
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = f;
+if (tmpChainRootCall) {
+  const tmpChainElementCall = tmpChainRootCall(1, 2, 3);
+  tmpCalleeParam = tmpChainElementCall;
+}
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {}
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = f();
-  tmpArg = tmpTernaryAlternate;
+function f(...args) {
+  $('f', args);
 }
-$(tmpArg);
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = f;
+if (tmpChainRootCall) {
+  const tmpChainElementCall = tmpChainRootCall(1, 2, 3);
+  tmpCalleeParam = tmpChainElementCall;
+}
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: 'f', [1, 2, 3]
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

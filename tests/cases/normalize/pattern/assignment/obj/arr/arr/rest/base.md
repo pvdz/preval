@@ -18,42 +18,28 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpElement;
-var tmpObjPropValue;
-tmpElement = [1, 2, 3];
-tmpObjPropValue = [tmpElement, 13];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const tmpArrElement = [1, 2, 3];
+const tmpObjLitVal = [tmpArrElement, 13];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
 y = arrPatternSplat$1.slice(0);
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpElement;
-var tmpObjPropValue;
-tmpElement = [1, 2, 3];
-tmpObjPropValue = [tmpElement, 13];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const tmpArrElement = [1, 2, 3];
+const tmpObjLitVal = [tmpArrElement, 13];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
 y = arrPatternSplat$1.slice(0);
 $(y);
 `````
@@ -61,8 +47,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: [1,2,3]
- - 1: undefined
+ - 1: [1, 2, 3]
+ - eval returned: undefined
 
 Normalized calls: Same
 

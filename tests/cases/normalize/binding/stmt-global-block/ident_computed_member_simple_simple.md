@@ -21,28 +21,42 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-a = b[$('x')] = c;
-$(a, b, c);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = { x: 2 };
+  let c = 3;
+  let a;
+  const tmpNestedAssignComMemberObj = b;
+  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedPropAssignRhs = c;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(a, b, c);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-a = b[$('x')] = 3;
-$(a, b, 3);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = { x: 2 };
+  let a;
+  const tmpNestedAssignComMemberObj = b;
+  const tmpNestedAssignComMemberProp = $('x');
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+  a = 3;
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: 3,{"x":3},3
- - 2: undefined
+ - 1: true
+ - 2: 'x'
+ - 3: 3, { x: '3' }, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

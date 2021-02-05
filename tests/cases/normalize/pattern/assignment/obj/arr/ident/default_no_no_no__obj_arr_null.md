@@ -18,30 +18,23 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpObjPropValue;
-tmpObjPropValue = [null];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
+const tmpArrElement = null;
+const tmpObjLitVal = [tmpArrElement];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpObjPropValue;
-tmpObjPropValue = [null];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
+const tmpObjLitVal = [null];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
 $(y);
 `````
@@ -49,8 +42,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

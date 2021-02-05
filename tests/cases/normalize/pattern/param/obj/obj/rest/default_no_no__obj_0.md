@@ -22,15 +22,19 @@ $(f({ x: 0, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = { x: 0, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = { x: 0, b: 11, c: 12 };
+const tmpCalleeParam$5 = 10;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -38,21 +42,24 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg$1 = { x: 0, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = { x: 0, b: 11, c: 12 };
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 10);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: undefined
+ - 1: {}
+ - eval returned: undefined
 
 Normalized calls: Same
 

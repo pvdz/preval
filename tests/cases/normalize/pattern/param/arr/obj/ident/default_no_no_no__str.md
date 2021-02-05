@@ -26,10 +26,9 @@ function f(tmpParamPattern) {
   let x = arrPatternStep.x;
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('abc');
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc');
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -41,16 +40,16 @@ function f(tmpParamPattern) {
   let x = arrPatternStep.x;
   return x;
 }
-var tmpArg;
-tmpArg = f('abc');
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc');
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

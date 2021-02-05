@@ -15,24 +15,23 @@ $(1 > 'x');
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 1 > 'x';
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = 1 > 'x';
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = false;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(false);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

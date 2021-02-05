@@ -18,33 +18,31 @@ $(($(1), $(2)), $(3));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
+const tmpCallCallee = $;
 $(1);
-tmpArg = $(2);
-tmpArg$1 = $(3);
-$(tmpArg, tmpArg$1);
+const tmpCalleeParam = $(2);
+const tmpCalleeParam$1 = $(3);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
+const tmpCallCallee = $;
 $(1);
-tmpArg = $(2);
-tmpArg$1 = $(3);
-$(tmpArg, tmpArg$1);
+const tmpCalleeParam = $(2);
+const tmpCalleeParam$1 = $(3);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 3
- - 3: 2,3
- - 4: undefined
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - 4: 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

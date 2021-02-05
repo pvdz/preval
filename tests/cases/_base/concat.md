@@ -15,24 +15,23 @@ $('a' + 'b')
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'a' + 'b';
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = 'a' + 'b';
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'ab';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('ab');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ab"
- - 1: undefined
+ - 1: 'ab'
+ - eval returned: undefined
 
 Normalized calls: Same
 

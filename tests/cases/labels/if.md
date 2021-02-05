@@ -48,8 +48,8 @@ $(2);
 ## Result
 
 Should call `$` with:
- - 0: 0
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 0
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

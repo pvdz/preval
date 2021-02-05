@@ -22,13 +22,12 @@ $(f());
 `````js filename=intro
 function f() {
   $(1);
-  let tmpReturnArg = $(2);
+  const tmpReturnArg = $(2);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -36,21 +35,21 @@ $(tmpArg);
 `````js filename=intro
 function f() {
   $(1);
-  let tmpReturnArg = $(2);
+  const tmpReturnArg = $(2);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
+ - 1: 1
  - 2: 2
- - 3: undefined
+ - 3: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

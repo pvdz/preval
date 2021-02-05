@@ -19,28 +19,35 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let a = 1;
 let b = 2;
 let c = 3;
-let a = ($(b), $(c)).x = c;
+let a;
+$(b);
+const tmpNestedAssignObj = $(c);
+const tmpNestedPropAssignRhs = c;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let a = ($(2), $(3)).x = 3;
+let a;
+$(2);
+const tmpNestedAssignObj = $(3);
+tmpNestedAssignObj.x = 3;
+a = 3;
 $(a, 2, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: 3
- - 2: 3,2,3
- - 3: undefined
+ - 1: 2
+ - 2: 3
+ - 3: 3, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

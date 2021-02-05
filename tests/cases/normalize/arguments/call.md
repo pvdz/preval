@@ -17,25 +17,25 @@ $($());
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = $();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = $();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = $();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = $();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: null
+ - 1: 
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,20 +21,24 @@ let a = b.x = c
 `````js filename=intro
 let b = 10;
 let c = 20;
-b.x = c;
-let a = c;
+let a;
+const tmpNestedPropAssignRhs = c;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 `````
 
 ## Output
 
 `````js filename=intro
+let a;
 (10).x = 20;
+a = 20;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

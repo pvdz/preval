@@ -16,13 +16,10 @@ let x = 10;
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrAssignPatternRhs = 1;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 arrAssignPatternRhs;
 `````
@@ -30,24 +27,17 @@ arrAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat = [...1];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

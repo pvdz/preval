@@ -22,43 +22,41 @@ $(z);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault$1, [], undefined);
-objAssignPatternRhs;
+const tmpObjLitVal$1 = 13;
+const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault$1;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $(z);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternNoDefault$1 = objPatternNoDefault.y;
-z = objPatternRest(objPatternNoDefault$1, [], undefined);
+const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault$1;
+const tmpCalleeParam$1 = [];
+z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"z":1,"a":2,"b":3}
- - 1: undefined
+ - 1: { z: '1', a: '2', b: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -40,9 +40,9 @@ $(/foo/g);
 ## Result
 
 Should call `$` with:
- - 0: {}
  - 1: {}
- - 2: undefined
+ - 2: {}
+ - eval returned: undefined
 
 Normalized calls: Same
 

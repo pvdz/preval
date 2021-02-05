@@ -21,18 +21,18 @@ $(f());
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { y: 'fail2' };
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { y: 'fail2' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     y = $('fail');
@@ -41,28 +41,27 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { y: 'fail2' };
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { y: 'fail2' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     y = $('fail');
@@ -71,15 +70,15 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -42,9 +42,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: "foo"
- - 1: null
+ - 1: 'foo'
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

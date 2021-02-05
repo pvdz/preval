@@ -21,41 +21,38 @@ $({...f()});
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  tmpArg = { x: 1 };
-  let tmpReturnArg = $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 1 };
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-var tmpObjSpreadArg;
-('<hoisted func decl `f`>');
-tmpObjSpreadArg = f();
-tmpArg$1 = { ...tmpObjSpreadArg };
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpObjSpread = f();
+const tmpCalleeParam$1 = { ...tmpObjSpread };
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  tmpArg = { x: 1 };
-  let tmpReturnArg = $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 1 };
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-var tmpObjSpreadArg;
-tmpObjSpreadArg = f();
-tmpArg$1 = { ...tmpObjSpreadArg };
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpObjSpread = f();
+const tmpCalleeParam$1 = { ...tmpObjSpread };
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1}
- - 1: {"x":1}
- - 2: undefined
+ - 1: { x: '1' }
+ - 2: { x: '1' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

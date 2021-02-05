@@ -1,0 +1,1725 @@
+// You can run `node template.txt` to (re)generate all test files in current folder
+
+const fs = require('fs');
+const path = require('path');
+const prettier = require('prettier');
+
+const descs = {
+  '#': 'Normalization of var decls should work the same everywhere they are',
+  '##': 'Normalization of assignments should work the same everywhere they are',
+  '###': 'Normalization of all kinds of expressions should work the same no matter where they are'
+};
+
+[
+  ['#', 'bindings/stmt_global_top', '$1\n$2 $4\n$5\n', 'bindings in the toplevel global space should be normalized'],
+  ['#', 'bindings/stmt_global_block', '{\n$1\n$2 $4\n$5\n}\n', 'bindings in a block in global space should be normalized'],
+  ['#', 'bindings/stmt_func_top', 'function f() {\n$1\n$2 $4\n$5\n}\n$(f());\n', 'bindings in the toplevel of a function should be normalized'],
+  ['#', 'bindings/stmt_func_block', 'function f() {{\n$1\n$2 $4\n$5\n}}\n$(f());\n', 'bindings in a block in a function should be normalized'],
+  ['#', 'bindings/export', '$1\nexport $2 $4\n$5\n', 'bindings in an export'],
+  ['#', 'bindings/switch_case', 'switch (1) { case 1:\n$1\n$2 $4\n$5\n}\n', 'bindings in a switch should be normalized'],
+  ['#', 'bindings/switch_w_default_case', 'switch (1) { case 1:\n$1\n$2 $4\n$5\ndefault: $("fail1"); case 2: $("fail2"); \n}\n', 'bindings in a switch should be normalized'],
+
+  ['##', 'assignments/arr_element', '$1\nlet $3 = {a: 999, b: 1000};\n$([  $3 = $4  ]);\n$5'],
+  ['##', 'assignments/arr_spread', '$1\nlet $3 = {a: 999, b: 1000};\n$([  ...($3 = $4)  ]);\n$5'],
+  ['##', 'assignments/binary_both', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) + ($3 = $4)  );\n$5'],
+  ['##', 'assignments/binary_left', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) + $(100)  );\n$5'],
+  ['##', 'assignments/binary_right', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $(100) + ($3 = $4)  );\n$5'],
+  ['##', 'assignments/arr_element', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) + ($3 = $4)  );\n$5'],
+  ['##', 'assignments/call', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $3 = $4  );\n$5'],
+  ['##', 'assignments/call_spread', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ...($3 = $4)  );\n$5'],
+  ['##', 'assignments/compound', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $3 *= $4  );\n$5'],
+  ['##', 'assignments/computed_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($3 = $4)["a"];\n$5'],
+  ['##', 'assignments/computed_prop_prop', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; obj[$3 = $4];\n$5'],
+  //['##', 'assignments/do_while_empty', '$1\nlet $3 = {a: 999, b: 1000};\ndo {} while(  $3 = $4  );\n$5'], // MEH
+  ['##', 'assignments/do_while', '$1\nlet $3 = {a: 999, b: 1000};\ndo { $(100); } while(  $3 = $4  );\n$5'],
+  ['##', 'assignments/export_default', '$1\nlet $3 = {a: 999, b: 1000};\nexport default  $3 = $4  ;\n$5'],
+  ['##', 'assignments/for_a', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  $3 = $4  ;;$(1));\n$5'],
+  ['##', 'assignments/for_b', '$1\nlet $3 = {a: 999, b: 1000};\nfor (;  $3 = $4  ;$(1));\n$5'],
+  ['##', 'assignments/for_c', '$1\nlet $3 = {a: 999, b: 1000};\nfor (;$(1);  $3 = $4  );\n$5'],
+  ['##', 'assignments/for_in_left', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  ($3 = $4).x  in $({x: 1}));\n$5'],
+  ['##', 'assignments/for_in_right', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let x in  ($3 = $4)  );\n$5'],
+  ['##', 'assignments/for_let', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let xyz =  $3 = $4  ;;$(1)) $(xyz);\n$5'],
+  ['##', 'assignments/for_of_left', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  ($3 = $4).x  of $({x: 1}));\n$5'],
+  ['##', 'assignments/for_of_right', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let x of  ($3 = $4)  );\n$5'],
+  ['##', 'assignments/if', '$1\nlet $3 = {a: 999, b: 1000};\nif (  $3 = $4  );\n$5'],
+  ['##', 'assignments/label', '$1\nlet $3 = {a: 999, b: 1000};\nlabel:  ($3 = $4)  ;\n$5'],
+  ['##', 'assignments/let', '$1\nlet $3 = {a: 999, b: 1000};\nlet xyz =  $3 = $4  ; $(xyz);\n$5'],
+  ['##', 'assignments/logic_and_both', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) && ($3 = $4)  );\n$5'],
+  ['##', 'assignments/logic_and_left', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) && $(100)  );\n$5'],
+  ['##', 'assignments/logic_and_right', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $(100) && ($3 = $4)  );\n$5'],
+  ['##', 'assignments/logic_or_both', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) || ($3 = $4)  );\n$5'],
+  ['##', 'assignments/logic_or_left', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) || $(100)  );\n$5'],
+  ['##', 'assignments/logic_or_right', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $(100) || ($3 = $4)  );\n$5'],
+  ['##', 'assignments/objlit_dyn_prop', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {[$3 = $4]: 10}  );\n$5'],
+  ['##', 'assignments/objlit_init', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {x: $3 = $4}  );\n$5'],
+  ['##', 'assignments/objlit_spread', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {...($3 = $4)}  );\n$5'],
+  ['##', 'assignments/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(arg =  $3 = $4  ){}\n$(f());\n$5'],
+  ['##', 'assignments/regular_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($3 = $4).a;\n$5'],
+  ['##', 'assignments/return', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f() {  return $3 = $4; }\n$(f());\n$5'],
+  ['##', 'assignments/stmt_global_top', '$1\nlet $3 = {a: 999, b: 1000};\n($3 = $4)\n$5'],
+  ['##', 'assignments/stmt_global_block', '{\n$1\nlet $3 = {a: 999, b: 1000};\n($3 = $4)\n$5\n}'],
+  ['##', 'assignments/stmt_func_top', 'function f() {\n$1\nlet $3 = {a: 999, b: 1000};\n($3 = $4)\n$5\n}\n$(f());\n'],
+  ['##', 'assignments/stmt_func_block', 'function f() {\n{\n$1\nlet $3 = {a: 999, b: 1000};\n($3 = $4)\n$5\n}\n}\n$(f());\n'],
+  ['##', 'assignments/switch_case_top', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): ($3 = $4); }\n$5'],
+  ['##', 'assignments/switch_case_block', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): { ($3 = $4); } }\n$5'],
+  ['##', 'assignments/switch_case_test', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $3 = $4: ; }\n$5'],
+  ['##', 'assignments/switch_default', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { default: ($3 = $4); }\n$5'],
+  ['##', 'assignments/switch_discriminant', '$1\nlet $3 = {a: 999, b: 1000};\nswitch (  $3 = $4  ) { default: $(100); };\n$5'],
+  ['##', 'assignments/switch_w_default_case_top', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): ($3 = $4); default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['##', 'assignments/switch_w_default_case_block', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): { ($3 = $4); } default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['##', 'assignments/switch_w_default_case_test', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $3 = $4: ; default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['##', 'assignments/tagged', '$1\nlet $3 = {a: 999, b: 1000};\n$ `before ${  $3 = $4  } after`;\n$5'],
+  ['##', 'assignments/template', '$1\nlet $3 = {a: 999, b: 1000};\n$(`before  ${$3 = $4}  after`);\n$5'],
+  ['##', 'assignments/ternary_a', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($3 = $4) ? $(100) : $(200)  );\n$5'],
+  ['##', 'assignments/ternary_b', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $(1) ?   ($3 = $4)  : $(200)  );\n$5'],
+  ['##', 'assignments/ternary_c', '$1\nlet $3 = {a: 999, b: 1000};\n$(  $(0) ? $(100) :   ($3 = $4)  );\n$5'],
+  ['##', 'assignments/throw', '$1\nlet $3 = {a: 999, b: 1000};\nthrow $3 = $4;\n$5'],
+  ['##', 'assignments/while', '$1\nlet $3 = {a: 999, b: 1000};\nwhile (  $3 = $4  ) $(100);\n$5'],
+
+  ['###', 'statement/arr_element', '$1\nlet $3 = {a: 999, b: 1000};\n([  ($4)  ]);\n$5'],
+  ['###', 'statement/arr_spread', '$1\nlet $3 = {a: 999, b: 1000};\n([  ...($4)  ]);\n$5'],
+  ['###', 'statement/binary_both', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) + ($4)  );\n$5'],
+  ['###', 'statement/binary_left', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) + $(100)  );\n$5'],
+  ['###', 'statement/binary_right', '$1\nlet $3 = {a: 999, b: 1000};\n(  $(100) + ($4)  );\n$5'],
+  ['###', 'statement/arr_element', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) + ($4)  );\n$5'],
+  ['###', 'statement/call', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ($4)  );\n$5'],
+  ['###', 'statement/call_spread', '$1\nlet $3 = {a: 999, b: 1000};\n$(  ...($4)  );\n$5'],
+  ['###', 'statement/computed_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($4)["a"];\n$5'],
+  ['###', 'statement/computed_prop_prop', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; obj[($4)];\n$5'],
+  //['###', 'statement/do_while_empty', '$1\nlet $3 = {a: 999, b: 1000};\ndo {} while(  ($4)  );\n$5'], // MEH. too many infinite loops. Not sure about the upsides.
+  ['###', 'statement/do_while', '$1\nlet $3 = {a: 999, b: 1000};\ndo { $(100); } while(  ($4)  );\n$5'],
+  ['###', 'statement/export_default', '$1\nlet $3 = {a: 999, b: 1000};\nexport default  ($4)  ;\n$5'],
+  ['###', 'statement/for_a', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  ($4)  ;$(0););\n$5'],
+  ['###', 'statement/for_b', '$1\nlet $3 = {a: 999, b: 1000};\nfor (;  ($4)  ;$(1));\n$5'],
+  ['###', 'statement/for_c', '$1\nlet $3 = {a: 999, b: 1000};\nfor (;$(1);  ($4)  );\n$5'],
+  ['###', 'statement/for_in_left', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  ($4).x  in $({x: 1}));\n$5'],
+  ['###', 'statement/for_in_right', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let x in  ($4)  );\n$5'],
+  ['###', 'statement/for_let', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let xyz =  ($4)  ;;$(1)) $(xyz);\n$5'],
+  ['###', 'statement/for_of_left', '$1\nlet $3 = {a: 999, b: 1000};\nfor (  ($4).x  of $({x: 1}));\n$5'],
+  ['###', 'statement/for_of_right', '$1\nlet $3 = {a: 999, b: 1000};\nfor (let x of  ($4)  );\n$5'],
+  ['###', 'statement/if', '$1\nlet $3 = {a: 999, b: 1000};\nif (  ($4)  );\n$5'],
+  ['###', 'statement/label', '$1\nlet $3 = {a: 999, b: 1000};\nlabel:  ($4)  ;\n$5'],
+  ['###', 'statement/let', '$1\nlet $3 = {a: 999, b: 1000};\nlet xyz =  $4  ; $(xyz);\n$5'],
+  ['###', 'statement/logic_and_both', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) && ($4)  );\n$5'],
+  ['###', 'statement/logic_and_left', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) && $(100)  );\n$5'],
+  ['###', 'statement/logic_and_right', '$1\nlet $3 = {a: 999, b: 1000};\n(  $(100) && ($4)  );\n$5'],
+  ['###', 'statement/logic_or_both', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) || ($4)  );\n$5'],
+  ['###', 'statement/logic_or_left', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) || $(100)  );\n$5'],
+  ['###', 'statement/logic_or_right', '$1\nlet $3 = {a: 999, b: 1000};\n(  $(100) || ($4)  );\n$5'],
+  ['###', 'statement/objlit_dyn_prop', '$1\nlet $3 = {a: 999, b: 1000};\n(  {[($4)]: 10}  );\n$5'],
+  ['###', 'statement/objlit_init', '$1\nlet $3 = {a: 999, b: 1000};\n(  {x: ($4)}  );\n$5'],
+  ['###', 'statement/objlit_spread', '$1\nlet $3 = {a: 999, b: 1000};\n(  {...($4)}  );\n$5'],
+  ['###', 'statement/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(arg =  ($4)  ){}\n$(f());\n$5'],
+  ['###', 'statement/regular_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($4).a;\n$5'],
+  ['###', 'statement/return', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f() {  return ($4); }\n$(f());\n$5'],
+  ['###', 'statement/stmt_global_top', '$1\nlet $3 = {a: 999, b: 1000};\n($4)\n$5'],
+  ['###', 'statement/stmt_global_block', '{\n$1\nlet $3 = {a: 999, b: 1000};\n($4)\n$5\n}'],
+  ['###', 'statement/stmt_func_top', 'function f() {\n$1\nlet $3 = {a: 999, b: 1000};\n($4)\n$5\n}\n$(f());\n'],
+  ['###', 'statement/stmt_func_block', 'function f() {\n{\n$1\nlet $3 = {a: 999, b: 1000};\n($4)\n$5\n}\n}\n$(f());\n'],
+  ['###', 'statement/switch_case_top', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): ($4); }\n$5'],
+  ['###', 'statement/switch_case_block', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): { ($4); } }\n$5'],
+  ['###', 'statement/switch_case_test', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case ($4): ; }\n$5'],
+  ['###', 'statement/switch_default', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { default: (($4)); }\n$5'],
+  ['###', 'statement/switch_discriminant', '$1\nlet $3 = {a: 999, b: 1000};\nswitch (  ($4)  ) { default: $(100); };\n$5'],
+  ['###', 'statement/switch_w_default_case_top', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): ($4); break; default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['###', 'statement/switch_w_default_case_block', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case $(1): { ($4); } break; default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['###', 'statement/switch_w_default_case_test', '$1\nlet $3 = {a: 999, b: 1000};\nswitch ($(1)) { case ($4): break; default: $("fail1"); case 2: $("fail2"); }\n$5'],
+  ['###', 'statement/tagged', '$1\nlet $3 = {a: 999, b: 1000};\n$ `before ${  ($4)  } after`;\n$5'],
+  ['###', 'statement/template', '$1\nlet $3 = {a: 999, b: 1000};\n$(`before  ${($4)}  after`);\n$5'],
+  ['###', 'statement/ternary_a', '$1\nlet $3 = {a: 999, b: 1000};\n(  ($4) ? $(100) : $(200)  );\n$5'],
+  ['###', 'statement/ternary_b', '$1\nlet $3 = {a: 999, b: 1000};\n(  $(1) ?   ($4)  : $(200)  );\n$5'],
+  ['###', 'statement/ternary_c', '$1\nlet $3 = {a: 999, b: 1000};\n(  $(0) ? $(100) :   ($4)  );\n$5'],
+  ['###', 'statement/throw', '$1\nlet $3 = {a: 999, b: 1000};\nthrow ($4);\n$5'],
+  ['###', 'statement/while', '$1\nlet $3 = {a: 999, b: 1000};\nwhile (  ($4)  ) $(100);\n$5'],
+].forEach(([hashCount, dir, template]) => {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, {recursive: true});
+  const desc = descs[hashCount];
+  fs.readFileSync('template.txt', 'utf8').split('\n---\n').map(s => {
+    const [,testHashes, fname, test] = s.match(/^.*?\n(#+) (.*?)\n(.*)/s);
+    return {
+      fname: fname.trim(),
+      test: test.trim(),
+      testHashes,
+    };
+  }).forEach(({testHashes, fname, test}) => {
+    if (testHashes !== '#' && testHashes !== hashCount) return; // certain cases are only for certain patterns
+    const pname = path.join(dir, 'auto_' + fname + '.md');
+
+    if ([
+      'assignments/compound/auto_pattern_arr_c-seq.md',
+      'assignments/compound/auto_pattern_arr_s-seq.md',
+      'assignments/compound/auto_pattern_arr_simple.md',
+      'assignments/compound/auto_pattern_obj_simple.md',
+      'assignments/compound/auto_pattern_arr_complex.md',
+      'assignments/compound/auto_pattern_obj_complex.md',
+    ].some(part => pname.endsWith(part))) {
+      return; // Certain combinations are syntax errors. Ignore those files in a hardcoded list.
+    }
+
+    const code = test.replace(
+      /(^.+\n|^)(let (a|\[a\]|\{a\}) = )(.*?);\n(.*)/s,
+      // let b = 1;
+      // let a = b;
+      // $(a, b);
+      //
+      // -->
+      //
+      // $1: let b = 1;
+      // $2: let a =
+      // $3: a
+      // $4: b
+      // $5: $(a, b);
+      template
+    );
+    // console.log('----------\n'+code+'\n------------\n' + pname + '\n------------\n');
+    fs.writeFileSync(
+      pname,
+      '// ' + desc + '\n\n' +
+      prettier.format( // This is the heavy step of this script... but it ensures all cases are syntactically valid, at least. And look good.
+        code, {parser: 'babel'},
+      )
+
+      // Infinite loop that is hard to prevent otherwise
+      .replace('do {} while ([]);', 'do $(); while ([]);')
+      .replace('do {} while ([1, 2, 3]);', 'do $(); while ([1, 2, 3]);')
+      .replace('do {} while (() => {});', 'do $(); while (() => {});')
+      .replace('do {} while (b?.["x"]);', 'do $(); while (b?.["x"]);')
+      .replace('do {} while ((10, 20, 30) ? (40, 50, 60) : $($(100)));', 'do $(); while ((10, 20, 30) ? (40, 50, 60) : $($(100)));')
+      .replace('do {} while (b["c"]);', 'do $(); while (b["c"]);')
+      .replace('do {} while (1 ? (40, 50, 60) : $($(100)));', 'do $(); while (1 ? (40, 50, 60) : $($(100)));')
+      .replace('do {} while (1 ? 2 : $($(100)));', 'do $(); while (1 ? 2 : $($(100)));')
+      .replace('do {} while (delete x["y"]);', 'do $(); while (delete x["y"]);')
+      .replace('do {} while (delete x.y);', 'do $(); while (delete x.y);')
+      .replace('do {} while (function () {});', 'do $(); while (function () {});')
+      .replace('do {} while (function f() {});', 'do $(); while (function f() {});')
+      .replace('do {} while (b);', 'do $(); while (b);')
+      .replace('do {} while ((b = 2));', 'do $(); while ((b = 2));')
+      .replace('do {} while ("foo");', 'do $(); while ("foo");')
+      .replace('do {} while (1 && 2);', 'do $(); while (1 && 2);')
+      .replace('do {} while (0 || 2);', 'do $(); while (0 || 2);')
+      .replace('do {} while ((b.x = b.x = b.x = b.x = b.x = b.x = c));', 'do $(); while ((b.x = b.x = b.x = b.x = b.x = b.x = c));')
+      .replace('do {} while ({});', 'do $(); while ({});')
+      .replace('do {} while ({ x: 1, y: 2, z: 3 });', 'do $(); while ({ x: 1, y: 2, z: 3 });')
+      .replace('do {} while ((1, 2, b)?.x);', 'do $(); while ((1, 2, b)?.x);')
+      .replace('do {} while (b?.x);', 'do $(); while (b?.x);')
+      .replace('do {} while (b?.x?.y);', 'do $(); while (b?.x?.y);')
+      .replace('do {} while ((1, 2, b).c);', 'do $(); while ((1, 2, b).c);')
+      .replace('do {} while (((1, 2, b).c = 2));', 'do $(); while (((1, 2, b).c = 2));')
+      .replace('do {} while (b.c);', 'do $(); while (b.c);')
+      .replace('do {} while (/foo/);', 'do $(); while (/foo/);')
+      .replace('do {} while (typeof x);', 'do $(); while (typeof x);')
+      .replace('do {} while (b++);', 'do $(); while (b++);')
+      .replace('do {} while (++b);', 'do $(); while (++b);')
+      .replace('do {} while ((a = []));', 'do $(); while ((a = []));')
+      .replace('do {} while ((a = [1, 2, 3]));', 'do $(); while ((a = [1, 2, 3]));')
+      .replace('do {} while ((a = () => {}));', 'do $(); while ((a = () => {}));')
+      .replace('do {} while ((a = b?.["x"]));', 'do $(); while ((a = b?.["x"]));')
+      .replace('do {} while ((a = b["c"]));', 'do $(); while ((a = b["c"]));')
+
+      .trim() + '\n'
+    );
+  });
+});
+
+/*
+
+# base_assign_ident
+
+let b = 1;
+let a = b = $(2);
+$(a, b);
+
+---
+
+# base_assign_pattern_arr
+
+let b = [];
+let a = [b] = $([$(2)]);
+$(a, b);
+
+---
+
+# base_assign_pattern_obj
+
+let b = {};
+let a = {b} = $({b: $(2)});
+$(a, b);
+
+---
+
+# ident_ident
+
+let b = 1;
+let a = b;
+$(a, b);
+
+---
+
+# ident_ident_ident
+
+let b = 1, c = 2;
+let a = b = 2;
+$(a, b, c);
+
+---
+
+# ident_complex
+
+let b = 1;
+let a = $(b);
+$(a, b);
+
+---
+
+# ident_bin
+
+let a = $(1) + $(2);
+$(a);
+
+---
+
+# ident_prop_simple
+
+let b = {c: 1};
+let a = b.c;
+$(a, b);
+
+---
+
+# ident_prop_complex
+
+let b = {c: 1};
+let a = $(b).c;
+$(a, b);
+
+---
+
+# ident_prop_s-seq
+
+let b = {c: 1};
+let a = (1, 2, b).c;
+$(a, b);
+
+---
+
+# ident_prop_c-seq
+
+let b = {c: 1};
+let a = (1, 2, $(b)).c;
+$(a, b);
+
+---
+
+# ident_prop_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = b.c = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_prop_complex_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = $(b).c = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_prop_s-seq_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, b).c = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_prop_s-seq_assign_simple
+
+let b = {c: 1};
+let a = (1, 2, b).c = 2;
+$(a, b);
+
+---
+
+# ident_prop_c-seq_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, $(b)).c = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_nested_simple_member_assigns
+
+let b = {x: 1}, c = 3;
+let a = b.x = b.x = b.x = b.x = b.x = b.x = c;
+$(a, b, c);
+
+---
+
+# ident_nested_complex_member_assigns
+
+let b = {x: 1}, c = 3;
+let a = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c;
+$(a, b, c);
+
+---
+
+# ident_computed_simple_simple
+
+let b = {c: 1};
+let a = b['c'];
+$(a, b);
+
+---
+
+# ident_computed_complex_simple
+
+let b = {c: 1};
+let a = $(b)['c'];
+$(a, b);
+
+---
+
+# ident_computed_s-seq_simple
+
+let b = {c: 1};
+let a = (1, 2, b)['c'];
+$(a, b);
+
+---
+
+# ident_computed_c-seq_simple
+
+let b = {c: 1};
+let a = (1, 2, $(b))['c'];
+$(a, b);
+
+---
+
+# ident_computed_simple_complex
+
+let b = {c: 1};
+let a = b[$('c')];
+$(a, b);
+
+---
+
+# ident_computed_complex_complex
+
+let b = {c: 1};
+let a = $(b)[$('c')];
+$(a, b);
+
+---
+
+# ident_computed_s-seq_simple
+
+let b = {c: 1};
+let a = (1, 2, b)[$('c')];
+$(a, b);
+
+---
+
+# ident_computed_c-seq_simple
+
+let b = {c: 1};
+let a = (1, 2, $(b))[$('c')];
+$(a, b);
+
+---
+
+# ident_computed_simple_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = b['c'] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_complex_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = $(b)['c'] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_s-seq_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, b)['c'] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_c-seq_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, $(b))['c'] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_simple_complex_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = b[$('c')] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_complex_complex_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = $(b)[$('c')] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_s-seq_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, b)[$('c')] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_computed_c-seq_simple_assign_complex_member
+
+let b = {c: 10, d: 20};
+let a = (1, 2, $(b))[$('c')] = $(b)[$('d')];
+$(a, b);
+
+---
+
+# ident_nested_member_complex_call
+
+let b = {x: 1}, c = {y: 2}, d = 3;
+let a = $(b)[$('x')] = $(c)[$('y')] = $(d);
+$(a, b, c, d);
+
+---
+
+# ident_nested_member_complex_bin
+
+let b = {x: 1}, c = {y: 2}, d = 3, e = 4;
+let a = $(b)[$('x')] = $(c)[$('y')] = d + e;
+$(a, b, c, d, e);
+
+---
+
+# ident_nested_member_complex_simple
+
+let b = {x: 1}, c = {y: 2}, d = 3;
+let a = $(b)[$('x')] = $(c)[$('y')] = d;
+$(a, b, c, d);
+
+---
+
+# ident_arr_pattern_assign
+
+let x = 1, y = 2;
+let a = [x, y] = [$(3), $(4)];
+$(a, x, y);
+
+---
+
+# ident_arr_pattern_assign_seq
+
+let x = 1, y = 2;
+let a = [x, y] = ($(x), $(y), [$(3), $(4)]);
+$(a, x, y);
+
+---
+
+# ident_obj_pattern_assign
+
+let x = 1, y = 2;
+let a = {x, y} = {x: $(3), y: $(4)};
+$(a, x, y);
+
+---
+
+# ident_obj_pattern_assign_seq
+
+let x = 1, y = 2;
+let a = {x, y} = ($(x), $(y), {x: $(3), y: $(4)});
+$(a, x, y);
+
+---
+
+# ident_s-seq
+
+let x = 1;
+let a = ($(1), $(2), x);
+$(a, x);
+
+---
+
+# ident_c-seq
+
+let x = 1;
+let a = ($(1), $(2), $(x));
+$(a, x);
+
+---
+
+# ident_unary_simple
+
+let x = 1;
+let a = typeof x;
+$(a, x);
+
+---
+
+# ident_unary_complex
+
+let x = 1;
+let a = typeof $(x);
+$(a, x);
+
+---
+
+# ident_delete_computed_simple_simple
+
+let x = {y: 1};
+let a = delete x['y'];
+$(a, x);
+
+---
+
+# ident_delete_computed_complex_simple
+
+let x = {y: 1};
+let a = delete $(x)['y'];
+$(a, x);
+
+---
+
+# ident_delete_computed_simple_complex
+
+let x = {y: 1};
+let a = delete x[$('y')];
+$(a, x);
+
+---
+
+# ident_delete_computed_complex_complex
+
+let x = {y: 1};
+let a = delete $(x)[$('y')];
+$(a, x);
+
+---
+
+# ident_delete_computed_s-seq_complex
+
+let x = {y: 1};
+let a = delete ($(1), $(2), x)[$('y')];
+$(a, x);
+
+---
+
+# ident_delete_computed_c-seq_complex
+
+let x = {y: 1};
+let a = delete ($(1), $(2), $(x))[$('y')];
+$(a, x);
+
+---
+
+# ident_delete_prop_simple
+
+let x = {y: 1};
+let a = delete x.y;
+$(a, x);
+
+---
+
+# ident_delete_prop_complex
+
+let x = {y: 1};
+let a = delete $(x).y;
+$(a, x);
+
+---
+
+# ident_delete_prop_s-seq
+
+let x = {y: 1};
+let a = delete ($(1), $(2), x).y;
+$(a, x);
+
+---
+
+# ident_delete_prop_c-seq
+
+let x = {y: 1};
+let a = delete ($(1), $(2), $(x)).y;
+$(a, x);
+
+---
+
+# ident_call_ident
+
+let a = $(1);
+$(a);
+
+---
+
+# ident_call_complex
+
+let a = $($)(1);
+$(a);
+
+---
+
+# ident_call_computed_simple_simple
+
+let b = {$};
+let a = b['$'](1);
+$(a);
+
+---
+
+# ident_call_computed_complex_simple
+
+let b = {$};
+let a = $(b)['$'](1);
+$(a);
+
+---
+
+# ident_call_computed_simple_complex
+
+let b = {$};
+let a = b[$('$')](1);
+$(a);
+
+---
+
+# ident_call_computed_complex_complex
+
+let b = {$};
+let a = $(b)[$('$')](1);
+$(a);
+
+---
+
+# ident_call_computed_s-seq_simple
+
+let b = {$};
+let a = (1, 2, b)['$'](1);
+$(a);
+
+---
+
+# ident_call_computed_c-seq_simple
+
+let b = {$};
+let a = (1, 2, $(b))['$'](1);
+$(a);
+
+---
+
+# ident_call_computed_s-seq_complex
+
+let b = {$};
+let a = (1, 2, b)[$('$')](1);
+$(a);
+
+---
+
+# ident_call_computed_c-seq_complex
+
+let b = {$};
+let a = (1, 2, $(b))[$('$')](1);
+$(a);
+
+---
+
+# ident_call_prop_simple
+
+let b = {$};
+let a = b.$(1);
+$(a);
+
+---
+
+# ident_call_prop_complex
+
+let b = {$};
+let a = $(b).$(1);
+$(a);
+
+---
+
+# ident_call_prop_s-seq
+
+let b = {$};
+let a = (1, 2, b).$(1);
+$(a);
+
+---
+
+# ident_call_prop_c-seq
+
+let b = {$};
+let a = (1, 2, $(b)).$(1);
+$(a);
+
+---
+
+# ident_call_ident_complex_args
+
+let b = {$};
+let a = $($(1), $(2));
+$(a);
+
+---
+
+# ident_call_complex_complex_args
+
+let b = {$};
+let a = $($)($(1), $(2));
+$(a);
+
+---
+
+# ident_new_ident
+
+let a = new $(1);
+$(a);
+
+---
+
+# ident_new_complex
+
+let a = new ($($))(1);
+$(a);
+
+---
+
+# ident_new_computed_simple_simple
+
+let b = {$};
+let a = new (b['$'])(1);
+$(a);
+
+---
+
+# ident_new_computed_complex_simple
+
+let b = {$};
+let a = new ($(b)['$'])(1);
+$(a);
+
+---
+
+# ident_new_computed_simple_complex
+
+let b = {$};
+let a = new (b[$('$')])(1);
+$(a);
+
+---
+
+# ident_new_computed_complex_complex
+
+let b = {$};
+let a = new ($(b)[$('$')])(1);
+$(a);
+
+---
+
+# ident_new_computed_s-seq_simple
+
+let b = {$};
+let a = new ((1, 2, b)['$'])(1);
+$(a);
+
+---
+
+# ident_new_computed_c-seq_simple
+
+let b = {$};
+let a = new ((1, 2, $(b))['$'])(1);
+$(a);
+
+---
+
+# ident_new_computed_s-seq_complex
+
+let b = {$};
+let a = new ((1, 2, b)[$('$')])(1);
+$(a);
+
+---
+
+# ident_new_computed_c-seq_complex
+
+let b = {$};
+let a = new ((1, 2, $(b))[$('$')])(1);
+$(a);
+
+---
+
+# ident_new_prop_simple
+
+let b = {$};
+let a = new (b.$)(1);
+$(a);
+
+---
+
+# ident_new_prop_complex
+
+let b = {$};
+let a = new ($(b).$)(1);
+$(a);
+
+---
+
+# ident_new_prop_s-seq
+
+let b = {$};
+let a = new ((1, 2, b).$)(1);
+$(a);
+
+---
+
+# ident_new_prop_c-seq
+
+let b = {$};
+let a = new ((1, 2, $(b)).$)(1);
+$(a);
+
+---
+
+# ident_new_ident_complex_args
+
+let b = {$};
+let a = new $($(1), $(2));
+$(a);
+
+---
+
+# ident_new_complex_complex_args
+
+let b = {$};
+let a = new ($($))($(1), $(2));
+$(a);
+
+---
+
+# ident_array_empty
+
+let a = [];
+$(a);
+
+---
+
+# ident_array_simple
+
+let a = [1, 2, 3];
+$(a);
+
+---
+
+# ident_array_complex
+
+let a = [$(1), 2, $(3)];
+$(a);
+
+---
+
+# ident_object_empty
+
+let a = {};
+$(a);
+
+---
+
+# ident_object_simple
+
+let a = {x: 1, y: 2, z: 3};
+$(a);
+
+---
+
+# ident_object_complex
+
+let a = {x: $(1), y: 2, z: $(3)};
+$(a);
+
+---
+
+# ident_arrow
+
+let a = () => {};
+$(a);
+
+---
+
+# ident_cond_simple_simple_simple
+
+let a = 1 ? 2 : 3;
+$(a);
+
+---
+
+# ident_cond_complex_simple_simple
+
+let a = $(1) ? 2 : 3;
+$(a);
+
+---
+
+# ident_cond_s-seq_simple_simple
+
+let a = (10, $(20), 30) ? 2 : 3;
+$(a);
+
+---
+
+# ident_cond_c-seq_simple_simple
+
+let a = (10, 20, $(30)) ? 2 : 3;
+$(a);
+
+---
+
+# ident_cond_simple_complex_simple
+
+let a = 1 ? $(2) : 3;
+$(a);
+
+---
+
+# ident_cond_complex_s-seq_simple
+
+let a = $(1) ? $(2) : 3;
+$(a);
+
+---
+
+# ident_cond_s-seq_simple_simple
+
+let a = (10, 20, 30) ? $(2) : 3;
+$(a);
+
+---
+
+# ident_cond_c-seq_simple_simple
+
+let a = (10, 20, $(30)) ? $(2) : 3;
+$(a);
+
+---
+
+# ident_cond_simple_s-seq_simple
+
+let a = 1 ? (40, $(50), 60) : 3;
+$(a);
+
+---
+
+# ident_cond_complex_s-seq_simple
+
+let a = $(1) ? (40, 50, 60) : 3;
+$(a);
+
+---
+
+# ident_cond_s-seq_s-seq_simple
+
+let a = (10, $(20), 30) ? (40, 50, 60) : 3;
+$(a);
+
+---
+
+# ident_cond_c-seq_s-seq_simple
+
+let a = (10, 20, $(30)) ? (40, 50, 60) : 3;
+$(a);
+
+---
+
+# ident_cond_simple_c-seq_simple
+
+let a = 1 ? (40, 50, $(60)) : 3;
+$(a);
+
+---
+
+# ident_cond_complex_c-seq_simple
+
+let a = $(1) ? (40, 50, $(60)) : 3;
+$(a);
+
+---
+
+# ident_cond_s-seq_c-seq_simple
+
+let a = (10, 20, 30) ? (40, 50, $(60)) : 3;
+$(a);
+
+---
+
+# ident_cond_c-seq_c-seq_simple
+
+let a = (10, 20, $(30)) ? (40, 50, $(60)) : 3;
+$(a);
+
+---
+
+# ident_cond_simple_simple_simple
+
+let a = 1 ? 2 : $($(100));
+$(a);
+
+---
+
+# ident_cond_complex_simple_simple
+
+let a = $(1) ? 2 : $($(100));
+$(a);
+
+---
+
+# ident_cond_s-seq_simple_simple
+
+let a = (10, 20, 30) ? 2 : $($(100));
+$(a);
+
+---
+
+# ident_cond_c-seq_simple_simple
+
+let a = (10, 20, $(30)) ? 2 : $($(100));
+$(a);
+
+---
+
+# ident_cond_simple_complex_simple
+
+let a = 1 ? $(2) : $($(100));
+$(a);
+
+---
+
+# ident_cond_complex_s-seq_simple
+
+let a = $(1) ? $(2) : $($(100));
+$(a);
+
+---
+
+# ident_cond_s-seq_simple_simple
+
+let a = (10, 20, 30) ? $(2) : $($(100));
+$(a);
+
+---
+
+# ident_cond_c-seq_simple_simple
+
+let a = (10, 20, $(30)) ? $(2) : $($(100));
+$(a);
+
+---
+
+# ident_cond_simple_s-seq_simple
+
+let a = 1 ? (40, 50, 60) : $($(100));
+$(a);
+
+---
+
+# ident_cond_complex_s-seq_simple
+
+let a = $(1) ? (40, 50, 60) : $($(100));
+$(a);
+
+---
+
+# ident_cond_s-seq_s-seq_simple
+
+let a = (10, 20, 30) ? (40, 50, 60) : $($(100));
+$(a);
+
+---
+
+# ident_cond_c-seq_s-seq_simple
+
+let a = (10, 20, $(30)) ? (40, 50, 60) : $($(100));
+$(a);
+
+---
+
+# ident_cond_simple_c-seq_simple
+
+let a = 1 ? (40, 50, $(60)) : $($(100));
+$(a);
+
+---
+
+# ident_cond_complex_c-seq_simple
+
+let a = $(1) ? (40, 50, $(60)) : $($(100));
+$(a);
+
+---
+
+# ident_cond_s-seq_c-seq_simple
+
+let a = (10, 20, 30) ? (40, 50, $(60)) : $($(100));
+$(a);
+
+---
+
+# ident_cond_c-seq_c-seq_simple
+
+let a = (10, 20, $(30)) ? (40, 50, $(60)) : $($(100));
+$(a);
+
+---
+
+# ident_func_anon
+
+let a = function(){};
+$(a);
+
+---
+
+# ident_func_id
+
+let a = function f(){};
+$(a);
+
+---
+
+# ident_literal
+
+let a = 'foo';
+$(a);
+
+---
+
+# ident_logic_and_simple_simple
+
+let a = 1 && 2;
+$(a);
+
+---
+
+# ident_logic_and_complex_simple
+
+let a = $($(1)) && 2;
+$(a);
+
+---
+
+# ident_logic_and_simple_complex
+
+let a = 1 && $($(1));
+$(a);
+
+---
+
+# ident_logic_and_complex_complex
+
+let a = $($(1)) && $($(2));
+$(a);
+
+---
+
+# ident_logic_or_simple_simple
+
+let a = 0 || 2;
+$(a);
+
+---
+
+# ident_logic_or_complex_simple
+
+let a = $($(0)) || 2;
+$(a);
+
+---
+
+# ident_logic_||_simple_complex
+
+let a = 0 || $($(1));
+$(a);
+
+---
+
+# ident_logic_or_complex_complex
+
+let a = $($(0)) || $($(2));
+$(a);
+
+---
+
+# ident_logic_or_or
+
+let a = $($(0)) || $($(1)) || $($(2));
+$(a);
+
+---
+
+# ident_logic_or_and
+
+let a = $($(0)) || $($(1)) && $($(2));
+$(a);
+
+---
+
+# ident_logic_and_or
+
+let a = $($(1)) && $($(1)) || $($(2));
+$(a);
+
+---
+
+# ident_logic_and_and
+
+let a = $($(1)) && $($(1)) && $($(2));
+$(a);
+
+---
+
+# ident_opt_simple
+
+let b = {x: 1};
+let a = b?.x;
+$(a);
+
+---
+
+# ident_opt_extended
+
+let b = {x: {y: {z: 100}}};
+let a = b?.x.y.z;
+$(a);
+
+---
+
+# ident_opt_complex
+
+let b = {x: 1};
+let a = $(b)?.x;
+$(a);
+
+---
+
+# ident_opt_s-seq
+
+let b = {x: 1};
+let a = (1, 2, b)?.x;
+$(a);
+
+---
+
+# ident_opt_c-seq
+
+let b = {x: 1};
+let a = (1, 2, $(b))?.x;
+$(a);
+
+---
+
+# ident_opt_simple_opt_simple
+
+let b = {x: {y: 1}};
+let a = b?.x?.y;
+$(a);
+
+---
+
+# ident_c-opt_simple_simple
+
+let b = {x: 1};
+let a = b?.['x'];
+$(a);
+
+---
+
+# ident_c-opt_complex_complex
+
+let b = {x: 1};
+let a = $(b)?.[$('x')];
+$(a);
+
+---
+
+# ident_c-opt_complex_complex_c-opt_complex_complex
+
+let b = {x: {y: 1}};
+let a = $(b)?.[$('x')]?.[$('y')];
+$(a);
+
+---
+
+# ident_opt_call_simple
+
+let a = $?.(1);
+$(a);
+
+---
+
+# ident_opt_call_complex_simple
+
+let a = $($)?.(1);
+$(a);
+
+---
+
+# ident_opt_call_complex_complex
+
+let a = $($)?.($(1));
+$(a);
+
+---
+
+# ident_opt_c-mem_call_complex_complex
+
+let b = {$};
+let a = $(b)?.[$('$')]?.($(1));
+$(a);
+
+---
+
+# ident_opt_method_call_simple
+
+let b = {c: $};
+let a = b?.c(1);
+$(a);
+
+---
+
+# ident_opt_method_call_extended
+
+let b = {c: {d: {e: $}}};
+let a = b?.c.d.e(1);
+$(a);
+
+---
+
+# ident_opt_method_call_extended
+
+let b = {c: {d: {e: $}}};
+let a = b?.c.d.e(1);
+$(a);
+
+---
+
+# ident_opt_method_opt_call_extended
+
+let b = {c: {d: {e: $}}};
+let a = b?.c.d.e?.(1);
+$(a);
+
+---
+
+# ident_regex
+
+let a = /foo/;
+$(a);
+
+---
+
+# ident_tagged_trivial
+
+let a = $`foo`
+$(a);
+
+---
+
+# ident_tagged_simple
+
+let a = $`fo${1}o`
+$(a);
+
+---
+
+# ident_tagged_complex
+
+let a = $`foo${$(1)}`
+$(a);
+
+---
+
+# ident_template_trivial
+
+let a = `foo`
+$(a);
+
+---
+
+# ident_template_simple
+
+let a = `fo${1}o`
+$(a);
+
+---
+
+# ident_template_complex
+
+let a = `foo${$(1)}`
+$(a);
+
+---
+
+# ident_upd_pi_simple
+
+let b = 1;
+let a = ++b;
+$(a, b);
+
+---
+
+# ident_upd_mi_simple
+
+let b = 1;
+let a = --b;
+$(a, b);
+
+---
+
+# ident_upd_ip_simple
+
+let b = 1;
+let a = b++;
+$(a, b);
+
+---
+
+# ident_upd_i m_simple
+
+let b = 1;
+let a = b--;
+$(a, b);
+
+---
+
+# ident_upd_pi_complex
+
+let b = {x: 1};
+let a = ++$($(b)).x;
+$(a, b);
+
+---
+
+# ident_upd_mi_complex
+
+let b = {x: 1};
+let a = --$($(b)).x;
+$(a, b);
+
+---
+
+# ident_upd_ip_complex
+
+let b = {x: 1};
+let a = $($(b)).x++;
+$(a, b);
+
+---
+
+# ident_upd_im_complex
+
+let b = {x: 1};
+let a = $($(b)).x--;
+$(a, b);
+
+---
+
+# pattern_arr_simple
+
+let [a, b] = [1, 2];
+$(a, b);
+
+---
+
+# pattern_obj_simple
+
+let {a, b} = {a: 1, b: 2};
+$(a, b);
+
+---
+
+# pattern_arr_complex
+
+let [a] = $([1, 2]);
+$(a);
+
+---
+
+# pattern_arr_s-seq
+
+let [a] = ($(10), $(20), [1, 2]);
+$(a);
+
+---
+
+# pattern_arr_c-seq
+
+let [a] = ($(10), $(20), $([1, 2]));
+$(a);
+
+---
+
+# pattern_obj_complex
+
+let {a} = $({a: 1, b: 2});
+$(a);
+
+---
+
+## computed_simple_simple_simple
+
+let a = {b: $(1)};
+a['b'] = 2;
+$(a);
+
+---
+
+## computed_complex_simple_simple
+
+let a = {b: $(1)};
+$(a)['b'] = 2;
+$(a);
+
+---
+
+## computed_simple_complex_simple
+
+let a = {b: $(1)};
+a[$('b')] = 2;
+$(a);
+
+---
+
+## computed_complex_complex_simple
+
+let a = {b: $(1)};
+$(a)[$('b')] = 2;
+$(a);
+
+---
+
+## computed_simple_simple_complex
+
+let a = {b: $(1)};
+a['b'] = $(2);
+$(a);
+
+---
+
+## computed_complex_simple_complex
+
+let a = {b: $(1)};
+$(a)['b'] = $(2)
+$(a);
+
+---
+
+## computed_simple_complex_complex
+
+let a = {b: $(1)};
+a[$('b')] = $(2)
+$(a);
+
+---
+
+## computed_complex_complex_complex
+
+let a = {b: $(1)};
+$(a)[$('b')] = $(2)
+$(a);
+
+---
+
+## prop_simple_simple
+
+let a = {b: $(1)};
+a.b = 2;
+$(a);
+
+---
+
+## prop_complex_simple
+
+let a = {b: $(1)};
+$(a).b = 2;
+$(a);
+
+---
+
+## prop_simple_complex
+
+let a = {b: $(1)};
+a.b = $(2);
+$(a);
+
+---
+
+## prop_complex_complex
+
+let a = {b: $(1)};
+$(a).b = $(2);
+$(a);
+
+---
+
+## seq_simple_prop
+
+let a = {b: $(1)};
+($(1), a).b = $(2);
+$(a);
+
+---
+
+## seq_complex_prop
+
+let a = {b: $(1)};
+($(1), $(a)).b = $(2);
+$(a);
+
+---
+
+## seq_simple_computed_simple
+
+let a = {b: $(1)};
+($(1), a)['b'] = $(2);
+$(a);
+
+---
+
+## seq_complex_computed_simple
+
+let a = {b: $(1)};
+($(1), $(a))['b'] = $(2);
+$(a);
+
+---
+
+## seq_simple_computed_complex
+
+let a = {b: $(1)};
+($(1), a)[$('b')] = $(2);
+$(a);
+
+---
+
+## seq_complex_computed_complex
+
+let a = {b: $(1)};
+($(1), $(a))[$('b')] = $(2);
+$(a);
+
+//*/// (end of file artifact)

@@ -18,55 +18,53 @@ for (let a = b = $(c).y = $(d);false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
-var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignObj = $(c);
-  tmpNestedAssignMemberObj = tmpNestedAssignObj;
-  tmpNestedAssignMemberRhs = $(d);
-  tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-  tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+  let a;
+  let tmpNestedComplexRhs;
+  const tmpNestedAssignObj = $(c);
+  let tmpNestedAssignPropRhs = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  while (false) {}
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
-var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
-tmpNestedAssignObj = $(3);
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignMemberRhs = $(4);
-tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs;
-tmpNestedComplexRhs = tmpNestedAssignMemberRhs;
+let a;
+let tmpNestedComplexRhs;
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-while (false) {}
-$(a, b, 3);
+while (false) {
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 4
- - 2: 4,4,3
- - 3: undefined
+ - 1: 3
+ - 2: 4
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

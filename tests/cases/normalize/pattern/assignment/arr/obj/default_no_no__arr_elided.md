@@ -18,24 +18,16 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-arrAssignPatternRhs = [, , , 1, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-{
-  let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = arrPatternStep === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const arrAssignPatternRhs = [, , , 1, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 }
 arrAssignPatternRhs;
 $('ok');
@@ -44,22 +36,16 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-arrAssignPatternRhs = [, , , 1, 20, 30];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-if (tmpAssignLogicStmtOr) {
+const arrAssignPatternRhs = [, , , 1, 20, 30];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = arrPatternStep === null;
+  objPatternCrashTest = arrPatternStep === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('ok');
 `````
@@ -67,11 +53,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
-
+Final output calls: Same

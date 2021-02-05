@@ -24,7 +24,7 @@ $(obj)[$('x')];
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -41,7 +41,7 @@ tmpCompObj[tmpCompProp];
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -56,10 +56,10 @@ tmpCompObj[tmpCompProp];
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: "x"
- - 2: 10
- - 3: undefined
+ - 1: { x: '<get/set>' }
+ - 2: 'x'
+ - 3: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

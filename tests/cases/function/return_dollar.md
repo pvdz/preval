@@ -27,33 +27,32 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: null
+ - 1: 
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

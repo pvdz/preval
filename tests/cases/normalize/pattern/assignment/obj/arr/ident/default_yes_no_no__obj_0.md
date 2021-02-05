@@ -18,39 +18,29 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpTernaryTest;
-objAssignPatternRhs = { x: 0, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpAssignObjPatternRhs = { x: 0, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpTernaryTest;
-objAssignPatternRhs = { x: 0, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpAssignObjPatternRhs = { x: 0, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -61,11 +51,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

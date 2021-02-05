@@ -18,16 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-const bindingPatternArrRoot = [null, 20, 30];
+const tmpArrElement = null;
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -45,16 +43,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternArrRoot = [null, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -72,7 +67,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

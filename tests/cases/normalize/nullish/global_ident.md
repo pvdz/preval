@@ -17,38 +17,31 @@ $(parseInt??foo);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryTest;
-parseInt = parseInt;
-tmpTernaryTest = parseInt == null;
-if (tmpTernaryTest) {
-  tmpArg = foo;
-} else {
-  tmpArg = parseInt;
+const tmpCallCallee = $;
+let tmpCalleeParam = parseInt;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = foo;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryTest;
-parseInt = parseInt;
-tmpTernaryTest = parseInt == null;
-if (tmpTernaryTest) {
-  tmpArg = foo;
-} else {
-  tmpArg = parseInt;
+const tmpCallCallee = $;
+let tmpCalleeParam = parseInt;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = foo;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

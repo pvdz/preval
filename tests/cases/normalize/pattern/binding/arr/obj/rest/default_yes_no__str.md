@@ -18,51 +18,52 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternArrRoot = 'abc';
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = arrPatternStep;
+const tmpCalleeParam$2 = [];
+const tmpCalleeParam$3 = undefined;
+const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const arrPatternSplat = [...'abc'];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = arrPatternStep;
+const tmpCalleeParam$2 = [];
+const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a"}
- - 1: undefined
+ - 1: { 0: '"a"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

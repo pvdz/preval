@@ -39,20 +39,16 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-var tmpElement$3;
-('<hoisted func decl `f`>');
-tmpElement$3 = { x: 1 };
-tmpElement$2 = [tmpElement$3, 6, 7];
-tmpElement$1 = [tmpElement$2, 4, 5];
-tmpElement = [tmpElement$1, 20, 30];
-tmpArg$1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpArrElement$3 = { x: 1 };
+const tmpArrElement$2 = [tmpArrElement$3, 6, 7];
+const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
+const tmpCalleeParam$2 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -77,26 +73,22 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-var tmpElement$3;
-tmpElement$3 = { x: 1 };
-tmpElement$2 = [tmpElement$3, 6, 7];
-tmpElement$1 = [tmpElement$2, 4, 5];
-tmpElement = [tmpElement$1, 20, 30];
-tmpArg$1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpArrElement$3 = { x: 1 };
+const tmpArrElement$2 = [tmpArrElement$3, 6, 7];
+const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

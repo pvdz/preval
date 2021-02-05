@@ -10,48 +10,43 @@
 
 `````js filename=intro
 let x = 10;
-([[ x ]] = 1);
+([[ x ]] = [[ 100 ]]);
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const tmpArrElement = [100];
+const arrAssignPatternRhs = [tmpArrElement];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1[0];
 arrAssignPatternRhs;
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
+const tmpArrElement = [100];
+const arrAssignPatternRhs = [tmpArrElement];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1[0];
+$(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 1: 100
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

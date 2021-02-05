@@ -18,27 +18,30 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 'abc';
-x = objPatternRest(objAssignPatternRhs, [], 'x');
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = 'abc';
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 'abc';
-x = objPatternRest(objAssignPatternRhs, [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam$1 = [];
+x = tmpCallCallee('abc', tmpCalleeParam$1, 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a","1":"b","2":"c"}
- - 1: undefined
+ - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

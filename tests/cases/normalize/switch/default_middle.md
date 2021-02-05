@@ -72,11 +72,6 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryLeft$1;
-var tmpBinaryLeft$2;
-var tmpBinaryLeft$3;
-var tmpBinaryLeft$4;
 var tmpDoWhileTest;
 {
   let tmpSwitchValue = 6;
@@ -90,8 +85,8 @@ var tmpDoWhileTest;
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
-          tmpBinaryLeft = $(10);
-          tmpIfTest = tmpBinaryLeft === tmpSwitchValue;
+          const tmpBinLhs = $(10);
+          tmpIfTest = tmpBinLhs === tmpSwitchValue;
         }
         if (tmpIfTest) {
           {
@@ -106,8 +101,8 @@ var tmpDoWhileTest;
         let tmpIfTest$1 = tmpSwitchFallthrough;
         if (tmpIfTest$1) {
         } else {
-          tmpBinaryLeft$1 = $(20);
-          tmpIfTest$1 = tmpBinaryLeft$1 === tmpSwitchValue;
+          const tmpBinLhs$1 = $(20);
+          tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
         }
         if (tmpIfTest$1) {
           {
@@ -134,8 +129,8 @@ var tmpDoWhileTest;
           let tmpIfTest$2 = tmpSwitchFallthrough;
           if (tmpIfTest$2) {
           } else {
-            tmpBinaryLeft$2 = $(30);
-            tmpIfTest$2 = tmpBinaryLeft$2 === tmpSwitchValue;
+            const tmpBinLhs$2 = $(30);
+            tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
           }
           if (tmpIfTest$2) {
             {
@@ -149,8 +144,8 @@ var tmpDoWhileTest;
           let tmpIfTest$3 = tmpSwitchFallthrough;
           if (tmpIfTest$3) {
           } else {
-            tmpBinaryLeft$3 = $(40);
-            tmpIfTest$3 = tmpBinaryLeft$3 === tmpSwitchValue;
+            const tmpBinLhs$3 = $(40);
+            tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
           }
           if (tmpIfTest$3) {
             {
@@ -165,8 +160,8 @@ var tmpDoWhileTest;
           let tmpIfTest$4 = tmpSwitchFallthrough;
           if (tmpIfTest$4) {
           } else {
-            tmpBinaryLeft$4 = $(50);
-            tmpIfTest$4 = tmpBinaryLeft$4 === tmpSwitchValue;
+            const tmpBinLhs$4 = $(50);
+            tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
           }
           if (tmpIfTest$4) {
             {
@@ -187,11 +182,6 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryLeft$1;
-var tmpBinaryLeft$2;
-var tmpBinaryLeft$3;
-var tmpBinaryLeft$4;
 var tmpDoWhileTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
@@ -200,8 +190,8 @@ do {
     let tmpIfTest = tmpSwitchFallthrough;
     if (tmpIfTest) {
     } else {
-      tmpBinaryLeft = $(10);
-      tmpIfTest = tmpBinaryLeft === 6;
+      const tmpBinLhs = $(10);
+      tmpIfTest = tmpBinLhs === 6;
     }
     if (tmpIfTest) {
       $(1);
@@ -211,8 +201,8 @@ do {
     let tmpIfTest$1 = tmpSwitchFallthrough;
     if (tmpIfTest$1) {
     } else {
-      tmpBinaryLeft$1 = $(20);
-      tmpIfTest$1 = tmpBinaryLeft$1 === 6;
+      const tmpBinLhs$1 = $(20);
+      tmpIfTest$1 = tmpBinLhs$1 === 6;
     }
     if (tmpIfTest$1) {
       $(2);
@@ -228,8 +218,8 @@ do {
   let tmpIfTest$2 = tmpSwitchFallthrough;
   if (tmpIfTest$2) {
   } else {
-    tmpBinaryLeft$2 = $(30);
-    tmpIfTest$2 = tmpBinaryLeft$2 === 6;
+    const tmpBinLhs$2 = $(30);
+    tmpIfTest$2 = tmpBinLhs$2 === 6;
   }
   if (tmpIfTest$2) {
     $(3);
@@ -238,8 +228,8 @@ do {
   let tmpIfTest$3 = tmpSwitchFallthrough;
   if (tmpIfTest$3) {
   } else {
-    tmpBinaryLeft$3 = $(40);
-    tmpIfTest$3 = tmpBinaryLeft$3 === 6;
+    const tmpBinLhs$3 = $(40);
+    tmpIfTest$3 = tmpBinLhs$3 === 6;
   }
   if (tmpIfTest$3) {
     $(4);
@@ -249,8 +239,8 @@ do {
   let tmpIfTest$4 = tmpSwitchFallthrough;
   if (tmpIfTest$4) {
   } else {
-    tmpBinaryLeft$4 = $(50);
-    tmpIfTest$4 = tmpBinaryLeft$4 === 6;
+    const tmpBinLhs$4 = $(50);
+    tmpIfTest$4 = tmpBinLhs$4 === 6;
   }
   if (tmpIfTest$4) {
     $(5);
@@ -265,15 +255,15 @@ do {
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: 20
- - 2: 30
- - 3: 40
- - 4: 50
- - 5: "d"
- - 6: 3
- - 7: 4
- - 8: undefined
+ - 1: 10
+ - 2: 20
+ - 3: 30
+ - 4: 40
+ - 5: 50
+ - 6: 'd'
+ - 7: 3
+ - 8: 4
+ - eval returned: undefined
 
 Normalized calls: Same
 

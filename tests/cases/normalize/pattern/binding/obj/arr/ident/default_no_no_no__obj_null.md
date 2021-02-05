@@ -18,7 +18,8 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, a: 11, b: 12 };
+const tmpObjLitVal = null;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
@@ -38,7 +39,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

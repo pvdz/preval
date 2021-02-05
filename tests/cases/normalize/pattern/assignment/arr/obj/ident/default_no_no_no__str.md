@@ -18,12 +18,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = 'abc';
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrAssignPatternRhs = 'abc';
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 arrAssignPatternRhs;
 $(x);
@@ -32,12 +29,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-arrAssignPatternRhs = 'abc';
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat = [...'abc'];
+const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 $(x);
 `````
@@ -45,8 +38,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

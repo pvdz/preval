@@ -18,7 +18,8 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = [].length;
+const tmpCompObj = [];
+const tmpIfTest = tmpCompObj.length;
 if (tmpIfTest) {
   $(1);
 } else {
@@ -29,7 +30,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = [].length;
+const tmpCompObj = [];
+const tmpIfTest = tmpCompObj.length;
 if (tmpIfTest) {
   $(1);
 } else {
@@ -40,8 +42,8 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: undefined
+ - 1: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

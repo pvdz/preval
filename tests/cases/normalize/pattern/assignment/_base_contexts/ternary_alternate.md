@@ -15,33 +15,28 @@ a ? b : ({ x } = 1);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-{
-  if (a) {
-    b;
-  } else {
-    objAssignPatternRhs = 1;
-    x = objAssignPatternRhs.x;
-    objAssignPatternRhs;
-  }
+if (a) {
+  b;
+} else {
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+  tmpAssignObjPatternRhs;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
 if (a) {
 } else {
-  objAssignPatternRhs = 1;
-  x = objAssignPatternRhs.x;
+  x = (1).x;
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

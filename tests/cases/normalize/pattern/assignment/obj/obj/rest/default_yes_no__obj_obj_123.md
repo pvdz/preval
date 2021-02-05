@@ -18,59 +18,54 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, [], undefined);
-objAssignPatternRhs;
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = objPatternAfterDefault;
+const tmpCalleeParam$2 = [];
+const tmpCalleeParam$3 = undefined;
+y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = objPatternRest(objPatternAfterDefault, [], undefined);
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = objPatternAfterDefault;
+const tmpCalleeParam$2 = [];
+y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $(y);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2,"z":3}
- - 1: undefined
+ - 1: { x: '1', y: '2', z: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

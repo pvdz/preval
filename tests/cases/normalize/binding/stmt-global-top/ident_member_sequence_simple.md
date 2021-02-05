@@ -19,27 +19,28 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
 let c = 3;
-let a = (b.x, c).foo;
+b.x;
+const tmpCompObj = c;
+let a = tmpCompObj.foo;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
-let a = (b.x, 3).foo;
+b.x;
+let a = (3).foo;
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null,{"x":2},3
- - 1: undefined
+ - 1: undefined, { x: '2' }, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

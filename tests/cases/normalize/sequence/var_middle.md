@@ -33,8 +33,8 @@ $(5);
 ## Result
 
 Should call `$` with:
- - 0: 5
- - 1: undefined
+ - 1: 5
+ - eval returned: undefined
 
 Normalized calls: Same
 

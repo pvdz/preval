@@ -18,8 +18,8 @@ $(($(1), $(2), $($)).length);
 const tmpCallCallee = $;
 $(1);
 $(2);
-const tmpBindingInit = $($);
-const tmpCalleeParam = tmpBindingInit.length;
+const tmpCompObj = $($);
+const tmpCalleeParam = tmpCompObj.length;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -29,19 +29,19 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee = $;
 $(1);
 $(2);
-const tmpBindingInit = $($);
-const tmpCalleeParam = tmpBindingInit.length;
+const tmpCompObj = $($);
+const tmpCalleeParam = tmpCompObj.length;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: null
- - 3: 0
- - 4: undefined
+ - 1: 1
+ - 2: 2
+ - 3: '<$>'
+ - 4: 0
+ - eval returned: undefined
 
 Normalized calls: Same
 

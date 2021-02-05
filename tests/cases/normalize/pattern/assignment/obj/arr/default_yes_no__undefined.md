@@ -18,56 +18,43 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = undefined;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = undefined;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
-objAssignPatternRhs;
+const arrPatternSplat = [...objPatternAfterDefault];
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = undefined;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const objPatternBeforeDefault = undefined.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
+[...objPatternAfterDefault];
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

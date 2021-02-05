@@ -18,8 +18,8 @@ if (($(1), $(2)).foo) $(3);
 
 `````js filename=intro
 $(1);
-const tmpBindingInit = $(2);
-const tmpIfTest = tmpBindingInit.foo;
+const tmpCompObj = $(2);
+const tmpIfTest = tmpCompObj.foo;
 if (tmpIfTest) {
   $(3);
 }
@@ -29,8 +29,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-const tmpBindingInit = $(2);
-const tmpIfTest = tmpBindingInit.foo;
+const tmpCompObj = $(2);
+const tmpIfTest = tmpCompObj.foo;
 if (tmpIfTest) {
   $(3);
 }
@@ -39,9 +39,9 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

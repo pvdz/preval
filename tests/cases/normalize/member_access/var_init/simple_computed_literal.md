@@ -18,7 +18,7 @@ $(x);
 
 `````js filename=intro
 const obj = { foo: 10 };
-let x = obj['foo'];
+let x = obj.foo;
 $(x);
 `````
 
@@ -33,8 +33,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

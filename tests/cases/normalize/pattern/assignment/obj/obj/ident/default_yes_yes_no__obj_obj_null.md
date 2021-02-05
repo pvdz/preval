@@ -18,68 +18,50 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var objPatternBeforeDefault$1;
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { y: 'fail2' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpObjLitVal$1 = 1;
+const tmpObjLitVal$2 = null;
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { y: 'fail2' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  y = tmpTernaryConsequent$1;
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault$1;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var objPatternBeforeDefault$1;
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = { y: 'fail2' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpObjLitVal = { x: 1, y: null, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { y: 'fail2' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  y = tmpTernaryConsequent$1;
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault$1;
 }
@@ -89,8 +71,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,31 +18,25 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpElement = { x: null, y: 2, z: 3 };
-const bindingPatternArrRoot = [tmpElement, 20, 30];
+const tmpObjLitVal = null;
+const tmpArrElement = { x: tmpObjLitVal, y: 2, z: 3 };
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = { x: 'fail2' };
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 'fail2' };
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest$1 = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+let x = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -52,31 +46,24 @@ $(x);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpElement = { x: null, y: 2, z: 3 };
-const bindingPatternArrRoot = [tmpElement, 20, 30];
+const tmpArrElement = { x: null, y: 2, z: 3 };
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = { x: 'fail2' };
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { x: 'fail2' };
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const objPatternBeforeDefault = arrPatternStep.x;
-tmpTernaryTest$1 = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+let x = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -86,8 +73,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

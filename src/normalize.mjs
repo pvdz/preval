@@ -1,4 +1,4 @@
-import { ASSERT, DIM, BOLD, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from './utils.mjs';
+import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from './utils.mjs';
 import * as AST from './ast.mjs';
 import globals from './globals.mjs';
 
@@ -133,6 +133,12 @@ const VERBOSE_TRACING = true;
   - TODO: broken: var decl hoisting wont find stuff nested inside other blocks or sub-statements (loops, switch, try), I think?
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
+  - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
+  - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
+  - TODO: does coercion have observable side effects (that we care to support)?
+  - TODO: do we properly simplify array literals with complex spreads?   
+  - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
+  - TODO: since exports must be unique, we should try to give exported bindings priority when creating unique globals
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -158,16 +164,29 @@ function example(from, to, condition) {
   }
 }
 
-function before(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'Before:' + RESET, tmat(node));
+function before(node, parent) {
+  if (Array.isArray(node)) node.forEach((n) => before(n, parent));
+  else if (VERBOSE_TRACING) {
+    const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
+    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+    if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+    log(YELLOW + 'Before:' + RESET, nodeCode);
+  }
 }
 
 function source(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, tmat(node));
+  if (Array.isArray(node)) node.forEach((n) => source(n));
+  else if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, tmat(node));
 }
 
-function after(node) {
-  if (VERBOSE_TRACING) log(YELLOW + 'After :' + RESET, tmat(node));
+function after(node, parentNode) {
+  if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
+  else if (VERBOSE_TRACING) {
+    const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
+    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+    log(YELLOW + 'After :' + RESET, nodeCode);
+    if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+  }
 }
 
 export function phaseNormalize(fdata, fname) {
@@ -187,30 +206,6 @@ export function phaseNormalize(fdata, fname) {
   let arrowExpressionInfiLoopGuard = 0;
 
   const ast = fdata.tenkoOutput.ast;
-
-  function crumbGet(delta) {
-    ASSERT(delta > 0, 'must go at least one step back');
-    ASSERT(delta < crumbsNodes.length, 'can not go past root');
-
-    const index = crumbsIndexes[crumbsIndexes.length - delta];
-    if (index >= 0) return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]][index];
-    else return crumbsNodes[crumbsNodes.length - delta][crumbsProps[crumbsProps.length - delta]];
-  }
-
-  function crumbSet(delta, node) {
-    ASSERT(delta > 0, 'must go at least one step back');
-    ASSERT(delta < crumbsNodes.length, 'can not go past root');
-    ASSERT(node?.type, 'every node must at least have a type');
-
-    const parent = crumbsNodes[crumbsNodes.length - delta];
-    const prop = crumbsProps[crumbsProps.length - delta];
-    const index = crumbsIndexes[crumbsIndexes.length - delta];
-
-    log('Replacing the call at `' + parent.type + '.' + prop + (index >= 0 ? '[' + index + ']' : '') + '` with', node.type);
-
-    if (index >= 0) return (parent[prop][index] = node);
-    else return (parent[prop] = node);
-  }
 
   function createUniqueGlobalName(name) {
     // Create a (module) globally unique name. Then use that name for the local scope.
@@ -302,6 +297,19 @@ export function phaseNormalize(fdata, fname) {
     }
   } while (changed);
 
+  log('After normalization:');
+  log(
+    '\ngloballyUniqueNamingRegistery (sans builtins):\n',
+    fdata.globallyUniqueNamingRegistery.size === globals.size
+      ? '<none>'
+      : [...fdata.globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+  );
+  log(
+    '\ngloballyUniqueLabelRegistery:\n',
+    fdata.globallyUniqueLabelRegistery.size === 0 ? '<none>' : [...fdata.globallyUniqueLabelRegistery.keys()].join(', '),
+  );
+  log();
+
   // Rename the ident in all usages to a (file-) globally unique name
   fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
     // As a result, all bindings in this file ought to now have a unique name.
@@ -322,6 +330,8 @@ export function phaseNormalize(fdata, fname) {
     if (meta.usages.length === 0) {
       log('Dropping the label `' + meta.name + '` because it is not referenced');
       const { parent, prop, index } = meta.labelNode;
+      const target = index >= 0 ? parent[prop][index] : parent[prop];
+      ASSERT(target.type === 'LabeledStatement', 'should find the label now');
       if (index >= 0) parent[prop][index] = parent[prop][index].body;
       else parent[prop] = parent[prop].body;
     }
@@ -369,7 +379,6 @@ export function phaseNormalize(fdata, fname) {
     crumbsProps.push(prop);
     crumbsIndexes.push(index);
   }
-
   function uncrumb(parent, prop, index) {
     const a = crumbsNodes.pop();
     const b = crumbsProps.pop();
@@ -403,16 +412,18 @@ export function phaseNormalize(fdata, fname) {
     return tmpName;
   }
 
-  function findBoundNamesInPattern(node) {
+  function findBoundNamesInPattern(node, names = []) {
     ASSERT(node.type === 'VariableDeclaration');
     ASSERT(node.declarations.length === 1, 'var decls define one binding?', node);
 
     const decl = node.declarations[0];
-    if (decl.id.type === 'Identifier') return [decl.id.name];
+    if (decl.id.type === 'Identifier') {
+      names.push(decl.id.name);
+      return names;
+    }
 
     ASSERT(decl.id.type === 'ObjectPattern' || decl.id.type === 'ArrayPattern', 'theres no other kind of decl..?');
 
-    const names = [];
     function r(node, names) {
       if (node.type === 'ObjectPattern') {
         node.properties.forEach((pnode) => {
@@ -454,20 +465,22 @@ export function phaseNormalize(fdata, fname) {
     return names;
   }
 
-  function isComplexNodeOrAlreadySequenced(node) {
-    return isComplexNode(node, true);
-  }
-
-  function isComplexNode(node, andNotSimpleSequence = false) {
+  function isComplexNode(node) {
+    ASSERT(isComplexNode.length === arguments.length, 'arg count');
     // A node is simple if it is
     // - an identifier
-    // - a literal
+    // - a literal (but not regex)
     // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
     // - a sequence expression ending in a simple node
     // Most of the time these nodes are not reduced any further
     // The sequence expression sounds complex but that's what we normalize into most of the time
+    //
+    // Note: An empty array/object literal is not "simple" because it has an observable reference
+    //       If we were to mark these "simple" then they might be duplicated without further thought,
+    //       leading to hard to debug reference related issues.
 
     if (node.type === 'Literal') {
+      if (node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
       return false;
     }
     if (node.type === 'Identifier') {
@@ -480,400 +493,9 @@ export function phaseNormalize(fdata, fname) {
       // -NaN, +NaN, -Infinity, +Infinity
       if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
     }
-    if (andNotSimpleSequence && isSimpleSequence(node)) return false;
-    if (node.type === 'ArrayExpression' && node.elements.length === 0) return false; // Empty array literal is not exciting, probably not worth separating (?)
-    if (node.type === 'ObjectExpression' && node.properties.length === 0) return false; // Empty object literal is not exciting, probably not worth separating (?)
     if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
 
     return true;
-  }
-  function isSimpleMemberExpression(node) {
-    // True if `a.b`, `a[b]`, or if a is a sequence that ends with a simple node (but not sequence)
-    if (node.type !== 'MemberExpression') return false;
-    if (isComplexNode(node, true)) return false;
-    if (node.computed) return isComplexNode(node.property);
-    return true;
-  }
-  function isSimpleSequence(node) {
-    if (node.type !== 'SequenceExpression') return false;
-    return !isComplexNode(node.expressions[node.expressions.length - 1]);
-  }
-  function isImmutable(node) {
-    return (
-      node.type === 'Literal' ||
-      (node.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(node.name))
-    );
-  }
-
-  function sequenceNode(node, tmpNameBase) {
-    // Take given node, assign it to a fresh tmp variable, and create a sequence with this assignment and then that variable.
-    // `expr`
-    // -> `(tmp = expr, tmp)`
-
-    ASSERT(isComplexNode(node), 'this probably should not be called on simple nodes...');
-
-    const tmpName = createFreshVarInCurrentRootScope(tmpNameBase, true);
-    const assign = AST.assignmentExpression(tmpName, node);
-    return AST.sequenceExpression(assign, AST.identifier(tmpName));
-  }
-
-  function flattenSequences(node) {
-    // Note: make sure the node is not being walked currently or things end bad.
-
-    // Flatten nested groups
-    // `(a, (b, c), d)` -> `(a, b, c, d)`
-    // Sequence expressions have only some edge cases to care about. In particular around context.
-    // In this case we only replace whole groups nested in other groups, which should not be a concern.
-    // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
-    let i = 0;
-    while (i < node.expressions.length) {
-      ASSERT(node.expressions[i], 'sequence does not have empty elements?', node);
-      if (node.expressions[i].type === 'SequenceExpression') {
-        rold('No nested sequences');
-        log('- `(a, (b, c))` --> `(a, b, c)`');
-        before(node);
-        node.expressions.splice(i, 1, ...node.expressions[i].expressions);
-        after(node);
-        changed = true;
-      } else {
-        ++i;
-      }
-    }
-  }
-
-  function statementifyExpressions(node) {
-    // Note: make sure the node is not being walked currently or things end bad.
-
-    // This is an expression statement. Convert certain expressions into equivalent statements
-    // This includes;
-    // - sequence -> individual expression statements
-    // - logical -> if-else
-    // - conditional -> if-else
-    // - variable declaration -> init processing
-
-    let i = 0;
-    while (i < node.body.length) {
-      ASSERT(node.body[i], 'sequence does not have empty elements?', node);
-      const e = node.body[i];
-      if (e.type === 'ExpressionStatement') {
-        const expr = node.body[i].expression;
-        if (expr.type === 'SequenceExpression') {
-          // Sequence expressions have only some edge cases to care about. In particular around context.
-          // In this case we only replace whole groups nested in other groups, which should not be a concern.
-          // Note: a group is always two or more elements. This should not affect or even detect "parenthesised" code.
-          // Break sequence expressions that are the child of an ExpressionStatement up into separate statements
-          rold('Sequences can not be statements');
-          before(expr);
-          log('- `a, (b, c), d` --> `a; b; c; d;`');
-          node.body.splice(
-            i,
-            1,
-            ...expr.expressions.map((enode) => {
-              const newNode = AST.expressionStatement(enode);
-              after(newNode);
-              return newNode;
-            }),
-          );
-          changed = true;
-          --i; // revisit (recursively)
-        } else if (expr.type === 'ConditionalExpression') {
-          rold('Conditional / ternary expressions should not be statements');
-          log('- `a ? b : c` --> `{ if (a) b; else c; }');
-          before(expr);
-
-          const newNode = AST.blockStatement(
-            AST.ifStatement(expr.test, AST.expressionStatement(expr.consequent), AST.expressionStatement(expr.alternate)),
-          );
-          node.body[i] = newNode;
-
-          after(newNode);
-          changed = true;
-          --i; // revisit
-        } else if (expr.type === 'AssignmentExpression') {
-          if (expr.right.type === 'ConditionalExpression') {
-            rold('Conditional / ternary assignment expressions should not be statements');
-            log('- `x = a ? b : c` --> `{ if (a) x = b; else x = c; }');
-            before(expr);
-
-            const newNode = AST.ifStatement(
-              expr.right.test,
-              AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.consequent, expr.operator)),
-              AST.expressionStatement(AST.assignmentExpression(expr.left, expr.right.alternate, expr.operator)),
-            );
-            node.body[i] = newNode;
-
-            after(node.body[i]);
-            changed = true;
-            --i; // revisit
-          } else if (expr.right.type === 'LogicalExpression' && expr.left.type === 'Identifier') {
-            const logi = expr.right;
-            // Note: while we checked that the lhs of assignment is ident, we have to take a precaution
-            //       for the case where the operator is not `=`, or when the logical expression left is
-            //       complex. In both cases we cache the lhs first and assign it only if the condition
-            //       would. In the future we could improve this (TODO) by being explicit for each case.
-            if (expr.right.operator === '||') {
-              rold('Logical `||` in stmt assignment should be if-else, complex left');
-              log('- `x = a || b` --> `{ let tmp = a; if (tmp) x = tmp; else x = b; }`');
-              log('- `x = a() || b` --> `{ let tmp = a(); if (tmp) x = tmp; else x = b; }`');
-              log('- `x += a || b` --> `{ let tmp += a; if (tmp) x = tmp; else x = b; }`');
-              before(e);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpAssignLogicStmtOr');
-              const newNode = AST.blockStatement(
-                AST.variableDeclaration(tmpName, logi.left),
-                AST.ifStatement(
-                  tmpName,
-                  AST.expressionStatement(AST.assignmentExpression(expr.left, tmpName)),
-                  AST.expressionStatement(AST.assignmentExpression(expr.left, logi.right)),
-                ),
-              );
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            } else if (expr.right.operator === '&&') {
-              rold('Logical `&&` in stmt assignment should be if-else, complex left');
-              log('- `x = a && b` --> `{ let tmp = a; if (tmp) x = b; else x = tmp; }`');
-              log('- `x = a() && b` --> `{ let tmp = a(); if (tmp) x = b; else x = tmp; }`');
-              log('- `x += a && b` --> `{ let tmp += a; if (tmp) x = b; else x = tmp; }`');
-              before(e);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpAssignLogicStmtOr');
-              const newNode = AST.blockStatement(
-                AST.variableDeclaration(tmpName, logi.left),
-                AST.ifStatement(
-                  tmpName,
-                  AST.expressionStatement(AST.assignmentExpression(expr.left, logi.right)),
-                  AST.expressionStatement(AST.assignmentExpression(expr.left, tmpName)),
-                ),
-              );
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            }
-          } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'SequenceExpression') {
-            rold('Statement assignment to property on group should be split');
-            example('(a(), b()).c = d()', 'a(); b().c = d()');
-            before(expr);
-
-            const xps = expr.left.object.expressions;
-            const assign = AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.memberExpression(xps[xps.length - 1], expr.left.property, expr.left.computed),
-                expr.right,
-                expr.operator,
-              ),
-            );
-            const newNode = AST.blockStatement(
-              ...xps.slice(0, -1).map((n) => {
-                const x = AST.expressionStatement(n);
-                after(x);
-                return x;
-              }),
-              assign,
-            );
-            node.body[i] = newNode;
-
-            after(assign);
-            changed = true;
-            _stmt(newNode);
-          }
-        } else if (expr.type === 'LogicalExpression') {
-          const leftIsComplex = isComplexNode(expr.left);
-          if (expr.operator === '||') {
-            if (leftIsComplex) {
-              rold('Logical `||` as statement should be if-else, complex left');
-              log('- `a() || b` --> `tmp = a(); if (tmp); else b;`');
-              before(e);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpLogicStmtOr');
-              const newNode = AST.blockStatement(
-                AST.variableDeclaration(tmpName, expr.left),
-                AST.ifStatement(tmpName, AST.emptyStatement(), AST.expressionStatement(expr.right)),
-              );
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            } else {
-              rold('Logical `||` as statement should be if-else, simple left');
-              log('- `a || b` --> `if (a); else b;`');
-              before(e);
-
-              const newNode = AST.ifStatement(expr.left, AST.emptyStatement(), AST.expressionStatement(expr.right));
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            }
-          } else if (expr.operator === '&&') {
-            if (leftIsComplex) {
-              rold('Logical `&&` as statement should be if-else, complex left');
-              log('- `a() && b` --> `tmp = a(); if (tmp) b;`');
-              before(e);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpLogicStmtAnd');
-              const newNode = AST.blockStatement(
-                AST.variableDeclaration(tmpName, expr.left),
-                AST.ifStatement(tmpName, AST.expressionStatement(expr.right)),
-              );
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            } else {
-              rold('Logical `&&` as statement should be if-else, simple left');
-              log('- `a && b` --> `if (a) b;`');
-              before(e);
-
-              const newNode = AST.ifStatement(expr.left, AST.expressionStatement(expr.right));
-              node.body[i] = newNode;
-
-              changed = true;
-              after(newNode);
-            }
-          }
-        } else if (expr.type === 'MemberExpression' && expr.object.type === 'SequenceExpression') {
-          // This is more likely to be an artifact or test than anything else, but still.
-          rold('Statement property on group should be split');
-          example('(a(), b()).c', 'a(); b().c', () => !expr.computed);
-          example('(a(), b())[c()]', 'a(); b()[c()]', () => expr.computed);
-          before(expr);
-
-          const xps = expr.object.expressions;
-          const newNode = AST.blockStatement(
-            ...xps.slice(0, -1).map((n) => AST.expressionStatement(n)),
-            AST.expressionStatement(AST.memberExpression(xps[xps.length - 1], expr.property, expr.computed)),
-          );
-          node.body[i] = newNode;
-
-          after(newNode);
-          changed = true;
-          _stmt(newNode);
-        }
-      } else if (e.type === 'VariableDeclaration') {
-        if (e.declarations.length > 1) {
-          log('Found a var decl with multiple bindings. Skipping statementifySequences on it until next pass.');
-        } else {
-          const dnode = e.declarations[0];
-          const id = dnode.id;
-          const init = dnode.init;
-          if (!init) {
-          } else if (init.type === 'SequenceExpression') {
-            // This assumes sub-statements are normalized to be groups already
-            rold('Var binding init can not be sequences');
-            log('- `var x = (1, 2)` --> `1; var x = 2`');
-            const exprs = init.expressions;
-            node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-            // Replace the old sequence expression with its last element
-            dnode.init = exprs[exprs.length - 1];
-            changed = true;
-            --i; // revisit (recursively)
-          } else if (init.type === 'MemberExpression' && init.object.type === 'SequenceExpression') {
-            // This assumes sub-statements are normalized to be groups already
-            rold('Var binding init can not be member expression on sequence');
-            log('- `var x = (a, b).x` --> `a; var x = b.x`');
-            const seq = init.object;
-            const exprs = seq.expressions;
-            node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-            // Replace the old sequence expression with its last element
-            init.object = exprs[exprs.length - 1];
-            changed = true;
-            --i; // revisit (recursively)
-          } else if (init.type === 'ConditionalExpression') {
-            rold('Conditional / ternary expressions should not be var init');
-            if (e.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
-            if (e.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-            if (e.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-            before(e);
-
-            const newNode = AST.ifStatement(
-              init.test,
-              AST.expressionStatement(AST.assignmentExpression(id.name, init.consequent)),
-              AST.expressionStatement(AST.assignmentExpression(id.name, init.alternate)),
-            );
-            dnode.init = null;
-            if (e.kind === 'const') e.kind = 'let';
-            node.body.splice(i + 1, 0, newNode);
-
-            after(node.body[i]);
-            after(newNode);
-            changed = true;
-            --i; // revisit
-          }
-        }
-      } else if (e.type === 'ReturnStatement') {
-        if (!e.argument) {
-          log('Return statement is not normalized. Request another pass.');
-          changed = true;
-        } else if (e.argument.type === 'SequenceExpression') {
-          // This assumes sub-statements are normalized to be groups already
-          rold('Argument of return statement can not be sequence');
-          log('- `return (a,b)` --> `a; return b;`');
-          const seq = e.argument;
-          const exprs = seq.expressions;
-          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          e.argument = exprs[exprs.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
-        } else if (e.argument.type === 'MemberExpression' && e.argument.object.type === 'SequenceExpression') {
-          // This assumes sub-statements are normalized to be groups already
-          rold('Argument of return statement can not be member expression on sequence');
-          log('- `return (a, b).foo` --> `a; return b.foo`');
-          const seq = e.argument.object;
-          const exprs = seq.expressions;
-          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          e.argument.object = exprs[exprs.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
-        } else if (e.argument.type === 'ConditionalExpression') {
-          rold('Conditional / ternary expressions should not be return argument');
-          if (node.kind === 'var') log('- `var x = a ? b : c` --> `{ var x; if (a) a = b; else a = c; }');
-          if (node.kind === 'let') log('- `let x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-          if (node.kind === 'const') log('- `const x = a ? b : c` --> `{ let x; if (a) a = b; else a = c; }');
-          before(e.argument);
-
-          const newNode = AST.ifStatement(
-            e.argument.test,
-            AST.returnStatement(e.argument.consequent),
-            AST.returnStatement(e.argument.alternate),
-          );
-          node.body[i] = newNode;
-
-          after(newNode);
-          changed = true;
-          --i; // revisit
-        }
-      } else if (e.type === 'IfStatement') {
-        if (e.test.type === 'SequenceExpression') {
-          // This assumes sub-statements are normalized to be groups already
-          rold('Test of if statement can not be sequence');
-          log('- `if (a,b) c` --> `a; if (b) c;`');
-          const seq = e.test;
-          const exprs = seq.expressions;
-          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          e.test = exprs[exprs.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
-        } else if (e.test.type === 'MemberExpression' && e.test.object.type === 'SequenceExpression') {
-          // This assumes sub-statements are normalized to be groups already
-          rold('Argument of return statement can not be member expression on sequence');
-          log('- `if ((a,b).foo) c` --> `a; if (b.foo) c;`');
-          const seq = e.test.object;
-          const exprs = seq.expressions;
-          node.body.splice(i, 0, ...exprs.slice(0, -1).map((enode) => AST.expressionStatement(enode)));
-          // Replace the old sequence expression with its last element
-          e.test.object = exprs[exprs.length - 1];
-          changed = true;
-          --i; // revisit (recursively)
-        }
-      }
-      ++i;
-    }
   }
 
   function ensureVarDeclsCreateOneBinding(body) {
@@ -890,116 +512,17 @@ export function phaseNormalize(fdata, fname) {
       if (e.type === 'VariableDeclaration') {
         log('- var decl has', e.declarations.length, 'declarators');
         if (e.declarations.length > 1) {
-          rold('One binding per variable declaration');
-          log('- `var a, b` --> `var a; var b;`');
-          log('- `var a = 1, b = 2` --> `var a = 1; var b = 1;`');
-          body.splice(i, 1, ...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind)));
+          rule('One binding per variable declaration');
+          example('var a, b', 'var a; var b;');
+          example('var a = 1, b = 2', 'var a = 1; var b = 1;');
+          before(e);
+
+          const newNodes = [...e.declarations.map((dnode) => AST.variableDeclaration(dnode.id, dnode.init, e.kind))];
+          body.splice(i, 1, ...newNodes);
+
+          after(newNodes);
           changed = true;
           --i; // revisit (recursively)
-        } else {
-          const decl = e.declarations[0];
-          if (decl.init) {
-            const init = decl.init;
-            if (init.type === 'ArrayPattern' || init.type === 'ObjectPattern') {
-              // Need to revisit after compiling patterns out
-              changed = true;
-            } else if (init.type === 'AssignmentExpression') {
-              // Note: this transform is only safe with simple left or right sides.
-              // If the right side is simple use the right side as init.
-              // If the left side is simple use the left side as init.
-              // If neither is simple then uhh uh uhh todo.
-              if (init.left.type === 'ArrayPattern' || init.left.type === 'ObjectPattern') {
-                // Need to revisit after compiling patterns out
-                changed = true;
-              } else if (!isComplexNode(init.right)) {
-                rold('Init of a var binding must not be assignment, with simple rhs');
-                log('- `let x = y().foo = z` --> `y().foo = z; let x = z`');
-                before(decl);
-                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
-
-                body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.right, e.kind));
-
-                after(body[i]);
-                after(body[i + 1]);
-                changed = true;
-                //--i;
-              } else if (!isComplexNode(init.left)) {
-                rold('Init of a var binding must not be assignment, with simple lhs');
-                log('- `let x = y = z()` --> `y = z(); let x = y`');
-                before(decl);
-                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
-
-                body.splice(i, 1, AST.expressionStatement(init), AST.variableDeclaration(decl.id, init.left, e.kind));
-
-                after(body[i]);
-                after(body[i + 1]);
-                changed = true;
-                //--i;
-              } else {
-                rold('Init of a var binding must not be assignment, with both sides complex');
-                log('- `let x = y().foo = z().foo` --> `let tmp = y(); let tmp2 = z(); y.foo = tmp2; let x = tmp2;`');
-                before(decl);
-                ASSERT(decl.id.type === 'Identifier', 'no more patterns here');
-                ASSERT(init.left.type === 'MemberExpression', 'what else do you assign to if not simple nor member?', e, init);
-
-                // We need two new vars because we need to evaluate the lhs before we evaluate the rhs
-                // Consider `let a = $(1).x = $(2)`. This should call $ with 1 before 2.
-                const tmpNameLhs = createFreshVarInCurrentRootScope('tmpBindInitMemberObject');
-                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpBindInitRhs');
-                const mem = init.left;
-
-                body.splice(
-                  i,
-                  1,
-                  AST.variableDeclaration(tmpNameLhs, mem.object),
-                  AST.variableDeclaration(tmpNameRhs, init.right),
-                  AST.expressionStatement(
-                    AST.assignmentExpression(AST.memberExpression(tmpNameLhs, mem.property, mem.computed), tmpNameRhs),
-                  ),
-                  AST.variableDeclaration(decl.id, tmpNameRhs, e.kind),
-                );
-
-                after(body[i]);
-                after(body[i + 1]);
-                after(body[i + 2]);
-                after(body[i + 3]);
-                changed = true;
-                //--i;
-              }
-            } else if (init.type === 'LogicalExpression') {
-              if (init.operator === '||') {
-                rold('Logical `||` in var init assignment should be if-else');
-                log('- `var x = a() || b` --> `{ var x = a(); if (x); else x = b; }`');
-                before(decl);
-
-                body.splice(
-                  i,
-                  1,
-                  AST.variableDeclaration(decl.id, init.left, e.kind === 'const' ? 'let' : e.kind),
-                  AST.ifStatement(decl.id, AST.emptyStatement(), AST.expressionStatement(AST.assignmentExpression(decl.id, init.right))),
-                );
-
-                changed = true;
-                after(body[i]);
-                after(body[i + 1]);
-              } else if (init.operator === '&&') {
-                rold('Logical `&&` in var init assignment should be if-else');
-                log('- `var x = a() && b` --> `{ var x = a(); if (x) x = b; }`');
-                before(e);
-
-                body.splice(
-                  i,
-                  1,
-                  AST.variableDeclaration(decl.id, init.left, e.kind === 'const' ? 'let' : e.kind),
-                  AST.ifStatement(decl.id, AST.expressionStatement(AST.assignmentExpression(decl.id, init.right))),
-                );
-
-                changed = true;
-                after(body[i]);
-                after(body[i + 1]);
-              }
-            }
-          }
         }
       }
       ++i;
@@ -1014,6 +537,7 @@ export function phaseNormalize(fdata, fname) {
     // TODO: maybe this should be its own phase as we shouldn't need to do this more than once
 
     group('Hoisting(' + body.length + 'x)');
+    ASSERT(Array.isArray(body), 'the body is an array of statements/decls', body);
 
     let stage = HOISTING_FUNC;
     let funcs = 0;
@@ -1084,7 +608,7 @@ export function phaseNormalize(fdata, fname) {
         }
         ++vars;
       } else {
-        log(' -', i, 'is not a relevant hoisting target;', snode.type);
+        log(' -', i, 'is not a relevant hoisting target;', snode.type, snode.type === 'VariableDeclaration' ? snode.kind : '');
         stage = HOISTING_AFTER;
       }
     }
@@ -1135,180 +659,6 @@ export function phaseNormalize(fdata, fname) {
     }
 
     groupEnd();
-  }
-
-  function normalizeCallArgsChangedSomething(node, isNew) {
-    // If this returns true, then the given node was replaced and already walked
-
-    // Scan all the args. If any of them are not simple, store all of them in fresh variables and
-    // pass those around. The reason we do them all in that case is to prevent issues where the
-    // variable gets updated in a later argument position, like `f(a, ++a) --> tmp=++a,f(a, tmp)` would be wrong.
-
-    // The expression can be changed inline so we can do it right now, before traversing.
-    // We first need to scan to check whether it's necessary at all. This should not be a big deal as most calls
-    // will have less than a handful of arguments.
-
-    const has = node.arguments.some((anode) => {
-      return isComplexNode(anode.type === 'SpreadElement' ? anode.argument : anode);
-    });
-
-    if (has) {
-      if (isNew) {
-        rold('New args must be simple nodes');
-        log('- `new F(x())` --> `(tmp=x(), new F(tmp)`');
-        log('- `new F(...x())` --> `(tmp=x(), new F(...tmp)`');
-        log('- `new F(a, ++a)` --> `(tmp=a, tmp2=++a, new F(tmp, tmp2)`');
-        log('- `new F(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), new F(t1, 100, t2, a, t3))`');
-      } else {
-        rold('Call args must be simple nodes');
-        log('- `f(x())` --> `(tmp=x(), f(tmp)`');
-        log('- `f(...x())` --> `(tmp=x(), f(...tmp)`');
-        log('- `f(a, ++a)` --> `(tmp=a, tmp2=++a, f(tmp, tmp2)`');
-        log('- `f(x(), 100, y(), a, z())` --> `(t1=x(), t2=y(), t3=z(), f(t1, 100, t2, a, t3))`');
-      }
-      before(node);
-
-      // Note: must assign ALL args to a fresh var because `f(a, ++a) --> tmp=++a,f(a,tmp)` is a bad bug.
-      const assigns = [];
-      let newArgs = [];
-      node.arguments.forEach((anode, i) => {
-        const target = anode.type === 'SpreadElement' ? anode.argument : anode;
-        if (
-          target.type === 'Literal' ||
-          (target.type === 'Identifier' && ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(target.name))
-        ) {
-          // Don't re-assign literals. They are immutable, there's no point or risk.
-          if (anode.type === 'SpreadElement') {
-            newArgs.push(anode);
-          } else {
-            newArgs.push(anode);
-          }
-        } else {
-          const tmpName = createFreshVarInCurrentRootScope('tmpArg', true);
-
-          if (anode.type === 'SpreadElement') {
-            assigns.push(AST.assignmentExpression(tmpName, anode.argument));
-            newArgs.push(AST.spreadElement(tmpName));
-          } else {
-            assigns.push(AST.assignmentExpression(tmpName, anode));
-            newArgs.push(AST.identifier(tmpName));
-          }
-        }
-      });
-
-      if (assigns.length) {
-        const seq = AST.sequenceExpression(
-          ...assigns,
-          isNew ? AST.newExpression(node.callee, newArgs) : AST.callExpression(node.callee, newArgs),
-        );
-
-        crumbSet(1, seq);
-        changed = true;
-
-        after(seq);
-
-        // Visit the sequence expression node now.
-        _expr(seq);
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  function normalizeArrayElementsChangedSomething(node) {
-    // If this returns true, then the given node was replaced and already walked
-
-    // For all elements that are not an identifier or literal, store them in a temporary variable first.
-    // `[x(), 100, y(), a, z()]` -> `(t1=x(), t2=y(), t3=z(), [t1, 100, t2, a, t3])`
-    // The expression can be changed inline so we can do it right now, before traversing.
-
-    const assigns = [];
-    const newElements = [];
-    node.elements.forEach((anode, i) => {
-      // Elided elements are `null` here. Skip 'em
-      if (!anode) return newElements.push(null);
-
-      let valueNode = anode;
-      if (anode.type === 'SpreadElement') {
-        valueNode = anode.argument;
-        crumb(anode, 'argument', -1);
-      }
-
-      if (isComplexNode(valueNode)) {
-        const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
-        assigns.push(AST.assignmentExpression(tmpName, valueNode));
-        newElements.push(anode.type === 'SpreadElement' ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
-      } else {
-        // Use anode because if this was a spread then we'd want to keep it
-        newElements.push(anode);
-      }
-
-      if (anode.type === 'SpreadElement') {
-        uncrumb(anode, 'argument', -1);
-      }
-    });
-    if (assigns.length) {
-      rold('Elements of array literals must be simple nodes');
-      log('- `[f()]` --> `(tmp=f(), [tmp])`');
-
-      const seq = AST.sequenceExpression(...assigns, AST.arrayExpression(newElements));
-
-      crumbSet(1, seq);
-      changed = true;
-
-      // Visit the sequence expression node now.
-      _expr(seq);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  function normalizeCalleeChangedSomething(node, isNew) {
-    // Technically doing a `new` on any literal will cause a runtime error, but let's not bother with normalizing them to ident
-    // Note: for regular calls, the context can be determined by a member expression, so make sure to not change those.
-    if (isComplexNode(node.callee) && (isNew || node.callee.type !== 'MemberExpression')) {
-      if (isNew) {
-        rold('Callee of new must be simple node');
-        log('- `new x.y(a,b)` --> `(tmp=x.y, new tmp(a,b))`');
-      } else {
-        rold('Callee of call must be simple node or member expression');
-        log('- `$()(a,b)` --> `(tmp=$(), tmp)(a,b))`');
-      }
-
-      const tmpName = createFreshVarInCurrentRootScope('tmpNewObj', true);
-
-      const assign = AST.assignmentExpression(tmpName, node.callee);
-      const newNode = isNew ? AST.newExpression(tmpName, node.arguments) : AST.callExpression(tmpName, node.arguments);
-      const seq = AST.sequenceExpression(assign, newNode);
-
-      crumbSet(1, seq);
-      _expr(seq);
-      changed = true;
-      return true;
-    } else if (!isNew && node.callee.type === 'MemberExpression' && node.callee.object.type === 'SequenceExpression') {
-      rold('Callee of a call can not be member expression on sequence');
-      log('- `(a, b).c()` -> `(a, b.c())`');
-      log('- `(a, b)[c]()` -> `(a, b[c]())`');
-
-      const mem = node.callee;
-      const exprs = mem.object.expressions;
-      const prop = mem.property;
-
-      const seq = AST.sequenceExpression(
-        ...exprs.slice(0, -1),
-        AST.memberCall(exprs[exprs.length - 1], prop, node.arguments, mem.computed),
-      );
-      crumbSet(1, seq);
-
-      changed = true;
-      return true;
-    } else {
-      return false;
-    }
   }
 
   function stmt(parent, prop, index, node, isExport = '', isFunctionBody = false) {
@@ -1369,7 +719,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'BreakStatement': {
         if (node.label) {
-          log('Recording', node.label.name, 'as being used here');
+          log('Recording label `' + node.label.name + '` as being used here');
           const parent = crumbsNodes[crumbsNodes.length - 1];
           const prop = crumbsProps[crumbsProps.length - 1];
           const index = crumbsIndexes[crumbsIndexes.length - 1];
@@ -1386,7 +736,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'ContinueStatement': {
         if (node.label) {
-          log('Recording', node.label.name, 'as being used here');
+          log('Recording label `' + node.label.name + '` as being used here');
           const parent = crumbsNodes[crumbsNodes.length - 1];
           const prop = crumbsProps[crumbsProps.length - 1];
           const index = crumbsIndexes[crumbsIndexes.length - 1];
@@ -1524,50 +874,31 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'LabeledStatement': {
-        // TODO: this needs more thinking, more test cases. Especially around loops/continue
-        if (
-          !['BlockStatement', 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'].includes(
-            node.body.type,
-          )
-        ) {
-          // TODO: can we get rid of the labeled continue such that we dont have to make this exception? Guess it won't be easy.
-          rold('Label sub-statement must be block unless it is a loop');
-          log('- `x: y` --> `x: { y }`');
-          before(node);
+        //// TODO: this needs more thinking, more test cases. Especially around loops/continue
+        //if (
+        //  !['BlockStatement', 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'].includes(
+        //    node.body.type,
+        //  )
+        //) {
+        //  // TODO: can we get rid of the labeled continue such that we dont have to make this exception? Guess it won't be easy.
+        //  rold('Label sub-statement must be block unless it is a loop');
+        //  log('- `x: y` --> `x: { y }`');
+        //  before(node);
+        //
+        //  node.body = AST.blockStatement(node.body);
+        //
+        //  changed = true;
+        //  after(node);
+        //}
+        //
 
-          node.body = AST.blockStatement(node.body);
-
-          changed = true;
-          after(node);
-        }
-
-        ASSERT(
-          !fdata.globallyUniqueLabelRegistery.has(node.label.name) || fdata.globallyUniqueLabelRegistery.get(node.label.name) === true,
-          'labels should be made unique in phase1',
-          fdata.globallyUniqueLabelRegistery,
-          node,
-        );
-        const parent = crumbsNodes[crumbsNodes.length - 1];
-        const prop = crumbsProps[crumbsProps.length - 1];
-        const index = crumbsIndexes[crumbsIndexes.length - 1];
-        fdata.globallyUniqueLabelRegistery.set(node.label.name, {
-          // ident meta data
-          name: node.label.name,
-          uniqueName: node.label.name,
-          labelNode: {
-            parent,
-            prop,
-            index,
-          },
-          usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-        });
-
-        stmt(node, 'body', -1, node.body);
+        // The transformer will immediately walk
+        //stmt(node, 'body', -1, node.body);
         break;
       }
 
       case 'Program': {
-        anyBlock(node, true);
+        anyBlock(node);
         break;
       }
 
@@ -1702,622 +1033,19 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'ArrayExpression': {
-        if (!normalizeArrayElementsChangedSomething(node)) {
-          for (let i = 0; i < node.elements.length; ++i) {
-            const elNode = node.elements[i];
-            group('-', elNode ? elNode.type : '<none>');
-            if (elNode) {
-              if (elNode.type === 'SpreadElement') {
-                // Special case spread because its behavior differs per parent case
-                if (isComplexNode(elNode.argument)) {
-                  rold('Spread args in array must be simple nodes');
-                  log('- `[...a()]` --> `(tmp = a(), [...tmp])`');
-                  before(elNode);
-
-                  const tmpName = createFreshVarInCurrentRootScope('tmpArrSpreadArg', true);
-                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, elNode.argument), node);
-                  elNode.argument = AST.identifier(tmpName);
-                  crumbSet(1, newNode);
-
-                  after(newNode);
-                  changed = true;
-
-                  _expr(newNode);
-                } else {
-                  expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
-                }
-              } else {
-                expr(node, 'elements', i, elNode);
-              }
+        node.elements.forEach((elNode, i) => {
+          if (elNode) {
+            if (elNode.type === 'SpreadElement') {
+              expr2(node, 'elements', i, elNode, 'argument', -1, elNode.argument);
+            } else {
+              expr(node, 'elements', i, elNode);
             }
-            groupEnd();
           }
-        }
+        });
         break;
       }
 
       case 'AssignmentExpression': {
-        if (node.left.type === 'ObjectPattern') {
-          const rhsTmpName = createFreshVarInCurrentRootScope('objAssignPatternRhs');
-          const cacheNameStack = [rhsTmpName];
-          const newBindings = [];
-
-          funcArgsWalkObjectPattern(node.left, cacheNameStack, newBindings, 'assign', true);
-
-          if (newBindings.length) {
-            rold('Assignment obj patterns not allowed');
-            before(node);
-            log('- `({x} = y())` --> `tmp = y(), x = tmp.x, tmp`');
-
-            // Replace this assignment node with a sequence
-            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
-
-            const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
-
-            // First assign the current rhs to a tmp variable.
-            newBindings.unshift([rhsTmpName, FRESH, node.right]);
-
-            const expressions = [];
-            newBindings.forEach(([name, fresh, expr]) => {
-              if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
-              expressions.push(AST.assignmentExpression(name, expr));
-            });
-            expressions.push(AST.identifier(rhsTmpName));
-            const newNode = AST.sequenceExpression(expressions);
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-          } else {
-            rold('Assignment obj patterns not allowed, empty');
-            log('- `({} = y())` --> `y()`');
-            before(node);
-            crumbSet(1, node.right);
-            after(node.right);
-            changed = true;
-
-            _expr(node.right);
-          }
-          break;
-        }
-
-        if (node.left.type === 'ArrayPattern') {
-          const rhsTmpName = createFreshVarInCurrentRootScope('arrAssignPatternRhs');
-          const cacheNameStack = [rhsTmpName];
-          const newBindings = [];
-
-          funcArgsWalkArrayPattern(node.left, cacheNameStack, newBindings, 'assign');
-
-          if (newBindings.length) {
-            rold('Assignment arr patterns not allowed, non-empty');
-            example('[x] = y()', 'var tmp, tmp1; tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp');
-            before(node);
-
-            // Replace this assignment node with a sequence
-            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
-            // Final step in sequence must still be origina rhs (`a = [x] = y` will assign `y` to `a`, not `x`)
-
-            const varBindingsToInject = funcStack[funcStack.length - 1].$p.varBindingsToInject;
-
-            // First assign the current rhs to a tmp variable.
-            newBindings.unshift([rhsTmpName, FRESH, node.right]);
-
-            const expressions = [];
-            newBindings.forEach(([name, fresh, expr]) => {
-              if (fresh) varBindingsToInject.push(AST.variableDeclaration(name, null, 'var'));
-              expressions.push(AST.assignmentExpression(name, expr));
-            });
-            expressions.push(AST.identifier(rhsTmpName));
-            const newNode = AST.sequenceExpression(expressions);
-
-            crumbSet(1, newNode);
-            after(newNode);
-
-            changed = true;
-            _expr(newNode);
-          } else {
-            rold('Assignment arr patterns not allowed, empty');
-            log('- `[] = y()` --> `y()`'); // TODO: Does it have to be spreaded anyways? Do I care?
-            before(node);
-
-            crumbSet(1, node.right);
-            after(node.right);
-
-            changed = true;
-            _expr(node.right);
-          }
-
-          break;
-        }
-
-        ASSERT(node.left.type === 'Identifier' || node.left.type === 'MemberExpression', 'uhhh was there anything else assignable?', node);
-
-        if (node.left.type === 'MemberExpression') {
-          // a.b = c
-          // a[b] = c
-          const lhs = node.left;
-          const a = node.left.object;
-          const b = node.left.property;
-          const c = node.right;
-
-          if (isComplexNode(a)) {
-            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
-            rold('Assignment to member expression must have simple lhs');
-            example('a().b = c()', '(tmp = a(), tmp2.b = c()', () => !node.computed);
-            example('a()[b()] = c()', '(tmp = a(), tmp2[b()] = c()', () => node.computed);
-            before(node);
-
-            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj', true);
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-              AST.assignmentExpression(
-                AST.memberExpression(tmpNameObj, b, lhs.computed), // tmp.b or tmp[b()]
-                c,
-                node.operator, // tmp.b = tmp2
-              ),
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (node.left.computed && isComplexNode(b)) {
-            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
-            rold('Assignment to computed property must have simple property node');
-            example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
-            before(node);
-
-            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignComMemLhsObj', true);
-            const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignComMemLhsProp', true);
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-              AST.assignmentExpression(tmpNameProp, b), // tmp2 = b()
-              AST.assignmentExpression(
-                AST.memberExpression(tmpNameObj, tmpNameProp, lhs.computed), // tmp[tmp2]
-                c,
-                node.operator, // tmp[b] = c()
-              ),
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (node.operator !== '=') {
-            // The compound assignment is not assignable so no need to return an assignment or assignable
-            // The a and b ought to be simple at this point. It's not relevant whether or not it's computed.
-
-            rold('Compound assignment to property must be regular assignment');
-            example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()');
-            before(node);
-
-            const tmpNameLhs = createFreshVarInCurrentRootScope('tmpCompoundAssignLhs', true);
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpNameLhs, AST.memberExpression(a, b, lhs.computed)), // tmp = a.b or tmp = a[b]
-              AST.assignmentExpression(
-                AST.memberExpression(a, b, lhs.computed),
-                AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
-              ), // tmp.b = tmp2 or tmp[b] = tmp2
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (lhs.computed && (isComplexNode(a, node.operator === '=') || isComplexNode(b) || isComplexNode(c))) {
-            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
-            rold('Assignment to computed property must have simple object, property expression, and rhs');
-            example('a()[b()] = c()', '(tmp = a(), tmp2 = b(), tmp3 = c(), tmp)[tmp2] = tmp3');
-            before(node);
-
-            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignComputedObj', true);
-            const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignComputedProp', true);
-            const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignComputedRhs', true);
-            const newNode = AST.assignmentExpression(
-              AST.memberExpression(
-                AST.sequenceExpression(
-                  AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-                  AST.assignmentExpression(tmpNameProp, b), // tmp = b()
-                  AST.assignmentExpression(tmpNameRhs, c), // tmp = c()
-                  AST.identifier(tmpNameObj),
-                ),
-                tmpNameProp,
-                lhs.computed,
-              ),
-              tmpNameRhs,
-              node.operator, // tmp[tmp2] = tmp3
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (!lhs.computed && (isComplexNode(a, node.operator === '=') || isComplexNode(c))) {
-            // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
-            rold('Assignment to member expression must have simple lhs and rhs');
-            example('a().b = c()', '(tmp = a(), tmp2 = c(), tmp).b = tmp2');
-            before(node);
-
-            const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj', true);
-            const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignMemRhs', true);
-            const newNode = AST.assignmentExpression(
-              AST.memberExpression(
-                AST.sequenceExpression(
-                  AST.assignmentExpression(tmpNameObj, a), // tmp = a()
-                  AST.assignmentExpression(tmpNameRhs, c), // tmp2 = c()
-                  AST.identifier(tmpNameObj), // tmp
-                ),
-                b, // tmp.b
-              ),
-              tmpNameRhs,
-              node.operator, // tmp.b = tmp2
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-        }
-
-        if (node.right.type === 'AssignmentExpression') {
-          ASSERT(
-            node.left.type === 'Identifier',
-            'since we can only assign to ident or member and we already checked member with complex rhs, this must be ident now',
-          );
-
-          // To preserve observable side effect order we have to process a few cases here in a specific way
-          // We have to do it here because a recursive parse would not have a statement parent, which I want, so... ugh
-          // Note: if a, b, or c is complex then it must be evaluated in a b c order. And only once each.
-          // 1 - `a = b = c` --> `b = c, a = c` (end state)
-          // 2 - `a = b = c()` --> `tmp = c(), a = b = tmp` --> 1 (I think, but we could also do to `b = c(), a = b` ...)
-          // 3 - `a = b.x = c` --> `b.x = c, a = c` (end state)
-          // 4 - `a = b.x = c()` --> `tmp = c(), a = b.x = tmp` --> 3
-          // 5 - `a = b().x = c` --> `tmp = b(), a = tmp.x = c` --> 4
-          // 6 - `a = b().x = c()` --> `tmp = b(), a = tmp.x = c()` --> 4
-          // or
-          // if the rhs.lhs.object or rhs.rhs is complex, store it in tmp.
-          // if the rhs.lhs is a member expression, the property is not read (so that can't serve as the rhs)
-          // in other words, if we make sure to stash the rhs.lhs.object in a tmp var, and then the rhs.rhs,
-          // then we should always be able to use the rhs.rhs (which must be simple at that point) for the
-          // `b = c, a = c` base case safely, regardless whether b is a member expression or ident.
-          // TODO: do we want to special case `a = (b, c).d = e` --> `(b, a = c.d = e)`? It's no problem now, just adds an unnecessary var
-
-          const a = node.left;
-          const lhs = node.right.left;
-
-          if (lhs.type === 'Identifier') {
-            // a = b = c
-            const b = lhs;
-            const c = node.right.right;
-
-            if (isComplexNode(c)) {
-              // In this case, b is only set, so we don't need to cache even if c() would change it
-              rold('The rhs.rhs of a nested assignment must be simple');
-              example('a = b = c()', 'tmp = c(), a = b = tmp', () => node.right.operator === '=');
-              example('a = b += c()', 'tmp = c(), a = b += tmp', () => node.right.operator !== '=');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedComplexRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, c),
-                AST.assignmentExpression(a, AST.assignmentExpression(b, tmpName, node.right.operator), node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            if (node.right.operator !== '=') {
-              // This is a = b *= c with all idents
-              rold('Nested compound assignment with all idents must be split');
-              example('a = b *= c', 'tmp = b * c, b = tmp, c = tmp');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedCompoundComplexRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), b, c)),
-                AST.assignmentExpression(b, tmpName),
-                AST.assignmentExpression(a, tmpName, node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            // This is a = b = c with all idents
-            rold('Nested assignment with all idents must be split');
-            example('a = b = c', 'b = c, a = c');
-            before(node);
-
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(b, c, node.right.operator),
-              AST.assignmentExpression(a, c, node.operator),
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (lhs.type === 'MemberExpression') {
-            // a = b.c = d
-            // `$(1)[$(2)] = $(3)` is evaluated in 1, 2, 3 order
-            const b = lhs.object;
-            const c = lhs.property;
-            const d = node.right.right;
-
-            if (isComplexNode(b)) {
-              // Even if c is computed, b would be evaluated before c so we don't need to preserve its before-value.
-              rold('The object of a nested property assignment must be a simple node');
-              example('a = b().c = d', 'tmp = b(), a = tmp.c = d()', () => !lhs.computed);
-              example('a = b()[c] = d', 'tmp = b(), a = tmp[c()] = d()', () => lhs.computed);
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignObj', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, b),
-                AST.assignmentExpression(
-                  a,
-                  AST.assignmentExpression(AST.memberExpression(tmpName, c, lhs.computed), d, node.right.operator),
-                  node.operator,
-                ),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            if (lhs.computed && isComplexNode(c)) {
-              // In this case we only need to store b in a var first, since the execution of c may change it after the fact
-              // (so we must store the value before evaluating c) but we don't have to care if calling b or c changes the
-              // value of d since that would always be evaluated last.
-              rold('The property of a nested assignment to a computed property must be a simple node');
-              example('a = b[c()] = d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => !b.computed);
-              before(node);
-
-              const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberObj', true);
-              const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberProp', true);
-
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpNameObj, b),
-                AST.assignmentExpression(tmpNameProp, c),
-                AST.assignmentExpression(
-                  a,
-                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), d, node.right.operator),
-                  node.operator,
-                ),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            // We must be left with `a = b.c = d()` or `a = b[c] = d()`, which must all be simple nodes except d
-            // and which may be a compound assignment. We need to check that first to preserve get/set order.
-
-            if (node.right.operator !== '=') {
-              rold('Nested compound prop assignment with all idents must be split');
-              example('a = b.x *= c', 'tmp = b.x * c, b = tmp, c = tmp');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropCompoundComplexRhs', true);
-              const newNode = AST.sequenceExpression(
-                AST.assignmentExpression(tmpName, AST.binaryExpression(node.right.operator.slice(0, -1), lhs, d)),
-                AST.assignmentExpression(lhs, tmpName),
-                AST.assignmentExpression(a, tmpName, node.operator),
-              );
-
-              crumbSet(1, newNode);
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              break;
-            }
-
-            if (isComplexNode(d)) {
-              if (lhs.computed) {
-                // We must store all values, a, b, and c, because evaluating d() may change the values of a, b, and/or c
-                // which would lead to a different semantics without storing their before-value.
-                rold('The rhs of a nested assignment to a computed property must be simple');
-                example('a = b()[c()] = d()', 'tmp = b(), tmp2 = c(), tmp3 = d(), tmp[tmp2] = tmp3, a = tmp3');
-                before(node);
-
-                const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberObj', true);
-                const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberProp', true);
-                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignCompMemberRhs', true);
-
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(tmpNameObj, b),
-                  AST.assignmentExpression(tmpNameProp, c),
-                  AST.assignmentExpression(tmpNameRhs, d),
-                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs, node.right.operator),
-                  AST.assignmentExpression(a, tmpNameRhs, node.operator),
-                );
-
-                crumbSet(1, newNode);
-                after(newNode);
-                changed = true;
-
-                _expr(newNode);
-              } else {
-                // We must store b because evaluating d() may change the value of b (through a closure)
-                // which would lead to a different semantics without storing their before-value.
-                rold('The rhs of a nested assignment to a regular property must be simple');
-                example('a = b.c = d()', 'tmp = b, tmp2 = d(), tmp.c = tmp2, a = tmp2');
-                before(node);
-
-                const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignMemberObj', true);
-                const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignMemberRhs', true);
-
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(tmpNameObj, b),
-                  AST.assignmentExpression(tmpNameRhs, d),
-                  AST.assignmentExpression(AST.memberExpression(tmpNameObj, c), tmpNameRhs, node.right.operator),
-                  AST.assignmentExpression(a, tmpNameRhs, node.operator),
-                );
-
-                crumbSet(1, newNode);
-                after(newNode);
-                changed = true;
-
-                _expr(newNode);
-              }
-
-              break;
-            }
-
-            ASSERT(!isComplexNode(b));
-            ASSERT(!lhs.computed || !isComplexNode(c));
-            ASSERT(!isComplexNode(d));
-            rold('Nested assignment to property where all nodes are simple must be split up');
-            example('a = b.c = d', 'tmp = d, b.c = tmp, a = tmp'); // TODO: are we happier/better off with one or two uses of `tmp`?
-            before(node);
-
-            const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropAssignRhs', true);
-
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpName, d),
-              AST.assignmentExpression(lhs, tmpName, node.right.operator),
-              AST.assignmentExpression(a, tmpName, node.operator),
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          if (lhs.type === 'ArrayPattern') {
-            log('Array pattern, needs another pass');
-
-            expr(node, 'left', -1, a); // TODO: do we visit left?
-            expr(node, 'right', -1, node.right);
-
-            changed = true;
-            break;
-          }
-
-          if (lhs.type === 'ObjectPattern') {
-            log('Object pattern, needs another pass');
-
-            expr(node, 'left', -1, a); // TODO: do we visit left?
-            expr(node, 'right', -1, node.right);
-
-            changed = true;
-            break;
-          }
-
-          ASSERT(false, 'wait wat?');
-        }
-
-        if (node.right.type === 'SequenceExpression') {
-          rold('Assignment rhs must not be sequence');
-          log('- `a = (b, c)` --> `(b, a = c)`');
-          before(node);
-
-          const seq = node.right;
-          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
-          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.assignmentExpression(node.left, exprs.pop(), node.operator));
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
-        if (node.right.type === 'MemberExpression' && node.right.object.type === 'SequenceExpression') {
-          rold('Assignment rhs must not be property on a sequence ');
-          log('- `a = (b, c).x` --> `(b, a = c.x)`');
-          before(node);
-
-          const seq = node.right.object;
-          const exprs = seq.expressions.slice(0); // Last one will replace the sequence
-          const newNode = AST.sequenceExpression(
-            ...exprs.slice(0, -1),
-            AST.assignmentExpression(
-              node.left,
-              AST.memberExpression(exprs[exprs.length - 1], node.right.property, node.right.computed),
-              node.operator,
-            ),
-          );
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
-        if (node.operator !== '=') {
-          ASSERT(
-            !isComplexNode(node.left) || (node.left.type === 'MemberExpression' && !isComplexNode(node.left.object)),
-            'lhs should be ident or simple member expression',
-            node.left,
-          );
-
-          rold('Compound assignments should be non-compound');
-          log('- `a += b()` --> `a = a + b()`');
-          log('- `a.b += b()` --> `a.b = a.b + b()`');
-          before(node);
-
-          const newNode = AST.assignmentExpression(
-            node.left,
-            AST.binaryExpression(node.operator.slice(0, -1), node.left, node.right), // += becomes +, >>>= becomes >>>, etc
-          );
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
         // At this point the lhs should be either an identifier or member expression with simple object and
         // the rhs should neither be an assignment nor a sequence expression. With assignment operator `=`.
         // TODO: should it visit the rhs before the lhs? should it special case the lhs here?
@@ -2328,18 +1056,23 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
-        if (node.expression) {
-          rold('Arrow body must be block');
-          log('- `() => x` --> `() => { return x }`');
+        ASSERT(!node.expression, 'should be block by now');
 
-          before(node);
-          node.body = AST.blockStatement(AST.returnStatement(node.body));
-          node.expression = false;
-          changed = true;
-          after(node);
-        }
+        node.params.forEach((pnode) => {
+          if (pnode.type === 'RestElement') {
+            log('- Rest param, recording usage for `' + pnode.argument.name + '`');
+            const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
+            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            meta.usages.push(pnode.argument);
+            return;
+          }
 
-        const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
+          ASSERT(pnode.type === 'Identifier', 'args should be normalized', pnode);
+
+          log('- Ident param, recording usage for `' + pnode.name + '`');
+          const meta = getMetaForBindingName(pnode);
+          meta.usages.push(pnode);
+        });
 
         stmt(node, 'body', -1, node.body, undefined, true);
 
@@ -2348,114 +1081,99 @@ export function phaseNormalize(fdata, fname) {
 
       case 'BinaryExpression': {
         log('Operator:', node.operator);
-
-        // Start with right complex because if it is, it must also outline left regardless (`x = n + ++n`)
-        if (isComplexNode(node.right)) {
-          if (isImmutable(node.left)) {
-            rold('Binary expression right must be simple');
-            example('5 === b()', '(tmp = b(), 5 === tmp2)');
-            before(node);
-
-            // The lhs is an immutable value. No need to store it in a temporary variable for safety
-            const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
-            const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
-            node.right = AST.identifier(tmpName);
-            crumbSet(1, newNode);
-
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-          } else {
-            rold('Binary expression right must be simple');
-            example('a === b()', '(tmp = a = tmp2 = b(), tmp === tmp2)');
-            before(node);
-
-            const tmpNameLeft = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
-            const tmpNameRight = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
-            const newNode = AST.sequenceExpression(
-              AST.assignmentExpression(tmpNameLeft, node.left),
-              AST.assignmentExpression(tmpNameRight, node.right),
-              AST.binaryExpression(node.operator, tmpNameLeft, tmpNameRight),
-            );
-            crumbSet(1, newNode);
-
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-          }
-        } else if (isComplexNode(node.left)) {
-          // Note: we dont need to force-move right because left already precedes it (unlike in the opposite case)
-          rold('Binary expression left must be simple');
-          log('- `a.b === c` --> `(tmp = a.b, tmp === c)`');
-          log('- `a() === c` --> `(tmp = a(), tmp === c)`');
-          log('- `(a, b).x === c` --> `(tmp = (a, b).x, tmp === c)`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
-          const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
-          node.left = AST.identifier(tmpName);
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else {
-          expr(node, 'left', -1, node.left);
-          expr(node, 'right', -1, node.right);
-        }
+        //
+        //// Start with right complex because if it is, it must also outline left regardless (`x = n + ++n`)
+        //if (isComplexNode(node.right)) {
+        //  if (isImmutable(node.left)) {
+        //    rold('Binary expression right must be simple');
+        //    example('5 === b()', '(tmp = b(), 5 === tmp2)');
+        //    before(node);
+        //
+        //    // The lhs is an immutable value. No need to store it in a temporary variable for safety
+        //    const tmpName = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
+        //    const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.right), node);
+        //    node.right = AST.identifier(tmpName);
+        //    crumbSet(1, newNode);
+        //
+        //    after(newNode);
+        //    changed = true;
+        //
+        //    _expr(newNode);
+        //  } else {
+        //    rold('Binary expression right must be simple');
+        //    example('a === b()', '(tmp = a = tmp2 = b(), tmp === tmp2)');
+        //    before(node);
+        //
+        //    const tmpNameLeft = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
+        //    const tmpNameRight = createFreshVarInCurrentRootScope('tmpBinaryRight', true);
+        //    const newNode = AST.sequenceExpression(
+        //      AST.assignmentExpression(tmpNameLeft, node.left),
+        //      AST.assignmentExpression(tmpNameRight, node.right),
+        //      AST.binaryExpression(node.operator, tmpNameLeft, tmpNameRight),
+        //    );
+        //    crumbSet(1, newNode);
+        //
+        //    after(newNode);
+        //    changed = true;
+        //
+        //    _expr(newNode);
+        //  }
+        //} else if (isComplexNode(node.left)) {
+        //  // Note: we dont need to force-move right because left already precedes it (unlike in the opposite case)
+        //  rold('Binary expression left must be simple');
+        //  log('- `a.b === c` --> `(tmp = a.b, tmp === c)`');
+        //  log('- `a() === c` --> `(tmp = a(), tmp === c)`');
+        //  log('- `(a, b).x === c` --> `(tmp = (a, b).x, tmp === c)`');
+        //  before(node);
+        //
+        //  const tmpName = createFreshVarInCurrentRootScope('tmpBinaryLeft', true);
+        //  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, node.left), node);
+        //  node.left = AST.identifier(tmpName);
+        //  crumbSet(1, newNode);
+        //
+        //  after(newNode);
+        //  changed = true;
+        //
+        //  _expr(newNode);
+        //} else {
+        expr(node, 'left', -1, node.left);
+        expr(node, 'right', -1, node.right);
+        //}
 
         break;
       }
 
       case 'CallExpression': {
+        ASSERT(!node.optional, 'optional call expressions should be transformed away', node);
         // If call is statement
         // If call is var init
         // if call is rhs of assignment of expression statement
 
-        if (!normalizeCallArgsChangedSomething(node, false)) {
-          if (!normalizeCalleeChangedSomething(node, false)) {
-            node.arguments.some((anode, i) => {
-              if (anode.type === 'SpreadElement') {
-                if (isComplexNode(anode.argument)) {
-                  rold('Spread call arg must be simple nodes');
-                  log('- `f(...a())` --> `(tmp = a(), f(...tmp))`');
-                  before(anode);
+        // `super` itself is not an actual value
+        if (node.callee.type !== 'Super') {
+          // Find the callee.
+          // If it's an ident, figure out if we can determine that it's a function.
+          // If it's a function, determine whether
+          // - it is pure; consider to inline it somehow
+          // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
+          // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
 
-                  const tmpName = createFreshVarInCurrentRootScope('tmpCallSpreadArg', true);
-                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, anode.argument), node);
-                  anode.argument = AST.identifier(tmpName);
-                  crumbSet(1, newNode);
-
-                  after(newNode);
-                  changed = true;
-
-                  _expr(node);
-                  return true;
-                } else {
-                  expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
-                }
-              } else {
-                expr(node, 'arguments', i, anode);
-              }
-            });
-
-            // `super` itself is not an actual value
-            if (node.callee.type !== 'Super') {
-              // Find the callee.
-              // If it's an ident, figure out if we can determine that it's a function.
-              // If it's a function, determine whether
-              // - it is pure; consider to inline it somehow
-              // - it has a static return value; replace the call with its value and move the call up in hopes of eliminating it
-              // - a pure function with a fixed outcome can be replaced entirely. but how many of those will we find here.
-
-              expr(node, 'callee', -1, node.callee);
-            }
-          }
+          expr(node, 'callee', -1, node.callee);
         }
 
+        node.arguments.some((anode, i) => {
+          if (anode.type === 'SpreadElement') {
+            expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+          } else {
+            expr(node, 'arguments', i, anode);
+          }
+        });
+
+        break;
+      }
+
+      case 'ChainExpression': {
+        ASSERT(false, 'optional chaining should be transformed away');
         break;
       }
 
@@ -2465,51 +1183,6 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ConditionalExpression': {
-        if (isComplexNodeOrAlreadySequenced(node.test)) {
-          rold('Test of conditional must be simple node or sequence');
-          log('- `a() ? b : c` --> `(tmp = a, tmp) ? b : c`');
-          before(node);
-          node.test = sequenceNode(node.test, 'tmpTernaryTest');
-          after(node);
-          changed = true;
-        }
-
-        if (node.test.type === 'SequenceExpression' && !isComplexNode(node.test.expressions[node.test.expressions.length - 1])) {
-          rold('Last expr of sequence as test of conditional must not be simple');
-          log('- `(a, b) ? c : d` --> `(a, (b ? c : d))`');
-          before(node);
-
-          const exprs = node.test.expressions;
-          node.test = exprs.pop();
-          const seq = AST.sequenceExpression(...exprs, node);
-          after(node);
-          crumbSet(1, seq);
-          changed = 1;
-        }
-
-        if (isComplexNodeOrAlreadySequenced(node.consequent)) {
-          // TBD whether this is worth it at all. The consequence/alternate can not be moved out
-          //     easily anyways so is there any advantage to this?
-          rold('Consequent of conditional must be simple node or sequence');
-          log('- `a ? b() : c` --> `a ? (tmp = b(), tmp) : c`');
-          before(node);
-          node.consequent = sequenceNode(node.consequent, 'tmpTernaryConsequent');
-          after(node);
-          changed = true;
-        }
-
-        if (isComplexNodeOrAlreadySequenced(node.alternate)) {
-          // TBD whether this is worth it at all. The consequence/alternate can not be moved out
-          //     easily anyways so is there any advantage to this?
-          rold('Alternate of conditional must be simple node or sequence');
-          log('- `a ? b : c()` --> `a ? b : (tmp = c(), tmp)`');
-          before(node);
-
-          node.alternate = sequenceNode(node.alternate, 'tmpTernaryAlternate');
-          after(node);
-          changed = true;
-        }
-
         expr(node, 'test', -1, node.test);
         expr(node, 'consequent', -1, node.consequent);
         expr(node, 'alternate', -1, node.alternate);
@@ -2519,7 +1192,25 @@ export function phaseNormalize(fdata, fname) {
       case 'FunctionExpression': {
         log('Name:', node.id ? node.id.name : '<anon>');
 
-        const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
+        if (node.id) expr(node, 'id', -1, node.id);
+
+        node.params.forEach((pnode) => {
+          if (pnode.type === 'RestElement') {
+            log('- Rest param, recording usage for `' + pnode.argument.name + '`');
+            const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
+            const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
+            meta.usages.push(pnode.argument);
+            return;
+          }
+
+          ASSERT(pnode.type === 'Identifier', 'args should be normalized', pnode);
+
+          log('- Ident param, recording usage for `' + pnode.name + '`');
+          const meta = getMetaForBindingName(pnode);
+          meta.usages.push(pnode);
+        });
+        //
+        //const { minParamRequired, hasRest, paramBindingNames } = processFuncArgs(node);
 
         stmt(node, 'body', -1, node.body, undefined, true);
 
@@ -2531,7 +1222,7 @@ export function phaseNormalize(fdata, fname) {
           // TODO
           const meta = getMetaForBindingName(node);
           ASSERT(meta, 'expecting meta for', node);
-          log('Recording a usage for `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
+          log('Recording a usage for ident `' + meta.originalName + '` -> `' + meta.uniqueName + '`');
           meta.usages.push(node);
         }
         break;
@@ -2550,186 +1241,37 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'LogicalExpression': {
-        log('Operator:', node.operator);
-
-        if (node.operator === '??') {
-          // TODO: do we care about the document.all exception? Make it optional?
-          rold('Nullish coalescing should be normalized away');
-          log('`a ?? b` --> `(tmp == null ? b : tmp)');
-          log('`f() ?? b` --> `(tmp = f(), (tmp == null ? b : tmp))');
-          before(node);
-
-          // Make exception if node.left is already an identifier. (For now...) don't blindly duplicate the literal.
-          const tmpName = node.left.type === 'Identifier' ? node.left.name : createFreshVarInCurrentRootScope('tmpNullish', true);
-          const newNode = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.left),
-            AST.conditionalExpression(AST.binaryExpression('==', tmpName, 'null'), node.right, tmpName),
-          );
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else {
-          expr(node, 'left', -1, node.left);
-          expr(node, 'right', -1, node.right);
-        }
+        ASSERT(false, 'should be eliminated');
+        //log('Operator:', node.operator);
+        //
+        //expr(node, 'left', -1, node.left);
+        //expr(node, 'right', -1, node.right);
         break;
       }
 
       case 'MemberExpression': {
-        // In all cases, this node can only be replaced by another member expression. The parent node may be
-        // a call expression (`(a,b).c()`) or assignment (`a.b = c`) in which case the member expression must
-        // be preserved for the sake of determining the context of the parent expression.
-
-        // Normalize `a.b.c` to `(tmp = a.b, tmp.c)` for any a that is not an ident or primitive. Then visit them.
-        // `$(1)[$(2)] = $(3)` is evaluated in 1, 2, 3 order
-
-        if (node.object.type === 'SequenceExpression') {
-          // (a, b).c
-          // Note: may be `(a,b).c()` or `(a,b).c=d` so it's important to leave the property dangling (sets context)
-          const seq = node.object;
-          const exprs = seq.expressions;
-
-          if (isComplexNode(exprs[exprs.length - 1])) {
-            rold('Last expr the sequence on which a property is accessed must be a simple node');
-            example('(a, b()).c', '(a, tmp = b(), tmp).c', () => !node.computed);
-            example('(a, b())[c]', '(a, tmp = b(), tmp)[c]', () => node.computed);
-            before(node);
-
-            const tmpName = createFreshVarInCurrentRootScope('tmpMemberSeqAssign', true);
-            const newNode = AST.memberExpression(
-              AST.sequenceExpression(
-                ...exprs.slice(0, -1),
-                AST.assignmentExpression(tmpName, exprs[exprs.length - 1]),
-                AST.identifier(tmpName),
-              ),
-              node.property,
-              node.computed,
-            );
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-
-          // Else, it's a sequence that ends in a simple node. That's a base case for us.
-        } else if (isComplexNode(node.object)) {
-          rold('Object of member expression must be simple or simple sequence');
-          example('a().b', '(tmp = a(), tmp).b', () => !node.computed);
-          example('a()[b()]', '(tmp = a(), tmp)[b()]', () => node.computed);
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpMemberComplexObj', true);
-          const newNode = AST.memberExpression(
-            AST.sequenceExpression(AST.assignmentExpression(tmpName, node.object), AST.identifier(tmpName)),
-            node.property,
-            node.computed,
-          );
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
-        if (node.computed && isComplexNode(node.property)) {
-          rold('Expression of computed property must be simple');
-          example('a[b()]', '(tmp = a, tmp2 = b(), tmp)[tmp]');
-          before(node);
-
-          const tmpNameObj = createFreshVarInCurrentRootScope('tmpComputedObj', true);
-          const tmpNameProp = createFreshVarInCurrentRootScope('tmpComputedProp', true);
-          const newNode = AST.memberExpression(
-            AST.sequenceExpression(
-              AST.assignmentExpression(tmpNameObj, node.object),
-              AST.assignmentExpression(tmpNameProp, node.property),
-              AST.identifier(tmpNameObj),
-            ),
-            tmpNameProp,
-            true,
-          );
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
-        if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
-          // If the key name is a legit key then why not. Let's just test it.
-          let simpleIdent;
-          try {
-            // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
-            simpleIdent = !!(/^[\w_$]+$/.test(node.property.value) && Function('foo.' + node.property.value) && true);
-          } catch {
-            simpleIdent = false;
-          }
-          if (simpleIdent) {
-            rold('Computed property that is valid ident must be member expression');
-            log('- `a["foo"]` --> `a.foo`');
-            log('- `a["fo+o"]` --> noop');
-            log('- `a[15]` --> noop');
-            log('- Name: `' + node.property.value + '`');
-            before(node);
-
-            node.computed = false;
-            node.property = AST.identifier(node.property.value);
-            after(node);
-            changed = true;
-          }
-        }
-
         // Note: nested member expressions need a little more love here to preserve evaluation
         // order but since we got rid of those, the traversal is simple
         ASSERT(node.object.type !== 'MemberExpression', 'at this point nested member expressions should be normalized away...');
+        ASSERT(!node.optional, 'optional member expressions should be transformed away', node);
+        expr(node, 'object', -1, node.object);
         if (node.computed) {
           expr(node, 'property', -1, node.property);
         }
-        expr(node, 'object', -1, node.object);
 
         break;
       }
 
       case 'NewExpression': {
-        if (!normalizeCallArgsChangedSomething(node, true)) {
-          if (!normalizeCalleeChangedSomething(node, true)) {
-            node.arguments.forEach((anode, i) => {
-              if (anode.type === 'SpreadElement') {
-                if (isComplexNode(anode.argument)) {
-                  rold('Spread call arg must be simple nodes');
-                  log('- `f(...a())` --> `(tmp = a(), f(...tmp))`');
-                  before(anode);
-
-                  const tmpName = createFreshVarInCurrentRootScope('tmpCallSpreadArg', true);
-                  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, anode.argument), node);
-                  anode.argument = AST.identifier(tmpName);
-                  crumbSet(1, newNode);
-
-                  after(newNode);
-                  changed = true;
-
-                  _expr(node);
-                  return true;
-                } else {
-                  expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
-                }
-              } else {
-                expr(node, 'arguments', i, anode);
-              }
-            });
-
-            expr(node, 'callee', -1, node.callee);
+        node.arguments.forEach((anode, i) => {
+          if (anode.type === 'SpreadElement') {
+            expr2(node, 'arguments', i, anode, 'argument', -1, anode.argument);
+          } else {
+            expr(node, 'arguments', i, anode);
           }
-        }
+        });
+
+        expr(node, 'callee', -1, node.callee);
 
         break;
       }
@@ -2737,182 +1279,75 @@ export function phaseNormalize(fdata, fname) {
       case 'ObjectExpression': {
         node.properties.some((pnode, i) => {
           if (pnode.type === 'SpreadElement') {
-            if (isComplexNode(pnode.argument)) {
-              rold('Spread args in obj must be simple nodes');
-              log('- `${...a()}` --> `(tmp = a(), {...tmp})`');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpObjSpreadArg', true);
-              const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.argument), node);
-              pnode.argument = AST.identifier(tmpName);
-              crumbSet(1, newNode);
-
-              after(newNode);
-              changed = true;
-
-              _expr(newNode);
-              return true;
-            } else {
-              expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
-            }
+            //if (isComplexNode(pnode.argument)) {
+            //  rold('Spread args in obj must be simple nodes');
+            //  log('- `${...a()}` --> `(tmp = a(), {...tmp})`');
+            //  before(node);
+            //
+            //  const tmpName = createFreshVarInCurrentRootScope('tmpObjSpreadArg', true);
+            //  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.argument), node);
+            //  pnode.argument = AST.identifier(tmpName);
+            //  crumbSet(1, newNode);
+            //
+            //  after(newNode);
+            //  changed = true;
+            //
+            //  _expr(newNode);
+            //  return true;
+            //} else {
+            expr2(node, 'properties', i, pnode, 'argument', -1, pnode.argument);
+            //}
           } else {
-            if (pnode.shorthand) {
-              // I think it _is_ this simple?
-              rold('Property shorthands not allowed');
-              log('- `var obj = {a}` --> `var obj = {a: a}`');
-              before(node);
-              pnode.shorthand = false;
-              after(node);
-              changed = true;
-            }
+            ASSERT(!pnode.shorthand, 'objects should be normalized now and not have shorthand props');
 
             if (pnode.computed) {
               // Visit the key before the value
 
               // TODO: if key is valid ident string, replace with identifier
 
-              if (isComplexNode(pnode.key)) {
-                rold('Computed key node must be simple');
-                log('- `obj = {[$()]: y}` --> obj = (tmp = $(), {[tmp]: y})');
-                before(node);
-
-                const tmpName = createFreshVarInCurrentRootScope('tmpComputedKey', true);
-                const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.key), node);
-                pnode.key = AST.identifier(tmpName);
-                crumbSet(1, newNode);
-
-                after(newNode);
-                changed = true;
-
-                node = newNode;
-                _expr(newNode);
-                return true;
-              } else {
-                expr2(node, 'properties', i, pnode, 'key', -1, pnode.key);
-              }
+              //if (isComplexNode(pnode.key)) {
+              //  rold('Computed key node must be simple');
+              //  log('- `obj = {[$()]: y}` --> obj = (tmp = $(), {[tmp]: y})');
+              //  before(node);
+              //
+              //  const tmpName = createFreshVarInCurrentRootScope('tmpComputedKey', true);
+              //  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.key), node);
+              //  pnode.key = AST.identifier(tmpName);
+              //  crumbSet(1, newNode);
+              //
+              //  after(newNode);
+              //  changed = true;
+              //
+              //  node = newNode;
+              //  _expr(newNode);
+              //  return true;
+              //} else {
+              expr2(node, 'properties', i, pnode, 'key', -1, pnode.key);
+              //}
             }
 
-            if (!pnode.method && pnode.kind === 'init' && isComplexNode(pnode.value)) {
-              rold('Object literal property value node must be simple');
-              log('- `obj = {x: y()}` --> obj = (tmp = y(), {x: tmp})');
-              before(node);
-
-              const tmpName = createFreshVarInCurrentRootScope('tmpObjPropValue', true);
-              const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.value), node);
-              pnode.value = AST.identifier(tmpName);
-              crumbSet(1, newNode);
-
-              after(newNode);
-              changed = true;
-
-              node = newNode;
-              _expr(newNode);
-              return true;
-            } else {
-              expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
-            }
+            //if (!pnode.method && pnode.kind === 'init' && isComplexNode(pnode.value)) {
+            //  rold('Object literal property value node must be simple');
+            //  log('- `obj = {x: y()}` --> obj = (tmp = y(), {x: tmp})');
+            //  before(node);
+            //
+            //  const tmpName = createFreshVarInCurrentRootScope('tmpObjPropValue', true);
+            //  const newNode = AST.sequenceExpression(AST.assignmentExpression(tmpName, pnode.value), node);
+            //  pnode.value = AST.identifier(tmpName);
+            //  crumbSet(1, newNode);
+            //
+            //  after(newNode);
+            //  changed = true;
+            //
+            //  node = newNode;
+            //  _expr(newNode);
+            //  return true;
+            //} else {
+            expr2(node, 'properties', i, pnode, 'value', -1, pnode.value);
+            //}
           }
         });
 
-        break;
-      }
-
-      case 'OptionalMemberExpression': {
-        // For now let's normalize this down to es5 code because I'm not sure keeping it as-is will
-        // do me any good and it's one (two) more edge cases to consider otherwise.
-
-        if (node.object.type === 'Identifier') {
-          rold('Optional member expressions should be normalized away');
-          log('`a?.b` --> `(a == undefined ? undefined : a.b)');
-          log('`a?.[b]` --> `(a == undefined ? undefined : a[b])');
-          before(node);
-
-          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
-          const newNode = AST.conditionalExpression(
-            AST.binaryExpression('==', node.object.name, 'null'), // Weak comparison! This compares vs undefined AND null
-            'undefined',
-            AST.memberExpression(node.object.name, node.property, node.computed),
-          );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else {
-          rold('Optional member expressions should be normalized away');
-          log('`f()?.b` --> `(tmp = f(), (a == undefined ? undefined : a.b))');
-          log('`f()?.[b]` --> `(tmp = f(), (a == undefined ? undefined : a[b]))');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpOptionalChaining', true);
-
-          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
-          const newNode = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.object),
-            AST.conditionalExpression(
-              AST.binaryExpression('==', tmpName, 'null'), // Weak comparison! This compares vs undefined AND null
-              'undefined',
-              AST.memberExpression(tmpName, node.property, node.computed),
-            ),
-          );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        }
-
-        break;
-      }
-
-      case 'OptionalCallExpression': {
-        // For now let's normalize this down to es5 code because I'm not sure keeping it as-is will
-        // do me any good and it's one (two) more edge cases to consider otherwise.
-
-        if (node.callee.type === 'Identifier') {
-          rold('Optional call expressions should be normalized away');
-          log('`a?.()` --> `(a == undefined ? undefined : a())');
-          before(node);
-
-          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
-          const newNode = AST.conditionalExpression(
-            AST.binaryExpression('==', node.callee.name, 'null'), // Weak comparison! This compares vs undefined AND null
-            'undefined',
-            AST.callExpression(node.callee.name, node.arguments),
-          );
-
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else {
-          rold('Optional call expressions should be normalized away');
-          log('`f()?.()` --> `(tmp = f(), (a == undefined ? undefined : a()))');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpOptionalChaining', true);
-
-          // Note: in `a?.b`, if `a` is null OR undefined, then return undefined, otherwise return a.b
-          const newNode = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.callee),
-            AST.conditionalExpression(
-              AST.binaryExpression('==', tmpName, 'null'), // Weak comparison! This compares vs undefined AND null
-              'undefined',
-              AST.callExpression(tmpName, node.arguments),
-            ),
-          );
-
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        }
         break;
       }
 
@@ -2921,16 +1356,12 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'SequenceExpression': {
-        flattenSequences(node);
-
-        node.expressions.forEach((enode, i) => {
-          expr(node, 'expressions', i, enode);
-        });
-
+        ASSERT(false, 'sequences should be normalized out');
         break;
       }
 
       case 'Super': {
+        // TODO
         // Two cases:
         // - call
         // - prop
@@ -2938,73 +1369,15 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'TaggedTemplateExpression': {
-        rold('Tagged templates should decompose into their runtime values');
-        rold("`` f`foo` `` --> `f(['foo'])`");
-        rold("`` f`a${1}b${2}c${3}d` `` --> `f(['a', 'b', 'c', 'd'], 1, 2, 3)`");
-        before(node);
-
-        const newNode = AST.callExpression(node.tag, [
-          AST.arrayExpression(node.quasi.quasis.map((templateElement) => AST.literal(templateElement.value.raw))),
-          ...node.quasi.expressions,
-        ]);
-        crumbSet(1, newNode);
-
-        after(newNode);
-        changed = true;
-
-        _expr(newNode);
+        ASSERT(false);
         break;
       }
 
       case 'TemplateLiteral': {
-        if (node.expressions.length === 0) {
-          ASSERT(node.quasis.length === 1, 'zero expressions means exaclty one "string" part');
-          ASSERT(node.quasis[0].value && typeof node.quasis[0].value.raw === 'string', 'expecting this AST struct', node);
-
-          rold('Templates without expressions must be strings');
-          rold("`` `foo` `` --> `'foo'`");
-          before(node);
-
-          const newNode = AST.literal(node.quasis[0].value.raw);
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
-        const group = [];
-
         node.expressions.forEach((enode, i) => {
-          if (isComplexNode(enode)) {
-            rold('Expressions inside a template must be simple nodes');
-            example('`a${f()}b`', '(tmp = f(), `a${f()}b`)');
-
-            const tmpName = createFreshVarInCurrentRootScope('tmpTemplateExpr', true);
-
-            group.push(AST.assignmentExpression(tmpName, enode));
-            node.expressions[i] = AST.identifier(tmpName);
-          } else {
-            expr(node, 'expressions', i, enode);
-          }
+          ASSERT(!isComplexNode(enode));
+          expr(node, 'expressions', i, enode);
         });
-
-        if (group.length) {
-          before(node);
-
-          const newNode = AST.sequenceExpression(...group, node);
-
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-
         break;
       }
 
@@ -3013,173 +1386,13 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'UnaryExpression': {
-        if (node.operator === 'delete') {
-          // This one is tricky because the result can not be "just an identifier". Unfortunately, it can be pretty
-          // much anything else, including a sequence (`delete (a,b)`). So worst case we can target that.
-          // Ultimately I think we should consider if the current target is a member expression. If so we keep that
-          // and normalize the object/property when necessary. For anything else, ehh, `delete true.x`?
-          // We should make sure runtime errors persist.
-
-          const arg = node.argument;
-
-          if (arg.type === 'MemberExpression') {
-            if (arg.computed) {
-              if (isComplexNode(arg.object) || isComplexNode(arg.property)) {
-                rold('Argument of delete must be simple computed member expression with simple property');
-                example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
-                before(node);
-
-                const tmpNameObj = createFreshVarInCurrentRootScope('tmpDeleteCompObj', true);
-                const tmpNameProp = createFreshVarInCurrentRootScope('tmpDeleteCompProp', true);
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(tmpNameObj, arg.object),
-                  AST.assignmentExpression(tmpNameProp, arg.property),
-                  AST.unaryExpression('delete', AST.memberExpression(tmpNameObj, tmpNameProp, true)),
-                );
-
-                crumbSet(1, newNode);
-                after(newNode);
-                changed = true;
-
-                _expr(newNode);
-                break;
-              }
-            } else {
-              if (isComplexNode(arg.object)) {
-                rold('Argument of delete must be simple member expression');
-                example('delete f().x', 'tmp = f(), delete tmp.x', () => !arg.computed);
-                before(node);
-
-                const tmpName = createFreshVarInCurrentRootScope('tmpDeleteObj', true);
-                const newNode = AST.sequenceExpression(
-                  AST.assignmentExpression(tmpName, arg.object),
-                  AST.unaryExpression('delete', AST.memberExpression(tmpName, arg.property)),
-                );
-
-                crumbSet(1, newNode);
-                after(newNode);
-                changed = true;
-
-                _expr(newNode);
-                break;
-              }
-            }
-
-            // Regular visit arg then return
-            expr(node, 'argument', -1, node.argument);
-            break;
-          } else {
-            // You cannot delete a plain identifier and there's no point in deleting anything else
-            // Replace this expression with a temporary variable and a bogus group.
-            // Since `delete` returns whether or not the property exists after the operation, the result must be `true`
-            rold('Delete argument can not be complex');
-            example('delete f()', 'f(), true');
-            before(node);
-
-            const newNode = AST.sequenceExpression(node.argument, AST.identifier('true'));
-
-            crumbSet(1, newNode);
-            after(newNode);
-            changed = true;
-
-            _expr(newNode);
-            break;
-          }
-        }
-
-        if (node.argument.type === 'SequenceExpression') {
-          rold('Unary argument cannot be sequence');
-          log('- `!(a, b)` --> `(a, !b)`');
-          log('- `-(1 + 2, 3 + 4)` --> `(1 + 2, -(3 + 4))`');
-          before(node);
-
-          const exprs = node.argument.expressions;
-          const newNode = AST.sequenceExpression(...exprs.slice(0, -1), AST.unaryExpression(node.operator, exprs[exprs.length - 1]));
-
-          crumbSet(1, newNode);
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-        if (node.operator === 'void') {
-          rold('Void must be replaced by a sequence');
-          log('- `void x` --> `(x, undefined)`');
-          before(node);
-
-          const newNode = AST.sequenceExpression(node.argument, AST.identifier('undefined'));
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
-        if (isComplexNode(node.argument)) {
-          rold('Unary argument cannot be complex');
-          log('- `!f()` --> `(tmp = f(), !tmp)`');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpUnaryArg', true);
-          const newNode = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.argument),
-            AST.unaryExpression(node.operator, tmpName),
-          );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-          break;
-        }
         expr(node, 'argument', -1, node.argument);
 
         break;
       }
 
       case 'UpdateExpression': {
-        if (node.prefix) {
-          rold('Update expression prefix should be regular assignment');
-          example('++x', 'x = x + 1', () => node.operator === '++');
-          example('--x', 'x = x - 1', () => node.operator !== '++');
-          before(node);
-
-          const newNode = AST.assignmentExpression(
-            node.argument,
-            AST.binaryExpression(node.operator === '++' ? '+' : '-', node.argument, AST.literal(1)),
-          );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        } else {
-          // We kind of have to create a tmp var since the addition/subtraction may be irreversible (NaN/Infinity cases)
-          rold('Update expression postfix should be regular assignment');
-          example('x++', 'tmp = x, x = x + 1, tmp', () => node.operator === '++');
-          example('x--', 'tmp = x, x = x - 1, tmp', () => node.operator !== '++');
-          before(node);
-
-          const tmpName = createFreshVarInCurrentRootScope('tmpPostfixArg', true);
-          const newNode = AST.sequenceExpression(
-            AST.assignmentExpression(tmpName, node.argument),
-            AST.assignmentExpression(
-              node.argument,
-              AST.binaryExpression(node.operator === '++' ? '+' : '-', node.argument, AST.literal(1)),
-            ),
-            AST.identifier(tmpName),
-          );
-          crumbSet(1, newNode);
-
-          after(newNode);
-          changed = true;
-
-          _expr(newNode);
-        }
+        ASSERT(false, 'should be eliminated');
         break;
       }
 
@@ -3468,201 +1681,40 @@ export function phaseNormalize(fdata, fname) {
     groupEnd();
   }
 
-  function processFuncArgs(funcNode) {
-    group(DIM + 'function(' + RESET + BLUE + 'parameters' + RESET + DIM + ')' + RESET);
-
-    let minParamRequired = 0; // Ends up as the last non-rest param without default, +1
-    let hasRest = false;
-    let paramBindingNames = []; // Includes names inside pattern
-
-    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-    // Array<name, expr>
-    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-    const newBindings = [];
-
-    funcNode.params.forEach((pnode, i) => {
-      if (pnode.type === 'RestElement') {
-        log('- Rest param');
-        hasRest = true;
-        const uniqueName = findUniqueNameForBindingIdent(pnode.argument);
-        const meta = fdata.globallyUniqueNamingRegistery.get(uniqueName);
-        paramBindingNames.push(uniqueName);
-        meta.usages.push(pnode.argument);
-        return;
-      }
-
-      // Node to represent the cache of the current property/element step
-      const cacheNameStack = [];
-
-      // Now there's basically two states: a param with a default or without a default. The params with a default
-      // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
-      // continue to process the left value. Otherwise, put null on the stack and process the node itself.
-      // See https://gist.github.com/pvdz/dc2c0a477cc276d1b9e6e2ddbb417135 for a brute force set of test cases
-      // See https://gist.github.com/pvdz/867502f6ed2dd902d061c82e38a81181 for the hack to regenerate them
-      if (pnode.type === 'AssignmentPattern') {
-        rold('Func params must not have inits/defaults');
-        log('- `function f(x = y()) {}` --> `function f(tmp) { x = tmp === undefined ? y() : tmp; }');
-        before({ ...funcNode, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-
-        // Param defaults. Rewrite to be inside the function
-        // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
-        // function f(a=b, b=1){}
-        //   ->
-        // function f($a, $b){
-        //   let a = $a === undefined ? $b : $a; // b is tdz'd, mimicking the default behavior.
-        //   let b = $b === undefined ? 1 : $a;
-        // }
-        // The let bindings solely exist to catch reference errors thrown by default param handling
-        // One small source of trouble is that params are var bindings, not let. The default behavior is special.
-        // This transform would break functions that contain another var declaration for the same name.
-
-        ASSERT(
-          pnode.left.type === 'Identifier' || pnode.left.type === 'ObjectPattern' || pnode.left.type === 'ArrayPattern',
-          'wat node now?',
-          pnode.left,
-        );
-
-        expr2(funcNode, 'params', i, pnode, 'right', -1, pnode.right);
-
-        if (pnode.left.type === 'Identifier') {
-          // ident param with default
-          expr2(funcNode, 'params', i, pnode, 'right', -1, pnode.right);
-
-          const newParamName = createFreshVarInCurrentRootScope('$tdz$__' + pnode.left.name);
-          cacheNameStack.push(newParamName);
-
-          log('Replacing param default with a local variable');
-          const newIdentNode = AST.identifier(newParamName);
-          funcNode.params[i] = newIdentNode;
-          const metaNew = getMetaForBindingName(newIdentNode);
-          metaNew.usages.push(newIdentNode);
-
-          // Put new nodes at the start of the function body
-          ASSERT(!funcNode.expression, 'fixme implement me');
-          newBindings.push([
-            pnode.left.name, // TODO: is this name already unique at this point?
-            OLD,
-            // `param === undefined ? init : param`
-            AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
-          ]);
-        } else {
-          // pattern param with default
-
-          // Param name to hold the object to destructure
-          const newParamName = createFreshVarInCurrentRootScope('$tdz$__pattern');
-          cacheNameStack.push(newParamName);
-          log('Replacing param default with a local variable');
-          const newIdentNode = AST.identifier(newParamName);
-          funcNode.params[i] = newIdentNode;
-          const metaNewParam = getMetaForBindingName(newIdentNode);
-          metaNewParam.usages.push(newIdentNode);
-
-          // Create unique var containing the initial param value after resolving default values
-          const undefaultName = createFreshVarInCurrentRootScope('$tdz$__pattern_after_default');
-          cacheNameStack.push(undefaultName);
-          log('Replacing param default with a local variable');
-          const undefaultNameNode = AST.identifier(undefaultName);
-
-          // Put new nodes at the start of the function body
-          ASSERT(!funcNode.expression, 'fixme implement me (expr arrows should be normalized to have a body)');
-          newBindings.push([
-            undefaultNameNode,
-            FRESH,
-            // `param === undefined ? init : param`
-            AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
-          ]);
-
-          // Then walk the whole pattern.
-          // - At every step of the pattern create code that stores the value of that step in a tmp variable.
-          // - Store the tmp var in a stack (pop it when walking out)
-          // - A leaf node should be able to access the property from the binding name at the top of the stack
-
-          if (pnode.left.type === 'ObjectPattern') {
-            rold('Func params must not be object patterns');
-            log('- `function({x}) {}` --> `function(tmp) { var x = tmp.x; }`');
-
-            funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings, 'param');
-          } else if (pnode.left.type === 'ArrayPattern') {
-            rold('Func params must not be array patterns');
-            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
-
-            funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings, 'param');
-          } else {
-            ASSERT(false, 'what else?', pnode.left);
-          }
-        }
-      } else {
-        minParamRequired = i + 1;
-
-        if (pnode.type === 'Identifier') {
-          log('- Ident param;', '`' + pnode.name + '`');
-          const meta = getMetaForBindingName(pnode);
-          meta.usages.push(pnode);
-        } else if (pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern') {
-          const newParamName = createFreshVarInCurrentRootScope('tmpParamPattern');
-          cacheNameStack.push(newParamName);
-          log('- Replacing the pattern param with', '`' + newParamName + '`');
-          // Replace the pattern with a variable that receives the whole object
-          const newIdentNode = AST.identifier(newParamName);
-          funcNode.params[i] = newIdentNode;
-          const metaNew = getMetaForBindingName(newIdentNode);
-          metaNew.usages.push(newIdentNode);
-
-          // Then walk the whole pattern.
-          // - At every step of the pattern create code that stores the value of that step in a tmp variable.
-          // - Store the tmp var in a stack (pop it when walking out)
-          // - A leaf node should be able to access the property from the binding name at the top of the stack
-
-          if (pnode.type === 'ObjectPattern') {
-            rold('Func params must not be array patterns');
-            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
-            funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings, 'param');
-          } else if (pnode.type === 'ArrayPattern') {
-            rold('Func params must not be array patterns');
-            log('- `function([x]) {}` --> `function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }`');
-            funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings, 'param');
-          } else {
-            ASSERT(false, 'dunno wat dis is', pnode);
-          }
-        } else {
-          ASSERT(false, 'wat else?', pnode);
-        }
-      }
-    });
-
-    if (newBindings.length) {
-      log('Params were transformed somehow, injecting new nodes into body');
-      funcNode.body.body.unshift(
-        AST.variableDeclarationFromDeclaration(newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init))),
-      );
-      changed = true;
-    }
-
-    groupEnd();
-
-    return { minParamRequired, hasRest, paramBindingNames };
-  }
-
-  function anyBlock(block, forFunction) {
+  function anyBlock(block) {
+    group('anyBlock');
     const body = block.body;
 
     ensureVarDeclsCreateOneBinding(body);
     hoisting(body);
-    statementifyExpressions(block);
 
+    let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i)) {
+      if (jumpTable(cnode, body, i, block)) {
         changed = true;
+        somethingChanged = true;
         --i;
         continue;
       }
 
       stmt(block, 'body', i, cnode, false, false);
     }
+    groupEnd();
+    log('/anyBlock', somethingChanged);
+    return somethingChanged;
   }
-  function jumpTable(node, body, i) {
+  function jumpTable(node, body, i, parent) {
+    group('jumpTable', node.type);
+    ASSERT(node.type, 'nodes have types oye?', node);
+    const r = _jumpTable(node, body, i, parent);
+    groupEnd();
+    return r;
+  }
+  function _jumpTable(node, body, i, parent) {
     switch (node.type) {
+      case 'BlockStatement':
+        return anyBlock(node);
       case 'DoWhileStatement':
         return transformDoWhileStatement(node, body, i);
       case 'EmptyStatement': {
@@ -3671,8 +1723,12 @@ export function phaseNormalize(fdata, fname) {
         body.splice(i, 1);
         return true;
       }
+      case 'ExportDefaultDeclaration':
+        return transformExportDefault(node, body, i);
+      case 'ExportNamedDeclaration':
+        return transformExportNamedDeclaration(node, body, i);
       case 'ExpressionStatement':
-        return false; // TODO
+        return transformExpression('statement', node.expression, body, i, node.expression);
       case 'ForStatement':
         return transformForStatement(node, body, i);
       case 'ForInStatement':
@@ -3681,6 +1737,8 @@ export function phaseNormalize(fdata, fname) {
         return transformForxStatement(node, body, i, false);
       case 'FunctionDeclaration':
         return transformFunctionDeclaration(node, body, i);
+      case 'LabeledStatement':
+        return transformLabeledStatement(node, body, i, parent);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
       case 'ReturnStatement':
@@ -3695,6 +1753,7 @@ export function phaseNormalize(fdata, fname) {
         return transformWhileStatement(node, body, i);
     }
 
+    log(RED + 'Missed stmt:', node.type, RESET);
     return false;
   }
 
@@ -3744,6 +1803,2305 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    return false;
+  }
+  function normalizeCallArgs(args, newArgs, newNodes) {
+    // This is used for `new` and regular function calls
+    args.forEach((anode) => {
+      if (anode.type === 'SpreadElement') {
+        const tmpName = createFreshVarInCurrentRootScope('tmpCalleeParamSpread');
+        newNodes.push(AST.variableDeclaration(tmpName, anode.argument, 'const'));
+        anode.argument = AST.identifier(tmpName);
+        newArgs.push(anode);
+      } else {
+        const tmpName = createFreshVarInCurrentRootScope('tmpCalleeParam');
+        newNodes.push(AST.variableDeclaration(tmpName, anode, 'const'));
+        newArgs.push(AST.identifier(tmpName));
+      }
+    });
+  }
+  function transformExportDefault(node, body, i) {
+    if (node.declaration.type !== 'FunctionDeclaration' && node.declaration.type !== 'ClassDeclaration') {
+      // The export value is a generic expression. However, there's no reason we couldn't outline it first
+      if (isComplexNode(node.declaration)) {
+        rule('The value of a default export must be a simple node');
+        example('export default a + b', 'const tmp = a + b; export default tmp;');
+        before(node);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpExportDefault');
+        const newNodes = [AST.variableDeclaration(tmpName, node.declaration, 'const'), AST._exportDefaultDeclaration(tmpName)];
+        body.splice(i, 1, ...newNodes);
+
+        after(newNodes);
+        return true;
+      }
+    }
+    return false;
+  }
+  function transformExportNamedDeclaration(node, body, i) {
+    // This nodes represents a bunch of exports
+    // - export {x}
+    // - export {x as y}
+    // - export var x
+    // - export let x
+    // - export const x
+    // - export function f(){}
+    // - export class x {}
+    // Normalize them to regular statements and then export them in the `export {x}` form.
+    // Multiple of those are allowed and in the end we would combine them all in a different transform.
+    // TODO: since exports must be unique, we should try to give exported bindings priority when creating unique globals
+
+    const decl = node.declaration;
+    if (decl) {
+      log('- Decl type:', decl.type);
+
+      if (decl.type === 'VariableDeclaration') {
+        rule('Export declarations must be in specifier form');
+        example('export let x = 10;', 'let x = 10; export { x };');
+        before(node);
+
+        // Collect all names declared in all bindings. Note that some might be patterns so may introduce more than one binding.
+        const names = [];
+        findBoundNamesInPattern(decl, names);
+
+        // Now move the var decl to global space and replace the export with one that does `export {a,b,c}` instead
+        // We shouldn't need to alias anything since the exported bindings ought to remain the same and have to
+        // be unique (parser validated). This includes bindings from patterns.
+        const newNodes = [
+          decl, // This is the `let x = y` part
+          AST._exportNamedDeclarationFromNames(names.map((id) => AST.identifier(id))),
+        ];
+        body.splice(i, 1, ...newNodes);
+
+        after(newNodes);
+        return true;
+      }
+
+      return false;
+    }
+
+    const specs = node.specifiers;
+    ASSERT(specs, 'one or the other', node);
+
+    specs.forEach((spec) => {
+      const local = spec.local;
+      ASSERT(local && local.type === 'Identifier', 'specifier locals are idents right?', node);
+      log('Marking `' + local.name + '` as being used by this export');
+      const meta = getMetaForBindingName(local);
+      meta.usages.push(local);
+    });
+
+    return false;
+  }
+  function wrapExpressionAs(kind, varInitAssignKind, varInitAssignId, lhs, varOrAssignKind, expr) {
+    // TODO: Figure out whether I want to change the wrapping and double wrapper stuff, or that it might be fine this way
+    //       It is the reason for
+
+    ASSERT(
+      !expr || (typeof expr === 'object' && expr.type && !expr.type.toLowerCase().includes('statement') && !expr.type.includes('declar')),
+      'probably did not mean to pass a statement-node...',
+      expr,
+    );
+    ASSERT(kind !== 'assign' || varOrAssignKind === '=', 'should this not already be normalized?');
+    ASSERT(
+      (varInitAssignKind === undefined && varInitAssignId === undefined) || kind === 'assign',
+      'the varinit stuff is only used for an assignment thats the init of a var decl',
+      kind,
+      varInitAssignKind,
+      varInitAssignId,
+    );
+    if (kind === 'statement') {
+      // Elided element. Ignore.
+      if (expr) return AST.expressionStatement(expr);
+      return AST.emptyStatement();
+    }
+    if (kind === 'assign') {
+      // If the element was elided, replace it with `undefined`
+      if (varInitAssignId) {
+        // This was an assignment as the init of a var decl. So the assignment was not a statement and we must replace
+        // the whole var decl with a new one, not just the assignment.
+        return AST.variableDeclaration(
+          varInitAssignId,
+          AST.assignmentExpression(lhs, expr || 'undefined', varOrAssignKind),
+          varInitAssignKind,
+        );
+      }
+      return AST.expressionStatement(AST.assignmentExpression(lhs, expr || 'undefined', varOrAssignKind));
+    }
+    if (kind === 'var') return AST.variableDeclaration(lhs, expr || 'undefined', varOrAssignKind);
+    ASSERT(false);
+  }
+  function transformExpression(
+    wrapKind /* statement, var, assign, export, default */,
+    node,
+    body,
+    i,
+    parentNode, // For var/assign, this is the entire node. For statement, this is the same as node. For printing with `before`
+    wrapLhs = false,
+    varOrAssignKind = false, // If parent is var then this is var kind, if parent is assign, this is assign operator. else empty
+    varInitAssignKind, // if body[i] is a var decl and this assignment is its init, then this is the kind of the var
+    varInitAssignId, // if body[i] is a var decl and this assignment is its init, then this is the id of the var (verbatim)
+  ) {
+    // This one is a big one. There are a handful of atomic expression statements;
+    // - call
+    // - new
+    // - assignment
+    // - member expression (because getters)
+    // - tagged template
+    // - anything else that has observable side effects that I can't think off right now
+    // Anything else can be dropped.
+    // All statements will make sure their expression bits are simple nodes, and abstract complex nodes to temporary / fresh
+    // variables. This becomes either a variable declaration or an expression statement.
+    // This means all expressions should normalize to an atomic state by recursively transforming the decl init and expression statement
+
+    log('transformExpression:', node.type);
+    ASSERT(parentNode, 'parent node?', parentNode);
+
+    if (!isComplexNode(node)) {
+      return false;
+    }
+
+    if (node.type === 'CallExpression') {
+      const callee = node.callee;
+      const args = node.arguments;
+
+      if (node.optional) {
+        // `x = a?.b()` -> `let x = a; if (x != null) x = x.b(); else x = undefined;`
+        // (This is NOT `a?.b()` !! see below)
+
+        // Special case the member call because it changes the context
+        if (callee.type === 'MemberExpression') {
+          if (callee.computed) {
+            rule('Optional computed member call expression should be if-else');
+            example('a()[b()]?.(c())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], (tmp3 != null ? tmp3.call(tmp, c()) : undefined)');
+            before(node, parentNode);
+
+            const tmpNameObj = createFreshVarInCurrentRootScope('tmpOptCallMemObj');
+            const tmpNameProp = createFreshVarInCurrentRootScope('tmpOptCallMemProp');
+            const tmpNameFunc = createFreshVarInCurrentRootScope('tmpOptCallMemFunc');
+            const newNodes = [
+              AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+              AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
+              AST.variableDeclaration(tmpNameFunc, AST.memberExpression(tmpNameObj, tmpNameProp, true), 'const'),
+            ];
+            const finalNode = AST.callExpression(AST.memberExpression(tmpNameFunc, 'call'), [
+              AST.identifier(tmpNameObj), // Context
+              ...args,
+            ]);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          } else {
+            rule('Optional member call expression should be if-else');
+            example('a().b?.(c())', 'tmp = a(), (tmp != null ? tmp.b(c()) : undefined)');
+            before(node, parentNode);
+
+            const tmpNameObj = createFreshVarInCurrentRootScope('tmpOptCallMemObj');
+            const tmpNameFunc = createFreshVarInCurrentRootScope('tmpOptCallMemFunc');
+            const newNodes = [
+              AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+              AST.variableDeclaration(tmpNameFunc, AST.memberExpression(tmpNameObj, callee.property), 'const'),
+            ];
+            const finalNode = AST.callExpression(AST.memberExpression(tmpNameFunc, 'call'), [
+              AST.identifier(tmpNameObj), // Context
+              ...args,
+            ]);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes, finalParent);
+            after(finalNode, finalParent);
+            return true;
+          }
+        }
+
+        rule('Optional non-prop call expression should be if-else');
+        example('a()?.(b())', 'tmp = a(), (tmp != null ? tmp(b()) : undefined)');
+        before(node, parentNode);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpOptCallFunc');
+        const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
+        const finalNode = AST.conditionalExpression(
+          AST.binaryExpression('==', tmpName, 'null'),
+          'undefined',
+          AST.callExpression(tmpName, [...args]),
+        );
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // There are two atomic kinds of callee; ident and member expression. Anything else normalizes to ident.
+      const hasComplexArg = args.some((anode) => (anode.type === 'SpreadElement' ? isComplexNode(anode.argument) : isComplexNode(anode)));
+
+      if (callee.type === 'MemberExpression') {
+        // Note: `a.b(c.d)` evaluates `a.b` before `c.d` (!)
+        //       Because we need to outline complex args, and need to preserve context, we must transform
+        //       to `.call` form (`tmp = a, tmp2 = a.b, tmp3 = c.d, tmp2.call(tmp, tmp3)`) and so we ought
+        //       to try to be conservative here as it won't make things better. Hopefully we can easily
+        //       clean those cases up later but that might not be easy as the "call" property is not
+        //       guaranteed to be the builtin `call` function... ;(
+
+        if (callee.optional) {
+          // `a?.b()`, this is NOT `a.b?.()`!
+          rule('Call on optional chaining property must be if-else');
+          example('a()?.b()', 'tmp = a(); if (tmp) tmp.b();', () => !callee.computed);
+          example('a()?.[b()]()', 'tmp = a(); if (tmp) tmp[b()]();', () => callee.computed);
+          before(node, parentNode);
+
+          const newArgs = [];
+          const tmpName = createFreshVarInCurrentRootScope('tmpOptMemberCallObj');
+          const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
+          normalizeCallArgs(args, newArgs, newNodes);
+          const finalNode = AST.conditionalExpression(
+            AST.binaryExpression('==', tmpName, 'null'),
+            'undefined',
+            AST.callExpression(AST.memberExpression(tmpName, callee.property, callee.computed), newArgs),
+          );
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        // If any of the params are complex then the object, and if computed the property too, must be cached as well
+        // So start with the properties. If they are simple, proceed with the computed property, and otherwise the object
+
+        if (callee.computed && hasComplexArg) {
+          // At least one param node is complex. Cache them all. And the object and property too.
+          // Must use call here because a.b is evaluated before the args
+
+          rule('The arguments of a computed method call must all be simple');
+          example('a()[b()](f())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], tmp4 = f(), tmp3.call(tmp2, tmp4)');
+          before(node, parentNode);
+
+          const newArgs = [];
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpCallCompObj');
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpCallCompProp');
+          const tmpNameVal = createFreshVarInCurrentRootScope('tmpCallCompVal');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+            AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
+            AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, tmpNameProp, true), 'const'),
+          ];
+          normalizeCallArgs(args, newArgs, newNodes);
+          // Do a `.call` to preserve getter order AND context
+          const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (!callee.computed && hasComplexArg) {
+          // At least one param node is complex. Cache them all. And the object too.
+
+          rule('The arguments of a method call must all be simple');
+          example('a().b(f())', 'tmp = a(), tmp2 = tmp.b, tmp3 = f(), tmp2.call(tmp, tmp3)');
+          before(node, parentNode);
+
+          const newArgs = [];
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpCallObj');
+          const tmpNameVal = createFreshVarInCurrentRootScope('tmpCallVal');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+            AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, callee.property), 'const'),
+          ];
+          normalizeCallArgs(args, newArgs, newNodes);
+          // Do a `.call` to preserve getter order AND context
+          const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (callee.computed && isComplexNode(callee.property)) {
+          // Do computed first because that requires caching the object anyways, saving us an extra var
+          rule('The property of a computed method call must be simple');
+          example('a()[b()]()', 'tmp = a(), tmp2 = b(), tmp[tmp2]()');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpCallCompObj');
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpCallCompProp');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+            AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
+          ];
+          const finalNode = AST.callExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), args);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (isComplexNode(callee.object)) {
+          ASSERT(!callee.computed || !isComplexNode(callee.property), 'If the prop is computed, it must be simple now');
+          rule('The object of a method call must be simple');
+          example('a().b()', 'tmp = a(), tmp.b()', () => !callee.computed);
+          example('a()[b]()', 'tmp = a(), tmp[b]()', () => callee.computed);
+          before(node, parentNode);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpCallObj');
+          const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
+          const finalNode = AST.callExpression(AST.memberExpression(tmpName, callee.property, callee.computed), args);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+          callee.object = AST.identifier(tmpName);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        // Simple member expression is atomic callee. Can't break down further since the object can change the context.
+        return false;
+      }
+
+      // So the callee is not a member expression.
+      // First check whether any of the args are complex. In that case we must cache the callee regardless.
+      // Otherwise, check if the callee is simple. If not cache just the callee.
+
+      if (hasComplexArg) {
+        // At least one param node is complex. Cache them all. And the callee too.
+
+        rule('The arguments of a call must all be simple');
+        example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type === 'Identifier');
+        example('a()(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type !== 'Identifier');
+        before(node, parentNode);
+
+        const newArgs = [];
+        const tmpName = createFreshVarInCurrentRootScope('tmpCallCallee');
+        const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
+        normalizeCallArgs(args, newArgs, newNodes);
+        const finalNode = AST.callExpression(tmpName, newArgs);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(callee)) {
+        // Calling something that is not an identifier (any other simple node would be a runtime error, but ok)
+
+        rule('The callee of a call must all be simple or simple member expression');
+        example('a()(x, y)', 'tmp = a(), tmp(x, y)');
+        before(node, parentNode);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpCallCallee');
+        const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
+        const finalNode = AST.callExpression(tmpName, args);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // Assert normalized form
+      ASSERT(
+        !isComplexNode(callee) ||
+          (callee.type === 'MemberExpression' && !isComplexNode(callee.object) && (!callee.computed || !isComplexNode(callee.property))),
+        'callee should be a simple node or simple member expression',
+      );
+      ASSERT(!hasComplexArg, 'all args should be simple nodes');
+
+      return false;
+    }
+
+    if (node.type === 'NewExpression') {
+      // Note: the new expression is almost the same as call expression except it can't change the context so the callee must be simple
+
+      const callee = node.callee;
+      const args = node.arguments;
+      const hasComplexArg = args.some((anode) => (anode.type === 'SpreadElement' ? isComplexNode(anode.argument) : isComplexNode(anode)));
+
+      // First check whether any of the args are complex. In that case we must cache the callee regardless.
+      // Otherwise, check if the callee is simple. If not cache just the callee.
+
+      if (hasComplexArg) {
+        // At least one param node is complex. Cache them all. And the callee too.
+
+        rule('The arguments of a new must all be simple');
+        example('new a(f())', 'tmp = a(), tmp2 = f(), new tmp(tmp2)', () => callee.type === 'Identifier');
+        example('new (a())(f())', 'tmp = a(), tmp2 = f(), new tmp(tmp2)', () => callee.type !== 'Identifier');
+        before(node, parentNode);
+
+        const newArgs = [];
+        const tmpName = createFreshVarInCurrentRootScope('tmpNewCallee');
+        const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
+        normalizeCallArgs(args, newArgs, newNodes);
+        const finalNode = AST.newExpression(tmpName, newArgs);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(callee)) {
+        // Calling something that is not an identifier (any other simple node would be a runtime error, but ok)
+
+        rule('The callee of a new must all be simple');
+        example('new (a())(x, y)', 'tmp = a(), new tmp(x, y)');
+        before(node, parentNode);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpNewCallee');
+        const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
+        const finalNode = AST.newExpression(tmpName, args);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // Assert normalized form
+      ASSERT(!isComplexNode(callee), 'new callee should be simple node now');
+      ASSERT(!hasComplexArg, 'all args should be simple nodes');
+
+      return false;
+    }
+
+    if (node.type === 'MemberExpression') {
+      // The object must be simple
+      // If computed, the property must be simple. Check this first because in that case, the object must be cached too.
+
+      if (node.optional) {
+        // `x = a?.b` -> `let x = a; if (x != null) x = x.b; else x = undefined;`
+
+        rule('Optional member expression should be if-else');
+        example('a()?.b', 'tmp = a(), (tmp != null ? tmp.b : undefined)', () => !node.computed);
+        example('a()?[b()]', 'tmp = a(), (tmp != null ? tmp[b()] : undefined)', () => node.computed);
+        before(node, parentNode);
+
+        const tmpNameObj = createFreshVarInCurrentRootScope('tmpOptObj');
+        const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
+        const finalNode = AST.conditionalExpression(
+          AST.binaryExpression('==', tmpNameObj, 'null'),
+          'undefined',
+          AST.memberExpression(tmpNameObj, node.property, node.computed),
+        );
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (node.computed && isComplexNode(node.property)) {
+        rule('Computed member expression must have simple property');
+        example('a()[b()]', 'tmp = a(), tmp2 = b(), a[b]');
+        before(node, parentNode);
+
+        const tmpNameObj = createFreshVarInCurrentRootScope('tmpCompObj');
+        const tmpNameProp = createFreshVarInCurrentRootScope('tmpCompProp');
+        const newNodes = [
+          AST.variableDeclaration(tmpNameObj, node.object, 'const'),
+          AST.variableDeclaration(tmpNameProp, node.property, 'const'),
+        ];
+        const finalNode = AST.memberExpression(tmpNameObj, tmpNameProp, true);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(node.object)) {
+        rule('Member expression object must be simple');
+        example('f().x', 'tmp = f(), tmp.x');
+        before(node, parentNode);
+
+        const tmpNameObj = createFreshVarInCurrentRootScope('tmpCompObj');
+        const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
+        const finalNode = AST.memberExpression(tmpNameObj, node.property, node.computed);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
+        // If the key name is a legit key then why not. Let's just test it.
+        let simpleIdent;
+        try {
+          // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
+          simpleIdent = !!(/^[\w_$]+$/.test(node.property.value) && Function('foo.' + node.property.value) && true);
+        } catch {
+          simpleIdent = false;
+        }
+        if (simpleIdent) {
+          rule('Computed property that is valid ident must be member expression');
+          log('- `a["foo"]` --> `a.foo`');
+          log('- Name: `' + node.property.value + '`');
+          before(node, parentNode);
+
+          node.computed = false;
+          node.property = AST.identifier(node.property.value);
+
+          after(node, parentNode);
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    if (node.type === 'SequenceExpression') {
+      rule('Sequence statements must be series of statements');
+      example('(a, b, c);', 'a; b; c;');
+      before(node, parentNode);
+
+      const newNodes = node.expressions.slice(0, -1).map((e, i) => AST.expressionStatement(e));
+      const finalNode = node.expressions[node.expressions.length - 1];
+      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+      body.splice(i, 1, ...newNodes, finalParent);
+
+      after(newNodes);
+      after(finalNode, finalParent);
+      return true;
+    }
+
+    if (node.type === 'AssignmentExpression') {
+      const lhs = node.left;
+      const rhs = node.right;
+      log('-', lhs.type, node.operator, rhs.type);
+
+      if (lhs.type === 'ObjectPattern') {
+        const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignObjPatternRhs');
+        const cacheNameStack = [tmpNameRhs];
+        const newBindings = [];
+
+        funcArgsWalkObjectPattern(lhs, cacheNameStack, newBindings, 'assign', true);
+
+        if (newBindings.length) {
+          rule('Assignment obj patterns not allowed');
+          example('({x} = y())', 'tmp = y(), x = tmp.x, tmp');
+          before(node, parentNode);
+
+          // Replace this assignment node with a sequence
+          // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+
+          // First assign the current rhs to a tmp variable.
+          newBindings.unshift([tmpNameRhs, FRESH, rhs]);
+
+          const newNodes = newBindings.map(([name, fresh, expr]) => {
+            if (fresh) return AST.variableDeclaration(name, expr, 'const');
+            return AST.expressionStatement(AST.assignmentExpression(name, expr));
+          });
+          const finalNode = AST.identifier(tmpNameRhs);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        rule('Assignment obj patterns not allowed, empty');
+        example('({} = y())', 'y()');
+        before(node, parentNode);
+
+        const finalNode = rhs;
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (lhs.type === 'ArrayPattern') {
+        const rhsTmpName = createFreshVarInCurrentRootScope('arrAssignPatternRhs');
+        const cacheNameStack = [rhsTmpName];
+        const newBindings = [];
+
+        funcArgsWalkArrayPattern(lhs, cacheNameStack, newBindings, 'assign');
+
+        if (newBindings.length) {
+          rule('Assignment arr patterns not allowed, non-empty');
+          example('[x] = y()', '(tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp)');
+          before(node, parentNode);
+
+          // Replace this assignment node with a sequence
+          // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+          // Final step in sequence must still be origina rhs (`a = [x] = y` will assign `y` to `a`, not `x`)
+
+          // First assign the current rhs to a tmp variable.
+          newBindings.unshift([rhsTmpName, FRESH, rhs]);
+
+          const newNodes = newBindings.map(([name, fresh, expr]) => {
+            if (fresh) return AST.variableDeclaration(name, expr, 'const');
+            else return AST.expressionStatement(AST.assignmentExpression(name, expr));
+          });
+          const finalNode = AST.identifier(rhsTmpName);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        rule('Assignment arr patterns not allowed, empty');
+        example('[] = y()', 'y()'); // TODO: Does it have to be spreaded anyways? Do I care?
+        before(node, parentNode);
+
+        const finalNode = rhs;
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      ASSERT(lhs.type === 'Identifier' || lhs.type === 'MemberExpression', 'uhhh was there anything else assignable?', node);
+
+      if (lhs.type === 'MemberExpression') {
+        // x = a.b = c
+        // x = a[b] = c
+        const mem = lhs;
+        const a = mem.object;
+        const b = mem.property;
+        const c = rhs;
+
+        ASSERT(!lhs.optional, 'optional chaining member expression cannot be lhs of assignment, right?');
+
+        // Must start with object/property because we don't want to duplicate complex nodes while eliminating compound assignments
+        // The reason is that compound assignments read before they write so the getters also become an observable side effect
+
+        if (mem.computed && isComplexNode(b)) {
+          // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
+          rule('Assignment to computed property must have simple property node');
+          example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignComMemLhsObj');
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignComMemLhsProp');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
+            AST.variableDeclaration(tmpNameProp, b, 'const'), // tmp2 = b()
+          ];
+          const finalNode = AST.assignmentExpression(
+            AST.memberExpression(tmpNameObj, tmpNameProp, true), // tmp[tmp2]
+            c,
+            node.operator, // tmp[tmp2] = c(), or tmp[tmp2] += c()
+          );
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (isComplexNode(a)) {
+          // Note: resulting node must remain assignment to member expression (because it's an assignment target)
+          rule('Assignment to member expression must have simple lhs');
+          example('a().b = c()', '(tmp = a(), tmp2.b = c())', () => !node.computed && node.operator === '=');
+          example('a()[b()] = c()', '(tmp = a(), tmp2[b()] = c())', () => node.computed && node.operator === '=');
+          example('a().b += c()', '(tmp = a(), tmp2.b += c())', () => !node.computed && node.operator !== '=');
+          example('a()[b()] += c()', '(tmp = a(), tmp2[b()] += c())', () => node.computed && node.operator !== '=');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
+          ];
+          const finalNode = AST.assignmentExpression(
+            AST.memberExpression(tmpNameObj, b, mem.computed), // tmp.b or tmp[b()]
+            c,
+            node.operator, // tmp.b = tmp2, or tmp.b += tmp2
+          );
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (node.operator !== '=') {
+          // The compound assignment is not assignable so no need to return an assignment or assignable
+          // The a and b ought to be simple at this point. It's not relevant whether or not it's computed.
+
+          rule('Compound assignment to property must be regular assignment');
+          example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()', () => !mem.computed);
+          example('a[b] += c()', 'tmp = a[b], tmp[b] = tmp + c()', () => mem.computed);
+          before(node, parentNode);
+
+          const tmpNameLhs = createFreshVarInCurrentRootScope('tmpCompoundAssignLhs');
+          // tmp = a.b, or tmp = a[b]
+          const newNodes = [AST.variableDeclaration(tmpNameLhs, AST.memberExpression(a, b, mem.computed), 'const')];
+          // tmp.b = tmp + c(), or tmp[b] = tmp + c()
+          const finalNode = AST.assignmentExpression(
+            AST.memberExpression(a, b, mem.computed),
+            AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
+          );
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (mem.computed && isComplexNode(c)) {
+          // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
+          // Note: a and b must be simple at this point but c() could still mutate them so we cache them anyways
+          rule('Assignment to computed property must have simple object, property expression, and rhs');
+          example('a[b] = c()', 'tmp = a, tmp2 = b, tmp3 = c(), tmp[tmp2] = tmp3');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignComputedObj');
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignComputedProp');
+          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignComputedRhs');
+          ASSERT(node.operator === '=');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
+            AST.variableDeclaration(tmpNameProp, b, 'const'), // tmp2 = b()
+            AST.variableDeclaration(tmpNameRhs, c, 'const'), // tmp3 = c()
+          ];
+          // tmp[tmp2] = tmp3
+          const finalNode = AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (!mem.computed && isComplexNode(c)) {
+          // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
+          // Note: a must be simple at this point but c() could still mutate it so we cache it anyways
+          rule('Assignment to member expression must have simple lhs and rhs');
+          example('a.b = c()', '(tmp = a, tmp2 = c(), tmp).b = tmp2');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignMemLhsObj');
+          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpAssignMemRhs');
+          ASSERT(node.operator === '=');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
+            AST.variableDeclaration(tmpNameRhs, c, 'const'), // tmp2 = c()
+          ];
+          const finalNode = AST.assignmentExpression(AST.memberExpression(tmpNameObj, b), tmpNameRhs);
+          // tmp.b = tmp2
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        // lhs must now be `a.b` or `a[b]`; a simple member expression
+      }
+
+      if (node.operator !== '=') {
+        // At this point the lhs is either an identifier or a simple member expression
+        // We should be safe to transform compound assignments away such that they don't complicate later transforms
+        // We couldn't do this before because it might have duplicated complex node. But it's fine for idents and simple props
+        rule('Compound assignments with simple lhs should be regular assignments');
+        example('a *= c()', 'a = a * c()', () => lhs.type === 'Identifier');
+        example('a.b *= c()', 'a.b = a.b * c()', () => lhs.type !== 'Identifier' && !lhs.computed);
+        example('a[b] *= c()', 'a[b] = a[b] * c()', () => lhs.type !== 'Identifier' && lhs.computed);
+        before(node, parentNode);
+
+        const finalNode = AST.assignmentExpression(lhs, AST.binaryExpression(node.operator.slice(0, -1), lhs, rhs));
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(body[i]);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (rhs.type === 'AssignmentExpression') {
+        // To preserve observable side effect order we have to process a few cases here in a specific way
+        // We have to do it here because a recursive parse would not have a statement parent, which I want, so... ugh
+        // Note: if a, b, or c is complex then it must be evaluated in a b c order. And only once each.
+        // 1 - `a = b = c` --> `b = c, a = c` (end state)
+        // 2 - `a = b = c()` --> `tmp = c(), a = b = tmp` --> 1 (I think, but we could also do to `b = c(), a = b` ...)
+        // 3 - `a = b.x = c` --> `b.x = c, a = c` (end state)
+        // 4 - `a = b.x = c()` --> `tmp = c(), a = b.x = tmp` --> 3
+        // 5 - `a = b().x = c` --> `tmp = b(), a = tmp.x = c` --> 4
+        // 6 - `a = b().x = c()` --> `tmp = b(), a = tmp.x = c()` --> 4
+        // or
+        // if the rhs.lhs.object or rhs.rhs is complex, store it in tmp.
+        // if the rhs.lhs is a member expression, the property is not read (so that can't serve as the rhs)
+        // in other words, if we make sure to stash the rhs.lhs.object in a tmp var, and then the rhs.rhs,
+        // then we should always be able to use the rhs.rhs (which must be simple at that point) for the
+        // `b = c, a = c` base case safely, regardless whether b is a member expression or ident.
+        // TODO: do we want to special case `a = (b, c).d = e` --> `(b, a = c.d = e)`? It's no problem now, just adds an unnecessary var
+
+        const a = lhs; // Always simple, either an identifier, or a simple member expression.
+        const rhsLhs = rhs.left;
+        const rhsRhs = rhs.right;
+
+        if (rhsLhs.type === 'Identifier') {
+          // a = b = c
+          // lhs = rhsLhs = rhsRhs
+          const b = rhsLhs;
+          // a is simple node, b is identifier, so only c is questionable
+          const c = rhsRhs;
+
+          if (rhs.operator !== '=') {
+            // This is a = b *= c() with simple a and ident b
+            rule('Nested compound assignment must not be compound');
+            example('a = b *= c()', 'tmp = b, a = b = tmp * c()');
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedCompoundLhs');
+            // tmp = b
+            const newNodes = [AST.variableDeclaration(tmpName, rhsLhs, 'const')];
+            // a = b = tmp * c()
+            const finalNode = AST.assignmentExpression(
+              a,
+              // b = tmp * c()
+              AST.assignmentExpression(b, AST.binaryExpression(rhs.operator.slice(0, -1), tmpName, c)),
+            );
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          if (isComplexNode(c)) {
+            // In this case, a and b are only set, so we don't need to cache even if c() would mutate
+            // With simple a and ident b
+            rule('The rhs.rhs of a nested assignment must be simple');
+            example('a = b = c()', 'tmp = c(), a = b = tmp');
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedComplexRhs');
+            const newNodes = [AST.variableDeclaration(tmpName, c, 'const')];
+            const finalNode = AST.assignmentExpression(a, AST.assignmentExpression(b, tmpName));
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          // This is `a = b = c` with all idents (or, `x = a = b = c` or `let x = a = b = c`)
+          rule('Nested assignment with all idents must be split');
+          example('a = b = c', 'b = c, a = c');
+          before(node, parentNode);
+
+          const newNodes = [AST.expressionStatement(AST.assignmentExpression(b, c))];
+          const finalNode = AST.assignmentExpression(a, c);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (rhsLhs.type === 'MemberExpression') {
+          // a = b.c = d
+          // a = b.c += d
+          // `$(1)[$(2)] += $(3)` is evaluated in 1, 1[2].get, 3, 1[2].set order
+          const b = rhsLhs.object;
+          const c = rhsLhs.property;
+          const d = rhsRhs;
+
+          ASSERT(!rhsLhs.optional, 'optional chaining cannot be lhs of nested assignment, right?');
+
+          if (rhsLhs.computed && isComplexNode(c)) {
+            // In this case we also need to cache b first, since the execution of c may change it after the fact
+            // (so we must store the value before evaluating c) but we don't have to care if calling b or c changes the
+            // value of d since that would always be evaluated last.
+            rule('The computed property of a nested assignment must be a simple node');
+            example('a = b[c()] = d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => rhs.operator === '=');
+            example('a = b[c()] *= d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => rhs.operator !== '=');
+            before(node, parentNode);
+
+            const tmpNameObj = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberObj');
+            const tmpNameProp = createFreshVarInCurrentRootScope('tmpNestedAssignComMemberProp');
+            const newNodes = [AST.variableDeclaration(tmpNameObj, b, 'const'), AST.variableDeclaration(tmpNameProp, c, 'const')];
+            // a = tmp[tmp2] = d
+            const finalNode = AST.assignmentExpression(
+              a,
+              // tmp[tmp2] = d
+              AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), d, rhs.operator),
+            );
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          if (isComplexNode(b)) {
+            // Whether c is computed or not, it is simple (as per above check). Check if b is complex.
+            rule('The object of a nested property assignment must be a simple node');
+            example('a = b().c = d', 'tmp = b(), a = tmp.c = d()', () => !rhsLhs.computed);
+            example('a = b()[c] = d', 'tmp = b(), a = tmp[c] = d()', () => rhsLhs.computed);
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedAssignObj');
+            const newNodes = [AST.variableDeclaration(tmpName, b, 'const')];
+            const finalNode = AST.assignmentExpression(
+              a,
+              AST.assignmentExpression(AST.memberExpression(tmpName, c, rhsLhs.computed), d, rhs.operator),
+            );
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          // We must be left with `a = b.c = d()` or `a = b[c] = d()`, which must all be simple nodes except d
+          // and which may be a compound assignment. We need to check that first to preserve get/set order.
+
+          if (rhs.operator !== '=') {
+            rule('Nested compound prop assignment with all simple parts must be split');
+            example('a = b.c *= d()', 'tmp = b.c * d(), a = b.c = tmp');
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropCompoundComplexRhs');
+            const newNodes = [
+              AST.variableDeclaration(tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), rhsLhs, d), 'const'),
+              AST.expressionStatement(AST.assignmentExpression(rhsLhs, tmpName)),
+            ];
+            const finalNode = AST.assignmentExpression(a, tmpName);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          if (isComplexNode(d)) {
+            // a and b.c are simple but d is not and the assignment is regular. Since this means neither a nor b.c
+            // are read, we don't need to cache them and we can outline d() by itself without worrying about
+            // awkward getter setter side effects. Getters dont trigger, setters retain order.
+
+            // It's not relevant whether lhs is computed. Either way there is no other side effect to read/write
+            rule('The rhs of a nested assignment to a computed property must be simple');
+            example('a = b.c = d()', 'tmp = d(), a = b.c = tmp', () => !rhsLhs.computed);
+            example('a = b[c] = d()', 'tmp = d(), a = b[c] = tmp', () => rhsLhs.computed);
+            before(node, parentNode);
+
+            const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignPropRhs');
+            const newNodes = [
+              // tmp = d()
+              AST.variableDeclaration(tmpNameRhs, d),
+            ];
+            const finalNode = AST.assignmentExpression(a, AST.assignmentExpression(rhsLhs, tmpNameRhs));
+            // a = b = tmp, a = b.c = tmp, a = b[c] = tmp
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          ASSERT(
+            !isComplexNode(lhs) &&
+              node.operator === '=' &&
+              !isComplexNode(b) &&
+              (!rhsLhs.computed || !isComplexNode(c)) &&
+              rhs.operator === '=' &&
+              !isComplexNode(d),
+            'the nested assignment ought to be atomic now, apart from being nested',
+          );
+
+          {
+            // We must cache d because the b.c setter may otherwise change it. Redundant steps ought to be cleaned up trivially.
+            rule('Nested assignment to property where all nodes are simple must be split up');
+            example('a = b.c = d', 'tmp = d, b.c = tmp, a = tmp');
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpNestedPropAssignRhs');
+            const newNodes = [
+              AST.variableDeclaration(tmpName, d, 'const'),
+              AST.expressionStatement(AST.assignmentExpression(rhsLhs, tmpName)),
+            ];
+            const finalNode = AST.assignmentExpression(a, tmpName);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+          }
+          return true;
+        }
+
+        if (rhsLhs.type === 'ObjectPattern') {
+          rule('Object patterns in nested assign are not allowed');
+          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignObjPatternRhs');
+          const cacheNameStack = [tmpNameRhs];
+          const newBindings = [];
+
+          funcArgsWalkObjectPattern(rhsLhs, cacheNameStack, newBindings, 'assign', true);
+
+          if (newBindings.length) {
+            rule('Nested assignment obj patterns not allowed');
+            example('a = ({x} = y())', 'tmp = y(), x = tmp.x, a = tmp');
+            before(node, parentNode);
+
+            // Replace this assignment node with a sequence
+            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+
+            // First assign the current rhs to a tmp variable.
+            newBindings.unshift([tmpNameRhs, FRESH, rhsRhs]);
+
+            const newNodes = newBindings.map(([name, fresh, expr], i) => {
+              if (fresh) return AST.variableDeclaration(name, expr, 'const');
+              return AST.expressionStatement(AST.assignmentExpression(name, expr));
+            });
+            const finalNode = AST.assignmentExpression(a, tmpNameRhs);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          rule('Assignment obj patterns not allowed, empty');
+          example('a = {} = y()', 'a = y()');
+          before(node, parentNode);
+
+          const finalNode = AST.assignmentExpression(a, rhsRhs);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (rhsLhs.type === 'ArrayPattern') {
+          rule('Array patterns in nested assign are not allowed');
+          const tmpNameRhs = createFreshVarInCurrentRootScope('tmpNestedAssignArrPatternRhs');
+          const cacheNameStack = [tmpNameRhs];
+          const newBindings = [];
+
+          funcArgsWalkArrayPattern(rhsLhs, cacheNameStack, newBindings, 'assign');
+
+          if (newBindings.length) {
+            rule('Nested assignment arr patterns not allowed, non-empty');
+            example('a = [x] = y()', '(tmp = y(), tmp1 = [...tmp], x = tmp1[0], a = tmp)');
+            before(node, parentNode);
+
+            // Replace this assignment node with a sequence
+            // Contents of the sequence is the stuff in newBindings. Map them into assignments.
+            // Final step in sequence must still be origina rhs (`a = [x] = y` will assign `y` to `a`, not `x`)
+
+            // First assign the current rhs to a tmp variable.
+            newBindings.unshift([tmpNameRhs, FRESH, rhsRhs]);
+            const newNodes = newBindings.map(([name, fresh, expr]) => {
+              if (fresh) return AST.variableDeclaration(name, expr, 'const');
+              return AST.expressionStatement(AST.assignmentExpression(name, expr));
+            });
+            const finalNode = AST.assignmentExpression(a, tmpNameRhs);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          rule('Assignment arr patterns not allowed, empty');
+          example('a = [] = y()', 'a = y()'); // TODO: Does it have to be spreaded anyways? Do I care?
+          before(node, parentNode);
+
+          const finalNode = AST.assignmentExpression(a, rhsRhs);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        ASSERT(false, 'wait wat dis?', node);
+      }
+
+      if (rhs.type === 'SequenceExpression') {
+        rule('Assignment rhs must not be sequence');
+        example('a = (b, c)', '(b, a = c)');
+        before(node, parentNode);
+
+        const seq = rhs;
+        const exprs = seq.expressions.slice(0); // Last one will replace the sequence
+        const newNodes = [...exprs.slice(0, -1).map((e) => AST.expressionStatement(e))];
+        const finalNode = AST.assignmentExpression(lhs, exprs.pop(), node.operator);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (rhs.type === 'MemberExpression') {
+        if (rhs.optional) {
+          // a = b?.c
+          rule('Nested assignment rhs can not be optional chaining');
+          example('x = a = b?.c', 'tmp = b; if (tmp) a = tmp.c; else a = undefined;', () => !rhs.computed);
+          example('x = a = b?.[c()]', 'tmp = b; if (tmp) a = tmp[c()]; else a = undefined;', () => rhs.computed);
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignOptMem');
+          const tmpNameVal = createFreshVarInCurrentRootScope('tmpAssignOptVal');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, rhs.object, 'const'),
+            AST.variableDeclaration(tmpNameVal, 'undefined', 'let'),
+            AST.ifStatement(
+              tmpNameObj,
+              AST.expressionStatement(AST.assignmentExpression(tmpNameVal, AST.memberExpression(tmpNameObj, rhs.property, rhs.computed))),
+            ),
+          ];
+          const finalNode = AST.assignmentExpression(lhs, tmpNameVal);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (rhs.computed && isComplexNode(rhs.property)) {
+          rule('Assignment rhs member expression must have simple object and computed property');
+          example('a = b()[c()]', 'tmp = b(), tmp2 = c(), a = tmp[tmp2]');
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVarInCurrentRootScope('tmpAssignRhsCompObj');
+          const tmpNameProp = createFreshVarInCurrentRootScope('tmpAssignRhsCompProp');
+          const newNodes = [
+            // const tmp = b()
+            AST.variableDeclaration(tmpNameObj, rhs.object, 'const'),
+            // const tmp2 = c()
+            AST.variableDeclaration(tmpNameProp, rhs.property, 'const'),
+          ];
+          const finalNode = AST.assignmentExpression(lhs, AST.memberExpression(tmpNameObj, tmpNameProp, true));
+          // a = tmp[tmp2]
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        if (isComplexNode(rhs.object)) {
+          rule('Assignment rhs member expression must have simple object; prop already simple');
+          example('a = b().c', 'tmp = b(), a = tmp.c', () => !rhs.computed);
+          example('a = b()[c]', 'tmp = b(), a = tmp[c]', () => rhs.computed);
+          before(node, parentNode);
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpAssignRhsProp');
+          // const tmp = b()
+          const newNodes = [AST.variableDeclaration(tmpName, rhs.object, 'const')];
+          const finalNode = AST.assignmentExpression(lhs, AST.memberExpression(tmpName, rhs.property, rhs.computed));
+          // a = tmp.c
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        // Assignment of simple member expression to ident or simple member expression is atomic
+        return false;
+      }
+
+      // No more special cases for the assignment form. Process the rhs as a generic expression.
+      // Kind situations:
+      // - statement: the assignment was a statement. This recursive call is fine.
+      // - assign: the assignment was the rhs of another assignment. This recursive call could break
+      // - var: the assignment was the init of a var decl. This recursive call could break.
+      ASSERT(
+        varInitAssignKind === undefined && varInitAssignId === undefined,
+        'this recursion should not happen more than once, otherwise this breaks',
+      );
+      return transformExpression(
+        'assign',
+        rhs,
+        body,
+        i,
+        node,
+        lhs,
+        '=',
+        wrapKind === 'var' ? varOrAssignKind : undefined,
+        wrapKind === 'var' ? wrapLhs : undefined,
+      );
+    }
+
+    if (node.type === 'BinaryExpression') {
+      if (wrapKind === 'statement') {
+        rule('Binary expression as statement must be split');
+        example('a + b;', 'a; b;');
+        before(node, parentNode);
+
+        const newNodes = [AST.expressionStatement(node.left)];
+        const finalNode = node.right;
+        const finalParent = AST.expressionStatement(finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(node.right)) {
+        rule('Binary expression must have simple nodes; rhs is complex');
+        example('a * f()', 'tmp = a, tmp2 = f(), tmp * tmp2');
+        before(node, parentNode);
+
+        const tmpNameLhs = createFreshVarInCurrentRootScope('tmpBinBothLhs');
+        const tmpNameRhs = createFreshVarInCurrentRootScope('tmpBinBothRhs');
+        const newNodes = [
+          AST.variableDeclaration(tmpNameLhs, node.left, 'const'),
+          AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
+        ];
+        const finalNode = AST.binaryExpression(node.operator, tmpNameLhs, tmpNameRhs);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(node.left)) {
+        rule('Binary expression must have simple nodes; lhs is complex');
+        example('f() * a', 'tmp = f(), tmp * a');
+        before(node, parentNode);
+
+        const tmpNameLhs = createFreshVarInCurrentRootScope('tmpBinLhs');
+        const newNodes = [AST.variableDeclaration(tmpNameLhs, node.left, 'const')];
+        const finalNode = AST.binaryExpression(node.operator, tmpNameLhs, node.right);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      return false;
+    }
+
+    if (node.type === 'UnaryExpression') {
+      // Certain operators need special more care
+      // - typeof, delete, -, +, ~, void, !
+
+      if (node.operator === 'delete') {
+        // This one is tricky because the result can not be "just an identifier". Unfortunately, it can be pretty
+        // much anything else, including a sequence (`delete (a,b)`). So worst case we can target that.
+        // Ultimately I think we should consider if the current target is a member expression. If so we keep that
+        // and normalize the object/property when necessary. For anything else, ehh, `delete true.x`?
+        // We should make sure runtime errors persist.
+
+        const arg = node.argument;
+
+        // The chain expression can be `delete a?.b()` or `delete a.?()` or `a?.().b` so that's why we must check thoroughly
+        if (arg.type === 'ChainExpression' && arg.expression.type === 'MemberExpression' && arg.expression.optional) {
+          // The arg is a member expression that ends with optional chaining. We're not very interested in
+          // the object part so we can abstract that away and make the rest a little easier to deal with.
+          // The gist is `delete a?.b()?.c` becomes `tmp = a?.b()`, if (tmp) delete tmp.c`
+
+          const mem = arg.expression;
+
+          if (wrapKind === 'statement') {
+            rule('Arg of delete statement cannot be optional chaining');
+            example('delete a?.b;', 'tmp = a; if (a) delete a.b;', () => !mem.computed);
+            example('delete a?.[b()];', 'tmp = a; if (a) delete a[b()];', () => mem.computed);
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpDeleteOpt');
+            const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
+            const finalParent = AST.ifStatement(
+              tmpName,
+              AST.expressionStatement(AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed))),
+            );
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalParent);
+            return true;
+          }
+
+          if (wrapKind === 'var') {
+            rule('Arg of var init delete cannot be optional chaining');
+            example('let x = delete a?.b;', 'tmp = a; let x = true; if (a) x = delete a.b;', () => !mem.computed);
+            example('let x = delete a?.[b()];', 'tmp = a; let x = true; if (a) x = delete a[b()];', () => mem.computed);
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpDeleteOpt');
+            const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
+            const finalParent = AST.ifStatement(
+              tmpName,
+              AST.variableDeclaration(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
+              AST.expressionStatement(
+                AST.unaryExpression('delete', AST.assignmentExpression(wrapLhs, AST.memberExpression(tmpName, mem.property, mem.computed))),
+              ),
+            );
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalParent);
+            return true;
+          }
+
+          if (wrapKind === 'assign') {
+            rule('Arg of assign delete cannot be optional chaining');
+            example('x = delete a?.b;', 'tmp = a; if (a) x = delete a.b; else x = true;', () => !mem.computed);
+            example('x = delete a?.[b()];', 'tmp = a; if (a) x = delete a[b()]; else x = true;', () => mem.computed);
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpDeleteOpt');
+            const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
+            const finalParent = AST.ifStatement(
+              tmpName,
+              AST.expressionStatement(
+                AST.unaryExpression('delete', AST.assignmentExpression(wrapLhs, AST.memberExpression(tmpName, mem.property, mem.computed))),
+              ),
+              AST.expressionStatement(AST.assignmentExpression(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind)),
+            );
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            return true;
+          }
+
+          ASSERT(false);
+        }
+
+        if (arg.type === 'MemberExpression') {
+          if (arg.computed) {
+            if (isComplexNode(arg.object) || isComplexNode(arg.property)) {
+              rule('Argument of delete must be simple computed member expression with simple property');
+              example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
+              before(node, parentNode);
+
+              const tmpNameObj = createFreshVarInCurrentRootScope('tmpDeleteCompObj');
+              const tmpNameProp = createFreshVarInCurrentRootScope('tmpDeleteCompProp');
+              const newNodes = [
+                AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
+                AST.variableDeclaration(tmpNameProp, arg.property, 'const'),
+              ];
+              const finalNode = AST.unaryExpression('delete', AST.memberExpression(tmpNameObj, tmpNameProp, true));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(newNodes);
+              after(finalNode, finalParent);
+              return true;
+            }
+
+            // `delete a[b]` is atomic
+            return false;
+          }
+
+          if (isComplexNode(arg.object)) {
+            rule('Argument of delete must be simple member expression');
+            example('delete f().x', 'tmp = f(), delete tmp.x');
+            before(node, parentNode);
+
+            const tmpName = createFreshVarInCurrentRootScope('tmpDeleteObj');
+            const newNodes = [AST.variableDeclaration(tmpName, arg.object, 'const')];
+            const finalNode = AST.unaryExpression('delete', AST.memberExpression(tmpName, arg.property));
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            return true;
+          }
+
+          // `delete a.b` is atomic
+          return false;
+        }
+
+        // You cannot delete a plain identifier and there's no point in deleting anything else
+        // Replace this expression with a temporary variable and a bogus group.
+        // Since `delete` returns whether or not the property exists after the operation, the result must be `true`
+        rule('Delete argument must be a member expression');
+        example('delete f()', 'f(), true');
+        before(node, parentNode);
+
+        const newNodes = [AST.expressionStatement(node.argument)];
+        const finalNode = AST.identifier('true');
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (node.operator === 'void') {
+        rule('Void must be replaced by a sequence');
+        example('void x', 'x, undefined');
+        before(node, parentNode);
+
+        const finalNode = AST.sequenceExpression(node.argument, AST.identifier('undefined'));
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(finalParent);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (node.argument.type === 'SequenceExpression') {
+        rule('Unary argument cannot be sequence');
+        example('!(a, b)', 'a, !b');
+        example('-(1 + 2, 3 + 4)', '(1 + 2, -(3 + 4))');
+        before(node, parentNode);
+
+        const exprs = node.argument.expressions;
+        const newNodes = [...exprs.slice(0, -1).map((e) => AST.expressionStatement(e))];
+        const finalNode = AST.unaryExpression(node.operator, exprs[exprs.length - 1]);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      if (isComplexNode(node.argument)) {
+        rule('Unary argument cannot be complex');
+        example('!f()', 'tmp = f(), !tmp');
+        before(node, parentNode);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpUnaryArg');
+        const newNodes = [AST.variableDeclaration(tmpName, node.argument, 'const')];
+        const finalNode = AST.unaryExpression(node.operator, tmpName);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      return false;
+    }
+
+    if (node.type === 'LogicalExpression') {
+      // This will need some special branching per type of `kind`.
+      // By the time this point is reached, the expression should only exist in three forms;
+      // - init of a binding: create a `let` with lhs as init and if-else change it to the right
+      // - stmt: if-else without assignment
+      // - assign: conditionally assign the lhs or rhs
+      // There are (currently) three operators: && || ??
+
+      if (node.operator === '??') {
+        // `a ?? b` is `if (a === null) b`
+        // TODO: do we care about the document.all exception? Make it optional?
+
+        if (wrapKind === 'statement') {
+          rule('Nullish coalescing statement should be normalized away');
+          example('a() ?? b()', 'if (a() == null) b();');
+          before(node, parentNode);
+
+          const finalParent = AST.ifStatement(
+            AST.binaryExpression('==', node.left, 'null'),
+            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right)),
+          );
+          body[i] = finalParent;
+
+          after(finalParent);
+          return true;
+        }
+
+        if (wrapKind === 'var') {
+          rule('Nullish coalescing var decl should be normalized away');
+          example('let x = a() ?? b()', 'let x = a(); if (a == null) a = b();');
+        } else if (wrapKind === 'assign') {
+          rule('Nullish coalescing assign should be normalized away');
+          example('x = a() ?? b()', 'x = a(); if (a == null) a = b();');
+        } else {
+          ASSERT(false);
+        }
+        before(node, parentNode);
+
+        const finalParent = [
+          wrapExpressionAs(
+            wrapKind,
+            varInitAssignKind,
+            varInitAssignId,
+            wrapLhs,
+            varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
+            node.left,
+          ),
+          AST.ifStatement(
+            AST.binaryExpression('==', wrapLhs, 'null'),
+            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right)),
+          ),
+        ];
+        body.splice(i, 1, ...finalParent);
+
+        after(finalParent);
+        return true;
+      }
+
+      if (node.operator === '||') {
+        // `a || b` is `if (!a) b`
+
+        if (wrapKind === 'statement') {
+          rule('Logical OR statement must be if-else');
+          example('a() || b();', 'if (a()); else b();');
+          before(node, parentNode);
+
+          const finalParent = AST.ifStatement(node.left, AST.emptyStatement(), AST.expressionStatement(node.right));
+          body[i] = finalParent;
+
+          after(finalParent);
+          return true;
+        }
+
+        if (wrapKind === 'var') {
+          rule('Logical OR var init must be if-else');
+          example('let x = a() || b();', 'let x = a(); if (x); else b();');
+        } else if (wrapKind === 'assign') {
+          rule('Logical OR assignmment must be if-else');
+          example('x = a() || b();', 'x = a(); if (x); else b();');
+        } else {
+          ASSERT(false);
+        }
+
+        const finalParent = [
+          wrapExpressionAs(
+            wrapKind,
+            varInitAssignKind,
+            varInitAssignId,
+            wrapLhs,
+            varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
+            node.left,
+          ),
+          AST.ifStatement(wrapLhs, AST.emptyStatement(), AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right))),
+        ];
+        body.splice(i, 1, ...finalParent);
+
+        after(finalParent);
+        return true;
+      }
+
+      if (node.operator === '&&') {
+        // `a && b` is `if (a) b`
+
+        if (wrapKind === 'statement') {
+          rule('Logical OR statement must be if-else');
+          example('a() && b();', 'if (a()) b();');
+          before(node, parentNode);
+
+          const finalParent = AST.ifStatement(node.left, AST.expressionStatement(node.right));
+          body[i] = finalParent;
+
+          after(finalParent);
+          return true;
+        }
+
+        if (wrapKind === 'var') {
+          rule('Logical AND var init must be if-else');
+          example('let x = a() && b();', 'let x = a(); if (x) x = b();');
+        } else if (wrapKind === 'assign') {
+          rule('Logical OR assignmment must be if-else');
+          example('x = a() || b();', 'x = a(); if (x) x = b();');
+        } else {
+          ASSERT(false);
+        }
+
+        const finalParent = [
+          wrapExpressionAs(
+            wrapKind,
+            varInitAssignKind,
+            varInitAssignId,
+            wrapLhs,
+            varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
+            node.left,
+          ),
+          AST.ifStatement(wrapLhs, AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right))),
+        ];
+        body.splice(i, 1, ...finalParent);
+
+        after(finalParent);
+        return true;
+      }
+
+      ASSERT(false, 'should have transformed all logicals away', node);
+    }
+
+    if (node.type === 'ConditionalExpression') {
+      // `a ? b : c;` -> `if (a) b; else c;`
+      // `x = a ? b : c` -> `if (a) x = b; else x = c;`
+      // `let x = a ? b : c` -> `let x; if (a) x = b; else x = c;`
+
+      if (wrapKind === 'statement') {
+        rule('Conditional expression statement should be if-else');
+        example('a() ? b() : c();', 'if (a()) b(); else c();');
+        before(node, parentNode);
+
+        const finalParent = AST.ifStatement(node.test, AST.expressionStatement(node.consequent), AST.expressionStatement(node.alternate));
+        body[i] = finalParent;
+
+        after(finalParent);
+        return true;
+      }
+
+      if (wrapKind === 'var') {
+        rule('Conditional expression var init should be if-else');
+        example('let x = a() ? b() : c();', 'let x; if (a()) x = b(); else x = c();');
+        before(node, parentNode);
+
+        const newNodes = [
+          // No init. Prevent a future where we'd make a distinction betwene no init and init to undefined.
+          wrapExpressionAs(
+            wrapKind,
+            varInitAssignKind,
+            varInitAssignId,
+            wrapLhs,
+            varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
+            null,
+          ),
+        ];
+        const finalParent = AST.ifStatement(
+          node.test,
+          AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.consequent)),
+          AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.alternate)),
+        );
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalParent);
+        return true;
+      }
+
+      if (wrapKind === 'assign') {
+        rule('Conditional expression assign should be if-else');
+        example('x = a() ? x = b() : x = c();', 'if (a()) x = b(); else x = c();');
+        before(node, parentNode);
+
+        const finalParent = [
+          AST.ifStatement(
+            node.test,
+            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.consequent)),
+            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.alternate)),
+          ),
+        ];
+        body.splice(i, 1, ...finalParent);
+
+        after(finalParent);
+        return true;
+      }
+
+      ASSERT(false);
+    }
+
+    if (node.type === 'UpdateExpression') {
+      const arg = node.argument;
+
+      ASSERT(arg.type === 'Identifier' || arg.type === 'MemberExpression', 'only two things you can update and its not patterns');
+      ASSERT(
+        arg.type === 'Identifier' ? !isComplexNode(arg) : true,
+        'update expressions are only valid to idents and props; idents are never complex',
+      );
+      ASSERT(arg.type !== 'MemberExpression' || !arg.optional, 'optional chaining can not be args to update expressions');
+
+      if (node.prefix) {
+        // Easiest thing is to convert to compound assignment and let other rules handle all edge cases safely
+
+        rule('Prefix update expression must be compound assignment');
+        example('++f()[g()]', 'f()[g()] += 1', () => node.operator === '++');
+        example('--f()[g()]', 'f()[g()] -= 1', () => node.operator === '--');
+        before(node, parentNode);
+
+        const finalNode = AST.assignmentExpression(arg, AST.literal(1), node.operator === '++' ? '+=' : '-=');
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, finalParent);
+
+        after(finalParent);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // Postfix is harder because we do need to bother saving the value first so we can return it.
+      // Well ok, it's kinda simple for identifier
+
+      if (arg.type === 'Identifier') {
+        rule('Postfix ident update expression must be compound assignment that returns before-value');
+        example('a++', 'tmp = a, a = a + 1, tmp', () => node.operator === '++');
+        example('a--', 'tmp = a, a = a - 1, tmp', () => node.operator === '--');
+        before(node, parentNode);
+
+        const tmpName = createFreshVarInCurrentRootScope('tmpPostUpdArgIdent');
+        const newNodes = [
+          AST.variableDeclaration(tmpName, arg.name, 'const'),
+          AST.expressionStatement(
+            AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', arg.name, AST.literal(1))),
+          ),
+        ];
+        const finalNode = AST.identifier(tmpName);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // Member expression is a little trickier. Just unconditionally cache the object/prop (imlazy) and then do the same.
+
+      ASSERT(arg.type === 'MemberExpression', 'can only update idents and props');
+      if (arg.computed) {
+        rule('Postfix computed prop update expression must be compound assignment that returns before-value');
+        example('f()[g()]++', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 + 1, tmp3', () => node.operator === '++');
+        example('f()[g()]--', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 - 1, tmp3', () => node.operator === '--');
+        before(node, parentNode);
+
+        const tmpNameObj = createFreshVarInCurrentRootScope('tmpPostUpdArgComObj');
+        const tmpNameProp = createFreshVarInCurrentRootScope('tmpPostUpdArgComProp');
+        const tmpNameVal = createFreshVarInCurrentRootScope('tmpPostUpdArgComVal');
+        const newNodes = [
+          // tmp = f()
+          AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
+          // tmp2 = g()
+          AST.variableDeclaration(tmpNameProp, arg.property, 'const'),
+          // tmp3 = tmp[tmp2]
+          AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, tmpNameProp, true), 'const'),
+          // tmp[tmp2] = tmp3 + 1
+          AST.expressionStatement(
+            AST.assignmentExpression(
+              AST.memberExpression(tmpNameObj, tmpNameProp, true),
+              AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.literal(1)),
+            ),
+          ),
+        ];
+        const finalNode = AST.identifier(tmpNameVal);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      // Slightly less complicated but we still just cache the object all the same.
+
+      rule('Postfix prop update expression must be compound assignment that returns before-value');
+      example('f().x++', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 + 1, tmp2', () => node.operator === '++');
+      example('f().x--', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 - 1, tmp2', () => node.operator === '--');
+      before(node, parentNode);
+
+      const tmpNameObj = createFreshVarInCurrentRootScope('tmpPostUpdArgObj');
+      const tmpNameVal = createFreshVarInCurrentRootScope('tmpPostUpdArgVal');
+
+      const newNodes = [
+        // tmp = f()
+        AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
+        // tmp2 = tmp.x
+        AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, arg.property), 'const'),
+        // tmp.x = tmp2 + 1
+        AST.expressionStatement(
+          AST.assignmentExpression(
+            AST.memberExpression(tmpNameObj, arg.property),
+            AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.literal(1)),
+          ),
+        ),
+      ];
+      const finalNode = AST.identifier(tmpNameVal);
+      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+      body.splice(i, 1, ...newNodes, finalParent);
+
+      after(newNodes);
+      after(finalNode, finalParent);
+      return true;
+    }
+
+    if (node.type === 'ArrayExpression') {
+      if (wrapKind === 'statement') {
+        // Consider an array statements that only has simple spreads to be okay
+        if (
+          node.elements.every((enode) => {
+            if (enode.type !== 'SpreadElement') {
+              // Don't want to keep non-spreads in an array statement. There's no point.
+              return false;
+            }
+            // `[...x];` will trigger the iterator on x and so is an observable side effect
+            return !isComplexNode(enode.argument);
+          })
+        ) {
+          return false;
+        }
+
+        rule('Array cannot be a statement');
+        example('[a, b()];', 'a; b();');
+        before(node, parentNode);
+
+        const finalParent = [];
+        node.elements.forEach((enode) => {
+          if (!enode) return;
+
+          if (enode.type === 'SpreadElement') {
+            const tmpName = createFreshVarInCurrentRootScope('tmpArrElToSpread');
+            const newNode = AST.variableDeclaration(tmpName, enode.argument);
+            finalParent.push(newNode);
+            // Spread it to trigger iterators and to make sure still errors happen
+            const spread = AST.expressionStatement(AST.arrayExpression(AST.spreadElement(tmpName)));
+            finalParent.push(spread);
+          } else {
+            const newNode = AST.expressionStatement(enode);
+            finalParent.push(newNode);
+          }
+        });
+        body.splice(i, 1, ...finalParent);
+
+        after(finalParent);
+        return true;
+      }
+
+      // Since closures may affect binding values, we must simplify all nodes up to the last complex node
+      let last = -1;
+      node.elements.forEach((enode, i) => {
+        if (enode) {
+          if (enode.type === 'SpreadElement' ? isComplexNode(enode.argument) : isComplexNode(enode)) {
+            last = i;
+          }
+        }
+      });
+      if (last >= 0) {
+        rule('Elements of array literals must be simple');
+        example('[a, b(), c]', 'tmp = a, tmp2 = b(), [tmp, tmp2, c]');
+        before(node, parentNode);
+
+        const newNodes = [];
+        const newNames = [];
+        for (let i = 0; i <= last; ++i) {
+          const enode = node.elements[i];
+          if (!enode) {
+            // do not remove elided elements
+            newNames.push([null, false]);
+          } else if (enode.type === 'SpreadElement') {
+            const tmpName = createFreshVarInCurrentRootScope('tmpArrSpread');
+            newNodes.push(AST.variableDeclaration(tmpName, enode.argument, 'const'));
+            newNames.push([tmpName, true]);
+          } else {
+            const tmpName = createFreshVarInCurrentRootScope('tmpArrElement');
+            newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
+            newNames.push([tmpName, false]);
+          }
+        }
+        const finalNode = AST.arrayExpression(
+          ...newNames.map(([name, spread]) => (name === null ? null : spread ? AST.spreadElement(name) : AST.identifier(name))),
+          ...node.elements.slice(last + 1),
+        );
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body.splice(i, 1, ...newNodes, finalParent);
+
+        after(newNodes);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      return false;
+    }
+
+    if (node.type === 'ObjectExpression') {
+      if (wrapKind === 'statement') {
+        rule('Object cannot be a statement');
+        example('({x: a, [y()]: b(), c, ...d()});', 'a; y(); b(); c; d();');
+        before(node, parentNode);
+
+        const finalParent = [];
+        node.properties.forEach((pnode) => {
+          // A property can be shorthand, computed, method, getter, setter
+          // We can ignore the getter/setter/method props because functions have no observable side effects when being declared
+
+          if (pnode.type === 'SpreadElement') {
+            // TODO: needs iterable check?
+            finalParent.push(pnode.argument);
+          } else if (pnode.kind !== 'init' || pnode.method) {
+            // Ignore. Declaring a function has no observable side effects.
+          } else if (pnode.shorthand) {
+            // I think this is redundant but it shouldn't matter much
+            finalParent.push(pnode.key);
+          } else if (pnode.computed) {
+            finalParent.push(pnode.key);
+            finalParent.push(pnode.value);
+          } else {
+            finalParent.push(pnode.value);
+          }
+        });
+        body.splice(i, 1, ...finalParent.map((enode) => AST.expressionStatement(enode)));
+
+        after(finalParent);
+        return true;
+      }
+
+      if (wrapKind === 'var' || wrapKind === 'assign') {
+        let last = -1;
+        node.properties.forEach((pnode, i) => {
+          // A property can be shorthand, computed, method, getter, setter
+          // We can ignore the getter/setter/method props because functions have no observable side effects when being declared
+          // TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
+          if (pnode.shorthand) {
+            rule('Property shorthand must be regular property');
+            example('{x}', '{x : x}');
+            before(node, parentNode);
+
+            pnode.shorthand = false; // Inline should be fine, right? Even if this node ends up being duplicated...?
+            after(parentNode);
+            // I don't think we need to mark this as changed, at least not for the sake of re-walking it.
+          }
+
+          if (pnode.type === 'SpreadElement') {
+            if (isComplexNode(pnode.argument)) last = i;
+          } else if (pnode.kind !== 'init' || pnode.method) {
+            // Ignore. Declaring a function has no observable side effects.
+          } else if ((pnode.computed && isComplexNode(pnode.key)) || isComplexNode(pnode.value)) {
+            last = i;
+          }
+        });
+
+        if (last >= 0) {
+          rule('Properties of object literals must be simple');
+          example('{x: a, y: b(), z: c}', 'tmp = a, tmp2 = b(), {x: tmp, y: tmp2, z: c}');
+          before(node, parentNode);
+
+          const newNodes = [];
+          const newProps = [];
+          for (let i = 0; i <= last; ++i) {
+            const pnode = node.properties[i];
+
+            if (pnode.type === 'SpreadElement') {
+              const tmpName = createFreshVarInCurrentRootScope('tmpObjSpread');
+              newNodes.push(AST.variableDeclaration(tmpName, pnode.argument, 'const'));
+              newProps.push(AST.spreadElement(tmpName));
+            } else if (pnode.kind !== 'init' || pnode.method) {
+              // Copy getters/setters and methods as is. There's no alternative for them. Maybe methods.
+              newProps.push(pnode);
+            } else if (pnode.computed) {
+              // Must also cache the computed property keys
+              const tmpNameKey = createFreshVarInCurrentRootScope('tmpObjLitPropKey');
+              const tmpNameVal = createFreshVarInCurrentRootScope('tmpObjLitPropVal');
+              newNodes.push(AST.variableDeclaration(tmpNameKey, pnode.key, 'const'));
+              newNodes.push(AST.variableDeclaration(tmpNameVal, pnode.value, 'const'));
+              newProps.push(AST.property(tmpNameKey, tmpNameVal, false, true));
+            } else {
+              const tmpName = createFreshVarInCurrentRootScope('tmpObjLitVal');
+              newNodes.push(AST.variableDeclaration(tmpName, pnode.value, 'const'));
+              newProps.push(AST.property(pnode.key, tmpName, false, false));
+            }
+          }
+
+          const finalNode = AST.objectExpression(...newProps, ...node.properties.slice(last + 1));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          return true;
+        }
+
+        return false;
+      }
+
+      ASSERT(false);
+    }
+
+    if (node.type === 'ArrowFunctionExpression') {
+      if (node.expression) {
+        rule('Arrow body must be block');
+        example('() => x', '() => { return x; }');
+        before(node, parentNode);
+
+        node.body = AST.blockStatement(AST.returnStatement(node.body));
+        node.expression = false;
+
+        after(node, parentNode);
+        return true;
+      }
+
+      // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+      // Array<name, expr>
+      // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+      const newBindings = [];
+
+      transformFunctionParams(node, body, i, newBindings);
+
+      if (newBindings.length) {
+        log('Params were transformed somehow, injecting new nodes into body');
+        node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+        return true;
+      }
+
+      return false;
+    }
+
+    if (node.type === 'TaggedTemplateExpression') {
+      rule('Tagged templates should decompose into their runtime values');
+      example("f`foo`','f(['foo'])", () => node.expressions.length === 0);
+      example("f`a${1}b${2}c${3}d`','f(['a', 'b', 'c', 'd'], 1, 2, 3)`", () => node.expressions.length === 0);
+      before(node, parentNode);
+
+      const finalNode = AST.callExpression(node.tag, [
+        AST.arrayExpression(node.quasi.quasis.map((templateElement) => AST.literal(templateElement.value.raw))),
+        ...node.quasi.expressions,
+      ]);
+      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+      body[i] = finalParent;
+
+      after(finalParent);
+      after(finalNode, finalParent);
+      return true;
+    }
+
+    if (node.type === 'TemplateLiteral') {
+      if (node.expressions.length === 0) {
+        ASSERT(node.quasis.length === 1, 'zero expressions means exactly one "string" part');
+        ASSERT(node.quasis[0].value && typeof node.quasis[0].value.raw === 'string', 'expecting this AST struct', node);
+
+        rule('Templates without expressions must be strings');
+        example('`foo`', "'foo'");
+        before(node, parentNode);
+
+        const finalNode = AST.literal(node.quasis[0].value.raw);
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(finalParent);
+        after(finalNode, finalParent);
+        return true;
+      }
+
+      const newNodes = [];
+      node.expressions.forEach((enode, i) => {
+        if (isComplexNode(enode)) {
+          if (newNodes.length === 0) {
+            rule('Expressions inside a template must be simple nodes');
+            example('`a${f()}b`', 'tmp = f(), `a${f()}b`');
+            before(node, parentNode);
+          }
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpTemplateExpr');
+          newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
+          node.expressions[i] = AST.identifier(tmpName);
+        }
+      });
+      if (newNodes.length > 0) {
+        body.splice(i, 0, ...newNodes);
+
+        after(newNodes);
+        after(node, parentNode); // did not replace node
+        return true;
+      }
+
+      return false;
+    }
+
+    if (node.type === 'ChainExpression') {
+      // This serves as a fence. If there's an optional member/call then it might be nested in multiple
+      // layers of member expressions. A call may have multiple member expressions as callee.
+      // The parser will weed out illegal cases.
+      // When we see a chain expression node, traverse the chain and put everything leading up to the first
+      // conditional under the same `if` condition. Then do the same for the next optional up to the
+      // previous. Repeat until the end of the chain (a member expression whose object is not a member).
+      // We have to treat this in one go rather than step by step
+
+      rule('ChainExpression must become if-else');
+      if (wrapKind === 'statement') {
+        example('a()?.b.c()', 'const tmp = a(); if (tmp) tmp.b.c()');
+        example('a().b.c?.()', 'const tmp = a().b.c; if (tmp) tmp.c()');
+        example(
+          'a()?.b.c?.()',
+          'const tmp = a(); if (tmp) { const tmp2 = tmp.b; const tmp3 = tmp2.c; if (tmp3) tmp3.call(tmp2, f(), g(), h());',
+        );
+      } else if (wrapKind === 'var') {
+        example('let x = a()?.b.c()', 'let x = undefined; const tmp = a(); if (tmp) x = tmp.b.c();');
+        example('let x = a().b.c?.()', 'let x = undefined; const tmp = a().b.c; if (tmp) x = tmp.c();');
+        example(
+          'let x = a()?.b.c?.()',
+          'let x = undefined; const tmp = a(); if (tmp) { const tmp2 = tmp.b; const tmp3 = tmp2.c; if (tmp3) tmp3.call(tmp2, f(), g(), h()); }',
+        );
+      } else if (wrapKind === 'assign') {
+        example('x = a()?.b.c()', 'x = undefined; const tmp = a(); if (tmp) x = tmp.b.c();');
+        example('x = a().b.c?.()', 'x = undefined; const tmp = a().b.c; if (tmp) x = tmp.c();');
+        example(
+          'x = a()?.b.c?.()',
+          'x = undefined; const tmp = a(); if (tmp) { const tmp2 = tmp.b; const tmp3 = tmp2.c; if (tmp3) tmp3.call(tmp2, f(), g(), h()); }',
+        );
+      }
+
+      before(node, parentNode);
+
+      let lastObj;
+      let prevObj;
+      let prevComputed = false;
+      let newNodes = [];
+      let nodes = newNodes;
+
+      // a?.b -> tmp = a; if (tmp) a.b;
+      // a?.b.c -> tmp = a; if (tmp) a.b.c;
+      // a?.() -> tmp = a; if (tmp) a();
+      // a?.b() -> tmp = a; if (tmp) tmp.b();
+      // a?.b?.() -> tmp = a; if (tmp) { tmp2 = tmp.b; if (tmp2) tmp3.call(tmp, ...) }
+      // a?.b?.c?.() -> tmp = a; if (tmp) { tmp2 = tmp.b; if (tmp2) { tmp3 = tmp2.c; if (tmp3) tmp3.call(tmp2, ...) }}}
+      // a?.b.c.d?.() -> tmp = a; if (tmp) { tmp2 = tmp.b.c; tmp3 = tmp2.d; if (tmp3) tmp3.call(tmp2, ...)
+      // a?.b.c.d() -> tmp = a; if (tmp) { tmp.b.c.d() }
+      // a.b.c.d() -> tmp = a.b.c; tmp2 = tmp.d; if (tmp2) { tmp2.call(tmp, ...)
+
+      function r(node) {
+        log('-> r:', node.type, node.property ? node.property.name : node.callee);
+        if (node.type === 'MemberExpression') {
+          if (node.object.type === 'MemberExpression' || node.object.type === 'CallExpression') {
+            r(node.object);
+          } else {
+            const tmpName = createFreshVarInCurrentRootScope('tmpChainRootProp');
+            log('  - Left most object will be stored in', tmpName);
+            lastObj = prevObj;
+            prevObj = tmpName;
+            prevComputed = node.computed;
+            nodes.push(AST.variableDeclaration(tmpName, node.object, 'const'));
+          }
+
+          if (node.optional) {
+            // Add a condition based on what we've collected so far (representing the value of the chain
+            // up to the current `?.`). New nodes from the remainder of the chain will be added to the
+            // body of this new `if` node.
+            let nextLevel = [];
+            nodes.push(AST.ifStatement(prevObj, AST.blockStatement(nextLevel)));
+            nodes = nextLevel;
+          }
+
+          if (node.computed) {
+            // a?.[b()]?.() -> tmp = a; if (a) { tmp2 = b(); tmp3 = tmp[tmp2]; if (tmp3) tmp3.call(tmp2); }
+            const tmpName = createFreshVarInCurrentRootScope('tmpChainRootComputed');
+            nodes.push(AST.variableDeclaration(tmpName, node.property, 'const'));
+            node.property = AST.identifier(tmpName);
+          }
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpChainElementObject');
+          log('Storing next property', node.property.name, 'in', tmpName);
+          nodes.push(AST.variableDeclaration(tmpName, AST.memberExpression(prevObj, node.property, node.computed), 'const'));
+          lastObj = prevObj;
+          prevObj = tmpName;
+          prevComputed = node.computed;
+        } else if (node.type === 'CallExpression') {
+          if (node.callee.type === 'MemberExpression' || node.callee.type === 'CallExpression') {
+            r(node.callee);
+          } else {
+            const tmpName = createFreshVarInCurrentRootScope('tmpChainRootCall');
+            log('  - Left most callee will be stored in', tmpName);
+            lastObj = prevObj;
+            prevObj = tmpName;
+            prevComputed = false;
+            nodes.push(AST.variableDeclaration(tmpName, node.callee, 'const'));
+          }
+
+          if (node.optional) {
+            // Add a condition based on what we've collected so far (representing the value of the chain
+            // up to the current `?.`). New nodes from the remainder of the chain will be added to the
+            // body of this new `if` node.
+            let nextLevel = [];
+            nodes.push(AST.ifStatement(prevObj, AST.blockStatement(nextLevel)));
+            nodes = nextLevel;
+          }
+
+          const tmpName = createFreshVarInCurrentRootScope('tmpChainElementCall');
+          log('Storing next callee', node.callee.name, 'in', tmpName);
+          nodes.push(
+            AST.variableDeclaration(
+              tmpName,
+              lastObj
+                ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
+                  AST.callExpression(AST.memberExpression(prevObj, 'call'), [AST.identifier(lastObj), ...node.arguments])
+                : // a(1, 2, 3)  ->  b(1, 2, 3)
+                  AST.callExpression(prevObj, node.arguments),
+              'const',
+            ),
+          );
+          lastObj = prevObj;
+          prevObj = tmpName;
+          prevComputed = false;
+        } else {
+          ASSERT(false, 'eh?');
+        }
+      }
+
+      log('Now processing the chain...');
+      r(node.expression);
+      if (wrapKind === 'statement') {
+        // No further action necessary
+      } else if (wrapKind === 'var' || wrapKind === 'assign') {
+        let finalParentBefore = wrapExpressionAs(
+          wrapKind,
+          varInitAssignKind,
+          varInitAssignId,
+          wrapLhs,
+          varOrAssignKind,
+          AST.identifier('undefined'),
+        );
+        if (finalParentBefore.type === 'VariableDeclaration' && finalParentBefore.kind === 'const') {
+          // This cannot be a const as we conditionally update it.
+          finalParentBefore.kind = 'let';
+        }
+        newNodes.unshift(finalParentBefore);
+        const finalNode = AST.identifier(prevObj);
+        let finalParent2 = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        if (finalParent2.type === 'VariableDeclaration') {
+          // This is a hack but if the node is a var decl then change it to an assignment
+          // We created the decl and made sure it's the first node, initalized to undefined
+          // This circumvents a nested assignment that is the init of a var decl
+          finalParent2 = AST.expressionStatement(
+            AST.assignmentExpression(finalParent2.declarations[0].id, finalParent2.declarations[0].init),
+          );
+        }
+        nodes.push(finalParent2);
+      } else {
+        ASSERT(false);
+      }
+
+      body.splice(i, 1, ...newNodes);
+
+      log('Chain processing done. Result:');
+      after(newNodes);
+      return true;
+    }
+
+    // TODO: probably want to assert false here. It means there was an expression that was not normalized.
+    log(RED + 'Missed expr:', node.type, RESET);
     return false;
   }
   function transformForStatement(node, body, i) {
@@ -3979,12 +4337,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
-  function transformFunctionDeclaration(node, body, i) {
-    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-    // Array<name, expr>
-    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-    const newBindings = [];
-
+  function transformFunctionParams(node, body, i, newBindings) {
     node.params.forEach((pnode, i) => {
       if (pnode.type === 'RestElement') {
         return false;
@@ -4121,6 +4474,14 @@ export function phaseNormalize(fdata, fname) {
         ASSERT(false, 'dunno wat dis is', pnode);
       }
     });
+  }
+  function transformFunctionDeclaration(node, body, i) {
+    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+    // Array<name, expr>
+    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+    const newBindings = [];
+
+    transformFunctionParams(node, body, i, newBindings);
 
     if (newBindings.length) {
       log('Params were transformed somehow, injecting new nodes into body');
@@ -4129,6 +4490,116 @@ export function phaseNormalize(fdata, fname) {
     }
 
     return false;
+  }
+  function transformLabeledStatement(node, body, i, parent) {
+    log('Label: `' + node.label.name + '`');
+    //ASSERT(
+    //  !fdata.globallyUniqueLabelRegistery.has(node.label.name) || fdata.globallyUniqueLabelRegistery.get(node.label.name) === true,
+    //  'labels should be made unique in phase1',
+    //  fdata.globallyUniqueLabelRegistery,
+    //  node,
+    //);
+
+    // This node should be stored in body.body[i]
+    const prop = 'body';
+    const index = i;
+
+    //log('--->', parent.type, prop, index)
+
+    if (fdata.globallyUniqueLabelRegistery.has(node.label.name))
+      log(
+        'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
+      );
+    log('Registering label `' + node.label.name + '`');
+    fdata.globallyUniqueLabelRegistery.set(node.label.name, {
+      // ident meta data
+      name: node.label.name,
+      uniqueName: node.label.name,
+      labelNode: {
+        parent,
+        prop,
+        index, // Make sure to update below if the index changes
+      },
+      usages: [], // {parent, prop, index} of the break/continue statement referring to the label
+    });
+
+    // foo: bar
+    // foo: {bar}
+    // foo: while(true) continue foo;
+    if (node.body.type !== 'BlockStatement') {
+      if (['ForStatement', 'ForInStatement', 'ForOfStatement', 'WhileStatement', 'DoWhileStatement'].includes(node.body.type)) {
+        // Do NOT force block wrapping because that may break labeled continues
+        // Instead, fake the wrapper and then outline any statements
+
+        const fakeWrapper = AST.blockStatement(node.body);
+        // Now visit the block. Upon return, check if the wrapper contains exactly the same node as input.
+        // If it's the same then no further changes are required. Otherwise outline any element of the wrapper
+        // except the last and put them before the label. Then make the last element the body of the label.
+        // And if the new body is not a block nor an iteration statement then wrap it in a block anyways.
+
+        rule('Special label case with loop body');
+        before(node);
+
+        const changed = anyBlock(fakeWrapper);
+
+        if (!changed) {
+          after('Label body did not change at all');
+          return false;
+        }
+
+        after(AST.labeledStatement(node.label, fakeWrapper));
+
+        if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
+          log('Something changed but the node stays put');
+          return false; // No need to change anything in this body
+        }
+
+        log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
+        fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+
+        if (fakeWrapper.body[fakeWrapper.body.length - 1] === node.body) {
+          // Only outline the elements preceding the last one. We throw away the wrapper.
+          log('Last statement is still original node. Outlining new nodes and keeping original labeled statement');
+          body.splice(i, 0, ...fakeWrapper.body.slice(0, -1));
+          return true;
+        }
+
+        log('Labeled statement changed. Replacing the whole deal.');
+        // Outline every element but the last and put them in front of the label. Replace the label
+        // with a new label that has the last element as a body. It's a different node now.
+        body.splice(
+          i,
+          1,
+          ...fakeWrapper.body.slice(0, -1),
+          AST.labeledStatement(node.label, fakeWrapper.body[fakeWrapper.body.length - 1]),
+        );
+
+        return true;
+      }
+
+      rule('The body of a label must be a block or an iteration statement');
+      example('foo: if (x) y;', 'foo: { if (x) y; }');
+      before(node);
+
+      const newNode = AST.labeledStatement(node.label, AST.blockStatement(node.body));
+      body.splice(i, 1, newNode);
+
+      log('Unregistering label `' + node.label.name + '` because we added a block. This declaration will be visited again.');
+      fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+
+      after(newNode);
+      return true;
+    }
+
+    log('label has block, noop');
+    const anyChange = anyBlock(node.body);
+    log('Changes?', anyChange);
+    if (anyChange) {
+      log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
+      fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+    }
+
+    return anyChange;
   }
   function transformIfStatement(node, body, i) {
     if (node.test.type === 'UnaryExpression' && node.test.operator === '!') {
@@ -4235,11 +4706,12 @@ export function phaseNormalize(fdata, fname) {
 
       // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
       const tmpName = createFreshVarInCurrentRootScope('tmpReturnArg');
-      const newNode = AST.variableDeclaration(tmpName, node.argument);
+      const newNode = AST.variableDeclaration(tmpName, node.argument, 'const');
       body.splice(i, 0, newNode);
       node.argument = AST.identifier(tmpName);
 
       after(newNode);
+      after(node);
       return true;
     }
 
@@ -4268,6 +4740,8 @@ export function phaseNormalize(fdata, fname) {
     let hasDefaultAt = -1;
     node.cases.forEach((cnode, i) => {
       if (!cnode.test) hasDefaultAt = i;
+      ensureVarDeclsCreateOneBinding(cnode.consequent); // case/default bodies are special blocks
+
       cnode.consequent.forEach((snode, i) => {
         if (snode.type === 'VariableDeclaration') {
           const names = findBoundNamesInPattern(snode);
@@ -4495,6 +4969,8 @@ export function phaseNormalize(fdata, fname) {
 
     const dnode = node.declarations[0];
 
+    log('Id:', dnode.id.type === 'Identifier' ? '`' + dnode.id.name + '`' : '<pattern>');
+
     if (dnode.id.type === 'ArrayPattern') {
       rule('Binding array patterns not allowed');
       example('let [x] = y()', 'let tmp = y(), tmp1 = [...tmp], x = tmp1[0]');
@@ -4558,6 +5034,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (dnode.id.type !== 'Identifier') {
+      console.log('Error node .dir:');
       console.dir(node, { depth: null });
       ASSERT(
         false,
@@ -4570,41 +5047,20 @@ export function phaseNormalize(fdata, fname) {
     const meta = getMetaForBindingName(dnode.id);
     meta.usages.push(dnode.id);
 
-    if (node.declarations[0].init) {
-      const decl = node.declarations[0];
-      const init = decl.init;
+    if (dnode.init) {
+      log('Init:', dnode.init.type);
 
-      if (init.type === 'MemberExpression' && isComplexNode(init.object)) {
-        if (init.object.type === 'SequenceExpression' && !isComplexNode(init.object.expressions[init.object.expressions.length - 1])) {
-          rule('Var init cannot be member expression on sequence with trailing node simple');
-          example('var a = (f(), x).b', 'f(); var a = x.b', () => !init.computed);
-          example('var a = (f(), x)[b()]', 'f(); var a = x[b()]', () => init.computed);
-          before(node);
+      if (dnode.init.type === 'AssignmentExpression') {
+        // Must first outline the assignment because otherwise recursive calls will assume the assignment
+        // is an expression statement and then transforms go bad.
+        rule('Var inits can not be assignments');
+        example('let x = y = z', 'let x, x = y =z');
 
-          const mem = init;
-          const seq = init.object;
-          const prop = init.property;
-          const newNode = AST.expressionStatement(AST.sequenceExpression(seq.expressions.slice(0, -1)));
-          body.splice(i, 0, newNode);
-          decl.init = AST.memberExpression(seq.expressions[seq.expressions.length - 1], prop, mem.computed);
+        body.splice(i, 1, AST.variableDeclaration(dnode.id), AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)));
+        return true;
+      }
 
-          after(node);
-          return true;
-        }
-
-        rule('Var init cannot be member expression with complex object');
-        example('var a = f().b', 'var tmp = $(), a = tmp.b');
-        before(node);
-
-        const mem = init;
-        const obj = init.object;
-        const prop = init.property;
-        const tmpName = createFreshVarInCurrentRootScope('tmpBindingInit');
-        const newNode = AST.variableDeclaration(tmpName, obj, 'const');
-        body.splice(i, 0, newNode);
-        decl.init = AST.memberExpression(tmpName, prop, mem.computed);
-
-        after(node);
+      if (isComplexNode(dnode.init) && transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
         return true;
       }
     }

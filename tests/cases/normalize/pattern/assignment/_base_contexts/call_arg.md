@@ -15,29 +15,28 @@ f({ x } = 1);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var tmpArg;
-objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-tmpArg = objAssignPatternRhs;
-f(tmpArg);
+const tmpCallCallee = f;
+let tmpCalleeParam;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var tmpArg;
-objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-tmpArg = objAssignPatternRhs;
-f(tmpArg);
+const tmpCallCallee = f;
+let tmpCalleeParam;
+x = (1).x;
+tmpCalleeParam = 1;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

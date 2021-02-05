@@ -20,7 +20,11 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = undefined;
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $('bad');
 `````
 
@@ -28,14 +32,17 @@ $('bad');
 
 `````js filename=intro
 const objPatternNoDefault = undefined.x;
-objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

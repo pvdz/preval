@@ -16,25 +16,25 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpBindingInit = $('foo');
-let x = tmpBindingInit.length;
+const tmpCompObj = $('foo');
+let x = tmpCompObj.length;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBindingInit = $('foo');
-let x = tmpBindingInit.length;
+const tmpCompObj = $('foo');
+let x = tmpCompObj.length;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "foo"
- - 1: 3
- - 2: undefined
+ - 1: 'foo'
+ - 2: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

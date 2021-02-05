@@ -19,57 +19,48 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
-  tmpOptionalChaining = parseInt(15);
-  tmpTernaryTest = tmpOptionalChaining == null;
-  if (tmpTernaryTest) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.foo;
-    tmpArg = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootCall = parseInt;
+  const tmpChainElementCall = tmpChainRootCall(15);
+  if (tmpChainElementCall) {
+    const tmpChainElementObject = tmpChainElementCall.foo;
+    tmpCalleeParam = tmpChainElementObject;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
-  tmpOptionalChaining = parseInt(15);
-  tmpTernaryTest = tmpOptionalChaining == null;
-  if (tmpTernaryTest) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.foo;
-    tmpArg = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootCall = parseInt;
+  const tmpChainElementCall = tmpChainRootCall(15);
+  if (tmpChainElementCall) {
+    const tmpChainElementObject = tmpChainElementCall.foo;
+    tmpCalleeParam = tmpChainElementObject;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: null
+ - 1: undefined
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

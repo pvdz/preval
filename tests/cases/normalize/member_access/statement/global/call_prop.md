@@ -29,8 +29,8 @@ tmpCompObj.length;
 ## Result
 
 Should call `$` with:
- - 0: "foo"
- - 1: undefined
+ - 1: 'foo'
+ - eval returned: undefined
 
 Normalized calls: Same
 

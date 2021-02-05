@@ -15,7 +15,8 @@ if (null) $();
 ## Normalized
 
 `````js filename=intro
-if (null) {
+const tmpIfTest = null;
+if (tmpIfTest) {
   $();
 }
 `````
@@ -29,7 +30,7 @@ if (null) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

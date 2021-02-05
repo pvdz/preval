@@ -21,13 +21,13 @@ $(f('', 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -35,23 +35,22 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f('', 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f('', 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -59,17 +58,17 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$1;
-tmpArg$1 = f('', 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f('', 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["pass"]
- - 1: ["pass"]
- - 2: undefined
+ - 1: ['pass']
+ - 2: ['pass']
+ - eval returned: undefined
 
 Normalized calls: Same
 

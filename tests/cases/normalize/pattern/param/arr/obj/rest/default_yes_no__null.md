@@ -21,53 +21,63 @@ $(f(null, 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = arrPatternStep;
+  const tmpCalleeParam$2 = [];
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
   return 'bad';
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f(null, 200);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$5 = null;
+const tmpCalleeParam$6 = 200;
+const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$6);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = arrPatternStep;
+  const tmpCalleeParam$2 = [];
+  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
-var tmpArg$1;
-tmpArg$1 = f(null, 200);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$4 = tmpCallCallee$3(null, 200);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

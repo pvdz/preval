@@ -52,9 +52,9 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: 10
- - 2: undefined
+ - 1: undefined
+ - 2: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

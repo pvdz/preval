@@ -18,28 +18,22 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternObjRoot = '';
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = { y: 'pass2' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { y: 'pass2' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
-let y;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  y = tmpTernaryConsequent$1;
+let y = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault$1;
 }
@@ -49,27 +43,21 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const objPatternBeforeDefault = ''.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = { y: 'pass2' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { y: 'pass2' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-tmpTernaryTest$1 = objPatternBeforeDefault$1 === undefined;
-let y;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  y = tmpTernaryConsequent$1;
+let y = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault$1;
 }
@@ -79,9 +67,9 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: {"y":"pass2"}
- - 1: "pass2"
- - 2: undefined
+ - 1: { y: '"pass2"' }
+ - 2: 'pass2'
+ - eval returned: undefined
 
 Normalized calls: Same
 

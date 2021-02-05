@@ -21,7 +21,7 @@ $(f(null, 200));
 
 `````js filename=intro
 function f($tdz$__x) {
-  let x;
+  let x = undefined;
   const tmpIfTest = $tdz$__x === undefined;
   if (tmpIfTest) {
     x = 'fail';
@@ -30,17 +30,19 @@ function f($tdz$__x) {
   }
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(null, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = null;
+const tmpCalleeParam$2 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__x) {
-  let x;
+  let x = undefined;
   const tmpIfTest = $tdz$__x === undefined;
   if (tmpIfTest) {
     x = 'fail';
@@ -49,16 +51,17 @@ function f($tdz$__x) {
   }
   return x;
 }
-var tmpArg;
-tmpArg = f(null, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam = tmpCallCallee$1(null, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

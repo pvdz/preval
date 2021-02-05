@@ -28,14 +28,16 @@ $(f());
 function f() {
   const obj = {
     get x() {
-      let tmpReturnArg = $(10);
+      const tmpReturnArg = $(10);
       return tmpReturnArg;
     },
     set x(_) {
       $(20);
     },
   };
-  $(obj)[$('x')] = 30;
+  const tmpAssignComMemLhsObj = $(obj);
+  const tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -48,14 +50,16 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const obj = {
     get x() {
-      let tmpReturnArg = $(10);
+      const tmpReturnArg = $(10);
       return tmpReturnArg;
     },
     set x(_) {
       $(20);
     },
   };
-  $(obj)[$('x')] = 30;
+  const tmpAssignComMemLhsObj = $(obj);
+  const tmpAssignComMemLhsProp = $('x');
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -65,11 +69,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: "x"
- - 2: 20
- - 3: null
+ - 1: { x: '<get/set>' }
+ - 2: 'x'
+ - 3: 20
  - 4: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

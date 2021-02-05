@@ -18,50 +18,37 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = 0;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = 0;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-objAssignPatternRhs = 0;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
 $(y);
 `````
@@ -69,9 +56,9 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: ["pass"]
- - 1: ["pass"]
- - 2: undefined
+ - 1: ['pass']
+ - 2: ['pass']
+ - eval returned: undefined
 
 Normalized calls: Same
 

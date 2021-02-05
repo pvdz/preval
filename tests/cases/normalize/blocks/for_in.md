@@ -33,8 +33,8 @@ for (x in tmpForInRhs) {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

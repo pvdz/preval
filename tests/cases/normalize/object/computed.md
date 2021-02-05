@@ -20,32 +20,28 @@ $(obj);
 ## Normalized
 
 `````js filename=intro
-var tmpComputedKey;
-var tmpObjPropValue;
-tmpComputedKey = $(1);
-tmpObjPropValue = $(2);
-const obj = { [tmpComputedKey]: tmpObjPropValue };
+const tmpObjLitPropKey = $(1);
+const tmpObjLitPropVal = $(2);
+const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpComputedKey;
-var tmpObjPropValue;
-tmpComputedKey = $(1);
-tmpObjPropValue = $(2);
-const obj = { [tmpComputedKey]: tmpObjPropValue };
+const tmpObjLitPropKey = $(1);
+const tmpObjLitPropVal = $(2);
+const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: {"1":2}
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - 3: { 1: '2' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

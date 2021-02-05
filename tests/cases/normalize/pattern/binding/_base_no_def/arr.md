@@ -11,28 +11,33 @@ See https://pvdz.ee/weblog/438 on discussions on transforming this
 ## Input
 
 `````js filename=intro
-const [ x ] = 1;
+const [ x ] = [ 100 ];
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = 1;
+const bindingPatternArrRoot = [100];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...1];
-arrPatternSplat[0];
+const bindingPatternArrRoot = [100];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const x = arrPatternSplat[0];
+$(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - 1: 100
+ - eval returned: undefined
 
 Normalized calls: Same
 

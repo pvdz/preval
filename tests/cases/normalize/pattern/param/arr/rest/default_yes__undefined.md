@@ -21,12 +21,12 @@ $(f(undefined, 200));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -34,22 +34,21 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f(undefined, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(undefined, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -57,17 +56,17 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg$1;
-tmpArg$1 = f(undefined, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(undefined, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["pass"]
- - 1: ["pass"]
- - 2: undefined
+ - 1: ['pass']
+ - 2: ['pass']
+ - eval returned: undefined
 
 Normalized calls: Same
 

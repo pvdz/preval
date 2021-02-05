@@ -17,28 +17,27 @@ $(delete (null, foo));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
+const tmpCallCallee = $;
 null;
 foo;
-tmpArg = true;
-$(tmpArg);
+const tmpCalleeParam = true;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = true;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(true);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], null];
-
+ - 1: true
+ - eval returned: undefined

@@ -24,7 +24,7 @@ $($(obj).x);
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -32,8 +32,8 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-const tmpBindingInit = $(obj);
-const tmpCalleeParam = tmpBindingInit.x;
+const tmpCompObj = $(obj);
+const tmpCalleeParam = tmpCompObj.x;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -50,18 +50,18 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-const tmpBindingInit = $(obj);
-const tmpCalleeParam = tmpBindingInit.x;
+const tmpCompObj = $(obj);
+const tmpCalleeParam = tmpCompObj.x;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: 10
+ - 1: { x: '<get/set>' }
  - 2: 10
- - 3: undefined
+ - 3: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

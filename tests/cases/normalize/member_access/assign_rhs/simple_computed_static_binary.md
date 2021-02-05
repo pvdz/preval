@@ -20,7 +20,9 @@ $(x);
 `````js filename=intro
 const obj = { foo: 10 };
 let x = 10;
-x = obj['fo' + 'o'];
+const tmpAssignRhsCompObj = obj;
+const tmpAssignRhsCompProp = 'fo' + 'o';
+x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 `````
 
@@ -29,15 +31,16 @@ $(x);
 `````js filename=intro
 const obj = { foo: 10 };
 let x = 10;
-x = obj.foo;
+const tmpAssignRhsCompObj = obj;
+x = tmpAssignRhsCompObj.foo;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

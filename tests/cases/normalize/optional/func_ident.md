@@ -21,53 +21,46 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
-  tmpTernaryTest = global == null;
-  if (tmpTernaryTest) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate = global.foo;
-    tmpArg = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootProp = global;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.foo;
+    tmpCalleeParam = tmpChainElementObject;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
-  tmpTernaryTest = global == null;
-  if (tmpTernaryTest) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate = global.foo;
-    tmpArg = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootProp = global;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.foo;
+    tmpCalleeParam = tmpChainElementObject;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: null
+ - 1: undefined
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

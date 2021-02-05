@@ -33,8 +33,8 @@ for (x of tmpForOfRhs) {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

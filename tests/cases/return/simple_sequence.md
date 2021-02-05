@@ -23,12 +23,12 @@ $(f());
 function f() {
   $(1);
   $(2);
-  return null;
+  const tmpReturnArg = null;
+  return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -39,18 +39,18 @@ function f() {
   $(2);
   return null;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: null
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - 3: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

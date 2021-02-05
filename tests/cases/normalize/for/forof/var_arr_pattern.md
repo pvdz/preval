@@ -17,15 +17,14 @@ for (let {x} of {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
 {
   const tmpForOfPatDeclRhs = { a: 1, b: 2 };
   let tmpForOfPatDeclLhs;
   let x;
   for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-    objAssignPatternRhs = tmpForOfPatDeclLhs;
-    x = objAssignPatternRhs.x;
-    objAssignPatternRhs;
+    const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
+    x = tmpAssignObjPatternRhs.x;
+    tmpAssignObjPatternRhs;
     $(x);
   }
 }
@@ -34,13 +33,12 @@ var objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 let tmpForOfPatDeclLhs;
 let x;
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  objAssignPatternRhs = tmpForOfPatDeclLhs;
-  x = objAssignPatternRhs.x;
+  const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
+  x = tmpAssignObjPatternRhs.x;
   $(x);
 }
 `````
@@ -48,7 +46,7 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

@@ -34,8 +34,8 @@ $(obj);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: undefined
+ - 1: { x: '10' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

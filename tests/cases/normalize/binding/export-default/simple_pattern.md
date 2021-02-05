@@ -19,41 +19,39 @@ $(a, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs = z),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]),
-(a = arrAssignPatternRhs));
+let a;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+export { a };
 $(a, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs = z),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]),
-(a = arrAssignPatternRhs));
+let a;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+export { a };
 $(a, x, y, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

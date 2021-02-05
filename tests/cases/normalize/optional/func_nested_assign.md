@@ -21,90 +21,63 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpAssignMemLhsObj;
-  var tmpObjPropValue;
-  var tmpObjPropValue$1;
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryAlternate$1;
-  var tmpTernaryTest;
-  var tmpTernaryTest$1;
-  tmpObjPropValue$1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue$1 };
-  const obj = { a: tmpObjPropValue };
-  tmpAssignMemLhsObj = obj.a;
+  const tmpObjLitVal$1 = $();
+  const tmpObjLitVal = { b: tmpObjLitVal$1 };
+  const obj = { a: tmpObjLitVal };
+  const tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
-  tmpTernaryTest = obj == null;
-  if (tmpTernaryTest) {
-    tmpOptionalChaining = undefined;
-  } else {
-    tmpTernaryAlternate = obj.a;
-    tmpOptionalChaining = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootProp = obj;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.a;
+    if (tmpChainElementObject) {
+      const tmpChainElementObject$1 = tmpChainElementObject.b;
+      tmpCalleeParam = tmpChainElementObject$1;
+    }
   }
-  tmpTernaryTest$1 = tmpOptionalChaining == null;
-  if (tmpTernaryTest$1) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate$1 = tmpOptionalChaining.b;
-    tmpArg = tmpTernaryAlternate$1;
-  }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpAssignMemLhsObj;
-  var tmpObjPropValue;
-  var tmpObjPropValue$1;
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryAlternate$1;
-  var tmpTernaryTest;
-  var tmpTernaryTest$1;
-  tmpObjPropValue$1 = $();
-  tmpObjPropValue = { b: tmpObjPropValue$1 };
-  const obj = { a: tmpObjPropValue };
-  tmpAssignMemLhsObj = obj.a;
+  const tmpObjLitVal$1 = $();
+  const tmpObjLitVal = { b: tmpObjLitVal$1 };
+  const obj = { a: tmpObjLitVal };
+  const tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
-  tmpTernaryTest = obj == null;
-  if (tmpTernaryTest) {
-    tmpOptionalChaining = undefined;
-  } else {
-    tmpTernaryAlternate = obj.a;
-    tmpOptionalChaining = tmpTernaryAlternate;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootProp = obj;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.a;
+    if (tmpChainElementObject) {
+      const tmpChainElementObject$1 = tmpChainElementObject.b;
+      tmpCalleeParam = tmpChainElementObject$1;
+    }
   }
-  tmpTernaryTest$1 = tmpOptionalChaining == null;
-  if (tmpTernaryTest$1) {
-    tmpArg = undefined;
-  } else {
-    tmpTernaryAlternate$1 = tmpOptionalChaining.b;
-    tmpArg = tmpTernaryAlternate$1;
-  }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: 15
+ - 1: 
  - 2: 15
- - 3: undefined
+ - 3: 15
+ - eval returned: undefined
 
 Normalized calls: Same
 

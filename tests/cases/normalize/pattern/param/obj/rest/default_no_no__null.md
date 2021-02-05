@@ -21,49 +21,59 @@ $(f(null, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$2 = [];
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
   return 'bad';
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f(null, 10);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$5 = null;
+const tmpCalleeParam$6 = 10;
+const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$6);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  objPatternRest($tdz$__pattern_after_default, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$2 = [];
+  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
-var tmpArg$1;
-tmpArg$1 = f(null, 10);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$4 = tmpCallCallee$3(null, 10);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -18,15 +18,12 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc' };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -36,15 +33,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternObjRoot = { x: 'abc' };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = objPatternBeforeDefault;
 }
@@ -54,8 +48,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: "abc"
- - 1: undefined
+ - 1: 'abc'
+ - eval returned: undefined
 
 Normalized calls: Same
 

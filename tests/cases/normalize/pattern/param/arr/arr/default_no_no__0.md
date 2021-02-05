@@ -26,10 +26,9 @@ function f(tmpParamPattern) {
   let arrPatternSplat$1 = [...arrPatternStep];
   return 'bad';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(0, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -41,19 +40,16 @@ function f(tmpParamPattern) {
   [...arrPatternStep];
   return 'bad';
 }
-var tmpArg;
-tmpArg = f(0, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

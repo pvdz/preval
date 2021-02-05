@@ -22,27 +22,22 @@ function h() { return $(); }
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
 function g() {
-  let tmpReturnArg$1 = $();
+  const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 }
 function h() {
-  let tmpReturnArg$2 = $();
+  const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-('<hoisted func decl `g`>');
-('<hoisted func decl `h`>');
-tmpArg = f();
-tmpArg$1 = g();
-tmpArg$2 = h();
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+const tmpCalleeParam$1 = g();
+const tmpCalleeParam$2 = h();
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 ('<hoisted func decl `f`>');
 ('<hoisted func decl `g`>');
 ('<hoisted func decl `h`>');
@@ -52,34 +47,32 @@ $(tmpArg, tmpArg$1, tmpArg$2);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = $();
+  const tmpReturnArg = $();
   return tmpReturnArg;
 }
 function g() {
-  let tmpReturnArg$1 = $();
+  const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 }
 function h() {
-  let tmpReturnArg$2 = $();
+  const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-tmpArg = f();
-tmpArg$1 = g();
-tmpArg$2 = h();
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+const tmpCalleeParam$1 = g();
+const tmpCalleeParam$2 = h();
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
  - 1: 
  - 2: 
- - 3: null,null,null
- - 4: undefined
+ - 3: 
+ - 4: undefined, undefined, undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

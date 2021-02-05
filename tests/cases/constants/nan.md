@@ -31,8 +31,8 @@ $(NaN);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: NaN
+ - eval returned: undefined
 
 Normalized calls: Same
 

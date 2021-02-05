@@ -18,64 +18,43 @@ $(a??b.c??d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = b.c;
-  tmpNullish = tmpTernaryConsequent;
-} else {
-  tmpNullish = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = b.c;
 }
-tmpTernaryTest$1 = tmpNullish == null;
-if (tmpTernaryTest$1) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = b.c;
-  tmpNullish = tmpTernaryConsequent;
-} else {
-  tmpNullish = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = b.c;
 }
-tmpTernaryTest$1 = tmpNullish == null;
-if (tmpTernaryTest$1) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: undefined
+ - 1: {}
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ Assignment to constant variable. ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ Assignment to constant variable. ]>'];
-
+Final output calls: Same

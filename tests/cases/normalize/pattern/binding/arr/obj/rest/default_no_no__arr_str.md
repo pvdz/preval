@@ -21,7 +21,11 @@ $(x);
 const bindingPatternArrRoot = ['abc', 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $(x);
 `````
 
@@ -31,15 +35,18 @@ $(x);
 const bindingPatternArrRoot = ['abc', 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a","1":"b","2":"c"}
- - 1: undefined
+ - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

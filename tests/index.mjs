@@ -29,6 +29,15 @@ const CONFIG = parseTestArgs();
 
 const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(CONFIG.targetDir);
 const testCases = fileNames
+  .filter(
+    (fname) =>
+      !(
+        CONFIG.fastTest &&
+        (fname.includes('normalize/expressions/bindings') ||
+          fname.includes('normalize/expressions/assignment') ||
+          (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')))
+      ),
+  )
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
 
@@ -92,11 +101,50 @@ function runTestCase(
     if (!fdata) return stack.slice(0);
     try {
       let before = true;
+      function safeCloneString(a) {
+        if (typeof a === 'number') {
+          return String(a);
+        }
+
+        if (a === undefined) {
+          return 'undefined';
+        }
+
+        if (a === null) {
+          return 'null';
+        }
+
+        if (a === $) {
+          return '"<$>"';
+        }
+
+        if (Array.isArray(a)) {
+          return '[' + a.map(safeCloneString).join(', ') + ']';
+        }
+
+        if (a && typeof a === 'object') {
+          const clone = {};
+          Object.keys(a).forEach((key) => {
+            const d = Object.getOwnPropertyDescriptor(a, key);
+            if ('value' in d) {
+              clone[key] = safeCloneString(d.value);
+            } else {
+              clone[key] = '<get/set>';
+            }
+          });
+          return JSON.stringify(clone).replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+        }
+
+        return JSON.stringify(a).replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+      }
       function $(...a) {
-        if (stack.length > (before ? 100 : 10000)) throw new Error('Loop aborted by Preval test runner');
-        //stack.push(String(a));
-        stack.push(a);
-        return a[0];
+        if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner');
+
+        const tmp = a[0];
+
+        stack.push('[' + a.map(safeCloneString).join(', ') + ']');
+
+        return tmp;
       }
       function objPatternRest(obj, withoutTheseProps, propName) {
         // Ugly hack that will work. Rest is a shallow clone.
@@ -116,7 +164,7 @@ function runTestCase(
       }
       const returns = new Function('$', 'objPatternRest', fdata.intro)($, objPatternRest);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
-      stack.push(returns);
+      stack.push(safeCloneString(returns));
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
@@ -128,11 +176,11 @@ function runTestCase(
         .replace(/^.* is not defined.*$/, '<ref> is not defined')
         // Make the error in the real test the same as what we would throw after normalization
         .replace(/^.*Cannot destructure '[^']*?' as it is (undefined|null)./, "Cannot read property 'cannotDestructureThis' of $1")
-        .replace(
-          /^.*Cannot destructure property '[^']*?' of '[^']*?' as it is (undefined|null)./,
-          "Cannot read property 'cannotDestructureThis' of $1",
-        );
-      stack.push('<crash[ ' + msg + ' ]>');
+        .replace(/^.*Cannot destructure property '[^']*?' of '[^']*?' as it is (undefined|null)./, 'Cannot read property <name> of $1')
+        .replace(/.*? is not (a function|iterable)/, '<ref> is not function/iterable')
+        .replace(/function ?\(\) ?\{/g, 'function() {')
+        .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>');
+      stack.push('"<crash[ ' + msg.replace(/"/g, '\\"') + ' ]>"');
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack.concat(e?.message ?? e));

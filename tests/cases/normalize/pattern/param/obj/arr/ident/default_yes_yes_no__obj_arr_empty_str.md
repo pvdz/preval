@@ -21,19 +21,19 @@ $(f({ x: [''], a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     y = 'fail';
@@ -42,33 +42,32 @@ function f(tmpParamPattern) {
   }
   return y;
 }
-var tmpArg$1;
-var tmpArg$2;
-var tmpObjPropValue;
-('<hoisted func decl `f`>');
-tmpObjPropValue = [''];
-tmpArg$2 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal = [''];
+const tmpCalleeParam$2 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     y = 'fail';
@@ -77,20 +76,19 @@ function f(tmpParamPattern) {
   }
   return y;
 }
-var tmpArg$1;
-var tmpArg$2;
-var tmpObjPropValue;
-tmpObjPropValue = [''];
-tmpArg$2 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal = [''];
+const tmpCalleeParam$2 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ""
- - 1: undefined
+ - 1: ''
+ - eval returned: undefined
 
 Normalized calls: Same
 

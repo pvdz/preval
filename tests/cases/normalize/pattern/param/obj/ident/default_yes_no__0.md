@@ -22,7 +22,7 @@ $(f(0, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -31,10 +31,9 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(0, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -42,7 +41,7 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -51,17 +50,17 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-tmpArg = f(0, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: "pass"
- - 2: undefined
+ - 1: 'pass'
+ - 2: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

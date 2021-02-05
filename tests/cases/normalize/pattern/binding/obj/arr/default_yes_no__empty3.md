@@ -18,7 +18,7 @@ $(val);
 ## Normalized
 
 `````js filename=intro
-let val;
+let val = undefined;
 if (true) {
   val = false;
 } else {
@@ -30,7 +30,7 @@ $(val);
 ## Output
 
 `````js filename=intro
-let val;
+let val = undefined;
 val = false;
 $(val);
 `````
@@ -38,8 +38,8 @@ $(val);
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

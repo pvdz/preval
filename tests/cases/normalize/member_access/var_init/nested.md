@@ -17,35 +17,31 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-const tmpBindingInit = obj.a;
-let x = tmpBindingInit.b;
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCompObj = obj.a;
+let x = tmpCompObj.b;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-const tmpBindingInit = obj.a;
-let x = tmpBindingInit.b;
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCompObj = obj.a;
+let x = tmpCompObj.b;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: null
+ - 1: 
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

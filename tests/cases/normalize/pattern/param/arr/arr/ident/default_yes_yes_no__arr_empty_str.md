@@ -21,20 +21,20 @@ $(f(['', 4, 5], 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  let x;
+  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     x = $('pass');
@@ -43,32 +43,32 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = ['', 4, 5];
-tmpArg$1 = f(tmpArg$2, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = ['', 4, 5];
+const tmpCalleeParam$3 = 200;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  let x;
+  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     x = $('pass');
@@ -77,19 +77,19 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg$1;
-var tmpArg$2;
-tmpArg$2 = ['', 4, 5];
-tmpArg$1 = f(tmpArg$2, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = ['', 4, 5];
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: "pass"
- - 2: undefined
+ - 1: 'pass'
+ - 2: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

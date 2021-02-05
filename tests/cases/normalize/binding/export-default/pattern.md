@@ -19,39 +19,31 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs = z),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]),
-arrAssignPatternRhs);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
+export { x, y };
 $(x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs = z),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(x = arrPatternSplat[0]),
-(y = arrPatternSplat[1]),
-arrAssignPatternRhs);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
+export { x, y };
 $(x, y, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

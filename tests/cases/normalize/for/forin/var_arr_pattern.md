@@ -17,15 +17,14 @@ for (let {x} in {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
 {
   const tmpForInPatDeclRhs = { a: 1, b: 2 };
   let tmpForInPatDeclLhs;
   let x;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    objAssignPatternRhs = tmpForInPatDeclLhs;
-    x = objAssignPatternRhs.x;
-    objAssignPatternRhs;
+    const tmpAssignObjPatternRhs = tmpForInPatDeclLhs;
+    x = tmpAssignObjPatternRhs.x;
+    tmpAssignObjPatternRhs;
     $(x);
   }
 }
@@ -34,13 +33,12 @@ var objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
 const tmpForInPatDeclRhs = { a: 1, b: 2 };
 let tmpForInPatDeclLhs;
 let x;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  objAssignPatternRhs = tmpForInPatDeclLhs;
-  x = objAssignPatternRhs.x;
+  const tmpAssignObjPatternRhs = tmpForInPatDeclLhs;
+  x = tmpAssignObjPatternRhs.x;
   $(x);
 }
 `````
@@ -48,9 +46,9 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: null
+ - 1: undefined
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

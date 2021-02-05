@@ -19,34 +19,30 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let a = $(1);
-tmpBinaryLeft = a;
-tmpBinaryRight = $(2);
-a = tmpBinaryLeft + tmpBinaryRight;
+const tmpBinBothLhs = a;
+const tmpBinBothRhs = $(2);
+a = tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let a = $(1);
-tmpBinaryLeft = a;
-tmpBinaryRight = $(2);
-a = tmpBinaryLeft + tmpBinaryRight;
+const tmpBinBothLhs = a;
+const tmpBinBothRhs = $(2);
+a = tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 3
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

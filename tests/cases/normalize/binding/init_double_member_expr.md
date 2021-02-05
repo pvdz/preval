@@ -18,24 +18,23 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpBindingInit = 'foo'.length;
-let x = tmpBindingInit.toString;
+const tmpCompObj = 'foo'.length;
+let x = tmpCompObj.toString;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBindingInit = 'foo'.length;
-let x = tmpBindingInit.toString;
+const tmpCompObj = 'foo'.length;
+let x = tmpCompObj.toString;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

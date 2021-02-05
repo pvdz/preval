@@ -18,32 +18,34 @@ $(++x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNestedComplexRhs;
 let x = 1;
-tmpNestedComplexRhs = x + 1;
+const tmpCallCallee = $;
+let tmpCalleeParam;
+const tmpNestedCompoundLhs = x;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 x = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
-$(tmpArg);
+tmpCalleeParam = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNestedComplexRhs;
 let x = 1;
-tmpNestedComplexRhs = x + 1;
+const tmpCallCallee = $;
+let tmpCalleeParam;
+const tmpNestedCompoundLhs = x;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 x = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
-$(tmpArg);
+tmpCalleeParam = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: undefined
+ - 1: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

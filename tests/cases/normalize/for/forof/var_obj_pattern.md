@@ -17,15 +17,13 @@ for (let [x] of {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 {
   const tmpForOfPatDeclRhs = { a: 1, b: 2 };
   let tmpForOfPatDeclLhs;
   let x;
   for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-    arrAssignPatternRhs = tmpForOfPatDeclLhs;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const arrAssignPatternRhs = tmpForOfPatDeclLhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
     $(x);
@@ -36,14 +34,12 @@ var arrPatternSplat;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 let tmpForOfPatDeclLhs;
 let x;
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  arrAssignPatternRhs = tmpForOfPatDeclLhs;
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = tmpForOfPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);
 }
@@ -52,7 +48,7 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

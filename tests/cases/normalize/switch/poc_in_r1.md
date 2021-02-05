@@ -23,17 +23,15 @@ switch (x) {
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let x = 1;
 {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryLeft = x;
-    tmpBinaryRight = $(1);
-    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    const tmpBinBothLhs = x;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
@@ -48,15 +46,12 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let tmpFallthrough = false;
 let tmpIfTest = tmpFallthrough;
 if (tmpIfTest) {
 } else {
-  tmpBinaryLeft = 1;
-  tmpBinaryRight = $(1);
-  tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+  const tmpBinBothRhs = $(1);
+  tmpIfTest = 1 === tmpBinBothRhs;
 }
 if (tmpIfTest) {
   $('A');
@@ -67,9 +62,9 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: "A"
- - 2: undefined
+ - 1: 1
+ - 2: 'A'
+ - eval returned: undefined
 
 Normalized calls: Same
 

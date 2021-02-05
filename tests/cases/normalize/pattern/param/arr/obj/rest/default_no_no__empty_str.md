@@ -23,13 +23,16 @@ $(f('', 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f('', 200);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -38,22 +41,22 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 }
-var tmpArg;
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f('', 200);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of undefined ]>"];
-
+Final output calls: Same

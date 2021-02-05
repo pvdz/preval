@@ -17,41 +17,34 @@ $(new Array(5 + 5, $(), Array.prototype.length));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-var tmpArg$3;
-var tmpMemberComplexObj;
-tmpArg$1 = 5 + 5;
-tmpArg$2 = $();
-tmpMemberComplexObj = Array.prototype;
-tmpArg$3 = tmpMemberComplexObj.length;
-tmpArg = new Array(tmpArg$1, tmpArg$2, tmpArg$3);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpNewCallee = Array;
+const tmpCalleeParam$1 = 5 + 5;
+const tmpCalleeParam$2 = $();
+const tmpCompObj = Array.prototype;
+const tmpCalleeParam$3 = tmpCompObj.length;
+const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-var tmpArg$3;
-var tmpMemberComplexObj;
-tmpArg$1 = 10;
-tmpArg$2 = $();
-tmpMemberComplexObj = Array.prototype;
-tmpArg$3 = tmpMemberComplexObj.length;
-tmpArg = new Array(tmpArg$1, tmpArg$2, tmpArg$3);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpNewCallee = Array;
+const tmpCalleeParam$2 = $();
+const tmpCompObj = Array.prototype;
+const tmpCalleeParam$3 = tmpCompObj.length;
+const tmpCalleeParam = new tmpNewCallee(10, tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: [10,null,0]
- - 2: undefined
+ - 1: 
+ - 2: [10, undefined, 0]
+ - eval returned: undefined
 
 Normalized calls: Same
 

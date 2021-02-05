@@ -18,49 +18,39 @@ $(a.b.c?.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 const a = {};
-tmpMemberComplexObj = a.b;
-tmpOptionalChaining = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
+if (tmpChainElementObject$1) {
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 const a = {};
-tmpMemberComplexObj = a.b;
-tmpOptionalChaining = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
+if (tmpChainElementObject$1) {
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'c' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

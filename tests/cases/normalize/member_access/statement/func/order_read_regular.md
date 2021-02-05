@@ -28,7 +28,7 @@ $(f());
 function f() {
   const obj = {
     get x() {
-      let tmpReturnArg = $(10);
+      const tmpReturnArg = $(10);
       return tmpReturnArg;
     },
     set x(_) {
@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const obj = {
     get x() {
-      let tmpReturnArg = $(10);
+      const tmpReturnArg = $(10);
       return tmpReturnArg;
     },
     set x(_) {
@@ -67,10 +67,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: 10
- - 2: null
+ - 1: { x: '<get/set>' }
+ - 2: 10
  - 3: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

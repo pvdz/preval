@@ -21,26 +21,36 @@ f(null);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let x = objPatternRest(tmpParamPattern, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = tmpParamPattern;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return 'bad';
 }
-f(null);
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$3 = null;
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  objPatternRest(tmpParamPattern, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = tmpParamPattern;
+  const tmpCalleeParam$1 = [];
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return 'bad';
 }
-f(null);
+const tmpCallCallee$1 = f;
+tmpCallCallee$1(null);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

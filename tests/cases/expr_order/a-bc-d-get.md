@@ -24,7 +24,6 @@ $(a, b, d);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
@@ -32,7 +31,7 @@ let b = {
   },
 };
 let d = 3;
-tmpNestedPropAssignRhs = d;
+const tmpNestedPropAssignRhs = d;
 b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 $(a, b, d);
@@ -41,24 +40,22 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 let a = 1;
 let b = {
   get c() {
     $('should not be called');
   },
 };
-tmpNestedPropAssignRhs = 3;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+b.c = 3;
+a = 3;
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3,{},3
- - 1: undefined
+ - 1: 3, { c: '<get/set>' }, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

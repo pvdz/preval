@@ -18,24 +18,16 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-arrAssignPatternRhs = 'abc';
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-{
-  let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = arrPatternStep === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const arrAssignPatternRhs = 'abc';
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 }
 arrAssignPatternRhs;
 $('bad');
@@ -44,22 +36,15 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternCrashTest;
-arrAssignPatternRhs = 'abc';
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-let tmpAssignLogicStmtOr = arrPatternStep === undefined;
-if (tmpAssignLogicStmtOr) {
+const arrPatternSplat = [...'abc'];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = arrPatternStep === null;
+  objPatternCrashTest = arrPatternStep === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('bad');
 `````
@@ -67,8 +52,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: "bad"
- - 1: undefined
+ - 1: 'bad'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,22 +18,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = ['abc', 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternBeforeDefault = arrPatternSplat$1[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = ['abc', 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault;
 }
@@ -44,22 +36,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = ['abc', 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternBeforeDefault = arrPatternSplat$1[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  x = tmpTernaryConsequent;
+const arrAssignPatternRhs = ['abc', 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault = arrPatternSplat$1[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault;
 }
@@ -69,8 +53,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: undefined
+ - 1: 'a'
+ - eval returned: undefined
 
 Normalized calls: Same
 

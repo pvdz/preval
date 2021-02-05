@@ -21,73 +21,81 @@ $(f(null, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = { a: 'fail2' };
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = { a: 'fail2' };
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { a: 'fail' };
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { a: 'fail' };
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let y = objPatternRest(objPatternAfterDefault, [], undefined);
+  const tmpCallCallee$2 = objPatternRest;
+  const tmpCalleeParam$2 = objPatternAfterDefault;
+  const tmpCalleeParam$3 = [];
+  const tmpCalleeParam$4 = undefined;
+  let y = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
   return 'bad';
 }
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = f(null, 10);
-$(tmpArg$2);
+const tmpCallCallee$3 = $;
+const tmpCallCallee$4 = f;
+const tmpCalleeParam$6 = null;
+const tmpCalleeParam$7 = 10;
+const tmpCalleeParam$5 = tmpCallCallee$4(tmpCalleeParam$6, tmpCalleeParam$7);
+tmpCallCallee$3(tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = { a: 'fail2' };
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = { a: 'fail2' };
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { a: 'fail' };
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { a: 'fail' };
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  objPatternRest(objPatternAfterDefault, [], undefined);
+  const tmpCallCallee$2 = objPatternRest;
+  const tmpCalleeParam$2 = objPatternAfterDefault;
+  const tmpCalleeParam$3 = [];
+  tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
   return 'bad';
 }
-var tmpArg$2;
-tmpArg$2 = f(null, 10);
-$(tmpArg$2);
+const tmpCallCallee$3 = $;
+const tmpCallCallee$4 = f;
+const tmpCalleeParam$5 = tmpCallCallee$4(null, 10);
+tmpCallCallee$3(tmpCalleeParam$5);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

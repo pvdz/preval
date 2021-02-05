@@ -10,8 +10,9 @@
 
 `````js filename=intro
 { let x = 1; }
-const [[ x ]] = 1;
+const [[ x ]] = [[ 100 ]];
 { let x = 1; }
+$(x);
 `````
 
 ## Normalized
@@ -20,7 +21,8 @@ const [[ x ]] = 1;
 {
   let x_1 = 1;
 }
-const bindingPatternArrRoot = 1;
+const tmpArrElement = [100];
+const bindingPatternArrRoot = [tmpArrElement];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
@@ -28,21 +30,26 @@ const x = arrPatternSplat$1[0];
 {
   let x_2 = 1;
 }
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...1];
+const tmpArrElement = [100];
+const bindingPatternArrRoot = [tmpArrElement];
+const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-arrPatternSplat$1[0];
+const x = arrPatternSplat$1[0];
+$(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - 1: 100
+ - eval returned: undefined
 
 Normalized calls: Same
 

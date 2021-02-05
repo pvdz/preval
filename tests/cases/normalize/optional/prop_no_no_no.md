@@ -18,33 +18,29 @@ $(a.b.c.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
 const a = {};
-tmpMemberComplexObj$1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj$1.c;
-tmpArg = tmpMemberComplexObj.d;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCompObj$1 = a.b;
+const tmpCompObj = tmpCompObj$1.c;
+const tmpCalleeParam = tmpCompObj.d;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
 const a = {};
-tmpMemberComplexObj$1 = a.b;
-tmpMemberComplexObj = tmpMemberComplexObj$1.c;
-tmpArg = tmpMemberComplexObj.d;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCompObj$1 = a.b;
+const tmpCompObj = tmpCompObj$1.c;
+const tmpCalleeParam = tmpCompObj.d;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'c' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -15,24 +15,23 @@ $(typeof false)
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = typeof false;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = typeof false;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'boolean';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('boolean');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "boolean"
- - 1: undefined
+ - 1: 'boolean'
+ - eval returned: undefined
 
 Normalized calls: Same
 

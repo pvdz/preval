@@ -29,14 +29,14 @@ function f() {
 function f() {
   return x;
 }
-var tmpArg;
-var tmpArg$1;
 var x;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 x = 10;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 ('<hoisted func decl `f`>');
 `````
 
@@ -46,22 +46,22 @@ $(tmpArg$1);
 function f() {
   return x;
 }
-var tmpArg;
-var tmpArg$1;
 var x;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 x = 10;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: 10
- - 2: undefined
+ - 1: undefined
+ - 2: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

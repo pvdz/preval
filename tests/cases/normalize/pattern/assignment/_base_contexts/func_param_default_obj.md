@@ -18,13 +18,12 @@ const f = (a = { x } = 1) => { return a };
 
 `````js filename=intro
 const f = ($tdz$__a) => {
-  var objAssignPatternRhs;
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
-    objAssignPatternRhs = 1;
-    x = objAssignPatternRhs.x;
-    a = objAssignPatternRhs;
+    const tmpNestedAssignObjPatternRhs = 1;
+    x = tmpNestedAssignObjPatternRhs.x;
+    a = tmpNestedAssignObjPatternRhs;
   } else {
     a = $tdz$__a;
   }
@@ -36,13 +35,11 @@ const f = ($tdz$__a) => {
 
 `````js filename=intro
 ($tdz$__a) => {
-  var objAssignPatternRhs;
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
-    objAssignPatternRhs = 1;
-    x = objAssignPatternRhs.x;
-    a = objAssignPatternRhs;
+    x = (1).x;
+    a = 1;
   } else {
     a = $tdz$__a;
   }
@@ -53,7 +50,7 @@ const f = ($tdz$__a) => {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

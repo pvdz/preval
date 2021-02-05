@@ -15,27 +15,26 @@ $(1 === '1');
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 1 === '1';
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = 1 === '1';
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = true;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(true);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[true], null];
-
+ - 1: true
+ - eval returned: undefined

@@ -32,10 +32,6 @@ $(a, s); // 5, 'read;write[5]'
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
 let s = '';
 let a = 0;
 const obj = {
@@ -44,32 +40,24 @@ const obj = {
     return a;
   },
   set x(v) {
-    var tmpBinaryLeft;
-    var tmpBinaryLeft$1;
-    var tmpBinaryRight;
-    tmpBinaryLeft = s;
-    tmpBinaryLeft$1 = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft$1 + '];';
-    s = tmpBinaryLeft + tmpBinaryRight;
+    const tmpBinBothLhs = s;
+    const tmpBinLhs = 'write[' + v;
+    const tmpBinBothRhs = tmpBinLhs + '];';
+    s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
   },
 };
-tmpCompoundAssignLhs = obj.x;
-tmpAssignMemLhsObj = obj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+const tmpCompoundAssignLhs = obj.x;
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
 let s = '';
 let a = 0;
 const obj = {
@@ -78,30 +66,26 @@ const obj = {
     return a;
   },
   set x(v) {
-    var tmpBinaryLeft;
-    var tmpBinaryLeft$1;
-    var tmpBinaryRight;
-    tmpBinaryLeft = s;
-    tmpBinaryLeft$1 = 'write[' + v;
-    tmpBinaryRight = tmpBinaryLeft$1 + '];';
-    s = tmpBinaryLeft + tmpBinaryRight;
+    const tmpBinBothLhs = s;
+    const tmpBinLhs = 'write[' + v;
+    const tmpBinBothRhs = tmpBinLhs + '];';
+    s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
   },
 };
-tmpCompoundAssignLhs = obj.x;
-tmpAssignMemLhsObj = obj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+const tmpCompoundAssignLhs = obj.x;
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,"read;write[5];"
- - 1: undefined
+ - 1: 5, 'read;write[5];'
+ - eval returned: undefined
 
 Normalized calls: Same
 

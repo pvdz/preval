@@ -18,9 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
+const tmpObjLitVal = null;
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $('bad');
 `````
 
@@ -29,18 +34,18 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-objPatternRest(objPatternNoDefault, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
-
+Final output calls: Same

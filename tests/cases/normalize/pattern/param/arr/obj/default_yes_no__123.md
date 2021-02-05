@@ -23,7 +23,7 @@ $(f(undefined, 100));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep = $('pass');
@@ -40,10 +40,9 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(undefined, 100);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(undefined, 100);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -52,7 +51,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep = $('pass');
@@ -69,15 +68,15 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-tmpArg = f(undefined, 100);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(undefined, 100);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

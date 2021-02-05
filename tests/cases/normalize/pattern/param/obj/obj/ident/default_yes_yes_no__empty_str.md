@@ -21,18 +21,18 @@ $(f('', 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { y: 'pass2' };
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { y: 'pass2' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     y = $('fail');
@@ -41,28 +41,27 @@ function f(tmpParamPattern) {
   }
   return y;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f('', 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f('', 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { y: 'pass2' };
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { y: 'pass2' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y;
+  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     y = $('fail');
@@ -71,17 +70,17 @@ function f(tmpParamPattern) {
   }
   return y;
 }
-var tmpArg$1;
-tmpArg$1 = f('', 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f('', 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"y":"pass2"}
- - 1: "pass2"
- - 2: undefined
+ - 1: { y: '"pass2"' }
+ - 2: 'pass2'
+ - eval returned: undefined
 
 Normalized calls: Same
 

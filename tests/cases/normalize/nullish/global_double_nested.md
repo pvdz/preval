@@ -16,89 +16,58 @@ $(obj??a??b??c);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
-tmpObjPropValue$2 = $();
-tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-obj = obj;
-tmpTernaryTest = obj == null;
-if (tmpTernaryTest) {
-  tmpNullish$1 = a;
-} else {
-  tmpNullish$1 = obj;
+const tmpObjLitVal$2 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCallCallee = $;
+let tmpCalleeParam = obj;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = a;
 }
-tmpTernaryTest$1 = tmpNullish$1 == null;
-if (tmpTernaryTest$1) {
-  tmpNullish = b;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = b;
 }
-tmpTernaryTest$2 = tmpNullish == null;
-if (tmpTernaryTest$2) {
-  tmpArg = c;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$2 = tmpCalleeParam == null;
+if (tmpIfTest$2) {
+  tmpCalleeParam = c;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
-tmpObjPropValue$2 = $();
-tmpObjPropValue$1 = { c: tmpObjPropValue$2 };
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-obj = obj;
-tmpTernaryTest = obj == null;
-if (tmpTernaryTest) {
-  tmpNullish$1 = a;
-} else {
-  tmpNullish$1 = obj;
+const tmpObjLitVal$2 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCallCallee = $;
+let tmpCalleeParam = obj;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = a;
 }
-tmpTernaryTest$1 = tmpNullish$1 == null;
-if (tmpTernaryTest$1) {
-  tmpNullish = b;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = b;
 }
-tmpTernaryTest$2 = tmpNullish == null;
-if (tmpTernaryTest$2) {
-  tmpArg = c;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$2 = tmpCalleeParam == null;
+if (tmpIfTest$2) {
+  tmpCalleeParam = c;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: {"a":{"b":{}}}
- - 2: undefined
+ - 1: 
+ - 2: { a: '{"b":"{\\"c\\":\\"undefined\\"}"}' }
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-[[], '<crash[ Assignment to constant variable. ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-[[], '<crash[ Assignment to constant variable. ]>'];
-
+Final output calls: Same

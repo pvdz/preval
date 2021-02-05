@@ -18,45 +18,41 @@ for (let a = b.x = c + d;false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignMemberObj = b;
-  tmpNestedAssignMemberRhs = c + d;
-  tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-  a = tmpNestedAssignMemberRhs;
-  while (false) {}
+  let a;
+  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignMemberObj = b;
-tmpNestedAssignMemberRhs = 7;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-a = tmpNestedAssignMemberRhs;
-while (false) {}
-$(a, b, 7);
+let a;
+b.x = 7;
+a = 7;
+while (false) {
+  $(a, b, 7);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 7,{"x":7},3
- - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, { x: 7 }, 7], null];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

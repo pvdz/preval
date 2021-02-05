@@ -17,35 +17,25 @@ $(1)[$(2)];
 ## Normalized
 
 `````js filename=intro
-var tmpComputedObj;
-var tmpComputedProp;
-var tmpMemberComplexObj;
-{
-  tmpMemberComplexObj = $(1);
-  tmpComputedObj = tmpMemberComplexObj;
-  tmpComputedProp = $(2);
-  tmpComputedObj[tmpComputedProp];
-}
+const tmpCompObj = $(1);
+const tmpCompProp = $(2);
+tmpCompObj[tmpCompProp];
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpComputedObj;
-var tmpComputedProp;
-var tmpMemberComplexObj;
-tmpMemberComplexObj = $(1);
-tmpComputedObj = tmpMemberComplexObj;
-tmpComputedProp = $(2);
-tmpComputedObj[tmpComputedProp];
+const tmpCompObj = $(1);
+const tmpCompProp = $(2);
+tmpCompObj[tmpCompProp];
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

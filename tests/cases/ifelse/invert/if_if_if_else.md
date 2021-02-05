@@ -58,10 +58,10 @@ if (tmpIfTest$1) {
 ## Result
 
 Should call `$` with:
- - 0: -1
- - 1: 0
- - 2: 1
- - 3: undefined
+ - 1: -1
+ - 2: 0
+ - 3: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

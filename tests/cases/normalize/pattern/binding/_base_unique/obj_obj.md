@@ -40,7 +40,7 @@ objPatternNoDefault$1.z;
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

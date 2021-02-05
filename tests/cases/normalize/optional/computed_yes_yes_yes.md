@@ -19,93 +19,58 @@ $(a?.[b]?.[c]?.[d]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryAlternate$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
 const b = 'b';
 const c = 'c';
 const d = 'd';
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining$1 = undefined;
-} else {
-  tmpTernaryAlternate = a[b];
-  tmpOptionalChaining$1 = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainRootComputed = b;
+  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  if (tmpChainElementObject) {
+    const tmpChainRootComputed$1 = c;
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    if (tmpChainElementObject$1) {
+      const tmpChainRootComputed$2 = d;
+      const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
+      tmpCalleeParam = tmpChainElementObject$2;
+    }
+  }
 }
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest$1) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1[c];
-  tmpOptionalChaining = tmpTernaryAlternate$1;
-}
-tmpTernaryTest$2 = tmpOptionalChaining == null;
-if (tmpTernaryTest$2) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$2 = tmpOptionalChaining[d];
-  tmpArg = tmpTernaryAlternate$2;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryAlternate$2;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining$1 = undefined;
-} else {
-  tmpTernaryAlternate = a.b;
-  tmpOptionalChaining$1 = tmpTernaryAlternate;
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.b;
+  if (tmpChainElementObject) {
+    const tmpChainElementObject$1 = tmpChainElementObject.c;
+    if (tmpChainElementObject$1) {
+      const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+      tmpCalleeParam = tmpChainElementObject$2;
+    }
+  }
 }
-tmpTernaryTest$1 = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest$1) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining$1.c;
-  tmpOptionalChaining = tmpTernaryAlternate$1;
-}
-tmpTernaryTest$2 = tmpOptionalChaining == null;
-if (tmpTernaryTest$2) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$2 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$2;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

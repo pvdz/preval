@@ -18,58 +18,46 @@ for (let a = b[$('x')] = c + d;false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  tmpNestedAssignComMemberObj = b;
-  tmpNestedAssignComMemberProp = $('x');
-  tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-  tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-  tmpNestedAssignCompMemberRhs = c + d;
-  tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-  a = tmpNestedAssignCompMemberRhs;
-  while (false) {}
+  let a;
+  const tmpNestedAssignComMemberObj = b;
+  const tmpNestedAssignComMemberProp = $('x');
+  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberRhs;
 let a = 1;
 let b = { x: 2 };
-tmpNestedAssignComMemberObj = b;
-tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-tmpNestedAssignCompMemberRhs = 7;
-tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-a = tmpNestedAssignCompMemberRhs;
-while (false) {}
-$(a, b, 7);
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+a = 7;
+while (false) {
+  $(a, b, 7);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: 7,{"x":7},3
- - 2: undefined
+ - 1: 'x'
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['x'], [7, { x: 7 }, 7], null];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

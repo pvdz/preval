@@ -59,18 +59,14 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryRight;
-var tmpBinaryRight$1;
-var tmpBinaryRight$2;
-var tmpBinaryRight$3;
-var tmpBinaryRight$4;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryRight = $(10);
-    tmpIfTest = 6 === tmpBinaryRight;
+    const tmpBinBothLhs = 6;
+    const tmpBinBothRhs = $(10);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
@@ -83,8 +79,9 @@ tmpSwitchBreak: {
   let tmpIfTest$1 = tmpFallthrough;
   if (tmpIfTest$1) {
   } else {
-    tmpBinaryRight$1 = $(20);
-    tmpIfTest$1 = 6 === tmpBinaryRight$1;
+    const tmpBinBothLhs$1 = 6;
+    const tmpBinBothRhs$1 = $(20);
+    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
     ('case 1:');
@@ -96,8 +93,9 @@ tmpSwitchBreak: {
   let tmpIfTest$2 = tmpFallthrough;
   if (tmpIfTest$2) {
   } else {
-    tmpBinaryRight$2 = $(30);
-    tmpIfTest$2 = 6 === tmpBinaryRight$2;
+    const tmpBinBothLhs$2 = 6;
+    const tmpBinBothRhs$2 = $(30);
+    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
     ('case 2:');
@@ -109,8 +107,9 @@ tmpSwitchBreak: {
   let tmpIfTest$3 = tmpFallthrough;
   if (tmpIfTest$3) {
   } else {
-    tmpBinaryRight$3 = $(40);
-    tmpIfTest$3 = 6 === tmpBinaryRight$3;
+    const tmpBinBothLhs$3 = 6;
+    const tmpBinBothRhs$3 = $(40);
+    tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
     ('case 3:');
@@ -123,8 +122,9 @@ tmpSwitchBreak: {
   let tmpIfTest$4 = tmpFallthrough;
   if (tmpIfTest$4) {
   } else {
-    tmpBinaryRight$4 = $(50);
-    tmpIfTest$4 = 6 === tmpBinaryRight$4;
+    const tmpBinBothLhs$4 = 6;
+    const tmpBinBothRhs$4 = $(50);
+    tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
     ('case 4:');
@@ -145,8 +145,9 @@ tmpSwitchBreak: {
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryRight = $(10);
-    tmpIfTest = 6 === tmpBinaryRight;
+    const tmpBinBothLhs = 6;
+    const tmpBinBothRhs = $(10);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
@@ -159,8 +160,9 @@ tmpSwitchBreak: {
   let tmpIfTest$1 = tmpFallthrough;
   if (tmpIfTest$1) {
   } else {
-    tmpBinaryRight$1 = $(20);
-    tmpIfTest$1 = 6 === tmpBinaryRight$1;
+    const tmpBinBothLhs$1 = 6;
+    const tmpBinBothRhs$1 = $(20);
+    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
     ('case 1:');
@@ -172,8 +174,9 @@ tmpSwitchBreak: {
   let tmpIfTest$2 = tmpFallthrough;
   if (tmpIfTest$2) {
   } else {
-    tmpBinaryRight$2 = $(30);
-    tmpIfTest$2 = 6 === tmpBinaryRight$2;
+    const tmpBinBothLhs$2 = 6;
+    const tmpBinBothRhs$2 = $(30);
+    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
     ('case 2:');
@@ -185,8 +188,9 @@ tmpSwitchBreak: {
   let tmpIfTest$3 = tmpFallthrough;
   if (tmpIfTest$3) {
   } else {
-    tmpBinaryRight$3 = $(40);
-    tmpIfTest$3 = 6 === tmpBinaryRight$3;
+    const tmpBinBothLhs$3 = 6;
+    const tmpBinBothRhs$3 = $(40);
+    tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
     ('case 3:');
@@ -199,8 +203,9 @@ tmpSwitchBreak: {
   let tmpIfTest$4 = tmpFallthrough;
   if (tmpIfTest$4) {
   } else {
-    tmpBinaryRight$4 = $(50);
-    tmpIfTest$4 = 6 === tmpBinaryRight$4;
+    const tmpBinBothLhs$4 = 6;
+    const tmpBinBothRhs$4 = $(50);
+    tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
     ('case 4:');
@@ -216,12 +221,12 @@ tmpSwitchBreak: {
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: 20
- - 2: 30
- - 3: 40
- - 4: 50
- - 5: undefined
+ - 1: 10
+ - 2: 20
+ - 3: 30
+ - 4: 40
+ - 5: 50
+ - eval returned: undefined
 
 Normalized calls: Same
 

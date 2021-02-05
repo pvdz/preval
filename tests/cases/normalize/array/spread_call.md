@@ -17,29 +17,27 @@ $([...$("foo")]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = $('foo');
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrSpread = $('foo');
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-tmpElement = $('foo');
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrSpread = $('foo');
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "foo"
- - 1: ["f","o","o"]
- - 2: undefined
+ - 1: 'foo'
+ - 2: ['f', 'o', 'o']
+ - eval returned: undefined
 
 Normalized calls: Same
 

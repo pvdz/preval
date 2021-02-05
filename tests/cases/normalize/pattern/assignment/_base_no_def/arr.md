@@ -18,40 +18,37 @@ There are a few things that make the assignment case different from param and bi
 
 `````js filename=intro
 let x = 10;
-([ x ] = 1);
+([ x ] = [ 100 ]);
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrAssignPatternRhs = [100];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 arrAssignPatternRhs;
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 10;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrAssignPatternRhs = [100];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
+$(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 1: 100
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

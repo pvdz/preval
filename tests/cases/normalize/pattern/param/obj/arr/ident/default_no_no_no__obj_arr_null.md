@@ -26,14 +26,14 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat[0];
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-('<hoisted func decl `f`>');
-tmpObjPropValue = [null];
-tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpArrElement = null;
+const tmpObjLitVal = [tmpArrElement];
+const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$2 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -45,20 +45,19 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat[0];
   return y;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-tmpObjPropValue = [null];
-tmpArg$1 = { x: tmpObjPropValue, a: 11, b: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpObjLitVal = [null];
+const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

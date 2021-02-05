@@ -19,30 +19,44 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-let a = b = $(c).y = $(d);
+let a;
+let tmpNestedComplexRhs;
+const tmpNestedAssignObj = $(c);
+let tmpNestedAssignPropRhs = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = 2;
-let a = b = $(3).y = $(4);
+let a;
+let tmpNestedComplexRhs;
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 4
- - 2: 4,4,3
- - 3: undefined
+ - 1: 3
+ - 2: 4
+ - 3: 4, 4, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

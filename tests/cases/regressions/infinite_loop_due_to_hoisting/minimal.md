@@ -19,40 +19,37 @@ f(a.x === 1 ? 2 : 3);
 
 `````js filename=intro
 function g() {}
-var tmpArg;
-var tmpBinaryLeft;
-var tmpTernaryTest;
-('<hoisted func decl `g`>');
-tmpBinaryLeft = a.x;
-tmpTernaryTest = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
-  tmpArg = 2;
+const tmpCallCallee = f;
+let tmpCalleeParam = undefined;
+const tmpBinLhs = a.x;
+const tmpIfTest = tmpBinLhs === 1;
+if (tmpIfTest) {
+  tmpCalleeParam = 2;
 } else {
-  tmpArg = 3;
+  tmpCalleeParam = 3;
 }
-f(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpBinaryLeft;
-var tmpTernaryTest;
-tmpBinaryLeft = a.x;
-tmpTernaryTest = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
-  tmpArg = 2;
+const tmpCallCallee = f;
+let tmpCalleeParam = undefined;
+const tmpBinLhs = a.x;
+const tmpIfTest = tmpBinLhs === 1;
+if (tmpIfTest) {
+  tmpCalleeParam = 2;
 } else {
-  tmpArg = 3;
+  tmpCalleeParam = 3;
 }
-f(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -19,14 +19,14 @@ $(a, b)
 ## Normalized
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 2;
 } else {
   a = 3;
 }
-let b;
+let b = undefined;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
   b = 4;
@@ -39,14 +39,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 2;
 } else {
   a = 3;
 }
-let b;
+let b = undefined;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
   b = 4;
@@ -59,10 +59,10 @@ $(a, b);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 0
- - 2: 2,5
- - 3: undefined
+ - 1: 1
+ - 2: 0
+ - 3: 2, 5
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,39 +18,36 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var tmpArg;
-var tmpArg$1;
-objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
-a = objAssignPatternRhs.a;
-b = objAssignPatternRhs.b;
-tmpArg = objAssignPatternRhs;
-tmpArg$1 = ['a', 'b'];
-x = objPatternRest(tmpArg, tmpArg$1, 'x');
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
+a = tmpAssignObjPatternRhs.a;
+b = tmpAssignObjPatternRhs.b;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = ['a', 'b'];
+const tmpCalleeParam$2 = 'x';
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var tmpArg;
-var tmpArg$1;
-objAssignPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
-a = objAssignPatternRhs.a;
-b = objAssignPatternRhs.b;
-tmpArg = objAssignPatternRhs;
-tmpArg$1 = ['a', 'b'];
-x = objPatternRest(tmpArg, tmpArg$1, 'x');
+const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
+a = tmpAssignObjPatternRhs.a;
+b = tmpAssignObjPatternRhs.b;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = ['a', 'b'];
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"c":4}
- - 1: undefined
+ - 1: { x: '1', c: '4' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

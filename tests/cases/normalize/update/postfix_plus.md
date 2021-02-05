@@ -18,32 +18,30 @@ $(x++);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpPostfixArg;
 let x = 1;
-tmpPostfixArg = x;
+const tmpCallCallee = $;
+const tmpPostUpdArgIdent = x;
 x = x + 1;
-tmpArg = tmpPostfixArg;
-$(tmpArg);
+const tmpCalleeParam = tmpPostUpdArgIdent;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpPostfixArg;
 let x = 1;
-tmpPostfixArg = x;
+const tmpCallCallee = $;
+const tmpPostUpdArgIdent = x;
 x = x + 1;
-tmpArg = tmpPostfixArg;
-$(tmpArg);
+const tmpCalleeParam = tmpPostUpdArgIdent;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

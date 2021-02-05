@@ -42,18 +42,15 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpElement$1;
-var tmpObjPropValue;
-('<hoisted func decl `f`>');
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement$1 = { x: tmpObjPropValue };
-tmpElement = [tmpElement$1, 20, 30];
-tmpArg$1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement$1 = { x: tmpObjLitVal };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
+const tmpCalleeParam$2 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -75,24 +72,21 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-var tmpElement$1;
-var tmpObjPropValue;
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement$1 = { x: tmpObjPropValue };
-tmpElement = [tmpElement$1, 20, 30];
-tmpArg$1 = [tmpElement, 40, 50];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement$1 = { x: tmpObjLitVal };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -22,13 +22,16 @@ $(f());
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return 'bad';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -36,18 +39,21 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return 'bad';
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

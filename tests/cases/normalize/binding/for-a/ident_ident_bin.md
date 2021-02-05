@@ -18,41 +18,40 @@ for (let a = b = c + d;false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
 {
-  tmpNestedComplexRhs = c + d;
+  let a;
+  const tmpNestedComplexRhs = c + d;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  while (false) {}
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedComplexRhs;
 let a = 1;
 let b = 2;
-tmpNestedComplexRhs = 7;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-while (false) {}
-$(a, b, 7);
+let a;
+b = 7;
+a = 7;
+while (false) {
+  $(a, b, 7);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 7,7,3
- - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[7, 7, 7], null];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

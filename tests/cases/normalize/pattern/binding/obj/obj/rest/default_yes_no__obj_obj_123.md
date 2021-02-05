@@ -18,54 +18,53 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const y = objPatternRest(objPatternAfterDefault, [], undefined);
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = objPatternAfterDefault;
+const tmpCalleeParam$2 = [];
+const tmpCalleeParam$3 = undefined;
+const y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = { a: 'fail' };
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 'fail' };
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const y = objPatternRest(objPatternAfterDefault, [], undefined);
+const tmpCallCallee$1 = objPatternRest;
+const tmpCalleeParam$1 = objPatternAfterDefault;
+const tmpCalleeParam$2 = [];
+const y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $(y);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2,"z":3}
- - 1: undefined
+ - 1: { x: '1', y: '2', z: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

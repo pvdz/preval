@@ -15,44 +15,36 @@ $(parseInt(15)?.foo);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpOptionalChaining = parseInt(15);
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.foo;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = parseInt;
+const tmpChainElementCall = tmpChainRootCall(15);
+if (tmpChainElementCall) {
+  const tmpChainElementObject = tmpChainElementCall.foo;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpOptionalChaining = parseInt(15);
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.foo;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = parseInt;
+const tmpChainElementCall = tmpChainRootCall(15);
+if (tmpChainElementCall) {
+  const tmpChainElementObject = tmpChainElementCall.foo;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

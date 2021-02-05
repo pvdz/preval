@@ -61,11 +61,12 @@ export function breakStatement(label = null) {
   };
 }
 
-export function callExpression(callee, args) {
+export function callExpression(callee, args, optional = false) {
   if (typeof callee === 'string') callee = identifier(callee);
 
   return {
     type: 'CallExpression',
+    optional,
     callee,
     arguments: args,
     $p: $p(),
@@ -110,6 +111,44 @@ export function doWhileStatement(body, test) {
 export function emptyStatement() {
   return {
     type: 'EmptyStatement',
+    $p: $p(),
+  };
+}
+
+export function _exportDefaultDeclaration(node) {
+  // (underscored because it makes my auto complete life easier)
+  if (typeof node === 'string') node = identifier(node);
+  return {
+    type: 'ExportDefaultDeclaration',
+    declaration: node,
+    $p: $p(),
+  };
+}
+
+export function _exportNamedDeclarationFromNames(locals, exported) {
+  if (typeof locals === 'string') locals = identifier(locals);
+  if (!Array.isArray(locals)) locals = [locals];
+  if (!exported) exported = locals;
+
+  const specifiers = locals.map((local, i) => _exportSpecifier(local, Array.isArray(exported) ? exported[i] : exported));
+
+  return {
+    type: 'ExportNamedDeclaration',
+    specifiers,
+    declaration: null,
+    source: null,
+    $p: $p(),
+  };
+}
+
+export function _exportSpecifier(local, exported) {
+  if (typeof local === 'string') local = identifier(local);
+  if (typeof exported === 'string') local = identifier(exported);
+
+  return {
+    type: 'ExportSpecifier',
+    local,
+    exported,
     $p: $p(),
   };
 }
@@ -217,17 +256,18 @@ export function logicalExpression(operator, left, right) {
   };
 }
 
-export function memberCall(object, property, args, computed = false) {
-  return callExpression(memberExpression(object, property, computed), args);
+export function memberCall(object, property, args, computed = false, optional = false) {
+  return callExpression(memberExpression(object, property, computed, optional), args);
 }
 
-export function memberExpression(object, property, computed = false) {
+export function memberExpression(object, property, computed = false, optional = false) {
   if (typeof object === 'string') object = identifier(object);
   if (typeof property === 'string') property = identifier(property);
 
   return {
     type: 'MemberExpression',
     computed,
+    optional,
     object,
     property,
     $p: $p(),
@@ -241,6 +281,32 @@ export function newExpression(callee, args) {
     type: 'NewExpression',
     callee,
     arguments: args,
+    $p: $p(),
+  };
+}
+
+export function objectExpression(...properties) {
+  if (Array.isArray(properties[0])) properties = properties[0];
+
+  return {
+    type: 'ObjectExpression',
+    properties,
+    $p: $p(),
+  };
+}
+
+export function property(key, value, shorthand = false, computed = false, kind = 'init', method = false) {
+  if (typeof key === 'string') key = identifier(key);
+  if (typeof value === 'string') value = identifier(value);
+
+  return {
+    type: 'Property',
+    key,
+    value,
+    shorthand,
+    computed,
+    kind,
+    method,
     $p: $p(),
   };
 }

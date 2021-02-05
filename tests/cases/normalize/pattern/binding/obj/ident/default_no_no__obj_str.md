@@ -34,8 +34,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: "abc"
- - 1: undefined
+ - 1: 'abc'
+ - eval returned: undefined
 
 Normalized calls: Same
 

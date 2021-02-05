@@ -18,76 +18,51 @@ $(a??b??c??d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpNullish$1 = b;
-} else {
-  tmpNullish$1 = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = b;
 }
-tmpTernaryTest$1 = tmpNullish$1 == null;
-if (tmpTernaryTest$1) {
-  tmpNullish = c;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = c;
 }
-tmpTernaryTest$2 = tmpNullish == null;
-if (tmpTernaryTest$2) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$2 = tmpCalleeParam == null;
+if (tmpIfTest$2) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-var tmpTernaryTest$2;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpNullish$1 = b;
-} else {
-  tmpNullish$1 = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = b;
 }
-tmpTernaryTest$1 = tmpNullish$1 == null;
-if (tmpTernaryTest$1) {
-  tmpNullish = c;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = c;
 }
-tmpTernaryTest$2 = tmpNullish == null;
-if (tmpTernaryTest$2) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$2 = tmpCalleeParam == null;
+if (tmpIfTest$2) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: undefined
+ - 1: {}
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ Assignment to constant variable. ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ Assignment to constant variable. ]>'];
-
+Final output calls: Same

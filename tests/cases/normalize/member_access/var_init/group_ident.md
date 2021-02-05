@@ -17,7 +17,8 @@ $(x);
 
 `````js filename=intro
 $(1);
-let x = $.length;
+const tmpCompObj = $;
+let x = tmpCompObj.length;
 $(x);
 `````
 
@@ -25,16 +26,17 @@ $(x);
 
 `````js filename=intro
 $(1);
-let x = $.length;
+const tmpCompObj = $;
+let x = tmpCompObj.length;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 0
- - 2: undefined
+ - 1: 1
+ - 2: 0
+ - eval returned: undefined
 
 Normalized calls: Same
 

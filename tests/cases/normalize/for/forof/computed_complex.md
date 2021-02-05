@@ -19,18 +19,14 @@ for ($(a)[$('foo')] of $(b)) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    tmpAssignMemLhsObj = $(a);
-    tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-    tmpAssignComMemLhsProp = $('foo');
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $('foo');
     tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
     $(a);
   }
@@ -40,17 +36,13 @@ const tmpForOfRhs = $(b);
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  tmpAssignMemLhsObj = $(a);
-  tmpAssignComMemLhsObj = tmpAssignMemLhsObj;
-  tmpAssignComMemLhsProp = $('foo');
+  const tmpAssignComMemLhsObj = $(a);
+  const tmpAssignComMemLhsProp = $('foo');
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
   $(a);
 }
@@ -59,8 +51,8 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: <crash[ <ref> is not iterable ]>
+ - 1: { x: '1', y: '2' }
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

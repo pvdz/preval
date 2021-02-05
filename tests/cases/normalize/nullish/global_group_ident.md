@@ -17,17 +17,12 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
 const a = { x: 1 };
 1;
-tmpNullish = a;
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = a;
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = x;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -35,16 +30,11 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
 const a = { x: 1 };
-tmpNullish = a;
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = a;
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = x;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -52,8 +42,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: {"x":1}
- - 1: undefined
+ - 1: { x: '1' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

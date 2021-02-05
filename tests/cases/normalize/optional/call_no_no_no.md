@@ -44,16 +44,12 @@ function a() {
   };
   return a_1;
 }
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpMemberComplexObj$2;
-('<hoisted func decl `a`>');
-tmpMemberComplexObj$2 = a();
-tmpMemberComplexObj$1 = tmpMemberComplexObj$2.b();
-tmpMemberComplexObj = tmpMemberComplexObj$1.c();
-tmpArg = tmpMemberComplexObj.d;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallObj$1 = a();
+const tmpCallObj = tmpCallObj$1.b();
+const tmpCompObj = tmpCallObj.c();
+const tmpCalleeParam = tmpCompObj.d;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -76,22 +72,18 @@ function a() {
   };
   return a_1;
 }
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpMemberComplexObj$2;
-tmpMemberComplexObj$2 = a();
-tmpMemberComplexObj$1 = tmpMemberComplexObj$2.b();
-tmpMemberComplexObj = tmpMemberComplexObj$1.c();
-tmpArg = tmpMemberComplexObj.d;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallObj$1 = a();
+const tmpCallObj = tmpCallObj$1.b();
+const tmpCompObj = tmpCallObj.c();
+const tmpCalleeParam = tmpCompObj.d;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

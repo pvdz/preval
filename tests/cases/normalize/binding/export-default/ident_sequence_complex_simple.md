@@ -19,25 +19,34 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 let b = 2;
 let c = 3;
-export let a = (($(b), (tmpAssignMemLhsObj = $(c))), (tmpAssignMemLhsObj.x = c));
+let a;
+$(b);
+const tmpNestedAssignObj = $(c);
+const tmpNestedPropAssignRhs = c;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-export let a = (($(2), (tmpAssignMemLhsObj = $(3))), (tmpAssignMemLhsObj.x = 3));
+let a;
+$(2);
+const tmpNestedAssignObj = $(3);
+tmpNestedAssignObj.x = 3;
+a = 3;
+export { a };
 $(a, 2, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

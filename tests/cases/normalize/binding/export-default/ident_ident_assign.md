@@ -19,41 +19,43 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = 2;
 let c = 3;
 let d = 4;
-export let a =
-  ((tmpNestedAssignObj = $(c)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(d)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (b = tmpNestedAssignMemberRhs)));
+let a;
+let tmpNestedComplexRhs;
+const tmpNestedAssignObj = $(c);
+let tmpNestedAssignPropRhs = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = 2;
-export let a =
-  ((tmpNestedAssignObj = $(3)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(4)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (b = tmpNestedAssignMemberRhs)));
+let a;
+let tmpNestedComplexRhs;
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+export { a };
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

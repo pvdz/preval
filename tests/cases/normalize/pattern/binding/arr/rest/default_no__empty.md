@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-const [...x] = 1;
+const [...x] = 1; // Expect to crash
 $('bad');
 `````
 
@@ -35,7 +35,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

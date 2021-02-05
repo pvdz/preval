@@ -21,13 +21,12 @@ In particular, the pattern's "y" should be replaced with a different name.
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
 {
-  let a = 1;
+  let a_1 = 1;
 }
-objAssignPatternRhs = 1;
-a_1 = objAssignPatternRhs.x;
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = 1;
+a_1 = tmpAssignObjPatternRhs.x;
+tmpAssignObjPatternRhs;
 {
   let a_2 = 1;
 }
@@ -36,15 +35,14 @@ objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 1;
-a_1 = objAssignPatternRhs.x;
+let a_1 = 1;
+a_1 = (1).x;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

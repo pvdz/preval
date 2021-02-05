@@ -19,55 +19,45 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs$1 = z),
-(arrPatternSplat$1 = [...arrAssignPatternRhs$1]),
-(x = arrPatternSplat$1[1]),
-(y = arrPatternSplat$1[2]),
-(arrAssignPatternRhs = arrAssignPatternRhs$1),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(a = arrPatternSplat[0]),
-(b = arrPatternSplat[1]),
-arrAssignPatternRhs);
+let bindingPatternArrRoot;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat$1[1];
+y = arrPatternSplat$1[2];
+bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+let b = arrPatternSplat[1];
+export { a, b };
 $(a, b, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-export default ((arrAssignPatternRhs$1 = z),
-(arrPatternSplat$1 = [...arrAssignPatternRhs$1]),
-(x = arrPatternSplat$1[1]),
-(y = arrPatternSplat$1[2]),
-(arrAssignPatternRhs = arrAssignPatternRhs$1),
-(arrPatternSplat = [...arrAssignPatternRhs]),
-(a = arrPatternSplat[0]),
-(b = arrPatternSplat[1]),
-arrAssignPatternRhs);
+let bindingPatternArrRoot;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat$1[1];
+y = arrPatternSplat$1[2];
+bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+let b = arrPatternSplat[1];
+export { a, b };
 $(a, b, x, y, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

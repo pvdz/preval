@@ -32,7 +32,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternStep$3 = arrPatternSplat$3[0];
   let arrPatternSplat$4 = [...arrPatternStep$3];
   let arrPatternBeforeDefault = arrPatternSplat$4[0];
-  let arrPatternStep$4;
+  let arrPatternStep$4 = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep$4 = y;
@@ -41,7 +41,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   }
   let arrPatternSplat$5 = [...arrPatternStep$4];
   let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
-  let foo;
+  let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     foo = x_1;
@@ -49,7 +49,11 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
     foo = arrPatternBeforeDefault$1;
   }
   let objPatternNoDefault = tmpParamPattern$1.x;
-  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 `````
 
@@ -67,7 +71,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternStep$3 = arrPatternSplat$3[0];
   let arrPatternSplat$4 = [...arrPatternStep$3];
   let arrPatternBeforeDefault = arrPatternSplat$4[0];
-  let arrPatternStep$4;
+  let arrPatternStep$4 = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep$4 = y;
@@ -76,7 +80,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   }
   let arrPatternSplat$5 = [...arrPatternStep$4];
   let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
-  let foo;
+  let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     foo = x_1;
@@ -84,14 +88,17 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
     foo = arrPatternBeforeDefault$1;
   }
   let objPatternNoDefault = tmpParamPattern$1.x;
-  let x_1 = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

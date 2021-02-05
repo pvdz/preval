@@ -22,10 +22,9 @@ $($(obj).x = 30);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -33,19 +32,20 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-tmpAssignMemLhsObj = $(obj);
-tmpAssignMemLhsObj.x = 30;
-const tmpCalleeParam = 30;
+let tmpCalleeParam;
+const tmpNestedAssignObj = $(obj);
+const tmpNestedPropAssignRhs = 30;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+tmpCalleeParam = tmpNestedPropAssignRhs;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -53,18 +53,20 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-tmpAssignMemLhsObj = $(obj);
-tmpAssignMemLhsObj.x = 30;
-tmpCallCallee(30);
+let tmpCalleeParam;
+const tmpNestedAssignObj = $(obj);
+tmpNestedAssignObj.x = 30;
+tmpCalleeParam = 30;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: 20
- - 2: 30
- - 3: undefined
+ - 1: { x: '<get/set>' }
+ - 2: 20
+ - 3: 30
+ - eval returned: undefined
 
 Normalized calls: Same
 

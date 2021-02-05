@@ -12,8 +12,6 @@
 
 `````js filename=intro
 foo: {
-
-
   break foo;
 }
 `````
@@ -37,7 +35,7 @@ foo: {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

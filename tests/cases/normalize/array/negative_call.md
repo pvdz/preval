@@ -17,33 +17,29 @@ $([-$()]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpUnaryArg;
-tmpUnaryArg = $();
-tmpElement = -tmpUnaryArg;
-tmpArg = [tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = $();
+const tmpArrElement = -tmpUnaryArg;
+const tmpCalleeParam = [tmpArrElement];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpUnaryArg;
-tmpUnaryArg = $();
-tmpElement = -tmpUnaryArg;
-tmpArg = [tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = $();
+const tmpArrElement = -tmpUnaryArg;
+const tmpCalleeParam = [tmpArrElement];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: [null]
- - 2: undefined
+ - 1: 
+ - 2: [NaN]
+ - eval returned: undefined
 
 Normalized calls: Same
 

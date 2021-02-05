@@ -18,57 +18,41 @@ $(a.b??c??d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-tmpNullish$1 = a.b;
-tmpTernaryTest = tmpNullish$1 == null;
-if (tmpTernaryTest) {
-  tmpNullish = c;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpCallCallee = $;
+let tmpCalleeParam = a.b;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = c;
 }
-tmpTernaryTest$1 = tmpNullish == null;
-if (tmpTernaryTest$1) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-tmpNullish$1 = a.b;
-tmpTernaryTest = tmpNullish$1 == null;
-if (tmpTernaryTest) {
-  tmpNullish = c;
-} else {
-  tmpNullish = tmpNullish$1;
+const tmpCallCallee = $;
+let tmpCalleeParam = a.b;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = c;
 }
-tmpTernaryTest$1 = tmpNullish == null;
-if (tmpTernaryTest$1) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

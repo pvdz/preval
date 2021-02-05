@@ -18,44 +18,32 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternNoDefault;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+const tmpObjLitVal$1 = 1;
+const tmpObjLitVal$2 = null;
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternBeforeDefault = objPatternNoDefault.y;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var objPatternNoDefault;
-var tmpObjPropValue;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-tmpObjPropValue = { x: 1, y: null, z: 3 };
-objAssignPatternRhs = { x: tmpObjPropValue, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+const tmpObjLitVal = { x: 1, y: null, z: 3 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternBeforeDefault = objPatternNoDefault.y;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
@@ -65,8 +53,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: null
+ - eval returned: undefined
 
 Normalized calls: Same
 

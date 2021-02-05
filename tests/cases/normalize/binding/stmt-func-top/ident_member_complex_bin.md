@@ -22,32 +22,51 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-a = $(b).x = c + d;
-$(a, b, c);
+function f() {
+  let b = { x: 2 };
+  let c = 3;
+  let d = 4;
+  let a;
+  const tmpNestedAssignObj = $(b);
+  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(a, b, c);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-a = $(b).x = 7;
-$(a, b, 7);
+function f() {
+  let b = { x: 2 };
+  let a;
+  const tmpNestedAssignObj = $(b);
+  tmpNestedAssignObj.x = 7;
+  a = 7;
+  $(a, b, 7);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":7}
- - 1: 7,{"x":7},3
- - 2: undefined
+ - 1: { x: '2' }
+ - 2: 7, { x: '7' }, 3
+ - 3: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[{ x: 7 }], [7, { x: 7 }, 7], null];
-
+ - 1: { x: '2' }
+ - 2: 7, { x: '7' }, 7
+ - 3: undefined
+ - eval returned: undefined

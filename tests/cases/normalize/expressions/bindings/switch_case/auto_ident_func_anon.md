@@ -1,0 +1,69 @@
+# Preval test case
+
+# auto_ident_func_anon.md
+
+> normalize > expressions > bindings > switch_case > auto_ident_func_anon
+>
+> Normalization of var decls should work the same everywhere they are
+
+#TODO
+
+## Input
+
+`````js filename=intro
+switch (1) {
+  case 1:
+    let a = function () {};
+    $(a);
+}
+`````
+
+## Normalized
+
+`````js filename=intro
+{
+  let a;
+  {
+    let tmpFallthrough = false;
+    let tmpIfTest = tmpFallthrough;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = 1 === 1;
+    }
+    if (tmpIfTest) {
+      ('case 0:');
+      {
+        a = function () {};
+        $(a);
+      }
+      tmpFallthrough = true;
+    }
+  }
+}
+`````
+
+## Output
+
+`````js filename=intro
+let a;
+let tmpFallthrough = false;
+let tmpIfTest = tmpFallthrough;
+if (tmpIfTest) {
+} else {
+  tmpIfTest = true;
+}
+if (tmpIfTest) {
+  a = function () {};
+  $(a);
+  tmpFallthrough = true;
+}
+`````
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Normalized calls: Same
+
+Final output calls: Same

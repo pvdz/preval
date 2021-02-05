@@ -18,26 +18,22 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: undefined, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest$1) {
+let y = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -48,26 +44,22 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternObjRoot = { x: undefined, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let objPatternAfterDefault;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest$1) {
+let y = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -78,9 +70,9 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: ["pass2"]
- - 1: "bad"
- - 2: undefined
+ - 1: ['pass2']
+ - 2: 'bad'
+ - eval returned: undefined
 
 Normalized calls: Same
 

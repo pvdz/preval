@@ -23,32 +23,31 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = String.toString();
+  const tmpReturnArg = String.toString();
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = String.toString();
+  const tmpReturnArg = String.toString();
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "function String() { [native code] }"
- - 1: undefined
+ - 1: 'function() { [native code] }'
+ - eval returned: undefined
 
 Normalized calls: Same
 

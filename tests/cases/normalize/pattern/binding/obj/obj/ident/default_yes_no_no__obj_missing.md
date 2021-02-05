@@ -18,16 +18,13 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+let y = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
@@ -37,16 +34,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const bindingPatternObjRoot = { b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let y;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  y = tmpTernaryConsequent;
+let y = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = $('fail');
 } else {
   y = objPatternBeforeDefault;
 }
@@ -56,7 +50,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -28,19 +28,6 @@ var b;
 var c;
 var d;
 var e;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberObj$2;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignMemberRhs$2;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
 a = function () {
   $('a');
   return 1;
@@ -71,23 +58,25 @@ e = function () {
   d = 54;
   return 5;
 };
-tmpAssignMemLhsObj = a();
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpNestedAssignObj = b();
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj$1 = c();
-tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignObj$2 = d();
-tmpNestedAssignMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignMemberRhs$2 = e();
-tmpNestedAssignMemberObj$2.x = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberRhs$1 = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-tmpAssignMemRhs = tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+let tmpAssignMemRhs;
+const tmpNestedAssignObj = b();
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = c();
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignObj$2 = d();
+let tmpNestedAssignPropRhs$2 = e();
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$2;
+tmpNestedAssignObj$2.x = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.x = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs$2;
+tmpAssignMemRhs = tmpNestedPropAssignRhs$2;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, b, c, d, e);
 `````
 
@@ -99,19 +88,6 @@ var b;
 var c;
 var d;
 var e;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberObj$1;
-var tmpNestedAssignMemberObj$2;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignMemberRhs$1;
-var tmpNestedAssignMemberRhs$2;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
 a = function () {
   $('a');
   return 1;
@@ -142,36 +118,37 @@ e = function () {
   d = 54;
   return 5;
 };
-tmpAssignMemLhsObj = a();
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpNestedAssignObj = b();
-tmpNestedAssignMemberObj = tmpNestedAssignObj;
-tmpNestedAssignObj$1 = c();
-tmpNestedAssignMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignObj$2 = d();
-tmpNestedAssignMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignMemberRhs$2 = e();
-tmpNestedAssignMemberObj$2.x = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberRhs$1 = tmpNestedAssignMemberRhs$2;
-tmpNestedAssignMemberObj$1.x = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberRhs = tmpNestedAssignMemberRhs$1;
-tmpNestedAssignMemberObj.x = tmpNestedAssignMemberRhs;
-tmpAssignMemRhs = tmpNestedAssignMemberRhs;
-tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
-tmpAssignMemLhsObj$2.x = tmpAssignMemRhs;
+const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+let tmpAssignMemRhs;
+const tmpNestedAssignObj = b();
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = c();
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignObj$2 = d();
+let tmpNestedAssignPropRhs$2 = e();
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$2;
+tmpNestedAssignObj$2.x = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.x = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs$2;
+tmpAssignMemRhs = tmpNestedPropAssignRhs$2;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, b, c, d, e);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "b"
- - 2: "c"
- - 3: "d"
- - 4: "e"
- - 5: 51,52,53,54,null
- - 6: undefined
+ - 1: 'a'
+ - 2: 'b'
+ - 3: 'c'
+ - 4: 'd'
+ - 5: 'e'
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -43,10 +43,10 @@ c = {
     $(4, n_1);
   },
 };
-let tmpBindInitMemberObject = b;
-let tmpBindInitRhs = c.x;
-tmpBindInitMemberObject.x = tmpBindInitRhs;
-a = tmpBindInitRhs;
+let tmpNestedAssignPropRhs = c.x;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(5, a);
 `````
 
@@ -74,20 +74,20 @@ c = {
     $(4, n_1);
   },
 };
-let tmpBindInitMemberObject = b;
-let tmpBindInitRhs = c.x;
-tmpBindInitMemberObject.x = tmpBindInitRhs;
-a = tmpBindInitRhs;
+let tmpNestedAssignPropRhs = c.x;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 $(5, a);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 2,20
- - 2: 5,20
- - 3: undefined
+ - 1: 3
+ - 2: 2, 20
+ - 3: 5, 20
+ - eval returned: undefined
 
 Normalized calls: Same
 

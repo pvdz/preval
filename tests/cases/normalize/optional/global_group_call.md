@@ -16,19 +16,13 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
+let y = undefined;
 1;
 2;
-tmpOptionalChaining = $();
-tmpTernaryTest = tmpOptionalChaining == null;
-let y;
-if (tmpTernaryTest) {
-  y = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.foo;
-  y = tmpTernaryAlternate;
+const tmpChainRootProp = $();
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  y = tmpChainElementObject;
 }
 $(y);
 `````
@@ -36,17 +30,11 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpOptionalChaining = $();
-tmpTernaryTest = tmpOptionalChaining == null;
-let y;
-if (tmpTernaryTest) {
-  y = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.foo;
-  y = tmpTernaryAlternate;
+let y = undefined;
+const tmpChainRootProp = $();
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  y = tmpChainElementObject;
 }
 $(y);
 `````
@@ -54,9 +42,9 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: null
+ - 1: 
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

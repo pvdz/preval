@@ -40,8 +40,8 @@ $(arr);
 ## Result
 
 Should call `$` with:
- - 0: [1,2]
- - 1: undefined
+ - 1: [1, 2]
+ - eval returned: undefined
 
 Normalized calls: Same
 

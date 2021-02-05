@@ -28,7 +28,7 @@ const a = bindingPatternObjRoot.x;
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -40,10 +40,10 @@ $(undefined);
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: null
- - 2: null
+ - 1: undefined
+ - 2: undefined
  - 3: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

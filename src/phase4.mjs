@@ -740,7 +740,8 @@ export function phase4(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        if (node.name !== 'arguments') { // TODO
+        if (node.name !== 'arguments') {
+          // TODO
           log('Name: `' + node.name + '`, unique name: `' + node.name + '`');
           const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
           log('This ident has', meta?.updates.length, 'updates and', meta?.usages.length, 'usages');
@@ -850,12 +851,10 @@ export function phase4(program, fdata, resolve, req) {
       }
 
       case 'OptionalMemberExpression': {
-
         break;
       }
 
       case 'OptionalCallExpression': {
-
         break;
       }
 

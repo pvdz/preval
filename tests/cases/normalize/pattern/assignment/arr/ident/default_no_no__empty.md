@@ -11,17 +11,15 @@
 ## Input
 
 `````js filename=intro
-([x] = 1);
+([x] = 1); // Expect to crash
 $('bad');
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrAssignPatternRhs = 1;
+const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 arrAssignPatternRhs;
 $('bad');
@@ -30,10 +28,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat = [...1];
 x = arrPatternSplat[0];
 $('bad');
 `````
@@ -41,11 +36,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

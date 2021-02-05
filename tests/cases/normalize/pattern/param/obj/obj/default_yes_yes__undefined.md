@@ -21,24 +21,23 @@ $(f(undefined, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = { y: 'pass2' };
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = { y: 'pass2' };
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { x: 'fail' };
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { x: 'fail' };
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -52,34 +51,32 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = f(undefined, 10);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f(undefined, 10);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpObjPropValue;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpObjPropValue = { y: 'pass2' };
-    tmpArg = { x: tmpObjPropValue };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = { y: 'pass2' };
+    const tmpCalleeParam = { x: tmpObjLitVal };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { x: 'fail' };
-    objPatternAfterDefault = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { x: 'fail' };
+    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -93,17 +90,17 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg$2;
-tmpArg$2 = f(undefined, 10);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f(undefined, 10);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":{"y":"pass2"}}
- - 1: "ok"
- - 2: undefined
+ - 1: { x: '{"y":"\\"pass2\\""}' }
+ - 2: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

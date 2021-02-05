@@ -18,24 +18,15 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternSplat$2;
-var arrPatternStep;
-var arrPatternStep$1;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-tmpElement$2 = [1, 2, 3];
-tmpElement$1 = [tmpElement$2, 4, 5];
-tmpElement = [tmpElement$1, 20, 30];
-arrAssignPatternRhs = [tmpElement, 40, 50];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternStep$1 = arrPatternSplat$1[0];
-arrPatternSplat$2 = [...arrPatternStep$1];
+const tmpArrElement$2 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const arrAssignPatternRhs = [tmpArrElement, 40, 50];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
 x = arrPatternSplat$2[0];
 arrAssignPatternRhs;
 $(x);
@@ -44,24 +35,15 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternSplat$2;
-var arrPatternStep;
-var arrPatternStep$1;
-var tmpElement;
-var tmpElement$1;
-var tmpElement$2;
-tmpElement$2 = [1, 2, 3];
-tmpElement$1 = [tmpElement$2, 4, 5];
-tmpElement = [tmpElement$1, 20, 30];
-arrAssignPatternRhs = [tmpElement, 40, 50];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternStep$1 = arrPatternSplat$1[0];
-arrPatternSplat$2 = [...arrPatternStep$1];
+const tmpArrElement$2 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const arrAssignPatternRhs = [tmpArrElement, 40, 50];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$2 = [...arrPatternStep$1];
 x = arrPatternSplat$2[0];
 $(x);
 `````
@@ -69,8 +51,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: [1,2,3]
- - 1: undefined
+ - 1: [1, 2, 3]
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -27,19 +27,22 @@ $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z = objPatternRest(objPatternNoDefault$1, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault$1;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return z;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-('<hoisted func decl `f`>');
-tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal$1 = 13;
+const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$5 = 10;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -48,25 +51,26 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z = objPatternRest(objPatternNoDefault$1, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault$1;
+  const tmpCalleeParam$1 = [];
+  let z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return z;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = { z: 1, a: 2, b: 3 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 10);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"z":1,"a":2,"b":3}
- - 1: undefined
+ - 1: { z: '1', a: '2', b: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

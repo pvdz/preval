@@ -15,40 +15,32 @@ $(parseInt(15)??foo);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryTest;
-tmpNullish = parseInt(15);
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpArg = foo;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+let tmpCalleeParam = parseInt(15);
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = foo;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryTest;
-tmpNullish = parseInt(15);
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpArg = foo;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+let tmpCalleeParam = parseInt(15);
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = foo;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 15
- - 1: undefined
+ - 1: 15
+ - eval returned: undefined
 
 Normalized calls: Same
 

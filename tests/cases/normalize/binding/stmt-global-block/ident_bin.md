@@ -21,29 +21,34 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-a = b + c;
-$(a, b, c);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = 2;
+  let c = 3;
+  let a = b + c;
+  $(a, b, c);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-a = 5;
-$(a, 5, 3);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(5, 5, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,2,3
- - 1: undefined
+ - 1: true
+ - 2: 5, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[5, 5, 3], null];
-
+ - 1: true
+ - 2: 5, 5, 3
+ - eval returned: undefined

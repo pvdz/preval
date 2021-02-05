@@ -19,34 +19,32 @@ $(typeof foo)
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
 let foo = 1;
+const tmpCallCallee = $;
 null;
 foo;
-tmpArg = true;
-$(tmpArg);
-tmpArg$1 = typeof foo;
-$(tmpArg$1);
+const tmpCalleeParam = true;
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = typeof foo;
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-tmpArg = true;
-$(tmpArg);
-tmpArg$1 = 'number';
-$(tmpArg$1);
+const tmpCallCallee = $;
+tmpCallCallee(true);
+const tmpCallCallee$1 = $;
+tmpCallCallee$1('number');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: true
- - 1: "number"
- - 2: undefined
+ - 1: true
+ - 2: 'number'
+ - eval returned: undefined
 
 Normalized calls: Same
 

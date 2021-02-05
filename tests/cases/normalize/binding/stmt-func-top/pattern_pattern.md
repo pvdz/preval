@@ -22,55 +22,55 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs$1 = z;
-arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-x = arrPatternSplat$1[1];
-y = arrPatternSplat$1[2];
-arrAssignPatternRhs = arrAssignPatternRhs$1;
-arrPatternSplat = [...arrAssignPatternRhs];
-a = arrPatternSplat[0];
-b = arrPatternSplat[1];
-arrAssignPatternRhs;
-$(a, b, x, y, z);
+function f() {
+  let x = 1;
+  let y = 2;
+  let z = [10, 20, 30];
+  let bindingPatternArrRoot;
+  const tmpNestedAssignArrPatternRhs = z;
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat$1[1];
+  y = arrPatternSplat$1[2];
+  bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let a = arrPatternSplat[0];
+  let b = arrPatternSplat[1];
+  $(a, b, x, y, z);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs$1 = z;
-arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-x = arrPatternSplat$1[1];
-y = arrPatternSplat$1[2];
-arrAssignPatternRhs = arrAssignPatternRhs$1;
-arrPatternSplat = [...arrAssignPatternRhs];
-a = arrPatternSplat[0];
-b = arrPatternSplat[1];
-$(a, b, x, y, z);
+function f() {
+  let x = 1;
+  let y = 2;
+  let z = [10, 20, 30];
+  let bindingPatternArrRoot;
+  const tmpNestedAssignArrPatternRhs = z;
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat$1[1];
+  y = arrPatternSplat$1[2];
+  bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let a = arrPatternSplat[0];
+  let b = arrPatternSplat[1];
+  $(a, b, x, y, z);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10,20,20,30,[10,20,30]
- - 1: undefined
+ - 1: 10, 20, 20, 30, [10, 20, 30]
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

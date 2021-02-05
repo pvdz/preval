@@ -30,18 +30,12 @@ var c;
 var a;
 var b;
 var c;
-var tmpComputedObj;
-var tmpComputedProp;
-{
-  a = $(1);
-  b = a;
-  c = $(2);
-  {
-    tmpComputedObj = b;
-    tmpComputedProp = $(c);
-    tmpComputedObj[tmpComputedProp];
-  }
-}
+a = $(1);
+b = a;
+c = $(2);
+const tmpCompObj = b;
+const tmpCompProp = $(c);
+tmpCompObj[tmpCompProp];
 `````
 
 ## Output
@@ -50,23 +44,21 @@ var tmpComputedProp;
 var a;
 var b;
 var c;
-var tmpComputedObj;
-var tmpComputedProp;
 a = $(1);
 b = a;
 c = $(2);
-tmpComputedObj = b;
-tmpComputedProp = $(c);
-tmpComputedObj[tmpComputedProp];
+const tmpCompObj = b;
+const tmpCompProp = $(c);
+tmpCompObj[tmpCompProp];
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
+ - 1: 1
  - 2: 2
- - 3: undefined
+ - 3: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

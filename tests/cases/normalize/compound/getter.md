@@ -21,44 +21,34 @@ $(obj.x); // 5
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
 const obj = { x: 0 };
-tmpCompoundAssignLhs = obj.x;
-tmpAssignMemLhsObj = obj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-tmpArg = obj.x;
-$(tmpArg);
+const tmpCompoundAssignLhs = obj.x;
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpCallCallee = $;
+const tmpCalleeParam = obj.x;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemRhs;
-var tmpCompoundAssignLhs;
 const obj = { x: 0 };
-tmpCompoundAssignLhs = obj.x;
-tmpAssignMemLhsObj = obj;
-tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-tmpArg = obj.x;
-$(tmpArg);
+const tmpCompoundAssignLhs = obj.x;
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpCallCallee = $;
+const tmpCalleeParam = obj.x;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5
- - 1: undefined
+ - 1: 5
+ - eval returned: undefined
 
 Normalized calls: Same
 

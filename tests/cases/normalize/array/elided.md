@@ -15,34 +15,32 @@ $([1, $(),, 2,, $(),,]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpElement$1;
-tmpElement = $();
-tmpElement$1 = $();
-tmpArg = [1, tmpElement, , 2, , tmpElement$1, ,];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement = 1;
+const tmpArrElement$1 = $();
+const tmpArrElement$2 = 2;
+const tmpArrElement$3 = $();
+const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, , tmpArrElement$2, , tmpArrElement$3, ,];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpElement$1;
-tmpElement = $();
-tmpElement$1 = $();
-tmpArg = [1, tmpElement, , 2, , tmpElement$1, ,];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpArrElement$1 = $();
+const tmpArrElement$3 = $();
+const tmpCalleeParam = [1, tmpArrElement$1, , 2, , tmpArrElement$3, ,];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
  - 1: 
- - 2: [1,null,null,2,null,null,null]
- - 3: undefined
+ - 2: 
+ - 3: [1, undefined, , 2, , undefined]
+ - eval returned: undefined
 
 Normalized calls: Same
 

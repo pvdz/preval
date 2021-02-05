@@ -19,17 +19,16 @@ for ($(a).x of b) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of b) {
-    tmpAssignMemLhsObj = $(a);
+    const tmpAssignMemLhsObj = $(a);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-    tmpArg = a.x;
-    $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = a.x;
+    tmpCallCallee(tmpCalleeParam);
   }
 }
 `````
@@ -37,23 +36,22 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of b) {
-  tmpAssignMemLhsObj = $(a);
+  const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  tmpArg = a.x;
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = a.x;
+  tmpCallCallee(tmpCalleeParam);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

@@ -10,45 +10,43 @@
 
 `````js filename=intro
 { let x = 1; } 
-([ x ] = 1);
+([ x ] = [ 100 ]);
 { let x = 1; }
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 {
-  let x = 1;
+  let x_1 = 1;
 }
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrAssignPatternRhs = [100];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x_1 = arrPatternSplat[0];
 arrAssignPatternRhs;
 {
   let x_2 = 1;
 }
+$(x_1);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-arrAssignPatternRhs = 1;
-arrPatternSplat = [...arrAssignPatternRhs];
+let x_1 = 1;
+const arrAssignPatternRhs = [100];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x_1 = arrPatternSplat[0];
+$(x_1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - 1: 100
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

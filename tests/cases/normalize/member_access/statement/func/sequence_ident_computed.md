@@ -22,7 +22,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  const tmpCompObj = ($(1), b);
+  $(1);
+  const tmpCompObj = b;
   const tmpCompProp = $('length');
   tmpCompObj[tmpCompProp];
   $(c);
@@ -36,7 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const tmpCompObj = ($(1), b);
+  $(1);
+  const tmpCompObj = b;
   const tmpCompProp = $('length');
   tmpCompObj[tmpCompProp];
   $(c);
@@ -49,8 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -22,29 +22,29 @@ let a = 1;
 let b = 2;
 let c = 3;
 {
-  a = b + c;
-  while (false) {}
+  let a = b + c;
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
 let a = 1;
-a = 5;
-while (false) {}
-$(a, 5, 3);
+let a = 5;
+while (false) {
+  $(a, 5, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 5,2,3
- - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[5, 5, 3], null];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

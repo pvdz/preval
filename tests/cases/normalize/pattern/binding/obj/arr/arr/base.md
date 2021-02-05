@@ -18,11 +18,9 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpElement = [1, 2, 3];
-tmpObjPropValue = [tmpElement, 13];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpArrElement = [1, 2, 3];
+const tmpObjLitVal = [tmpArrElement, 13];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
@@ -33,11 +31,9 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpElement = [1, 2, 3];
-tmpObjPropValue = [tmpElement, 13];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpArrElement = [1, 2, 3];
+const tmpObjLitVal = [tmpArrElement, 13];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
@@ -48,8 +44,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

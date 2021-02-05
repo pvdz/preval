@@ -18,66 +18,44 @@ $(a.b?.c?.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-tmpOptionalChaining$1 = a.b;
-tmpTernaryTest = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining$1.c;
-  tmpOptionalChaining = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+if (tmpChainElementObject) {
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  if (tmpChainElementObject$1) {
+    const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+    tmpCalleeParam = tmpChainElementObject$2;
+  }
 }
-tmpTernaryTest$1 = tmpOptionalChaining == null;
-if (tmpTernaryTest$1) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$1;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = {};
-tmpOptionalChaining$1 = a.b;
-tmpTernaryTest = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining$1.c;
-  tmpOptionalChaining = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+if (tmpChainElementObject) {
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  if (tmpChainElementObject$1) {
+    const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+    tmpCalleeParam = tmpChainElementObject$2;
+  }
 }
-tmpTernaryTest$1 = tmpOptionalChaining == null;
-if (tmpTernaryTest$1) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$1;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

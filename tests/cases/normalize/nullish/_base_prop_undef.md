@@ -19,41 +19,35 @@ $(f??x);
 
 `````js filename=intro
 var f;
-var tmpArg;
-var tmpTernaryTest;
 f = undefined;
-f = f;
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = x;
-} else {
-  tmpArg = f;
+const tmpCallCallee = $;
+let tmpCalleeParam = f;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = x;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 var f;
-var tmpArg;
-var tmpTernaryTest;
 f = undefined;
-f = f;
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = x;
-} else {
-  tmpArg = f;
+const tmpCallCallee = $;
+let tmpCalleeParam = f;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = x;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

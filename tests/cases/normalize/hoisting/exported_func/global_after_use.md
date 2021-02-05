@@ -17,13 +17,12 @@ export function f() { return $(2); }
 
 `````js filename=intro
 export function f() {
-  let tmpReturnArg = $(2);
+  const tmpReturnArg = $(2);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1);
+tmpCallCallee(tmpCalleeParam);
 ('<hoisted func decl `f`>');
 `````
 
@@ -31,18 +30,18 @@ $(tmpArg);
 
 `````js filename=intro
 export function f() {
-  let tmpReturnArg = $(2);
+  const tmpReturnArg = $(2);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f(1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

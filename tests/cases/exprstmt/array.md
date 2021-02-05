@@ -17,19 +17,21 @@
 ## Normalized
 
 `````js filename=intro
-[1, 2, 3];
+1;
+2;
+3;
 `````
 
 ## Output
 
 `````js filename=intro
-[1, 2, 3];
+
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,8 +18,8 @@ $(x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpBindingInit = $($);
-let x = tmpBindingInit.length;
+const tmpCompObj = $($);
+let x = tmpCompObj.length;
 $(x);
 `````
 
@@ -28,19 +28,19 @@ $(x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpBindingInit = $($);
-let x = tmpBindingInit.length;
+const tmpCompObj = $($);
+let x = tmpCompObj.length;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: null
- - 3: 0
- - 4: undefined
+ - 1: 1
+ - 2: 2
+ - 3: '<$>'
+ - 4: 0
+ - eval returned: undefined
 
 Normalized calls: Same
 

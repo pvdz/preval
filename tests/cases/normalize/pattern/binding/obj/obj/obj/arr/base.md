@@ -24,13 +24,11 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-tmpObjPropValue$2 = [1, 2, 3];
-tmpObjPropValue$1 = { z: tmpObjPropValue$2, a: 15, b: 16 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal$1 = 13;
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternNoDefault$2 = objPatternNoDefault$1.z;
@@ -41,13 +39,10 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpObjPropValue$2;
-tmpObjPropValue$2 = [1, 2, 3];
-tmpObjPropValue$1 = { z: tmpObjPropValue$2, a: 15, b: 16 };
-tmpObjPropValue = { x: 13, y: tmpObjPropValue$1, z: 14 };
-const bindingPatternObjRoot = { x: tmpObjPropValue, b: 11, c: 12 };
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternNoDefault$2 = objPatternNoDefault$1.z;
@@ -58,8 +53,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

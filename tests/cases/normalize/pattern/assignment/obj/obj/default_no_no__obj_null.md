@@ -18,44 +18,33 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: null, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-{
-  let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = objPatternNoDefault === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const tmpObjLitVal = null;
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
 }
-objAssignPatternRhs;
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: null, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
-if (tmpAssignLogicStmtOr) {
+const tmpAssignObjPatternRhs = { x: null, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = objPatternNoDefault === null;
+  objPatternCrashTest = objPatternNoDefault === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('bad');
 `````
@@ -63,7 +52,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -18,30 +18,32 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = null;
-objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = null;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = null;
-objPatternNoDefault = objAssignPatternRhs.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
+const objPatternNoDefault = null.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

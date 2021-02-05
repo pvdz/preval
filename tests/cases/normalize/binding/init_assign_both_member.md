@@ -21,23 +21,27 @@ let a = b.x = c.x
 `````js filename=intro
 let b = 10;
 let c = 20;
-let tmpBindInitMemberObject = b;
-let tmpBindInitRhs = c.x;
-tmpBindInitMemberObject.x = tmpBindInitRhs;
-let a = tmpBindInitRhs;
+let a;
+let tmpNestedAssignPropRhs = c.x;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpBindInitRhs = (20).x;
-(10).x = tmpBindInitRhs;
+let a;
+let tmpNestedAssignPropRhs = (20).x;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+(10).x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

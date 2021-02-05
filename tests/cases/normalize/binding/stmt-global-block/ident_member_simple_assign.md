@@ -21,30 +21,53 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-a = b.x = $(c).y = $(d);
-$(a, b, c);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = { x: 2 };
+  let c = 3;
+  let d = 4;
+  let a;
+  let tmpNestedAssignPropRhs;
+  const tmpNestedAssignObj = $(c);
+  let tmpNestedAssignPropRhs$1 = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs$1;
+  a = tmpNestedPropAssignRhs$1;
+  $(a, b, c);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-a = b.x = $(3).y = $(4);
-$(a, b, 3);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = { x: 2 };
+  let a;
+  let tmpNestedAssignPropRhs;
+  const tmpNestedAssignObj = $(3);
+  let tmpNestedAssignPropRhs$1 = $(4);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs$1;
+  a = tmpNestedPropAssignRhs$1;
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 4
- - 2: 4,{"x":4},3
- - 3: undefined
+ - 1: true
+ - 2: 3
+ - 3: 4
+ - 4: 4, { x: '4' }, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

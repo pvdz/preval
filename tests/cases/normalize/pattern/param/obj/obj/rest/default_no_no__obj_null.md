@@ -22,15 +22,20 @@ $(f({ x: null, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return 'bad';
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = { x: null, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal = null;
+const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$5 = 10;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -38,24 +43,24 @@ $(tmpArg);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  objPatternRest(objPatternNoDefault, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = objPatternNoDefault;
+  const tmpCalleeParam$1 = [];
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return 'bad';
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg$1 = { x: null, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = { x: null, b: 11, c: 12 };
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 10);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'undefined' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Normalized calls: BAD?!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
+Normalized calls: Same
 
-Final output calls: BAD!!
-["<crash[ Cannot read property 'cannotDestructureThis' of null ]>"];
-
+Final output calls: Same

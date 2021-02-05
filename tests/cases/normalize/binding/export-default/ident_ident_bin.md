@@ -22,7 +22,11 @@ $(a, b, c);
 let b = 2;
 let c = 3;
 let d = 4;
-export let a = (b = c + d);
+let a;
+const tmpNestedComplexRhs = c + d;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+export { a };
 $(a, b, c);
 `````
 
@@ -30,14 +34,17 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 2;
-export let a = (b = 7);
+let a;
+b = 7;
+a = 7;
+export { a };
 $(a, b, 7);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

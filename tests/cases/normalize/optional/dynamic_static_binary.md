@@ -16,50 +16,37 @@ $(obj?.['fo' + 'o']);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpComputedObj;
-var tmpComputedProp;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 const obj = { foo: 10 };
-tmpTernaryTest = obj == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpComputedObj = obj;
-  tmpComputedProp = 'fo' + 'o';
-  tmpTernaryAlternate = tmpComputedObj[tmpComputedProp];
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = obj;
+if (tmpChainRootProp) {
+  const tmpChainRootComputed = 'fo' + 'o';
+  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpComputedObj;
-var tmpComputedProp;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 const obj = { foo: 10 };
-tmpTernaryTest = obj == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpComputedObj = obj;
-  tmpComputedProp = 'foo';
-  tmpTernaryAlternate = tmpComputedObj[tmpComputedProp];
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = obj;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,12 +21,10 @@ a ? b : c;
 var a;
 var b;
 var c;
-{
-  if (a) {
-    b;
-  } else {
-    c;
-  }
+if (a) {
+  b;
+} else {
+  c;
 }
 `````
 
@@ -39,7 +37,7 @@ var c;
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

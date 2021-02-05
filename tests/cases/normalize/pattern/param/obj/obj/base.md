@@ -21,7 +21,7 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = b;
@@ -29,7 +29,7 @@ function f($tdz$__pattern) {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     objPatternAfterDefault = a;
@@ -46,21 +46,20 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-('<hoisted func decl `f`>');
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$2 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = b;
@@ -68,7 +67,7 @@ function f($tdz$__pattern) {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     objPatternAfterDefault = a;
@@ -85,20 +84,19 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-var tmpArg;
-var tmpArg$1;
-var tmpObjPropValue;
-tmpObjPropValue = { x: 1, y: 2, z: 3 };
-tmpArg$1 = { x: tmpObjPropValue, b: 11, c: 12 };
-tmpArg = f(tmpArg$1, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -22,21 +22,20 @@ export function g() {
 `````js filename=intro
 export function g() {
   function f() {
-    let tmpReturnArg = $(2);
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg;
   ('<eliminated duplicate func decl `f`>');
   ('<hoisted func decl `f`>');
-  tmpArg = f(3);
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
   ('<hoisted func decl `f`>');
   ('<hoisted func decl `f`>');
 }
-var tmpArg$1;
-('<hoisted func decl `g`>');
-tmpArg$1 = g();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 ('<hoisted func decl `g`>');
 `````
 
@@ -45,22 +44,22 @@ $(tmpArg$1);
 `````js filename=intro
 export function g() {
   function f() {
-    let tmpReturnArg = $(2);
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  var tmpArg;
-  tmpArg = f(3);
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
 }
-var tmpArg$1;
-tmpArg$1 = g();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

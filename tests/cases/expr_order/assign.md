@@ -21,38 +21,36 @@ $(j);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedComplexRhs;
 let i = 0;
-tmpBinaryLeft = i;
-tmpNestedComplexRhs = i + 1;
+const tmpBinBothLhs = i;
+let tmpBinBothRhs;
+const tmpNestedCompoundLhs = i;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 i = tmpNestedComplexRhs;
-tmpBinaryRight = tmpNestedComplexRhs;
-let j = tmpBinaryLeft + tmpBinaryRight;
+tmpBinBothRhs = tmpNestedComplexRhs;
+let j = tmpBinBothLhs + tmpBinBothRhs;
 $(j);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
-var tmpNestedComplexRhs;
 let i = 0;
-tmpBinaryLeft = i;
-tmpNestedComplexRhs = i + 1;
+const tmpBinBothLhs = i;
+let tmpBinBothRhs;
+const tmpNestedCompoundLhs = i;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 i = tmpNestedComplexRhs;
-tmpBinaryRight = tmpNestedComplexRhs;
-let j = tmpBinaryLeft + tmpBinaryRight;
+tmpBinBothRhs = tmpNestedComplexRhs;
+let j = tmpBinBothLhs + tmpBinBothRhs;
 $(j);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

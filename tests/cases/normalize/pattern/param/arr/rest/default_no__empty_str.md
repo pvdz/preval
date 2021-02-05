@@ -25,10 +25,9 @@ function f(tmpParamPattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -39,16 +38,16 @@ function f(tmpParamPattern) {
   let x = arrPatternSplat.slice(0);
   return x;
 }
-var tmpArg;
-tmpArg = f('', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: []
- - 1: undefined
+ - 1: []
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -15,24 +15,21 @@
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 1;
-a = objAssignPatternRhs.x;
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = 1;
+a = tmpAssignObjPatternRhs.x;
+tmpAssignObjPatternRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 1;
-a = objAssignPatternRhs.x;
+a = (1).x;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

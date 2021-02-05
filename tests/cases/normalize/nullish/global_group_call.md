@@ -16,17 +16,12 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
 1;
 2;
-tmpNullish = $();
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = $();
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = foo;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -34,15 +29,10 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpNullish;
-var tmpTernaryTest;
-tmpNullish = $();
-tmpTernaryTest = tmpNullish == null;
-let y;
-if (tmpTernaryTest) {
+let y = $();
+const tmpIfTest = y == null;
+if (tmpIfTest) {
   y = foo;
-} else {
-  y = tmpNullish;
 }
 $(y);
 `````
@@ -50,8 +40,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

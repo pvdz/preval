@@ -18,24 +18,17 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [1, 2, 3, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = [1, 2, 3, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 arrAssignPatternRhs;
 $(x);
@@ -44,24 +37,17 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = [1, 2, 3, 4, 5];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('pass');
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = [1, 2, 3, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 $(x);
 `````
@@ -69,7 +55,7 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

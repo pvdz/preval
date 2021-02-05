@@ -18,24 +18,17 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = null;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+const arrAssignPatternRhs = null;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 arrAssignPatternRhs;
 $('bad');
@@ -44,24 +37,16 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-arrAssignPatternRhs = null;
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = $('fail');
-  arrPatternStep = tmpTernaryConsequent;
+const arrPatternSplat = [...null];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 $('bad');
 `````
@@ -69,7 +54,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

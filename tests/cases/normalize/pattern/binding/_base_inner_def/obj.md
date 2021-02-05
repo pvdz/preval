@@ -15,12 +15,11 @@ const { x = b } = 1;
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
 const bindingPatternObjRoot = 1;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;
@@ -30,11 +29,10 @@ if (tmpTernaryTest) {
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
 const objPatternBeforeDefault = (1).x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;
@@ -44,7 +42,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

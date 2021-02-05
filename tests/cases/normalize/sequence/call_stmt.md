@@ -17,26 +17,24 @@
 ## Normalized
 
 `````js filename=intro
-var tmpNewObj;
 $();
-tmpNewObj = Date;
-tmpNewObj();
+const tmpCallCallee = Date;
+tmpCallCallee();
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNewObj;
 $();
-tmpNewObj = Date;
-tmpNewObj();
+const tmpCallCallee = Date;
+tmpCallCallee();
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: undefined
+ - 1: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

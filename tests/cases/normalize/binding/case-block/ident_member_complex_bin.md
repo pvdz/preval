@@ -19,8 +19,6 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -33,14 +31,18 @@ const tmpSwitchTest = $('a');
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
     } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+      const tmpBinBothLhs = tmpSwitchTest;
+      const tmpBinBothRhs = $('a');
+      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
       ('case 0:');
       {
-        a = $(b).x = c + d;
+        const tmpNestedAssignObj = $(b);
+        let tmpNestedAssignPropRhs = c + d;
+        const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+        tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+        a = tmpNestedPropAssignRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -62,14 +64,18 @@ tmpSwitchBreak: {
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryLeft = tmpSwitchTest;
-    tmpBinaryRight = $('a');
-    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $('a');
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
     {
-      a = $(b).x = c + d;
+      const tmpNestedAssignObj = $(b);
+      let tmpNestedAssignPropRhs = c + d;
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
@@ -81,14 +87,13 @@ $(a, b, 3);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "a"
- - 2: {"x":7}
- - 3: 1,{"x":7},3
- - 4: undefined
+ - 1: 'a'
+ - 2: 'a'
+ - 3: { x: '2' }
+ - 4: 1, { x: '7' }, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'a' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

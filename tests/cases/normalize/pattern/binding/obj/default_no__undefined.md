@@ -47,10 +47,10 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[['bad'], null];
-
+ - 1: 'bad'
+ - eval returned: undefined

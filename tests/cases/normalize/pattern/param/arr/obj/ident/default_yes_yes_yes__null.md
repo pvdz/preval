@@ -21,30 +21,29 @@ $(f(null));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpElement;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpElement = { x: 'fail3' };
-    tmpArg = [tmpElement];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpArrElement = { x: 'fail3' };
+    const tmpCalleeParam = [tmpArrElement];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { x: 'fail2' };
-    arrPatternStep = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { x: 'fail2' };
+    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {
     x = $('pass');
@@ -53,40 +52,40 @@ function f($tdz$__pattern) {
   }
   return 'bad';
 }
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = f(null);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$3 = null;
+const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  var tmpElement;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpElement = { x: 'fail3' };
-    tmpArg = [tmpElement];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpArrElement = { x: 'fail3' };
+    const tmpCalleeParam = [tmpArrElement];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = { x: 'fail2' };
-    arrPatternStep = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = { x: 'fail2' };
+    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {
     x = $('pass');
@@ -95,15 +94,16 @@ function f($tdz$__pattern) {
   }
   return 'bad';
 }
-var tmpArg$2;
-tmpArg$2 = f(null);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$2 = tmpCallCallee$3(null);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

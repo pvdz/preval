@@ -18,45 +18,33 @@ $(a.b??c.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const a = {};
-tmpNullish = a.b;
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = c.d;
-  tmpArg = tmpTernaryConsequent;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+let tmpCalleeParam = a.b;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = c.d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNullish;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const a = {};
-tmpNullish = a.b;
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpTernaryConsequent = c.d;
-  tmpArg = tmpTernaryConsequent;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+let tmpCalleeParam = a.b;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = c.d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -21,7 +21,11 @@ $(x);
 const bindingPatternArrRoot = 0;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $(x);
 `````
 
@@ -30,14 +34,17 @@ $(x);
 `````js filename=intro
 const arrPatternSplat = [...0];
 const arrPatternStep = arrPatternSplat[0];
-const x = objPatternRest(arrPatternStep, [], undefined);
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep;
+const tmpCalleeParam$1 = [];
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

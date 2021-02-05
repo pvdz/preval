@@ -44,34 +44,19 @@ function a() {
   };
   return a_1;
 }
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-('<hoisted func decl `a`>');
-tmpMemberComplexObj$1 = a();
-tmpMemberComplexObj = tmpMemberComplexObj$1.b();
-tmpOptionalChaining$1 = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining$1();
-  tmpOptionalChaining = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = a;
+const tmpChainElementCall = tmpChainRootCall();
+const tmpChainElementObject = tmpChainElementCall.b;
+const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
+const tmpChainElementObject$1 = tmpChainElementCall$1.c;
+if (tmpChainElementObject$1) {
+  const tmpChainElementCall$2 = tmpChainElementObject$1.call(tmpChainElementCall$1);
+  const tmpChainElementObject$2 = tmpChainElementCall$2.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-tmpTernaryTest$1 = tmpOptionalChaining == null;
-if (tmpTernaryTest$1) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$1;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -94,40 +79,25 @@ function a() {
   };
   return a_1;
 }
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpMemberComplexObj$1;
-var tmpOptionalChaining;
-var tmpOptionalChaining$1;
-var tmpTernaryAlternate;
-var tmpTernaryAlternate$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpMemberComplexObj$1 = a();
-tmpMemberComplexObj = tmpMemberComplexObj$1.b();
-tmpOptionalChaining$1 = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpOptionalChaining$1 == null;
-if (tmpTernaryTest) {
-  tmpOptionalChaining = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining$1();
-  tmpOptionalChaining = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = a;
+const tmpChainElementCall = tmpChainRootCall();
+const tmpChainElementObject = tmpChainElementCall.b;
+const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
+const tmpChainElementObject$1 = tmpChainElementCall$1.c;
+if (tmpChainElementObject$1) {
+  const tmpChainElementCall$2 = tmpChainElementObject$1.call(tmpChainElementCall$1);
+  const tmpChainElementObject$2 = tmpChainElementCall$2.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-tmpTernaryTest$1 = tmpOptionalChaining == null;
-if (tmpTernaryTest$1) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate$1 = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate$1;
-}
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

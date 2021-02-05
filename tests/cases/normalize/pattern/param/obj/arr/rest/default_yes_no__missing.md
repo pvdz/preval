@@ -21,13 +21,13 @@ $(f({ a: 11, b: 12 }, 10));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -35,25 +35,25 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$1;
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = { a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = { a: 11, b: 12 };
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault;
+  let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['pass'];
-    objPatternAfterDefault = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -61,19 +61,19 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-var tmpArg$1;
-var tmpArg$2;
-tmpArg$2 = { a: 11, b: 12 };
-tmpArg$1 = f(tmpArg$2, 10);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$2 = { a: 11, b: 12 };
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["pass"]
- - 1: ["pass"]
- - 2: undefined
+ - 1: ['pass']
+ - 2: ['pass']
+ - eval returned: undefined
 
 Normalized calls: Same
 

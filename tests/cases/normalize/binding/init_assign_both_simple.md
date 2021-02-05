@@ -21,21 +21,24 @@ let a = b = c
 `````js filename=intro
 let b = 10;
 let c = 20;
+let a;
 b = c;
-let a = c;
+a = c;
 `````
 
 ## Output
 
 `````js filename=intro
 let b = 10;
+let a;
 b = 20;
+a = 20;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

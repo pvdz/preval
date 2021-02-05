@@ -35,8 +35,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: ["a","b","c"]
- - 1: undefined
+ - 1: ['a', 'b', 'c']
+ - eval returned: undefined
 
 Normalized calls: Same
 

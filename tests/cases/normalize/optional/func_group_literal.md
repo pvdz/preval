@@ -22,59 +22,43 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
+  let y = undefined;
   1;
   2;
-  tmpOptionalChaining = 3;
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.foo;
-    y = tmpTernaryAlternate;
+  const tmpChainRootProp = 3;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.foo;
+    y = tmpChainElementObject;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
-  tmpOptionalChaining = 3;
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.foo;
-    y = tmpTernaryAlternate;
-  }
-  let tmpReturnArg = $(y);
+  let y = undefined;
+  const tmpChainElementObject = (3).foo;
+  y = tmpChainElementObject;
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: null
+ - 1: undefined
  - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

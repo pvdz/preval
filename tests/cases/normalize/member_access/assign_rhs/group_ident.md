@@ -18,7 +18,9 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $).length;
+$(1);
+const tmpAssignRhsProp = $;
+x = tmpAssignRhsProp.length;
 $(x);
 `````
 
@@ -26,16 +28,18 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $).length;
+$(1);
+const tmpAssignRhsProp = $;
+x = tmpAssignRhsProp.length;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 0
- - 2: undefined
+ - 1: 1
+ - 2: 0
+ - eval returned: undefined
 
 Normalized calls: Same
 

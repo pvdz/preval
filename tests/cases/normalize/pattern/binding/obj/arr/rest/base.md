@@ -18,9 +18,8 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-tmpObjPropValue = [1, 2, 3];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [1, 2, 3];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat.slice(0);
@@ -30,9 +29,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-tmpObjPropValue = [1, 2, 3];
-const bindingPatternObjRoot = { x: tmpObjPropValue, a: 11, b: 12 };
+const tmpObjLitVal = [1, 2, 3];
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat.slice(0);
@@ -42,8 +40,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: [1,2,3]
- - 1: undefined
+ - 1: [1, 2, 3]
+ - eval returned: undefined
 
 Normalized calls: Same
 

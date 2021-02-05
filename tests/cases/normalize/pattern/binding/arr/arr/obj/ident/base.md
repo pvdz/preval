@@ -18,11 +18,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpElement;
-var tmpElement$1;
-tmpElement$1 = { x: 1 };
-tmpElement = [tmpElement$1, 20, 30];
-const bindingPatternArrRoot = [tmpElement, 40, 50];
+const tmpArrElement$1 = { x: 1 };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const bindingPatternArrRoot = [tmpArrElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
@@ -34,11 +32,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-var tmpElement;
-var tmpElement$1;
-tmpElement$1 = { x: 1 };
-tmpElement = [tmpElement$1, 20, 30];
-const bindingPatternArrRoot = [tmpElement, 40, 50];
+const tmpArrElement$1 = { x: 1 };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const bindingPatternArrRoot = [tmpArrElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
@@ -50,8 +46,8 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

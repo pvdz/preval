@@ -18,38 +18,39 @@ for (let a = b.x = c;false;) $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  tmpNestedPropAssignRhs = c;
+  let a;
+  const tmpNestedPropAssignRhs = c;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  while (false) {}
+  while (false) {
+    $(a, b, c);
+  }
 }
-$(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpNestedPropAssignRhs;
 let a = 1;
 let b = { x: 2 };
-tmpNestedPropAssignRhs = 3;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-while (false) {}
-$(a, b, 3);
+let a;
+b.x = 3;
+a = 3;
+while (false) {
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3,{"x":3},3
- - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

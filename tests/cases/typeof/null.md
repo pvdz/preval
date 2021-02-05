@@ -19,24 +19,24 @@ $(typeof null);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = typeof null;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = null;
+const tmpCalleeParam = typeof tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'object';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('object');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "object"
- - 1: undefined
+ - 1: 'object'
+ - eval returned: undefined
 
 Normalized calls: Same
 

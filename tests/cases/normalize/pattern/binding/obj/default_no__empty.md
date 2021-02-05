@@ -47,8 +47,8 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: "bad"
- - 1: undefined
+ - 1: 'bad'
+ - eval returned: undefined
 
 Normalized calls: Same
 

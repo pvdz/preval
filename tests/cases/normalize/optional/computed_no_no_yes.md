@@ -19,61 +19,50 @@ $(a[b][c]?.[d]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
 const b = 'b';
 const c = 'c';
 const d = 'd';
-tmpMemberComplexObj = a[b];
-tmpOptionalChaining = tmpMemberComplexObj[c];
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining[d];
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainRootComputed = b;
+const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+const tmpChainRootComputed$1 = c;
+const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+if (tmpChainElementObject$1) {
+  const tmpChainRootComputed$2 = d;
+  const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-var tmpOptionalChaining;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpObjPropValue$1 = { d: 10 };
-tmpObjPropValue = { c: tmpObjPropValue$1 };
-const a = { b: tmpObjPropValue };
-tmpMemberComplexObj = a.b;
-tmpOptionalChaining = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpOptionalChaining == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = tmpOptionalChaining.d;
-  tmpArg = tmpTernaryAlternate;
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
+if (tmpChainElementObject$1) {
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

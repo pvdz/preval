@@ -21,54 +21,60 @@ $(f('abc', 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = arrPatternStep;
+  const tmpCalleeParam$2 = [];
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
   return x;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f('abc', 200);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$4 = f('abc', 200);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'fail' };
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'fail' };
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = arrPatternStep;
+  const tmpCalleeParam$2 = [];
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return x;
 }
-var tmpArg$1;
-tmpArg$1 = f('abc', 200);
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$4 = f('abc', 200);
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a"}
- - 1: undefined
+ - 1: { 0: '"a"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

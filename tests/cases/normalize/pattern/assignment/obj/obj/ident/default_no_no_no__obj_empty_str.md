@@ -18,22 +18,18 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: '', b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
+const tmpAssignObjPatternRhs = { x: '', b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: '', b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
+const tmpAssignObjPatternRhs = { x: '', b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
 $(y);
 `````
@@ -41,8 +37,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

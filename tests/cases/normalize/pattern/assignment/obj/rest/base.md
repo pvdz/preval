@@ -18,27 +18,32 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = { x: 1, b: 2, c: 3 };
-x = objPatternRest(objAssignPatternRhs, [], 'x');
-objAssignPatternRhs;
+const tmpAssignObjPatternRhs = { x: 1, b: 2, c: 3 };
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+tmpAssignObjPatternRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = { x: 1, b: 2, c: 3 };
-x = objPatternRest(objAssignPatternRhs, [], 'x');
+const tmpAssignObjPatternRhs = { x: 1, b: 2, c: 3 };
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = tmpAssignObjPatternRhs;
+const tmpCalleeParam$1 = [];
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, 'x');
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"b":2,"c":3}
- - 1: undefined
+ - 1: { x: '1', b: '2', c: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

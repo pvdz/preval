@@ -24,7 +24,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -33,14 +33,13 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-('<hoisted func decl `f`>');
-tmpElement = { x: undefined, y: 2, z: 3 };
-tmpArg$1 = [tmpElement, 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpArrElement = { x: undefined, y: 2, z: 3 };
+const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
+const tmpCalleeParam$2 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -50,7 +49,7 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
@@ -59,21 +58,20 @@ function f(tmpParamPattern) {
   }
   return x;
 }
-var tmpArg;
-var tmpArg$1;
-var tmpElement;
-tmpElement = { x: undefined, y: 2, z: 3 };
-tmpArg$1 = [tmpElement, 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpArrElement = { x: undefined, y: 2, z: 3 };
+const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: "pass"
- - 2: undefined
+ - 1: 'pass'
+ - 2: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

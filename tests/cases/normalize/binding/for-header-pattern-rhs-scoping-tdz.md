@@ -22,8 +22,6 @@ let y = 2;
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = 1;
 {
@@ -31,8 +29,8 @@ let y = 1;
   let tmpForInPatDeclLhs;
   let x;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    arrAssignPatternRhs = tmpForInPatDeclLhs;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const arrAssignPatternRhs = tmpForInPatDeclLhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
     {
@@ -46,15 +44,13 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 const tmpForInPatDeclRhs = [x];
 let tmpForInPatDeclLhs;
 let x;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  arrAssignPatternRhs = tmpForInPatDeclLhs;
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);
 }
@@ -63,10 +59,9 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot access 'x' before initialization ]>
+ - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'x' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")

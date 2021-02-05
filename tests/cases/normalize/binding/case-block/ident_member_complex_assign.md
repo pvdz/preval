@@ -19,8 +19,6 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -33,14 +31,23 @@ const tmpSwitchTest = $('a');
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
     } else {
-      tmpBinaryLeft = tmpSwitchTest;
-      tmpBinaryRight = $('a');
-      tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+      const tmpBinBothLhs = tmpSwitchTest;
+      const tmpBinBothRhs = $('a');
+      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
       ('case 0:');
       {
-        a = $(b).x = $(c).y = $(d);
+        const tmpNestedAssignObj = $(b);
+        let tmpNestedAssignPropRhs;
+        const tmpNestedAssignObj$1 = $(c);
+        let tmpNestedAssignPropRhs$1 = $(d);
+        const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+        tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
+        tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+        const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+        tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
+        a = tmpNestedPropAssignRhs$1;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -62,14 +69,23 @@ tmpSwitchBreak: {
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    tmpBinaryLeft = tmpSwitchTest;
-    tmpBinaryRight = $('a');
-    tmpIfTest = tmpBinaryLeft === tmpBinaryRight;
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $('a');
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     ('case 0:');
     {
-      a = $(b).x = $(c).y = $(d);
+      const tmpNestedAssignObj = $(b);
+      let tmpNestedAssignPropRhs;
+      const tmpNestedAssignObj$1 = $(c);
+      let tmpNestedAssignPropRhs$1 = $(d);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+      tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
+      a = tmpNestedPropAssignRhs$1;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
@@ -81,16 +97,15 @@ $(a, b, 3, 4);
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "a"
- - 2: {"x":4}
- - 3: 3
- - 4: 4
- - 5: 1,{"x":4},3,4
- - 6: undefined
+ - 1: 'a'
+ - 2: 'a'
+ - 3: { x: '2' }
+ - 4: 3
+ - 5: 4
+ - 6: 1, { x: '4' }, 3, 4
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'a' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")

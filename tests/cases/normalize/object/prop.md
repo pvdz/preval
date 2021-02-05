@@ -20,33 +20,29 @@ const program = {
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
 tmpElement_1 = fdata.name;
 tmpElement = [tmpElement_1, fdata];
 tmpArg_1 = [tmpElement];
-tmpObjPropValue = new Map(tmpArg_1);
-tmpObjPropValue$1 = fdata.name;
-const program = { modules: tmpObjPropValue, main: tmpObjPropValue$1 };
+const tmpObjLitVal = new Map(tmpArg_1);
+const tmpObjLitVal$1 = fdata.name;
+const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
 tmpElement_1 = fdata.name;
 tmpElement = [tmpElement_1, fdata];
 tmpArg_1 = [tmpElement];
-tmpObjPropValue = new Map(tmpArg_1);
-tmpObjPropValue$1 = fdata.name;
-({ modules: tmpObjPropValue, main: tmpObjPropValue$1 });
+const tmpObjLitVal = new Map(tmpArg_1);
+const tmpObjLitVal$1 = fdata.name;
+({ modules: tmpObjLitVal, main: tmpObjLitVal$1 });
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not defined ]>
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

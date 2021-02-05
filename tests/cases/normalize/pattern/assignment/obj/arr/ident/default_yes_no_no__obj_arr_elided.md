@@ -18,43 +18,31 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpObjPropValue;
-var tmpTernaryTest;
-tmpObjPropValue = [, , , 1];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpObjLitVal = [, , , 1];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var tmpObjPropValue;
-var tmpTernaryTest;
-tmpObjPropValue = [, , , 1];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpObjLitVal = [, , , 1];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;
@@ -65,8 +53,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: undefined
+ - 1: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

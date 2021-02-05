@@ -18,45 +18,35 @@ $(a.b.c??d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpNullish;
-var tmpTernaryTest;
 const a = {};
-tmpMemberComplexObj = a.b;
-tmpNullish = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+const tmpCompObj = a.b;
+let tmpCalleeParam = tmpCompObj.c;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpNullish;
-var tmpTernaryTest;
 const a = {};
-tmpMemberComplexObj = a.b;
-tmpNullish = tmpMemberComplexObj.c;
-tmpTernaryTest = tmpNullish == null;
-if (tmpTernaryTest) {
-  tmpArg = d;
-} else {
-  tmpArg = tmpNullish;
+const tmpCallCallee = $;
+const tmpCompObj = a.b;
+let tmpCalleeParam = tmpCompObj.c;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'c' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

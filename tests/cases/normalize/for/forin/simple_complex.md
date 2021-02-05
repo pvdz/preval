@@ -18,10 +18,10 @@ for (a in $({x: 1, y: 2})) $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 let a;
-tmpArg = { x: 1, y: 2 };
-const tmpForInRhs = $(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = { x: 1, y: 2 };
+const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 for (a in tmpForInRhs) {
   $(a);
 }
@@ -30,10 +30,10 @@ for (a in tmpForInRhs) {
 ## Output
 
 `````js filename=intro
-var tmpArg;
 let a;
-tmpArg = { x: 1, y: 2 };
-const tmpForInRhs = $(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = { x: 1, y: 2 };
+const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 for (a in tmpForInRhs) {
   $(a);
 }
@@ -42,10 +42,10 @@ for (a in tmpForInRhs) {
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: "x"
- - 2: "y"
- - 3: undefined
+ - 1: { x: '1', y: '2' }
+ - 2: 'x'
+ - 3: 'y'
+ - eval returned: undefined
 
 Normalized calls: Same
 

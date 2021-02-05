@@ -21,60 +21,47 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
   const a = { x: 1 };
+  let y = undefined;
   1;
-  tmpOptionalChaining = a;
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.x;
-    y = tmpTernaryAlternate;
+  const tmpChainRootProp = a;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    y = tmpChainElementObject;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryTest;
   const a = { x: 1 };
-  tmpOptionalChaining = a;
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let y;
-  if (tmpTernaryTest) {
-    y = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.x;
-    y = tmpTernaryAlternate;
+  let y = undefined;
+  const tmpChainRootProp = a;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    y = tmpChainElementObject;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
  - 1: 1
- - 2: undefined
+ - 2: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

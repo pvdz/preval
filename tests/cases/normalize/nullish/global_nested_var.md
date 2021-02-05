@@ -20,28 +20,18 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const a = 10;
 a;
-tmpNullish = $(2);
-tmpTernaryTest = tmpNullish == null;
-let b;
-if (tmpTernaryTest) {
+let b = $(2);
+const tmpIfTest = b == null;
+if (tmpIfTest) {
   b = toString;
-} else {
-  b = tmpNullish;
 }
 1;
-tmpNullish$1 = b;
-tmpTernaryTest$1 = tmpNullish$1 == null;
-let c;
-if (tmpTernaryTest$1) {
+let c = b;
+const tmpIfTest$1 = c == null;
+if (tmpIfTest$1) {
   c = length;
-} else {
-  c = tmpNullish$1;
 }
 $(c);
 `````
@@ -49,25 +39,15 @@ $(c);
 ## Output
 
 `````js filename=intro
-var tmpNullish;
-var tmpNullish$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-tmpNullish = $(2);
-tmpTernaryTest = tmpNullish == null;
-let b;
-if (tmpTernaryTest) {
+let b = $(2);
+const tmpIfTest = b == null;
+if (tmpIfTest) {
   b = toString;
-} else {
-  b = tmpNullish;
 }
-tmpNullish$1 = b;
-tmpTernaryTest$1 = tmpNullish$1 == null;
-let c;
-if (tmpTernaryTest$1) {
+let c = b;
+const tmpIfTest$1 = c == null;
+if (tmpIfTest$1) {
   c = length;
-} else {
-  c = tmpNullish$1;
 }
 $(c);
 `````
@@ -75,9 +55,9 @@ $(c);
 ## Result
 
 Should call `$` with:
- - 0: 2
  - 1: 2
- - 2: undefined
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

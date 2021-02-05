@@ -21,30 +21,51 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-let d = 4;
-a = b = $(c).y = $(d);
-$(a, b, c);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = 2;
+  let c = 3;
+  let d = 4;
+  let a;
+  let tmpNestedComplexRhs;
+  const tmpNestedAssignObj = $(c);
+  let tmpNestedAssignPropRhs = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  $(a, b, c);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-a = b = $(3).y = $(4);
-$(a, b, 3);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = 2;
+  let a;
+  let tmpNestedComplexRhs;
+  const tmpNestedAssignObj = $(3);
+  let tmpNestedAssignPropRhs = $(4);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  $(a, b, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 4
- - 2: 4,4,3
- - 3: undefined
+ - 1: true
+ - 2: 3
+ - 3: 4
+ - 4: 4, 4, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

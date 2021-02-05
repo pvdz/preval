@@ -17,7 +17,7 @@ function g({ x = b } ) { return x }
 `````js filename=intro
 function g(tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
-  let x;
+  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = b;
@@ -37,7 +37,7 @@ function g(tmpParamPattern) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

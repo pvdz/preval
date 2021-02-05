@@ -34,10 +34,10 @@ $$(obja, objb, objc, objd);
 
 `````js filename=intro
 function $$(...a_1) {
-  var tmpArg;
-  tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
-  $(tmpArg);
-  let tmpReturnArg = a_1[0];
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
+  tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }
 var a;
@@ -49,29 +49,6 @@ var obja;
 var objb;
 var objc;
 var objd;
-var tmpArg$1;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberObj$2;
-var tmpNestedAssignComMemberObj$3;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignComMemberProp$2;
-var tmpNestedAssignComMemberProp$3;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberObj$2;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberProp$2;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignCompMemberRhs$1;
-var tmpNestedAssignCompMemberRhs$2;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
-var tmpNestedAssignObj$3;
-var tmpNestedPropAssignRhs;
 obja = {
   get a() {
     $$('a.get');
@@ -151,34 +128,32 @@ d = function () {
   return objd;
 };
 e = 12345;
-tmpNestedAssignObj = a();
-tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-tmpNestedAssignComMemberProp = $$('a');
-tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-tmpNestedAssignObj$1 = b();
-tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignComMemberProp$1 = $$('b');
-tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-tmpNestedAssignObj$2 = c();
-tmpNestedAssignComMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignComMemberProp$2 = $$('c');
-tmpNestedAssignCompMemberObj$2 = tmpNestedAssignComMemberObj$2;
-tmpNestedAssignCompMemberProp$2 = tmpNestedAssignComMemberProp$2;
-tmpNestedAssignObj$3 = d();
-tmpNestedAssignComMemberObj$3 = tmpNestedAssignObj$3;
-tmpNestedAssignComMemberProp$3 = $$('d');
-tmpNestedPropAssignRhs = e;
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$1;
+const tmpNestedAssignComMemberObj = a();
+const tmpNestedAssignComMemberProp = $$('a');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = b();
+const tmpNestedAssignComMemberProp$1 = $$('b');
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignComMemberObj$2 = c();
+const tmpNestedAssignComMemberProp$2 = $$('c');
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignComMemberObj$3 = d();
+const tmpNestedAssignComMemberProp$3 = $$('d');
+const tmpNestedPropAssignRhs = e;
 tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs;
-tmpNestedAssignCompMemberRhs$2 = tmpNestedPropAssignRhs;
-tmpNestedAssignCompMemberObj$2[tmpNestedAssignCompMemberProp$2] = tmpNestedAssignCompMemberRhs$2;
-tmpNestedAssignCompMemberRhs$1 = tmpNestedAssignCompMemberRhs$2;
-tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-tmpArg$1 = tmpNestedAssignCompMemberRhs;
-$$(tmpArg$1);
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$1 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$1);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd);
 `````
@@ -187,10 +162,10 @@ $$(obja, objb, objc, objd);
 
 `````js filename=intro
 function $$(...a_1) {
-  var tmpArg;
-  tmpArg = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
-  $(tmpArg);
-  let tmpReturnArg = a_1[0];
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
+  tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }
 var a;
@@ -202,29 +177,6 @@ var obja;
 var objb;
 var objc;
 var objd;
-var tmpArg$1;
-var tmpNestedAssignComMemberObj;
-var tmpNestedAssignComMemberObj$1;
-var tmpNestedAssignComMemberObj$2;
-var tmpNestedAssignComMemberObj$3;
-var tmpNestedAssignComMemberProp;
-var tmpNestedAssignComMemberProp$1;
-var tmpNestedAssignComMemberProp$2;
-var tmpNestedAssignComMemberProp$3;
-var tmpNestedAssignCompMemberObj;
-var tmpNestedAssignCompMemberObj$1;
-var tmpNestedAssignCompMemberObj$2;
-var tmpNestedAssignCompMemberProp;
-var tmpNestedAssignCompMemberProp$1;
-var tmpNestedAssignCompMemberProp$2;
-var tmpNestedAssignCompMemberRhs;
-var tmpNestedAssignCompMemberRhs$1;
-var tmpNestedAssignCompMemberRhs$2;
-var tmpNestedAssignObj;
-var tmpNestedAssignObj$1;
-var tmpNestedAssignObj$2;
-var tmpNestedAssignObj$3;
-var tmpNestedPropAssignRhs;
 obja = {
   get a() {
     $$('a.get');
@@ -304,34 +256,32 @@ d = function () {
   return objd;
 };
 e = 12345;
-tmpNestedAssignObj = a();
-tmpNestedAssignComMemberObj = tmpNestedAssignObj;
-tmpNestedAssignComMemberProp = $$('a');
-tmpNestedAssignCompMemberObj = tmpNestedAssignComMemberObj;
-tmpNestedAssignCompMemberProp = tmpNestedAssignComMemberProp;
-tmpNestedAssignObj$1 = b();
-tmpNestedAssignComMemberObj$1 = tmpNestedAssignObj$1;
-tmpNestedAssignComMemberProp$1 = $$('b');
-tmpNestedAssignCompMemberObj$1 = tmpNestedAssignComMemberObj$1;
-tmpNestedAssignCompMemberProp$1 = tmpNestedAssignComMemberProp$1;
-tmpNestedAssignObj$2 = c();
-tmpNestedAssignComMemberObj$2 = tmpNestedAssignObj$2;
-tmpNestedAssignComMemberProp$2 = $$('c');
-tmpNestedAssignCompMemberObj$2 = tmpNestedAssignComMemberObj$2;
-tmpNestedAssignCompMemberProp$2 = tmpNestedAssignComMemberProp$2;
-tmpNestedAssignObj$3 = d();
-tmpNestedAssignComMemberObj$3 = tmpNestedAssignObj$3;
-tmpNestedAssignComMemberProp$3 = $$('d');
-tmpNestedPropAssignRhs = e;
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$1;
+const tmpNestedAssignComMemberObj = a();
+const tmpNestedAssignComMemberProp = $$('a');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = b();
+const tmpNestedAssignComMemberProp$1 = $$('b');
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignComMemberObj$2 = c();
+const tmpNestedAssignComMemberProp$2 = $$('c');
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignComMemberObj$3 = d();
+const tmpNestedAssignComMemberProp$3 = $$('d');
+const tmpNestedPropAssignRhs = e;
 tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs;
-tmpNestedAssignCompMemberRhs$2 = tmpNestedPropAssignRhs;
-tmpNestedAssignCompMemberObj$2[tmpNestedAssignCompMemberProp$2] = tmpNestedAssignCompMemberRhs$2;
-tmpNestedAssignCompMemberRhs$1 = tmpNestedAssignCompMemberRhs$2;
-tmpNestedAssignCompMemberObj$1[tmpNestedAssignCompMemberProp$1] = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberRhs = tmpNestedAssignCompMemberRhs$1;
-tmpNestedAssignCompMemberObj[tmpNestedAssignCompMemberProp] = tmpNestedAssignCompMemberRhs;
-tmpArg$1 = tmpNestedAssignCompMemberRhs;
-$$(tmpArg$1);
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$1 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$1);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd);
 `````
@@ -339,22 +289,7 @@ $$(obja, objb, objc, objd);
 ## Result
 
 Should call `$` with:
- - 0: ["$:",["a"],null,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","a"]
- - 1: ["$:",["a"],null,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","a"]
- - 2: ["$:",["b"],null,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","b"]
- - 3: ["$:",["b"],null,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","b"]
- - 4: ["$:",["c"],null,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","c"]
- - 5: ["$:",["c"],32,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","c"]
- - 6: ["$:",["d"],32,null,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","d"]
- - 7: ["$:",["d"],42,43,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","d"]
- - 8: ["$:",["d.set",12345],42,43,null,12345,{"a":110},{"b":100},{"c":100},{"d":100},"::","d.set",12345]
- - 9: ["$:",["c.set",12345],4200,4300,null,"faild",{"a":110},{"b":100},{"c":100},{"d":100},"::","c.set",12345]
- - 10: ["$:",["b.set",12345],3200,4300,null,"failc",{"a":110},{"b":100},{"c":100},{"d":100},"::","b.set",12345]
- - 11: ["$:",["a.set",12345],3200,4300,null,"failb",{"a":110},{"b":100},{"c":100},{"d":100},"::","a.set",12345]
- - 12: ["$:",[12345],3200,4300,null,"faila",{"a":110},{"b":100},{"c":100},{"d":100},"::",12345]
- - 13: ["$:",[2100,3200,4300,null,"faila"],3200,4300,null,"faila",{"a":110},{"b":100},{"c":100},{"d":100},"::",2100,3200,4300,null,"faila"]
- - 14: ["$:",[{"a":110},{"b":100},{"c":100},{"d":100}],3200,4300,null,"faila",{"a":110},{"b":100},{"c":100},{"d":100},"::",{"a":110},{"b":100},{"c":100},{"d":100}]
- - 15: undefined
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

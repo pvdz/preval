@@ -19,53 +19,44 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpNullish;
-  var tmpTernaryTest;
-  tmpNullish = parseInt(15);
-  tmpTernaryTest = tmpNullish == null;
-  if (tmpTernaryTest) {
-    tmpArg = foo;
-  } else {
-    tmpArg = tmpNullish;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = parseInt(15);
+  const tmpIfTest = tmpCalleeParam == null;
+  if (tmpIfTest) {
+    tmpCalleeParam = foo;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpArg;
-  var tmpNullish;
-  var tmpTernaryTest;
-  tmpNullish = parseInt(15);
-  tmpTernaryTest = tmpNullish == null;
-  if (tmpTernaryTest) {
-    tmpArg = foo;
-  } else {
-    tmpArg = tmpNullish;
+  const tmpCallCallee = $;
+  let tmpCalleeParam = parseInt(15);
+  const tmpIfTest = tmpCalleeParam == null;
+  if (tmpIfTest) {
+    tmpCalleeParam = foo;
   }
-  let tmpReturnArg = $(tmpArg);
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 15
  - 1: 15
- - 2: undefined
+ - 2: 15
+ - eval returned: undefined
 
 Normalized calls: Same
 

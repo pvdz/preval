@@ -20,7 +20,9 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), b).length;
+$(1);
+const tmpAssignRhsProp = b;
+x = tmpAssignRhsProp.length;
 $(x);
 `````
 
@@ -28,15 +30,17 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), b).length;
+$(1);
+const tmpAssignRhsProp = b;
+x = tmpAssignRhsProp.length;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

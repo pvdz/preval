@@ -19,28 +19,28 @@ $(x < y);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
 const x = {};
 const y = x;
-tmpArg = x < y;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = x < y;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
 const x = {};
 const y = x;
-tmpArg = x < y;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = x < y;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

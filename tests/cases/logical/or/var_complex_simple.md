@@ -40,9 +40,9 @@ $(x);
 ## Result
 
 Should call `$` with:
- - 0: 1
  - 1: 1
- - 2: undefined
+ - 2: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,56 +21,45 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
   const a = { x: 1 };
   1;
-  tmpNullish = a;
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = a;
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = x;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
   const a = { x: 1 };
-  tmpNullish = a;
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = a;
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = x;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1}
- - 1: {"x":1}
- - 2: undefined
+ - 1: { x: '1' }
+ - 2: { x: '1' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

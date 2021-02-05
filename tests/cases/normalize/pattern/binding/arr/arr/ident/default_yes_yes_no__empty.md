@@ -11,37 +11,31 @@
 ## Input
 
 `````js filename=intro
-const [[x = $('fail')] = $(['fail2'])] = 1;
+const [[x = $('fail')] = $(['fail2'])] = 1; // Expect to crash
 $('bad');
 `````
 
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const bindingPatternArrRoot = 1;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
-let x;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+let x = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -51,29 +45,23 @@ $('bad');
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryConsequent$1;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
 const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let arrPatternStep;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  arrPatternStep = tmpTernaryConsequent;
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault$1 === undefined;
-let x;
-if (tmpTernaryTest$1) {
-  tmpTernaryConsequent$1 = $('fail');
-  x = tmpTernaryConsequent$1;
+let x = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  x = $('fail');
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -83,7 +71,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

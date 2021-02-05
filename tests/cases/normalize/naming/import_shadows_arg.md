@@ -21,9 +21,10 @@ export const x = $(f());
 export function g(x_1) {
   return x_1;
 }
-var tmpArg;
-('<hoisted func decl `g`>');
-export const x = ((tmpArg = f()), $(tmpArg));
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+const x = tmpCallCallee(tmpCalleeParam);
+export { x };
 `````
 
 ## Output
@@ -32,14 +33,16 @@ export const x = ((tmpArg = f()), $(tmpArg));
 export function g(x_1) {
   return x_1;
 }
-var tmpArg;
-export const x = ((tmpArg = f()), $(tmpArg));
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+export { x };
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

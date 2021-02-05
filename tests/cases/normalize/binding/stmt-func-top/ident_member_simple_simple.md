@@ -22,27 +22,41 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-a = b.x = c;
-$(a, b, c);
+function f() {
+  let b = { x: 2 };
+  let c = 3;
+  let a;
+  const tmpNestedPropAssignRhs = c;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(a, b, c);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-a = b.x = 3;
-$(a, b, 3);
+function f() {
+  let b = { x: 2 };
+  let a;
+  b.x = 3;
+  a = 3;
+  $(a, b, 3);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3,{"x":3},3
- - 1: undefined
+ - 1: 3, { x: '3' }, 3
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

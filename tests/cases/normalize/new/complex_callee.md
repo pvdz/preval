@@ -17,28 +17,26 @@ $(new ($()));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNewObj;
-tmpNewObj = $();
-tmpArg = new tmpNewObj();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpNewCallee = $();
+const tmpCalleeParam = new tmpNewCallee();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNewObj;
-tmpNewObj = $();
-tmpArg = new tmpNewObj();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpNewCallee = $();
+const tmpCalleeParam = new tmpNewCallee();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: <crash[ <ref> is not a constructor ]>
+ - 1: 
+ - eval returned: ('<crash[ <ref> is not a constructor ]>')
 
 Normalized calls: Same
 

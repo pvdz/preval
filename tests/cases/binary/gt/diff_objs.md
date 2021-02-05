@@ -17,24 +17,28 @@ $({} > {});
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = {} > {};
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpBinBothLhs = {};
+const tmpBinBothRhs = {};
+const tmpCalleeParam = tmpBinBothLhs > tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = {} > {};
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpBinBothLhs = {};
+const tmpBinBothRhs = {};
+const tmpCalleeParam = tmpBinBothLhs > tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: false
- - 1: undefined
+ - 1: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

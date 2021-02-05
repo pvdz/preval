@@ -24,79 +24,60 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryAlternate$1;
-  var tmpTernaryTest;
-  var tmpTernaryTest$1;
   const a = 10;
-  tmpOptionalChaining = $(2);
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let b;
-  if (tmpTernaryTest) {
-    b = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.toString;
-    b = tmpTernaryAlternate;
+  let b = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(2);
+  if (tmpChainElementCall) {
+    const tmpChainElementObject = tmpChainElementCall.toString;
+    b = tmpChainElementObject;
   }
-  tmpTernaryTest$1 = b == null;
-  let c;
-  if (tmpTernaryTest$1) {
-    c = undefined;
-  } else {
-    tmpTernaryAlternate$1 = b.length;
-    c = tmpTernaryAlternate$1;
+  let c = undefined;
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject$1 = tmpChainRootProp.length;
+    c = tmpChainElementObject$1;
   }
-  let tmpReturnArg = $(c);
+  const tmpReturnArg = $(c);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpOptionalChaining;
-  var tmpTernaryAlternate;
-  var tmpTernaryAlternate$1;
-  var tmpTernaryTest;
-  var tmpTernaryTest$1;
-  tmpOptionalChaining = $(2);
-  tmpTernaryTest = tmpOptionalChaining == null;
-  let b;
-  if (tmpTernaryTest) {
-    b = undefined;
-  } else {
-    tmpTernaryAlternate = tmpOptionalChaining.toString;
-    b = tmpTernaryAlternate;
+  let b = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(2);
+  if (tmpChainElementCall) {
+    const tmpChainElementObject = tmpChainElementCall.toString;
+    b = tmpChainElementObject;
   }
-  tmpTernaryTest$1 = b == null;
-  let c;
-  if (tmpTernaryTest$1) {
-    c = undefined;
-  } else {
-    tmpTernaryAlternate$1 = b.length;
-    c = tmpTernaryAlternate$1;
+  let c = undefined;
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject$1 = tmpChainRootProp.length;
+    c = tmpChainElementObject$1;
   }
-  let tmpReturnArg = $(c);
+  const tmpReturnArg = $(c);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: 1
+ - 1: 2
  - 2: 1
- - 3: undefined
+ - 3: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

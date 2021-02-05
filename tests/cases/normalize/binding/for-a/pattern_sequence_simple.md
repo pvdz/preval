@@ -18,49 +18,43 @@ for (let [x, y] = ($(a), $(b), z);false;) $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let x = 1;
-let y = 2;
+let a = 1;
+let b = 2;
 let z = [10, 20, 30];
 {
-  $(x);
-  $(y);
-  arrAssignPatternRhs = z;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  arrAssignPatternRhs;
-  while (false) {}
+  $(a);
+  $(b);
+  let bindingPatternArrRoot = z;
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let x = arrPatternSplat[0];
+  let y = arrPatternSplat[1];
+  while (false) {
+    $(a, b, x, y, z);
+  }
 }
-$(x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
-$(x);
-$(y);
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-while (false) {}
-$(x, y, z);
+$(1);
+$(2);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
+while (false) {
+  $(1, 2, x, y, z);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 10,20,[10,20,30]
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

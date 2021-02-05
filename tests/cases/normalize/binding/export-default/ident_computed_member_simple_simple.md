@@ -19,28 +19,35 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
 let b = { x: 2 };
 let c = 3;
-export let a = ((tmpAssignComMemLhsObj = b), (tmpAssignComMemLhsProp = $('x')), (tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c));
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedPropAssignRhs = c;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignComMemLhsObj;
-var tmpAssignComMemLhsProp;
 let b = { x: 2 };
-export let a = ((tmpAssignComMemLhsObj = b), (tmpAssignComMemLhsProp = $('x')), (tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3));
+let a;
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $('x');
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+a = 3;
+export { a };
 $(a, b, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

@@ -17,24 +17,25 @@ $`abc ${ 10 } def`;
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = ['abc ', ' def'];
-$(tmpArg, 10);
+const tmpCallCallee = $;
+const tmpCalleeParam = ['abc ', ' def'];
+const tmpCalleeParam$1 = 10;
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = ['abc ', ' def'];
-$(tmpArg, 10);
+const tmpCallCallee = $;
+const tmpCalleeParam = ['abc ', ' def'];
+tmpCallCallee(tmpCalleeParam, 10);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["abc "," def"],10
- - 1: undefined
+ - 1: ['abc ', ' def'], 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

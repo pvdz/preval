@@ -22,11 +22,9 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = [1, 2, 3];
-tmpElement = { x: tmpObjPropValue };
-const bindingPatternArrRoot = [tmpElement, 20, 30];
+const tmpObjLitVal = [1, 2, 3];
+const tmpArrElement = { x: tmpObjLitVal };
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
@@ -38,11 +36,9 @@ $(y);
 ## Output
 
 `````js filename=intro
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = [1, 2, 3];
-tmpElement = { x: tmpObjPropValue };
-const bindingPatternArrRoot = [tmpElement, 20, 30];
+const tmpObjLitVal = [1, 2, 3];
+const tmpArrElement = { x: tmpObjLitVal };
+const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
@@ -54,8 +50,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

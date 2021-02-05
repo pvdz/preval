@@ -15,20 +15,24 @@ $([]);
 ## Normalized
 
 `````js filename=intro
-$([]);
+const tmpCallCallee = $;
+const tmpCalleeParam = [];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$([]);
+const tmpCallCallee = $;
+const tmpCalleeParam = [];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: []
- - 1: undefined
+ - 1: []
+ - eval returned: undefined
 
 Normalized calls: Same
 

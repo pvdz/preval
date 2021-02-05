@@ -22,27 +22,40 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-a = b = c;
-$(a, b, c);
+function f() {
+  let b = 2;
+  let c = 3;
+  let a;
+  b = c;
+  a = c;
+  $(a, b, c);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-a = b = 3;
-$(a, b, 3);
+function f() {
+  let b = 2;
+  let a;
+  b = 3;
+  a = 3;
+  $(a, b, 3);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3,3,3
- - 1: undefined
+ - 1: 3, 3, 3
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,26 +21,30 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-a = b;
-$(a, b, c);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = 2;
+  let c = 3;
+  let a = b;
+  $(a, b, c);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-a = 2;
-$(a, 2, 3);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(2, 2, 3);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2,2,3
- - 1: undefined
+ - 1: true
+ - 2: 2, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

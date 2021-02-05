@@ -352,7 +352,10 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'ForOfStatement': {
-        ASSERT(!node.await, 'TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.');
+        ASSERT(
+          !node.await,
+          'TODO: This needs proper support for iterable stuff for true support. We could start with superficial support.',
+        );
 
         // Get the kind of the type of the rhs. Initially, that means string for strings and kind for arrays.
         expr(node, 'right', -1, node.right);
@@ -1004,7 +1007,8 @@ export function phase2(program, fdata, resolve, req) {
       }
 
       case 'Identifier': {
-        if (node.name !== 'arguments') { // TODO
+        if (node.name !== 'arguments') {
+          // TODO
           const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
           ASSERT(meta, 'meta data should exist for this name', node.name, meta);
           log('Marking `' + node.name + '` as being used');

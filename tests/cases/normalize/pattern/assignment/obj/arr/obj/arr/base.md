@@ -24,57 +24,40 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpElement;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = [1, 2, 3];
-tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
-tmpObjPropValue = [tmpElement, 13, 14];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault$1 = arrPatternStep.y;
-arrPatternSplat$1 = [...objPatternNoDefault$1];
-objAssignPatternRhs;
+const tmpObjLitVal$1 = 15;
+const tmpObjLitVal$2 = [1, 2, 3];
+const tmpArrElement = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault$1 = arrPatternStep.y;
+const arrPatternSplat$1 = [...objPatternNoDefault$1];
+tmpAssignObjPatternRhs;
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var objAssignPatternRhs;
-var objPatternNoDefault;
-var objPatternNoDefault$1;
-var tmpElement;
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = [1, 2, 3];
-tmpElement = { x: 15, y: tmpObjPropValue$1, c: 16 };
-tmpObjPropValue = [tmpElement, 13, 14];
-objAssignPatternRhs = { x: tmpObjPropValue, a: 11, b: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-arrPatternSplat = [...objPatternNoDefault];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault$1 = arrPatternStep.y;
-arrPatternSplat$1 = [...objPatternNoDefault$1];
+const tmpObjLitVal$2 = [1, 2, 3];
+const tmpArrElement = { x: 15, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal = [tmpArrElement, 13, 14];
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault$1 = arrPatternStep.y;
+[...objPatternNoDefault$1];
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

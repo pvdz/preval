@@ -19,57 +19,47 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-export let a =
-  ((tmpAssignMemLhsObj = $(b)),
-  (((tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj),
-  ((tmpNestedAssignObj = $(c)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(d)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpAssignMemRhs = tmpNestedAssignMemberRhs))),
-  (tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1)),
-  (tmpAssignMemLhsObj$2.x = tmpAssignMemRhs)));
+let a;
+const tmpNestedAssignObj = $(b);
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = $(c);
+let tmpNestedAssignPropRhs$1 = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, c, d);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-var tmpNestedAssignMemberObj;
-var tmpNestedAssignMemberRhs;
-var tmpNestedAssignObj;
 let b = { x: 2 };
-export let a =
-  ((tmpAssignMemLhsObj = $(b)),
-  (((tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj),
-  ((tmpNestedAssignObj = $(3)),
-  ((tmpNestedAssignMemberObj = tmpNestedAssignObj),
-  (tmpNestedAssignMemberRhs = $(4)),
-  (tmpNestedAssignMemberObj.y = tmpNestedAssignMemberRhs),
-  (tmpAssignMemRhs = tmpNestedAssignMemberRhs))),
-  (tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1)),
-  (tmpAssignMemLhsObj$2.x = tmpAssignMemRhs)));
+let a;
+const tmpNestedAssignObj = $(b);
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = $(3);
+let tmpNestedAssignPropRhs$1 = $(4);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+export { a };
 $(a, b, 3, 4);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

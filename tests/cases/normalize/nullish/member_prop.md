@@ -18,44 +18,34 @@ $(x??length);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryTest;
 const x = 10;
-x = x;
-tmpTernaryTest = x == null;
-if (tmpTernaryTest) {
-  tmpArg = length;
-} else {
-  tmpArg = x;
+const tmpCallCallee = $;
+let tmpCalleeParam = x;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = length;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryTest;
-const x = 10;
-x = x;
-tmpTernaryTest = x == null;
-if (tmpTernaryTest) {
-  tmpArg = length;
-} else {
-  tmpArg = x;
+const tmpCallCallee = $;
+let tmpCalleeParam = 10;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = length;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ Assignment to constant variable. ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ Assignment to constant variable. ]>'];
-
+Final output calls: Same

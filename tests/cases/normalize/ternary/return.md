@@ -25,31 +25,37 @@ function f() {
   let a = 1;
   let b = 2;
   let c = 3;
+  let tmpReturnArg = undefined;
   if (a) {
-    return b;
+    tmpReturnArg = b;
   } else {
-    return c;
+    tmpReturnArg = c;
   }
+  return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 2;
-$(tmpArg);
+function f() {
+  let tmpReturnArg = undefined;
+  tmpReturnArg = 2;
+  return tmpReturnArg;
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 2
- - 1: undefined
+ - 1: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

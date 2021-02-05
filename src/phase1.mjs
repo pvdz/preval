@@ -387,7 +387,10 @@ export function phase1(fdata, resolve, req, verbose) {
               parentNode.type === 'FunctionExpression' ||
               parentNode.type === 'ArrowFunctionExpression') &&
             parentProp === 'params'
-          )
+          ) &&
+          !(parentNode.type === 'LabeledStatement' && parentProp === 'label') &&
+          parentNode.type !== 'BreakStatement' &&
+          parentNode.type !== 'ContinueStatement'
         ) {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(node, parentNode.type === 'FunctionDeclaration');
@@ -409,6 +412,8 @@ export function phase1(fdata, resolve, req, verbose) {
             log('Marking `' + uniqueName + '` as being an export');
             globallyUniqueNamingRegistery.get(uniqueName).isExport = true;
           }
+        } else {
+          log('- skipping; not a binding');
         }
 
         break;
@@ -514,7 +519,7 @@ export function phase1(fdata, resolve, req, verbose) {
           log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
           let i = labelStack.length;
           while (--i >= 0) {
-            log('->', labelStack[i].$p.originalLabelName)
+            log('->', labelStack[i].$p.originalLabelName);
             if (labelStack[i].$p.originalLabelName === name) {
               const newName = labelStack[i].label.name;
               if (newName !== name) {
@@ -637,6 +642,8 @@ export function phase1(fdata, resolve, req, verbose) {
         if (node.label.name !== uniqueName) {
           log('- Unique label name:', uniqueName);
           node.label.name = uniqueName;
+        } else {
+          log('- Label is now registered and unique');
         }
         break;
       }
@@ -660,7 +667,13 @@ export function phase1(fdata, resolve, req, verbose) {
 
   log(
     '\ngloballyUniqueNamingRegistery (sans builtins):\n',
-    [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+    globallyUniqueNamingRegistery.size === globals.size
+      ? '<none>'
+      : [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+  );
+  log(
+    '\ngloballyUniqueLabelRegistery:\n',
+    globallyUniqueLabelRegistery.size === 0 ? '<none>' : [...globallyUniqueLabelRegistery.keys()].join(', '),
   );
 
   log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');

@@ -24,25 +24,23 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   return 'ok';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('xyz', 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('xyz', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'ok';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('ok');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

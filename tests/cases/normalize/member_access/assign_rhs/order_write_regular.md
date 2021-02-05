@@ -26,7 +26,7 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -34,7 +34,10 @@ const obj = {
   },
 };
 let x = 10;
-x = $(obj).x = 30;
+const tmpNestedAssignObj = $(obj);
+const tmpNestedPropAssignRhs = 30;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+x = tmpNestedPropAssignRhs;
 $(x);
 `````
 
@@ -43,7 +46,7 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    let tmpReturnArg = $(10);
+    const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
   set x(_) {
@@ -51,17 +54,19 @@ const obj = {
   },
 };
 let x = 10;
-x = $(obj).x = 30;
+const tmpNestedAssignObj = $(obj);
+tmpNestedAssignObj.x = 30;
+x = 30;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":10}
- - 1: 20
- - 2: 30
- - 3: undefined
+ - 1: { x: '<get/set>' }
+ - 2: 20
+ - 3: 30
+ - eval returned: undefined
 
 Normalized calls: Same
 

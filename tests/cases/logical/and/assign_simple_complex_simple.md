@@ -18,45 +18,39 @@ $(x = $(1) && 2);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpNestedComplexRhs;
 var x;
-{
-  let tmpAssignLogicStmtOr = $(1);
-  if (tmpAssignLogicStmtOr) {
-    tmpNestedComplexRhs = 2;
-  } else {
-    tmpNestedComplexRhs = tmpAssignLogicStmtOr;
-  }
+const tmpCallCallee = $;
+let tmpCalleeParam;
+let tmpNestedComplexRhs = $(1);
+if (tmpNestedComplexRhs) {
+  tmpNestedComplexRhs = 2;
 }
 x = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
-$(tmpArg);
+tmpCalleeParam = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpNestedComplexRhs;
 var x;
-let tmpAssignLogicStmtOr = $(1);
-if (tmpAssignLogicStmtOr) {
+const tmpCallCallee = $;
+let tmpCalleeParam;
+let tmpNestedComplexRhs = $(1);
+if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = 2;
-} else {
-  tmpNestedComplexRhs = tmpAssignLogicStmtOr;
 }
 x = tmpNestedComplexRhs;
-tmpArg = tmpNestedComplexRhs;
-$(tmpArg);
+tmpCalleeParam = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

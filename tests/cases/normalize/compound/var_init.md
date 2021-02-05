@@ -19,38 +19,38 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 var x;
 let a = $(1);
-tmpBinaryLeft = a;
-tmpBinaryRight = $(2);
-a = tmpBinaryLeft + tmpBinaryRight;
-x = a;
+const tmpNestedCompoundLhs = a;
+const tmpBinBothLhs = tmpNestedCompoundLhs;
+const tmpBinBothRhs = $(2);
+const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
+a = tmpNestedComplexRhs;
+x = tmpNestedComplexRhs;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpBinaryLeft;
-var tmpBinaryRight;
 var x;
 let a = $(1);
-tmpBinaryLeft = a;
-tmpBinaryRight = $(2);
-a = tmpBinaryLeft + tmpBinaryRight;
-x = a;
+const tmpNestedCompoundLhs = a;
+const tmpBinBothLhs = tmpNestedCompoundLhs;
+const tmpBinBothRhs = $(2);
+const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
+a = tmpNestedComplexRhs;
+x = tmpNestedComplexRhs;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: 3
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

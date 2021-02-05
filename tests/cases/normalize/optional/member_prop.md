@@ -18,41 +18,32 @@ $(x?.length);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 const x = 10;
-tmpTernaryTest = x == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = x.length;
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = x;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.length;
+  tmpCalleeParam = tmpChainElementObject;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
-tmpTernaryTest = false;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = (10).length;
-  tmpArg = tmpTernaryAlternate;
-}
-$(tmpArg);
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainElementObject = (10).length;
+tmpCalleeParam = tmpChainElementObject;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

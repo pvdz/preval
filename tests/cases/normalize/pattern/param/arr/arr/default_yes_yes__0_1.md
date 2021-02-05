@@ -22,10 +22,8 @@ f(true);
 
 `````js filename=intro
 function f(tmp) {
-  var arrAssignPatternRhs;
-  var arrPatternSplat;
-  arrAssignPatternRhs = tmp;
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = tmp;
+  const arrPatternSplat = [...arrAssignPatternRhs];
   arrAssignPatternRhs;
   return 'bad';
 }
@@ -35,24 +33,15 @@ f(true);
 ## Output
 
 `````js filename=intro
-function f(tmp) {
-  var arrAssignPatternRhs;
-  var arrPatternSplat;
-  arrAssignPatternRhs = tmp;
-  arrPatternSplat = [...arrAssignPatternRhs];
-  return 'bad';
-}
-f(true);
+
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+ - eval returned: undefined

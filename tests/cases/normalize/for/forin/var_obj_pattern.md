@@ -17,15 +17,13 @@ for (let [x] in {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 {
   const tmpForInPatDeclRhs = { a: 1, b: 2 };
   let tmpForInPatDeclLhs;
   let x;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    arrAssignPatternRhs = tmpForInPatDeclLhs;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const arrAssignPatternRhs = tmpForInPatDeclLhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
     $(x);
@@ -36,14 +34,12 @@ var arrPatternSplat;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 const tmpForInPatDeclRhs = { a: 1, b: 2 };
 let tmpForInPatDeclLhs;
 let x;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  arrAssignPatternRhs = tmpForInPatDeclLhs;
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);
 }
@@ -52,9 +48,9 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: "a"
- - 1: "b"
- - 2: undefined
+ - 1: 'a'
+ - 2: 'b'
+ - eval returned: undefined
 
 Normalized calls: Same
 

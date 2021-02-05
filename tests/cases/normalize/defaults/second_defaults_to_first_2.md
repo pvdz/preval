@@ -19,14 +19,14 @@ f()
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
     a = 1;
   } else {
     a = $tdz$__a;
   }
-  let b;
+  let b = undefined;
   const tmpIfTest$1 = $tdz$__b === undefined;
   if (tmpIfTest$1) {
     b = a;
@@ -41,14 +41,14 @@ f();
 
 `````js filename=intro
 function f($tdz$__a, $tdz$__b) {
-  let a;
+  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
     a = 1;
   } else {
     a = $tdz$__a;
   }
-  let b;
+  let b = undefined;
   const tmpIfTest$1 = $tdz$__b === undefined;
   if (tmpIfTest$1) {
     b = a;
@@ -62,7 +62,7 @@ f();
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

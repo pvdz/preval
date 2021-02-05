@@ -48,10 +48,9 @@ for (x in tmpForInDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot access 'x' before initialization ]>
+ - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'x' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")

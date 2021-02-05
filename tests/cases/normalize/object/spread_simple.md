@@ -18,30 +18,28 @@ $({...obj});
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-tmpObjPropValue = { bar: 10 };
-const obj = { foo: tmpObjPropValue };
-tmpArg = { ...obj };
-$(tmpArg);
+const tmpObjLitVal = { bar: 10 };
+const obj = { foo: tmpObjLitVal };
+const tmpCallCallee = $;
+const tmpCalleeParam = { ...obj };
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpObjPropValue;
-tmpObjPropValue = { bar: 10 };
-const obj = { foo: tmpObjPropValue };
-tmpArg = { ...obj };
-$(tmpArg);
+const tmpObjLitVal = { bar: 10 };
+const obj = { foo: tmpObjLitVal };
+const tmpCallCallee = $;
+const tmpCalleeParam = { ...obj };
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"foo":{"bar":10}}
- - 1: undefined
+ - 1: { foo: '{"bar":"10"}' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

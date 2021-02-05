@@ -25,10 +25,9 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternNoDefault];
   return 'bad';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(undefined, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(undefined, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -39,15 +38,15 @@ function f(tmpParamPattern) {
   [...objPatternNoDefault];
   return 'bad';
 }
-var tmpArg;
-tmpArg = f(undefined, 10);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(undefined, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'x' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -41,10 +41,9 @@ function top() {
   a();
   $(6);
 }
-var tmpArg;
-('<hoisted func decl `top`>');
-tmpArg = top();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = top();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -59,20 +58,20 @@ function top() {
   a();
   $(6);
 }
-var tmpArg;
-tmpArg = top();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = top();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 3
- - 1: 5
- - 2: 4
- - 3: 6
- - 4: null
+ - 1: 3
+ - 2: 5
+ - 3: 4
+ - 4: 6
  - 5: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

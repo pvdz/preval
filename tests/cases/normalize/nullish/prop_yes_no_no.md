@@ -18,52 +18,37 @@ $(a??b.c.d);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpMemberComplexObj = b.c;
-  tmpTernaryConsequent = tmpMemberComplexObj.d;
-  tmpArg = tmpTernaryConsequent;
-} else {
-  tmpArg = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  const tmpAssignRhsProp = b.c;
+  tmpCalleeParam = tmpAssignRhsProp.d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpMemberComplexObj;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
 const a = {};
-a = a;
-tmpTernaryTest = a == null;
-if (tmpTernaryTest) {
-  tmpMemberComplexObj = b.c;
-  tmpTernaryConsequent = tmpMemberComplexObj.d;
-  tmpArg = tmpTernaryConsequent;
-} else {
-  tmpArg = a;
+const tmpCallCallee = $;
+let tmpCalleeParam = a;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  const tmpAssignRhsProp = b.c;
+  tmpCalleeParam = tmpAssignRhsProp.d;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {}
- - 1: undefined
+ - 1: {}
+ - eval returned: undefined
 
-Normalized calls: BAD?!
-['<crash[ Assignment to constant variable. ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ Assignment to constant variable. ]>'];
-
+Final output calls: Same

@@ -18,10 +18,8 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-arrAssignPatternRhs = '';
-arrPatternSplat = [...arrAssignPatternRhs];
+const arrAssignPatternRhs = '';
+const arrPatternSplat = [...arrAssignPatternRhs];
 arrAssignPatternRhs;
 $('ok');
 `````
@@ -29,18 +27,15 @@ $('ok');
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-arrAssignPatternRhs = '';
-arrPatternSplat = [...arrAssignPatternRhs];
+[...''];
 $('ok');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

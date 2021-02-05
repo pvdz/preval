@@ -21,21 +21,25 @@ $(a, b, c);
 `````js filename=intro
 let b = 2;
 let c = 3;
-export let a = ($(b), $(c));
+$(b);
+let a = $(c);
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-export let a = ($(2), $(3));
+$(2);
+let a = $(3);
+export { a };
 $(a, 2, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

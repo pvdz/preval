@@ -17,34 +17,30 @@ $`abc ${ $(10) } ${ $(20) } def`;
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-tmpArg = ['abc ', ' ', ' def'];
-tmpArg$1 = $(10);
-tmpArg$2 = $(20);
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = ['abc ', ' ', ' def'];
+const tmpCalleeParam$1 = $(10);
+const tmpCalleeParam$2 = $(20);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpArg$1;
-var tmpArg$2;
-tmpArg = ['abc ', ' ', ' def'];
-tmpArg$1 = $(10);
-tmpArg$2 = $(20);
-$(tmpArg, tmpArg$1, tmpArg$2);
+const tmpCallCallee = $;
+const tmpCalleeParam = ['abc ', ' ', ' def'];
+const tmpCalleeParam$1 = $(10);
+const tmpCalleeParam$2 = $(20);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: 20
- - 2: ["abc "," "," def"],10,20
- - 3: undefined
+ - 1: 10
+ - 2: 20
+ - 3: ['abc ', ' ', ' def'], 10, 20
+ - eval returned: undefined
 
 Normalized calls: Same
 

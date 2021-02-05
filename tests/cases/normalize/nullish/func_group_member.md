@@ -20,54 +20,43 @@ $(f());
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
   1;
   2;
-  tmpNullish = $();
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = $();
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = foo;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  var tmpNullish;
-  var tmpTernaryTest;
-  tmpNullish = $();
-  tmpTernaryTest = tmpNullish == null;
-  let y;
-  if (tmpTernaryTest) {
+  let y = $();
+  const tmpIfTest = y == null;
+  if (tmpIfTest) {
     y = foo;
-  } else {
-    y = tmpNullish;
   }
-  let tmpReturnArg = $(y);
+  const tmpReturnArg = $(y);
   return tmpReturnArg;
 }
-var tmpArg;
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

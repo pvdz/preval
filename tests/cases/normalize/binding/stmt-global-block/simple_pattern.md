@@ -21,42 +21,45 @@ if ($(true)) {
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = arrAssignPatternRhs;
-$(a, x, y, z);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let x = 1;
+  let y = 2;
+  let z = [10, 20, 30];
+  let a;
+  const tmpNestedAssignArrPatternRhs = z;
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  $(a, x, y, z);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-arrAssignPatternRhs = z;
-arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = arrAssignPatternRhs;
-$(a, x, y, z);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let x = 1;
+  let y = 2;
+  let z = [10, 20, 30];
+  let a;
+  const tmpNestedAssignArrPatternRhs = z;
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  $(a, x, y, z);
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: [10,20,30],10,20,[10,20,30]
- - 1: undefined
+ - 1: true
+ - 2: [10, 20, 30], 10, 20, [10, 20, 30]
+ - eval returned: undefined
 
 Normalized calls: Same
 

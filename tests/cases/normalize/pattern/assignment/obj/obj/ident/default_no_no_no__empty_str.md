@@ -18,22 +18,17 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = '';
-objPatternNoDefault = objAssignPatternRhs.x;
+const tmpAssignObjPatternRhs = '';
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternNoDefault;
-objAssignPatternRhs = '';
-objPatternNoDefault = objAssignPatternRhs.x;
+const objPatternNoDefault = ''.x;
 y = objPatternNoDefault.y;
 $('bad');
 `````
@@ -41,7 +36,7 @@ $('bad');
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'y' of undefined ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

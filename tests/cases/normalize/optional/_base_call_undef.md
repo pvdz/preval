@@ -19,43 +19,37 @@ $(f?.());
 
 `````js filename=intro
 var f;
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 f = undefined;
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = f();
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = f;
+if (tmpChainRootCall) {
+  const tmpChainElementCall = tmpChainRootCall();
+  tmpCalleeParam = tmpChainElementCall;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 var f;
-var tmpArg;
-var tmpTernaryAlternate;
-var tmpTernaryTest;
 f = undefined;
-tmpTernaryTest = f == null;
-if (tmpTernaryTest) {
-  tmpArg = undefined;
-} else {
-  tmpTernaryAlternate = f();
-  tmpArg = tmpTernaryAlternate;
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall = f;
+if (tmpChainRootCall) {
+  const tmpChainElementCall = tmpChainRootCall();
+  tmpCalleeParam = tmpChainElementCall;
 }
-$(tmpArg);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
  - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -18,21 +18,18 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var arrPatternStep$1;
-var tmpElement;
-var tmpElement$1;
-tmpElement$1 = { x: 1, y: 2, z: 3 };
-tmpElement = [tmpElement$1, 20, 30];
-arrAssignPatternRhs = [tmpElement, 40, 50];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternStep$1 = arrPatternSplat$1[0];
-x = objPatternRest(arrPatternStep$1, [], undefined);
+const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const arrAssignPatternRhs = [tmpArrElement, 40, 50];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep$1;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 arrAssignPatternRhs;
 $(x);
 `````
@@ -40,29 +37,25 @@ $(x);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternSplat$1;
-var arrPatternStep;
-var arrPatternStep$1;
-var tmpElement;
-var tmpElement$1;
-tmpElement$1 = { x: 1, y: 2, z: 3 };
-tmpElement = [tmpElement$1, 20, 30];
-arrAssignPatternRhs = [tmpElement, 40, 50];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-arrPatternSplat$1 = [...arrPatternStep];
-arrPatternStep$1 = arrPatternSplat$1[0];
-x = objPatternRest(arrPatternStep$1, [], undefined);
+const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const arrAssignPatternRhs = [tmpArrElement, 40, 50];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = arrPatternStep$1;
+const tmpCalleeParam$1 = [];
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2,"z":3}
- - 1: undefined
+ - 1: { x: '1', y: '2', z: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

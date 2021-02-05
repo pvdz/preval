@@ -8,6 +8,7 @@ export function parseTestArgs() {
     noColor: false,
     targetFile: undefined,
     fileVerbatim: false,
+    fastTest: false,
   };
 
   while (argv.length) {
@@ -22,7 +23,7 @@ export function parseTestArgs() {
       case '-f': {
         const name = argv.shift();
         if (fs.statSync(name).isDirectory()) {
-          config.targetDir = name;
+          config.targetDir = name[name.length - 1] === '/' ? name.slice(0, -1) : name;
         } else {
           config.targetFile = name;
         }
@@ -45,6 +46,13 @@ export function parseTestArgs() {
       case '-n': {
         // Only output the normalized code
         config.onlyNormalized = true;
+        break;
+      }
+
+      case 'fast': {
+        // Skip most of the cases/normalization/expression variations
+        config.fastTest = true;
+        console.log('WARNING: Skipping many tests in cases/normalization/expression !');
         break;
       }
 

@@ -15,27 +15,28 @@ $(~/1/);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = ~/1/;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpUnaryArg = /1/;
+const tmpCalleeParam = ~tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = -2;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = -2;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: -1
- - 1: undefined
+ - 1: -1
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-[[-2], null];
-
+ - 1: -2
+ - eval returned: undefined

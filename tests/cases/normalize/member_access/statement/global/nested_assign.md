@@ -17,39 +17,37 @@ $(obj.a.b);
 ## Normalized
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-obj.a.b = 15;
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpAssignMemLhsObj = obj.a;
+tmpAssignMemLhsObj.b = 15;
 const tmpCallCallee = $;
-const tmpBindingInit = obj.a;
-const tmpCalleeParam = tmpBindingInit.b;
+const tmpCompObj = obj.a;
+const tmpCalleeParam = tmpCompObj.b;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpObjPropValue;
-var tmpObjPropValue$1;
-tmpObjPropValue$1 = $();
-tmpObjPropValue = { b: tmpObjPropValue$1 };
-const obj = { a: tmpObjPropValue };
-obj.a.b = 15;
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpAssignMemLhsObj = obj.a;
+tmpAssignMemLhsObj.b = 15;
 const tmpCallCallee = $;
-const tmpBindingInit = obj.a;
-const tmpCalleeParam = tmpBindingInit.b;
+const tmpCompObj = obj.a;
+const tmpCalleeParam = tmpCompObj.b;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 
- - 1: 15
- - 2: undefined
+ - 1: 
+ - 2: 15
+ - eval returned: undefined
 
 Normalized calls: Same
 

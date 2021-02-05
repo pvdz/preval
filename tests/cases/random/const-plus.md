@@ -35,8 +35,8 @@ $('aba');
 ## Result
 
 Should call `$` with:
- - 0: "aba"
- - 1: undefined
+ - 1: 'aba'
+ - eval returned: undefined
 
 Normalized calls: Same
 

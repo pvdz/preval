@@ -21,20 +21,20 @@ $(f(1, 2, 3, 200));
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  let x;
+  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     x = $('fail');
@@ -43,30 +43,29 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f(1, 2, 3, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(1, 2, 3, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  var tmpArg;
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail2'];
-    arrPatternStep = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  let x;
+  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     x = $('fail');
@@ -75,19 +74,16 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-var tmpArg$1;
-tmpArg$1 = f(1, 2, 3, 200);
-$(tmpArg$1);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(1, 2, 3, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
-Final output calls: BAD!!
-['<crash[ <ref> is not iterable ]>'];
-
+Final output calls: Same

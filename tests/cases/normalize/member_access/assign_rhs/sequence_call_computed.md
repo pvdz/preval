@@ -21,7 +21,10 @@ $(c);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $(2))[$('toString')];
+$(1);
+const tmpAssignRhsCompObj = $(2);
+const tmpAssignRhsCompProp = $('toString');
+x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);
 `````
@@ -30,7 +33,10 @@ $(c);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $(2))[$('toString')];
+$(1);
+const tmpAssignRhsCompObj = $(2);
+const tmpAssignRhsCompProp = $('toString');
+x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);
 `````
@@ -38,11 +44,10 @@ $(c);
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: "toString"
- - 3: null
- - 4: <crash[ <ref> is not defined ]>
+ - 1: 1
+ - 2: 2
+ - 3: 'toString'
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

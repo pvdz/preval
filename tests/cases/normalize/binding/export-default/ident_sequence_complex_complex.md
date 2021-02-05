@@ -19,37 +19,37 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
 let b = 2;
 let c = 3;
-export let a =
-  (($(b), (tmpAssignMemLhsObj = $(c))),
-  (((tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj), (tmpAssignMemRhs = $(c)), (tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1)),
-  (tmpAssignMemLhsObj$2.x = tmpAssignMemRhs)));
+let a;
+$(b);
+const tmpNestedAssignObj = $(c);
+let tmpNestedAssignPropRhs = $(c);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+export { a };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-var tmpAssignMemLhsObj$1;
-var tmpAssignMemLhsObj$2;
-var tmpAssignMemRhs;
-export let a =
-  (($(2), (tmpAssignMemLhsObj = $(3))),
-  (((tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj), (tmpAssignMemRhs = $(3)), (tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1)),
-  (tmpAssignMemLhsObj$2.x = tmpAssignMemRhs)));
+let a;
+$(2);
+const tmpNestedAssignObj = $(3);
+let tmpNestedAssignPropRhs = $(3);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+export { a };
 $(a, 2, 3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Unexpected token 'export' ]>
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

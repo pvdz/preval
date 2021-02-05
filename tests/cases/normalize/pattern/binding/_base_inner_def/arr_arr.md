@@ -9,21 +9,21 @@
 ## Input
 
 `````js filename=intro
-const [[ x = a ]] = 1;
+const [[ x = a ]] = [[]];
 `````
 
 ## Normalized
 
 `````js filename=intro
-var tmpTernaryTest;
-const bindingPatternArrRoot = 1;
+const tmpArrElement = [];
+const bindingPatternArrRoot = [tmpArrElement];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault = arrPatternSplat$1[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
+let x = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = a;
 } else {
   x = arrPatternBeforeDefault;
@@ -33,14 +33,15 @@ if (tmpTernaryTest) {
 ## Output
 
 `````js filename=intro
-var tmpTernaryTest;
-const arrPatternSplat = [...1];
+const tmpArrElement = [];
+const bindingPatternArrRoot = [tmpArrElement];
+const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault = arrPatternSplat$1[0];
-tmpTernaryTest = arrPatternBeforeDefault === undefined;
-let x;
-if (tmpTernaryTest) {
+let x = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = a;
 } else {
   x = arrPatternBeforeDefault;
@@ -50,7 +51,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: undefined
 
 Normalized calls: Same
 

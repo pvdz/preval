@@ -24,28 +24,25 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   return 'bad';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(0, 200);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'bad';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ undefined is not a function ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
-['<crash[ <ref> is not iterable ]>'];
+Normalized calls: Same
 
 Final output calls: BAD!!
-[['bad'], null];
-
+ - 1: 'bad'
+ - eval returned: undefined

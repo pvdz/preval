@@ -54,9 +54,9 @@ tmpSwitchBreak: {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 3
- - 2: undefined
+ - 1: 1
+ - 2: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

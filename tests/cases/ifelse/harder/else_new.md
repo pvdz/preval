@@ -16,9 +16,8 @@ else $(3);
 ## Normalized
 
 `````js filename=intro
-var tmpNewObj;
-tmpNewObj = $(1);
-const tmpIfTest = new tmpNewObj();
+const tmpNewCallee = $(1);
+const tmpIfTest = new tmpNewCallee();
 if (tmpIfTest) {
   $(2);
 } else {
@@ -29,9 +28,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-var tmpNewObj;
-tmpNewObj = $(1);
-const tmpIfTest = new tmpNewObj();
+const tmpNewCallee = $(1);
+const tmpIfTest = new tmpNewCallee();
 if (tmpIfTest) {
   $(2);
 } else {
@@ -42,8 +40,8 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: <crash[ <ref> is not a constructor ]>
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not a constructor ]>')
 
 Normalized calls: Same
 

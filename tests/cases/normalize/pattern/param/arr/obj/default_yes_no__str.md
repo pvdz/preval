@@ -23,7 +23,7 @@ $(f('abc', 100));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep = $('pass');
@@ -40,10 +40,9 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f('abc', 100);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 100);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -52,7 +51,7 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     arrPatternStep = $('pass');
@@ -69,16 +68,16 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-var tmpArg;
-tmpArg = f('abc', 100);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 100);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

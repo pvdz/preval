@@ -18,63 +18,47 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-objAssignPatternRhs = { x: '', a: 11, b: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = { x: '', a: 11, b: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest$1) {
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-objAssignPatternRhs = { x: '', a: 11, b: 12 };
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['fail2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = { x: '', a: 11, b: 12 };
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['fail2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest$1) {
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'pass';
 } else {
   y = arrPatternBeforeDefault;
@@ -85,8 +69,8 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: "pass"
- - 1: undefined
+ - 1: 'pass'
+ - eval returned: undefined
 
 Normalized calls: Same
 

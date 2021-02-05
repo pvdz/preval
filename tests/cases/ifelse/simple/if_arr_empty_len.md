@@ -17,7 +17,8 @@ if ([].length) $();
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = [].length;
+const tmpCompObj = [];
+const tmpIfTest = tmpCompObj.length;
 if (tmpIfTest) {
   $();
 }
@@ -26,7 +27,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = [].length;
+const tmpCompObj = [];
+const tmpIfTest = tmpCompObj.length;
 if (tmpIfTest) {
   $();
 }
@@ -35,7 +37,7 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

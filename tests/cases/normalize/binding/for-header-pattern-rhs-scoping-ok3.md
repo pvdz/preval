@@ -21,8 +21,6 @@ for (let [x] in [y]) {
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = {};
 {
@@ -30,8 +28,8 @@ let y = {};
   let tmpForInPatDeclLhs;
   let x;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    arrAssignPatternRhs = tmpForInPatDeclLhs;
-    arrPatternSplat = [...arrAssignPatternRhs];
+    const arrAssignPatternRhs = tmpForInPatDeclLhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     arrAssignPatternRhs;
     {
@@ -44,16 +42,14 @@ let y = {};
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x = 1;
 let y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs;
 let x;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  arrAssignPatternRhs = tmpForInPatDeclLhs;
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);
 }
@@ -62,11 +58,10 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Result
 
 Should call `$` with:
- - 0: "0"
- - 1: undefined
+ - 1: '0'
+ - eval returned: undefined
 
 Normalized calls: Same
 
 Final output calls: BAD!!
-["<crash[ Identifier 'x' has already been declared ]>"];
-
+ - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")

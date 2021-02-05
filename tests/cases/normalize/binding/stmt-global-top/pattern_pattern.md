@@ -19,55 +19,44 @@ $(a, b, x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-arrAssignPatternRhs$1 = z;
-arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+let bindingPatternArrRoot;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat$1[1];
 y = arrPatternSplat$1[2];
-arrAssignPatternRhs = arrAssignPatternRhs$1;
-arrPatternSplat = [...arrAssignPatternRhs];
+bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-b = arrPatternSplat[1];
-arrAssignPatternRhs;
+let b = arrPatternSplat[1];
 $(a, b, x, y, z);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrAssignPatternRhs$1;
-var arrPatternSplat;
-var arrPatternSplat$1;
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-arrAssignPatternRhs$1 = z;
-arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+let bindingPatternArrRoot;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat$1[1];
 y = arrPatternSplat$1[2];
-arrAssignPatternRhs = arrAssignPatternRhs$1;
-arrPatternSplat = [...arrAssignPatternRhs];
+bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-b = arrPatternSplat[1];
+let b = arrPatternSplat[1];
 $(a, b, x, y, z);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10,20,20,30,[10,20,30]
- - 1: undefined
+ - 1: 10, 20, 20, 30, [10, 20, 30]
+ - eval returned: undefined
 
 Normalized calls: Same
 

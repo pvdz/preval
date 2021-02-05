@@ -18,44 +18,32 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: 0, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-{
-  let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
-  if (tmpAssignLogicStmtOr) {
-  } else {
-    tmpAssignLogicStmtOr = objPatternNoDefault === null;
-  }
-  if (tmpAssignLogicStmtOr) {
-    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-  } else {
-    objPatternCrashTest = tmpAssignLogicStmtOr;
-  }
+const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
 }
-objAssignPatternRhs;
+if (objPatternCrashTest) {
+  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+}
+tmpAssignObjPatternRhs;
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternCrashTest;
-var objPatternNoDefault;
-objAssignPatternRhs = { x: 0, b: 11, c: 12 };
-objPatternNoDefault = objAssignPatternRhs.x;
-let tmpAssignLogicStmtOr = objPatternNoDefault === undefined;
-if (tmpAssignLogicStmtOr) {
+const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpAssignLogicStmtOr = objPatternNoDefault === null;
+  objPatternCrashTest = objPatternNoDefault === null;
 }
-if (tmpAssignLogicStmtOr) {
+if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-} else {
-  objPatternCrashTest = tmpAssignLogicStmtOr;
 }
 $('ok');
 `````
@@ -63,8 +51,8 @@ $('ok');
 ## Result
 
 Should call `$` with:
- - 0: "ok"
- - 1: undefined
+ - 1: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

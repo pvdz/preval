@@ -19,21 +19,27 @@ $('bad');
 
 `````js filename=intro
 const bindingPatternObjRoot = null;
-const x = objPatternRest(bindingPatternObjRoot, [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = bindingPatternObjRoot;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 $('bad');
 `````
 
 ## Output
 
 `````js filename=intro
-objPatternRest(null, [], 'x');
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam$1 = [];
+tmpCallCallee(null, tmpCalleeParam$1, 'x');
 $('bad');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot read property 'cannotDestructureThis' of null ]>
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

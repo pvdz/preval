@@ -21,25 +21,23 @@ $(f());
 function f() {
   return Infinity;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f();
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = Infinity;
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee(Infinity);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: null
- - 1: undefined
+ - 1: Infinity
+ - eval returned: undefined
 
 Normalized calls: Same
 

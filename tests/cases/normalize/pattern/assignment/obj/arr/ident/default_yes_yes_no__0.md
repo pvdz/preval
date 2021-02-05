@@ -18,63 +18,46 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-objAssignPatternRhs = 0;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const tmpAssignObjPatternRhs = 0;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest$1) {
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-var arrPatternBeforeDefault;
-var arrPatternSplat;
-var objAssignPatternRhs;
-var objPatternAfterDefault;
-var objPatternBeforeDefault;
-var tmpArg;
-var tmpTernaryConsequent;
-var tmpTernaryTest;
-var tmpTernaryTest$1;
-objAssignPatternRhs = 0;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
-  tmpArg = ['pass2'];
-  tmpTernaryConsequent = $(tmpArg);
-  objPatternAfterDefault = tmpTernaryConsequent;
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['pass2'];
+  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-arrPatternSplat = [...objPatternAfterDefault];
-arrPatternBeforeDefault = arrPatternSplat[0];
-tmpTernaryTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpTernaryTest$1) {
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   y = 'fail';
 } else {
   y = arrPatternBeforeDefault;
@@ -85,9 +68,9 @@ $(y);
 ## Result
 
 Should call `$` with:
- - 0: ["pass2"]
- - 1: "pass2"
- - 2: undefined
+ - 1: ['pass2']
+ - 2: 'pass2'
+ - eval returned: undefined
 
 Normalized calls: Same
 

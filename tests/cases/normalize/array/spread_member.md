@@ -17,32 +17,28 @@ $([...true.toString.name]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpMemberComplexObj;
-tmpMemberComplexObj = true.toString;
-tmpElement = tmpMemberComplexObj.name;
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCompObj = true.toString;
+const tmpArrSpread = tmpCompObj.name;
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpElement;
-var tmpMemberComplexObj;
-tmpMemberComplexObj = true.toString;
-tmpElement = tmpMemberComplexObj.name;
-tmpArg = [...tmpElement];
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCompObj = true.toString;
+const tmpArrSpread = tmpCompObj.name;
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["t","o","S","t","r","i","n","g"]
- - 1: undefined
+ - 1: ['t', 'o', 'S', 't', 'r', 'i', 'n', 'g']
+ - eval returned: undefined
 
 Normalized calls: Same
 

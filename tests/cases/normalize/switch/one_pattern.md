@@ -32,8 +32,6 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 {
   let x;
   {
@@ -46,8 +44,8 @@ var arrPatternSplat;
     if (tmpIfTest) {
       ('case 0:');
       {
-        arrAssignPatternRhs = [4, 5, 6];
-        arrPatternSplat = [...arrAssignPatternRhs];
+        const arrAssignPatternRhs = [4, 5, 6];
+        const arrPatternSplat = [...arrAssignPatternRhs];
         x = arrPatternSplat[0];
         arrAssignPatternRhs;
       }
@@ -72,8 +70,6 @@ var arrPatternSplat;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 let x;
 let tmpFallthrough = false;
 let tmpIfTest = tmpFallthrough;
@@ -82,8 +78,8 @@ if (tmpIfTest) {
   tmpIfTest = true;
 }
 if (tmpIfTest) {
-  arrAssignPatternRhs = [4, 5, 6];
-  arrPatternSplat = [...arrAssignPatternRhs];
+  const arrAssignPatternRhs = [4, 5, 6];
+  const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   tmpFallthrough = true;
 }
@@ -101,8 +97,8 @@ if (tmpIfTest$1) {
 ## Result
 
 Should call `$` with:
- - 0: 4
- - 1: undefined
+ - 1: 4
+ - eval returned: undefined
 
 Normalized calls: Same
 

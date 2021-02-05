@@ -20,7 +20,9 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $(2)).toString;
+$(1);
+const tmpAssignRhsProp = $(2);
+x = tmpAssignRhsProp.toString;
 $(x);
 `````
 
@@ -28,17 +30,18 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $(2)).toString;
+$(1);
+const tmpAssignRhsProp = $(2);
+x = tmpAssignRhsProp.toString;
 $(x);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: null
- - 3: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Normalized calls: Same
 

@@ -19,18 +19,17 @@ for ($(a).x in $(b)) $(a.x);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    tmpAssignMemLhsObj = $(a);
+    const tmpAssignMemLhsObj = $(a);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
-    tmpArg = a.x;
-    $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = a.x;
+    tmpCallCallee(tmpCalleeParam);
   }
 }
 `````
@@ -38,29 +37,28 @@ const tmpForInRhs = $(b);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpAssignMemLhsObj;
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
 let tmpForInLhsNode;
 for (tmpForInLhsNode in tmpForInRhs) {
-  tmpAssignMemLhsObj = $(a);
+  const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  tmpArg = a.x;
-  $(tmpArg);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = a.x;
+  tmpCallCallee(tmpCalleeParam);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"x":1,"y":2}
- - 1: {"x":"y"}
- - 2: "x"
- - 3: {"x":"y"}
- - 4: "y"
- - 5: undefined
+ - 1: { x: '1', y: '2' }
+ - 2: {}
+ - 3: 'x'
+ - 4: { x: '"x"' }
+ - 5: 'y'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -17,29 +17,25 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 ## Normalized
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
-{
-  $(1);
-  tmpAssignMemLhsObj = $(2);
-  tmpAssignMemLhsObj.x = 1;
-}
+$(1);
+const tmpAssignMemLhsObj = $(2);
+tmpAssignMemLhsObj.x = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpAssignMemLhsObj;
 $(1);
-tmpAssignMemLhsObj = $(2);
+const tmpAssignMemLhsObj = $(2);
 tmpAssignMemLhsObj.x = 1;
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: 2
- - 2: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

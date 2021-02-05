@@ -20,35 +20,76 @@ let b = {x: 2}, c = 3, d = 4;
 }
 $(f());
 `````
+
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-a = b[$('x')] = $(c)[$('y')] = $(d);
-$(a, b, c);
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = { x: 2 };
+    let c = 3;
+    let d = 4;
+    let a;
+    const tmpNestedAssignComMemberObj = b;
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(c);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    let tmpNestedAssignPropRhs$1 = $(d);
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    a = tmpNestedPropAssignRhs$1;
+    $(a, b, c);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = { x: 2 };
-a = b[$('x')] = $(3)[$('y')] = $(4);
-$(a, b, 3);
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = { x: 2 };
+    let a;
+    const tmpNestedAssignComMemberObj = b;
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(3);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    let tmpNestedAssignPropRhs$1 = $(4);
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    a = tmpNestedPropAssignRhs$1;
+    $(a, b, 3);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "x"
- - 1: 3
- - 2: "y"
- - 3: 4
- - 4: 4,{"x":4},3
- - 5: undefined
+ - 1: true
+ - 2: 'x'
+ - 3: 3
+ - 4: 'y'
+ - 5: 4
+ - 6: 4, { x: '4' }, 3
+ - 7: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

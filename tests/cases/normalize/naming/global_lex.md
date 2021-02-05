@@ -40,11 +40,11 @@ $(a_1);
 ## Result
 
 Should call `$` with:
- - 0: 1
  - 1: 1
  - 2: 1
  - 3: 1
- - 4: undefined
+ - 4: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

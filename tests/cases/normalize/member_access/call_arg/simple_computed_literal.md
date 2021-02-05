@@ -18,7 +18,7 @@ $(obj['foo']);
 `````js filename=intro
 const obj = { foo: 10 };
 const tmpCallCallee = $;
-const tmpCalleeParam = obj['foo'];
+const tmpCalleeParam = obj.foo;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -34,8 +34,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 0: 10
- - 1: undefined
+ - 1: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -15,24 +15,23 @@ $(typeof undefined);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = typeof undefined;
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParam = typeof undefined;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = 'undefined';
-$(tmpArg);
+const tmpCallCallee = $;
+tmpCallCallee('undefined');
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "undefined"
- - 1: undefined
+ - 1: 'undefined'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -22,7 +22,7 @@ else $(200);
 let a = 1;
 let b = 2;
 let c = 3;
-let tmpIfTest;
+let tmpIfTest = undefined;
 if (a) {
   tmpIfTest = b;
 } else {
@@ -38,7 +38,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let tmpIfTest;
+let tmpIfTest = undefined;
 tmpIfTest = 2;
 if (tmpIfTest) {
   $(100);
@@ -50,8 +50,8 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: 100
- - 1: undefined
+ - 1: 100
+ - eval returned: undefined
 
 Normalized calls: Same
 

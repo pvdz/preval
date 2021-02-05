@@ -26,12 +26,11 @@ function f(tmpParamPattern) {
   a = $(10);
   return a;
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = { x: 1 };
-tmpArg = f(tmpArg$1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -42,19 +41,19 @@ function f(tmpParamPattern) {
   a = $(10);
   return a;
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg$1 = { x: 1 };
-tmpArg = f(tmpArg$1);
-$(tmpArg);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 10
  - 1: 10
- - 2: undefined
+ - 2: 10
+ - eval returned: undefined
 
 Normalized calls: Same
 

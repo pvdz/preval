@@ -16,30 +16,27 @@ let x = 1, b = 2, c = 3;
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
 let x = 1;
 let b = 2;
 let c = 3;
-{
-  objAssignPatternRhs = 1;
-  x = objAssignPatternRhs.x;
-  const tmpIfTest = objAssignPatternRhs;
-  if (tmpIfTest) {
-    b;
-  } else {
-    c;
-  }
+let tmpIfTest;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpIfTest = tmpNestedAssignObjPatternRhs;
+if (tmpIfTest) {
+  b;
+} else {
+  c;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
 let x = 1;
-objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
-const tmpIfTest = objAssignPatternRhs;
+let tmpIfTest;
+x = (1).x;
+tmpIfTest = 1;
 if (tmpIfTest) {
 } else {
 }
@@ -48,7 +45,7 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

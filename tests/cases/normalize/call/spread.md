@@ -17,24 +17,24 @@ $(...[1, 2, 3]);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-tmpArg = [1, 2, 3];
-$(...tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParamSpread = [1, 2, 3];
+tmpCallCallee(...tmpCalleeParamSpread);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-tmpArg = [1, 2, 3];
-$(...tmpArg);
+const tmpCallCallee = $;
+const tmpCalleeParamSpread = [1, 2, 3];
+tmpCallCallee(...tmpCalleeParamSpread);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1,2,3
- - 1: undefined
+ - 1: 1, 2, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

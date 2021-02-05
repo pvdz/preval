@@ -15,11 +15,10 @@ for ({ x } = 1;false;) y;
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
 {
-  objAssignPatternRhs = 1;
-  x = objAssignPatternRhs.x;
-  objAssignPatternRhs;
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+  tmpAssignObjPatternRhs;
   while (false) {
     y;
   }
@@ -29,16 +28,14 @@ var objAssignPatternRhs;
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-objAssignPatternRhs = 1;
-x = objAssignPatternRhs.x;
+x = (1).x;
 while (false) {}
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

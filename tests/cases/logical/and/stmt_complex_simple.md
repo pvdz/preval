@@ -17,27 +17,25 @@ $(1) && 2;
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpLogicStmtAnd = $(1);
-  if (tmpLogicStmtAnd) {
-    2;
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  2;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpLogicStmtAnd = $(1);
-if (tmpLogicStmtAnd) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 1
- - 1: undefined
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -44,11 +44,11 @@ b = $();
 ## Result
 
 Should call `$` with:
- - 0: null,null,null
- - 1: 
+ - 1: undefined, undefined, undefined
  - 2: 
  - 3: 
- - 4: undefined
+ - 4: 
+ - eval returned: undefined
 
 Normalized calls: Same
 

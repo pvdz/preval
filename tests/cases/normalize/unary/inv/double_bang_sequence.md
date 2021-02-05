@@ -18,33 +18,31 @@ $(!((x = 'foo'), $(x)));
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpUnaryArg;
 var x;
+const tmpCallCallee = $;
 x = 'foo';
-tmpUnaryArg = $(x);
-tmpArg = !tmpUnaryArg;
-$(tmpArg);
+const tmpUnaryArg = $(x);
+const tmpCalleeParam = !tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpUnaryArg;
 var x;
+const tmpCallCallee = $;
 x = 'foo';
-tmpUnaryArg = $(x);
-tmpArg = !tmpUnaryArg;
-$(tmpArg);
+const tmpUnaryArg = $(x);
+const tmpCalleeParam = !tmpUnaryArg;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: "foo"
- - 1: false
- - 2: undefined
+ - 1: 'foo'
+ - 2: false
+ - eval returned: undefined
 
 Normalized calls: Same
 

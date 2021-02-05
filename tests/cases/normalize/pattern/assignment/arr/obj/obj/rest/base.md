@@ -22,19 +22,17 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternNoDefault;
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement = { x: tmpObjPropValue, y: 11 };
-arrAssignPatternRhs = [tmpElement, 10];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault = arrPatternStep.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: tmpObjLitVal, y: 11 };
+const arrAssignPatternRhs = [tmpArrElement, 10];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault = arrPatternStep.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = undefined;
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 arrAssignPatternRhs;
 $(y);
 `````
@@ -42,27 +40,24 @@ $(y);
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-var arrPatternStep;
-var objPatternNoDefault;
-var tmpElement;
-var tmpObjPropValue;
-tmpObjPropValue = { a: 1, b: 2, c: 3 };
-tmpElement = { x: tmpObjPropValue, y: 11 };
-arrAssignPatternRhs = [tmpElement, 10];
-arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternStep = arrPatternSplat[0];
-objPatternNoDefault = arrPatternStep.x;
-y = objPatternRest(objPatternNoDefault, [], undefined);
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+const tmpArrElement = { x: tmpObjLitVal, y: 11 };
+const arrAssignPatternRhs = [tmpArrElement, 10];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const objPatternNoDefault = arrPatternStep.x;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = objPatternNoDefault;
+const tmpCalleeParam$1 = [];
+y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"a":1,"b":2,"c":3}
- - 1: undefined
+ - 1: { a: '1', b: '2', c: '3' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

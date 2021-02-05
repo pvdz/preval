@@ -21,51 +21,57 @@ $(f());
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'pass' };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'pass' };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$2 = [];
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
   return x;
 }
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$4 = f();
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = { a: 'pass' };
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'pass' };
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let x = objPatternRest($tdz$__pattern_after_default, [], undefined);
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$2 = [];
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return x;
 }
-var tmpArg$1;
-tmpArg$1 = f();
-$(tmpArg$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$4 = f();
+tmpCallCallee$2(tmpCalleeParam$4);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"a":"pass"}
- - 1: {"a":"pass"}
- - 2: undefined
+ - 1: { a: '"pass"' }
+ - 2: { a: '"pass"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

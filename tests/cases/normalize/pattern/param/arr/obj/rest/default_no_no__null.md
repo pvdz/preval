@@ -23,13 +23,19 @@ $(f(null, 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return x;
 }
-var tmpArg;
-('<hoisted func decl `f`>');
-tmpArg = f(null, 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = null;
+const tmpCalleeParam$5 = 200;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -38,18 +44,22 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 }
-var tmpArg;
-tmpArg = f(null, 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$3 = tmpCallCallee$2(null, 200);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ <ref> is not iterable ]>
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

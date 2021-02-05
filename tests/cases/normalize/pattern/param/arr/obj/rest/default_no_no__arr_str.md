@@ -23,15 +23,19 @@ $(f(['abc', 20, 30], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  const tmpCalleeParam$2 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return x;
 }
-var tmpArg;
-var tmpArg$1;
-('<hoisted func decl `f`>');
-tmpArg$1 = ['abc', 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = ['abc', 20, 30];
+const tmpCalleeParam$5 = 200;
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -40,21 +44,24 @@ $(tmpArg);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = objPatternRest(arrPatternStep, [], undefined);
+  const tmpCallCallee = objPatternRest;
+  const tmpCalleeParam = arrPatternStep;
+  const tmpCalleeParam$1 = [];
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 }
-var tmpArg;
-var tmpArg$1;
-tmpArg$1 = ['abc', 20, 30];
-tmpArg = f(tmpArg$1, 200);
-$(tmpArg);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpCalleeParam$4 = ['abc', 20, 30];
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 200);
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: {"0":"a","1":"b","2":"c"}
- - 1: undefined
+ - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,73 +21,72 @@ $(f('', 200));
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail3'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail3'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = ['pass2'];
-    arrPatternStep = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = ['pass2'];
+    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
   return 'ok';
 }
-var tmpArg$2;
-('<hoisted func decl `f`>');
-tmpArg$2 = f('', 200);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f('', 200);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
 function f($tdz$__pattern) {
-  var tmpArg;
-  var tmpArg$1;
-  let $tdz$__pattern_after_default;
+  let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    tmpArg = ['fail3'];
-    $tdz$__pattern_after_default = $(tmpArg);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail3'];
+    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep;
+  let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    tmpArg$1 = ['pass2'];
-    arrPatternStep = $(tmpArg$1);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = ['pass2'];
+    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   [...arrPatternStep];
   return 'ok';
 }
-var tmpArg$2;
-tmpArg$2 = f('', 200);
-$(tmpArg$2);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f('', 200);
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: ["pass2"]
- - 1: "ok"
- - 2: undefined
+ - 1: ['pass2']
+ - 2: 'ok'
+ - eval returned: undefined
 
 Normalized calls: Same
 

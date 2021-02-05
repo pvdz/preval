@@ -15,30 +15,23 @@
 ## Normalized
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const tmpAssignObjPatternRhs = 1;
+const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;
 }
-objAssignPatternRhs;
+tmpAssignObjPatternRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-var objAssignPatternRhs;
-var objPatternBeforeDefault;
-var tmpTernaryTest;
-objAssignPatternRhs = 1;
-objPatternBeforeDefault = objAssignPatternRhs.x;
-tmpTernaryTest = objPatternBeforeDefault === undefined;
-if (tmpTernaryTest) {
+const objPatternBeforeDefault = (1).x;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
   x = b;
 } else {
   x = objPatternBeforeDefault;
@@ -48,7 +41,7 @@ if (tmpTernaryTest) {
 ## Result
 
 Should call `$` with:
- - 0: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -23,7 +23,8 @@ export function phase0(code, fname) {
 
   groupEnd();
 
-  return { // fdata
+  return {
+    // fdata
     fname,
     cycle: 0, // How often did we repeat the main loop
     tenkoOutput,

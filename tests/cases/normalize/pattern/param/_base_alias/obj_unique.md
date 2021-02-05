@@ -26,11 +26,11 @@ function g({ x: y }) {
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let y_1 = tmpParamPattern.x;
+  let y = tmpParamPattern.x;
   {
     let y_2 = 2;
   }
-  return y_1;
+  return y;
 }
 let y = 1;
 ('<hoisted func decl `g`>');

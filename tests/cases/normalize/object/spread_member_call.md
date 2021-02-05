@@ -20,16 +20,13 @@ $({...obj.foo()});
 `````js filename=intro
 const obj = {
   foo() {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { x: 1 };
-    const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-    return tmpReturnArg;
+    return $({ x: 1 });
   },
 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpObjSpread = obj.foo();
-const tmpCalleeParam$1 = { ...tmpObjSpread };
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = { ...tmpObjSpread };
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -37,16 +34,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const obj = {
   foo() {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { x: 1 };
-    const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-    return tmpReturnArg;
+    return $({ x: 1 });
   },
 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpObjSpread = obj.foo();
-const tmpCalleeParam$1 = { ...tmpObjSpread };
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = { ...tmpObjSpread };
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result

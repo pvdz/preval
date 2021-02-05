@@ -36,15 +36,12 @@ let s = '';
 let a = 0;
 const obj = {
   get x() {
-    s = s + 'read;';
+    s += 'read;';
     return a;
   },
   set x(v) {
-    const tmpBinBothLhs = s;
-    const tmpBinLhs = 'write[' + v;
-    const tmpBinBothRhs = tmpBinLhs + '];';
-    s = tmpBinBothLhs + tmpBinBothRhs;
-    a = a + v;
+    s += 'write[' + v + '];';
+    a += v;
     return a;
   },
 };
@@ -62,15 +59,12 @@ let s = '';
 let a = 0;
 const obj = {
   get x() {
-    s = s + 'read;';
+    s += 'read;';
     return a;
   },
   set x(v) {
-    const tmpBinBothLhs = s;
-    const tmpBinLhs = 'write[' + v;
-    const tmpBinBothRhs = tmpBinLhs + '];';
-    s = tmpBinBothLhs + tmpBinBothRhs;
-    a = a + v;
+    s += 'write[' + v + '];';
+    a += v;
     return a;
   },
 };

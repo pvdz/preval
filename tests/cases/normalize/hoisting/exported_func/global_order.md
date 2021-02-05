@@ -20,16 +20,13 @@ export function g() { return $(); }
 
 `````js filename=intro
 export function f() {
-  const tmpReturnArg = $();
-  return tmpReturnArg;
+  return $();
 }
 export function g() {
-  const tmpReturnArg$1 = $();
-  return tmpReturnArg$1;
+  return $();
 }
 export function h() {
-  const tmpReturnArg$2 = $();
-  return tmpReturnArg$2;
+  return $();
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -45,16 +42,13 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 
 `````js filename=intro
 export function f() {
-  const tmpReturnArg = $();
-  return tmpReturnArg;
+  return $();
 }
 export function g() {
-  const tmpReturnArg$1 = $();
-  return tmpReturnArg$1;
+  return $();
 }
 export function h() {
-  const tmpReturnArg$2 = $();
-  return tmpReturnArg$2;
+  return $();
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

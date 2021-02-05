@@ -21,21 +21,17 @@ export function g() {
 
 `````js filename=intro
 export function g() {
+  $(f(3));
   function f() {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
+    return $(1);
   }
-  ('<eliminated duplicate func decl `f`>');
-  ('<hoisted func decl `f`>');
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
-  ('<hoisted func decl `f`>');
-  ('<hoisted func decl `f`>');
+  function f() {
+    return $(2);
+  }
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = g();
+tmpCallCallee(tmpCalleeParam);
 ('<hoisted func decl `g`>');
 `````
 
@@ -43,17 +39,17 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 export function g() {
+  $(f(3));
   function f() {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
+    return $(1);
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
+  function f() {
+    return $(2);
+  }
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = g();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result

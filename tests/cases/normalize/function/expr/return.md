@@ -1,30 +1,29 @@
 # Preval test case
 
-# auto_ident_func_id.md
+# base.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_func_id
+> normalize > function > expr > base
 >
-> Normalization of var decls should work the same everywhere they are
+> a func expr is slightly different from func expr
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function f() {
-  let a = function f() {};
-  $(a);
-}
+const f = function g() {
+  return $(1)
+};
 $(f());
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f() {
-  let a = function f() {};
-  $(a);
-}
+const f = function g() {
+  const tmpReturnArg = $(1);
+  return tmpReturnArg;
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -33,10 +32,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  let a = function f() {};
-  $(a);
-}
+const f = function g() {
+  const tmpReturnArg = $(1);
+  return tmpReturnArg;
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -45,7 +44,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: 1
+ - 2: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

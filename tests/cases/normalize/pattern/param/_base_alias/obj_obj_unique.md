@@ -29,11 +29,11 @@ $(i({x: {y: {z: {a: 10}}}}));
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let a_1 = objPatternNoDefault$1.z;
+  let a = objPatternNoDefault$1.z;
   {
     let a_2 = 2;
   }
-  return a_1;
+  return a;
 }
 let a = 1;
 ('<hoisted func decl `i`>');
@@ -53,9 +53,10 @@ tmpCallCallee(tmpCalleeParam);
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let a_1 = objPatternNoDefault$1.z;
-  return a_1;
+  let a = objPatternNoDefault$1.z;
+  return a;
 }
+let a = 1;
 const tmpCallCallee = $;
 const tmpCallCallee$1 = i;
 const tmpObjLitVal$2 = { a: 10 };

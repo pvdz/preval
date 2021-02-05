@@ -25,30 +25,20 @@ export function f() {
 
 `````js filename=intro
 export function f() {
-  function f_1() {
-    const tmpReturnArg = $();
-    return tmpReturnArg;
+  $(f(), g(), h());
+  function f() {
+    return $();
   }
   function g() {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
+    return $();
   }
   function h() {
-    const tmpReturnArg$2 = $();
-    return tmpReturnArg$2;
+    return $();
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f_1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-  ('<hoisted func decl `f`>');
-  ('<hoisted func decl `g`>');
-  ('<hoisted func decl `h`>');
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = f();
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 ('<hoisted func decl `f`>');
 `````
 
@@ -56,27 +46,20 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 export function f() {
-  function f_1() {
-    const tmpReturnArg = $();
-    return tmpReturnArg;
+  $(f(), g(), h());
+  function f() {
+    return $();
   }
   function g() {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
+    return $();
   }
   function h() {
-    const tmpReturnArg$2 = $();
-    return tmpReturnArg$2;
+    return $();
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f_1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = f();
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result

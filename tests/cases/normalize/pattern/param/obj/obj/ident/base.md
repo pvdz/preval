@@ -22,8 +22,8 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternNoDefault.y;
-  return y;
+  let y_1 = objPatternNoDefault.y;
+  return y_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -39,8 +39,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternNoDefault.y;
-  return y;
+  let y_1 = objPatternNoDefault.y;
+  return y_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

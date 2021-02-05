@@ -26,7 +26,7 @@ const tmpNestedComplexRhs = function f() {};
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs$1 = function f_1() {};
+  const tmpNestedComplexRhs$1 = function f() {};
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
@@ -44,7 +44,7 @@ const tmpNestedComplexRhs = function f() {};
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs$1 = function f_1() {};
+  const tmpNestedComplexRhs$1 = function f() {};
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }

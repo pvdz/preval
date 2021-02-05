@@ -23,8 +23,8 @@ $(f([{ x: null, y: 2, z: 3 }, 20, 30], 200));
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
-  return x;
+  let x_1 = arrPatternStep.x;
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -42,8 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
-  return x;
+  let x_1 = arrPatternStep.x;
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

@@ -25,7 +25,7 @@ $(f());
 `````js filename=intro
 function f() {
   {
-    let a = function f_1() {};
+    let a = function f() {};
     $(a);
   }
 }
@@ -38,7 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let a = function f_1() {};
+  let a = function f() {};
   $(a);
 }
 const tmpCallCallee = $;

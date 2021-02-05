@@ -25,8 +25,8 @@ function f(tmpParamPattern) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
-  let x = arrPatternStep$1.x;
-  return x;
+  let x_1 = arrPatternStep$1.x;
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -46,8 +46,8 @@ function f(tmpParamPattern) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
-  let x = arrPatternStep$1.x;
-  return x;
+  let x_1 = arrPatternStep$1.x;
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

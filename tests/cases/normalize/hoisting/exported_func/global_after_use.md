@@ -17,8 +17,7 @@ export function f() { return $(2); }
 
 `````js filename=intro
 export function f() {
-  const tmpReturnArg = $(2);
-  return tmpReturnArg;
+  return $(2);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
@@ -30,8 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 export function f() {
-  const tmpReturnArg = $(2);
-  return tmpReturnArg;
+  return $(2);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);

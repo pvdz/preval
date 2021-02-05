@@ -23,14 +23,14 @@ $(f({ x: { x: 1, y: 0, z: 3 }, b: 11, c: 12 }, 10));
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
-  let y = undefined;
+  let y_1 = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
+    y_1 = $('fail');
   } else {
-    y = objPatternBeforeDefault;
+    y_1 = objPatternBeforeDefault;
   }
-  return y;
+  return y_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -47,14 +47,14 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternBeforeDefault = objPatternNoDefault.y;
-  let y = undefined;
+  let y_1 = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
+    y_1 = $('fail');
   } else {
-    y = objPatternBeforeDefault;
+    y_1 = objPatternBeforeDefault;
   }
-  return y;
+  return y_1;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

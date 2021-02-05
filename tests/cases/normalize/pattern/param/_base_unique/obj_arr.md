@@ -22,11 +22,11 @@ function i({x: [ y ]}) {
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
-  let y_1 = arrPatternSplat[0];
+  let y = arrPatternSplat[0];
   {
     let y_2 = 2;
   }
-  return y_1;
+  return y;
 }
 let y = 1;
 ('<hoisted func decl `i`>');

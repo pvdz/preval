@@ -21,7 +21,7 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 ## Normalized
 
 `````js filename=intro
-function x_1(tmpParamPattern, tmpParamPattern$1) {
+function x(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
@@ -44,7 +44,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    foo = x_1;
+    foo = x;
   } else {
     foo = arrPatternBeforeDefault$1;
   }
@@ -53,14 +53,14 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$2 = undefined;
-  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-function x_1(tmpParamPattern, tmpParamPattern$1) {
+function x(tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
@@ -83,7 +83,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    foo = x_1;
+    foo = x;
   } else {
     foo = arrPatternBeforeDefault$1;
   }
@@ -91,7 +91,7 @@ function x_1(tmpParamPattern, tmpParamPattern$1) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
 }
 `````
 

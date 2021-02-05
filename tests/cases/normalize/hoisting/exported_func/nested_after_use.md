@@ -22,18 +22,14 @@ export function g() {
 
 `````js filename=intro
 export function g() {
+  $(f(1));
   function f() {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
+    return $(2);
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(1);
-  tmpCallCallee(tmpCalleeParam);
-  ('<hoisted func decl `f`>');
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = g();
+tmpCallCallee(tmpCalleeParam);
 ('<hoisted func decl `g`>');
 `````
 
@@ -41,17 +37,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 export function g() {
+  $(f(1));
   function f() {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
+    return $(2);
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(1);
-  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = g();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result

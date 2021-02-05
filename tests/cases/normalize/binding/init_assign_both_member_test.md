@@ -39,8 +39,8 @@ c = {
     $(3);
     return 20;
   },
-  set x(n_1) {
-    $(4, n_1);
+  set x(n) {
+    $(4, n);
   },
 };
 let tmpNestedAssignPropRhs = c.x;
@@ -70,8 +70,8 @@ c = {
     $(3);
     return 20;
   },
-  set x(n_1) {
-    $(4, n_1);
+  set x(n) {
+    $(4, n);
   },
 };
 let tmpNestedAssignPropRhs = c.x;

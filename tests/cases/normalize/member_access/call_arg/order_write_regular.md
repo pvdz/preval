@@ -24,8 +24,7 @@ $($(obj).x = 30);
 `````js filename=intro
 const obj = {
   get x() {
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
+    return $(10);
   },
   set x(_) {
     $(20);
@@ -45,8 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = {
   get x() {
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
+    return $(10);
   },
   set x(_) {
     $(20);

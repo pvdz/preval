@@ -20,9 +20,9 @@ for (const x = 2;;) $(x);
 `````js filename=intro
 const x = 1;
 {
-  const x = 2;
+  const x_1 = 2;
   while (true) {
-    $(x);
+    $(x_1);
   }
 }
 `````
@@ -30,10 +30,8 @@ const x = 1;
 ## Output
 
 `````js filename=intro
-const x = 1;
-const x = 2;
 while (true) {
-  $(x);
+  $(2);
 }
 `````
 
@@ -70,5 +68,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

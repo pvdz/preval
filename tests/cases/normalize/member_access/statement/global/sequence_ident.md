@@ -34,7 +34,7 @@ tmpCompObj.length;
 
 Should call `$` with:
  - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined
 
 Normalized calls: Same
 

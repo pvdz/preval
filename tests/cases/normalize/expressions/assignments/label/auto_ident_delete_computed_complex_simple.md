@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpDeleteCompObj = $(x);
   const tmpDeleteCompProp = 'y';
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -36,8 +36,11 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(x);
-a = delete tmpDeleteCompObj.y;
+label: {
+  const tmpDeleteCompObj = $(x);
+  const tmpDeleteCompProp = 'y';
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+}
 $(a, x);
 `````
 

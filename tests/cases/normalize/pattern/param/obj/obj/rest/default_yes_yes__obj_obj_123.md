@@ -45,8 +45,8 @@ function f($tdz$__pattern) {
   const tmpCalleeParam$2 = objPatternAfterDefault;
   const tmpCalleeParam$3 = [];
   const tmpCalleeParam$4 = undefined;
-  let y_1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
-  return y_1;
+  let y = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+  return y;
 }
 const tmpCallCallee$3 = $;
 const tmpCallCallee$4 = f;
@@ -84,8 +84,8 @@ function f($tdz$__pattern) {
   const tmpCallCallee$2 = objPatternRest;
   const tmpCalleeParam$2 = objPatternAfterDefault;
   const tmpCalleeParam$3 = [];
-  let y_1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
-  return y_1;
+  let y = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
+  return y;
 }
 const tmpCallCallee$3 = $;
 const tmpCallCallee$4 = f;

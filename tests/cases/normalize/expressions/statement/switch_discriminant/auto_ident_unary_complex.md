@@ -28,7 +28,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
 const tmpSwitchTest = typeof tmpUnaryArg;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -44,7 +44,13 @@ $(a, x);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 typeof tmpUnaryArg;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, 1);
 `````
 

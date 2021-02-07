@@ -42,7 +42,7 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
 tmpSwitchTest = tmpNestedPropAssignRhs$1;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -69,7 +69,13 @@ tmpNestedAssignPropRhs = 3;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
 tmpSwitchTest = tmpNestedPropAssignRhs$1;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b, c, 3);
 `````
 

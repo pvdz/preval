@@ -25,7 +25,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -62,25 +62,36 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  const tmpIfTest$1 = $(30);
-  if (tmpIfTest$1) {
-    $(60);
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      {
+        10;
+        20;
+        const tmpIfTest$1 = $(30);
+        if (tmpIfTest$1) {
+          40;
+          50;
+          $(60);
+        } else {
+          const tmpCallCallee = $;
+          const tmpCalleeParam = $(100);
+          tmpCallCallee(tmpCalleeParam);
+        }
+      }
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a);
 `````
@@ -97,4 +108,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

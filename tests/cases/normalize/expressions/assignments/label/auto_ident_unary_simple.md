@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = typeof x;
 }
 $(a, x);
@@ -33,7 +33,9 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'number';
+label: {
+  a = typeof x;
+}
 $(a, 1);
 `````
 

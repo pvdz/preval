@@ -25,8 +25,9 @@ switch (1) {
 `````js filename=intro
 {
   let x;
+  let tmpUnaryArg;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,7 +38,7 @@ switch (1) {
       ('case 0:');
       {
         x = 1;
-        const tmpUnaryArg = $(x);
+        tmpUnaryArg = $(x);
         a = typeof tmpUnaryArg;
         $(a, x);
       }
@@ -50,20 +51,23 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let x;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  x = 1;
-  const tmpUnaryArg = $(x);
-  a = typeof tmpUnaryArg;
-  $(a, x);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      x = 1;
+      tmpUnaryArg = $(x);
+      a = typeof tmpUnaryArg;
+      $(a, x);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

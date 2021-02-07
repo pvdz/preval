@@ -27,14 +27,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
   let a;
+  let tmpChainRootProp;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -51,7 +52,7 @@ var tmpDoWhileTest;
               a = undefined;
               1;
               2;
-              const tmpChainRootProp = $(b);
+              tmpChainRootProp = $(b);
               if (tmpChainRootProp) {
                 const tmpChainElementObject = tmpChainRootProp.x;
                 a = tmpChainElementObject;
@@ -100,11 +101,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
 let a;
+let tmpChainRootProp;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -115,7 +117,7 @@ do {
     if (tmpIfTest) {
       b = { x: 1 };
       a = undefined;
-      const tmpChainRootProp = $(b);
+      tmpChainRootProp = $(b);
       if (tmpChainRootProp) {
         const tmpChainElementObject = tmpChainRootProp.x;
         a = tmpChainElementObject;

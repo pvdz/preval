@@ -27,7 +27,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -54,22 +54,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
 $(1);
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
-  const tmpChainRootComputed = $('$');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
-    const tmpCallObj = tmpChainElementObject;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainElementCall;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    if (tmpChainElementCall) {
+      const tmpChainRootComputed = $('$');
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      if (tmpChainElementObject) {
+        const tmpCallObj = tmpChainElementObject;
+        const tmpCallVal = tmpCallObj.call;
+        const tmpCalleeParam = tmpChainElementCall;
+        const tmpCalleeParam$1 = $(1);
+        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        a = tmpChainElementCall$1;
+      }
+    }
   }
 }
 $(a);
@@ -88,4 +94,9 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 2
+ - 3: '$'
+ - 4: undefined
+ - eval returned: undefined

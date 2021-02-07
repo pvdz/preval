@@ -24,22 +24,26 @@ a: {}
 ## Normalized
 
 `````js filename=intro
-{
+a: {
 }
 a_1: while (true) {
   $(1);
   continue a_1;
 }
-{
+a_2: {
 }
 `````
 
 ## Output
 
 `````js filename=intro
+a: {
+}
 a_1: while (true) {
   $(1);
   continue a_1;
+}
+a_2: {
 }
 `````
 

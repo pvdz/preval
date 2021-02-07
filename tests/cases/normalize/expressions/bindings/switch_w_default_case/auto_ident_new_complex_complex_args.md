@@ -27,14 +27,17 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
+  let tmpNewCallee;
+  let tmpCalleeParam;
+  let tmpCalleeParam$1;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -48,9 +51,9 @@ var tmpDoWhileTest;
           if (tmpIfTest) {
             {
               b = { $: $ };
-              const tmpNewCallee = $($);
-              const tmpCalleeParam = $(1);
-              const tmpCalleeParam$1 = $(2);
+              tmpNewCallee = $($);
+              tmpCalleeParam = $(1);
+              tmpCalleeParam$1 = $(2);
               a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
               $(a);
             }
@@ -96,11 +99,14 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
+let tmpNewCallee;
+let tmpCalleeParam;
+let tmpCalleeParam$1;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -110,9 +116,9 @@ do {
     }
     if (tmpIfTest) {
       b = { $: $ };
-      const tmpNewCallee = $($);
-      const tmpCalleeParam = $(1);
-      const tmpCalleeParam$1 = $(2);
+      tmpNewCallee = $($);
+      tmpCalleeParam = $(1);
+      tmpCalleeParam$1 = $(2);
       a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
       $(a);
       tmpSwitchFallthrough = true;

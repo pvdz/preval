@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -44,11 +44,17 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(1);
-a = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
-  a = tmpChainElementCall;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    a = undefined;
+    const tmpChainRootCall = $;
+    if (tmpChainRootCall) {
+      const tmpChainElementCall = tmpChainRootCall(1);
+      a = tmpChainElementCall;
+    }
+  }
 }
 $(a);
 `````

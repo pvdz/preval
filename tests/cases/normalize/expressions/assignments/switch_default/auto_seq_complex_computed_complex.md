@@ -27,7 +27,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,8 +50,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpObjLitVal = $(1);
+    a = { b: tmpObjLitVal };
+  }
+}
 $(1);
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $('b');

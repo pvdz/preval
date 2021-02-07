@@ -24,7 +24,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
@@ -40,13 +40,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
+({ x: tmpObjLitVal });
 let a = { a: 999, b: 1000 };
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
-    tmpChainElementObject.y;
+label: {
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    if (tmpChainElementObject) {
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+    }
   }
 }
 $(a);

@@ -20,11 +20,11 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let tmpSwitchValue = 6;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
+  let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
       ('Cases before the default case');
@@ -65,9 +65,9 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
   } else {

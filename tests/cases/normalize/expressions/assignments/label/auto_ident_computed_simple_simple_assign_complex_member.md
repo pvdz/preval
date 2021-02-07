@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
@@ -39,12 +39,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+label: {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('d');
+  let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b['c'] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+}
 $(a, b);
 `````
 

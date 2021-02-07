@@ -23,6 +23,7 @@ var foo;
 let a = 1;
 let b = 2;
 let c = 3;
+foo = undefined;
 if (a) {
   foo = b;
 } else {
@@ -35,6 +36,7 @@ $(foo);
 
 `````js filename=intro
 var foo;
+foo = undefined;
 foo = 2;
 $(foo);
 `````

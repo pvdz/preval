@@ -30,7 +30,7 @@ if (tmpSwitchTest) {
   const tmpCalleeParam = $(1);
   tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
 }
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,7 +51,13 @@ if (tmpSwitchTest) {
   const tmpCalleeParam = $(1);
   tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
 }
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

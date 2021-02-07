@@ -27,16 +27,16 @@ function f($tdz$__arg) {
     $(10);
     $(20);
     const tmpNestedAssignArrPatternRhs = [1, 2];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat[0];
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat$1[0];
     arg = tmpNestedAssignArrPatternRhs;
   } else {
     arg = $tdz$__arg;
   }
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat$1 = [...bindingPatternArrRoot];
-let a = arrPatternSplat$1[0];
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
 ('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -54,16 +54,16 @@ function f($tdz$__arg) {
     $(10);
     $(20);
     const tmpNestedAssignArrPatternRhs = [1, 2];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat[0];
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat$1[0];
     arg = tmpNestedAssignArrPatternRhs;
   } else {
     arg = $tdz$__arg;
   }
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat$1 = [...bindingPatternArrRoot];
-let a = arrPatternSplat$1[0];
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

@@ -65,8 +65,8 @@ export function phase2(program, fdata, resolve, req) {
   do {
     // Clear usage and update data befor each pass (mutations may invalidate the data so we wipe before every pass)
     fdata.globallyUniqueNamingRegistery.forEach((meta) => {
-      meta.updates = [];
-      meta.usages = [];
+      meta.writes = [];
+      meta.reads = [];
     });
 
     changed = false;
@@ -80,7 +80,7 @@ export function phase2(program, fdata, resolve, req) {
     'Usage / update stats for non-builtins:\n' +
       [...fdata.globallyUniqueNamingRegistery.values()]
         .filter((meta) => !globals.has(meta.uniqueName))
-        .map((meta) => ' - `' + meta.uniqueName + '`: ' + meta.updates.length + ' updates and ' + meta.usages.length + ' usages')
+        .map((meta) => ' - `' + meta.uniqueName + '`: ' + meta.writes.length + ' updates and ' + meta.reads.length + ' usages')
         .join('\n'),
     '\n',
   );
@@ -343,7 +343,7 @@ export function phase2(program, fdata, resolve, req) {
             const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
             ASSERT(meta, 'meta data should exist for this name', node.left.name, meta);
             log('Marking `' + node.name + '` as being used and assigned to');
-            meta.updates.push({ parent: node, prop: 'left', index: -1 });
+            meta.writes.push({ parent: node, prop: 'left', index: -1 });
           }
           expr(node, 'left', -1, node.left);
         }
@@ -373,7 +373,7 @@ export function phase2(program, fdata, resolve, req) {
             const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
             ASSERT(meta, 'meta data should exist for this name', node.left.name, meta);
             log('Marking `' + node.name + '` as being used and assigned to');
-            meta.updates.push({ parent: node, prop: 'left', index: -1 });
+            meta.writes.push({ parent: node, prop: 'left', index: -1 });
           }
           expr(node, 'left', -1, node.left);
         }
@@ -394,7 +394,7 @@ export function phase2(program, fdata, resolve, req) {
         if (node.id) {
           group('Function decl id:', node.id.name);
           const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
-          meta.updates.push({
+          meta.writes.push({
             // parent of this function decl
             parent: crumbsNode[crumbsNode.length - 1],
             prop: crumbsProp[crumbsProp.length - 1],
@@ -570,8 +570,8 @@ export function phase2(program, fdata, resolve, req) {
           // For ident case;
           const meta = fdata.globallyUniqueNamingRegistery.get(dnode.id.name);
           log('Marking `' + dnode.id.name + '` as being updated to', dnode.init?.type);
-          meta.updates.push({ parent: dnode, prop: 'init', index: -1 });
-          meta.usages.push({ parent: dnode, prop: 'id', index: -1 });
+          meta.writes.push({ parent: dnode, prop: 'init', index: -1 });
+          meta.reads.push({ parent: dnode, prop: 'id', index: -1 });
 
           if (dnode.init) {
             expr2(node, 'declarations', i, dnode, 'init', -1, dnode.init);
@@ -745,7 +745,7 @@ export function phase2(program, fdata, resolve, req) {
         if (node.left.type === 'Identifier') {
           log('Assignment to:', node.left.name);
           const meta = fdata.globallyUniqueNamingRegistery.get(node.left.name);
-          meta.updates.push({
+          meta.writes.push({
             // parent of this function decl
             parent: node,
             prop: 'right',
@@ -986,7 +986,7 @@ export function phase2(program, fdata, resolve, req) {
             // Specific hack because we won't have access to the 'current" func instance otherwise
             log('Function param id:');
             const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
-            meta.updates.push({
+            meta.writes.push({
               parent: crumbsNode[crumbsNode.length - 1],
               prop: crumbsProp[crumbsProp.length - 1],
               index: crumbsIndex[crumbsIndex.length - 1],
@@ -1012,7 +1012,7 @@ export function phase2(program, fdata, resolve, req) {
           const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
           ASSERT(meta, 'meta data should exist for this name', node.name, meta);
           log('Marking `' + node.name + '` as being used');
-          meta.usages.push({
+          meta.reads.push({
             parent: crumbsNode[crumbsNode.length - 1],
             prop: crumbsProp[crumbsProp.length - 1],
             index: crumbsIndex[crumbsIndex.length - 1],
@@ -1841,15 +1841,15 @@ export function phase2(program, fdata, resolve, req) {
         paramBindingNames.push(pnode.argument.name);
 
         const meta = fdata.globallyUniqueNamingRegistery.get(pnode.argument.name);
-        //meta.updates.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
-        meta.usages.push({ parent: pnode, prop: 'argument', index: -1 });
+        //meta.writes.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
+        meta.reads.push({ parent: pnode, prop: 'argument', index: -1 });
       } else if (pnode.type === 'Identifier') {
         // The name may not match, for example a func expr with the same name as one of its args
         paramBindingNames.push(pnode.name);
 
         const meta = fdata.globallyUniqueNamingRegistery.get(pnode.name);
-        //meta.updates.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
-        meta.usages.push({ parent: pnode, prop: 'argument', index: -1 });
+        //meta.writes.push({ parent: dnode, prop: 'init', index: -1 }); // TODO: ehhh this is an update, but how do you represent the update?
+        meta.reads.push({ parent: pnode, prop: 'argument', index: -1 });
       } else {
         ASSERT(false, 'Patterns and param defaults should be normalized out and there isnt anything else here?', node);
       }

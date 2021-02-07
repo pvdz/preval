@@ -29,7 +29,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -48,18 +48,22 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
-$(a, x, y);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    a = tmpNestedAssignArrPatternRhs;
+  }
+}
+$(a, 1, 2);
 `````
 
 ## Result
@@ -73,4 +77,9 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 3
+ - 3: 4
+ - 4: [3, 4], 1, 2
+ - eval returned: undefined

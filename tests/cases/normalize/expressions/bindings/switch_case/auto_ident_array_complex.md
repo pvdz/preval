@@ -22,8 +22,11 @@ switch (1) {
 
 `````js filename=intro
 {
+  let tmpArrElement;
+  let tmpArrElement$1;
+  let tmpArrElement$2;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -33,9 +36,9 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const tmpArrElement = $(1);
-        const tmpArrElement$1 = 2;
-        const tmpArrElement$2 = $(3);
+        tmpArrElement = $(1);
+        tmpArrElement$1 = 2;
+        tmpArrElement$2 = $(3);
         a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
         $(a);
       }
@@ -48,19 +51,24 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$2 = $(3);
-  a = [tmpArrElement, 2, tmpArrElement$2];
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpArrElement = $(1);
+      tmpArrElement$1 = 2;
+      tmpArrElement$2 = $(3);
+      a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

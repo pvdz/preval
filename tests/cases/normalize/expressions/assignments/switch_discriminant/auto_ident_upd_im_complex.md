@@ -37,7 +37,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -63,7 +63,13 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

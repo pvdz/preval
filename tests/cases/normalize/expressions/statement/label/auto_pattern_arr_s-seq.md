@@ -22,7 +22,7 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
+label: {
   $(10);
   $(20);
   1;
@@ -37,8 +37,12 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-$(10);
-$(20);
+label: {
+  $(10);
+  $(20);
+  1;
+  2;
+}
 $(a);
 `````
 

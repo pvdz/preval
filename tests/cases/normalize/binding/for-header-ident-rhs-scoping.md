@@ -14,7 +14,7 @@
 let x = 1;
 let y = 1;
 for (let x in [x]) {
-let y = 2;
+  let y = 2;
   $(x);
 }
 `````
@@ -25,11 +25,11 @@ let y = 2;
 let x = 1;
 let y = 1;
 {
-  const tmpForInDeclRhs = [x];
-  let x;
-  for (x in tmpForInDeclRhs) {
+  const tmpForInDeclRhs = [x_1];
+  let x_1;
+  for (x_1 in tmpForInDeclRhs) {
     let y_1 = 2;
-    $(x);
+    $(x_1);
   }
 }
 `````
@@ -37,20 +37,18 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpForInDeclRhs = [x];
-let x;
-for (x in tmpForInDeclRhs) {
-  $(x);
+const tmpForInDeclRhs = [x_1];
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
+  $(x_1);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

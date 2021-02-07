@@ -27,7 +27,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,14 +50,20 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('c');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpCompObj = $(b);
-const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpAssignComMemLhsObj = $(b);
+    const tmpAssignComMemLhsProp = $('c');
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    const tmpCompObj = $(b);
+    const tmpCompProp = $('d');
+    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  }
+}
 $(a, b);
 `````
 

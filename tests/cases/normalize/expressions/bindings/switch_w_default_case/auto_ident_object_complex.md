@@ -25,13 +25,16 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpObjLitVal;
+  let tmpObjLitVal$1;
+  let tmpObjLitVal$2;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -44,9 +47,9 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpObjLitVal = $(1);
-              const tmpObjLitVal$1 = 2;
-              const tmpObjLitVal$2 = $(3);
+              tmpObjLitVal = $(1);
+              tmpObjLitVal$1 = 2;
+              tmpObjLitVal$2 = $(3);
               a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
               $(a);
             }
@@ -92,10 +95,13 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpObjLitVal;
+let tmpObjLitVal$1;
+let tmpObjLitVal$2;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -104,9 +110,10 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpObjLitVal = $(1);
-      const tmpObjLitVal$2 = $(3);
-      a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+      tmpObjLitVal = $(1);
+      tmpObjLitVal$1 = 2;
+      tmpObjLitVal$2 = $(3);
+      a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
       $(a);
       tmpSwitchFallthrough = true;
     }

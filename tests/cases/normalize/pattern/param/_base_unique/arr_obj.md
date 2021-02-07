@@ -22,11 +22,11 @@ function h([{ x }]) {
 function h(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
+  let x_1 = arrPatternStep.x;
   {
     let x_2 = 2;
   }
-  return x;
+  return x_1;
 }
 let x = 1;
 ('<hoisted func decl `h`>');

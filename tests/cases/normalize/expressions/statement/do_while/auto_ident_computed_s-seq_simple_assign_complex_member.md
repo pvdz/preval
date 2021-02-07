@@ -23,9 +23,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   1;
@@ -45,9 +45,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpNestedAssignComMemberObj = b;

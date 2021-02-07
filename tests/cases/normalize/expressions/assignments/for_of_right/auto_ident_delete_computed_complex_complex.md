@@ -25,13 +25,13 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
-  const tmpDeleteCompObj = $(x);
+  const tmpDeleteCompObj = $(x_1);
   const tmpDeleteCompProp = $('y');
   const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   tmpForOfDeclRhs = tmpNestedComplexRhs;
-  let x;
-  for (x of tmpForOfDeclRhs) {
+  let x_1;
+  for (x_1 of tmpForOfDeclRhs) {
   }
 }
 $(a, x);
@@ -43,13 +43,13 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpForOfDeclRhs;
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(x_1);
 const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpForOfDeclRhs = tmpNestedComplexRhs;
-let x;
-for (x of tmpForOfDeclRhs) {
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````
@@ -57,9 +57,8 @@ $(a, x);
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

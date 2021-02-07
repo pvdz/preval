@@ -27,14 +27,16 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
+  let tmpCompObj;
+  let tmpCompProp;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -48,9 +50,9 @@ var tmpDoWhileTest;
           if (tmpIfTest) {
             {
               b = { c: 1 };
-              const tmpAssignRhsCompObj = $(b);
-              const tmpAssignRhsCompProp = $('c');
-              a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+              tmpCompObj = $(b);
+              tmpCompProp = $('c');
+              a = tmpCompObj[tmpCompProp];
               $(a, b);
             }
             tmpSwitchFallthrough = true;
@@ -95,11 +97,13 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
+let tmpCompObj;
+let tmpCompProp;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -109,9 +113,9 @@ do {
     }
     if (tmpIfTest) {
       b = { c: 1 };
-      const tmpAssignRhsCompObj = $(b);
-      const tmpAssignRhsCompProp = $('c');
-      a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+      tmpCompObj = $(b);
+      tmpCompProp = $('c');
+      a = tmpCompObj[tmpCompProp];
       $(a, b);
       tmpSwitchFallthrough = true;
     }

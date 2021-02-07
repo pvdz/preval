@@ -24,10 +24,10 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpArrElement = $(3);
@@ -44,10 +44,10 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpArrElement = $(3);

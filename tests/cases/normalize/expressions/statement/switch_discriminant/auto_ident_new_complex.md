@@ -25,7 +25,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpSwitchTest = new tmpNewCallee(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -41,7 +41,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 new tmpNewCallee(1);
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

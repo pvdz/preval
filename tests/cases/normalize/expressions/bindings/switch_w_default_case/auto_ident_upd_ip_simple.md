@@ -27,14 +27,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
+  let tmpPostUpdArgIdent;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -48,7 +49,7 @@ var tmpDoWhileTest;
           if (tmpIfTest) {
             {
               b = 1;
-              const tmpPostUpdArgIdent = b;
+              tmpPostUpdArgIdent = b;
               b = b + 1;
               a = tmpPostUpdArgIdent;
               $(a, b);
@@ -95,11 +96,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
+let tmpPostUpdArgIdent;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -109,7 +111,7 @@ do {
     }
     if (tmpIfTest) {
       b = 1;
-      const tmpPostUpdArgIdent = b;
+      tmpPostUpdArgIdent = b;
       b = b + 1;
       a = tmpPostUpdArgIdent;
       $(a, b);

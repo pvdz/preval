@@ -26,7 +26,7 @@ switch (1) {
 {
   let b;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,6 +37,7 @@ switch (1) {
       ('case 0:');
       {
         b = {};
+        a = undefined;
         const tmpCallCallee = $;
         const tmpObjLitVal = $(2);
         const tmpCalleeParam = { b: tmpObjLitVal };
@@ -54,24 +55,28 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = {};
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = {};
+      a = undefined;
+      const tmpCallCallee = $;
+      const tmpObjLitVal = $(2);
+      const tmpCalleeParam = { b: tmpObjLitVal };
+      const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+      b = tmpNestedAssignObjPatternRhs.b;
+      a = tmpNestedAssignObjPatternRhs;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

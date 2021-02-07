@@ -25,8 +25,8 @@ export function f() {
 
 `````js filename=intro
 export function f() {
-  $(f(), g(), h());
-  function f() {
+  $(f_1(), g(), h());
+  function f_1() {
     return $();
   }
   function g() {
@@ -46,8 +46,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 export function f() {
-  $(f(), g(), h());
-  function f() {
+  $(f_1(), g(), h());
+  function f_1() {
     return $();
   }
   function g() {

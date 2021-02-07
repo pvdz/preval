@@ -17,7 +17,7 @@ foo: $(1);
 ## Normalized
 
 `````js filename=intro
-{
+foo: {
   $(1);
 }
 `````
@@ -25,7 +25,9 @@ foo: $(1);
 ## Output
 
 `````js filename=intro
-$(1);
+foo: {
+  $(1);
+}
 `````
 
 ## Result

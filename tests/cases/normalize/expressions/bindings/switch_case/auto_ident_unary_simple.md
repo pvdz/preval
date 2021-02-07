@@ -26,7 +26,7 @@ switch (1) {
 {
   let x;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -49,19 +49,22 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let x;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  x = 1;
-  a = typeof x;
-  $(a, x);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      x = 1;
+      a = typeof x;
+      $(a, x);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

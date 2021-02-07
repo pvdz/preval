@@ -23,9 +23,9 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpDeleteObj = $(x);
@@ -37,9 +37,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpDeleteObj = $(x);

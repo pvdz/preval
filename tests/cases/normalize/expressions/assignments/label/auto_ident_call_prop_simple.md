@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = b.$(1);
 }
 $(a);
@@ -32,9 +32,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
-a = b.$(1);
+label: {
+  a = b.$(1);
+}
 $(a);
 `````
 
@@ -47,4 +49,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -23,15 +23,15 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a;
+  let a_1;
   const tmpNestedAssignComMemberObj = b;
   const tmpNestedAssignComMemberProp = $('x');
   let tmpNestedAssignPropRhs = c + d;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
+  a_1 = tmpNestedPropAssignRhs;
   while (false) {
-    $(a, b, c);
+    $(a_1, b, c);
   }
 }
 `````
@@ -39,15 +39,14 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
-let a;
+let a_1;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('x');
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-a = 7;
+a_1 = 7;
 while (false) {
-  $(a, b, 7);
+  $(a_1, b, 7);
 }
 `````
 
@@ -59,5 +58,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+Final output calls: Same

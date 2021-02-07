@@ -18,10 +18,10 @@ do $(a); while (x + y);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let a = 1;
 let x = 3;
 let y = 4;
+let tmpDoWhileTest;
 do {
   $(a);
   tmpDoWhileTest = x + y;
@@ -31,7 +31,7 @@ do {
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpDoWhileTest;
 do {
   $(1);
   tmpDoWhileTest = 7;

@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 (function f() {});
-(function f() {});
+(function f_1() {});
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 (function f() {});
-(function f() {});
+(function f_1() {});
 $(a);
 `````
 

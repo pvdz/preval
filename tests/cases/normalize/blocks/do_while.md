@@ -16,7 +16,7 @@ while ($(2));
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpDoWhileTest;
 do {
   $(1);
   tmpDoWhileTest = $(2);
@@ -26,7 +26,7 @@ do {
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpDoWhileTest;
 do {
   $(1);
   tmpDoWhileTest = $(2);

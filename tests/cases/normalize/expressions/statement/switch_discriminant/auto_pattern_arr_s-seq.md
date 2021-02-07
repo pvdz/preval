@@ -28,7 +28,7 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpSwitchTest = [1, 2];
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -47,7 +47,13 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 [1, 2];
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

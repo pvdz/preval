@@ -27,7 +27,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -43,7 +43,13 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
-delete x.y;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    delete x['y'];
+  }
+}
 $(a, x);
 `````
 

@@ -25,17 +25,17 @@ let y = 2;
 let x = 1;
 let y = 1;
 {
-  const tmpForInPatDeclRhs = [x];
+  const tmpForInPatDeclRhs = [x_1];
   let tmpForInPatDeclLhs;
-  let x;
+  let x_1;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
     const arrAssignPatternRhs = tmpForInPatDeclLhs;
     const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
+    x_1 = arrPatternSplat[0];
     arrAssignPatternRhs;
     {
       let y_1 = 2;
-      $(x);
+      $(x_1);
     }
   }
 }
@@ -44,24 +44,22 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpForInPatDeclRhs = [x];
+const tmpForInPatDeclRhs = [x_1];
 let tmpForInPatDeclLhs;
-let x;
+let x_1;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  $(x);
+  x_1 = arrPatternSplat[0];
+  $(x_1);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

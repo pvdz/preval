@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpCallCallee = $($);
   a = tmpCallCallee(1);
 }
@@ -31,8 +31,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-a = tmpCallCallee(1);
+label: {
+  const tmpCallCallee = $($);
+  a = tmpCallCallee(1);
+}
 $(a);
 `````
 

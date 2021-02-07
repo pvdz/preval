@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpCallObj = $(b);
   tmpCallObj.$(1);
 }
@@ -33,10 +33,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
-const tmpCallObj = $(b);
-tmpCallObj.$(1);
+label: {
+  const tmpCallObj = $(b);
+  tmpCallObj.$(1);
+}
 $(a);
 `````
 
@@ -50,4 +52,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 2
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

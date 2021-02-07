@@ -32,7 +32,7 @@ const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -53,7 +53,13 @@ const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x);
 `````
 

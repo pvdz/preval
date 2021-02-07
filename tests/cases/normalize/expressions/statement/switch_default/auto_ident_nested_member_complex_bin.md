@@ -33,7 +33,7 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -61,17 +61,25 @@ let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-let tmpAssignComputedRhs;
-const tmpNestedAssignComMemberObj = $(c);
-const tmpNestedAssignComMemberProp = $('y');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-tmpAssignComputedRhs = 7;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a, b, c, 7, 4);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpAssignComMemLhsObj = $(b);
+    const tmpAssignComMemLhsProp = $('x');
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    let tmpAssignComputedRhs;
+    const tmpNestedAssignComMemberObj = $(c);
+    const tmpNestedAssignComMemberProp = $('y');
+    let tmpNestedAssignPropRhs = d + e;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    tmpAssignComputedRhs = tmpNestedPropAssignRhs;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  }
+}
+$(a, b, c, 3, 4);
 `````
 
 ## Result
@@ -87,11 +95,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 1
- - 2: { x: '1' }
- - 3: 'x'
- - 4: { y: '2' }
- - 5: 'y'
- - 6: { a: '999', b: '1000' }, { x: '7' }, { y: '7' }, 7, 4
- - eval returned: undefined
+Final output calls: Same

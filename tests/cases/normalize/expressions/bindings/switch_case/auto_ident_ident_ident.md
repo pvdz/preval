@@ -28,7 +28,7 @@ switch (1) {
   let b;
   let c;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -40,6 +40,7 @@ switch (1) {
       {
         b = 1;
         c = 2;
+        a = undefined;
         b = 2;
         a = 2;
         $(a, b, c);
@@ -53,22 +54,25 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let c;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = 1;
-  c = 2;
-  b = 2;
-  a = 2;
-  $(a, b, c);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = 1;
+      c = 2;
+      a = undefined;
+      b = 2;
+      a = 2;
+      $(a, b, c);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

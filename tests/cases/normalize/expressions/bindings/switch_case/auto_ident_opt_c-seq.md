@@ -26,7 +26,8 @@ switch (1) {
 {
   let b;
   let a;
-  {
+  let tmpChainRootProp;
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -40,7 +41,7 @@ switch (1) {
         a = undefined;
         1;
         2;
-        const tmpChainRootProp = $(b);
+        tmpChainRootProp = $(b);
         if (tmpChainRootProp) {
           const tmpChainElementObject = tmpChainRootProp.x;
           a = tmpChainElementObject;
@@ -56,24 +57,29 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = { x: 1 };
-  a = undefined;
-  const tmpChainRootProp = $(b);
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    a = tmpChainElementObject;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  $(a);
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = { x: 1 };
+      a = undefined;
+      1;
+      2;
+      tmpChainRootProp = $(b);
+      if (tmpChainRootProp) {
+        const tmpChainElementObject = tmpChainRootProp.x;
+        a = tmpChainElementObject;
+      }
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

@@ -32,7 +32,7 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchTest = tmpChainElementObject;
 }
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -53,7 +53,13 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchTest = tmpChainElementObject;
 }
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

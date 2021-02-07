@@ -27,15 +27,15 @@ let y = {};
 {
   const tmpForInPatDeclRhs = [y];
   let tmpForInPatDeclLhs;
-  let x;
+  let x_1;
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
     const arrAssignPatternRhs = tmpForInPatDeclLhs;
     const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
+    x_1 = arrPatternSplat[0];
     arrAssignPatternRhs;
     {
       let y_1 = 2;
-      $(x);
+      $(x_1);
     }
   }
 }
@@ -44,16 +44,15 @@ let y = {};
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs;
-let x;
+let x_1;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  $(x);
+  x_1 = arrPatternSplat[0];
+  $(x_1);
 }
 `````
 
@@ -65,5 +64,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

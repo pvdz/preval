@@ -27,7 +27,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,7 +45,13 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 tmpCallCallee(tmpCalleeParam);
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

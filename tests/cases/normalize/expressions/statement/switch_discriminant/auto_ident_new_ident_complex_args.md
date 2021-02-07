@@ -30,7 +30,7 @@ const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpSwitchTest = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -49,7 +49,13 @@ const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

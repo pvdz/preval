@@ -25,8 +25,12 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let tmpPostUpdArgObj;
+  let tmpPostUpdArgVal;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,10 +41,10 @@ switch (1) {
       ('case 0:');
       {
         b = { x: 1 };
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(b);
-        const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-        const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+        tmpCallCallee = $;
+        tmpCalleeParam = $(b);
+        tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+        tmpPostUpdArgVal = tmpPostUpdArgObj.x;
         const tmpAssignMemLhsObj = tmpPostUpdArgObj;
         const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
         tmpAssignMemLhsObj.x = tmpAssignMemRhs;
@@ -56,26 +60,29 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = { x: 1 };
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = { x: 1 };
+      tmpCallCallee = $;
+      tmpCalleeParam = $(b);
+      tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+      tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+      const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+      const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+      a = tmpPostUpdArgVal;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

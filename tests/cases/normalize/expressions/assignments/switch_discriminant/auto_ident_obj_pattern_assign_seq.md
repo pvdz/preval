@@ -40,7 +40,7 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -68,7 +68,13 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x, y);
 `````
 

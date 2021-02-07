@@ -52,7 +52,7 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
 tmpSwitchTest = tmpNestedPropAssignRhs$5;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -90,7 +90,13 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
 tmpSwitchTest = tmpNestedPropAssignRhs$5;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b, 3);
 `````
 

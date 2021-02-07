@@ -24,7 +24,7 @@ let b = { x: 2 };
 let c = 3;
 const tmpSwitchTest = $('a');
 {
-  let a;
+  let a_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -37,10 +37,11 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
+        a_1 = undefined;
         const tmpNestedAssignObj = $(b);
         const tmpNestedPropAssignRhs = c;
         tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-        a = tmpNestedPropAssignRhs;
+        a_1 = tmpNestedPropAssignRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -53,10 +54,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
 $('a');
-let a;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -69,16 +68,17 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
+      a_1 = undefined;
       const tmpNestedAssignObj = $(b);
       const tmpNestedPropAssignRhs = c;
       tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      a_1 = tmpNestedPropAssignRhs;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(a, b, 3);
+$(1, b, 3);
 `````
 
 ## Result
@@ -93,4 +93,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

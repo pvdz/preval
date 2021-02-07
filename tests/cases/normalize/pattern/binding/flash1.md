@@ -44,7 +44,7 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    foo = x;
+    foo = x_1;
   } else {
     foo = arrPatternBeforeDefault$1;
   }
@@ -53,46 +53,14 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-function x(tmpParamPattern, tmpParamPattern$1) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let arrPatternStep$1 = arrPatternSplat$1[0];
-  let arrPatternSplat$2 = [...arrPatternStep$1];
-  let arrPatternStep$2 = arrPatternSplat$2[0];
-  let arrPatternSplat$3 = [...arrPatternStep$2];
-  let arrPatternStep$3 = arrPatternSplat$3[0];
-  let arrPatternSplat$4 = [...arrPatternStep$3];
-  let arrPatternBeforeDefault = arrPatternSplat$4[0];
-  let arrPatternStep$4 = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    arrPatternStep$4 = y;
-  } else {
-    arrPatternStep$4 = arrPatternBeforeDefault;
-  }
-  let arrPatternSplat$5 = [...arrPatternStep$4];
-  let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
-  let foo = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$1) {
-    foo = x;
-  } else {
-    foo = arrPatternBeforeDefault$1;
-  }
-  let objPatternNoDefault = tmpParamPattern$1.x;
-  const tmpCallCallee = objPatternRest;
-  const tmpCalleeParam = objPatternNoDefault;
-  const tmpCalleeParam$1 = [];
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
-}
+
 `````
 
 ## Result

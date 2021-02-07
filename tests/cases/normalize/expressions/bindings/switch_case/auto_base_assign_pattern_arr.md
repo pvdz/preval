@@ -26,7 +26,7 @@ switch (1) {
 {
   let b;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,6 +37,7 @@ switch (1) {
       ('case 0:');
       {
         b = [];
+        a = undefined;
         const tmpCallCallee = $;
         const tmpArrElement = $(2);
         const tmpCalleeParam = [tmpArrElement];
@@ -55,25 +56,29 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = [];
-  const tmpCallCallee = $;
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  a = tmpNestedAssignArrPatternRhs;
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = [];
+      a = undefined;
+      const tmpCallCallee = $;
+      const tmpArrElement = $(2);
+      const tmpCalleeParam = [tmpArrElement];
+      const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+      b = arrPatternSplat[0];
+      a = tmpNestedAssignArrPatternRhs;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

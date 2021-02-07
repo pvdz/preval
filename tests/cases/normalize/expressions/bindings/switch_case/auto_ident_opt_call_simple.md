@@ -23,7 +23,8 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  {
+  let tmpChainRootCall;
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -34,7 +35,7 @@ switch (1) {
       ('case 0:');
       {
         a = undefined;
-        const tmpChainRootCall = $;
+        tmpChainRootCall = $;
         if (tmpChainRootCall) {
           const tmpChainElementCall = tmpChainRootCall(1);
           a = tmpChainElementCall;
@@ -50,22 +51,26 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
-    a = tmpChainElementCall;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  $(a);
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      a = undefined;
+      tmpChainRootCall = $;
+      if (tmpChainRootCall) {
+        const tmpChainElementCall = tmpChainRootCall(1);
+        a = tmpChainElementCall;
+      }
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

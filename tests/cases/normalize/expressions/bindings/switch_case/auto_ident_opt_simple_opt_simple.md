@@ -24,9 +24,11 @@ switch (1) {
 
 `````js filename=intro
 {
+  let tmpObjLitVal;
   let b;
   let a;
-  {
+  let tmpChainRootProp;
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -36,10 +38,10 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const tmpObjLitVal = { y: 1 };
+        tmpObjLitVal = { y: 1 };
         b = { x: tmpObjLitVal };
         a = undefined;
-        const tmpChainRootProp = b;
+        tmpChainRootProp = b;
         if (tmpChainRootProp) {
           const tmpChainElementObject = tmpChainRootProp.x;
           if (tmpChainElementObject) {
@@ -58,28 +60,31 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const tmpObjLitVal = { y: 1 };
-  b = { x: tmpObjLitVal };
-  a = undefined;
-  const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      a = tmpChainElementObject$1;
-    }
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  $(a);
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpObjLitVal = { y: 1 };
+      b = { x: tmpObjLitVal };
+      a = undefined;
+      tmpChainRootProp = b;
+      if (tmpChainRootProp) {
+        const tmpChainElementObject = tmpChainRootProp.x;
+        if (tmpChainElementObject) {
+          const tmpChainElementObject$1 = tmpChainElementObject.y;
+          a = tmpChainElementObject$1;
+        }
+      }
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

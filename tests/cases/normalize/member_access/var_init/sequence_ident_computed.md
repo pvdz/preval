@@ -42,7 +42,10 @@ $(c);
 
 Should call `$` with:
  - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 2: 'length'
+ - 3: undefined
+ - 4: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

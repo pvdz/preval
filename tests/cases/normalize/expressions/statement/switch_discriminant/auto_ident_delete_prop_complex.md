@@ -28,7 +28,7 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
 const tmpSwitchTest = delete tmpDeleteObj.y;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,7 +45,13 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
 delete tmpDeleteObj.y;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x);
 `````
 

@@ -27,7 +27,7 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = typeof x;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -41,7 +41,13 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, 1);
 `````
 

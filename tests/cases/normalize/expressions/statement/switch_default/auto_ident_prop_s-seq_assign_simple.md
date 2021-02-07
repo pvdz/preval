@@ -27,7 +27,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -46,8 +46,16 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpAssignMemLhsObj = b;
-tmpAssignMemLhsObj.c = 2;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    1;
+    2;
+    const tmpAssignMemLhsObj = b;
+    tmpAssignMemLhsObj.c = 2;
+  }
+}
 $(a, b);
 `````
 

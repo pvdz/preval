@@ -33,7 +33,7 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -61,17 +61,25 @@ let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberObj$1 = $(c);
-const tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
-tmpNestedAssignPropRhs = 7;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-a = tmpNestedPropAssignRhs$1;
-$(a, b, c, 7, 4);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(c);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    let tmpNestedAssignPropRhs$1 = d + e;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    a = tmpNestedPropAssignRhs$1;
+  }
+}
+$(a, b, c, 3, 4);
 `````
 
 ## Result
@@ -93,5 +101,4 @@ Final output calls: BAD!!
  - 3: 'x'
  - 4: { y: '2' }
  - 5: 'y'
- - 6: 7, { x: '7' }, { y: '7' }, 7, 4
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

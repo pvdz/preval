@@ -25,8 +25,11 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCompObj;
+  let tmpCompProp;
+  let tmpNewCallee;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,9 +40,9 @@ switch (1) {
       ('case 0:');
       {
         b = { $: $ };
-        const tmpCompObj = $(b);
-        const tmpCompProp = $('$');
-        const tmpNewCallee = tmpCompObj[tmpCompProp];
+        tmpCompObj = $(b);
+        tmpCompProp = $('$');
+        tmpNewCallee = tmpCompObj[tmpCompProp];
         a = new tmpNewCallee(1);
         $(a);
       }
@@ -52,22 +55,25 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = { $: $ };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('$');
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  a = new tmpNewCallee(1);
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = { $: $ };
+      tmpCompObj = $(b);
+      tmpCompProp = $('$');
+      tmpNewCallee = tmpCompObj[tmpCompProp];
+      a = new tmpNewCallee(1);
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

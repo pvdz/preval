@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = 1;
   if (a) {
     a = 2;
@@ -33,9 +33,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 1;
-if (a) {
-  a = 2;
+label: {
+  a = 1;
+  if (a) {
+    a = 2;
+  }
 }
 $(a);
 `````

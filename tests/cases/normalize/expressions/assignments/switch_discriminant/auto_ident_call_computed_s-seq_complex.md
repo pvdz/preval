@@ -34,7 +34,7 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -55,7 +55,13 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

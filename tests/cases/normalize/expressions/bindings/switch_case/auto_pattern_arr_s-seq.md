@@ -22,8 +22,10 @@ switch (1) {
 
 `````js filename=intro
 {
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -35,10 +37,9 @@ switch (1) {
       {
         $(10);
         $(20);
-        const arrAssignPatternRhs = [1, 2];
-        const arrPatternSplat = [...arrAssignPatternRhs];
+        bindingPatternArrRoot = [1, 2];
+        arrPatternSplat = [...bindingPatternArrRoot];
         a = arrPatternSplat[0];
-        arrAssignPatternRhs;
         $(a);
       }
       tmpFallthrough = true;
@@ -50,21 +51,25 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  $(10);
-  $(20);
-  const arrAssignPatternRhs = [1, 2];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(10);
+      $(20);
+      bindingPatternArrRoot = [1, 2];
+      arrPatternSplat = [...bindingPatternArrRoot];
+      a = arrPatternSplat[0];
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

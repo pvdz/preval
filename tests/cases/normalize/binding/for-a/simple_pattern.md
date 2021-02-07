@@ -23,14 +23,14 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 {
-  let a;
+  let a_1;
   const tmpNestedAssignArrPatternRhs = z;
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  a_1 = tmpNestedAssignArrPatternRhs;
   while (false) {
-    $(a, x, y, z);
+    $(a_1, x, y, z);
   }
 }
 `````
@@ -38,18 +38,17 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let a;
+let a_1;
 const tmpNestedAssignArrPatternRhs = z;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
+a_1 = tmpNestedAssignArrPatternRhs;
 while (false) {
-  $(a, x, y, z);
+  $(a_1, x, y, z);
 }
 `````
 
@@ -60,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+Final output calls: Same

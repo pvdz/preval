@@ -28,19 +28,19 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
   let tmpNestedComplexRhs;
-  $(x);
+  $(x_1);
   $(y);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
   tmpForOfDeclRhs = tmpNestedComplexRhs;
-  let x;
-  for (x of tmpForOfDeclRhs) {
+  let x_1;
+  for (x_1 of tmpForOfDeclRhs) {
   }
 }
 $(a, x, y);
@@ -49,34 +49,32 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpForOfDeclRhs;
 let tmpNestedComplexRhs;
-$(x);
+$(x_1);
 $(y);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
+x_1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpForOfDeclRhs = tmpNestedComplexRhs;
-let x;
-for (x of tmpForOfDeclRhs) {
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
-$(a, x, y);
+$(a, 1, y);
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

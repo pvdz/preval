@@ -23,7 +23,7 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let a;
+  let a_1;
   let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
   let tmpNestedAssignPropRhs = $(d);
@@ -31,9 +31,9 @@ let d = 4;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  a_1 = tmpNestedComplexRhs;
   while (false) {
-    $(a, b, c);
+    $(a_1, b, c);
   }
 }
 `````
@@ -41,9 +41,8 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = 2;
-let a;
+let a_1;
 let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(3);
 let tmpNestedAssignPropRhs = $(4);
@@ -51,9 +50,9 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
 b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+a_1 = tmpNestedComplexRhs;
 while (false) {
-  $(a, b, 3);
+  $(a_1, b, 3);
 }
 `````
 
@@ -66,5 +65,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+Final output calls: Same

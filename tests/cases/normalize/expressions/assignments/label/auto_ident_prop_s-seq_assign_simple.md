@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   1;
   2;
   const tmpNestedAssignObj = b;
@@ -39,9 +39,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-a = 2;
+label: {
+  1;
+  2;
+  const tmpNestedAssignObj = b;
+  const tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+}
 $(a, b);
 `````
 

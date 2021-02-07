@@ -24,7 +24,7 @@ switch (1) { default: let x = x; $('fail'); }
 `````js filename=intro
 {
   let x;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     {
       ('default case:');
@@ -38,20 +38,24 @@ switch (1) { default: let x = x; $('fail'); }
 ## Output
 
 `````js filename=intro
-let x;
-x = x;
-$('fail');
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    x = x;
+    $('fail');
+  }
+}
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: BAD?!
  - 1: 'fail'
  - eval returned: undefined
 
 Final output calls: BAD!!
- - 1: 'fail'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

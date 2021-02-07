@@ -21,9 +21,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpCallCallee = $;
@@ -36,9 +36,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpCallCallee = $;

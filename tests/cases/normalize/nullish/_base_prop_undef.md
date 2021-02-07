@@ -46,7 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 1: undefined
+ - 1: 3
  - eval returned: undefined
 
 Normalized calls: Same

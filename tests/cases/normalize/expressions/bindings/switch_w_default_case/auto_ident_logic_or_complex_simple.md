@@ -25,13 +25,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpCallCallee;
+  let tmpCalleeParam;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -44,8 +46,8 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpCallCallee = $;
-              const tmpCalleeParam = $(0);
+              tmpCallCallee = $;
+              tmpCalleeParam = $(0);
               a = tmpCallCallee(tmpCalleeParam);
               if (a) {
               } else {
@@ -95,10 +97,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpCallCallee;
+let tmpCalleeParam;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -107,8 +111,8 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(0);
+      tmpCallCallee = $;
+      tmpCalleeParam = $(0);
       a = tmpCallCallee(tmpCalleeParam);
       if (a) {
       } else {

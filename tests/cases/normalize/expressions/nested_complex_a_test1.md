@@ -46,7 +46,8 @@ tmpAssignMemLhsObj.length = b;
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

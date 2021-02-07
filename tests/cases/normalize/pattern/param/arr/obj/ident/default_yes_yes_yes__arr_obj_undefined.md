@@ -43,14 +43,14 @@ function f($tdz$__pattern) {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x_1 = undefined;
+  let x = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {
-    x_1 = $('pass');
+    x = $('pass');
   } else {
-    x_1 = objPatternBeforeDefault;
+    x = objPatternBeforeDefault;
   }
-  return x_1;
+  return x;
 }
 const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;
@@ -87,14 +87,14 @@ function f($tdz$__pattern) {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let objPatternBeforeDefault = arrPatternStep.x;
-  let x_1 = undefined;
+  let x = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {
-    x_1 = $('pass');
+    x = $('pass');
   } else {
-    x_1 = objPatternBeforeDefault;
+    x = objPatternBeforeDefault;
   }
-  return x_1;
+  return x;
 }
 const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;

@@ -28,7 +28,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpSwitchTest = tmpCompObj.c;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,7 +45,13 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 tmpCompObj.c;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

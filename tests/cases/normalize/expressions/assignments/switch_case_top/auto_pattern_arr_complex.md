@@ -26,7 +26,7 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -57,22 +57,28 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = [1, 2];
-  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-  const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
-  tmpFallthrough = true;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = [1, 2];
+      const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const arrPatternSplat$1 = [...arrAssignPatternRhs];
+      a = arrPatternSplat$1[0];
+      arrAssignPatternRhs;
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a);
 `````

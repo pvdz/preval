@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
@@ -37,13 +37,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+({ x: 1 });
 let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
+label: {
+  a = undefined;
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+  }
 }
 $(a);
 `````
@@ -56,4 +58,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: undefined
+ - eval returned: undefined

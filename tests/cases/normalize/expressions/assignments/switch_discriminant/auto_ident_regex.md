@@ -27,7 +27,7 @@ let tmpSwitchTest;
 const tmpNestedComplexRhs = /foo/;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -44,7 +44,13 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 a = /foo/;
 tmpSwitchTest = /foo/;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

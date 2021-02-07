@@ -27,7 +27,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,13 +45,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpCompObj = b;
-const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-new tmpNewCallee(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    1;
+    2;
+    const tmpCompObj = b;
+    const tmpCompProp = $('$');
+    const tmpNewCallee = tmpCompObj[tmpCompProp];
+    new tmpNewCallee(1);
+  }
+}
 $(a);
 `````
 
@@ -66,4 +74,7 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: '$'
+ - eval returned: ('<crash[ <ref> is not a constructor ]>')

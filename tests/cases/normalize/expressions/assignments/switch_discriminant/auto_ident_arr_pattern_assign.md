@@ -39,7 +39,7 @@ y = arrPatternSplat[1];
 tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -66,7 +66,13 @@ y = arrPatternSplat[1];
 tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x, y);
 `````
 

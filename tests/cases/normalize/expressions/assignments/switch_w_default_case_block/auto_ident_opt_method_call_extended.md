@@ -29,7 +29,6 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
@@ -39,6 +38,7 @@ const tmpSwitchTest = $(1);
   let tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
+  let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
       ('Cases before the default case');
@@ -106,7 +106,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
@@ -115,6 +114,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;

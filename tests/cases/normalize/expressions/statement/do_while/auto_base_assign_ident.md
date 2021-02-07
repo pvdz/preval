@@ -23,9 +23,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = 1;
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpNestedComplexRhs = $(2);
@@ -38,9 +38,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = 1;
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpNestedComplexRhs = $(2);

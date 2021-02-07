@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 {
-  let x_1 = 1;
+  let x = 1;
 }
 const tmpArrElement = { x: 100 };
 const arrAssignPatternRhs = [tmpArrElement];
@@ -36,13 +36,12 @@ $(x_1);
 ## Output
 
 `````js filename=intro
-let x_1 = 1;
 const tmpArrElement = { x: 100 };
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
-x_1 = arrPatternStep.x;
-$(x_1);
+x_1_1 = arrPatternStep.x_1;
+$(x_1_1);
 `````
 
 ## Result
@@ -53,4 +52,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: undefined
+ - eval returned: undefined

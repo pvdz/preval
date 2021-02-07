@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
@@ -38,14 +38,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
+({ c: $ });
 let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-  a = tmpChainElementCall;
+label: {
+  a = undefined;
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    a = tmpChainElementCall;
+  }
 }
 $(a);
 `````
@@ -59,4 +61,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

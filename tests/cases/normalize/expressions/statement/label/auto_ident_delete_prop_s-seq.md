@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   $(1);
   $(2);
   const tmpDeleteObj = x;
@@ -37,10 +37,12 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteObj = x;
-delete tmpDeleteObj.y;
+label: {
+  $(1);
+  $(2);
+  const tmpDeleteObj = x;
+  delete tmpDeleteObj.y;
+}
 $(a, x);
 `````
 

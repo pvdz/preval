@@ -26,8 +26,10 @@ let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 {
-  let a;
-  let b;
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
+  let a_1;
+  let b_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -40,16 +42,15 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
-        let arrAssignPatternRhs;
+        bindingPatternArrRoot = undefined;
         const tmpNestedAssignArrPatternRhs = z;
         const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
         x = arrPatternSplat$1[1];
         y = arrPatternSplat$1[2];
-        arrAssignPatternRhs = tmpNestedAssignArrPatternRhs;
-        const arrPatternSplat = [...arrAssignPatternRhs];
-        a = arrPatternSplat[0];
-        b = arrPatternSplat[1];
-        arrAssignPatternRhs;
+        bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+        arrPatternSplat = [...bindingPatternArrRoot];
+        a_1 = arrPatternSplat[0];
+        b_1 = arrPatternSplat[1];
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -62,12 +63,8 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
 let z = [10, 20, 30];
 $('a');
-let a;
-let b;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -80,22 +77,21 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
-      let arrAssignPatternRhs;
+      bindingPatternArrRoot = undefined;
       const tmpNestedAssignArrPatternRhs = z;
       const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
       x = arrPatternSplat$1[1];
       y = arrPatternSplat$1[2];
-      arrAssignPatternRhs = tmpNestedAssignArrPatternRhs;
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      arrAssignPatternRhs;
+      bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+      arrPatternSplat = [...bindingPatternArrRoot];
+      a_1 = arrPatternSplat[0];
+      b_1 = arrPatternSplat[1];
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(a, b, 1, 2, z);
+$(1, 2, 1, 2, z);
 `````
 
 ## Result
@@ -109,4 +105,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

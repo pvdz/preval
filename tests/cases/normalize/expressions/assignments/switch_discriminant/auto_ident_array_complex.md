@@ -30,7 +30,7 @@ const tmpArrElement$2 = $(3);
 const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,7 +50,13 @@ const tmpArrElement$2 = $(3);
 const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

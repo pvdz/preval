@@ -29,7 +29,7 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -53,23 +53,27 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = 2;
+      a = 2;
+    }
+    tmpFallthrough = true;
+  }
 }
-if (tmpIfTest) {
-  b = 2;
-  a = 2;
-  tmpFallthrough = true;
-}
-$(a, b, 2);
+$(a, 1, 2);
 `````
 
 ## Result
@@ -82,4 +86,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

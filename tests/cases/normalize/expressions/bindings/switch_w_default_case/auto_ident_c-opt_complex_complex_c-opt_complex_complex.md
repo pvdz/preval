@@ -27,14 +27,17 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpObjLitVal;
   let b;
   let a;
+  let tmpChainRootCall;
+  let tmpChainElementCall;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -47,11 +50,11 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpObjLitVal = { y: 1 };
+              tmpObjLitVal = { y: 1 };
               b = { x: tmpObjLitVal };
               a = undefined;
-              const tmpChainRootCall = $;
-              const tmpChainElementCall = tmpChainRootCall(b);
+              tmpChainRootCall = $;
+              tmpChainElementCall = tmpChainRootCall(b);
               if (tmpChainElementCall) {
                 const tmpChainRootComputed = $('x');
                 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
@@ -105,11 +108,14 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpObjLitVal;
 let b;
 let a;
+let tmpChainRootCall;
+let tmpChainElementCall;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -118,11 +124,11 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpObjLitVal = { y: 1 };
+      tmpObjLitVal = { y: 1 };
       b = { x: tmpObjLitVal };
       a = undefined;
-      const tmpChainRootCall = $;
-      const tmpChainElementCall = tmpChainRootCall(b);
+      tmpChainRootCall = $;
+      tmpChainElementCall = tmpChainRootCall(b);
       if (tmpChainElementCall) {
         const tmpChainRootComputed = $('x');
         const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];

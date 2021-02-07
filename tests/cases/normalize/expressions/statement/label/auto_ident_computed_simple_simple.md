@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   b.c;
 }
 $(a, b);
@@ -34,7 +34,9 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-b.c;
+label: {
+  b.c;
+}
 $(a, b);
 `````
 

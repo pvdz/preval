@@ -179,7 +179,8 @@ function runTestCase(
         .replace(/^.*Cannot destructure property '[^']*?' of '[^']*?' as it is (undefined|null)./, 'Cannot read property <name> of $1')
         .replace(/.*? is not (a function|iterable)/, '<ref> is not function/iterable')
         .replace(/function ?\(\) ?\{/g, 'function() {')
-        .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>');
+        .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
+        .replace(/Cannot access '\w+' before initialization/, "Cannot access '<ref>' before initialization");
       stack.push('"<crash[ ' + msg.replace(/"/g, '\\"') + ' ]>"');
 
       if (withOutput) {

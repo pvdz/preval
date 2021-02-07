@@ -25,7 +25,7 @@ let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 {
-  let a;
+  let a_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -38,11 +38,12 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
+        a_1 = undefined;
         const tmpNestedAssignArrPatternRhs = z;
         const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
         x = arrPatternSplat[0];
         y = arrPatternSplat[1];
-        a = tmpNestedAssignArrPatternRhs;
+        a_1 = tmpNestedAssignArrPatternRhs;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -55,10 +56,8 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let z = [10, 20, 30];
 $('a');
-let a;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -71,17 +70,18 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
+      a_1 = undefined;
       const tmpNestedAssignArrPatternRhs = z;
       const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
       x = arrPatternSplat[0];
       y = arrPatternSplat[1];
-      a = tmpNestedAssignArrPatternRhs;
+      a_1 = tmpNestedAssignArrPatternRhs;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(a, 1, 2, z);
+$(1, 1, 2, z);
 `````
 
 ## Result
@@ -95,4 +95,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

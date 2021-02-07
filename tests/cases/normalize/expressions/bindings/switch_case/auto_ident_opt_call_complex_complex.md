@@ -23,7 +23,9 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  {
+  let tmpChainRootCall;
+  let tmpChainElementCall;
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -34,8 +36,8 @@ switch (1) {
       ('case 0:');
       {
         a = undefined;
-        const tmpChainRootCall = $;
-        const tmpChainElementCall = tmpChainRootCall($);
+        tmpChainRootCall = $;
+        tmpChainElementCall = tmpChainRootCall($);
         if (tmpChainElementCall) {
           const tmpCallObj = tmpChainElementCall;
           const tmpCallVal = tmpCallObj.call;
@@ -55,27 +57,31 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  if (tmpChainElementCall) {
-    const tmpCallObj = tmpChainElementCall;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainRootCall;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
   }
-  $(a);
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      a = undefined;
+      tmpChainRootCall = $;
+      tmpChainElementCall = tmpChainRootCall($);
+      if (tmpChainElementCall) {
+        const tmpCallObj = tmpChainElementCall;
+        const tmpCallVal = tmpCallObj.call;
+        const tmpCalleeParam = tmpChainRootCall;
+        const tmpCalleeParam$1 = $(1);
+        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        a = tmpChainElementCall$1;
+      }
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

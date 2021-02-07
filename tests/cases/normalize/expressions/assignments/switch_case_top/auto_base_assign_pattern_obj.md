@@ -27,7 +27,7 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -57,23 +57,28 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  tmpFallthrough = true;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      const tmpCallCallee = $;
+      const tmpObjLitVal = $(2);
+      const tmpCalleeParam = { b: tmpObjLitVal };
+      const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+      b = tmpNestedAssignObjPatternRhs.b;
+      a = tmpNestedAssignObjPatternRhs;
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a, b);
 `````
@@ -90,4 +95,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

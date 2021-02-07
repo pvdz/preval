@@ -25,8 +25,9 @@ switch (1) {
 `````js filename=intro
 {
   let x;
+  let tmpDeleteObj;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -39,7 +40,7 @@ switch (1) {
         x = { y: 1 };
         $(1);
         $(2);
-        const tmpDeleteObj = x;
+        tmpDeleteObj = x;
         a = delete tmpDeleteObj.y;
         $(a, x);
       }
@@ -52,22 +53,25 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let x;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  x = { y: 1 };
-  $(1);
-  $(2);
-  const tmpDeleteObj = x;
-  a = delete tmpDeleteObj.y;
-  $(a, x);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      x = { y: 1 };
+      $(1);
+      $(2);
+      tmpDeleteObj = x;
+      a = delete tmpDeleteObj.y;
+      $(a, x);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

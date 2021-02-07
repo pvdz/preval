@@ -27,7 +27,7 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,14 +45,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+({ x: 1 });
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
-  const tmpChainRootComputed = $('x');
-  tmpChainElementCall[tmpChainRootComputed];
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    if (tmpChainElementCall) {
+      const tmpChainRootComputed = $('x');
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    }
+  }
 }
 $(a);
 `````
@@ -68,4 +74,9 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 2
+ - 3: 'x'
+ - 4: { a: '999', b: '1000' }
+ - eval returned: undefined

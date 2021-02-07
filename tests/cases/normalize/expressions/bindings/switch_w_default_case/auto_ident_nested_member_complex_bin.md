@@ -30,7 +30,6 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
   let c;
@@ -41,6 +40,7 @@ var tmpDoWhileTest;
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -57,6 +57,7 @@ var tmpDoWhileTest;
               c = { y: 2 };
               d = 3;
               e = 4;
+              a = undefined;
               const tmpNestedAssignComMemberObj = $(b);
               const tmpNestedAssignComMemberProp = $('x');
               let tmpNestedAssignPropRhs;
@@ -113,7 +114,6 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
 let c;
 let d;
@@ -121,6 +121,7 @@ let e;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -133,6 +134,7 @@ do {
       c = { y: 2 };
       d = 3;
       e = 4;
+      a = undefined;
       const tmpNestedAssignComMemberObj = $(b);
       const tmpNestedAssignComMemberProp = $('x');
       let tmpNestedAssignPropRhs;

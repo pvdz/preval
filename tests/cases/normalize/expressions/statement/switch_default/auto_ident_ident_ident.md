@@ -29,7 +29,7 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -42,11 +42,16 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 $(1);
-b = 2;
-$(a, b, 2);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    b = 2;
+  }
+}
+$(a, 1, 2);
 `````
 
 ## Result
@@ -58,4 +63,7 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: { a: '999', b: '1000' }, 1, 2
+ - eval returned: undefined

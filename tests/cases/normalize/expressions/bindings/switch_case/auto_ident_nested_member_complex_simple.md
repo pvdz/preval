@@ -30,7 +30,7 @@ switch (1) {
   let c;
   let d;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -43,6 +43,7 @@ switch (1) {
         b = { x: 1 };
         c = { y: 2 };
         d = 3;
+        a = undefined;
         const tmpNestedAssignComMemberObj = $(b);
         const tmpNestedAssignComMemberProp = $('x');
         let tmpNestedAssignPropRhs;
@@ -65,33 +66,35 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let c;
-let d;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = { x: 1 };
-  c = { y: 2 };
-  d = 3;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  const tmpNestedPropAssignRhs = d;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  a = tmpNestedPropAssignRhs$1;
-  $(a, b, c, d);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = { x: 1 };
+      c = { y: 2 };
+      d = 3;
+      a = undefined;
+      const tmpNestedAssignComMemberObj = $(b);
+      const tmpNestedAssignComMemberProp = $('x');
+      let tmpNestedAssignPropRhs;
+      const tmpNestedAssignComMemberObj$1 = $(c);
+      const tmpNestedAssignComMemberProp$1 = $('y');
+      const tmpNestedPropAssignRhs = d;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+      a = tmpNestedPropAssignRhs$1;
+      $(a, b, c, d);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

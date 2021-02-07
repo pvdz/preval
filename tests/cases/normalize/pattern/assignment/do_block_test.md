@@ -17,13 +17,13 @@ $(p, q);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let a = 1;
 let b = [10, 20];
 let x = 3;
 let y = 4;
 let p;
 let q;
+let tmpDoWhileTest;
 do {
   const arrAssignPatternRhs = $(b);
   const arrPatternSplat = [...arrAssignPatternRhs];
@@ -38,10 +38,10 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = [10, 20];
 let p;
 let q;
+let tmpDoWhileTest;
 do {
   const arrAssignPatternRhs = $(b);
   const arrPatternSplat = [...arrAssignPatternRhs];

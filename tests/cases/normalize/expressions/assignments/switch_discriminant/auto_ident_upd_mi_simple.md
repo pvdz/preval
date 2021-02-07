@@ -34,7 +34,7 @@ b = tmpNestedComplexRhs$1;
 tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -57,7 +57,13 @@ b = tmpNestedComplexRhs$1;
 tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

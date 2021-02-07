@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpUnaryArg = $(x);
   a = typeof tmpUnaryArg;
 }
@@ -34,8 +34,10 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
+label: {
+  const tmpUnaryArg = $(x);
+  a = typeof tmpUnaryArg;
+}
 $(a, 1);
 `````
 
@@ -48,4 +50,7 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 3
+ - 2: 'number', 1
+ - eval returned: undefined

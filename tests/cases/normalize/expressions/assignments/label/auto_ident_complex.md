@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = $(b);
 }
 $(a, b);
@@ -33,7 +33,9 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = $(1);
+label: {
+  a = $(b);
+}
 $(a, 1);
 `````
 
@@ -46,4 +48,7 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 2
+ - 2: 2, 1
+ - eval returned: undefined

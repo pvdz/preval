@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
+label: {
   1;
   2;
   const tmpCompObj = b;
@@ -37,12 +37,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-a = new tmpNewCallee(1);
+label: {
+  1;
+  2;
+  const tmpCompObj = b;
+  const tmpCompProp = $('$');
+  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  a = new tmpNewCallee(1);
+}
 $(a);
 `````
 
@@ -56,4 +60,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: '$'
+ - eval returned: ('<crash[ <ref> is not a constructor ]>')

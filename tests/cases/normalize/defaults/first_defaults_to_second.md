@@ -92,7 +92,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'b' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 

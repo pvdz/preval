@@ -22,8 +22,10 @@ switch (1) {
 
 `````js filename=intro
 {
+  let tmpBinBothLhs;
+  let tmpBinBothRhs;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -33,8 +35,8 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const tmpBinBothLhs = $(1);
-        const tmpBinBothRhs = $(2);
+        tmpBinBothLhs = $(1);
+        tmpBinBothRhs = $(2);
         a = tmpBinBothLhs + tmpBinBothRhs;
         $(a);
       }
@@ -47,19 +49,23 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  a = tmpBinBothLhs + tmpBinBothRhs;
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpBinBothLhs = $(1);
+      tmpBinBothRhs = $(2);
+      a = tmpBinBothLhs + tmpBinBothRhs;
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

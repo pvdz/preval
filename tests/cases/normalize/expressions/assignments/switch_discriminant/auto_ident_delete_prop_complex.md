@@ -31,7 +31,7 @@ const tmpDeleteObj = $(x);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,7 +51,13 @@ const tmpDeleteObj = $(x);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x);
 `````
 

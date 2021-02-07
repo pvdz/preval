@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -47,6 +47,21 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    if (1) {
+      40;
+      50;
+      60;
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(100);
+      tmpCallCallee(tmpCalleeParam);
+    }
+  }
+}
 $(a);
 `````
 

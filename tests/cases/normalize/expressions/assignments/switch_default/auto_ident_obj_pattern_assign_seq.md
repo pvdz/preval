@@ -29,7 +29,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -49,19 +49,23 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let a = { a: 999, b: 1000 };
 $(1);
-$(x);
-$(y);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-$(a, x, y);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(x);
+    $(y);
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpNestedAssignObjPatternRhs.x;
+    y = tmpNestedAssignObjPatternRhs.y;
+    a = tmpNestedAssignObjPatternRhs;
+  }
+}
+$(a, 1, 2);
 `````
 
 ## Result
@@ -77,4 +81,11 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 3
+ - 3: 4
+ - 4: 3
+ - 5: 4
+ - 6: { x: '3', y: '4' }, 1, 2
+ - eval returned: undefined

@@ -26,7 +26,7 @@ switch (1) {
 {
   let b;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,6 +37,7 @@ switch (1) {
       ('case 0:');
       {
         b = 1;
+        a = undefined;
         const tmpNestedCompoundLhs = b;
         const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
         b = tmpNestedComplexRhs;
@@ -52,22 +53,26 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = 1;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = 1;
+      a = undefined;
+      const tmpNestedCompoundLhs = b;
+      const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+      b = tmpNestedComplexRhs;
+      a = tmpNestedComplexRhs;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

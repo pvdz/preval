@@ -27,7 +27,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,13 +51,21 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpNestedAssignObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    1;
+    2;
+    const tmpNestedAssignObj = $(b);
+    const tmpCompObj = $(b);
+    const tmpCompProp = $('d');
+    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+  }
+}
 $(a, b);
 `````
 

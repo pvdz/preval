@@ -29,7 +29,7 @@ const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -55,7 +55,13 @@ const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(1);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');

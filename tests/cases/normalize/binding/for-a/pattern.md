@@ -24,10 +24,10 @@ let z = [10, 20, 30];
 {
   let bindingPatternArrRoot = z;
   let arrPatternSplat = [...bindingPatternArrRoot];
-  let x = arrPatternSplat[0];
-  let y = arrPatternSplat[1];
+  let x_1 = arrPatternSplat[0];
+  let y_1 = arrPatternSplat[1];
   while (false) {
-    $(x, y, z);
+    $(x_1, y_1, z);
   }
 }
 `````
@@ -35,15 +35,13 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
 let bindingPatternArrRoot = z;
 let arrPatternSplat = [...bindingPatternArrRoot];
-let x = arrPatternSplat[0];
-let y = arrPatternSplat[1];
+let x_1 = arrPatternSplat[0];
+let y_1 = arrPatternSplat[1];
 while (false) {
-  $(x, y, z);
+  $(x_1, y_1, z);
 }
 `````
 
@@ -54,5 +52,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

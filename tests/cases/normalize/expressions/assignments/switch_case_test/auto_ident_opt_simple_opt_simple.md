@@ -27,7 +27,7 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -61,30 +61,35 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
+({ x: tmpObjLitVal });
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  let tmpBinBothRhs;
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      tmpNestedComplexRhs = tmpChainElementObject$1;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    let tmpBinBothRhs;
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    if (tmpChainRootProp) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      if (tmpChainElementObject) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        tmpNestedComplexRhs = tmpChainElementObject$1;
+      }
     }
+    a = tmpNestedComplexRhs;
+    tmpBinBothRhs = tmpNestedComplexRhs;
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
-  a = tmpNestedComplexRhs;
-  tmpBinBothRhs = tmpNestedComplexRhs;
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a);
 `````
@@ -98,4 +103,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

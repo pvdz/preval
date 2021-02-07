@@ -23,7 +23,7 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a;
+  let a_1;
   let tmpNestedAssignPropRhs;
   const tmpNestedAssignObj = $(c);
   let tmpNestedAssignPropRhs$1 = $(d);
@@ -32,9 +32,9 @@ let d = 4;
   tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
   const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs$1;
-  a = tmpNestedPropAssignRhs$1;
+  a_1 = tmpNestedPropAssignRhs$1;
   while (false) {
-    $(a, b, c);
+    $(a_1, b, c);
   }
 }
 `````
@@ -42,9 +42,8 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
-let a;
+let a_1;
 let tmpNestedAssignPropRhs;
 const tmpNestedAssignObj = $(3);
 let tmpNestedAssignPropRhs$1 = $(4);
@@ -53,9 +52,9 @@ tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$1;
-a = tmpNestedPropAssignRhs$1;
+a_1 = tmpNestedPropAssignRhs$1;
 while (false) {
-  $(a, b, 3);
+  $(a_1, b, 3);
 }
 `````
 
@@ -68,5 +67,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+Final output calls: Same

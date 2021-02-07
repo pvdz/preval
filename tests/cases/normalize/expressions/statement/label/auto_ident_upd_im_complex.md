@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
@@ -41,13 +41,16 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+label: {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpPostUpdArgVal;
+}
 $(a, b);
 `````
 

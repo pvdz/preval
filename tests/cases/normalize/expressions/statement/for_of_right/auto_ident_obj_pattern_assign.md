@@ -30,11 +30,11 @@ let a = { a: 999, b: 1000 };
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
+  x_1 = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
   tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-  let x;
-  for (x of tmpForOfDeclRhs) {
+  let x_1;
+  for (x_1 of tmpForOfDeclRhs) {
   }
 }
 $(a, x, y);
@@ -43,20 +43,19 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpForOfDeclRhs;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
+x_1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-let x;
-for (x of tmpForOfDeclRhs) {
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
-$(a, x, y);
+$(a, 1, y);
 `````
 
 ## Result
@@ -64,9 +63,8 @@ $(a, x, y);
 Should call `$` with:
  - 1: 3
  - 2: 4
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

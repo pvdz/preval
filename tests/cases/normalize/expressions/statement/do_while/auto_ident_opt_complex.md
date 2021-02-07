@@ -23,9 +23,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = undefined;
@@ -42,9 +42,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = undefined;

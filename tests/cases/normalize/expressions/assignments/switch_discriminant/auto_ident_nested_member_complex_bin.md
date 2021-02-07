@@ -48,7 +48,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -78,7 +78,13 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b, c, 7, 4);
 `````
 

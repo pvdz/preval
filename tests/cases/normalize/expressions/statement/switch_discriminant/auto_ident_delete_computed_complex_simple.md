@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = 'y';
 const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -46,7 +46,13 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
 delete tmpDeleteCompObj.y;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, x);
 `````
 

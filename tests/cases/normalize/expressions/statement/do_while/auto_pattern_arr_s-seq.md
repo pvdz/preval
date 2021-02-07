@@ -21,10 +21,10 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
+let tmpDoWhileTest;
 do {
   $(100);
   $(10);
@@ -37,10 +37,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
+let tmpDoWhileTest;
 do {
   $(100);
   $(10);

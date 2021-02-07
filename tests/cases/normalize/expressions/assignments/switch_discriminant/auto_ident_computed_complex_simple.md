@@ -31,7 +31,7 @@ const tmpCompObj = $(b);
 const tmpNestedComplexRhs = tmpCompObj.c;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,7 +51,13 @@ const tmpCompObj = $(b);
 const tmpNestedComplexRhs = tmpCompObj.c;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

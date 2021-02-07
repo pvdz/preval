@@ -27,8 +27,8 @@ $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z_1 = objPatternNoDefault$1.z;
-  return z_1;
+  let z = objPatternNoDefault$1.z;
+  return z;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -47,8 +47,8 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z_1 = objPatternNoDefault$1.z;
-  return z_1;
+  let z = objPatternNoDefault$1.z;
+  return z;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

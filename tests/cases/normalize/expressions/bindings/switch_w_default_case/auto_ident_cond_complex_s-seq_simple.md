@@ -25,13 +25,13 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -44,6 +44,7 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
+              a = undefined;
               const tmpIfTest$1 = $(1);
               if (tmpIfTest$1) {
                 40;
@@ -98,10 +99,10 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -110,6 +111,7 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
+      a = undefined;
       const tmpIfTest$1 = $(1);
       if (tmpIfTest$1) {
         a = 60;

@@ -32,7 +32,7 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -69,29 +69,36 @@ $(a, b, c, d, e);
 let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  let tmpBinBothRhs;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
-  tmpNestedAssignPropRhs = 7;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  tmpBinBothRhs = tmpNestedPropAssignRhs$1;
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    let tmpBinBothRhs;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(c);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    let tmpNestedAssignPropRhs$1 = d + e;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    tmpBinBothRhs = tmpNestedPropAssignRhs$1;
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+    }
+    tmpFallthrough = true;
+  }
 }
-if (tmpIfTest) {
-  tmpFallthrough = true;
-}
-$(a, b, c, 7, 4);
+$(a, b, c, 3, 4);
 `````
 
 ## Result
@@ -109,9 +116,4 @@ Normalized calls: Same
 
 Final output calls: BAD!!
  - 1: 1
- - 2: { x: '1' }
- - 3: 'x'
- - 4: { y: '2' }
- - 5: 'y'
- - 6: { a: '999', b: '1000' }, { x: '7' }, { y: '7' }, 7, 4
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

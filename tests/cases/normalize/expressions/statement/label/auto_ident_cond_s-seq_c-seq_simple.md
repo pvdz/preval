@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
+label: {
   10;
   20;
   const tmpIfTest = 30;
@@ -41,7 +41,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(60);
+label: {
+  10;
+  20;
+  const tmpIfTest = 30;
+  if (tmpIfTest) {
+    40;
+    50;
+    $(60);
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    tmpCallCallee(tmpCalleeParam);
+  }
+}
 $(a);
 `````
 

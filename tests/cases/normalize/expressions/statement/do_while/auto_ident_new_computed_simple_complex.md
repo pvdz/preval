@@ -23,9 +23,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpCompObj = b;
@@ -39,9 +39,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   const tmpCompObj = b;

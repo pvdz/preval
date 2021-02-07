@@ -24,8 +24,10 @@ let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 {
-  let x;
-  let y;
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
+  let x_1;
+  let y_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -38,13 +40,12 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
-        $(x);
-        $(y);
-        const arrAssignPatternRhs = z;
-        const arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        y = arrPatternSplat[1];
-        arrAssignPatternRhs;
+        $(x_1);
+        $(y_1);
+        bindingPatternArrRoot = z;
+        arrPatternSplat = [...bindingPatternArrRoot];
+        x_1 = arrPatternSplat[0];
+        y_1 = arrPatternSplat[1];
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -57,12 +58,8 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
 $('a');
-let x;
-let y;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -75,19 +72,18 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
-      $(x);
-      $(y);
-      const arrAssignPatternRhs = z;
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      arrAssignPatternRhs;
+      $(x_1);
+      $(y_1);
+      bindingPatternArrRoot = z;
+      arrPatternSplat = [...bindingPatternArrRoot];
+      x_1 = arrPatternSplat[0];
+      y_1 = arrPatternSplat[1];
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(x, y, z);
+$(1, 2, z);
 `````
 
 ## Result
@@ -95,7 +91,7 @@ $(x, y, z);
 Should call `$` with:
  - 1: 'a'
  - 2: 'a'
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: BAD?!
  - 1: 'a'
@@ -106,4 +102,5 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

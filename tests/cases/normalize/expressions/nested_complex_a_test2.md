@@ -40,7 +40,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

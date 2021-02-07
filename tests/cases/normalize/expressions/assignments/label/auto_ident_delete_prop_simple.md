@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   a = delete x.y;
 }
 $(a, x);
@@ -34,7 +34,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-a = delete x.y;
+label: {
+  a = delete x.y;
+}
 $(a, x);
 `````
 

@@ -31,7 +31,7 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -67,26 +67,36 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = 1 === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  $(11);
-  tmpFallthrough = true;
-}
-let tmpIfTest$1 = tmpFallthrough;
-if (tmpIfTest$1) {
-} else {
-  const tmpBinBothRhs$1 = $(2);
-  tmpIfTest$1 = 1 === tmpBinBothRhs$1;
-}
-if (tmpIfTest$1) {
-  $(22);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = 1;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $(11);
+    }
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpBinBothLhs$1 = 1;
+    const tmpBinBothRhs$1 = $(2);
+    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      $(22);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

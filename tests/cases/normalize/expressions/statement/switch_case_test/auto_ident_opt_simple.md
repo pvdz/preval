@@ -26,7 +26,7 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -53,24 +53,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+({ x: 1 });
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  let tmpBinBothRhs = undefined;
-  const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpBinBothRhs = tmpChainElementObject;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    let tmpBinBothRhs = undefined;
+    const tmpChainRootProp = b;
+    if (tmpChainRootProp) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      tmpBinBothRhs = tmpChainElementObject;
+    }
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  tmpFallthrough = true;
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a);
 `````
@@ -84,4 +89,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -18,12 +18,12 @@ $($(a)?.[$('b')][$('c')](100));
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (...a) {
+const tmpObjLitVal$1 = function (...a_1) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = $(a);
+  const tmpCalleeParam = $(a_1);
   const tmpCalleeParam$1 = this;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpReturnArg = a[0];
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
@@ -46,12 +46,12 @@ tmpCallCallee$1(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (...a) {
+const tmpObjLitVal$1 = function (...a_1) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = $(a);
+  const tmpCalleeParam = $(a_1);
   const tmpCalleeParam$1 = this;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpReturnArg = a[0];
+  const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };

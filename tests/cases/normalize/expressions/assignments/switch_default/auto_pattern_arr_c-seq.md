@@ -26,7 +26,7 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,13 +50,20 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(1);
-$(10);
-$(20);
-const tmpCallCallee = $;
-const tmpCalleeParam = [1, 2];
-const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-const arrPatternSplat$1 = [...arrAssignPatternRhs];
-a = arrPatternSplat$1[0];
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(10);
+    $(20);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = [1, 2];
+    const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrPatternSplat$1 = [...arrAssignPatternRhs];
+    a = arrPatternSplat$1[0];
+    arrAssignPatternRhs;
+  }
+}
 $(a);
 `````
 

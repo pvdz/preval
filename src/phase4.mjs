@@ -274,7 +274,7 @@ export function phase4(program, fdata, resolve, req) {
           const meta = fdata.globallyUniqueNamingRegistery.get(node.id.name);
 
           // Function ids to not register themselves as usage so we need zero usages before eliminating a function decl
-          if (!meta.isExport && meta.usages.length === 0) {
+          if (!meta.isExport && meta.reads.length === 0) {
             // There was only one usage and that was this function declaration
             ASSERT(!isExport, 'todo: exports may not be safe to eliminate');
             log('Function is is not actually used so since this is a declaration, it should be safe to eliminate now.');
@@ -470,8 +470,8 @@ export function phase4(program, fdata, resolve, req) {
 
           if (dnode.id.type === 'Identifier') {
             const meta = fdata.globallyUniqueNamingRegistery.get(dnode.id.name);
-            const updates = meta.updates;
-            const usages = meta.usages;
+            const updates = meta.writes;
+            const usages = meta.reads;
             ASSERT(updates, 'should find meta data for each name and should have an updates array', dnode.id.name, meta);
             log(
               'The binding for `' + dnode.id.name + '`, unique name `' + dnode.id.name + '`, has',
@@ -482,18 +482,12 @@ export function phase4(program, fdata, resolve, req) {
             );
 
             // A toplevel var decl (that is not an export) will only have one crumb element
-            if (meta.usages.length === 1) {
+            if (meta.reads.length === 1) {
               if (crumbsNodes.length > 2 && crumbGet(2).type === 'ExportNamedDeclaration') {
                 log('Binding is not used but exported so not eliminated here (yet)');
               } else {
                 log('Binding is no longer referenced so we can replace its declarator with its init');
-                ASSERT(
-                  meta.usages[0].parent === dnode,
-                  'the last usage should be its own declaration',
-                  meta.usages[0].parent,
-                  '==?',
-                  dnode,
-                );
+                ASSERT(meta.reads[0].parent === dnode, 'the last usage should be its own declaration', meta.reads[0].parent, '==?', dnode);
                 // Drop the declaration. It's no longer useful.
                 // TODO: for-headers, where this will fail, and there's no easy generic way out
                 ASSERT(node.declarations.length === 1, 'should only have this binding as the declarator');
@@ -674,15 +668,15 @@ export function phase4(program, fdata, resolve, req) {
           if (node.callee.type === 'Identifier') {
             const meta = fdata.globallyUniqueNamingRegistery.get(node.callee.name);
 
-            if (meta.updates.length === 0) {
+            if (meta.writes.length === 0) {
               log('Called `' + node.callee.name + '` but it has no updates (implicit global?);');
-            } else if (meta.updates.length === 1) {
-              log('Called `' + node.callee.name + '` and it has one update: parent =', [meta.updates[0].parent?.type]);
+            } else if (meta.writes.length === 1) {
+              log('Called `' + node.callee.name + '` and it has one update: parent =', [meta.writes[0].parent?.type]);
 
-              const update = meta.updates[0];
+              const update = meta.writes[0];
               const updateTo = update.index >= 0 ? update.parent[update.prop][update.index] : update.parent[update.prop];
 
-              const metaParent = meta.updates[0].parent;
+              const metaParent = meta.writes[0].parent;
               if (
                 updateTo.type === 'FunctionDeclaration' ||
                 updateTo.type === 'FunctionExpression' ||
@@ -744,9 +738,9 @@ export function phase4(program, fdata, resolve, req) {
           // TODO
           log('Name: `' + node.name + '`, unique name: `' + node.name + '`');
           const meta = fdata.globallyUniqueNamingRegistery.get(node.name);
-          log('This ident has', meta?.updates.length, 'updates and', meta?.usages.length, 'usages');
-          if (meta.updates.length === 1) {
-            const update = meta.updates.pop();
+          log('This ident has', meta?.writes.length, 'updates and', meta?.reads.length, 'usages');
+          if (meta.writes.length === 1) {
+            const update = meta.writes.pop();
             const updateTo = update.index >= 0 ? update.parent[update.prop][update.index] : update.parent[update.prop];
             log('Updates to', updateTo.type);
             if (update.type === 'Literal' || (update.type === 'Identifier' && ['undefined', 'NaN', 'Infinity'].includes(update.name))) {

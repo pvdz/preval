@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
   if (tmpChainElementCall) {
@@ -34,10 +34,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
-if (tmpChainElementCall) {
-  tmpChainElementCall.call(tmpChainRootCall, 1);
+label: {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  if (tmpChainElementCall) {
+    const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  }
 }
 $(a);
 `````

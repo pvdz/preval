@@ -33,8 +33,10 @@ switch (1) {
 
 `````js filename=intro
 {
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
   let x;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -44,10 +46,9 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const arrAssignPatternRhs = [4, 5, 6];
-        const arrPatternSplat = [...arrAssignPatternRhs];
+        bindingPatternArrRoot = [4, 5, 6];
+        arrPatternSplat = [...bindingPatternArrRoot];
         x = arrPatternSplat[0];
-        arrAssignPatternRhs;
       }
       tmpFallthrough = true;
     }
@@ -70,27 +71,34 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let x;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const arrAssignPatternRhs = [4, 5, 6];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  tmpFallthrough = true;
-}
-let tmpIfTest$1 = tmpFallthrough;
-if (tmpIfTest$1) {
-} else {
-  tmpIfTest$1 = false;
-}
-if (tmpIfTest$1) {
-  $(x);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      bindingPatternArrRoot = [4, 5, 6];
+      arrPatternSplat = [...bindingPatternArrRoot];
+      x = arrPatternSplat[0];
+    }
+    tmpFallthrough = true;
+  }
+  let tmpIfTest$1 = tmpFallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    tmpIfTest$1 = 1 === 2;
+  }
+  if (tmpIfTest$1) {
+    ('case 1:');
+    {
+      $(x);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

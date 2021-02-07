@@ -30,7 +30,7 @@ if (tmpSwitchTest) {
 } else {
   tmpSwitchTest = 2;
 }
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,7 +51,13 @@ if (tmpSwitchTest) {
 } else {
   tmpSwitchTest = 2;
 }
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

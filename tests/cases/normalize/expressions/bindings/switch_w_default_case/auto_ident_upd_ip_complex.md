@@ -27,14 +27,18 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let tmpPostUpdArgObj;
+  let tmpPostUpdArgVal;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -48,10 +52,10 @@ var tmpDoWhileTest;
           if (tmpIfTest) {
             {
               b = { x: 1 };
-              const tmpCallCallee = $;
-              const tmpCalleeParam = $(b);
-              const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-              const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+              tmpCallCallee = $;
+              tmpCalleeParam = $(b);
+              tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+              tmpPostUpdArgVal = tmpPostUpdArgObj.x;
               const tmpAssignMemLhsObj = tmpPostUpdArgObj;
               const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
               tmpAssignMemLhsObj.x = tmpAssignMemRhs;
@@ -100,11 +104,15 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
+let tmpCallCallee;
+let tmpCalleeParam;
+let tmpPostUpdArgObj;
+let tmpPostUpdArgVal;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -114,10 +122,10 @@ do {
     }
     if (tmpIfTest) {
       b = { x: 1 };
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(b);
-      const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-      const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+      tmpCallCallee = $;
+      tmpCalleeParam = $(b);
+      tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+      tmpPostUpdArgVal = tmpPostUpdArgObj.x;
       const tmpAssignMemLhsObj = tmpPostUpdArgObj;
       const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
       tmpAssignMemLhsObj.x = tmpAssignMemRhs;

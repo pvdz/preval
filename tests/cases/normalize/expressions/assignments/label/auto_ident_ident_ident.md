@@ -25,7 +25,7 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-{
+label: {
   b = 2;
   a = 2;
 }
@@ -35,11 +35,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
-b = 2;
-a = 2;
-$(a, b, 2);
+label: {
+  b = 2;
+  a = 2;
+}
+$(a, 1, 2);
 `````
 
 ## Result
@@ -50,4 +51,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 2, 1, 2
+ - eval returned: undefined

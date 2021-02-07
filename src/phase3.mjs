@@ -15,10 +15,10 @@ export function phase3(program, fdata, resolve, req) {
   let changed = false;
 
   fdata.globallyUniqueNamingRegistery.forEach((obj, uniqueName) => {
-    if (obj.updates.length === 1) {
-      const update = obj.updates[0];
+    if (obj.writes.length === 1) {
+      const update = obj.writes[0];
       // variable decl without init will have updateTo as null/undefined here
-      //log('so the updates', obj.updates)
+      //log('so the updates', obj.writes)
       let updateTo;
       if (update.index >= 0) updateTo = update.parent[update.prop][update.index];
       else updateTo = update.parent[update.prop];
@@ -28,7 +28,7 @@ export function phase3(program, fdata, resolve, req) {
         log('Replacing literal binding with the actual literal...');
 
         // Replace all occurrences with the literal...
-        obj.usages.forEach(({ parent, prop, index }) => {
+        obj.reads.forEach(({ parent, prop, index }) => {
           // Cannot replace the declaration itself. But can eliminate it
           if (parent.type === 'VariableDeclarator' && prop !== 'init') {
             // `let x = 5;`

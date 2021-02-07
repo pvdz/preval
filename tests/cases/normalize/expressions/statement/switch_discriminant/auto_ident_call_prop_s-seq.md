@@ -30,7 +30,7 @@ let a = { a: 999, b: 1000 };
 2;
 const tmpCallObj = b;
 const tmpSwitchTest = tmpCallObj.$(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -47,7 +47,13 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
 tmpCallObj.$(1);
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

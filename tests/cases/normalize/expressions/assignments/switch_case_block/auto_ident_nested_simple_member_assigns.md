@@ -30,7 +30,7 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -79,39 +79,47 @@ $(a, b, c);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  let tmpNestedAssignPropRhs;
-  let tmpNestedAssignPropRhs$1;
-  let tmpNestedAssignPropRhs$2;
-  let tmpNestedAssignPropRhs$3;
-  let tmpNestedAssignPropRhs$4;
-  b.x = 3;
-  tmpNestedAssignPropRhs$4 = 3;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-  b.x = tmpNestedPropAssignRhs$1;
-  tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-  const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-  b.x = tmpNestedPropAssignRhs$2;
-  tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-  const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-  b.x = tmpNestedPropAssignRhs$3;
-  tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-  const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-  b.x = tmpNestedPropAssignRhs$4;
-  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-  const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs$5;
-  a = tmpNestedPropAssignRhs$5;
-  tmpFallthrough = true;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      {
+        let tmpNestedAssignPropRhs;
+        let tmpNestedAssignPropRhs$1;
+        let tmpNestedAssignPropRhs$2;
+        let tmpNestedAssignPropRhs$3;
+        let tmpNestedAssignPropRhs$4;
+        const tmpNestedPropAssignRhs = c;
+        b.x = tmpNestedPropAssignRhs;
+        tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
+        const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
+        b.x = tmpNestedPropAssignRhs$1;
+        tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
+        const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
+        b.x = tmpNestedPropAssignRhs$2;
+        tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
+        const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
+        b.x = tmpNestedPropAssignRhs$3;
+        tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
+        const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
+        b.x = tmpNestedPropAssignRhs$4;
+        tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
+        const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
+        b.x = tmpNestedPropAssignRhs$5;
+        a = tmpNestedPropAssignRhs$5;
+      }
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a, b, 3);
 `````
@@ -126,4 +134,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

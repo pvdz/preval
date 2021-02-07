@@ -29,7 +29,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -47,16 +47,21 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpAssignObjPatternRhs.x;
-y = tmpAssignObjPatternRhs.y;
-$(a, x, y);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpAssignObjPatternRhs.x;
+    y = tmpAssignObjPatternRhs.y;
+    tmpAssignObjPatternRhs;
+  }
+}
+$(a, 1, 2);
 `````
 
 ## Result
@@ -70,4 +75,9 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 3
+ - 3: 4
+ - 4: { a: '999', b: '1000' }, 1, 2
+ - eval returned: undefined

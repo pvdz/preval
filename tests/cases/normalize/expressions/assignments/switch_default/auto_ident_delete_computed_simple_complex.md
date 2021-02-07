@@ -27,7 +27,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,9 +45,15 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpDeleteCompObj = x;
-const tmpDeleteCompProp = $('y');
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpDeleteCompObj = x;
+    const tmpDeleteCompProp = $('y');
+    a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  }
+}
 $(a, x);
 `````
 

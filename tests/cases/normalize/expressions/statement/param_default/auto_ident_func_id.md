@@ -24,7 +24,7 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    arg = function f() {};
+    arg = function f_1() {};
   } else {
     arg = $tdz$__arg;
   }
@@ -44,7 +44,7 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    arg = function f() {};
+    arg = function f_1() {};
   } else {
     arg = $tdz$__arg;
   }

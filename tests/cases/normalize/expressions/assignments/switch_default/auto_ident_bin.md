@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -41,9 +41,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs + tmpBinBothRhs;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    a = tmpBinBothLhs + tmpBinBothRhs;
+  }
+}
 $(a);
 `````
 

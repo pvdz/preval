@@ -27,14 +27,17 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpObjLitVal$1;
+  let tmpObjLitVal;
   let b;
   let a;
+  let tmpChainRootProp;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -47,11 +50,11 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpObjLitVal$1 = { z: 100 };
-              const tmpObjLitVal = { y: tmpObjLitVal$1 };
+              tmpObjLitVal$1 = { z: 100 };
+              tmpObjLitVal = { y: tmpObjLitVal$1 };
               b = { x: tmpObjLitVal };
               a = undefined;
-              const tmpChainRootProp = b;
+              tmpChainRootProp = b;
               if (tmpChainRootProp) {
                 const tmpChainElementObject = tmpChainRootProp.x;
                 const tmpChainElementObject$1 = tmpChainElementObject.y;
@@ -102,11 +105,14 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpObjLitVal$1;
+let tmpObjLitVal;
 let b;
 let a;
+let tmpChainRootProp;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -115,11 +121,11 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpObjLitVal$1 = { z: 100 };
-      const tmpObjLitVal = { y: tmpObjLitVal$1 };
+      tmpObjLitVal$1 = { z: 100 };
+      tmpObjLitVal = { y: tmpObjLitVal$1 };
       b = { x: tmpObjLitVal };
       a = undefined;
-      const tmpChainRootProp = b;
+      tmpChainRootProp = b;
       if (tmpChainRootProp) {
         const tmpChainElementObject = tmpChainRootProp.x;
         const tmpChainElementObject$1 = tmpChainElementObject.y;

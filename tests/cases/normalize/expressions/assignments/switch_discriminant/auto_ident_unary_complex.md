@@ -31,7 +31,7 @@ const tmpUnaryArg = $(x);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,7 +50,13 @@ const tmpUnaryArg = $(1);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, 1);
 `````
 

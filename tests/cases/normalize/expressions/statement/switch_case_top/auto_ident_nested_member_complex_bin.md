@@ -33,7 +33,7 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -70,29 +70,36 @@ $(a, b, c, d, e);
 let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      const tmpAssignComMemLhsObj = $(b);
+      const tmpAssignComMemLhsProp = $('x');
+      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+      let tmpAssignComputedRhs;
+      const tmpNestedAssignComMemberObj = $(c);
+      const tmpNestedAssignComMemberProp = $('y');
+      let tmpNestedAssignPropRhs = d + e;
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      tmpAssignComputedRhs = tmpNestedPropAssignRhs;
+      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    }
+    tmpFallthrough = true;
+  }
 }
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('x');
-  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  let tmpAssignComputedRhs;
-  const tmpNestedAssignComMemberObj = $(c);
-  const tmpNestedAssignComMemberProp = $('y');
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-  tmpAssignComputedRhs = 7;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  tmpFallthrough = true;
-}
-$(a, b, c, 7, 4);
+$(a, b, c, 3, 4);
 `````
 
 ## Result
@@ -111,10 +118,4 @@ Normalized calls: Same
 
 Final output calls: BAD!!
  - 1: 1
- - 2: 1
- - 3: { x: '1' }
- - 4: 'x'
- - 5: { y: '2' }
- - 6: 'y'
- - 7: { a: '999', b: '1000' }, { x: '7' }, { y: '7' }, 7, 4
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

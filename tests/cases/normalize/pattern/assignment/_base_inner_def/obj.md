@@ -41,7 +41,7 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -32,7 +32,6 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
@@ -41,6 +40,7 @@ const tmpSwitchTest = $(1);
   let tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
+  let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
       ('Cases before the default case');
@@ -108,7 +108,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
@@ -116,6 +115,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;

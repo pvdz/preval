@@ -25,13 +25,16 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpArrElement;
+  let tmpArrElement$1;
+  let tmpArrElement$2;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -44,9 +47,9 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpArrElement = $(1);
-              const tmpArrElement$1 = 2;
-              const tmpArrElement$2 = $(3);
+              tmpArrElement = $(1);
+              tmpArrElement$1 = 2;
+              tmpArrElement$2 = $(3);
               a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
               $(a);
             }
@@ -92,10 +95,13 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpArrElement;
+let tmpArrElement$1;
+let tmpArrElement$2;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -104,9 +110,10 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpArrElement = $(1);
-      const tmpArrElement$2 = $(3);
-      a = [tmpArrElement, 2, tmpArrElement$2];
+      tmpArrElement = $(1);
+      tmpArrElement$1 = 2;
+      tmpArrElement$2 = $(3);
+      a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
       $(a);
       tmpSwitchFallthrough = true;
     }

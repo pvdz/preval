@@ -24,10 +24,10 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(x_1);
   const tmpForInDeclRhs = delete tmpDeleteObj.y;
-  let x;
-  for (x in tmpForInDeclRhs) {
+  let x_1;
+  for (x_1 in tmpForInDeclRhs) {
   }
 }
 $(a, x);
@@ -38,10 +38,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(x_1);
 const tmpForInDeclRhs = delete tmpDeleteObj.y;
-let x;
-for (x in tmpForInDeclRhs) {
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
 }
 $(a, x);
 `````
@@ -49,9 +49,8 @@ $(a, x);
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

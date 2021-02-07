@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 b = 2;
 tmpSwitchTest = 2;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -49,7 +49,13 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 b = 2;
 tmpSwitchTest = 2;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b, 2);
 `````
 

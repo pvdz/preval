@@ -33,7 +33,7 @@ if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSwitchTest = tmpChainElementObject;
 }
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -55,7 +55,13 @@ if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSwitchTest = tmpChainElementObject;
 }
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

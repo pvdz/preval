@@ -26,7 +26,7 @@ switch (0) {
 {
   let a;
   let b;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -54,23 +54,27 @@ switch (0) {
 ## Output
 
 `````js filename=intro
-let a;
-let b;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  a = 10;
-  b = 20;
-  const arrAssignPatternRhs = [30, 40];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 0 === 0;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      a = 10;
+      b = 20;
+      const arrAssignPatternRhs = [30, 40];
+      const arrPatternSplat = [...arrAssignPatternRhs];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
+      arrAssignPatternRhs;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

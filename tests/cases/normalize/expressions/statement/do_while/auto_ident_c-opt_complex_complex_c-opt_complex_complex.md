@@ -23,10 +23,10 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = undefined;
@@ -48,10 +48,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = undefined;

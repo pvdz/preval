@@ -23,9 +23,9 @@ let b = 2;
 let c = 3;
 {
   $(b);
-  let a = c;
+  let a_1 = c;
   while (false) {
-    $(a, b, c);
+    $(a_1, b, c);
   }
 }
 `````
@@ -33,11 +33,9 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let a = 1;
 $(2);
-let a = 3;
 while (false) {
-  $(a, 2, 3);
+  $(3, 2, 3);
 }
 `````
 
@@ -49,5 +47,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+Final output calls: Same

@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 {
-  let x_1 = 1;
+  let x = 1;
 }
 const tmpArrElement = [100];
 const arrAssignPatternRhs = [tmpArrElement];
@@ -37,7 +37,6 @@ $(x_1);
 ## Output
 
 `````js filename=intro
-let x_1 = 1;
 const tmpArrElement = [100];
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];

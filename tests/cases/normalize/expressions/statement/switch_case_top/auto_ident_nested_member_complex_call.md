@@ -31,7 +31,7 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -68,29 +68,34 @@ $(a, b, c, d);
 let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('x');
-  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  let tmpAssignComputedRhs;
-  const tmpNestedAssignComMemberObj = $(c);
-  const tmpNestedAssignComMemberProp = $('y');
-  let tmpNestedAssignPropRhs = $(3);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpAssignComputedRhs = tmpNestedPropAssignRhs;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  tmpFallthrough = true;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      const tmpAssignComMemLhsObj = $(b);
+      const tmpAssignComMemLhsProp = $('x');
+      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+      let tmpAssignComputedRhs;
+      const tmpNestedAssignComMemberObj = $(c);
+      const tmpNestedAssignComMemberProp = $('y');
+      let tmpNestedAssignPropRhs = $(d);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      tmpAssignComputedRhs = tmpNestedPropAssignRhs;
+      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a, b, c, 3);
 `````
@@ -110,4 +115,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

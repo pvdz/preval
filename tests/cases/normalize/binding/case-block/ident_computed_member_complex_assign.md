@@ -25,7 +25,7 @@ let c = 3;
 let d = 4;
 const tmpSwitchTest = $('a');
 {
-  let a;
+  let a_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -38,6 +38,7 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
+        a_1 = undefined;
         const tmpNestedAssignComMemberObj = $(b);
         const tmpNestedAssignComMemberProp = $('x');
         let tmpNestedAssignPropRhs;
@@ -49,7 +50,7 @@ const tmpSwitchTest = $('a');
         tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
         const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
         tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-        a = tmpNestedPropAssignRhs$1;
+        a_1 = tmpNestedPropAssignRhs$1;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -62,10 +63,8 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
 $('a');
-let a;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -78,6 +77,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
+      a_1 = undefined;
       const tmpNestedAssignComMemberObj = $(b);
       const tmpNestedAssignComMemberProp = $('x');
       let tmpNestedAssignPropRhs;
@@ -89,13 +89,13 @@ tmpSwitchBreak: {
       tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
       const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
       tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-      a = tmpNestedPropAssignRhs$1;
+      a_1 = tmpNestedPropAssignRhs$1;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(a, b, 3, 4);
+$(1, b, 3, 4);
 `````
 
 ## Result
@@ -114,4 +114,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

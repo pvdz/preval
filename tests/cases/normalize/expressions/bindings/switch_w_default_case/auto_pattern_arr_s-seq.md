@@ -25,13 +25,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -46,10 +48,9 @@ var tmpDoWhileTest;
             {
               $(10);
               $(20);
-              const arrAssignPatternRhs = [1, 2];
-              const arrPatternSplat = [...arrAssignPatternRhs];
+              bindingPatternArrRoot = [1, 2];
+              arrPatternSplat = [...bindingPatternArrRoot];
               a = arrPatternSplat[0];
-              arrAssignPatternRhs;
               $(a);
             }
             tmpSwitchFallthrough = true;
@@ -94,10 +95,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let bindingPatternArrRoot;
+let arrPatternSplat;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -108,8 +111,8 @@ do {
     if (tmpIfTest) {
       $(10);
       $(20);
-      const arrAssignPatternRhs = [1, 2];
-      const arrPatternSplat = [...arrAssignPatternRhs];
+      bindingPatternArrRoot = [1, 2];
+      arrPatternSplat = [...bindingPatternArrRoot];
       a = arrPatternSplat[0];
       $(a);
       tmpSwitchFallthrough = true;

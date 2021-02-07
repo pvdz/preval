@@ -22,8 +22,11 @@ switch (1) {
 
 `````js filename=intro
 {
+  let tmpObjLitVal;
+  let tmpObjLitVal$1;
+  let tmpObjLitVal$2;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -33,9 +36,9 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const tmpObjLitVal = $(1);
-        const tmpObjLitVal$1 = 2;
-        const tmpObjLitVal$2 = $(3);
+        tmpObjLitVal = $(1);
+        tmpObjLitVal$1 = 2;
+        tmpObjLitVal$2 = $(3);
         a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
         $(a);
       }
@@ -48,19 +51,24 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$2 = $(3);
-  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpObjLitVal = $(1);
+      tmpObjLitVal$1 = 2;
+      tmpObjLitVal$2 = $(3);
+      a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

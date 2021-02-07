@@ -30,7 +30,7 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpSwitchTest = tmpNestedAssignObjPatternRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,7 +51,13 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpSwitchTest = tmpNestedAssignObjPatternRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

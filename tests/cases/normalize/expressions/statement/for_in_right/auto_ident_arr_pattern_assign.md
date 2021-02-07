@@ -31,11 +31,11 @@ let a = { a: 999, b: 1000 };
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
-  let x;
-  for (x in tmpForInDeclRhs) {
+  let x_1;
+  for (x_1 in tmpForInDeclRhs) {
   }
 }
 $(a, x, y);
@@ -44,7 +44,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpForInDeclRhs;
@@ -52,13 +51,13 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
+x_1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
-let x;
-for (x in tmpForInDeclRhs) {
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
 }
-$(a, x, y);
+$(a, 1, y);
 `````
 
 ## Result
@@ -66,9 +65,8 @@ $(a, x, y);
 Should call `$` with:
  - 1: 3
  - 2: 4
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

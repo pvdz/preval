@@ -27,7 +27,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -43,11 +43,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+({ $: $ });
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpCallObj = $(b);
-a = tmpCallObj.$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    1;
+    2;
+    const tmpCallObj = $(b);
+    a = tmpCallObj.$(1);
+  }
+}
 $(a);
 `````
 
@@ -62,4 +70,7 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

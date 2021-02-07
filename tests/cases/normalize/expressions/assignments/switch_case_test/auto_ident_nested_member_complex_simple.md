@@ -30,7 +30,7 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -69,30 +69,36 @@ $(a, b, c, d);
 let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothLhs = tmpSwitchTest;
-  let tmpBinBothRhs;
-  let tmpNestedComplexRhs;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-  tmpNestedAssignPropRhs = 3;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
-  a = tmpNestedComplexRhs;
-  tmpBinBothRhs = tmpNestedComplexRhs;
-  tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  tmpFallthrough = true;
+$(1);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = tmpSwitchTest;
+    let tmpBinBothRhs;
+    let tmpNestedComplexRhs;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(c);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    const tmpNestedPropAssignRhs = d;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
+    a = tmpNestedComplexRhs;
+    tmpBinBothRhs = tmpNestedComplexRhs;
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+    }
+    tmpFallthrough = true;
+  }
 }
 $(a, b, c, 3);
 `````
@@ -110,4 +116,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not defined ]>')

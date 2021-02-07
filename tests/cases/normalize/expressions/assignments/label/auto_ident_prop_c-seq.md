@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
+label: {
   1;
   2;
   const tmpAssignRhsProp = $(b);
@@ -37,8 +37,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp.c;
+label: {
+  1;
+  2;
+  const tmpAssignRhsProp = $(b);
+  a = tmpAssignRhsProp.c;
+}
 $(a, b);
 `````
 

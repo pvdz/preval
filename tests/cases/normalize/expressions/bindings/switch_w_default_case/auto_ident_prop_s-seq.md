@@ -27,14 +27,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let b;
+  let tmpCompObj;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -50,8 +51,8 @@ var tmpDoWhileTest;
               b = { c: 1 };
               1;
               2;
-              const tmpAssignRhsProp = b;
-              a = tmpAssignRhsProp.c;
+              tmpCompObj = b;
+              a = tmpCompObj.c;
               $(a, b);
             }
             tmpSwitchFallthrough = true;
@@ -96,11 +97,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b;
+let tmpCompObj;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -110,8 +112,8 @@ do {
     }
     if (tmpIfTest) {
       b = { c: 1 };
-      const tmpAssignRhsProp = b;
-      a = tmpAssignRhsProp.c;
+      tmpCompObj = b;
+      a = tmpCompObj.c;
       $(a, b);
       tmpSwitchFallthrough = true;
     }

@@ -24,7 +24,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-{
+label: {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   if (tmpChainElementCall) {
@@ -43,16 +43,18 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
+({ x: tmpObjLitVal });
 let a = { a: 999, b: 1000 };
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
-  const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
-    const tmpChainRootComputed$1 = $('y');
-    tmpChainElementObject[tmpChainRootComputed$1];
+label: {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  if (tmpChainElementCall) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    if (tmpChainElementObject) {
+      const tmpChainRootComputed$1 = $('y');
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    }
   }
 }
 $(a);
@@ -69,4 +71,8 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 2
+ - 2: 'x'
+ - 3: { a: '999', b: '1000' }
+ - eval returned: undefined

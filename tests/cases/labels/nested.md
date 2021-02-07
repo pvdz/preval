@@ -18,8 +18,8 @@ a: b: c: break a;
 
 `````js filename=intro
 a: {
-  {
-    {
+  b: {
+    c: {
       break a;
     }
   }
@@ -30,8 +30,8 @@ a: {
 
 `````js filename=intro
 a: {
-  {
-    {
+  b: {
+    c: {
       break a;
     }
   }

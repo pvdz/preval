@@ -22,8 +22,11 @@ switch (1) {
 
 `````js filename=intro
 {
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let bindingPatternObjRoot;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -33,11 +36,10 @@ switch (1) {
     if (tmpIfTest) {
       ('case 0:');
       {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = { a: 1, b: 2 };
-        const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-        a = tmpAssignObjPatternRhs.a;
-        tmpAssignObjPatternRhs;
+        tmpCallCallee = $;
+        tmpCalleeParam = { a: 1, b: 2 };
+        bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+        a = bindingPatternObjRoot.a;
         $(a);
       }
       tmpFallthrough = true;
@@ -49,20 +51,24 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  a = tmpAssignObjPatternRhs.a;
-  $(a);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      tmpCallCallee = $;
+      tmpCalleeParam = { a: 1, b: 2 };
+      bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+      a = bindingPatternObjRoot.a;
+      $(a);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

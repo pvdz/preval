@@ -28,7 +28,6 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let x;
   let y;
@@ -37,6 +36,7 @@ var tmpDoWhileTest;
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -51,6 +51,7 @@ var tmpDoWhileTest;
             {
               x = 1;
               y = 2;
+              a = undefined;
               const tmpObjLitVal = $(3);
               const tmpObjLitVal$1 = $(4);
               const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
@@ -101,12 +102,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x;
 let y;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -117,6 +118,7 @@ do {
     if (tmpIfTest) {
       x = 1;
       y = 2;
+      a = undefined;
       const tmpObjLitVal = $(3);
       const tmpObjLitVal$1 = $(4);
       const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

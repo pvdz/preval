@@ -28,8 +28,8 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let arrPatternSplat = [...objPatternNoDefault$1];
-  let z_1 = arrPatternSplat[0];
-  return z_1;
+  let z = arrPatternSplat[0];
+  return z;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -49,8 +49,8 @@ function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let arrPatternSplat = [...objPatternNoDefault$1];
-  let z_1 = arrPatternSplat[0];
-  return z_1;
+  let z = arrPatternSplat[0];
+  return z;
 }
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;

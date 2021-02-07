@@ -26,11 +26,11 @@ let a = { a: 999, b: 1000 };
 {
   $(1);
   $(2);
-  const tmpDeleteCompObj = x;
+  const tmpDeleteCompObj = x_1;
   const tmpDeleteCompProp = $('y');
   const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  let x;
-  for (x of tmpForOfDeclRhs) {
+  let x_1;
+  for (x_1 of tmpForOfDeclRhs) {
   }
 }
 $(a, x);
@@ -43,11 +43,11 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = x_1;
 const tmpDeleteCompProp = $('y');
 const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x;
-for (x of tmpForOfDeclRhs) {
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````
@@ -57,9 +57,8 @@ $(a, x);
 Should call `$` with:
  - 1: 1
  - 2: 2
- - eval returned: ("<crash[ Cannot access 'x' before initialization ]>")
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'x' has already been declared ]>")
+Final output calls: Same

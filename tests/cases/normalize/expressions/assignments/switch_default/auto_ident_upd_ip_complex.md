@@ -27,7 +27,7 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -50,14 +50,20 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
-const tmpCallCallee = $;
-const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(b);
+    const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+    const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a = tmpPostUpdArgVal;
+  }
+}
 $(a, b);
 `````
 

@@ -25,8 +25,10 @@ switch (1) {
 `````js filename=intro
 {
   let x;
+  let tmpDeleteCompObj;
+  let tmpDeleteCompProp;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,8 +39,8 @@ switch (1) {
       ('case 0:');
       {
         x = { y: 1 };
-        const tmpDeleteCompObj = $(x);
-        const tmpDeleteCompProp = $('y');
+        tmpDeleteCompObj = $(x);
+        tmpDeleteCompProp = $('y');
         a = delete tmpDeleteCompObj[tmpDeleteCompProp];
         $(a, x);
       }
@@ -51,21 +53,24 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let x;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  x = { y: 1 };
-  const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = $('y');
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  $(a, x);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      x = { y: 1 };
+      tmpDeleteCompObj = $(x);
+      tmpDeleteCompProp = $('y');
+      a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+      $(a, x);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

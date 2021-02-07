@@ -23,11 +23,11 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   let tmpNestedComplexRhs = undefined;
@@ -50,11 +50,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   let tmpNestedComplexRhs = undefined;

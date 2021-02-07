@@ -25,8 +25,9 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCompObj;
   let a;
-  {
+  tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {
@@ -37,8 +38,8 @@ switch (1) {
       ('case 0:');
       {
         b = { c: 1 };
-        const tmpAssignRhsProp = $(b);
-        a = tmpAssignRhsProp['c'];
+        tmpCompObj = $(b);
+        a = tmpCompObj.c;
         $(a, b);
       }
       tmpFallthrough = true;
@@ -50,20 +51,23 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  b = { c: 1 };
-  const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp.c;
-  $(a, b);
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 1 === 1;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      b = { c: 1 };
+      tmpCompObj = $(b);
+      a = tmpCompObj.c;
+      $(a, b);
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 

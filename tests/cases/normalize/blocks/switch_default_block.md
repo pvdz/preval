@@ -22,7 +22,7 @@ switch ($(1)) {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -37,7 +37,15 @@ const tmpSwitchTest = $(1);
 
 `````js filename=intro
 $(1);
-$(3);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    {
+      $(3);
+    }
+  }
+}
 `````
 
 ## Result

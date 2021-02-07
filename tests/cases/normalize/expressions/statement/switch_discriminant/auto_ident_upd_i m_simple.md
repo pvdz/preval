@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b - 1;
 const tmpSwitchTest = tmpPostUpdArgIdent;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -45,7 +45,13 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 b = b - 1;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

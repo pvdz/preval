@@ -33,7 +33,7 @@ const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 tmpSwitchTest = tmpNestedPropAssignRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -52,7 +52,13 @@ let tmpSwitchTest;
 const tmpNestedAssignObj = b;
 tmpNestedAssignObj.c = 2;
 tmpSwitchTest = 2;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a, b);
 `````
 

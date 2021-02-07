@@ -29,7 +29,7 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -51,16 +51,22 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
+({ x: tmpObjLitVal });
 let a = { a: 999, b: 1000 };
 $(1);
-a = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    a = undefined;
+    const tmpChainRootProp = b;
+    if (tmpChainRootProp) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+      a = tmpChainElementObject$2;
+    }
+  }
 }
 $(a);
 `````
@@ -74,4 +80,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

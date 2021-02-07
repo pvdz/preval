@@ -22,7 +22,7 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 `````js filename=intro
 {
-  let a_1 = 1;
+  let a = 1;
 }
 const tmpAssignObjPatternRhs = 1;
 a_1 = tmpAssignObjPatternRhs.x;
@@ -35,7 +35,6 @@ tmpAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-let a_1 = 1;
 a_1 = (1).x;
 `````
 

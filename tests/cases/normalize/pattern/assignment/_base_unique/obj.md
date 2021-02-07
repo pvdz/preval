@@ -18,7 +18,7 @@
 
 `````js filename=intro
 {
-  let x_1 = 1;
+  let x = 1;
 }
 const tmpAssignObjPatternRhs = 1;
 x_1 = tmpAssignObjPatternRhs.x;
@@ -31,8 +31,7 @@ tmpAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-let x_1 = 1;
-x_1 = (1).x;
+x_1_1 = (1).x_1;
 `````
 
 ## Result

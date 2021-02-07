@@ -24,7 +24,7 @@ let b = 2;
 let c = 3;
 const tmpSwitchTest = $('a');
 {
-  let a;
+  let a_1;
   tmpSwitchBreak: {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
@@ -37,8 +37,9 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest) {
       ('case 0:');
       {
+        a_1 = undefined;
         b = c;
-        a = c;
+        a_1 = c;
         break tmpSwitchBreak;
       }
       tmpFallthrough = true;
@@ -51,9 +52,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
 $('a');
-let a;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
@@ -66,14 +65,15 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
+      a_1 = undefined;
       b = c;
-      a = c;
+      a_1 = c;
       break tmpSwitchBreak;
     }
     tmpFallthrough = true;
   }
 }
-$(a, 2, 3);
+$(1, 2, 3);
 `````
 
 ## Result
@@ -87,4 +87,5 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ("<crash[ Identifier 'a' has already been declared ]>")
+ - 1: 'a'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

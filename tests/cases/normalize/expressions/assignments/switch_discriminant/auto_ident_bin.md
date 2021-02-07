@@ -29,7 +29,7 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -49,7 +49,13 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

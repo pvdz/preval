@@ -41,7 +41,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: 'toString'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 4: 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

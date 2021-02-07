@@ -25,13 +25,16 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let bindingPatternObjRoot;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -44,11 +47,10 @@ var tmpDoWhileTest;
           }
           if (tmpIfTest) {
             {
-              const tmpCallCallee = $;
-              const tmpCalleeParam = { a: 1, b: 2 };
-              const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-              a = tmpAssignObjPatternRhs.a;
-              tmpAssignObjPatternRhs;
+              tmpCallCallee = $;
+              tmpCalleeParam = { a: 1, b: 2 };
+              bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+              a = bindingPatternObjRoot.a;
               $(a);
             }
             tmpSwitchFallthrough = true;
@@ -93,10 +95,13 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
+let tmpCallCallee;
+let tmpCalleeParam;
+let bindingPatternObjRoot;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -105,10 +110,10 @@ do {
       tmpIfTest = true;
     }
     if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = { a: 1, b: 2 };
-      const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-      a = tmpAssignObjPatternRhs.a;
+      tmpCallCallee = $;
+      tmpCalleeParam = { a: 1, b: 2 };
+      bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+      a = bindingPatternObjRoot.a;
       $(a);
       tmpSwitchFallthrough = true;
     }

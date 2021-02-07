@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpSwitchTest = tmpBinBothLhs + tmpBinBothRhs;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
@@ -43,7 +43,13 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
-$(100);
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  {
+    ('default case:');
+    $(100);
+  }
+}
 $(a);
 `````
 

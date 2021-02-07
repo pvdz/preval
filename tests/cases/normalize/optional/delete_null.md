@@ -32,8 +32,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCallCallee = $;
-tmpCalleeParam = null.x;
-tmpCallCallee(tmpCalleeParam);
+tmpCalleeParam_1 = null.x;
+tmpCallCallee(tmpCalleeParam_1);
 `````
 
 ## Result

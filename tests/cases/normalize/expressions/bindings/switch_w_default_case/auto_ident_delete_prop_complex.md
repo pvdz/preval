@@ -27,14 +27,15 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 {
   let x;
+  let tmpDeleteObj;
   let a;
   {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
+    let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
         ('Cases before the default case');
@@ -48,7 +49,7 @@ var tmpDoWhileTest;
           if (tmpIfTest) {
             {
               x = { y: 1 };
-              const tmpDeleteObj = $(x);
+              tmpDeleteObj = $(x);
               a = delete tmpDeleteObj.y;
               $(a, x);
             }
@@ -94,11 +95,12 @@ var tmpDoWhileTest;
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let x;
+let tmpDeleteObj;
 let a;
 let tmpSwitchCheckCases = true;
 let tmpSwitchFallthrough = false;
+let tmpDoWhileTest;
 do {
   if (tmpSwitchCheckCases) {
     let tmpIfTest = tmpSwitchFallthrough;
@@ -108,7 +110,7 @@ do {
     }
     if (tmpIfTest) {
       x = { y: 1 };
-      const tmpDeleteObj = $(x);
+      tmpDeleteObj = $(x);
       a = delete tmpDeleteObj.y;
       $(a, x);
       tmpSwitchFallthrough = true;

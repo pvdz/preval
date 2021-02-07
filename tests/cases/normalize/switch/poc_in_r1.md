@@ -24,7 +24,7 @@ switch (x) {
 
 `````js filename=intro
 let x = 1;
-{
+tmpSwitchBreak: {
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
@@ -46,16 +46,22 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpBinBothRhs = $(1);
-  tmpIfTest = 1 === tmpBinBothRhs;
-}
-if (tmpIfTest) {
-  $('A');
-  tmpFallthrough = true;
+tmpSwitchBreak: {
+  let tmpFallthrough = false;
+  let tmpIfTest = tmpFallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = x;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    ('case 0:');
+    {
+      $('A');
+    }
+    tmpFallthrough = true;
+  }
 }
 `````
 
@@ -68,4 +74,6 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: undefined

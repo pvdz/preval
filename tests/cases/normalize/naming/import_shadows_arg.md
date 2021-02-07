@@ -18,8 +18,8 @@ export const x = $(f());
 ## Normalized
 
 `````js filename=intro
-export function g(x) {
-  return x;
+export function g(x_1) {
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -30,12 +30,12 @@ export { x };
 ## Output
 
 `````js filename=intro
-export function g(x) {
-  return x;
+export function g(x_1) {
+  return x_1;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const x = tmpCallCallee(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 export { x };
 `````
 

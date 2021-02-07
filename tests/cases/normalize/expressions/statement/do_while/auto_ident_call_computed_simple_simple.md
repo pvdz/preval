@@ -23,9 +23,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = b['$'](1);
@@ -36,9 +36,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-var tmpDoWhileTest;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = b.$(1);

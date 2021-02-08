@@ -212,6 +212,38 @@ export function ifStatement(test, consequent, alternate = null) {
   };
 }
 
+export function importDeclarationNamed(imported, local = typeof imported === 'string' ? imported : imported.name, source) {
+  if (typeof imported === 'string') imported = identifier(imported);
+  if (typeof local === 'string') local = identifier(local);
+  if (typeof source === 'string') source = literal(source);
+
+  return {
+    type: 'ImportDeclaration',
+    specifiers: [
+      {
+        type: 'ImportSpecifier',
+        imported,
+        local,
+        $p: $p(),
+      },
+    ],
+    source,
+    $p: $p(),
+  };
+}
+
+export function importDeclarationFromSpecifier(specifier, source) {
+  ASSERT(specifier && specifier.type.includes('Specifier'));
+  if (typeof source === 'string') source = literal(source);
+  ASSERT(source.type === 'Literal');
+  return {
+    type: 'ImportDeclaration',
+    specifiers: [specifier],
+    source,
+    $p: $p(),
+  };
+}
+
 export function labeledStatement(label, body) {
   if (typeof label === 'string') label = identifier(label);
 

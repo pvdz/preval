@@ -77,6 +77,8 @@ const VERBOSE_TRACING = true;
   - Switches are transformed to if-else with labeled break
   - Label names are made unique globally (relative to the module)
   - Unreferenced labels are dropped
+  - Each import statement has exactly one specifier
+  - Default imports become named imports (because default exports simply export 'default')
  */
 
 // low hanging fruit: imports/exports, classes, async, iterators
@@ -130,7 +132,6 @@ const VERBOSE_TRACING = true;
   - unused init for variabel (let x = 10; x = 20; $(x))
   - statement that is identifier / literal (?)
   - arguments (ehh)
-  - default import/export to named variant
   - TODO: broken: var decl hoisting wont find stuff nested inside other blocks or sub-statements (loops, switch, try), I think?
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
@@ -837,6 +838,8 @@ export function phaseNormalize(fdata, fname) {
         return transformLabeledStatement(node, body, i, parent);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
+      case 'ImportDeclaration':
+        return transformImportDeclaration(node, body, i, parent);
       case 'ReturnStatement':
         return transformReturnStatement(node, body, i);
       case 'SwitchStatement':
@@ -853,9 +856,6 @@ export function phaseNormalize(fdata, fname) {
 
       case 'BreakStatement':
       case 'ContinueStatement':
-        return false;
-
-      case 'ImportDeclaration':
         return false;
 
       case 'ClassDeclaration':
@@ -3773,6 +3773,41 @@ export function phaseNormalize(fdata, fname) {
     anyBlock(node.consequent);
     if (node.alternate) anyBlock(node.alternate);
 
+    return false;
+  }
+  function transformImportDeclaration(node, body, i, parent) {
+    if (node.specifiers.length > 1) {
+      rule('Imports should have one specifier');
+      example('import a, {b} from "c"', 'import a from "c"; import {b} from "c"');
+      before(node);
+
+      const newNodes = node.specifiers.map(specifier => {
+        ASSERT(node.source.type === 'Literal', 'if this changes then the below should change');
+        return AST.importDeclarationFromSpecifier(specifier, node.source.value);
+      });
+      body.splice(i, 1, ...newNodes);
+
+      after(newNodes);
+      return true;
+    }
+
+    const spec = node.specifiers[0];
+    ASSERT(spec);
+
+    if (spec.type === 'ImportDefaultSpecifier') {
+      // Spec wise, a default export is really just this, so we should just normalize this variation away.
+      rule('The defaults import should be a named import');
+      example('import x from "y";', 'import {default as x} from "y";');
+      before(node);
+
+      const finalParent = AST.importDeclarationNamed('default', spec.local, node.source);
+      body[i] = finalParent;
+
+      after(finalParent);
+      return true;
+    }
+
+    // TODO
     return false;
   }
   function transformLabeledStatement(node, body, i, parent) {

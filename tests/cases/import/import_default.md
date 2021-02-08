@@ -26,7 +26,7 @@ export default 100;
 ## Normalized
 
 `````js filename=intro
-import x from 'x';
+import { default as x } from 'x';
 $(x);
 `````
 
@@ -37,7 +37,7 @@ export default 100;
 ## Output
 
 `````js filename=intro
-import x from 'x';
+import { default as x } from 'x';
 $(x);
 `````
 

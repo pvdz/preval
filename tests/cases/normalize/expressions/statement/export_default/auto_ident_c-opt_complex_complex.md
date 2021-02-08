@@ -31,7 +31,7 @@ if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpExportDefault = tmpChainElementObject;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -48,7 +48,7 @@ if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpExportDefault = tmpChainElementObject;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

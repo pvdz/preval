@@ -22,7 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpExportDefault = tmpCallCallee(1);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -31,8 +31,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
-const tmpExportDefault = tmpCallCallee(1);
-export default tmpExportDefault;
+tmpCallCallee(1);
+export { tmpExportDefault as default };
 $(a);
 `````
 

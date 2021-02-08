@@ -41,7 +41,7 @@ if (tmpChainElementCall) {
 }
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -68,7 +68,7 @@ if (tmpChainElementCall) {
 }
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

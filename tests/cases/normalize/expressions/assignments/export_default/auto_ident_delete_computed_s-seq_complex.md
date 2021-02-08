@@ -31,7 +31,7 @@ const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -48,7 +48,7 @@ const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 

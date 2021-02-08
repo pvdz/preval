@@ -403,9 +403,7 @@ export function phase2(program, fdata, resolve, req) {
           groupEnd();
         }
 
-        if (isExport) {
-          ASSERT(node.id, 'exported functions (not by default) must have an id as per syntax');
-        }
+        ASSERT(isExport || node.id, 'exported functions (not default) must have an id as per syntax');
 
         if (node.body.length === 0) {
           ASSERT(node.$p.pure, 'empty func should be pure');

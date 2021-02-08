@@ -25,7 +25,7 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpExportDefault = [1, 2];
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -37,8 +37,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpExportDefault = [1, 2];
-export default tmpExportDefault;
+[1, 2];
+export { tmpExportDefault as default };
 $(a);
 `````
 

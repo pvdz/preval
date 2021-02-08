@@ -27,7 +27,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = typeof x;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 let tmpExportDefault;
 a = 'number';
 tmpExportDefault = 'number';
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, 1);
 `````
 

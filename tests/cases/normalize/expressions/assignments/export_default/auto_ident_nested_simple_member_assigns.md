@@ -52,7 +52,7 @@ b.x = tmpNestedPropAssignRhs$5;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b, c);
 `````
 
@@ -87,7 +87,7 @@ b.x = tmpNestedPropAssignRhs$5;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b, 3);
 `````
 

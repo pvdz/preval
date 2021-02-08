@@ -33,7 +33,7 @@ if (1) {
 }
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -46,7 +46,7 @@ let tmpNestedComplexRhs = undefined;
 tmpNestedComplexRhs = $(60);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

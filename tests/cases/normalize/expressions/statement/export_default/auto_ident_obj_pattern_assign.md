@@ -32,7 +32,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpExportDefault = tmpNestedAssignObjPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x, y);
 `````
 
@@ -49,7 +49,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpExportDefault = tmpNestedAssignObjPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x, y);
 `````
 

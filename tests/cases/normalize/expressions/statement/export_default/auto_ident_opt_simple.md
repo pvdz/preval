@@ -29,7 +29,7 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpExportDefault = tmpChainElementObject;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -44,7 +44,7 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpExportDefault = tmpChainElementObject;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

@@ -31,7 +31,7 @@ b = tmpNestedComplexRhs$1;
 tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -48,7 +48,7 @@ b = tmpNestedComplexRhs$1;
 tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 

@@ -25,7 +25,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
 const tmpExportDefault = typeof tmpUnaryArg;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -34,8 +34,8 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-const tmpExportDefault = typeof tmpUnaryArg;
-export default tmpExportDefault;
+typeof tmpUnaryArg;
+export { tmpExportDefault as default };
 $(a, 1);
 `````
 

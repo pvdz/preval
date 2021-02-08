@@ -29,7 +29,7 @@ const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -44,7 +44,7 @@ const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

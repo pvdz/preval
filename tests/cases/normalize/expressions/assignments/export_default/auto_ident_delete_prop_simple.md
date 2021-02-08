@@ -27,7 +27,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = delete x.y;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -40,7 +40,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = delete x.y;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 

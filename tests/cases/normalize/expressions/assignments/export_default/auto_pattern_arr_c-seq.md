@@ -31,7 +31,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -50,7 +50,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

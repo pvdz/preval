@@ -36,7 +36,8 @@ let b = 20;
 export { b };
 let c = 30;
 export { c };
-export default 100;
+const tmpExportDefault = 100;
+export { tmpExportDefault as default };
 `````
 
 ## Output
@@ -51,7 +52,7 @@ import { c as c } from 'd';
 export { a };
 export { b };
 export { c };
-export default 100;
+export { tmpExportDefault as default };
 `````
 
 ## Result

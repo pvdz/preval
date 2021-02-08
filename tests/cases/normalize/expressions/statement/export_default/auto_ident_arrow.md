@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpExportDefault = () => {};
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -29,8 +29,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = () => {};
-export default tmpExportDefault;
+() => {};
+export { tmpExportDefault as default };
 $(a);
 `````
 

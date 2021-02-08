@@ -23,7 +23,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpExportDefault = tmpBinBothLhs + tmpBinBothRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -33,8 +33,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpExportDefault = tmpBinBothLhs + tmpBinBothRhs;
-export default tmpExportDefault;
+tmpBinBothLhs + tmpBinBothRhs;
+export { tmpExportDefault as default };
 $(a);
 `````
 

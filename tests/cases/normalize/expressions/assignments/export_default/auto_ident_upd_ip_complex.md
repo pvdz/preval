@@ -34,7 +34,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -54,7 +54,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 

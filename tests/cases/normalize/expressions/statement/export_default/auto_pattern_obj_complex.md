@@ -24,7 +24,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -35,8 +35,8 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+tmpCallCallee(tmpCalleeParam);
+export { tmpExportDefault as default };
 $(a);
 `````
 

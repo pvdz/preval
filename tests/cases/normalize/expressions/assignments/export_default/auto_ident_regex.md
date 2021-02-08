@@ -24,7 +24,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = /foo/;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 let tmpExportDefault;
 a = /foo/;
 tmpExportDefault = /foo/;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

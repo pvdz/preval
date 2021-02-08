@@ -950,22 +950,59 @@ export function phaseNormalize(fdata, fname) {
     });
   }
   function transformExportDefault(node, body, i) {
-    if (node.declaration.type !== 'FunctionDeclaration' && node.declaration.type !== 'ClassDeclaration') {
-      // The export value is a generic expression. However, there's no reason we couldn't outline it first
-      if (isComplexNode(node.declaration)) {
-        rule('The value of a default export must be a simple node');
-        example('export default a + b', 'const tmp = a + b; export default tmp;');
+    // We want to eliminate this but there are some subtle cases to keep in mind
+    // Relevant thread: https://github.com/rollup/rollup/issues/2524
+    // Detailed explanation: https://stackoverflow.com/questions/39276608/
+    // - Named export bindings are live ("as" is not relevant)
+    // - Default exports are live if they are named func/class decls, frozen otherwise
+    // - tldr;
+    //   - make sure not to _just_ "optimize" `export default x` to `export {x}`.
+    //   - named func/class decls can be outlined but should retain their name
+    //   - anonymous function being exported has func.name === '*default*' ... (but at least can't be referenced locally...)
+
+    const type = node.declaration.type;
+    if (type === 'FunctionDeclaration' || type === 'ClassDeclaration') {
+      if (node.declaration.id) {
+        // We can outline the decl safely and change to named export with identical semantics
+        if (type === 'FunctionDeclaration') {
+          rule('Default named function exports should be a named exports');
+          example('export default function f(){}', 'function f(){}; export { F as default };');
+        } else {
+          rule('Default named class should be a named exports');
+          example('export default class F {}', 'class F {}; export { F as default };');
+        }
         before(node);
 
-        const tmpName = createFreshVar('tmpExportDefault');
-        const newNodes = [AST.variableDeclaration(tmpName, node.declaration, 'const'), AST._exportDefaultDeclaration(tmpName)];
+        const newNodes = [node.declaration, AST._exportNamedDeclarationFromNames(node.declaration.id.name, 'default')];
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
         return true;
       }
+
+      // This one is tricky and we don't change it right now
+      // The main problem is that it would change func.name from `'*default*' to something else
+      // I'm not aware of an alternative way to safely transform this (as func.name is not
+      // a writeable property) so `export default` is actually the only way to achieve this...
+      return false;
     }
-    return false;
+
+    // The export is frozen, even if the exported value is an identifier. Reassign it locally to make sure that stays the same.
+
+    rule('Default exports should be a named exports');
+    example('export default 10', 'tmp = 10; export {tmp as default};');
+    example('export default x', 'tmp = x; export {tmp as default};');
+    before(node);
+
+    const tmpName = createFreshVar('tmpExportDefault');
+    const newNodes = [
+      AST.variableDeclaration(tmpName, node.declaration, 'const'),
+      AST._exportNamedDeclarationFromNames(tmpName, 'default'),
+    ];
+    body.splice(i, 1, ...newNodes);
+
+    after(newNodes);
+    return true;
   }
   function transformExportNamedDeclaration(node, body, i) {
     // This nodes represents a bunch of exports
@@ -3781,7 +3818,7 @@ export function phaseNormalize(fdata, fname) {
       example('import a, {b} from "c"', 'import a from "c"; import {b} from "c"');
       before(node);
 
-      const newNodes = node.specifiers.map(specifier => {
+      const newNodes = node.specifiers.map((specifier) => {
         ASSERT(node.source.type === 'Literal', 'if this changes then the below should change');
         return AST.importDeclarationFromSpecifier(specifier, node.source.value);
       });

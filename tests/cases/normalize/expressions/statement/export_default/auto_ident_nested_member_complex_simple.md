@@ -39,7 +39,7 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
 tmpExportDefault = tmpNestedPropAssignRhs$1;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b, c, d);
 `````
 
@@ -60,7 +60,7 @@ tmpNestedAssignPropRhs = 3;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
 tmpExportDefault = tmpNestedPropAssignRhs$1;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b, c, 3);
 `````
 

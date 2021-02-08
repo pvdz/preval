@@ -6,9 +6,11 @@
 >
 > Import statements need special care in our system and our tests
 
-The code frames should have a filename that matches the exact string that is used in imports. And just work.
+Named functions are default exported as live bindings.
 
-Also, defaults should work :p
+This means that a change to the value of the binding should be reflected by the import.
+
+(Exported functions are defined as `let` bindings.)
 
 #TODO
 
@@ -16,11 +18,12 @@ Also, defaults should work :p
 
 `````js filename=intro
 import x from 'x';
-$(x);
+$(x); // 10
 `````
 
 `````js filename=x
-export default 100;
+export default function f() {}
+f = 10;
 `````
 
 ## Normalized
@@ -31,7 +34,9 @@ $(x);
 `````
 
 `````js filename=x
-export default 100;
+function f() {}
+export { f as default };
+f = 10;
 `````
 
 ## Output
@@ -42,7 +47,9 @@ $(x);
 `````
 
 `````js filename=x
-export default 100;
+function f() {}
+export { f as default };
+f = 10;
 `````
 
 ## Result

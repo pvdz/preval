@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 const tmpExportDefault = tmpCallCompObj[tmpCallCompProp](1);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -39,8 +39,8 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const tmpExportDefault = tmpCallCompObj[tmpCallCompProp](1);
-export default tmpExportDefault;
+tmpCallCompObj[tmpCallCompProp](1);
+export { tmpExportDefault as default };
 $(a);
 `````
 

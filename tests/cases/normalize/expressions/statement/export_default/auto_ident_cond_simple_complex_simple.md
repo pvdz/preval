@@ -28,7 +28,7 @@ if (1) {
   const tmpCalleeParam = $(100);
   tmpExportDefault = tmpCallCallee(tmpCalleeParam);
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -38,7 +38,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
 tmpExportDefault = $(2);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

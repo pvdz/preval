@@ -27,7 +27,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = $(b);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -39,7 +39,7 @@ let tmpExportDefault;
 const tmpNestedComplexRhs = $(1);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, 1);
 `````
 

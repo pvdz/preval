@@ -31,7 +31,7 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -46,7 +46,7 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

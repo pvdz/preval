@@ -33,7 +33,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x, y);
 `````
 
@@ -51,7 +51,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x, y);
 `````
 

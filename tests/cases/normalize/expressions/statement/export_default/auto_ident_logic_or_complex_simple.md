@@ -27,7 +27,7 @@ if (tmpExportDefault) {
 } else {
   tmpExportDefault = 2;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -42,7 +42,7 @@ if (tmpExportDefault) {
 } else {
   tmpExportDefault = 2;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

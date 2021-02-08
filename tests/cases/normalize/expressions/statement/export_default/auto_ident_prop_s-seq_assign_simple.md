@@ -30,7 +30,7 @@ const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 tmpExportDefault = tmpNestedPropAssignRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -43,7 +43,7 @@ let tmpExportDefault;
 const tmpNestedAssignObj = b;
 tmpNestedAssignObj.c = 2;
 tmpExportDefault = 2;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 

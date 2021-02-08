@@ -25,7 +25,7 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -37,8 +37,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+tmpCallCallee(tmpCalleeParam);
+export { tmpExportDefault as default };
 $(a);
 `````
 

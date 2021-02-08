@@ -26,7 +26,7 @@ const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 a['b'] = 2;
 $(a);
 `````
@@ -40,7 +40,7 @@ const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 a.b = 2;
 $(a);
 `````

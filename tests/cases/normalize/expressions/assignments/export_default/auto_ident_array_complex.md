@@ -27,7 +27,7 @@ const tmpArrElement$2 = $(3);
 const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -41,7 +41,7 @@ const tmpArrElement$2 = $(3);
 const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

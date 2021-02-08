@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
 const tmpExportDefault = tmpCompObj[tmpCompProp];
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -37,8 +37,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
-const tmpExportDefault = tmpCompObj[tmpCompProp];
-export default tmpExportDefault;
+tmpCompObj[tmpCompProp];
+export { tmpExportDefault as default };
 $(a, b);
 `````
 

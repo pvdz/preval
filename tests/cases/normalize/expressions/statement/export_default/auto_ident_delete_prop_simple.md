@@ -24,7 +24,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpExportDefault = delete x.y;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -33,8 +33,8 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = delete x.y;
-export default tmpExportDefault;
+delete x.y;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 

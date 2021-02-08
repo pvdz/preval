@@ -24,7 +24,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 const tmpExportDefault = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -34,8 +34,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-const tmpExportDefault = [tmpArrElement, 2, tmpArrElement$2];
-export default tmpExportDefault;
+[tmpArrElement, 2, tmpArrElement$2];
+export { tmpExportDefault as default };
 $(a);
 `````
 

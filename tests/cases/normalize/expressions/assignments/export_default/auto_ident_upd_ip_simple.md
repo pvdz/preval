@@ -29,7 +29,7 @@ b = b + 1;
 const tmpNestedComplexRhs = tmpPostUpdArgIdent;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 
@@ -44,7 +44,7 @@ b = b + 1;
 const tmpNestedComplexRhs = tmpPostUpdArgIdent;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, b);
 `````
 

@@ -28,7 +28,7 @@ const tmpDeleteObj = $(x);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -42,7 +42,7 @@ const tmpDeleteObj = $(x);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 

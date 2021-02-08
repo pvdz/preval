@@ -28,7 +28,7 @@ const tmpUnaryArg = $(x);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -41,7 +41,7 @@ const tmpUnaryArg = $(1);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, 1);
 `````
 

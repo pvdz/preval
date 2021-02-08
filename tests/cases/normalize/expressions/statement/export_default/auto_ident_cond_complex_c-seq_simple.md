@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   tmpExportDefault = tmpCallCallee(tmpCalleeParam);
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -48,7 +48,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   tmpExportDefault = tmpCallCallee(tmpCalleeParam);
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

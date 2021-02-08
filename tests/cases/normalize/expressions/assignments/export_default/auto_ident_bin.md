@@ -26,7 +26,7 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -40,7 +40,7 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 tmpExportDefault = tmpNestedComplexRhs;
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

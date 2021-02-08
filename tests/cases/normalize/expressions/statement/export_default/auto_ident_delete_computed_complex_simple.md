@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = 'y';
 const tmpExportDefault = delete tmpDeleteCompObj[tmpDeleteCompProp];
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 
@@ -36,8 +36,8 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
-const tmpExportDefault = delete tmpDeleteCompObj.y;
-export default tmpExportDefault;
+delete tmpDeleteCompObj.y;
+export { tmpExportDefault as default };
 $(a, x);
 `````
 

@@ -129,8 +129,13 @@ export function _exportNamedDeclarationFromNames(locals, exported) {
   if (typeof locals === 'string') locals = identifier(locals);
   if (!Array.isArray(locals)) locals = [locals];
   if (!exported) exported = locals;
+  if (typeof exported === 'string') exported = identifier(exported);
 
-  const specifiers = locals.map((local, i) => _exportSpecifier(local, Array.isArray(exported) ? exported[i] : exported));
+  const specifiers = locals.map((local, i) => {
+    const exportee = Array.isArray(exported) ? exported[i] : exported;
+    ASSERT(exportee?.type === 'Identifier', 'exported names must be identifiers', locals, exported);
+    return _exportSpecifier(local, exportee);
+  });
 
   return {
     type: 'ExportNamedDeclaration',
@@ -446,6 +451,7 @@ export function variableDeclaration(names, inits = null, kind = 'let') {
     kind,
   );
 }
+
 export function variableDeclarator(id, init = null) {
   if (typeof id === 'string') id = identifier(id);
   if (typeof init === 'string') init = identifier(init);
@@ -456,6 +462,7 @@ export function variableDeclarator(id, init = null) {
     $p: $p(),
   };
 }
+
 export function variableDeclarationFromDeclaration(declarations, kind = 'let') {
   if (!Array.isArray(declarations)) declarations = [declarations];
 

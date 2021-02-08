@@ -27,7 +27,7 @@ $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -41,8 +41,8 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export default tmpExportDefault;
+tmpCallCallee(tmpCalleeParam);
+export { tmpExportDefault as default };
 $(a);
 `````
 

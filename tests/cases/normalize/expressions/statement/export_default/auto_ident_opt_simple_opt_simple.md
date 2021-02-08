@@ -33,7 +33,7 @@ if (tmpChainRootProp) {
     tmpExportDefault = tmpChainElementObject$1;
   }
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -52,7 +52,7 @@ if (tmpChainRootProp) {
     tmpExportDefault = tmpChainElementObject$1;
   }
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

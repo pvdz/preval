@@ -38,7 +38,7 @@ if (tmpChainElementCall) {
     tmpExportDefault = tmpChainElementCall$1;
   }
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -62,7 +62,7 @@ if (tmpChainElementCall) {
     tmpExportDefault = tmpChainElementCall$1;
   }
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

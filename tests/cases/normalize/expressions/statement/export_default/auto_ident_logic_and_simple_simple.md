@@ -24,7 +24,7 @@ let tmpExportDefault = 1;
 if (tmpExportDefault) {
   tmpExportDefault = 2;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 
@@ -36,7 +36,7 @@ let tmpExportDefault = 1;
 if (tmpExportDefault) {
   tmpExportDefault = 2;
 }
-export default tmpExportDefault;
+export { tmpExportDefault as default };
 $(a);
 `````
 

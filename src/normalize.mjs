@@ -130,6 +130,7 @@ const VERBOSE_TRACING = true;
   - unused init for variabel (let x = 10; x = 20; $(x))
   - statement that is identifier / literal (?)
   - arguments (ehh)
+  - default import/export to named variant
   - TODO: broken: var decl hoisting wont find stuff nested inside other blocks or sub-statements (loops, switch, try), I think?
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
@@ -854,6 +855,9 @@ export function phaseNormalize(fdata, fname) {
       case 'ContinueStatement':
         return false;
 
+      case 'ImportDeclaration':
+        return false;
+
       case 'ClassDeclaration':
       case 'DebuggerStatement':
       case 'ExportAllDeclaration':
@@ -866,7 +870,6 @@ export function phaseNormalize(fdata, fname) {
       case 'ClassBody':
       case 'Directive':
       case 'ExportSpecifier':
-      case 'ImportDeclaration':
       case 'ImportDefaultSpecifier':
       case 'ImportNamespaceSpecifier':
       case 'ImportSpecifier':

@@ -131,7 +131,7 @@ export function phase1(fdata, resolve, req, verbose) {
 
   fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
   fdata.globallyUniqueLabelRegistery = globallyUniqueLabelRegistery;
-  const imports = new Map();
+  const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;
   const exports = new Map();
   fdata.exports = exports;
@@ -472,6 +472,7 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'ImportDeclaration:before': {
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
+        log('Importing symbols from "' + source + '"');
         ASSERT(typeof resolve === 'function', 'resolve must be a function here', resolve);
         const resolvedSource = resolve(source, fdata.fname);
 
@@ -708,6 +709,9 @@ export function phase1(fdata, resolve, req, verbose) {
     groupEnd();
   }
 
+  log();
+  log('Imports from:');
+  log([...imports.values()].sort().map(s => '- "' + s + '"').join('\n'));
   log(
     '\ngloballyUniqueNamingRegistery (sans builtins):\n',
     globallyUniqueNamingRegistery.size === globals.size

@@ -89,7 +89,7 @@ export function fromMarkdownCase(md, fname, config) {
       fin: {},
     };
 
-    const fin = mdInput.replace(/\n`````js(?:[ \t]+filename=(.*?))\n([\s\S]*?)\n`````\n/, (_, name = intro, code) => {
+    const fin = mdInput.replace(/\n`````js(?:[ \t]+filename=(.*?))\n([\s\S]*?)\n`````\n/g, (_, name = intro, code) => {
       const n = name.trim();
       if (testCase.fin[n]) throw new Error('Duplicate name: ' + n);
       testCase.fin[n] = code.trim();
@@ -174,18 +174,20 @@ export function toEvaluationResult(evalled, files, skipFinal) {
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled }) {
-  const content =
+export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }) {
+  if (lastError) {
+    return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
+  }
+
+  if (isExpectingAnError) {
+    return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nBAD~! Expected to throw an error but none was thrown ;(\n';
+  }
+
+  return (
+    '' +
     mdHead +
     '\n\n' +
     mdChunks.join('\n\n').trim() +
-    //'\n\n## Eval' +
-    //'\n\nResult of executing test case: ' +
-    //evalled.in +
-    //'\n\nCalls to `$` (' +
-    //evalled.$in.length +
-    //'x):\n' +
-    //evalled.$in.map((obj) => '\n - ' + JSON.stringify(obj)).join(',') +
     toNormalizedResult(output.normalized) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +
@@ -213,9 +215,8 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     //      '\n`````',
     //  )
     //  .join('\n\n') +
-    toEvaluationResult(evalled, output.files);
-
-  return content;
+    toEvaluationResult(evalled, output.files)
+  );
 }
 
 async function question(msg) {

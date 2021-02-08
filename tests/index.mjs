@@ -79,21 +79,49 @@ function runTestCase(
 
   let lastError = false;
   let output;
+  let isExpectingAnError = mdHead.includes('\n### THROWS');
+  if (withOutput) {
+    console.log('Test case:', isExpectingAnError ? 'Expecting to throw an error' : 'Not expecting an error');
+  }
+  let expectedError = false;
   try {
     output = preval({
       entryPointFile: 'intro',
       stdio: withOutput ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
       verbose: withOutput, // do not bother to pretty print between steps and whatever if we're not printing it anyways
       resolve(filePath) {
+        if (withOutput) console.log('Preval test harness; resolve(' + filePath + ') (no change)');
         return filePath;
       },
       req(importPath) {
+        if (withOutput) {
+          console.log('Preval test harnas; require(' + importPath + ')');
+          console.log('-', fin[importPath].length, 'bytes');
+        }
         return fin[importPath];
       },
     });
   } catch (e) {
-    if (withOutput) ++fail;
-    lastError = e;
+    if (isExpectingAnError) {
+      const throws = mdHead.match(/\n### THROWS( .*)?(?:\n|$)/);
+      if (throws) {
+        if (e.message.includes(throws[1])) {
+          expectedError = true;
+          lastError = e;
+        } else {
+          if (withOutput) console.log('\nOh no! Thrown error message does not include expected error');
+          isExpectingAnError = false;
+        }
+      } else {
+        expectedError = true;
+        lastError = e;
+      }
+    }
+
+    if (!expectedError) {
+      if (withOutput) ++fail;
+      lastError = e;
+    }
   }
 
   const evalled = { $in: [], $norm: [], $out: [] };
@@ -203,7 +231,7 @@ function runTestCase(
     console.groupEnd();
   }
 
-  if (lastError) {
+  if (!isExpectingAnError && lastError) {
     if (!withOutput) {
       console.log(WHITE_BLACK + 'Test crashed, re-running it with output' + RESET);
       return runTestCase(
@@ -234,11 +262,20 @@ function runTestCase(
 
   if (CONFIG.onlyNormalized) {
     console.log('Not writing result. Showing normalized results:');
-    console.log(toNormalizedResult(output.normalized));
-    console.log();
-    console.log(toEvaluationResult(evalled, output.files, true));
+    if (lastError) {
+      console.log('Preval threw the expected error:');
+      console.log(lastError);
+    } else {
+      if (isExpectingAnError) {
+        console.log('BAD!! Preval did not throw an error but was epxected to:');
+        console.log(lastError);
+      }
+      console.log(toNormalizedResult(output.normalized));
+      console.log();
+      console.log(toEvaluationResult(evalled, output.files, true));
+    }
   } else {
-    const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled });
+    const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError });
     if (md2 !== md) {
       ++snap;
 
@@ -253,6 +290,15 @@ function runTestCase(
 
     if (md2.includes('BAD?!')) ++badNorm;
     else if (md2.includes('BAD!!')) ++badFinal;
+
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
+    console.groupEnd();
 
     if (withOutput) {
       console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');

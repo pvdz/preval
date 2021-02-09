@@ -25,7 +25,6 @@ if (tmpIfTest) {
 } else {
   z = objPatternBeforeDefault;
 }
-tmpAssignObjPatternRhs;
 `````
 
 ## Output

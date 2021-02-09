@@ -32,7 +32,6 @@ let a = { a: 999, b: 1000 };
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  arrAssignPatternRhs;
   while (true) {
     const tmpIfTest = $(0);
     if (tmpIfTest) {

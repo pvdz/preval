@@ -27,7 +27,6 @@ let a = { a: 999, b: 1000 };
 2;
 const tmpCallObj = $(b);
 const tmpIfTest = tmpCallObj['$'](1);
-tmpIfTest;
 $(a);
 `````
 

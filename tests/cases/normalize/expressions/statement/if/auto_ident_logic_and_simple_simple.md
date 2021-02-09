@@ -24,7 +24,6 @@ let tmpIfTest = 1;
 if (tmpIfTest) {
   tmpIfTest = 2;
 }
-tmpIfTest;
 $(a);
 `````
 

@@ -20,7 +20,6 @@ $('bad');
 `````js filename=intro
 const arrAssignPatternRhs = undefined;
 const arrPatternSplat = [...arrAssignPatternRhs];
-arrAssignPatternRhs;
 $('bad');
 `````
 

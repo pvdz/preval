@@ -21,11 +21,6 @@ a ? b : c;
 var a;
 var b;
 var c;
-if (a) {
-  b;
-} else {
-  c;
-}
 `````
 
 ## Output

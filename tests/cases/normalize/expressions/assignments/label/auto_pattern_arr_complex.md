@@ -28,7 +28,6 @@ label: {
   const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
-  arrAssignPatternRhs;
 }
 $(a);
 `````
@@ -45,7 +44,6 @@ label: {
   const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
-  arrAssignPatternRhs;
 }
 $(a);
 `````

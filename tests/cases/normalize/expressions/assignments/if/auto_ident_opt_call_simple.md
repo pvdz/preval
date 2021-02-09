@@ -29,7 +29,6 @@ if (tmpChainRootCall) {
 }
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

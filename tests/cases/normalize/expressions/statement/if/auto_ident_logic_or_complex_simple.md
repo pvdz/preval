@@ -27,7 +27,6 @@ if (tmpIfTest) {
 } else {
   tmpIfTest = 2;
 }
-tmpIfTest;
 $(a);
 `````
 

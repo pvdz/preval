@@ -27,7 +27,6 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
-  x;
 } else {
   $(200);
 }

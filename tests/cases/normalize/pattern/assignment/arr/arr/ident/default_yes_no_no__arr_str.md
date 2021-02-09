@@ -29,7 +29,6 @@ if (tmpIfTest) {
 } else {
   x = arrPatternBeforeDefault;
 }
-arrAssignPatternRhs;
 $(x);
 `````
 

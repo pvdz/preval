@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
 const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpIfTest;
 $(a, x);
 `````
 

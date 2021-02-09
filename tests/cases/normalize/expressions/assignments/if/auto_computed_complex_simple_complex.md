@@ -26,7 +26,6 @@ const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 const tmpAssignMemLhsObj = $(a);
 const tmpAssignComputedObj = tmpAssignMemLhsObj;
 const tmpAssignComputedProp = 'b';

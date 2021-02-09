@@ -29,14 +29,12 @@ const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
 b = arrPatternSplat[0];
-arrAssignPatternRhs;
 const tmpCallCallee$1 = $;
 const tmpArrElement$1 = $(2);
 const tmpCalleeParam$1 = [tmpArrElement$1];
 const arrAssignPatternRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
 b = arrPatternSplat$1[0];
-arrAssignPatternRhs$1;
 $(a, b);
 `````
 

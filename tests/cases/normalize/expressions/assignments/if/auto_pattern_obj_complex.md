@@ -27,7 +27,6 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
-tmpIfTest;
 $(a);
 `````
 

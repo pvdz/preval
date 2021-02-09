@@ -29,7 +29,6 @@ let a = { a: 999, b: 1000 };
     if (tmpIfTest) {
       const tmpPostUpdArgIdent = b;
       b = b - 1;
-      tmpPostUpdArgIdent;
     } else {
       break;
     }

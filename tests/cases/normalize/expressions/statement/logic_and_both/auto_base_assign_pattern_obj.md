@@ -36,7 +36,6 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
   b = tmpAssignObjPatternRhs.b;
-  tmpAssignObjPatternRhs;
 }
 $(a, b);
 `````

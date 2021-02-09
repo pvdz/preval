@@ -34,7 +34,6 @@ const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$2 = [];
 const tmpCalleeParam$3 = undefined;
 y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

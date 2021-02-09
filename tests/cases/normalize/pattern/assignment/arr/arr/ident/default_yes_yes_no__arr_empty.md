@@ -38,7 +38,6 @@ if (tmpIfTest$1) {
 } else {
   x = arrPatternBeforeDefault$1;
 }
-arrAssignPatternRhs;
 $(x);
 `````
 

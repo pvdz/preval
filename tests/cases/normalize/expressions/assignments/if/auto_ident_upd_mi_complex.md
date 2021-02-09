@@ -34,7 +34,6 @@ tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpNestedComplexRhs = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

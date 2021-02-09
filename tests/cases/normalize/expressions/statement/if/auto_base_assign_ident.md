@@ -27,7 +27,6 @@ let tmpIfTest;
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

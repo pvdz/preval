@@ -37,7 +37,6 @@ if (tmpIfTest$1) {
 } else {
   x = objPatternBeforeDefault;
 }
-arrAssignPatternRhs;
 $('bad');
 `````
 

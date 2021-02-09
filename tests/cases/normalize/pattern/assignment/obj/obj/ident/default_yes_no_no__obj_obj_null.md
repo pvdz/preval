@@ -30,7 +30,6 @@ if (tmpIfTest) {
 } else {
   y = objPatternBeforeDefault;
 }
-tmpAssignObjPatternRhs;
 $(y);
 `````
 

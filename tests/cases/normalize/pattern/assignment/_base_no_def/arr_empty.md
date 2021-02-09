@@ -27,7 +27,6 @@ let x = 10;
 let x = 10;
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
-arrAssignPatternRhs;
 `````
 
 ## Output

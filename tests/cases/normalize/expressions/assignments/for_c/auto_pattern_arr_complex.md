@@ -31,7 +31,6 @@ let a = arrPatternSplat[0];
       const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
       const arrPatternSplat$1 = [...arrAssignPatternRhs];
       a = arrPatternSplat$1[0];
-      arrAssignPatternRhs;
     } else {
       break;
     }

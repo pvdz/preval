@@ -25,7 +25,6 @@ const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-tmpAssignObjPatternRhs;
 $('ok');
 `````
 

@@ -33,7 +33,6 @@ let a = { a: 999, b: 1000 };
       const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
       const arrPatternSplat = [...arrAssignPatternRhs];
       b = arrPatternSplat[0];
-      arrAssignPatternRhs;
     } else {
       break;
     }

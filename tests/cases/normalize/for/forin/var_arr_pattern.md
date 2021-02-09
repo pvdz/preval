@@ -24,7 +24,6 @@ for (let {x} in {a: 1, b: 2}) $(x);
   for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
     const tmpAssignObjPatternRhs = tmpForInPatDeclLhs;
     x = tmpAssignObjPatternRhs.x;
-    tmpAssignObjPatternRhs;
     $(x);
   }
 }

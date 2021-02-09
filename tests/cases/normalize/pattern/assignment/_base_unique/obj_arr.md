@@ -24,7 +24,6 @@ const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 y_1 = arrPatternSplat[0];
-tmpAssignObjPatternRhs;
 {
   let y_2 = 1;
 }

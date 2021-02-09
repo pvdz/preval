@@ -26,7 +26,6 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x_1 = arrPatternStep.x;
-arrAssignPatternRhs;
 {
   let x_2 = 1;
 }

@@ -21,7 +21,6 @@ $(x);
 const tmpObjLitVal = null;
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal };
 x = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 $(x);
 `````
 

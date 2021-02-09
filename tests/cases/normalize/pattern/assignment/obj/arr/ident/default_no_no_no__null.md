@@ -22,7 +22,6 @@ const tmpAssignObjPatternRhs = null;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

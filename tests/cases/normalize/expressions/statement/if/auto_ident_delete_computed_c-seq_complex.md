@@ -28,7 +28,6 @@ $(2);
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpIfTest;
 $(a, x);
 `````
 

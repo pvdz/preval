@@ -46,7 +46,6 @@ tmpSwitchBreak: {
       const tmpAssignMemLhsObj = tmpPostUpdArgObj;
       const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
       tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-      tmpPostUpdArgVal;
     }
     tmpFallthrough = true;
   }
@@ -79,7 +78,6 @@ tmpSwitchBreak: {
       const tmpAssignMemLhsObj = tmpPostUpdArgObj;
       const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
       tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-      tmpPostUpdArgVal;
     }
     tmpFallthrough = true;
   }

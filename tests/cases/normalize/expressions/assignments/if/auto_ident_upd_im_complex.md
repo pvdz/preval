@@ -34,7 +34,6 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

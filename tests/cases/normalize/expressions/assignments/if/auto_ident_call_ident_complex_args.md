@@ -30,7 +30,6 @@ const tmpCalleeParam$1 = $(2);
 const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

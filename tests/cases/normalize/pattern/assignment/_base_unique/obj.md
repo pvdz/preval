@@ -22,7 +22,6 @@
 }
 const tmpAssignObjPatternRhs = 1;
 x_1 = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 {
   let x_2 = 1;
 }

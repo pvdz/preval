@@ -31,7 +31,6 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpIfTest = tmpNestedPropCompoundComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

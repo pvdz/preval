@@ -36,7 +36,6 @@ tmpSwitchBreak: {
     const tmpCalleeParam = { b: tmpObjLitVal };
     const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     b = tmpAssignObjPatternRhs.b;
-    tmpAssignObjPatternRhs;
   }
 }
 $(a, b);
@@ -57,7 +56,6 @@ tmpSwitchBreak: {
     const tmpCalleeParam = { b: tmpObjLitVal };
     const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     b = tmpAssignObjPatternRhs.b;
-    tmpAssignObjPatternRhs;
   }
 }
 $(a, b);

@@ -52,7 +52,6 @@ const tmpSwitchTest = $(1);
           {
             const tmpPostUpdArgIdent = b;
             b = b - 1;
-            tmpPostUpdArgIdent;
             break;
           }
           tmpSwitchFallthrough = true;

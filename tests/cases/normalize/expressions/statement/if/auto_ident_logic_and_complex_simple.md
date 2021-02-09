@@ -26,7 +26,6 @@ let tmpIfTest = tmpCallCallee(tmpCalleeParam);
 if (tmpIfTest) {
   tmpIfTest = 2;
 }
-tmpIfTest;
 $(a);
 `````
 

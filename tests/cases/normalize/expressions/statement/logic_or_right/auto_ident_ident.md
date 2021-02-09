@@ -24,10 +24,6 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
-if (tmpIfTest) {
-} else {
-  b;
-}
 $(a, b);
 `````
 
@@ -35,10 +31,7 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(100);
-if (tmpIfTest) {
-} else {
-}
+$(100);
 $(a, 1);
 `````
 

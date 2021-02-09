@@ -29,7 +29,6 @@ do {
   const arrPatternSplat = [...arrAssignPatternRhs];
   p = arrPatternSplat[0];
   q = arrPatternSplat[1];
-  arrAssignPatternRhs;
   tmpDoWhileTest = x + y;
 } while (tmpDoWhileTest);
 $(p, q);

@@ -39,7 +39,6 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
 const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
 tmpIfTest = tmpNestedPropAssignRhs$1;
-tmpIfTest;
 $(a, b, c, d);
 `````
 

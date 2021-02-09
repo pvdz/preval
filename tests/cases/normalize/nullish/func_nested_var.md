@@ -25,7 +25,6 @@ $(f());
 `````js filename=intro
 function f() {
   const a = 10;
-  a;
   let b = $(2);
   const tmpIfTest = b == null;
   if (tmpIfTest) {

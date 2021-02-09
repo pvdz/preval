@@ -30,7 +30,6 @@ const tmpCallObj = $(b);
 const tmpNestedComplexRhs = tmpCallObj.$(1);
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

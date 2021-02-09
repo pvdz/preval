@@ -22,9 +22,6 @@ const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpCompObj = tmpNestedAssignObjPatternRhs;
 const tmpIfTest = tmpCompObj.foo;
-if (tmpIfTest) {
-  y;
-}
 `````
 
 ## Output
@@ -33,9 +30,7 @@ if (tmpIfTest) {
 let tmpCompObj;
 x = (1).x;
 tmpCompObj = 1;
-const tmpIfTest = tmpCompObj.foo;
-if (tmpIfTest) {
-}
+tmpCompObj.foo;
 `````
 
 ## Result

@@ -30,7 +30,6 @@ const tmpCalleeParam = arrPatternStep$1;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = undefined;
 x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-arrAssignPatternRhs;
 $(x);
 `````
 

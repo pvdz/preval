@@ -26,7 +26,6 @@ In particular, the pattern's "y" should be replaced with a different name.
 }
 const tmpAssignObjPatternRhs = 1;
 a_1 = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 {
   let a_2 = 1;
 }

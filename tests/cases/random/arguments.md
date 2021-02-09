@@ -19,9 +19,7 @@ function f() {
 ## Normalized
 
 `````js filename=intro
-function f() {
-  arguments;
-}
+function f() {}
 `````
 
 ## Output

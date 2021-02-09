@@ -36,7 +36,6 @@ let a = { a: 999, b: 1000 };
       const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
       x = tmpAssignObjPatternRhs.x;
       y = tmpAssignObjPatternRhs.y;
-      tmpAssignObjPatternRhs;
     } else {
       break;
     }

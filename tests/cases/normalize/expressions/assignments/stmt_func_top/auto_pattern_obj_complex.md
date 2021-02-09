@@ -29,7 +29,6 @@ function f() {
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   a = tmpAssignObjPatternRhs.a;
-  tmpAssignObjPatternRhs;
   $(a);
 }
 const tmpCallCallee$1 = $;

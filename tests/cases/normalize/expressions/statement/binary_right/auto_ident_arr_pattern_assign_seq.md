@@ -34,7 +34,6 @@ const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-arrAssignPatternRhs;
 $(a, x, y);
 `````
 

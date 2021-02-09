@@ -30,7 +30,6 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
 }
-tmpIfTest;
 $(a);
 `````
 

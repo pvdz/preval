@@ -29,7 +29,6 @@ const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 y = objPatternNoDefault.y;
-arrAssignPatternRhs;
 $(y);
 `````
 

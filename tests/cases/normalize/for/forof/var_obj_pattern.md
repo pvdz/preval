@@ -25,7 +25,6 @@ for (let [x] of {a: 1, b: 2}) $(x);
     const arrAssignPatternRhs = tmpForOfPatDeclLhs;
     const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    arrAssignPatternRhs;
     $(x);
   }
 }

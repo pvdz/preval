@@ -33,7 +33,6 @@ b = tmpNestedAssignObjPatternRhs.b;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

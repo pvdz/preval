@@ -19,7 +19,6 @@ let x = 10;
 let x = 10;
 const tmpAssignObjPatternRhs = 1;
 x = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 `````
 
 ## Output

@@ -33,7 +33,6 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   tmpIfTest = tmpChainElementObject$2;
 }
-tmpIfTest;
 $(a);
 `````
 

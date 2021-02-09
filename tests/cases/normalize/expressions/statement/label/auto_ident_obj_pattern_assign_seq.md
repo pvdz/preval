@@ -33,7 +33,6 @@ label: {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
-  tmpAssignObjPatternRhs;
 }
 $(a, x, y);
 `````
@@ -50,7 +49,6 @@ label: {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
-  tmpAssignObjPatternRhs;
 }
 $(a, 1, 2);
 `````

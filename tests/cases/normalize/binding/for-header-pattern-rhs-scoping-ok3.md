@@ -31,7 +31,6 @@ let y = {};
     const arrAssignPatternRhs = tmpForInPatDeclLhs;
     const arrPatternSplat = [...arrAssignPatternRhs];
     x_1 = arrPatternSplat[0];
-    arrAssignPatternRhs;
     {
       $(x_1);
     }

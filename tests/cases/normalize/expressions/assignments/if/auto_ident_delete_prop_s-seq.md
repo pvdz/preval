@@ -30,7 +30,6 @@ const tmpDeleteObj = x;
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, x);
 `````
 

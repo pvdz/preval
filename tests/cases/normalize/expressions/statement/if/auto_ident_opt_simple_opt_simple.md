@@ -33,7 +33,6 @@ if (tmpChainRootProp) {
     tmpIfTest = tmpChainElementObject$1;
   }
 }
-tmpIfTest;
 $(a);
 `````
 

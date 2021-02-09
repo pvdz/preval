@@ -18,7 +18,6 @@ a ? ({ x } = 1) : c;
 if (a) {
   const tmpAssignObjPatternRhs = 1;
   x = tmpAssignObjPatternRhs.x;
-  tmpAssignObjPatternRhs;
 } else {
   c;
 }

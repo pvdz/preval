@@ -29,7 +29,6 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

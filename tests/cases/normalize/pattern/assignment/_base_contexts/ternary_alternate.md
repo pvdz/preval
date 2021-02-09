@@ -20,7 +20,6 @@ if (a) {
 } else {
   const tmpAssignObjPatternRhs = 1;
   x = tmpAssignObjPatternRhs.x;
-  tmpAssignObjPatternRhs;
 }
 `````
 

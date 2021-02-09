@@ -29,7 +29,6 @@ const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

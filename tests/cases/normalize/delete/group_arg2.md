@@ -22,7 +22,6 @@ $(typeof foo)
 let foo = 1;
 const tmpCallCallee = $;
 null;
-foo;
 const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;

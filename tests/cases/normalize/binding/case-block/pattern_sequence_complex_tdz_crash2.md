@@ -28,7 +28,6 @@ switch (1) { default: let x = x; $('fail'); }
     let tmpFallthrough = false;
     {
       ('default case:');
-      x;
       $('fail');
     }
   }
@@ -42,7 +41,6 @@ tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
-    x;
     $('fail');
   }
 }
@@ -58,4 +56,5 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 'fail'
+ - eval returned: undefined

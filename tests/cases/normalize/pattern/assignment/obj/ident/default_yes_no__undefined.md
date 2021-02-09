@@ -26,7 +26,6 @@ if (tmpIfTest) {
 } else {
   x = objPatternBeforeDefault;
 }
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

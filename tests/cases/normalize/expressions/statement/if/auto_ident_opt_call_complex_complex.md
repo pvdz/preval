@@ -31,7 +31,6 @@ if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpIfTest = tmpChainElementCall$1;
 }
-tmpIfTest;
 $(a);
 `````
 

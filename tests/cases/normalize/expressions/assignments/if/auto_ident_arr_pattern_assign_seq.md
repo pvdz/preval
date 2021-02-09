@@ -38,7 +38,6 @@ y = arrPatternSplat[1];
 tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, x, y);
 `````
 

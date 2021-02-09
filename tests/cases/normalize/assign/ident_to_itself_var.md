@@ -25,7 +25,6 @@ $(a, x);
 `````js filename=intro
 let a = $(10);
 let x;
-a;
 x = a;
 $(a, x);
 `````

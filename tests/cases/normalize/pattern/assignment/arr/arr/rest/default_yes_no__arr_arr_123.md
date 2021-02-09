@@ -31,7 +31,6 @@ if (tmpIfTest) {
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
-arrAssignPatternRhs;
 $(x);
 `````
 

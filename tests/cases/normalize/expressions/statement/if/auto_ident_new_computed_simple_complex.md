@@ -27,7 +27,6 @@ const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpIfTest = new tmpNewCallee(1);
-tmpIfTest;
 $(a);
 `````
 

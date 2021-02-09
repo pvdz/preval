@@ -24,7 +24,6 @@ f(true);
 function f(tmp) {
   const arrAssignPatternRhs = tmp;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  arrAssignPatternRhs;
   return 'bad';
 }
 f(true);

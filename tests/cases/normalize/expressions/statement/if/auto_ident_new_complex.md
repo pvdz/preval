@@ -22,7 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpIfTest = new tmpNewCallee(1);
-tmpIfTest;
 $(a);
 `````
 

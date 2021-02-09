@@ -27,7 +27,6 @@ let tmpIfTest;
 const tmpNestedComplexRhs = delete x.y;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, x);
 `````
 

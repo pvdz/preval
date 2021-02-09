@@ -32,7 +32,6 @@ let a = { a: 999, b: 1000 };
       const tmpCalleeParam = { b: tmpObjLitVal };
       const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
       b = tmpAssignObjPatternRhs.b;
-      tmpAssignObjPatternRhs;
     } else {
       break;
     }

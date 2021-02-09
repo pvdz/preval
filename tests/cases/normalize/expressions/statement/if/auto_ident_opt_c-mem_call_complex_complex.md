@@ -38,7 +38,6 @@ if (tmpChainElementCall) {
     tmpIfTest = tmpChainElementCall$1;
   }
 }
-tmpIfTest;
 $(a);
 `````
 

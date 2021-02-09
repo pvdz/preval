@@ -27,7 +27,6 @@ let a = { a: 999, b: 1000 };
 2;
 const tmpCompObj = b;
 const tmpIfTest = tmpCompObj.c;
-tmpIfTest;
 $(a, b);
 `````
 

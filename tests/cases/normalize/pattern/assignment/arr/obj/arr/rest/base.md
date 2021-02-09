@@ -30,7 +30,6 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 const arrPatternSplat$1 = [...objPatternNoDefault];
 y = arrPatternSplat$1.slice(0);
-arrAssignPatternRhs;
 $(y);
 `````
 

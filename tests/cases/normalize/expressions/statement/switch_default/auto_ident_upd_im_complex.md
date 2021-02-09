@@ -38,7 +38,6 @@ tmpSwitchBreak: {
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpPostUpdArgVal;
   }
 }
 $(a, b);
@@ -61,7 +60,6 @@ tmpSwitchBreak: {
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpPostUpdArgVal;
   }
 }
 $(a, b);

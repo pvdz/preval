@@ -33,7 +33,6 @@ tmpSwitchBreak: {
     ('default case:');
     const tmpPostUpdArgIdent = b;
     b = b + 1;
-    tmpPostUpdArgIdent;
   }
 }
 $(a, b);
@@ -50,7 +49,6 @@ tmpSwitchBreak: {
     ('default case:');
     const tmpPostUpdArgIdent = b;
     b = b + 1;
-    tmpPostUpdArgIdent;
   }
 }
 $(a, 1);

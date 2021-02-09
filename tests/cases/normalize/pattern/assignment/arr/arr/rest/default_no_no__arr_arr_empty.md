@@ -24,7 +24,6 @@ const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
-arrAssignPatternRhs;
 $(x);
 `````
 

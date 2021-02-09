@@ -31,14 +31,12 @@ const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-arrAssignPatternRhs;
 const tmpArrElement$2 = $(3);
 const tmpArrElement$3 = $(4);
 const arrAssignPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
 x = arrPatternSplat$1[0];
 y = arrPatternSplat$1[1];
-arrAssignPatternRhs$1;
 $(a, x, y);
 `````
 

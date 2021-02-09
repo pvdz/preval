@@ -20,7 +20,6 @@ $('bad');
 `````js filename=intro
 const tmpAssignObjPatternRhs = 1;
 x = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

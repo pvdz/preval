@@ -30,7 +30,6 @@ const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 tmpIfTest = tmpNestedPropAssignRhs;
-tmpIfTest;
 $(a, b);
 `````
 

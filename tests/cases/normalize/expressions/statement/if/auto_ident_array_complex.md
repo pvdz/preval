@@ -24,7 +24,6 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-tmpIfTest;
 $(a);
 `````
 

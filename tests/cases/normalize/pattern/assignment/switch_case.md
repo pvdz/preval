@@ -42,7 +42,6 @@ switch (0) {
         const arrPatternSplat = [...arrAssignPatternRhs];
         a = arrPatternSplat[0];
         b = arrPatternSplat[1];
-        arrAssignPatternRhs;
         $(a, b);
       }
       tmpFallthrough = true;
@@ -70,7 +69,6 @@ tmpSwitchBreak: {
       const arrPatternSplat = [...arrAssignPatternRhs];
       a = arrPatternSplat[0];
       b = arrPatternSplat[1];
-      arrAssignPatternRhs;
       $(a, b);
     }
     tmpFallthrough = true;

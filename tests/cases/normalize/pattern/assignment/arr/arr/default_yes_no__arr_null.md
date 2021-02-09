@@ -32,7 +32,6 @@ if (tmpIfTest) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
-arrAssignPatternRhs;
 $('bad');
 `````
 

@@ -52,7 +52,6 @@ b.x = tmpNestedPropAssignRhs$5;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b, c);
 `````
 

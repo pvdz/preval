@@ -24,7 +24,6 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-tmpIfTest;
 $(a);
 `````
 

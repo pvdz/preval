@@ -52,7 +52,6 @@ const tmpSwitchTest = $(1);
           {
             $(1);
             $(2);
-            x;
             break;
           }
           tmpSwitchFallthrough = true;

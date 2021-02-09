@@ -24,7 +24,6 @@ const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = 'x';
 x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 label: {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  tmpPostUpdArgIdent;
 }
 $(a, b);
 `````
@@ -38,7 +37,6 @@ let a = { a: 999, b: 1000 };
 label: {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  tmpPostUpdArgIdent;
 }
 $(a, 1);
 `````

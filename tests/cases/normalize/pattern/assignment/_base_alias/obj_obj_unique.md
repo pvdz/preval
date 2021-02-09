@@ -28,7 +28,6 @@ const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault$1.z;
-tmpAssignObjPatternRhs;
 {
   let a_2 = 1;
 }

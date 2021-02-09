@@ -22,7 +22,6 @@ const arrAssignPatternRhs = null;
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
-arrAssignPatternRhs;
 $('bad');
 `````
 

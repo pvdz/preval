@@ -25,10 +25,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b - 1;
-tmpPostUpdArgIdent;
 const tmpPostUpdArgIdent$1 = b;
 b = b - 1;
-tmpPostUpdArgIdent$1;
 $(a, b);
 `````
 

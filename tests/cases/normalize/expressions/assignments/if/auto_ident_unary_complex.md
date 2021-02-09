@@ -28,7 +28,6 @@ const tmpUnaryArg = $(x);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, x);
 `````
 

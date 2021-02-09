@@ -41,7 +41,6 @@ tmpSwitchBreak: {
     {
       $(1);
       $(2);
-      x;
     }
     tmpFallthrough = true;
   }
@@ -68,7 +67,6 @@ tmpSwitchBreak: {
     {
       $(1);
       $(2);
-      x;
     }
     tmpFallthrough = true;
   }

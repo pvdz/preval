@@ -81,6 +81,7 @@ const VERBOSE_TRACING = true;
   - Default imports become named imports (because default exports simply export 'default')
   - Class declarations become class expressions
   - Assignment of an ident to itself is eliminated
+  - Statements that only have an identifier will be eliminated unless that identifier is an implicit global
  */
 
 // low hanging fruit: async, iterators
@@ -121,12 +122,9 @@ const VERBOSE_TRACING = true;
       - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
     - what would be a normalized cross-branch labelled break/continue look like?
   - Can we get rid of labeled continue such that we can normalize all label sub-statements to blocks? Right now we need to exclude loops.
-  - fix the compound assignment expression order problem
-  - normalize every expression to an assignemnt statement, call statement, or const/let declaration
   - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
-  - statement that is identifier / literal (?)
   - arguments (ehh)
   - TODO: broken: var decl hoisting wont find stuff nested inside other blocks or sub-statements (loops, switch, try), I think?
   - TODO: loops that are direct children of labels are significant
@@ -1138,17 +1136,23 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'Identifier':
         // TODO: usage tracking
-
+        log('- name: `' + node.name + '`');
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
-          rule('A statement can not just be an identifier');
-          example('x;', ';');
-          before(node, parentNode);
 
-          body[i] = AST.emptyStatement();
+          const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistery.get(node.name);
+          if (node.name === 'arguments' || !meta.isImplicitGlobal) {
+            rule('A statement can not just be an identifier');
+            example('x;', ';');
+            before(node, parentNode);
 
-          after(body[i]);
-          return true;
+            body[i] = AST.emptyStatement();
+
+            after(body[i]);
+            return true;
+          } else {
+            log('Not eliminating this identifier statement because it is an implicit global');
+          }
         }
 
         return false;

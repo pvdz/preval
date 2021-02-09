@@ -29,7 +29,6 @@ if (objPatternCrashTest) {
 if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 }
-arrAssignPatternRhs;
 $('ok');
 `````
 

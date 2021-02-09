@@ -18,7 +18,6 @@ for ({ x } = 1;false;) y;
 {
   const tmpAssignObjPatternRhs = 1;
   x = tmpAssignObjPatternRhs.x;
-  tmpAssignObjPatternRhs;
   while (false) {
     y;
   }

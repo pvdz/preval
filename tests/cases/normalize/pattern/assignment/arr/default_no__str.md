@@ -20,7 +20,6 @@ $('ok');
 `````js filename=intro
 const arrAssignPatternRhs = 'xyz';
 const arrPatternSplat = [...arrAssignPatternRhs];
-arrAssignPatternRhs;
 $('ok');
 `````
 

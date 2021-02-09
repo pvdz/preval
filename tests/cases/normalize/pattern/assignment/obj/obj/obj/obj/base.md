@@ -40,7 +40,6 @@ if (objPatternCrashTest) {
 if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault$2.cannotDestructureThis;
 }
-tmpAssignObjPatternRhs;
 $('ok');
 `````
 

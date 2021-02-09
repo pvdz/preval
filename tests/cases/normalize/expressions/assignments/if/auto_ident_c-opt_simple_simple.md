@@ -33,7 +33,6 @@ if (tmpChainRootProp) {
 }
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

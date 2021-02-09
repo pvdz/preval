@@ -30,7 +30,6 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

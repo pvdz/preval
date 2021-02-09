@@ -39,7 +39,6 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
-  tmpAssignObjPatternRhs;
 }
 $(a, x, y);
 `````

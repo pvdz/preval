@@ -29,7 +29,6 @@ const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 z = objPatternNoDefault$1.z;
-tmpAssignObjPatternRhs;
 $(z);
 `````
 

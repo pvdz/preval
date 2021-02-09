@@ -55,7 +55,6 @@ const tmpSwitchTest = $(1);
             const tmpCalleeParam = { b: tmpObjLitVal };
             const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
             b = tmpAssignObjPatternRhs.b;
-            tmpAssignObjPatternRhs;
             break;
           }
           tmpSwitchFallthrough = true;

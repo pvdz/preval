@@ -25,7 +25,6 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-tmpIfTest;
 $(a);
 `````
 

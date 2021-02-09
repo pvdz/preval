@@ -37,7 +37,6 @@ function f() {
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpPostUpdArgVal;
     $(a, b);
   }
 }

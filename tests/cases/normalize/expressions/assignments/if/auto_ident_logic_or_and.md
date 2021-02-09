@@ -37,7 +37,6 @@ if (tmpNestedComplexRhs) {
 }
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

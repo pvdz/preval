@@ -33,7 +33,6 @@ tmpSwitchBreak: {
     ('default case:');
     $(1);
     $(2);
-    x;
   }
 }
 $(a, x);
@@ -50,7 +49,6 @@ tmpSwitchBreak: {
     ('default case:');
     $(1);
     $(2);
-    x;
   }
 }
 $(a, 1);

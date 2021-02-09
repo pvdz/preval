@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
 const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
-tmpIfTest;
 $(a);
 `````
 

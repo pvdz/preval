@@ -21,7 +21,6 @@ $(y);
 const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-tmpAssignObjPatternRhs;
 $(y);
 `````
 

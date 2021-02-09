@@ -46,7 +46,6 @@ tmpSwitchBreak: {
       const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
       x = tmpAssignObjPatternRhs.x;
       y = tmpAssignObjPatternRhs.y;
-      tmpAssignObjPatternRhs;
     }
     tmpFallthrough = true;
   }
@@ -76,7 +75,6 @@ tmpSwitchBreak: {
       const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
       x = tmpAssignObjPatternRhs.x;
       y = tmpAssignObjPatternRhs.y;
-      tmpAssignObjPatternRhs;
     }
     tmpFallthrough = true;
   }

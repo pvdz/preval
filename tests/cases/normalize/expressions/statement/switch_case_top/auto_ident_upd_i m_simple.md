@@ -41,7 +41,6 @@ tmpSwitchBreak: {
     {
       const tmpPostUpdArgIdent = b;
       b = b - 1;
-      tmpPostUpdArgIdent;
     }
     tmpFallthrough = true;
   }
@@ -68,7 +67,6 @@ tmpSwitchBreak: {
     {
       const tmpPostUpdArgIdent = b;
       b = b - 1;
-      tmpPostUpdArgIdent;
     }
     tmpFallthrough = true;
   }

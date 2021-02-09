@@ -29,7 +29,6 @@ b = b - 1;
 const tmpNestedComplexRhs = tmpPostUpdArgIdent;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

@@ -25,7 +25,6 @@ let d = 4;
   let a = 1;
   while (true) {
     $(d);
-    c;
   }
 }
 `````

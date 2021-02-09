@@ -28,13 +28,11 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpAssignObjPatternRhs.b;
-tmpAssignObjPatternRhs;
 const tmpCallCallee$1 = $;
 const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
 const tmpAssignObjPatternRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
 b = tmpAssignObjPatternRhs$1.b;
-tmpAssignObjPatternRhs$1;
 $(a, b);
 `````
 

@@ -59,7 +59,6 @@ const tmpSwitchTest = $(1);
               const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
               const arrPatternSplat = [...arrAssignPatternRhs];
               b = arrPatternSplat[0];
-              arrAssignPatternRhs;
             }
             break;
           }

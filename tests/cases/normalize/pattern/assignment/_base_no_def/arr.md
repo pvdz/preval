@@ -29,7 +29,6 @@ let x = 10;
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-arrAssignPatternRhs;
 $(x);
 `````
 

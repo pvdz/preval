@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 $(100);
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-tmpPostUpdArgIdent;
 $(a, b);
 `````
 

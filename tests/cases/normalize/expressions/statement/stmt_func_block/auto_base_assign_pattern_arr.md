@@ -36,7 +36,6 @@ function f() {
     const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
     const arrPatternSplat = [...arrAssignPatternRhs];
     b = arrPatternSplat[0];
-    arrAssignPatternRhs;
     $(a, b);
   }
 }

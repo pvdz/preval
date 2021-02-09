@@ -31,7 +31,6 @@ b = 2;
 tmpNestedComplexRhs = 2;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b, c);
 `````
 

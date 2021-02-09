@@ -24,7 +24,6 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = b.c;
-tmpIfTest;
 $(a, b);
 `````
 

@@ -25,7 +25,6 @@ const tmpCallCallee = $($);
 const tmpNestedComplexRhs = tmpCallCallee(1);
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

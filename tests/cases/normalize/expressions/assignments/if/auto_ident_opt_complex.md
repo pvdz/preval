@@ -33,7 +33,6 @@ if (tmpChainElementCall) {
 }
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a);
 `````
 

@@ -39,7 +39,6 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
-      b;
     }
     tmpFallthrough = true;
   }
@@ -64,7 +63,6 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     ('case 0:');
     {
-      b;
     }
     tmpFallthrough = true;
   }

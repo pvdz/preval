@@ -25,7 +25,6 @@ if (tmpIfTest) {
 } else {
   y = arrPatternBeforeDefault;
 }
-tmpAssignObjPatternRhs;
 `````
 
 ## Output

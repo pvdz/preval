@@ -27,7 +27,6 @@ if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   tmpIfTest = tmpChainElementCall$1;
 }
-tmpIfTest;
 $(a);
 `````
 

@@ -24,7 +24,6 @@ if (objPatternCrashTest) {
 if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
 }
-tmpAssignObjPatternRhs;
 `````
 
 ## Output

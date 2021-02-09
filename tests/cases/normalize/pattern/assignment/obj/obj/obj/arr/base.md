@@ -33,7 +33,6 @@ const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternNoDefault$2 = objPatternNoDefault$1.z;
 const arrPatternSplat = [...objPatternNoDefault$2];
-tmpAssignObjPatternRhs;
 $('ok');
 `````
 

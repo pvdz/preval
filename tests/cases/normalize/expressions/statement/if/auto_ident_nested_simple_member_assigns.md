@@ -49,7 +49,6 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
 tmpIfTest = tmpNestedPropAssignRhs$5;
-tmpIfTest;
 $(a, b, c);
 `````
 

@@ -28,7 +28,6 @@ if (tmpIfTest) {
 } else {
   y = objPatternBeforeDefault;
 }
-tmpAssignObjPatternRhs;
 $('bad');
 `````
 

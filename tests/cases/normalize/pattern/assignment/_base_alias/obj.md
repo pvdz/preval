@@ -17,7 +17,6 @@
 `````js filename=intro
 const tmpAssignObjPatternRhs = 1;
 a = tmpAssignObjPatternRhs.x;
-tmpAssignObjPatternRhs;
 `````
 
 ## Output

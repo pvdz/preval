@@ -27,7 +27,6 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  tmpPostUpdArgIdent;
 } else {
   $(200);
 }

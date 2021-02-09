@@ -33,7 +33,6 @@ const tmpCalleeParam = objPatternNoDefault$1;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = undefined;
 z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-tmpAssignObjPatternRhs;
 $(z);
 `````
 

@@ -23,7 +23,6 @@ let y = 4;
 let tmpDoWhileTest;
 do {
   $(a);
-  b;
   tmpDoWhileTest = x + y;
 } while (tmpDoWhileTest);
 `````

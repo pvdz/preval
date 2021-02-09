@@ -21,9 +21,6 @@ let tmpIfTest;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
-if (tmpIfTest) {
-  y;
-}
 `````
 
 ## Output
@@ -32,8 +29,6 @@ if (tmpIfTest) {
 let tmpIfTest;
 x = (1).x;
 tmpIfTest = 1;
-if (tmpIfTest) {
-}
 `````
 
 ## Result

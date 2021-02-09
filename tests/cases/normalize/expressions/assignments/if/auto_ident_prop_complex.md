@@ -28,7 +28,6 @@ const tmpCompObj = $(b);
 const tmpNestedComplexRhs = tmpCompObj.c;
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
-tmpIfTest;
 $(a, b);
 `````
 

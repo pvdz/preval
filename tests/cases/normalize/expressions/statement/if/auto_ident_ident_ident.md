@@ -28,7 +28,6 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest;
 b = 2;
 tmpIfTest = 2;
-tmpIfTest;
 $(a, b, c);
 `````
 

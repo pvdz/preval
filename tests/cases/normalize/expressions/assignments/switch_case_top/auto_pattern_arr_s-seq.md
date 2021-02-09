@@ -43,7 +43,6 @@ tmpSwitchBreak: {
       const arrAssignPatternRhs = [1, 2];
       const arrPatternSplat$1 = [...arrAssignPatternRhs];
       a = arrPatternSplat$1[0];
-      arrAssignPatternRhs;
     }
     tmpFallthrough = true;
   }
@@ -75,7 +74,6 @@ tmpSwitchBreak: {
       const arrAssignPatternRhs = [1, 2];
       const arrPatternSplat$1 = [...arrAssignPatternRhs];
       a = arrPatternSplat$1[0];
-      arrAssignPatternRhs;
     }
     tmpFallthrough = true;
   }

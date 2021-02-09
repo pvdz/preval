@@ -30,7 +30,6 @@ const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const arrPatternSplat = [...objPatternNoDefault$1];
 z = arrPatternSplat[0];
-tmpAssignObjPatternRhs;
 $(z);
 `````
 

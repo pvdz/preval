@@ -59,7 +59,6 @@ const tmpSwitchTest = $(1);
             const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
             x = tmpAssignObjPatternRhs.x;
             y = tmpAssignObjPatternRhs.y;
-            tmpAssignObjPatternRhs;
             break;
           }
           tmpSwitchFallthrough = true;

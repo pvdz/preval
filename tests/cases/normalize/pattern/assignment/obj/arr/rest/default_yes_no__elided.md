@@ -32,7 +32,6 @@ if (tmpIfTest) {
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 y = arrPatternSplat.slice(0);
-tmpAssignObjPatternRhs;
 $(y);
 `````
 

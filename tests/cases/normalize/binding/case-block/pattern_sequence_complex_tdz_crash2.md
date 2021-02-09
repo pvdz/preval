@@ -28,7 +28,7 @@ switch (1) { default: let x = x; $('fail'); }
     let tmpFallthrough = false;
     {
       ('default case:');
-      x = x;
+      x;
       $('fail');
     }
   }
@@ -42,7 +42,7 @@ tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
     ('default case:');
-    x = x;
+    x;
     $('fail');
   }
 }

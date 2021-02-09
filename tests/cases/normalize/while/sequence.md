@@ -20,7 +20,7 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x.x(x))) 
 while (true) {
   x = x * 'str';
   x = x * 8;
-  x = x;
+  x;
   x = x * x;
   x = x.x;
   const tmpIfTest = x.x(x);
@@ -37,7 +37,6 @@ while (true) {
 while (true) {
   x = x * 'str';
   x = x * 8;
-  x = x;
   x = x * x;
   x = x.x;
   const tmpIfTest = x.x(x);

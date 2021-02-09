@@ -80,6 +80,7 @@ const VERBOSE_TRACING = true;
   - Each import statement has exactly one specifier
   - Default imports become named imports (because default exports simply export 'default')
   - Class declarations become class expressions
+  - Assignment of an ident to itself is eliminated
  */
 
 // low hanging fruit: async, iterators
@@ -104,16 +105,10 @@ const VERBOSE_TRACING = true;
     - Not sure whether this actually simplifies anything for us.
   - Should func decls be changed to const blabla?
     - Also not sure whether this helps us anything.
-  - switch to if-else
-    - do switches have special optimization tricks we can use?
-    - trickier with overflow cases unless you go for functions. or maybe break+labels...
-    - default case _can_ happen anywhere as well, with unusual semantics
-    - could break cases up in arrows so we can call them directly...
   - return early stuff versus if-elsing it out?
     - What's easier to reason about
     - Create new functions for the remainder after an early return? Does that help?
   - Remove unused `return` keywords
-  - Assignment of a simple node to itself
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - Statements with empty body can be eliminated or at least split
   - labels
@@ -1143,6 +1138,18 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'Identifier':
         // TODO: usage tracking
+
+        if (wrapKind === 'statement') {
+          // TODO: what about implicit globals or TDZ? This prevents a crash.
+          rule('A statement can not just be an identifier');
+          example('x;', ';');
+          before(node, parentNode);
+
+          body[i] = AST.emptyStatement();
+
+          after(body[i]);
+          return true;
+        }
 
         return false;
 
@@ -2249,6 +2256,20 @@ export function phaseNormalize(fdata, fname) {
 
           // Assignment of simple member expression to ident or simple member expression is atomic
           return false;
+        }
+
+        if (lhs.type === 'Identifier' && rhs.type === 'Identifier' && lhs.name === rhs.name) {
+          // TODO: what about TDZ errors and implicit globals? We can support the implicit global case but TDZ will be hard.
+          rule('Self-assignments should be removed');
+          example('a = a', 'a');
+          before(node);
+
+          const finalNode = rhs;
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(finalParent);
+          return true;
         }
 
         // No more special cases for the assignment form. Process the rhs as a generic expression.

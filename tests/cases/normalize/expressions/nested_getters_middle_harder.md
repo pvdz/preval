@@ -8,7 +8,7 @@
 
 Using
 ```
-function $(a) { console.log('->', a); return a }
+function $(a) { $('->', a); return a }
 ```
 
 The output ought to be
@@ -38,7 +38,7 @@ The output ought to be
 
 `````js filename=intro
 function f() {
-    console.log('-------- start');
+    $('-------- start');
     const b = {
       get foo() {
         return $(2);
@@ -46,17 +46,17 @@ function f() {
         return $(3);
       },
     };
-    console.log('-------- bound');
+    $('-------- bound');
     let a = 1;
-    console.log('-------- let 1');
+    $('-------- let 1');
     $(a = b.foo = $(6));
-    console.log('-------- test case');
+    $('-------- test case');
     $(a); // 5 (!)
-    console.log('-------- a');
+    $('-------- a');
     $(b.foo); // 2 (not 3!)
-    console.log('-------- a.foo');
+    $('-------- a.foo');
     $(b.foo = 4); // 4 (setter return value is ignored)
-    console.log('-------- a.foo = 4');
+    $('-------- a.foo = 4');
 }
 f();
 `````
@@ -65,7 +65,7 @@ f();
 
 `````js filename=intro
 function f() {
-  console.log('-------- start');
+  $('-------- start');
   const b = {
     get foo() {
       return $(2);
@@ -74,9 +74,9 @@ function f() {
       return $(3);
     },
   };
-  console.log('-------- bound');
+  $('-------- bound');
   let a = 1;
-  console.log('-------- let 1');
+  $('-------- let 1');
   const tmpCallCallee = $;
   let tmpCalleeParam;
   let tmpNestedComplexRhs;
@@ -87,20 +87,20 @@ function f() {
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
   tmpCallCallee(tmpCalleeParam);
-  console.log('-------- test case');
+  $('-------- test case');
   $(a);
-  console.log('-------- a');
+  $('-------- a');
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = b.foo;
   tmpCallCallee$1(tmpCalleeParam$1);
-  console.log('-------- a.foo');
+  $('-------- a.foo');
   const tmpCallCallee$2 = $;
   let tmpCalleeParam$2;
   const tmpNestedPropAssignRhs$1 = 4;
   b.foo = tmpNestedPropAssignRhs$1;
   tmpCalleeParam$2 = tmpNestedPropAssignRhs$1;
   tmpCallCallee$2(tmpCalleeParam$2);
-  console.log('-------- a.foo = 4');
+  $('-------- a.foo = 4');
 }
 f();
 `````
@@ -109,7 +109,7 @@ f();
 
 `````js filename=intro
 function f() {
-  console.log('-------- start');
+  $('-------- start');
   const b = {
     get foo() {
       return $(2);
@@ -118,9 +118,9 @@ function f() {
       return $(3);
     },
   };
-  console.log('-------- bound');
+  $('-------- bound');
   let a = 1;
-  console.log('-------- let 1');
+  $('-------- let 1');
   const tmpCallCallee = $;
   let tmpCalleeParam;
   let tmpNestedComplexRhs;
@@ -131,19 +131,19 @@ function f() {
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
   tmpCallCallee(tmpCalleeParam);
-  console.log('-------- test case');
+  $('-------- test case');
   $(a);
-  console.log('-------- a');
+  $('-------- a');
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = b.foo;
   tmpCallCallee$1(tmpCalleeParam$1);
-  console.log('-------- a.foo');
+  $('-------- a.foo');
   const tmpCallCallee$2 = $;
   let tmpCalleeParam$2;
   b.foo = 4;
   tmpCalleeParam$2 = 4;
   tmpCallCallee$2(tmpCalleeParam$2);
-  console.log('-------- a.foo = 4');
+  $('-------- a.foo = 4');
 }
 f();
 `````
@@ -151,14 +151,21 @@ f();
 ## Result
 
 Should call `$` with:
- - 1: 6
- - 2: 3
- - 3: 6
+ - 1: '-------- start'
+ - 2: '-------- bound'
+ - 3: '-------- let 1'
  - 4: 6
- - 5: 2
- - 6: 2
- - 7: 3
- - 8: 4
+ - 5: 3
+ - 6: 6
+ - 7: '-------- test case'
+ - 8: 6
+ - 9: '-------- a'
+ - 10: 2
+ - 11: 2
+ - 12: '-------- a.foo'
+ - 13: 3
+ - 14: 4
+ - 15: '-------- a.foo = 4'
  - eval returned: undefined
 
 Normalized calls: Same

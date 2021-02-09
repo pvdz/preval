@@ -3864,30 +3864,6 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.alternate && node.alternate.type !== 'BlockStatement') {
-      rule('Else sub-statement must be block');
-      example('if (x) {} else y;', 'if (x) {} else { y; }');
-      before(node);
-
-      node.alternate = AST.blockStatement(node.alternate);
-
-      after(node);
-
-      return true;
-    }
-
-    if (node.alternate?.body.length === 0) {
-      rule('Body of else may not be empty');
-      example('if (x) { y; } else {}', 'if (x) { y; }');
-      before(node);
-
-      node.alternate = null;
-
-      after(node);
-
-      return true;
-    }
-
     if (node.consequent.type !== 'BlockStatement') {
       rule('If sub-statement must be block');
       example('if (x) y', 'if (x) { y }');
@@ -3900,15 +3876,14 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (!node.alternate && node.consequent.body.length === 0) {
-      rule('Body of if without else may not be empty');
-      example('if (x()) {}', 'x();');
+    if (node.alternate && node.alternate.type !== 'BlockStatement') {
+      rule('Else sub-statement must be block');
+      example('if (x) {} else y;', 'if (x) {} else { y; }');
       before(node);
 
-      const newNode = AST.expressionStatement(node.test);
-      body[i] = newNode;
+      node.alternate = AST.blockStatement(node.alternate);
 
-      after(newNode);
+      after(node);
 
       return true;
     }
@@ -3930,7 +3905,33 @@ export function phaseNormalize(fdata, fname) {
     }
 
     anyBlock(node.consequent);
-    if (node.alternate) anyBlock(node.alternate);
+    if (node.alternate) {
+      anyBlock(node.alternate);
+
+      if (node.alternate.body.length === 0) {
+        rule('If-else with empty else-block should have no else');
+        example('if (x) y; else {}', 'if (x) y;');
+        before(node);
+
+        node.alternate = null;
+
+        after(node);
+        return true;
+      }
+    }
+
+    if (!node.alternate && node.consequent.body.length === 0) {
+      rule('If-else without else and empty if-block should be just the test expression');
+      example('if (f()) {}', 'f();');
+      before(node);
+
+      const finalNode = node.test;
+      const finalParent = AST.expressionStatement(finalNode);
+      body[i] = finalParent;
+
+      after(finalParent);
+      return true;
+    }
 
     return false;
   }

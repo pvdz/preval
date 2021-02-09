@@ -111,7 +111,6 @@ const VERBOSE_TRACING = true;
     - Create new functions for the remainder after an early return? Does that help?
   - Remove unused `return` keywords
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
-  - Statements with empty body can be eliminated or at least split
   - labels
     - Continue to if block?
       - Nested continues are less trivial to transform so this may not be an easy fix
@@ -911,19 +910,6 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.body.body.length === 0) {
-      // Note: cannot eliminate a loop because the test expression is expected to be called repeatedly
-      rule('Do-while cannot have empty body');
-      example('do {} while (x);', 'while(x);');
-      before(node);
-
-      const newNode = AST.whileStatement(node.test, AST.blockStatement());
-      body[i] = newNode;
-
-      after(newNode);
-      return true;
-    }
-
     if (isComplexNode(node.test)) {
       rule('Do-while test node must be simple');
       example('do { f(); } while (x+y);', 'var tmp; do { f(); tmp = x+y; } while (tmp);`');
@@ -940,6 +926,19 @@ export function phaseNormalize(fdata, fname) {
     }
 
     anyBlock(node.body);
+
+    if (node.body.body.length === 0) {
+      // Note: cannot eliminate a loop because the test expression is expected to be called repeatedly
+      rule('Do-while with empty body must be regular while');
+      example('do {} while (x());', 'while(x());');
+      before(node);
+
+      const newNode = AST.whileStatement(node.test, AST.blockStatement());
+      body[i] = newNode;
+
+      after(newNode);
+      return true;
+    }
 
     return false;
   }
@@ -3688,6 +3687,9 @@ export function phaseNormalize(fdata, fname) {
 
     anyBlock(node.body);
 
+    // TODO: there is a possibility to eliminate this loop if it has an empty body but there are still two
+    //       side effects to check for; value of for-lhs after the loop and throwing over invalid for-rhs values.
+
     return false;
   }
   function transformFunctionParams(node, body, i, newBindings) {
@@ -4076,6 +4078,17 @@ export function phaseNormalize(fdata, fname) {
     if (anyChange) {
       log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
       fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+    }
+
+    if ((node.body.type === 'BlockStatement' && node.body.body.length === 0)) {
+      rule('Labeled statement with empty sub statement should be dropped');
+      example('foo: {}', ';');
+      before(node);
+
+      body[i] = AST.emptyStatement();
+
+      after(body[i]);
+      return true;
     }
 
     return anyChange;

@@ -395,28 +395,25 @@ export function phaseNormalize(fdata, fname) {
     return true;
   }
 
-  function hoisting(body) {
-    // Body should be the node.body of Program or node.body.body of a function node
-    // Make sure body is not being traversed
+  function hoisting(anyBody) {
+    // The `anyBody` is any kind of block, including BlockStatement, CaseBlock, and TryStatement
+    // Make sure body is not being traversed currently
     // TODO: maybe this should be its own phase as we shouldn't need to do this more than once
 
-    group('Hoisting(' + body.length + 'x)');
-    ASSERT(Array.isArray(body), 'the body is an array of statements/decls', body);
+    group('Hoisting(' + anyBody.length + 'x)');
+    ASSERT(Array.isArray(anyBody), 'the body is an array of statements/decls', anyBody);
 
     let stage = HOISTING_FUNC;
     let funcs = 0;
     let vars = 0;
     const funcNames = [];
     const varNames = [];
-    for (let i = 0; i < body.length; ++i) {
-      const snode = body[i];
+    for (let i = 0; i < anyBody.length; ++i) {
+      const snode = anyBody[i];
 
       if (
         snode.type === 'FunctionDeclaration' ||
-        (snode.type === 'ExportNamedDeclaration' &&
-          snode.declaration &&
-          snode.declaration &&
-          snode.declaration.type === 'FunctionDeclaration') ||
+        (snode.type === 'ExportNamedDeclaration' && snode.declaration && snode.declaration.type === 'FunctionDeclaration') ||
         (snode.type === 'ExportDefaultDeclaration' && snode.declaration.type === 'FunctionDeclaration' && snode.declaration.id)
       ) {
         const id = snode.type === 'FunctionDeclaration' ? snode.id : snode.declaration.id;
@@ -427,8 +424,8 @@ export function phaseNormalize(fdata, fname) {
           log('  - Within func hoisting area so noop');
         } else {
           // we are no longer in the hoisting segment so move it in there
-          body[i] = AST.expressionStatement(AST.literal('<hoisted func decl `' + id.name + '`>'));
-          body.splice(funcs, 0, snode);
+          anyBody[i] = AST.expressionStatement(AST.literal('<hoisted func decl `' + id.name + '`>'));
+          anyBody.splice(funcs, 0, snode);
           log('  - Injected at index', funcs);
           ++i;
         }
@@ -464,10 +461,10 @@ export function phaseNormalize(fdata, fname) {
           log('  - Injected from index', funcs + vars);
 
           // we are no longer in the hoisting segment so drop the var keyword and create the decl there
-          body[i] = decl.init
+          anyBody[i] = decl.init
             ? AST.expressionStatement(AST.assignmentExpression(decl.id, decl.init))
             : AST.expressionStatement(AST.literal('<hoisted var `' + names + '` decl without init>'));
-          body.splice(funcs + vars, 0, ...names.map((name) => AST.variableDeclaration(name, undefined, 'var')));
+          anyBody.splice(funcs + vars, 0, ...names.map((name) => AST.variableDeclaration(name, undefined, 'var')));
           i += names.length;
         }
         ++vars;
@@ -477,19 +474,19 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    body
+    anyBody
       .slice(0, funcs)
       .sort((a, b) => {
         const A = a.type === 'FunctionDeclaration' ? a.id.name : a.declaration.id.name;
         const B = b.type === 'FunctionDeclaration' ? b.id.name : b.declaration.id.name;
         return A < B ? -1 : A > B ? 1 : 0;
       })
-      .forEach((node, i) => (body[i] = node));
+      .forEach((node, i) => (anyBody[i] = node));
 
     // Replace all var decls with fresh ones. Deals with ordering, deduping, and func-name-deduping.
     // All these var decls should not have an init at this point.
     const varNameSet = new Set();
-    body.splice(
+    anyBody.splice(
       funcs,
       vars,
       ...varNames
@@ -505,7 +502,7 @@ export function phaseNormalize(fdata, fname) {
 
     // If two functions have the same name then only the last one is not dead code
     const seenNames = new Set();
-    const funcNodes = body.slice(0, funcs);
+    const funcNodes = anyBody.slice(0, funcs);
     for (let i = funcNodes.length - 1; i >= 0; --i) {
       const node = funcNodes[i];
       const name =
@@ -516,7 +513,7 @@ export function phaseNormalize(fdata, fname) {
           : ASSERT(false);
 
       if (seenNames.has(name)) {
-        body[i] = AST.expressionStatement(AST.literal('<eliminated duplicate func decl `' + name + '`>'));
+        anyBody[i] = AST.expressionStatement(AST.literal('<eliminated duplicate func decl `' + name + '`>'));
       } else {
         seenNames.add(name);
       }
@@ -4080,7 +4077,7 @@ export function phaseNormalize(fdata, fname) {
       fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
     }
 
-    if ((node.body.type === 'BlockStatement' && node.body.body.length === 0)) {
+    if (node.body.type === 'BlockStatement' && node.body.body.length === 0) {
       rule('Labeled statement with empty sub statement should be dropped');
       example('foo: {}', ';');
       before(node);

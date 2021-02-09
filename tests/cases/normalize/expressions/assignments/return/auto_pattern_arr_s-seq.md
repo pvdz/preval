@@ -27,14 +27,14 @@ function f() {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs = [1, 2];
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat[0];
   tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+let arrPatternSplat$1 = [...bindingPatternArrRoot];
+let a = arrPatternSplat$1[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -49,14 +49,14 @@ function f() {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs = [1, 2];
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat[0];
   tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+let arrPatternSplat$1 = [...bindingPatternArrRoot];
+let a = arrPatternSplat$1[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

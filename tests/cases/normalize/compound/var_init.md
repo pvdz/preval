@@ -19,8 +19,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+var x;
 let a = $(1);
-let x;
 const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
 const tmpBinBothRhs = $(2);
@@ -33,8 +33,8 @@ $(x);
 ## Output
 
 `````js filename=intro
+var x;
 let a = $(1);
-let x;
 const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
 const tmpBinBothRhs = $(2);

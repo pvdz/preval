@@ -220,6 +220,16 @@ export function phase1(fdata, resolve, req, verbose) {
 
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
+        // The idea for hoistedVars is that we need to be able to remove/replace the initial var/func decl node
+        // For the export, we need to know the index where it is located so we can remove it.
+        // For the other cases that won't be necessary.
+        node.$p.hoistedVars /*: Array<[
+          node, // the var/func decl
+          parentNode, // the node that holds the var decl (global/func/block/for/export node)
+          prop, // parentNode[prop] --> node, if index<0
+          index, // parentNode[prop][index] --> node, if index>=0
+          exportIndex, // if node is an export, global.body[exportIndex] == parentNode
+        ]> */ = [];
       }
 
       lexScopeStack.push(node);
@@ -358,6 +368,29 @@ export function phase1(fdata, resolve, req, verbose) {
           thisStack.pop();
         }
 
+        // Do not attempt to hoist anonymous default function exports
+        if (node.type === 'FunctionDeclaration' && node.id) {
+          const func = funcStack[funcStack.length - 1];
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+
+          if (parentNode.type.includes('Export')) {
+            ASSERT(parentNode.type === 'ExportNamedDeclaration' || parentNode.type === 'ExportDefaultDeclaration');
+            ASSERT(parentIndex === -1, 'parent is not an array');
+            ASSERT(parentNode[parentProp] === node, 'check parent prop');
+            const exportIndex = path.indexes[path.indexes.length - 2]; // index of parentNode in body
+            ASSERT(node && exportIndex >= 0 && parentNode && parentProp, 'exist', exportIndex, parentProp);
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex, exportIndex]);
+          } else {
+            ASSERT(parentIndex >= 0);
+            ASSERT(parentNode[parentProp][parentIndex] === node, 'check parent prop', parentProp);
+            ASSERT(node && parentIndex >= 0);
+            // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+          }
+        }
+
         let lexes = lexScopeStack.slice(1);
         while (lexes[0] && ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(lexes[0].type)) lexes.shift(); // Drop global block scopes etc
 
@@ -462,10 +495,50 @@ export function phase1(fdata, resolve, req, verbose) {
         break;
       }
 
-      case 'VariableDeclarator:after': {
-        // Find all bindings, resolve their unique name, copy their init (or undefined) to the updates
-        // If we're going to store these then what happens when they're transformed/replaced?
-        // `var a = 1; var b = a; var c = b;`. maybe store the parent node and key instead for an indirect lookup
+      case 'VariableDeclaration:after': {
+        if (node.kind === 'var') {
+          const func = funcStack[funcStack.length - 1];
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+
+          log('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
+
+          if (parentNode.type === 'ExportNamedDeclaration') {
+            log('- is an export-child');
+            // export var x
+            ASSERT(parentNode[parentProp] === node);
+            ASSERT(func.type === 'Program', 'exports can only appear in one place');
+            const exportIndex = path.indexes[path.indexes.length - 2];
+            ASSERT(func.body[exportIndex] === parentNode, 'exports are children of global body');
+            ASSERT(parentIndex === -1);
+            ASSERT(exportIndex >= 0);
+            ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex, exportIndex]);
+          } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
+            log('- is a for-child');
+            // for (var x;;);
+            // for (var x in y);
+            // for (var x of y);
+            ASSERT(parentNode[parentProp] === node);
+            //const exportIndex = path.indexes[path.indexes.length - 2];
+            ASSERT(parentIndex === -1);
+            //ASSERT(exportIndex >= 0);
+            //ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+          } else if (parentNode.type === 'BlockStatement') {
+            log('- is a block-var');
+            // { var x; }
+            ASSERT(parentNode[parentProp][parentIndex] === node);
+            ASSERT(node && parentIndex >= 0);
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+          } else {
+            // var x;
+            ASSERT(parentNode[parentProp][parentIndex] === node);
+            ASSERT(node && parentIndex >= 0);
+            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+          }
+        }
         break;
       }
 
@@ -711,7 +784,12 @@ export function phase1(fdata, resolve, req, verbose) {
 
   log();
   log('Imports from:');
-  log([...imports.values()].sort().map(s => '- "' + s + '"').join('\n'));
+  log(
+    [...imports.values()]
+      .sort()
+      .map((s) => '- "' + s + '"')
+      .join('\n'),
+  );
   log(
     '\ngloballyUniqueNamingRegistery (sans builtins):\n',
     globallyUniqueNamingRegistery.size === globals.size
@@ -822,10 +900,22 @@ function getIdentUsageKind(parentNode, parentProp) {
     case 'ClassBody':
       throw ASSERT(false, 'class bodies have methods as children', parentNode.type, '.', parentProp);
     case 'ClassDeclaration':
-      ASSERT(parentProp === 'id' || parentProp === 'superClass', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
+      ASSERT(
+        parentProp === 'id' || parentProp === 'superClass',
+        'ident can only be a child of class when it is the id',
+        parentNode.type,
+        '.',
+        parentProp,
+      );
       return 'write';
     case 'ClassExpression':
-      ASSERT(parentProp === 'id' || parentProp === 'superClass', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
+      ASSERT(
+        parentProp === 'id' || parentProp === 'superClass',
+        'ident can only be a child of class when it is the id',
+        parentNode.type,
+        '.',
+        parentProp,
+      );
       return 'write';
     case 'ConditionalExpression':
       ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp);

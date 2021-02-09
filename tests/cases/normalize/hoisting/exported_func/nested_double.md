@@ -20,35 +20,45 @@ export function g() {
 ## Normalized
 
 `````js filename=intro
-export function g() {
-  $(f(3));
+function g() {
   function f() {
-    return $(1);
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
   function f() {
-    return $(2);
+    const tmpReturnArg$1 = $(2);
+    return tmpReturnArg$1;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
+export { g };
 `````
 
 ## Output
 
 `````js filename=intro
-export function g() {
-  $(f(3));
+function g() {
   function f() {
-    return $(1);
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
   function f() {
-    return $(2);
+    const tmpReturnArg$1 = $(2);
+    return tmpReturnArg$1;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
+export { g };
 `````
 
 ## Result

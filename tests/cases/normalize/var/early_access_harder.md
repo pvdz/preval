@@ -33,7 +33,6 @@ function f() {
 var x;
 $(x);
 f();
-('<hoisted var `x` decl without init>');
 $(x);
 `````
 

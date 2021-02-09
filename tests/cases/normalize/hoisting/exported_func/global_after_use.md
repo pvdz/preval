@@ -16,23 +16,27 @@ export function f() { return $(2); }
 ## Normalized
 
 `````js filename=intro
-export function f() {
-  return $(2);
+function f() {
+  const tmpReturnArg = $(2);
+  return tmpReturnArg;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
 tmpCallCallee(tmpCalleeParam);
+export { f };
 `````
 
 ## Output
 
 `````js filename=intro
-export function f() {
-  return $(2);
+function f() {
+  const tmpReturnArg = $(2);
+  return tmpReturnArg;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
 tmpCallCallee(tmpCalleeParam);
+export { f };
 `````
 
 ## Result

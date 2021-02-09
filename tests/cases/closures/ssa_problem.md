@@ -36,7 +36,6 @@ $(a);
 f();
 a = 3;
 $(a);
-('<hoisted func decl `f`>');
 f();
 $(a);
 a = 4;

@@ -22,6 +22,7 @@ $(5, a);
 ## Normalized
 
 `````js filename=intro
+var a;
 var b;
 var c;
 b = {
@@ -42,7 +43,6 @@ c = {
     $(4, n_1);
   },
 };
-let a;
 let tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
@@ -53,6 +53,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
+var a;
 var b;
 var c;
 b = {
@@ -73,7 +74,6 @@ c = {
     $(4, n_1);
   },
 };
-let a;
 let tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;

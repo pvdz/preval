@@ -53,8 +53,6 @@ const tmpSwitchTest = $(1);
           tmpIfTest = tmpBinLhs === tmpSwitchValue;
         }
         if (tmpIfTest) {
-          {
-          }
           tmpSwitchFallthrough = true;
         }
       }

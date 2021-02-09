@@ -35,8 +35,8 @@ $(x);
 
 `````js filename=x
 function f() {}
-export { f as default };
 f = 10;
+export { f as default };
 `````
 
 ## Output
@@ -48,8 +48,8 @@ $(x);
 
 `````js filename=x
 function f() {}
-export { f as default };
 f = 10;
+export { f as default };
 `````
 
 ## Result

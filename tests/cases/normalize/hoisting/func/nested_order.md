@@ -35,15 +35,15 @@ function f() {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f_1();
-  const tmpCalleeParam$2 = g();
-  const tmpCalleeParam$3 = h();
-  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f_1();
+  const tmpCalleeParam$1 = g();
+  const tmpCalleeParam$2 = h();
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -62,15 +62,15 @@ function f() {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f_1();
-  const tmpCalleeParam$2 = g();
-  const tmpCalleeParam$3 = h();
-  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f_1();
+  const tmpCalleeParam$1 = g();
+  const tmpCalleeParam$2 = h();
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Result

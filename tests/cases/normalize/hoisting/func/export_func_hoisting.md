@@ -27,35 +27,33 @@ $(a,b,d,f,h,x);
 ## Normalized
 
 `````js filename=intro
-export function a() {}
+function a() {}
 function b() {}
 function d() {}
 function f() {}
-export function h() {}
-export function l() {}
+function h() {}
+function l() {}
 function x() {}
 a();
-('<hoisted func decl `x`>');
-('<hoisted func decl `l`>');
-('<hoisted func decl `b`>');
-('<hoisted func decl `f`>');
-('<hoisted func decl `h`>');
-('<hoisted func decl `d`>');
-('<hoisted func decl `a`>');
 $(a, b, d, f, h, x);
+export { l };
+export { h };
+export { a };
 `````
 
 ## Output
 
 `````js filename=intro
-export function a() {}
+function a() {}
 function b() {}
 function d() {}
 function f() {}
-export function h() {}
-export function l() {}
+function h() {}
 function x() {}
 $(a, b, d, f, h, x);
+export { l };
+export { h };
+export { a };
 `````
 
 ## Result

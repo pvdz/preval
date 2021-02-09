@@ -28,13 +28,13 @@ function g() {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f(1);
-  tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(1);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -45,13 +45,13 @@ function g() {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f(1);
-  tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(1);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = g();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result

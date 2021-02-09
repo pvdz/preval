@@ -27,5 +27,6 @@ export function $p() {
     // replaceWith // any. The call to this pure function should be replaced with this node.
     // varBindingsToInject // Array<node>. Var statements to inject at the top of a function/program node. Func decls will still precede it.
     // funcBindingsToInject // Array<node>. Func decls to inject at the top of a function/program node. Order can be relevant (two funcs with same id).
+    // hoistedVars // Array<[node, parent, prop, index, exportIndex]> Allows a one-time pass at hoisting by passing on all relevant information through this array
   };
 }

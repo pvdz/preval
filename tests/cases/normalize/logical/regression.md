@@ -24,10 +24,6 @@ if (tmpIfTest) {
 } else {
   tmpIfTest = $(2);
 }
-if (tmpIfTest) {
-  {
-  }
-}
 `````
 
 ## Output
@@ -37,8 +33,6 @@ let tmpIfTest = false;
 if (tmpIfTest) {
 } else {
   tmpIfTest = $(2);
-}
-if (tmpIfTest) {
 }
 `````
 

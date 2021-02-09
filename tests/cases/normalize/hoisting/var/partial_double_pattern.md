@@ -20,20 +20,16 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var bindingPatternArrRoot;
-var bindingPatternArrRoot$1;
 var x;
 var y;
 var z;
-bindingPatternArrRoot = [1, 2, 3];
-arrPatternSplat = [...bindingPatternArrRoot];
+const arrAssignPatternRhs = [1, 2, 3];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 $(x, y);
-bindingPatternArrRoot$1 = [4, 5, 6];
-arrPatternSplat$1 = [...bindingPatternArrRoot$1];
+const arrAssignPatternRhs$1 = [4, 5, 6];
+const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
 x = arrPatternSplat$1[0];
 z = arrPatternSplat$1[1];
 $(x, y, z);
@@ -42,20 +38,16 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var arrPatternSplat;
-var arrPatternSplat$1;
-var bindingPatternArrRoot;
-var bindingPatternArrRoot$1;
 var x;
 var y;
 var z;
-bindingPatternArrRoot = [1, 2, 3];
-arrPatternSplat = [...bindingPatternArrRoot];
+const arrAssignPatternRhs = [1, 2, 3];
+const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 $(x, y);
-bindingPatternArrRoot$1 = [4, 5, 6];
-arrPatternSplat$1 = [...bindingPatternArrRoot$1];
+const arrAssignPatternRhs$1 = [4, 5, 6];
+const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
 x = arrPatternSplat$1[0];
 z = arrPatternSplat$1[1];
 $(x, y, z);

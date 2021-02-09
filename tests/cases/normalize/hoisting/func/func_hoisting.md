@@ -35,13 +35,6 @@ function h() {}
 function l() {}
 function x() {}
 a();
-('<hoisted func decl `x`>');
-('<hoisted func decl `l`>');
-('<hoisted func decl `b`>');
-('<hoisted func decl `f`>');
-('<hoisted func decl `h`>');
-('<hoisted func decl `d`>');
-('<hoisted func decl `a`>');
 $(a, b, d, f, h, x);
 `````
 

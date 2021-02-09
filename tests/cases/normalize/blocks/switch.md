@@ -48,8 +48,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    {
-    }
     tmpFallthrough = true;
   }
   let tmpIfTest$2 = tmpFallthrough;
@@ -60,8 +58,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    {
-    }
     tmpFallthrough = true;
   }
   let tmpIfTest$3 = tmpFallthrough;
@@ -85,11 +81,7 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    {
-    }
     tmpFallthrough = true;
-  }
-  {
   }
 }
 `````
@@ -121,8 +113,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    {
-    }
     tmpFallthrough = true;
   }
   let tmpIfTest$2 = tmpFallthrough;
@@ -133,8 +123,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    {
-    }
     tmpFallthrough = true;
   }
   let tmpIfTest$3 = tmpFallthrough;
@@ -158,11 +146,7 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    {
-    }
     tmpFallthrough = true;
-  }
-  {
   }
 }
 `````

@@ -27,16 +27,16 @@ function f($tdz$__arg) {
     const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
     const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat[0];
     arg = tmpNestedAssignArrPatternRhs;
   } else {
     arg = $tdz$__arg;
   }
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+let arrPatternSplat$1 = [...bindingPatternArrRoot];
+let a = arrPatternSplat$1[0];
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -53,16 +53,16 @@ function f($tdz$__arg) {
     const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
     const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat[0];
     arg = tmpNestedAssignArrPatternRhs;
   } else {
     arg = $tdz$__arg;
   }
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+let arrPatternSplat$1 = [...bindingPatternArrRoot];
+let a = arrPatternSplat$1[0];
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);

@@ -31,8 +31,6 @@ switch (6) {
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      {
-      }
       tmpSwitchFallthrough = true;
     }
     {
@@ -45,8 +43,6 @@ switch (6) {
             tmpIfTest = tmpBinLhs === tmpSwitchValue;
           }
           if (tmpIfTest) {
-            {
-            }
             tmpSwitchFallthrough = true;
           }
         }

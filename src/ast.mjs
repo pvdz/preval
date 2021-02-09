@@ -73,6 +73,20 @@ export function callExpression(callee, args, optional = false) {
   };
 }
 
+export function classExpression(id = null, superClass = null, body) {
+  if (typeof id === 'string') id = identifier(id);
+  if (typeof superClass === 'string') superClass = identifier(superClass);
+  ASSERT(body && body.type === 'ClassBody');
+
+  return {
+    type: 'ClassExpression',
+    id,
+    superClass,
+    body,
+    $p: $p(),
+  };
+}
+
 export function continueStatement(label = null) {
   if (typeof label === 'string') label = identifier(label);
 

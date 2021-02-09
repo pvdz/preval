@@ -79,9 +79,10 @@ const VERBOSE_TRACING = true;
   - Unreferenced labels are dropped
   - Each import statement has exactly one specifier
   - Default imports become named imports (because default exports simply export 'default')
+  - Class declarations become class expressions
  */
 
-// low hanging fruit: imports/exports, classes, async, iterators
+// low hanging fruit: async, iterators
 // next level: assignment analysis and first pass of ssa
 // next level: figure out how to fix var decls vs use
 
@@ -812,6 +813,8 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'BlockStatement':
         return anyBlock(node);
+      case 'ClassDeclaration':
+        return transformClassDeclaration(node, body, i, parent);
       case 'DoWhileStatement':
         return transformDoWhileStatement(node, body, i);
       case 'EmptyStatement': {
@@ -840,6 +843,8 @@ export function phaseNormalize(fdata, fname) {
         return transformIfStatement(node, body, i);
       case 'ImportDeclaration':
         return transformImportDeclaration(node, body, i, parent);
+      case 'MethodDefinition':
+        return transformMethodDefinition(node, body, i, parent);
       case 'ReturnStatement':
         return transformReturnStatement(node, body, i);
       case 'SwitchStatement':
@@ -858,7 +863,6 @@ export function phaseNormalize(fdata, fname) {
       case 'ContinueStatement':
         return false;
 
-      case 'ClassDeclaration':
       case 'DebuggerStatement':
       case 'ExportAllDeclaration':
       case 'TryStatement':
@@ -884,6 +888,18 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
+  function transformClassDeclaration(node, body, i, parent) {
+    // Since classes don't hoist we may as well transform them to their expression equivalent...
+    rule('Class declaration should be let expression');
+    example('class x {}', 'let x = class x {}');
+    before(node);
+
+    const newNode = AST.variableDeclaration(node.id.name, AST.classExpression(node.id.name, node.superClass, node.body), 'let');
+    body[i] = newNode;
+
+    after(newNode);
+    return true;
+  }
   function transformDoWhileStatement(node, body, i) {
     // Would love to merge the while's into one, but how...
     // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
@@ -958,7 +974,8 @@ export function phaseNormalize(fdata, fname) {
     // - tldr;
     //   - make sure not to _just_ "optimize" `export default x` to `export {x}`.
     //   - named func/class decls can be outlined but should retain their name
-    //   - anonymous function being exported has func.name === '*default*' ... (but at least can't be referenced locally...)
+    //   - anonymous function being exported has func.name === 'default' ... (but at least can't be referenced locally...)
+    //     - we could do `Object.defineProperty(func, 'name', {value: 'default', writable: false})` to remedy...? with opt-out. would add another reference which may prevent inlining.
 
     const type = node.declaration.type;
     if (type === 'FunctionDeclaration' || type === 'ClassDeclaration') {
@@ -980,10 +997,12 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      // This one is tricky and we don't change it right now
-      // The main problem is that it would change func.name from `'*default*' to something else
-      // I'm not aware of an alternative way to safely transform this (as func.name is not
-      // a writeable property) so `export default` is actually the only way to achieve this...
+      // We can do the same for anonymous function but have to be careful that the .name is 'default'
+      // Since function names are not writable, we would have to do
+      // `Object.defineProperty(func, 'name', {value: 'default', writable: false})` instead. This would
+      // cause the function to get another reference which may hold back other reduction rules.
+      // Best course of action is probably to opt-in or out of this behavior, or to leave this particular
+      // case of the default export as is. Would put the burden of support on us, not users.
       return false;
     }
 
@@ -3305,8 +3324,73 @@ export function phaseNormalize(fdata, fname) {
         return false;
       }
 
+      case 'ClassExpression': {
+        // Simplify extends and computed keys
+        // Other rules tbd, if any
+
+        let last = -1;
+        node.body.body.forEach((pnode, i) => {
+          ASSERT(pnode.type === 'MethodDefinition', 'update me if this gets extended');
+          if (pnode.computed && isComplexNode(pnode.key)) {
+            last = i;
+          }
+        });
+        if (last >= 0) {
+          // We have to outline at least one computed key, so we must also outline the extends
+          // since it may be a reference that could be changed by a call in the key. There's a test.
+          rule('Class keys must be simple nodes');
+          example(
+            'class x extends f() { [f()]() {} }',
+            'tmp = f(); tmp2 = g(); class x extends tmp { [tmp2]() {} }',
+            () => node.superClass,
+          );
+          example('class x { [g()]() {} }', 'tmp = g(); class x { [tmp]() {} }', () => !node.superClass);
+          before(node);
+
+          const newNodes = [];
+          if (node.superClass) {
+            const tmpNameSuper = createFreshVar('tmpClassSuper');
+            newNodes.push(AST.variableDeclaration(tmpNameSuper, node.superClass, 'const'));
+            node.superClass = AST.identifier(tmpNameSuper);
+          }
+          for (let i = 0; i <= last; ++i) {
+            const enode = node.body.body[i];
+            if (enode.computed) {
+              const tmpNameKey = createFreshVar('tmpClassComputedKey');
+              newNodes.push(AST.variableDeclaration(tmpNameKey, enode.key, 'const'));
+              enode.key = AST.identifier(tmpNameKey);
+            }
+          }
+          body.splice(i, 0, ...newNodes);
+
+          after([...newNodes, node]);
+          return true;
+        }
+
+        if (node.superClass && isComplexNode(node.superClass)) {
+          // Since the class must be in a basic form at this point, the transforms are fairly care free.
+          // Must take care that the extends value can be affected by computed member keys.
+          rule('The `extends` of a class must be simple');
+          example('class x extends f() {}', 'tmp = f(); class x extends tmp {}');
+          before(node);
+
+          const tmpNameSuper = createFreshVar('tmpClassSuper');
+          const newNode = AST.variableDeclaration(tmpNameSuper, node.superClass, 'const');
+          node.superClass = AST.identifier(tmpNameSuper);
+          body.splice(i, 0, newNode);
+
+          after(newNode);
+          after(node);
+          return true;
+        }
+
+        log('Processing class body..');
+        anyBlock(node.body);
+
+        return false;
+      }
+
       case 'AwaitExpression':
-      case 'ClassExpression':
       case 'Directive':
       case 'MetaProperty':
       case 'MethodDefinition':
@@ -3956,6 +4040,34 @@ export function phaseNormalize(fdata, fname) {
     }
 
     return anyChange;
+  }
+  function transformMethodDefinition(methodNode, body, i, parent) {
+    // This will be an anonymous function expression.
+    // For now, do the same as with functions
+
+    ASSERT(
+      methodNode.value && methodNode.value.type === 'FunctionExpression',
+      'this might hold different values in the future but right now it can only be this?',
+    );
+
+    const node = methodNode.value; // function expression
+
+    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+    // Array<name, expr>
+    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+    const newBindings = [];
+
+    transformFunctionParams(node, body, i, newBindings);
+
+    if (newBindings.length) {
+      log('Params were transformed somehow, injecting new nodes into body');
+      node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+      return true;
+    }
+
+    anyBlock(node.body);
+
+    return false;
   }
   function transformProgram(node) {
     anyBlock(node);

@@ -944,7 +944,7 @@ export function phase4(program, fdata, resolve, req) {
         if (cnode.computed) {
           // I think the computed key of a method should be visited first...?
           crumb(node, 'body', -1);
-          expr2(node.body, 'body', i, cnode, 'key', cnode.key);
+          expr2(node.body, 'body', i, cnode, 'key', -1, cnode.key);
           uncrumb(node, 'body', -1);
         }
 

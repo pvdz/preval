@@ -822,10 +822,10 @@ function getIdentUsageKind(parentNode, parentProp) {
     case 'ClassBody':
       throw ASSERT(false, 'class bodies have methods as children', parentNode.type, '.', parentProp);
     case 'ClassDeclaration':
-      ASSERT(parentProp === 'id', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'superClass', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
       return 'write';
     case 'ClassExpression':
-      ASSERT(parentProp === 'id', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'superClass', 'ident can only be a child of class when it is the id', parentNode.type, '.', parentProp);
       return 'write';
     case 'ConditionalExpression':
       ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp);

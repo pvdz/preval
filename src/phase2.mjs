@@ -184,7 +184,7 @@ export function phase2(program, fdata, resolve, req) {
         } else {
           // This kind of value is currently unsupported
           // TODO: collect these cases and figure out if we can do something to support them anyways
-          log('- returns', rnode, '(unsupported)');
+          log('- uhoh, it returns', rnode, '(unsupported)');
           multi = true;
         }
 
@@ -664,7 +664,7 @@ export function phase2(program, fdata, resolve, req) {
           } else {
             // This kind of value is currently unsupported
             // TODO: collect these cases and figure out if we can do something to support them anyways
-            log('- returns', rnode, '(unsupported)');
+            log('- oh dear, it returns', rnode, '(unsupported)');
             multi = true;
           }
 
@@ -990,10 +990,8 @@ export function phase2(program, fdata, resolve, req) {
               index: crumbsIndex[crumbsIndex.length - 1],
             });
           }
-        } else if (isMethod) {
-          log('Function expression is a method with key: `' + methodName + '`');
-          ASSERT(methodName, 'all methods have a key', methodName); // TODO: What about computed keys?
         } else {
+          // Note: class methods have their id as a key in the parent property...
           log('Function expression has no name');
         }
 
@@ -1764,22 +1762,24 @@ export function phase2(program, fdata, resolve, req) {
 
         if (cnode.computed) {
           // I think the computed key of a method should be visited first...?
+          console.log('-->', cnode)
           crumb(node, 'body', -1);
-          expr2(node.body, 'body', i, cnode, 'key', cnode.key);
+          expr2(node.body, 'body', i, cnode, 'key', -1, cnode.key);
           uncrumb(node, 'body', -1);
+        } else {
+          ASSERT(
+            cnode.key && (cnode.key.type === 'Identifier' || cnode.key.type === 'Literal'),
+            'if the method is not dynamic, the key must exist and must be an ident or literal',
+            cnode,
+          );
         }
 
-        ASSERT(
-          cnode.key && cnode.key.type === 'Identifier',
-          'if the method is not dynamic, the key must exist and must be an ident',
-          cnode,
-        );
         ASSERT(cnode.value.type === 'FunctionExpression', 'for now, method values are func expr nodes');
 
         // TODO: constructor path
         // TODO: tag as methods, perhaps the class can patch that up for us... we also need to know which methods are static
         crumb(node, 'body', -1);
-        expr2(node.body, 'body', i, cnode, 'value', cnode.value, 'method', false, methodName);
+        expr2(node.body, 'body', i, cnode, 'value', -1, cnode.value, 'method', false, methodName);
         uncrumb(node, 'body', -1);
 
         methodNames.push(cnode.key.name);
@@ -1800,7 +1800,7 @@ export function phase2(program, fdata, resolve, req) {
 
     if (isExpr) {
       // TODO: how do we best model the class expression id being accessible inside the class? fake an arrow?
-      if (node.id) TOFIX;
+      //if (node.id) TOFIX;
     } else {
       if (node.id) {
         log('Class id:', node.id.name);

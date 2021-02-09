@@ -22,8 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
-  10;
-  20;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
     tmpForInDeclRhs = $(2);

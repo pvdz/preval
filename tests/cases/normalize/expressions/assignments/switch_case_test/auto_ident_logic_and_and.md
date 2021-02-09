@@ -48,7 +48,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -87,7 +86,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

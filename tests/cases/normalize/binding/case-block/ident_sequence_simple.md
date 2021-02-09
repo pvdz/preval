@@ -35,7 +35,6 @@ const tmpSwitchTest = $('a');
       tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         $(b);
         a_1 = c;
@@ -62,7 +61,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(b);
       a_1 = c;

@@ -22,8 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
 if (1) {
-  40;
-  50;
   tmpThrowArg = $(60);
 } else {
   const tmpCallCallee = $;

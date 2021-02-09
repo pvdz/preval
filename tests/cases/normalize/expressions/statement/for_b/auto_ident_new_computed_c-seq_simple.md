@@ -25,8 +25,6 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    1;
-    2;
     const tmpCompObj = $(b);
     const tmpNewCallee = tmpCompObj.$;
     const tmpIfTest = new tmpNewCallee(1);

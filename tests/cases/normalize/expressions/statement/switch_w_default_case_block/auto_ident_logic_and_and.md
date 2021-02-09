@@ -38,9 +38,7 @@ const tmpSwitchTest = $(1);
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
       {
-        ('case 0');
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
@@ -73,7 +71,6 @@ const tmpSwitchTest = $(1);
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
         $('fail1');
       }
@@ -81,9 +78,7 @@ const tmpSwitchTest = $(1);
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest$2 = tmpSwitchFallthrough;
           if (tmpIfTest$2) {
           } else {

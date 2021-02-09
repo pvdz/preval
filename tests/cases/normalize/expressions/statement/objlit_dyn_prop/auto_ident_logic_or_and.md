@@ -34,7 +34,6 @@ if (tmpIfTest) {
     tmpCallCallee$2(tmpCalleeParam$2);
   }
 }
-10;
 $(a);
 `````
 

@@ -29,7 +29,6 @@ const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
 b = arrPatternSplat[0];
-10;
 $(a, b);
 `````
 

@@ -25,7 +25,6 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
 typeof tmpUnaryArg;
-10;
 $(a, x);
 `````
 

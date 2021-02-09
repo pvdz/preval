@@ -25,8 +25,6 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam;
-1;
-2;
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
 const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
@@ -34,8 +32,6 @@ a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
-  1;
-  2;
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('c');
   const tmpNestedComplexRhs$1 = tmpCompObj$1[tmpCompProp$1];

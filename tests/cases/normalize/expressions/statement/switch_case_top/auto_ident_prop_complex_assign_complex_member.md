@@ -37,7 +37,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpAssignMemLhsObj = $(b);
       const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
@@ -68,7 +67,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpAssignMemLhsObj = $(b);
       const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;

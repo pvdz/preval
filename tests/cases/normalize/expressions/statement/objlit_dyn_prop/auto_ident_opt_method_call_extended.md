@@ -32,7 +32,6 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
 }
-10;
 $(a);
 `````
 

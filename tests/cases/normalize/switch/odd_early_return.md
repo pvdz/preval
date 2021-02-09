@@ -54,7 +54,6 @@ function f() {
       tmpIfTest = tmpSwitchTest === 0;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         $(2);
         break tmpSwitchBreak;
@@ -69,7 +68,6 @@ function f() {
       tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest$1) {
-      ('case 1:');
       {
         const tmpIfTest$2 = $(8);
         if (tmpIfTest$2) {
@@ -100,7 +98,6 @@ function f() {
       tmpIfTest$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
     }
     if (tmpIfTest$5) {
-      ('case 2:');
       {
         $(5);
         const tmpReturnArg$2 = $(6);
@@ -116,7 +113,6 @@ function f() {
       tmpIfTest$6 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
     }
     if (tmpIfTest$6) {
-      ('case 3:');
       {
         break tmpSwitchBreak;
       }
@@ -142,7 +138,6 @@ function f() {
       tmpIfTest = tmpSwitchTest === 0;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         $(2);
         break tmpSwitchBreak;
@@ -157,7 +152,6 @@ function f() {
       tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest$1) {
-      ('case 1:');
       {
         const tmpIfTest$2 = $(8);
         if (tmpIfTest$2) {
@@ -188,7 +182,6 @@ function f() {
       tmpIfTest$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
     }
     if (tmpIfTest$5) {
-      ('case 2:');
       {
         $(5);
         const tmpReturnArg$2 = $(6);
@@ -204,7 +197,6 @@ function f() {
       tmpIfTest$6 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
     }
     if (tmpIfTest$6) {
-      ('case 3:');
       {
         break tmpSwitchBreak;
       }

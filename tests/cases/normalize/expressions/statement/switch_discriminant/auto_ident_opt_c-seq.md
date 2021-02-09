@@ -27,8 +27,6 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
-1;
-2;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
@@ -37,7 +35,6 @@ if (tmpChainRootProp) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -58,7 +55,6 @@ if (tmpChainRootProp) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

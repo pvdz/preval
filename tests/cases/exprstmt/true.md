@@ -15,7 +15,7 @@ true;
 ## Normalized
 
 `````js filename=intro
-true;
+
 `````
 
 ## Output

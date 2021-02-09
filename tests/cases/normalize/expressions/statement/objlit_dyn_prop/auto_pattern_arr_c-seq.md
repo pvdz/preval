@@ -27,7 +27,6 @@ $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 tmpCallCallee(tmpCalleeParam);
-10;
 $(a);
 `````
 

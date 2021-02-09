@@ -25,8 +25,6 @@ let a = arrPatternSplat[0];
 label: {
   $(10);
   $(20);
-  1;
-  2;
 }
 $(a);
 `````
@@ -40,8 +38,6 @@ let a = arrPatternSplat[0];
 label: {
   $(10);
   $(20);
-  1;
-  2;
 }
 $(a);
 `````

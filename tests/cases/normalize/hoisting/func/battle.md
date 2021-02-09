@@ -32,11 +32,7 @@ function top() {
   function a() {
     $(4);
   }
-  ('<eliminated duplicate func decl `a`>');
-  ('<eliminated duplicate func decl `a`>');
-  ('<hoisted func decl `a`>');
   $(3);
-  ('<hoisted func decl `a`>');
   $(5);
   a();
   $(6);

@@ -25,8 +25,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpNestedComplexRhs = $(2);
@@ -40,7 +38,6 @@ tmpSwitchTest = tmpNestedComplexRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -66,7 +63,6 @@ tmpSwitchTest = tmpNestedComplexRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

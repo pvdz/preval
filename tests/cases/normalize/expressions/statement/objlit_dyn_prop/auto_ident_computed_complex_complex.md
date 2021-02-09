@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
 tmpCompObj[tmpCompProp];
-10;
 $(a, b);
 `````
 

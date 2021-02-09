@@ -37,7 +37,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpPostUpdArgIdent = b;
       b = b - 1;
@@ -63,7 +62,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpPostUpdArgIdent = b;
       b = b - 1;

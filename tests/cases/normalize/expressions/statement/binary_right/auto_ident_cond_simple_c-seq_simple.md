@@ -22,8 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(100);
 if (1) {
-  40;
-  50;
   $(60);
 } else {
   const tmpCallCallee = $;

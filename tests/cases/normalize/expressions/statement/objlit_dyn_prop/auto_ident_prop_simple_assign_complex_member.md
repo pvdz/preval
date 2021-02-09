@@ -28,7 +28,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-10;
 $(a, b);
 `````
 

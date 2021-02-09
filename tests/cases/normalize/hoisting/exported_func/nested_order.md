@@ -39,7 +39,6 @@ export function f() {
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-('<hoisted func decl `f`>');
 `````
 
 ## Output

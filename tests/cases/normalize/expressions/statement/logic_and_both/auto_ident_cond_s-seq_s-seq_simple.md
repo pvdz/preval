@@ -22,12 +22,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-10;
-20;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
-  40;
-  50;
   tmpIfTest = 60;
 } else {
   const tmpCallCallee = $;
@@ -35,13 +31,8 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpCallCallee(tmpCalleeParam);
 }
 if (tmpIfTest) {
-  10;
-  20;
   const tmpIfTest$2 = 30;
   if (tmpIfTest$2) {
-    40;
-    50;
-    60;
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);

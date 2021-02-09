@@ -36,7 +36,6 @@ function i(tmpParamPattern) {
   return a_1;
 }
 let a = 1;
-('<hoisted func decl `i`>');
 const tmpCallCallee = $;
 const tmpCallCallee$1 = i;
 const tmpObjLitVal$2 = { a: 10 };

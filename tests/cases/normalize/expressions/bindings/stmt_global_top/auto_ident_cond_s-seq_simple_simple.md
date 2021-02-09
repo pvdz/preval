@@ -19,8 +19,6 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-10;
-20;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   a = $(2);

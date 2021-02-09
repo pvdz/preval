@@ -37,7 +37,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpDeleteObj = $(x);
       delete tmpDeleteObj.y;
@@ -64,7 +63,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpDeleteObj = $(x);
       delete tmpDeleteObj.y;

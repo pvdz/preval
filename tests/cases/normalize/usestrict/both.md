@@ -21,12 +21,9 @@ $(f());
 
 `````js filename=intro
 function f() {
-  'use strict';
   const tmpReturnArg = $();
   return tmpReturnArg;
 }
-('use strict');
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

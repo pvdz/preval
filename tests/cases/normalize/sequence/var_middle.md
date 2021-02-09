@@ -16,10 +16,6 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-1;
-2;
-3;
-4;
 const a = 5;
 $(a);
 `````

@@ -30,7 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpAssignMemLhsObj = $(b);
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpCompObj = $(b);
@@ -51,7 +50,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpAssignMemLhsObj = $(b);
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpCompObj = $(b);

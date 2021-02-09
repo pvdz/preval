@@ -28,8 +28,6 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs;
-  1;
-  2;
   const tmpNestedAssignObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');

@@ -18,7 +18,6 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-1;
 let y = a;
 const tmpIfTest = y == null;
 if (tmpIfTest) {

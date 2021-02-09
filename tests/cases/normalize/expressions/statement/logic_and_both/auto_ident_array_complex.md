@@ -26,7 +26,6 @@ const tmpArrElement$2 = $(3);
 const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 if (tmpIfTest) {
   $(1);
-  2;
   $(3);
 }
 $(a);

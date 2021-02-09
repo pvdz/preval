@@ -23,14 +23,10 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
 }
-1;
-2;
 const tmpChainRootProp$1 = b;
 if (tmpChainRootProp$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;

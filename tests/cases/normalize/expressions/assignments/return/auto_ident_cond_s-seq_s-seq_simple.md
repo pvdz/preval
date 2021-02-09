@@ -25,12 +25,8 @@ $(a);
 function f() {
   let tmpReturnArg;
   let tmpNestedComplexRhs = undefined;
-  10;
-  20;
   const tmpIfTest = 30;
   if (tmpIfTest) {
-    40;
-    50;
     tmpNestedComplexRhs = 60;
   } else {
     const tmpCallCallee = $;
@@ -42,7 +38,6 @@ function f() {
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);

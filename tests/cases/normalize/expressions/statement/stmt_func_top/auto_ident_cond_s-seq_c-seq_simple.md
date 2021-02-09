@@ -24,12 +24,8 @@ $(f());
 `````js filename=intro
 function f() {
   let a = { a: 999, b: 1000 };
-  10;
-  20;
   const tmpIfTest = 30;
   if (tmpIfTest) {
-    40;
-    50;
     $(60);
   } else {
     const tmpCallCallee = $;

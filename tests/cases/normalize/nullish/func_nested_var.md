@@ -30,7 +30,6 @@ function f() {
   if (tmpIfTest) {
     b = toString;
   }
-  1;
   let c = b;
   const tmpIfTest$1 = c == null;
   if (tmpIfTest$1) {

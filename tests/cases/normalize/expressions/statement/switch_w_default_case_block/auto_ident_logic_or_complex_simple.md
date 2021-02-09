@@ -38,9 +38,7 @@ const tmpSwitchTest = $(1);
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
       {
-        ('case 0');
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
@@ -53,10 +51,6 @@ const tmpSwitchTest = $(1);
               const tmpCallCallee = $;
               const tmpCalleeParam = $(0);
               const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-              if (tmpIfTest$1) {
-              } else {
-                2;
-              }
             }
             break;
           }
@@ -67,7 +61,6 @@ const tmpSwitchTest = $(1);
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
         $('fail1');
       }
@@ -75,9 +68,7 @@ const tmpSwitchTest = $(1);
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest$2 = tmpSwitchFallthrough;
           if (tmpIfTest$2) {
           } else {
@@ -119,10 +110,7 @@ do {
     if (tmpIfTest) {
       const tmpCallCallee = $;
       const tmpCalleeParam = $(0);
-      const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-      if (tmpIfTest$1) {
-      } else {
-      }
+      tmpCallCallee(tmpCalleeParam);
       break;
       tmpSwitchFallthrough = true;
     }

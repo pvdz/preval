@@ -31,8 +31,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj;
     let tmpNestedComplexRhs = undefined;
-    1;
-    2;
     const tmpChainRootProp = $(b);
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;

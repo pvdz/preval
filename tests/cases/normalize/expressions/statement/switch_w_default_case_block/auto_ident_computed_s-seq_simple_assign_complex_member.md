@@ -41,9 +41,7 @@ const tmpSwitchTest = $(1);
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
       {
-        ('case 0');
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
@@ -53,8 +51,6 @@ const tmpSwitchTest = $(1);
         if (tmpIfTest) {
           {
             {
-              1;
-              2;
               const tmpAssignComMemLhsObj = b;
               const tmpAssignComMemLhsProp = $('c');
               const tmpAssignComputedObj = tmpAssignComMemLhsObj;
@@ -73,7 +69,6 @@ const tmpSwitchTest = $(1);
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
         $('fail1');
       }
@@ -81,9 +76,7 @@ const tmpSwitchTest = $(1);
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
           } else {

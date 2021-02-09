@@ -24,8 +24,6 @@ let tmpIfTest;
 let tmpNestedComplexRhs = undefined;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  40;
-  50;
   tmpNestedComplexRhs = $(60);
 } else {
   const tmpCallCallee = $;

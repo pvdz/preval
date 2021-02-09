@@ -34,12 +34,9 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { c: 1 };
         a = undefined;
-        1;
-        2;
         const tmpNestedAssignObj = b;
         const tmpNestedPropAssignRhs = 2;
         tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -63,12 +60,9 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { c: 1 };
       a = undefined;
-      1;
-      2;
       const tmpNestedAssignObj = b;
       const tmpNestedPropAssignRhs = 2;
       tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

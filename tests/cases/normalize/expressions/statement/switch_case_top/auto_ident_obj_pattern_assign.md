@@ -39,7 +39,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpObjLitVal = $(3);
       const tmpObjLitVal$1 = $(4);
@@ -68,7 +67,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpObjLitVal = $(3);
       const tmpObjLitVal$1 = $(4);

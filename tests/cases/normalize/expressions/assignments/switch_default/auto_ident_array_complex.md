@@ -27,7 +27,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpArrElement = $(1);
     const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
@@ -45,7 +44,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpArrElement = $(1);
     const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);

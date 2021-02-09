@@ -24,8 +24,6 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-1;
-2;
 $(a);
 `````
 

@@ -20,8 +20,6 @@ $(f());
 
 `````js filename=intro
 function f() {
-  1;
-  2;
   const tmpCallCallee = $(parseInt);
   const y = tmpCallCallee();
   const tmpReturnArg = $(y);

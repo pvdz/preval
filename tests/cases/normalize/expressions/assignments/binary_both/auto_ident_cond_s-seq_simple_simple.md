@@ -25,8 +25,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   tmpNestedComplexRhs = $(2);
@@ -39,8 +37,6 @@ a = tmpNestedComplexRhs;
 tmpBinBothLhs = tmpNestedComplexRhs;
 let tmpBinBothRhs;
 let tmpNestedComplexRhs$1 = undefined;
-10;
-20;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpNestedComplexRhs$1 = $(2);

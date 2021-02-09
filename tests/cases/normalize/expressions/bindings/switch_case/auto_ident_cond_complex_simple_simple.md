@@ -31,7 +31,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = undefined;
         const tmpIfTest$1 = $(1);
@@ -61,7 +60,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = undefined;
       const tmpIfTest$1 = $(1);

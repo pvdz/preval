@@ -30,7 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpUnaryArg = $(x);
     a = typeof tmpUnaryArg;
   }
@@ -46,7 +45,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpUnaryArg = $(x);
     a = typeof tmpUnaryArg;
   }

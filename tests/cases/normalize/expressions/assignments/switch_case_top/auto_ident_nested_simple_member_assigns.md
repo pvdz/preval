@@ -39,7 +39,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       let tmpNestedAssignPropRhs;
       let tmpNestedAssignPropRhs$1;
@@ -87,7 +86,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       let tmpNestedAssignPropRhs;
       let tmpNestedAssignPropRhs$1;

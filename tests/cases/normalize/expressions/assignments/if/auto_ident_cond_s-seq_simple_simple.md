@@ -22,8 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpNestedComplexRhs = $(2);

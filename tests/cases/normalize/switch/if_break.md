@@ -38,7 +38,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
         if (2) {
@@ -55,7 +54,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 4;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       {
         if (5) {
@@ -80,7 +78,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
         if (2) {
@@ -97,7 +94,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 4;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       {
         if (5) {

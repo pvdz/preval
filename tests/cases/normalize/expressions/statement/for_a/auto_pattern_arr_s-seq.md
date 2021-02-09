@@ -25,8 +25,6 @@ let a = arrPatternSplat[0];
 {
   $(10);
   $(20);
-  1;
-  2;
   while (true) {
     const tmpIfTest = $(0);
     if (tmpIfTest) {

@@ -35,7 +35,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(3);
     }
@@ -49,7 +48,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
     }
     tmpFallthrough = true;
@@ -62,7 +60,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    ('case 2:');
     {
     }
     tmpFallthrough = true;
@@ -75,7 +72,6 @@ tmpSwitchBreak: {
     tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
-    ('case 3:');
     {
       break tmpSwitchBreak;
     }
@@ -89,13 +85,11 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    ('case 4:');
     {
     }
     tmpFallthrough = true;
   }
   {
-    ('default case:');
   }
 }
 `````
@@ -114,7 +108,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(3);
     }
@@ -128,7 +121,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
     }
     tmpFallthrough = true;
@@ -141,7 +133,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    ('case 2:');
     {
     }
     tmpFallthrough = true;
@@ -154,7 +145,6 @@ tmpSwitchBreak: {
     tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
-    ('case 3:');
     {
       break tmpSwitchBreak;
     }
@@ -168,13 +158,11 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    ('case 4:');
     {
     }
     tmpFallthrough = true;
   }
   {
-    ('default case:');
   }
 }
 `````

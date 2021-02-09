@@ -37,10 +37,7 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
-      1;
-      2;
       const tmpNestedAssignObj = b;
       const tmpNestedPropAssignRhs = 2;
       tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -68,10 +65,7 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
-      1;
-      2;
       const tmpNestedAssignObj = b;
       const tmpNestedPropAssignRhs = 2;
       tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

@@ -28,8 +28,6 @@ let tmpCalleeParam;
 const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
 let tmpBinBothRhs = undefined;
-1;
-2;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;

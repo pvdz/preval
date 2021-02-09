@@ -20,8 +20,6 @@ $(f());
 
 `````js filename=intro
 function f() {
-  1;
-  2;
   let y = $();
   const tmpIfTest = y == null;
   if (tmpIfTest) {

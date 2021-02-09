@@ -32,8 +32,6 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
-    1;
-    2;
     const tmpCompObj = $(b);
     const tmpCompProp = $('$');
     const tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -41,7 +39,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -62,8 +59,6 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
-    1;
-    2;
     const tmpCompObj = $(b);
     const tmpCompProp = $('$');
     const tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -71,7 +66,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

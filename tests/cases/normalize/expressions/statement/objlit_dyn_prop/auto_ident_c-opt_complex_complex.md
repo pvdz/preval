@@ -29,7 +29,6 @@ if (tmpChainElementCall) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 }
-10;
 $(a);
 `````
 

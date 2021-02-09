@@ -32,7 +32,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     let tmpNestedAssignPropRhs;
     let tmpNestedAssignPropRhs$1;
     let tmpNestedAssignPropRhs$2;
@@ -70,7 +69,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     let tmpNestedAssignPropRhs;
     let tmpNestedAssignPropRhs$1;
     let tmpNestedAssignPropRhs$2;

@@ -24,8 +24,6 @@ const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  40;
-  50;
   tmpCalleeParamSpread = 60;
 } else {
   const tmpCallCallee$1 = $;

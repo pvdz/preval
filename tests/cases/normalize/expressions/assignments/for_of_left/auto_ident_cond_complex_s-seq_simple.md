@@ -30,8 +30,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
     let tmpNestedComplexRhs = undefined;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      40;
-      50;
       tmpNestedComplexRhs = 60;
     } else {
       const tmpCallCallee$1 = $;

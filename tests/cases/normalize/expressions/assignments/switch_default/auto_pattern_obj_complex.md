@@ -28,7 +28,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
@@ -47,7 +46,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);

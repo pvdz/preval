@@ -34,7 +34,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpSwitchTest === b;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -56,7 +55,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpSwitchTest === b;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

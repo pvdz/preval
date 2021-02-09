@@ -26,8 +26,6 @@ $(f());
 function f() {
   let b = { x: 1 };
   let a = undefined;
-  1;
-  2;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;

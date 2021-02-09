@@ -24,8 +24,6 @@ let a = { a: 999, b: 1000 };
   let tmpForInDeclRhs = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    40;
-    50;
     tmpForInDeclRhs = 60;
   } else {
     const tmpCallCallee = $;

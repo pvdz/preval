@@ -44,7 +44,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         bindingPatternArrRoot = [4, 5, 6];
         arrPatternSplat = [...bindingPatternArrRoot];
@@ -58,7 +57,6 @@ switch (1) {
       tmpIfTest$1 = 1 === 2;
     }
     if (tmpIfTest$1) {
-      ('case 1:');
       {
         $(x);
       }
@@ -79,7 +77,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       bindingPatternArrRoot = [4, 5, 6];
       arrPatternSplat = [...bindingPatternArrRoot];
@@ -93,7 +90,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 2;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(x);
     }

@@ -27,8 +27,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  1;
-  2;
   const tmpChainRootProp = $(b);
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;

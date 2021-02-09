@@ -1158,6 +1158,19 @@ export function phaseNormalize(fdata, fname) {
         return false;
 
       case 'Literal': {
+        if (wrapKind === 'statement') {
+          // Even if this scoops up "use strict", it shouldn't matter since we're already in strict mode
+          // There is an edge case regarding complex parameters, but that's a parse time error anyways.
+          rule('A statement can not just be a literal');
+          example('5;', ';');
+          before(node, parentNode);
+
+          body[i] = AST.emptyStatement();
+
+          after(body[i]);
+          return true;
+        }
+
         return false;
       }
 

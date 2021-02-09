@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
   let tmpNestedComplexRhs;
-  1;
-  2;
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('c');
   const tmpCompObj = $(b);

@@ -22,8 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  10;
-  20;
   const tmpIfTest$1 = $(30);
   if (tmpIfTest$1) {
     $(2);

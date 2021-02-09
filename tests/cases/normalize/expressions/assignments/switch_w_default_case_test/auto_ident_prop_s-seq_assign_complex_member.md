@@ -37,16 +37,12 @@ const tmpSwitchTest = $(1);
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
       {
-        ('case 0');
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
           let tmpBinLhs;
           let tmpNestedComplexRhs;
-          1;
-          2;
           const tmpNestedAssignObj = b;
           const tmpCompObj = $(b);
           const tmpCompProp = $('d');
@@ -68,7 +64,6 @@ const tmpSwitchTest = $(1);
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
         $('fail1');
       }
@@ -76,9 +71,7 @@ const tmpSwitchTest = $(1);
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
           } else {

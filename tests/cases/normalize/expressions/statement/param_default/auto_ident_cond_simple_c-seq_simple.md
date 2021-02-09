@@ -25,8 +25,6 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     if (1) {
-      40;
-      50;
       arg = $(60);
     } else {
       const tmpCallCallee = $;
@@ -38,7 +36,6 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);

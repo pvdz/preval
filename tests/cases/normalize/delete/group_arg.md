@@ -18,7 +18,6 @@ $(delete (null, foo));
 
 `````js filename=intro
 const tmpCallCallee = $;
-null;
 foo;
 const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);

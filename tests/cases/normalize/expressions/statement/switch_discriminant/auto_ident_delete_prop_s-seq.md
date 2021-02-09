@@ -33,7 +33,6 @@ const tmpSwitchTest = delete tmpDeleteObj.y;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -52,7 +51,6 @@ delete tmpDeleteObj.y;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

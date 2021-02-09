@@ -29,8 +29,6 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     let tmpAssignMemLhsObj = undefined;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      40;
-      50;
       tmpAssignMemLhsObj = 60;
     } else {
       const tmpCallCallee$1 = $;

@@ -23,14 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCompObj = b;
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
 } else {
-  1;
-  2;
   const tmpCompObj$1 = b;
   tmpCompObj$1.c;
 }

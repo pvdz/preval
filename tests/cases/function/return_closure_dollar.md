@@ -29,7 +29,6 @@ function f() {
   return x;
 }
 const x = $();
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

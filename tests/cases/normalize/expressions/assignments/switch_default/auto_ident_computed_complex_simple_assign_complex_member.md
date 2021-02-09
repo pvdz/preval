@@ -30,7 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpNestedAssignObj = $(b);
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
@@ -52,7 +51,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpNestedAssignObj = $(b);
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');

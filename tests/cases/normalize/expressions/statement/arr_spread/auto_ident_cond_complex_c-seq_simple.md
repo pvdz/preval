@@ -23,8 +23,6 @@ let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  40;
-  50;
   tmpArrElToSpread = $(60);
 } else {
   const tmpCallCallee = $;

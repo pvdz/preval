@@ -23,8 +23,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let xyz = undefined;
 if (1) {
-  40;
-  50;
   xyz = $(60);
 } else {
   const tmpCallCallee = $;

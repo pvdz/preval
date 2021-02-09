@@ -24,8 +24,6 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 label: {
-  1;
-  2;
   const tmpCompObj = b;
   const tmpCompProp = $('c');
   tmpCompObj[tmpCompProp];
@@ -39,8 +37,6 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 label: {
-  1;
-  2;
   const tmpCompObj = b;
   const tmpCompProp = $('c');
   tmpCompObj[tmpCompProp];

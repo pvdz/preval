@@ -29,8 +29,6 @@ let tmpDoWhileTest;
 do {
   $(100);
   tmpDoWhileTest = undefined;
-  1;
-  2;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;

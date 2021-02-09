@@ -23,15 +23,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-  2;
-}
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
 const tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpIfTest$1) {
-  2;
-}
 $(a);
 `````
 
@@ -41,14 +35,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-}
+tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
-const tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpIfTest$1) {
-}
+tmpCallCallee$1(tmpCalleeParam$1);
 $(a);
 `````
 

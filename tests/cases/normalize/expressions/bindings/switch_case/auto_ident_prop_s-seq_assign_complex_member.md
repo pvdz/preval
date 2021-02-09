@@ -34,12 +34,9 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { c: 10, d: 20 };
         a = undefined;
-        1;
-        2;
         const tmpNestedAssignObj = b;
         const tmpCompObj = $(b);
         const tmpCompProp = $('d');
@@ -66,12 +63,9 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { c: 10, d: 20 };
       a = undefined;
-      1;
-      2;
       const tmpNestedAssignObj = b;
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');

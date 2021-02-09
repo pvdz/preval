@@ -34,7 +34,6 @@ if (tmpChainElementCall) {
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-10;
 $(a);
 `````
 

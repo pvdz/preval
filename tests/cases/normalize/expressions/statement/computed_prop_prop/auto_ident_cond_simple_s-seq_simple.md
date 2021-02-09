@@ -25,8 +25,6 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp = undefined;
 if (1) {
-  40;
-  50;
   tmpCompProp = 60;
 } else {
   const tmpCallCallee = $;

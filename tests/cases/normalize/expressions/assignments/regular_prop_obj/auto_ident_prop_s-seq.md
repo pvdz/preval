@@ -26,8 +26,6 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
-1;
-2;
 const tmpCompObj$1 = b;
 const tmpNestedComplexRhs = tmpCompObj$1.c;
 a = tmpNestedComplexRhs;

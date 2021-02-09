@@ -31,7 +31,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
 tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-10;
 $(a, b);
 `````
 

@@ -27,7 +27,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpChainRootCall = $;
     if (tmpChainRootCall) {
       const tmpChainElementCall = tmpChainRootCall(1);
@@ -45,7 +44,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     const tmpChainRootCall = $;
     if (tmpChainRootCall) {
       const tmpChainElementCall = tmpChainRootCall(1);

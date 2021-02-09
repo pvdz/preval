@@ -31,7 +31,6 @@ if (1) {
 if (tmpIfTest) {
 } else {
   if (1) {
-    2;
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);

@@ -25,7 +25,6 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
 delete tmpDeleteObj.y;
-10;
 $(a, x);
 `````
 

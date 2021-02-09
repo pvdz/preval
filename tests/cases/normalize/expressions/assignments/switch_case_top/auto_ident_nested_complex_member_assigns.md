@@ -41,7 +41,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpNestedAssignComMemberObj = $(b);
       const tmpNestedAssignComMemberProp = $('x');
@@ -101,7 +100,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpNestedAssignComMemberObj = $(b);
       const tmpNestedAssignComMemberProp = $('x');

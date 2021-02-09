@@ -23,8 +23,6 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCallObj = $(b);
 let tmpThrowArg = tmpCallObj['$'](1);
 throw tmpThrowArg;

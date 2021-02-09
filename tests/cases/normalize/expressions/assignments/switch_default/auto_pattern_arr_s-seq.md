@@ -29,7 +29,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(10);
     $(20);
     const arrAssignPatternRhs = [1, 2];
@@ -50,7 +49,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(10);
     $(20);
     const arrAssignPatternRhs = [1, 2];

@@ -33,7 +33,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         tmpBinBothLhs = $(1);
         tmpBinBothRhs = $(2);
@@ -57,7 +56,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       tmpBinBothLhs = $(1);
       tmpBinBothRhs = $(2);

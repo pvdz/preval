@@ -23,12 +23,9 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 tmpCallCompObj[tmpCallCompProp](1);
-10;
 $(a);
 `````
 

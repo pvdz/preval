@@ -19,8 +19,6 @@ $(y);
 
 `````js filename=intro
 let y = undefined;
-1;
-2;
 const tmpChainRootProp = 3;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.foo;

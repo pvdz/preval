@@ -26,10 +26,6 @@
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-  } else {
-    2;
-  }
   $(a);
 }
 `````
@@ -40,10 +36,7 @@
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-}
+tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
 

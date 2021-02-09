@@ -26,12 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  40;
-  50;
   tmpNestedComplexRhs = $(60);
 } else {
   const tmpCallCallee$1 = $;
@@ -43,12 +39,8 @@ tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs$1 = undefined;
-  10;
-  20;
   const tmpIfTest$1 = $(30);
   if (tmpIfTest$1) {
-    40;
-    50;
     tmpNestedComplexRhs$1 = $(60);
   } else {
     const tmpCallCallee$2 = $;

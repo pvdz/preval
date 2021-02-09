@@ -33,8 +33,6 @@ tmpSwitchBreak: {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs;
-    1;
-    2;
     const tmpCallObj = $(b);
     const tmpNestedComplexRhs = tmpCallObj['$'](1);
     a = tmpNestedComplexRhs;
@@ -42,7 +40,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -64,8 +61,6 @@ tmpSwitchBreak: {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs;
-    1;
-    2;
     const tmpCallObj = $(b);
     const tmpNestedComplexRhs = tmpCallObj['$'](1);
     a = tmpNestedComplexRhs;
@@ -73,7 +68,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

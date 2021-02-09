@@ -34,10 +34,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
-      2;
       $(3);
     }
     tmpFallthrough = true;
@@ -61,10 +59,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
-      2;
       $(3);
     }
     tmpFallthrough = true;

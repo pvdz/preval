@@ -27,8 +27,6 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 let tmpIfTest;
 let tmpNestedComplexRhs = undefined;
-1;
-2;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;

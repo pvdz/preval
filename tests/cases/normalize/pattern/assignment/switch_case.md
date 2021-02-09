@@ -34,7 +34,6 @@ switch (0) {
       tmpIfTest = 0 === 0;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = 10;
         b = 20;
@@ -61,7 +60,6 @@ tmpSwitchBreak: {
     tmpIfTest = 0 === 0;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = 10;
       b = 20;

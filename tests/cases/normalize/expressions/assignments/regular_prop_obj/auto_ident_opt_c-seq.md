@@ -27,8 +27,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
 let tmpNestedComplexRhs = undefined;
-1;
-2;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;

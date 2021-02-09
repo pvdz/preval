@@ -40,9 +40,7 @@ switch (1) {
     let tmpDoWhileTest;
     do {
       if (tmpSwitchCheckCases) {
-        ('Cases before the default case');
         {
-          ('case 0');
           let tmpIfTest = tmpSwitchFallthrough;
           if (tmpIfTest) {
           } else {
@@ -51,8 +49,6 @@ switch (1) {
           if (tmpIfTest) {
             {
               b = { $: $ };
-              1;
-              2;
               tmpCompObj = b;
               tmpCompProp = $('$');
               tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -66,7 +62,6 @@ switch (1) {
         tmpSwitchFallthrough = true;
       }
       if (tmpSwitchFallthrough) {
-        ('the default case');
         {
           $('fail1');
         }
@@ -74,9 +69,7 @@ switch (1) {
       }
       {
         {
-          ('cases after the default case');
           {
-            ('case 0');
             let tmpIfTest$1 = tmpSwitchFallthrough;
             if (tmpIfTest$1) {
             } else {

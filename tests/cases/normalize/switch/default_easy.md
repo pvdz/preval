@@ -28,14 +28,12 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
     }
     tmpFallthrough = true;
   }
   {
-    ('default case:');
     $(2);
   }
 }
@@ -52,14 +50,12 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
     }
     tmpFallthrough = true;
   }
   {
-    ('default case:');
     $(2);
   }
 }

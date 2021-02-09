@@ -24,7 +24,6 @@ const tmpChainRootCall = $;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall(1);
 }
-10;
 $(a);
 `````
 

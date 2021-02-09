@@ -28,8 +28,6 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileTest;
 do {
   $(100);
-  1;
-  2;
   const tmpAssignRhsProp = $(b);
   tmpDoWhileTest = tmpAssignRhsProp.c;
 } while (tmpDoWhileTest);

@@ -40,14 +40,10 @@ function f() {
   const tmpCalleeParam$2 = g();
   const tmpCalleeParam$3 = h();
   tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
-  ('<hoisted func decl `f_1`>');
-  ('<hoisted func decl `g`>');
-  ('<hoisted func decl `h`>');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-('<hoisted func decl `f`>');
 `````
 
 ## Output

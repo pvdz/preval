@@ -29,7 +29,6 @@ let a = { a: 999, b: 1000 };
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -43,7 +42,6 @@ let a = { a: 999, b: 1000 };
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

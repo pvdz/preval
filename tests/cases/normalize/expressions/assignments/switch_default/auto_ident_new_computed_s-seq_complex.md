@@ -30,9 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
-    1;
-    2;
     const tmpCompObj = b;
     const tmpCompProp = $('$');
     const tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -51,9 +48,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
-    1;
-    2;
     const tmpCompObj = b;
     const tmpCompProp = $('$');
     const tmpNewCallee = tmpCompObj[tmpCompProp];

@@ -31,8 +31,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj;
     let tmpNestedComplexRhs;
-    1;
-    2;
     const tmpNestedAssignObj = b;
     const tmpNestedPropAssignRhs = 2;
     tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

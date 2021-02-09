@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpObjLitPropKey;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');

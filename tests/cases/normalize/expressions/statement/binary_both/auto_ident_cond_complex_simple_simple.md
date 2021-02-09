@@ -22,7 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  2;
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
@@ -30,7 +29,6 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  2;
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(100);

@@ -38,7 +38,6 @@ tmpSwitchTest = tmpNestedPropAssignRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -62,7 +61,6 @@ tmpSwitchTest = tmpNestedPropAssignRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

@@ -24,8 +24,6 @@ $(f());
 function f() {
   let a = undefined;
   if (1) {
-    40;
-    50;
     a = 60;
   } else {
     const tmpCallCallee = $;

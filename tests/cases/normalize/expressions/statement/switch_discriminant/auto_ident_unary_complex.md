@@ -31,7 +31,6 @@ const tmpSwitchTest = typeof tmpUnaryArg;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -47,7 +46,6 @@ typeof tmpUnaryArg;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

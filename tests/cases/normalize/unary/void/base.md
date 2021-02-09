@@ -18,7 +18,6 @@ $(void 5);
 
 `````js filename=intro
 const tmpCallCallee = $;
-5;
 const tmpCalleeParam = undefined;
 tmpCallCallee(tmpCalleeParam);
 `````

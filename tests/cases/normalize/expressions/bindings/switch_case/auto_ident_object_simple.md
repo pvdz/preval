@@ -31,7 +31,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = { x: 1, y: 2, z: 3 };
         $(a);
@@ -53,7 +52,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = { x: 1, y: 2, z: 3 };
       $(a);

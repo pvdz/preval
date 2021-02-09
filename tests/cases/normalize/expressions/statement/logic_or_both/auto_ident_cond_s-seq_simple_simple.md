@@ -21,8 +21,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-10;
-20;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpIfTest = $(2);
@@ -33,8 +31,6 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
 } else {
-  10;
-  20;
   const tmpIfTest$2 = 30;
   if (tmpIfTest$2) {
     $(2);

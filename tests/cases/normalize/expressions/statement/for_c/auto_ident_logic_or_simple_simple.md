@@ -24,10 +24,6 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      if (0) {
-      } else {
-        2;
-      }
     } else {
       break;
     }

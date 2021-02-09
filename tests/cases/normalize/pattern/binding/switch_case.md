@@ -34,7 +34,6 @@ switch (0) {
       tmpIfTest = 0 === 0;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         bindingPatternArrRoot = [10, 20];
         arrPatternSplat = [...bindingPatternArrRoot];
@@ -59,7 +58,6 @@ tmpSwitchBreak: {
     tmpIfTest = 0 === 0;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       bindingPatternArrRoot = [10, 20];
       arrPatternSplat = [...bindingPatternArrRoot];

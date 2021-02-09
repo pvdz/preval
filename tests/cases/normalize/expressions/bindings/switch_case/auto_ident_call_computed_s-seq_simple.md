@@ -35,11 +35,8 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { $: $ };
-        1;
-        2;
         tmpCallObj = b;
         a = tmpCallObj['$'](1);
         $(a);
@@ -61,11 +58,8 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { $: $ };
-      1;
-      2;
       tmpCallObj = b;
       a = tmpCallObj['$'](1);
       $(a);

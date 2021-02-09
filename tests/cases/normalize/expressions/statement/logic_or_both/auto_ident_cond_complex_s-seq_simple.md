@@ -23,8 +23,6 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  40;
-  50;
   tmpIfTest = 60;
 } else {
   const tmpCallCallee = $;
@@ -35,9 +33,6 @@ if (tmpIfTest) {
 } else {
   const tmpIfTest$2 = $(1);
   if (tmpIfTest$2) {
-    40;
-    50;
-    60;
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);

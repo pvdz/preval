@@ -34,7 +34,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         x = { y: 1 };
         a = delete x['y'];
@@ -57,7 +56,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       x = { y: 1 };
       a = delete x['y'];

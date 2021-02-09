@@ -29,8 +29,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
     let tmpAssignMemLhsObj;
     let tmpNestedComplexRhs = undefined;
     if (1) {
-      40;
-      50;
       tmpNestedComplexRhs = $(60);
     } else {
       const tmpCallCallee$1 = $;

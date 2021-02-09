@@ -23,9 +23,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-  2;
-}
 $(a);
 `````
 
@@ -35,9 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-}
+tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
 

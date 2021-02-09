@@ -25,8 +25,6 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  1;
-  2;
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpCompObj = $(b);

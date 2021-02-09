@@ -26,8 +26,6 @@ if (tmpIfTest) {
 } else {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
-    40;
-    50;
     $(60);
   } else {
     const tmpCallCallee = $;

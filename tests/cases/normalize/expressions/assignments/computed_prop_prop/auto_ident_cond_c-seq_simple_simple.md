@@ -25,8 +25,6 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpNestedComplexRhs = $(2);

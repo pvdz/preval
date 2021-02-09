@@ -38,7 +38,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpChainRootCall = $;
       const tmpChainElementCall = tmpChainRootCall(b);
@@ -74,7 +73,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       const tmpChainRootCall = $;
       const tmpChainElementCall = tmpChainRootCall(b);

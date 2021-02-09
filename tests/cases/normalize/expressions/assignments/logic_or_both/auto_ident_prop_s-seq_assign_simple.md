@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -37,8 +35,6 @@ tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs$1;
-  1;
-  2;
   const tmpNestedAssignObj$1 = b;
   const tmpNestedPropAssignRhs$1 = 2;
   tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;

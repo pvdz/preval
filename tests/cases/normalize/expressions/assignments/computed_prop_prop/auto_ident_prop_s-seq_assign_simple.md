@@ -28,8 +28,6 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

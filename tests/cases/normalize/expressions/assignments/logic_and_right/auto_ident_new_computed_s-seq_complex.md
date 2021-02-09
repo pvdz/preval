@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  1;
-  2;
   const tmpCompObj = b;
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];

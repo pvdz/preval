@@ -29,8 +29,6 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    1;
-    2;
     const tmpCompObj = b;
     const tmpNewCallee = tmpCompObj.$;
     const tmpAssignMemLhsObj = new tmpNewCallee(1);

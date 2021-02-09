@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  40;
-  50;
   tmpSwitchTest = $(60);
 } else {
   const tmpCallCallee = $;
@@ -37,7 +35,6 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -60,7 +57,6 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

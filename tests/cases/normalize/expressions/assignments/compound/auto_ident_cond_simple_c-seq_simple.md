@@ -26,8 +26,6 @@ const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
 let tmpBinBothRhs = undefined;
 if (1) {
-  40;
-  50;
   tmpBinBothRhs = $(60);
 } else {
   const tmpCallCallee$1 = $;

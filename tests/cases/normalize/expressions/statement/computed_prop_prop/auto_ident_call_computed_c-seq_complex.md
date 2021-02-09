@@ -26,8 +26,6 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-1;
-2;
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 const tmpCompProp = tmpCallCompObj[tmpCallCompProp](1);

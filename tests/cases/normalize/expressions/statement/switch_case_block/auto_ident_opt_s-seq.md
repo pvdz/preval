@@ -38,11 +38,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpChainRootProp = b;
         if (tmpChainRootProp) {
           const tmpChainElementObject = tmpChainRootProp.x;
@@ -71,11 +68,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpChainRootProp = b;
         if (tmpChainRootProp) {
           const tmpChainElementObject = tmpChainRootProp.x;

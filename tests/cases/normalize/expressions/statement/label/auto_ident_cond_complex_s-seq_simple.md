@@ -23,9 +23,6 @@ let a = { a: 999, b: 1000 };
 label: {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    40;
-    50;
-    60;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
@@ -42,9 +39,6 @@ let a = { a: 999, b: 1000 };
 label: {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    40;
-    50;
-    60;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);

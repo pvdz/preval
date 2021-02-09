@@ -16,8 +16,6 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-1;
-2;
 let y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {

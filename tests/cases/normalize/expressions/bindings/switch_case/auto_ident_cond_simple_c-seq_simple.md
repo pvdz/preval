@@ -31,12 +31,9 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = undefined;
         if (1) {
-          40;
-          50;
           a = $(60);
         } else {
           const tmpCallCallee = $;
@@ -62,12 +59,9 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = undefined;
       if (1) {
-        40;
-        50;
         a = $(60);
       } else {
         const tmpCallCallee = $;

@@ -25,8 +25,6 @@ let a = { a: 999, b: 1000 };
     let tmpIfTest;
     let tmpNestedComplexRhs = undefined;
     if (1) {
-      40;
-      50;
       tmpNestedComplexRhs = 60;
     } else {
       const tmpCallCallee = $;

@@ -23,8 +23,6 @@
 `````js filename=intro
 {
   let a = { a: 999, b: 1000 };
-  10;
-  20;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
     a = $(2);

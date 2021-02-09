@@ -27,8 +27,6 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
-1;
-2;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);
@@ -37,7 +35,6 @@ tmpSwitchTest = tmpNestedComplexRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -58,7 +55,6 @@ tmpSwitchTest = tmpNestedComplexRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

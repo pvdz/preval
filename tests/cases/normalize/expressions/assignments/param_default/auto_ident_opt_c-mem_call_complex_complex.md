@@ -49,7 +49,6 @@ function f($tdz$__arg) {
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam$2 = f();
 tmpCallCallee(tmpCalleeParam$2);

@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 let tmpIfTest;
-1;
-2;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);

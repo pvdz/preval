@@ -24,8 +24,6 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-1;
-2;
 const tmpCompObj = $(b);
 const tmpCalleeParamSpread = tmpCompObj.c;
 tmpCallCallee(...tmpCalleeParamSpread);

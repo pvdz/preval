@@ -23,7 +23,6 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   if (1) {
-    2;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);

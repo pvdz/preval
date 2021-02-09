@@ -28,8 +28,6 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj$1 = $(b);

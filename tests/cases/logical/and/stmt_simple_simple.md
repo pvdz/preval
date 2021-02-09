@@ -17,9 +17,7 @@
 ## Normalized
 
 `````js filename=intro
-if (1) {
-  2;
-}
+
 `````
 
 ## Output

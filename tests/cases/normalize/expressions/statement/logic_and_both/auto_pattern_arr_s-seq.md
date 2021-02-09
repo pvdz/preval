@@ -28,8 +28,6 @@ const tmpIfTest = [1, 2];
 if (tmpIfTest) {
   $(10);
   $(20);
-  1;
-  2;
 }
 $(a);
 `````

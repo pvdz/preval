@@ -29,8 +29,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -44,8 +42,6 @@ tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs$1;
-  1;
-  2;
   const tmpNestedAssignComMemberObj$1 = b;
   const tmpNestedAssignComMemberProp$1 = $('c');
   const tmpCompObj$1 = $(b);

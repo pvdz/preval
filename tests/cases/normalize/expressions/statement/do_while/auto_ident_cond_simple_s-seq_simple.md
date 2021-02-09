@@ -26,8 +26,6 @@ let tmpDoWhileTest;
 do {
   $(100);
   if (1) {
-    40;
-    50;
     tmpDoWhileTest = 60;
   } else {
     const tmpCallCallee = $;

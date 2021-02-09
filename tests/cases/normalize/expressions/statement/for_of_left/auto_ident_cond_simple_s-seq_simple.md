@@ -28,8 +28,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj = undefined;
     if (1) {
-      40;
-      50;
       tmpAssignMemLhsObj = 60;
     } else {
       const tmpCallCallee$1 = $;

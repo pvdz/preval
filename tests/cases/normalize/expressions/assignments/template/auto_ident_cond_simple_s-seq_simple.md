@@ -24,8 +24,6 @@ const tmpCallCallee = $;
 let tmpTemplateExpr;
 let tmpNestedComplexRhs = undefined;
 if (1) {
-  40;
-  50;
   tmpNestedComplexRhs = 60;
 } else {
   const tmpCallCallee$1 = $;

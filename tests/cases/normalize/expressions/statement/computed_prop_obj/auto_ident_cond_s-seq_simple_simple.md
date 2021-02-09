@@ -23,8 +23,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = undefined;
-10;
-20;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   tmpCompObj = $(2);

@@ -38,11 +38,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpAssignRhsCompObj = b;
         const tmpAssignRhsCompProp = $('c');
         a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
@@ -70,11 +67,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpAssignRhsCompObj = b;
         const tmpAssignRhsCompProp = $('c');
         a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];

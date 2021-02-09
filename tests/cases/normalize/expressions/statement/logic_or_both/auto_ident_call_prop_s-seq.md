@@ -23,14 +23,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCallObj = b;
 const tmpIfTest = tmpCallObj.$(1);
 if (tmpIfTest) {
 } else {
-  1;
-  2;
   const tmpCallObj$1 = b;
   tmpCallObj$1.$(1);
 }

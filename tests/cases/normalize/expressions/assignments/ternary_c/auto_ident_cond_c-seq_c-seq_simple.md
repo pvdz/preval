@@ -27,12 +27,8 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   let tmpNestedComplexRhs = undefined;
-  10;
-  20;
   const tmpIfTest$1 = $(30);
   if (tmpIfTest$1) {
-    40;
-    50;
     tmpNestedComplexRhs = $(60);
   } else {
     const tmpCallCallee$1 = $;

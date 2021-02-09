@@ -23,8 +23,6 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
   if (1) {
-    40;
-    50;
     tmpForInDeclRhs = 60;
   } else {
     const tmpCallCallee = $;

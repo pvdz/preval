@@ -22,8 +22,6 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

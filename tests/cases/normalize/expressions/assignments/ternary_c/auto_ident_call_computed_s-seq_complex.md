@@ -29,8 +29,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  1;
-  2;
   const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
   const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);

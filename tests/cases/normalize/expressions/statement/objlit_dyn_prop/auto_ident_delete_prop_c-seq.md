@@ -27,7 +27,6 @@ $(1);
 $(2);
 const tmpDeleteObj = $(x);
 delete tmpDeleteObj.y;
-10;
 $(a, x);
 `````
 

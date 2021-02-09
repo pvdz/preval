@@ -26,15 +26,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
 const tmpSwitchTest = tmpCallCompObj[tmpCallCompProp](1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -52,7 +49,6 @@ tmpCallCompObj[tmpCallCompProp](1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

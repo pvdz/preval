@@ -28,8 +28,6 @@ $(f());
 function f() {
   {
     let b = { $: $ };
-    1;
-    2;
     const tmpCompObj = $(b);
     const tmpNewCallee = tmpCompObj.$;
     let a = new tmpNewCallee(1);

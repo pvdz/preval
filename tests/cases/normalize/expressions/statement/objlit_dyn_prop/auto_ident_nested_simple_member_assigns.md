@@ -47,7 +47,6 @@ const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$4;
 tmpAssignMemRhs = tmpNestedPropAssignRhs$4;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-10;
 $(a, b, c);
 `````
 

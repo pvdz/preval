@@ -24,8 +24,6 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 if (1) {
-  40;
-  50;
   tmpCalleeParam$1 = 60;
 } else {
   const tmpCallCallee$1 = $;

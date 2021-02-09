@@ -43,7 +43,6 @@ const tmpSwitchTest = $('a');
       tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a_1 = undefined;
         const tmpNestedAssignComMemberObj = $(b);
@@ -76,7 +75,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a_1 = undefined;
       const tmpNestedAssignComMemberObj = $(b);

@@ -27,8 +27,6 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 let tmpIfTest;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

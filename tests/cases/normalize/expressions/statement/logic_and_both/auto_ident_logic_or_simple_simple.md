@@ -25,12 +25,6 @@ if (tmpIfTest) {
 } else {
   tmpIfTest = 2;
 }
-if (tmpIfTest) {
-  if (0) {
-  } else {
-    2;
-  }
-}
 $(a);
 `````
 
@@ -42,8 +36,6 @@ let tmpIfTest = 0;
 if (tmpIfTest) {
 } else {
   tmpIfTest = 2;
-}
-if (tmpIfTest) {
 }
 $(a);
 `````

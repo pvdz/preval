@@ -24,8 +24,6 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-1;
-2;
 const tmpCallObj = b;
 const tmpTemplateExpr = tmpCallObj.$(1);
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;

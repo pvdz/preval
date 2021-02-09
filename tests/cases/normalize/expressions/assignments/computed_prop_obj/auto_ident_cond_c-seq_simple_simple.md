@@ -24,8 +24,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
 let tmpNestedComplexRhs = undefined;
-10;
-20;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpNestedComplexRhs = $(2);

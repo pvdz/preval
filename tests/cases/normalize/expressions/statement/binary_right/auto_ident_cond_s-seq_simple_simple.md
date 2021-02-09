@@ -21,8 +21,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-10;
-20;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   $(2);

@@ -25,7 +25,6 @@ let a = { a: 999, b: 1000 };
     const tmpIfTest = $(1);
     if (tmpIfTest) {
       $(1);
-      2;
       $(3);
     } else {
       break;

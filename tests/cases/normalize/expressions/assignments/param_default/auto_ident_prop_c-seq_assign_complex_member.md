@@ -27,8 +27,6 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs;
-    1;
-    2;
     const tmpNestedAssignObj = $(b);
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
@@ -44,7 +42,6 @@ function f($tdz$__arg) {
 }
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

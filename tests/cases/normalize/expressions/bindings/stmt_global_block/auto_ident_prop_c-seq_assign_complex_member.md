@@ -25,8 +25,6 @@
 {
   let b = { c: 10, d: 20 };
   let a;
-  1;
-  2;
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');

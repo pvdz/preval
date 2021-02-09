@@ -23,8 +23,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 if (1) {
-  40;
-  50;
   tmpCalleeParamSpread = $(60);
 } else {
   const tmpCallCallee$1 = $;

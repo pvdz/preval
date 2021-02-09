@@ -15,7 +15,7 @@
 ## Normalized
 
 `````js filename=intro
-/foo/g;
+
 `````
 
 ## Output

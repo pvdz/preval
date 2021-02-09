@@ -24,8 +24,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  10;
-  20;
   const tmpIfTest$1 = $(30);
   if (tmpIfTest$1) {
     $(2);

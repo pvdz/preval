@@ -32,7 +32,6 @@ function f(x) {
   }
   const tmpReturnArg = g();
   return tmpReturnArg;
-  ('<hoisted func decl `g`>');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);

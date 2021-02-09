@@ -25,16 +25,12 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam;
-1;
-2;
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
-  1;
-  2;
   const tmpCompObj$1 = $(b);
   const tmpNewCallee$1 = tmpCompObj$1.$;
   const tmpNestedComplexRhs$1 = new tmpNewCallee$1(1);

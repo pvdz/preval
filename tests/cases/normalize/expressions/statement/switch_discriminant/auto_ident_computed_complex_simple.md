@@ -31,7 +31,6 @@ const tmpSwitchTest = tmpCompObj.c;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -48,7 +47,6 @@ tmpCompObj.c;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

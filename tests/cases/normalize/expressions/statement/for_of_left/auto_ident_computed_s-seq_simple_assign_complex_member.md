@@ -30,8 +30,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj;
-    1;
-    2;
     const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);

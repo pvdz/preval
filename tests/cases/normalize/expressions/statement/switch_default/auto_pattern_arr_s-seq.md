@@ -29,11 +29,8 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(10);
     $(20);
-    1;
-    2;
   }
 }
 $(a);
@@ -49,11 +46,8 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(10);
     $(20);
-    1;
-    2;
   }
 }
 $(a);

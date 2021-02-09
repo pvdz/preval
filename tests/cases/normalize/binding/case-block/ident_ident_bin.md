@@ -36,7 +36,6 @@ const tmpSwitchTest = $('a');
       tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a_1 = undefined;
         const tmpNestedComplexRhs = c + d;
@@ -65,7 +64,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a_1 = undefined;
       const tmpNestedComplexRhs = c + d;

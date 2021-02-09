@@ -25,8 +25,6 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let xyz;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);

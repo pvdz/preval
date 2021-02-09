@@ -17,7 +17,6 @@ $();
 ## Normalized
 
 `````js filename=intro
-'use strict';
 $();
 `````
 

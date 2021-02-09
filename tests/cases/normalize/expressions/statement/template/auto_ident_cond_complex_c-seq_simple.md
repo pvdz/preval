@@ -24,8 +24,6 @@ const tmpCallCallee = $;
 let tmpTemplateExpr = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  40;
-  50;
   tmpTemplateExpr = $(60);
 } else {
   const tmpCallCallee$1 = $;

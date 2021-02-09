@@ -23,8 +23,6 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-1;
-2;
 const tmpCallObj = b;
 let tmpArrElToSpread = tmpCallObj['$'](1);
 [...tmpArrElToSpread];

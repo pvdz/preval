@@ -26,8 +26,6 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg;
-  1;
-  2;
   const tmpCallObj = $(b);
   const tmpNestedComplexRhs = tmpCallObj['$'](1);
   a = tmpNestedComplexRhs;
@@ -36,7 +34,6 @@ function f() {
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

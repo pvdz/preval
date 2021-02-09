@@ -26,8 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs = undefined;
-1;
-2;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
@@ -37,8 +35,6 @@ a = tmpNestedComplexRhs;
 tmpBinBothLhs = tmpNestedComplexRhs;
 let tmpBinBothRhs;
 let tmpNestedComplexRhs$1 = undefined;
-1;
-2;
 const tmpChainRootProp$1 = $(b);
 if (tmpChainRootProp$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;

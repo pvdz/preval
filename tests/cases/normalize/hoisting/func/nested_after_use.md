@@ -31,12 +31,10 @@ function g() {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f(1);
   tmpCallCallee$1(tmpCalleeParam$1);
-  ('<hoisted func decl `f`>');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = g();
 tmpCallCallee(tmpCalleeParam);
-('<hoisted func decl `g`>');
 `````
 
 ## Output

@@ -27,8 +27,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  1;
-  2;
   const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
   tmpCallCompObj[tmpCallCompProp](1);

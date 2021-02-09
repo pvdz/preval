@@ -28,7 +28,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
     }
@@ -40,7 +39,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 2;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(2);
     }
@@ -60,7 +58,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
     }
@@ -72,7 +69,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 2;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(2);
     }

@@ -21,8 +21,6 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 1 };
-1;
-2;
 const tmpCompObj = b;
 let a = tmpCompObj.c;
 export { a };

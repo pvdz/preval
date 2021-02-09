@@ -38,7 +38,6 @@ function f() {
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = f();
 tmpCallCallee$2(tmpCalleeParam$2);

@@ -24,9 +24,6 @@ $(f());
 `````js filename=intro
 function f() {
   let a = { a: 999, b: 1000 };
-  1;
-  2;
-  3;
   $(a);
 }
 const tmpCallCallee = $;

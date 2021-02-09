@@ -27,8 +27,6 @@ const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
-1;
-2;
 const tmpCompObj = $(b);
 const tmpBinBothRhs = tmpCompObj.c;
 const tmpNestedComplexRhs = tmpBinBothLhs * tmpBinBothRhs;

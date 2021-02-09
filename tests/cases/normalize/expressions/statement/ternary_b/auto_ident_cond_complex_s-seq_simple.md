@@ -24,9 +24,6 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
-    40;
-    50;
-    60;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);

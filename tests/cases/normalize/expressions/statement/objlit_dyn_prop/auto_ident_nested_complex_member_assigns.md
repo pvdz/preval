@@ -64,7 +64,6 @@ const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$4;
 tmpAssignComputedRhs = tmpNestedPropAssignRhs$4;
 tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-10;
 $(a, b, c);
 `````
 

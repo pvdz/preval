@@ -30,8 +30,6 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
     let tmpAssignMemLhsObj;
-    1;
-    2;
     const tmpCallCompObj = $(b);
     const tmpCallCompProp = $('$');
     const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);

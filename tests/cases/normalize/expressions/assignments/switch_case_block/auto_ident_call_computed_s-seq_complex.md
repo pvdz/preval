@@ -38,11 +38,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpCallCompObj = b;
         const tmpCallCompProp = $('$');
         a = tmpCallCompObj[tmpCallCompProp](1);
@@ -70,11 +67,8 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        1;
-        2;
         const tmpCallCompObj = b;
         const tmpCallCompProp = $('$');
         a = tmpCallCompObj[tmpCallCompProp](1);

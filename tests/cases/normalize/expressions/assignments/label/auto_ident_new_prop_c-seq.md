@@ -24,8 +24,6 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 label: {
-  1;
-  2;
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);
@@ -39,8 +37,6 @@ $(a);
 ({ $: $ });
 let a = { a: 999, b: 1000 };
 label: {
-  1;
-  2;
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);

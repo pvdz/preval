@@ -37,7 +37,6 @@ tmpSwitchTest = tmpNestedAssignArrPatternRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -62,7 +61,6 @@ tmpSwitchTest = tmpNestedAssignArrPatternRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

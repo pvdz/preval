@@ -24,8 +24,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = undefined;
 if (1) {
-  40;
-  50;
   tmpCompObj = 60;
 } else {
   const tmpCallCallee = $;

@@ -27,12 +27,8 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj = undefined;
-    10;
-    20;
     const tmpIfTest = 30;
     if (tmpIfTest) {
-      40;
-      50;
       tmpAssignMemLhsObj = $(60);
     } else {
       const tmpCallCallee$1 = $;

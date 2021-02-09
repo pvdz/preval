@@ -25,8 +25,6 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpBinBothLhs;
-1;
-2;
 const tmpCompObj = b;
 const tmpNestedComplexRhs = tmpCompObj.c;
 a = tmpNestedComplexRhs;

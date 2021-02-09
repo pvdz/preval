@@ -30,9 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
-    1;
-    2;
     const tmpAssignRhsCompObj = b;
     const tmpAssignRhsCompProp = $('c');
     a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
@@ -50,9 +47,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
-    1;
-    2;
     const tmpAssignRhsCompObj = b;
     const tmpAssignRhsCompProp = $('c');
     a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];

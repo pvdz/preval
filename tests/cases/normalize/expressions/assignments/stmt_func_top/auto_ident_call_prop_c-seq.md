@@ -27,8 +27,6 @@ $(f());
 function f() {
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
-  1;
-  2;
   const tmpCallObj = $(b);
   a = tmpCallObj.$(1);
   $(a);

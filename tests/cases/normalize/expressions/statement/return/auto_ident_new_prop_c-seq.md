@@ -25,8 +25,6 @@ $(a);
 
 `````js filename=intro
 function f() {
-  1;
-  2;
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   const tmpReturnArg = new tmpNewCallee(1);
@@ -34,7 +32,6 @@ function f() {
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

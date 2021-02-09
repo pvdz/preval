@@ -24,8 +24,6 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -36,8 +34,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 tmpIfTest = tmpNestedPropAssignRhs;
 if (tmpIfTest) {
 } else {
-  1;
-  2;
   const tmpAssignComMemLhsObj = b;
   const tmpAssignComMemLhsProp = $('c');
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;

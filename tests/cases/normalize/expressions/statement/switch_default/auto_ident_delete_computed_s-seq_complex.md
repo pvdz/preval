@@ -30,7 +30,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(1);
     $(2);
     const tmpDeleteCompObj = x;
@@ -50,7 +49,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(1);
     $(2);
     const tmpDeleteCompObj = x;

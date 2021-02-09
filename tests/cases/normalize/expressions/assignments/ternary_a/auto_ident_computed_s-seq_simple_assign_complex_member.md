@@ -27,8 +27,6 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 let tmpIfTest;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);

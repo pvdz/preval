@@ -35,16 +35,10 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        10;
-        20;
         const tmpIfTest$1 = 30;
         if (tmpIfTest$1) {
-          40;
-          50;
-          60;
         } else {
           const tmpCallCallee = $;
           const tmpCalleeParam = $(100);
@@ -73,16 +67,10 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       {
-        10;
-        20;
         const tmpIfTest$1 = 30;
         if (tmpIfTest$1) {
-          40;
-          50;
-          60;
         } else {
           const tmpCallCallee = $;
           const tmpCalleeParam = $(100);

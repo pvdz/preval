@@ -24,8 +24,6 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  1;
-  2;
   const tmpCallObj = b;
   let a = tmpCallObj['$'](1);
   $(a);

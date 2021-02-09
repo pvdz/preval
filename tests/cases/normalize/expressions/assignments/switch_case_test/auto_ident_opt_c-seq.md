@@ -34,8 +34,6 @@ tmpSwitchBreak: {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs;
     let tmpNestedComplexRhs = undefined;
-    1;
-    2;
     const tmpChainRootProp = $(b);
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;
@@ -46,7 +44,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -69,8 +66,6 @@ tmpSwitchBreak: {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs;
     let tmpNestedComplexRhs = undefined;
-    1;
-    2;
     const tmpChainRootProp = $(b);
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;
@@ -81,7 +76,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

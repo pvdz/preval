@@ -15,7 +15,7 @@
 ## Normalized
 
 `````js filename=intro
-'use strict';
+
 `````
 
 ## Output

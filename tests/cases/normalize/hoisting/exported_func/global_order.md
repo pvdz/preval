@@ -33,9 +33,6 @@ const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 const tmpCalleeParam$2 = h();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-('<hoisted func decl `f`>');
-('<hoisted func decl `h`>');
-('<hoisted func decl `g`>');
 `````
 
 ## Output

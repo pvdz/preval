@@ -28,8 +28,6 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj;
     let tmpNestedComplexRhs = undefined;
-    10;
-    20;
     const tmpIfTest = $(30);
     if (tmpIfTest) {
       tmpNestedComplexRhs = $(2);

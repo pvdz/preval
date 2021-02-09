@@ -24,10 +24,6 @@ label: {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-  } else {
-    2;
-  }
 }
 $(a);
 `````
@@ -40,10 +36,6 @@ label: {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-  } else {
-    2;
-  }
 }
 $(a);
 `````

@@ -27,8 +27,6 @@ const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
 let tmpBinBothRhs;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);

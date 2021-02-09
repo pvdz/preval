@@ -24,8 +24,6 @@ const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs = undefined;
 if (1) {
-  40;
-  50;
   tmpNestedComplexRhs = 60;
 } else {
   const tmpCallCallee$1 = $;
@@ -37,8 +35,6 @@ tmpBinBothLhs = tmpNestedComplexRhs;
 let tmpBinBothRhs;
 let tmpNestedComplexRhs$1 = undefined;
 if (1) {
-  40;
-  50;
   tmpNestedComplexRhs$1 = 60;
 } else {
   const tmpCallCallee$2 = $;

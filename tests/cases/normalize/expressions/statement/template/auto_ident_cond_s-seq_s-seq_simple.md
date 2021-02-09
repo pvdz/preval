@@ -22,12 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpTemplateExpr = undefined;
-10;
-20;
 const tmpIfTest = 30;
 if (tmpIfTest) {
-  40;
-  50;
   tmpTemplateExpr = 60;
 } else {
   const tmpCallCallee$1 = $;

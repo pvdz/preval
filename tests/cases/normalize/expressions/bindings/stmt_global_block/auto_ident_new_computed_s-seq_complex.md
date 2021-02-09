@@ -24,8 +24,6 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  1;
-  2;
   const tmpCompObj = b;
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];

@@ -21,9 +21,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  if (1) {
-    2;
-  }
   while (true) {
     const tmpIfTest = $(0);
     if (tmpIfTest) {

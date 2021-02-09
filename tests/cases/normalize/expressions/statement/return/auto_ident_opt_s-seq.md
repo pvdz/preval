@@ -26,8 +26,6 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  1;
-  2;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
@@ -37,7 +35,6 @@ function f() {
 }
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

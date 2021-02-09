@@ -24,8 +24,6 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 $(100);
-1;
-2;
 const tmpCompObj = $(b);
 tmpCompObj.c;
 $(a, b);

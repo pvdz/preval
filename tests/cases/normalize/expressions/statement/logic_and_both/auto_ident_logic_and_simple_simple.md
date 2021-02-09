@@ -27,9 +27,6 @@ if (tmpIfTest) {
 if (tmpIfTest) {
   tmpIfTest = 1;
 }
-if (tmpIfTest) {
-  2;
-}
 $(a);
 `````
 
@@ -43,8 +40,6 @@ if (tmpIfTest) {
 }
 if (tmpIfTest) {
   tmpIfTest = 1;
-}
-if (tmpIfTest) {
 }
 $(a);
 `````

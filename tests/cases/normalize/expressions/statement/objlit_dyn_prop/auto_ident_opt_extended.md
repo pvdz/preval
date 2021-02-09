@@ -31,7 +31,6 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
 }
-10;
 $(a);
 `````
 

@@ -27,21 +27,17 @@ switch (6) {
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
     } else {
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
       }
       tmpSwitchFallthrough = true;
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest = tmpSwitchFallthrough;
           if (tmpIfTest) {
           } else {

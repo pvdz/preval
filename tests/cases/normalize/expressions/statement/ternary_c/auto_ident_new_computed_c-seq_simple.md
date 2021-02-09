@@ -27,8 +27,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  1;
-  2;
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   new tmpNewCallee(1);

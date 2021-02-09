@@ -23,8 +23,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
-10;
-20;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpCalleeParam$1 = $(2);

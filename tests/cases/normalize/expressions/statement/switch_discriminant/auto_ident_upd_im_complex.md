@@ -37,7 +37,6 @@ const tmpSwitchTest = tmpPostUpdArgVal;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -59,7 +58,6 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

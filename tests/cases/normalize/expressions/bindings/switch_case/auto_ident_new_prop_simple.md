@@ -35,7 +35,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { $: $ };
         tmpNewCallee = b.$;
@@ -59,7 +58,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { $: $ };
       tmpNewCallee = b.$;

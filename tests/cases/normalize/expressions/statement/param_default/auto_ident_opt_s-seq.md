@@ -27,8 +27,6 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     arg = undefined;
-    1;
-    2;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;
@@ -40,7 +38,6 @@ function f($tdz$__arg) {
 }
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

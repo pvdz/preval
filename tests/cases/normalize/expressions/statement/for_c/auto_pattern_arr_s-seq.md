@@ -28,8 +28,6 @@ let a = arrPatternSplat[0];
     if (tmpIfTest) {
       $(10);
       $(20);
-      1;
-      2;
     } else {
       break;
     }

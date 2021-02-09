@@ -36,7 +36,6 @@ if (tmpChainElementCall) {
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   }
 }
-10;
 $(a);
 `````
 

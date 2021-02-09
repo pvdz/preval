@@ -69,7 +69,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
       break tmpSwitchBreak;
@@ -84,7 +83,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(2);
     }
@@ -98,7 +96,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    ('case 2:');
     {
       $(3);
     }
@@ -112,7 +109,6 @@ tmpSwitchBreak: {
     tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
-    ('case 3:');
     {
       $(4);
       break tmpSwitchBreak;
@@ -127,7 +123,6 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    ('case 4:');
     {
       $(5);
       break tmpSwitchBreak;
@@ -150,7 +145,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       $(1);
       break tmpSwitchBreak;
@@ -165,7 +159,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(2);
     }
@@ -179,7 +172,6 @@ tmpSwitchBreak: {
     tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    ('case 2:');
     {
       $(3);
     }
@@ -193,7 +185,6 @@ tmpSwitchBreak: {
     tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   }
   if (tmpIfTest$3) {
-    ('case 3:');
     {
       $(4);
       break tmpSwitchBreak;
@@ -208,7 +199,6 @@ tmpSwitchBreak: {
     tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
   }
   if (tmpIfTest$4) {
-    ('case 4:');
     {
       $(5);
       break tmpSwitchBreak;

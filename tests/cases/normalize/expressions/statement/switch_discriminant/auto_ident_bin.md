@@ -29,7 +29,6 @@ const tmpSwitchTest = tmpBinBothLhs + tmpBinBothRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -46,7 +45,6 @@ tmpBinBothLhs + tmpBinBothRhs;
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

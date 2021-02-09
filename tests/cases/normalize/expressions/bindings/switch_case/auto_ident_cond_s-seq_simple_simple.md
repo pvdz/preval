@@ -31,11 +31,8 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = undefined;
-        10;
-        20;
         const tmpIfTest$1 = 30;
         if (tmpIfTest$1) {
           a = $(2);
@@ -63,11 +60,8 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = undefined;
-      10;
-      20;
       const tmpIfTest$1 = 30;
       if (tmpIfTest$1) {
         a = $(2);

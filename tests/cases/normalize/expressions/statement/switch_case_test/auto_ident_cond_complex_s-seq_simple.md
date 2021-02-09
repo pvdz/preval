@@ -32,8 +32,6 @@ tmpSwitchBreak: {
     let tmpBinBothRhs = undefined;
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      40;
-      50;
       tmpBinBothRhs = 60;
     } else {
       const tmpCallCallee = $;
@@ -43,7 +41,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;
@@ -66,8 +63,6 @@ tmpSwitchBreak: {
     let tmpBinBothRhs = undefined;
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      40;
-      50;
       tmpBinBothRhs = 60;
     } else {
       const tmpCallCallee = $;
@@ -77,7 +72,6 @@ tmpSwitchBreak: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
     }
     tmpFallthrough = true;

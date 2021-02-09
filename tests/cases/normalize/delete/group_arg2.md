@@ -21,7 +21,6 @@ $(typeof foo)
 `````js filename=intro
 let foo = 1;
 const tmpCallCallee = $;
-null;
 const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;

@@ -21,8 +21,6 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-1;
-2;
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
 let a = tmpCallCompObj[tmpCallCompProp](1);

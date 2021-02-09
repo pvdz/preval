@@ -36,7 +36,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { $: $ };
         tmpCallCompObj = $(b);
@@ -61,7 +60,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { $: $ };
       tmpCallCompObj = $(b);

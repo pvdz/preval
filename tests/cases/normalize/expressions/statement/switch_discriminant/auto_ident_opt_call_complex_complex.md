@@ -37,7 +37,6 @@ if (tmpChainElementCall) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -62,7 +61,6 @@ if (tmpChainElementCall) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

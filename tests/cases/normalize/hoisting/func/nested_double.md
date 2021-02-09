@@ -27,18 +27,13 @@ function g() {
     const tmpReturnArg$1 = $(2);
     return tmpReturnArg$1;
   }
-  ('<eliminated duplicate func decl `f`>');
-  ('<hoisted func decl `f`>');
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f(3);
   tmpCallCallee$1(tmpCalleeParam$1);
-  ('<hoisted func decl `f`>');
-  ('<hoisted func decl `f`>');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = g();
 tmpCallCallee(tmpCalleeParam);
-('<hoisted func decl `g`>');
 `````
 
 ## Output

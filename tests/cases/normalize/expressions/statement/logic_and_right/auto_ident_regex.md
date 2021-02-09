@@ -21,9 +21,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
-if (tmpIfTest) {
-  /foo/;
-}
 $(a);
 `````
 
@@ -31,9 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(100);
-if (tmpIfTest) {
-}
+$(100);
 $(a);
 `````
 

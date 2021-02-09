@@ -36,11 +36,8 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { $: $ };
-        1;
-        2;
         tmpCallCompObj = $(b);
         tmpCallCompProp = $('$');
         a = tmpCallCompObj[tmpCallCompProp](1);
@@ -63,11 +60,8 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { $: $ };
-      1;
-      2;
       tmpCallCompObj = $(b);
       tmpCallCompProp = $('$');
       a = tmpCallCompObj[tmpCallCompProp](1);

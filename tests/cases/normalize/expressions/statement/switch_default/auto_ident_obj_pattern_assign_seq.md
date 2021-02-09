@@ -32,7 +32,6 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(x);
     $(y);
     const tmpObjLitVal = $(3);
@@ -53,7 +52,6 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(x);
     $(y);
     const tmpObjLitVal = $(3);

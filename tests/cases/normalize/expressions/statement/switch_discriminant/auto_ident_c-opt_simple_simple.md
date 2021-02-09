@@ -36,7 +36,6 @@ if (tmpChainRootProp) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }
@@ -57,7 +56,6 @@ if (tmpChainRootProp) {
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    ('default case:');
     $(100);
   }
 }

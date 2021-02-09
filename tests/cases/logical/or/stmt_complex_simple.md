@@ -18,19 +18,12 @@ $(1) || 2;
 
 `````js filename=intro
 const tmpIfTest = $(1);
-if (tmpIfTest) {
-} else {
-  2;
-}
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-} else {
-}
+$(1);
 `````
 
 ## Result

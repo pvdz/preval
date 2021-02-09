@@ -33,7 +33,6 @@ function f() {
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = f();
 tmpCallCallee$1(tmpCalleeParam$2);

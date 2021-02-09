@@ -25,8 +25,6 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');

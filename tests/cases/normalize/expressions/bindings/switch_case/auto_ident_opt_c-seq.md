@@ -35,12 +35,9 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         b = { x: 1 };
         a = undefined;
-        1;
-        2;
         tmpChainRootProp = $(b);
         if (tmpChainRootProp) {
           const tmpChainElementObject = tmpChainRootProp.x;
@@ -65,12 +62,9 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       b = { x: 1 };
       a = undefined;
-      1;
-      2;
       tmpChainRootProp = $(b);
       if (tmpChainRootProp) {
         const tmpChainElementObject = tmpChainRootProp.x;

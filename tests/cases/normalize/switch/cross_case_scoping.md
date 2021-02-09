@@ -32,7 +32,6 @@ switch (1) {
       tmpIfTest = 1 === 1;
     }
     if (tmpIfTest) {
-      ('case 0:');
       {
         a = 1;
       }
@@ -44,7 +43,6 @@ switch (1) {
       tmpIfTest$1 = 1 === 2;
     }
     if (tmpIfTest$1) {
-      ('case 1:');
       {
         $(a);
       }
@@ -65,7 +63,6 @@ tmpSwitchBreak: {
     tmpIfTest = 1 === 1;
   }
   if (tmpIfTest) {
-    ('case 0:');
     {
       a = 1;
     }
@@ -77,7 +74,6 @@ tmpSwitchBreak: {
     tmpIfTest$1 = 1 === 2;
   }
   if (tmpIfTest$1) {
-    ('case 1:');
     {
       $(a);
     }

@@ -24,12 +24,6 @@ let tmpIfTest = 1;
 if (tmpIfTest) {
   tmpIfTest = 2;
 }
-if (tmpIfTest) {
-} else {
-  if (1) {
-    2;
-  }
-}
 $(a);
 `````
 
@@ -40,9 +34,6 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = 1;
 if (tmpIfTest) {
   tmpIfTest = 2;
-}
-if (tmpIfTest) {
-} else {
 }
 $(a);
 `````

@@ -21,8 +21,6 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 1 };
-1;
-2;
 const tmpCompObj = b;
 const tmpCompProp = $('c');
 let a = tmpCompObj[tmpCompProp];

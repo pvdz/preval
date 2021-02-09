@@ -27,8 +27,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;

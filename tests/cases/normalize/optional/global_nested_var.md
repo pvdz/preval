@@ -28,7 +28,6 @@ if (tmpChainRootProp) {
   b = tmpChainElementObject;
 }
 let c = undefined;
-1;
 const tmpChainRootProp$1 = b;
 if (tmpChainRootProp$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.length;

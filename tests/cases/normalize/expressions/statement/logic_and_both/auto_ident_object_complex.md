@@ -26,7 +26,6 @@ const tmpObjLitVal$2 = $(3);
 const tmpIfTest = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
 if (tmpIfTest) {
   $(1);
-  2;
   $(3);
 }
 $(a);

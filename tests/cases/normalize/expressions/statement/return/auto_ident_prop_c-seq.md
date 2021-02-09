@@ -25,15 +25,12 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  1;
-  2;
   const tmpCompObj = $(b);
   const tmpReturnArg = tmpCompObj.c;
   return tmpReturnArg;
 }
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

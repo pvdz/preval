@@ -26,8 +26,6 @@ $(a, b);
 `````js filename=intro
 function f() {
   let tmpReturnArg;
-  1;
-  2;
   const tmpNestedAssignObj = b;
   const tmpNestedPropAssignRhs = 2;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -36,7 +34,6 @@ function f() {
 }
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-('<hoisted func decl `f`>');
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

@@ -28,8 +28,6 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileTest;
 do {
   $(100);
-  1;
-  2;
   const tmpCallObj = $(b);
   tmpDoWhileTest = tmpCallObj.$(1);
 } while (tmpDoWhileTest);

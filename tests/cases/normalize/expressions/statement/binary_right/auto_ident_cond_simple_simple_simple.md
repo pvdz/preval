@@ -22,7 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(100);
 if (1) {
-  2;
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);

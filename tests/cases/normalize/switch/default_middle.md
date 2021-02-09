@@ -79,9 +79,7 @@ switch (6) {
   let tmpDoWhileTest;
   do {
     if (tmpSwitchCheckCases) {
-      ('Cases before the default case');
       {
-        ('case 0');
         let tmpIfTest = tmpSwitchFallthrough;
         if (tmpIfTest) {
         } else {
@@ -97,7 +95,6 @@ switch (6) {
         }
       }
       {
-        ('case 1');
         let tmpIfTest$1 = tmpSwitchFallthrough;
         if (tmpIfTest$1) {
         } else {
@@ -115,7 +112,6 @@ switch (6) {
       tmpSwitchFallthrough = true;
     }
     if (tmpSwitchFallthrough) {
-      ('the default case');
       {
         $('d');
       }
@@ -123,9 +119,7 @@ switch (6) {
     }
     {
       {
-        ('cases after the default case');
         {
-          ('case 0');
           let tmpIfTest$2 = tmpSwitchFallthrough;
           if (tmpIfTest$2) {
           } else {
@@ -140,7 +134,6 @@ switch (6) {
           }
         }
         {
-          ('case 1');
           let tmpIfTest$3 = tmpSwitchFallthrough;
           if (tmpIfTest$3) {
           } else {
@@ -156,7 +149,6 @@ switch (6) {
           }
         }
         {
-          ('case 2');
           let tmpIfTest$4 = tmpSwitchFallthrough;
           if (tmpIfTest$4) {
           } else {

@@ -29,8 +29,6 @@ let tmpDoWhileTest;
 do {
   $(100);
   let tmpNestedComplexRhs;
-  1;
-  2;
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');

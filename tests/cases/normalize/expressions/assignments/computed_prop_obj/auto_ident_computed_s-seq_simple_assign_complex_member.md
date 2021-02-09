@@ -27,8 +27,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
 let tmpNestedComplexRhs;
-1;
-2;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj$1 = $(b);

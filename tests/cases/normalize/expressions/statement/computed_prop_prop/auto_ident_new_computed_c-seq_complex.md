@@ -26,8 +26,6 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-1;
-2;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('$');
 const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];

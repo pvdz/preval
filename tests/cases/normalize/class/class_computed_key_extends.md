@@ -88,7 +88,17 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: 'function'
+ - 2: 'f'
+ - 3: 100, 'method'
+ - 4: 100
+ - 5: 200, 'method'
+ - 6: 200
+ - 7: 300, 'method'
+ - 8: 300
+ - 9: 400, 'method'
+ - 10: 400
+ - eval returned: undefined
 
 Normalized calls: Same
 

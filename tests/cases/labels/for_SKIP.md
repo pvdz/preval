@@ -24,9 +24,17 @@ $(2);
 `````js filename=intro
 $(0);
 foo: {
-  if (x) {
-    $(1);
-    break foo;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      {
+        {
+          break foo;
+        }
+      }
+    } else {
+      break;
+    }
   }
 }
 $(2);
@@ -35,22 +43,18 @@ $(2);
 ## Output
 
 `````js filename=intro
-$(0);
-foo: {
-  if (x) {
-    $(1);
-    break foo;
-  }
-}
-$(2);
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: 0
- - 1: <crash[ <ref> is not defined ]>
+ - 1: 0
+ - 2: true
+ - 3: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -46,7 +46,9 @@ if (tmpChainElementObject) {
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: { x: '"function"', y: '100' }
+ - 2: [1, 2, 3], 100
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -44,7 +44,9 @@ $(a);
 
 Should call `$` with:
  - 1: 0
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 2: 'function'
+ - 3: 'function'
+ - eval returned: undefined
 
 Normalized calls: Same
 

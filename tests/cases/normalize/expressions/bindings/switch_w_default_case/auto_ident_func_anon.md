@@ -90,7 +90,10 @@ switch (1) {
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: 'function'
+ - 2: 'fail1'
+ - 3: 'fail2'
+ - eval returned: undefined
 
 Normalized calls: Same
 

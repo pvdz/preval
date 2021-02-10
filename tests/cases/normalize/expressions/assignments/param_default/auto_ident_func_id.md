@@ -48,7 +48,8 @@ $(a);
 
 Should call `$` with:
  - 1: undefined
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 2: 'function'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -52,7 +52,13 @@ tmpCallCallee$1(tmpCalleeParam$2);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: { b: '{"c":"\\"function\\""}' }
+ - 2: 'b'
+ - 3: 'c'
+ - 4: [100]
+ - 5: [100], { c: '"function"' }
+ - 6: 100
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -32,7 +32,8 @@ $(a, x);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: 'function'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

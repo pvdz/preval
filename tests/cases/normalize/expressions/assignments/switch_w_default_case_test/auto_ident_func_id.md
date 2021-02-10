@@ -93,7 +93,8 @@ Should call `$` with:
  - 1: 1
  - 2: 'fail1'
  - 3: 'fail2'
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 4: 'function'
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -11,6 +11,7 @@
 ## Input
 
 `````js filename=intro
+let x = $(100);
 $(0);
 foo: if (x) {
   $(1);
@@ -22,6 +23,7 @@ $(2);
 ## Normalized
 
 `````js filename=intro
+let x = $(100);
 $(0);
 foo: {
   if (x) {
@@ -41,8 +43,11 @@ $(2);
 ## Result
 
 Should call `$` with:
- - 1: 0
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 100
+ - 2: 0
+ - 3: 1
+ - 4: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -9,14 +9,14 @@
 ## Input
 
 `````js filename=intro
-if (new ($(1))) $(2);
+if (new ($($))) $(2);
 else $(3);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpNewCallee = $(1);
+const tmpNewCallee = $($);
 const tmpIfTest = new tmpNewCallee();
 if (tmpIfTest) {
   $(2);
@@ -34,8 +34,10 @@ if (tmpIfTest) {
 ## Result
 
 Should call `$` with:
- - 1: 1
- - eval returned: ('<crash[ <ref> is not a constructor ]>')
+ - 1: '<$>'
+ - 2: 
+ - 3: 2
+ - eval returned: undefined
 
 Normalized calls: Same
 

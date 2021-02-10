@@ -167,7 +167,243 @@ $$(obja, objb, objc, objd);
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - 1: 
+  [
+    '$:',
+    ['a'],
+    'function',
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a',
+  ],
+
+ - 2: 
+  [
+    '$:',
+    ['a'],
+    'function',
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a',
+  ],
+
+ - 3: 
+  [
+    '$:',
+    ['b'],
+    'function',
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b',
+  ],
+
+ - 4: 
+  [
+    '$:',
+    ['b'],
+    'function',
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b',
+  ],
+
+ - 5: 
+  [
+    '$:',
+    ['c'],
+    'function',
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c',
+  ],
+
+ - 6: 
+  [
+    '$:',
+    ['c'],
+    32,
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c',
+  ],
+
+ - 7: 
+  [
+    '$:',
+    ['d'],
+    32,
+    'function',
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'd',
+  ],
+
+ - 8: ['$:', ['d'], 42, 43, 'function', 12345, { a: '<get/set>' }, { b: '<get/set>' }, { c: '<get/set>' }, { d: '<get/set>' }, '::', 'd']
+ - 9: 
+  [
+    '$:',
+    ['d.set', 12345],
+    42,
+    43,
+    'function',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'd.set',
+    12345,
+  ],
+
+ - 10: 
+  [
+    '$:',
+    ['c.set', 12345],
+    4200,
+    4300,
+    'function',
+    'faild',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c.set',
+    12345,
+  ],
+
+ - 11: 
+  [
+    '$:',
+    ['b.set', 12345],
+    3200,
+    4300,
+    'function',
+    'failc',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b.set',
+    12345,
+  ],
+
+ - 12: 
+  [
+    '$:',
+    ['a.set', 12345],
+    3200,
+    4300,
+    'function',
+    'failb',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a.set',
+    12345,
+  ],
+
+ - 13: 
+  [
+    '$:',
+    [12345],
+    3200,
+    4300,
+    'function',
+    'faila',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    12345,
+  ],
+
+ - 14: 
+  [
+    '$:',
+    [2100, 3200, 4300, 'function', 'faila'],
+    3200,
+    4300,
+    'function',
+    'faila',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    2100,
+    3200,
+    4300,
+    'function',
+    'faila',
+  ],
+
+ - 15: 
+  [
+    '$:',
+    [{ a: '<get/set>' }, { b: '<get/set>' }, { c: '<get/set>' }, { d: '<get/set>' }],
+    3200,
+    4300,
+    'function',
+    'faila',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+  ],
+
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -125,9 +125,7 @@ const VERBOSE_TRACING = true;
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - arguments (ehh)
-  - while(false) etc should be dropped
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
-  - FunctionDeclaration nodes that are in a block are not to be hoisted...
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.

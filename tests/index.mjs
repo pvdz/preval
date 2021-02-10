@@ -168,10 +168,10 @@ function runTestCase(
               clone[key] = '<get/set>';
             }
           });
-          return JSON.stringify(clone).replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+          return (JSON.stringify(clone) ?? '"' + typeof a + '"').replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
         }
 
-        return JSON.stringify(a).replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+        return (JSON.stringify(a) ?? '"' + typeof a + '"').replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
       }
       function $(...a) {
         if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner');

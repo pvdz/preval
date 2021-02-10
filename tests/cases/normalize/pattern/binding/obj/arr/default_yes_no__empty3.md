@@ -19,10 +19,8 @@ $(val);
 
 `````js filename=intro
 let val = undefined;
-if (true) {
+{
   val = false;
-} else {
-  val = undefined;
 }
 $(val);
 `````

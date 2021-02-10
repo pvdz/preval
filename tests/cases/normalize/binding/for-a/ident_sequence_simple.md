@@ -24,9 +24,6 @@ let c = 3;
 {
   $(b);
   let a_1 = c;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -34,9 +31,6 @@ let c = 3;
 
 `````js filename=intro
 $(2);
-while (false) {
-  $(3, 2, 3);
-}
 `````
 
 ## Result

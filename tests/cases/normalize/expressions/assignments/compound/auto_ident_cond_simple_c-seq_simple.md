@@ -25,12 +25,8 @@ let tmpCalleeParam;
 const tmpNestedCompoundLhs = a;
 const tmpBinBothLhs = tmpNestedCompoundLhs;
 let tmpBinBothRhs = undefined;
-if (1) {
+{
   tmpBinBothRhs = $(60);
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(100);
-  tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 }
 const tmpNestedComplexRhs = tmpBinBothLhs * tmpBinBothRhs;
 a = tmpNestedComplexRhs;

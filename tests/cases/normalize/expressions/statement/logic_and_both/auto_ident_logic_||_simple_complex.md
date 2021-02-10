@@ -28,8 +28,7 @@ if (tmpIfTest) {
   tmpIfTest = tmpCallCallee(tmpCalleeParam);
 }
 if (tmpIfTest) {
-  if (0) {
-  } else {
+  {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
     tmpCallCallee$1(tmpCalleeParam$1);

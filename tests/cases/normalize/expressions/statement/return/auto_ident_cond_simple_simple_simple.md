@@ -24,12 +24,8 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  if (1) {
+  {
     tmpReturnArg = 2;
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   }
   return tmpReturnArg;
 }

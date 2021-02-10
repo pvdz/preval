@@ -40,12 +40,8 @@ const tmpSwitchTest = $(1);
         if (tmpIfTest) {
         } else {
           let tmpBinLhs = undefined;
-          if (1) {
+          {
             tmpBinLhs = 60;
-          } else {
-            const tmpCallCallee = $;
-            const tmpCalleeParam = $(100);
-            tmpBinLhs = tmpCallCallee(tmpCalleeParam);
           }
           tmpIfTest = tmpBinLhs === tmpSwitchValue;
         }

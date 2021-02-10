@@ -22,12 +22,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let xyz = undefined;
-if (1) {
+{
   xyz = 60;
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  xyz = tmpCallCallee(tmpCalleeParam);
 }
 $(xyz);
 $(a);

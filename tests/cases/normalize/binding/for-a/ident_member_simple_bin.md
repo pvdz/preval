@@ -28,9 +28,6 @@ let d = 4;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs;
   a_1 = tmpNestedPropAssignRhs;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -41,9 +38,6 @@ let b = { x: 2 };
 let a_1;
 b.x = 7;
 a_1 = 7;
-while (false) {
-  $(a_1, b, 7);
-}
 `````
 
 ## Result

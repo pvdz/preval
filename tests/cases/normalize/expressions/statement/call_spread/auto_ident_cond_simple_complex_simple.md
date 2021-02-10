@@ -22,12 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
-if (1) {
+{
   tmpCalleeParamSpread = $(2);
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam = $(100);
-  tmpCalleeParamSpread = tmpCallCallee$1(tmpCalleeParam);
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);

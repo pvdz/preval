@@ -25,12 +25,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 let tmpNestedComplexRhs = undefined;
-if (1) {
+{
   tmpNestedComplexRhs = $(60);
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;

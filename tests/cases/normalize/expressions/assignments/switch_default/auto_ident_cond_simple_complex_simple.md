@@ -27,12 +27,8 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    if (1) {
+    {
       a = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
     }
   }
 }
@@ -47,12 +43,8 @@ $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   {
-    if (1) {
+    {
       a = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
     }
   }
 }

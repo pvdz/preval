@@ -16,9 +16,7 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if (false) {
-  $(1);
-} else {
+{
   $(2);
 }
 `````

@@ -28,7 +28,6 @@ $(x);
     const arrAssignPatternRhs = [10];
     const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    while (false) {}
   }
 }
 $(x);
@@ -42,7 +41,6 @@ $(x);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
-while (false) {}
 $(x);
 `````
 

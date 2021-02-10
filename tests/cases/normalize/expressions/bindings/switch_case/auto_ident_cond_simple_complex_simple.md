@@ -33,12 +33,8 @@ switch (1) {
     if (tmpIfTest) {
       {
         a = undefined;
-        if (1) {
+        {
           a = $(2);
-        } else {
-          const tmpCallCallee = $;
-          const tmpCalleeParam = $(100);
-          a = tmpCallCallee(tmpCalleeParam);
         }
         $(a);
       }
@@ -61,12 +57,8 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       a = undefined;
-      if (1) {
+      {
         a = $(2);
-      } else {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(100);
-        a = tmpCallCallee(tmpCalleeParam);
       }
       $(a);
     }

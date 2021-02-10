@@ -24,12 +24,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  if (1) {
+  {
     $(60);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
   }
 }
 $(a);

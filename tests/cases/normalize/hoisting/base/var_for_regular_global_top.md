@@ -23,7 +23,6 @@ var x;
 $(x);
 {
   x = 10;
-  while (false) {}
 }
 $(x);
 `````
@@ -34,7 +33,6 @@ $(x);
 var x;
 $(x);
 x = 10;
-while (false) {}
 $(x);
 `````
 

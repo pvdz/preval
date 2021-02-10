@@ -30,12 +30,8 @@ tmpSwitchBreak: {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs = undefined;
-    if (1) {
+    {
       tmpBinBothRhs = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
     }
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
@@ -58,12 +54,8 @@ tmpSwitchBreak: {
   } else {
     const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs = undefined;
-    if (1) {
+    {
       tmpBinBothRhs = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
     }
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }

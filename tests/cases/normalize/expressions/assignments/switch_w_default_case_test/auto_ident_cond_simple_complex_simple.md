@@ -40,12 +40,8 @@ const tmpSwitchTest = $(1);
         } else {
           let tmpBinLhs;
           let tmpNestedComplexRhs = undefined;
-          if (1) {
+          {
             tmpNestedComplexRhs = $(2);
-          } else {
-            const tmpCallCallee = $;
-            const tmpCalleeParam = $(100);
-            tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
           }
           a = tmpNestedComplexRhs;
           tmpBinLhs = tmpNestedComplexRhs;

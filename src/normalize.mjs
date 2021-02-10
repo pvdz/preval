@@ -126,6 +126,7 @@ const VERBOSE_TRACING = true;
   - unused init for variabel (let x = 10; x = 20; $(x))
   - arguments (ehh)
   - while(false) etc should be dropped
+  - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -133,8 +134,6 @@ const VERBOSE_TRACING = true;
   - TODO: does coercion have observable side effects (that we care to support)?
   - TODO: do we properly simplify array literals with complex spreads?   
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
-  - TODO: since exports must be unique, we should try to give exported bindings priority when creating unique globals
-  - TODO: must double check and fix/restore the unique name stuff
   - TODO: how does `arguments` work with the implicit unique binding stuff??
 */
 
@@ -3793,6 +3792,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     anyBlock(node.consequent);
+
     if (node.alternate) {
       anyBlock(node.alternate);
 
@@ -3819,6 +3819,60 @@ export function phaseNormalize(fdata, fname) {
 
       after(finalParent);
       return true;
+    }
+
+    if (node.test.type === 'Literal') {
+      if (node.test.value === 0 || node.test.value === '' || node.test.value === false) {
+        rule('Eliminate if-else with falsy test literal');
+        example('if (0) f(); else g();', 'g();', () => node.alternate);
+        example('if (0) f();', ';', () => !node.alternate);
+        before(node);
+
+        const finalParent = node.alternate || AST.emptyStatement();
+        body[i] = finalParent;
+
+        after(finalParent);
+        return true;
+      }
+
+      rule('Eliminate if-else with truthy test literal');
+      example('if (100) f(); else g();', 'g();', () => node.alternate);
+      example('if (100) f();', 'g();', () => !node.alternate);
+      before(node);
+
+      const finalParent = node.consequent;
+      body[i] = finalParent;
+
+      after(finalParent);
+      return true;
+    }
+
+    if (node.test.type === 'Identifier') {
+      if (['false', 'null', 'undefined', 'NaN'].includes(node.name)) {
+        rule('Eliminate if-else with falsy identifier');
+        example('if (false) f(); else g();', 'g();', () => node.alternate);
+        example('if (false) f();', ';', () => node.alternate);
+        before(node);
+
+        const finalParent = node.alternate || AST.emptyStatement();
+        body[i] = finalParent;
+
+        after(finalParent);
+        return true;
+      }
+
+      if (['Infinity'].includes(node.name)) {
+        rule('Eliminate if-else with truthy identifier');
+        example('if (Infinity) f(); else g();', 'f();', () => node.alternate);
+        example('if (Infinity) f();', 'f();', () => !node.alternate);
+        before(node);
+
+        const finalParent = node.consequent;
+        body[i] = finalParent;
+
+        after(finalParent);
+        return true;
+      }
     }
 
     return false;
@@ -4660,6 +4714,52 @@ export function phaseNormalize(fdata, fname) {
     }
 
     anyBlock(node.body);
+
+    if (node.test.type === 'Literal') {
+      if (node.test.value === 0 || node.test.value === '' || node.test.value === false) {
+        rule('Eliminate while with falsy literal');
+        example('while (false) f();', ';');
+        before(node);
+
+        body[i] = AST.emptyStatement();
+
+        after(body[i]);
+        return true;
+      }
+
+      rule('Replace truthy while test literal with `true`');
+      example('while (100) f();', 'while (true) f();');
+      before(node);
+
+      node.test = AST.identifier(true);
+
+      after(node);
+      return true;
+    }
+
+    if (node.test.type === 'Identifier') {
+      if (['false', 'null', 'undefined', 'NaN'].includes(node.name)) {
+        rule('Eliminate while with falsy identifier');
+        example('while (false) f();', ';');
+        before(node);
+
+        body[i] = AST.emptyStatement();
+
+        after(body[i]);
+        return true;
+      }
+
+      if (['Infinity'].includes(node.name)) {
+        rule('Replace truthy while test identifier with `true`');
+        example('while (Infinity) f();', 'while (true) f();');
+        before(node);
+
+        node.test = AST.identifier(true);
+
+        after(node);
+        return true;
+      }
+    }
 
     return false;
   }

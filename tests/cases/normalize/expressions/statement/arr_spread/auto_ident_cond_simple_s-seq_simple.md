@@ -21,12 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
-if (1) {
+{
   tmpArrElToSpread = 60;
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 }
 [...tmpArrElToSpread];
 $(a);

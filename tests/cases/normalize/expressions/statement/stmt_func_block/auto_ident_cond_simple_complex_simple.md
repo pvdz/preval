@@ -27,12 +27,8 @@ $(f());
 function f() {
   {
     let a = { a: 999, b: 1000 };
-    if (1) {
+    {
       $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpCallCallee(tmpCalleeParam);
     }
     $(a);
   }

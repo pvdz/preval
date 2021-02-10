@@ -25,12 +25,8 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileTest;
 do {
   $(100);
-  if (1) {
+  {
     tmpDoWhileTest = 2;
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpDoWhileTest = tmpCallCallee(tmpCalleeParam);
   }
 } while (tmpDoWhileTest);
 $(a);

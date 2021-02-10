@@ -11,12 +11,14 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 ## Input
 
 `````js filename=intro
+let b = "foo";
 ($(1), b).length;
 `````
 
 ## Normalized
 
 `````js filename=intro
+let b = 'foo';
 $(1);
 const tmpCompObj = b;
 tmpCompObj.length;
@@ -26,8 +28,7 @@ tmpCompObj.length;
 
 `````js filename=intro
 $(1);
-const tmpCompObj = b;
-tmpCompObj.length;
+'foo'.length;
 `````
 
 ## Result

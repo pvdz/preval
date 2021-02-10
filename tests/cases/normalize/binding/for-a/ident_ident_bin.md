@@ -27,9 +27,6 @@ let d = 4;
   const tmpNestedComplexRhs = c + d;
   b = tmpNestedComplexRhs;
   a_1 = tmpNestedComplexRhs;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -40,9 +37,6 @@ let b = 2;
 let a_1;
 b = 7;
 a_1 = 7;
-while (false) {
-  $(a_1, b, 7);
-}
 `````
 
 ## Result

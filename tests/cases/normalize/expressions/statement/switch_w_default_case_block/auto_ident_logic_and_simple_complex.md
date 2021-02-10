@@ -48,7 +48,7 @@ const tmpSwitchTest = $(1);
         if (tmpIfTest) {
           {
             {
-              if (1) {
+              {
                 const tmpCallCallee = $;
                 const tmpCalleeParam = $(1);
                 tmpCallCallee(tmpCalleeParam);

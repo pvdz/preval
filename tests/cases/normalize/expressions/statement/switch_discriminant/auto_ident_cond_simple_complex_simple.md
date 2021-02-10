@@ -24,12 +24,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
-if (1) {
+{
   tmpSwitchTest = $(2);
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
 }
 tmpSwitchBreak: {
   let tmpFallthrough = false;

@@ -24,12 +24,8 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    if (1) {
+    {
       arg = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      arg = tmpCallCallee(tmpCalleeParam);
     }
   } else {
     arg = $tdz$__arg;

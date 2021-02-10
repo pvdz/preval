@@ -24,12 +24,8 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1;
 let tmpNestedComplexRhs = undefined;
-if (1) {
+{
   tmpNestedComplexRhs = 2;
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$2 = $(100);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$2);
 }
 a = tmpNestedComplexRhs;
 tmpCalleeParam$1 = tmpNestedComplexRhs;

@@ -25,9 +25,6 @@ let c = 3;
   let a_1;
   b = c;
   a_1 = c;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -38,9 +35,6 @@ let b = 2;
 let a_1;
 b = 3;
 a_1 = 3;
-while (false) {
-  $(a_1, b, 3);
-}
 `````
 
 ## Result

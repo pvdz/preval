@@ -26,9 +26,6 @@ let z = [10, 20, 30];
   let arrPatternSplat = [...bindingPatternArrRoot];
   let x_1 = arrPatternSplat[0];
   let y_1 = arrPatternSplat[1];
-  while (false) {
-    $(x_1, y_1, z);
-  }
 }
 `````
 
@@ -38,11 +35,8 @@ let z = [10, 20, 30];
 let z = [10, 20, 30];
 let bindingPatternArrRoot = z;
 let arrPatternSplat = [...bindingPatternArrRoot];
-let x_1 = arrPatternSplat[0];
-let y_1 = arrPatternSplat[1];
-while (false) {
-  $(x_1, y_1, z);
-}
+arrPatternSplat[0];
+arrPatternSplat[1];
 `````
 
 ## Result

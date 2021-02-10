@@ -23,12 +23,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParamSpread;
 let tmpNestedComplexRhs = undefined;
-if (1) {
+{
   tmpNestedComplexRhs = 60;
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpCalleeParamSpread = tmpNestedComplexRhs;

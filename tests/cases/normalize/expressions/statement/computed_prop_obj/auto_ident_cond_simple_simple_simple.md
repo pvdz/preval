@@ -23,12 +23,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = undefined;
-if (1) {
+{
   tmpCompObj = 2;
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpCompObj = tmpCallCallee(tmpCalleeParam);
 }
 tmpCompObj.a;
 $(a);

@@ -37,12 +37,8 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (1) {
+        {
           $(60);
-        } else {
-          const tmpCallCallee = $;
-          const tmpCalleeParam = $(100);
-          tmpCallCallee(tmpCalleeParam);
         }
       }
     }
@@ -69,12 +65,8 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (1) {
+        {
           $(60);
-        } else {
-          const tmpCallCallee = $;
-          const tmpCalleeParam = $(100);
-          tmpCallCallee(tmpCalleeParam);
         }
       }
     }

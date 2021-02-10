@@ -22,12 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpTemplateExpr = undefined;
-if (1) {
+{
   tmpTemplateExpr = $(2);
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(100);
-  tmpTemplateExpr = tmpCallCallee$1(tmpCalleeParam$1);
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);

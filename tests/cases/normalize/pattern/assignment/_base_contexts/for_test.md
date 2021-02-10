@@ -18,9 +18,6 @@ for ({ x } = 1;false;) y;
 {
   const tmpAssignObjPatternRhs = 1;
   x = tmpAssignObjPatternRhs.x;
-  while (false) {
-    y;
-  }
 }
 `````
 
@@ -28,7 +25,6 @@ for ({ x } = 1;false;) y;
 
 `````js filename=intro
 x = (1).x;
-while (false) {}
 `````
 
 ## Result

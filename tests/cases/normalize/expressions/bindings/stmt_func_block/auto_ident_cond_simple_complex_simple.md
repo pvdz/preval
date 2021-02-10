@@ -26,12 +26,8 @@ $(f());
 function f() {
   {
     let a = undefined;
-    if (1) {
+    {
       a = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
     }
     $(a);
   }

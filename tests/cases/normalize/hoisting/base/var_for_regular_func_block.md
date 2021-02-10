@@ -30,7 +30,6 @@ function f() {
   {
     {
       x = 10;
-      while (false) {}
     }
   }
   $(x);
@@ -45,7 +44,6 @@ function f() {
   var x;
   $(x);
   x = 10;
-  while (false) {}
   $(x);
 }
 f();

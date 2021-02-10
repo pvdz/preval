@@ -22,12 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
-  if (1) {
+  {
     tmpForInDeclRhs = 2;
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
   }
   let x;
   for (x in tmpForInDeclRhs) {

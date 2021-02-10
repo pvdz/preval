@@ -29,9 +29,6 @@ let d = 4;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a_1 = tmpNestedPropAssignRhs;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -43,9 +40,6 @@ let a_1;
 const tmpNestedAssignObj = $(b);
 tmpNestedAssignObj.x = 7;
 a_1 = 7;
-while (false) {
-  $(a_1, b, 7);
-}
 `````
 
 ## Result

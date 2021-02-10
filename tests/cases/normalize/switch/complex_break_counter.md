@@ -47,7 +47,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (2) {
+        {
           $(3);
         }
         $(4);
@@ -83,7 +83,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (2) {
+        {
           $(3);
         }
         $(4);

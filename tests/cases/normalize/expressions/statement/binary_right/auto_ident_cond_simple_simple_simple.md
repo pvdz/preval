@@ -21,12 +21,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-if (1) {
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
-}
 $(a);
 `````
 

@@ -45,12 +45,8 @@ const tmpSwitchTest = $(1);
         }
         if (tmpIfTest) {
           {
-            if (1) {
+            {
               $(2);
-            } else {
-              const tmpCallCallee = $;
-              const tmpCalleeParam = $(100);
-              tmpCallCallee(tmpCalleeParam);
             }
             break;
           }

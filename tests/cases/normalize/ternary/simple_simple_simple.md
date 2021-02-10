@@ -20,15 +20,11 @@ $(a, b)
 
 `````js filename=intro
 let a = undefined;
-if (1) {
+{
   a = 2;
-} else {
-  a = 3;
 }
 let b = undefined;
-if (0) {
-  b = 4;
-} else {
+{
   b = 5;
 }
 $(a, b);

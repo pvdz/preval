@@ -23,12 +23,8 @@ let a = { a: 999, b: 1000 };
 while (true) {
   let tmpIfTest;
   let tmpNestedComplexRhs = undefined;
-  if (1) {
+  {
     tmpNestedComplexRhs = $(2);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
   }
   a = tmpNestedComplexRhs;
   tmpIfTest = tmpNestedComplexRhs;

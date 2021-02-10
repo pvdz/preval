@@ -32,9 +32,6 @@ let d = 4;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;
   b = tmpNestedComplexRhs;
   a_1 = tmpNestedComplexRhs;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
@@ -51,9 +48,6 @@ tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
 b = tmpNestedComplexRhs;
 a_1 = tmpNestedComplexRhs;
-while (false) {
-  $(a_1, b, 3);
-}
 `````
 
 ## Result

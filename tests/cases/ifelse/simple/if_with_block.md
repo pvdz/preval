@@ -17,7 +17,7 @@ if (true) {
 ## Normalized
 
 `````js filename=intro
-if (true) {
+{
   $();
 }
 `````

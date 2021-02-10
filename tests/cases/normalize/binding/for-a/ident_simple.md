@@ -23,18 +23,13 @@ let b = 2;
 let c = 3;
 {
   let a_1 = b;
-  while (false) {
-    $(a_1, b, c);
-  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (false) {
-  $(2, 2, 3);
-}
+
 `````
 
 ## Result

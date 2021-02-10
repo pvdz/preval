@@ -29,9 +29,6 @@ let z = [10, 20, 30];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a_1 = tmpNestedAssignArrPatternRhs;
-  while (false) {
-    $(a_1, x, y, z);
-  }
 }
 `````
 
@@ -47,9 +44,6 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a_1 = tmpNestedAssignArrPatternRhs;
-while (false) {
-  $(a_1, x, y, z);
-}
 `````
 
 ## Result

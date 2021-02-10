@@ -37,7 +37,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (1) {
+        {
           const tmpCallCallee = $;
           const tmpCalleeParam = $(1);
           tmpCallCallee(tmpCalleeParam);
@@ -67,7 +67,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     {
       {
-        if (1) {
+        {
           const tmpCallCallee = $;
           const tmpCalleeParam = $(1);
           tmpCallCallee(tmpCalleeParam);

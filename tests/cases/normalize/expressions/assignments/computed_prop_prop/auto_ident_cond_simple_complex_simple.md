@@ -25,12 +25,8 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp;
 let tmpNestedComplexRhs = undefined;
-if (1) {
+{
   tmpNestedComplexRhs = $(2);
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpCompProp = tmpNestedComplexRhs;

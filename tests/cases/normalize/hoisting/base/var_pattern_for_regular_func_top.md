@@ -29,7 +29,6 @@ function f() {
     const arrAssignPatternRhs = [10];
     const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    while (false) {}
   }
   $(x);
 }
@@ -45,7 +44,6 @@ function f() {
   const arrAssignPatternRhs = [10];
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  while (false) {}
   $(x);
 }
 f();

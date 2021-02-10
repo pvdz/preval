@@ -19,12 +19,8 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-if (1) {
+{
   a = $(60);
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  a = tmpCallCallee(tmpCalleeParam);
 }
 export { a };
 $(a);

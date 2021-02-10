@@ -23,12 +23,8 @@ $(f());
 `````js filename=intro
 function f() {
   let a = undefined;
-  if (1) {
+  {
     a = $(60);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
   }
   $(a);
 }

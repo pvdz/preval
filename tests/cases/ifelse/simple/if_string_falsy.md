@@ -17,9 +17,7 @@ if ("") {
 ## Normalized
 
 `````js filename=intro
-if ('') {
-  $();
-}
+
 `````
 
 ## Output

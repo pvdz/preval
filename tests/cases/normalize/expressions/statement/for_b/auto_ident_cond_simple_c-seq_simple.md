@@ -23,12 +23,8 @@ let a = { a: 999, b: 1000 };
 {
   while (true) {
     let tmpIfTest = undefined;
-    if (1) {
+    {
       tmpIfTest = $(60);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpIfTest = tmpCallCallee(tmpCalleeParam);
     }
     if (tmpIfTest) {
       $(1);

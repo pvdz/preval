@@ -25,12 +25,8 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
-    if (1) {
+    {
       tmpNestedComplexRhs = $(60);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
     }
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;

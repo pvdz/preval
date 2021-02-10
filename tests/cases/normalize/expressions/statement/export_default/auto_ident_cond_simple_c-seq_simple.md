@@ -21,12 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
-if (1) {
+{
   tmpExportDefault = $(60);
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
 }
 export { tmpExportDefault as default };
 $(a);

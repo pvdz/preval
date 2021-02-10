@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 label: {
-  if (1) {
+  {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     tmpCallCallee(tmpCalleeParam);
@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 label: {
-  if (1) {
+  {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     tmpCallCallee(tmpCalleeParam);

@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while ('foo') {
+while (true) {
   $(100);
 }
 $(a);
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while ('foo') {
+while (true) {
   $(100);
 }
 $(a);

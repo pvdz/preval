@@ -12,6 +12,7 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 
 `````js filename=intro
 function f() {
+  let b = "foo", c = 1;
   ($(1), b)[$('length')];
   $(c);
 }
@@ -22,6 +23,8 @@ $(f());
 
 `````js filename=intro
 function f() {
+  let b = 'foo';
+  let c = 1;
   $(1);
   const tmpCompObj = b;
   const tmpCompProp = $('length');
@@ -38,10 +41,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   $(1);
-  const tmpCompObj = b;
   const tmpCompProp = $('length');
-  tmpCompObj[tmpCompProp];
-  $(c);
+  'foo'[tmpCompProp];
+  $(1);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -53,7 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 Should call `$` with:
  - 1: 1
  - 2: 'length'
- - 3: 3
+ - 3: 1
  - 4: undefined
  - eval returned: undefined
 

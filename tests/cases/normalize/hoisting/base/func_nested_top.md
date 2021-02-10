@@ -4,32 +4,38 @@
 
 > normalize > hoisting > global_block
 >
-> Hosting in a block should end up in the parent
+> Function declarations in a block are not hoisted
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(f());
-function f() {
-  return 100;
+function g() {
+  $(f());
+  function f() {
+    return 100;
+  }
+  $(f());
 }
-$(f());
+g();
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f() {
-  return 100;
+function g() {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f();
+  tmpCallCallee(tmpCalleeParam);
+  function f() {
+    return 100;
+  }
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = f();
+  tmpCallCallee$1(tmpCalleeParam$1);
 }
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+g();
 `````
 
 ## Output

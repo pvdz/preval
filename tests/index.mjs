@@ -72,7 +72,7 @@ function runTestCase(
 
   if (withOutput) {
     console.log('code:');
-    console.log(code);
+    console.log(code.length > 1000 ? code.slice(0, 1000) + '...\n<snip>' : code);
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', sname, ']');
     console.group();
   }
@@ -96,10 +96,18 @@ function runTestCase(
       req(importPath) {
         if (withOutput) {
           console.log('Preval test harnas; require(' + importPath + ')');
-          console.log('-', fin[importPath].length, 'bytes');
+          if (CONFIG.fileVerbatim && importPath !== 'intro') {
+            console.log('TODO: currently skipping imports from `./p F` runs');
+          } else {
+            console.log('-', fin[importPath].length, 'bytes');
+          }
+        }
+        if (CONFIG.fileVerbatim && importPath !== 'intro') {
+          return '';
         }
         return fin[importPath];
       },
+      stopAfterNormalize: !!CONFIG.onlyNormalized,
     });
   } catch (e) {
     if (isExpectingAnError) {
@@ -232,7 +240,7 @@ function runTestCase(
   }
 
   if (!isExpectingAnError && lastError) {
-    if (!withOutput) {
+    if (!withOutput && !CONFIG.onlyNormalized) {
       console.log(WHITE_BLACK + 'Test crashed, re-running it with output' + RESET);
       return runTestCase(
         {

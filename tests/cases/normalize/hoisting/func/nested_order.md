@@ -23,6 +23,11 @@ function f() {
 
 `````js filename=intro
 function f() {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f_1();
+  const tmpCalleeParam$1 = g();
+  const tmpCalleeParam$2 = h();
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   function f_1() {
     const tmpReturnArg = $();
     return tmpReturnArg;
@@ -35,11 +40,6 @@ function f() {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f_1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();

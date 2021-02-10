@@ -168,7 +168,11 @@ export function phase1(fdata, resolve, req, verbose) {
       const uniqueName = createUniqueGlobalName(node.name);
       log('-->', uniqueName);
       const meta = registerGlobalIdent(uniqueName, node.name, { isImplicitGlobal: true });
-      log('- Meta:', meta);
+      log('- Meta:', {
+        ...meta,
+        reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+        writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+      });
       lexScopeStack[0].$p.nameMapping.set(node.name, uniqueName);
       return uniqueName;
     }
@@ -177,7 +181,11 @@ export function phase1(fdata, resolve, req, verbose) {
     ASSERT(uniqueName !== undefined, 'should exist');
     log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
     const meta = globallyUniqueNamingRegistery.get(uniqueName);
-    log('- Meta:', meta);
+    log('- Meta:', {
+      ...meta,
+      reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+      writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+    });
     ASSERT(meta, 'the meta should exist for all declared variables at this point');
     return uniqueName;
   }
@@ -265,7 +273,7 @@ export function phase1(fdata, resolve, req, verbose) {
 
       do {
         group('Checking scope... (sid=', s.$sid, ')');
-        log('- type:', s.type, ', bindings?', s.names !== Tenko.HAS_NO_BINDINGS);
+        log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : ('yes, ' + s.names.size));
         if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
           log('Breaking for function header scopes in Block');
           groupEnd();
@@ -368,10 +376,12 @@ export function phase1(fdata, resolve, req, verbose) {
           thisStack.pop();
         }
 
+        const parentNode = path.nodes[path.nodes.length - 2];
+
         // Do not attempt to hoist anonymous default function exports
-        if (node.type === 'FunctionDeclaration' && node.id) {
+        // Function declarations inside blocks are not hoisted
+        if (node.type === 'FunctionDeclaration' && node.id && parentNode.type !== 'BlockStatement') {
           const func = funcStack[funcStack.length - 1];
-          const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
 
@@ -792,13 +802,19 @@ export function phase1(fdata, resolve, req, verbose) {
   );
   log(
     '\ngloballyUniqueNamingRegistery (sans builtins):\n',
-    globallyUniqueNamingRegistery.size === globals.size
+    globallyUniqueNamingRegistery.size > 50
+      ? '<too many>'
+      : globallyUniqueNamingRegistery.size === globals.size
       ? '<none>'
       : [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
   );
   log(
     '\ngloballyUniqueLabelRegistery:\n',
-    globallyUniqueLabelRegistery.size === 0 ? '<none>' : [...globallyUniqueLabelRegistery.keys()].join(', '),
+    globallyUniqueLabelRegistery.size > 50
+      ? '<too many>'
+      : globallyUniqueLabelRegistery.size === 0
+      ? '<none>'
+      : [...globallyUniqueLabelRegistery.keys()].join(', '),
   );
 
   log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
@@ -856,7 +872,7 @@ function getIdentUsageKind(parentNode, parentProp) {
       return 'write';
     case 'ArrowFunctionExpression':
       // Can only appear as parameter which is always a write
-      ASSERT(parentProp === 'params');
+      ASSERT(parentProp === 'params' || parentProp === 'body');
       return 'write';
     case 'AssignmentExpression':
       ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);

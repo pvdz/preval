@@ -21,6 +21,9 @@ export function g() {
 
 `````js filename=intro
 function g() {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
   function f() {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
@@ -29,9 +32,6 @@ function g() {
     const tmpReturnArg$1 = $(2);
     return tmpReturnArg$1;
   }
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g();

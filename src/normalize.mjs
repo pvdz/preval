@@ -127,6 +127,7 @@ const VERBOSE_TRACING = true;
   - arguments (ehh)
   - while(false) etc should be dropped
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
+  - FunctionDeclaration nodes that are in a block are not to be hoisted...
   - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -285,13 +286,19 @@ export function phaseNormalize(fdata, fname) {
   log('After normalization:');
   log(
     '\ngloballyUniqueNamingRegistery (sans builtins):\n',
-    fdata.globallyUniqueNamingRegistery.size === globals.size
+    fdata.globallyUniqueNamingRegistery.size > 50
+      ? '<too many>'
+      : fdata.globallyUniqueNamingRegistery.size === globals.size
       ? '<none>'
       : [...fdata.globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
   );
   log(
     '\ngloballyUniqueLabelRegistery:\n',
-    fdata.globallyUniqueLabelRegistery.size === 0 ? '<none>' : [...fdata.globallyUniqueLabelRegistery.keys()].join(', '),
+    fdata.globallyUniqueLabelRegistery.size > 50
+      ? '<too many>'
+      : fdata.globallyUniqueLabelRegistery.size === 0
+      ? '<none>'
+      : [...fdata.globallyUniqueLabelRegistery.keys()].join(', '),
   );
   log();
 
@@ -644,7 +651,7 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function anyBlock(block) {
-    // program, body of a function, actual block statement, switch case body
+    // program, body of a function, actual block statement, switch case body, try/catch/finally body
     group('anyBlock');
     const body = block.body;
 
@@ -686,6 +693,8 @@ export function phaseNormalize(fdata, fname) {
       }
       case 'ClassDeclaration':
         return transformClassDeclaration(node, body, i, parent);
+      case 'DebuggerStatement':
+        return false; // We could eliminate this but hwy
       case 'DoWhileStatement':
         return transformDoWhileStatement(node, body, i);
       case 'EmptyStatement': {
@@ -722,6 +731,8 @@ export function phaseNormalize(fdata, fname) {
         return transformSwitchStatement(node, body, i);
       case 'ThrowStatement':
         return transformThrowStatement(node, body, i);
+      case 'TryStatement':
+        return transformTryStatement(node, body, i, parent);
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i);
       case 'WhileStatement':
@@ -734,9 +745,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ContinueStatement':
         return false;
 
-      case 'DebuggerStatement':
       case 'ExportAllDeclaration':
-      case 'TryStatement':
         TODO;
         return false;
 
@@ -4572,6 +4581,18 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       return true;
+    }
+
+    return false;
+  }
+  function transformTryStatement(node, body, i, parent) {
+    anyBlock(node.block);
+    if (node.handler) {
+      // TODO: catch arg as pattern
+      anyBlock(node.handler.body);
+    }
+    if (node.finalizer) {
+      anyBlock(node.finalizer);
     }
 
     return false;

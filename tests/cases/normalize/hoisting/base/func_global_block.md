@@ -4,38 +4,34 @@
 
 > normalize > hoisting > global_block
 >
-> Hosting in a block should end up in the parent
+> Function declarations in a block are not hoisted
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function g() {
-  $(f());
+{
+  let x = 100;
   function f() {
-    return 100;
+    return x;
   }
   $(f());
 }
-g();
 `````
 
 ## Normalized
 
 `````js filename=intro
-function g() {
+{
+  let x = 100;
   function f() {
-    return 100;
+    return x;
   }
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
 }
-g();
 `````
 
 ## Output
@@ -48,7 +44,6 @@ g();
 
 Should call `$` with:
  - 1: 100
- - 2: 100
  - eval returned: undefined
 
 Normalized calls: Same

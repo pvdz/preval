@@ -24,7 +24,7 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

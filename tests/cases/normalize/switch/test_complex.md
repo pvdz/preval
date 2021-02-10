@@ -20,7 +20,7 @@ switch ($(1)) {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
 }
 `````

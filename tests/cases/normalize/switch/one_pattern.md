@@ -36,7 +36,7 @@ switch (1) {
   let bindingPatternArrRoot;
   let arrPatternSplat;
   let x;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

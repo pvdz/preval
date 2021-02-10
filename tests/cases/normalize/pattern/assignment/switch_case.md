@@ -26,7 +26,7 @@ switch (0) {
 {
   let a;
   let b;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

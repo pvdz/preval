@@ -1,40 +1,34 @@
 # Preval test case
 
-# test_complex.md
+# unused_label.md
 
-> normalize > switch > test_complex
+> labels > unused_label
 >
-> Normalize switches
+> Labels should not throw
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-switch (1) {
-  case 1: $(1);
-  default: $(2);
-}
+let x = 2;
+foo: while (--x) $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
+let x = 2;
+while (true) {
+  let tmpIfTest;
+  const tmpNestedCompoundLhs = x;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  x = tmpNestedComplexRhs;
+  tmpIfTest = tmpNestedComplexRhs;
   if (tmpIfTest) {
+    $(x);
   } else {
-    tmpIfTest = 1 === 1;
-  }
-  if (tmpIfTest) {
-    {
-      $(1);
-    }
-    tmpFallthrough = true;
-  }
-  {
-    $(2);
+    break;
   }
 }
 `````
@@ -49,7 +43,6 @@ switch (1) {
 
 Should call `$` with:
  - 1: 1
- - 2: 2
  - eval returned: undefined
 
 Normalized calls: Same

@@ -24,7 +24,7 @@ switch (1) { default: let x = x; $('fail'); }
 `````js filename=intro
 {
   let x;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     {
       $('fail');

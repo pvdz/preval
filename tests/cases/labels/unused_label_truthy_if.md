@@ -1,33 +1,25 @@
 # Preval test case
 
-# switch.md
+# unused_label.md
 
-> normalize > blocks > switch
+> labels > unused_label
 >
-> Add blocks to sub-statements. Let's do this for cases as well, for now. Maybe that's a mistake :)
+> Labels should not throw
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-switch ($(1)) {
-  default: {
-    $(3);
-  }
-}
+foo: if (true) $(1);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
 {
-  let tmpFallthrough = false;
   {
-    {
-      $(3);
-    }
+    $(1);
   }
 }
 `````
@@ -42,7 +34,6 @@ const tmpSwitchTest = $(1);
 
 Should call `$` with:
  - 1: 1
- - 2: 3
  - eval returned: undefined
 
 Normalized calls: Same

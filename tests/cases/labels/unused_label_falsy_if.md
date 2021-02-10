@@ -11,15 +11,13 @@
 ## Input
 
 `````js filename=intro
-foo: $(1);
+foo: if (false) $(1);
 `````
 
 ## Normalized
 
 `````js filename=intro
-foo: {
-  $(1);
-}
+
 `````
 
 ## Output
@@ -31,10 +29,8 @@ foo: {
 ## Result
 
 Should call `$` with:
- - 1: 1
  - eval returned: undefined
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

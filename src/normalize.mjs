@@ -86,7 +86,6 @@ const VERBOSE_TRACING = true;
 
 // low hanging fruit: async, iterators
 // next level: assignment analysis and first pass of ssa
-// next level: figure out how to fix var decls vs use
 
 /*
   Ideas for normalization;
@@ -111,22 +110,11 @@ const VERBOSE_TRACING = true;
     - Create new functions for the remainder after an early return? Does that help?
   - Remove unused `return` keywords
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
-  - labels
-    - Continue to if block?
-      - Nested continues are less trivial to transform so this may not be an easy fix
-    - while (true) { if (Math.random()) break; $() }
-      - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
-        - Is that worth it? Kind of depends on the future overhead...
-      - --> `var unbroken = true; while (unbroken) { if (Math.random()) { unbroken = false; } else { $() } }`
-      - --> `while (x()) y()` --> `while (true) { if (x()) break; y(); }`
-    - what would be a normalized cross-branch labelled break/continue look like?
-  - Can we get rid of labeled continue such that we can normalize all label sub-statements to blocks? Right now we need to exclude loops.
   - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
   - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - arguments (ehh)
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
-  - TODO: loops that are direct children of labels are significant
   - TODO: are func params made unique multiple times?
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
@@ -140,10 +128,6 @@ const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 
 const FRESH = true;
 const OLD = false;
-
-const HOISTING_FUNC = 'func';
-const HOISTING_VAR = 'var';
-const HOISTING_AFTER = 'after';
 
 function rold(desc, ...rest) {
   if (desc.slice(-1) === '"') fixme;
@@ -715,12 +699,12 @@ export function phaseNormalize(fdata, fname) {
         return transformForxStatement(node, body, i, false);
       case 'FunctionDeclaration':
         return transformFunctionDeclaration(node, body, i);
-      case 'LabeledStatement':
-        return transformLabeledStatement(node, body, i, parent);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
       case 'ImportDeclaration':
         return transformImportDeclaration(node, body, i, parent);
+      case 'LabeledStatement':
+        return transformLabeledStatement(node, body, i, parent);
       case 'MethodDefinition':
         return transformMethodDefinition(node, body, i, parent);
       case 'ReturnStatement':
@@ -741,6 +725,10 @@ export function phaseNormalize(fdata, fname) {
 
       case 'BreakStatement':
       case 'ContinueStatement':
+        if (node.label) {
+          ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
+          fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
+        }
         return false;
 
       case 'ExportAllDeclaration':
@@ -3921,35 +3909,32 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformLabeledStatement(node, body, i, parent) {
     log('Label: `' + node.label.name + '`');
+
+    // Note: if the parent changes and triggers a revisit, then the label would already have been registered
     //ASSERT(
-    //  !fdata.globallyUniqueLabelRegistery.has(node.label.name) || fdata.globallyUniqueLabelRegistery.get(node.label.name) === true,
-    //  'labels should be made unique in phase1',
-    //  fdata.globallyUniqueLabelRegistery,
+    //  !fdata.globallyUniqueLabelRegistery.has(node.label.name),
+    //  'js syntax governs that a label is unique in its own hierarchy and phase1 should make existing labels unique',
     //  node,
     //);
 
-    // This node should be stored in body.body[i]
-    const prop = 'body';
-    const index = i;
-
-    //log('--->', parent.type, prop, index)
-
-    if (fdata.globallyUniqueLabelRegistery.has(node.label.name))
+    if (fdata.globallyUniqueLabelRegistery.has(node.label.name)) {
       log(
         'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
       );
+    }
+
     log('Registering label `' + node.label.name + '`');
-    fdata.globallyUniqueLabelRegistery.set(node.label.name, {
+    const labelMeta = {
       // ident meta data
       name: node.label.name,
       uniqueName: node.label.name,
       labelNode: {
-        parent,
-        prop,
-        index, // Make sure to update below if the index changes
+        body,
+        index: i, // Make sure to update below if the index changes
       },
       usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-    });
+    };
+    fdata.globallyUniqueLabelRegistery.set(node.label.name, labelMeta);
 
     // foo: bar
     // foo: {bar}
@@ -3972,6 +3957,19 @@ export function phaseNormalize(fdata, fname) {
 
         if (!changed) {
           after('Label body did not change at all');
+
+          if (labelMeta.usages.length === 0) {
+            log('Label was not used in any of its children. Should be safe to eliminate.');
+            rule('Unused labels must be dropped; unchanged loop body');
+            example('foo: {}', '{}');
+            before(node);
+
+            body[i] = node.body;
+
+            after(body[i]);
+
+            return true;
+          }
           return false;
         }
 
@@ -3979,11 +3977,36 @@ export function phaseNormalize(fdata, fname) {
 
         if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
           log('Something changed but the node stays put');
+
+          if (labelMeta.usages.length === 0) {
+            log('Label was not used in any of its children. Should be safe to eliminate.');
+            rule('Unused labels must be dropped; changed loop body');
+            example('foo: {}', '{}');
+            before(node);
+
+            body[i] = node.body;
+
+            after(body[i]);
+
+            return true;
+          }
           return false; // No need to change anything in this body
         }
 
         log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
         fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+
+        if (fakeWrapper.body.length === 0) {
+          log('The label.body node was eliminated. We can drop the label too.');
+          rule('Label with empty body should be dropped');
+          example('foo: {}', ';');
+          before(node);
+
+          body[i] = AST.emptyStatement();
+
+          after(body[i]);
+          return true;
+        }
 
         if (fakeWrapper.body[fakeWrapper.body.length - 1] === node.body) {
           // Only outline the elements preceding the last one. We throw away the wrapper.
@@ -3995,13 +4018,13 @@ export function phaseNormalize(fdata, fname) {
         log('Labeled statement changed. Replacing the whole deal.');
         // Outline every element but the last and put them in front of the label. Replace the label
         // with a new label that has the last element as a body. It's a different node now.
-        body.splice(
-          i,
-          1,
+        const newNodes = [
           ...fakeWrapper.body.slice(0, -1),
           AST.labeledStatement(node.label, fakeWrapper.body[fakeWrapper.body.length - 1]),
-        );
+        ];
+        body.splice(i, 1, ...newNodes);
 
+        after(newNodes);
         return true;
       }
 
@@ -4033,6 +4056,18 @@ export function phaseNormalize(fdata, fname) {
       before(node);
 
       body[i] = AST.emptyStatement();
+
+      after(body[i]);
+      return true;
+    }
+
+    if (!anyChange && labelMeta.usages.length === 0) {
+      log('Label was not used in any of its children. Should be safe to eliminate.');
+      rule('Unused labels must be dropped; non-loop body');
+      example('foo: {}', '{}');
+      before(node);
+
+      body[i] = node.body;
 
       after(body[i]);
       return true;

@@ -1,8 +1,8 @@
 # Preval test case
 
-# nested.md
+# unused_label.md
 
-> labels > nested
+> labels > unused_label
 >
 > Labels should not throw
 
@@ -11,19 +11,13 @@
 ## Input
 
 `````js filename=intro
-a: b: c: break a;
+foo: while (false) $(1);
 `````
 
 ## Normalized
 
 `````js filename=intro
-a: {
-  {
-    {
-      break a;
-    }
-  }
-}
+
 `````
 
 ## Output

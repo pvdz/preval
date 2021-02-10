@@ -31,7 +31,7 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {

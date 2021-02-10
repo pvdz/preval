@@ -12,11 +12,12 @@
 
 `````js filename=intro
 let x = 1,
-  y = 2;
+  y = 2,
+  z = 3;
 
 let a = { a: 999, b: 1000 };
-for (let x in (a = [x, y] = [$(3), $(4)]));
-$(a, x, y);
+for (let x in (a = [z, y] = [$(3), $(4)]));
+$(a, x, y, z);
 `````
 
 ## Normalized
@@ -24,6 +25,7 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
+let z = 3;
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
@@ -32,7 +34,7 @@ let a = { a: 999, b: 1000 };
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x_1 = arrPatternSplat[0];
+  z = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
@@ -41,7 +43,7 @@ let a = { a: 999, b: 1000 };
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y);
+$(a, x, y, z);
 `````
 
 ## Output
@@ -55,7 +57,8 @@ $(a, x, y);
 Should call `$` with:
  - 1: 3
  - 2: 4
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - 3: [3, 4], 1, 4, 3
+ - eval returned: undefined
 
 Normalized calls: Same
 

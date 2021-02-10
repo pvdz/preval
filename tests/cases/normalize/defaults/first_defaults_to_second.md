@@ -6,6 +6,8 @@
 >
 > Rewrite function param defaults to equivalent body code
 
+TDZ case
+
 ## Input
 
 `````js filename=intro

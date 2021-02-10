@@ -6,6 +6,8 @@
 >
 > Assignments of all kinds should be normalized in all circumstances
 
+TDZ case
+
 #TODO
 
 ## Input

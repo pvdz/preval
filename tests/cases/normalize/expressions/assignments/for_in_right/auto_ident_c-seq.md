@@ -14,7 +14,7 @@
 let x = 1;
 
 let a = { a: 999, b: 1000 };
-for (let x in (a = ($(1), $(2), $(x))));
+for (let x in (a = ($(1), $(2), $(a))));
 $(a, x);
 `````
 
@@ -27,7 +27,7 @@ let a = { a: 999, b: 1000 };
   let tmpForInDeclRhs;
   $(1);
   $(2);
-  const tmpNestedComplexRhs = $(x_1);
+  const tmpNestedComplexRhs = $(a);
   a = tmpNestedComplexRhs;
   tmpForInDeclRhs = tmpNestedComplexRhs;
   let x_1;
@@ -48,7 +48,9 @@ $(a, x);
 Should call `$` with:
  - 1: 1
  - 2: 2
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - 3: { a: '999', b: '1000' }
+ - 4: { a: '999', b: '1000' }, 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

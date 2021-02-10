@@ -31,11 +31,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
-const tmpBinBothLhs = 'Identifier'.length;
-const tmpBinBothRhs = 'woop'.length;
-a = tmpBinBothLhs === tmpBinBothRhs;
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -46,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

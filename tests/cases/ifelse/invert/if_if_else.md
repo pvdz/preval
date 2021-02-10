@@ -34,16 +34,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-} else {
-  const tmpIfTest$1 = $(2);
-  if (tmpIfTest$1) {
-    $(3);
-  } else {
-    $(4);
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -54,4 +45,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

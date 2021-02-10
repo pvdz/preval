@@ -24,7 +24,7 @@ function g(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

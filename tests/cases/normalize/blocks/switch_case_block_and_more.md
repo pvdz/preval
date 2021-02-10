@@ -47,26 +47,7 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(2);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      {
-        $(3);
-      }
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -79,5 +60,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

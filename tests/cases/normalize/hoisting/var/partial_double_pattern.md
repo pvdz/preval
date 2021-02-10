@@ -38,19 +38,7 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-var x;
-var y;
-var z;
-const arrAssignPatternRhs = [1, 2, 3];
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-$(x, y);
-const arrAssignPatternRhs$1 = [4, 5, 6];
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-x = arrPatternSplat$1[0];
-z = arrPatternSplat$1[1];
-$(x, y, z);
+'<skipped>';
 `````
 
 ## Result
@@ -62,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -60,30 +60,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberObj$1 = $(c);
-const tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
-tmpNestedAssignPropRhs = 7;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    $(100);
-  }
-}
-$(a, b, c, 7, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -100,10 +77,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: { x: '1' }
- - 2: 'x'
- - 3: { y: '2' }
- - 4: 'y'
- - 5: 100
- - 6: 7, { x: '7' }, { y: '7' }, 7, 4
  - eval returned: undefined

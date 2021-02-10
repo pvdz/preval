@@ -32,10 +32,7 @@
 ## Output
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-let a = [tmpArrElement, 2, tmpArrElement$2];
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -48,4 +45,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

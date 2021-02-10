@@ -41,19 +41,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.c = tmpNestedPropAssignRhs;
-  tmpDoWhileTest = tmpNestedPropAssignRhs;
-} while (tmpDoWhileTest);
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -89,4 +77,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

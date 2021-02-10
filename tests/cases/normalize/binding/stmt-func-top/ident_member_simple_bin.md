@@ -41,16 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  let b = { x: 2 };
-  let a;
-  b.x = 7;
-  a = 7;
-  $(a, b, 7);
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -63,6 +54,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 7, { x: '7' }, 7
- - 2: undefined
  - eval returned: undefined

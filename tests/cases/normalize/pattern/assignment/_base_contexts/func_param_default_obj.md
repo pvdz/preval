@@ -34,17 +34,7 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-($tdz$__a) => {
-  let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
-  if (tmpIfTest) {
-    x = (1).x;
-    a = 1;
-  } else {
-    a = $tdz$__a;
-  }
-  return a;
-};
+'<skipped>';
 `````
 
 ## Result

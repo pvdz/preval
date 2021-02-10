@@ -33,15 +33,7 @@ foo_2: {
 ## Output
 
 `````js filename=intro
-foo: {
-  break foo;
-}
-foo_1: {
-  break foo_1;
-}
-foo_2: {
-  break foo_2;
-}
+'<skipped>';
 `````
 
 ## Result

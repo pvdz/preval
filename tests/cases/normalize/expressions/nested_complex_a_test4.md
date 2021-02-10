@@ -34,22 +34,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(a);
-const tmpNestedPropAssignRhs = b;
-tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 2
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

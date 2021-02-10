@@ -57,29 +57,7 @@ switch (6) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest = tmpSwitchFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinLhs = $(30);
-    tmpIfTest = tmpBinLhs === 6;
-  }
-  if (tmpIfTest) {
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -90,4 +68,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

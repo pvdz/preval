@@ -174,74 +174,7 @@ switch (6) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinLhs = $(10);
-      tmpIfTest = tmpBinLhs === 6;
-    }
-    if (tmpIfTest) {
-      $(1);
-      break;
-      tmpSwitchFallthrough = true;
-    }
-    let tmpIfTest$1 = tmpSwitchFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpBinLhs$1 = $(20);
-      tmpIfTest$1 = tmpBinLhs$1 === 6;
-    }
-    if (tmpIfTest$1) {
-      $(2);
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('d');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$2 = tmpSwitchFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    const tmpBinLhs$2 = $(30);
-    tmpIfTest$2 = tmpBinLhs$2 === 6;
-  }
-  if (tmpIfTest$2) {
-    $(3);
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$3 = tmpSwitchFallthrough;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpBinLhs$3 = $(40);
-    tmpIfTest$3 = tmpBinLhs$3 === 6;
-  }
-  if (tmpIfTest$3) {
-    $(4);
-    break;
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$4 = tmpSwitchFallthrough;
-  if (tmpIfTest$4) {
-  } else {
-    const tmpBinLhs$4 = $(50);
-    tmpIfTest$4 = tmpBinLhs$4 === 6;
-  }
-  if (tmpIfTest$4) {
-    $(5);
-    break;
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -259,4 +192,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

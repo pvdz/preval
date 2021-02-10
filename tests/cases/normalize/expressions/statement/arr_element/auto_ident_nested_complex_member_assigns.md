@@ -106,77 +106,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-let tmpAssignComputedRhs;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberObj$1 = $(b);
-const tmpNestedAssignComMemberProp$1 = $('x');
-let tmpNestedAssignPropRhs$1;
-const tmpNestedAssignComMemberObj$2 = $(b);
-const tmpNestedAssignComMemberProp$2 = $('x');
-let tmpNestedAssignPropRhs$2;
-const tmpNestedAssignComMemberObj$3 = $(b);
-const tmpNestedAssignComMemberProp$3 = $('x');
-let tmpNestedAssignPropRhs$3;
-const tmpNestedAssignComMemberObj$4 = $(b);
-const tmpNestedAssignComMemberProp$4 = $('x');
-tmpNestedAssignComMemberObj$4[tmpNestedAssignComMemberProp$4] = 3;
-tmpNestedAssignPropRhs$3 = 3;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$3;
-tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs$1;
-tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$1;
-const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$2;
-tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$2;
-tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$2;
-const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$1;
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$3;
-tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$3;
-const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$4;
-tmpAssignComputedRhs = tmpNestedPropAssignRhs$4;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-const tmpAssignComMemLhsObj$1 = $(b);
-const tmpAssignComMemLhsProp$1 = $('x');
-const tmpAssignComputedObj$1 = tmpAssignComMemLhsObj$1;
-const tmpAssignComputedProp$1 = tmpAssignComMemLhsProp$1;
-let tmpAssignComputedRhs$1;
-const tmpNestedAssignComMemberObj$5 = $(b);
-const tmpNestedAssignComMemberProp$5 = $('x');
-let tmpNestedAssignPropRhs$4;
-const tmpNestedAssignComMemberObj$6 = $(b);
-const tmpNestedAssignComMemberProp$6 = $('x');
-let tmpNestedAssignPropRhs$5;
-const tmpNestedAssignComMemberObj$7 = $(b);
-const tmpNestedAssignComMemberProp$7 = $('x');
-let tmpNestedAssignPropRhs$6;
-const tmpNestedAssignComMemberObj$8 = $(b);
-const tmpNestedAssignComMemberProp$8 = $('x');
-let tmpNestedAssignPropRhs$7;
-const tmpNestedAssignComMemberObj$9 = $(b);
-const tmpNestedAssignComMemberProp$9 = $('x');
-tmpNestedAssignComMemberObj$9[tmpNestedAssignComMemberProp$9] = 3;
-tmpNestedAssignPropRhs$7 = 3;
-const tmpNestedPropAssignRhs$6 = tmpNestedAssignPropRhs$7;
-tmpNestedAssignComMemberObj$8[tmpNestedAssignComMemberProp$8] = tmpNestedPropAssignRhs$6;
-tmpNestedAssignPropRhs$6 = tmpNestedPropAssignRhs$6;
-const tmpNestedPropAssignRhs$7 = tmpNestedAssignPropRhs$6;
-tmpNestedAssignComMemberObj$7[tmpNestedAssignComMemberProp$7] = tmpNestedPropAssignRhs$7;
-tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$7;
-const tmpNestedPropAssignRhs$8 = tmpNestedAssignPropRhs$5;
-tmpNestedAssignComMemberObj$6[tmpNestedAssignComMemberProp$6] = tmpNestedPropAssignRhs$8;
-tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs$8;
-const tmpNestedPropAssignRhs$9 = tmpNestedAssignPropRhs$4;
-tmpNestedAssignComMemberObj$5[tmpNestedAssignComMemberProp$5] = tmpNestedPropAssignRhs$9;
-tmpAssignComputedRhs$1 = tmpNestedPropAssignRhs$9;
-tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
-$(a, b, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -211,4 +141,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

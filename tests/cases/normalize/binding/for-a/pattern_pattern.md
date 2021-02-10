@@ -39,18 +39,7 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let bindingPatternArrRoot;
-const tmpNestedAssignArrPatternRhs = z;
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat$1[1];
-y = arrPatternSplat$1[2];
-bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-let arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
+'<skipped>';
 `````
 
 ## Result

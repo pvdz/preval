@@ -36,14 +36,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-const tmpForOfDeclRhs = new tmpNewCallee(1);
-let x;
-for (x of tmpForOfDeclRhs) {
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -54,4 +47,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -27,10 +27,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = {};
-const objPatternNoDefault = bindingPatternObjRoot.x;
-objPatternNoDefault.y;
-$('bad');
+'<skipped>';
 `````
 
 ## Result
@@ -40,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

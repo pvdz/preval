@@ -44,21 +44,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    const tmpAssignComputedObj = b;
-    const tmpAssignComputedProp = 'c';
-    const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  }
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -75,4 +61,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -28,11 +28,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot = [1, 2];
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -43,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

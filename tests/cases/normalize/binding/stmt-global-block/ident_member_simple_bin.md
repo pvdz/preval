@@ -38,14 +38,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  let b = { x: 2 };
-  let a;
-  b.x = 7;
-  a = 7;
-  $(a, b, 7);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -58,6 +51,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: true
- - 2: 7, { x: '7' }, 7
  - eval returned: undefined

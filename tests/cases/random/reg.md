@@ -34,15 +34,7 @@ $(b, c);
 ## Output
 
 `````js filename=intro
-let b = [];
-let c;
-let tmpBinLhs;
-const tmpNestedAssignArrPatternRhs = [2];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-tmpBinLhs = tmpNestedAssignArrPatternRhs;
-c = tmpBinLhs === 1;
-$(b, c);
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +45,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

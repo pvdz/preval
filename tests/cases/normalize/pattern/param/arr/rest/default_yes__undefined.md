@@ -42,23 +42,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass'];
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
-  } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
-  }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let x = arrPatternSplat.slice(0);
-  return x;
-}
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f(undefined, 200);
-tmpCallCallee$1(tmpCalleeParam$1);
+'<skipped>';
 `````
 
 ## Result
@@ -70,4 +54,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -40,20 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = tmpSwitchTest === 'foo';
-  }
-  if (tmpIfTest) {
-    tmpFallthrough = true;
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -66,5 +53,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

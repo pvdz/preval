@@ -98,68 +98,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  $(1);
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchTest === 0;
-    }
-    if (tmpIfTest) {
-      {
-        $(2);
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$1 = tmpFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(1);
-      tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest$1) {
-      {
-        $(3);
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$2 = tmpFallthrough;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpBinBothLhs$1 = tmpSwitchTest;
-      const tmpBinBothRhs$1 = $(4);
-      tmpIfTest$2 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    }
-    if (tmpIfTest$2) {
-      {
-        $(5);
-        const tmpReturnArg = $(6);
-        return tmpReturnArg;
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$3 = tmpFallthrough;
-    if (tmpIfTest$3) {
-    } else {
-      const tmpBinBothLhs$2 = tmpSwitchTest;
-      const tmpBinBothRhs$2 = $(7);
-      tmpIfTest$3 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-    }
-    if (tmpIfTest$3) {
-      {
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
-  }
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -176,5 +115,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

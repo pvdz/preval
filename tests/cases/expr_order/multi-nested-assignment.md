@@ -83,61 +83,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
-var e;
-a = function () {
-  $('a');
-  return 1;
-};
-b = function () {
-  $('b');
-  a = 21;
-  return 2;
-};
-c = function () {
-  $('c');
-  a = 31;
-  b = 32;
-  return 3;
-};
-d = function () {
-  $('d');
-  a = 41;
-  b = 42;
-  c = 43;
-  return 4;
-};
-e = function () {
-  $('e');
-  a = 51;
-  b = 52;
-  c = 53;
-  d = 54;
-  return 5;
-};
-const tmpAssignMemLhsObj = a();
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-let tmpAssignMemRhs;
-const tmpNestedAssignObj = b();
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignObj$1 = c();
-let tmpNestedAssignPropRhs$1;
-const tmpNestedAssignObj$2 = d();
-let tmpNestedAssignPropRhs$2 = e();
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$2;
-tmpNestedAssignObj$2.x = tmpNestedPropAssignRhs;
-tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
-tmpNestedAssignObj$1.x = tmpNestedPropAssignRhs$1;
-tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$1;
-const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs$2;
-tmpAssignMemRhs = tmpNestedPropAssignRhs$2;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-$(a, b, c, d, e);
+'<skipped>';
 `````
 
 ## Result
@@ -152,4 +98,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -135,77 +135,7 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = 6;
-    const tmpBinBothRhs = $(10);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      $(1);
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpBinBothLhs$1 = 6;
-    const tmpBinBothRhs$1 = $(20);
-    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
-    {
-      $(2);
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$2 = tmpFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    const tmpBinBothLhs$2 = 6;
-    const tmpBinBothRhs$2 = $(30);
-    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    {
-      $(3);
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$3 = tmpFallthrough;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpBinBothLhs$3 = 6;
-    const tmpBinBothRhs$3 = $(40);
-    tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-  }
-  if (tmpIfTest$3) {
-    {
-      $(4);
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$4 = tmpFallthrough;
-  if (tmpIfTest$4) {
-  } else {
-    const tmpBinBothLhs$4 = 6;
-    const tmpBinBothRhs$4 = $(50);
-    tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
-  }
-  if (tmpIfTest$4) {
-    {
-      $(5);
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -220,4 +150,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

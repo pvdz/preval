@@ -25,7 +25,7 @@ $(bar);
 ## Output
 
 `````js filename=intro
-$(5);
+'<skipped>';
 `````
 
 ## Result
@@ -36,4 +36,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

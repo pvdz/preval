@@ -46,24 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let xyz;
-let tmpNestedComplexRhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
-  const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpNestedComplexRhs = tmpChainElementObject;
-}
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
-while (true) {
-  $(xyz);
-  $(1);
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -99,4 +82,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

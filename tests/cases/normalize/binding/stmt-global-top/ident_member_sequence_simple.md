@@ -30,10 +30,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
-b.x;
-let a = (3).foo;
-$(a, b, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -44,4 +41,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

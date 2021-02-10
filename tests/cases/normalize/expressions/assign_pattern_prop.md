@@ -25,10 +25,7 @@ tmpCompObj.foo;
 ## Output
 
 `````js filename=intro
-let tmpCompObj;
-x = (1).x;
-tmpCompObj = 1;
-tmpCompObj.foo;
+'<skipped>';
 `````
 
 ## Result

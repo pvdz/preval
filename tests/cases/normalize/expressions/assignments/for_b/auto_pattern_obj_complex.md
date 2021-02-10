@@ -42,22 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-while (true) {
-  let tmpIfTest;
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  a = tmpNestedAssignObjPatternRhs.a;
-  tmpIfTest = tmpNestedAssignObjPatternRhs;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -93,4 +78,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

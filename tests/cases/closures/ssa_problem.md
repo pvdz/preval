@@ -44,17 +44,7 @@ a = 4;
 ## Output
 
 `````js filename=intro
-function f() {
-  a = 2;
-}
-let a = 1;
-$(a);
-f();
-a = 3;
-$(a);
-f();
-$(a);
-a = 4;
+'<skipped>';
 `````
 
 ## Result
@@ -67,4 +57,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

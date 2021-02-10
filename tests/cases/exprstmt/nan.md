@@ -21,7 +21,7 @@ NaN;
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

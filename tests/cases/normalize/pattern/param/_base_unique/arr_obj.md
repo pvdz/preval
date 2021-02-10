@@ -34,7 +34,7 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

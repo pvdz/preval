@@ -42,24 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
-let tmpBinBothLhs;
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
-a = tmpNestedAssignObjPatternRhs.a;
-tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
-let tmpBinBothRhs;
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$2(tmpCalleeParam$2);
-a = tmpNestedAssignObjPatternRhs$1.a;
-tmpBinBothRhs = tmpNestedAssignObjPatternRhs$1;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -73,4 +56,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

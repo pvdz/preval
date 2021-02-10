@@ -43,25 +43,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = (1).x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { x: 'fail' };
-  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-let objPatternCrashTest = objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-}
-$('bad');
+'<skipped>';
 `````
 
 ## Result
@@ -73,4 +55,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -42,24 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: 1, y: 2, z: 3 };
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'fail' };
-  arrPatternStep = tmpCallCallee(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const tmpCallCallee$1 = objPatternRest;
-const tmpCalleeParam$1 = arrPatternStep;
-const tmpCalleeParam$2 = [];
-const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -70,4 +53,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

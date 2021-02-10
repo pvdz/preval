@@ -36,16 +36,7 @@ let b = { x: 1, y: 2 };
 ## Output
 
 `````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
-let tmpForOfLhsNode;
-for (tmpForOfLhsNode of b) {
-  const tmpAssignMemLhsObj = $(a);
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  const tmpCallCallee = $;
-  const tmpCalleeParam = a.x;
-  tmpCallCallee(tmpCalleeParam);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -55,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -82,44 +82,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-let s = String;
-const tmpClassSuper = $(s);
-const tmpClassComputedKey = $('f');
-s = Number;
-let x = class x extends tmpClassSuper {
-  [tmpClassComputedKey]() {
-    const tmpReturnArg = $(100, 'method');
-    return tmpReturnArg;
-  }
-  g() {
-    const tmpReturnArg$1 = $(200, 'method');
-    return tmpReturnArg$1;
-  }
-  ['x']() {
-    const tmpReturnArg$2 = $(300, 'method');
-    return tmpReturnArg$2;
-  }
-  ['y']() {
-    const tmpReturnArg$3 = $(400, 'method');
-    return tmpReturnArg$3;
-  }
-};
-const tmpCallCallee = $;
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
-const tmpCallObj$1 = new x();
-const tmpCalleeParam$1 = tmpCallObj$1.g();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
-const tmpCallObj$2 = new x();
-const tmpCalleeParam$2 = tmpCallObj$2.x();
-tmpCallCallee$2(tmpCalleeParam$2);
-const tmpCallCallee$3 = $;
-const tmpCallObj$3 = new x();
-const tmpCalleeParam$3 = tmpCallObj$3.y();
-tmpCallCallee$3(tmpCalleeParam$3);
+'<skipped>';
 `````
 
 ## Result
@@ -129,4 +92,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

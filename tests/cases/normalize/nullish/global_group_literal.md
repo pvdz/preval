@@ -29,12 +29,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = 3;
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = foo;
-}
-$(y);
+'<skipped>';
 `````
 
 ## Result
@@ -45,4 +40,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

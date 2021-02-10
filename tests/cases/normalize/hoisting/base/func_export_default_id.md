@@ -28,10 +28,7 @@ export { f as default };
 ## Output
 
 `````js filename=intro
-function f() {}
-$(f);
-$(f);
-export { f as default };
+'<skipped>';
 `````
 
 ## Result
@@ -41,4 +38,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

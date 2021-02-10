@@ -32,14 +32,7 @@ export { y };
 ## Output
 
 `````js filename=intro
-var x;
-var y;
-$(x, y);
-x = 10;
-y = 20;
-$(x, y);
-export { x };
-export { y };
+'<skipped>';
 `````
 
 ## Result
@@ -49,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

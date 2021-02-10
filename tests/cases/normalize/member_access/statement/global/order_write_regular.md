@@ -37,16 +37,7 @@ tmpAssignMemLhsObj.x = 30;
 ## Output
 
 `````js filename=intro
-const obj = {
-  get x() {
-    return $(10);
-  },
-  set x(_) {
-    $(20);
-  },
-};
-const tmpAssignMemLhsObj = $(obj);
-tmpAssignMemLhsObj.x = 30;
+'<skipped>';
 `````
 
 ## Result
@@ -58,4 +49,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

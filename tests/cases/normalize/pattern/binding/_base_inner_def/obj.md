@@ -29,14 +29,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = (1).x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = b;
-} else {
-  x = objPatternBeforeDefault;
-}
+'<skipped>';
 `````
 
 ## Result

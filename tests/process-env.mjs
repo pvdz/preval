@@ -9,6 +9,7 @@ export function parseTestArgs() {
     targetFile: undefined,
     fileVerbatim: false,
     fastTest: false,
+    onlyNormalized: false,
   };
 
   while (argv.length) {

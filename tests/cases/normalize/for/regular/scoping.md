@@ -30,9 +30,7 @@ const x = 1;
 ## Output
 
 `````js filename=intro
-while (true) {
-  $(2);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -68,4 +66,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

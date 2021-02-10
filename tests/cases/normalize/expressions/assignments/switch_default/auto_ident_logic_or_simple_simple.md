@@ -40,19 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    a = 0;
-    if (a) {
-    } else {
-      a = 2;
-    }
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -64,4 +52,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

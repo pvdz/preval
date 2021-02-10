@@ -26,17 +26,15 @@ if (a) {
 ## Output
 
 `````js filename=intro
-if (a) {
-  x = (1).x;
-} else {
-}
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

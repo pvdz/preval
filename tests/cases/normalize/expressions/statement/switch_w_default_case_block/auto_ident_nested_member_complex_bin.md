@@ -111,56 +111,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinLhs = $(1);
-      tmpIfTest = tmpBinLhs === tmpSwitchValue;
-    }
-    if (tmpIfTest) {
-      const tmpAssignComMemLhsObj = $(b);
-      const tmpAssignComMemLhsProp = $('x');
-      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-      let tmpAssignComputedRhs;
-      const tmpNestedAssignComMemberObj = $(c);
-      const tmpNestedAssignComMemberProp = $('y');
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-      tmpAssignComputedRhs = 7;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      break;
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpSwitchFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = 2 === tmpSwitchValue;
-  }
-  if (tmpIfTest$1) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
-$(a, b, c, 7, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -178,11 +129,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - 2: 1
- - 3: { x: '1' }
- - 4: 'x'
- - 5: { y: '2' }
- - 6: 'y'
- - 7: { a: '999', b: '1000' }, { x: '7' }, { y: '7' }, 7, 4
  - eval returned: undefined

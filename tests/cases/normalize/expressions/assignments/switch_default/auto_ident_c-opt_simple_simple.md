@@ -45,22 +45,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-({ x: 1 });
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    a = undefined;
-    const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
-      const tmpChainRootComputed = 'x';
-      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-      a = tmpChainElementObject;
-    }
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -73,6 +58,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - 2: undefined
  - eval returned: undefined

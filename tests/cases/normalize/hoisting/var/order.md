@@ -32,13 +32,7 @@ b = $();
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-$(a, b, c);
-a = $();
-c = $();
-b = $();
+'<skipped>';
 `````
 
 ## Result
@@ -52,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

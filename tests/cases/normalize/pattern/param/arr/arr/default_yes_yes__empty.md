@@ -52,33 +52,7 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass3'];
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
-  } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
-  }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail2'];
-    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  [...arrPatternStep];
-  return 'ok';
-}
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+'<skipped>';
 `````
 
 ## Result
@@ -90,4 +64,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

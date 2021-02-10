@@ -48,21 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let b = { x: 2 };
-    let a;
-    const tmpNestedAssignComMemberObj = b;
-    const tmpNestedAssignComMemberProp = $('x');
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-    a = 7;
-    $(a, b, 7);
-  }
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -77,8 +63,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: true
- - 2: 'x'
- - 3: 7, { x: '7' }, 7
- - 4: undefined
  - eval returned: undefined

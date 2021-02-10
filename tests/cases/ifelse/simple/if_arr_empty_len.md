@@ -27,11 +27,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpCompObj = [];
-const tmpIfTest = tmpCompObj.length;
-if (tmpIfTest) {
-  $();
-}
+'<skipped>';
 `````
 
 ## Result

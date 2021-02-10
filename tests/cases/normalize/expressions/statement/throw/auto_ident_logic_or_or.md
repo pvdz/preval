@@ -42,24 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(0);
-let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
-if (tmpThrowArg) {
-} else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(1);
-  tmpThrowArg = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpThrowArg) {
-} else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpThrowArg = tmpCallCallee$2(tmpCalleeParam$2);
-}
-throw tmpThrowArg;
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -73,4 +56,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

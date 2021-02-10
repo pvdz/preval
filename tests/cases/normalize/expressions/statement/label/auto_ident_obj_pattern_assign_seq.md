@@ -40,17 +40,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-label: {
-  $(x);
-  $(y);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpAssignObjPatternRhs.x;
-  y = tmpAssignObjPatternRhs.y;
-}
-$(a, 1, 2);
+'<skipped>';
 `````
 
 ## Result
@@ -66,9 +56,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 3
- - 2: 4
- - 3: 3
- - 4: 4
- - 5: { a: '999', b: '1000' }, 1, 2
  - eval returned: undefined

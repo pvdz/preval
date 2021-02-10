@@ -33,13 +33,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-a = 2;
-export { a };
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -49,4 +43,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

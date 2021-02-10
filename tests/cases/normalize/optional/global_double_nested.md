@@ -39,24 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpCallCallee = $;
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = obj;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.a;
-  if (tmpChainElementObject) {
-    const tmpChainElementObject$1 = tmpChainElementObject.b;
-    if (tmpChainElementObject$1) {
-      const tmpChainElementObject$2 = tmpChainElementObject$1.c;
-      tmpCalleeParam = tmpChainElementObject$2;
-    }
-  }
-}
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -68,4 +51,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

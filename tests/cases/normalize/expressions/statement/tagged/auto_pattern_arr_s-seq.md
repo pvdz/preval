@@ -34,16 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
-$(10);
-$(20);
-const tmpCalleeParam$1 = [1, 2];
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

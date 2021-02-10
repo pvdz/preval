@@ -38,13 +38,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let tmpIfTest = undefined;
-tmpIfTest = 2;
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -55,4 +49,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

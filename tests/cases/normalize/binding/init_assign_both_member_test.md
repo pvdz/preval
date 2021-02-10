@@ -53,32 +53,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-b = {
-  get x() {
-    $(1);
-    return 10;
-  },
-  set x(n) {
-    $(2, n);
-  },
-};
-c = {
-  get x() {
-    $(3);
-    return 20;
-  },
-  set x(n_1) {
-    $(4, n_1);
-  },
-};
-let tmpNestedAssignPropRhs = c.x;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(5, a);
+'<skipped>';
 `````
 
 ## Result
@@ -91,4 +66,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

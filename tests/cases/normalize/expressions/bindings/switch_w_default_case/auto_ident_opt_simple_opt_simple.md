@@ -99,54 +99,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let tmpObjLitVal;
-let b;
-let a;
-let tmpChainRootProp;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = true;
-    }
-    if (tmpIfTest) {
-      tmpObjLitVal = { y: 1 };
-      b = { x: tmpObjLitVal };
-      a = undefined;
-      tmpChainRootProp = b;
-      if (tmpChainRootProp) {
-        const tmpChainElementObject = tmpChainRootProp.x;
-        if (tmpChainElementObject) {
-          const tmpChainElementObject$1 = tmpChainElementObject.y;
-          a = tmpChainElementObject$1;
-        }
-      }
-      $(a);
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpSwitchFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = true;
-  }
-  if (tmpIfTest$1) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -159,4 +112,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

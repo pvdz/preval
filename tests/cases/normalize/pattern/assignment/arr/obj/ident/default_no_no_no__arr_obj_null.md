@@ -30,12 +30,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: null, y: 2, z: 3 };
-const arrAssignPatternRhs = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-x = arrPatternStep.x;
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -46,4 +41,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

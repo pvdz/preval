@@ -38,17 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpClassComputedKey = $('f');
-let x = class x {
-  [tmpClassComputedKey]() {
-    const tmpReturnArg = $(100);
-    return tmpReturnArg;
-  }
-};
-const tmpCallCallee = $;
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -61,4 +51,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

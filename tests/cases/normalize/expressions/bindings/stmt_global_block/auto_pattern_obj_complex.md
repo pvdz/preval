@@ -32,11 +32,7 @@
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCalleeParam = { a: 1, b: 2 };
-let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
-let a = bindingPatternObjRoot.a;
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -48,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

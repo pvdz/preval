@@ -31,11 +31,7 @@ $(2);
 ## Output
 
 `````js filename=intro
-foo: while (true) {
-  $(1);
-  break foo;
-}
-$(2);
+'<skipped>';
 `````
 
 ## Result
@@ -47,4 +43,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

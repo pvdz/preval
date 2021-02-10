@@ -49,22 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault$1 = arrPatternStep.y;
-  [...objPatternNoDefault$1];
-  return 'ok';
-}
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
-const tmpObjLitVal$2 = [1, 2, 3];
-const tmpArrElement = { x: 15, y: tmpObjLitVal$2, c: 16 };
-const tmpObjLitVal = [tmpArrElement, 13, 14];
-const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -75,4 +60,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

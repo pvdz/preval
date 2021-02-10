@@ -37,18 +37,7 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-let b = [10, 20];
-let p;
-let q;
-let tmpDoWhileTest;
-do {
-  const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  p = arrPatternSplat[0];
-  q = arrPatternSplat[1];
-  tmpDoWhileTest = 7;
-} while (tmpDoWhileTest);
-$(p, q);
+'<skipped>';
 `````
 
 ## Result
@@ -84,4 +73,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

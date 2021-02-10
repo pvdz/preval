@@ -42,24 +42,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...''];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  arrPatternStep = $('pass');
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-let objPatternCrashTest = arrPatternStep === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-}
-$('ok');
+'<skipped>';
 `````
 
 ## Result
@@ -71,4 +54,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

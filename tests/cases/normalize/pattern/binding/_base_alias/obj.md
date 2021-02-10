@@ -22,7 +22,7 @@ const a = bindingPatternObjRoot.x;
 ## Output
 
 `````js filename=intro
-(1).x;
+'<skipped>';
 `````
 
 ## Result

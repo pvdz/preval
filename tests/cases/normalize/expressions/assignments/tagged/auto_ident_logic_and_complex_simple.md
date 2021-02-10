@@ -38,20 +38,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = $(1);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$2);
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
-}
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -65,4 +52,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

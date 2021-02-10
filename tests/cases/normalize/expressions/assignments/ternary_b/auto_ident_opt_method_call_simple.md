@@ -46,26 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-} else {
-  tmpCalleeParam = $(200);
-}
-tmpCallCallee(tmpCalleeParam);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -79,4 +60,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

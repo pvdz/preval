@@ -44,17 +44,7 @@ export { g };
 ## Output
 
 `````js filename=intro
-function f() {
-  let x_1 = $(1);
-  return x_1;
-}
-export class c {}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-export { x };
-export { f };
-export { g };
+'<skipped>';
 `````
 
 ## Result
@@ -64,4 +54,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

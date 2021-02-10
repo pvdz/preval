@@ -56,32 +56,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $('a');
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      a_1 = undefined;
-      const tmpNestedAssignComMemberObj = b;
-      const tmpNestedAssignComMemberProp = $('x');
-      let tmpNestedAssignPropRhs = c + d;
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-      a_1 = tmpNestedPropAssignRhs;
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-}
-$(1, b, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -96,5 +71,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 'a'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

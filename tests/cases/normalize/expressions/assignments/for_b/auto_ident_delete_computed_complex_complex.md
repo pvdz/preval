@@ -44,22 +44,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest;
-  const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, x);
+'<skipped>';
 `````
 
 ## Result
@@ -95,4 +80,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

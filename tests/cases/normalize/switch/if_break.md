@@ -70,41 +70,7 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 1 === 1;
-  }
-  if (tmpIfTest) {
-    {
-      {
-        {
-          $(3);
-          break tmpSwitchBreak;
-        }
-      }
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = 1 === 4;
-  }
-  if (tmpIfTest$1) {
-    {
-      {
-        {
-          $(6);
-          break tmpSwitchBreak;
-        }
-      }
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -115,4 +81,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

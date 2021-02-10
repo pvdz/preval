@@ -35,17 +35,7 @@ tmpCallCompVal.call(tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function b() {
-  const tmpReturnArg = $('b');
-  return tmpReturnArg;
-}
-const a = { b: $ };
-const tmpCallCompObj = $(a);
-const tmpCallCompProp = b();
-const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-tmpCallCompVal.call(tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
+'<skipped>';
 `````
 
 ## Result
@@ -60,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

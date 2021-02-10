@@ -42,13 +42,7 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamS
 ## Output
 
 `````js filename=intro
-var a;
-var d;
-const tmpCallVal = undefined.y;
-a = undefined.c;
-d = undefined[undefined];
-const tmpCalleeParamSpread = undefined.h;
-tmpCallVal.call(undefined, undefined, 8, ...tmpCalleeParamSpread);
+'<skipped>';
 `````
 
 ## Result
@@ -58,4 +52,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

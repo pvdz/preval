@@ -44,23 +44,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-let tmpIfTest;
-const tmpCompObj = $(b);
-const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-tmpIfTest = tmpNestedPropAssignRhs;
-if (tmpIfTest) {
-  const tmpAssignComputedObj = b;
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
-  const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignComputedObj.c = tmpAssignComputedRhs;
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -78,4 +62,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

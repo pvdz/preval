@@ -26,10 +26,7 @@ tmpAssignMemLhsObj.foo = 10;
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCalleeParam = {};
-const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
-tmpAssignMemLhsObj.foo = 10;
+'<skipped>';
 `````
 
 ## Result
@@ -40,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

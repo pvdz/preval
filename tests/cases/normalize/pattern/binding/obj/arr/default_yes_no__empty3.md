@@ -28,9 +28,7 @@ $(val);
 ## Output
 
 `````js filename=intro
-let val = undefined;
-val = false;
-$(val);
+'<skipped>';
 `````
 
 ## Result
@@ -41,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

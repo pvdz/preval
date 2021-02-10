@@ -33,19 +33,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpArrElement = [];
-const bindingPatternArrRoot = [tmpArrElement];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat$1[0];
-let x = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = a;
-} else {
-  x = arrPatternBeforeDefault;
-}
+'<skipped>';
 `````
 
 ## Result

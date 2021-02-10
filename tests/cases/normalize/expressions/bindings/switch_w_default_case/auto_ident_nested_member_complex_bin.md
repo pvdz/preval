@@ -109,61 +109,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let b;
-let c;
-let d;
-let e;
-let a;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = true;
-    }
-    if (tmpIfTest) {
-      b = { x: 1 };
-      c = { y: 2 };
-      d = 3;
-      e = 4;
-      a = undefined;
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      let tmpNestedAssignPropRhs;
-      const tmpNestedAssignComMemberObj$1 = $(c);
-      const tmpNestedAssignComMemberProp$1 = $('y');
-      let tmpNestedAssignPropRhs$1 = d + e;
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-      a = tmpNestedPropAssignRhs$1;
-      $(a, b, c, d, e);
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpSwitchFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = true;
-  }
-  if (tmpIfTest$1) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -180,4 +126,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

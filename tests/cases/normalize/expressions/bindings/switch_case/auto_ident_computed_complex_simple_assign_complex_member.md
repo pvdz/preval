@@ -55,29 +55,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 1 === 1;
-  }
-  if (tmpIfTest) {
-    {
-      b = { c: 10, d: 20 };
-      a = undefined;
-      const tmpNestedAssignObj = $(b);
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-      $(a, b);
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -91,4 +69,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

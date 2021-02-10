@@ -60,40 +60,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail2'];
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
-  } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
-  }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    arrPatternStep = $('fail');
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  let objPatternCrashTest = arrPatternStep === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = arrPatternStep === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-  }
-  return 'ok';
-}
-const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
-const tmpCalleeParam$2 = [1, 2, 3, 20, 30];
-const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 200);
-tmpCallCallee$1(tmpCalleeParam$1);
+'<skipped>';
 `````
 
 ## Result
@@ -104,4 +71,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

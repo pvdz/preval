@@ -31,14 +31,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: 1, y: 2, c: 3 };
-const tmpObjLitVal = [tmpArrElement, 13, 14];
-const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
-const arrPatternStep = arrPatternSplat[0];
-const y = arrPatternStep.y;
-$(y);
+'<skipped>';
 `````
 
 ## Result
@@ -49,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

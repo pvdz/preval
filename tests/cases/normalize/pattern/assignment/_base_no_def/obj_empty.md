@@ -29,14 +29,7 @@ if (objPatternCrashTest) {
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = false;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = true;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = (1).cannotDestructureThis;
-}
+'<skipped>';
 `````
 
 ## Result

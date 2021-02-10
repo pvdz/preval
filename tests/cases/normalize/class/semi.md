@@ -35,14 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = class x {
-  a() {}
-  b() {}
-};
-const tmpCallCallee = $;
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.b();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

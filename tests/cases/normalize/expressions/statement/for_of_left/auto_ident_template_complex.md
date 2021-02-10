@@ -26,9 +26,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr = $(1);
-let a = `foo${tmpTemplateExpr}`;
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -40,4 +38,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

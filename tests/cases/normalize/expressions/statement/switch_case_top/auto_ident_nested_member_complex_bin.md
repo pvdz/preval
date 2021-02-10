@@ -66,38 +66,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      const tmpAssignComMemLhsObj = $(b);
-      const tmpAssignComMemLhsProp = $('x');
-      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-      let tmpAssignComputedRhs;
-      const tmpNestedAssignComMemberObj = $(c);
-      const tmpNestedAssignComMemberProp = $('y');
-      let tmpNestedAssignPropRhs = d + e;
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-      tmpAssignComputedRhs = tmpNestedPropAssignRhs;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    }
-    tmpFallthrough = true;
-  }
-}
-$(a, b, c, 3, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -115,5 +84,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

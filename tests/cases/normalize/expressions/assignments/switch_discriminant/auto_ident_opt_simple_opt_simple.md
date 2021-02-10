@@ -51,28 +51,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-}
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    $(100);
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -84,4 +63,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

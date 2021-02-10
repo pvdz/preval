@@ -108,44 +108,7 @@ f();
 ## Output
 
 `````js filename=intro
-function f() {
-  $('-------- start');
-  const b = {
-    get foo() {
-      return $(2);
-    },
-    set foo(x) {
-      return $(3);
-    },
-  };
-  $('-------- bound');
-  let a = 1;
-  $('-------- let 1');
-  const tmpCallCallee = $;
-  let tmpCalleeParam;
-  let tmpNestedComplexRhs;
-  let tmpNestedAssignPropRhs = $(6);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.foo = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  tmpCallCallee(tmpCalleeParam);
-  $('-------- test case');
-  $(a);
-  $('-------- a');
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = b.foo;
-  tmpCallCallee$1(tmpCalleeParam$1);
-  $('-------- a.foo');
-  const tmpCallCallee$2 = $;
-  let tmpCalleeParam$2;
-  b.foo = 4;
-  tmpCalleeParam$2 = 4;
-  tmpCallCallee$2(tmpCalleeParam$2);
-  $('-------- a.foo = 4');
-}
-f();
+'<skipped>';
 `````
 
 ## Result
@@ -170,4 +133,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

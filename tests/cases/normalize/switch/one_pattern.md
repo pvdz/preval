@@ -69,33 +69,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 1 === 1;
-  }
-  if (tmpIfTest) {
-    {
-      bindingPatternArrRoot = [4, 5, 6];
-      arrPatternSplat = [...bindingPatternArrRoot];
-      x = arrPatternSplat[0];
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = 1 === 2;
-  }
-  if (tmpIfTest$1) {
-    {
-      $(x);
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -106,4 +80,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

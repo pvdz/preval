@@ -105,49 +105,7 @@ exit: {
 ## Output
 
 `````js filename=intro
-exit: {
-  let tmpIfTest = fallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = x;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      $('A');
-    }
-    fallthrough = true;
-  }
-  let tmpIfTest$1 = fallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpBinBothLhs$1 = x;
-    const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
-    {
-      $('B');
-      break exit;
-    }
-    fallthrough = true;
-  }
-  let tmpIfTest$2 = fallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    const tmpBinBothLhs$2 = x;
-    const tmpBinBothRhs$2 = $(3);
-    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    {
-      $('C');
-      break exit;
-    }
-    fallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -161,4 +119,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

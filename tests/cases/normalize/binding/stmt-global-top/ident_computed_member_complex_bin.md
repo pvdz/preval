@@ -35,13 +35,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
-let a;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-a = 7;
-$(a, b, 7);
+'<skipped>';
 `````
 
 ## Result
@@ -55,7 +49,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: { x: '2' }
- - 2: 'x'
- - 3: 7, { x: '7' }, 7
  - eval returned: undefined

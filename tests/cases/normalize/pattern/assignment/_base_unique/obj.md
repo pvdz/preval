@@ -30,7 +30,7 @@ x_1 = tmpAssignObjPatternRhs.x;
 ## Output
 
 `````js filename=intro
-x_1_1 = (1).x_1;
+'<skipped>';
 `````
 
 ## Result

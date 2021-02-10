@@ -41,18 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  let x = { y: 1 };
-  let a = { a: 999, b: 1000 };
-  $(1);
-  $(2);
-  const tmpDeleteObj = x;
-  delete tmpDeleteObj.y;
-  $(a, x);
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -66,4 +55,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

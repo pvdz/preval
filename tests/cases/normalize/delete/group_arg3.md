@@ -32,13 +32,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-var foo;
-foo = 1;
-const tmpCallCallee = $;
-tmpCallCallee(true);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = typeof foo;
-tmpCallCallee$1(tmpCalleeParam$1);
+'<skipped>';
 `````
 
 ## Result
@@ -50,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

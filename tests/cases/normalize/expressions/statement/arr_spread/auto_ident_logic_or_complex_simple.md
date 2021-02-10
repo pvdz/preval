@@ -34,16 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(0);
-let tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
-if (tmpArrElToSpread) {
-} else {
-  tmpArrElToSpread = 2;
-}
-[...tmpArrElToSpread];
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -55,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

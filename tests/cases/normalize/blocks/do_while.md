@@ -26,11 +26,7 @@ do {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileTest;
-do {
-  $(1);
-  tmpDoWhileTest = $(2);
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -66,4 +62,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

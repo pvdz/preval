@@ -37,11 +37,7 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = [x_1];
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
-  $(x_1);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -51,4 +47,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

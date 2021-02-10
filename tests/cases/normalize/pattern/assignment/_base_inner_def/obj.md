@@ -28,20 +28,15 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = (1).x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = b;
-} else {
-  x = objPatternBeforeDefault;
-}
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

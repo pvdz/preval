@@ -44,26 +44,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...''];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { x: 'pass2' };
-  arrPatternStep = tmpCallCallee(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  x = $('pass');
-} else {
-  x = objPatternBeforeDefault;
-}
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -75,4 +56,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

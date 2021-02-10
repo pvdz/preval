@@ -31,10 +31,7 @@ $(arr);
 ## Output
 
 `````js filename=intro
-const arr = [];
-arr.push(1);
-arr.push(2);
-$(arr);
+'<skipped>';
 `````
 
 ## Result
@@ -45,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

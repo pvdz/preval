@@ -36,13 +36,7 @@ if (tmpChainElementObject) {
 ## Output
 
 `````js filename=intro
-const tmpChainElementObject = undefined.b;
-if (tmpChainElementObject) {
-  const tmpCallObj = tmpChainElementObject;
-  const tmpCallVal = tmpCallObj.call;
-  const tmpCalleeParam$1 = undefined.y;
-  tmpCallVal.call(tmpCallObj, undefined, tmpCalleeParam$1);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -52,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

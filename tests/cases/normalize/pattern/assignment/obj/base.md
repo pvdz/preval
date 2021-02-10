@@ -33,16 +33,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpAssignObjPatternRhs === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
-}
-$('ok');
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

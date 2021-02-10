@@ -36,16 +36,7 @@ const tmpForOfRhs = $(b);
 ## Output
 
 `````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
-const tmpForOfRhs = $(b);
-let tmpForOfLhsNode;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpAssignComMemLhsObj = $(a);
-  const tmpAssignComMemLhsProp = $('foo');
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
-  $(a);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -56,4 +47,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

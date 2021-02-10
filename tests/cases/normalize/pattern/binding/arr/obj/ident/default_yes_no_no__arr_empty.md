@@ -35,18 +35,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = objPatternBeforeDefault;
-}
-$('bad');
+'<skipped>';
 `````
 
 ## Result
@@ -56,4 +45,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

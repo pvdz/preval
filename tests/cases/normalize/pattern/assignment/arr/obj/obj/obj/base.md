@@ -47,23 +47,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 31 };
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const arrAssignPatternRhs = [tmpArrElement, 10];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-let objPatternCrashTest = objPatternNoDefault$1 === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault$1 === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
-}
-$('ok');
+'<skipped>';
 `````
 
 ## Result
@@ -74,4 +58,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

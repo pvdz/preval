@@ -28,13 +28,7 @@ tmpCompObj.c;
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpCompObj$1 = obj.a;
-const tmpCompObj = tmpCompObj$1.b;
-tmpCompObj.c;
+'<skipped>';
 `````
 
 ## Result
@@ -45,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

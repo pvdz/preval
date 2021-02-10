@@ -32,15 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {};
-const tmpCallCallee = $;
-let tmpCalleeParam = a;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  const tmpAssignRhsProp = b.c;
-  tmpCalleeParam = tmpAssignRhsProp.d;
-}
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -51,4 +43,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

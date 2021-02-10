@@ -34,12 +34,7 @@ $(c);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-$(1);
-const tmpCompProp = $('length');
-const tmpCalleeParam = 'foo'[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
-$(1);
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +48,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

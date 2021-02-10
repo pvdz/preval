@@ -43,20 +43,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-({ c: $ });
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-    }
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -70,5 +57,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: undefined

@@ -39,19 +39,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpAssignObjPatternRhs.b;
-} else {
-  $(200);
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -65,4 +53,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -40,17 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-({ $: $ });
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    const tmpNewCallee = b.$;
-    a = new tmpNewCallee(1);
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -64,5 +54,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not a constructor ]>')
+ - eval returned: undefined

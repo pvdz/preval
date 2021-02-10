@@ -32,9 +32,7 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-while (true) {
-  $(4);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -70,4 +68,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

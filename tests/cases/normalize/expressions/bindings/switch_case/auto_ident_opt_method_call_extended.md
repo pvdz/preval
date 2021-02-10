@@ -61,32 +61,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 1 === 1;
-  }
-  if (tmpIfTest) {
-    {
-      tmpObjLitVal$1 = { e: $ };
-      tmpObjLitVal = { d: tmpObjLitVal$1 };
-      b = { c: tmpObjLitVal };
-      a = undefined;
-      tmpChainRootProp = b;
-      if (tmpChainRootProp) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementObject$1 = tmpChainElementObject.d;
-        const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-        const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-        a = tmpChainElementCall;
-      }
-      $(a);
-    }
-    tmpFallthrough = true;
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -98,4 +73,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

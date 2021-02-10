@@ -38,18 +38,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-const tmpCallCallee = $;
-const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export { tmpExportDefault as default };
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -59,4 +48,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

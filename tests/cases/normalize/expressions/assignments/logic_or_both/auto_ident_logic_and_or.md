@@ -66,46 +66,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = $(1);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(1);
-  tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
-}
-if (tmpNestedComplexRhs) {
-} else {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
-}
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
-if (tmpCalleeParam) {
-} else {
-  const tmpCallCallee$4 = $;
-  const tmpCalleeParam$4 = $(1);
-  let tmpNestedComplexRhs$1 = tmpCallCallee$4(tmpCalleeParam$4);
-  if (tmpNestedComplexRhs$1) {
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(1);
-    tmpNestedComplexRhs$1 = tmpCallCallee$5(tmpCalleeParam$5);
-  }
-  if (tmpNestedComplexRhs$1) {
-  } else {
-    const tmpCallCallee$6 = $;
-    const tmpCalleeParam$6 = $(2);
-    tmpNestedComplexRhs$1 = tmpCallCallee$6(tmpCalleeParam$6);
-  }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
-}
-tmpCallCallee(tmpCalleeParam);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -121,4 +82,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

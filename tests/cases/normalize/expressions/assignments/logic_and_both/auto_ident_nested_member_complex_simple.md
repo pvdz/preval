@@ -68,41 +68,7 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberObj$1 = $(c);
-const tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-tmpNestedAssignPropRhs = 3;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1;
-  const tmpNestedAssignComMemberObj$2 = $(b);
-  const tmpNestedAssignComMemberProp$2 = $('x');
-  let tmpNestedAssignPropRhs$1;
-  const tmpNestedAssignComMemberObj$3 = $(c);
-  const tmpNestedAssignComMemberProp$3 = $('y');
-  tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = 3;
-  tmpNestedAssignPropRhs$1 = 3;
-  const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$1;
-  tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$3;
-  tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$3;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
-}
-tmpCallCallee(tmpCalleeParam);
-$(a, b, c, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -122,4 +88,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

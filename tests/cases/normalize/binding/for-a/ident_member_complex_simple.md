@@ -33,11 +33,7 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
-let a_1;
-const tmpNestedAssignObj = $(b);
-tmpNestedAssignObj.x = 3;
-a_1 = 3;
+'<skipped>';
 `````
 
 ## Result
@@ -48,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

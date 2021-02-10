@@ -40,17 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-({ $: $ });
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    const tmpCallObj = $(b);
-    tmpCallObj.$(1);
-  }
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -65,6 +55,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - 2: 2
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - eval returned: undefined

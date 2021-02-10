@@ -42,24 +42,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { y: 'pass2' };
-  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $('fail');
-} else {
-  y = objPatternBeforeDefault$1;
-}
-$(y);
+'<skipped>';
 `````
 
 ## Result
@@ -71,4 +54,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

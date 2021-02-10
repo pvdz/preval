@@ -33,10 +33,7 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let b = 2;
-let a_1;
-b = 7;
-a_1 = 7;
+'<skipped>';
 `````
 
 ## Result

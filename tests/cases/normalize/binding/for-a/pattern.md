@@ -32,11 +32,7 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
-let bindingPatternArrRoot = z;
-let arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
+'<skipped>';
 `````
 
 ## Result

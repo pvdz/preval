@@ -50,23 +50,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParamSpread;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberObj$1 = $(c);
-const tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
-tmpNestedAssignPropRhs = 7;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-tmpCalleeParamSpread = tmpNestedPropAssignRhs$1;
-tmpCallCallee(...tmpCalleeParamSpread);
-$(a, b, c, 7, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -80,4 +64,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

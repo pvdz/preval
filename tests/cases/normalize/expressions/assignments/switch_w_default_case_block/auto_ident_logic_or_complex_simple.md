@@ -94,50 +94,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinLhs = $(1);
-      tmpIfTest = tmpBinLhs === tmpSwitchValue;
-    }
-    if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(0);
-      a = tmpCallCallee(tmpCalleeParam);
-      if (a) {
-      } else {
-        a = 2;
-      }
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpSwitchFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = 2 === tmpSwitchValue;
-  }
-  if (tmpIfTest$1) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -154,4 +111,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

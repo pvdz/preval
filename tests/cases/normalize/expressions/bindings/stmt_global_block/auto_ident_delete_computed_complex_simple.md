@@ -34,10 +34,7 @@
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
-const tmpDeleteCompObj = $(x);
-let a = delete tmpDeleteCompObj.y;
-$(a, x);
+'<skipped>';
 `````
 
 ## Result
@@ -49,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

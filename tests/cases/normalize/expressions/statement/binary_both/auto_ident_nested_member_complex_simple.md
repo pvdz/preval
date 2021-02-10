@@ -55,30 +55,7 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-let tmpAssignComputedRhs;
-const tmpNestedAssignComMemberObj = $(c);
-const tmpNestedAssignComMemberProp = $('y');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-tmpAssignComputedRhs = 3;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-const tmpAssignComMemLhsObj$1 = $(b);
-const tmpAssignComMemLhsProp$1 = $('x');
-const tmpAssignComputedObj$1 = tmpAssignComMemLhsObj$1;
-const tmpAssignComputedProp$1 = tmpAssignComMemLhsProp$1;
-let tmpAssignComputedRhs$1;
-const tmpNestedAssignComMemberObj$1 = $(c);
-const tmpNestedAssignComMemberProp$1 = $('y');
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-tmpAssignComputedRhs$1 = 3;
-tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
-$(a, b, c, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -97,4 +74,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

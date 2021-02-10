@@ -41,19 +41,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-let xyz;
-const tmpCompObj = $(b);
-const tmpCompProp = $('c');
-const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
-while (true) {
-  $(xyz);
-  $(1);
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -89,4 +77,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

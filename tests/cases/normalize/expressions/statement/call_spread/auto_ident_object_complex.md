@@ -32,13 +32,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const tmpCalleeParamSpread = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-tmpCallCallee(...tmpCalleeParamSpread);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -50,4 +44,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

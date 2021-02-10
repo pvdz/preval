@@ -92,49 +92,7 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-let a;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = true;
-    }
-    if (tmpIfTest) {
-      a = undefined;
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        a = 2;
-      } else {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(100);
-        a = tmpCallCallee(tmpCalleeParam);
-      }
-      $(a);
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$2 = tmpSwitchFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    tmpIfTest$2 = true;
-  }
-  if (tmpIfTest$2) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
+'<skipped>';
 `````
 
 ## Result
@@ -148,4 +106,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

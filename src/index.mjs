@@ -10,7 +10,7 @@ const MARK_NONE = 0;
 const MARK_TEMP = 1;
 const MARK_PERM = 2;
 
-export function preval({ entryPointFile, stdio, verbose, resolve, req }) {
+export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfterNormalize }) {
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
 
@@ -33,6 +33,23 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req }) {
     ],
   ]);
 
+  // Create global state for preval
+  const program = {
+    modules: modules,
+    evalOrder: undefined,
+    main: entryPoint,
+  };
+
+  const contents = {
+    // note: test runner will auto-Prettier the result. Perhaps this should be done here..? Or let the user take care of that?
+    // TODO: this is "final output". Rename it.
+    files: {},
+    // For debug/testing
+    normalized: {},
+    // Was used for discovering code that wasn't normalized. Currently unused.
+    special: {},
+  };
+
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
   const allFileNames = [entryPoint]; // unordered but there's no point in a set
 
@@ -53,6 +70,9 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req }) {
     mod.inputCode = inputCode;
     mod.normalizedCode = tmat(fdata.tenkoOutput.ast, true);
     mod.specialCode = 'unused';
+
+    contents.normalized[nextFname] = mod.normalizedCode;
+    contents.special[nextFname] = mod.specialCode;
 
     // Inject the discovered imports to the queue so they'll be processed too, if they haven't been found before
     // The imports have one entry per symbol:fname pair so get the unique file names first
@@ -125,45 +145,33 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req }) {
     log('Proper eval order is:');
     log(evalOrder.map((fname) => ' - ' + fname).join('\n'));
   }
+  program.evalOrder = evalOrder;
 
-  // Create global state for preval
-  const program = {
-    modules: modules,
-    evalOrder,
-    main: entryPoint,
-  };
-
-  const contents = {
-    // note: test runner will auto-Prettier the result. Perhaps this should be done here..? Or let the user take care of that?
-    // TODO: this is "final output". Rename it.
-    files: {},
-    // For debug/testing
-    normalized: {},
-    // Was used for discovering code that wasn't normalized. Currently unused.
-    special: {},
-  };
-
-  // Traverse the dependency tree, bottom to top
+  // Temporarily disable the second phase
   evalOrder.forEach((fname) => {
-    const mod = modules.get(fname);
-    const inputCode = mod.normalizedCode;
-    const fdata = phase0(inputCode, fname);
-    phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-
-    let changed = false;
-    do {
-      ++fdata.cycle;
-      changed = phase2(program, fdata, resolve, req);
-      changed = phase3(program, fdata, resolve, req) || changed;
-      changed = phase4(program, fdata, resolve, req) || changed;
-    } while (changed);
-
-    mod.fdata = fdata;
-
-    contents.files[fname] = tmat(fdata.tenkoOutput.ast, true);
-    contents.normalized[fname] = inputCode;
-    contents.special[fname] = mod.specialCode;
+    contents.files[fname] = '"<skipped>"';
   });
+  if (!stopAfterNormalize && false) {
+    // Traverse the dependency tree, bottom to top
+    evalOrder.forEach((fname) => {
+      const mod = modules.get(fname);
+      const inputCode = mod.normalizedCode;
+      const fdata = phase0(inputCode, fname);
+      phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+
+      let changed = false;
+      do {
+        ++fdata.cycle;
+        changed = phase2(program, fdata, resolve, req);
+        changed = phase3(program, fdata, resolve, req) || changed;
+        changed = phase4(program, fdata, resolve, req) || changed;
+      } while (changed);
+
+      mod.fdata = fdata;
+
+      contents.files[fname] = tmat(fdata.tenkoOutput.ast, true);
+    });
+  }
 
   return contents;
 }

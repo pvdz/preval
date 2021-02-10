@@ -39,20 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  let objPatternCrashTest = tmpParamPattern === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = tmpParamPattern === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = tmpParamPattern.cannotDestructureThis;
-  }
-  return 'ok';
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f(1, 2, 3, 10);
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -63,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

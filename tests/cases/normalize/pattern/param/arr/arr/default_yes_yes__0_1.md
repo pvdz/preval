@@ -32,7 +32,7 @@ f(true);
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

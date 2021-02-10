@@ -22,8 +22,7 @@ tmpCompObj.length;
 ## Output
 
 `````js filename=intro
-const tmpCompObj = $('foo');
-tmpCompObj.length;
+'<skipped>';
 `````
 
 ## Result
@@ -34,4 +33,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

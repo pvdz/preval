@@ -33,14 +33,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-label: {
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-}
-const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.b = 2;
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +46,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

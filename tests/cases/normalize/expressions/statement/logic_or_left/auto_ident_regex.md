@@ -31,9 +31,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$(100);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -45,6 +43,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 100
- - 2: { a: '999', b: '1000' }
  - eval returned: undefined

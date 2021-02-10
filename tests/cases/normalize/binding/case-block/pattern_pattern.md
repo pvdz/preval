@@ -62,34 +62,7 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $('a');
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      bindingPatternArrRoot = undefined;
-      const tmpNestedAssignArrPatternRhs = z;
-      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-      arrPatternSplat = [...bindingPatternArrRoot];
-      a_1 = arrPatternSplat[0];
-      b_1 = arrPatternSplat[1];
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-}
-$(1, 2, 1, 2, z);
+'<skipped>';
 `````
 
 ## Result
@@ -103,5 +76,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 'a'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

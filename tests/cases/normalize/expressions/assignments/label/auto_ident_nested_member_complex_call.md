@@ -47,24 +47,7 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-label: {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  let tmpNestedAssignPropRhs$1 = $(d);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  a = tmpNestedPropAssignRhs$1;
-}
-$(a, b, c, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -81,8 +64,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: { x: '1' }
- - 2: 'x'
- - 3: { y: '2' }
- - 4: 'y'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

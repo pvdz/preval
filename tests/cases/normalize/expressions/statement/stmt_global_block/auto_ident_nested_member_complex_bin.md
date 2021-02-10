@@ -51,20 +51,7 @@
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-let tmpAssignComputedRhs;
-const tmpNestedAssignComMemberObj = $(c);
-const tmpNestedAssignComMemberProp = $('y');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-tmpAssignComputedRhs = 7;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a, b, c, 7, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -80,9 +67,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: { x: '1' }
- - 2: 'x'
- - 3: { y: '2' }
- - 4: 'y'
- - 5: { a: '999', b: '1000' }, { x: '7' }, { y: '7' }, 7, 4
  - eval returned: undefined

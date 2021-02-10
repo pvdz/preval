@@ -40,18 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs;
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
-a = tmpNestedComplexRhs;
-tmpForOfDeclRhs = tmpNestedComplexRhs;
-let x;
-for (x of tmpForOfDeclRhs) {
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -62,4 +51,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

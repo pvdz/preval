@@ -23,8 +23,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-tmpCallCallee(true);
+'<skipped>';
 `````
 
 ## Result
@@ -36,5 +35,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: true
  - eval returned: undefined

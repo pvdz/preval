@@ -26,10 +26,7 @@ if (a) {
 ## Output
 
 `````js filename=intro
-if (a) {
-} else {
-  x = (1).x;
-}
+'<skipped>';
 `````
 
 ## Result

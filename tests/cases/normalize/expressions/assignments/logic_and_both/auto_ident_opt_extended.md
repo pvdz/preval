@@ -56,36 +56,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$2;
-}
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainRootProp$1 = b;
-  if (tmpChainRootProp$1) {
-    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
-    tmpNestedComplexRhs$1 = tmpChainElementObject$5;
-  }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
-}
-tmpCallCallee(tmpCalleeParam);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -97,4 +68,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

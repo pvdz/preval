@@ -36,7 +36,7 @@ if (tmpChainRootProp) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

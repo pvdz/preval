@@ -24,7 +24,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

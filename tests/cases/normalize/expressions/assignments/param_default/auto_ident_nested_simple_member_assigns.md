@@ -69,45 +69,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
-  if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    let tmpNestedAssignPropRhs;
-    let tmpNestedAssignPropRhs$1;
-    let tmpNestedAssignPropRhs$2;
-    let tmpNestedAssignPropRhs$3;
-    let tmpNestedAssignPropRhs$4;
-    b.x = 3;
-    tmpNestedAssignPropRhs$4 = 3;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-    b.x = tmpNestedPropAssignRhs$1;
-    tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-    const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-    b.x = tmpNestedPropAssignRhs$2;
-    tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-    const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-    b.x = tmpNestedPropAssignRhs$3;
-    tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-    const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-    b.x = tmpNestedPropAssignRhs$4;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-    const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs$5;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-    a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
-  } else {
-    arg = $tdz$__arg;
-  }
-}
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-$(a, b, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -119,4 +81,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

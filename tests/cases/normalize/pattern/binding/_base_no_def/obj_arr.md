@@ -24,9 +24,7 @@ const y = arrPatternSplat[0];
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = (1).x;
-const arrPatternSplat = [...objPatternNoDefault];
-arrPatternSplat[0];
+'<skipped>';
 `````
 
 ## Result
@@ -36,4 +34,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

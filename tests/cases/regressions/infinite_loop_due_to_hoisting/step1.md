@@ -41,17 +41,7 @@ f(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-var tmpBinaryLeft;
-var tmpTernaryTest;
-tmpBinaryLeft = a.x;
-tmpTernaryTest = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
-  tmpArg = 2;
-} else {
-  tmpArg = 3;
-}
-f(tmpArg);
+'<skipped>';
 `````
 
 ## Result
@@ -61,4 +51,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

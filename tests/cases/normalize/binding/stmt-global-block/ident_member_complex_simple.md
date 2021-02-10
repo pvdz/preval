@@ -37,15 +37,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  let b = { x: 2 };
-  let a;
-  const tmpNestedAssignObj = $(b);
-  tmpNestedAssignObj.x = 3;
-  a = 3;
-  $(a, b, 3);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -58,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

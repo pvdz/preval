@@ -36,12 +36,7 @@ switch (1) { default: let x = x; $('fail'); }
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    $('fail');
-  }
-}
+'<skipped>';
 `````
 
 ## Result
@@ -54,5 +49,4 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
- - 1: 'fail'
  - eval returned: undefined

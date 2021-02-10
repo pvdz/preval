@@ -39,19 +39,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  const tmpAssignMemLhsObj = b;
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-} else {
-  $(200);
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -68,4 +56,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

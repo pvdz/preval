@@ -81,56 +81,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let tmpIfTest;
-let tmpNestedAssignPropRhs;
-let tmpNestedAssignPropRhs$1;
-let tmpNestedAssignPropRhs$2;
-let tmpNestedAssignPropRhs$3;
-let tmpNestedAssignPropRhs$4;
-b.x = 3;
-tmpNestedAssignPropRhs$4 = 3;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-b.x = tmpNestedPropAssignRhs$1;
-tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-b.x = tmpNestedPropAssignRhs$2;
-tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-b.x = tmpNestedPropAssignRhs$3;
-tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-b.x = tmpNestedPropAssignRhs$4;
-tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs$5;
-tmpIfTest = tmpNestedPropAssignRhs$5;
-if (tmpIfTest) {
-} else {
-  const tmpAssignMemLhsObj = b;
-  let tmpAssignMemRhs;
-  let tmpNestedAssignPropRhs$5;
-  let tmpNestedAssignPropRhs$6;
-  let tmpNestedAssignPropRhs$7;
-  let tmpNestedAssignPropRhs$8;
-  b.x = 3;
-  tmpNestedAssignPropRhs$8 = 3;
-  const tmpNestedPropAssignRhs$7 = tmpNestedAssignPropRhs$8;
-  b.x = tmpNestedPropAssignRhs$7;
-  tmpNestedAssignPropRhs$7 = tmpNestedPropAssignRhs$7;
-  const tmpNestedPropAssignRhs$8 = tmpNestedAssignPropRhs$7;
-  b.x = tmpNestedPropAssignRhs$8;
-  tmpNestedAssignPropRhs$6 = tmpNestedPropAssignRhs$8;
-  const tmpNestedPropAssignRhs$9 = tmpNestedAssignPropRhs$6;
-  b.x = tmpNestedPropAssignRhs$9;
-  tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$9;
-  const tmpNestedPropAssignRhs$10 = tmpNestedAssignPropRhs$5;
-  b.x = tmpNestedPropAssignRhs$10;
-  tmpAssignMemRhs = tmpNestedPropAssignRhs$10;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-}
-$(a, b, 3);
+'<skipped>';
 `````
 
 ## Result
@@ -141,4 +92,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

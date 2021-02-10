@@ -31,10 +31,7 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let b = 2;
-let a_1;
-b = 3;
-a_1 = 3;
+'<skipped>';
 `````
 
 ## Result

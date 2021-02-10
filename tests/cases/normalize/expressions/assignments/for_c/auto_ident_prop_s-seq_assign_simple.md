@@ -42,19 +42,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
-    a = 2;
-  } else {
-    break;
-  }
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -90,4 +78,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

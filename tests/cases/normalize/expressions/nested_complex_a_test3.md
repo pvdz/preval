@@ -31,19 +31,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCompObj = $(a);
-const tmpCalleeParam = tmpCompObj.length;
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: undefined
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

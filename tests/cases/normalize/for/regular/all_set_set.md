@@ -30,9 +30,7 @@ for (let b = 2, c = 3, d = 4; b; ) $(d);
 ## Output
 
 `````js filename=intro
-while (2) {
-  $(4);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -68,4 +66,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

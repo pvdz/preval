@@ -25,8 +25,7 @@ $(f);
 ## Output
 
 `````js filename=intro
-const f = function g() {};
-$(f);
+'<skipped>';
 `````
 
 ## Result
@@ -36,4 +35,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

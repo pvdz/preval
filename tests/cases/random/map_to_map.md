@@ -60,28 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpNewCallee = Map;
-const tmpNewCallee$1 = Map;
-const tmpArrElement = ['clearInterval', 'global.clearInterval'];
-const tmpArrElement$1 = ['clearTimeout', 'global.clearTimeout'];
-const tmpArrElement$2 = ['console', 'global.console'];
-const tmpArrElement$3 = ['false', 'boolean'];
-const tmpArrElement$4 = ['null', 'null'];
-const tmpArrElement$5 = ['$', '$'];
-const tmpCalleeParam$3 = [tmpArrElement, tmpArrElement$1, tmpArrElement$2, tmpArrElement$3, tmpArrElement$4, tmpArrElement$5];
-const tmpCallObj$2 = new tmpNewCallee$1(tmpCalleeParam$3);
-const tmpArrSpread = tmpCallObj$2.keys();
-const tmpCallObj$1 = [...tmpArrSpread, 'module'];
-const tmpCallVal = tmpCallObj$1.map;
-const tmpCalleeParam$2 = (k) => {
-  const tmpReturnArg = [k, k];
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = tmpCallVal.call(tmpCallObj$1, tmpCalleeParam$2);
-const tmpCallObj = new tmpNewCallee(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get('$');
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -92,4 +71,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -27,11 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
-$(1);
-const tmpAssignRhsProp = $;
-x = tmpAssignRhsProp.length;
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -43,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

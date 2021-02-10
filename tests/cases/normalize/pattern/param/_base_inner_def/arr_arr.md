@@ -34,7 +34,7 @@ function i(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

@@ -31,9 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-tmpCalleeParam_1 = null.x;
-tmpCallCallee(tmpCalleeParam_1);
+'<skipped>';
 `````
 
 ## Result
@@ -46,4 +44,4 @@ Normalized calls: BAD?!
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Final output calls: BAD!!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: undefined

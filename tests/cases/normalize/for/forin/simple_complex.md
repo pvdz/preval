@@ -30,13 +30,7 @@ for (a in tmpForInRhs) {
 ## Output
 
 `````js filename=intro
-let a;
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1, y: 2 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-for (a in tmpForInRhs) {
-  $(a);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -49,4 +43,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

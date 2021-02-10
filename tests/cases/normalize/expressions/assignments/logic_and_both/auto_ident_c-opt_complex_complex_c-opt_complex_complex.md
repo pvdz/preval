@@ -63,43 +63,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
-  const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
-    const tmpChainRootComputed$1 = $('y');
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-}
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = tmpChainRootCall$1(b);
-  if (tmpChainElementCall$1) {
-    const tmpChainRootComputed$2 = $('x');
-    const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-    if (tmpChainElementObject$2) {
-      const tmpChainRootComputed$3 = $('y');
-      const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
-      tmpNestedComplexRhs$1 = tmpChainElementObject$3;
-    }
-  }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
-}
-tmpCallCallee(tmpCalleeParam);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -117,4 +81,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

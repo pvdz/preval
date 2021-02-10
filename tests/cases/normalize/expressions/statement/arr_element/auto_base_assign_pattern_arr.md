@@ -41,21 +41,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
-const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
-b = arrPatternSplat[0];
-const tmpCallCallee$1 = $;
-const tmpArrElement$1 = $(2);
-const tmpCalleeParam$1 = [tmpArrElement$1];
-const arrAssignPatternRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-b = arrPatternSplat$1[0];
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -70,4 +56,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

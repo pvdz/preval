@@ -57,31 +57,7 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
-$('a');
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $('a');
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      $(x_1);
-      $(y_1);
-      bindingPatternArrRoot = z;
-      arrPatternSplat = [...bindingPatternArrRoot];
-      x_1 = arrPatternSplat[0];
-      y_1 = arrPatternSplat[1];
-      break tmpSwitchBreak;
-    }
-    tmpFallthrough = true;
-  }
-}
-$(1, 2, z);
+'<skipped>';
 `````
 
 ## Result
@@ -100,5 +76,4 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
- - 1: 'a'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

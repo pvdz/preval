@@ -28,10 +28,7 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-}
+'<skipped>';
 `````
 
 ## Result
@@ -42,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

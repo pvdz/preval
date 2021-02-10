@@ -27,11 +27,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpArrElement$1 = $();
-const tmpArrElement$3 = $();
-const tmpCalleeParam = [1, tmpArrElement$1, , 2, , tmpArrElement$3, ,];
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -44,4 +40,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

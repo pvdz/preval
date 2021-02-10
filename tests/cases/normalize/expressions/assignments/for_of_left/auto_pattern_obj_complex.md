@@ -42,22 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj;
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
-  a = tmpNestedAssignObjPatternRhs.a;
-  tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -68,4 +53,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

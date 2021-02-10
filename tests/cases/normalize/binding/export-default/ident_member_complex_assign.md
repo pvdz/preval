@@ -40,20 +40,7 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
-let a;
-const tmpNestedAssignObj = $(b);
-let tmpNestedAssignPropRhs;
-const tmpNestedAssignObj$1 = $(3);
-let tmpNestedAssignPropRhs$1 = $(4);
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
-tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
-a = tmpNestedPropAssignRhs$1;
-export { a };
-$(a, b, 3, 4);
+'<skipped>';
 `````
 
 ## Result
@@ -63,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

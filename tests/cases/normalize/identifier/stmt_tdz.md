@@ -26,7 +26,7 @@ $('fail');
 ## Output
 
 `````js filename=intro
-$('fail');
+'<skipped>';
 `````
 
 ## Result
@@ -39,5 +39,4 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
- - 1: 'fail'
  - eval returned: undefined

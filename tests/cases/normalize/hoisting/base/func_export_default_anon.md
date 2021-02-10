@@ -27,9 +27,7 @@ $(f);
 ## Output
 
 `````js filename=intro
-$(f);
-export default function () {}
-$(f);
+'<skipped>';
 `````
 
 ## Result
@@ -39,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

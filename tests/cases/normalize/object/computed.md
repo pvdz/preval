@@ -29,10 +29,7 @@ $(obj);
 ## Output
 
 `````js filename=intro
-const tmpObjLitPropKey = $(1);
-const tmpObjLitPropVal = $(2);
-const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(obj);
+'<skipped>';
 `````
 
 ## Result
@@ -45,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

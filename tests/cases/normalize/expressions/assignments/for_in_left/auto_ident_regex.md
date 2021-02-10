@@ -39,18 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode;
-for (tmpForInLhsNode in tmpForInRhs) {
-  let tmpAssignMemLhsObj;
-  a = /foo/;
-  tmpAssignMemLhsObj = /foo/;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
-}
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -63,6 +52,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: { x: '1' }
- - 2: {}
  - eval returned: undefined

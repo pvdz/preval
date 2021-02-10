@@ -45,22 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-const tmpCallCallee = $;
-const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-b = tmpNestedAssignObjPatternRhs.b;
-tmpSwitchTest = tmpNestedAssignObjPatternRhs;
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    $(100);
-  }
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -74,4 +59,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

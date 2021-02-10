@@ -27,9 +27,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
-y = objPatternNoDefault.y;
-$('bad');
+'<skipped>';
 `````
 
 ## Result
@@ -39,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

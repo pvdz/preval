@@ -33,15 +33,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpExportDefault = 1;
-if (tmpExportDefault) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-}
-export { tmpExportDefault as default };
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -51,4 +43,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

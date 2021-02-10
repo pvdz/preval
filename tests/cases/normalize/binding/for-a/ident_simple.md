@@ -29,7 +29,7 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

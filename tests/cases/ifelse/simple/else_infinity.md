@@ -26,7 +26,7 @@ if (Infinity) {
 ## Output
 
 `````js filename=intro
-$(1);
+'<skipped>';
 `````
 
 ## Result
@@ -37,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

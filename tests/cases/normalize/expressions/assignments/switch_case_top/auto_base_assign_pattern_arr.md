@@ -55,32 +55,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      const tmpCallCallee = $;
-      const tmpArrElement = $(2);
-      const tmpCalleeParam = [tmpArrElement];
-      const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-      b = arrPatternSplat[0];
-      a = tmpNestedAssignArrPatternRhs;
-    }
-    tmpFallthrough = true;
-  }
-}
-$(a, b);
+'<skipped>';
 `````
 
 ## Result
@@ -96,5 +71,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

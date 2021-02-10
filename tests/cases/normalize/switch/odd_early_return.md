@@ -128,85 +128,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  $(1);
-  tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchTest === 0;
-    }
-    if (tmpIfTest) {
-      {
-        $(2);
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$1 = tmpFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(1);
-      tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest$1) {
-      {
-        const tmpIfTest$2 = $(8);
-        if (tmpIfTest$2) {
-          const tmpIfTest$3 = $(9);
-          if (tmpIfTest$3) {
-            const tmpReturnArg = $(10);
-            return tmpReturnArg;
-          } else {
-            $(11);
-          }
-          const tmpIfTest$4 = $(2);
-          if (tmpIfTest$4) {
-            $(13);
-          } else {
-            const tmpReturnArg$1 = $(14);
-            return tmpReturnArg$1;
-          }
-        }
-        $(3);
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$5 = tmpFallthrough;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpBinBothLhs$1 = tmpSwitchTest;
-      const tmpBinBothRhs$1 = $(4);
-      tmpIfTest$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    }
-    if (tmpIfTest$5) {
-      {
-        $(5);
-        const tmpReturnArg$2 = $(6);
-        return tmpReturnArg$2;
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$6 = tmpFallthrough;
-    if (tmpIfTest$6) {
-    } else {
-      const tmpBinBothLhs$2 = tmpSwitchTest;
-      const tmpBinBothRhs$2 = $(7);
-      tmpIfTest$6 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-    }
-    if (tmpIfTest$6) {
-      {
-        break tmpSwitchBreak;
-      }
-      tmpFallthrough = true;
-    }
-  }
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -223,5 +145,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined

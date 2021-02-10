@@ -31,7 +31,7 @@ function g($tdz$__pattern) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

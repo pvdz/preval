@@ -31,13 +31,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const tmpCallCallee = objPatternRest;
-const tmpCalleeParam = objPatternNoDefault;
-const tmpCalleeParam$1 = [];
-y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, undefined);
-$(y);
+'<skipped>';
 `````
 
 ## Result
@@ -48,4 +42,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

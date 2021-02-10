@@ -34,13 +34,7 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
-$(1);
-$(2);
-let bindingPatternArrRoot = $(z);
-let arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
+'<skipped>';
 `````
 
 ## Result
@@ -53,4 +47,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

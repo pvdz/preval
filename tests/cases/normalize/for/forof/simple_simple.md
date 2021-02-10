@@ -29,11 +29,7 @@ for (a of b) {
 ## Output
 
 `````js filename=intro
-let a;
-let b = { x: 1, y: 2 };
-for (a of b) {
-  $(a);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -43,4 +39,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

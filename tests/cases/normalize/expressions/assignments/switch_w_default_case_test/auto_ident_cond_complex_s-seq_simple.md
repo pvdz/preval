@@ -92,54 +92,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCheckCases = true;
-let tmpSwitchFallthrough = false;
-let tmpDoWhileTest;
-do {
-  if (tmpSwitchCheckCases) {
-    let tmpIfTest = tmpSwitchFallthrough;
-    if (tmpIfTest) {
-    } else {
-      let tmpBinLhs;
-      let tmpNestedComplexRhs = undefined;
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        tmpNestedComplexRhs = 60;
-      } else {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(100);
-        tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-      }
-      a = tmpNestedComplexRhs;
-      tmpBinLhs = tmpNestedComplexRhs;
-      tmpIfTest = tmpBinLhs === tmpSwitchValue;
-    }
-    if (tmpIfTest) {
-      tmpSwitchFallthrough = true;
-    }
-  } else {
-    tmpSwitchFallthrough = true;
-  }
-  if (tmpSwitchFallthrough) {
-    $('fail1');
-    tmpSwitchFallthrough = true;
-  }
-  let tmpIfTest$2 = tmpSwitchFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    tmpIfTest$2 = 2 === tmpSwitchValue;
-  }
-  if (tmpIfTest$2) {
-    $('fail2');
-    tmpSwitchFallthrough = true;
-  }
-  tmpSwitchCheckCases = false;
-  tmpDoWhileTest = tmpSwitchFallthrough === false;
-} while (tmpDoWhileTest);
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -154,4 +107,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

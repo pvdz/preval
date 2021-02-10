@@ -42,19 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const obj = {
-  get x() {
-    return $(10);
-  },
-  set x(_) {
-    $(20);
-  },
-};
-let x;
-const tmpNestedAssignObj = $(obj);
-tmpNestedAssignObj.x = 30;
-x = 30;
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -67,4 +55,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -57,36 +57,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-function f($tdz$__a, $tdz$__b) {
-  let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
-  if (tmpIfTest) {
-    a = b;
-  } else {
-    a = $tdz$__a;
-  }
-  let b = undefined;
-  const tmpIfTest$1 = $tdz$__b === undefined;
-  if (tmpIfTest$1) {
-    b = 'bar';
-  } else {
-    b = $tdz$__b;
-  }
-  const tmpReturnArg = [a, b];
-  return tmpReturnArg;
-}
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f('x');
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f(undefined, 'y');
-tmpCallCallee$2(tmpCalleeParam$2);
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('x', 'y');
-tmpCallCallee$3(tmpCalleeParam$3);
+'<skipped>';
 `````
 
 ## Result
@@ -96,4 +67,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

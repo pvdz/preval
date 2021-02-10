@@ -40,16 +40,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  $(1);
-  $(2);
-  a = 1;
-  tmpDoWhileTest = 1;
-} while (tmpDoWhileTest);
-$(a, 1);
+'<skipped>';
 `````
 
 ## Result
@@ -85,4 +76,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

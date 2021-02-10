@@ -39,16 +39,15 @@ tmpAssignMemLhsObj.length = b;
 ## Output
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.length = b;
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: 1
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

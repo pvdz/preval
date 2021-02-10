@@ -38,14 +38,7 @@ tmpCallCallee$1(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
-  const tmpCallCallee = $($);
-  let a = tmpCallCallee(1);
-  $(a);
-}
-const tmpCallCallee$1 = $;
-const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+'<skipped>';
 `````
 
 ## Result
@@ -59,4 +52,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

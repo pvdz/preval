@@ -26,9 +26,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
-const x = bindingPatternObjRoot.x;
-$(x);
+'<skipped>';
 `````
 
 ## Result
@@ -39,4 +37,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

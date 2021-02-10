@@ -34,13 +34,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-label: {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  a = tmpPostUpdArgIdent;
-}
-$(a, 1);
+'<skipped>';
 `````
 
 ## Result
@@ -52,5 +46,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 2, 1
  - eval returned: undefined

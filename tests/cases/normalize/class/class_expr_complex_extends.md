@@ -26,9 +26,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const tmpClassSuper = $(String);
-let a = class x extends tmpClassSuper {};
-$(a, x);
+'<skipped>';
 `````
 
 ## Result
@@ -38,4 +36,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -28,7 +28,7 @@ function f(x, y) {
 ## Output
 
 `````js filename=intro
-
+'<skipped>';
 `````
 
 ## Result

@@ -24,10 +24,7 @@ for (x of tmpForOfRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForOfRhs = $(1);
-for (x of tmpForOfRhs) {
-  $(2);
-}
+'<skipped>';
 `````
 
 ## Result
@@ -38,4 +35,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

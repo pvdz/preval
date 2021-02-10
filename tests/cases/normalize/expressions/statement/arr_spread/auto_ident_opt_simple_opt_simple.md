@@ -40,20 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = undefined;
-const tmpChainRootProp = b;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpArrElToSpread = tmpChainElementObject$1;
-  }
-}
-[...tmpArrElToSpread];
-$(a);
+'<skipped>';
 `````
 
 ## Result
@@ -63,4 +50,5 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: undefined

@@ -46,20 +46,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$(1);
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  {
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-  }
-}
-$(a, 1, 2);
+'<skipped>';
 `````
 
 ## Result
@@ -74,8 +61,4 @@ Should call `$` with:
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: 1
- - 2: 3
- - 3: 4
- - 4: { a: '999', b: '1000' }, 1, 2
  - eval returned: undefined

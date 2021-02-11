@@ -25,17 +25,26 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  tmpDoWhileTest = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  if (tmpChainElementCall) {
-    const tmpChainElementObject = tmpChainElementCall.x;
-    tmpDoWhileTest = tmpChainElementObject;
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    if (tmpChainElementCall) {
+      const tmpChainElementObject = tmpChainElementCall.x;
+      tmpIfTest = tmpChainElementObject;
+    }
   }
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

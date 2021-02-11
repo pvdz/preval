@@ -25,12 +25,21 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCallObj = b;
-  tmpDoWhileTest = tmpCallObj.$(1);
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpCallObj = b;
+    tmpIfTest = tmpCallObj.$(1);
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

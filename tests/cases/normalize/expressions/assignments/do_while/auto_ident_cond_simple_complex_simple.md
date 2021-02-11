@@ -22,16 +22,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  {
-    tmpNestedComplexRhs = $(2);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    let tmpNestedComplexRhs = undefined;
+    {
+      tmpNestedComplexRhs = $(2);
+    }
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileTest = tmpNestedComplexRhs;
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

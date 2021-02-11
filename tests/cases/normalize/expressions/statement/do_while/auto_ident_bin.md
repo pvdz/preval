@@ -22,13 +22,22 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  tmpDoWhileTest = tmpBinBothLhs + tmpBinBothRhs;
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

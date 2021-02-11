@@ -32,54 +32,63 @@ const tmpSwitchTest = $(1);
   let tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
-  let tmpDoWhileTest;
-  do {
-    if (tmpSwitchCheckCases) {
-      {
-        let tmpIfTest = tmpSwitchFallthrough;
-        if (tmpIfTest) {
-        } else {
-          const tmpObjLitVal = $(1);
-          const tmpObjLitVal$1 = 2;
-          const tmpObjLitVal$2 = $(3);
-          const tmpBinLhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-          tmpIfTest = tmpBinLhs === tmpSwitchValue;
-        }
-        if (tmpIfTest) {
-          {
-            break;
-          }
-        }
-      }
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
     } else {
-      tmpSwitchFallthrough = true;
+      tmpIfTest = tmpSwitchFallthrough === false;
     }
-    if (tmpSwitchFallthrough) {
-      {
-        $('fail1');
-      }
-      tmpSwitchFallthrough = true;
-    }
-    {
-      {
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      if (tmpSwitchCheckCases) {
         {
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
           } else {
-            tmpIfTest$1 = 2 === tmpSwitchValue;
+            const tmpObjLitVal = $(1);
+            const tmpObjLitVal$1 = 2;
+            const tmpObjLitVal$2 = $(3);
+            const tmpBinLhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+            tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
           }
           if (tmpIfTest$1) {
             {
-              $('fail2');
+              break;
             }
-            tmpSwitchFallthrough = true;
+          }
+        }
+      } else {
+        tmpSwitchFallthrough = true;
+      }
+      if (tmpSwitchFallthrough) {
+        {
+          $('fail1');
+        }
+        tmpSwitchFallthrough = true;
+      }
+      {
+        {
+          {
+            let tmpIfTest$2 = tmpSwitchFallthrough;
+            if (tmpIfTest$2) {
+            } else {
+              tmpIfTest$2 = 2 === tmpSwitchValue;
+            }
+            if (tmpIfTest$2) {
+              {
+                $('fail2');
+              }
+              tmpSwitchFallthrough = true;
+            }
           }
         }
       }
+      tmpSwitchCheckCases = false;
+    } else {
+      break;
     }
-    tmpSwitchCheckCases = false;
-    tmpDoWhileTest = tmpSwitchFallthrough === false;
-  } while (tmpDoWhileTest);
+  }
 }
 $(a);
 `````

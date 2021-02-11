@@ -25,19 +25,28 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
-    const tmpChainRootComputed = 'x';
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    if (tmpChainRootProp) {
+      const tmpChainRootComputed = 'x';
+      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+      tmpNestedComplexRhs = tmpChainElementObject;
+    }
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileTest = tmpNestedComplexRhs;
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

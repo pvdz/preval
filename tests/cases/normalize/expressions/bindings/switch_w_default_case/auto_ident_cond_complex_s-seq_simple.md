@@ -31,60 +31,69 @@ switch (1) {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
-    let tmpDoWhileTest;
-    do {
-      if (tmpSwitchCheckCases) {
-        {
-          let tmpIfTest = tmpSwitchFallthrough;
-          if (tmpIfTest) {
-          } else {
-            tmpIfTest = 1 === tmpSwitchValue;
-          }
-          if (tmpIfTest) {
-            {
-              a = undefined;
-              const tmpIfTest$1 = $(1);
-              if (tmpIfTest$1) {
-                a = 60;
-              } else {
-                const tmpCallCallee = $;
-                const tmpCalleeParam = $(100);
-                a = tmpCallCallee(tmpCalleeParam);
-              }
-              $(a);
-            }
-            tmpSwitchFallthrough = true;
-          }
-        }
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest = tmpDoWhileFlag;
+      if (tmpIfTest) {
       } else {
-        tmpSwitchFallthrough = true;
+        tmpIfTest = tmpSwitchFallthrough === false;
       }
-      if (tmpSwitchFallthrough) {
-        {
-          $('fail1');
-        }
-        tmpSwitchFallthrough = true;
-      }
-      {
-        {
+      if (tmpIfTest) {
+        tmpDoWhileFlag = false;
+        if (tmpSwitchCheckCases) {
           {
-            let tmpIfTest$2 = tmpSwitchFallthrough;
-            if (tmpIfTest$2) {
+            let tmpIfTest$1 = tmpSwitchFallthrough;
+            if (tmpIfTest$1) {
             } else {
-              tmpIfTest$2 = 2 === tmpSwitchValue;
+              tmpIfTest$1 = 1 === tmpSwitchValue;
             }
-            if (tmpIfTest$2) {
+            if (tmpIfTest$1) {
               {
-                $('fail2');
+                a = undefined;
+                const tmpIfTest$2 = $(1);
+                if (tmpIfTest$2) {
+                  a = 60;
+                } else {
+                  const tmpCallCallee = $;
+                  const tmpCalleeParam = $(100);
+                  a = tmpCallCallee(tmpCalleeParam);
+                }
+                $(a);
               }
               tmpSwitchFallthrough = true;
             }
           }
+        } else {
+          tmpSwitchFallthrough = true;
         }
+        if (tmpSwitchFallthrough) {
+          {
+            $('fail1');
+          }
+          tmpSwitchFallthrough = true;
+        }
+        {
+          {
+            {
+              let tmpIfTest$3 = tmpSwitchFallthrough;
+              if (tmpIfTest$3) {
+              } else {
+                tmpIfTest$3 = 2 === tmpSwitchValue;
+              }
+              if (tmpIfTest$3) {
+                {
+                  $('fail2');
+                }
+                tmpSwitchFallthrough = true;
+              }
+            }
+          }
+        }
+        tmpSwitchCheckCases = false;
+      } else {
+        break;
       }
-      tmpSwitchCheckCases = false;
-      tmpDoWhileTest = tmpSwitchFallthrough === false;
-    } while (tmpDoWhileTest);
+    }
   }
 }
 `````

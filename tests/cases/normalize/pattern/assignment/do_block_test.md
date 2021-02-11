@@ -23,14 +23,23 @@ let x = 3;
 let y = 4;
 let p;
 let q;
-let tmpDoWhileTest;
-do {
-  const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  p = arrPatternSplat[0];
-  q = arrPatternSplat[1];
-  tmpDoWhileTest = x + y;
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = x + y;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    const arrAssignPatternRhs = $(b);
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    p = arrPatternSplat[0];
+    q = arrPatternSplat[1];
+  } else {
+    break;
+  }
+}
 $(p, q);
 `````
 

@@ -24,11 +24,21 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let tmpDoWhileTest;
-  do {
-    const tmpReturnArg = $(1, 'return');
-    return tmpReturnArg;
-  } while (tmpDoWhileTest);
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = $(true);
+    }
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      const tmpReturnArg = $(1, 'return');
+      return tmpReturnArg;
+    } else {
+      break;
+    }
+  }
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

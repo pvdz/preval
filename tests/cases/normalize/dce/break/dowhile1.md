@@ -26,10 +26,20 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let tmpDoWhileTest;
-    do {
-      break;
-    } while (tmpDoWhileTest);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        break;
+      } else {
+        break;
+      }
+    }
     $('keep');
   } else {
     break;

@@ -33,59 +33,68 @@ const tmpSwitchTest = $(1);
   let tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
-  let tmpDoWhileTest;
-  do {
-    if (tmpSwitchCheckCases) {
-      {
-        let tmpIfTest = tmpSwitchFallthrough;
-        if (tmpIfTest) {
-        } else {
-          const tmpBinLhs = $(1);
-          tmpIfTest = tmpBinLhs === tmpSwitchValue;
-        }
-        if (tmpIfTest) {
-          {
-            const tmpIfTest$1 = $(1);
-            if (tmpIfTest$1) {
-              $(60);
-            } else {
-              const tmpCallCallee = $;
-              const tmpCalleeParam = $(100);
-              tmpCallCallee(tmpCalleeParam);
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = tmpSwitchFallthrough === false;
+    }
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      if (tmpSwitchCheckCases) {
+        {
+          let tmpIfTest$1 = tmpSwitchFallthrough;
+          if (tmpIfTest$1) {
+          } else {
+            const tmpBinLhs = $(1);
+            tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+          }
+          if (tmpIfTest$1) {
+            {
+              const tmpIfTest$2 = $(1);
+              if (tmpIfTest$2) {
+                $(60);
+              } else {
+                const tmpCallCallee = $;
+                const tmpCalleeParam = $(100);
+                tmpCallCallee(tmpCalleeParam);
+              }
+              break;
             }
-            break;
           }
         }
+      } else {
+        tmpSwitchFallthrough = true;
       }
-    } else {
-      tmpSwitchFallthrough = true;
-    }
-    if (tmpSwitchFallthrough) {
-      {
-        $('fail1');
+      if (tmpSwitchFallthrough) {
+        {
+          $('fail1');
+        }
+        tmpSwitchFallthrough = true;
       }
-      tmpSwitchFallthrough = true;
-    }
-    {
       {
         {
-          let tmpIfTest$2 = tmpSwitchFallthrough;
-          if (tmpIfTest$2) {
-          } else {
-            tmpIfTest$2 = 2 === tmpSwitchValue;
-          }
-          if (tmpIfTest$2) {
-            {
-              $('fail2');
+          {
+            let tmpIfTest$3 = tmpSwitchFallthrough;
+            if (tmpIfTest$3) {
+            } else {
+              tmpIfTest$3 = 2 === tmpSwitchValue;
             }
-            tmpSwitchFallthrough = true;
+            if (tmpIfTest$3) {
+              {
+                $('fail2');
+              }
+              tmpSwitchFallthrough = true;
+            }
           }
         }
       }
+      tmpSwitchCheckCases = false;
+    } else {
+      break;
     }
-    tmpSwitchCheckCases = false;
-    tmpDoWhileTest = tmpSwitchFallthrough === false;
-  } while (tmpDoWhileTest);
+  }
 }
 $(a);
 `````

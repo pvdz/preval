@@ -32,11 +32,21 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $('loop');
-    let tmpDoWhileTest;
-    do {
-      $('loop');
-      break;
-    } while (tmpDoWhileTest);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $('loop');
+        break;
+      } else {
+        break;
+      }
+    }
     $('infiloop, do not eliminate');
   } else {
     break;

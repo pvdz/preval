@@ -24,33 +24,42 @@ switch (6) {
   let tmpSwitchValue = 6;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
-  let tmpDoWhileTest;
-  do {
-    if (tmpSwitchCheckCases) {
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
     } else {
-      tmpSwitchFallthrough = true;
+      tmpIfTest = tmpSwitchFallthrough === false;
     }
-    if (tmpSwitchFallthrough) {
-      tmpSwitchFallthrough = true;
-    }
-    {
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      if (tmpSwitchCheckCases) {
+      } else {
+        tmpSwitchFallthrough = true;
+      }
+      if (tmpSwitchFallthrough) {
+        tmpSwitchFallthrough = true;
+      }
       {
         {
-          let tmpIfTest = tmpSwitchFallthrough;
-          if (tmpIfTest) {
-          } else {
-            const tmpBinLhs = $(30);
-            tmpIfTest = tmpBinLhs === tmpSwitchValue;
-          }
-          if (tmpIfTest) {
-            tmpSwitchFallthrough = true;
+          {
+            let tmpIfTest$1 = tmpSwitchFallthrough;
+            if (tmpIfTest$1) {
+            } else {
+              const tmpBinLhs = $(30);
+              tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+            }
+            if (tmpIfTest$1) {
+              tmpSwitchFallthrough = true;
+            }
           }
         }
       }
+      tmpSwitchCheckCases = false;
+    } else {
+      break;
     }
-    tmpSwitchCheckCases = false;
-    tmpDoWhileTest = tmpSwitchFallthrough === false;
-  } while (tmpDoWhileTest);
+  }
 }
 `````
 

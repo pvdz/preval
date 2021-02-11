@@ -116,6 +116,7 @@ const VERBOSE_TRACING = true;
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
   - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
+  - TODO: switch currently adds a do-while and we should have it add a regular while
   - TODO: we need to normalize do-while to regular while because of `continue`. If we're going to do that anwyays we may as well always do it and hope we can eliminate the overhead later.
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
@@ -835,7 +836,7 @@ export function phaseNormalize(fdata, fname) {
   function transformDoWhileStatement(node, body, i) {
     // We have to convert do-while to regular while because if the body contains a continue it will jump to the end
     // which means it would skip any outlined code, unless we add worse overhead.
-    // So instead we bite the bullet
+    // So instead we had to bite the bullet
 
     // Would love to merge the while's into one, but how...
     // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
@@ -854,47 +855,23 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (isComplexNode(node.test)) {
-      rule('Do-while test node must be simple');
-      example('do { f(); } while (x+y);', 'var tmp; do { f(); tmp = x+y; } while (tmp);`');
-      before(node);
+    rule('Do-while must be regular while');
+    example('do { f(); } while(g());', 'let tmp = true; while (tmp || g()) { tmp = false; g(); }');
+    before(node);
 
-      const tmpName = createFreshVar('tmpDoWhileTest');
-      const newNode = AST.expressionStatement(AST.assignmentExpression(tmpName, node.test));
-      body.splice(i, 0, AST.variableDeclaration(tmpName, undefined, 'let'));
-      node.body.body.push(newNode);
-      node.test = AST.identifier(tmpName); // We could do `tmpName === true` if that makes a difference. For now, it won't
+    const tmpName = createFreshVar('tmpDoWhileFlag');
+    const newNodes = [
+      AST.variableDeclaration(tmpName, 'true', 'let'),
+      AST.whileStatement(
+        AST.logicalExpression('||', tmpName, node.test),
+        AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, 'false')), ...node.body.body),
+      ),
+    ];
+    body.splice(i, 1, ...newNodes);
 
-      after(node);
-      return true;
-    }
-
-    anyBlock(node.body);
-
-    if (node.body.body.length === 0) {
-      // Note: cannot eliminate a loop because the test expression is expected to be called repeatedly
-      rule('Do-while with empty body must be regular while');
-      example('do {} while (x());', 'while(x());');
-      before(node);
-
-      const newNode = AST.whileStatement(node.test, AST.blockStatement());
-      body[i] = newNode;
-
-      after(newNode);
-      return true;
-    }
-
-    log(
-      BLUE + 'dowhile;returnBreakContinueThrow?' + RESET,
-      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
-    );
-    if (node.body.$p.returnBreakContinueThrow) {
-      log(
-        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
-      );
-    }
-
-    return false;
+    after(newNodes);
+    // Byebye do-while
+    return true;
   }
   function normalizeCallArgs(args, newArgs, newNodes) {
     // This is used for `new` and regular function calls

@@ -25,14 +25,23 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteObj = $(x);
-  tmpDoWhileTest = delete tmpDeleteObj.y;
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    $(1);
+    $(2);
+    const tmpDeleteObj = $(x);
+    tmpIfTest = delete tmpDeleteObj.y;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a, x);
 `````
 

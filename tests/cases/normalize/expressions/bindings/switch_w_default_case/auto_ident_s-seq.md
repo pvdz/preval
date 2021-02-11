@@ -34,55 +34,64 @@ switch (1) {
     let tmpSwitchValue = 1;
     let tmpSwitchCheckCases = true;
     let tmpSwitchFallthrough = false;
-    let tmpDoWhileTest;
-    do {
-      if (tmpSwitchCheckCases) {
-        {
-          let tmpIfTest = tmpSwitchFallthrough;
-          if (tmpIfTest) {
-          } else {
-            tmpIfTest = 1 === tmpSwitchValue;
-          }
-          if (tmpIfTest) {
-            {
-              x = 1;
-              $(1);
-              $(2);
-              a = x;
-              $(a, x);
-            }
-            tmpSwitchFallthrough = true;
-          }
-        }
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest = tmpDoWhileFlag;
+      if (tmpIfTest) {
       } else {
-        tmpSwitchFallthrough = true;
+        tmpIfTest = tmpSwitchFallthrough === false;
       }
-      if (tmpSwitchFallthrough) {
-        {
-          $('fail1');
-        }
-        tmpSwitchFallthrough = true;
-      }
-      {
-        {
+      if (tmpIfTest) {
+        tmpDoWhileFlag = false;
+        if (tmpSwitchCheckCases) {
           {
             let tmpIfTest$1 = tmpSwitchFallthrough;
             if (tmpIfTest$1) {
             } else {
-              tmpIfTest$1 = 2 === tmpSwitchValue;
+              tmpIfTest$1 = 1 === tmpSwitchValue;
             }
             if (tmpIfTest$1) {
               {
-                $('fail2');
+                x = 1;
+                $(1);
+                $(2);
+                a = x;
+                $(a, x);
               }
               tmpSwitchFallthrough = true;
             }
           }
+        } else {
+          tmpSwitchFallthrough = true;
         }
+        if (tmpSwitchFallthrough) {
+          {
+            $('fail1');
+          }
+          tmpSwitchFallthrough = true;
+        }
+        {
+          {
+            {
+              let tmpIfTest$2 = tmpSwitchFallthrough;
+              if (tmpIfTest$2) {
+              } else {
+                tmpIfTest$2 = 2 === tmpSwitchValue;
+              }
+              if (tmpIfTest$2) {
+                {
+                  $('fail2');
+                }
+                tmpSwitchFallthrough = true;
+              }
+            }
+          }
+        }
+        tmpSwitchCheckCases = false;
+      } else {
+        break;
       }
-      tmpSwitchCheckCases = false;
-      tmpDoWhileTest = tmpSwitchFallthrough === false;
-    } while (tmpDoWhileTest);
+    }
   }
 }
 `````

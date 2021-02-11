@@ -24,11 +24,21 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let tmpDoWhileTest;
-  do {
-    let tmpThrowArg = $(1, 'throw');
-    throw tmpThrowArg;
-  } while (tmpDoWhileTest);
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = $(true);
+    }
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      let tmpThrowArg = $(1, 'throw');
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
+  }
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

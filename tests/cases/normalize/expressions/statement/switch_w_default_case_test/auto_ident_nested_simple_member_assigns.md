@@ -37,74 +37,83 @@ const tmpSwitchTest = $(1);
   let tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCheckCases = true;
   let tmpSwitchFallthrough = false;
-  let tmpDoWhileTest;
-  do {
-    if (tmpSwitchCheckCases) {
-      {
-        let tmpIfTest = tmpSwitchFallthrough;
-        if (tmpIfTest) {
-        } else {
-          let tmpBinLhs;
-          let tmpNestedAssignPropRhs;
-          let tmpNestedAssignPropRhs$1;
-          let tmpNestedAssignPropRhs$2;
-          let tmpNestedAssignPropRhs$3;
-          let tmpNestedAssignPropRhs$4;
-          const tmpNestedPropAssignRhs = c;
-          b.x = tmpNestedPropAssignRhs;
-          tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-          const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-          b.x = tmpNestedPropAssignRhs$1;
-          tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-          const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-          b.x = tmpNestedPropAssignRhs$2;
-          tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-          const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-          b.x = tmpNestedPropAssignRhs$3;
-          tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-          const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-          b.x = tmpNestedPropAssignRhs$4;
-          tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-          const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-          b.x = tmpNestedPropAssignRhs$5;
-          tmpBinLhs = tmpNestedPropAssignRhs$5;
-          tmpIfTest = tmpBinLhs === tmpSwitchValue;
-        }
-        if (tmpIfTest) {
-          {
-            break;
-          }
-        }
-      }
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
     } else {
-      tmpSwitchFallthrough = true;
+      tmpIfTest = tmpSwitchFallthrough === false;
     }
-    if (tmpSwitchFallthrough) {
-      {
-        $('fail1');
-      }
-      tmpSwitchFallthrough = true;
-    }
-    {
-      {
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      if (tmpSwitchCheckCases) {
         {
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
           } else {
-            tmpIfTest$1 = 2 === tmpSwitchValue;
+            let tmpBinLhs;
+            let tmpNestedAssignPropRhs;
+            let tmpNestedAssignPropRhs$1;
+            let tmpNestedAssignPropRhs$2;
+            let tmpNestedAssignPropRhs$3;
+            let tmpNestedAssignPropRhs$4;
+            const tmpNestedPropAssignRhs = c;
+            b.x = tmpNestedPropAssignRhs;
+            tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
+            const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
+            b.x = tmpNestedPropAssignRhs$1;
+            tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
+            const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
+            b.x = tmpNestedPropAssignRhs$2;
+            tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
+            const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
+            b.x = tmpNestedPropAssignRhs$3;
+            tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
+            const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
+            b.x = tmpNestedPropAssignRhs$4;
+            tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
+            const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
+            b.x = tmpNestedPropAssignRhs$5;
+            tmpBinLhs = tmpNestedPropAssignRhs$5;
+            tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
           }
           if (tmpIfTest$1) {
             {
-              $('fail2');
+              break;
             }
-            tmpSwitchFallthrough = true;
+          }
+        }
+      } else {
+        tmpSwitchFallthrough = true;
+      }
+      if (tmpSwitchFallthrough) {
+        {
+          $('fail1');
+        }
+        tmpSwitchFallthrough = true;
+      }
+      {
+        {
+          {
+            let tmpIfTest$2 = tmpSwitchFallthrough;
+            if (tmpIfTest$2) {
+            } else {
+              tmpIfTest$2 = 2 === tmpSwitchValue;
+            }
+            if (tmpIfTest$2) {
+              {
+                $('fail2');
+              }
+              tmpSwitchFallthrough = true;
+            }
           }
         }
       }
+      tmpSwitchCheckCases = false;
+    } else {
+      break;
     }
-    tmpSwitchCheckCases = false;
-    tmpDoWhileTest = tmpSwitchFallthrough === false;
-  } while (tmpDoWhileTest);
+  }
 }
 $(a, b, c);
 `````

@@ -22,16 +22,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  tmpDoWhileTest = undefined;
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
-    tmpDoWhileTest = tmpChainElementCall;
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = undefined;
+    const tmpChainRootCall = $;
+    if (tmpChainRootCall) {
+      const tmpChainElementCall = tmpChainRootCall(1);
+      tmpIfTest = tmpChainElementCall;
+    }
   }
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

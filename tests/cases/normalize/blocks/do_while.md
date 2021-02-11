@@ -16,11 +16,20 @@ while ($(2));
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileTest;
-do {
-  $(1);
-  tmpDoWhileTest = $(2);
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = $(2);
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(1);
+  } else {
+    break;
+  }
+}
 `````
 
 ## Output

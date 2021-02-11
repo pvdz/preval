@@ -22,17 +22,26 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  tmpDoWhileTest = 0;
-  if (tmpDoWhileTest) {
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpDoWhileTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = 0;
+    if (tmpIfTest) {
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(1);
+      tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    }
   }
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

@@ -36,12 +36,22 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      let tmpDoWhileTest;
-      do {
-        $('loop');
-        let tmpThrowArg = $(7, 'throw');
-        throw tmpThrowArg;
-      } while (tmpDoWhileTest);
+      let tmpDoWhileFlag = true;
+      while (true) {
+        let tmpIfTest$1 = tmpDoWhileFlag;
+        if (tmpIfTest$1) {
+        } else {
+          tmpIfTest$1 = $(true);
+        }
+        if (tmpIfTest$1) {
+          tmpDoWhileFlag = false;
+          $('loop');
+          let tmpThrowArg = $(7, 'throw');
+          throw tmpThrowArg;
+        } else {
+          break;
+        }
+      }
       $('do not visit, do not eliminate');
     } else {
       break;

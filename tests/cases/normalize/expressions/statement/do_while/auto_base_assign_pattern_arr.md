@@ -25,17 +25,26 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  tmpDoWhileTest = tmpNestedAssignArrPatternRhs;
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee = $;
+    const tmpArrElement = $(2);
+    const tmpCalleeParam = [tmpArrElement];
+    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    b = arrPatternSplat[0];
+    tmpIfTest = tmpNestedAssignArrPatternRhs;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a, b);
 `````
 

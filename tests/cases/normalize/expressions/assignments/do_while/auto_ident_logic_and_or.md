@@ -22,26 +22,35 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-  }
-  if (tmpNestedComplexRhs) {
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    if (tmpNestedComplexRhs) {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(1);
+      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    }
+    if (tmpNestedComplexRhs) {
+    } else {
+      const tmpCallCallee$2 = $;
+      const tmpCalleeParam$2 = $(2);
+      tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    }
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileTest = tmpNestedComplexRhs;
-} while (tmpDoWhileTest);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

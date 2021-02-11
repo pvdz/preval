@@ -36,12 +36,22 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      let tmpDoWhileTest;
-      do {
-        $('loop');
-        const tmpReturnArg = $(100, 'return');
-        return tmpReturnArg;
-      } while (tmpDoWhileTest);
+      let tmpDoWhileFlag = true;
+      while (true) {
+        let tmpIfTest$1 = tmpDoWhileFlag;
+        if (tmpIfTest$1) {
+        } else {
+          tmpIfTest$1 = $(true);
+        }
+        if (tmpIfTest$1) {
+          tmpDoWhileFlag = false;
+          $('loop');
+          const tmpReturnArg = $(100, 'return');
+          return tmpReturnArg;
+        } else {
+          break;
+        }
+      }
       $('do not visit, do not eliminate');
     } else {
       break;

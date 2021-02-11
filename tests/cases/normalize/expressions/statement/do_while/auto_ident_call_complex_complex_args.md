@@ -25,14 +25,23 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCallCallee = $($);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  tmpDoWhileTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee = $($);
+    const tmpCalleeParam = $(1);
+    const tmpCalleeParam$1 = $(2);
+    tmpIfTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

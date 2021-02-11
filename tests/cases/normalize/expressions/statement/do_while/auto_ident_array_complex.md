@@ -22,14 +22,23 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpArrElement = $(1);
-  const tmpArrElement$1 = 2;
-  const tmpArrElement$2 = $(3);
-  tmpDoWhileTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpArrElement = $(1);
+    const tmpArrElement$1 = 2;
+    const tmpArrElement$2 = $(3);
+    tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

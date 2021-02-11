@@ -25,13 +25,22 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileTest;
-do {
-  $(100);
-  const tmpCallCompObj = b;
-  const tmpCallCompProp = $('$');
-  tmpDoWhileTest = tmpCallCompObj[tmpCallCompProp](1);
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCompObj = b;
+    const tmpCallCompProp = $('$');
+    tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

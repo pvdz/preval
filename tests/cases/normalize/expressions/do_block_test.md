@@ -20,11 +20,20 @@ let a = 1;
 let b = 2;
 let x = 3;
 let y = 4;
-let tmpDoWhileTest;
-do {
-  $(a);
-  tmpDoWhileTest = x + y;
-} while (tmpDoWhileTest);
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = x + y;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(a);
+  } else {
+    break;
+  }
+}
 `````
 
 ## Output

@@ -22,12 +22,34 @@ foo: do {
 ## Normalized
 
 `````js filename=intro
-foo: do {
-  do {
-    $(1);
-    continue foo;
-  } while (false);
-} while (false);
+let tmpDoWhileFlag = true;
+foo: while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = false;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    let tmpDoWhileFlag$1 = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag$1;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = false;
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag$1 = false;
+        $(1);
+        continue foo;
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
+  }
+}
 `````
 
 ## Output

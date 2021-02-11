@@ -20,10 +20,21 @@ foo: do {
 ## Normalized
 
 `````js filename=intro
-foo: do {
-  $(1);
-  continue foo;
-} while (false);
+let tmpDoWhileFlag = true;
+foo: while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = false;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(1);
+    continue foo;
+  } else {
+    break;
+  }
+}
 `````
 
 ## Output

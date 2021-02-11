@@ -22,9 +22,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-do {
-  $(100);
-} while ('foo');
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 'foo';
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
 $(a);
 `````
 

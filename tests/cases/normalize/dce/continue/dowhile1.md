@@ -82,11 +82,21 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let tmpDoWhileTest;
-    do {
-      $('loop');
-      continue;
-    } while (tmpDoWhileTest);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $('loop');
+        continue;
+      } else {
+        break;
+      }
+    }
     $('keep, wont eval due to infinite loop');
   } else {
     break;
@@ -132,34 +142,7 @@ Should call `$` with:
  - 26: 'loop'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
 
-Normalized calls: BAD?!
- - 1: true
- - 2: 'loop'
- - 3: 'keep, wont eval due to infinite loop'
- - 4: true
- - 5: 'loop'
- - 6: 'keep, wont eval due to infinite loop'
- - 7: true
- - 8: 'loop'
- - 9: 'keep, wont eval due to infinite loop'
- - 10: true
- - 11: 'loop'
- - 12: 'keep, wont eval due to infinite loop'
- - 13: true
- - 14: 'loop'
- - 15: 'keep, wont eval due to infinite loop'
- - 16: true
- - 17: 'loop'
- - 18: 'keep, wont eval due to infinite loop'
- - 19: true
- - 20: 'loop'
- - 21: 'keep, wont eval due to infinite loop'
- - 22: true
- - 23: 'loop'
- - 24: 'keep, wont eval due to infinite loop'
- - 25: true
- - 26: 'loop'
- - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+Normalized calls: Same
 
 Final output calls: BAD!!
  - eval returned: undefined

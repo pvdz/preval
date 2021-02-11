@@ -54,7 +54,6 @@ const tmpSwitchTest = $(1);
             delete tmpDeleteObj.y;
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

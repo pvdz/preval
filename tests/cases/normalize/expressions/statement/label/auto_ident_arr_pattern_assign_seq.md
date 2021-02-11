@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-label: {
+{
   $(x);
   $(y);
   const tmpArrElement = $(3);

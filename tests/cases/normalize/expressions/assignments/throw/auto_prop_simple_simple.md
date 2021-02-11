@@ -27,8 +27,6 @@ const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-a.b = 2;
-$(a);
 `````
 
 ## Output

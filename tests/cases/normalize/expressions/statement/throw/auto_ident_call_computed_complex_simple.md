@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 let tmpThrowArg = tmpCallObj['$'](1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

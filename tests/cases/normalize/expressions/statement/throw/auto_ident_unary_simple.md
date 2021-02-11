@@ -25,7 +25,6 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = typeof x;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

@@ -22,7 +22,6 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = new $(1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

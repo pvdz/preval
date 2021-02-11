@@ -66,7 +66,6 @@ const tmpSwitchTest = $(1);
             tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

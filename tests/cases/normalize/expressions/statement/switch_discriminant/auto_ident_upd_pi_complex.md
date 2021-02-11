@@ -34,7 +34,7 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpSwitchTest = tmpNestedPropCompoundComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

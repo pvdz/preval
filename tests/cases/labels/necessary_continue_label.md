@@ -23,8 +23,10 @@ foo: do {
 
 `````js filename=intro
 foo: do {
-  $(1);
-  continue foo;
+  do {
+    $(1);
+    continue foo;
+  } while (false);
 } while (false);
 `````
 

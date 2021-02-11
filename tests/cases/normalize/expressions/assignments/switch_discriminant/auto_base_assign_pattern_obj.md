@@ -36,7 +36,7 @@ b = tmpNestedAssignObjPatternRhs.b;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

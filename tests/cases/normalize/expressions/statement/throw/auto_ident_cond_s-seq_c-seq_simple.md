@@ -30,7 +30,6 @@ if (tmpIfTest) {
   tmpThrowArg = tmpCallCallee(tmpCalleeParam);
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

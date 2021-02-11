@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = { x: 1, y: 2, z: 3 };
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

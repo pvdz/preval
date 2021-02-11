@@ -58,7 +58,6 @@ function f() {
         $(2);
         break tmpSwitchBreak;
       }
-      tmpFallthrough = true;
     }
     let tmpIfTest$1 = tmpFallthrough;
     if (tmpIfTest$1) {
@@ -103,7 +102,6 @@ function f() {
         const tmpReturnArg$2 = $(6);
         return tmpReturnArg$2;
       }
-      tmpFallthrough = true;
     }
     let tmpIfTest$6 = tmpFallthrough;
     if (tmpIfTest$6) {
@@ -116,7 +114,6 @@ function f() {
       {
         break tmpSwitchBreak;
       }
-      tmpFallthrough = true;
     }
   }
 }

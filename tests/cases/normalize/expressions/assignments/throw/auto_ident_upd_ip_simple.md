@@ -30,7 +30,6 @@ const tmpNestedComplexRhs = tmpPostUpdArgIdent;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

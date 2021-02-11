@@ -29,7 +29,6 @@ if (tmpThrowArg) {
   tmpThrowArg = tmpCallCallee$1(tmpCalleeParam$1);
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

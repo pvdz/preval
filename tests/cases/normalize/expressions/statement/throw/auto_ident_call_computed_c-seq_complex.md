@@ -27,7 +27,6 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 let tmpThrowArg = tmpCallCompObj[tmpCallCompProp](1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

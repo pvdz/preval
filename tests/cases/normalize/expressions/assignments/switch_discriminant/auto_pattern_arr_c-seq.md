@@ -34,7 +34,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpSwitchTest = tmpNestedAssignArrPatternRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

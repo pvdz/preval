@@ -30,7 +30,6 @@ const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

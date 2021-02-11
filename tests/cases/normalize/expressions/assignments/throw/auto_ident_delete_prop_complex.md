@@ -29,7 +29,6 @@ const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

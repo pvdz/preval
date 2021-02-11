@@ -34,7 +34,7 @@ let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
 tmpSwitchTest = tmpNestedPropAssignRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -27,7 +27,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = b.c;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

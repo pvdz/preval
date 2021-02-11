@@ -34,7 +34,7 @@ if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpSwitchTest = tmpChainElementObject;
 }
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

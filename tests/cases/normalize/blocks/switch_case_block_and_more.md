@@ -39,7 +39,6 @@ tmpSwitchBreak: {
       }
       break tmpSwitchBreak;
     }
-    tmpFallthrough = true;
   }
 }
 `````

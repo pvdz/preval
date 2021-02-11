@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

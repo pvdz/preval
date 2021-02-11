@@ -25,7 +25,6 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = b.c;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

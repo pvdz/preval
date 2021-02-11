@@ -37,7 +37,6 @@ if (tmpChainRootProp) {
   }
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

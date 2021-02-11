@@ -32,7 +32,7 @@ const tmpDeleteCompProp = 'y';
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

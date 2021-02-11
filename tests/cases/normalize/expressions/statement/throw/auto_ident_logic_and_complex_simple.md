@@ -27,7 +27,6 @@ if (tmpThrowArg) {
   tmpThrowArg = 2;
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

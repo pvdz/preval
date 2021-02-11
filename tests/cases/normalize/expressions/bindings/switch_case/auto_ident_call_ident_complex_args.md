@@ -29,7 +29,7 @@ switch (1) {
   let tmpCalleeParam;
   let tmpCalleeParam$1;
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

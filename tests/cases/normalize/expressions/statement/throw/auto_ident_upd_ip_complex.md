@@ -32,7 +32,6 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 let tmpThrowArg = tmpPostUpdArgVal;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

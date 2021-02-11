@@ -28,7 +28,7 @@ const tmpNewCallee = $($);
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

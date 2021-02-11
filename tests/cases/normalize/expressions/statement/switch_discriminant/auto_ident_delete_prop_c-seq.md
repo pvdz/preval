@@ -30,7 +30,7 @@ $(1);
 $(2);
 const tmpDeleteObj = $(x);
 const tmpSwitchTest = delete tmpDeleteObj.y;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

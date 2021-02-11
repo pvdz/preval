@@ -37,7 +37,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

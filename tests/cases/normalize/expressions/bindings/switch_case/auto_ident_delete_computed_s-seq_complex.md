@@ -28,7 +28,7 @@ switch (1) {
   let tmpDeleteCompObj;
   let tmpDeleteCompProp;
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

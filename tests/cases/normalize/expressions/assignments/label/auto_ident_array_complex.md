@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpArrElement = $(1);
   const tmpArrElement$1 = 2;
   const tmpArrElement$2 = $(3);

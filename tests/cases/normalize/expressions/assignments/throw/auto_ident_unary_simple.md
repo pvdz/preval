@@ -28,7 +28,6 @@ const tmpNestedComplexRhs = typeof x;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

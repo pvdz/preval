@@ -27,7 +27,7 @@ const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$2 = $(3);
 const tmpSwitchTest = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

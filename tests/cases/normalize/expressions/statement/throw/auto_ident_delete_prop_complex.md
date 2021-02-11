@@ -26,7 +26,6 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
 let tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

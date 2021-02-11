@@ -50,7 +50,6 @@ const tmpSwitchTest = $('a');
         a_1 = tmpNestedPropAssignRhs$1;
         break tmpSwitchBreak;
       }
-      tmpFallthrough = true;
     }
   }
 }

@@ -48,7 +48,6 @@ const tmpSwitchTest = $(1);
             (function () {});
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

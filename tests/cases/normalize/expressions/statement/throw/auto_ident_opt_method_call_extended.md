@@ -35,7 +35,6 @@ if (tmpChainRootProp) {
   tmpThrowArg = tmpChainElementCall;
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

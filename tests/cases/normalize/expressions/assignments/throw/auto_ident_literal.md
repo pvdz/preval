@@ -24,7 +24,6 @@ let tmpThrowArg;
 a = 'foo';
 tmpThrowArg = 'foo';
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

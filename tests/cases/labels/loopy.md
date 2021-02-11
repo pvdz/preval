@@ -24,7 +24,6 @@ woop: while (true) {
 woop: while (true) {
   $(1);
   continue woop;
-  $(2);
 }
 `````
 

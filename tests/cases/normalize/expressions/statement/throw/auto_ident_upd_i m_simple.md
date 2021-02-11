@@ -27,7 +27,6 @@ const tmpPostUpdArgIdent = b;
 b = b - 1;
 let tmpThrowArg = tmpPostUpdArgIdent;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

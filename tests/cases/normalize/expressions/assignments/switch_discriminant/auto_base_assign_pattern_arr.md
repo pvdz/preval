@@ -37,7 +37,7 @@ b = arrPatternSplat[0];
 tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

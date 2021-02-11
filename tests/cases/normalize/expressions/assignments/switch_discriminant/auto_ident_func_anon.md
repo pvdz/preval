@@ -27,7 +27,7 @@ let tmpSwitchTest;
 const tmpNestedComplexRhs = function () {};
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

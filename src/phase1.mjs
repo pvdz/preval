@@ -410,35 +410,35 @@ export function phase1(fdata, resolve, req, verbose) {
           log('Arrow has expression so it always returns explicitly');
           explicit = true;
         } else {
-          log('checking', body.length, 'statements to get explicitReturns state');
-          for (let i = 0; i < body.length; ++i) {
-            if (body[i].$p.explicitReturns === 'yes' && body[i].type !== 'FunctionDeclaration') {
-              explicit = true;
-              // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
-              // Ignore if it is the last statement of the function
-              // TODO: hoisting. `function f(){ return g; function g(){} }`
-              if (i < body.length - 1) {
-                log(
-                  '- Returning early. Slicing',
-                  body.length - (i + 1),
-                  'statements from this function that appeared after a return statement',
-                );
-
-                // It's trickier than it seems.
-                // DCE'd var decls must be inlined as `undefined` as their init is never visited.
-                // Func decls should only appear at toplevel so I think those are fine? But who knows at this point.
-
-                node.body.body.forEach((cnode, j) => {
-                  if (!cnode) return;
-                  if (j <= i) return;
-                  if (cnode.type === 'FunctionDeclaration') return; // Do not remove function declarations
-                  if (cnode.type === 'VariableDeclaration' && cnode.kind === 'var') return; // keep var decls, but not let/const (they're tdz'd)
-                  node.body.body[j] = { type: 'EmptyStatement', $p: $p() };
-                });
-              }
-              break;
-            }
-          }
+          //log('checking', body.length, 'statements to get explicitReturns state');
+          //for (let i = 0; i < body.length; ++i) {
+          //  if (body[i].$p.explicitReturns === 'yes' && body[i].type !== 'FunctionDeclaration') {
+          //    explicit = true;
+          //    // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
+          //    // Ignore if it is the last statement of the function
+          //    // TODO: hoisting. `function f(){ return g; function g(){} }`
+          //    if (i < body.length - 1) {
+          //      log(
+          //        '- Returning early. Slicing',
+          //        body.length - (i + 1),
+          //        'statements from this function that appeared after a return statement',
+          //      );
+          //
+          //      // It's trickier than it seems.
+          //      // DCE'd var decls must be inlined as `undefined` as their init is never visited.
+          //      // Func decls should only appear at toplevel so I think those are fine? But who knows at this point.
+          //
+          //      node.body.body.forEach((cnode, j) => {
+          //        if (!cnode) return;
+          //        if (j <= i) return;
+          //        if (cnode.type === 'FunctionDeclaration') return; // Do not remove function declarations
+          //        if (cnode.type === 'VariableDeclaration' && cnode.kind === 'var') return; // keep var decls, but not let/const (they're tdz'd)
+          //        node.body.body[j] = { type: 'EmptyStatement', $p: $p() };
+          //      });
+          //    }
+          //    break;
+          //  }
+          //}
         }
         node.$p.explicitReturns = explicit ? 'yes' : 'no';
         log('- explicitReturns =', node.$p.explicitReturns);

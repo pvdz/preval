@@ -23,7 +23,6 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 let tmpThrowArg = tmpCallCallee(1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

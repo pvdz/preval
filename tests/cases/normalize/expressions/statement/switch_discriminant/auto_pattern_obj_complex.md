@@ -27,7 +27,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

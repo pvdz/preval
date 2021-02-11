@@ -35,7 +35,6 @@ if (tmpThrowArg) {
   }
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

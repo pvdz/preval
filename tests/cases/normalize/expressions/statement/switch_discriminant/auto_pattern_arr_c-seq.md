@@ -30,7 +30,7 @@ $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

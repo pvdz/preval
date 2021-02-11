@@ -31,7 +31,6 @@ const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpThrowArg = tmpNestedAssignObjPatternRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

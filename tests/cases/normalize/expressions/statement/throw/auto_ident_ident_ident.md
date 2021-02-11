@@ -29,7 +29,6 @@ let tmpThrowArg;
 b = 2;
 tmpThrowArg = 2;
 throw tmpThrowArg;
-$(a, b, c);
 `````
 
 ## Output

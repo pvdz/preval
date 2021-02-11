@@ -39,7 +39,7 @@ if (tmpChainRootProp) {
     tmpSwitchTest = tmpChainElementCall;
   }
 }
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

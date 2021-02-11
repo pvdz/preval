@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   if (tmpChainElementCall) {

@@ -34,7 +34,6 @@ if (tmpChainRootProp) {
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

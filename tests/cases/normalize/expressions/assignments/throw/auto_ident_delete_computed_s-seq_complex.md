@@ -32,7 +32,6 @@ const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

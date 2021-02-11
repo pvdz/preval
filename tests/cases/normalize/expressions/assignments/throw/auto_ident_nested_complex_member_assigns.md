@@ -67,7 +67,6 @@ tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, b, c);
 `````
 
 ## Output

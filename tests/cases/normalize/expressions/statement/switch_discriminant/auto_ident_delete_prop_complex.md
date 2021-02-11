@@ -28,7 +28,7 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
 const tmpSwitchTest = delete tmpDeleteObj.y;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

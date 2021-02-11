@@ -34,7 +34,7 @@ const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpSwitchTest = tmpPostUpdArgVal;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

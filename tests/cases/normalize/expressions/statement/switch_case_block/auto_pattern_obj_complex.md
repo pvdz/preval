@@ -26,7 +26,7 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {

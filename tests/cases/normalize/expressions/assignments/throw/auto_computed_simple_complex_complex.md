@@ -27,13 +27,6 @@ const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a);
 `````
 
 ## Output

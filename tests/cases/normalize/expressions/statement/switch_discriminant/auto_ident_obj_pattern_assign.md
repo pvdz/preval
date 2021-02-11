@@ -35,7 +35,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpSwitchTest = tmpNestedAssignObjPatternRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

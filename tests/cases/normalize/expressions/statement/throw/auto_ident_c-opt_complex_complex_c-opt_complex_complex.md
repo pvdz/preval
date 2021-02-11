@@ -37,7 +37,6 @@ if (tmpChainElementCall) {
   }
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

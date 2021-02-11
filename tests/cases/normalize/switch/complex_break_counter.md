@@ -54,7 +54,6 @@ tmpSwitchBreak: {
         break tmpSwitchBreak;
       }
     }
-    tmpFallthrough = true;
   }
   let tmpIfTest$1 = tmpFallthrough;
   if (tmpIfTest$1) {
@@ -65,7 +64,6 @@ tmpSwitchBreak: {
     {
       break tmpSwitchBreak;
     }
-    tmpFallthrough = true;
   }
 }
 `````

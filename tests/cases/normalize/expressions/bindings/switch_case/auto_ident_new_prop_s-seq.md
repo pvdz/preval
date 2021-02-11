@@ -28,7 +28,7 @@ switch (1) {
   let tmpCompObj;
   let tmpNewCallee;
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

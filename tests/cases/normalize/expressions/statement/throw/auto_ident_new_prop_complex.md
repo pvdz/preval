@@ -27,7 +27,6 @@ const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 let tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

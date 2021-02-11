@@ -31,7 +31,7 @@ $(2);
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

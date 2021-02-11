@@ -91,7 +91,6 @@ switch (6) {
             $(1);
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
       {
@@ -145,7 +144,6 @@ switch (6) {
               $(4);
               break;
             }
-            tmpSwitchFallthrough = true;
           }
         }
         {
@@ -160,7 +158,6 @@ switch (6) {
               $(5);
               break;
             }
-            tmpSwitchFallthrough = true;
           }
         }
       }

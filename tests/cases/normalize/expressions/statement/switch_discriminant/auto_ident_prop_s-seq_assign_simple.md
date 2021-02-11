@@ -31,7 +31,7 @@ const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 tmpSwitchTest = tmpNestedPropAssignRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

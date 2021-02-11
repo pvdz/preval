@@ -46,7 +46,6 @@ tmpSwitchBreak: {
         }
       }
     }
-    tmpFallthrough = true;
   }
   let tmpIfTest$1 = tmpFallthrough;
   if (tmpIfTest$1) {
@@ -62,7 +61,6 @@ tmpSwitchBreak: {
         }
       }
     }
-    tmpFallthrough = true;
   }
 }
 `````

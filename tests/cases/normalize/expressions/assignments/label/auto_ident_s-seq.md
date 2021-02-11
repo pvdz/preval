@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-label: {
+{
   $(1);
   $(2);
   a = x;

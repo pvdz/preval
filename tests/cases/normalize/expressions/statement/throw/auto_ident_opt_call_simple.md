@@ -27,7 +27,6 @@ if (tmpChainRootCall) {
   tmpThrowArg = tmpChainElementCall;
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

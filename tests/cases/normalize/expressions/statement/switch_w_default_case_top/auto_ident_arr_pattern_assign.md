@@ -58,7 +58,6 @@ const tmpSwitchTest = $(1);
             y = arrPatternSplat[1];
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

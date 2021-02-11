@@ -25,7 +25,6 @@ const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

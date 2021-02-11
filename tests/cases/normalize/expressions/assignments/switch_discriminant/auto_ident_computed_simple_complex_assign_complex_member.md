@@ -38,7 +38,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

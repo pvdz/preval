@@ -52,7 +52,7 @@ tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
 tmpSwitchTest = tmpNestedPropAssignRhs$5;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

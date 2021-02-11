@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   const tmpIfTest = tmpCallCallee(tmpCalleeParam);

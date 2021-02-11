@@ -32,7 +32,6 @@ const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 tmpThrowArg = tmpNestedPropCompoundComplexRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

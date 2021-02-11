@@ -30,7 +30,6 @@ const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpThrowArg = tmpNestedAssignArrPatternRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

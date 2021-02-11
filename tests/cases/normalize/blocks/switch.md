@@ -71,7 +71,6 @@ tmpSwitchBreak: {
     {
       break tmpSwitchBreak;
     }
-    tmpFallthrough = true;
   }
   let tmpIfTest$4 = tmpFallthrough;
   if (tmpIfTest$4) {

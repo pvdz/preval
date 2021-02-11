@@ -25,7 +25,6 @@ const tmpNestedComplexRhs = /foo/;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

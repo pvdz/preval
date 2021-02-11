@@ -24,7 +24,6 @@ const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 let tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

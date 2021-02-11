@@ -32,7 +32,6 @@ tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

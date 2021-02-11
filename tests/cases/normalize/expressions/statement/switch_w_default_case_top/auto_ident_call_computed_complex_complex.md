@@ -53,7 +53,6 @@ const tmpSwitchTest = $(1);
             tmpCallCompObj[tmpCallCompProp](1);
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

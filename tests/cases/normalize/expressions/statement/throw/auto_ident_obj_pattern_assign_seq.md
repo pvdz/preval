@@ -35,7 +35,6 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpThrowArg = tmpNestedAssignObjPatternRhs;
 throw tmpThrowArg;
-$(a, x, y);
 `````
 
 ## Output

@@ -26,7 +26,7 @@ switch (1) {
   let tmpObjLitVal$1;
   let tmpObjLitVal$2;
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

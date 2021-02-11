@@ -1,0 +1,54 @@
+# Preval test case
+
+# base.md
+
+> normalize > dce > base
+>
+> Any statements that follow a return in the same parent should be eliminated.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f() {
+  do {
+    return $(1, 'return');
+    $('fail');
+  } while ($(true));
+}
+$(f());
+`````
+
+## Normalized
+
+`````js filename=intro
+function f() {
+  let tmpDoWhileTest;
+  do {
+    const tmpReturnArg = $(1, 'return');
+    return tmpReturnArg;
+  } while (tmpDoWhileTest);
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+'<skipped>';
+`````
+
+## Result
+
+Should call `$` with:
+ - 1: 1, 'return'
+ - 2: 1
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+ - eval returned: undefined

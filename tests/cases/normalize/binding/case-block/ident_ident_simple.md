@@ -41,7 +41,6 @@ const tmpSwitchTest = $('a');
         a_1 = c;
         break tmpSwitchBreak;
       }
-      tmpFallthrough = true;
     }
   }
 }

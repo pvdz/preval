@@ -28,7 +28,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpSwitchTest = tmpCompObj.c;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

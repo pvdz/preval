@@ -28,7 +28,6 @@ if (tmpChainElementCall) {
   tmpThrowArg = tmpChainElementCall$1;
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

@@ -27,7 +27,7 @@ let tmpSwitchTest = 1;
 if (tmpSwitchTest) {
   tmpSwitchTest = 2;
 }
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

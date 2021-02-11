@@ -55,7 +55,7 @@ b.x = tmpNestedPropAssignRhs$5;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

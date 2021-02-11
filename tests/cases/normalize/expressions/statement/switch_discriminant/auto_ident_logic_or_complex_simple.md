@@ -30,7 +30,7 @@ if (tmpSwitchTest) {
 } else {
   tmpSwitchTest = 2;
 }
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

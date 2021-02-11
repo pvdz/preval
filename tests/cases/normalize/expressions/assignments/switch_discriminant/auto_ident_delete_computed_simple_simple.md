@@ -30,7 +30,7 @@ let tmpSwitchTest;
 const tmpNestedComplexRhs = delete x['y'];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

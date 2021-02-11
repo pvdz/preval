@@ -31,7 +31,7 @@ const tmpUnaryArg = $(x);
 const tmpNestedComplexRhs = typeof tmpUnaryArg;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

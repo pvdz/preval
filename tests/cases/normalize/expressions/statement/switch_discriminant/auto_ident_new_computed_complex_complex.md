@@ -30,7 +30,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpSwitchTest = new tmpNewCallee(1);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -25,7 +25,6 @@ let tmpThrowArg = undefined;
   tmpThrowArg = 60;
 }
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

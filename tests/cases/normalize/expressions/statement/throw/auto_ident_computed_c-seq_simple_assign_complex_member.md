@@ -33,7 +33,6 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 tmpThrowArg = tmpNestedPropAssignRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

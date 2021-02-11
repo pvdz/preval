@@ -24,7 +24,7 @@ switch (1) {
 {
   let a;
   let tmpChainRootCall;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

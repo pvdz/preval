@@ -28,7 +28,6 @@ const tmpNestedComplexRhs = delete x['y'];
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

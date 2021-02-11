@@ -32,7 +32,7 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -32,7 +32,7 @@ b = b - 1;
 const tmpNestedComplexRhs = tmpPostUpdArgIdent;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

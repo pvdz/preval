@@ -27,7 +27,6 @@ const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 let tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

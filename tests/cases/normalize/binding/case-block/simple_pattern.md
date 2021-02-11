@@ -45,7 +45,6 @@ const tmpSwitchTest = $('a');
         a_1 = tmpNestedAssignArrPatternRhs;
         break tmpSwitchBreak;
       }
-      tmpFallthrough = true;
     }
   }
 }

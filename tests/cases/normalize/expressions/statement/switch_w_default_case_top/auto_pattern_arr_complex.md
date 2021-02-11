@@ -52,7 +52,6 @@ const tmpSwitchTest = $(1);
             tmpCallCallee(tmpCalleeParam);
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

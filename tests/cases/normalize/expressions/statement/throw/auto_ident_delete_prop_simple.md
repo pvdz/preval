@@ -25,7 +25,6 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = delete x.y;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

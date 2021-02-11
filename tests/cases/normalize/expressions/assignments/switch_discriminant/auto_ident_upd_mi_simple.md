@@ -34,7 +34,7 @@ b = tmpNestedComplexRhs$1;
 tmpNestedComplexRhs = tmpNestedComplexRhs$1;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

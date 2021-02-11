@@ -52,7 +52,6 @@ const tmpSwitchTest = $(1);
             typeof tmpUnaryArg;
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

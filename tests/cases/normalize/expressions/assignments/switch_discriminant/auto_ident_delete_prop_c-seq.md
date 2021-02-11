@@ -33,7 +33,7 @@ const tmpDeleteObj = $(x);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -28,7 +28,6 @@ $(2);
 const tmpDeleteObj = $(x);
 let tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

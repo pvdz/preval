@@ -36,7 +36,6 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpThrowArg = tmpNestedAssignArrPatternRhs;
 throw tmpThrowArg;
-$(a, x, y);
 `````
 
 ## Output

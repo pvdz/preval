@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpIfTest = 30;
   if (tmpIfTest) {
     $(60);

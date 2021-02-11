@@ -25,7 +25,6 @@ const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$2 = $(3);
 let tmpThrowArg = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

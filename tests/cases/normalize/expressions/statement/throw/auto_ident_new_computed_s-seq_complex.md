@@ -28,7 +28,6 @@ const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 let tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

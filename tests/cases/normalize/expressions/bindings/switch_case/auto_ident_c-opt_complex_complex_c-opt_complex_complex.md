@@ -29,7 +29,7 @@ switch (1) {
   let a;
   let tmpChainRootCall;
   let tmpChainElementCall;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

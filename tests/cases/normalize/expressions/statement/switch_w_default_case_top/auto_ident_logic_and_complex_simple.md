@@ -50,7 +50,6 @@ const tmpSwitchTest = $(1);
             const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

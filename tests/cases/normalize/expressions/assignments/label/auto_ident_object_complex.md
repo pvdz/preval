@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$1 = 2;
   const tmpObjLitVal$2 = $(3);

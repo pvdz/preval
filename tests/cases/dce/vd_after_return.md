@@ -30,7 +30,6 @@ $(f(1));
 function f(x) {
   var g;
   return g;
-  g = $();
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);

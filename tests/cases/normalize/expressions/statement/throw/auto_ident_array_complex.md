@@ -25,7 +25,6 @@ const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 let tmpThrowArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

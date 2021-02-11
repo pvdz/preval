@@ -83,7 +83,6 @@ exit: {
       $('B');
       break exit;
     }
-    fallthrough = true;
   }
   let tmpIfTest$2 = fallthrough;
   if (tmpIfTest$2) {
@@ -97,7 +96,6 @@ exit: {
       $('C');
       break exit;
     }
-    fallthrough = true;
   }
 }
 `````

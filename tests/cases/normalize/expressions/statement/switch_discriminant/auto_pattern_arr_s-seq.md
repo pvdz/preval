@@ -28,7 +28,7 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpSwitchTest = [1, 2];
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

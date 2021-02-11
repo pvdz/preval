@@ -36,7 +36,7 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   tmpSwitchTest = tmpChainElementObject$2;
 }
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

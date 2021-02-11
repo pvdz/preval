@@ -29,7 +29,6 @@ const tmpNestedComplexRhs = tmpCallObj['$'](1);
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

@@ -25,7 +25,7 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-label: {
+{
   b = 2;
   a = 2;
 }

@@ -26,7 +26,6 @@ $(10);
 $(20);
 let tmpThrowArg = [1, 2];
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

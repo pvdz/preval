@@ -81,7 +81,6 @@ tmpSwitchBreak: {
       $('B');
       break tmpSwitchBreak;
     }
-    tmpFallthrough = true;
   }
   let tmpIfTest$2 = tmpFallthrough;
   if (tmpIfTest$2) {
@@ -95,7 +94,6 @@ tmpSwitchBreak: {
       $('C');
       break tmpSwitchBreak;
     }
-    tmpFallthrough = true;
   }
 }
 `````

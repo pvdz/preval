@@ -27,7 +27,6 @@ $(1);
 $(2);
 let tmpThrowArg = x;
 throw tmpThrowArg;
-$(a, x);
 `````
 
 ## Output

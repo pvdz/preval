@@ -53,7 +53,6 @@ const tmpSwitchTest = $(1);
             $(x);
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

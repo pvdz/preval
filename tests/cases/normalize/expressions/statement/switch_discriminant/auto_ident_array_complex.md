@@ -27,7 +27,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 const tmpSwitchTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -53,7 +53,6 @@ const tmpSwitchTest = $(1);
             delete tmpDeleteCompObj[tmpDeleteCompProp];
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

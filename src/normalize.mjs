@@ -82,6 +82,7 @@ const VERBOSE_TRACING = true;
   - Class declarations become class expressions
   - Assignment of an ident to itself is eliminated
   - Statements that only have an identifier will be eliminated unless that identifier is an implicit global
+  - DCE
  */
 
 // low hanging fruit: async, iterators
@@ -101,8 +102,6 @@ const VERBOSE_TRACING = true;
     - dedupe parameter shadows
   - we could implement the one-time assignment thing
     - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
-  - Should arrows become regular funcs?
-    - Not sure whether this actually simplifies anything for us.
   - Should func decls be changed to const blabla?
     - Also not sure whether this helps us anything.
   - return early stuff versus if-elsing it out?
@@ -115,13 +114,17 @@ const VERBOSE_TRACING = true;
   - unused init for variabel (let x = 10; x = 20; $(x))
   - arguments (ehh)
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
-  - TODO: are func params made unique multiple times?
+  - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
+  - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
+  - TODO: we need to normalize do-while to regular while because of `continue`. If we're going to do that anwyays we may as well always do it and hope we can eliminate the overhead later.
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
   - TODO: does coercion have observable side effects (that we care to support)?
   - TODO: do we properly simplify array literals with complex spreads?   
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
   - TODO: how does `arguments` work with the implicit unique binding stuff??
+  - TODO: DCE must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+  - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -660,21 +663,14 @@ export function phaseNormalize(fdata, fname) {
   }
   function _jumpTable(node, body, i, parent) {
     switch (node.type) {
-      case 'BlockStatement': {
-        if (node.body.length === 0) {
-          rule('Empty nested blocks should be eliminated');
-          example('{ f(); { } g(); }', '{ f(); g(); }');
-          before(node, parent);
-
-          const newNode = AST.emptyStatement();
-          body.splice(i, 1, newNode);
-
-          after(newNode, parent);
-        }
-        return anyBlock(node);
-      }
+      case 'BlockStatement':
+        return transformBlock(node, body, i, parent);
+      case 'BreakStatement':
+        return transformBreakStatement(node, body, i, parent);
       case 'ClassDeclaration':
         return transformClassDeclaration(node, body, i, parent);
+      case 'ContinueStatement':
+        return transformContinueStatement(node, body, i, parent);
       case 'DebuggerStatement':
         return false; // We could eliminate this but hwy
       case 'DoWhileStatement':
@@ -708,11 +704,11 @@ export function phaseNormalize(fdata, fname) {
       case 'MethodDefinition':
         return transformMethodDefinition(node, body, i, parent);
       case 'ReturnStatement':
-        return transformReturnStatement(node, body, i);
+        return transformReturnStatement(node, body, i, parent);
       case 'SwitchStatement':
         return transformSwitchStatement(node, body, i);
       case 'ThrowStatement':
-        return transformThrowStatement(node, body, i);
+        return transformThrowStatement(node, body, i, parent);
       case 'TryStatement':
         return transformTryStatement(node, body, i, parent);
       case 'VariableDeclaration':
@@ -722,14 +718,6 @@ export function phaseNormalize(fdata, fname) {
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
-
-      case 'BreakStatement':
-      case 'ContinueStatement':
-        if (node.label) {
-          ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
-          fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
-        }
-        return false;
 
       case 'ExportAllDeclaration':
         TODO;
@@ -754,6 +742,62 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
+  function transformBlock(node, body, i, parent) {
+    if (node.body.length === 0) {
+      rule('Empty nested blocks should be eliminated');
+      example('{ f(); { } g(); }', '{ f(); g(); }');
+      before(node, parent);
+
+      const newNode = AST.emptyStatement();
+      body.splice(i, 1, newNode);
+
+      after(newNode, parent);
+    }
+
+    if (anyBlock(node)) {
+      return true;
+    }
+
+    log(
+      BLUE + 'block;returnBreakContinueThrow?' + RESET,
+      node.$p.returnBreakContinueThrow ? 'yes; ' + node.$p.returnBreakContinueThrow : 'no',
+    );
+    parent.$p.returnBreakContinueThrow = node.$p.returnBreakContinueThrow;
+    if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a block that breaks flow in all branches must be DCE-ed');
+      example('return; f();', 'return;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
+      return true;
+    }
+
+    return false;
+  }
+  function transformBreakStatement(node, body, i, parent) {
+    if (node.label) {
+      ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
+      fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
+    }
+
+    log(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
+    parent.$p.returnBreakContinueThrow = 'break';
+    if (body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a break must be DCE-ed');
+      example('break; f();', 'break;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
+      return true;
+    }
+    return false;
+  }
   function transformClassDeclaration(node, body, i, parent) {
     // Since classes don't hoist we may as well transform them to their expression equivalent...
     rule('Class declaration should be let expression');
@@ -766,7 +810,33 @@ export function phaseNormalize(fdata, fname) {
     after(newNode);
     return true;
   }
+  function transformContinueStatement(node, body, i, parent) {
+    if (node.label) {
+      ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
+      fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
+    }
+
+    log(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
+    parent.$p.returnBreakContinueThrow = 'continue';
+    if (body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a continue must be DCE-ed');
+      example('continue x; f();', 'continue x;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
+      return true;
+    }
+
+    return false;
+  }
   function transformDoWhileStatement(node, body, i) {
+    // We have to convert do-while to regular while because if the body contains a continue it will jump to the end
+    // which means it would skip any outlined code, unless we add worse overhead.
+    // So instead we bite the bullet
+
     // Would love to merge the while's into one, but how...
     // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
     // `while (f()) {}` --> `if (f()) { do {} while(f()); }`
@@ -812,6 +882,16 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       return true;
+    }
+
+    log(
+      BLUE + 'dowhile;returnBreakContinueThrow?' + RESET,
+      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    );
+    if (node.body.$p.returnBreakContinueThrow) {
+      log(
+        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
+      );
     }
 
     return false;
@@ -3565,6 +3645,16 @@ export function phaseNormalize(fdata, fname) {
 
     anyBlock(node.body);
 
+    log(
+      BLUE + 'forx;returnBreakContinueThrow?' + RESET,
+      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    );
+    if (node.body.$p.returnBreakContinueThrow) {
+      log(
+        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
+      );
+    }
+
     // TODO: there is a possibility to eliminate this loop if it has an empty body but there are still two
     //       side effects to check for; value of for-lhs after the loop and throwing over invalid for-rhs values.
 
@@ -3866,6 +3956,29 @@ export function phaseNormalize(fdata, fname) {
         body[i] = finalParent;
 
         after(finalParent);
+        return true;
+      }
+    }
+
+    log(
+      BLUE + 'if;returnBreakContinueThrow?' + RESET,
+      node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
+        ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
+        : 'no',
+    );
+    if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
+      // Both branches broke flow early so any statements that follow this statement are effectively dead
+      node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
+
+      if (body.length > i + 1) {
+        // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+        rule('Statements after an if-else that breaks flow in both branches and on the same level must be DCE-ed');
+        example('return; f();', 'return;');
+        before(body.slice(i));
+
+        body.length = i + 1;
+
+        after(body.slice(i));
         return true;
       }
     }
@@ -4346,7 +4459,7 @@ export function phaseNormalize(fdata, fname) {
     anyBlock(node);
     return false;
   }
-  function transformReturnStatement(node, body, i) {
+  function transformReturnStatement(node, body, i, parent) {
     if (!node.argument) {
       rule('Return argument must exist');
       example('return;', 'return undefined;');
@@ -4375,6 +4488,31 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a return on the same level must be DCE-ed');
+      example('return; f();', 'return;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
+      return true;
+    }
+
+    log(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
+    parent.$p.returnBreakContinueThrow = 'return';
+    if (body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a return must be DCE-ed');
+      example('return x; f();', 'return x;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
+      return true;
+    }
     return false;
   }
   function transformSwitchStatement(node, body, i) {
@@ -4601,7 +4739,7 @@ export function phaseNormalize(fdata, fname) {
     after(newNode);
     return true;
   }
-  function transformThrowStatement(node, body, i) {
+  function transformThrowStatement(node, body, i, parent) {
     if (isComplexNode(node.argument)) {
       rule('Throw argument must be simple');
       example('throw $()', 'let tmp = $(); throw tmp;');
@@ -4613,6 +4751,20 @@ export function phaseNormalize(fdata, fname) {
       node.argument = AST.identifier(tmpName);
 
       after(newNode);
+      return true;
+    }
+
+    log(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
+    parent.$p.returnBreakContinueThrow = 'throw';
+    if (body.length > i + 1) {
+      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+      rule('Statements after a throw must be DCE-ed');
+      example('throw x; f();', 'throw x;');
+      before(body.slice(i));
+
+      body.length = i + 1;
+
+      after(body.slice(i));
       return true;
     }
 
@@ -4813,6 +4965,16 @@ export function phaseNormalize(fdata, fname) {
         after(node);
         return true;
       }
+    }
+
+    log(
+      BLUE + 'while;returnBreakContinueThrow?' + RESET,
+      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    );
+    if (node.body.$p.returnBreakContinueThrow) {
+      log(
+        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
+      );
     }
 
     return false;

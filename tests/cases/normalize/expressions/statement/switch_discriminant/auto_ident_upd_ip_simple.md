@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 const tmpSwitchTest = tmpPostUpdArgIdent;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

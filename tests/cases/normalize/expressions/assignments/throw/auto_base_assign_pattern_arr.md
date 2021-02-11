@@ -35,7 +35,6 @@ tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a, b);
 `````
 
 ## Output

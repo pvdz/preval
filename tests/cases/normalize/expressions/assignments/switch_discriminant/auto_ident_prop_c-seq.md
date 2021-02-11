@@ -31,7 +31,7 @@ const tmpCompObj = $(b);
 const tmpNestedComplexRhs = tmpCompObj.c;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -29,7 +29,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     const tmpObjLitVal = $(3);

@@ -57,7 +57,6 @@ const tmpSwitchTest = $(1);
             tmpAssignMemLhsObj.x = tmpAssignMemRhs;
             break;
           }
-          tmpSwitchFallthrough = true;
         }
       }
     } else {

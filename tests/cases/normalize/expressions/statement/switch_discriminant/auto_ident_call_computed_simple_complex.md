@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
 const tmpSwitchTest = tmpCallCompObj[tmpCallCompProp](1);
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

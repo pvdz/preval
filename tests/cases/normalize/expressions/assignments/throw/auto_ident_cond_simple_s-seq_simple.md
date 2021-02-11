@@ -28,7 +28,6 @@ let tmpNestedComplexRhs = undefined;
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;
 throw tmpThrowArg;
-$(a);
 `````
 
 ## Output

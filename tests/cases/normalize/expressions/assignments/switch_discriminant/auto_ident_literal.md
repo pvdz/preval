@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 a = 'foo';
 tmpSwitchTest = 'foo';
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

@@ -38,7 +38,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpSwitchTest = tmpNestedAssignArrPatternRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

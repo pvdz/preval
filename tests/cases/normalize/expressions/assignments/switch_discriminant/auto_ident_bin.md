@@ -29,7 +29,7 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

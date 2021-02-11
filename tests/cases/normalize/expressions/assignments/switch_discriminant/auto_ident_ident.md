@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 a = b;
 tmpSwitchTest = b;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

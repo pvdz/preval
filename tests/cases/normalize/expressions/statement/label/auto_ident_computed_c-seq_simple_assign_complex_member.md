@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-label: {
+{
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('c');
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;

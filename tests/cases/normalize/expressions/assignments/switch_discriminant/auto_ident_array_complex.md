@@ -30,7 +30,7 @@ const tmpArrElement$2 = $(3);
 const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
-tmpSwitchBreak: {
+{
   let tmpFallthrough = false;
   {
     $(100);

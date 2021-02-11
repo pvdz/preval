@@ -25,7 +25,7 @@ switch (1) {
   let tmpBinBothLhs;
   let tmpBinBothRhs;
   let a;
-  tmpSwitchBreak: {
+  {
     let tmpFallthrough = false;
     let tmpIfTest = tmpFallthrough;
     if (tmpIfTest) {

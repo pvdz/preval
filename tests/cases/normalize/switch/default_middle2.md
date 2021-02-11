@@ -21,8 +21,8 @@ switch (6) {
 
 `````js filename=intro
 {
-  let tmpSwitchValue = 6;
-  let tmpSwitchCheckCases = true;
+  const tmpSwitchValue = 6;
+  let tmpSwitchVisitDefault = false;
   let tmpSwitchFallthrough = false;
   let tmpDoWhileFlag = true;
   while (true) {
@@ -33,8 +33,7 @@ switch (6) {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      if (tmpSwitchCheckCases) {
-      } else {
+      if (tmpSwitchVisitDefault) {
         tmpSwitchFallthrough = true;
       }
       if (tmpSwitchFallthrough) {
@@ -55,7 +54,7 @@ switch (6) {
           }
         }
       }
-      tmpSwitchCheckCases = false;
+      tmpSwitchVisitDefault = true;
     } else {
       break;
     }

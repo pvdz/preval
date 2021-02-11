@@ -73,8 +73,8 @@ switch (6) {
 
 `````js filename=intro
 {
-  let tmpSwitchValue = 6;
-  let tmpSwitchCheckCases = true;
+  const tmpSwitchValue = 6;
+  let tmpSwitchVisitDefault = false;
   let tmpSwitchFallthrough = false;
   let tmpDoWhileFlag = true;
   while (true) {
@@ -85,7 +85,9 @@ switch (6) {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      if (tmpSwitchCheckCases) {
+      if (tmpSwitchVisitDefault) {
+        tmpSwitchFallthrough = true;
+      } else {
         {
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
@@ -114,8 +116,6 @@ switch (6) {
             tmpSwitchFallthrough = true;
           }
         }
-      } else {
-        tmpSwitchFallthrough = true;
       }
       if (tmpSwitchFallthrough) {
         {
@@ -169,7 +169,7 @@ switch (6) {
           }
         }
       }
-      tmpSwitchCheckCases = false;
+      tmpSwitchVisitDefault = true;
     } else {
       break;
     }

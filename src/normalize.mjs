@@ -4551,6 +4551,7 @@ export function phaseNormalize(fdata, fname) {
     });
 
     if (vars.length || lets.length) {
+      // TODO: if the vars are only used inside the case then we could inline them, perhaps keep the `const` tag. nbd
       rule('Switch case toplevel declaration should be outlined; [2/2] adding var decls before the switch');
       example('switch (x) { case y: let a = 10, b = 20; }', '{ let a; let b; switch (x) { case y: a = 10, b = 10; } }');
 
@@ -4579,17 +4580,20 @@ export function phaseNormalize(fdata, fname) {
       before(node); // omit this one?
 
       const tmpVal = createFreshVar('tmpSwitchValue');
-      const tmpDef = createFreshVar('tmpSwitchCheckCases');
+      const tmpDef = createFreshVar('tmpSwitchVisitDefault');
       const tmpFall = createFreshVar('tmpSwitchFallthrough');
 
       const newNode = AST.blockStatement(
-        AST.variableDeclaration(tmpVal, node.discriminant),
-        AST.variableDeclaration(tmpDef, 'true'),
+        AST.variableDeclaration(tmpVal, node.discriminant, 'const'),
+        AST.variableDeclaration(tmpDef, 'false'),
         AST.variableDeclaration(tmpFall, 'false'),
         AST.doWhileStatement(
+          // TODO: this will be transformed away so we should be more concise in our transform to prevent that step
           AST.blockStatement(
             AST.ifStatement(
               tmpDef,
+              // If all cases failed, then set fall=true so the default case gets visited after this branch
+              AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
               AST.blockStatement(
                 AST.expressionStatement(AST.literal('Cases before the default case')),
                 ...node.cases.slice(0, hasDefaultAt).map((cnode, i) => {
@@ -4611,8 +4615,6 @@ export function phaseNormalize(fdata, fname) {
                   return newNode;
                 }),
               ),
-              // If all cases failed, then set fall=true so the default case gets visited after this branch
-              AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
             ),
             // Default case
             AST.ifStatement(
@@ -4647,7 +4649,7 @@ export function phaseNormalize(fdata, fname) {
                 }),
               ),
             ),
-            AST.expressionStatement(AST.assignmentExpression(tmpDef, 'false')),
+            AST.expressionStatement(AST.assignmentExpression(tmpDef, 'true')),
           ),
           // } while()
           AST.binaryExpression('===', tmpFall, 'false'),

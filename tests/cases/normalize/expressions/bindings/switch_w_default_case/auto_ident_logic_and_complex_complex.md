@@ -30,8 +30,8 @@ switch (1) {
   let tmpCalleeParam;
   let a;
   {
-    let tmpSwitchValue = 1;
-    let tmpSwitchCheckCases = true;
+    const tmpSwitchValue = 1;
+    let tmpSwitchVisitDefault = false;
     let tmpSwitchFallthrough = false;
     let tmpDoWhileFlag = true;
     while (true) {
@@ -42,7 +42,9 @@ switch (1) {
       }
       if (tmpIfTest) {
         tmpDoWhileFlag = false;
-        if (tmpSwitchCheckCases) {
+        if (tmpSwitchVisitDefault) {
+          tmpSwitchFallthrough = true;
+        } else {
           {
             let tmpIfTest$1 = tmpSwitchFallthrough;
             if (tmpIfTest$1) {
@@ -64,8 +66,6 @@ switch (1) {
               tmpSwitchFallthrough = true;
             }
           }
-        } else {
-          tmpSwitchFallthrough = true;
         }
         if (tmpSwitchFallthrough) {
           {
@@ -90,7 +90,7 @@ switch (1) {
             }
           }
         }
-        tmpSwitchCheckCases = false;
+        tmpSwitchVisitDefault = true;
       } else {
         break;
       }

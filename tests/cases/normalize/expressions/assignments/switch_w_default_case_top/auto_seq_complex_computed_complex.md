@@ -32,8 +32,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 {
-  let tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchCheckCases = true;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchVisitDefault = false;
   let tmpSwitchFallthrough = false;
   let tmpDoWhileFlag = true;
   while (true) {
@@ -44,7 +44,9 @@ const tmpSwitchTest = $(1);
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      if (tmpSwitchCheckCases) {
+      if (tmpSwitchVisitDefault) {
+        tmpSwitchFallthrough = true;
+      } else {
         {
           let tmpIfTest$1 = tmpSwitchFallthrough;
           if (tmpIfTest$1) {
@@ -60,8 +62,6 @@ const tmpSwitchTest = $(1);
             tmpSwitchFallthrough = true;
           }
         }
-      } else {
-        tmpSwitchFallthrough = true;
       }
       if (tmpSwitchFallthrough) {
         {
@@ -86,7 +86,7 @@ const tmpSwitchTest = $(1);
           }
         }
       }
-      tmpSwitchCheckCases = false;
+      tmpSwitchVisitDefault = true;
     } else {
       break;
     }

@@ -42,15 +42,13 @@ if (tmpChainElementObject) {
 
 `````js filename=intro
 const tmpObjLitVal = function (...args) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = args;
   const tmpCompObj = this;
   const tmpCalleeParam$1 = tmpCompObj.y;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $('x');
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 if (tmpChainElementObject) {

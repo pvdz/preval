@@ -248,6 +248,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
         '.',
         parentProp,
       );
+      if (parentProp === 'superClass') return 'read';
       return 'write';
     case 'ClassExpression':
       ASSERT(
@@ -257,6 +258,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
         '.',
         parentProp,
       );
+      if (parentProp === 'superClass') return 'read';
       return 'write';
     case 'ConditionalExpression':
       ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp);
@@ -371,13 +373,14 @@ export function getIdentUsageKind(parentNode, parentProp) {
       );
       // Even in assignments to properties it will read the object first
       if (parentProp === 'object' || parentNode.computed) return 'read';
-      return 'write';
+      return 'none';
     case 'MetaProperty':
       ASSERT(parentProp === 'meta' || parentProp === 'property', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      if (parentNode.computed) return 'read';
       return 'none';
     case 'MethodDefinition':
       ASSERT(parentProp === 'key', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      // I don't think this can be value, at least not until the spec changes
+      if (parentNode.computed) return 'read';
       return 'none';
     case 'NewExpression':
       ASSERT(
@@ -396,7 +399,10 @@ export function getIdentUsageKind(parentNode, parentProp) {
       throw ASSERT(false);
     case 'Property':
       ASSERT(parentProp === 'key' || parentProp === 'value', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      if (parentProp === 'key') return 'none';
+      if (parentProp === 'key') {
+        if (parentNode.computed) return 'read';
+        return 'none';
+      }
       return 'read';
     case 'RestElement':
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);

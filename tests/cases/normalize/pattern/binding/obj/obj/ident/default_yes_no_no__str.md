@@ -34,8 +34,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = 'abc';
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault = 'abc'.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;

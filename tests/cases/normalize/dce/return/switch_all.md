@@ -116,9 +116,8 @@ function f() {
   }
   $('eliminate after switch');
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

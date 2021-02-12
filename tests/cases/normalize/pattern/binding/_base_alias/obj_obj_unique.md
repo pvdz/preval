@@ -39,8 +39,7 @@ const a = objPatternNoDefault$1.z;
 {
   let a_1 = 1;
 }
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const a = objPatternNoDefault$1.z;
 {

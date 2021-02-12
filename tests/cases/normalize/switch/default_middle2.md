@@ -36,10 +36,9 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = 6;
 let tmpSwitchCaseToStart = 0;
 const tmpBinLhs = $(30);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }

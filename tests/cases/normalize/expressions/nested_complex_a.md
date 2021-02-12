@@ -45,7 +45,6 @@ var c;
 a = [];
 b = 20;
 c = 30;
-const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpNestedAssignObj = $(a);
 let tmpNestedAssignPropRhs;
@@ -54,7 +53,7 @@ tmpNestedAssignPropRhs = c;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
 tmpCalleeParam = tmpNestedPropAssignRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

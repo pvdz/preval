@@ -54,25 +54,20 @@ function f(tmpParamPattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 'fail' };
-    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+    objPatternAfterDefault = $(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = objPatternAfterDefault;
   const tmpCalleeParam$2 = [];
-  const tmpCalleeParam$3 = undefined;
-  let y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+  let y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
-const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;
 const tmpCalleeParam$5 = null;
-const tmpCalleeParam$6 = 10;
-const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$6);
-tmpCallCallee$2(tmpCalleeParam$4);
+const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, 10);
+$(tmpCalleeParam$4);
 `````
 
 ## Result

@@ -37,8 +37,7 @@ const a = bindingPatternObjRoot.x;
 {
   let a_1 = 1;
 }
-const bindingPatternObjRoot = 1;
-const a = bindingPatternObjRoot.x;
+const a = (1).x;
 {
   let a_2 = 1;
 }

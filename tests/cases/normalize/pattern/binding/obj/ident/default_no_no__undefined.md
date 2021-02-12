@@ -26,8 +26,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = undefined;
-const x = bindingPatternObjRoot.x;
+const x = undefined.x;
 $('bad');
 `````
 

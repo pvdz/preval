@@ -28,8 +28,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const objPatternBeforeDefault = (1).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = b;

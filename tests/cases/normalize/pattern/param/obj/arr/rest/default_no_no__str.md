@@ -40,9 +40,8 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return 'bad';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f('abc', 10);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

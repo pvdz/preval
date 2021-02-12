@@ -67,12 +67,10 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
-const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = { a: 1, b: 2, c: 3 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+$(tmpCalleeParam);
 `````
 
 ## Result

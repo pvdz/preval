@@ -39,7 +39,6 @@ $(c);
 ## Output
 
 `````js filename=intro
-const a = 10;
 let b = undefined;
 const tmpChainRootProp = $(2);
 if (tmpChainRootProp) {

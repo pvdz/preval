@@ -57,10 +57,9 @@ function f($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpObjLitVal = ['fail2'];
     const tmpCalleeParam = { x: tmpObjLitVal };
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    $tdz$__pattern_after_default = $(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -68,9 +67,8 @@ function f($tdz$__pattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = ['pass'];
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
+    objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -78,9 +76,8 @@ function f($tdz$__pattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = f('', 10);
-tmpCallCallee$2(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

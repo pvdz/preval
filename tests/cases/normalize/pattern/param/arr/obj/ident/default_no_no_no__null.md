@@ -42,11 +42,10 @@ function f(tmpParamPattern) {
   let x = arrPatternStep.x;
   return 'bad';
 }
-const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = null;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

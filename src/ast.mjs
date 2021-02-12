@@ -305,6 +305,20 @@ export function literal(value) {
       raw: JSON.stringify(value),
       $p: $p(),
     };
+  } else if (value === true) {
+    return {
+      type: 'Literal',
+      value: true,
+      raw: 'true',
+      $p: $p(),
+    };
+  } else if (value === false) {
+    return {
+      type: 'Literal',
+      value: false,
+      raw: 'false',
+      $p: $p(),
+    };
   } else {
     ASSERT(false, 'TODO', value);
   }

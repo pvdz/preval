@@ -23,7 +23,7 @@ export function phase1(fdata, resolve, req, verbose) {
   globals.forEach((_, name) =>
     globallyUniqueNamingRegistry.set(name, {
       name,
-      global: true,
+      isBuiltin: true,
       implicit: false,
       isExport: false, // Set below
       reads: [],
@@ -98,6 +98,34 @@ export function phase1(fdata, resolve, req, verbose) {
           thisStack.pop();
         }
 
+        if (node.id) {
+          const meta = globallyUniqueNamingRegistry.get(node.id.name);
+          ASSERT(meta, 'there should be a meta for this name', node.id.name);
+          meta.isImplicit = false;
+        }
+
+        node.params.forEach((pnode) => {
+          if (pnode.type === 'RestElement') {
+            const meta = globallyUniqueNamingRegistry.get(pnode.argument.name);
+            ASSERT(meta);
+            meta.isImplicit = false;
+          } else {
+            ASSERT(pnode.type === 'Identifier', 'params are spread or idents at this point', pnode);
+            const meta = globallyUniqueNamingRegistry.get(pnode.name);
+            ASSERT(meta);
+            meta.isImplicit = false;
+          }
+        });
+
+        break;
+      }
+
+      case 'ClassDeclaration:after': {
+        if (node.id) {
+          const meta = globallyUniqueNamingRegistry.get(node.id.name);
+          ASSERT(meta);
+          meta.isImplicit = false;
+        }
         break;
       }
 
@@ -111,16 +139,22 @@ export function phase1(fdata, resolve, req, verbose) {
         log('Ident:', name);
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
         const kind = getIdentUsageKind(parentNode, parentProp);
         log('- Ident kind:', kind);
 
-        log('- Parent: `' + parentNode.type + '.' + parentProp + '`');
+        log(
+          '- Parent: `' + parentNode.type + '.' + parentProp + '`',
+          parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
+        );
         if (kind !== 'none' && kind !== 'label' && name !== 'arguments') {
           let meta = globallyUniqueNamingRegistry.get(name);
           if (!meta) {
+            log('- Creating meta for `' + name + '`');
             meta = {
               name,
-              global: false,
+              isConstant: false, // Either declared as const or a builtin global that we can assume to be a constant
+              isBuiltin: false,
               implicit: 'unknown', // true until its not...
               isExport: false, // Set below
               reads: [],
@@ -128,8 +162,18 @@ export function phase1(fdata, resolve, req, verbose) {
             };
             globallyUniqueNamingRegistry.set(name, meta);
           }
-          if (kind === 'read' || kind === 'readwrite') meta.reads.push(node);
-          if (kind === 'write' || kind === 'readwrite') meta.writes.push(node);
+          ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
+          if (kind === 'read') meta.reads.push({ parentNode, parentProp, parentIndex, node });
+          if (kind === 'write') {
+            if (parentNode.type === 'VariableDeclarator') {
+              const declParent = path.nodes[path.nodes.length - 4];
+              const declProp = path.props[path.props.length - 3];
+              const declIndex = path.indexes[path.indexes.length - 3];
+              meta.writes.push({ parentNode, parentProp, parentIndex, node, decl: { declParent, declProp, declIndex } });
+            } else {
+              meta.writes.push({ parentNode, parentProp, parentIndex, node });
+            }
+          }
 
           // Resolve whether this was an export. If so, mark the name as such.
           // After normalization there should only be named exports without declarations and
@@ -254,6 +298,17 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'LabeledStatement:after': {
         labelStack.pop();
         break;
+      }
+
+      case 'VariableDeclaration:after': {
+        ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
+        ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
+        const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
+        meta.isImplicit = false;
+        if (node.kind === 'const') {
+          ASSERT(meta);
+          meta.isConstant = true;
+        }
       }
     }
 

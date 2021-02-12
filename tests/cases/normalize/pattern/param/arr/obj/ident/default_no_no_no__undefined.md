@@ -40,9 +40,8 @@ function f(tmpParamPattern) {
   let x = arrPatternStep.x;
   return 'bad';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f(undefined);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

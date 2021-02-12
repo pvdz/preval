@@ -38,9 +38,8 @@ function f() {
   const tmpCompObj = $(2);
   tmpCompObj.toString;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -4,7 +4,7 @@ import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in brows
 if (typeof window !== 'undefined') window.Tenko = Tenko; // Expose symbols for UI
 
 export function parseCode(code, fname) {
-  group('\n\n\n##################################\n## phase0  ::  ' + fname + '\n##################################\n\n\n');
+  group('\n\n\n##################################\n## parse source  ::  ' + fname + '\n##################################\n\n\n');
 
   log('- Parsing code with Tenko...');
 

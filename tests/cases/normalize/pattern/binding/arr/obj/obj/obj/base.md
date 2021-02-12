@@ -47,9 +47,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = 13;
 const tmpObjLitVal$2 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 31 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 31 };
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const bindingPatternArrRoot = [tmpArrElement, 10];
 const arrPatternSplat = [...bindingPatternArrRoot];

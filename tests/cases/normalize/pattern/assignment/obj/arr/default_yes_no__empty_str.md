@@ -36,14 +36,12 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = '';
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const objPatternBeforeDefault = ''.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

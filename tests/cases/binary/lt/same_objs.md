@@ -28,9 +28,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = {};
-const tmpCallCallee = $;
 const tmpCalleeParam = x < x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

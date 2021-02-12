@@ -54,9 +54,8 @@ function f(tmpParamPattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { y: 'pass2' };
-    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+    objPatternAfterDefault = $(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -70,9 +69,8 @@ function f(tmpParamPattern) {
   }
   return y;
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(0, 10);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

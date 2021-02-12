@@ -30,12 +30,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 0;
-const tmpCallCallee = objPatternRest;
-const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = 'x';
-x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+x = objPatternRest(0, tmpCalleeParam$1, 'x');
 $(x);
 `````
 

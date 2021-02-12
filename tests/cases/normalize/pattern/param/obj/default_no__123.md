@@ -50,9 +50,8 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1, 2, 3, 10);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

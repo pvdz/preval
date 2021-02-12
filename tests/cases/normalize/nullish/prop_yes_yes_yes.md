@@ -40,7 +40,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = {};
-const tmpCallCallee = $;
 let tmpCalleeParam = a;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
@@ -54,7 +53,7 @@ const tmpIfTest$2 = tmpCalleeParam == null;
 if (tmpIfTest$2) {
   tmpCalleeParam = d;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -27,11 +27,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = 'xyz';
-const y = x;
-const tmpCallCallee = $;
-const tmpCalleeParam = x >= y;
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = 'xyz' >= 'xyz';
+$(tmpCalleeParam);
 `````
 
 ## Result

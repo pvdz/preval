@@ -56,9 +56,8 @@ function f(tmpParamPattern) {
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { x: 'fail2' };
-    arrPatternStep = tmpCallCallee(tmpCalleeParam);
+    arrPatternStep = $(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -72,9 +71,8 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(1, 2, 3);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

@@ -37,14 +37,12 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = 0;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['pass'];
-  objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }

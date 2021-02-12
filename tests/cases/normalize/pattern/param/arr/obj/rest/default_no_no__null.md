@@ -44,19 +44,15 @@ tmpCallCallee$1(tmpCalleeParam$3);
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 }
-const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
 const tmpCalleeParam$4 = null;
-const tmpCalleeParam$5 = 200;
-const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 200);
+$(tmpCalleeParam$3);
 `````
 
 ## Result

@@ -30,11 +30,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var x;
-const tmpCallCallee = $;
 x = 'foo';
 const tmpUnaryArg = $(x);
 const tmpCalleeParam = !tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

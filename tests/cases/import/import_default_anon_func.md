@@ -48,12 +48,10 @@ export default function () {
 
 `````js filename=intro
 import { default as x } from 'x';
-const tmpCallCallee = $;
 const tmpCalleeParam = x();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = x.name;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 `````js filename=x

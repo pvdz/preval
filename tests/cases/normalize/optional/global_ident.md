@@ -30,14 +30,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = global;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   tmpCalleeParam = tmpChainElementObject;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -136,7 +136,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
   const exports = new Map();
   fdata.exports = exports;
 
-  group('\n\n\n##################################\n## phase1  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  group('\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   function findUniqueNameForBindingIdent(node, funcDeclId = false) {
     ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);

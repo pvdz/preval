@@ -33,14 +33,13 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = '';
-let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
+let objPatternCrashTest = '' === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = tmpAssignObjPatternRhs === null;
+  objPatternCrashTest = '' === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+  objPatternCrashTest = ''.cannotDestructureThis;
 }
 $('ok');
 `````

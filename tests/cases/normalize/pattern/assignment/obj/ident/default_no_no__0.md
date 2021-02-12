@@ -26,8 +26,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 0;
-x = tmpAssignObjPatternRhs.x;
+x = (0).x;
 $(x);
 `````
 

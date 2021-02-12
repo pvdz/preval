@@ -24,7 +24,8 @@ $($(obj)[$('x')]);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
@@ -42,17 +43,17 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
   },
 };
-const tmpCallCallee = $;
 const tmpCompObj = $(obj);
 const tmpCompProp = $('x');
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -28,11 +28,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCallCallee = $;
 const tmpCompObj = obj;
 const tmpCompProp = 'fo' + 'o';
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

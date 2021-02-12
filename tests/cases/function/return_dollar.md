@@ -42,9 +42,8 @@ function f() {
   const tmpReturnArg = $();
   return tmpReturnArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

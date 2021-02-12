@@ -59,15 +59,14 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === 1;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }

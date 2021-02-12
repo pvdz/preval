@@ -119,6 +119,10 @@ const VERBOSE_TRACING = true;
   - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
     - check how the context is set when calling a namespace
   - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
+  - any binary expression between two literals
+  - certain binary expressions between constants, or constants and literals
+  - method names that are literals, probably classes and objects alike
+  - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
   - TODO: does coercion have observable side effects (that we care to support)?
@@ -129,6 +133,7 @@ const VERBOSE_TRACING = true;
   - TODO: DCE must not eliminate hoisted nodes (see fd_after_return.md)
   - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
   - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
+  - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -834,11 +839,12 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformClassDeclaration(node, body, i, parent) {
     // Since classes don't hoist we may as well transform them to their expression equivalent...
+    // They are not constants so they become let
     rule('Class declaration should be let expression');
-    example('class x {}', 'let x = class x {}');
+    example('class x {}', 'let x = class {}');
     before(node);
 
-    const newNode = AST.variableDeclaration(node.id.name, AST.classExpression(node.id.name, node.superClass, node.body), 'let');
+    const newNode = AST.variableDeclaration(node.id.name, AST.classExpression(null, node.superClass, node.body), 'let');
     body[i] = newNode;
 
     after(newNode);
@@ -1147,6 +1153,8 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionExpression': {
+        // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
+
         if (hoistingOnce(node)) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -2967,11 +2975,45 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrayExpression': {
+        let inlinedAnySpreads = false;
+        for (let i = 0; i < node.elements.length; ++i) {
+          const n = node.elements[i];
+          if (n && n.type === 'SpreadElement') {
+            if (n.argument.type === 'Literal' && typeof n.argument.value === 'string') {
+              // We can splat the string into individual elements (this could be an intermediate step while inlining constants)
+              // TODO: do we want to limit the length of the string here? Or doesn't matter?
+              rule('Array spread on string should be individual elements');
+              example('[..."xyz"];', '["x", "y", "z"];');
+              before(n, node);
+
+              node.elements.splice(i, 1, ...[...n.argument.value].map((s) => AST.literal(s)));
+
+              after(node);
+              inlinedAnySpreads = true;
+              --i; // Relevant if the string is empty
+            } else if (n.argument.type === 'ArrayExpression') {
+              rule('Array spread on another array should be unlined');
+              example('[...[1, 2 ,3]]', '[1, 2, 3]');
+              before(n, node);
+
+              node.elements.splice(i, 1, ...n.argument.elements);
+
+              after(node);
+              inlinedAnySpreads = true;
+              --i;
+            }
+          }
+        }
+        if (inlinedAnySpreads) {
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         if (wrapKind === 'statement') {
           // Consider an array statements that only has simple spreads to be okay
           if (
             node.elements.every((enode) => {
-              if (enode.type !== 'SpreadElement') {
+              if (enode && enode.type !== 'SpreadElement') {
                 // Don't want to keep non-spreads in an array statement. There's no point.
                 return false;
               }
@@ -2986,25 +3028,25 @@ export function phaseNormalize(fdata, fname) {
           example('[a, b()];', 'a; b();');
           before(node, parentNode);
 
-          const finalParent = [];
+          const newNodes = [];
           node.elements.forEach((enode) => {
             if (!enode) return;
 
             if (enode.type === 'SpreadElement') {
               const tmpName = createFreshVar('tmpArrElToSpread');
               const newNode = AST.variableDeclaration(tmpName, enode.argument);
-              finalParent.push(newNode);
+              newNodes.push(newNode);
               // Spread it to trigger iterators and to make sure still errors happen
               const spread = AST.expressionStatement(AST.arrayExpression(AST.spreadElement(tmpName)));
-              finalParent.push(spread);
+              newNodes.push(spread);
             } else {
               const newNode = AST.expressionStatement(enode);
-              finalParent.push(newNode);
+              newNodes.push(newNode);
             }
           });
-          body.splice(i, 1, ...finalParent);
+          body.splice(i, 1, ...newNodes);
 
-          after(finalParent);
+          after(newNodes);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -3154,6 +3196,18 @@ export function phaseNormalize(fdata, fname) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
+
+          log('- Processing methods')
+          node.properties.forEach((pnode, i) => {
+            if (pnode.method || pnode.kind === 'get' || pnode.kind === 'set') {
+              log(i, 'is a method, getter, or setter');
+              // We're going to visit it without wrapping it into a block first. And we're probably going to regret that.
+              // But right now I don't see a reason why a function expression would want to mess with the parent :shrug:
+
+              // Let's hope an assert triggers if the transform does ever try to reach for the parent... :/
+              transformExpression('donotuseparent', pnode.value, 1, 1, 1);
+            }
+          });
 
           return false;
         }
@@ -5146,9 +5200,12 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (isComplexNode(dnode.init) && transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
+      if (isComplexNode(dnode.init)) {
+        log('- init is complex');
+        if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
       }
     }
 

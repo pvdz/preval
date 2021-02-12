@@ -26,10 +26,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpTemplateExpr = $(1);
 const tmpCalleeParam = `abc ${tmpTemplateExpr} def`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

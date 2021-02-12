@@ -39,20 +39,17 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
-  const tmpChainRootCall = parseInt;
-  const tmpChainElementCall = tmpChainRootCall(15);
+  const tmpChainElementCall = parseInt(15);
   if (tmpChainElementCall) {
     const tmpChainElementObject = tmpChainElementCall.foo;
     tmpCalleeParam = tmpChainElementObject;
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

@@ -35,7 +35,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var x;
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs = 1;
 if (tmpNestedComplexRhs) {
@@ -44,7 +43,7 @@ if (tmpNestedComplexRhs) {
 }
 x = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

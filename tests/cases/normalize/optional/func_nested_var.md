@@ -49,7 +49,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const a = 10;
   let b = undefined;
   const tmpChainRootProp = $(2);
   if (tmpChainRootProp) {
@@ -65,9 +64,8 @@ function f() {
   const tmpReturnArg = $(c);
   return tmpReturnArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

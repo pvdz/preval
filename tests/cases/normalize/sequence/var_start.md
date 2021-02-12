@@ -23,8 +23,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = 6;
-$(a);
+$(6);
 `````
 
 ## Result

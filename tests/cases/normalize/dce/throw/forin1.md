@@ -55,9 +55,8 @@ function f() {
   }
   $('keep, do not eval');
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -36,9 +36,8 @@ function f(tmpParamPattern) {
   let x = tmpParamPattern.x;
   return x;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f('abc', 10);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

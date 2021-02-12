@@ -33,14 +33,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = undefined;
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
+let objPatternCrashTest = undefined === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+  objPatternCrashTest = undefined === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+  objPatternCrashTest = undefined.cannotDestructureThis;
 }
 $('bad');
 `````

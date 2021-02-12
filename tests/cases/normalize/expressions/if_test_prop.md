@@ -29,9 +29,8 @@ const tmpIfTest = tmpCompObj.foo;
 `````js filename=intro
 let y;
 let tmpCompObj;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpCompObj = tmpNestedAssignObjPatternRhs;
+x = (1).x;
+tmpCompObj = 1;
 const tmpIfTest = tmpCompObj.foo;
 `````
 

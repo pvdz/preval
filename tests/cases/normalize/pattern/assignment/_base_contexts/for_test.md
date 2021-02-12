@@ -25,8 +25,7 @@ for ({ x } = 1;false;) y;
 
 `````js filename=intro
 {
-  const tmpAssignObjPatternRhs = 1;
-  x = tmpAssignObjPatternRhs.x;
+  x = (1).x;
 }
 `````
 

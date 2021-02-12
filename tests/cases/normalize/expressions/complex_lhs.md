@@ -26,9 +26,8 @@ tmpAssignMemLhsObj.foo = 10;
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = {};
-const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+const tmpAssignMemLhsObj = $(tmpCalleeParam);
 tmpAssignMemLhsObj.foo = 10;
 `````
 

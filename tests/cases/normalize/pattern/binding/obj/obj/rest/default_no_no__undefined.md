@@ -31,13 +31,10 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = undefined;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const tmpCallCallee = objPatternRest;
+const objPatternNoDefault = undefined.x;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = undefined;
-const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 

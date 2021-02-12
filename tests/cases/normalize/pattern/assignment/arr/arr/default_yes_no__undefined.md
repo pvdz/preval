@@ -37,15 +37,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = undefined;
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat = [...undefined];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['fail2'];
-  arrPatternStep = tmpCallCallee(tmpCalleeParam);
+  arrPatternStep = $(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }

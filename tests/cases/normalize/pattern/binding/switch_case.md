@@ -53,9 +53,8 @@ switch (0) {
   let arrPatternSplat;
   let a;
   let b;
-  const tmpSwitchValue = 0;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 0 === tmpSwitchValue;
+  const tmpIfTest = 0 === 0;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

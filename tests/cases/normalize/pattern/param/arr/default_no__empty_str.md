@@ -36,9 +36,8 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   return 'ok';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f('', 200);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

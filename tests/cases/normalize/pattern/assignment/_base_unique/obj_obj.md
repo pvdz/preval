@@ -35,8 +35,7 @@ z_1 = objPatternNoDefault$1.z;
 {
   let z = 1;
 }
-const tmpAssignObjPatternRhs = 1;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 z_1 = objPatternNoDefault$1.z;
 {

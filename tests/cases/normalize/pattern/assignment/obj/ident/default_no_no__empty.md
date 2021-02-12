@@ -26,8 +26,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-x = tmpAssignObjPatternRhs.x;
+x = (1).x;
 $('bad');
 `````
 

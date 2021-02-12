@@ -27,8 +27,7 @@ if (a) {
 
 `````js filename=intro
 if (a) {
-  const tmpAssignObjPatternRhs = 1;
-  x = tmpAssignObjPatternRhs.x;
+  x = (1).x;
 } else {
   c;
 }

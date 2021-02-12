@@ -31,9 +31,8 @@ for (a of tmpForOfRhs) {
 
 `````js filename=intro
 let a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1, y: 2 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 for (a of tmpForOfRhs) {
   $(a);
 }

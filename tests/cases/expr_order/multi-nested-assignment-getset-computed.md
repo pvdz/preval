@@ -186,9 +186,8 @@ $$(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 function $$(...a_1) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }

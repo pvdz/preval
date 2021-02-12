@@ -67,10 +67,12 @@ function f() {
   $('-------- start');
   const b = {
     get foo() {
-      return $(2);
+      const tmpReturnArg = $(2);
+      return tmpReturnArg;
     },
     set foo(x) {
-      return $(3);
+      const tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
     },
   };
   $('-------- bound');
@@ -110,37 +112,34 @@ function f() {
   $('-------- start');
   const b = {
     get foo() {
-      return $(2);
+      const tmpReturnArg = $(2);
+      return tmpReturnArg;
     },
     set foo(x) {
-      return $(3);
+      const tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
     },
   };
   $('-------- bound');
   let a = 1;
   $('-------- let 1');
-  const tmpCallCallee = $;
   let tmpCalleeParam;
   let tmpNestedComplexRhs;
-  const tmpNestedPropAssignRhs = 5;
-  b.foo = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  b.foo = 5;
+  tmpNestedComplexRhs = 5;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $('-------- test case');
   $(a);
   $('-------- a');
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = b.foo;
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
   $('-------- a.foo');
-  const tmpCallCallee$2 = $;
   let tmpCalleeParam$2;
-  const tmpNestedPropAssignRhs$1 = 4;
-  b.foo = tmpNestedPropAssignRhs$1;
-  tmpCalleeParam$2 = tmpNestedPropAssignRhs$1;
-  tmpCallCallee$2(tmpCalleeParam$2);
+  b.foo = 4;
+  tmpCalleeParam$2 = 4;
+  $(tmpCalleeParam$2);
   $('-------- a.foo = 4');
 }
 f();

@@ -41,7 +41,6 @@ var f;
 var x;
 f = { 10: 20 };
 x = 10;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = f;
 if (tmpChainRootProp) {
@@ -49,7 +48,7 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

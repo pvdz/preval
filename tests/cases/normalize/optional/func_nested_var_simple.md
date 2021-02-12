@@ -50,10 +50,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const a = 10;
   let b = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(2);
+  const tmpChainElementCall = $(2);
   if (tmpChainElementCall) {
     const tmpChainElementObject = tmpChainElementCall.toString;
     b = tmpChainElementObject;
@@ -67,9 +65,8 @@ function f() {
   const tmpReturnArg = $(c);
   return tmpReturnArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

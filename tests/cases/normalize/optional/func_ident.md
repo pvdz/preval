@@ -40,19 +40,17 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
   const tmpChainRootProp = global;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.foo;
     tmpCalleeParam = tmpChainElementObject;
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

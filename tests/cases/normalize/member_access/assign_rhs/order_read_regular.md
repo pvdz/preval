@@ -26,7 +26,8 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
@@ -43,7 +44,8 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);

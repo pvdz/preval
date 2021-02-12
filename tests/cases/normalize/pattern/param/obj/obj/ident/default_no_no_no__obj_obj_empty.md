@@ -42,13 +42,11 @@ function f(tmpParamPattern) {
   let y = objPatternNoDefault.y;
   return y;
 }
-const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal = {};
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+$(tmpCalleeParam);
 `````
 
 ## Result

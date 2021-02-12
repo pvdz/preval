@@ -35,14 +35,13 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 let i = 0;
-const tmpNewCallee = $;
 const tmpCalleeParam = i;
 let tmpCalleeParam$1;
 const tmpNestedCompoundLhs = i;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 i = tmpNestedComplexRhs;
 tmpCalleeParam$1 = tmpNestedComplexRhs;
-new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+new $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Result

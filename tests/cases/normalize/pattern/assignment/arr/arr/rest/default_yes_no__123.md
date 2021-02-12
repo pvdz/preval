@@ -36,8 +36,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = 1;
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat = [...1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;

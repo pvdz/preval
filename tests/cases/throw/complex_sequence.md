@@ -40,9 +40,8 @@ function f() {
   let tmpThrowArg = $(3);
   throw tmpThrowArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

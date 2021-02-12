@@ -48,9 +48,8 @@ function f($tdz$__x) {
   }
   return x;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f('xyz', 200);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

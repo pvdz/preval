@@ -27,10 +27,7 @@ $(wow);
 ## Output
 
 `````js filename=intro
-const foo = 'five';
-const bar = foo;
-const wow = bar;
-$(wow);
+$('five');
 `````
 
 ## Result

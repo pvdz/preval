@@ -32,13 +32,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = 1;
-const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpNestedCompoundLhs = x;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 x = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

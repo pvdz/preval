@@ -43,7 +43,7 @@ const tmpClassSuper = $(s);
 const tmpClassComputedKey = $('f');
 s = Number;
 const tmpClassComputedKey$1 = 'x';
-let x = class x extends tmpClassSuper {
+let x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100, 'method');
     return tmpReturnArg;
@@ -83,12 +83,10 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 let s = String;
-const y = 'y';
 const tmpClassSuper = $(s);
 const tmpClassComputedKey = $('f');
 s = Number;
-const tmpClassComputedKey$1 = 'x';
-let x = class x extends tmpClassSuper {
+let x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100, 'method');
     return tmpReturnArg;
@@ -97,31 +95,27 @@ let x = class x extends tmpClassSuper {
     const tmpReturnArg$1 = $(200, 'method');
     return tmpReturnArg$1;
   }
-  [tmpClassComputedKey$1]() {
+  ['x']() {
     const tmpReturnArg$2 = $(300, 'method');
     return tmpReturnArg$2;
   }
-  [y]() {
+  ['y']() {
     const tmpReturnArg$3 = $(400, 'method');
     return tmpReturnArg$3;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCallObj$1 = new x();
 const tmpCalleeParam$1 = tmpCallObj$1.g();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
+$(tmpCalleeParam$1);
 const tmpCallObj$2 = new x();
 const tmpCalleeParam$2 = tmpCallObj$2.x();
-tmpCallCallee$2(tmpCalleeParam$2);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$2);
 const tmpCallObj$3 = new x();
 const tmpCalleeParam$3 = tmpCallObj$3.y();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Result

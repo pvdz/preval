@@ -37,15 +37,13 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = '';
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat = [...''];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['pass2'];
-  arrPatternStep = tmpCallCallee(tmpCalleeParam);
+  arrPatternStep = $(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }

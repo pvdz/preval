@@ -35,9 +35,8 @@ function f() {
   const obj = { foo: 10 };
   obj.foo;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

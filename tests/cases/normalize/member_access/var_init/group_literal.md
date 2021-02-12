@@ -28,8 +28,7 @@ $(x);
 
 `````js filename=intro
 $(1);
-const tmpCompObj = 2;
-let x = tmpCompObj.foo;
+let x = (2).foo;
 $(x);
 `````
 

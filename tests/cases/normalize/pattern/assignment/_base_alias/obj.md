@@ -22,8 +22,7 @@ a = tmpAssignObjPatternRhs.x;
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-a = tmpAssignObjPatternRhs.x;
+a = (1).x;
 `````
 
 ## Result

@@ -27,8 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = '';
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat = [...''];
 const x = arrPatternSplat.slice(0);
 $(x);
 `````

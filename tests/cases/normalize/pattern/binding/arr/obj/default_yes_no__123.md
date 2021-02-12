@@ -42,8 +42,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = undefined;
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat = [...undefined];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;

@@ -75,16 +75,13 @@ rule('You have to listen to me');
 
 `````js filename=intro
 function rule(desc) {
-  const func = $;
-  const a = PURPLE + 'Rule:';
-  const b = a + RESET;
+  const a = 'purple' + 'Rule:';
+  const b = a + 'reset';
   const c = b + ' "';
   const d = c + desc;
   const e = d + '"';
-  func(e);
+  $(e);
 }
-const PURPLE = 'purple';
-const RESET = 'reset';
 rule('I want it my way');
 rule('You have to listen to me');
 `````

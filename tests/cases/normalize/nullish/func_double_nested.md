@@ -54,7 +54,6 @@ function f() {
   const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
-  const tmpCallCallee = $;
   let tmpCalleeParam = obj;
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
@@ -68,12 +67,11 @@ function f() {
   if (tmpIfTest$2) {
     tmpCalleeParam = c;
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

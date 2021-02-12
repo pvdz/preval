@@ -33,8 +33,7 @@ x_1 = tmpAssignObjPatternRhs.x;
 {
   let x = 1;
 }
-const tmpAssignObjPatternRhs = 1;
-x_1 = tmpAssignObjPatternRhs.x;
+x_1 = (1).x;
 {
   let x_2 = 1;
 }

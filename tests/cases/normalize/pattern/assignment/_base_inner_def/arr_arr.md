@@ -36,7 +36,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = 10;
 const tmpArrElement = [];
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
@@ -45,11 +44,11 @@ const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault = arrPatternSplat$1[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = a;
+  x = 10;
 } else {
   x = arrPatternBeforeDefault;
 }
-$(a);
+$(10);
 `````
 
 ## Result

@@ -37,7 +37,6 @@ $(c);
 ## Output
 
 `````js filename=intro
-const a = 10;
 let b = $(2);
 const tmpIfTest = b == null;
 if (tmpIfTest) {

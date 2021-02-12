@@ -18,14 +18,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = class x {};
+let x = class {};
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = class x {};
+let x = class {};
 $(x);
 `````
 

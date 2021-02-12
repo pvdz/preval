@@ -45,7 +45,6 @@ var c;
 a = 10;
 b = {};
 c = 30;
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(b);
@@ -54,7 +53,7 @@ tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

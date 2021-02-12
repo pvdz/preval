@@ -184,11 +184,10 @@ $$(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 function $$(...a_1) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
   const tmpObjLitVal = null;
   const tmpCalleeParam$1 = { depth: tmpObjLitVal };
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a_1[0];
   return tmpReturnArg;
 }

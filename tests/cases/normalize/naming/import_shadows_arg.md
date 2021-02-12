@@ -34,9 +34,8 @@ export { g };
 function g(x_1) {
   return x_1;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const x = tmpCallCallee(tmpCalleeParam);
+const x = $(tmpCalleeParam);
 export { x };
 export { g };
 `````

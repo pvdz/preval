@@ -23,7 +23,7 @@ $(new x().f());
 
 `````js filename=intro
 const tmpClassComputedKey = $('f');
-let x = class x {
+let x = class {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100);
     return tmpReturnArg;
@@ -39,16 +39,15 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpClassComputedKey = $('f');
-let x = class x {
+let x = class {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100);
     return tmpReturnArg;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

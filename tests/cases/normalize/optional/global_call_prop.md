@@ -29,15 +29,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpChainRootCall = parseInt;
-const tmpChainElementCall = tmpChainRootCall(15);
+const tmpChainElementCall = parseInt(15);
 if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.foo;
   tmpCalleeParam = tmpChainElementObject;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -77,18 +77,14 @@ function f($tdz$__a, $tdz$__b) {
   const tmpReturnArg = [a, b];
   return tmpReturnArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f('x');
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$2 = f(undefined, 'y');
-tmpCallCallee$2(tmpCalleeParam$2);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$2);
 const tmpCalleeParam$3 = f('x', 'y');
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Result

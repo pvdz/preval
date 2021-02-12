@@ -23,7 +23,7 @@ $(new x().y());
 ## Normalized
 
 `````js filename=intro
-let x = class x {
+let x = class {
   y($tdz$__arg) {
     let arg = undefined;
     const tmpIfTest = $tdz$__arg === undefined;
@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = class x {
+let x = class {
   y($tdz$__arg) {
     let arg = undefined;
     const tmpIfTest = $tdz$__arg === undefined;
@@ -56,10 +56,9 @@ let x = class x {
     return arg;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.y();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

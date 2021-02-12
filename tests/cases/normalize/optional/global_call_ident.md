@@ -24,9 +24,8 @@ if (tmpChainRootCall) {
 ## Output
 
 `````js filename=intro
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(15);
+if ($) {
+  const tmpChainElementCall = $(15);
 }
 `````
 

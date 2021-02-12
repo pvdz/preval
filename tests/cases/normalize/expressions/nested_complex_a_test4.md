@@ -34,13 +34,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpNestedAssignObj = $(a);
 const tmpNestedPropAssignRhs = b;
 tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
 tmpCalleeParam = tmpNestedPropAssignRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

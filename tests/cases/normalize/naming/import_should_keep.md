@@ -52,9 +52,8 @@ function g(x_2) {
   return x_2;
 }
 export class c {}
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const x = tmpCallCallee(tmpCalleeParam);
+const x = $(tmpCalleeParam);
 export { x };
 export { f };
 export { g };

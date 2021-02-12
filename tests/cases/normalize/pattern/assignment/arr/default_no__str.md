@@ -26,8 +26,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = 'xyz';
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat = [...'xyz'];
 $('ok');
 `````
 

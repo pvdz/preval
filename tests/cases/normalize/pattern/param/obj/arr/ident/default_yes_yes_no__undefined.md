@@ -55,9 +55,8 @@ function f(tmpParamPattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = ['fail2'];
-    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+    objPatternAfterDefault = $(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -72,9 +71,8 @@ function f(tmpParamPattern) {
   }
   return 'bad';
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(undefined, 10);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

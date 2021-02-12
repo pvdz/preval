@@ -41,11 +41,9 @@ const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternStep = arrPatternSplat[0];
-const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = arrPatternStep;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = undefined;
-const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(y);
 `````
 

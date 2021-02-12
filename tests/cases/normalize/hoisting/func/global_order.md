@@ -55,11 +55,10 @@ function h() {
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 const tmpCalleeParam$2 = h();
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````
 
 ## Result

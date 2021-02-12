@@ -29,8 +29,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const objPatternBeforeDefault = (1).x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

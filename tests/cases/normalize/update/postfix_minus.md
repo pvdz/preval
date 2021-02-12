@@ -30,11 +30,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = 1;
-const tmpCallCallee = $;
 const tmpPostUpdArgIdent = x;
 x = x - 1;
 const tmpCalleeParam = tmpPostUpdArgIdent;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

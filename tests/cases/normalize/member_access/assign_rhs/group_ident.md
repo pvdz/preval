@@ -29,8 +29,7 @@ $(x);
 `````js filename=intro
 let x = 10;
 $(1);
-const tmpAssignRhsProp = $;
-x = tmpAssignRhsProp.length;
+x = $.length;
 $(x);
 `````
 

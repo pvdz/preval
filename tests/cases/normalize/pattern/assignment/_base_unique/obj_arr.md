@@ -35,8 +35,7 @@ y_1 = arrPatternSplat[0];
 {
   let y = 1;
 }
-const tmpAssignObjPatternRhs = 1;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 y_1 = arrPatternSplat[0];
 {

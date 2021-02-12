@@ -37,11 +37,9 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = tmpParamPattern;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return 'bad';
 }
 const tmpCallCallee$1 = f;

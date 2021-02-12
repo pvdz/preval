@@ -34,11 +34,10 @@ const tmpObjLitVal$2 = $();
 const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpCallCallee = $;
 const tmpCompObj$1 = obj.a;
 const tmpCompObj = tmpCompObj$1.b;
 const tmpCalleeParam = tmpCompObj.c;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

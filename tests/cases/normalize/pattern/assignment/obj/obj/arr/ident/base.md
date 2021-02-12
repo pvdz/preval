@@ -36,9 +36,8 @@ $(z);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = 13;
 const tmpObjLitVal$2 = [1, 2, 3];
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;

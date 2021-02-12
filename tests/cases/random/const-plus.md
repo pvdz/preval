@@ -29,9 +29,8 @@ $(xyz);
 ## Output
 
 `````js filename=intro
-const x = 'a';
-const y = 'b' + x;
-const z = x + y;
+const y = 'b' + 'a';
+const z = 'a' + y;
 const xyz = z;
 $(xyz);
 `````

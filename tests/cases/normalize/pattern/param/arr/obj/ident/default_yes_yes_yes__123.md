@@ -64,10 +64,9 @@ function f($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpArrElement = { x: 'fail3' };
     const tmpCalleeParam = [tmpArrElement];
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    $tdz$__pattern_after_default = $(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -76,9 +75,8 @@ function f($tdz$__pattern) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = { x: 'fail2' };
-    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
+    arrPatternStep = $(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -92,9 +90,8 @@ function f($tdz$__pattern) {
   }
   return 'bad';
 }
-const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = f(1, 2, 3);
-tmpCallCallee$2(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

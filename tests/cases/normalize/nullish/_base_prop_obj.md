@@ -34,13 +34,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 var f;
 f = { x: 10 };
-const tmpCallCallee = $;
 let tmpCalleeParam = f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -43,14 +43,13 @@ var c;
 a = 10;
 b = 20;
 c = 30;
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
 b = c;
 tmpNestedComplexRhs = c;
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

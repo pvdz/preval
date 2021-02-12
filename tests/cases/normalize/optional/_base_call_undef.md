@@ -35,14 +35,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 var f;
 f = undefined;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall();
   tmpCalleeParam = tmpChainElementCall;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

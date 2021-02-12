@@ -39,7 +39,6 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal = {};
 const a = { b: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = a;
 if (tmpChainRootProp) {
@@ -50,7 +49,7 @@ if (tmpChainRootProp) {
     tmpCalleeParam = tmpChainElementObject$2;
   }
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

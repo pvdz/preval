@@ -26,7 +26,8 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
@@ -46,7 +47,8 @@ $(x);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
@@ -55,9 +57,8 @@ const obj = {
 let x = 10;
 const tmpNestedAssignComMemberObj = $(obj);
 const tmpNestedAssignComMemberProp = $('x');
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-x = tmpNestedPropAssignRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
+x = 30;
 $(x);
 `````
 

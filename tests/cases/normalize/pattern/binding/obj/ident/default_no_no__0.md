@@ -26,8 +26,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = 0;
-const x = bindingPatternObjRoot.x;
+const x = (0).x;
 $(x);
 `````
 

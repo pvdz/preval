@@ -59,10 +59,9 @@ function f($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpObjLitVal = ['fail2'];
     const tmpCalleeParam = { x: tmpObjLitVal };
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    $tdz$__pattern_after_default = $(tmpCalleeParam);
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -70,21 +69,18 @@ function f($tdz$__pattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = ['fail'];
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
+    objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   return 'ok';
 }
-const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;
 const tmpCalleeParam$3 = {};
-const tmpCalleeParam$4 = 10;
-const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$4);
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, 10);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

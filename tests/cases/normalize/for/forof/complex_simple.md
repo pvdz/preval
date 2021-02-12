@@ -43,9 +43,8 @@ let b = { x: 1, y: 2 };
   for (tmpForOfLhsNode of b) {
     const tmpAssignMemLhsObj = $(a);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-    const tmpCallCallee = $;
     const tmpCalleeParam = a.x;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 `````

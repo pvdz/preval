@@ -47,7 +47,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const a = 10;
   let b = $(2);
   const tmpIfTest = b == null;
   if (tmpIfTest) {
@@ -61,9 +60,8 @@ function f() {
   const tmpReturnArg = $(c);
   return tmpReturnArg;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

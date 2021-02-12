@@ -28,9 +28,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCallCallee = f;
 let tmpCalleeParam;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+x = (1).x;
+tmpCalleeParam = 1;
 tmpCallCallee(tmpCalleeParam);
 `````
 

@@ -25,9 +25,7 @@ $(bar);
 ## Output
 
 `````js filename=intro
-const foo = Infinity;
-const bar = foo;
-$(bar);
+$(Infinity);
 `````
 
 ## Result

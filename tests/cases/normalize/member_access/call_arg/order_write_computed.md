@@ -24,7 +24,8 @@ $($(obj)[$('x')] = 30);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
@@ -45,20 +46,19 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = {
   get x() {
-    return $(10);
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
   },
   set x(_) {
     $(20);
   },
 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpNestedAssignComMemberObj = $(obj);
 const tmpNestedAssignComMemberProp = $('x');
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
-tmpCallCallee(tmpCalleeParam);
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
+tmpCalleeParam = 30;
+$(tmpCalleeParam);
 `````
 
 ## Result

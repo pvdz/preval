@@ -45,10 +45,8 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = { z: 10 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let a = { x: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 if (tmpChainElementCall) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
@@ -60,7 +58,7 @@ if (tmpChainElementCall) {
     tmpCalleeParam = tmpChainElementObject$2;
   }
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

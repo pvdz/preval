@@ -34,12 +34,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 var foo;
 foo = 1;
-const tmpCallCallee = $;
-const tmpCalleeParam = true;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(true);
 const tmpCalleeParam$1 = typeof foo;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

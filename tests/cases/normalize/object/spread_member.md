@@ -31,10 +31,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal = { bar: 10 };
 const obj = { foo: tmpObjLitVal };
-const tmpCallCallee = $;
 const tmpObjSpread = obj.foo;
 const tmpCalleeParam = { ...tmpObjSpread };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

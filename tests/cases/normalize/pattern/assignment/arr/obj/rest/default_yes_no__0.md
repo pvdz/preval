@@ -41,23 +41,19 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = 0;
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat = [...0];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 'fail' };
-  arrPatternStep = tmpCallCallee(tmpCalleeParam);
+  arrPatternStep = $(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const tmpCallCallee$1 = objPatternRest;
 const tmpCalleeParam$1 = arrPatternStep;
 const tmpCalleeParam$2 = [];
-const tmpCalleeParam$3 = undefined;
-x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $('bad');
 `````
 

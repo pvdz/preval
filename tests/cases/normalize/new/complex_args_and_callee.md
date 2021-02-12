@@ -30,14 +30,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpNewCallee = $();
 const tmpCalleeParam$1 = 5 + 5;
 const tmpCalleeParam$2 = $();
 const tmpCompObj = Array.prototype;
 const tmpCalleeParam$3 = tmpCompObj.length;
 const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -41,9 +41,8 @@ function f() {
   const tmpCompObj = obj.a;
   tmpCompObj.b;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

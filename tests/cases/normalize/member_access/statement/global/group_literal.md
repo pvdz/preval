@@ -26,8 +26,7 @@ tmpCompObj.foo;
 
 `````js filename=intro
 $(1);
-const tmpCompObj = 2;
-tmpCompObj.foo;
+(2).foo;
 `````
 
 ## Result

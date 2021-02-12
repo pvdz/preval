@@ -44,9 +44,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function g() {
-  const tmpCallCallee = $;
   const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   function f() {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
@@ -56,9 +55,8 @@ function g() {
     return tmpReturnArg$1;
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

@@ -32,9 +32,8 @@ let x = 1;
 let b = 2;
 let c = 3;
 let tmpIfTest;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
+x = (1).x;
+tmpIfTest = 1;
 `````
 
 ## Result

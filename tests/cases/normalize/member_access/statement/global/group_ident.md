@@ -24,8 +24,7 @@ tmpCompObj.length;
 
 `````js filename=intro
 $(1);
-const tmpCompObj = $;
-tmpCompObj.length;
+$.length;
 `````
 
 ## Result

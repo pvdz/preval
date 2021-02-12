@@ -22,7 +22,7 @@ $(new x().b());
 ## Normalized
 
 `````js filename=intro
-let x = class x {
+let x = class {
   a() {}
   b() {}
 };
@@ -35,14 +35,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = class x {
+let x = class {
   a() {}
   b() {}
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.b();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

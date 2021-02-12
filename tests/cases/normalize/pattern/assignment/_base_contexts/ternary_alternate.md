@@ -29,8 +29,7 @@ if (a) {
 if (a) {
   b;
 } else {
-  const tmpAssignObjPatternRhs = 1;
-  x = tmpAssignObjPatternRhs.x;
+  x = (1).x;
 }
 `````
 

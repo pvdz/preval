@@ -33,12 +33,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   $(1);
-  const tmpCompObj = $;
-  tmpCompObj.length;
+  $.length;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

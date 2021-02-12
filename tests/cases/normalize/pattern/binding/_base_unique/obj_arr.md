@@ -35,8 +35,7 @@ const y = arrPatternSplat[0];
 {
   let y_1 = 1;
 }
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
 {

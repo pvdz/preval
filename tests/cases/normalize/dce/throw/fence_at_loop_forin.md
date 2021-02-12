@@ -81,9 +81,8 @@ function f() {
   }
   $('after (not invoked but should not be eliminated)');
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

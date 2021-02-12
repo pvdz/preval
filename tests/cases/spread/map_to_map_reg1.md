@@ -20,18 +20,15 @@ $([...[1]])
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpArrSpread = [1];
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = [1];
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpArrSpread = [1];
-const tmpCalleeParam = [...tmpArrSpread];
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = [1];
+$(tmpCalleeParam);
 `````
 
 ## Result

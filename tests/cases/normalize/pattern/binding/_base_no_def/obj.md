@@ -22,8 +22,7 @@ const x = bindingPatternObjRoot.x;
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = 1;
-const x = bindingPatternObjRoot.x;
+const x = (1).x;
 `````
 
 ## Result

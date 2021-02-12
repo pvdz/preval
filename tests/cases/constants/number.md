@@ -25,9 +25,7 @@ $(bar);
 ## Output
 
 `````js filename=intro
-const foo = 5;
-const bar = foo;
-$(bar);
+$(5);
 `````
 
 ## Result

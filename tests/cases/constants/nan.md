@@ -25,9 +25,7 @@ $(bar);
 ## Output
 
 `````js filename=intro
-const foo = NaN;
-const bar = foo;
-$(bar);
+$(NaN);
 `````
 
 ## Result

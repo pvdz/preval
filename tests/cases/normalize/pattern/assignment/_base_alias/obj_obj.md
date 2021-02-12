@@ -24,8 +24,7 @@ a = objPatternNoDefault$1.z;
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 a = objPatternNoDefault$1.z;
 `````

@@ -35,8 +35,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = 'abc';
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat = [...'abc'];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 let x = undefined;

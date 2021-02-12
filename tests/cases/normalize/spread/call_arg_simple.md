@@ -25,9 +25,8 @@ tmpCallCallee(...tmpCalleeParamSpread);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParamSpread = [1, 2, 3];
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 `````
 
 ## Result

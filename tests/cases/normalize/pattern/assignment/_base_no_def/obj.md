@@ -25,8 +25,7 @@ x = tmpAssignObjPatternRhs.x;
 
 `````js filename=intro
 let x = 10;
-const tmpAssignObjPatternRhs = 1;
-x = tmpAssignObjPatternRhs.x;
+x = (1).x;
 `````
 
 ## Result

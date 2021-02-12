@@ -51,12 +51,11 @@ let h = 8;
 let y = 9;
 const tmpNewCallee = y;
 const tmpCalleeParam = x;
-const tmpCalleeParam$1 = 8;
 a = b.c;
 d = e[f];
 const tmpCompObj = g;
 const tmpCalleeParamSpread = tmpCompObj.h;
-new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
+new tmpNewCallee(tmpCalleeParam, 8, ...tmpCalleeParamSpread);
 `````
 
 ## Result

@@ -31,9 +31,8 @@ $(y);
 
 `````js filename=intro
 let y = undefined;
-const tmpChainRootProp = 3;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.foo;
+if (3) {
+  const tmpChainElementObject = (3).foo;
   y = tmpChainElementObject;
 }
 $(y);

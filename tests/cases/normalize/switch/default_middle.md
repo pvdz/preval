@@ -137,30 +137,29 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = 6;
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(10);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(20);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === 6;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
     const tmpBinLhs$2 = $(30);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    const tmpIfTest$2 = tmpBinLhs$2 === 6;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 3;
     } else {
       const tmpBinLhs$3 = $(40);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      const tmpIfTest$3 = tmpBinLhs$3 === 6;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 4;
       } else {
         const tmpBinLhs$4 = $(50);
-        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
+        const tmpIfTest$4 = tmpBinLhs$4 === 6;
         if (tmpIfTest$4) {
           tmpSwitchCaseToStart = 5;
         }

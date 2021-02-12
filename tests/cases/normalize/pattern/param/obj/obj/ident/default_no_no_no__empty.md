@@ -38,9 +38,8 @@ function f(tmpParamPattern) {
   let y = objPatternNoDefault.y;
   return 'bad';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

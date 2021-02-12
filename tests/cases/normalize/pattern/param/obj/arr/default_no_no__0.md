@@ -38,9 +38,8 @@ function f(tmpParamPattern) {
   let arrPatternSplat = [...objPatternNoDefault];
   return 'bad';
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 10);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

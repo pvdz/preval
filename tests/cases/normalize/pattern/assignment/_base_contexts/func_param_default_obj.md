@@ -38,9 +38,8 @@ const f = ($tdz$__a) => {
   let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
-    const tmpNestedAssignObjPatternRhs = 1;
-    x = tmpNestedAssignObjPatternRhs.x;
-    a = tmpNestedAssignObjPatternRhs;
+    x = (1).x;
+    a = 1;
   } else {
     a = $tdz$__a;
   }

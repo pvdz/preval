@@ -42,14 +42,12 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let x = 10;
 const tmpNestedAssignObj = obj.a;
-const tmpNestedPropAssignRhs = 15;
-tmpNestedAssignObj.b = tmpNestedPropAssignRhs;
-x = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.b = 15;
+x = 15;
 $(x);
-const tmpCallCallee = $;
 const tmpCompObj = obj.a;
 const tmpCalleeParam = tmpCompObj.b;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

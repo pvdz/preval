@@ -28,9 +28,8 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 `````js filename=intro
 let y;
 let tmpIfTest;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
+x = (1).x;
+tmpIfTest = 1;
 `````
 
 ## Result

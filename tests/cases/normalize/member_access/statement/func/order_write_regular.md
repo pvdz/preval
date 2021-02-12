@@ -28,7 +28,8 @@ $(f());
 function f() {
   const obj = {
     get x() {
-      return $(10);
+      const tmpReturnArg = $(10);
+      return tmpReturnArg;
     },
     set x(_) {
       $(20);
@@ -48,7 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const obj = {
     get x() {
-      return $(10);
+      const tmpReturnArg = $(10);
+      return tmpReturnArg;
     },
     set x(_) {
       $(20);
@@ -57,9 +59,8 @@ function f() {
   const tmpAssignMemLhsObj = $(obj);
   tmpAssignMemLhsObj.x = 30;
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

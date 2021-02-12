@@ -37,14 +37,13 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   return 10;
 }
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall();
   tmpCalleeParam = tmpChainElementCall;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

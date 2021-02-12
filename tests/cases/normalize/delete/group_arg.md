@@ -26,10 +26,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 foo;
-const tmpCalleeParam = true;
-tmpCallCallee(tmpCalleeParam);
+$(true);
 `````
 
 ## Result

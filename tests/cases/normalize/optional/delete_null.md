@@ -22,8 +22,7 @@ const tmpDeleteOpt = null;
 if (tmpDeleteOpt) {
   let tmpCalleeParam = true;
 } else {
-  tmpCalleeParam = tmpDeleteOpt.x;
-  true;
+  tmpCalleeParam = delete tmpDeleteOpt.x;
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -41,7 +40,7 @@ Should call `$` with:
  - eval returned: undefined
 
 Normalized calls: BAD?!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')
 
 Final output calls: BAD!!
  - eval returned: undefined

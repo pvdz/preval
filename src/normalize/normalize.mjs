@@ -181,6 +181,32 @@ export function phaseNormalize(fdata, fname) {
 
   const ast = fdata.tenkoOutput.ast;
 
+  function assertNoDupeNodes(node = ast, prop = 'ast') {
+    // Assert AST contains no duplicate node objects
+    const map = new Map();
+    walk(
+      (node, down, type, path) => {
+        if (!node || !node.$p) return;
+        if (down) {
+          if (map.has(node.$p.pid)) {
+            console.dir(node, { depth: null });
+            console.log('previous parent:', map.get(node.$p.pid));
+            console.log('current  parent:', path.nodes[path.nodes.length - 2]);
+            console.log('truncated node:', node);
+            ASSERT(
+              false,
+              'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
+              node,
+            );
+          }
+          map.set(node.$p.pid, path.nodes[path.nodes.length - 2]);
+        }
+      },
+      node,
+      prop,
+    );
+  }
+
   function generateUniqueGlobalName(name) {
     // Create a (module) globally unique name. Then use that name for the local scope.
     let n = 0;
@@ -270,23 +296,9 @@ export function phaseNormalize(fdata, fname) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');
     }
-  } while (changed);
 
-  //// Assert AST contains no duplicate node objects
-  //const set = new Set();
-  //walk(
-  //  (node, down) => {
-  //    if (down) {
-  //      ASSERT(
-  //        !set.has(node.$p.pid),
-  //        'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
-  //      );
-  //      set.add(node.$p.pid);
-  //    }
-  //  },
-  //  ast,
-  //  'ast',
-  //);
+    assertNoDupeNodes();
+  } while (changed);
 
   log('After normalization:');
   log(
@@ -792,6 +804,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -814,6 +827,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
     return false;
@@ -828,6 +842,7 @@ export function phaseNormalize(fdata, fname) {
     body[i] = newNode;
 
     after(newNode);
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
   function transformContinueStatement(node, body, i, parent) {
@@ -847,6 +862,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -871,6 +887,7 @@ export function phaseNormalize(fdata, fname) {
       node.body = newNode;
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -890,6 +907,7 @@ export function phaseNormalize(fdata, fname) {
 
     after(newNodes);
     // Byebye do-while
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
   function normalizeCallArgs(args, newArgs, newNodes) {
@@ -924,10 +942,10 @@ export function phaseNormalize(fdata, fname) {
       if (node.declaration.id) {
         // We can outline the decl safely and change to named export with identical semantics
         if (type === 'FunctionDeclaration') {
-          rule('Default named function exports should be a named exports');
+          rule('Default named function exports should be a named exports; func');
           example('export default function f(){}', 'function f(){}; export { F as default };');
         } else {
-          rule('Default named class should be a named exports');
+          rule('Default named class should be a named exports; class');
           example('export default class F {}', 'class F {}; export { F as default };');
         }
         before(node);
@@ -936,6 +954,7 @@ export function phaseNormalize(fdata, fname) {
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -950,7 +969,7 @@ export function phaseNormalize(fdata, fname) {
 
     // The export is frozen, even if the exported value is an identifier. Reassign it locally to make sure that stays the same.
 
-    rule('Default exports should be a named exports');
+    rule('Default exports should be a named exports; expr');
     example('export default 10', 'tmp = 10; export {tmp as default};');
     example('export default x', 'tmp = x; export {tmp as default};');
     before(node);
@@ -963,6 +982,7 @@ export function phaseNormalize(fdata, fname) {
     body.splice(i, 1, ...newNodes);
 
     after(newNodes);
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
   function transformExportNamedDeclaration(node, body, i) {
@@ -1001,6 +1021,7 @@ export function phaseNormalize(fdata, fname) {
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -1098,6 +1119,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = AST.emptyStatement();
 
             after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           } else {
             log('Not eliminating this identifier statement because it is an implicit global');
@@ -1117,6 +1139,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = AST.emptyStatement();
 
           after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1124,7 +1147,10 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionExpression': {
-        if (hoistingOnce(node)) return true;
+        if (hoistingOnce(node)) {
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
 
         // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
         // Array<name, expr>
@@ -1136,6 +1162,7 @@ export function phaseNormalize(fdata, fname) {
         if (newBindings.length) {
           log('Params were transformed somehow, injecting new nodes into body');
           node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1176,6 +1203,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             } else {
               rule('Optional member call expression should be if-else');
@@ -1197,6 +1225,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes, finalParent);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
           }
@@ -1217,6 +1246,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1252,6 +1282,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1283,6 +1314,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1308,6 +1340,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1329,6 +1362,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1348,6 +1382,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1377,6 +1412,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1395,6 +1431,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1437,6 +1474,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1455,6 +1493,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1489,6 +1528,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1509,6 +1549,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1525,6 +1566,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1547,6 +1589,7 @@ export function phaseNormalize(fdata, fname) {
             node.property = AST.identifier(node.property.value);
 
             after(node, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
         }
@@ -1566,6 +1609,7 @@ export function phaseNormalize(fdata, fname) {
 
         after(newNodes);
         after(finalNode, finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -1602,6 +1646,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1614,6 +1659,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = finalParent;
 
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1646,6 +1692,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1658,6 +1705,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = finalParent;
 
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1698,6 +1746,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1724,6 +1773,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1738,10 +1788,12 @@ export function phaseNormalize(fdata, fname) {
 
             const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs');
             // tmp = a.b, or tmp = a[b]
-            const newNodes = [AST.variableDeclaration(tmpNameLhs, AST.memberExpression(a, b, mem.computed), 'const')];
+            const newNodes = [
+              AST.variableDeclaration(tmpNameLhs, AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed), 'const'),
+            ];
             // tmp.b = tmp + c(), or tmp[b] = tmp + c()
             const finalNode = AST.assignmentExpression(
-              AST.memberExpression(a, b, mem.computed),
+              AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed),
               AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
             );
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1749,6 +1801,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1775,6 +1828,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1799,6 +1853,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1815,12 +1870,16 @@ export function phaseNormalize(fdata, fname) {
           example('a[b] *= c()', 'a[b] = a[b] * c()', () => lhs.type !== 'Identifier' && lhs.computed);
           before(node, parentNode);
 
-          const finalNode = AST.assignmentExpression(lhs, AST.binaryExpression(node.operator.slice(0, -1), lhs, rhs));
+          const finalNode = AST.assignmentExpression(
+            AST.cloneSimple(lhs),
+            AST.binaryExpression(node.operator.slice(0, -1), AST.cloneSimple(lhs), rhs),
+          );
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
           body[i] = finalParent;
 
           after(body[i]);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -1861,18 +1920,19 @@ export function phaseNormalize(fdata, fname) {
 
               const tmpName = createFreshVar('tmpNestedCompoundLhs');
               // tmp = b
-              const newNodes = [AST.variableDeclaration(tmpName, rhsLhs, 'const')];
+              const newNodes = [AST.variableDeclaration(tmpName, b, 'const')];
               // a = b = tmp * c()
               const finalNode = AST.assignmentExpression(
                 a,
                 // b = tmp * c()
-                AST.assignmentExpression(b, AST.binaryExpression(rhs.operator.slice(0, -1), tmpName, c)),
+                AST.assignmentExpression(AST.cloneSimple(b), AST.binaryExpression(rhs.operator.slice(0, -1), tmpName, c)),
               );
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -1891,6 +1951,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -1899,13 +1960,14 @@ export function phaseNormalize(fdata, fname) {
             example('a = b = c', 'b = c, a = c');
             before(node, parentNode);
 
-            const newNodes = [AST.expressionStatement(AST.assignmentExpression(b, c))];
-            const finalNode = AST.assignmentExpression(a, c);
+            const newNodes = [AST.expressionStatement(AST.assignmentExpression(b, AST.cloneSimple(c)))];
+            const finalNode = AST.assignmentExpression(a, AST.cloneSimple(c));
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -1942,6 +2004,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -1963,6 +2026,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -1976,8 +2040,8 @@ export function phaseNormalize(fdata, fname) {
 
               const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs');
               const newNodes = [
-                AST.variableDeclaration(tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), rhsLhs, d), 'const'),
-                AST.expressionStatement(AST.assignmentExpression(rhsLhs, tmpName)),
+                AST.variableDeclaration(tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), AST.cloneSimple(rhsLhs), d), 'const'),
+                AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(rhsLhs), tmpName)),
               ];
               const finalNode = AST.assignmentExpression(a, tmpName);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1985,6 +2049,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2011,6 +2076,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2042,6 +2108,7 @@ export function phaseNormalize(fdata, fname) {
               after(newNodes);
               after(finalNode, finalParent);
             }
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2074,6 +2141,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2086,6 +2154,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2118,6 +2187,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2130,6 +2200,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2150,6 +2221,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2177,6 +2249,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2200,6 +2273,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2219,6 +2293,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2237,6 +2312,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = finalParent;
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2275,6 +2351,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2295,6 +2372,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2311,6 +2389,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2354,6 +2433,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2369,9 +2449,9 @@ export function phaseNormalize(fdata, fname) {
                 tmpName,
                 AST.variableDeclaration(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
                 AST.expressionStatement(
-                  AST.unaryExpression(
-                    'delete',
-                    AST.assignmentExpression(wrapLhs, AST.memberExpression(tmpName, mem.property, mem.computed)),
+                  AST.assignmentExpression(
+                    AST.cloneSimple(wrapLhs),
+                    AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed)),
                   ),
                 ),
               );
@@ -2379,6 +2459,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2393,16 +2474,19 @@ export function phaseNormalize(fdata, fname) {
               const finalParent = AST.ifStatement(
                 tmpName,
                 AST.expressionStatement(
-                  AST.unaryExpression(
-                    'delete',
-                    AST.assignmentExpression(wrapLhs, AST.memberExpression(tmpName, mem.property, mem.computed)),
+                  AST.assignmentExpression(
+                    wrapLhs,
+                    AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed)),
                   ),
                 ),
-                AST.expressionStatement(AST.assignmentExpression(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind)),
+                AST.expressionStatement(
+                  AST.assignmentExpression(AST.cloneSimple(wrapLhs), 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
+                ),
               );
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(newNodes);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2428,6 +2512,7 @@ export function phaseNormalize(fdata, fname) {
 
                 after(newNodes);
                 after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
 
@@ -2448,6 +2533,7 @@ export function phaseNormalize(fdata, fname) {
 
               after(newNodes);
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
 
@@ -2469,6 +2555,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2483,6 +2570,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(finalParent);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2500,6 +2588,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2516,6 +2605,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2546,6 +2636,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = finalParent;
 
             after(finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2570,13 +2661,14 @@ export function phaseNormalize(fdata, fname) {
               node.left,
             ),
             AST.ifStatement(
-              AST.binaryExpression('==', wrapLhs, 'null'),
-              AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right)),
+              AST.binaryExpression('==', AST.cloneSimple(wrapLhs), 'null'),
+              AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.right)),
             ),
           ];
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2592,6 +2684,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = finalParent;
 
             after(finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2604,21 +2697,27 @@ export function phaseNormalize(fdata, fname) {
           } else {
             ASSERT(false);
           }
+          before(node, parentNode);
 
           const finalParent = [
             wrapExpressionAs(
               wrapKind,
               varInitAssignKind,
               varInitAssignId,
-              wrapLhs,
+              AST.cloneSimple(wrapLhs),
               varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
               node.left,
             ),
-            AST.ifStatement(wrapLhs, AST.emptyStatement(), AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right))),
+            AST.ifStatement(
+              wrapLhs,
+              AST.emptyStatement(),
+              AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.right)),
+            ),
           ];
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2634,6 +2733,7 @@ export function phaseNormalize(fdata, fname) {
             body[i] = finalParent;
 
             after(finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -2656,11 +2756,15 @@ export function phaseNormalize(fdata, fname) {
               varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
               node.left,
             ),
-            AST.ifStatement(wrapLhs, AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right))),
+            AST.ifStatement(
+              AST.cloneSimple(wrapLhs),
+              AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.right)),
+            ),
           ];
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2682,6 +2786,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = finalParent;
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2696,20 +2801,21 @@ export function phaseNormalize(fdata, fname) {
               wrapKind,
               varInitAssignKind,
               varInitAssignId,
-              wrapLhs,
+              AST.cloneSimple(wrapLhs),
               varOrAssignKind === 'const' ? 'let' : varOrAssignKind,
               null,
             ),
           ];
           const finalParent = AST.ifStatement(
             node.test,
-            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.consequent)),
-            AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.alternate)),
+            AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.consequent)),
+            AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.alternate)),
           );
           body.splice(i, 1, ...newNodes, finalParent);
 
           after(newNodes);
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2721,13 +2827,14 @@ export function phaseNormalize(fdata, fname) {
           const finalParent = [
             AST.ifStatement(
               node.test,
-              AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.consequent)),
-              AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.alternate)),
+              AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.consequent)),
+              AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.alternate)),
             ),
           ];
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2759,6 +2866,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(finalParent);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2784,6 +2892,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2820,6 +2929,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2837,11 +2947,11 @@ export function phaseNormalize(fdata, fname) {
           // tmp = f()
           AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
           // tmp2 = tmp.x
-          AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, arg.property), 'const'),
+          AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, AST.cloneSimple(arg.property)), 'const'),
           // tmp.x = tmp2 + 1
           AST.expressionStatement(
             AST.assignmentExpression(
-              AST.memberExpression(tmpNameObj, arg.property),
+              AST.memberExpression(tmpNameObj, AST.cloneSimple(arg.property)),
               AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.literal(1)),
             ),
           ),
@@ -2852,6 +2962,7 @@ export function phaseNormalize(fdata, fname) {
 
         after(newNodes);
         after(finalNode, finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -2894,6 +3005,7 @@ export function phaseNormalize(fdata, fname) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2937,6 +3049,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -2972,6 +3085,7 @@ export function phaseNormalize(fdata, fname) {
           body.splice(i, 1, ...finalParent.map((enode) => AST.expressionStatement(enode)));
 
           after(finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3037,6 +3151,7 @@ export function phaseNormalize(fdata, fname) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
@@ -3048,7 +3163,10 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
-        if (hoistingOnce(node)) return true;
+        if (hoistingOnce(node)) {
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
 
         if (node.expression) {
           rule('Arrow body must be block');
@@ -3059,6 +3177,7 @@ export function phaseNormalize(fdata, fname) {
           node.expression = false;
 
           after(node, parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3072,6 +3191,7 @@ export function phaseNormalize(fdata, fname) {
         if (newBindings.length) {
           log('Params were transformed somehow, injecting new nodes into body');
           node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3095,6 +3215,7 @@ export function phaseNormalize(fdata, fname) {
 
         after(finalParent);
         after(finalNode, finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -3113,6 +3234,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(finalParent);
           after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3135,6 +3257,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNodes);
           after(node, parentNode); // did not replace node
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3289,7 +3412,14 @@ export function phaseNormalize(fdata, fname) {
           }
           newNodes.unshift(finalParentBefore);
           const finalNode = AST.identifier(prevObj);
-          let finalParent2 = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          let finalParent2 = wrapExpressionAs(
+            wrapKind,
+            varInitAssignKind,
+            varInitAssignId,
+            AST.cloneSimple(wrapLhs),
+            varOrAssignKind,
+            finalNode,
+          );
           if (finalParent2.type === 'VariableDeclaration') {
             // This is a hack but if the node is a var decl then change it to an assignment
             // We created the decl and made sure it's the first node, initalized to undefined
@@ -3307,6 +3437,7 @@ export function phaseNormalize(fdata, fname) {
 
         log('Chain processing done. Result:');
         after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -3355,6 +3486,7 @@ export function phaseNormalize(fdata, fname) {
           body.splice(i, 0, ...newNodes);
 
           after([...newNodes, node]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3372,6 +3504,7 @@ export function phaseNormalize(fdata, fname) {
 
           after(newNode);
           after(node);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -3424,6 +3557,7 @@ export function phaseNormalize(fdata, fname) {
 
     after(newNode);
 
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
   function transformForxStatement(node, body, i, forin) {
@@ -3479,6 +3613,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = newNode;
 
         after(newNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -3542,6 +3677,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3564,6 +3700,7 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3626,6 +3763,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3636,6 +3774,8 @@ export function phaseNormalize(fdata, fname) {
 
       node.body = AST.blockStatement(node.body);
 
+      after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3795,7 +3935,10 @@ export function phaseNormalize(fdata, fname) {
     });
   }
   function transformFunctionDeclaration(node, body, i) {
-    if (hoistingOnce(node)) return true;
+    if (hoistingOnce(node)) {
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
 
     // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
     // Array<name, expr>
@@ -3807,6 +3950,8 @@ export function phaseNormalize(fdata, fname) {
     if (newBindings.length) {
       log('Params were transformed somehow, injecting new nodes into body');
       node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+      after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3829,6 +3974,7 @@ export function phaseNormalize(fdata, fname) {
       node.alternate = tmp;
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3840,7 +3986,7 @@ export function phaseNormalize(fdata, fname) {
       node.consequent = AST.blockStatement(node.consequent);
 
       after(node);
-
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3852,7 +3998,7 @@ export function phaseNormalize(fdata, fname) {
       node.alternate = AST.blockStatement(node.alternate);
 
       after(node);
-
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3868,7 +4014,7 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       after(node);
-
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3885,6 +4031,7 @@ export function phaseNormalize(fdata, fname) {
         node.alternate = null;
 
         after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }
@@ -3899,6 +4046,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = finalParent;
 
       after(finalParent);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3913,6 +4061,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = finalParent;
 
         after(finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -3925,6 +4074,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = finalParent;
 
       after(finalParent);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -3939,6 +4089,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = finalParent;
 
         after(finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -3952,6 +4103,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = finalParent;
 
         after(finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }
@@ -3975,6 +4127,7 @@ export function phaseNormalize(fdata, fname) {
         body.length = i + 1;
 
         after(body.slice(i));
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }
@@ -3994,6 +4147,7 @@ export function phaseNormalize(fdata, fname) {
       body.splice(i, 1, ...newNodes);
 
       after(newNodes);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4010,6 +4164,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = finalParent;
 
       after(finalParent);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4062,7 +4217,15 @@ export function phaseNormalize(fdata, fname) {
         rule('Special label case with loop body');
         before(node);
 
+        log('xxxxxxx1x');
+        assertNoDupeNodes(fakeWrapper, 'body');
+        log('yyyyyyy2y');
+
         const changed = anyBlock(fakeWrapper);
+
+        log('xxxxxxxx');
+        assertNoDupeNodes(fakeWrapper, 'body');
+        log('yyyyyyyy');
 
         if (!changed) {
           after('Label body did not change at all');
@@ -4076,13 +4239,15 @@ export function phaseNormalize(fdata, fname) {
             body[i] = node.body;
 
             after(body[i]);
-
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
           return false;
         }
 
+        log('After labeled statement body;');
         after(AST.labeledStatement(node.label, fakeWrapper));
+        log('Now determining whether the label body changed...');
 
         if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
           log('Something changed but the node stays put');
@@ -4096,14 +4261,17 @@ export function phaseNormalize(fdata, fname) {
             body[i] = node.body;
 
             after(body[i]);
-
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
           return false; // No need to change anything in this body
         }
 
-        log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
+        log('Unregistering label `' + node.label.name + '` (a) because something changed. This declaration will be visited again.');
         fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
+        log('AAAAAAAA');
+        assertNoDupeNodes(fakeWrapper, 'body');
+        log('BBBBBBBB');
 
         if (fakeWrapper.body.length === 0) {
           log('The label.body node was eliminated. We can drop the label too.');
@@ -4114,6 +4282,7 @@ export function phaseNormalize(fdata, fname) {
           body[i] = AST.emptyStatement();
 
           after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -4121,10 +4290,14 @@ export function phaseNormalize(fdata, fname) {
           // Only outline the elements preceding the last one. We throw away the wrapper.
           log('Last statement is still original node. Outlining new nodes and keeping original labeled statement');
           body.splice(i, 0, ...fakeWrapper.body.slice(0, -1));
+
+          after(fakeWrapper.body.slice(0, -1));
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
         log('Labeled statement changed. Replacing the whole deal.');
+        before(node, parent);
         // Outline every element but the last and put them in front of the label. Replace the label
         // with a new label that has the last element as a body. It's a different node now.
         const newNodes = [
@@ -4134,6 +4307,7 @@ export function phaseNormalize(fdata, fname) {
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -4148,6 +4322,7 @@ export function phaseNormalize(fdata, fname) {
       fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4155,7 +4330,7 @@ export function phaseNormalize(fdata, fname) {
     const anyChange = anyBlock(node.body);
     log('Changes?', anyChange);
     if (anyChange) {
-      log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
+      log('Unregistering label `' + node.label.name + '` (b) because something changed. This declaration will be visited again.');
       fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
     }
 
@@ -4167,6 +4342,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = AST.emptyStatement();
 
       after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4179,6 +4355,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = node.body;
 
       after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4204,7 +4381,12 @@ export function phaseNormalize(fdata, fname) {
 
     if (newBindings.length) {
       log('Params were transformed somehow, injecting new nodes into body');
-      node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+      // let because params are mutable
+      const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
+      node.body.body.unshift(...newNodes);
+
+      after(newNodes);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4443,7 +4625,6 @@ export function phaseNormalize(fdata, fname) {
 
       rule('End of hoisting');
       groupEnd();
-
       return true;
     }
 
@@ -4464,7 +4645,7 @@ export function phaseNormalize(fdata, fname) {
       node.argument = AST.identifier('undefined');
 
       after(node);
-
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4481,6 +4662,7 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4493,6 +4675,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4507,6 +4690,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
     return false;
@@ -4524,6 +4708,7 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4582,6 +4767,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode); // omit this one?
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4648,6 +4834,7 @@ export function phaseNormalize(fdata, fname) {
       body.splice(i, 1, ...newNodes);
 
       after(newNodes);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4747,6 +4934,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4792,7 +4980,8 @@ export function phaseNormalize(fdata, fname) {
     body[i] = newNode;
 
     after(newNode);
-    return true;
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
    */
   }
   function transformThrowStatement(node, body, i, parent) {
@@ -4807,6 +4996,7 @@ export function phaseNormalize(fdata, fname) {
       node.argument = AST.identifier(tmpName);
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4821,6 +5011,7 @@ export function phaseNormalize(fdata, fname) {
       body.length = i + 1;
 
       after(body.slice(i));
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4849,7 +5040,8 @@ export function phaseNormalize(fdata, fname) {
       const newNodes = node.declarations.map((dec) => AST.variableDeclarationFromDeclaration(dec, node.kind));
       body.splice(i, 1, ...newNodes);
 
-      newNodes.forEach((n) => after(n));
+      after(newNodes);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4875,6 +5067,7 @@ export function phaseNormalize(fdata, fname) {
         ];
 
         after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -4885,6 +5078,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4906,6 +5100,7 @@ export function phaseNormalize(fdata, fname) {
         ];
 
         after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -4916,6 +5111,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4939,11 +5135,19 @@ export function phaseNormalize(fdata, fname) {
         rule('Var inits can not be assignments');
         example('let x = y = z', 'let x, x = y = z');
 
-        body.splice(i, 1, AST.variableDeclaration(dnode.id), AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)));
+        const newNodes = [
+          AST.variableDeclaration(AST.cloneSimple(dnode.id)),
+          AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)),
+        ];
+        body.splice(i, 1, ...newNodes);
+
+        after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
       if (isComplexNode(dnode.init) && transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }
@@ -4960,6 +5164,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = newNode;
 
       after(newNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4972,6 +5177,7 @@ export function phaseNormalize(fdata, fname) {
       node.body = newNode;
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -4986,6 +5192,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = AST.emptyStatement();
 
         after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -4996,6 +5203,7 @@ export function phaseNormalize(fdata, fname) {
       node.test = AST.identifier(true);
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -5008,6 +5216,7 @@ export function phaseNormalize(fdata, fname) {
         body[i] = AST.emptyStatement();
 
         after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -5019,6 +5228,7 @@ export function phaseNormalize(fdata, fname) {
         node.test = AST.identifier(true);
 
         after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }

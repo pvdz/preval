@@ -1,6 +1,22 @@
 import { ASSERT } from './utils.mjs';
 import { $p } from './$p.mjs';
 
+export function cloneSimple(node) {
+  if (node.type === 'Identifier') {
+    return identifier(node.name);
+  }
+
+  if (node.type === 'Literal') {
+    return literal(node.value);
+  }
+
+  if (node.type === 'MemberExpression') {
+    return memberExpression(cloneSimple(node.object), cloneSimple(node.property), node.computed);
+  }
+
+  ASSERT(false, 'add me', node);
+}
+
 export function arrayExpression(...elements) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the elements array verbatim
@@ -118,7 +134,7 @@ export function doWhileStatement(body, test) {
     type: 'DoWhileStatement',
     test,
     body,
-    $p: $p,
+    $p: $p(),
   };
 }
 
@@ -142,7 +158,7 @@ export function _exportDefaultDeclaration(node) {
 export function _exportNamedDeclarationFromNames(locals, exported) {
   if (typeof locals === 'string') locals = identifier(locals);
   if (!Array.isArray(locals)) locals = [locals];
-  if (!exported) exported = locals;
+  if (!exported) exported = locals.map((n) => cloneSimple(n));
   if (typeof exported === 'string') exported = identifier(exported);
 
   const specifiers = locals.map((local, i) => {
@@ -425,7 +441,7 @@ export function switchStatement(discriminant, cases) {
     type: 'SwitchStatement',
     discriminant,
     cases,
-    $p: $p,
+    $p: $p(),
   };
 }
 
@@ -495,6 +511,6 @@ export function whileStatement(test, body) {
     type: 'WhileStatement',
     test,
     body,
-    $p: $p,
+    $p: $p(),
   };
 }

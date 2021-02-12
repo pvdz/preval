@@ -31,7 +31,7 @@ function f() {
     let c = 3;
     let d = 4;
     let a;
-    let tmpNestedAssignPropRhs = c + d;
+    const tmpNestedAssignPropRhs = c + d;
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     b.x = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;
@@ -53,7 +53,7 @@ function f() {
     let c = 3;
     let d = 4;
     let a;
-    let tmpNestedAssignPropRhs = c + d;
+    const tmpNestedAssignPropRhs = c + d;
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     b.x = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;

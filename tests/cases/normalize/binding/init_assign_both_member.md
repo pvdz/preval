@@ -22,7 +22,7 @@ let a = b.x = c.x
 let b = 10;
 let c = 20;
 let a;
-let tmpNestedAssignPropRhs = c.x;
+const tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
@@ -34,7 +34,7 @@ a = tmpNestedPropAssignRhs;
 let b = 10;
 let c = 20;
 let a;
-let tmpNestedAssignPropRhs = c.x;
+const tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;

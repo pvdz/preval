@@ -38,7 +38,7 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest$1) {
       a_1 = undefined;
       const tmpNestedAssignObj = $(b);
-      let tmpNestedAssignPropRhs = c + d;
+      const tmpNestedAssignPropRhs = c + d;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
       a_1 = tmpNestedPropAssignRhs;
@@ -71,7 +71,7 @@ const tmpSwitchTest = $('a');
     if (tmpIfTest$1) {
       a_1 = undefined;
       const tmpNestedAssignObj = $(b);
-      let tmpNestedAssignPropRhs = c + d;
+      const tmpNestedAssignPropRhs = c + d;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
       a_1 = tmpNestedPropAssignRhs;

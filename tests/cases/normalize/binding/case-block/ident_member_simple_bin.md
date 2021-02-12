@@ -37,7 +37,7 @@ const tmpSwitchTest = $('a');
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       a_1 = undefined;
-      let tmpNestedAssignPropRhs = c + d;
+      const tmpNestedAssignPropRhs = c + d;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       b.x = tmpNestedPropAssignRhs;
       a_1 = tmpNestedPropAssignRhs;
@@ -69,7 +69,7 @@ const tmpSwitchTest = $('a');
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       a_1 = undefined;
-      let tmpNestedAssignPropRhs = c + d;
+      const tmpNestedAssignPropRhs = c + d;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       b.x = tmpNestedPropAssignRhs;
       a_1 = tmpNestedPropAssignRhs;

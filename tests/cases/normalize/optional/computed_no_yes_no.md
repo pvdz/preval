@@ -43,16 +43,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const s = { d: 10 };
-const t = { c: s };
-const a = { b: t };
-let abcd = undefined;
-const ab = a.b;
-if (ab) {
-  const abc = ab.c;
-  abcd = abc.d;
+const tmpObjLitVal$1 = { d: 10 };
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const a = { b: tmpObjLitVal };
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp['b'];
+if (tmpChainElementObject) {
+  const tmpChainElementObject$1 = tmpChainElementObject['c'];
+  const tmpChainElementObject$2 = tmpChainElementObject$1['d'];
+  tmpCalleeParam = tmpChainElementObject$2;
 }
-$(abcd);
+$(tmpCalleeParam);
 `````
 
 ## Result

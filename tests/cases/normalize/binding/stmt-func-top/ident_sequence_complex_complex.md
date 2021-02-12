@@ -28,7 +28,7 @@ function f() {
   let a;
   $(b);
   const tmpNestedAssignObj = $(c);
-  let tmpNestedAssignPropRhs = $(c);
+  const tmpNestedAssignPropRhs = $(c);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
@@ -48,7 +48,7 @@ function f() {
   let a;
   $(b);
   const tmpNestedAssignObj = $(c);
-  let tmpNestedAssignPropRhs = $(c);
+  const tmpNestedAssignPropRhs = $(c);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;

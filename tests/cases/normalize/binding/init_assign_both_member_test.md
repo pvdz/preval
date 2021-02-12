@@ -43,7 +43,7 @@ c = {
     $(4, n_1);
   },
 };
-let tmpNestedAssignPropRhs = c.x;
+const tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
@@ -74,7 +74,7 @@ c = {
     $(4, n_1);
   },
 };
-let tmpNestedAssignPropRhs = c.x;
+const tmpNestedAssignPropRhs = c.x;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;

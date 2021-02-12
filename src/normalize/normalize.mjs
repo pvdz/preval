@@ -2075,7 +2075,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpNameRhs = createFreshVar('tmpNestedAssignPropRhs');
               const newNodes = [
                 // tmp = d()
-                AST.variableDeclaration(tmpNameRhs, d),
+                AST.variableDeclaration(tmpNameRhs, d, 'const'),
               ];
               const finalNode = AST.assignmentExpression(a, AST.assignmentExpression(rhsLhs, tmpNameRhs));
               // a = b = tmp, a = b.c = tmp, a = b[c] = tmp
@@ -3197,7 +3197,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          log('- Processing methods')
+          log('- Processing methods');
           node.properties.forEach((pnode, i) => {
             if (pnode.method || pnode.kind === 'get' || pnode.kind === 'set') {
               log(i, 'is a method, getter, or setter');

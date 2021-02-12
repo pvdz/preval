@@ -29,7 +29,7 @@ if (tmpIfTest) {
   let a;
   let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
-  let tmpNestedAssignPropRhs = $(d);
+  const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -50,7 +50,7 @@ if (tmpIfTest) {
   let a;
   let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
-  let tmpNestedAssignPropRhs = $(d);
+  const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;

@@ -33,7 +33,7 @@ function f() {
     let a;
     const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs = c + d;
+    const tmpNestedAssignPropRhs = c + d;
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;
@@ -57,7 +57,7 @@ function f() {
     let a;
     const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs = c + d;
+    const tmpNestedAssignPropRhs = c + d;
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;

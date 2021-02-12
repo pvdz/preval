@@ -82,7 +82,7 @@ function f() {
   const tmpCallCallee = $;
   let tmpCalleeParam;
   let tmpNestedComplexRhs;
-  let tmpNestedAssignPropRhs = $(6);
+  const tmpNestedAssignPropRhs = $(6);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.foo = tmpNestedPropAssignRhs;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -127,7 +127,7 @@ function f() {
   $('-------- let 1');
   let tmpCalleeParam;
   let tmpNestedComplexRhs;
-  let tmpNestedAssignPropRhs = $(6);
+  const tmpNestedAssignPropRhs = $(6);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.foo = tmpNestedPropAssignRhs;
   tmpNestedComplexRhs = tmpNestedPropAssignRhs;

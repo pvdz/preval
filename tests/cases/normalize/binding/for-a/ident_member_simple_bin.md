@@ -24,7 +24,7 @@ let c = 3;
 let d = 4;
 {
   let a_1;
-  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedAssignPropRhs = c + d;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs;
   a_1 = tmpNestedPropAssignRhs;
@@ -40,7 +40,7 @@ let c = 3;
 let d = 4;
 {
   let a_1;
-  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedAssignPropRhs = c + d;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs;
   a_1 = tmpNestedPropAssignRhs;

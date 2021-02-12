@@ -75,7 +75,52 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 5;
+const tmpBinLhs = $(2);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(4);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+    const tmpBinLhs$2 = $(5);
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    if (tmpIfTest$2) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+      const tmpBinLhs$3 = $(6);
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 3;
+      } else {
+        const tmpBinLhs$4 = $(7);
+        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
+        if (tmpIfTest$4) {
+          tmpSwitchCaseToStart = 4;
+        }
+      }
+    }
+  }
+}
+tmpSwitchBreak: {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
+    $(3);
+  }
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+  if (tmpIfTest$8) {
+    break tmpSwitchBreak;
+  }
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+  const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
+}
 `````
 
 ## Result
@@ -91,5 +136,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

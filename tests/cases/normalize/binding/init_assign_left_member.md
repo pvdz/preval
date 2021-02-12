@@ -30,7 +30,12 @@ a = tmpNestedComplexRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 10;
+let c = 20;
+let a;
+const tmpNestedComplexRhs = c.x;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
 `````
 
 ## Result

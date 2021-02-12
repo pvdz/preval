@@ -39,7 +39,16 @@ $('ok');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal$1 = 13;
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternNoDefault$2 = objPatternNoDefault$1.z;
+const arrPatternSplat = [...objPatternNoDefault$2];
+$('ok');
 `````
 
 ## Result
@@ -50,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

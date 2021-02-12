@@ -36,7 +36,19 @@ $('bad');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal = null;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let y = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = 'fail';
+} else {
+  y = arrPatternBeforeDefault;
+}
+$('bad');
 `````
 
 ## Result
@@ -46,5 +58,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

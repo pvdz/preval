@@ -46,7 +46,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f($tdz$__pattern) {
+  let $tdz$__pattern_after_default = undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = $('fail');
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
+  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = $tdz$__pattern_after_default === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+  }
+  return 'ok';
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f(0, 10);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -57,5 +77,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

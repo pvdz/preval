@@ -32,7 +32,13 @@
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  const tmpArrElement = $(1);
+  const tmpArrElement$1 = 2;
+  const tmpArrElement$2 = $(3);
+  let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  $(a);
+}
 `````
 
 ## Result
@@ -45,5 +51,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

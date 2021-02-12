@@ -25,7 +25,9 @@ tmpCompObj[tmpCompProp];
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCompObj = $(1);
+const tmpCompProp = $(2);
+tmpCompObj[tmpCompProp];
 `````
 
 ## Result
@@ -37,5 +39,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

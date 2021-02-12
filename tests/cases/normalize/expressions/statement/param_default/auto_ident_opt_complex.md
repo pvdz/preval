@@ -48,7 +48,27 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f($tdz$__arg) {
+  let arg = undefined;
+  const tmpIfTest = $tdz$__arg === undefined;
+  if (tmpIfTest) {
+    arg = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    if (tmpChainElementCall) {
+      const tmpChainElementObject = tmpChainElementCall.x;
+      arg = tmpChainElementObject;
+    }
+  } else {
+    arg = $tdz$__arg;
+  }
+}
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+$(a);
 `````
 
 ## Result
@@ -61,5 +81,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

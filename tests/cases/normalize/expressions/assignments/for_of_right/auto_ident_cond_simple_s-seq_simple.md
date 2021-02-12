@@ -38,7 +38,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+{
+  let tmpForOfDeclRhs;
+  let tmpNestedComplexRhs = undefined;
+  {
+    tmpNestedComplexRhs = 60;
+  }
+  a = tmpNestedComplexRhs;
+  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let x;
+  for (x of tmpForOfDeclRhs) {
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -48,5 +61,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

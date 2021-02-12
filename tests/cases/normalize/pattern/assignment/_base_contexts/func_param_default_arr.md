@@ -38,7 +38,21 @@ f();
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const f = ($tdz$__a) => {
+  let a = undefined;
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    const tmpNestedAssignArrPatternRhs = [100];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    a = tmpNestedAssignArrPatternRhs;
+  } else {
+    a = $tdz$__a;
+  }
+  const tmpReturnArg = $(a);
+  return tmpReturnArg;
+};
+f();
 `````
 
 ## Result
@@ -49,5 +63,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

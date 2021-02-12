@@ -117,7 +117,74 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  const tmpSwitchTest = $(1);
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs = $(1);
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpBinLhs$1 = $(4);
+      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue;
+      if (tmpIfTest$2) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpBinLhs$2 = $(7);
+        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 3;
+        }
+      }
+    }
+  }
+  tmpSwitchBreak: {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$4) {
+      $(2);
+      break tmpSwitchBreak;
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      const tmpIfTest$6 = $(8);
+      if (tmpIfTest$6) {
+        const tmpIfTest$7 = $(9);
+        if (tmpIfTest$7) {
+          const tmpReturnArg = $(10);
+          return tmpReturnArg;
+        } else {
+          $(11);
+        }
+        const tmpIfTest$8 = $(2);
+        if (tmpIfTest$8) {
+          $(13);
+        } else {
+          const tmpReturnArg$1 = $(14);
+          return tmpReturnArg$1;
+        }
+      }
+      $(3);
+    }
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
+      $(5);
+      const tmpReturnArg$2 = $(6);
+      return tmpReturnArg$2;
+    }
+    const tmpIfTest$10 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$10) {
+      break tmpSwitchBreak;
+    }
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -133,5 +200,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

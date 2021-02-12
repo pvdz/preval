@@ -59,7 +59,41 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+const tmpSwitchTest = $('a');
+{
+  let a_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  tmpSwitchBreak: {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a_1 = undefined;
+      const tmpNestedAssignComMemberObj = $(b);
+      const tmpNestedAssignComMemberProp = $('x');
+      let tmpNestedAssignPropRhs;
+      const tmpNestedAssignComMemberObj$1 = $(c);
+      const tmpNestedAssignComMemberProp$1 = $('y');
+      let tmpNestedAssignPropRhs$1 = $(d);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+      a_1 = tmpNestedPropAssignRhs$1;
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(a, b, c, d);
 `````
 
 ## Result
@@ -77,5 +111,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

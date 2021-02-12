@@ -44,7 +44,20 @@ $('after, wont eval due to infinite loop');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+    } else {
+      continue;
+    }
+    $('keep');
+  } else {
+    break;
+  }
+}
+$('after, wont eval due to infinite loop');
 `````
 
 ## Result
@@ -80,5 +93,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

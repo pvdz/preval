@@ -33,7 +33,19 @@ function i(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function i(tmpParamPattern) {
+  let objPatternNoDefault = tmpParamPattern.x;
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let objPatternBeforeDefault = objPatternNoDefault$1.z;
+  let z = undefined;
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    z = a;
+  } else {
+    z = objPatternBeforeDefault;
+  }
+  return z;
+}
 `````
 
 ## Result

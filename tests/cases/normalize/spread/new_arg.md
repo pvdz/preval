@@ -40,7 +40,23 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+let e = 5;
+let f = 6;
+let g = 7;
+let h = 8;
+let y = 9;
+const tmpNewCallee = y;
+const tmpCalleeParam = x;
+const tmpCalleeParam$1 = 8;
+a = b.c;
+d = e[f];
+const tmpCompObj = g;
+const tmpCalleeParamSpread = tmpCompObj.h;
+new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 `````
 
 ## Result
@@ -50,5 +66,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

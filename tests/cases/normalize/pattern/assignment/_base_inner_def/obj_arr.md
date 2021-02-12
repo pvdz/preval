@@ -30,7 +30,16 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpAssignObjPatternRhs = 1;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = a;
+} else {
+  y = arrPatternBeforeDefault;
+}
 `````
 
 ## Result
@@ -40,5 +49,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

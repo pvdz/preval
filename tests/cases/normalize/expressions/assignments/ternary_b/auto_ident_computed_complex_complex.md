@@ -42,7 +42,22 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('c');
+  const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+} else {
+  tmpCalleeParam = $(200);
+}
+tmpCallCallee(tmpCalleeParam);
+$(a, b);
 `````
 
 ## Result
@@ -57,5 +72,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

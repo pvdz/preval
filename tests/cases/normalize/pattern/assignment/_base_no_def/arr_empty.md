@@ -32,7 +32,9 @@ const arrPatternSplat = [...arrAssignPatternRhs];
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 10;
+const arrAssignPatternRhs = [1, 2, 3];
+const arrPatternSplat = [...arrAssignPatternRhs];
 `````
 
 ## Result

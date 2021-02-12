@@ -33,7 +33,15 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+let tmpThrowArg;
+const tmpArrElement = $(1);
+const tmpArrElement$1 = 2;
+const tmpArrElement$2 = $(3);
+const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+a = tmpNestedComplexRhs;
+tmpThrowArg = tmpNestedComplexRhs;
+throw tmpThrowArg;
 `````
 
 ## Result
@@ -45,5 +53,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -55,7 +55,33 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal = { d: tmpObjLitVal$1 };
+let b = { c: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+let tmpNestedComplexRhs = undefined;
+const tmpChainRootProp = b;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  tmpNestedComplexRhs = tmpChainElementCall;
+}
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+{
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+$(a);
 `````
 
 ## Result
@@ -68,5 +94,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

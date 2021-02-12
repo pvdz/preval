@@ -26,7 +26,9 @@ var c;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var a;
+var b;
+var c;
 `````
 
 ## Result

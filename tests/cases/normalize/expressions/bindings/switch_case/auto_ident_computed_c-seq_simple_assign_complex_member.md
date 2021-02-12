@@ -54,7 +54,32 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let b;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { c: 10, d: 20 };
+      a = undefined;
+      const tmpNestedAssignComMemberObj = $(b);
+      const tmpNestedAssignComMemberProp = $('c');
+      const tmpCompObj = $(b);
+      const tmpCompProp = $('d');
+      let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
+      $(a, b);
+    }
+  }
+}
 `````
 
 ## Result
@@ -69,5 +94,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

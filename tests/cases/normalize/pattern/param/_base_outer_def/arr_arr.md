@@ -34,7 +34,20 @@ function i($tdz$__pattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function i($tdz$__pattern) {
+  let $tdz$__pattern_after_default = undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = c;
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
+  let arrPatternSplat = [...$tdz$__pattern_after_default];
+  let arrPatternStep = arrPatternSplat[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1[0];
+  return x;
+}
 `````
 
 ## Result

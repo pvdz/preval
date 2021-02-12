@@ -38,7 +38,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+{
+  let tmpForOfDeclRhs = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  if (tmpChainElementCall) {
+    const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+    tmpForOfDeclRhs = tmpChainElementCall$1;
+  }
+  let x;
+  for (x of tmpForOfDeclRhs) {
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -50,5 +63,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

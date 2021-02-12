@@ -48,7 +48,26 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let b;
+  let tmpCompObj;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { c: 1 };
+      tmpCompObj = $(b);
+      a = tmpCompObj.c;
+      $(a, b);
+    }
+  }
+}
 `````
 
 ## Result
@@ -60,5 +79,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

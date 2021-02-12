@@ -37,7 +37,18 @@ a: {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+a: {
+  b: {
+    {
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        break a;
+      } else {
+        break b;
+      }
+    }
+  }
+}
 `````
 
 ## Result
@@ -48,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

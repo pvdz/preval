@@ -28,7 +28,13 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x;
+let b;
+let c;
+let tmpIfTest;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpIfTest = tmpNestedAssignObjPatternRhs;
 `````
 
 ## Result

@@ -40,7 +40,20 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = [];
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+let tmpTemplateExpr;
+const tmpCallCallee$1 = $;
+const tmpArrElement = $(2);
+const tmpCalleeParam$1 = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+b = arrPatternSplat[0];
+tmpTemplateExpr = tmpNestedAssignArrPatternRhs;
+const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+tmpCallCallee(tmpCalleeParam);
+$(a, b);
 `````
 
 ## Result
@@ -54,5 +67,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

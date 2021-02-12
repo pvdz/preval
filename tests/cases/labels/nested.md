@@ -29,7 +29,13 @@ a: {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+a: {
+  {
+    {
+      break a;
+    }
+  }
+}
 `````
 
 ## Result

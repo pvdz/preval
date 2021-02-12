@@ -30,7 +30,12 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
+const tmpCallCallee = $;
+const tmpCalleeParam = { a: 1, b: 2 };
+let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+throw tmpThrowArg;
 `````
 
 ## Result
@@ -41,5 +46,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

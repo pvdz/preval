@@ -28,7 +28,12 @@ function f(x, y) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(x, y) {
+  let tmpReturnArg;
+  x = y;
+  tmpReturnArg = y;
+  return tmpReturnArg;
+}
 `````
 
 ## Result

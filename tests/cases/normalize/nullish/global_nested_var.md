@@ -37,7 +37,18 @@ $(c);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const a = 10;
+let b = $(2);
+const tmpIfTest = b == null;
+if (tmpIfTest) {
+  b = toString;
+}
+let c = b;
+const tmpIfTest$1 = c == null;
+if (tmpIfTest$1) {
+  c = length;
+}
+$(c);
 `````
 
 ## Result
@@ -49,5 +60,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -38,7 +38,17 @@ switch (1) { default: let x = x; $('fail'); }
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let x;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 0;
+  {
+    const tmpIfTest = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest) {
+      $('fail');
+    }
+  }
+}
 `````
 
 ## Result
@@ -51,4 +61,5 @@ Normalized calls: BAD?!
  - eval returned: undefined
 
 Final output calls: BAD!!
+ - 1: 'fail'
  - eval returned: undefined

@@ -32,7 +32,16 @@ for (let {x} in {a: 1, b: 2}) $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  const tmpForInPatDeclRhs = { a: 1, b: 2 };
+  let tmpForInPatDeclLhs;
+  let x;
+  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+    const tmpAssignObjPatternRhs = tmpForInPatDeclLhs;
+    x = tmpAssignObjPatternRhs.x;
+    $(x);
+  }
+}
 `````
 
 ## Result
@@ -44,5 +53,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

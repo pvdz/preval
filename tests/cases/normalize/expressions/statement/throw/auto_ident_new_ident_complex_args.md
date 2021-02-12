@@ -33,7 +33,13 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpNewCallee = $;
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+let tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+throw tmpThrowArg;
 `````
 
 ## Result
@@ -46,5 +52,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

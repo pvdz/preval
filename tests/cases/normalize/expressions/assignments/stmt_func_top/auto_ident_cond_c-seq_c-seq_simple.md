@@ -42,7 +42,21 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  let a = { a: 999, b: 1000 };
+  const tmpIfTest = $(30);
+  if (tmpIfTest) {
+    a = $(60);
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    a = tmpCallCallee(tmpCalleeParam);
+  }
+  $(a);
+}
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
@@ -56,5 +70,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

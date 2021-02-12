@@ -31,7 +31,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+$(x);
+const tmpForOfRhs = [100];
+for (x of tmpForOfRhs) {
+  $(x, 'for');
+}
+$(x);
 `````
 
 ## Result
@@ -44,5 +50,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -30,7 +30,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCallCallee = $;
+const tmpDeleteOpt = null;
+if (tmpDeleteOpt) {
+  let tmpCalleeParam = true;
+} else {
+  tmpCalleeParam = delete tmpDeleteOpt.x;
+}
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -43,4 +50,4 @@ Normalized calls: BAD?!
  - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')
 
 Final output calls: BAD!!
- - eval returned: undefined
+ - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')

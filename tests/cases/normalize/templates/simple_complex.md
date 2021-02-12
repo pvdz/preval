@@ -26,7 +26,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCallCallee = $;
+const tmpTemplateExpr = $(20);
+const tmpCalleeParam = `abc ${10} ${tmpTemplateExpr} def`;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -38,5 +41,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

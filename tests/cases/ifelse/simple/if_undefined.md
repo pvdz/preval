@@ -23,7 +23,9 @@ if (undefined) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+if (undefined) {
+  $();
+}
 `````
 
 ## Result

@@ -74,7 +74,19 @@ rule('You have to listen to me');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function rule(desc) {
+  const func = $;
+  const a = PURPLE + 'Rule:';
+  const b = a + RESET;
+  const c = b + ' "';
+  const d = c + desc;
+  const e = d + '"';
+  func(e);
+}
+const PURPLE = 'purple';
+const RESET = 'reset';
+rule('I want it my way');
+rule('You have to listen to me');
 `````
 
 ## Result
@@ -86,5 +98,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

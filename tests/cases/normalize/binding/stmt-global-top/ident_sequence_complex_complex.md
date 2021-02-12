@@ -34,7 +34,16 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 2;
+let c = 3;
+let a;
+$(b);
+const tmpNestedAssignObj = $(c);
+let tmpNestedAssignPropRhs = $(c);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+$(a, b, c);
 `````
 
 ## Result
@@ -48,5 +57,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -46,7 +46,29 @@ if (tmpChainElementCall) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal$1 = { z: $ };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+let a = { x: tmpObjLitVal };
+const tmpChainRootCall = $;
+const tmpCallCallee = tmpChainRootCall;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall$1 = $;
+const tmpChainElementCall$2 = tmpChainRootCall$1(a);
+if (tmpChainElementCall$2) {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall$2[tmpChainRootComputed];
+  if (tmpChainElementObject) {
+    const tmpChainRootComputed$1 = $('y');
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainRootComputed$2 = $('z');
+    const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
+    tmpCalleeParam = tmpChainElementObject$2;
+  }
+}
+const tmpChainElementCall = tmpCallCallee(tmpCalleeParam);
+if (tmpChainElementCall) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 100);
+}
 `````
 
 ## Result
@@ -62,5 +84,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

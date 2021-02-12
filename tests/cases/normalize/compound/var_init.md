@@ -33,7 +33,15 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+let a = $(1);
+const tmpNestedCompoundLhs = a;
+const tmpBinBothLhs = tmpNestedCompoundLhs;
+const tmpBinBothRhs = $(2);
+const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
+a = tmpNestedComplexRhs;
+x = tmpNestedComplexRhs;
+$(x);
 `````
 
 ## Result
@@ -46,5 +54,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

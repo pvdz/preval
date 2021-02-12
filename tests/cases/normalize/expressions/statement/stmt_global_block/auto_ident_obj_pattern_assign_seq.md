@@ -42,7 +42,19 @@
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let x = 1;
+  let y = 2;
+  let a = { a: 999, b: 1000 };
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpAssignObjPatternRhs.x;
+  y = tmpAssignObjPatternRhs.y;
+  $(a, x, y);
+}
 `````
 
 ## Result
@@ -57,5 +69,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

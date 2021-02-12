@@ -34,7 +34,16 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+let a;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+$(a, x, y, z);
 `````
 
 ## Result
@@ -45,5 +54,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

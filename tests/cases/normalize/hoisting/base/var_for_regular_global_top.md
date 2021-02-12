@@ -30,7 +30,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+$(x);
+{
+  x = 10;
+}
+$(x);
 `````
 
 ## Result
@@ -42,5 +47,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

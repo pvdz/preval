@@ -34,7 +34,13 @@
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let b = { $: $ };
+  const tmpCompObj = b;
+  const tmpNewCallee = tmpCompObj.$;
+  let a = new tmpNewCallee(1);
+  $(a);
+}
 `````
 
 ## Result
@@ -46,5 +52,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

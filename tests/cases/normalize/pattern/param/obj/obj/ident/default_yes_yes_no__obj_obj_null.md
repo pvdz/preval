@@ -55,7 +55,36 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(tmpParamPattern) {
+  let objPatternBeforeDefault = tmpParamPattern.x;
+  let objPatternAfterDefault = undefined;
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { y: 'fail2' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+  let y = undefined;
+  const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+  if (tmpIfTest$1) {
+    y = $('fail');
+  } else {
+    y = objPatternBeforeDefault$1;
+  }
+  return y;
+}
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpObjLitVal$1 = 1;
+const tmpObjLitVal$2 = null;
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 3 };
+const tmpCalleeParam$2 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
@@ -66,5 +95,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

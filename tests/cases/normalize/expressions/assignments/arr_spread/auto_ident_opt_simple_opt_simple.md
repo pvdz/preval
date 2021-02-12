@@ -45,7 +45,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal = { y: 1 };
+let b = { x: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+let tmpArrSpread;
+let tmpNestedComplexRhs = undefined;
+const tmpChainRootProp = b;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  if (tmpChainElementObject) {
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    tmpNestedComplexRhs = tmpChainElementObject$1;
+  }
+}
+a = tmpNestedComplexRhs;
+tmpArrSpread = tmpNestedComplexRhs;
+const tmpCalleeParam = [...tmpArrSpread];
+tmpCallCallee(tmpCalleeParam);
+$(a);
 `````
 
 ## Result
@@ -55,5 +73,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

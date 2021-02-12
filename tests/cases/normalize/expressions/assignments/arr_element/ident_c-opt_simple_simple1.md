@@ -37,7 +37,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+let b = { x: 1 };
+const tmpCallCallee = $;
+let tmpCalleeParam;
+let tmpNestedComplexRhs = undefined;
+const tmpChainRootProp = b;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpNestedComplexRhs = tmpChainElementObject;
+}
+a = tmpNestedComplexRhs;
+tmpCalleeParam = tmpNestedComplexRhs;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -48,5 +60,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

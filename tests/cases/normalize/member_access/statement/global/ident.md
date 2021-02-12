@@ -23,7 +23,7 @@ $.length;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+$.length;
 `````
 
 ## Result

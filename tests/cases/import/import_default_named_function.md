@@ -42,11 +42,14 @@ export { f as default };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+import { default as x } from 'x';
+$(x);
 `````
 
 `````js filename=x
-'<skipped>';
+function f() {}
+f = 10;
+export { f as default };
 `````
 
 ## Result
@@ -56,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

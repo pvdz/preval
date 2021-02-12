@@ -44,7 +44,18 @@ export { a };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function a() {}
+function b() {}
+function d() {}
+function f() {}
+function h() {}
+function l() {}
+function x() {}
+a();
+$(a, b, d, f, h, x);
+export { l };
+export { h };
+export { a };
 `````
 
 ## Result
@@ -54,5 +65,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -51,7 +51,24 @@ $('after (not invoked)');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $('loop');
+    {
+      const tmpForOfDeclRhs = [1, 2];
+      let x;
+      for (x of tmpForOfDeclRhs) {
+        $('loop', x);
+        break;
+      }
+    }
+    $('infiloop, do not eliminate');
+  } else {
+    break;
+  }
+}
+$('after (not invoked)');
 `````
 
 ## Result
@@ -87,5 +104,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

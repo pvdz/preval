@@ -30,7 +30,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCallCallee = $;
+const tmpCalleeParam = [1, 2];
+let bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+export { a };
+$(a);
 `````
 
 ## Result
@@ -40,5 +46,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

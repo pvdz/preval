@@ -33,7 +33,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+let obj = {};
+const tmpArrElement = $(1);
+const tmpArrElement$1 = 2;
+const tmpArrElement$2 = $(3);
+const tmpCompObj = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+tmpCompObj.a;
+$(a);
 `````
 
 ## Result
@@ -46,5 +53,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

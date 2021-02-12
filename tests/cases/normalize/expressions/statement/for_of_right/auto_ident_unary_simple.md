@@ -35,7 +35,15 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 1;
+let a = { a: 999, b: 1000 };
+{
+  const tmpForOfDeclRhs = typeof x_1;
+  let x_1;
+  for (x_1 of tmpForOfDeclRhs) {
+  }
+}
+$(a, x);
 `````
 
 ## Result
@@ -45,5 +53,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

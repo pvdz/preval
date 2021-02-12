@@ -34,7 +34,13 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 1;
+let c = 2;
+let a = { a: 999, b: 1000 };
+let tmpThrowArg;
+b = 2;
+tmpThrowArg = 2;
+throw tmpThrowArg;
 `````
 
 ## Result
@@ -44,5 +50,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

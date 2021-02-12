@@ -33,7 +33,19 @@ function h(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function h(tmpParamPattern) {
+  let arrPatternSplat = [...tmpParamPattern];
+  let arrPatternStep = arrPatternSplat[0];
+  let objPatternBeforeDefault = arrPatternStep.x;
+  let x = undefined;
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    x = a;
+  } else {
+    x = objPatternBeforeDefault;
+  }
+  return x;
+}
 `````
 
 ## Result

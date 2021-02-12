@@ -34,7 +34,18 @@ while (true) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  x = x * 'str';
+  x = x * 8;
+  x;
+  x = x * x;
+  x = x.x;
+  const tmpIfTest = x.x(x);
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
 `````
 
 ## Result
@@ -44,5 +55,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

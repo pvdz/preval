@@ -39,7 +39,15 @@ $(4);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+$(1);
+try {
+  $(2);
+} catch (e) {
+  $('fail');
+} finally {
+  $(3);
+}
+$(4);
 `````
 
 ## Result
@@ -53,5 +61,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

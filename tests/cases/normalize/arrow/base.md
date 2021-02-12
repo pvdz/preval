@@ -28,7 +28,11 @@ f();
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const f = () => {
+  const tmpReturnArg = $(1);
+  return tmpReturnArg;
+};
+f();
 `````
 
 ## Result
@@ -39,5 +43,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

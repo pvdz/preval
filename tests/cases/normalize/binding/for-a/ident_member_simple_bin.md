@@ -34,7 +34,17 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+{
+  let a_1;
+  let tmpNestedAssignPropRhs = c + d;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs;
+  a_1 = tmpNestedPropAssignRhs;
+}
 `````
 
 ## Result

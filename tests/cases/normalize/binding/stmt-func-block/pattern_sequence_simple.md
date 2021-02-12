@@ -47,7 +47,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let x = 1;
+    let y = 2;
+    let z = [10, 20, 30];
+    $(x);
+    $(y);
+    let bindingPatternArrRoot = z;
+    let arrPatternSplat = [...bindingPatternArrRoot];
+    let a = arrPatternSplat[0];
+    let b = arrPatternSplat[1];
+    $(a, b, x, y, z);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -62,5 +79,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

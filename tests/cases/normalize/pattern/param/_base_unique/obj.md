@@ -32,7 +32,14 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function g(tmpParamPattern) {
+  let x_1 = tmpParamPattern.x;
+  {
+    let x_2 = 2;
+  }
+  return x_1;
+}
+let x = 1;
 `````
 
 ## Result

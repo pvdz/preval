@@ -183,7 +183,150 @@ $$(obja, objb, objc, objd, obje);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function $$(...a_1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
+  const tmpObjLitVal = null;
+  const tmpCalleeParam$1 = { depth: tmpObjLitVal };
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpReturnArg = a_1[0];
+  return tmpReturnArg;
+}
+var a;
+var b;
+var c;
+var d;
+var e;
+var obja;
+var objb;
+var objc;
+var objd;
+var obje;
+obja = {
+  get a() {
+    $$('a.get');
+    return 110;
+  },
+  set a(x) {
+    $$('a.set', x);
+    return 1000;
+  },
+};
+objb = {
+  get b() {
+    $$('b.get');
+    a = 210;
+    return 100;
+  },
+  set b(x_1) {
+    $$('b.set', x_1);
+    a = 2100;
+    return 2000;
+  },
+};
+objc = {
+  get c() {
+    $$('c.get');
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c(x_2) {
+    $$('c.set', x_2);
+    a = 3100;
+    b = 3200;
+    return 3000;
+  },
+};
+objd = {
+  get d() {
+    $$('d.get');
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d(x_3) {
+    $$('d.set', x_3);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    return 4000;
+  },
+};
+obje = {
+  get e() {
+    $$('e.get');
+    a = 510;
+    b = 520;
+    c = 530;
+    d = 540;
+    return 100;
+  },
+  set e(x_4) {
+    $$('e.set', x_4);
+    a = 5100;
+    b = 5200;
+    c = 5300;
+    d = 5400;
+    return 5000;
+  },
+};
+a = function () {
+  $$('a');
+  return obja;
+};
+b = function () {
+  $$('b');
+  a = 21;
+  return objb;
+};
+c = function () {
+  $$('c');
+  a = 31;
+  b = 32;
+  return objc;
+};
+d = function () {
+  $$('d');
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+e = function () {
+  $$('e');
+  a = 51;
+  b = 52;
+  c = 53;
+  d = 54;
+  return obje;
+};
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$2;
+const tmpNestedAssignObj = a();
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignObj$1 = b();
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignObj$2 = c();
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignObj$3 = d();
+let tmpNestedAssignPropRhs$3 = e();
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$3;
+tmpNestedAssignObj$3.d = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignObj$2.c = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignObj$1.b = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.a = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$2 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$2);
+$$(a, b, c, d, e);
+$$(obja, objb, objc, objd, obje);
 `````
 
 ## Result
@@ -421,5 +564,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

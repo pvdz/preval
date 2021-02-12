@@ -46,7 +46,30 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = [10, 20];
+let x = 3;
+let y = 4;
+let p;
+let q;
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = x + y;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    const arrAssignPatternRhs = $(b);
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    p = arrPatternSplat[0];
+    q = arrPatternSplat[1];
+  } else {
+    break;
+  }
+}
+$(p, q);
 `````
 
 ## Result
@@ -82,5 +105,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

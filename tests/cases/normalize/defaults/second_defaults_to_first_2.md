@@ -40,7 +40,23 @@ f();
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f($tdz$__a, $tdz$__b) {
+  let a = undefined;
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    a = 1;
+  } else {
+    a = $tdz$__a;
+  }
+  let b = undefined;
+  const tmpIfTest$1 = $tdz$__b === undefined;
+  if (tmpIfTest$1) {
+    b = a;
+  } else {
+    b = $tdz$__b;
+  }
+}
+f();
 `````
 
 ## Result

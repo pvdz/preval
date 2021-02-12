@@ -60,7 +60,30 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $('loop');
+      {
+        const tmpForInDeclRhs = { a: 1, b: 2 };
+        let x;
+        for (x in tmpForInDeclRhs) {
+          $('loop', x);
+          let tmpThrowArg = $(7, 'throw');
+          throw tmpThrowArg;
+        }
+      }
+      $('fail');
+    } else {
+      break;
+    }
+  }
+  $('after (not invoked but should not be eliminated)');
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -74,5 +97,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

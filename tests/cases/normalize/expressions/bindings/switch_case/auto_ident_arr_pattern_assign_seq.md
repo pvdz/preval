@@ -58,7 +58,35 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let x;
+  let y;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      x = 1;
+      y = 2;
+      a = undefined;
+      $(x);
+      $(y);
+      const tmpArrElement = $(3);
+      const tmpArrElement$1 = $(4);
+      const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+      x = arrPatternSplat[0];
+      y = arrPatternSplat[1];
+      a = tmpNestedAssignArrPatternRhs;
+      $(a, x, y);
+    }
+  }
+}
 `````
 
 ## Result
@@ -73,5 +101,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -25,7 +25,9 @@ foo: $(1);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  $(1);
+}
 `````
 
 ## Result
@@ -36,5 +38,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

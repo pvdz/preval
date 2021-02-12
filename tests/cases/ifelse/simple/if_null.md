@@ -24,7 +24,10 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpIfTest = null;
+if (tmpIfTest) {
+  $();
+}
 `````
 
 ## Result

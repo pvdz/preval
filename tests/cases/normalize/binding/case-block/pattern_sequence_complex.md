@@ -54,7 +54,36 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+const tmpSwitchTest = $('a');
+{
+  let bindingPatternArrRoot;
+  let arrPatternSplat;
+  let x_1;
+  let y_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  tmpSwitchBreak: {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      $(1);
+      $(2);
+      bindingPatternArrRoot = $(z);
+      arrPatternSplat = [...bindingPatternArrRoot];
+      x_1 = arrPatternSplat[0];
+      y_1 = arrPatternSplat[1];
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(x, y, z);
 `````
 
 ## Result
@@ -70,5 +99,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

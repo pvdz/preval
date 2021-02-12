@@ -45,7 +45,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  {
+    const tmpForOfDeclRhs = [10, 20];
+    let x;
+    for (x of tmpForOfDeclRhs) {
+      const tmpReturnArg = $(1, 'return');
+      return tmpReturnArg;
+    }
+  }
+  $('keep, do not eval');
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -57,5 +70,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

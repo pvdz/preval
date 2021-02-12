@@ -27,7 +27,9 @@ foo: {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+foo: {
+  break foo;
+}
 `````
 
 ## Result

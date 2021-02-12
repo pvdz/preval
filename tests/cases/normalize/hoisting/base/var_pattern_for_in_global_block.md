@@ -41,7 +41,21 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+$(x);
+{
+  const tmpForInRhs = { y: 100 };
+  {
+    let tmpForInLhsNode;
+    for (tmpForInLhsNode in tmpForInRhs) {
+      const arrAssignPatternRhs = tmpForInLhsNode;
+      const arrPatternSplat = [...arrAssignPatternRhs];
+      x = arrPatternSplat[0];
+      $(x, 'for');
+    }
+  }
+}
+$(x);
 `````
 
 ## Result
@@ -54,5 +68,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

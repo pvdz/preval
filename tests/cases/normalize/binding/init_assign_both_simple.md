@@ -29,7 +29,11 @@ a = c;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 10;
+let c = 20;
+let a;
+b = c;
+a = c;
 `````
 
 ## Result

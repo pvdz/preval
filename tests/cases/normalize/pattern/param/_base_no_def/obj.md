@@ -24,7 +24,10 @@ function g(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function g(tmpParamPattern) {
+  let x = tmpParamPattern.x;
+  return x;
+}
 `````
 
 ## Result

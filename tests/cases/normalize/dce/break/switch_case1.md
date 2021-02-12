@@ -52,7 +52,29 @@ $('after, do not evaluate (infinite loop)');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpSwitchTest = $(1, 'disc');
+    const tmpSwitchValue = tmpSwitchTest;
+    let tmpSwitchCaseToStart = 1;
+    const tmpBinLhs = $(1, 'case');
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 0;
+    }
+    tmpSwitchBreak: {
+      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$2) {
+        break tmpSwitchBreak;
+      }
+    }
+    $('keep');
+  } else {
+    break;
+  }
+}
+$('after, do not evaluate (infinite loop)');
 `````
 
 ## Result
@@ -88,5 +110,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

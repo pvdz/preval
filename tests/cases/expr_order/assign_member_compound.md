@@ -35,7 +35,16 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = {};
+const tmpCompoundAssignLhs = a.foo;
+const tmpAssignMemLhsObj = a;
+const tmpBinBothLhs = tmpCompoundAssignLhs;
+let tmpBinBothRhs;
+const tmpNestedComplexRhs = $();
+a = tmpNestedComplexRhs;
+tmpBinBothRhs = tmpNestedComplexRhs;
+const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Result
@@ -46,5 +55,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

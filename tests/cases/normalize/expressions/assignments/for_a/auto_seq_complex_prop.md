@@ -39,7 +39,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+{
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
+  while (true) {
+    $(1);
+  }
+}
+$(1);
+const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
+$(a);
 `````
 
 ## Result
@@ -75,5 +88,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

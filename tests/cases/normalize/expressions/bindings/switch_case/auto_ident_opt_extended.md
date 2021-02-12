@@ -58,7 +58,36 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let tmpObjLitVal$1;
+  let tmpObjLitVal;
+  let b;
+  let a;
+  let tmpChainRootProp;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      tmpObjLitVal$1 = { z: 100 };
+      tmpObjLitVal = { y: tmpObjLitVal$1 };
+      b = { x: tmpObjLitVal };
+      a = undefined;
+      tmpChainRootProp = b;
+      if (tmpChainRootProp) {
+        const tmpChainElementObject = tmpChainRootProp.x;
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+        a = tmpChainElementObject$2;
+      }
+      $(a);
+    }
+  }
+}
 `````
 
 ## Result
@@ -69,5 +98,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

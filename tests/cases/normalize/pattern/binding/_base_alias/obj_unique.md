@@ -34,7 +34,14 @@ const a = bindingPatternObjRoot.x;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let a_1 = 1;
+}
+const bindingPatternObjRoot = 1;
+const a = bindingPatternObjRoot.x;
+{
+  let a_2 = 1;
+}
 `````
 
 ## Result

@@ -51,7 +51,28 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let e = 4;
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+let tmpTemplateExpr;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = $(c);
+const tmpNestedAssignComMemberProp$1 = $('y');
+let tmpNestedAssignPropRhs$1 = d + e;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+tmpTemplateExpr = tmpNestedPropAssignRhs$1;
+const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+tmpCallCallee(tmpCalleeParam);
+$(a, b, c, d, e);
 `````
 
 ## Result
@@ -67,5 +88,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

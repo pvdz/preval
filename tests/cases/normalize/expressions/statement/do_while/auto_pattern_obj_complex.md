@@ -45,7 +45,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -81,5 +99,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -25,7 +25,11 @@ function f(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(tmpParamPattern) {
+  let arrPatternSplat = [...tmpParamPattern];
+  let x = arrPatternSplat[0];
+  return x;
+}
 `````
 
 ## Result

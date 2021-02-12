@@ -30,7 +30,12 @@ $(c);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+$(1);
+const tmpCompObj = $(2);
+const tmpCompProp = $('toString');
+let x = tmpCompObj[tmpCompProp];
+$(x);
+$(c);
 `````
 
 ## Result
@@ -44,5 +49,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

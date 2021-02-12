@@ -9,6 +9,7 @@ import { prepareNormalization } from './normalize/prepare.mjs';
 
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
+import { phase2 } from './reduce_static/phase2.mjs';
 
 const MARK_NONE = 0;
 const MARK_TEMP = 1;
@@ -151,11 +152,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   }
   program.evalOrder = evalOrder;
 
-  // Temporarily disable the second phase
-  evalOrder.forEach((fname) => {
-    contents.files[fname] = '"<skipped>"';
-  });
-  if (!stopAfterNormalize && false) {
+  if (!stopAfterNormalize) {
     // Traverse the dependency tree, bottom to top
     evalOrder.forEach((fname) => {
       const mod = modules.get(fname);
@@ -167,8 +164,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       do {
         ++fdata.cycle;
         changed = phase2(program, fdata, resolve, req);
-        changed = phase3(program, fdata, resolve, req) || changed;
-        changed = phase4(program, fdata, resolve, req) || changed;
+        //changed = phase3(program, fdata, resolve, req) || changed;
+        //changed = phase4(program, fdata, resolve, req) || changed;
       } while (changed);
 
       mod.fdata = fdata;

@@ -43,7 +43,22 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 1;
+let y = 1;
+{
+  const tmpForInPatDeclRhs = [x_1];
+  let tmpForInPatDeclLhs;
+  let x_1;
+  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+    const arrAssignPatternRhs = tmpForInPatDeclLhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x_1 = arrPatternSplat[0];
+    {
+      let y_1 = 2;
+      $(x_1);
+    }
+  }
+}
 `````
 
 ## Result
@@ -53,5 +68,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

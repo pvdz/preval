@@ -32,7 +32,12 @@ f(true);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(tmp) {
+  const arrAssignPatternRhs = tmp;
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  return 'bad';
+}
+f(true);
 `````
 
 ## Result
@@ -42,5 +47,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

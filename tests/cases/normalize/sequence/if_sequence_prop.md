@@ -28,7 +28,12 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+$(1);
+const tmpCompObj = $(2);
+const tmpIfTest = tmpCompObj.foo;
+if (tmpIfTest) {
+  $(3);
+}
 `````
 
 ## Result
@@ -40,5 +45,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

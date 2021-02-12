@@ -47,11 +47,19 @@ export default function () {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+import { default as x } from 'x';
+const tmpCallCallee = $;
+const tmpCalleeParam = x();
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = x.name;
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-'<skipped>';
+export default function () {
+  return 100;
+}
 `````
 
 ## Result
@@ -61,5 +69,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

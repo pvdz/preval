@@ -33,7 +33,19 @@ function i($tdz$__pattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function i($tdz$__pattern) {
+  let $tdz$__pattern_after_default = undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
+  if (tmpIfTest) {
+    $tdz$__pattern_after_default = d;
+  } else {
+    $tdz$__pattern_after_default = $tdz$__pattern;
+  }
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let z = objPatternNoDefault$1.z;
+  return z;
+}
 `````
 
 ## Result

@@ -34,7 +34,17 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var a;
+var b;
+var c;
+var x;
+x = {};
+a = 1;
+b = 2;
+c = 3;
+const tmpAssignComMemLhsObj = x;
+const tmpAssignComMemLhsProp = a + b;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 `````
 
 ## Result

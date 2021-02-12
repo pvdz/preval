@@ -28,7 +28,7 @@ const b = { get foo() {} };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const b = { get foo() {} };
 `````
 
 ## Result

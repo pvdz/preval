@@ -55,7 +55,24 @@ $(a, s);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let s = '';
+let a = 0;
+const obj = {
+  get x() {
+    s += 'read;';
+    return a;
+  },
+  set x(v) {
+    s += 'write[' + v + '];';
+    a += v;
+    return a;
+  },
+};
+const tmpCompoundAssignLhs = obj.x;
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+$(a, s);
 `````
 
 ## Result
@@ -66,5 +83,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

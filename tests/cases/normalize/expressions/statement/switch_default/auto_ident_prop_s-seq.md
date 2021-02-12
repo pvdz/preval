@@ -42,7 +42,19 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
+{
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
+    const tmpCompObj = b;
+    tmpCompObj.c;
+  }
+}
+$(a, b);
 `````
 
 ## Result
@@ -54,5 +66,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

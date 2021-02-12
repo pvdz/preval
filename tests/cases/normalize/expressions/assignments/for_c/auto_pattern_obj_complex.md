@@ -40,7 +40,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
+{
+  while (true) {
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = { a: 1, b: 2 };
+      const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+      a = tmpAssignObjPatternRhs.a;
+    } else {
+      break;
+    }
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -76,5 +91,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

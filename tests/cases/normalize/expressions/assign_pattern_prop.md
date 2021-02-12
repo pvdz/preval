@@ -25,7 +25,11 @@ tmpCompObj.foo;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let tmpCompObj;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpCompObj = tmpNestedAssignObjPatternRhs;
+tmpCompObj.foo;
 `````
 
 ## Result

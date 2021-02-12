@@ -25,7 +25,10 @@ tmpCompObj[tmpCompProp];
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const obj = { foo: 10 };
+const tmpCompObj = obj;
+const tmpCompProp = 'fo' + 'o';
+tmpCompObj[tmpCompProp];
 `````
 
 ## Result

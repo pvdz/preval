@@ -37,7 +37,17 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = 2;
+  let c = 3;
+  let d = 4;
+  let a;
+  const tmpNestedComplexRhs = c + d;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  $(a, b, c);
+}
 `````
 
 ## Result
@@ -49,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

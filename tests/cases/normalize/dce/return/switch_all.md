@@ -81,7 +81,44 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 2;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs$1 = $(1);
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    }
+  }
+  {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      $('keep, do not eval');
+      return undefined;
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('keep, eval');
+      return undefined;
+    }
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$4) {
+      $('keep, do not eval');
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    }
+  }
+  $('eliminate after switch');
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -96,5 +133,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -89,7 +89,62 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let b;
+  let c;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    }
+  }
+  {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      b = { x: 1 };
+      c = 3;
+      a = undefined;
+      let tmpNestedAssignPropRhs;
+      let tmpNestedAssignPropRhs$1;
+      let tmpNestedAssignPropRhs$2;
+      let tmpNestedAssignPropRhs$3;
+      let tmpNestedAssignPropRhs$4;
+      const tmpNestedPropAssignRhs = c;
+      b.x = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
+      b.x = tmpNestedPropAssignRhs$1;
+      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
+      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
+      b.x = tmpNestedPropAssignRhs$2;
+      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
+      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
+      b.x = tmpNestedPropAssignRhs$3;
+      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
+      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
+      b.x = tmpNestedPropAssignRhs$4;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
+      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
+      b.x = tmpNestedPropAssignRhs$5;
+      a = tmpNestedPropAssignRhs$5;
+      $(a, b, c);
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('fail1');
+    }
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$4) {
+      $('fail2');
+    }
+  }
+}
 `````
 
 ## Result
@@ -102,5 +157,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

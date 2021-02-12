@@ -30,7 +30,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const bindingPatternObjRoot = undefined;
+const tmpCallCallee = objPatternRest;
+const tmpCalleeParam = bindingPatternObjRoot;
+const tmpCalleeParam$1 = [];
+const tmpCalleeParam$2 = 'x';
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+$(x);
 `````
 
 ## Result
@@ -40,5 +46,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

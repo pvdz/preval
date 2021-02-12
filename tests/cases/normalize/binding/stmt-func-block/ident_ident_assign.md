@@ -50,7 +50,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = 2;
+    let c = 3;
+    let d = 4;
+    let a;
+    let tmpNestedComplexRhs;
+    const tmpNestedAssignObj = $(c);
+    let tmpNestedAssignPropRhs = $(d);
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+    $(a, b, c);
+  }
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -65,5 +85,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

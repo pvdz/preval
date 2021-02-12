@@ -79,7 +79,51 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+tmpSwitchBreak: {
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
+    {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(1);
+      let tmpIfTest$3 = tmpCallCallee(tmpCalleeParam);
+      if (tmpIfTest$3) {
+        const tmpCallCallee$1 = $;
+        const tmpCalleeParam$1 = $(1);
+        tmpIfTest$3 = tmpCallCallee$1(tmpCalleeParam$1);
+      }
+      if (tmpIfTest$3) {
+      } else {
+        const tmpCallCallee$2 = $;
+        const tmpCalleeParam$2 = $(2);
+        tmpCallCallee$2(tmpCalleeParam$2);
+      }
+    }
+    break tmpSwitchBreak;
+  }
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
+    $('fail1');
+  }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
+    $('fail2');
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -96,5 +140,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

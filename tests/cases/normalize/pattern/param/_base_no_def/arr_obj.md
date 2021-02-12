@@ -26,7 +26,12 @@ function h(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function h(tmpParamPattern) {
+  let arrPatternSplat = [...tmpParamPattern];
+  let arrPatternStep = arrPatternSplat[0];
+  let x = arrPatternStep.x;
+  return x;
+}
 `````
 
 ## Result

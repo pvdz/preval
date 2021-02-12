@@ -23,7 +23,7 @@ let b = { $: $ };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { $: $ };
 `````
 
 ## Result

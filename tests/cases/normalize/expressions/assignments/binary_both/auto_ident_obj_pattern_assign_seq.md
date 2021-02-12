@@ -61,7 +61,37 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+let tmpBinBothLhs;
+let tmpNestedComplexRhs;
+$(x);
+$(y);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+a = tmpNestedComplexRhs;
+tmpBinBothLhs = tmpNestedComplexRhs;
+let tmpBinBothRhs;
+let tmpNestedComplexRhs$1;
+$(x);
+$(y);
+const tmpObjLitVal$2 = $(3);
+const tmpObjLitVal$3 = $(4);
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
+x = tmpNestedAssignObjPatternRhs$1.x;
+y = tmpNestedAssignObjPatternRhs$1.y;
+tmpNestedComplexRhs$1 = tmpNestedAssignObjPatternRhs$1;
+a = tmpNestedComplexRhs$1;
+tmpBinBothRhs = tmpNestedComplexRhs$1;
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
+$(a, x, y);
 `````
 
 ## Result
@@ -81,5 +111,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

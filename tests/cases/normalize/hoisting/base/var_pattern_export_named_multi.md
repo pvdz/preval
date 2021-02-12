@@ -36,7 +36,18 @@ export { y };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+var y;
+$(x, y);
+const arrAssignPatternRhs = [10];
+const arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+const arrAssignPatternRhs$1 = [20];
+const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+y = arrPatternSplat$1[0];
+$(x, y);
+export { x };
+export { y };
 `````
 
 ## Result
@@ -46,5 +57,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -33,7 +33,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(tmpParamPattern) {
+  let arrPatternSplat = [...tmpParamPattern];
+  let x = arrPatternSplat.slice(0);
+  return x;
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f('abc', 200);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -44,5 +51,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

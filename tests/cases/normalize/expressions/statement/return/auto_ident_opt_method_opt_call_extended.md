@@ -51,7 +51,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  let tmpReturnArg = undefined;
+  const tmpChainRootProp = b;
+  if (tmpChainRootProp) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+    if (tmpChainElementObject$2) {
+      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+      tmpReturnArg = tmpChainElementCall;
+    }
+  }
+  return tmpReturnArg;
+}
+const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal = { d: tmpObjLitVal$1 };
+let b = { c: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+$(a);
 `````
 
 ## Result
@@ -64,5 +85,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

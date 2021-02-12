@@ -47,7 +47,26 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f($tdz$__arg) {
+  let arg = undefined;
+  const tmpIfTest = $tdz$__arg === undefined;
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam = { b: tmpObjLitVal };
+    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    b = tmpNestedAssignObjPatternRhs.b;
+    arg = tmpNestedAssignObjPatternRhs;
+  } else {
+    arg = $tdz$__arg;
+  }
+}
+let b = {};
+let a = { a: 999, b: 1000 };
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
+$(a, b);
 `````
 
 ## Result
@@ -61,5 +80,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

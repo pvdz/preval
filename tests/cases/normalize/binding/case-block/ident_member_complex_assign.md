@@ -57,7 +57,39 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+const tmpSwitchTest = $('a');
+{
+  let a_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
+  tmpSwitchBreak: {
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a_1 = undefined;
+      const tmpNestedAssignObj = $(b);
+      let tmpNestedAssignPropRhs;
+      const tmpNestedAssignObj$1 = $(c);
+      let tmpNestedAssignPropRhs$1 = $(d);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+      tmpNestedAssignObj$1.y = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+      tmpNestedAssignObj.x = tmpNestedPropAssignRhs$1;
+      a_1 = tmpNestedPropAssignRhs$1;
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(a, b, c, d);
 `````
 
 ## Result
@@ -73,5 +105,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -27,7 +27,10 @@ $(y);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpAssignObjPatternRhs = { x: 'abc', b: 11, c: 12 };
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+y = objPatternNoDefault.y;
+$(y);
 `````
 
 ## Result
@@ -38,5 +41,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

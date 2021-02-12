@@ -51,7 +51,26 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = {
+  get c() {
+    $('b.get');
+    b = undefined;
+    d = undefined;
+    return 5;
+  },
+  set c(x) {
+    $('b.set');
+    b = null;
+    d = null;
+    return 7;
+  },
+};
+let d = 3;
+const tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+$(a, b, d);
 `````
 
 ## Result
@@ -63,5 +82,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

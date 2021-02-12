@@ -28,7 +28,13 @@ z = objPatternNoDefault$1.z;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 10;
+let y = 20;
+let z = 30;
+const tmpAssignObjPatternRhs = 1;
+const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+z = objPatternNoDefault$1.z;
 `````
 
 ## Result
@@ -38,5 +44,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

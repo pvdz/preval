@@ -55,7 +55,33 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f($tdz$__arg) {
+  let arg = undefined;
+  const tmpIfTest = $tdz$__arg === undefined;
+  if (tmpIfTest) {
+    let tmpNestedComplexRhs;
+    $(x);
+    $(y);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+    a = tmpNestedComplexRhs;
+    arg = tmpNestedComplexRhs;
+  } else {
+    arg = $tdz$__arg;
+  }
+}
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+$(a, x, y);
 `````
 
 ## Result
@@ -71,5 +97,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

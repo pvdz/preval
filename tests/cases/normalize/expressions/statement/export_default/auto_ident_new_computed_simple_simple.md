@@ -32,7 +32,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpNewCallee = b.$;
+const tmpExportDefault = new tmpNewCallee(1);
+export { tmpExportDefault as default };
+$(a);
 `````
 
 ## Result
@@ -42,5 +47,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

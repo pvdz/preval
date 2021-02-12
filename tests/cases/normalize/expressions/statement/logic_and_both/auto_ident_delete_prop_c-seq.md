@@ -39,7 +39,19 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(1);
+$(2);
+const tmpDeleteObj = $(x);
+const tmpIfTest = delete tmpDeleteObj.y;
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpDeleteObj$1 = $(x);
+  delete tmpDeleteObj$1.y;
+}
+$(a, x);
 `````
 
 ## Result
@@ -56,5 +68,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

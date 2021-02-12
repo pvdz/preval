@@ -27,7 +27,12 @@ const tmpIfTest = tmpCompObj.foo;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let y;
+let tmpCompObj;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpCompObj = tmpNestedAssignObjPatternRhs;
+const tmpIfTest = tmpCompObj.foo;
 `````
 
 ## Result

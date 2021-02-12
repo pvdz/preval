@@ -27,7 +27,10 @@ $(wow);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const foo = 'five';
+const bar = foo;
+const wow = bar;
+$(wow);
 `````
 
 ## Result
@@ -38,5 +41,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

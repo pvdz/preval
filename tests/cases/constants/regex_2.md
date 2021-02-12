@@ -33,7 +33,10 @@ $(bar);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const foo = /foo/g;
+const bar = foo;
+$(bar);
+$(bar);
 `````
 
 ## Result
@@ -45,5 +48,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

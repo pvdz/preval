@@ -55,7 +55,36 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(tmpParamPattern) {
+  let objPatternBeforeDefault = tmpParamPattern.x;
+  let objPatternAfterDefault = undefined;
+  const tmpIfTest = objPatternBeforeDefault === undefined;
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+  } else {
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+  let arrPatternSplat = [...objPatternAfterDefault];
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  let y = undefined;
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    y = 'fail';
+  } else {
+    y = arrPatternBeforeDefault;
+  }
+  return y;
+}
+const tmpCallCallee$1 = $;
+const tmpCallCallee$2 = f;
+const tmpArrElement = null;
+const tmpObjLitVal = [tmpArrElement];
+const tmpCalleeParam$2 = { x: tmpObjLitVal, a: 11, b: 12 };
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
@@ -66,5 +95,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

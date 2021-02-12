@@ -24,7 +24,9 @@ x = tmpAssignObjPatternRhs.x;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 10;
+const tmpAssignObjPatternRhs = 1;
+x = tmpAssignObjPatternRhs.x;
 `````
 
 ## Result

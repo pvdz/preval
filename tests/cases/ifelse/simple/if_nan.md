@@ -23,7 +23,9 @@ if (NaN) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+if (NaN) {
+  $();
+}
 `````
 
 ## Result

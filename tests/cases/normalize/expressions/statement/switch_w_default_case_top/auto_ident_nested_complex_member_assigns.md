@@ -103,7 +103,72 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+tmpSwitchBreak: {
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
+    const tmpAssignComMemLhsObj = $(b);
+    const tmpAssignComMemLhsProp = $('x');
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    let tmpAssignComputedRhs;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(b);
+    const tmpNestedAssignComMemberProp$1 = $('x');
+    let tmpNestedAssignPropRhs$1;
+    const tmpNestedAssignComMemberObj$2 = $(b);
+    const tmpNestedAssignComMemberProp$2 = $('x');
+    let tmpNestedAssignPropRhs$2;
+    const tmpNestedAssignComMemberObj$3 = $(b);
+    const tmpNestedAssignComMemberProp$3 = $('x');
+    let tmpNestedAssignPropRhs$3;
+    const tmpNestedAssignComMemberObj$4 = $(b);
+    const tmpNestedAssignComMemberProp$4 = $('x');
+    const tmpNestedPropAssignRhs = c;
+    tmpNestedAssignComMemberObj$4[tmpNestedAssignComMemberProp$4] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$3;
+    tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs$1;
+    tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$1;
+    const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$2;
+    tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$2;
+    tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$2;
+    const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$3;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$3;
+    const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$4;
+    tmpAssignComputedRhs = tmpNestedPropAssignRhs$4;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    break tmpSwitchBreak;
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$3) {
+    $('fail1');
+  }
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$4) {
+    $('fail2');
+  }
+}
+$(a, b, c);
 `````
 
 ## Result
@@ -128,5 +193,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -28,7 +28,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let bindingPatternArrRoot = [1, 2];
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+let b = arrPatternSplat[1];
+$(a, b);
 `````
 
 ## Result
@@ -39,5 +43,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

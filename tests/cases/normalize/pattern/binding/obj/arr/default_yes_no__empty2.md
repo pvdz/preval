@@ -34,7 +34,17 @@ $('ok');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const bindingPatternObjRoot = 1;
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  objPatternAfterDefault = ['fail'];
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+$('ok');
 `````
 
 ## Result
@@ -45,5 +55,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -25,7 +25,8 @@ x = 10;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var x;
+x = 10;
 `````
 
 ## Result

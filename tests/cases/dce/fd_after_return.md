@@ -37,7 +37,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f(x) {
+  const tmpReturnArg = g();
+  return tmpReturnArg;
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -51,4 +57,4 @@ Normalized calls: BAD?!
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Final output calls: BAD!!
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

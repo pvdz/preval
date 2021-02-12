@@ -26,7 +26,12 @@ if (a) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+if (a) {
+  b;
+} else {
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+}
 `````
 
 ## Result

@@ -29,7 +29,11 @@ $(xyz);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const x = 'a';
+const y = 'b' + x;
+const z = x + y;
+const xyz = z;
+$(xyz);
 `````
 
 ## Result
@@ -40,5 +44,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

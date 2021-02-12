@@ -25,7 +25,9 @@ function f() {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  $();
+}
 `````
 
 ## Result

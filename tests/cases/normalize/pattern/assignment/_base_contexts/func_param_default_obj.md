@@ -34,7 +34,18 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const f = ($tdz$__a) => {
+  let a = undefined;
+  const tmpIfTest = $tdz$__a === undefined;
+  if (tmpIfTest) {
+    const tmpNestedAssignObjPatternRhs = 1;
+    x = tmpNestedAssignObjPatternRhs.x;
+    a = tmpNestedAssignObjPatternRhs;
+  } else {
+    a = $tdz$__a;
+  }
+  return a;
+};
 `````
 
 ## Result

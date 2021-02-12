@@ -260,7 +260,52 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCallObj = node.elements;
+const tmpCallVal = tmpCallObj.forEach;
+const tmpCalleeParam = (anode, i) => {
+  if (anode) {
+  } else {
+    const tmpCallObj$1 = newElements;
+    const tmpCallVal$1 = tmpCallObj$1.push;
+    const tmpCalleeParam$1 = null;
+    const tmpReturnArg = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
+    return tmpReturnArg;
+  }
+  let valueNode = anode;
+  const tmpBinLhs = anode.type;
+  const tmpIfTest = tmpBinLhs === 'SpreadElement';
+  if (tmpIfTest) {
+    valueNode = anode.argument;
+    crumb(anode, 'argument', valueNode);
+  }
+  const tmpIfTest$1 = isComplexNode(valueNode);
+  if (tmpIfTest$1) {
+    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+    const tmpCallObj$2 = assigns;
+    const tmpCallVal$2 = tmpCallObj$2.push;
+    const tmpCalleeParam$2 = AST.assignmentExpression(tmpName, valueNode);
+    tmpCallVal$2.call(tmpCallObj$2, tmpCalleeParam$2);
+    const tmpCallObj$3 = newElements;
+    const tmpCallVal$3 = tmpCallObj$3.push;
+    let tmpCalleeParam$3 = undefined;
+    const tmpBinLhs$1 = anode.type;
+    const tmpIfTest$2 = tmpBinLhs$1 === 'SpreadElement';
+    if (tmpIfTest$2) {
+      tmpCalleeParam$3 = AST.spreadElement(tmpName);
+    } else {
+      tmpCalleeParam$3 = AST.identifier(tmpName);
+    }
+    tmpCallVal$3.call(tmpCallObj$3, tmpCalleeParam$3);
+  } else {
+    newElements.push(anode);
+  }
+  const tmpBinLhs$2 = anode.type;
+  const tmpIfTest$3 = tmpBinLhs$2 === 'SpreadElement';
+  if (tmpIfTest$3) {
+    uncrumb(anode, 'argument', valueNode);
+  }
+};
+tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````
 
 ## Result
@@ -270,5 +315,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

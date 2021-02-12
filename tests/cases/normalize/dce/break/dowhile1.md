@@ -51,7 +51,29 @@ $('after, do not evaluate (infinite loop)');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        break;
+      } else {
+        break;
+      }
+    }
+    $('keep');
+  } else {
+    break;
+  }
+}
+$('after, do not evaluate (infinite loop)');
 `````
 
 ## Result
@@ -87,5 +109,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

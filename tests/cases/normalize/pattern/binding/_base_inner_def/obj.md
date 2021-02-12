@@ -29,7 +29,15 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const bindingPatternObjRoot = 1;
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let x = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  x = b;
+} else {
+  x = objPatternBeforeDefault;
+}
 `````
 
 ## Result

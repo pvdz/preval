@@ -38,7 +38,20 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = 2;
+let c = 3;
+let tmpIfTest = undefined;
+if (a) {
+  tmpIfTest = b;
+} else {
+  tmpIfTest = c;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
+}
 `````
 
 ## Result
@@ -49,5 +62,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

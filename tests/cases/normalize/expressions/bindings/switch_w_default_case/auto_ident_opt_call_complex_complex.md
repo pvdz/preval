@@ -71,7 +71,47 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let a;
+  let tmpChainRootCall;
+  let tmpChainElementCall;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    }
+  }
+  {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      a = undefined;
+      tmpChainRootCall = $;
+      tmpChainElementCall = tmpChainRootCall($);
+      if (tmpChainElementCall) {
+        const tmpCallObj = tmpChainElementCall;
+        const tmpCallVal = tmpCallObj.call;
+        const tmpCalleeParam = tmpChainRootCall;
+        const tmpCalleeParam$1 = $(1);
+        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        a = tmpChainElementCall$1;
+      }
+      $(a);
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('fail1');
+    }
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$4) {
+      $('fail2');
+    }
+  }
+}
 `````
 
 ## Result
@@ -87,5 +127,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

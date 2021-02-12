@@ -27,7 +27,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+$(1);
+const tmpCompObj = $(2);
+let x = tmpCompObj.toString;
+$(x);
 `````
 
 ## Result
@@ -40,5 +43,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

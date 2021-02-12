@@ -35,7 +35,17 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = 2;
+let z = [10, 20, 30];
+$(a);
+$(b);
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
+export { x, y };
+$(x, y, z);
 `````
 
 ## Result
@@ -45,5 +55,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

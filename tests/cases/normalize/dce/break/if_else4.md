@@ -42,7 +42,19 @@ $('after');
 ## Output
 
 `````js filename=intro
-'<skipped>';
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      break;
+    }
+    break;
+  } else {
+    break;
+  }
+}
+$('after');
 `````
 
 ## Result
@@ -55,5 +67,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

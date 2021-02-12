@@ -43,11 +43,20 @@ export { tmpExportDefault as default };
 ## Output
 
 `````js filename=intro
-'<skipped>';
+import { default as a } from 'd';
+import { b as b } from 'd';
+import { c as c } from 'd';
 `````
 
 `````js filename=d
-'<skipped>';
+let a = 10;
+export { a };
+let b = 20;
+export { b };
+let c = 30;
+export { c };
+const tmpExportDefault = 100;
+export { tmpExportDefault as default };
 `````
 
 ## Result
@@ -57,5 +66,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

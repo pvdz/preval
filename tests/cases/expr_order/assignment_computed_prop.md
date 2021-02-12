@@ -28,7 +28,12 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpAssignComMemLhsObj = $(1);
+const tmpAssignComMemLhsProp = $(2);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpAssignComputedRhs = $(3);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Result
@@ -41,5 +46,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

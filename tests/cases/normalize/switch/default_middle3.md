@@ -80,7 +80,44 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpSwitchTest = $(30);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(30);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(31);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+    const tmpBinLhs$2 = $(32);
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    if (tmpIfTest$2) {
+      tmpSwitchCaseToStart = 3;
+    }
+  }
+}
+{
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    $('a');
+  }
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
+    $('b');
+  }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
+    $('c');
+  }
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 3;
+  if (tmpIfTest$6) {
+    $('d');
+  }
+}
 `````
 
 ## Result
@@ -96,5 +133,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -67,7 +67,37 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $('loop');
+      let tmpDoWhileFlag = true;
+      while (true) {
+        let tmpIfTest$1 = tmpDoWhileFlag;
+        if (tmpIfTest$1) {
+        } else {
+          tmpIfTest$1 = $(true);
+        }
+        if (tmpIfTest$1) {
+          tmpDoWhileFlag = false;
+          $('loop');
+          const tmpReturnArg = $(100, 'return');
+          return tmpReturnArg;
+        } else {
+          break;
+        }
+      }
+      $('do not visit, do not eliminate');
+    } else {
+      break;
+    }
+  }
+  $('after (not invoked)');
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -82,5 +112,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

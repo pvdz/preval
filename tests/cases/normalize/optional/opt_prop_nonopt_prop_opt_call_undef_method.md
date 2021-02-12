@@ -33,7 +33,16 @@ if (tmpChainRootProp) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal = {};
+const a = { b: tmpObjLitVal };
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.b;
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  if (tmpChainElementObject$1) {
+    const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
+  }
+}
 `````
 
 ## Result

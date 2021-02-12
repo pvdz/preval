@@ -30,7 +30,10 @@ woop: while (true) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+woop: while (true) {
+  $(1);
+  continue woop;
+}
 `````
 
 ## Result
@@ -66,5 +69,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -26,7 +26,11 @@ x = arrPatternStep.x;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 10;
+const arrAssignPatternRhs = 1;
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+x = arrPatternStep.x;
 `````
 
 ## Result
@@ -36,5 +40,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

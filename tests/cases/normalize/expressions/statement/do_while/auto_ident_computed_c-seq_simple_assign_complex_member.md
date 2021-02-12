@@ -52,7 +52,30 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('c');
+    const tmpCompObj = $(b);
+    const tmpCompProp = $('d');
+    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    tmpIfTest = tmpNestedPropAssignRhs;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a, b);
 `````
 
 ## Result
@@ -88,5 +111,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

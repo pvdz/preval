@@ -23,7 +23,8 @@ obj.foo;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const obj = { foo: 10 };
+obj.foo;
 `````
 
 ## Result

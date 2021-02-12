@@ -21,7 +21,7 @@ Infinity;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+Infinity;
 `````
 
 ## Result

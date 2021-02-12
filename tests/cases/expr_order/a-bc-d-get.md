@@ -40,7 +40,17 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = {
+  get c() {
+    $('should not be called');
+  },
+};
+let d = 3;
+const tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+$(a, b, d);
 `````
 
 ## Result
@@ -51,5 +61,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

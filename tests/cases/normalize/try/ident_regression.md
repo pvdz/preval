@@ -41,7 +41,14 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  let AAAAAAAAAAAAAAAAAAAA;
+  try {
+    AAAAAAAAAAAAAAAAAAAA = false;
+  } catch {
+    AAAAAAAAAAAAAAAAAAAA = false;
+  }
+}
 `````
 
 ## Result

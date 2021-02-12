@@ -26,7 +26,10 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpAssignMemLhsObj = $(1);
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Result
@@ -38,5 +41,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

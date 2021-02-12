@@ -161,7 +161,129 @@ $$(obja, objb, objc, objd);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function $$(...a_1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
+  tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = a_1[0];
+  return tmpReturnArg;
+}
+var a;
+var b;
+var c;
+var d;
+var e;
+var obja;
+var objb;
+var objc;
+var objd;
+obja = {
+  get a() {
+    $$('a.get');
+    return 110;
+  },
+  set a(x) {
+    $$('a.set', x);
+    e = 'faila';
+    return 1000;
+  },
+};
+objb = {
+  get b() {
+    $$('b.get');
+    a = 210;
+    return 100;
+  },
+  set b(x_1) {
+    $$('b.set', x_1);
+    a = 2100;
+    e = 'failb';
+    return 2000;
+  },
+};
+objc = {
+  get c() {
+    $$('c.get');
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c(x_2) {
+    $$('c.set', x_2);
+    a = 3100;
+    b = 3200;
+    e = 'failc';
+    return 3000;
+  },
+};
+objd = {
+  get d() {
+    $$('d.get');
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d(x_3) {
+    $$('d.set', x_3);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    e = 'faild';
+    return 4000;
+  },
+};
+a = function () {
+  $$('a');
+  return obja;
+};
+b = function () {
+  $$('b');
+  a = 21;
+  return objb;
+};
+c = function () {
+  $$('c');
+  a = 31;
+  b = 32;
+  return objc;
+};
+d = function () {
+  $$('d');
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+e = 12345;
+const tmpCallCallee$1 = $$;
+let tmpCalleeParam$1;
+const tmpNestedAssignComMemberObj = a();
+const tmpNestedAssignComMemberProp = $$('a');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = b();
+const tmpNestedAssignComMemberProp$1 = $$('b');
+let tmpNestedAssignPropRhs$1;
+const tmpNestedAssignComMemberObj$2 = c();
+const tmpNestedAssignComMemberProp$2 = $$('c');
+let tmpNestedAssignPropRhs$2;
+const tmpNestedAssignComMemberObj$3 = d();
+const tmpNestedAssignComMemberProp$3 = $$('d');
+const tmpNestedPropAssignRhs = e;
+tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$2;
+tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = tmpNestedPropAssignRhs$1;
+tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$1;
+const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$2;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$2;
+const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$3;
+tmpCalleeParam$1 = tmpNestedPropAssignRhs$3;
+tmpCallCallee$1(tmpCalleeParam$1);
+$$(a, b, c, d, e);
+$$(obja, objb, objc, objd);
 `````
 
 ## Result
@@ -407,5 +529,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -40,7 +40,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let bindingPatternArrRoot = { a: 999, b: 1000 };
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+{
+  let tmpForInDeclRhs;
+  $(10);
+  $(20);
+  const tmpNestedAssignArrPatternRhs = [1, 2];
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat$1[0];
+  tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
+  let x;
+  for (x in tmpForInDeclRhs) {
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -50,5 +65,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

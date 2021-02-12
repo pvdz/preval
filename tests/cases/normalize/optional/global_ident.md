@@ -30,7 +30,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpCallCallee = $;
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = global;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  tmpCalleeParam = tmpChainElementObject;
+}
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -41,5 +48,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

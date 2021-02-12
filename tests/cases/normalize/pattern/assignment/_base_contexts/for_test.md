@@ -24,7 +24,10 @@ for ({ x } = 1;false;) y;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+{
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+}
 `````
 
 ## Result

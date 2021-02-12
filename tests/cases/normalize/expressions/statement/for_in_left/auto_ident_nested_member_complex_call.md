@@ -55,7 +55,33 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+const tmpCalleeParam = { x: 1 };
+const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
+{
+  let tmpForInLhsNode;
+  for (tmpForInLhsNode in tmpForInRhs) {
+    let tmpAssignMemLhsObj;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    let tmpNestedAssignPropRhs;
+    const tmpNestedAssignComMemberObj$1 = $(c);
+    const tmpNestedAssignComMemberProp$1 = $('y');
+    let tmpNestedAssignPropRhs$1 = $(d);
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+    tmpAssignMemLhsObj = tmpNestedPropAssignRhs$1;
+    tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  }
+}
+$(a, b, c, d);
 `````
 
 ## Result
@@ -72,5 +98,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

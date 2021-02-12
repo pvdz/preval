@@ -49,7 +49,27 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = { y: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+$(1);
+$(2);
+const tmpDeleteCompObj = $(x);
+const tmpDeleteCompProp = $('y');
+const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+{
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+$(a, x);
 `````
 
 ## Result
@@ -65,5 +85,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

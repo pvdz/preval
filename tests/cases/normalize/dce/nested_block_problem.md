@@ -40,7 +40,13 @@ x: {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+x: {
+  {
+    {
+      break x;
+    }
+  }
+}
 `````
 
 ## Result

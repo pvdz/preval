@@ -25,7 +25,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const obj = { foo: 10 };
+let x = obj.foo;
+$(x);
 `````
 
 ## Result
@@ -36,5 +38,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

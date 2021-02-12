@@ -30,7 +30,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const a = { x: 1 };
+let y = undefined;
+const tmpChainRootProp = a;
+if (tmpChainRootProp) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  y = tmpChainElementObject;
+}
+$(y);
 `````
 
 ## Result
@@ -41,5 +48,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

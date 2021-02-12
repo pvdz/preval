@@ -26,7 +26,12 @@ if (a) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+if (a) {
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+} else {
+  c;
+}
 `````
 
 ## Result
@@ -36,5 +41,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -39,7 +39,22 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+{
+  let a_1;
+  let tmpNestedAssignPropRhs;
+  const tmpNestedAssignObj = $(c);
+  let tmpNestedAssignPropRhs$1 = $(d);
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs$1;
+  a_1 = tmpNestedPropAssignRhs$1;
+}
 `````
 
 ## Result
@@ -51,5 +66,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

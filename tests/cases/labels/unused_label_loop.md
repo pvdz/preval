@@ -36,7 +36,19 @@ while (true) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let x = 2;
+while (true) {
+  let tmpIfTest;
+  const tmpNestedCompoundLhs = x;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  x = tmpNestedComplexRhs;
+  tmpIfTest = tmpNestedComplexRhs;
+  if (tmpIfTest) {
+    $(x);
+  } else {
+    break;
+  }
+}
 `````
 
 ## Result
@@ -47,5 +59,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

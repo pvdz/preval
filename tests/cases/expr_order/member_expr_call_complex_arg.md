@@ -41,7 +41,12 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+var a;
+var x;
+const tmpCallObj = a;
+const tmpCallVal = tmpCallObj.b;
+const tmpCalleeParam = x.y;
+tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````
 
 ## Result
@@ -51,5 +56,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

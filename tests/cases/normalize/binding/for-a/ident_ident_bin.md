@@ -33,7 +33,16 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+{
+  let a_1;
+  const tmpNestedComplexRhs = c + d;
+  b = tmpNestedComplexRhs;
+  a_1 = tmpNestedComplexRhs;
+}
 `````
 
 ## Result

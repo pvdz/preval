@@ -55,7 +55,34 @@ foo: while (true) {
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let tmpDoWhileFlag = true;
+foo: while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = false;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    let tmpDoWhileFlag$1 = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag$1;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = false;
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag$1 = false;
+        $(1);
+        continue foo;
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
+  }
+}
 `````
 
 ## Result
@@ -66,5 +93,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

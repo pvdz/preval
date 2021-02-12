@@ -32,7 +32,13 @@ $(o);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let o = {};
+$(o);
+const tmpDeleteOpt = o;
+if (tmpDeleteOpt) {
+  delete tmpDeleteOpt.x;
+}
+$(o);
 `````
 
 ## Result
@@ -44,5 +50,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

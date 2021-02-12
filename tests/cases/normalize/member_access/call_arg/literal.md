@@ -23,7 +23,7 @@
 ## Output
 
 `````js filename=intro
-'<skipped>';
+'foo'.length;
 `````
 
 ## Result

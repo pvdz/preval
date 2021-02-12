@@ -46,7 +46,26 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
+  }
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -82,5 +101,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

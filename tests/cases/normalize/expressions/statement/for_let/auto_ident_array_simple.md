@@ -33,7 +33,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+{
+  let xyz = [1, 2, 3];
+  while (true) {
+    $(xyz);
+    $(1);
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -69,5 +77,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

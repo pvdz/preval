@@ -40,7 +40,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let a = { a: 999, b: 1000 };
+{
+  let tmpForOfDeclRhs = undefined;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    tmpForOfDeclRhs = 2;
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+  }
+  let x;
+  for (x of tmpForOfDeclRhs) {
+  }
+}
+$(a);
 `````
 
 ## Result
@@ -51,5 +66,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

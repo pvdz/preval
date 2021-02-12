@@ -37,7 +37,15 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function superExpensiveFunction() {
+  const tmpReturnArg = $();
+  return tmpReturnArg;
+}
+const tmpAssignMemLhsObj = superExpensiveFunction();
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Result
@@ -48,5 +56,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

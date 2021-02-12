@@ -30,7 +30,12 @@ a = tmpNestedPropAssignRhs;
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 10;
+let c = 20;
+let a;
+const tmpNestedPropAssignRhs = c;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
 `````
 
 ## Result

@@ -37,7 +37,16 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+let b = 1;
+let c = 2;
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  $(100);
+} else {
+  b = 2;
+}
+$(a, b, c);
 `````
 
 ## Result
@@ -49,5 +58,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

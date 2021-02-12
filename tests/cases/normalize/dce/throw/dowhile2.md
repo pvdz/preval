@@ -50,7 +50,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function f() {
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest = tmpDoWhileFlag;
+    if (tmpIfTest) {
+    } else {
+      tmpIfTest = $(true);
+    }
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      let tmpThrowArg = $(1, 'return');
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
+  }
+  $('keep, do not eval');
+}
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Result
@@ -61,5 +81,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

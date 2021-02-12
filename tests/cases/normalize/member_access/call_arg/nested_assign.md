@@ -36,7 +36,20 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpCallCallee = $;
+let tmpCalleeParam;
+const tmpNestedAssignObj = obj.a;
+const tmpNestedPropAssignRhs = 15;
+tmpNestedAssignObj.b = tmpNestedPropAssignRhs;
+tmpCalleeParam = tmpNestedPropAssignRhs;
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCompObj = obj.a;
+const tmpCalleeParam$1 = tmpCompObj.b;
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Result
@@ -49,5 +62,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

@@ -38,7 +38,14 @@ $(a, b, d, f, h, x);
 ## Output
 
 `````js filename=intro
-'<skipped>';
+function a() {}
+function b() {}
+function d() {}
+function f() {}
+function h() {}
+function l() {}
+function x() {}
+$(a, b, d, f, h, x);
 `````
 
 ## Result
@@ -49,5 +56,4 @@ Should call `$` with:
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: undefined
+Final output calls: Same

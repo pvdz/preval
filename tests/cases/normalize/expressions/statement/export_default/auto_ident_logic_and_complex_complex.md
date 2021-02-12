@@ -36,13 +36,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+let tmpExportDefault = $(tmpCalleeParam);
 if (tmpExportDefault) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpExportDefault = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpExportDefault = $(tmpCalleeParam$1);
 }
 export { tmpExportDefault as default };
 $(a);

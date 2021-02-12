@@ -47,9 +47,8 @@ let a = { a: 999, b: 1000 };
   if (tmpIfTest) {
     tmpForOfDeclRhs = 2;
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+    tmpForOfDeclRhs = $(tmpCalleeParam);
   }
   let x;
   for (x of tmpForOfDeclRhs) {

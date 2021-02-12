@@ -42,9 +42,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
-  const tmpNestedComplexRhs = undefined;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = undefined;
+  tmpForOfDeclRhs = undefined;
   let x_1;
   for (x_1 of tmpForOfDeclRhs) {
   }

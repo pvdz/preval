@@ -56,12 +56,10 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
@@ -70,9 +68,8 @@ a = tmpNestedComplexRhs;
 tmpBinBothLhs = tmpNestedComplexRhs;
 let tmpBinBothRhs;
 let tmpNestedComplexRhs$1;
-const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = $(b);
-const tmpNestedAssignObj$1 = tmpCallCallee$2(tmpCalleeParam$2);
+const tmpNestedAssignObj$1 = $(tmpCalleeParam$2);
 const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
 const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 - 1;
 tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
@@ -80,7 +77,7 @@ tmpNestedComplexRhs$1 = tmpNestedPropCompoundComplexRhs$1;
 a = tmpNestedComplexRhs$1;
 tmpBinBothRhs = tmpNestedComplexRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

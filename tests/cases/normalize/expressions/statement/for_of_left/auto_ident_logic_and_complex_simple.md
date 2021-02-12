@@ -42,15 +42,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    let tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
+    let tmpAssignMemLhsObj = $(tmpCalleeParam$1);
     if (tmpAssignMemLhsObj) {
       tmpAssignMemLhsObj = 2;
     }

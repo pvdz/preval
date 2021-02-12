@@ -40,7 +40,7 @@ function f() {
   let tmpAssignComputedRhs;
   const tmpNestedAssignComMemberObj = $(c);
   const tmpNestedAssignComMemberProp = $('y');
-  let tmpNestedAssignPropRhs = d + e;
+  const tmpNestedAssignPropRhs = d + e;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   tmpAssignComputedRhs = tmpNestedPropAssignRhs;
@@ -68,16 +68,15 @@ function f() {
   let tmpAssignComputedRhs;
   const tmpNestedAssignComMemberObj = $(c);
   const tmpNestedAssignComMemberProp = $('y');
-  let tmpNestedAssignPropRhs = d + e;
+  const tmpNestedAssignPropRhs = d + e;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   tmpAssignComputedRhs = tmpNestedPropAssignRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   $(a, b, c, d, e);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

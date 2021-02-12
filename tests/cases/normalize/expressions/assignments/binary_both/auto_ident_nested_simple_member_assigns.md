@@ -94,7 +94,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs;
 let tmpNestedAssignPropRhs;
@@ -150,7 +149,7 @@ tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$11;
 a = tmpNestedComplexRhs$1;
 tmpBinBothRhs = tmpNestedComplexRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c);
 `````
 

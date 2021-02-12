@@ -36,9 +36,8 @@ throw tmpThrowArg;
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpThrowArg;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = undefined;
+tmpThrowArg = undefined;
 throw tmpThrowArg;
 `````
 

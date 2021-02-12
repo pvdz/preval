@@ -55,9 +55,8 @@ while (true) {
   } else {
     tmpIfTest = 1;
     if (tmpIfTest) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
-      tmpIfTest = tmpCallCallee(tmpCalleeParam);
+      tmpIfTest = $(tmpCalleeParam);
     }
   }
   if (tmpIfTest) {

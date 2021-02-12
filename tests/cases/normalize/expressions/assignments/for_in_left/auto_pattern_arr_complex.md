@@ -47,16 +47,14 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
     let tmpAssignMemLhsObj;
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = [1, 2];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
     a = arrPatternSplat$1[0];
     tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;

@@ -42,17 +42,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$2 = tmpChainRootCall$1($);
+  const tmpChainElementCall$2 = $($);
   if (tmpChainElementCall$2) {
-    const tmpChainElementCall$3 = tmpChainElementCall$2.call(tmpChainRootCall$1, 1);
+    const tmpChainElementCall$3 = tmpChainElementCall$2.call($, 1);
   }
 }
 $(a);

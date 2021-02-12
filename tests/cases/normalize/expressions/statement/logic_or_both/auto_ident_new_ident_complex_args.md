@@ -42,16 +42,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpIfTest = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpIfTest = new $(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
 } else {
-  const tmpNewCallee$1 = $;
   const tmpCalleeParam$2 = $(1);
   const tmpCalleeParam$3 = $(2);
-  new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
+  new $(tmpCalleeParam$2, tmpCalleeParam$3);
 }
 $(a);
 `````

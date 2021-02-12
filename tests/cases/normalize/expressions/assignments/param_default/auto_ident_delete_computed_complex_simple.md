@@ -51,8 +51,7 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     const tmpDeleteCompObj = $(x);
-    const tmpDeleteCompProp = 'y';
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {
@@ -61,9 +60,8 @@ function f($tdz$__arg) {
 }
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

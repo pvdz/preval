@@ -48,13 +48,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
+if (30) {
   tmpSwitchTest = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+  tmpSwitchTest = $(tmpCalleeParam);
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;

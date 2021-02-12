@@ -52,9 +52,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     $(100);
-    const tmpNestedComplexRhs = undefined;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = undefined;
+    tmpIfTest = undefined;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

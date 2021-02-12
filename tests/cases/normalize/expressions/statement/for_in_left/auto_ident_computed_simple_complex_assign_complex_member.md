@@ -34,7 +34,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     tmpAssignMemLhsObj = tmpNestedPropAssignRhs;
@@ -49,9 +49,8 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
@@ -60,7 +59,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     tmpAssignMemLhsObj = tmpNestedPropAssignRhs;

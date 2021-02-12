@@ -45,9 +45,8 @@ let a = bindingPatternObjRoot.a;
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = { a: 1, b: 2 };
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
     } else {
       break;
     }

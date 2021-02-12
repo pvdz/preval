@@ -52,10 +52,9 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpChainElementCall = $($);
     if (tmpChainElementCall) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
     a = tmpNestedComplexRhs;
@@ -65,9 +64,8 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

@@ -30,9 +30,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 }

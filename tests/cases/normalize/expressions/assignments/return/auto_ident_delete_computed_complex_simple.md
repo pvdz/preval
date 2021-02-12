@@ -47,17 +47,15 @@ $(a, x);
 function f() {
   let tmpReturnArg;
   const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = 'y';
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
   a = tmpNestedComplexRhs;
   tmpReturnArg = tmpNestedComplexRhs;
   return tmpReturnArg;
 }
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

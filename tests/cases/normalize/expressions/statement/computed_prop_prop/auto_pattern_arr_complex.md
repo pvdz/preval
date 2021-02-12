@@ -40,9 +40,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpCompProp = tmpCallCallee(tmpCalleeParam);
+const tmpCompProp = $(tmpCalleeParam);
 tmpCompObj[tmpCompProp];
 $(a);
 `````

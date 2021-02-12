@@ -40,19 +40,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpObjLitPropKey;
 let tmpNestedComplexRhs = 1;
 if (tmpNestedComplexRhs) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
 }
 a = tmpNestedComplexRhs;
 tmpObjLitPropKey = tmpNestedComplexRhs;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+$(tmpCalleeParam);
 $(a);
 `````
 

@@ -45,12 +45,10 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = $(b);
-const tmpPostUpdArgObj = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpPostUpdArgObj = $(tmpCalleeParam$2);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
@@ -58,7 +56,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpNestedComplexRhs = tmpPostUpdArgVal;
 a = tmpNestedComplexRhs;
 tmpCalleeParam$1 = tmpNestedComplexRhs;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
 

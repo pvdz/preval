@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-let tmpArrElToSpread = tmpCompObj.c;
+const tmpArrElToSpread = tmpCompObj.c;
 [...tmpArrElToSpread];
 $(a, b);
 `````
@@ -35,7 +35,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-let tmpArrElToSpread = tmpCompObj.c;
+const tmpArrElToSpread = tmpCompObj.c;
 [...tmpArrElToSpread];
 $(a, b);
 `````

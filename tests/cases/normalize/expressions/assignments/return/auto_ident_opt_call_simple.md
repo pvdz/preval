@@ -47,9 +47,8 @@ $(a);
 function f() {
   let tmpReturnArg;
   let tmpNestedComplexRhs = undefined;
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
+  if ($) {
+    const tmpChainElementCall = $(1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }
   a = tmpNestedComplexRhs;
@@ -57,9 +56,8 @@ function f() {
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

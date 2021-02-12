@@ -44,9 +44,8 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpChainRootCall = $;
-      if (tmpChainRootCall) {
-        const tmpChainElementCall = tmpChainRootCall(1);
+      if ($) {
+        const tmpChainElementCall = $(1);
       }
     } else {
       break;

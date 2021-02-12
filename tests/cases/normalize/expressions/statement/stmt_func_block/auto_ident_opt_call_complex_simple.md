@@ -46,17 +46,15 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     let a = { a: 999, b: 1000 };
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpChainElementCall = $($);
     if (tmpChainElementCall) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
     }
     $(a);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

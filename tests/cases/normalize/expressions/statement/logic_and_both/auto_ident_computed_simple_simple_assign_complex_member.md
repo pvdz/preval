@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b['c'] = tmpNestedPropAssignRhs;
 tmpIfTest = tmpNestedPropAssignRhs;
@@ -49,17 +49,16 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b['c'] = tmpNestedPropAssignRhs;
 tmpIfTest = tmpNestedPropAssignRhs;
 if (tmpIfTest) {
   const tmpAssignComputedObj = b;
-  const tmpAssignComputedProp = 'c';
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
 }
 $(a, b);
 `````

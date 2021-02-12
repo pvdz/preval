@@ -37,9 +37,8 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

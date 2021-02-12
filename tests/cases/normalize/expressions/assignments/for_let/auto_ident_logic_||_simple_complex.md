@@ -48,9 +48,8 @@ let a = { a: 999, b: 1000 };
   let tmpNestedComplexRhs = 0;
   if (tmpNestedComplexRhs) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    tmpNestedComplexRhs = $(tmpCalleeParam);
   }
   a = tmpNestedComplexRhs;
   xyz = tmpNestedComplexRhs;

@@ -46,16 +46,14 @@ function f() {
   let tmpReturnArg = 0;
   if (tmpReturnArg) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    tmpReturnArg = $(tmpCalleeParam);
   }
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

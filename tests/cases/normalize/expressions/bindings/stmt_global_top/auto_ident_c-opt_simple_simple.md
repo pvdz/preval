@@ -38,8 +38,7 @@ let b = { x: 1 };
 let a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
-  const tmpChainRootComputed = 'x';
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainRootProp['x'];
   a = tmpChainElementObject;
 }
 $(a);

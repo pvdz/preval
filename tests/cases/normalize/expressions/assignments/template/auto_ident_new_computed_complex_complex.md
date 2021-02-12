@@ -41,7 +41,6 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr;
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
@@ -50,7 +49,7 @@ const tmpNestedComplexRhs = new tmpNewCallee(1);
 a = tmpNestedComplexRhs;
 tmpTemplateExpr = tmpNestedComplexRhs;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

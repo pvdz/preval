@@ -34,9 +34,8 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 $(100);
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

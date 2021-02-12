@@ -27,7 +27,7 @@ let tmpIfTest;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
 tmpIfTest = tmpNestedPropAssignRhs;
@@ -53,7 +53,7 @@ let tmpIfTest;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
 tmpIfTest = tmpNestedPropAssignRhs;
@@ -61,11 +61,10 @@ if (tmpIfTest) {
 } else {
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'c';
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
 }
 $(a, b);
 `````

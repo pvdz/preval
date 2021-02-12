@@ -36,10 +36,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpExportDefault = tmpChainElementCall$1;
 }
 export { tmpExportDefault as default };

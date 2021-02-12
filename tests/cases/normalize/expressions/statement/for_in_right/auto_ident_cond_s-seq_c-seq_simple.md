@@ -43,13 +43,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
+  if (30) {
     tmpForInDeclRhs = $(60);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
+    tmpForInDeclRhs = $(tmpCalleeParam);
   }
   let x;
   for (x in tmpForInDeclRhs) {

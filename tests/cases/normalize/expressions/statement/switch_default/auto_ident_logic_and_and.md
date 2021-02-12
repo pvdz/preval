@@ -57,18 +57,15 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+    let tmpIfTest$1 = $(tmpCalleeParam);
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
-      tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
+      tmpIfTest$1 = $(tmpCalleeParam$1);
     }
     if (tmpIfTest$1) {
-      const tmpCallCallee$2 = $;
       const tmpCalleeParam$2 = $(2);
-      tmpCallCallee$2(tmpCalleeParam$2);
+      $(tmpCalleeParam$2);
     }
   }
 }

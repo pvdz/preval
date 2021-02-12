@@ -34,9 +34,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
 $(100);
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = undefined;
+tmpIfTest = undefined;
 $(a);
 `````
 

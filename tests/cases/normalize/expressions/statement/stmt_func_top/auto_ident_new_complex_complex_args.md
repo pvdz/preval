@@ -50,9 +50,8 @@ function f() {
   new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

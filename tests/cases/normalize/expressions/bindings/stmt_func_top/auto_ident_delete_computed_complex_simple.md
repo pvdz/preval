@@ -41,13 +41,11 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let x = { y: 1 };
   const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = 'y';
-  let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let a = delete tmpDeleteCompObj['y'];
   $(a, x);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

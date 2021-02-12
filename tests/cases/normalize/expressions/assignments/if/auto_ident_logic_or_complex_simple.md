@@ -38,9 +38,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+let tmpNestedComplexRhs = $(tmpCalleeParam);
 if (tmpNestedComplexRhs) {
 } else {
   tmpNestedComplexRhs = 2;

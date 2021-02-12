@@ -47,9 +47,8 @@ let a = bindingPatternObjRoot.a;
 {
   while (true) {
     let tmpIfTest;
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
     a = tmpNestedAssignObjPatternRhs.a;
     tmpIfTest = tmpNestedAssignObjPatternRhs;
     if (tmpIfTest) {

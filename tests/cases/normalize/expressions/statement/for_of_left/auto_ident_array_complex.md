@@ -40,16 +40,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
-    const tmpAssignMemLhsObj = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+    const tmpAssignMemLhsObj = [tmpArrElement, 2, tmpArrElement$2];
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

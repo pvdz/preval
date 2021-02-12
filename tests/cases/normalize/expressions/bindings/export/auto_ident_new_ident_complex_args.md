@@ -33,10 +33,9 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+let a = new $(tmpCalleeParam, tmpCalleeParam$1);
 export { a };
 $(a);
 `````

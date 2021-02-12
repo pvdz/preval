@@ -73,13 +73,12 @@ switch (1) {
 {
   let b;
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    const tmpIfTest$1 = 2 === 1;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
     }
@@ -89,10 +88,9 @@ switch (1) {
     if (tmpIfTest$2) {
       b = [];
       a = undefined;
-      const tmpCallCallee = $;
       const tmpArrElement = $(2);
       const tmpCalleeParam = [tmpArrElement];
-      const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
       const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
       b = arrPatternSplat[0];
       a = tmpNestedAssignArrPatternRhs;

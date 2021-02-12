@@ -49,9 +49,8 @@ let a = { a: 999, b: 1000 };
     const tmpIfTest = $(1);
     if (tmpIfTest) {
       const tmpNestedAssignObj = b;
-      const tmpNestedPropAssignRhs = 2;
-      tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      tmpNestedAssignObj.c = 2;
+      a = 2;
     } else {
       break;
     }

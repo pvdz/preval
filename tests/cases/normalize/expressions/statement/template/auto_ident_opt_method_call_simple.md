@@ -41,7 +41,6 @@ $(a);
 `````js filename=intro
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
@@ -50,7 +49,7 @@ if (tmpChainRootProp) {
   tmpTemplateExpr = tmpChainElementCall;
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

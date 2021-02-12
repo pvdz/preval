@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = ~x;
+const tmpArrElToSpread = ~x;
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -33,7 +33,7 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = ~x;
+const tmpArrElToSpread = ~x;
 [...tmpArrElToSpread];
 $(a);
 `````

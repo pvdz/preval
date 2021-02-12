@@ -40,19 +40,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr;
 let tmpNestedComplexRhs = 0;
 if (tmpNestedComplexRhs) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
 }
 a = tmpNestedComplexRhs;
 tmpTemplateExpr = tmpNestedComplexRhs;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

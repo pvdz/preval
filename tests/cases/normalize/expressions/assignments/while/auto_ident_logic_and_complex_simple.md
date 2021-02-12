@@ -45,9 +45,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   let tmpIfTest;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpNestedComplexRhs = $(tmpCalleeParam);
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
   }

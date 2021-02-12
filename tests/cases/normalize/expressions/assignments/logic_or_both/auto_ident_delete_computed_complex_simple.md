@@ -47,22 +47,19 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
 a = tmpNestedComplexRhs;
 tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
   const tmpDeleteCompObj$1 = $(x);
-  const tmpDeleteCompProp$1 = 'y';
-  const tmpNestedComplexRhs$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  const tmpNestedComplexRhs$1 = delete tmpDeleteCompObj$1['y'];
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

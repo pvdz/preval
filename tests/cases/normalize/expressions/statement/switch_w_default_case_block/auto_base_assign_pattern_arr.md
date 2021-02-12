@@ -93,10 +93,9 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallCallee = $;
       const tmpArrElement = $(2);
       const tmpCalleeParam = [tmpArrElement];
-      const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const arrAssignPatternRhs = $(tmpCalleeParam);
       const arrPatternSplat = [...arrAssignPatternRhs];
       b = arrPatternSplat[0];
     }

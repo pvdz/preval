@@ -53,8 +53,7 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 {
   let xyz = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];

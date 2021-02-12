@@ -54,9 +54,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
     if (tmpIfTest) {
     } else {
       tmpIfTest = 2;

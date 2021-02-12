@@ -60,13 +60,11 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

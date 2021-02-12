@@ -53,14 +53,12 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    let tmpNestedComplexRhs = $(tmpCalleeParam);
     if (tmpNestedComplexRhs) {
     } else {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(2);
-      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+      tmpNestedComplexRhs = $(tmpCalleeParam$1);
     }
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
@@ -69,9 +67,8 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

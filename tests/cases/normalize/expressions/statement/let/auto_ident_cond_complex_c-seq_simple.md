@@ -43,9 +43,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   xyz = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  xyz = tmpCallCallee(tmpCalleeParam);
+  xyz = $(tmpCalleeParam);
 }
 $(xyz);
 $(a);

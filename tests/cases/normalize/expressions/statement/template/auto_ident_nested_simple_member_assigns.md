@@ -61,7 +61,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr;
 let tmpNestedAssignPropRhs;
 let tmpNestedAssignPropRhs$1;
@@ -87,7 +86,7 @@ const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
 tmpTemplateExpr = tmpNestedPropAssignRhs$5;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c);
 `````
 

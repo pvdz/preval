@@ -33,12 +33,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpTemplateExpr = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

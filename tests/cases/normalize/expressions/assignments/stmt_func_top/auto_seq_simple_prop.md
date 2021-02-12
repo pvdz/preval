@@ -60,9 +60,8 @@ function f() {
   tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
   $(a);
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee$1(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

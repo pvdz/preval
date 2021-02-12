@@ -66,8 +66,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpChainElementCall = $(b);
     if (tmpChainElementCall) {
       const tmpChainElementObject = tmpChainElementCall.x;
       a = tmpChainElementObject;

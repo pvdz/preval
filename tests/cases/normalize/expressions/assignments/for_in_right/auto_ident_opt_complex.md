@@ -49,8 +49,7 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
   let tmpNestedComplexRhs = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainElementObject = tmpChainElementCall.x;
     tmpNestedComplexRhs = tmpChainElementObject;

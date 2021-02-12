@@ -42,9 +42,8 @@ function f() {
   a = +tmpUnaryArg;
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -53,16 +53,14 @@ function f() {
     if (tmpIfTest) {
       $(60);
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
     }
     $(a);
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

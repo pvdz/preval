@@ -24,7 +24,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-let tmpArrElToSpread = [1, 2];
+const tmpArrElToSpread = [1, 2];
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -37,7 +37,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-let tmpArrElToSpread = [1, 2];
+const tmpArrElToSpread = [1, 2];
 [...tmpArrElToSpread];
 $(a);
 `````

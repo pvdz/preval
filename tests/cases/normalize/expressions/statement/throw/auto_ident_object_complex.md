@@ -32,9 +32,8 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$2 = $(3);
-let tmpThrowArg = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+let tmpThrowArg = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
 throw tmpThrowArg;
 `````
 

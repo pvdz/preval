@@ -56,9 +56,8 @@ function f() {
   a = tmpNestedAssignObjPatternRhs;
   $(a, x, y);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

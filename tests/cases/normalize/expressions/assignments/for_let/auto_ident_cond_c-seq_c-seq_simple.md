@@ -53,9 +53,8 @@ let a = { a: 999, b: 1000 };
   if (tmpIfTest) {
     tmpNestedComplexRhs = $(60);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    tmpNestedComplexRhs = $(tmpCalleeParam);
   }
   a = tmpNestedComplexRhs;
   xyz = tmpNestedComplexRhs;

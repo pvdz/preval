@@ -36,9 +36,8 @@ $(a, b);
 let b = { c: 1 };
 let a;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+a = 2;
 export { a };
 $(a, b);
 `````

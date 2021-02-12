@@ -38,13 +38,12 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr;
 const tmpNestedComplexRhs = delete x['y'];
 a = tmpNestedComplexRhs;
 tmpTemplateExpr = tmpNestedComplexRhs;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

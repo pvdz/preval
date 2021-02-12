@@ -70,9 +70,8 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+let tmpNestedComplexRhs = $(tmpCalleeParam);
 if (tmpNestedComplexRhs) {
 } else {
   tmpNestedComplexRhs = 2;

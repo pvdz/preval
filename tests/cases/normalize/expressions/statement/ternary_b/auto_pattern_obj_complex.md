@@ -39,9 +39,8 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
   $(200);
 }

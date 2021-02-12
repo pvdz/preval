@@ -46,8 +46,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpSwitchTest = delete tmpDeleteCompObj['y'];
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

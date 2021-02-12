@@ -35,14 +35,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
+if ($) {
+  const tmpChainElementCall = $(1);
   tmpCalleeParamSpread = tmpChainElementCall;
 }
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

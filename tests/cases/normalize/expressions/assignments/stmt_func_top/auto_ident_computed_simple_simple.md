@@ -44,9 +44,8 @@ function f() {
   a = b['c'];
   $(a, b);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

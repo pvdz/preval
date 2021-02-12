@@ -40,7 +40,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpBinBothLhs;
 const tmpUnaryArg = $(100);
 const tmpNestedComplexRhs = ~tmpUnaryArg;
@@ -52,7 +51,7 @@ const tmpNestedComplexRhs$1 = ~tmpUnaryArg$1;
 a = tmpNestedComplexRhs$1;
 tmpBinBothRhs = tmpNestedComplexRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

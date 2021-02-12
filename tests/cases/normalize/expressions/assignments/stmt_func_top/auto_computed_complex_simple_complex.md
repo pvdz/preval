@@ -48,14 +48,12 @@ function f() {
   a = { b: tmpObjLitVal };
   const tmpAssignMemLhsObj = $(a);
   const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'b';
   const tmpAssignComputedRhs = $(2);
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

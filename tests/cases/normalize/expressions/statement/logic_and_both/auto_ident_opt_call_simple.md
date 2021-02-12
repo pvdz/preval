@@ -40,15 +40,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
+if ($) {
+  const tmpChainElementCall = $(1);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
-  const tmpChainRootCall$1 = $;
-  if (tmpChainRootCall$1) {
-    const tmpChainElementCall$1 = tmpChainRootCall$1(1);
+  if ($) {
+    const tmpChainElementCall$1 = $(1);
   }
 }
 $(a);

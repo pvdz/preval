@@ -41,9 +41,8 @@ const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpThrowArg = 60;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+  tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````

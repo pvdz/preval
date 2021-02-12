@@ -40,9 +40,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpForInDeclRhs = $(tmpCalleeParam);
   if (tmpForInDeclRhs) {
   } else {
     tmpForInDeclRhs = 2;

@@ -48,9 +48,8 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
     a = tmpNestedAssignObjPatternRhs.a;
     arg = tmpNestedAssignObjPatternRhs;
   } else {
@@ -59,9 +58,8 @@ function f($tdz$__arg) {
 }
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

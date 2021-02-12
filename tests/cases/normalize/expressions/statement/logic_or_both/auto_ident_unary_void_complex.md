@@ -35,8 +35,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-const tmpIfTest = undefined;
-if (tmpIfTest) {
+if (undefined) {
 } else {
   $(100);
   undefined;

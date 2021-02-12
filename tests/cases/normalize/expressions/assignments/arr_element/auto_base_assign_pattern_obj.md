@@ -54,29 +54,26 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpBinBothLhs;
 let tmpNestedComplexRhs;
-const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpBinBothLhs = tmpNestedComplexRhs;
 let tmpBinBothRhs;
 let tmpNestedComplexRhs$1;
-const tmpCallCallee$2 = $;
 const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam$2 = { b: tmpObjLitVal$1 };
-const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$2(tmpCalleeParam$2);
+const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$2);
 b = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedComplexRhs$1 = tmpNestedAssignObjPatternRhs$1;
 a = tmpNestedComplexRhs$1;
 tmpBinBothRhs = tmpNestedComplexRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

@@ -43,17 +43,15 @@ $(a);
 
 `````js filename=intro
 function f() {
-  const tmpNewCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const tmpReturnArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpReturnArg = new $(tmpCalleeParam, tmpCalleeParam$1);
   return tmpReturnArg;
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

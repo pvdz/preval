@@ -34,13 +34,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpArrElement = $(1);
-const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
-const tmpTemplateExpr = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpTemplateExpr = [tmpArrElement, 2, tmpArrElement$2];
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

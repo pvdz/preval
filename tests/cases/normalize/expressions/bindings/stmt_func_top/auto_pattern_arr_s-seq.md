@@ -45,9 +45,8 @@ function f() {
   let a = arrPatternSplat[0];
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

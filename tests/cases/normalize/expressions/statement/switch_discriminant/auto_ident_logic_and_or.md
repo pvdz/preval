@@ -52,19 +52,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+let tmpSwitchTest = $(tmpCalleeParam);
 if (tmpSwitchTest) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpSwitchTest = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpSwitchTest = $(tmpCalleeParam$1);
 }
 if (tmpSwitchTest) {
 } else {
-  const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(2);
-  tmpSwitchTest = tmpCallCallee$2(tmpCalleeParam$2);
+  tmpSwitchTest = $(tmpCalleeParam$2);
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;

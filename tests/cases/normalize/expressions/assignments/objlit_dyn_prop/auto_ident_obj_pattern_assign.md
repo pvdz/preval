@@ -48,7 +48,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpObjLitPropKey;
 let tmpNestedComplexRhs;
 const tmpObjLitVal = $(3);
@@ -59,9 +58,8 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
 a = tmpNestedComplexRhs;
 tmpObjLitPropKey = tmpNestedComplexRhs;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+$(tmpCalleeParam);
 $(a, x, y);
 `````
 

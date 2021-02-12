@@ -45,8 +45,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainElementObject = tmpChainElementCall.x;
   }

@@ -52,9 +52,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
-    tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+    tmpIfTest = [tmpArrElement, 2, tmpArrElement$2];
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

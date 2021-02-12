@@ -40,7 +40,7 @@ const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
 const tmpNestedAssignComMemberObj$1 = $(c);
 const tmpNestedAssignComMemberProp$1 = $('y');
-let tmpNestedAssignPropRhs$1 = d + e;
+const tmpNestedAssignPropRhs$1 = d + e;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
@@ -56,7 +56,7 @@ if (tmpCalleeParam) {
   let tmpNestedAssignPropRhs$2;
   const tmpNestedAssignComMemberObj$3 = $(c);
   const tmpNestedAssignComMemberProp$3 = $('y');
-  let tmpNestedAssignPropRhs$3 = d + e;
+  const tmpNestedAssignPropRhs$3 = d + e;
   const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
   tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs$2;
   tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
@@ -78,7 +78,6 @@ let c = { y: 2 };
 let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
@@ -86,7 +85,7 @@ const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
 const tmpNestedAssignComMemberObj$1 = $(c);
 const tmpNestedAssignComMemberProp$1 = $('y');
-let tmpNestedAssignPropRhs$1 = d + e;
+const tmpNestedAssignPropRhs$1 = d + e;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
@@ -102,7 +101,7 @@ if (tmpCalleeParam) {
   let tmpNestedAssignPropRhs$2;
   const tmpNestedAssignComMemberObj$3 = $(c);
   const tmpNestedAssignComMemberProp$3 = $('y');
-  let tmpNestedAssignPropRhs$3 = d + e;
+  const tmpNestedAssignPropRhs$3 = d + e;
   const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
   tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = tmpNestedPropAssignRhs$2;
   tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
@@ -112,7 +111,7 @@ if (tmpCalleeParam) {
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c, d, e);
 `````
 

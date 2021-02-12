@@ -41,13 +41,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
+if (30) {
   tmpCompObj = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCompObj = tmpCallCallee(tmpCalleeParam);
+  tmpCompObj = $(tmpCalleeParam);
 }
 tmpCompObj.a;
 $(a);

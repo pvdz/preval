@@ -34,9 +34,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  const tmpForInDeclRhs = 'foo';
   let x;
-  for (x in tmpForInDeclRhs) {
+  for (x in 'foo') {
   }
 }
 $(a);

@@ -48,7 +48,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr;
 let tmpNestedComplexRhs = undefined;
 const tmpChainRootProp = b;
@@ -62,7 +61,7 @@ if (tmpChainRootProp) {
 a = tmpNestedComplexRhs;
 tmpTemplateExpr = tmpNestedComplexRhs;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

@@ -37,12 +37,11 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 const tmpTemplateExpr = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

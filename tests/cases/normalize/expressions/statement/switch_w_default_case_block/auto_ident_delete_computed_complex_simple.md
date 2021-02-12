@@ -91,8 +91,7 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     {
       const tmpDeleteCompObj = $(x);
-      const tmpDeleteCompProp = 'y';
-      delete tmpDeleteCompObj[tmpDeleteCompProp];
+      delete tmpDeleteCompObj['y'];
     }
     break tmpSwitchBreak;
   }

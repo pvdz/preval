@@ -38,13 +38,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
+if (30) {
   tmpArrElToSpread = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+  tmpArrElToSpread = $(tmpCalleeParam);
 }
 [...tmpArrElToSpread];
 $(a);

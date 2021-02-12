@@ -58,9 +58,8 @@ while (true) {
   } else {
     $(10);
     $(20);
-    const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

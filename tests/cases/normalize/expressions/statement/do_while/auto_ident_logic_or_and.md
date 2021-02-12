@@ -61,18 +61,15 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
     if (tmpIfTest) {
     } else {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
-      tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+      tmpIfTest = $(tmpCalleeParam$1);
       if (tmpIfTest) {
-        const tmpCallCallee$2 = $;
         const tmpCalleeParam$2 = $(2);
-        tmpIfTest = tmpCallCallee$2(tmpCalleeParam$2);
+        tmpIfTest = $(tmpCalleeParam$2);
       }
     }
   }

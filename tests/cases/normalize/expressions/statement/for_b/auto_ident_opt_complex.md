@@ -50,8 +50,7 @@ let a = { a: 999, b: 1000 };
 {
   while (true) {
     let tmpIfTest = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpChainElementCall = $(b);
     if (tmpChainElementCall) {
       const tmpChainElementObject = tmpChainElementCall.x;
       tmpIfTest = tmpChainElementObject;

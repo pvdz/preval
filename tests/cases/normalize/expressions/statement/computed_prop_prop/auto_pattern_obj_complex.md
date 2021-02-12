@@ -38,9 +38,8 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpCompProp = tmpCallCallee(tmpCalleeParam);
+const tmpCompProp = $(tmpCalleeParam);
 tmpCompObj[tmpCompProp];
 $(a);
 `````

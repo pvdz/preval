@@ -39,18 +39,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = $(0);
-let tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$2);
+let tmpCalleeParam$1 = $(tmpCalleeParam$2);
 if (tmpCalleeParam$1) {
 } else {
-  const tmpCallCallee$2 = $;
   const tmpCalleeParam$3 = $(2);
-  tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$3);
+  tmpCalleeParam$1 = $(tmpCalleeParam$3);
 }
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

@@ -43,9 +43,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpNestedComplexRhs = $(tmpCalleeParam);
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
   }

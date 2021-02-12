@@ -52,9 +52,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpSwitchTest = 2;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+  tmpSwitchTest = $(tmpCalleeParam);
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;

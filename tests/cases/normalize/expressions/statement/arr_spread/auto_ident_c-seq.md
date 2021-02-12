@@ -25,7 +25,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-let tmpArrElToSpread = $(x);
+const tmpArrElToSpread = $(x);
 [...tmpArrElToSpread];
 $(a, x);
 `````
@@ -37,7 +37,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-let tmpArrElToSpread = $(x);
+const tmpArrElToSpread = $(x);
 [...tmpArrElToSpread];
 $(a, x);
 `````

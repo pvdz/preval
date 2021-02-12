@@ -46,16 +46,14 @@ $(a, b);
 function f() {
   let tmpReturnArg;
   const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpReturnArg = tmpNestedPropAssignRhs;
+  tmpNestedAssignObj.c = 2;
+  tmpReturnArg = 2;
   return tmpReturnArg;
 }
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

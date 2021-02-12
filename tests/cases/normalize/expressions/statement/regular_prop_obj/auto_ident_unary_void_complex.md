@@ -34,8 +34,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 $(100);
-const tmpCompObj = undefined;
-tmpCompObj.a;
+undefined.a;
 $(a);
 `````
 

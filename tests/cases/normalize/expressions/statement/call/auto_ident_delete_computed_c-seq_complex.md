@@ -38,13 +38,12 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 $(1);
 $(2);
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
 const tmpCalleeParam = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

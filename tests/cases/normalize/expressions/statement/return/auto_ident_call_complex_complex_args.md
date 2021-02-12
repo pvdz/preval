@@ -51,9 +51,8 @@ function f() {
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee$1(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

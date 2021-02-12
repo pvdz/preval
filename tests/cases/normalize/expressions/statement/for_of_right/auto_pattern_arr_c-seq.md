@@ -44,9 +44,8 @@ let a = arrPatternSplat[0];
 {
   $(10);
   $(20);
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpForOfDeclRhs = $(tmpCalleeParam);
   let x;
   for (x of tmpForOfDeclRhs) {
   }

@@ -36,9 +36,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = 1;
 if (tmpArrElToSpread) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+  tmpArrElToSpread = $(tmpCalleeParam);
 }
 [...tmpArrElToSpread];
 $(a);

@@ -73,13 +73,11 @@ const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs;
 let tmpNestedComplexRhs = undefined;
-const tmpIfTest$1 = 30;
-if (tmpIfTest$1) {
+if (30) {
   tmpNestedComplexRhs = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpBinLhs = tmpNestedComplexRhs;

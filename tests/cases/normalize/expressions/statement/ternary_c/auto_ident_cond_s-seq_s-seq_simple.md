@@ -43,12 +43,10 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpIfTest$1 = 30;
-  if (tmpIfTest$1) {
+  if (30) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 $(a);

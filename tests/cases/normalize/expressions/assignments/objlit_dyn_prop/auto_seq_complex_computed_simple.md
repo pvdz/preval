@@ -43,21 +43,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpObjLitPropKey;
 const tmpObjLitVal = $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 a = tmpNestedComplexRhs;
 tmpObjLitPropKey = tmpNestedComplexRhs;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+$(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);
 const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

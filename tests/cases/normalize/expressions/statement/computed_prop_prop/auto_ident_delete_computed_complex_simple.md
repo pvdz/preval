@@ -41,8 +41,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-const tmpCompProp = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpCompProp = delete tmpDeleteCompObj['y'];
 tmpCompObj[tmpCompProp];
 $(a, x);
 `````

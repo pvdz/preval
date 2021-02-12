@@ -39,9 +39,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

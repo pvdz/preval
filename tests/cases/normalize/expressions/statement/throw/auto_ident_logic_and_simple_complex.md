@@ -35,9 +35,8 @@ throw tmpThrowArg;
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = 1;
 if (tmpThrowArg) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+  tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````

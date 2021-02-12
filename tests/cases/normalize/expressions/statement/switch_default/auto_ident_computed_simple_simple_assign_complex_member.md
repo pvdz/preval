@@ -55,11 +55,10 @@ let tmpSwitchCaseToStart = 0;
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
     const tmpAssignComputedObj = b;
-    const tmpAssignComputedProp = 'c';
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
   }
 }
 $(a, b);

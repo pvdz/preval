@@ -50,8 +50,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     let tmpIfTest;
     const tmpDeleteCompObj = $(x);
-    const tmpDeleteCompProp = 'y';
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
     if (tmpIfTest) {

@@ -37,16 +37,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpTemplateExpr = 0;
 if (tmpTemplateExpr) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpTemplateExpr = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpTemplateExpr = $(tmpCalleeParam$1);
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

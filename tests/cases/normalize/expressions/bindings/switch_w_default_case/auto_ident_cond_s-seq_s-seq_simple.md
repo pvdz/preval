@@ -69,13 +69,12 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    const tmpIfTest$1 = 2 === 1;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
     }
@@ -84,13 +83,11 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       a = undefined;
-      const tmpIfTest$3 = 30;
-      if (tmpIfTest$3) {
+      if (30) {
         a = 60;
       } else {
-        const tmpCallCallee = $;
         const tmpCalleeParam = $(100);
-        a = tmpCallCallee(tmpCalleeParam);
+        a = $(tmpCalleeParam);
       }
       $(a);
     }

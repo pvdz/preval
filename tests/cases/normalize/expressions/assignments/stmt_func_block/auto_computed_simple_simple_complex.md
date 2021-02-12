@@ -51,15 +51,13 @@ function f() {
     const tmpObjLitVal = $(1);
     a = { b: tmpObjLitVal };
     const tmpAssignComputedObj = a;
-    const tmpAssignComputedProp = 'b';
     const tmpAssignComputedRhs = $(2);
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
     $(a);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

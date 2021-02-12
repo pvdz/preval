@@ -38,9 +38,8 @@ let a = { a: 999, b: 1000 };
 let tmpExportDefault = 0;
 if (tmpExportDefault) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+  tmpExportDefault = $(tmpCalleeParam);
 }
 export { tmpExportDefault as default };
 $(a);

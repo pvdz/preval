@@ -47,14 +47,12 @@ function f() {
   let a = { a: 999, b: 1000 };
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
-    const tmpChainRootComputed = 'x';
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+    const tmpChainElementObject = tmpChainRootProp['x'];
   }
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

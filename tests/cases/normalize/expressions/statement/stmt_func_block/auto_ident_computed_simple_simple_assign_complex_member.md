@@ -52,17 +52,15 @@ function f() {
     let b = { c: 10, d: 20 };
     let a = { a: 999, b: 1000 };
     const tmpAssignComputedObj = b;
-    const tmpAssignComputedProp = 'c';
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
     $(a, b);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

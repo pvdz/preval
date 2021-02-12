@@ -44,9 +44,8 @@ function f() {
   a = tmpBinBothLhs + tmpBinBothRhs;
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

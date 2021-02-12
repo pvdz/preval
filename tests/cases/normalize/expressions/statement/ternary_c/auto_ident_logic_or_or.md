@@ -51,20 +51,17 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+  let tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpIfTest$1 = $(tmpCalleeParam$1);
   }
   if (tmpIfTest$1) {
   } else {
-    const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(2);
-    tmpCallCallee$2(tmpCalleeParam$2);
+    $(tmpCalleeParam$2);
   }
 }
 $(a);

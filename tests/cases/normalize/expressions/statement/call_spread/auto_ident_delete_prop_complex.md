@@ -35,10 +35,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpDeleteObj = $(x);
 const tmpCalleeParamSpread = delete tmpDeleteObj.y;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a, x);
 `````
 

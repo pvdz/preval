@@ -73,13 +73,11 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
-const tmpIfTest$1 = 30;
-if (tmpIfTest$1) {
+if (30) {
   tmpBinLhs = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinLhs = $(tmpCalleeParam);
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

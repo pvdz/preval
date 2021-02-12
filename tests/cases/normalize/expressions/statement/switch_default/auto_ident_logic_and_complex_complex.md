@@ -52,13 +52,11 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+    const tmpIfTest$1 = $(tmpCalleeParam);
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(2);
-      tmpCallCallee$1(tmpCalleeParam$1);
+      $(tmpCalleeParam$1);
     }
   }
 }

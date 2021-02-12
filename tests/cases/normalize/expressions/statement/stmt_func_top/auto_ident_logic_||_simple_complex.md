@@ -42,15 +42,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 function f() {
   let a = { a: 999, b: 1000 };
   {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
   $(a);
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

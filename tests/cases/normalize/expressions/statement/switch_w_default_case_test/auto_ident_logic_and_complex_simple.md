@@ -69,9 +69,8 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+let tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
   tmpBinLhs = 2;
 }

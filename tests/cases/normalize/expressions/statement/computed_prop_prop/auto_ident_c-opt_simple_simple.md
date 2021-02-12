@@ -47,8 +47,7 @@ const tmpCompObj = obj;
 let tmpCompProp = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
-  const tmpChainRootComputed = 'x';
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainRootProp['x'];
   tmpCompProp = tmpChainElementObject;
 }
 tmpCompObj[tmpCompProp];

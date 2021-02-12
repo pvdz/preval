@@ -45,12 +45,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 let tmpIfTest;
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;
 if (tmpIfTest) {
@@ -58,7 +56,7 @@ if (tmpIfTest) {
 } else {
   tmpCalleeParam = $(200);
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

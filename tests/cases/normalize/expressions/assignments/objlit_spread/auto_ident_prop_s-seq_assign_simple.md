@@ -42,17 +42,15 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpObjSpread;
 let tmpNestedComplexRhs;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+tmpNestedComplexRhs = 2;
 a = tmpNestedComplexRhs;
 tmpObjSpread = tmpNestedComplexRhs;
 const tmpCalleeParam = { ...tmpObjSpread };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

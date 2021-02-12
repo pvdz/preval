@@ -39,9 +39,8 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
 const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

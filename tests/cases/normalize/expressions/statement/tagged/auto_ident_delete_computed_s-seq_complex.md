@@ -39,14 +39,13 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 $(1);
 $(2);
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
 const tmpCalleeParam$1 = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, x);
 `````
 

@@ -40,9 +40,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let xyz;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-xyz = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+xyz = 2;
 $(xyz);
 $(a, b);
 `````

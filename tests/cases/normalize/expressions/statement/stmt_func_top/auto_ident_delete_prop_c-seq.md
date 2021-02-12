@@ -50,9 +50,8 @@ function f() {
   delete tmpDeleteObj.y;
   $(a, x);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

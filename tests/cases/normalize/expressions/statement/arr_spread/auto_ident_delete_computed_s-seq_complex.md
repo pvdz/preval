@@ -27,7 +27,7 @@ $(1);
 $(2);
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
-let tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
 [...tmpArrElToSpread];
 $(a, x);
 `````
@@ -41,7 +41,7 @@ $(1);
 $(2);
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
-let tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
 [...tmpArrElToSpread];
 $(a, x);
 `````

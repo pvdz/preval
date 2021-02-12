@@ -67,8 +67,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     tmpIfTest = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpChainElementCall = $(b);
     if (tmpChainElementCall) {
       const tmpChainRootComputed = $('$');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];

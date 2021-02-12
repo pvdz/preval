@@ -73,13 +73,12 @@ switch (1) {
   let tmpCallCallee;
   let tmpCalleeParam;
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    const tmpIfTest$1 = 2 === 1;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
     }
@@ -92,9 +91,8 @@ switch (1) {
       a = tmpCallCallee(tmpCalleeParam);
       if (a) {
       } else {
-        const tmpCallCallee$1 = $;
         const tmpCalleeParam$1 = $(2);
-        a = tmpCallCallee$1(tmpCalleeParam$1);
+        a = $(tmpCalleeParam$1);
       }
       $(a);
     }

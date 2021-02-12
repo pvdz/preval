@@ -55,9 +55,8 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+    const tmpAssignMemLhsObj = $(tmpCalleeParam);
     const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;

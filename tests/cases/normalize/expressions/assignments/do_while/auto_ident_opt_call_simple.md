@@ -56,9 +56,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    const tmpChainRootCall = $;
-    if (tmpChainRootCall) {
-      const tmpChainElementCall = tmpChainRootCall(1);
+    if ($) {
+      const tmpChainElementCall = $(1);
       tmpNestedComplexRhs = tmpChainElementCall;
     }
     a = tmpNestedComplexRhs;

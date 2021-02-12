@@ -52,9 +52,8 @@ let a = { a: 999, b: 1000 };
       if (tmpIfTest$1) {
         $(2);
       } else {
-        const tmpCallCallee = $;
         const tmpCalleeParam = $(100);
-        tmpCallCallee(tmpCalleeParam);
+        $(tmpCalleeParam);
       }
     } else {
       break;

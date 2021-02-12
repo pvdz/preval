@@ -36,15 +36,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = 0;
 if (tmpCalleeParamSpread) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam = $(1);
-  tmpCalleeParamSpread = tmpCallCallee$1(tmpCalleeParam);
+  tmpCalleeParamSpread = $(tmpCalleeParam);
 }
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

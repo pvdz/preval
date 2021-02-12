@@ -47,9 +47,8 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+    const tmpIfTest$1 = $(tmpCalleeParam);
   }
 }
 $(a);

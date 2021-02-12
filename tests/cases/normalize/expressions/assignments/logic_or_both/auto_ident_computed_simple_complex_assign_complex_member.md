@@ -30,7 +30,7 @@ const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -43,7 +43,7 @@ if (tmpCalleeParam) {
   const tmpNestedAssignComMemberProp$1 = $('c');
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
-  let tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
   tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
   tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$1;
@@ -59,14 +59,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -79,14 +78,14 @@ if (tmpCalleeParam) {
   const tmpNestedAssignComMemberProp$1 = $('c');
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
-  let tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
   tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
   tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$1;
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

@@ -43,13 +43,11 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
+if (30) {
   tmpCompProp = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCompProp = tmpCallCallee(tmpCalleeParam);
+  tmpCompProp = $(tmpCalleeParam);
 }
 tmpCompObj[tmpCompProp];
 $(a);

@@ -50,10 +50,9 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     arg = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpChainElementCall = $($);
     if (tmpChainElementCall) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       arg = tmpChainElementCall$1;
     }
   } else {
@@ -61,9 +60,8 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

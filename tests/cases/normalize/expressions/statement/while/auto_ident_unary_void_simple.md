@@ -40,8 +40,7 @@ $(a);
 let x = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpIfTest = undefined;
-  if (tmpIfTest) {
+  if (undefined) {
     $(100);
   } else {
     break;

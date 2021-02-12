@@ -41,9 +41,8 @@ function f() {
   let a = b;
   $(a, b);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

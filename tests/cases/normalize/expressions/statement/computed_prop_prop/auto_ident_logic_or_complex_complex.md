@@ -42,14 +42,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpCompProp = tmpCallCallee(tmpCalleeParam);
+let tmpCompProp = $(tmpCalleeParam);
 if (tmpCompProp) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpCompProp = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpCompProp = $(tmpCalleeParam$1);
 }
 tmpCompObj[tmpCompProp];
 $(a);

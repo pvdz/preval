@@ -47,19 +47,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpForOfDeclRhs = $(tmpCalleeParam);
   if (tmpForOfDeclRhs) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpForOfDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpForOfDeclRhs = $(tmpCalleeParam$1);
   }
   if (tmpForOfDeclRhs) {
   } else {
-    const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(2);
-    tmpForOfDeclRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    tmpForOfDeclRhs = $(tmpCalleeParam$2);
   }
   let x;
   for (x of tmpForOfDeclRhs) {

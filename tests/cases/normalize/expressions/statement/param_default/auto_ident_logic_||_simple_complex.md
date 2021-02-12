@@ -52,18 +52,16 @@ function f($tdz$__arg) {
     arg = 0;
     if (arg) {
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
-      arg = tmpCallCallee(tmpCalleeParam);
+      arg = $(tmpCalleeParam);
     }
   } else {
     arg = $tdz$__arg;
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

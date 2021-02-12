@@ -38,9 +38,8 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$2 = $(3);
-const tmpCompProp = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpCompProp = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
 tmpCompObj[tmpCompProp];
 $(a);
 `````

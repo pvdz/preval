@@ -48,16 +48,14 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 if (tmpChainElementCall) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = tmpChainRootCall$1(b);
+  const tmpChainElementCall$1 = $(b);
   if (tmpChainElementCall$1) {
     const tmpChainRootComputed$1 = $('x');
     const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];

@@ -41,9 +41,8 @@ function f() {
   let a = typeof x;
   $(a, x);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

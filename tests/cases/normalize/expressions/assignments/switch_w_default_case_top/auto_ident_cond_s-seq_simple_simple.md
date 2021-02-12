@@ -84,13 +84,11 @@ if (tmpIfTest) {
 {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpIfTest$3 = 30;
-    if (tmpIfTest$3) {
+    if (30) {
       a = $(2);
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
+      a = $(tmpCalleeParam);
     }
   }
   const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;

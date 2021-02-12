@@ -29,7 +29,7 @@ let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -40,7 +40,7 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObj$1 = $(b);
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
-  let tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
   tmpNestedAssignObj$1['c'] = tmpNestedPropAssignRhs$1;
   tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$1;
@@ -56,13 +56,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
 tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -73,14 +72,14 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObj$1 = $(b);
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
-  let tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
   tmpNestedAssignObj$1['c'] = tmpNestedPropAssignRhs$1;
   tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$1;
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

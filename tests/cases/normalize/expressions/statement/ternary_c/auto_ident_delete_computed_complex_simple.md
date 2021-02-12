@@ -44,8 +44,7 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = 'y';
-  delete tmpDeleteCompObj[tmpDeleteCompProp];
+  delete tmpDeleteCompObj['y'];
 }
 $(a, x);
 `````

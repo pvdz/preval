@@ -92,10 +92,9 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallCallee = $;
       const tmpObjLitVal = $(2);
       const tmpCalleeParam = { b: tmpObjLitVal };
-      const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const tmpAssignObjPatternRhs = $(tmpCalleeParam);
       b = tmpAssignObjPatternRhs.b;
     }
     break tmpSwitchBreak;

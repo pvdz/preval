@@ -48,22 +48,19 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainElementCall = $($);
   if (tmpChainElementCall) {
     const tmpCallObj = tmpChainElementCall;
     const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainRootCall;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$1);
     tmpReturnArg = tmpChainElementCall$1;
   }
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

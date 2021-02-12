@@ -44,9 +44,8 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
   const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpForInDeclRhs = tmpNestedPropAssignRhs;
+  tmpNestedAssignObj.c = 2;
+  tmpForInDeclRhs = 2;
   let x;
   for (x in tmpForInDeclRhs) {
   }

@@ -50,9 +50,8 @@ switch (1) {
   let tmpBinBothLhs;
   let tmpBinBothRhs;
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

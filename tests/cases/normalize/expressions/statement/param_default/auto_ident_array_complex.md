@@ -47,17 +47,15 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
-    arg = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+    arg = [tmpArrElement, 2, tmpArrElement$2];
   } else {
     arg = $tdz$__arg;
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

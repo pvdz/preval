@@ -56,9 +56,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    let tmpNestedComplexRhs = $(tmpCalleeParam);
     if (tmpNestedComplexRhs) {
     } else {
       tmpNestedComplexRhs = 2;

@@ -55,13 +55,11 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
     if (tmpIfTest) {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(2);
-      tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+      tmpIfTest = $(tmpCalleeParam$1);
     }
   }
   if (tmpIfTest) {

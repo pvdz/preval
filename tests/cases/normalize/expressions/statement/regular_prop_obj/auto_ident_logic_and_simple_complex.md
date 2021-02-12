@@ -39,9 +39,8 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = 1;
 if (tmpCompObj) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpCompObj = tmpCallCallee(tmpCalleeParam);
+  tmpCompObj = $(tmpCalleeParam);
 }
 tmpCompObj.a;
 $(a);

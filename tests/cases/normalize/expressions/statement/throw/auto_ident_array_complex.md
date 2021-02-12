@@ -32,9 +32,8 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
-const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
-let tmpThrowArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+let tmpThrowArg = [tmpArrElement, 2, tmpArrElement$2];
 throw tmpThrowArg;
 `````
 

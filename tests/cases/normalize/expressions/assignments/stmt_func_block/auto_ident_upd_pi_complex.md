@@ -52,9 +52,8 @@ function f() {
   {
     let b = { x: 1 };
     let a = { a: 999, b: 1000 };
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+    const tmpNestedAssignObj = $(tmpCalleeParam);
     const tmpBinLhs = tmpNestedAssignObj.x;
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
@@ -62,9 +61,8 @@ function f() {
     $(a, b);
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

@@ -41,15 +41,13 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = { a: 1, b: 2 };
-    const tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

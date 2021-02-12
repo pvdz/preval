@@ -59,13 +59,11 @@ while (true) {
   if (tmpIfTest) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    const tmpIfTest$1 = 30;
-    if (tmpIfTest$1) {
+    if (30) {
       tmpNestedComplexRhs = 60;
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+      tmpNestedComplexRhs = $(tmpCalleeParam);
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

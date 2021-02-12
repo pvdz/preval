@@ -33,7 +33,7 @@ while (true) {
     let tmpNestedComplexRhs;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     b.c = tmpNestedPropAssignRhs;
     tmpNestedComplexRhs = tmpNestedPropAssignRhs;
@@ -63,7 +63,7 @@ while (true) {
     let tmpNestedComplexRhs;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     b.c = tmpNestedPropAssignRhs;
     tmpNestedComplexRhs = tmpNestedPropAssignRhs;

@@ -44,16 +44,14 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg;
-  const tmpNestedComplexRhs = undefined;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = undefined;
+  tmpReturnArg = undefined;
   return tmpReturnArg;
 }
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

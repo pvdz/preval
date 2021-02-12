@@ -40,9 +40,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let xyz = tmpCallCallee(tmpCalleeParam);
+  let xyz = $(tmpCalleeParam);
   if (xyz) {
     xyz = 2;
   }

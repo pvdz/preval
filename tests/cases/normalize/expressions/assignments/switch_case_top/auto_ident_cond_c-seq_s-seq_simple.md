@@ -66,9 +66,8 @@ if (tmpIfTest) {
     if (tmpIfTest$2) {
       a = 60;
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
+      a = $(tmpCalleeParam);
     }
   }
 }

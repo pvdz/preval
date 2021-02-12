@@ -26,7 +26,7 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-let tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -39,9 +39,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-let tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 $(a);
 `````

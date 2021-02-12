@@ -54,9 +54,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
-    const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+    const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

@@ -50,9 +50,8 @@ const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = 1;
 if (tmpBinLhs) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinLhs = $(tmpCalleeParam);
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

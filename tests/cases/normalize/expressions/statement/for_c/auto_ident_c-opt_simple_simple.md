@@ -51,8 +51,7 @@ let a = { a: 999, b: 1000 };
     if (tmpIfTest) {
       const tmpChainRootProp = b;
       if (tmpChainRootProp) {
-        const tmpChainRootComputed = 'x';
-        const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+        const tmpChainElementObject = tmpChainRootProp['x'];
       }
     } else {
       break;

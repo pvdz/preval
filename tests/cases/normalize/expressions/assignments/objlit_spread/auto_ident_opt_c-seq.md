@@ -43,7 +43,6 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpObjSpread;
 let tmpNestedComplexRhs = undefined;
 const tmpChainRootProp = $(b);
@@ -54,7 +53,7 @@ if (tmpChainRootProp) {
 a = tmpNestedComplexRhs;
 tmpObjSpread = tmpNestedComplexRhs;
 const tmpCalleeParam = { ...tmpObjSpread };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

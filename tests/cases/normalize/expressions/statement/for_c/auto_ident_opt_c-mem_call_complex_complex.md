@@ -57,8 +57,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpChainRootCall = $;
-      const tmpChainElementCall = tmpChainRootCall(b);
+      const tmpChainElementCall = $(b);
       if (tmpChainElementCall) {
         const tmpChainRootComputed = $('$');
         const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];

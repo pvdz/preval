@@ -49,9 +49,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpSwitchTest = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+tmpSwitchTest = 2;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

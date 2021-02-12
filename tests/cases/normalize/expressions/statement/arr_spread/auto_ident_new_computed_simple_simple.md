@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-let tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread = new tmpNewCallee(1);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -35,7 +35,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-let tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread = new tmpNewCallee(1);
 [...tmpArrElToSpread];
 $(a);
 `````

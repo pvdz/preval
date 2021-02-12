@@ -44,13 +44,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let xyz = undefined;
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
+  if (30) {
     xyz = $(2);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    xyz = tmpCallCallee(tmpCalleeParam);
+    xyz = $(tmpCalleeParam);
   }
   while (true) {
     $(xyz);

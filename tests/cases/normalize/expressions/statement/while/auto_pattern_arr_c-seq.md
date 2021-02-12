@@ -46,9 +46,8 @@ let a = arrPatternSplat[0];
 while (true) {
   $(10);
   $(20);
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  const tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
     $(100);
   } else {

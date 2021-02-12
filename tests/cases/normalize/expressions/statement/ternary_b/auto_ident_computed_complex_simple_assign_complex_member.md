@@ -47,11 +47,10 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'c';
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
 } else {
   $(200);
 }

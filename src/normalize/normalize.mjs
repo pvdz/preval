@@ -3034,7 +3034,7 @@ export function phaseNormalize(fdata, fname) {
 
             if (enode.type === 'SpreadElement') {
               const tmpName = createFreshVar('tmpArrElToSpread');
-              const newNode = AST.variableDeclaration(tmpName, enode.argument);
+              const newNode = AST.variableDeclaration(tmpName, enode.argument, 'const');
               newNodes.push(newNode);
               // Spread it to trigger iterators and to make sure still errors happen
               const spread = AST.expressionStatement(AST.arrayExpression(AST.spreadElement(tmpName)));
@@ -5045,7 +5045,7 @@ export function phaseNormalize(fdata, fname) {
       before(node);
 
       const tmpName = createFreshVar('tmpThrowArg');
-      const newNode = AST.variableDeclaration(tmpName, node.argument);
+      const newNode = AST.variableDeclaration(tmpName, node.argument, 'const');
       body.splice(i, 0, newNode);
       node.argument = AST.identifier(tmpName);
 

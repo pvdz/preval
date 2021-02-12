@@ -48,10 +48,9 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpNewCallee = $;
       const tmpCalleeParam = $(1);
       const tmpCalleeParam$1 = $(2);
-      new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+      new $(tmpCalleeParam, tmpCalleeParam$1);
     } else {
       break;
     }

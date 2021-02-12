@@ -44,7 +44,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
@@ -54,7 +53,7 @@ if (tmpChainRootProp) {
     tmpCalleeParam = tmpChainElementObject$1;
   }
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

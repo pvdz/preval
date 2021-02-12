@@ -48,16 +48,14 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj;
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(b);
-    const tmpNestedAssignObj = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpNestedAssignObj = $(tmpCalleeParam$1);
     const tmpBinLhs = tmpNestedAssignObj.x;
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;

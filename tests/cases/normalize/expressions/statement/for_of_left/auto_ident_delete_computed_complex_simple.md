@@ -43,15 +43,13 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpDeleteCompObj = $(x);
-    const tmpDeleteCompProp = 'y';
-    const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpAssignMemLhsObj = delete tmpDeleteCompObj['y'];
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

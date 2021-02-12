@@ -46,14 +46,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpNestedComplexRhs = $(tmpCalleeParam);
   if (tmpNestedComplexRhs) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpNestedComplexRhs = $(tmpCalleeParam$1);
   }
   a = tmpNestedComplexRhs;
   tmpForInDeclRhs = tmpNestedComplexRhs;

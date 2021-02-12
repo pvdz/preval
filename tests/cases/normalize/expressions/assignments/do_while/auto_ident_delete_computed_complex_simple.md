@@ -57,8 +57,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpDeleteCompObj = $(x);
-    const tmpDeleteCompProp = 'y';
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

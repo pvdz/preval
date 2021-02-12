@@ -45,8 +45,7 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
   const tmpDeleteCompObj = $(x_1);
-  const tmpDeleteCompProp = 'y';
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
   a = tmpNestedComplexRhs;
   tmpForInDeclRhs = tmpNestedComplexRhs;
   let x_1;

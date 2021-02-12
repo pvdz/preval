@@ -41,14 +41,12 @@
 `````js filename=intro
 {
   let a = { a: 999, b: 1000 };
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainElementCall = $($);
   if (tmpChainElementCall) {
     const tmpCallObj = tmpChainElementCall;
     const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainRootCall;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$1);
   }
   $(a);
 }

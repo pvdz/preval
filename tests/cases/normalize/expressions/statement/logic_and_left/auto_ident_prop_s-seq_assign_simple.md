@@ -41,9 +41,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpIfTest = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+tmpIfTest = 2;
 if (tmpIfTest) {
   $(100);
 }

@@ -40,8 +40,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpIfTest = delete tmpDeleteCompObj['y'];
 if (tmpIfTest) {
   $(100);
 } else {

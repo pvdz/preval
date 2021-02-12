@@ -27,7 +27,7 @@ const tmpCallCallee = $;
 let tmpCalleeParamSpread;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b['c'] = tmpNestedPropAssignRhs;
 tmpCalleeParamSpread = tmpNestedPropAssignRhs;
@@ -40,15 +40,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b['c'] = tmpNestedPropAssignRhs;
 tmpCalleeParamSpread = tmpNestedPropAssignRhs;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a, b);
 `````
 

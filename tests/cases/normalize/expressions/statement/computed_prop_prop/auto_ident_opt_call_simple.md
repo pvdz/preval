@@ -40,9 +40,8 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
+if ($) {
+  const tmpChainElementCall = $(1);
   tmpCompProp = tmpChainElementCall;
 }
 tmpCompObj[tmpCompProp];

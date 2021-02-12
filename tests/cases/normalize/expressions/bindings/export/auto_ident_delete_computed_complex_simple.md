@@ -33,8 +33,7 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 const tmpDeleteCompObj = $(x);
-const tmpDeleteCompProp = 'y';
-let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let a = delete tmpDeleteCompObj['y'];
 export { a };
 $(a, x);
 `````

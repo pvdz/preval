@@ -62,10 +62,9 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpChainElementCall = $($);
     if (tmpChainElementCall) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       a = tmpChainElementCall$1;
     }
   }

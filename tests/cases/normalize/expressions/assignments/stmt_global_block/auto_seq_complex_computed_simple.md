@@ -53,9 +53,8 @@
   const tmpCalleeParam$1 = $(a);
   const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'b';
   const tmpAssignComputedRhs = $(2);
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
   $(a);
 }
 `````

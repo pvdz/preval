@@ -45,9 +45,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpCompObj = 60;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCompObj = tmpCallCallee(tmpCalleeParam);
+  tmpCompObj = $(tmpCalleeParam);
 }
 tmpCompObj.a;
 $(a);

@@ -45,10 +45,9 @@ let b = {};
 let a = { a: 999, b: 1000 };
 {
   let tmpForOfDeclRhs;
-  const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
   let x;

@@ -70,13 +70,12 @@ switch (1) {
 {
   let b;
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    const tmpIfTest$1 = 2 === 1;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
     }
@@ -87,9 +86,8 @@ switch (1) {
       b = { c: 1 };
       a = undefined;
       const tmpNestedAssignObj = b;
-      const tmpNestedPropAssignRhs = 2;
-      tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      tmpNestedAssignObj.c = 2;
+      a = 2;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

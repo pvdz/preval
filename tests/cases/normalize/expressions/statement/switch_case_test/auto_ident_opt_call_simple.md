@@ -49,9 +49,8 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
+if ($) {
+  const tmpChainElementCall = $(1);
   tmpBinLhs = tmpChainElementCall;
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

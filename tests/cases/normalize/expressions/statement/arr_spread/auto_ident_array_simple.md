@@ -20,8 +20,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = [1, 2, 3];
-[...tmpArrElToSpread];
 $(a);
 `````
 
@@ -29,8 +27,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = [1, 2, 3];
-[...tmpArrElToSpread];
 $(a);
 `````
 

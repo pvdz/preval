@@ -47,9 +47,8 @@ let a = { a: 999, b: 1000 };
 {
   while (true) {
     let tmpIfTest;
-    const tmpNestedComplexRhs = undefined;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = undefined;
+    tmpIfTest = undefined;
     if (tmpIfTest) {
       $(1);
     } else {

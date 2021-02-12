@@ -39,13 +39,11 @@ $(a);
 `````js filename=intro
 function f() {
   $(100);
-  const tmpReturnArg = undefined;
-  return tmpReturnArg;
+  return undefined;
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

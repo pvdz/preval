@@ -38,9 +38,8 @@
 {
   $(10);
   $(20);
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  let bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+  let bindingPatternArrRoot = $(tmpCalleeParam);
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   $(a);

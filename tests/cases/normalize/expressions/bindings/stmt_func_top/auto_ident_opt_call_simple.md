@@ -40,16 +40,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let a = undefined;
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
+  if ($) {
+    const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
   }
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

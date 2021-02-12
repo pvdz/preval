@@ -62,8 +62,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpDeleteCompObj = $(x);
-    const tmpDeleteCompProp = 'y';
-    a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    a = delete tmpDeleteCompObj['y'];
   }
 }
 $(a, x);

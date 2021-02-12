@@ -43,16 +43,14 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = 1;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
 } else {
   {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpCallCallee$1(tmpCalleeParam$1);
+    $(tmpCalleeParam$1);
   }
 }
 $(a);

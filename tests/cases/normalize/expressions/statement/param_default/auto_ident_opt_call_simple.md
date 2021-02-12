@@ -49,9 +49,8 @@ function f($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     arg = undefined;
-    const tmpChainRootCall = $;
-    if (tmpChainRootCall) {
-      const tmpChainElementCall = tmpChainRootCall(1);
+    if ($) {
+      const tmpChainElementCall = $(1);
       arg = tmpChainElementCall;
     }
   } else {
@@ -59,9 +58,8 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

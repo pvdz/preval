@@ -37,12 +37,10 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
-tmpCallCallee(...tmpCalleeParamSpread);
+a = undefined;
+tmpCalleeParamSpread = undefined;
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

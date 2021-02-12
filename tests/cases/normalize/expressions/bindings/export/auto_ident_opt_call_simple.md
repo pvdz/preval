@@ -32,9 +32,8 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpChainRootCall = $;
-if (tmpChainRootCall) {
-  const tmpChainElementCall = tmpChainRootCall(1);
+if ($) {
+  const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
 export { a };

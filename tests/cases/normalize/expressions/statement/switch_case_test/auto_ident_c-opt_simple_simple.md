@@ -56,8 +56,7 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
-  const tmpChainRootComputed = 'x';
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainRootProp['x'];
   tmpBinLhs = tmpChainElementObject;
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

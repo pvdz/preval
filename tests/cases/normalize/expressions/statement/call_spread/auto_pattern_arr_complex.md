@@ -36,11 +36,9 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam = [1, 2];
-const tmpCalleeParamSpread = tmpCallCallee$1(tmpCalleeParam);
-tmpCallCallee(...tmpCalleeParamSpread);
+const tmpCalleeParamSpread = $(tmpCalleeParam);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

@@ -49,9 +49,8 @@ while (true) {
   if (tmpIfTest$1) {
     tmpIfTest = 60;
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
   }
   if (tmpIfTest) {
     $(100);

@@ -33,12 +33,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpArrElement = $(1);
-const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
-const tmpCalleeParamSpread = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-tmpCallCallee(...tmpCalleeParamSpread);
+const tmpCalleeParamSpread = [tmpArrElement, 2, tmpArrElement$2];
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

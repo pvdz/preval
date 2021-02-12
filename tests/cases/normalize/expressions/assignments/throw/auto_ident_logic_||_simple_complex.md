@@ -41,9 +41,8 @@ let tmpThrowArg;
 let tmpNestedComplexRhs = 0;
 if (tmpNestedComplexRhs) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpThrowArg = tmpNestedComplexRhs;

@@ -63,9 +63,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    tmpNestedAssignObj.c = 2;
+    a = 2;
   }
 }
 $(a, b);

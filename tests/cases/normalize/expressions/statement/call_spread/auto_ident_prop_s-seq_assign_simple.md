@@ -38,13 +38,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpCalleeParamSpread = tmpNestedPropAssignRhs;
-tmpCallCallee(...tmpCalleeParamSpread);
+tmpNestedAssignObj.c = 2;
+tmpCalleeParamSpread = 2;
+$(...tmpCalleeParamSpread);
 $(a, b);
 `````
 

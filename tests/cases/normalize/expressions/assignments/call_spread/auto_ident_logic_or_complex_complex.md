@@ -41,20 +41,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam = $(0);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam);
+let tmpNestedComplexRhs = $(tmpCalleeParam);
 if (tmpNestedComplexRhs) {
 } else {
-  const tmpCallCallee$2 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
 }
 a = tmpNestedComplexRhs;
 tmpCalleeParamSpread = tmpNestedComplexRhs;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

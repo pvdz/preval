@@ -45,17 +45,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
+const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
     let tmpAssignMemLhsObj;
     let tmpNestedComplexRhs = undefined;
-    const tmpChainRootCall = $;
-    if (tmpChainRootCall) {
-      const tmpChainElementCall = tmpChainRootCall(1);
+    if ($) {
+      const tmpChainElementCall = $(1);
       tmpNestedComplexRhs = tmpChainElementCall;
     }
     a = tmpNestedComplexRhs;

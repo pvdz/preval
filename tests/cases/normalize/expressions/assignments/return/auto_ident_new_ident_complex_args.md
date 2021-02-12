@@ -47,19 +47,17 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg;
-  const tmpNewCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const tmpNestedComplexRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpNestedComplexRhs = new $(tmpCalleeParam, tmpCalleeParam$1);
   a = tmpNestedComplexRhs;
   tmpReturnArg = tmpNestedComplexRhs;
   return tmpReturnArg;
 }
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

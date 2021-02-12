@@ -51,23 +51,20 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(0);
-    arg = tmpCallCallee(tmpCalleeParam);
+    arg = $(tmpCalleeParam);
     if (arg) {
     } else {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(2);
-      arg = tmpCallCallee$1(tmpCalleeParam$1);
+      arg = $(tmpCalleeParam$1);
     }
   } else {
     arg = $tdz$__arg;
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 $(a);
 `````
 

@@ -89,9 +89,8 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     $(10);
     $(20);
-    const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
-    const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrAssignPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat$1 = [...arrAssignPatternRhs];
     a = arrPatternSplat$1[0];
   }

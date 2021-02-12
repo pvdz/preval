@@ -47,16 +47,14 @@ function f() {
   {
     let bindingPatternObjRoot = { a: 999, b: 1000 };
     let a = bindingPatternObjRoot.a;
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpAssignObjPatternRhs = $(tmpCalleeParam);
     a = tmpAssignObjPatternRhs.a;
     $(a);
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

@@ -49,9 +49,8 @@ let a = arrPatternSplat[0];
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = [1, 2];
-      const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const arrAssignPatternRhs = $(tmpCalleeParam);
       const arrPatternSplat$1 = [...arrAssignPatternRhs];
       a = arrPatternSplat$1[0];
     } else {

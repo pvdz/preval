@@ -54,10 +54,9 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
-    const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrAssignPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...arrAssignPatternRhs];
     b = arrPatternSplat[0];
   }

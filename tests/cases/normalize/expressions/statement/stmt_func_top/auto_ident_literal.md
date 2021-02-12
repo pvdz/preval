@@ -38,9 +38,8 @@ function f() {
   let a = { a: 999, b: 1000 };
   $(a);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

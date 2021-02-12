@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-let tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread = new tmpNewCallee(1);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-let tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread = new tmpNewCallee(1);
 [...tmpArrElToSpread];
 $(a);
 `````

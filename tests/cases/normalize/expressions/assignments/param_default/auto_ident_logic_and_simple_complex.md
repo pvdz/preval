@@ -52,9 +52,8 @@ function f($tdz$__arg) {
   if (tmpIfTest) {
     let tmpNestedComplexRhs = 1;
     if (tmpNestedComplexRhs) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+      tmpNestedComplexRhs = $(tmpCalleeParam);
     }
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
@@ -63,9 +62,8 @@ function f($tdz$__arg) {
   }
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

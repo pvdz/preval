@@ -91,10 +91,9 @@ if (tmpIfTest) {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallCallee = $;
       const tmpArrElement = $(2);
       const tmpCalleeParam = [tmpArrElement];
-      const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+      const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
       const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
       b = arrPatternSplat[0];
       a = tmpNestedAssignArrPatternRhs;

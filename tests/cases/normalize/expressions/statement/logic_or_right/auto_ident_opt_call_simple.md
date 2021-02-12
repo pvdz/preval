@@ -38,9 +38,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
+  if ($) {
+    const tmpChainElementCall = $(1);
   }
 }
 $(a);

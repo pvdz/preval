@@ -23,7 +23,7 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -33,9 +33,8 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 $(a);
 `````

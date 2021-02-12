@@ -36,9 +36,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   $(100);
-  const tmpForOfDeclRhs = undefined;
   let x;
-  for (x of tmpForOfDeclRhs) {
+  for (x of undefined) {
   }
 }
 $(a);

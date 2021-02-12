@@ -69,11 +69,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     {
       const tmpAssignComputedObj = b;
-      const tmpAssignComputedProp = 'c';
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');
       const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
     }
   }
 }

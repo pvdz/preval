@@ -43,13 +43,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 let xyz;
 let tmpNestedComplexRhs = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
+if (30) {
   tmpNestedComplexRhs = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 xyz = tmpNestedComplexRhs;

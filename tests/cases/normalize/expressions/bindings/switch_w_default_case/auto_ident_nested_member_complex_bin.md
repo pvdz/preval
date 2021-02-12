@@ -60,7 +60,7 @@ switch (1) {
       let tmpNestedAssignPropRhs;
       const tmpNestedAssignComMemberObj$1 = $(c);
       const tmpNestedAssignComMemberProp$1 = $('y');
-      let tmpNestedAssignPropRhs$1 = d + e;
+      const tmpNestedAssignPropRhs$1 = d + e;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
       tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
@@ -90,13 +90,12 @@ switch (1) {
   let d;
   let e;
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    const tmpIfTest$1 = 2 === 1;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
     }
@@ -114,7 +113,7 @@ switch (1) {
       let tmpNestedAssignPropRhs;
       const tmpNestedAssignComMemberObj$1 = $(c);
       const tmpNestedAssignComMemberProp$1 = $('y');
-      let tmpNestedAssignPropRhs$1 = d + e;
+      const tmpNestedAssignPropRhs$1 = d + e;
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
       tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;

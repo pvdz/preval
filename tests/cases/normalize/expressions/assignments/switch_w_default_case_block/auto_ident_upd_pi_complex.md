@@ -91,9 +91,8 @@ if (tmpIfTest) {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(b);
-      const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+      const tmpNestedAssignObj = $(tmpCalleeParam);
       const tmpBinLhs$1 = tmpNestedAssignObj.x;
       const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
       tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;

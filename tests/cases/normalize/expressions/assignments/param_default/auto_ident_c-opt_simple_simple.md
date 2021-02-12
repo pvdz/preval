@@ -57,8 +57,7 @@ function f($tdz$__arg) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
-      const tmpChainRootComputed = 'x';
-      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+      const tmpChainElementObject = tmpChainRootProp['x'];
       tmpNestedComplexRhs = tmpChainElementObject;
     }
     a = tmpNestedComplexRhs;
@@ -69,9 +68,8 @@ function f($tdz$__arg) {
 }
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

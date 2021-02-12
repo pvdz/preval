@@ -34,9 +34,8 @@
 `````js filename=intro
 {
   const tmpArrElement = $(1);
-  const tmpArrElement$1 = 2;
   const tmpArrElement$2 = $(3);
-  let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  let a = [tmpArrElement, 2, tmpArrElement$2];
   $(a);
 }
 `````

@@ -37,9 +37,8 @@ $(a);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpExportDefault;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = undefined;
+tmpExportDefault = undefined;
 export { tmpExportDefault as default };
 $(a);
 `````

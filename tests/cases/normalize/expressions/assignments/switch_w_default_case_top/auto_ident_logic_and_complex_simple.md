@@ -82,9 +82,8 @@ if (tmpIfTest) {
 {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    a = tmpCallCallee(tmpCalleeParam);
+    a = $(tmpCalleeParam);
     if (a) {
       a = 2;
     }

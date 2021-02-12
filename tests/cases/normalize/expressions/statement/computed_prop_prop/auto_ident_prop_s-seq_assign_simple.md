@@ -44,9 +44,8 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpCompProp = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+tmpCompProp = 2;
 tmpCompObj[tmpCompProp];
 $(a, b);
 `````

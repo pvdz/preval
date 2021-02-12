@@ -44,9 +44,8 @@ function f() {
   delete x.y;
   $(a, x);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -35,9 +35,8 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+const tmpExportDefault = $(tmpCalleeParam);
 export { tmpExportDefault as default };
 $(a);
 `````

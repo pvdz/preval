@@ -42,9 +42,8 @@ const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpExportDefault = 60;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+  tmpExportDefault = $(tmpCalleeParam);
 }
 export { tmpExportDefault as default };
 $(a);

@@ -25,7 +25,7 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
-let tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
 [...tmpArrElToSpread];
 $(a, x);
 `````
@@ -37,7 +37,7 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = x;
 const tmpDeleteCompProp = $('y');
-let tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
 [...tmpArrElToSpread];
 $(a, x);
 `````

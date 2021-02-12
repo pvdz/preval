@@ -43,9 +43,8 @@ let obj = {};
 let tmpCompObj;
 let tmpNestedComplexRhs = 1;
 if (tmpNestedComplexRhs) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpCompObj = tmpNestedComplexRhs;

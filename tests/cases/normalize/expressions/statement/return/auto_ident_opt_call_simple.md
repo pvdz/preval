@@ -43,17 +43,15 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
-    const tmpChainElementCall = tmpChainRootCall(1);
+  if ($) {
+    const tmpChainElementCall = $(1);
     tmpReturnArg = tmpChainElementCall;
   }
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

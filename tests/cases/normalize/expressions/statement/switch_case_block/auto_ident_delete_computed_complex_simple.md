@@ -66,8 +66,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     {
       const tmpDeleteCompObj = $(x);
-      const tmpDeleteCompProp = 'y';
-      delete tmpDeleteCompObj[tmpDeleteCompProp];
+      delete tmpDeleteCompObj['y'];
     }
   }
 }

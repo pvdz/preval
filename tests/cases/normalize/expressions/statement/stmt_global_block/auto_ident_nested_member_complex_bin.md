@@ -39,7 +39,7 @@
   let tmpAssignComputedRhs;
   const tmpNestedAssignComMemberObj = $(c);
   const tmpNestedAssignComMemberProp = $('y');
-  let tmpNestedAssignPropRhs = d + e;
+  const tmpNestedAssignPropRhs = d + e;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   tmpAssignComputedRhs = tmpNestedPropAssignRhs;
@@ -64,7 +64,7 @@
   let tmpAssignComputedRhs;
   const tmpNestedAssignComMemberObj = $(c);
   const tmpNestedAssignComMemberProp = $('y');
-  let tmpNestedAssignPropRhs = d + e;
+  const tmpNestedAssignPropRhs = d + e;
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   tmpAssignComputedRhs = tmpNestedPropAssignRhs;

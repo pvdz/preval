@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-let tmpArrElToSpread = ~tmpUnaryArg;
+const tmpArrElToSpread = ~tmpUnaryArg;
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-let tmpArrElToSpread = ~tmpUnaryArg;
+const tmpArrElToSpread = ~tmpUnaryArg;
 [...tmpArrElToSpread];
 $(a);
 `````

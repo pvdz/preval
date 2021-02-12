@@ -42,13 +42,11 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$1 = 30;
-  if (tmpIfTest$1) {
+  if (30) {
     $(2);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 $(a);

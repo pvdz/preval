@@ -48,9 +48,8 @@ let a = { a: 999, b: 1000 };
   if (tmpIfTest) {
     xyz = 60;
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    xyz = tmpCallCallee(tmpCalleeParam);
+    xyz = $(tmpCalleeParam);
   }
   while (true) {
     $(xyz);

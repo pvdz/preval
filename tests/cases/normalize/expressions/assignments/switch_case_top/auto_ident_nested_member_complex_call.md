@@ -46,7 +46,7 @@ if (tmpIfTest) {
     let tmpNestedAssignPropRhs;
     const tmpNestedAssignComMemberObj$1 = $(c);
     const tmpNestedAssignComMemberProp$1 = $('y');
-    let tmpNestedAssignPropRhs$1 = $(d);
+    const tmpNestedAssignPropRhs$1 = $(d);
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
     tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
@@ -81,7 +81,7 @@ if (tmpIfTest) {
     let tmpNestedAssignPropRhs;
     const tmpNestedAssignComMemberObj$1 = $(c);
     const tmpNestedAssignComMemberProp$1 = $('y');
-    let tmpNestedAssignPropRhs$1 = $(d);
+    const tmpNestedAssignPropRhs$1 = $(d);
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
     tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;

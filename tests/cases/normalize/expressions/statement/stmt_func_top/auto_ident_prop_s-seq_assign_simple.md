@@ -46,9 +46,8 @@ function f() {
   tmpAssignMemLhsObj.c = 2;
   $(a, b);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

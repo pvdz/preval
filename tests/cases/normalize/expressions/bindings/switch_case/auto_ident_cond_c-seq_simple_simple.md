@@ -52,9 +52,8 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
+  const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }
@@ -66,9 +65,8 @@ switch (1) {
       if (tmpIfTest$2) {
         a = $(2);
       } else {
-        const tmpCallCallee = $;
         const tmpCalleeParam = $(100);
-        a = tmpCallCallee(tmpCalleeParam);
+        a = $(tmpCalleeParam);
       }
       $(a);
     }

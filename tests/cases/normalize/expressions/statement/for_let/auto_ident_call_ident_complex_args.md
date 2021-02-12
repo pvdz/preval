@@ -42,10 +42,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  let xyz = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let xyz = $(tmpCalleeParam, tmpCalleeParam$1);
   while (true) {
     $(xyz);
     $(1);

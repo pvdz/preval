@@ -36,9 +36,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let xyz;
 $(100);
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = undefined;
+xyz = undefined;
 $(xyz);
 $(a);
 `````

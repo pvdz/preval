@@ -57,12 +57,10 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam;
 let tmpNestedComplexRhs;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
@@ -72,9 +70,8 @@ tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs$1;
-  const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(b);
-  const tmpNestedAssignObj$1 = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpNestedAssignObj$1 = $(tmpCalleeParam$2);
   const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
   const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
   tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
@@ -82,7 +79,7 @@ if (tmpCalleeParam) {
   a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

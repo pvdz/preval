@@ -28,10 +28,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = ['fo', 'o'];
-const tmpCalleeParam$1 = 1;
-let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+let a = $(tmpCalleeParam, 1);
 $(a);
 `````
 

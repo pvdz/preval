@@ -52,10 +52,9 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
     arg = tmpNestedAssignArrPatternRhs;
@@ -65,9 +64,8 @@ function f($tdz$__arg) {
 }
 let b = [];
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a, b);
 `````
 

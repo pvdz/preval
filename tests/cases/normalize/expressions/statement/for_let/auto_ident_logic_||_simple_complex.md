@@ -44,9 +44,8 @@ let a = { a: 999, b: 1000 };
   let xyz = 0;
   if (xyz) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    xyz = tmpCallCallee(tmpCalleeParam);
+    xyz = $(tmpCalleeParam);
   }
   while (true) {
     $(xyz);

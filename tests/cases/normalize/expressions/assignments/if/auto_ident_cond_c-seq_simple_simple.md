@@ -45,9 +45,8 @@ const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   tmpNestedComplexRhs = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpIfTest = tmpNestedComplexRhs;

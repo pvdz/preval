@@ -77,9 +77,8 @@ const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   tmpNestedComplexRhs = 60;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  tmpNestedComplexRhs = $(tmpCalleeParam);
 }
 a = tmpNestedComplexRhs;
 tmpBinLhs = tmpNestedComplexRhs;

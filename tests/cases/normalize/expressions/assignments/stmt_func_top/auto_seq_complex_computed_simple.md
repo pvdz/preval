@@ -57,14 +57,12 @@ function f() {
   const tmpCalleeParam$1 = $(a);
   const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'b';
   const tmpAssignComputedRhs = $(2);
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
   $(a);
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$2 = f();
-tmpCallCallee$1(tmpCalleeParam$2);
+$(tmpCalleeParam$2);
 `````
 
 ## Result

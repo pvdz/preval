@@ -43,13 +43,11 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
-  const tmpChainRootComputed = 'x';
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainRootProp['x'];
 }
 const tmpChainRootProp$1 = b;
 if (tmpChainRootProp$1) {
-  const tmpChainRootComputed$1 = 'x';
-  const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
+  const tmpChainElementObject$1 = tmpChainRootProp$1['x'];
 }
 $(a);
 `````

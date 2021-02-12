@@ -47,9 +47,8 @@ $(a);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = undefined;
+tmpSwitchTest = undefined;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

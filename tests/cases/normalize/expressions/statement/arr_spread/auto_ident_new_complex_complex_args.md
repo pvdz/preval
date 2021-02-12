@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpArrElToSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpArrElToSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpArrElToSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpArrElToSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 [...tmpArrElToSpread];
 $(a);
 `````

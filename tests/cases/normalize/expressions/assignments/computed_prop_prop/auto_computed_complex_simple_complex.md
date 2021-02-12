@@ -52,9 +52,8 @@ tmpCompProp = tmpNestedComplexRhs;
 tmpCompObj[tmpCompProp];
 const tmpAssignMemLhsObj = $(a);
 const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

@@ -50,9 +50,8 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpAssignObjPatternRhs = $(tmpCalleeParam);
     a = tmpAssignObjPatternRhs.a;
   }
 }

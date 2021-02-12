@@ -33,9 +33,8 @@
 
 `````js filename=intro
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+  let bindingPatternObjRoot = $(tmpCalleeParam);
   let a = bindingPatternObjRoot.a;
   $(a);
 }

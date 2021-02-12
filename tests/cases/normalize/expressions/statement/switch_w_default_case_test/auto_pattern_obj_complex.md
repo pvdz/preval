@@ -68,9 +68,8 @@ let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

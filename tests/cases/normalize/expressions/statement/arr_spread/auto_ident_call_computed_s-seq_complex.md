@@ -25,7 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-let tmpArrElToSpread = tmpCallCompObj[tmpCallCompProp](1);
+const tmpArrElToSpread = tmpCallCompObj[tmpCallCompProp](1);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -37,7 +37,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-let tmpArrElToSpread = tmpCallCompObj[tmpCallCompProp](1);
+const tmpArrElToSpread = tmpCallCompObj[tmpCallCompProp](1);
 [...tmpArrElToSpread];
 $(a);
 `````

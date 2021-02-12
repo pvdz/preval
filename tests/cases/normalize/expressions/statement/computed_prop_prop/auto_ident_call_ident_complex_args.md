@@ -41,10 +41,9 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpCompProp = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCompProp = $(tmpCalleeParam, tmpCalleeParam$1);
 tmpCompObj[tmpCompProp];
 $(a);
 `````

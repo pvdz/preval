@@ -117,9 +117,8 @@ function f() {
   a = tmpNestedPropAssignRhs$5;
   $(a, b, c);
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

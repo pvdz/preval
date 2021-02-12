@@ -42,9 +42,8 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj;
 const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpCompObj = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = 2;
+tmpCompObj = 2;
 tmpCompObj.a;
 $(a, b);
 `````

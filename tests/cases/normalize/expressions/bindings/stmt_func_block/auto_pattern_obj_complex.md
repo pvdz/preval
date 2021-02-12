@@ -42,16 +42,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 function f() {
   {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
-    let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+    let bindingPatternObjRoot = $(tmpCalleeParam);
     let a = bindingPatternObjRoot.a;
     $(a);
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Result

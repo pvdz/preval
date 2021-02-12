@@ -43,9 +43,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 {
   let xyz;
-  const tmpNestedComplexRhs = undefined;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = undefined;
+  xyz = undefined;
   while (true) {
     $(xyz);
     $(1);

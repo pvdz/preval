@@ -48,20 +48,17 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
+  let tmpForInDeclRhs = $(tmpCalleeParam);
   if (tmpForInDeclRhs) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpForInDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpForInDeclRhs = $(tmpCalleeParam$1);
   }
   if (tmpForInDeclRhs) {
   } else {
-    const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(2);
-    tmpForInDeclRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    tmpForInDeclRhs = $(tmpCalleeParam$2);
   }
   let x;
   for (x in tmpForInDeclRhs) {

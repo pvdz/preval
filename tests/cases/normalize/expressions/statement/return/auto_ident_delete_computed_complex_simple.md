@@ -43,15 +43,13 @@ $(a, x);
 `````js filename=intro
 function f() {
   const tmpDeleteCompObj = $(x);
-  const tmpDeleteCompProp = 'y';
-  const tmpReturnArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpReturnArg = delete tmpDeleteCompObj['y'];
   return tmpReturnArg;
 }
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

@@ -26,15 +26,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -51,15 +49,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = $(b);
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

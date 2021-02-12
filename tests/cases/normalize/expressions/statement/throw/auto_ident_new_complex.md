@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
@@ -30,7 +30,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

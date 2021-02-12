@@ -24,17 +24,15 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   if (tmpChainElementCall) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
+    a = tmpChainElementObject;
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -48,16 +46,14 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
+    a = tmpChainElementObject;
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

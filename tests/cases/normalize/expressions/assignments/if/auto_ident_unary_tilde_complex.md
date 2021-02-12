@@ -20,11 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = ~tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = ~tmpUnaryArg;
+let tmpIfTest = a;
 $(a);
 `````
 
@@ -32,11 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = ~tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = ~tmpUnaryArg;
+let tmpIfTest = a;
 $(a);
 `````
 

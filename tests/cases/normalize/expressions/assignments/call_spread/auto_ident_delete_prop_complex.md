@@ -24,11 +24,9 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, x);
 `````
@@ -38,11 +36,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, x);
 `````

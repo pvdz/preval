@@ -21,15 +21,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
 `````
@@ -38,14 +36,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 if ($) {
   const tmpChainElementCall = $(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

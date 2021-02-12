@@ -24,12 +24,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = tmpPostUpdArgIdent;
+let xyz = a;
 $(xyz);
 $(a, b);
 `````
@@ -39,12 +37,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = tmpPostUpdArgIdent;
+let xyz = a;
 $(xyz);
 $(a, b);
 `````

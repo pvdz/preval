@@ -26,9 +26,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   b = 2;
-  tmpForOfDeclRhs = 2;
+  let tmpForOfDeclRhs = b;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -43,9 +42,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   b = 2;
-  tmpForOfDeclRhs = 2;
+  let tmpForOfDeclRhs = b;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

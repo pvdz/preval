@@ -27,9 +27,8 @@ $(f());
 function f() {
   let b = 1;
   let c = 2;
-  let a;
   b = 2;
-  a = 2;
+  let a = b;
   $(a, b, c);
 }
 const tmpCallCallee = $;
@@ -43,9 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let b = 1;
   let c = 2;
-  let a;
   b = 2;
-  a = 2;
+  let a = b;
   $(a, b, c);
 }
 const tmpCalleeParam = f();

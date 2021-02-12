@@ -21,15 +21,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = 1;
-  if (tmpNestedComplexRhs) {
+  a = 1;
+  if (a) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    a = tmpCallCallee(tmpCalleeParam);
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -43,14 +41,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = 1;
-  if (tmpNestedComplexRhs) {
+  a = 1;
+  if (a) {
     const tmpCalleeParam = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

@@ -25,17 +25,15 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    a = tmpChainElementObject$2;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal$1 = { z: 100 };
@@ -52,17 +50,15 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    a = tmpChainElementObject$2;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal$1 = { z: 100 };

@@ -24,8 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   if (tmpChainElementCall) {
@@ -37,11 +36,10 @@ let a = { a: 999, b: 1000 };
       const tmpCalleeParam = tmpChainElementCall;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
+      a = tmpChainElementCall$1;
     }
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -56,8 +54,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainRootComputed = $('$');
@@ -68,11 +65,10 @@ let a = { a: 999, b: 1000 };
       const tmpCalleeParam = tmpChainElementCall;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
+      a = tmpChainElementCall$1;
     }
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

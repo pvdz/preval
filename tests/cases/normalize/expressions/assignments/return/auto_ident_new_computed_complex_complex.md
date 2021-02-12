@@ -25,13 +25,11 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCompObj = $(b);
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = new tmpNewCallee(1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { $: $ };
@@ -46,13 +44,11 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCompObj = $(b);
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = new tmpNewCallee(1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { $: $ };

@@ -22,16 +22,14 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -42,15 +40,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

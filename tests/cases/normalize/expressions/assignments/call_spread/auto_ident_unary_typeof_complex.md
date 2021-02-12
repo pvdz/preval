@@ -24,11 +24,9 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, x);
 `````
@@ -38,11 +36,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, x);
 `````

@@ -21,11 +21,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr;
 $(100);
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+a = undefined;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -35,10 +33,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpTemplateExpr;
 $(100);
 a = undefined;
-tmpTemplateExpr = undefined;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

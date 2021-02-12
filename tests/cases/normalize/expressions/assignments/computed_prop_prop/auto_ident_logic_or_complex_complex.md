@@ -23,18 +23,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-if (tmpNestedComplexRhs) {
+a = tmpCallCallee(tmpCalleeParam);
+if (a) {
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  a = tmpCallCallee$1(tmpCalleeParam$1);
 }
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -45,16 +43,14 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpCalleeParam = $(0);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
-if (tmpNestedComplexRhs) {
+a = $(tmpCalleeParam);
+if (a) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 }
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````

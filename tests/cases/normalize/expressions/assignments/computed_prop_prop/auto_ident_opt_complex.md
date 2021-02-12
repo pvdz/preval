@@ -26,16 +26,14 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -47,15 +45,13 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $(b);
 if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````

@@ -24,11 +24,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = { b: tmpObjLitVal };
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -48,11 +46,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = { b: tmpObjLitVal };
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

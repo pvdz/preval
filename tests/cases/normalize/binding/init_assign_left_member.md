@@ -21,10 +21,8 @@ let a = b = c.x
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
-const tmpNestedComplexRhs = c.x;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+b = c.x;
+let a = b;
 `````
 
 ## Output
@@ -32,10 +30,8 @@ a = tmpNestedComplexRhs;
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
-const tmpNestedComplexRhs = c.x;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+b = c.x;
+let a = b;
 `````
 
 ## Result

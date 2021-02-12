@@ -36,10 +36,8 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      const tmpNestedComplexRhs = c + d;
-      b = tmpNestedComplexRhs;
-      a_1 = tmpNestedComplexRhs;
+      b = c + d;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }
@@ -67,10 +65,8 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      const tmpNestedComplexRhs = c + d;
-      b = tmpNestedComplexRhs;
-      a_1 = tmpNestedComplexRhs;
+      b = c + d;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }

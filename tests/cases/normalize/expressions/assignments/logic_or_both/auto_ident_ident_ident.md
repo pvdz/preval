@@ -26,19 +26,15 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = 2;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
   b = 2;
-  tmpNestedComplexRhs$1 = 2;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs = b;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
@@ -50,19 +46,15 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = 2;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
   b = 2;
-  tmpNestedComplexRhs$1 = 2;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs = b;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, b, c);

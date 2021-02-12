@@ -21,15 +21,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -39,14 +37,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpTemplateExpr;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 if ($) {
   const tmpChainElementCall = $(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

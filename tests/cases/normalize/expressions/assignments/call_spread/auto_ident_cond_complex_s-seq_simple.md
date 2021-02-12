@@ -21,18 +21,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam);
+  a = tmpCallCallee$1(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
 `````
@@ -41,17 +38,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 } else {
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = $(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

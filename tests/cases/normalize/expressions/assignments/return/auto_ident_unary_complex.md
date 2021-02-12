@@ -25,11 +25,9 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpUnaryArg = $(x);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = typeof tmpUnaryArg;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;
@@ -44,11 +42,9 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpUnaryArg = $(x);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = typeof tmpUnaryArg;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;

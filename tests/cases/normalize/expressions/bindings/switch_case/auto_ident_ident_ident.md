@@ -39,9 +39,8 @@ switch (1) {
     if (tmpIfTest$1) {
       b = 1;
       c = 2;
-      a = undefined;
       b = 2;
-      a = 2;
+      a = b;
       $(a, b, c);
     }
   }
@@ -65,9 +64,8 @@ switch (1) {
     if (tmpIfTest$1) {
       b = 1;
       c = 2;
-      a = undefined;
       b = 2;
-      a = 2;
+      a = b;
       $(a, b, c);
     }
   }

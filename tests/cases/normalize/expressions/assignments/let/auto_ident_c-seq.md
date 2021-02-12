@@ -24,12 +24,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 $(1);
 $(2);
-const tmpNestedComplexRhs = $(x);
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = $(x);
+let xyz = a;
 $(xyz);
 $(a, x);
 `````
@@ -39,12 +37,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 $(1);
 $(2);
-const tmpNestedComplexRhs = $(x);
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = $(x);
+let xyz = a;
 $(xyz);
 $(a, x);
 `````

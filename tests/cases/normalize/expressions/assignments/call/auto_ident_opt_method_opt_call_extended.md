@@ -26,8 +26,7 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.c;
@@ -35,11 +34,10 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   if (tmpChainElementObject$2) {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -51,8 +49,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.c;
@@ -60,11 +57,10 @@ if (tmpChainRootProp) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   if (tmpChainElementObject$2) {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

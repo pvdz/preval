@@ -23,11 +23,9 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCallCallee = $($);
-  const tmpNestedComplexRhs = tmpCallCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpCallCallee(1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
@@ -41,11 +39,9 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCallCallee = $($);
-  const tmpNestedComplexRhs = tmpCallCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpCallCallee(1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

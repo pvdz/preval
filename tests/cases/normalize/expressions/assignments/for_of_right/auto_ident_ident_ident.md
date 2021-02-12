@@ -26,12 +26,9 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs;
   b = 2;
-  tmpNestedComplexRhs = 2;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = 2;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -46,12 +43,9 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs;
   b = 2;
-  tmpNestedComplexRhs = 2;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = 2;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

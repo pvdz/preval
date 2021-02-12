@@ -26,10 +26,8 @@ function f() {
   let b = 2;
   let c = 3;
   let d = 4;
-  let a;
-  const tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = c + d;
+  let a = b;
   $(a, b, c);
 }
 const tmpCallCallee = $;
@@ -44,10 +42,8 @@ function f() {
   let b = 2;
   let c = 3;
   let d = 4;
-  let a;
-  const tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = c + d;
+  let a = b;
   $(a, b, c);
 }
 const tmpCalleeParam = f();

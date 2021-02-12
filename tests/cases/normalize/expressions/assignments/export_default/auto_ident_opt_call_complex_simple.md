@@ -20,16 +20,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -38,15 +36,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

@@ -22,9 +22,8 @@ let a = 1;
 let b = 2;
 let c = 3;
 {
-  let a_1;
   b = c;
-  a_1 = c;
+  let a_1 = b;
 }
 `````
 
@@ -35,9 +34,8 @@ let a = 1;
 let b = 2;
 let c = 3;
 {
-  let a_1;
   b = c;
-  a_1 = c;
+  let a_1 = b;
 }
 `````
 

@@ -27,12 +27,9 @@ let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-let tmpIfTest;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = 2;
+let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
@@ -49,12 +46,9 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-let tmpIfTest;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = 2;
+let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

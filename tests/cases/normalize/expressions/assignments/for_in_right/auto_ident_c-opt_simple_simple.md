@@ -24,16 +24,14 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainRootComputed = 'x';
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
+    a = tmpChainElementObject;
   }
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -47,15 +45,13 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp['x'];
-    tmpNestedComplexRhs = tmpChainElementObject;
+    a = tmpChainElementObject;
   }
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }

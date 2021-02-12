@@ -33,8 +33,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
@@ -69,11 +67,10 @@ tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAss
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   const tmpNestedAssignComMemberObj$6 = $(b);
   const tmpNestedAssignComMemberProp$6 = $('x');
   let tmpNestedAssignPropRhs$5;
@@ -108,9 +105,9 @@ if (tmpCalleeParam) {
   tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$10;
   const tmpNestedPropAssignRhs$11 = tmpNestedAssignPropRhs$5;
   tmpNestedAssignComMemberObj$6[tmpNestedAssignComMemberProp$6] = tmpNestedPropAssignRhs$11;
-  tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$11;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs$11;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
@@ -122,8 +119,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
@@ -158,11 +153,10 @@ tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAss
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   const tmpNestedAssignComMemberObj$6 = $(b);
   const tmpNestedAssignComMemberProp$6 = $('x');
   let tmpNestedAssignPropRhs$5;
@@ -197,9 +191,9 @@ if (tmpCalleeParam) {
   tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$10;
   const tmpNestedPropAssignRhs$11 = tmpNestedAssignPropRhs$5;
   tmpNestedAssignComMemberObj$6[tmpNestedAssignComMemberProp$6] = tmpNestedPropAssignRhs$11;
-  tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$11;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs$11;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, b, c);

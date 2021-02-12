@@ -25,7 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-let tmpThrowArg = tmpCallCompObj[tmpCallCompProp](1);
+const tmpThrowArg = tmpCallCompObj[tmpCallCompProp](1);
 throw tmpThrowArg;
 `````
 
@@ -36,7 +36,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-let tmpThrowArg = tmpCallCompObj[tmpCallCompProp](1);
+const tmpThrowArg = tmpCallCompObj[tmpCallCompProp](1);
 throw tmpThrowArg;
 `````
 

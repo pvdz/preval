@@ -24,16 +24,14 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpUnaryArg$1 = $(x);
-  const tmpNestedComplexRhs$1 = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -44,16 +42,14 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpUnaryArg$1 = $(x);
-  const tmpNestedComplexRhs$1 = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, x);

@@ -22,13 +22,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
-const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -38,12 +36,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = [tmpArrElement, 2, tmpArrElement$2];
+let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

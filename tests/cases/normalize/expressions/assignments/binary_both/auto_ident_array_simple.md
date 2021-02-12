@@ -21,14 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpBinBothLhs;
-const tmpNestedComplexRhs = [1, 2, 3];
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-const tmpNestedComplexRhs$1 = [1, 2, 3];
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+a = [1, 2, 3];
+let tmpBinBothLhs = a;
+a = [1, 2, 3];
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -38,14 +34,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
-const tmpNestedComplexRhs = [1, 2, 3];
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-const tmpNestedComplexRhs$1 = [1, 2, 3];
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+a = [1, 2, 3];
+let tmpBinBothLhs = a;
+a = [1, 2, 3];
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

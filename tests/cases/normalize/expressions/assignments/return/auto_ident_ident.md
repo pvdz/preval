@@ -25,9 +25,8 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   a = b;
-  tmpReturnArg = b;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;
@@ -42,9 +41,8 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   a = b;
-  tmpReturnArg = b;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;

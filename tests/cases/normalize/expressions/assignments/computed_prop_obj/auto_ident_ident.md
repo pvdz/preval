@@ -25,9 +25,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 a = b;
-tmpCompObj = b;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b);
 `````
@@ -38,9 +37,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 a = b;
-tmpCompObj = b;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b);
 `````

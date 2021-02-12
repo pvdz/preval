@@ -24,8 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 if (tmpChainElementCall) {
@@ -37,11 +36,10 @@ if (tmpChainElementCall) {
     const tmpCalleeParam$1 = tmpChainElementCall;
     const tmpCalleeParam$2 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$2);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   }
 }
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -52,8 +50,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpTemplateExpr;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $(b);
 if (tmpChainElementCall) {
   const tmpChainRootComputed = $('$');
@@ -64,11 +61,10 @@ if (tmpChainElementCall) {
     const tmpCalleeParam$1 = tmpChainElementCall;
     const tmpCalleeParam$2 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$2);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   }
 }
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

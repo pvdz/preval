@@ -25,14 +25,12 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(1);
   $(2);
   const tmpDeleteCompObj = x;
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = { y: 1 };
@@ -47,14 +45,12 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(1);
   $(2);
   const tmpDeleteCompObj = x;
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = { y: 1 };

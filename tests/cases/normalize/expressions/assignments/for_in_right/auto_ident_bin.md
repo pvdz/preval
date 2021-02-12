@@ -21,12 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
-  const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -39,12 +37,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
-  const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }

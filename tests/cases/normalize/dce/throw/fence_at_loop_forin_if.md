@@ -52,11 +52,11 @@ function f() {
           const tmpIfTest$1 = $(1, 'if');
           if (tmpIfTest$1) {
             $('pass');
-            let tmpThrowArg = $(7, 'throw');
+            const tmpThrowArg = $(7, 'throw');
             throw tmpThrowArg;
           } else {
             $('do not visit');
-            let tmpThrowArg$1 = $(8, 'throw');
+            const tmpThrowArg$1 = $(8, 'throw');
             throw tmpThrowArg$1;
           }
         }
@@ -89,11 +89,11 @@ function f() {
           const tmpIfTest$1 = $(1, 'if');
           if (tmpIfTest$1) {
             $('pass');
-            let tmpThrowArg = $(7, 'throw');
+            const tmpThrowArg = $(7, 'throw');
             throw tmpThrowArg;
           } else {
             $('do not visit');
-            let tmpThrowArg$1 = $(8, 'throw');
+            const tmpThrowArg$1 = $(8, 'throw');
             throw tmpThrowArg$1;
           }
         }

@@ -24,11 +24,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(1);
@@ -45,11 +43,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpTemplateExpr;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpTemplateExpr = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(1);

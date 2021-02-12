@@ -23,10 +23,8 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = undefined;
+let tmpIfTest = a;
 $(a);
 `````
 
@@ -35,9 +33,8 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 a = undefined;
-tmpIfTest = undefined;
+let tmpIfTest = a;
 $(a);
 `````
 

@@ -20,9 +20,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 a = 'foo';
-tmpIfTest = 'foo';
+let tmpIfTest = a;
 $(a);
 `````
 
@@ -30,9 +29,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 a = 'foo';
-tmpIfTest = 'foo';
+let tmpIfTest = a;
 $(a);
 `````
 

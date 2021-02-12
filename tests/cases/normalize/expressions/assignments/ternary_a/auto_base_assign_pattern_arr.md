@@ -25,17 +25,14 @@ let b = [];
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-let tmpIfTest;
-let tmpNestedComplexRhs;
 const tmpCallCallee$1 = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
@@ -51,16 +48,13 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-let tmpIfTest;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

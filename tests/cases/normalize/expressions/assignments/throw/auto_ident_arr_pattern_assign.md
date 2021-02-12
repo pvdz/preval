@@ -25,17 +25,14 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -45,17 +42,14 @@ throw tmpThrowArg;
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

@@ -24,16 +24,13 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
@@ -47,16 +44,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);

@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-let tmpThrowArg = tmpCallObj['$'](1);
+const tmpThrowArg = tmpCallObj['$'](1);
 throw tmpThrowArg;
 `````
 
@@ -34,7 +34,7 @@ throw tmpThrowArg;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-let tmpThrowArg = tmpCallObj['$'](1);
+const tmpThrowArg = tmpCallObj['$'](1);
 throw tmpThrowArg;
 `````
 

@@ -26,8 +26,6 @@ $(a, b, c);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs;
   let tmpNestedAssignPropRhs$1;
   let tmpNestedAssignPropRhs$2;
@@ -50,9 +48,8 @@ function f() {
   tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
   const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs$5;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs$5;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { x: 1 };
@@ -68,8 +65,6 @@ $(a, b, c);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs;
   let tmpNestedAssignPropRhs$1;
   let tmpNestedAssignPropRhs$2;
@@ -92,9 +87,8 @@ function f() {
   tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
   const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs$5;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs$5;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { x: 1 };

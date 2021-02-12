@@ -26,17 +26,14 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -53,16 +50,13 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

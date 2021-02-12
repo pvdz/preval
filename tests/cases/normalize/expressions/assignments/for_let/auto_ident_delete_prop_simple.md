@@ -24,10 +24,8 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedComplexRhs = delete x.y;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete x.y;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -42,10 +40,8 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedComplexRhs = delete x.y;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete x.y;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

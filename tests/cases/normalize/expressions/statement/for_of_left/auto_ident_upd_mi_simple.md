@@ -29,11 +29,8 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    let tmpAssignMemLhsObj;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    b = b - 1;
+    let tmpAssignMemLhsObj = b;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
@@ -50,11 +47,8 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    let tmpAssignMemLhsObj;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    b = b - 1;
+    let tmpAssignMemLhsObj = b;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

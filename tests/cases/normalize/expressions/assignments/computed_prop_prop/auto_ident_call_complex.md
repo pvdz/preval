@@ -23,11 +23,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee(1);
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = tmpCallCallee(1);
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -38,11 +36,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee(1);
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = tmpCallCallee(1);
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````

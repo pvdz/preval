@@ -30,11 +30,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs$1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+    b = b - 1;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -58,11 +55,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs$1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+    b = b - 1;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

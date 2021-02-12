@@ -25,18 +25,16 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$2 = tmpChainElementObject$1.e;
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal$1 = { e: $ };
@@ -53,18 +51,16 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$2 = tmpChainElementObject$1.e;
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal$1 = { e: $ };

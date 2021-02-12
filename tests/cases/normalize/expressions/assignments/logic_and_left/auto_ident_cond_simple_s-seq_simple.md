@@ -21,13 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
 {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
@@ -39,13 +36,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
 {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }

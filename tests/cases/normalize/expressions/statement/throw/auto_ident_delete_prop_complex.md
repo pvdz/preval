@@ -24,7 +24,7 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
-let tmpThrowArg = delete tmpDeleteObj.y;
+const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 
@@ -34,7 +34,7 @@ throw tmpThrowArg;
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(x);
-let tmpThrowArg = delete tmpDeleteObj.y;
+const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 

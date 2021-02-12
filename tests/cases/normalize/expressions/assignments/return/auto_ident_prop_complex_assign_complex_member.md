@@ -25,17 +25,14 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { c: 10, d: 20 };
@@ -50,17 +47,14 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { c: 10, d: 20 };

@@ -24,10 +24,8 @@
 `````js filename=intro
 {
   let b = 1;
-  let a;
-  const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = $(2);
+  let a = b;
   $(a, b);
 }
 `````
@@ -37,10 +35,8 @@
 `````js filename=intro
 {
   let b = 1;
-  let a;
-  const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = $(2);
+  let a = b;
   $(a, b);
 }
 `````

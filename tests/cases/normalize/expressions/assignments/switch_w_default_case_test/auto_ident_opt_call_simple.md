@@ -29,15 +29,13 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -68,14 +66,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 if ($) {
   const tmpChainElementCall = $(1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

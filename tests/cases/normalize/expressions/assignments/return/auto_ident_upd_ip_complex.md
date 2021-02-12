@@ -25,7 +25,6 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
@@ -33,9 +32,8 @@ function f() {
   const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpPostUpdArgVal;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { x: 1 };
@@ -50,16 +48,14 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpPostUpdArgVal;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { x: 1 };

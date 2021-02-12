@@ -24,12 +24,10 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   $(1);
   $(2);
-  const tmpNestedComplexRhs = $(x);
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = $(x);
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -44,12 +42,10 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   $(1);
   $(2);
-  const tmpNestedComplexRhs = $(x);
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = $(x);
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

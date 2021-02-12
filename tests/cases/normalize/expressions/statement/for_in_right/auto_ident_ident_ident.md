@@ -26,9 +26,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   b = 2;
-  tmpForInDeclRhs = 2;
+  let tmpForInDeclRhs = b;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -43,9 +42,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   b = 2;
-  tmpForInDeclRhs = 2;
+  let tmpForInDeclRhs = b;
   let x;
   for (x in tmpForInDeclRhs) {
   }

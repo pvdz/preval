@@ -25,14 +25,11 @@ a = 10;
 b = 20;
 c = {};
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpCompObj = $(c);
-const tmpNestedComplexRhs$1 = tmpCompObj.x;
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = tmpCompObj.x;
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -45,14 +42,11 @@ var c;
 a = 10;
 b = 20;
 c = {};
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 const tmpCompObj = $(c);
-const tmpNestedComplexRhs$1 = tmpCompObj.x;
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = tmpCompObj.x;
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 

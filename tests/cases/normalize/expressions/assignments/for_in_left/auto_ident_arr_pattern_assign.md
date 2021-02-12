@@ -31,17 +31,14 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    let tmpAssignMemLhsObj;
-    let tmpNestedComplexRhs;
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
@@ -59,17 +56,14 @@ const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    let tmpAssignMemLhsObj;
-    let tmpNestedComplexRhs;
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpAssignMemLhsObj = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }

@@ -21,8 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpBinBothLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 if (tmpChainElementCall) {
@@ -31,12 +30,10 @@ if (tmpChainElementCall) {
   const tmpCalleeParam$1 = tmpChainRootCall;
   const tmpCalleeParam$2 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$2);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-let tmpNestedComplexRhs$1 = undefined;
+let tmpBinBothLhs = a;
+a = undefined;
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$2 = tmpChainRootCall$1($);
 if (tmpChainElementCall$2) {
@@ -45,10 +42,9 @@ if (tmpChainElementCall$2) {
   const tmpCalleeParam$3 = tmpChainRootCall$1;
   const tmpCalleeParam$4 = $(1);
   const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$3, tmpCalleeParam$4);
-  tmpNestedComplexRhs$1 = tmpChainElementCall$3;
+  a = tmpChainElementCall$3;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -58,30 +54,26 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
   const tmpCallObj = tmpChainElementCall;
   const tmpCallVal = tmpCallObj.call;
   const tmpCalleeParam$2 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$2);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-let tmpNestedComplexRhs$1 = undefined;
+let tmpBinBothLhs = a;
+a = undefined;
 const tmpChainElementCall$2 = $($);
 if (tmpChainElementCall$2) {
   const tmpCallObj$1 = tmpChainElementCall$2;
   const tmpCallVal$1 = tmpCallObj$1.call;
   const tmpCalleeParam$4 = $(1);
   const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, $, tmpCalleeParam$4);
-  tmpNestedComplexRhs$1 = tmpChainElementCall$3;
+  a = tmpChainElementCall$3;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

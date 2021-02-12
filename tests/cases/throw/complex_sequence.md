@@ -23,7 +23,7 @@ $(f());
 function f() {
   $(1);
   $(2);
-  let tmpThrowArg = $(3);
+  const tmpThrowArg = $(3);
   throw tmpThrowArg;
 }
 const tmpCallCallee = $;
@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   $(1);
   $(2);
-  let tmpThrowArg = $(3);
+  const tmpThrowArg = $(3);
   throw tmpThrowArg;
 }
 const tmpCalleeParam = f();

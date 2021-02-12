@@ -24,13 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs;
-  const tmpNestedComplexRhs$1 = $(2);
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -46,13 +43,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs;
-  const tmpNestedComplexRhs$1 = $(2);
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

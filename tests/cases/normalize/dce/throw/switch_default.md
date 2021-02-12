@@ -44,7 +44,7 @@ function f() {
     }
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$2) {
-      let tmpThrowArg = $(2, 'throw');
+      const tmpThrowArg = $(2, 'throw');
       throw tmpThrowArg;
     }
   }
@@ -74,7 +74,7 @@ function f() {
     }
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$2) {
-      let tmpThrowArg = $(2, 'throw');
+      const tmpThrowArg = $(2, 'throw');
       throw tmpThrowArg;
     }
   }

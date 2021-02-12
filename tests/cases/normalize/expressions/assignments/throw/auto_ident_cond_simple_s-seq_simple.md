@@ -20,13 +20,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs = undefined;
 {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 }
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -34,13 +31,10 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs = undefined;
 {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 }
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

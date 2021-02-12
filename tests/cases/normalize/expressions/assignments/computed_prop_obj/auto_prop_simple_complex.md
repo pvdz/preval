@@ -23,11 +23,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpCompObj = a;
 tmpCompObj.a;
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
@@ -40,11 +38,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpCompObj = a;
 tmpCompObj.a;
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);

@@ -25,10 +25,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
-const tmpNestedComplexRhs = b.c;
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = b['c'];
+let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
@@ -39,10 +37,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
-const tmpNestedComplexRhs = b.c;
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = b['c'];
+let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````

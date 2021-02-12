@@ -21,14 +21,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz;
-let tmpNestedComplexRhs = 0;
-if (tmpNestedComplexRhs) {
+a = 0;
+if (a) {
 } else {
-  tmpNestedComplexRhs = 2;
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+let xyz = a;
 $(xyz);
 $(a);
 `````
@@ -37,14 +35,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz;
-let tmpNestedComplexRhs = 0;
-if (tmpNestedComplexRhs) {
+a = 0;
+if (a) {
 } else {
-  tmpNestedComplexRhs = 2;
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+let xyz = a;
 $(xyz);
 $(a);
 `````

@@ -28,18 +28,16 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -58,18 +56,16 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

@@ -23,10 +23,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = { x: 1, y: 2, z: 3 };
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
@@ -40,10 +38,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = { x: 1, y: 2, z: 3 };
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

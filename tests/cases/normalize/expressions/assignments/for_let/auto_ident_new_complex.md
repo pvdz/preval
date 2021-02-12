@@ -21,11 +21,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpNewCallee = $($);
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = new tmpNewCallee(1);
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -39,11 +37,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpNewCallee = $($);
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = new tmpNewCallee(1);
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

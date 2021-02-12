@@ -26,9 +26,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   b = 2;
-  tmpIfTest = 2;
+  let tmpIfTest = b;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -45,9 +44,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   b = 2;
-  tmpIfTest = 2;
+  let tmpIfTest = b;
   if (tmpIfTest) {
     $(100);
   } else {

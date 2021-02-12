@@ -25,9 +25,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 b = 2;
-tmpIfTest = 2;
+let tmpIfTest = b;
 if (tmpIfTest) {
   b = 2;
 }
@@ -40,9 +39,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 b = 2;
-tmpIfTest = 2;
+let tmpIfTest = b;
 if (tmpIfTest) {
   b = 2;
 }

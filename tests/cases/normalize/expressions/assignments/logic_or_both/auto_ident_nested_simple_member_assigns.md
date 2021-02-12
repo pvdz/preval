@@ -29,8 +29,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 let tmpNestedAssignPropRhs;
 let tmpNestedAssignPropRhs$1;
 let tmpNestedAssignPropRhs$2;
@@ -53,12 +51,11 @@ b.x = tmpNestedPropAssignRhs$4;
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs$5;
   let tmpNestedAssignPropRhs$6;
   let tmpNestedAssignPropRhs$7;
@@ -81,9 +78,9 @@ if (tmpCalleeParam) {
   tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$10;
   const tmpNestedPropAssignRhs$11 = tmpNestedAssignPropRhs$5;
   b.x = tmpNestedPropAssignRhs$11;
-  tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$11;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs$11;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
@@ -95,8 +92,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 let tmpNestedAssignPropRhs;
 let tmpNestedAssignPropRhs$1;
 let tmpNestedAssignPropRhs$2;
@@ -119,12 +114,11 @@ b.x = tmpNestedPropAssignRhs$4;
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs$5;
   let tmpNestedAssignPropRhs$6;
   let tmpNestedAssignPropRhs$7;
@@ -147,9 +141,9 @@ if (tmpCalleeParam) {
   tmpNestedAssignPropRhs$5 = tmpNestedPropAssignRhs$10;
   const tmpNestedPropAssignRhs$11 = tmpNestedAssignPropRhs$5;
   b.x = tmpNestedPropAssignRhs$11;
-  tmpNestedComplexRhs$1 = tmpNestedPropAssignRhs$11;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedPropAssignRhs$11;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, b, c);

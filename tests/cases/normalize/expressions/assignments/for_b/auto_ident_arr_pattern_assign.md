@@ -27,17 +27,14 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -56,17 +53,14 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

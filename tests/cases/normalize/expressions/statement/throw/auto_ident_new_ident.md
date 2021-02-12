@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = new $(1);
+const tmpThrowArg = new $(1);
 throw tmpThrowArg;
 `````
 
@@ -28,7 +28,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = new $(1);
+const tmpThrowArg = new $(1);
 throw tmpThrowArg;
 `````
 

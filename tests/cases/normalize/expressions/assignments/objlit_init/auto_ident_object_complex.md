@@ -21,13 +21,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpObjLitVal;
 const tmpObjLitVal$1 = $(1);
 const tmpObjLitVal$2 = 2;
 const tmpObjLitVal$3 = $(3);
-const tmpNestedComplexRhs = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: tmpObjLitVal$3 };
-a = tmpNestedComplexRhs;
-tmpObjLitVal = tmpNestedComplexRhs;
+a = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: tmpObjLitVal$3 };
+let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -37,12 +35,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpObjLitVal;
 const tmpObjLitVal$1 = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpNestedComplexRhs = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$3 };
-a = tmpNestedComplexRhs;
-tmpObjLitVal = tmpNestedComplexRhs;
+a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$3 };
+let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);

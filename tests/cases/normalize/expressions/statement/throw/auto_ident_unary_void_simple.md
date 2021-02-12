@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
+const tmpThrowArg = undefined;
 throw tmpThrowArg;
 `````
 
@@ -32,8 +32,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
-throw tmpThrowArg;
+throw undefined;
 `````
 
 ## Result

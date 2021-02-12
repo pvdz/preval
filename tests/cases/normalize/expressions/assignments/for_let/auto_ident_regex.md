@@ -21,10 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedComplexRhs = /foo/;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = /foo/;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -38,10 +36,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedComplexRhs = /foo/;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = /foo/;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

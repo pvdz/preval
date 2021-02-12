@@ -26,17 +26,15 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    a = tmpChainElementObject$2;
   }
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -52,17 +50,15 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootProp = b;
   if (tmpChainRootProp) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    a = tmpChainElementObject$2;
   }
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }

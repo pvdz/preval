@@ -23,13 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+let tmpIfTest = a;
 $(a, b);
 `````
 
@@ -38,13 +35,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpIfTest = tmpNestedComplexRhs;
+let tmpIfTest = a;
 $(a, b);
 `````
 

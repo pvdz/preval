@@ -26,9 +26,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   b = 2;
-  xyz = 2;
+  let xyz = b;
   while (true) {
     $(xyz);
     $(1);
@@ -44,9 +43,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   b = 2;
-  xyz = 2;
+  let xyz = b;
   while (true) {
     $(xyz);
     $(1);

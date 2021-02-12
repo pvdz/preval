@@ -24,14 +24,12 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   $(1);
   $(2);
   const tmpDeleteCompObj = x_1;
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpForInDeclRhs = a;
   let x_1;
   for (x_1 in tmpForInDeclRhs) {
   }
@@ -45,14 +43,12 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   $(1);
   $(2);
   const tmpDeleteCompObj = x_1;
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpForInDeclRhs = a;
   let x_1;
   for (x_1 in tmpForInDeclRhs) {
   }

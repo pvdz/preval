@@ -21,11 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = a;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs * 'foo';
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = a * 'foo';
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -34,11 +31,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = a;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs * 'foo';
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = a * 'foo';
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

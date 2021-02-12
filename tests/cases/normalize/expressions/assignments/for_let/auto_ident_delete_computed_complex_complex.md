@@ -24,12 +24,10 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpDeleteCompObj = $(x);
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -44,12 +42,10 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpDeleteCompObj = $(x);
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

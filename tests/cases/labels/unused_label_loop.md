@@ -20,11 +20,8 @@ foo: while (--x) $(x);
 `````js filename=intro
 let x = 2;
 while (true) {
-  let tmpIfTest;
-  const tmpNestedCompoundLhs = x;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  x = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  x = x - 1;
+  let tmpIfTest = x;
   if (tmpIfTest) {
     $(x);
   } else {
@@ -38,11 +35,8 @@ while (true) {
 `````js filename=intro
 let x = 2;
 while (true) {
-  let tmpIfTest;
-  const tmpNestedCompoundLhs = x;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  x = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  x = x - 1;
+  let tmpIfTest = x;
   if (tmpIfTest) {
     $(x);
   } else {

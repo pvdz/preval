@@ -25,16 +25,14 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -46,15 +44,13 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $(b);
 if (tmpChainElementCall) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

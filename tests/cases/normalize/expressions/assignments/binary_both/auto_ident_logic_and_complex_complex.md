@@ -21,28 +21,24 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpBinBothLhs;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
+a = tmpCallCallee$1(tmpCalleeParam$1);
+if (a) {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(2);
-  tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+  a = tmpCallCallee$2(tmpCalleeParam$2);
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
+let tmpBinBothLhs = a;
 const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = $(1);
-let tmpNestedComplexRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
-if (tmpNestedComplexRhs$1) {
+a = tmpCallCallee$3(tmpCalleeParam$3);
+if (a) {
   const tmpCallCallee$4 = $;
   const tmpCalleeParam$4 = $(2);
-  tmpNestedComplexRhs$1 = tmpCallCallee$4(tmpCalleeParam$4);
+  a = tmpCallCallee$4(tmpCalleeParam$4);
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -52,24 +48,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
 const tmpCalleeParam$1 = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
+a = $(tmpCalleeParam$1);
+if (a) {
   const tmpCalleeParam$2 = $(2);
-  tmpNestedComplexRhs = $(tmpCalleeParam$2);
+  a = $(tmpCalleeParam$2);
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
+let tmpBinBothLhs = a;
 const tmpCalleeParam$3 = $(1);
-let tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-if (tmpNestedComplexRhs$1) {
+a = $(tmpCalleeParam$3);
+if (a) {
   const tmpCalleeParam$4 = $(2);
-  tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
+  a = $(tmpCalleeParam$4);
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

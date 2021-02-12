@@ -26,17 +26,15 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpObjSpread;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$2;
+  a = tmpChainElementObject$2;
 }
-a = tmpNestedComplexRhs;
-tmpObjSpread = tmpNestedComplexRhs;
+let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -49,17 +47,15 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpObjSpread;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$2;
+  a = tmpChainElementObject$2;
 }
-a = tmpNestedComplexRhs;
-tmpObjSpread = tmpNestedComplexRhs;
+let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a);

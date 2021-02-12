@@ -23,18 +23,15 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    a = tmpCallCallee(tmpCalleeParam);
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
@@ -48,17 +45,14 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   } else {
     const tmpCalleeParam = $(100);
-    tmpNestedComplexRhs = $(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

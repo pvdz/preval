@@ -23,12 +23,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = new tmpNewCallee(1);
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -38,12 +36,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = new tmpNewCallee(1);
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

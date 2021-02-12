@@ -24,16 +24,13 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs;
 const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, b);
 `````
@@ -43,15 +40,12 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, b);
 `````

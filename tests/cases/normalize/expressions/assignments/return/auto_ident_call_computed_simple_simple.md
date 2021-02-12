@@ -25,10 +25,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedComplexRhs = b['$'](1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = b['$'](1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { $: $ };
@@ -43,10 +41,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedComplexRhs = b['$'](1);
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = b['$'](1);
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { $: $ };

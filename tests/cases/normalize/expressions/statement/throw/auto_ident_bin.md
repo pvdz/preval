@@ -22,7 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-let tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
+const tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
 throw tmpThrowArg;
 `````
 
@@ -32,7 +32,7 @@ throw tmpThrowArg;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-let tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
+const tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
 throw tmpThrowArg;
 `````
 

@@ -25,13 +25,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpNewCallee = $;
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);
-    const tmpNestedComplexRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -49,12 +47,10 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);
-    const tmpNestedComplexRhs = new $(tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = new $(tmpCalleeParam, tmpCalleeParam$1);
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

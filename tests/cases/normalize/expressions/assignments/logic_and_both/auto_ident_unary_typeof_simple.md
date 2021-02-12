@@ -24,14 +24,12 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedComplexRhs = typeof x;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = typeof x;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs$1 = typeof x;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = typeof x;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -42,14 +40,12 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-const tmpNestedComplexRhs = typeof x;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = typeof x;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs$1 = typeof x;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = typeof x;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, x);

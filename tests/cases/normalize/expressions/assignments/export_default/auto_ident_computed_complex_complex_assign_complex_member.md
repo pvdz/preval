@@ -23,8 +23,6 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -32,9 +30,8 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````
@@ -44,8 +41,6 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -53,9 +48,8 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````

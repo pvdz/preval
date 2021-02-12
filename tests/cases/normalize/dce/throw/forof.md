@@ -30,7 +30,7 @@ function f() {
     const tmpForOfDeclRhs = [10, 20];
     let x;
     for (x of tmpForOfDeclRhs) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     }
   }
@@ -48,7 +48,7 @@ function f() {
     const tmpForOfDeclRhs = [10, 20];
     let x;
     for (x of tmpForOfDeclRhs) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     }
   }

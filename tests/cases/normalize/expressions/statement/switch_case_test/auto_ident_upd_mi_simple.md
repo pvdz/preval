@@ -28,11 +28,8 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-b = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+b = b - 1;
+let tmpBinLhs = b;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -51,11 +48,8 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-b = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+b = b - 1;
+let tmpBinLhs = b;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

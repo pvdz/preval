@@ -21,15 +21,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootCall = $;
   if (tmpChainRootCall) {
     const tmpChainElementCall = tmpChainRootCall(1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -43,14 +41,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   if ($) {
     const tmpChainElementCall = $(1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    a = tmpChainElementCall;
   }
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

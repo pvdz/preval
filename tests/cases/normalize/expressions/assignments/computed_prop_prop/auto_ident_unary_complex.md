@@ -26,11 +26,9 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, x);
 `````
@@ -42,11 +40,9 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, x);
 `````

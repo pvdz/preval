@@ -26,15 +26,12 @@ function f() {
   let b = 2;
   let c = 3;
   let d = 4;
-  let a;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
   const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = tmpNestedPropAssignRhs;
+  let a = b;
   $(a, b, c);
 }
 const tmpCallCallee = $;
@@ -49,15 +46,12 @@ function f() {
   let b = 2;
   let c = 3;
   let d = 4;
-  let a;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
   const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = tmpNestedPropAssignRhs;
+  let a = b;
   $(a, b, c);
 }
 const tmpCalleeParam = f();

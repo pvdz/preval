@@ -24,11 +24,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 const tmpCallObj = $(b);
-const tmpNestedComplexRhs = tmpCallObj['$'](1);
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpCallObj['$'](1);
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -38,11 +36,9 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 const tmpCallObj = $(b);
-const tmpNestedComplexRhs = tmpCallObj['$'](1);
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpCallObj['$'](1);
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

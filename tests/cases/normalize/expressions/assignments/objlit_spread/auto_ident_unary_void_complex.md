@@ -21,11 +21,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpObjSpread;
 $(100);
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpObjSpread = tmpNestedComplexRhs;
+a = undefined;
+let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -35,10 +33,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpObjSpread;
 $(100);
 a = undefined;
-tmpObjSpread = undefined;
+let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a);

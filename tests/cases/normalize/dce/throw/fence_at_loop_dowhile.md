@@ -46,7 +46,7 @@ function f() {
         if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
           $('loop');
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         } else {
           break;
@@ -82,7 +82,7 @@ function f() {
         if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
           $('loop');
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         } else {
           break;

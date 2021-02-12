@@ -23,14 +23,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -39,13 +36,10 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpNestedAssignObj = b;
 tmpNestedAssignObj.c = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = 2;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

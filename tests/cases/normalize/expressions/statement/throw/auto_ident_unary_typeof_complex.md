@@ -24,7 +24,7 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
-let tmpThrowArg = typeof tmpUnaryArg;
+const tmpThrowArg = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 
@@ -34,7 +34,7 @@ throw tmpThrowArg;
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
-let tmpThrowArg = typeof tmpUnaryArg;
+const tmpThrowArg = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 

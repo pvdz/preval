@@ -26,13 +26,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -49,13 +46,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

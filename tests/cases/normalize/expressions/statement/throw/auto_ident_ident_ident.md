@@ -25,9 +25,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 b = 2;
-tmpThrowArg = 2;
+let tmpThrowArg = b;
 throw tmpThrowArg;
 `````
 
@@ -37,9 +36,8 @@ throw tmpThrowArg;
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 b = 2;
-tmpThrowArg = 2;
+let tmpThrowArg = b;
 throw tmpThrowArg;
 `````
 

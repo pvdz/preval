@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

@@ -25,10 +25,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-const tmpNestedComplexRhs = b.c;
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = b.c;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b);
 `````
@@ -39,10 +37,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-const tmpNestedComplexRhs = b.c;
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = b.c;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b);
 `````

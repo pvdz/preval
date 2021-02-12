@@ -25,11 +25,9 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpDeleteObj = $(x);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = delete tmpDeleteObj.y;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = { y: 1 };
@@ -44,11 +42,9 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpDeleteObj = $(x);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = delete tmpDeleteObj.y;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = { y: 1 };

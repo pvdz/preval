@@ -26,7 +26,7 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+const tmpThrowArg = tmpCallCallee(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 
@@ -39,7 +39,7 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-let tmpThrowArg = $(tmpCalleeParam);
+const tmpThrowArg = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 

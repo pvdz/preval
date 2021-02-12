@@ -22,14 +22,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = a;
-const tmpBinBothLhs = tmpNestedCompoundLhs;
+const tmpBinBothLhs = a;
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-const tmpNestedComplexRhs = tmpBinBothLhs * tmpBinBothRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpBinBothLhs * tmpBinBothRhs;
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);
@@ -44,14 +41,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = a;
-const tmpBinBothLhs = tmpNestedCompoundLhs;
+const tmpBinBothLhs = a;
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-const tmpNestedComplexRhs = tmpBinBothLhs * tmpBinBothRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpBinBothLhs * tmpBinBothRhs;
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);

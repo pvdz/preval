@@ -24,12 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpPostUpdArgIdent = b;
   b = b + 1;
-  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = tmpPostUpdArgIdent;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -43,12 +41,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpPostUpdArgIdent = b;
   b = b + 1;
-  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = tmpPostUpdArgIdent;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

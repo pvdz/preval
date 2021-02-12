@@ -25,11 +25,8 @@ $(f());
 `````js filename=intro
 function f() {
   let b = 1;
-  let a;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = b - 1;
+  let a = b;
   $(a, b);
 }
 const tmpCallCallee = $;
@@ -42,11 +39,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let b = 1;
-  let a;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = b - 1;
+  let a = b;
   $(a, b);
 }
 const tmpCalleeParam = f();

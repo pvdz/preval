@@ -24,13 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, b);
 `````
@@ -40,13 +37,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
-let tmpNestedComplexRhs;
-const tmpNestedComplexRhs$1 = $(2);
-b = tmpNestedComplexRhs$1;
-tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, b);
 `````

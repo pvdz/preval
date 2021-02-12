@@ -27,8 +27,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs;
   $(x);
   $(y);
   const tmpObjLitVal = $(3);
@@ -36,9 +34,8 @@ let a = { a: 999, b: 1000 };
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -54,8 +51,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs;
   $(x);
   $(y);
   const tmpObjLitVal = $(3);
@@ -63,9 +58,8 @@ let a = { a: 999, b: 1000 };
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

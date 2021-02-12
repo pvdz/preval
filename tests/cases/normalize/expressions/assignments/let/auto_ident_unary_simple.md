@@ -24,10 +24,8 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
-const tmpNestedComplexRhs = typeof x;
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = typeof x;
+let xyz = a;
 $(xyz);
 $(a, x);
 `````
@@ -37,10 +35,8 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
-const tmpNestedComplexRhs = typeof x;
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = typeof x;
+let xyz = a;
 $(xyz);
 $(a, x);
 `````

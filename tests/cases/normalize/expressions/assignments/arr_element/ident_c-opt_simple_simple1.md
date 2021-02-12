@@ -22,15 +22,13 @@ $(a = b?.x);
 let a = { a: 999, b: 1000 };
 let b = { x: 1 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -39,15 +37,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let b = { x: 1 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 

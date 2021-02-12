@@ -32,9 +32,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
     b = 2;
-    tmpNestedComplexRhs = 2;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -59,9 +58,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
     b = 2;
-    tmpNestedComplexRhs = 2;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

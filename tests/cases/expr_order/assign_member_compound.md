@@ -24,10 +24,8 @@ let a = {};
 const tmpCompoundAssignLhs = a.foo;
 const tmpAssignMemLhsObj = a;
 const tmpBinBothLhs = tmpCompoundAssignLhs;
-let tmpBinBothRhs;
-const tmpNestedComplexRhs = $();
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+a = $();
+let tmpBinBothRhs = a;
 const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
@@ -39,10 +37,8 @@ let a = {};
 const tmpCompoundAssignLhs = a.foo;
 const tmpAssignMemLhsObj = a;
 const tmpBinBothLhs = tmpCompoundAssignLhs;
-let tmpBinBothRhs;
-const tmpNestedComplexRhs = $();
-a = tmpNestedComplexRhs;
-tmpBinBothRhs = tmpNestedComplexRhs;
+a = $();
+let tmpBinBothRhs = a;
 const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````

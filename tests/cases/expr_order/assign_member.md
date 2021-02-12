@@ -22,10 +22,8 @@ a.foo = a = $();
 `````js filename=intro
 let a = {};
 const tmpAssignMemLhsObj = a;
-let tmpAssignMemRhs;
-const tmpNestedComplexRhs = $();
-a = tmpNestedComplexRhs;
-tmpAssignMemRhs = tmpNestedComplexRhs;
+a = $();
+let tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
@@ -34,10 +32,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````js filename=intro
 let a = {};
 const tmpAssignMemLhsObj = a;
-let tmpAssignMemRhs;
-const tmpNestedComplexRhs = $();
-a = tmpNestedComplexRhs;
-tmpAssignMemRhs = tmpNestedComplexRhs;
+a = $();
+let tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 

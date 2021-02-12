@@ -26,17 +26,14 @@ $(a, x, y);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedAssignArrPatternRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;
@@ -52,17 +49,14 @@ $(a, x, y);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedAssignArrPatternRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;

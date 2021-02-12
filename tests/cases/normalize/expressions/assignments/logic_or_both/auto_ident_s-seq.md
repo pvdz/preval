@@ -24,19 +24,17 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 $(1);
 $(2);
-const tmpNestedComplexRhs = x;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = x;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
-  const tmpNestedComplexRhs$1 = x;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = x;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -47,19 +45,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 $(1);
 $(2);
-const tmpNestedComplexRhs = x;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = x;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
-  const tmpNestedComplexRhs$1 = x;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = x;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, x);

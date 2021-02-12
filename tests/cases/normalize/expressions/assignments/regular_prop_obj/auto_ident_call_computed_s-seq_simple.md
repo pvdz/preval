@@ -25,11 +25,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpCallObj = b;
-const tmpNestedComplexRhs = tmpCallObj['$'](1);
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpCallObj['$'](1);
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````
@@ -40,11 +38,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpCallObj = b;
-const tmpNestedComplexRhs = tmpCallObj['$'](1);
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpCallObj['$'](1);
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

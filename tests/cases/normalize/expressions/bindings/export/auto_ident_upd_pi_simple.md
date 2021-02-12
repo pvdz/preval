@@ -21,11 +21,8 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-let a;
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+b = b + 1;
+let a = b;
 export { a };
 $(a, b);
 `````
@@ -34,11 +31,8 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-let a;
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+b = b + 1;
+let a = b;
 export { a };
 $(a, b);
 `````

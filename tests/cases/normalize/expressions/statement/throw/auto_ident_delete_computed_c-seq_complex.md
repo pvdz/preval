@@ -27,7 +27,7 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
-let tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
 throw tmpThrowArg;
 `````
 
@@ -40,7 +40,7 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
-let tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
 throw tmpThrowArg;
 `````
 

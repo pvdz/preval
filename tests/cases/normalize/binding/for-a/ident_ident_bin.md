@@ -23,10 +23,8 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a_1 = tmpNestedComplexRhs;
+  b = c + d;
+  let a_1 = b;
 }
 `````
 
@@ -38,10 +36,8 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedComplexRhs = c + d;
-  b = tmpNestedComplexRhs;
-  a_1 = tmpNestedComplexRhs;
+  b = c + d;
+  let a_1 = b;
 }
 `````
 

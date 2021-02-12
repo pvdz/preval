@@ -26,11 +26,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -47,11 +45,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

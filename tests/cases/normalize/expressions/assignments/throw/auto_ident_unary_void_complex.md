@@ -20,11 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 $(100);
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = undefined;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -32,10 +30,9 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 $(100);
 a = undefined;
-tmpThrowArg = undefined;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

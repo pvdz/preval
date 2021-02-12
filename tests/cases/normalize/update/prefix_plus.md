@@ -20,11 +20,8 @@ $(++x);
 `````js filename=intro
 let x = 1;
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = x;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-x = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+x = x + 1;
+let tmpCalleeParam = x;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -32,11 +29,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = 1;
-let tmpCalleeParam;
-const tmpNestedCompoundLhs = x;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-x = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+x = x + 1;
+let tmpCalleeParam = x;
 $(tmpCalleeParam);
 `````
 

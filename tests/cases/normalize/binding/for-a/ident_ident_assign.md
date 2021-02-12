@@ -23,15 +23,12 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
   const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  b = tmpNestedComplexRhs;
-  a_1 = tmpNestedComplexRhs;
+  b = tmpNestedPropAssignRhs;
+  let a_1 = b;
 }
 `````
 
@@ -43,15 +40,12 @@ let b = 2;
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = $(c);
   const tmpNestedAssignPropRhs = $(d);
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  b = tmpNestedComplexRhs;
-  a_1 = tmpNestedComplexRhs;
+  b = tmpNestedPropAssignRhs;
+  let a_1 = b;
 }
 `````
 

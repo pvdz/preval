@@ -24,9 +24,8 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 a = b;
-xyz = b;
+let xyz = a;
 $(xyz);
 $(a, b);
 `````
@@ -36,9 +35,8 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let xyz;
 a = b;
-xyz = b;
+let xyz = a;
 $(xyz);
 $(a, b);
 `````

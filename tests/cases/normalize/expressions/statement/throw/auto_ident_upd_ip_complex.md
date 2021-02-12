@@ -30,7 +30,7 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-let tmpThrowArg = tmpPostUpdArgVal;
+const tmpThrowArg = tmpPostUpdArgVal;
 throw tmpThrowArg;
 `````
 
@@ -45,7 +45,7 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-let tmpThrowArg = tmpPostUpdArgVal;
+const tmpThrowArg = tmpPostUpdArgVal;
 throw tmpThrowArg;
 `````
 

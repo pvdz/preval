@@ -23,14 +23,12 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = 0;
-  if (tmpNestedComplexRhs) {
+  a = 0;
+  if (a) {
   } else {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };
@@ -44,14 +42,12 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs = 0;
-  if (tmpNestedComplexRhs) {
+  a = 0;
+  if (a) {
   } else {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   }
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

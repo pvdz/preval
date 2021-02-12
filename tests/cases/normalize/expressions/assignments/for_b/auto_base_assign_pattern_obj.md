@@ -25,16 +25,13 @@ let b = {};
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpCallCallee = $;
     const tmpObjLitVal = $(2);
     const tmpCalleeParam = { b: tmpObjLitVal };
     const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     b = tmpNestedAssignObjPatternRhs.b;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignObjPatternRhs;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -52,15 +49,12 @@ let b = {};
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpObjLitVal = $(2);
     const tmpCalleeParam = { b: tmpObjLitVal };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
     b = tmpNestedAssignObjPatternRhs.b;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignObjPatternRhs;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

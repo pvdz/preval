@@ -22,11 +22,8 @@ $(j);
 
 `````js filename=intro
 let i = 0;
-let tmpBinLhs;
-const tmpNestedCompoundLhs = i;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-i = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+i = i + 1;
+let tmpBinLhs = i;
 let j = tmpBinLhs + i;
 $(j);
 `````
@@ -35,11 +32,8 @@ $(j);
 
 `````js filename=intro
 let i = 0;
-let tmpBinLhs;
-const tmpNestedCompoundLhs = i;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-i = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+i = i + 1;
+let tmpBinLhs = i;
 let j = tmpBinLhs + i;
 $(j);
 `````

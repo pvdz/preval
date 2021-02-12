@@ -21,17 +21,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -44,15 +42,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = $(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
+  a = $(tmpCalleeParam);
+  if (a) {
     const tmpCalleeParam$1 = $(2);
-    tmpNestedComplexRhs = $(tmpCalleeParam$1);
+    a = $(tmpCalleeParam$1);
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

@@ -26,7 +26,7 @@ $(f());
 `````js filename=intro
 function f() {
   {
-    let tmpThrowArg = $(1, 'throw');
+    const tmpThrowArg = $(1, 'throw');
     throw tmpThrowArg;
   }
 }
@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   {
-    let tmpThrowArg = $(1, 'throw');
+    const tmpThrowArg = $(1, 'throw');
     throw tmpThrowArg;
   }
 }

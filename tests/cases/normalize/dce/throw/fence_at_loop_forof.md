@@ -41,7 +41,7 @@ function f() {
         let x;
         for (x of tmpForOfDeclRhs) {
           $('loop', x);
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         }
       }
@@ -70,7 +70,7 @@ function f() {
         let x;
         for (x of tmpForOfDeclRhs) {
           $('loop', x);
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         }
       }

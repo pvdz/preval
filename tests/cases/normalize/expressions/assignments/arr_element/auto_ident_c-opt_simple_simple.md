@@ -24,26 +24,22 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpBinBothLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainRootComputed = 'x';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-let tmpNestedComplexRhs$1 = undefined;
+let tmpBinBothLhs = a;
+a = undefined;
 const tmpChainRootProp$1 = b;
 if (tmpChainRootProp$1) {
   const tmpChainRootComputed$1 = 'x';
   const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
-  tmpNestedComplexRhs$1 = tmpChainElementObject$1;
+  a = tmpChainElementObject$1;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -54,24 +50,20 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp['x'];
-  tmpNestedComplexRhs = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
-let tmpNestedComplexRhs$1 = undefined;
+let tmpBinBothLhs = a;
+a = undefined;
 const tmpChainRootProp$1 = b;
 if (tmpChainRootProp$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1['x'];
-  tmpNestedComplexRhs$1 = tmpChainElementObject$1;
+  a = tmpChainElementObject$1;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

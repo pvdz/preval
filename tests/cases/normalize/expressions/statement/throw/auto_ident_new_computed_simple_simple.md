@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
@@ -34,7 +34,7 @@ throw tmpThrowArg;
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-let tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

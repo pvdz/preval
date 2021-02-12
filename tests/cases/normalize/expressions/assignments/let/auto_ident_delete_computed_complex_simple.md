@@ -24,12 +24,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = 'y';
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let xyz = a;
 $(xyz);
 $(a, x);
 `````
@@ -39,11 +37,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpDeleteCompObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
-a = tmpNestedComplexRhs;
-xyz = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj['y'];
+let xyz = a;
 $(xyz);
 $(a, x);
 `````

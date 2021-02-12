@@ -36,15 +36,12 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      let tmpNestedComplexRhs;
       const tmpNestedAssignObj = $(c);
       const tmpNestedAssignPropRhs = $(d);
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-      b = tmpNestedComplexRhs;
-      a_1 = tmpNestedComplexRhs;
+      b = tmpNestedPropAssignRhs;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }
@@ -72,15 +69,12 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      let tmpNestedComplexRhs;
       const tmpNestedAssignObj = $(c);
       const tmpNestedAssignPropRhs = $(d);
       const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-      tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-      b = tmpNestedComplexRhs;
-      a_1 = tmpNestedComplexRhs;
+      b = tmpNestedPropAssignRhs;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }

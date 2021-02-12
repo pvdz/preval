@@ -25,12 +25,10 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(1);
   $(2);
-  const tmpNestedComplexRhs = x;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = x;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;
@@ -45,12 +43,10 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(1);
   $(2);
-  const tmpNestedComplexRhs = x;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = x;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;

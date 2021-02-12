@@ -22,11 +22,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee(1);
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpCallCallee(1);
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````
@@ -36,11 +34,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee(1);
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpCallCallee(1);
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

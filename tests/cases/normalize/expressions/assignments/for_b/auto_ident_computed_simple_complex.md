@@ -25,12 +25,10 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    const tmpCompObj = b;
-    const tmpCompProp = $('c');
-    const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const tmpAssignRhsCompObj = b;
+    const tmpAssignRhsCompProp = $('c');
+    a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -48,12 +46,10 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    const tmpCompObj = b;
-    const tmpCompProp = $('c');
-    const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const tmpAssignRhsCompObj = b;
+    const tmpAssignRhsCompProp = $('c');
+    a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

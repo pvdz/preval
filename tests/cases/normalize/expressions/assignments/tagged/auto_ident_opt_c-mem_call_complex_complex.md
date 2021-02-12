@@ -25,8 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 if (tmpChainElementCall) {
@@ -38,11 +37,10 @@ if (tmpChainElementCall) {
     const tmpCalleeParam$2 = tmpChainElementCall;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$2, tmpCalleeParam$3);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   }
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -53,8 +51,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $(b);
 if (tmpChainElementCall) {
   const tmpChainRootComputed = $('$');
@@ -65,11 +62,10 @@ if (tmpChainElementCall) {
     const tmpCalleeParam$2 = tmpChainElementCall;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$2, tmpCalleeParam$3);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   }
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

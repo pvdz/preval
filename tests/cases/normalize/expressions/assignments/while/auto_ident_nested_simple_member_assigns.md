@@ -26,8 +26,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs;
   let tmpNestedAssignPropRhs$1;
   let tmpNestedAssignPropRhs$2;
@@ -50,9 +48,8 @@ while (true) {
   tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
   const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs$5;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs$5;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -69,8 +66,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs;
   let tmpNestedAssignPropRhs;
   let tmpNestedAssignPropRhs$1;
   let tmpNestedAssignPropRhs$2;
@@ -93,9 +88,8 @@ while (true) {
   tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
   const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs$5;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs$5;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

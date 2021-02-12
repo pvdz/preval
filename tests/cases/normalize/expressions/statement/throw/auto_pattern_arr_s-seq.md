@@ -24,7 +24,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-let tmpThrowArg = [1, 2];
+const tmpThrowArg = [1, 2];
 throw tmpThrowArg;
 `````
 
@@ -36,7 +36,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-let tmpThrowArg = [1, 2];
+const tmpThrowArg = [1, 2];
 throw tmpThrowArg;
 `````
 

@@ -26,10 +26,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
-const tmpNestedComplexRhs = undefined;
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = undefined;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -41,9 +39,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 a = undefined;
-tmpCompProp = undefined;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
 `````

@@ -25,8 +25,7 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   if (tmpChainElementCall) {
@@ -35,11 +34,10 @@ while (true) {
     if (tmpChainElementObject) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      tmpNestedComplexRhs = tmpChainElementObject$1;
+      a = tmpChainElementObject$1;
     }
   }
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -56,8 +54,7 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  let tmpNestedComplexRhs = undefined;
+  a = undefined;
   const tmpChainElementCall = $(b);
   if (tmpChainElementCall) {
     const tmpChainRootComputed = $('x');
@@ -65,11 +62,10 @@ while (true) {
     if (tmpChainElementObject) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      tmpNestedComplexRhs = tmpChainElementObject$1;
+      a = tmpChainElementObject$1;
     }
   }
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

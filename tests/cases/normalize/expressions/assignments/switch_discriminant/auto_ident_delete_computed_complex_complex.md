@@ -26,12 +26,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -48,12 +46,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = $('y');
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpNestedComplexRhs;
-tmpSwitchTest = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

@@ -18,9 +18,8 @@ function f(x, y) {
 
 `````js filename=intro
 function f(x, y) {
-  let tmpReturnArg;
   x = y;
-  tmpReturnArg = y;
+  let tmpReturnArg = x;
   return tmpReturnArg;
 }
 `````
@@ -29,9 +28,8 @@ function f(x, y) {
 
 `````js filename=intro
 function f(x, y) {
-  let tmpReturnArg;
   x = y;
-  tmpReturnArg = y;
+  let tmpReturnArg = x;
   return tmpReturnArg;
 }
 `````

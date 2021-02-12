@@ -31,7 +31,7 @@ function f() {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x;
     for (x in tmpForInDeclRhs) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     }
   }
@@ -50,7 +50,7 @@ function f() {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x;
     for (x in tmpForInDeclRhs) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     }
   }

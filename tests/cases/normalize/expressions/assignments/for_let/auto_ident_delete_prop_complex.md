@@ -24,11 +24,9 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpDeleteObj = $(x);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete tmpDeleteObj.y;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -43,11 +41,9 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   const tmpDeleteObj = $(x);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  a = delete tmpDeleteObj.y;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

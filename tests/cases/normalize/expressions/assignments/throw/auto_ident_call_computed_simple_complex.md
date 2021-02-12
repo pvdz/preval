@@ -23,12 +23,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpCallCompObj[tmpCallCompProp](1);
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -37,12 +35,10 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpCallCompObj[tmpCallCompProp](1);
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

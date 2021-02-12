@@ -25,9 +25,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = 2;
   let c = 3;
-  let a;
   b = c;
-  a = c;
+  let a = b;
   $(a, b, c);
 }
 `````
@@ -39,9 +38,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = 2;
   let c = 3;
-  let a;
   b = c;
-  a = c;
+  let a = b;
   $(a, b, c);
 }
 `````

@@ -23,17 +23,14 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -42,16 +39,13 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

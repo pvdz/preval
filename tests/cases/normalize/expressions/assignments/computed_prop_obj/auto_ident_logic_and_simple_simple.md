@@ -22,13 +22,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-let tmpNestedComplexRhs = 1;
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
+a = 1;
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````
@@ -38,13 +36,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-let tmpNestedComplexRhs = 1;
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
+a = 1;
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

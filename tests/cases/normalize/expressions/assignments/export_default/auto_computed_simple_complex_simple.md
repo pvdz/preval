@@ -21,11 +21,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');
@@ -37,11 +35,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = { b: tmpObjLitVal };
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');

@@ -5186,8 +5186,24 @@ export function phaseNormalize(fdata, fname) {
       if (dnode.init.type === 'AssignmentExpression') {
         // Must first outline the assignment because otherwise recursive calls will assume the assignment
         // is an expression statement and then transforms go bad.
+
+        if (dnode.init.left.type === 'Identifier') {
+          rule('Var inits can not be assignments; lhs ident');
+          example('let x = y = z()', 'y = z; let x = y;');
+
+          const newNodes = [
+            AST.expressionStatement(dnode.init),
+            AST.variableDeclaration(AST.cloneSimple(dnode.id), AST.cloneSimple(dnode.init.left)),
+          ];
+          body.splice(i, 1, ...newNodes);
+
+          after(newNodes);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         rule('Var inits can not be assignments');
-        example('let x = y = z', 'let x, x = y = z');
+        example('let x = a()[b()] = z()', 'let x, x = a()[b()] = z()');
 
         const newNodes = [
           AST.variableDeclaration(AST.cloneSimple(dnode.id)),

@@ -26,29 +26,27 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$2;
+  a = tmpChainElementObject$2;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1 = undefined;
+  let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = b;
   if (tmpChainRootProp$1) {
     const tmpChainElementObject$3 = tmpChainRootProp$1.x;
     const tmpChainElementObject$4 = tmpChainElementObject$3.y;
     const tmpChainElementObject$5 = tmpChainElementObject$4.z;
-    tmpNestedComplexRhs$1 = tmpChainElementObject$5;
+    tmpNestedComplexRhs = tmpChainElementObject$5;
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -61,29 +59,27 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootProp = b;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$2;
+  a = tmpChainElementObject$2;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1 = undefined;
+  let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = b;
   if (tmpChainRootProp$1) {
     const tmpChainElementObject$3 = tmpChainRootProp$1.x;
     const tmpChainElementObject$4 = tmpChainElementObject$3.y;
     const tmpChainElementObject$5 = tmpChainElementObject$4.z;
-    tmpNestedComplexRhs$1 = tmpChainElementObject$5;
+    tmpNestedComplexRhs = tmpChainElementObject$5;
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

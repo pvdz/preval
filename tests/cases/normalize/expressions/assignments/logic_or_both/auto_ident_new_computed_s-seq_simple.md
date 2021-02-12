@@ -24,19 +24,17 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = new tmpNewCallee(1);
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpCompObj$1 = b;
   const tmpNewCallee$1 = tmpCompObj$1.$;
-  const tmpNestedComplexRhs$1 = new tmpNewCallee$1(1);
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -47,19 +45,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = new tmpNewCallee(1);
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpCompObj$1 = b;
   const tmpNewCallee$1 = tmpCompObj$1.$;
-  const tmpNestedComplexRhs$1 = new tmpNewCallee$1(1);
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

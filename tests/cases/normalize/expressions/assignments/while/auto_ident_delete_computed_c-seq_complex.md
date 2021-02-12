@@ -24,14 +24,12 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   $(1);
   $(2);
   const tmpDeleteCompObj = $(x);
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -47,14 +45,12 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   $(1);
   $(2);
   const tmpDeleteCompObj = $(x);
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

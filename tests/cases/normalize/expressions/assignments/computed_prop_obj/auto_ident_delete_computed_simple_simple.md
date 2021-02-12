@@ -25,10 +25,8 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-const tmpNestedComplexRhs = delete x['y'];
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = delete x['y'];
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, x);
 `````
@@ -39,10 +37,8 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-const tmpNestedComplexRhs = delete x['y'];
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = delete x['y'];
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, x);
 `````

@@ -24,7 +24,6 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParamSpread;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = tmpCallCallee$1(tmpCalleeParam);
@@ -32,9 +31,8 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpNestedComplexRhs = tmpPostUpdArgVal;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = tmpPostUpdArgVal;
+let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, b);
 `````
@@ -44,16 +42,14 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpNestedComplexRhs = tmpPostUpdArgVal;
-a = tmpNestedComplexRhs;
-tmpCalleeParamSpread = tmpNestedComplexRhs;
+a = tmpPostUpdArgVal;
+let tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, b);
 `````

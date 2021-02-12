@@ -29,8 +29,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 $(x);
 $(y);
 const tmpArrElement = $(3);
@@ -39,12 +37,11 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   $(x);
   $(y);
   const tmpArrElement$2 = $(3);
@@ -53,9 +50,9 @@ if (tmpCalleeParam) {
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
-  tmpNestedComplexRhs$1 = tmpNestedAssignArrPatternRhs$1;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x, y);
@@ -67,8 +64,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 $(x);
 $(y);
 const tmpArrElement = $(3);
@@ -77,12 +72,11 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs$1;
+  let tmpNestedComplexRhs;
   $(x);
   $(y);
   const tmpArrElement$2 = $(3);
@@ -91,9 +85,9 @@ if (tmpCalleeParam) {
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
-  tmpNestedComplexRhs$1 = tmpNestedAssignArrPatternRhs$1;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, x, y);

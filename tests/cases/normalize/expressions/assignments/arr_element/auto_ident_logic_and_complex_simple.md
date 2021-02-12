@@ -21,24 +21,20 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpBinBothLhs;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
+a = tmpCallCallee$1(tmpCalleeParam$1);
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
+let tmpBinBothLhs = a;
 const tmpCallCallee$2 = $;
 const tmpCalleeParam$2 = $(1);
-let tmpNestedComplexRhs$1 = tmpCallCallee$2(tmpCalleeParam$2);
-if (tmpNestedComplexRhs$1) {
-  tmpNestedComplexRhs$1 = 2;
+a = tmpCallCallee$2(tmpCalleeParam$2);
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -48,22 +44,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
 const tmpCalleeParam$1 = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
+a = $(tmpCalleeParam$1);
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs;
-tmpBinBothLhs = tmpNestedComplexRhs;
-let tmpBinBothRhs;
+let tmpBinBothLhs = a;
 const tmpCalleeParam$2 = $(1);
-let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
-if (tmpNestedComplexRhs$1) {
-  tmpNestedComplexRhs$1 = 2;
+a = $(tmpCalleeParam$2);
+if (a) {
+  a = 2;
 }
-a = tmpNestedComplexRhs$1;
-tmpBinBothRhs = tmpNestedComplexRhs$1;
+let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

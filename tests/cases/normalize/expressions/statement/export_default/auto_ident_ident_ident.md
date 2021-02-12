@@ -25,9 +25,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 b = 2;
-tmpExportDefault = 2;
+let tmpExportDefault = b;
 export { tmpExportDefault as default };
 $(a, b, c);
 `````
@@ -38,9 +37,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 b = 2;
-tmpExportDefault = 2;
+let tmpExportDefault = b;
 export { tmpExportDefault as default };
 $(a, b, c);
 `````

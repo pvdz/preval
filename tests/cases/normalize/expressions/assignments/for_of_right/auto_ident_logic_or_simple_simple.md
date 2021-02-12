@@ -21,14 +21,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs = 0;
-  if (tmpNestedComplexRhs) {
+  a = 0;
+  if (a) {
   } else {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -41,14 +39,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs = 0;
-  if (tmpNestedComplexRhs) {
+  a = 0;
+  if (a) {
   } else {
-    tmpNestedComplexRhs = 2;
+    a = 2;
   }
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

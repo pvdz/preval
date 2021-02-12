@@ -25,14 +25,11 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = b;
   const tmpNestedPropAssignRhs = 2;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { c: 1 };
@@ -47,13 +44,10 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedAssignObj = b;
   tmpNestedAssignObj.c = 2;
-  tmpNestedComplexRhs = 2;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = 2;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = { c: 1 };

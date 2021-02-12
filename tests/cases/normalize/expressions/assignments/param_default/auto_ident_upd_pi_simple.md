@@ -26,11 +26,8 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs + 1;
-    b = tmpNestedComplexRhs$1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+    b = b + 1;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {
@@ -52,11 +49,8 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs + 1;
-    b = tmpNestedComplexRhs$1;
-    tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+    b = b + 1;
+    let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {

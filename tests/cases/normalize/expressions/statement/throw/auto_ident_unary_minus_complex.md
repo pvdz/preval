@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-let tmpThrowArg = -tmpUnaryArg;
+const tmpThrowArg = -tmpUnaryArg;
 throw tmpThrowArg;
 `````
 
@@ -30,7 +30,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-let tmpThrowArg = -tmpUnaryArg;
+const tmpThrowArg = -tmpUnaryArg;
 throw tmpThrowArg;
 `````
 

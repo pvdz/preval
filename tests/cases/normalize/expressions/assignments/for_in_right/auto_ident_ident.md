@@ -24,9 +24,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   a = b;
-  tmpForInDeclRhs = b;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -40,9 +39,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   a = b;
-  tmpForInDeclRhs = b;
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }

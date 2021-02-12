@@ -20,10 +20,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-const tmpNestedComplexRhs = new $(1);
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = new $(1);
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -32,10 +30,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-const tmpNestedComplexRhs = new $(1);
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = new $(1);
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

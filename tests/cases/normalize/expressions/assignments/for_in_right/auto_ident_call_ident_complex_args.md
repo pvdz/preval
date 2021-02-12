@@ -24,13 +24,11 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -44,12 +42,10 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const tmpNestedComplexRhs = $(tmpCalleeParam, tmpCalleeParam$1);
-  a = tmpNestedComplexRhs;
-  tmpForInDeclRhs = tmpNestedComplexRhs;
+  a = $(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpForInDeclRhs = a;
   let x;
   for (x in tmpForInDeclRhs) {
   }

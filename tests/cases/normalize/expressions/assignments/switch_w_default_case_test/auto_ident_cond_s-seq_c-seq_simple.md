@@ -29,18 +29,15 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-let tmpNestedComplexRhs = undefined;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
-  tmpNestedComplexRhs = $(60);
+  a = $(60);
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpCallCallee(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -71,16 +68,13 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-let tmpNestedComplexRhs = undefined;
 if (30) {
-  tmpNestedComplexRhs = $(60);
+  a = $(60);
 } else {
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = $(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpBinLhs = tmpNestedComplexRhs;
+let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

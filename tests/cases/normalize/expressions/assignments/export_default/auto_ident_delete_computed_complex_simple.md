@@ -23,12 +23,10 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpDeleteCompObj = $(x);
 const tmpDeleteCompProp = 'y';
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, x);
 `````
@@ -38,11 +36,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpDeleteCompObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = delete tmpDeleteCompObj['y'];
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, x);
 `````

@@ -25,9 +25,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
 b = 2;
-tmpArrElToSpread = 2;
+let tmpArrElToSpread = b;
 [...tmpArrElToSpread];
 $(a, b, c);
 `````
@@ -38,9 +37,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
 b = 2;
-tmpArrElToSpread = 2;
+let tmpArrElToSpread = b;
 [...tmpArrElToSpread];
 $(a, b, c);
 `````

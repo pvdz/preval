@@ -37,7 +37,7 @@ function f() {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      let tmpThrowArg = $(2, 'ret');
+      const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
     }
   }
@@ -63,7 +63,7 @@ function f() {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      let tmpThrowArg = $(2, 'ret');
+      const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
     }
   }

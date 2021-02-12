@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 throw tmpThrowArg;
 `````
 
@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 throw tmpThrowArg;
 `````
 

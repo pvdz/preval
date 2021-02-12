@@ -26,9 +26,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 a = b;
-tmpCompProp = b;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, b);
 `````
@@ -40,9 +39,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 a = b;
-tmpCompProp = b;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, b);
 `````

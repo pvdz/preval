@@ -21,26 +21,24 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1 = undefined;
+  let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
   const tmpChainElementCall$2 = tmpChainRootCall$1($);
   if (tmpChainElementCall$2) {
     const tmpChainElementCall$3 = tmpChainElementCall$2.call(tmpChainRootCall$1, 1);
-    tmpNestedComplexRhs$1 = tmpChainElementCall$3;
+    tmpNestedComplexRhs = tmpChainElementCall$3;
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -50,24 +48,22 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs = undefined;
+a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  tmpNestedComplexRhs = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs$1 = undefined;
+  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$2 = $($);
   if (tmpChainElementCall$2) {
     const tmpChainElementCall$3 = tmpChainElementCall$2.call($, 1);
-    tmpNestedComplexRhs$1 = tmpChainElementCall$3;
+    tmpNestedComplexRhs = tmpChainElementCall$3;
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

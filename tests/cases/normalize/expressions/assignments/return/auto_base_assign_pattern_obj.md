@@ -25,16 +25,13 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = {};
@@ -49,15 +46,12 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = {};

@@ -25,10 +25,8 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    const tmpNestedComplexRhs = b['$'](1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = b['$'](1);
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -46,10 +44,8 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    const tmpNestedComplexRhs = b['$'](1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = b['$'](1);
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

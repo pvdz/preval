@@ -25,7 +25,6 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
     const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
@@ -33,9 +32,8 @@ let a = { a: 999, b: 1000 };
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpNestedComplexRhs = tmpPostUpdArgVal;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpPostUpdArgVal;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -53,16 +51,14 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpCalleeParam = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpNestedComplexRhs = tmpPostUpdArgVal;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpPostUpdArgVal;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

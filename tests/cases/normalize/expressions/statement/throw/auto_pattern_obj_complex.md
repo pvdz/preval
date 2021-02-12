@@ -23,7 +23,7 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+const tmpThrowArg = tmpCallCallee(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 
@@ -33,7 +33,7 @@ throw tmpThrowArg;
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpThrowArg = $(tmpCalleeParam);
+const tmpThrowArg = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 

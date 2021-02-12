@@ -23,17 +23,14 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````
@@ -43,16 +40,13 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = tmpNestedAssignArrPatternRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````

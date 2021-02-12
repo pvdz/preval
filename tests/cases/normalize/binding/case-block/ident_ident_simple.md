@@ -35,9 +35,8 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
       b = c;
-      a_1 = c;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }
@@ -64,9 +63,8 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
       b = c;
-      a_1 = c;
+      a_1 = b;
       break tmpSwitchBreak;
     }
   }

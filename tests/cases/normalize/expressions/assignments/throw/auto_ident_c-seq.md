@@ -23,12 +23,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 $(1);
 $(2);
-const tmpNestedComplexRhs = $(x);
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = $(x);
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -37,12 +35,10 @@ throw tmpThrowArg;
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 $(1);
 $(2);
-const tmpNestedComplexRhs = $(x);
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = $(x);
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

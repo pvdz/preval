@@ -25,14 +25,11 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;
@@ -47,14 +44,11 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  let tmpNestedComplexRhs;
   const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  tmpReturnArg = tmpNestedComplexRhs;
+  let tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;

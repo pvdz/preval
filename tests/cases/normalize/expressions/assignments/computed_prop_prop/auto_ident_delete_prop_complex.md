@@ -26,11 +26,9 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, x);
 `````
@@ -42,11 +40,9 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCompProp = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a, x);
 `````

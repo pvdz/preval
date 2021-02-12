@@ -21,9 +21,8 @@ let a = b = c
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
 b = c;
-a = c;
+let a = b;
 `````
 
 ## Output
@@ -31,9 +30,8 @@ a = c;
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
 b = c;
-a = c;
+let a = b;
 `````
 
 ## Result

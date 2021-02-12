@@ -23,17 +23,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -42,17 +39,14 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

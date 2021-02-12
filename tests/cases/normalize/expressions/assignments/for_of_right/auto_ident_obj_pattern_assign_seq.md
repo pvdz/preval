@@ -26,8 +26,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs;
   $(x_1);
   $(y);
   const tmpObjLitVal = $(3);
@@ -35,9 +33,8 @@ let a = { a: 999, b: 1000 };
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x_1 = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let tmpForOfDeclRhs = a;
   let x_1;
   for (x_1 of tmpForOfDeclRhs) {
   }
@@ -52,8 +49,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  let tmpNestedComplexRhs;
   $(x_1);
   $(y);
   const tmpObjLitVal = $(3);
@@ -61,9 +56,8 @@ let a = { a: 999, b: 1000 };
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x_1 = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpForOfDeclRhs = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  let tmpForOfDeclRhs = a;
   let x_1;
   for (x_1 of tmpForOfDeclRhs) {
   }

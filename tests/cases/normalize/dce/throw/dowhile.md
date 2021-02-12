@@ -33,7 +33,7 @@ function f() {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     } else {
       break;
@@ -58,7 +58,7 @@ function f() {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     } else {
       break;

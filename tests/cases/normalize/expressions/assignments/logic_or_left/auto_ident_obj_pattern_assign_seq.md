@@ -26,8 +26,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -35,9 +33,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
@@ -52,8 +49,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
-let tmpNestedComplexRhs;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -61,9 +56,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);

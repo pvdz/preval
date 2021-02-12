@@ -28,9 +28,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 b = 2;
-tmpSwitchTest = 2;
+let tmpSwitchTest = b;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -48,9 +47,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 b = 2;
-tmpSwitchTest = 2;
+let tmpSwitchTest = b;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-let tmpThrowArg = tmpCompObj.c;
+const tmpThrowArg = tmpCompObj.c;
 throw tmpThrowArg;
 `````
 
@@ -34,7 +34,7 @@ throw tmpThrowArg;
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-let tmpThrowArg = tmpCompObj.c;
+const tmpThrowArg = tmpCompObj.c;
 throw tmpThrowArg;
 `````
 

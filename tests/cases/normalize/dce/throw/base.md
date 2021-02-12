@@ -22,7 +22,7 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let tmpThrowArg = $(5, 'ret');
+  const tmpThrowArg = $(5, 'ret');
   throw tmpThrowArg;
 }
 const tmpCallCallee = $;
@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let tmpThrowArg = $(5, 'ret');
+  const tmpThrowArg = $(5, 'ret');
   throw tmpThrowArg;
 }
 const tmpCalleeParam = f();

@@ -25,11 +25,9 @@ let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a, x);
 `````
@@ -40,11 +38,9 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, x);
 `````

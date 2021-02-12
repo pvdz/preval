@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = -x;
+const tmpThrowArg = -x;
 throw tmpThrowArg;
 `````
 
@@ -32,7 +32,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg = -x;
+const tmpThrowArg = -x;
 throw tmpThrowArg;
 `````
 

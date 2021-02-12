@@ -20,18 +20,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpCallCallee(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -40,17 +37,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-let tmpNestedComplexRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpNestedComplexRhs = 60;
+  a = 60;
 } else {
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = $(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

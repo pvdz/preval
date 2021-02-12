@@ -23,11 +23,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, x);
 `````
@@ -37,11 +35,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpUnaryArg = $(x);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = typeof tmpUnaryArg;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, x);
 `````

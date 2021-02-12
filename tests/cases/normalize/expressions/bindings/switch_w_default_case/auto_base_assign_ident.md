@@ -45,10 +45,8 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = 1;
-      a = undefined;
-      const tmpNestedComplexRhs = $(2);
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
+      b = $(2);
+      a = b;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -83,10 +81,8 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = 1;
-      a = undefined;
-      const tmpNestedComplexRhs = $(2);
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
+      b = $(2);
+      a = b;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

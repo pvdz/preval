@@ -48,9 +48,8 @@ switch (1) {
     if (tmpIfTest$2) {
       b = 1;
       c = 2;
-      a = undefined;
       b = 2;
-      a = 2;
+      a = b;
       $(a, b, c);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -87,9 +86,8 @@ switch (1) {
     if (tmpIfTest$2) {
       b = 1;
       c = 2;
-      a = undefined;
       b = 2;
-      a = 2;
+      a = b;
       $(a, b, c);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

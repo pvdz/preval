@@ -29,11 +29,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  let tmpNestedComplexRhs;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  b = b + 1;
+  let tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -51,11 +48,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  let tmpNestedComplexRhs;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  b = b + 1;
+  let tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

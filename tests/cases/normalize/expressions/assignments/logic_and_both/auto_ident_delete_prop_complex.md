@@ -24,16 +24,14 @@ $(a, x);
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpDeleteObj$1 = $(x);
-  const tmpNestedComplexRhs$1 = delete tmpDeleteObj$1.y;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -44,16 +42,14 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpDeleteObj$1 = $(x);
-  const tmpNestedComplexRhs$1 = delete tmpDeleteObj$1.y;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, x);

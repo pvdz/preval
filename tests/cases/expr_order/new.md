@@ -23,11 +23,8 @@ new $(i, ++i);
 let i = 0;
 const tmpNewCallee = $;
 const tmpCalleeParam = i;
-let tmpCalleeParam$1;
-const tmpNestedCompoundLhs = i;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-i = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+i = i + 1;
+let tmpCalleeParam$1 = i;
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
@@ -36,11 +33,8 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 let i = 0;
 const tmpCalleeParam = i;
-let tmpCalleeParam$1;
-const tmpNestedCompoundLhs = i;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-i = tmpNestedComplexRhs;
-tmpCalleeParam$1 = tmpNestedComplexRhs;
+i = i + 1;
+let tmpCalleeParam$1 = i;
 new $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

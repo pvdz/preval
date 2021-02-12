@@ -24,13 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs;
-  const tmpNestedComplexRhs$1 = $(2);
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);
@@ -45,13 +42,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  let tmpNestedComplexRhs;
-  const tmpNestedComplexRhs$1 = $(2);
-  b = tmpNestedComplexRhs$1;
-  tmpNestedComplexRhs = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  xyz = tmpNestedComplexRhs;
+  let xyz = a;
   while (true) {
     $(xyz);
     $(1);

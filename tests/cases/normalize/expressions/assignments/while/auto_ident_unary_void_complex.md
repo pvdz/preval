@@ -21,11 +21,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   $(100);
-  const tmpNestedComplexRhs = undefined;
-  a = tmpNestedComplexRhs;
-  tmpIfTest = tmpNestedComplexRhs;
+  a = undefined;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -40,10 +38,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   $(100);
   a = undefined;
-  tmpIfTest = undefined;
+  let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

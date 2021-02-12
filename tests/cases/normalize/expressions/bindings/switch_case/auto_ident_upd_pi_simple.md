@@ -36,11 +36,8 @@ switch (1) {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       b = 1;
-      a = undefined;
-      const tmpNestedCompoundLhs = b;
-      const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
+      b = b + 1;
+      a = b;
       $(a, b);
     }
   }
@@ -62,11 +59,8 @@ switch (1) {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       b = 1;
-      a = undefined;
-      const tmpNestedCompoundLhs = b;
-      const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-      b = tmpNestedComplexRhs;
-      a = tmpNestedComplexRhs;
+      b = b + 1;
+      a = b;
       $(a, b);
     }
   }

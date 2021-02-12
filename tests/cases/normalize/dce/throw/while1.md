@@ -29,7 +29,7 @@ function f() {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     } else {
       break;
@@ -49,7 +49,7 @@ function f() {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      let tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     } else {
       break;

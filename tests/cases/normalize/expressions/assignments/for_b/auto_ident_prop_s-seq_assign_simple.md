@@ -25,14 +25,11 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpNestedAssignObj = b;
     const tmpNestedPropAssignRhs = 2;
     tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedPropAssignRhs;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -50,13 +47,10 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
-    let tmpNestedComplexRhs;
     const tmpNestedAssignObj = b;
     tmpNestedAssignObj.c = 2;
-    tmpNestedComplexRhs = 2;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = 2;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

@@ -40,7 +40,7 @@ function f() {
         const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
           $('loop');
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         } else {
           break;
@@ -70,7 +70,7 @@ function f() {
         const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
           $('loop');
-          let tmpThrowArg = $(7, 'throw');
+          const tmpThrowArg = $(7, 'throw');
           throw tmpThrowArg;
         } else {
           break;

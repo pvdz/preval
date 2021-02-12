@@ -26,9 +26,8 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 b = 2;
-tmpCalleeParam = 2;
+let tmpCalleeParam = b;
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
 `````
@@ -39,9 +38,8 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 b = 2;
-tmpCalleeParam = 2;
+let tmpCalleeParam = b;
 $(tmpCalleeParam);
 $(a, b, c);
 `````

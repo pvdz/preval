@@ -28,10 +28,8 @@ $(f());
 function f() {
   {
     let b = 1;
-    let a;
-    const tmpNestedComplexRhs = $(2);
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    b = $(2);
+    let a = b;
     $(a, b);
   }
 }
@@ -46,10 +44,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     let b = 1;
-    let a;
-    const tmpNestedComplexRhs = $(2);
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    b = $(2);
+    let a = b;
     $(a, b);
   }
 }

@@ -24,8 +24,7 @@ $(a, x);
 
 `````js filename=intro
 let a = $(10);
-let x;
-x = a;
+let x = a;
 $(a, x);
 `````
 
@@ -33,8 +32,7 @@ $(a, x);
 
 `````js filename=intro
 let a = $(10);
-let x;
-x = a;
+let x = a;
 $(a, x);
 `````
 

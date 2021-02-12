@@ -20,11 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = !tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = !tmpUnaryArg;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -33,11 +31,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = !tmpUnaryArg;
-a = tmpNestedComplexRhs;
-tmpExportDefault = tmpNestedComplexRhs;
+a = !tmpUnaryArg;
+let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

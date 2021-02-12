@@ -22,9 +22,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 a = 'foo';
-tmpCompObj = 'foo';
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````
@@ -34,9 +33,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 a = 'foo';
-tmpCompObj = 'foo';
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

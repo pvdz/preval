@@ -21,30 +21,28 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(0);
-let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
+a = tmpCallCallee$1(tmpCalleeParam$1);
+if (a) {
 } else {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(2);
-  tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+  a = tmpCallCallee$2(tmpCalleeParam$2);
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(0);
-  let tmpNestedComplexRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
-  if (tmpNestedComplexRhs$1) {
+  let tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpNestedComplexRhs) {
   } else {
     const tmpCallCallee$4 = $;
     const tmpCalleeParam$4 = $(2);
-    tmpNestedComplexRhs$1 = tmpCallCallee$4(tmpCalleeParam$4);
+    tmpNestedComplexRhs = tmpCallCallee$4(tmpCalleeParam$4);
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -54,26 +52,24 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 const tmpCalleeParam$1 = $(0);
-let tmpNestedComplexRhs = $(tmpCalleeParam$1);
-if (tmpNestedComplexRhs) {
+a = $(tmpCalleeParam$1);
+if (a) {
 } else {
   const tmpCalleeParam$2 = $(2);
-  tmpNestedComplexRhs = $(tmpCalleeParam$2);
+  a = $(tmpCalleeParam$2);
 }
-a = tmpNestedComplexRhs;
-tmpCalleeParam = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCalleeParam$3 = $(0);
-  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-  if (tmpNestedComplexRhs$1) {
+  let tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  if (tmpNestedComplexRhs) {
   } else {
     const tmpCalleeParam$4 = $(2);
-    tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
+    tmpNestedComplexRhs = $(tmpCalleeParam$4);
   }
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

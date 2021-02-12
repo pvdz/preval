@@ -29,8 +29,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
@@ -65,9 +63,8 @@ tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAss
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b, c);
 `````
@@ -79,8 +76,6 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
-let tmpNestedComplexRhs;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 let tmpNestedAssignPropRhs;
@@ -115,9 +110,8 @@ tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAss
 tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
 const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$5;
-tmpNestedComplexRhs = tmpNestedPropAssignRhs$5;
-a = tmpNestedComplexRhs;
-tmpCompObj = tmpNestedComplexRhs;
+a = tmpNestedPropAssignRhs$5;
+let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b, c);
 `````

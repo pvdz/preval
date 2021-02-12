@@ -24,9 +24,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
 a = b;
-tmpCalleeParam = b;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   a = b;
   tmpCalleeParam = b;
@@ -40,9 +39,8 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam;
 a = b;
-tmpCalleeParam = b;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   a = b;
   tmpCalleeParam = b;

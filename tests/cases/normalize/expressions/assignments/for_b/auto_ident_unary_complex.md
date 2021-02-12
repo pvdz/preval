@@ -25,11 +25,9 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpUnaryArg = $(x);
-    const tmpNestedComplexRhs = typeof tmpUnaryArg;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = typeof tmpUnaryArg;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -47,11 +45,9 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     const tmpUnaryArg = $(x);
-    const tmpNestedComplexRhs = typeof tmpUnaryArg;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = typeof tmpUnaryArg;
+    let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
     } else {

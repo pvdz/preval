@@ -29,9 +29,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
   b = 2;
-  tmpNestedComplexRhs = 2;
+  let tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -48,9 +47,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
   b = 2;
-  tmpNestedComplexRhs = 2;
+  let tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

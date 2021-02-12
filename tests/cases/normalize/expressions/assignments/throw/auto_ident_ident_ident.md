@@ -25,12 +25,9 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = 2;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -40,12 +37,9 @@ throw tmpThrowArg;
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-let tmpNestedComplexRhs;
 b = 2;
-tmpNestedComplexRhs = 2;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = 2;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

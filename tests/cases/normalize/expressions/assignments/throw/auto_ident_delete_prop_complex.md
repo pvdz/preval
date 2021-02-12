@@ -23,11 +23,9 @@ $(a, x);
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
@@ -36,11 +34,9 @@ throw tmpThrowArg;
 `````js filename=intro
 let x = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpDeleteObj = $(x);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-a = tmpNestedComplexRhs;
-tmpThrowArg = tmpNestedComplexRhs;
+a = delete tmpDeleteObj.y;
+let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

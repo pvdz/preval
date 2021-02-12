@@ -20,45 +20,16 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
+const tmpSwitchValue = 6;
+let tmpSwitchCaseToStart = 0;
+const tmpBinLhs = $(30);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 1;
+}
 {
-  const tmpSwitchValue = 6;
-  let tmpSwitchVisitDefault = false;
-  let tmpSwitchFallthrough = false;
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchFallthrough === false;
-    }
-    if (tmpIfTest) {
-      tmpDoWhileFlag = false;
-      if (tmpSwitchVisitDefault) {
-        tmpSwitchFallthrough = true;
-      }
-      if (tmpSwitchFallthrough) {
-        tmpSwitchFallthrough = true;
-      }
-      {
-        {
-          {
-            let tmpIfTest$1 = tmpSwitchFallthrough;
-            if (tmpIfTest$1) {
-            } else {
-              const tmpBinLhs = $(30);
-              tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-            }
-            if (tmpIfTest$1) {
-              tmpSwitchFallthrough = true;
-            }
-          }
-        }
-      }
-      tmpSwitchVisitDefault = true;
-    } else {
-      break;
-    }
-  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
 }
 `````
 

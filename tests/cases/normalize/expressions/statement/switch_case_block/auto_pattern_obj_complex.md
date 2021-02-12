@@ -26,24 +26,21 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
     {
-      {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = { a: 1, b: 2 };
-        tmpCallCallee(tmpCalleeParam);
-      }
+      const tmpCallCallee = $;
+      const tmpCalleeParam = { a: 1, b: 2 };
+      tmpCallCallee(tmpCalleeParam);
     }
-    tmpFallthrough = true;
   }
 }
 $(a);

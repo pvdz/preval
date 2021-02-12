@@ -25,21 +25,19 @@ let c = 3;
 const tmpSwitchTest = $('a');
 {
   let a_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $('a');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        $(b);
-        a_1 = $(c);
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      $(b);
+      a_1 = $(c);
+      break tmpSwitchBreak;
     }
   }
 }

@@ -32,9 +32,11 @@ const tmpCallCompProp = $('$');
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

@@ -24,9 +24,11 @@ switch (1) { default: let x = x; $('fail'); }
 `````js filename=intro
 {
   let x;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 0;
   {
-    let tmpFallthrough = false;
-    {
+    const tmpIfTest = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest) {
       $('fail');
     }
   }

@@ -30,9 +30,11 @@ const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpSwitchTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

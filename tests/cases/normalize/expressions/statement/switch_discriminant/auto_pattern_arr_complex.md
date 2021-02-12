@@ -28,9 +28,11 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

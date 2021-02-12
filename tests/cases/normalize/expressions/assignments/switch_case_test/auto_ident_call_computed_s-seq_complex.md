@@ -26,23 +26,20 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+const tmpCallCompObj = b;
+const tmpCallCompProp = $('$');
+const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    let tmpBinBothRhs;
-    const tmpCallCompObj = b;
-    const tmpCallCompProp = $('$');
-    const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-    a = tmpNestedComplexRhs;
-    tmpBinBothRhs = tmpNestedComplexRhs;
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    tmpFallthrough = true;
-  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
 $(a);
 `````

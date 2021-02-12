@@ -27,9 +27,11 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 const tmpSwitchTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

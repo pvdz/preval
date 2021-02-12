@@ -29,9 +29,11 @@ if (tmpChainRootCall) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpSwitchTest = tmpChainElementCall;
 }
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

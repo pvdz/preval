@@ -28,29 +28,27 @@ switch (1) {
   let b;
   let a;
   let tmpChainRootProp;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        tmpObjLitVal = { y: 1 };
-        b = { x: tmpObjLitVal };
-        a = undefined;
-        tmpChainRootProp = b;
-        if (tmpChainRootProp) {
-          const tmpChainElementObject = tmpChainRootProp.x;
-          if (tmpChainElementObject) {
-            const tmpChainElementObject$1 = tmpChainElementObject.y;
-            a = tmpChainElementObject$1;
-          }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      tmpObjLitVal = { y: 1 };
+      b = { x: tmpObjLitVal };
+      a = undefined;
+      tmpChainRootProp = b;
+      if (tmpChainRootProp) {
+        const tmpChainElementObject = tmpChainRootProp.x;
+        if (tmpChainElementObject) {
+          const tmpChainElementObject$1 = tmpChainElementObject.y;
+          a = tmpChainElementObject$1;
         }
-        $(a);
       }
-      tmpFallthrough = true;
+      $(a);
     }
   }
 }

@@ -24,24 +24,22 @@ switch (1) {
 {
   let a;
   let tmpChainRootCall;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        a = undefined;
-        tmpChainRootCall = $;
-        if (tmpChainRootCall) {
-          const tmpChainElementCall = tmpChainRootCall(1);
-          a = tmpChainElementCall;
-        }
-        $(a);
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a = undefined;
+      tmpChainRootCall = $;
+      if (tmpChainRootCall) {
+        const tmpChainElementCall = tmpChainRootCall(1);
+        a = tmpChainElementCall;
       }
-      tmpFallthrough = true;
+      $(a);
     }
   }
 }

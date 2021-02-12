@@ -32,9 +32,11 @@ if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchTest = tmpChainElementObject;
 }
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

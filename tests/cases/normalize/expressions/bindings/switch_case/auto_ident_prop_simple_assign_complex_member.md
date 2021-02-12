@@ -26,26 +26,24 @@ switch (1) {
 {
   let b;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = { c: 10, d: 20 };
-        a = undefined;
-        const tmpCompObj = $(b);
-        const tmpCompProp = $('d');
-        let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-        const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-        b.c = tmpNestedPropAssignRhs;
-        a = tmpNestedPropAssignRhs;
-        $(a, b);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { c: 10, d: 20 };
+      a = undefined;
+      const tmpCompObj = $(b);
+      const tmpCompProp = $('d');
+      let tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      b.c = tmpNestedPropAssignRhs;
+      a = tmpNestedPropAssignRhs;
+      $(a, b);
     }
   }
 }

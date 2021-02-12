@@ -29,30 +29,27 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      a = undefined;
-      const tmpChainRootProp = b;
-      if (tmpChainRootProp) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementObject$1 = tmpChainElementObject.d;
-        const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-        if (tmpChainElementObject$2) {
-          const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-          a = tmpChainElementCall;
-        }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    a = undefined;
+    const tmpChainRootProp = b;
+    if (tmpChainRootProp) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementObject$1 = tmpChainElementObject.d;
+      const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+      if (tmpChainElementObject$2) {
+        const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+        a = tmpChainElementCall;
       }
     }
-    tmpFallthrough = true;
   }
 }
 $(a);

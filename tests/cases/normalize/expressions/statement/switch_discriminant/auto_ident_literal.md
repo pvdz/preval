@@ -23,9 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpSwitchValue = 'foo';
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

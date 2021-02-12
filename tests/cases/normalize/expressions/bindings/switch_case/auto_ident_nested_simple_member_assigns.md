@@ -28,44 +28,42 @@ switch (1) {
   let b;
   let c;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = { x: 1 };
-        c = 3;
-        a = undefined;
-        let tmpNestedAssignPropRhs;
-        let tmpNestedAssignPropRhs$1;
-        let tmpNestedAssignPropRhs$2;
-        let tmpNestedAssignPropRhs$3;
-        let tmpNestedAssignPropRhs$4;
-        const tmpNestedPropAssignRhs = c;
-        b.x = tmpNestedPropAssignRhs;
-        tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-        const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-        b.x = tmpNestedPropAssignRhs$1;
-        tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-        const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-        b.x = tmpNestedPropAssignRhs$2;
-        tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-        const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-        b.x = tmpNestedPropAssignRhs$3;
-        tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-        const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-        b.x = tmpNestedPropAssignRhs$4;
-        tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-        const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-        b.x = tmpNestedPropAssignRhs$5;
-        a = tmpNestedPropAssignRhs$5;
-        $(a, b, c);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { x: 1 };
+      c = 3;
+      a = undefined;
+      let tmpNestedAssignPropRhs;
+      let tmpNestedAssignPropRhs$1;
+      let tmpNestedAssignPropRhs$2;
+      let tmpNestedAssignPropRhs$3;
+      let tmpNestedAssignPropRhs$4;
+      const tmpNestedPropAssignRhs = c;
+      b.x = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
+      b.x = tmpNestedPropAssignRhs$1;
+      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
+      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
+      b.x = tmpNestedPropAssignRhs$2;
+      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
+      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
+      b.x = tmpNestedPropAssignRhs$3;
+      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
+      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
+      b.x = tmpNestedPropAssignRhs$4;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
+      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
+      b.x = tmpNestedPropAssignRhs$5;
+      a = tmpNestedPropAssignRhs$5;
+      $(a, b, c);
     }
   }
 }

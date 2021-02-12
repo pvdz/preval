@@ -23,27 +23,25 @@ switch (1) {
 `````js filename=intro
 {
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        a = undefined;
-        const tmpIfTest$1 = $(30);
-        if (tmpIfTest$1) {
-          a = 60;
-        } else {
-          const tmpCallCallee = $;
-          const tmpCalleeParam = $(100);
-          a = tmpCallCallee(tmpCalleeParam);
-        }
-        $(a);
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a = undefined;
+      const tmpIfTest$2 = $(30);
+      if (tmpIfTest$2) {
+        a = 60;
+      } else {
+        const tmpCallCallee = $;
+        const tmpCalleeParam = $(100);
+        a = tmpCallCallee(tmpCalleeParam);
       }
-      tmpFallthrough = true;
+      $(a);
     }
   }
 }

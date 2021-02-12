@@ -26,26 +26,24 @@ switch (1) {
 {
   let b;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = {};
-        a = undefined;
-        const tmpCallCallee = $;
-        const tmpObjLitVal = $(2);
-        const tmpCalleeParam = { b: tmpObjLitVal };
-        const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-        b = tmpNestedAssignObjPatternRhs.b;
-        a = tmpNestedAssignObjPatternRhs;
-        $(a, b);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = {};
+      a = undefined;
+      const tmpCallCallee = $;
+      const tmpObjLitVal = $(2);
+      const tmpCalleeParam = { b: tmpObjLitVal };
+      const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+      b = tmpNestedAssignObjPatternRhs.b;
+      a = tmpNestedAssignObjPatternRhs;
+      $(a, b);
     }
   }
 }

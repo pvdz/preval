@@ -31,33 +31,27 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 2;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(2);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  }
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = 1;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
+    $(11);
   }
-  if (tmpIfTest) {
-    {
-      $(11);
-    }
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpBinBothLhs$1 = 1;
-    const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
-    {
-      $(22);
-    }
-    tmpFallthrough = true;
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$3) {
+    $(22);
   }
 }
 `````

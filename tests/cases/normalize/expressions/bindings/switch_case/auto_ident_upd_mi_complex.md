@@ -26,27 +26,25 @@ switch (1) {
 {
   let b;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = { x: 1 };
-        a = undefined;
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(b);
-        const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-        const tmpBinLhs = tmpNestedAssignObj.x;
-        const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-        tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-        a = tmpNestedPropCompoundComplexRhs;
-        $(a, b);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { x: 1 };
+      a = undefined;
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(b);
+      const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+      const tmpBinLhs = tmpNestedAssignObj.x;
+      const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
+      tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+      a = tmpNestedPropCompoundComplexRhs;
+      $(a, b);
     }
   }
 }

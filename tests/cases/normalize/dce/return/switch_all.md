@@ -40,40 +40,38 @@ $(f());
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 2;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs$1 = $(1);
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    }
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(0);
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      $('keep, do not eval');
+      return undefined;
     }
-    if (tmpIfTest) {
-      {
-        $('keep, do not eval');
-        return undefined;
-      }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('keep, eval');
+      return undefined;
     }
-    let tmpIfTest$1 = tmpFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpBinBothLhs$1 = tmpSwitchTest;
-      const tmpBinBothRhs$1 = $(1);
-      tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    }
-    if (tmpIfTest$1) {
-      {
-        $('keep, eval');
-        return undefined;
-      }
-    }
-    {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$4) {
       $('keep, do not eval');
       const tmpReturnArg = $(2, 'ret');
       return tmpReturnArg;
     }
   }
+  $('eliminate after switch');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

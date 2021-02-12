@@ -26,22 +26,20 @@ switch (0) {
   let arrPatternSplat;
   let a;
   let b;
+  const tmpSwitchValue = 0;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 0 === 0;
-    }
-    if (tmpIfTest) {
-      {
-        bindingPatternArrRoot = [10, 20];
-        arrPatternSplat = [...bindingPatternArrRoot];
-        a = arrPatternSplat[0];
-        b = arrPatternSplat[1];
-        $(a, b);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      bindingPatternArrRoot = [10, 20];
+      arrPatternSplat = [...bindingPatternArrRoot];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
+      $(a, b);
     }
   }
 }

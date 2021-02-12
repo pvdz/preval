@@ -27,24 +27,21 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      const tmpCallCallee = $;
-      const tmpObjLitVal = $(2);
-      const tmpCalleeParam = { b: tmpObjLitVal };
-      const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-      b = tmpAssignObjPatternRhs.b;
-    }
-    tmpFallthrough = true;
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpCallCallee = $;
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam = { b: tmpObjLitVal };
+    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    b = tmpAssignObjPatternRhs.b;
   }
 }
 $(a, b);

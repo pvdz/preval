@@ -31,22 +31,21 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpSwitchTest = $(1, 'disc');
+    const tmpSwitchValue = tmpSwitchTest;
+    let tmpSwitchCaseToStart = 1;
+    const tmpBinLhs = $(0);
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 0;
+    }
     {
-      let tmpFallthrough = false;
-      let tmpIfTest$1 = tmpFallthrough;
-      if (tmpIfTest$1) {
-      } else {
-        const tmpBinBothLhs = tmpSwitchTest;
-        const tmpBinBothRhs = $(0);
-        tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$2) {
+        $('wrong branch');
+        continue;
       }
-      if (tmpIfTest$1) {
-        {
-          $('wrong branch');
-          continue;
-        }
-      }
-      {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$3) {
         continue;
       }
     }

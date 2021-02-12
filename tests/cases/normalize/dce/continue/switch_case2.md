@@ -29,19 +29,17 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpSwitchTest = $(1, 'disc');
+    const tmpSwitchValue = tmpSwitchTest;
+    let tmpSwitchCaseToStart = 1;
+    const tmpBinLhs = $(1, 'case');
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 0;
+    }
     {
-      let tmpFallthrough = false;
-      let tmpIfTest$1 = tmpFallthrough;
-      if (tmpIfTest$1) {
-      } else {
-        const tmpBinBothLhs = tmpSwitchTest;
-        const tmpBinBothRhs = $(1, 'case');
-        tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-      }
-      if (tmpIfTest$1) {
-        {
-          continue;
-        }
+      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$2) {
+        continue;
       }
     }
     $('keep');

@@ -25,63 +25,50 @@ switch ($(1)) {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 5;
+const tmpBinLhs = $(2);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(4);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+    const tmpBinLhs$2 = $(5);
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    if (tmpIfTest$2) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+      const tmpBinLhs$3 = $(6);
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 3;
+      } else {
+        const tmpBinLhs$4 = $(7);
+        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
+        if (tmpIfTest$4) {
+          tmpSwitchCaseToStart = 4;
+        }
+      }
+    }
+  }
+}
 tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(2);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
+    $(3);
   }
-  if (tmpIfTest) {
-    {
-      $(3);
-    }
-    tmpFallthrough = true;
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+  if (tmpIfTest$8) {
+    break tmpSwitchBreak;
   }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpBinBothLhs$1 = tmpSwitchTest;
-    const tmpBinBothRhs$1 = $(4);
-    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$2 = tmpFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    const tmpBinBothLhs$2 = tmpSwitchTest;
-    const tmpBinBothRhs$2 = $(5);
-    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    tmpFallthrough = true;
-  }
-  let tmpIfTest$3 = tmpFallthrough;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpBinBothLhs$3 = tmpSwitchTest;
-    const tmpBinBothRhs$3 = $(6);
-    tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-  }
-  if (tmpIfTest$3) {
-    {
-      break tmpSwitchBreak;
-    }
-  }
-  let tmpIfTest$4 = tmpFallthrough;
-  if (tmpIfTest$4) {
-  } else {
-    const tmpBinBothLhs$4 = tmpSwitchTest;
-    const tmpBinBothRhs$4 = $(7);
-    tmpIfTest$4 = tmpBinBothLhs$4 === tmpBinBothRhs$4;
-  }
-  if (tmpIfTest$4) {
-    tmpFallthrough = true;
-  }
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+  const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
 }
 `````
 

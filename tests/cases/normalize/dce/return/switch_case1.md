@@ -26,20 +26,18 @@ $(f());
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(1, 'case');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(1, 'case');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        const tmpReturnArg = $(2, 'ret');
-        return tmpReturnArg;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
     }
   }
   $('keep, do not eval');

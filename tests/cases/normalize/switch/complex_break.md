@@ -40,32 +40,30 @@ if (1 === 1) {
 ## Normalized
 
 `````js filename=intro
-tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 1 === 1;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 2;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 'no' === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
   }
-  if (tmpIfTest) {
+}
+tmpSwitchBreak: {
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
     {
       {
-        {
-          $(3);
-          break tmpSwitchBreak;
-        }
+        $(3);
+        break tmpSwitchBreak;
       }
     }
   }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    tmpIfTest$1 = 1 === 'no';
-  }
-  if (tmpIfTest$1) {
-    {
-      break tmpSwitchBreak;
-    }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$3) {
+    break tmpSwitchBreak;
   }
 }
 `````

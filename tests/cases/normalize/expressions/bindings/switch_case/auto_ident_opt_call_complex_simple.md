@@ -25,25 +25,23 @@ switch (1) {
   let a;
   let tmpChainRootCall;
   let tmpChainElementCall;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        a = undefined;
-        tmpChainRootCall = $;
-        tmpChainElementCall = tmpChainRootCall($);
-        if (tmpChainElementCall) {
-          const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-          a = tmpChainElementCall$1;
-        }
-        $(a);
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a = undefined;
+      tmpChainRootCall = $;
+      tmpChainElementCall = tmpChainRootCall($);
+      if (tmpChainElementCall) {
+        const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+        a = tmpChainElementCall$1;
       }
-      tmpFallthrough = true;
+      $(a);
     }
   }
 }

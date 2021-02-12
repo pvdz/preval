@@ -30,28 +30,26 @@ const tmpSwitchTest = $('a');
   let arrPatternSplat;
   let a_1;
   let b_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $('a');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        bindingPatternArrRoot = undefined;
-        const tmpNestedAssignArrPatternRhs = z;
-        const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-        x = arrPatternSplat$1[1];
-        y = arrPatternSplat$1[2];
-        bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-        arrPatternSplat = [...bindingPatternArrRoot];
-        a_1 = arrPatternSplat[0];
-        b_1 = arrPatternSplat[1];
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      bindingPatternArrRoot = undefined;
+      const tmpNestedAssignArrPatternRhs = z;
+      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+      x = arrPatternSplat$1[1];
+      y = arrPatternSplat$1[2];
+      bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+      arrPatternSplat = [...bindingPatternArrRoot];
+      a_1 = arrPatternSplat[0];
+      b_1 = arrPatternSplat[1];
+      break tmpSwitchBreak;
     }
   }
 }

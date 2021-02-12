@@ -23,28 +23,25 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+if (tmpNestedComplexRhs) {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(2);
+  tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+}
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    let tmpBinBothRhs;
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-    if (tmpNestedComplexRhs) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(2);
-      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-    }
-    a = tmpNestedComplexRhs;
-    tmpBinBothRhs = tmpNestedComplexRhs;
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    tmpFallthrough = true;
-  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
 $(a);
 `````

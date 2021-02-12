@@ -28,25 +28,23 @@ const tmpSwitchTest = $('a');
   let arrPatternSplat;
   let x_1;
   let y_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $('a');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        $(1);
-        $(2);
-        bindingPatternArrRoot = $(z);
-        arrPatternSplat = [...bindingPatternArrRoot];
-        x_1 = arrPatternSplat[0];
-        y_1 = arrPatternSplat[1];
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      $(1);
+      $(2);
+      bindingPatternArrRoot = $(z);
+      arrPatternSplat = [...bindingPatternArrRoot];
+      x_1 = arrPatternSplat[0];
+      y_1 = arrPatternSplat[1];
+      break tmpSwitchBreak;
     }
   }
 }

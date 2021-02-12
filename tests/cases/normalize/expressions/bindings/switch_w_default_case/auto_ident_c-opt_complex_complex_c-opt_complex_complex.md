@@ -33,77 +33,43 @@ switch (1) {
   let a;
   let tmpChainRootCall;
   let tmpChainElementCall;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    }
+  }
   {
-    const tmpSwitchValue = 1;
-    let tmpSwitchVisitDefault = false;
-    let tmpSwitchFallthrough = false;
-    let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest = tmpDoWhileFlag;
-      if (tmpIfTest) {
-      } else {
-        tmpIfTest = tmpSwitchFallthrough === false;
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      tmpObjLitVal = { y: 1 };
+      b = { x: tmpObjLitVal };
+      a = undefined;
+      tmpChainRootCall = $;
+      tmpChainElementCall = tmpChainRootCall(b);
+      if (tmpChainElementCall) {
+        const tmpChainRootComputed = $('x');
+        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+        if (tmpChainElementObject) {
+          const tmpChainRootComputed$1 = $('y');
+          const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+          a = tmpChainElementObject$1;
+        }
       }
-      if (tmpIfTest) {
-        tmpDoWhileFlag = false;
-        if (tmpSwitchVisitDefault) {
-          tmpSwitchFallthrough = true;
-        } else {
-          {
-            let tmpIfTest$1 = tmpSwitchFallthrough;
-            if (tmpIfTest$1) {
-            } else {
-              tmpIfTest$1 = 1 === tmpSwitchValue;
-            }
-            if (tmpIfTest$1) {
-              {
-                tmpObjLitVal = { y: 1 };
-                b = { x: tmpObjLitVal };
-                a = undefined;
-                tmpChainRootCall = $;
-                tmpChainElementCall = tmpChainRootCall(b);
-                if (tmpChainElementCall) {
-                  const tmpChainRootComputed = $('x');
-                  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-                  if (tmpChainElementObject) {
-                    const tmpChainRootComputed$1 = $('y');
-                    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-                    a = tmpChainElementObject$1;
-                  }
-                }
-                $(a);
-              }
-              tmpSwitchFallthrough = true;
-            }
-          }
-        }
-        if (tmpSwitchFallthrough) {
-          {
-            $('fail1');
-          }
-          tmpSwitchFallthrough = true;
-        }
-        {
-          {
-            {
-              let tmpIfTest$2 = tmpSwitchFallthrough;
-              if (tmpIfTest$2) {
-              } else {
-                tmpIfTest$2 = 2 === tmpSwitchValue;
-              }
-              if (tmpIfTest$2) {
-                {
-                  $('fail2');
-                }
-                tmpSwitchFallthrough = true;
-              }
-            }
-          }
-        }
-        tmpSwitchVisitDefault = true;
-      } else {
-        break;
-      }
+      $(a);
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('fail1');
+    }
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$4) {
+      $('fail2');
     }
   }
 }

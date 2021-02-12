@@ -54,46 +54,39 @@ switch (x) {
 
 `````js filename=intro
 let x = 1;
+const tmpSwitchValue = x;
+let tmpSwitchCaseToStart = 3;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(2);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+    const tmpBinLhs$2 = $(3);
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    if (tmpIfTest$2) {
+      tmpSwitchCaseToStart = 2;
+    }
+  }
+}
 tmpSwitchBreak: {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = x;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    $('A');
   }
-  if (tmpIfTest) {
-    {
-      $('A');
-    }
-    tmpFallthrough = true;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
+    $('B');
+    break tmpSwitchBreak;
   }
-  let tmpIfTest$1 = tmpFallthrough;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpBinBothLhs$1 = x;
-    const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
-    {
-      $('B');
-      break tmpSwitchBreak;
-    }
-  }
-  let tmpIfTest$2 = tmpFallthrough;
-  if (tmpIfTest$2) {
-  } else {
-    const tmpBinBothLhs$2 = x;
-    const tmpBinBothRhs$2 = $(3);
-    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    {
-      $('C');
-      break tmpSwitchBreak;
-    }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
+    $('C');
+    break tmpSwitchBreak;
   }
 }
 `````

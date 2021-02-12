@@ -33,86 +33,52 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
 {
-  const tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchVisitDefault = false;
-  let tmpSwitchFallthrough = false;
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchFallthrough === false;
-    }
-    if (tmpIfTest) {
-      tmpDoWhileFlag = false;
-      if (tmpSwitchVisitDefault) {
-        tmpSwitchFallthrough = true;
-      } else {
-        {
-          let tmpIfTest$1 = tmpSwitchFallthrough;
-          if (tmpIfTest$1) {
-          } else {
-            const tmpBinLhs = $(1);
-            tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-          }
-          if (tmpIfTest$1) {
-            {
-              let tmpNestedAssignPropRhs;
-              let tmpNestedAssignPropRhs$1;
-              let tmpNestedAssignPropRhs$2;
-              let tmpNestedAssignPropRhs$3;
-              let tmpNestedAssignPropRhs$4;
-              const tmpNestedPropAssignRhs = c;
-              b.x = tmpNestedPropAssignRhs;
-              tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-              const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-              b.x = tmpNestedPropAssignRhs$1;
-              tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-              const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-              b.x = tmpNestedPropAssignRhs$2;
-              tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-              const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-              b.x = tmpNestedPropAssignRhs$3;
-              tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-              const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-              b.x = tmpNestedPropAssignRhs$4;
-              tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-              const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-              b.x = tmpNestedPropAssignRhs$5;
-              a = tmpNestedPropAssignRhs$5;
-            }
-            tmpSwitchFallthrough = true;
-          }
-        }
-      }
-      if (tmpSwitchFallthrough) {
-        {
-          $('fail1');
-        }
-        tmpSwitchFallthrough = true;
-      }
-      {
-        {
-          {
-            let tmpIfTest$2 = tmpSwitchFallthrough;
-            if (tmpIfTest$2) {
-            } else {
-              tmpIfTest$2 = 2 === tmpSwitchValue;
-            }
-            if (tmpIfTest$2) {
-              {
-                $('fail2');
-              }
-              tmpSwitchFallthrough = true;
-            }
-          }
-        }
-      }
-      tmpSwitchVisitDefault = true;
-    } else {
-      break;
-    }
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
+    let tmpNestedAssignPropRhs;
+    let tmpNestedAssignPropRhs$1;
+    let tmpNestedAssignPropRhs$2;
+    let tmpNestedAssignPropRhs$3;
+    let tmpNestedAssignPropRhs$4;
+    const tmpNestedPropAssignRhs = c;
+    b.x = tmpNestedPropAssignRhs;
+    tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
+    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
+    b.x = tmpNestedPropAssignRhs$1;
+    tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
+    const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
+    b.x = tmpNestedPropAssignRhs$2;
+    tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
+    const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
+    b.x = tmpNestedPropAssignRhs$3;
+    tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
+    const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
+    b.x = tmpNestedPropAssignRhs$4;
+    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
+    const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
+    b.x = tmpNestedPropAssignRhs$5;
+    a = tmpNestedPropAssignRhs$5;
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$3) {
+    $('fail1');
+  }
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$4) {
+    $('fail2');
   }
 }
 $(a, b, c);

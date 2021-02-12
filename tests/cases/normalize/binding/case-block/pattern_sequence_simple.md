@@ -14,7 +14,7 @@ TDZ case
 
 `````js filename=intro
 let x = 1, y = 2, z = [10, 20, 30];
-switch ($('a')) { case $('a'): let [x, y] = ($(x), $(y), z); break; }
+switch ($('a')) { case $('a'): let [a, b] = ($(x), $(y), z); break; }
 $(x, y, z);
 `````
 
@@ -28,27 +28,25 @@ const tmpSwitchTest = $('a');
 {
   let bindingPatternArrRoot;
   let arrPatternSplat;
-  let x_1;
-  let y_1;
+  let a;
+  let b;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $('a');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        $(x_1);
-        $(y_1);
-        bindingPatternArrRoot = z;
-        arrPatternSplat = [...bindingPatternArrRoot];
-        x_1 = arrPatternSplat[0];
-        y_1 = arrPatternSplat[1];
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      $(x);
+      $(y);
+      bindingPatternArrRoot = z;
+      arrPatternSplat = [...bindingPatternArrRoot];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
+      break tmpSwitchBreak;
     }
   }
 }
@@ -66,15 +64,12 @@ $(x, y, z);
 Should call `$` with:
  - 1: 'a'
  - 2: 'a'
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Normalized calls: BAD?!
- - 1: 'a'
- - 2: 'a'
- - 3: undefined
- - 4: undefined
+ - 3: 1
+ - 4: 2
  - 5: 1, 2, [10, 20, 30]
  - eval returned: undefined
+
+Normalized calls: Same
 
 Final output calls: BAD!!
  - eval returned: undefined

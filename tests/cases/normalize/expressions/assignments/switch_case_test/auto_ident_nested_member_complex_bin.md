@@ -32,33 +32,30 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+let tmpNestedComplexRhs;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+let tmpNestedAssignPropRhs;
+const tmpNestedAssignComMemberObj$1 = $(c);
+const tmpNestedAssignComMemberProp$1 = $('y');
+let tmpNestedAssignPropRhs$1 = d + e;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
+tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
+tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    let tmpBinBothRhs;
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs;
-    const tmpNestedAssignComMemberObj$1 = $(c);
-    const tmpNestedAssignComMemberProp$1 = $('y');
-    let tmpNestedAssignPropRhs$1 = d + e;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
-    a = tmpNestedComplexRhs;
-    tmpBinBothRhs = tmpNestedComplexRhs;
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    tmpFallthrough = true;
-  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
 $(a, b, c, d, e);
 `````

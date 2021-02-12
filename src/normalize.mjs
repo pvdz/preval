@@ -110,14 +110,11 @@ const VERBOSE_TRACING = true;
   - Remove unused `return` keywords
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
-  - revisit switch normalization
   - unused init for variabel (let x = 10; x = 20; $(x))
   - arguments (ehh)
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
   - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
-  - TODO: switch currently adds a do-while and we should have it add a regular while
-  - TODO: we need to normalize do-while to regular while because of `continue`. If we're going to do that anwyays we may as well always do it and hope we can eliminate the overhead later.
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
   - TODO: does coercion have observable side effects (that we care to support)?
@@ -125,7 +122,9 @@ const VERBOSE_TRACING = true;
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
   - TODO: how does `arguments` work with the implicit unique binding stuff??
   - TODO: DCE must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
+  - TODO: DCE must not eliminate hoisted nodes (see fd_after_return.md)
   - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
+  - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -4566,6 +4565,75 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (true) {
+      // Alternate switch transform
+
+      // The idea is to pull out all cases tests in order, compare the discriminant against it, and
+      // remember the index of the first case that matches. If none match, remember test case count.
+      // The next step is taking all the case/default bodies, in order, and wrapping them in `if index <= x`
+      // (using zero for the default case). That way a case match will match its own case plus all
+      // cases (and/or default) after it until the first case that breaks the control flow, or the
+      // last case if none break. The default will properly apply its behavior in the same way.
+
+      rule('Switch transform v2');
+      example(
+        'switch (x) { case a(): b(); break; default: c(); case d(): e(); }',
+        'let i = 1; if (x === a()) i = 0; else if (x === d()) i = 2; label: { if (i <= 0) b(); break label; if (i <= 1) c(); if (i <= 2) e(); }',
+      );
+      before(node);
+
+      const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
+      const tmpNameValue = createFreshVar('tmpSwitchValue');
+      const tmpNameCase = createFreshVar('tmpSwitchCaseToStart');
+      const defaultIndex = node.cases.findIndex((n) => !n.test);
+
+      function labelEmptyBreaks(snode) {
+        if (snode.type === 'BlockStatement') {
+          snode.body.forEach(labelEmptyBreaks);
+        } else if (snode.type === 'IfStatement') {
+          labelEmptyBreaks(snode.consequent);
+          if (snode.alternate) labelEmptyBreaks(snode.alternate);
+        } else if (snode.type === 'BreakStatement' && snode.label === null) {
+          // Change into labeled break. It will break to the start of what was originally a switch statement.
+          snode.label = AST.identifier(tmpLabel);
+        }
+      }
+
+      node.cases.forEach((cnode) => cnode.consequent.forEach(labelEmptyBreaks));
+
+      const newNodes = [
+        AST.variableDeclaration(tmpNameValue, node.discriminant, 'const'),
+        AST.variableDeclaration(tmpNameCase, AST.literal(defaultIndex >= 0 ? defaultIndex : node.cases.length)),
+        node.cases
+          .slice(0)
+          .reverse()
+          .reduce((prev, cnode, i) => {
+            if (!cnode.test) return prev;
+            return AST.ifStatement(
+              AST.binaryExpression('===', cnode.test, tmpNameValue),
+              AST.expressionStatement(AST.assignmentExpression(tmpNameCase, AST.literal(node.cases.length - i - 1))),
+              prev,
+            );
+          }, AST.emptyStatement()),
+        AST.labeledStatement(
+          tmpLabel,
+          AST.blockStatement(
+            ...node.cases.map((cnode, i) => {
+              return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));
+            }),
+          ),
+        ),
+      ];
+
+      body.splice(i, 1, ...newNodes);
+
+      after(newNodes);
+      return true;
+    }
+
+    // This was the old transform. It's more verbose and probably harder to reason about. Maybe. Keeping it so I can test that later.
+    /*
+
     // A switch with a default in the middle has a somewhat more complex transform involving a switch (but no labeled breaks...)
     // That's because essentially a default occurs last and kind of jumps back up. This is a very uncommon case, but it's legal.
     // If the default is the last case then there is no jumping back so we don't need the loop. That's almost always the case.
@@ -4673,18 +4741,6 @@ export function phaseNormalize(fdata, fname) {
 
     const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
 
-    function labelEmptyBreaks(snode) {
-      if (snode.type === 'BlockStatement') {
-        snode.body.forEach(labelEmptyBreaks);
-      } else if (snode.type === 'IfStatement') {
-        labelEmptyBreaks(snode.consequent);
-        if (snode.alternate) labelEmptyBreaks(snode.alternate);
-      } else if (snode.type === 'BreakStatement' && snode.label === null) {
-        // Change into labeled break. It will break to the start of what was originally a switch statement.
-        snode.label = AST.identifier(tmpLabel);
-      }
-    }
-
     const tmpFall = createFreshVar('tmpFallthrough');
     fdata.globallyUniqueLabelRegistery.set(tmpLabel, true); // Mark as being reserved
     const newNode = AST.labeledStatement(
@@ -4717,6 +4773,7 @@ export function phaseNormalize(fdata, fname) {
 
     after(newNode);
     return true;
+   */
   }
   function transformThrowStatement(node, body, i, parent) {
     if (isComplexNode(node.argument)) {

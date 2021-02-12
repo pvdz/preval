@@ -28,29 +28,27 @@ switch (1) {
   let x;
   let y;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        x = 1;
-        y = 2;
-        a = undefined;
-        $(x);
-        $(y);
-        const tmpObjLitVal = $(3);
-        const tmpObjLitVal$1 = $(4);
-        const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-        x = tmpNestedAssignObjPatternRhs.x;
-        y = tmpNestedAssignObjPatternRhs.y;
-        a = tmpNestedAssignObjPatternRhs;
-        $(a, x, y);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      x = 1;
+      y = 2;
+      a = undefined;
+      $(x);
+      $(y);
+      const tmpObjLitVal = $(3);
+      const tmpObjLitVal$1 = $(4);
+      const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+      x = tmpNestedAssignObjPatternRhs.x;
+      y = tmpNestedAssignObjPatternRhs.y;
+      a = tmpNestedAssignObjPatternRhs;
+      $(a, x, y);
     }
   }
 }

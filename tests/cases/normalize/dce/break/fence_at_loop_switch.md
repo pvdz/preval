@@ -42,22 +42,21 @@ while (true) {
   if (tmpIfTest) {
     $('loop');
     const tmpSwitchTest = $(true, 'dis');
+    const tmpSwitchValue = tmpSwitchTest;
+    let tmpSwitchCaseToStart = 1;
+    const tmpBinLhs = $(true, 'case');
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 0;
+    }
     tmpSwitchBreak: {
-      let tmpFallthrough = false;
-      let tmpIfTest$1 = tmpFallthrough;
-      if (tmpIfTest$1) {
-      } else {
-        const tmpBinBothLhs = tmpSwitchTest;
-        const tmpBinBothRhs = $(true, 'case');
-        tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$2) {
+        $('case');
+        break tmpSwitchBreak;
       }
-      if (tmpIfTest$1) {
-        {
-          $('case');
-          break tmpSwitchBreak;
-        }
-      }
-      {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$3) {
         $('do not visit, default');
         break tmpSwitchBreak;
       }

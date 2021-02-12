@@ -30,9 +30,11 @@ if (tmpSwitchTest) {
 } else {
   tmpSwitchTest = 2;
 }
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

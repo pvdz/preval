@@ -27,9 +27,11 @@ let tmpSwitchTest;
 const tmpNestedComplexRhs = function () {};
 a = tmpNestedComplexRhs;
 tmpSwitchTest = tmpNestedComplexRhs;
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 0;
 {
-  let tmpFallthrough = false;
-  {
+  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest) {
     $(100);
   }
 }

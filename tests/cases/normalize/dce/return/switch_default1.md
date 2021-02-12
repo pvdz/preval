@@ -29,26 +29,26 @@ $(f());
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(0);
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      $('keep, do not eval');
+      return undefined;
     }
-    if (tmpIfTest) {
-      {
-        $('keep, do not eval');
-        return undefined;
-      }
-    }
-    {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
       const tmpReturnArg = $(2, 'ret');
       return tmpReturnArg;
     }
   }
+  $('fail');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -28,22 +28,20 @@ switch (1) {
   let tmpCompObj;
   let tmpNewCallee;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = { $: $ };
-        tmpCompObj = $(b);
-        tmpNewCallee = tmpCompObj.$;
-        a = new tmpNewCallee(1);
-        $(a);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { $: $ };
+      tmpCompObj = $(b);
+      tmpNewCallee = tmpCompObj.$;
+      a = new tmpNewCallee(1);
+      $(a);
     }
   }
 }

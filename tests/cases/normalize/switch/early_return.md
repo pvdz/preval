@@ -33,57 +33,49 @@ $(f());
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1);
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs = $(1);
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpBinLhs$1 = $(4);
+      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue;
+      if (tmpIfTest$2) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpBinLhs$2 = $(7);
+        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 3;
+        }
+      }
+    }
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchTest === 0;
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$4) {
+      $(2);
+      break tmpSwitchBreak;
     }
-    if (tmpIfTest) {
-      {
-        $(2);
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(3);
     }
-    let tmpIfTest$1 = tmpFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $(1);
-      tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$6) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
     }
-    if (tmpIfTest$1) {
-      {
-        $(3);
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$2 = tmpFallthrough;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpBinBothLhs$1 = tmpSwitchTest;
-      const tmpBinBothRhs$1 = $(4);
-      tmpIfTest$2 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    }
-    if (tmpIfTest$2) {
-      {
-        $(5);
-        const tmpReturnArg = $(6);
-        return tmpReturnArg;
-      }
-    }
-    let tmpIfTest$3 = tmpFallthrough;
-    if (tmpIfTest$3) {
-    } else {
-      const tmpBinBothLhs$2 = tmpSwitchTest;
-      const tmpBinBothRhs$2 = $(7);
-      tmpIfTest$3 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-    }
-    if (tmpIfTest$3) {
-      {
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$7) {
+      break tmpSwitchBreak;
     }
   }
 }

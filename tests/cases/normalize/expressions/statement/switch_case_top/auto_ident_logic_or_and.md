@@ -24,33 +24,30 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
 {
-  let tmpFallthrough = false;
-  let tmpIfTest = tmpFallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = tmpSwitchTest;
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(0);
-      const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-      if (tmpIfTest$1) {
-      } else {
-        const tmpCallCallee$1 = $;
-        const tmpCalleeParam$1 = $(1);
-        const tmpIfTest$2 = tmpCallCallee$1(tmpCalleeParam$1);
-        if (tmpIfTest$2) {
-          const tmpCallCallee$2 = $;
-          const tmpCalleeParam$2 = $(2);
-          tmpCallCallee$2(tmpCalleeParam$2);
-        }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    const tmpIfTest$2 = tmpCallCallee(tmpCalleeParam);
+    if (tmpIfTest$2) {
+    } else {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(1);
+      const tmpIfTest$3 = tmpCallCallee$1(tmpCalleeParam$1);
+      if (tmpIfTest$3) {
+        const tmpCallCallee$2 = $;
+        const tmpCalleeParam$2 = $(2);
+        tmpCallCallee$2(tmpCalleeParam$2);
       }
     }
-    tmpFallthrough = true;
   }
 }
 $(a);

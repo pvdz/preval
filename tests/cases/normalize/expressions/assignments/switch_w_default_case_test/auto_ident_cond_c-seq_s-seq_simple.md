@@ -27,72 +27,38 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs;
+let tmpNestedComplexRhs = undefined;
+const tmpIfTest$1 = $(30);
+if (tmpIfTest$1) {
+  tmpNestedComplexRhs = 60;
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(100);
+  tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+}
+a = tmpNestedComplexRhs;
+tmpBinLhs = tmpNestedComplexRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$2 = 2 === tmpSwitchValue;
+  if (tmpIfTest$2) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
 {
-  const tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchVisitDefault = false;
-  let tmpSwitchFallthrough = false;
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = tmpSwitchFallthrough === false;
-    }
-    if (tmpIfTest) {
-      tmpDoWhileFlag = false;
-      if (tmpSwitchVisitDefault) {
-        tmpSwitchFallthrough = true;
-      } else {
-        {
-          let tmpIfTest$1 = tmpSwitchFallthrough;
-          if (tmpIfTest$1) {
-          } else {
-            let tmpBinLhs;
-            let tmpNestedComplexRhs = undefined;
-            const tmpIfTest$2 = $(30);
-            if (tmpIfTest$2) {
-              tmpNestedComplexRhs = 60;
-            } else {
-              const tmpCallCallee = $;
-              const tmpCalleeParam = $(100);
-              tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-            }
-            a = tmpNestedComplexRhs;
-            tmpBinLhs = tmpNestedComplexRhs;
-            tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-          }
-          if (tmpIfTest$1) {
-            tmpSwitchFallthrough = true;
-          }
-        }
-      }
-      if (tmpSwitchFallthrough) {
-        {
-          $('fail1');
-        }
-        tmpSwitchFallthrough = true;
-      }
-      {
-        {
-          {
-            let tmpIfTest$3 = tmpSwitchFallthrough;
-            if (tmpIfTest$3) {
-            } else {
-              tmpIfTest$3 = 2 === tmpSwitchValue;
-            }
-            if (tmpIfTest$3) {
-              {
-                $('fail2');
-              }
-              tmpSwitchFallthrough = true;
-            }
-          }
-        }
-      }
-      tmpSwitchVisitDefault = true;
-    } else {
-      break;
-    }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
+    $('fail1');
+  }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
+    $('fail2');
   }
 }
 $(a);

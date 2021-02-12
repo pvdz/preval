@@ -26,29 +26,27 @@ let d = 4;
 const tmpSwitchTest = $('a');
 {
   let a_1;
+  const tmpSwitchValue = tmpSwitchTest;
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $('a');
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   tmpSwitchBreak: {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      const tmpBinBothLhs = tmpSwitchTest;
-      const tmpBinBothRhs = $('a');
-      tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-    }
-    if (tmpIfTest) {
-      {
-        a_1 = undefined;
-        let tmpNestedAssignPropRhs;
-        const tmpNestedAssignObj = $(c);
-        let tmpNestedAssignPropRhs$1 = $(d);
-        const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-        tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-        tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-        const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-        b.x = tmpNestedPropAssignRhs$1;
-        a_1 = tmpNestedPropAssignRhs$1;
-        break tmpSwitchBreak;
-      }
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      a_1 = undefined;
+      let tmpNestedAssignPropRhs;
+      const tmpNestedAssignObj = $(c);
+      let tmpNestedAssignPropRhs$1 = $(d);
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
+      tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
+      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
+      b.x = tmpNestedPropAssignRhs$1;
+      a_1 = tmpNestedPropAssignRhs$1;
+      break tmpSwitchBreak;
     }
   }
 }

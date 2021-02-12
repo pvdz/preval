@@ -30,27 +30,25 @@ switch (1) {
   let tmpPostUpdArgObj;
   let tmpPostUpdArgVal;
   let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 1;
-    }
-    if (tmpIfTest) {
-      {
-        b = { x: 1 };
-        tmpCallCallee = $;
-        tmpCalleeParam = $(b);
-        tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-        tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-        const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-        const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-        tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-        a = tmpPostUpdArgVal;
-        $(a, b);
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$1) {
+      b = { x: 1 };
+      tmpCallCallee = $;
+      tmpCalleeParam = $(b);
+      tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+      tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+      const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+      const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+      a = tmpPostUpdArgVal;
+      $(a, b);
     }
   }
 }

@@ -1,6 +1,7 @@
-import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from './utils.mjs';
-import * as AST from './ast.mjs';
-import globals from './globals.mjs';
+import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from '../utils.mjs';
+import * as AST from '../ast.mjs';
+import globals from '../globals.mjs';
+import walk from '../../lib/walk.mjs';
 
 const VERBOSE_TRACING = true;
 
@@ -96,12 +97,12 @@ const VERBOSE_TRACING = true;
     - Fixing this generically might also increase input support so there's that
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
+    - we know all the relevant bits so why not
   - all bindings have only one point of decl
     - dedupe multiple var statements for the same name
-    - dedupe var+function decls
     - dedupe parameter shadows
-  - we could implement the one-time assignment thing
-    - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
+    - implement SSA
+      - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
   - Should func decls be changed to const blabla?
     - Also not sure whether this helps us anything.
   - return early stuff versus if-elsing it out?
@@ -115,6 +116,9 @@ const VERBOSE_TRACING = true;
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
   - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
+  - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
+    - check how the context is set when calling a namespace
+  - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
   - TODO: does coercion have observable side effects (that we care to support)?
@@ -180,15 +184,15 @@ export function phaseNormalize(fdata, fname) {
   function generateUniqueGlobalName(name) {
     // Create a (module) globally unique name. Then use that name for the local scope.
     let n = 0;
-    if (fdata.globallyUniqueNamingRegistery.has(name)) {
-      while (fdata.globallyUniqueNamingRegistery.has(name + '$' + ++n));
+    if (fdata.globallyUniqueNamingRegistry.has(name)) {
+      while (fdata.globallyUniqueNamingRegistry.has(name + '$' + ++n));
     }
     return n ? name + '$' + n : name;
   }
 
   function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
-    if (!fdata.globallyUniqueNamingRegistery.has(name)) {
-      fdata.globallyUniqueNamingRegistery.set(name, {
+    if (!fdata.globallyUniqueNamingRegistry.has(name)) {
+      fdata.globallyUniqueNamingRegistry.set(name, {
         // ident meta data
         uid: ++fdata.globalNameCounter,
         originalName,
@@ -244,8 +248,8 @@ export function phaseNormalize(fdata, fname) {
 
   function createNewUniqueLabel(name) {
     let n = 0;
-    if (fdata.globallyUniqueLabelRegistery.has(name)) {
-      while (fdata.globallyUniqueLabelRegistery.has(name + '$' + ++n));
+    if (fdata.globallyUniqueLabelRegistry.has(name)) {
+      while (fdata.globallyUniqueLabelRegistry.has(name + '$' + ++n));
     }
     return n ? name + '$' + n : name;
   }
@@ -256,9 +260,9 @@ export function phaseNormalize(fdata, fname) {
   do {
     changed = false;
     // Create a new map for labels every time. Populated as we go. Label references always appear after the definition anyways.
-    fdata.globallyUniqueLabelRegistery = new Map();
+    fdata.globallyUniqueLabelRegistry = new Map();
     // Clear usage/update lists because mutations may have affected them
-    fdata.globallyUniqueNamingRegistery.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
+    fdata.globallyUniqueNamingRegistry.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
     log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
@@ -268,22 +272,38 @@ export function phaseNormalize(fdata, fname) {
     }
   } while (changed);
 
+  //// Assert AST contains no duplicate node objects
+  //const set = new Set();
+  //walk(
+  //  (node, down) => {
+  //    if (down) {
+  //      ASSERT(
+  //        !set.has(node.$p.pid),
+  //        'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
+  //      );
+  //      set.add(node.$p.pid);
+  //    }
+  //  },
+  //  ast,
+  //  'ast',
+  //);
+
   log('After normalization:');
   log(
-    '\ngloballyUniqueNamingRegistery (sans builtins):\n',
-    fdata.globallyUniqueNamingRegistery.size > 50
+    '\ngloballyUniqueNamingRegistry (sans builtins):\n',
+    fdata.globallyUniqueNamingRegistry.size > 50
       ? '<too many>'
-      : fdata.globallyUniqueNamingRegistery.size === globals.size
+      : fdata.globallyUniqueNamingRegistry.size === globals.size
       ? '<none>'
-      : [...fdata.globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+      : [...fdata.globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
   );
   log(
-    '\ngloballyUniqueLabelRegistery:\n',
-    fdata.globallyUniqueLabelRegistery.size > 50
+    '\ngloballyUniqueLabelRegistry:\n',
+    fdata.globallyUniqueLabelRegistry.size > 50
       ? '<too many>'
-      : fdata.globallyUniqueLabelRegistery.size === 0
+      : fdata.globallyUniqueLabelRegistry.size === 0
       ? '<none>'
-      : [...fdata.globallyUniqueLabelRegistery.keys()].join(', '),
+      : [...fdata.globallyUniqueLabelRegistry.keys()].join(', '),
   );
   log();
 
@@ -779,8 +799,8 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformBreakStatement(node, body, i, parent) {
     if (node.label) {
-      ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
-      fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
+      ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
+      fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
     }
 
     log(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
@@ -812,8 +832,8 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformContinueStatement(node, body, i, parent) {
     if (node.label) {
-      ASSERT(fdata.globallyUniqueLabelRegistery.has(node.label.name));
-      fdata.globallyUniqueLabelRegistery.get(node.label.name).usages.push(node);
+      ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
+      fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
     }
 
     log(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
@@ -1069,7 +1089,7 @@ export function phaseNormalize(fdata, fname) {
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
 
-          const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistery.get(node.name);
+          const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
           if (node.name === 'arguments' || !meta.isImplicitGlobal) {
             rule('A statement can not just be an identifier');
             example('x;', ';');
@@ -4001,12 +4021,12 @@ export function phaseNormalize(fdata, fname) {
 
     // Note: if the parent changes and triggers a revisit, then the label would already have been registered
     //ASSERT(
-    //  !fdata.globallyUniqueLabelRegistery.has(node.label.name),
+    //  !fdata.globallyUniqueLabelRegistry.has(node.label.name),
     //  'js syntax governs that a label is unique in its own hierarchy and phase1 should make existing labels unique',
     //  node,
     //);
 
-    if (fdata.globallyUniqueLabelRegistery.has(node.label.name)) {
+    if (fdata.globallyUniqueLabelRegistry.has(node.label.name)) {
       log(
         'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
       );
@@ -4023,7 +4043,7 @@ export function phaseNormalize(fdata, fname) {
       },
       usages: [], // {parent, prop, index} of the break/continue statement referring to the label
     };
-    fdata.globallyUniqueLabelRegistery.set(node.label.name, labelMeta);
+    fdata.globallyUniqueLabelRegistry.set(node.label.name, labelMeta);
 
     // foo: bar
     // foo: {bar}
@@ -4083,7 +4103,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
-        fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+        fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
 
         if (fakeWrapper.body.length === 0) {
           log('The label.body node was eliminated. We can drop the label too.');
@@ -4125,7 +4145,7 @@ export function phaseNormalize(fdata, fname) {
       body.splice(i, 1, newNode);
 
       log('Unregistering label `' + node.label.name + '` because we added a block. This declaration will be visited again.');
-      fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+      fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
 
       after(newNode);
       return true;
@@ -4136,7 +4156,7 @@ export function phaseNormalize(fdata, fname) {
     log('Changes?', anyChange);
     if (anyChange) {
       log('Unregistering label `' + node.label.name + '` because something changed. This declaration will be visited again.');
-      fdata.globallyUniqueLabelRegistery.delete(node.label.name); // This node will be revisited so remove it for now
+      fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
     }
 
     if (node.body.type === 'BlockStatement' && node.body.body.length === 0) {
@@ -4742,7 +4762,7 @@ export function phaseNormalize(fdata, fname) {
     const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
 
     const tmpFall = createFreshVar('tmpFallthrough');
-    fdata.globallyUniqueLabelRegistery.set(tmpLabel, true); // Mark as being reserved
+    fdata.globallyUniqueLabelRegistry.set(tmpLabel, true); // Mark as being reserved
     const newNode = AST.labeledStatement(
       tmpLabel,
       AST.blockStatement(

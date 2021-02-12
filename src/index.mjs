@@ -1,10 +1,14 @@
 import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
-import { phase0 } from './phase0.mjs';
-import { phaseNormalize } from './normalize.mjs';
-import { phase1 } from './phase1.mjs';
-import { phase2 } from './phase2.mjs';
-import { phase3 } from './phase3.mjs';
-import { phase4 } from './phase4.mjs';
+
+import { parseCode } from './normalize/parse.mjs';
+import { phaseNormalize } from './normalize/normalize.mjs';
+import { prepareNormalization } from './normalize/prepare.mjs';
+//import { phase2 } from './normalize/phase2.mjs';
+//import { phase3 } from './normalize/phase3.mjs';
+//import { phase4 } from './normalize/phase4.mjs';
+
+import { phase0 } from './reduce_static/phase0.mjs';
+import { phase1 } from './reduce_static/phase1.mjs';
 
 const MARK_NONE = 0;
 const MARK_TEMP = 1;
@@ -61,8 +65,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
-    const fdata = phase0(inputCode, nextFname);
-    phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    const fdata = parseCode(inputCode, nextFname);
+    prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname);
 
     mod.children = new Set(fdata.imports.values());

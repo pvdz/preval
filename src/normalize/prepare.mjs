@@ -1,14 +1,14 @@
-import walk from '../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from './utils.mjs';
-import globals from './globals.mjs';
-import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
-import { $p } from './$p.mjs';
+import walk from '../../lib/walk.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, getIdentUsageKind } from '../utils.mjs';
+import globals from '../globals.mjs';
+import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+import { $p } from '../$p.mjs';
 
-// This phase is fairly mechanical and should only do discovery, no AST changes.
+// This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req, verbose) {
+export function prepareNormalization(fdata, resolve, req, verbose) {
   const ast = fdata.tenkoOutput.ast;
 
   const funcStack = [];
@@ -19,17 +19,17 @@ export function phase1(fdata, resolve, req, verbose) {
   const thisStack = [];
 
   fdata.globalNameCounter = 0;
-  const globallyUniqueNamingRegistery = new Map();
+  const globallyUniqueNamingRegistry = new Map();
   function createUniqueGlobalName(name) {
     // Create a (module) globally unique name. Then use that name for the local scope.
     let n = 0;
-    if (globallyUniqueNamingRegistery.has(name)) {
-      while (globallyUniqueNamingRegistery.has(name + '_' + ++n));
+    if (globallyUniqueNamingRegistry.has(name)) {
+      while (globallyUniqueNamingRegistry.has(name + '_' + ++n));
     }
     return n ? name + '_' + n : name;
   }
   function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
-    ASSERT(!globallyUniqueNamingRegistery.has(name), 'should prevent trying to register it multiple times...');
+    ASSERT(!globallyUniqueNamingRegistry.has(name), 'should prevent trying to register it multiple times...');
     log('- Registered `' + name + '` as a new unique global');
     const meta = {
       // ident meta data
@@ -102,24 +102,24 @@ export function phase1(fdata, resolve, req, verbose) {
       // Probably best to make explicit yes/no lists and to warn against unexpected forms
       reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
     };
-    globallyUniqueNamingRegistery.set(name, meta);
+    globallyUniqueNamingRegistry.set(name, meta);
     return meta;
   }
   globals.forEach((_, name) => registerGlobalIdent(name, name, { isImplicitGlobal: true, knownBuiltin: true }));
 
-  const globallyUniqueLabelRegistery = new Map();
+  const globallyUniqueLabelRegistry = new Map();
   function createUniqueGlobalLabel(name) {
     // Create a (module) globally unique label name.
     let n = 0;
-    if (globallyUniqueLabelRegistery.has(name)) {
-      while (globallyUniqueLabelRegistery.has(name + '_' + ++n));
+    if (globallyUniqueLabelRegistry.has(name)) {
+      while (globallyUniqueLabelRegistry.has(name + '_' + ++n));
     }
     return n ? name + '_' + n : name;
   }
   function registerGlobalLabel(name, originalName, labelNode) {
-    ASSERT(!globallyUniqueLabelRegistery.has(name), 'this func should be called with the unique label name');
+    ASSERT(!globallyUniqueLabelRegistry.has(name), 'this func should be called with the unique label name');
 
-    globallyUniqueLabelRegistery.set(name, {
+    globallyUniqueLabelRegistry.set(name, {
       // ident meta data
       uid: ++fdata.globalNameCounter,
       originalName,
@@ -129,8 +129,8 @@ export function phase1(fdata, resolve, req, verbose) {
     });
   }
 
-  fdata.globallyUniqueNamingRegistery = globallyUniqueNamingRegistery;
-  fdata.globallyUniqueLabelRegistery = globallyUniqueLabelRegistery;
+  fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
+  fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;
   const exports = new Map();
@@ -180,7 +180,7 @@ export function phase1(fdata, resolve, req, verbose) {
     const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
     ASSERT(uniqueName !== undefined, 'should exist');
     log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
-    const meta = globallyUniqueNamingRegistery.get(uniqueName);
+    const meta = globallyUniqueNamingRegistry.get(uniqueName);
     log('- Meta:', {
       ...meta,
       reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
@@ -316,7 +316,7 @@ export function phase1(fdata, resolve, req, verbose) {
             }
 
             const uniqueName = createUniqueGlobalName(name);
-            log('Adding', name, 'to globallyUniqueNamingRegistery -->', uniqueName);
+            log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
             registerGlobalIdent(uniqueName, name);
             node.$p.nameMapping.set(name, uniqueName);
           });
@@ -476,7 +476,7 @@ export function phase1(fdata, resolve, req, verbose) {
           node.name = uniqueName;
 
           // TODO: is this relevant for phase1?
-          const meta = globallyUniqueNamingRegistery.get(uniqueName);
+          const meta = globallyUniqueNamingRegistry.get(uniqueName);
           ASSERT(meta, 'the meta should exist this this name at this point');
           if (kind === 'read' || kind === 'readwrite') meta.reads.push(node);
           if (kind === 'write' || kind === 'readwrite') meta.writes.push(node);
@@ -495,6 +495,7 @@ export function phase1(fdata, resolve, req, verbose) {
               grandParent.type === 'VariableDeclaration' &&
               path.nodes[path.nodes.length - 4].type === 'ExportNamedDeclaration')
           ) {
+            // TODO: unused by normalization. Remove it.
             log('Marking `' + uniqueName + '` as being an export');
             meta.isExport = true;
           }
@@ -801,20 +802,20 @@ export function phase1(fdata, resolve, req, verbose) {
       .join('\n'),
   );
   log(
-    '\ngloballyUniqueNamingRegistery (sans builtins):\n',
-    globallyUniqueNamingRegistery.size > 50
+    '\ngloballyUniqueNamingRegistry (sans builtins):\n',
+    globallyUniqueNamingRegistry.size > 50
       ? '<too many>'
-      : globallyUniqueNamingRegistery.size === globals.size
+      : globallyUniqueNamingRegistry.size === globals.size
       ? '<none>'
-      : [...globallyUniqueNamingRegistery.keys()].filter((name) => !globals.has(name)).join(', '),
+      : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
   );
   log(
-    '\ngloballyUniqueLabelRegistery:\n',
-    globallyUniqueLabelRegistery.size > 50
+    '\ngloballyUniqueLabelRegistry:\n',
+    globallyUniqueLabelRegistry.size > 50
       ? '<too many>'
-      : globallyUniqueLabelRegistery.size === 0
+      : globallyUniqueLabelRegistry.size === 0
       ? '<none>'
-      : [...globallyUniqueLabelRegistery.keys()].join(', '),
+      : [...globallyUniqueLabelRegistry.keys()].join(', '),
   );
 
   log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
@@ -823,7 +824,7 @@ export function phase1(fdata, resolve, req, verbose) {
   groupEnd();
 
   // Guarantee that exports are not renamed by the deduping normalization algo
-  globallyUniqueNamingRegistery.forEach((obj, name) => {
+  globallyUniqueNamingRegistry.forEach((obj, name) => {
     ASSERT(
       !obj.isExport || name === obj.originalName,
       'all exports should keep their name because they are recorded in global scope, must be lex and so unique, and any other binding that shadows them will be aliased instead',
@@ -831,311 +832,4 @@ export function phase1(fdata, resolve, req, verbose) {
       obj,
     );
   });
-}
-
-function getIdentUsageKind(parentNode, parentProp) {
-  // Returns 'read', 'write', 'readwrite', 'none', or 'label'
-  // Note: for each parent, answer the question "what does the appearance of an ident in each position of a node mean?"
-
-  // Examples of binding reads. All cases refer to an ident
-  // - as expression statement (rare)
-  // - object of member expression
-  // - rhs of assignment
-  // - either side of compound assignment
-  // - either side of binary expression
-  // - rhs inside for-in/for-of
-  // - inside statement header of any kind
-  // - callee of call / new
-  // - arg of call / new
-  // - arg of ++/--
-  // - computed property
-  // - probably many more?
-  // Maybe easier to list write-only cases of bindings
-  // - lhs of regular assignment (not compound!)
-  // - lhs of for-in/for-of
-  // - id of variable declaration
-  // - id of func/class
-  // - param names
-  // - binding names in patterns (not inits)
-  // - imported names
-  // Probably best to make explicit yes/no lists and to warn against unexpected forms
-
-  switch (parentNode.type) {
-    case 'ArrayExpression':
-      // In all cases it's an element of an array
-      ASSERT(parentProp === 'elements');
-      return 'read';
-    case 'ArrayPattern':
-      // In all cases it's a write. If it had a default then it would become an AssignmentPattern.
-      // Properties, in the case of destructuring assignment, become member expressions
-      ASSERT(parentProp === 'elements');
-      return 'write';
-    case 'ArrowFunctionExpression':
-      // Can only appear as parameter which is always a write
-      ASSERT(parentProp === 'params' || parentProp === 'body');
-      return 'write';
-    case 'AssignmentExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      if (parentProp === 'right') return 'read';
-      if (parentNode.operator === '=') return 'write';
-      return 'readwrite';
-    case 'AssignmentPattern':
-      // If it appears as a child then it must be left or right
-      ASSERT(parentProp === 'left' || parentProp === 'right');
-      return parentProp === 'left' ? 'write' : 'read';
-    case 'AwaitExpression':
-      // Must always be an arg, which is always a read
-      ASSERT(parentProp === 'argument');
-      return 'read';
-    case 'BinaryExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'BlockStatement':
-      throw ASSERT(false, 'blocks dont have expression children');
-    case 'BreakStatement':
-      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'label';
-    case 'CallExpression':
-      ASSERT(
-        parentProp === 'callee' || parentProp === 'arguments',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'read';
-    case 'CatchClause':
-      ASSERT(parentProp === 'param', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'ChainExpression':
-      throw ASSERT(false, 'chain elements have member and call expressions as children');
-    case 'ClassBody':
-      throw ASSERT(false, 'class bodies have methods as children', parentNode.type, '.', parentProp);
-    case 'ClassDeclaration':
-      ASSERT(
-        parentProp === 'id' || parentProp === 'superClass',
-        'ident can only be a child of class when it is the id',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'write';
-    case 'ClassExpression':
-      ASSERT(
-        parentProp === 'id' || parentProp === 'superClass',
-        'ident can only be a child of class when it is the id',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'write';
-    case 'ConditionalExpression':
-      ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'ContinueStatement':
-      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'label';
-    case 'DebuggerStatement':
-      throw ASSERT(false);
-    case 'Directive':
-      throw ASSERT(false);
-    case 'DoWhileStatement':
-      ASSERT(parentProp === 'body' || parentProp === 'test', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'EmptyStatement':
-      throw ASSERT(false);
-    case 'ExportAllDeclaration':
-      ASSERT(parentProp === 'exported', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'none';
-    case 'ExportDefaultDeclaration':
-      ASSERT(parentProp === 'declaration', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'ExportNamedDeclaration':
-      throw ASSERT(false, 'I dont think ident can be a direct child here');
-    case 'ExportSpecifier':
-      ASSERT(
-        parentProp === 'local' || parentProp === 'exported',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      if (parentProp === 'local') return 'read';
-      return 'none';
-    case 'ExpressionStatement':
-      ASSERT(parentProp === 'expression', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'ForInStatement':
-      ASSERT(
-        parentProp === 'left' || parentProp === 'right' || parentProp === 'body',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      if (parentProp === 'left') return 'write';
-      return 'read';
-    case 'ForOfStatement':
-      ASSERT(
-        parentProp === 'left' || parentProp === 'right' || parentProp === 'body',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      if (parentProp === 'left') return 'write';
-      return 'read';
-    case 'ForStatement':
-      ASSERT(
-        parentProp === 'init' || parentProp === 'test' || parentProp === 'update' || parentProp === 'body',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'read';
-    case 'FunctionDeclaration':
-      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'FunctionExpression':
-      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'Identifier':
-      throw ASSERT(false);
-    case 'IfStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'ImportDeclaration':
-      throw ASSERT(false);
-    case 'ImportDefaultSpecifier':
-      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'ImportNamespaceSpecifier':
-      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'ImportSpecifier':
-      ASSERT(
-        parentProp === 'local' || parentProp === 'imported',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      if (parentProp === 'local') return 'write';
-      return 'none';
-    case 'LabeledStatement':
-      ASSERT(parentProp === 'label' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      if (parentProp === 'label') return 'label';
-      return 'read';
-    case 'Literal':
-      throw ASSERT(false, 'literals do not have ident children');
-    case 'LogicalExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'MemberExpression':
-      ASSERT(
-        parentProp === 'object' || parentProp === 'property',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      // Even in assignments to properties it will read the object first
-      if (parentProp === 'object' || parentNode.computed) return 'read';
-      return 'write';
-    case 'MetaProperty':
-      ASSERT(parentProp === 'meta' || parentProp === 'property', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'none';
-    case 'MethodDefinition':
-      ASSERT(parentProp === 'key', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      // I don't think this can be value, at least not until the spec changes
-      return 'none';
-    case 'NewExpression':
-      ASSERT(
-        parentProp === 'callee' || parentProp === 'arguments',
-        'unexpected parent prop that has ident',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'read';
-    case 'ObjectExpression':
-      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement');
-    case 'ObjectPattern':
-      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement');
-    case 'Program':
-      throw ASSERT(false);
-    case 'Property':
-      ASSERT(parentProp === 'key' || parentProp === 'value', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      if (parentProp === 'key') return 'none';
-      return 'read';
-    case 'RestElement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'write';
-    case 'ReturnStatement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'SequenceExpression':
-      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'SpreadElement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'Super':
-      throw ASSERT(false);
-    case 'SwitchCase':
-      ASSERT(
-        parentProp === 'test',
-        'if the ident is a child of the consequent then it will be a statement',
-        parentNode.type,
-        '.',
-        parentProp,
-      );
-      return 'read';
-    case 'SwitchStatement':
-      ASSERT(parentProp === 'discriminant', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'TaggedTemplateExpression':
-      ASSERT(parentProp === 'tag', 'the expressions are wrapped in a TemplateElement', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'TemplateElement':
-      throw ASSERT(false);
-    case 'TemplateLiteral':
-      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'ThisExpression':
-      throw ASSERT(false);
-    case 'ThrowStatement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'TryStatement':
-      throw ASSERT(false);
-    case 'UnaryExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      // Note: none of the unary operators currently mutate. (++/-- are update expressions)
-      return 'read';
-    case 'UpdateExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'readwrite';
-    case 'VariableDeclaration':
-      throw ASSERT(false);
-    case 'VariableDeclarator':
-      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      if (parentProp === 'id') return 'write';
-      return 'read';
-    case 'WhileStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'WithStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-    case 'YieldExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
-      return 'read';
-  }
-  throw ASSERT(false, 'Support this new node', node);
 }

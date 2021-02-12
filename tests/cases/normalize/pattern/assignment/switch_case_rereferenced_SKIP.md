@@ -27,41 +27,32 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
 {
   let a;
   let b;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 2;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    }
+  }
   {
-    let tmpFallthrough = false;
-    let tmpIfTest = tmpFallthrough;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = 1 === 0;
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      a = 10;
+      b = 20;
     }
-    if (tmpIfTest) {
-      ('case 0:');
-      {
-        a = 10;
-        b = 20;
-      }
-      tmpFallthrough = true;
-    }
-    let tmpIfTest$1 = tmpFallthrough;
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = 1 === 1;
-    }
-    if (tmpIfTest$1) {
-      ('case 1:');
-      {
-        arrAssignPatternRhs = [30, 40];
-        arrPatternSplat = [...arrAssignPatternRhs];
-        a = arrPatternSplat[0];
-        b = arrPatternSplat[1];
-        arrAssignPatternRhs;
-      }
-      tmpFallthrough = true;
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      const arrAssignPatternRhs = [30, 40];
+      const arrPatternSplat = [...arrAssignPatternRhs];
+      a = arrPatternSplat[0];
+      b = arrPatternSplat[1];
     }
   }
 }
@@ -70,43 +61,16 @@ var arrPatternSplat;
 ## Output
 
 `````js filename=intro
-var arrAssignPatternRhs;
-var arrPatternSplat;
-let a;
-let b;
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
-  a = 10;
-  b = 20;
-  tmpFallthrough = true;
-}
-let tmpIfTest$1 = tmpFallthrough;
-if (tmpIfTest$1) {
-} else {
-  tmpIfTest$1 = true;
-}
-if (tmpIfTest$1) {
-  arrAssignPatternRhs = [30, 40];
-  arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-  tmpFallthrough = true;
-}
+'<skipped>';
 `````
 
 ## Result
 
 Should call `$` with:
- - 0: <crash[ Cannot access 'a' before initialization ]>
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: BAD?!
-[null];
+ - eval returned: undefined
 
 Final output calls: BAD!!
-[null];
-
+ - eval returned: undefined

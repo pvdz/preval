@@ -566,7 +566,7 @@ $(a, x);
 
 ---
 
-# ident_unary_simple
+# ident_unary_typeof_simple
 
 let x = 1;
 let a = typeof x;
@@ -574,11 +574,86 @@ $(a, x);
 
 ---
 
-# ident_unary_complex
+# ident_unary_typeof_complex
 
 let x = 1;
 let a = typeof $(x);
 $(a, x);
+
+---
+
+# ident_unary_void_simple
+
+let x = 1;
+let a = void x;
+$(a);
+
+---
+
+# ident_unary_void_complex
+
+let a = void $(100);
+$(a);
+
+---
+
+# ident_unary_excl_simple
+
+let x = 1;
+let a = ! x;
+$(a);
+
+---
+
+# ident_unary_excl_complex
+
+let a = ! $(100);
+$(a);
+
+---
+
+# ident_unary_plus_simple
+
+let x = 1;
+let a = +x;
+$(a);
+
+---
+
+# ident_unary_plus_complex
+
+let a = +$(100);
+$(a);
+
+---
+
+# ident_unary_minus_simple
+
+let x = 1;
+let a = -x;
+$(a);
+
+---
+
+# ident_unary_minus_complex
+
+let a = -$(100);
+$(a);
+
+---
+
+# ident_unary_tilde_simple
+
+let x = 1;
+let a = ~x;
+$(a);
+
+---
+
+# ident_unary_tilde_complex
+
+let a = ~$(100);
+$(a);
 
 ---
 

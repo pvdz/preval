@@ -12,12 +12,11 @@
 
 `````js filename=intro
 let x = 1,
-  y = 2,
-  z = 3;
+  y = 2;
 
 let a = { a: 999, b: 1000 };
-for (let x in (a = [z, y] = [$(3), $(4)]));
-$(a, x, y, z);
+for (let x in (a = [x, y] = [$(3), $(4)]));
+$(a, x, y);
 `````
 
 ## Normalized
@@ -25,7 +24,6 @@ $(a, x, y, z);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let z = 3;
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
@@ -34,7 +32,7 @@ let a = { a: 999, b: 1000 };
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  z = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
@@ -43,7 +41,7 @@ let a = { a: 999, b: 1000 };
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y, z);
+$(a, x, y);
 `````
 
 ## Output
@@ -51,7 +49,6 @@ $(a, x, y, z);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let z = 3;
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs;
@@ -60,7 +57,7 @@ let a = { a: 999, b: 1000 };
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  z = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
@@ -69,7 +66,7 @@ let a = { a: 999, b: 1000 };
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y, z);
+$(a, x, y);
 `````
 
 ## Result
@@ -77,8 +74,7 @@ $(a, x, y, z);
 Should call `$` with:
  - 1: 3
  - 2: 4
- - 3: [3, 4], 1, 4, 3
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Normalized calls: Same
 

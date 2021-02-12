@@ -14,9 +14,9 @@
 let x = 1,
   y = 2;
 
-let a = { a: 999, b: 1000 }, z = 'fail';
-for (let x in (a = [z, y] = ($(x), $(y), [$(3), $(4)])));
-$(a, x, y, z);
+let a = { a: 999, b: 1000 };
+for (let x in (a = [x, y] = ($(x), $(y), [$(3), $(4)])));
+$(a, x, y);
 `````
 
 ## Normalized
@@ -25,7 +25,6 @@ $(a, x, y, z);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let z = 'fail';
 {
   let tmpForInDeclRhs;
   let tmpNestedComplexRhs;
@@ -35,7 +34,7 @@ let z = 'fail';
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  z = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
@@ -44,7 +43,7 @@ let z = 'fail';
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y, z);
+$(a, x, y);
 `````
 
 ## Output
@@ -53,7 +52,6 @@ $(a, x, y, z);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let z = 'fail';
 {
   let tmpForInDeclRhs;
   let tmpNestedComplexRhs;
@@ -63,7 +61,7 @@ let z = 'fail';
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  z = arrPatternSplat[0];
+  x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
@@ -72,7 +70,7 @@ let z = 'fail';
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y, z);
+$(a, x, y);
 `````
 
 ## Result

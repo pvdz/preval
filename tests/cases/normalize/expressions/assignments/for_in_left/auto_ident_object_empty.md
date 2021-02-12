@@ -12,8 +12,8 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for ((a = {}).x in $({ x: 1 }, 'rhs'));
-$(a, 'a');
+for ((a = {}).x in $({ x: 1 }));
+$(a);
 `````
 
 ## Normalized
@@ -22,8 +22,7 @@ $(a, 'a');
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpCalleeParam$1 = 'rhs';
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
@@ -34,7 +33,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, 'a');
+$(a);
 `````
 
 ## Output
@@ -43,8 +42,7 @@ $(a, 'a');
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
-const tmpCalleeParam$1 = 'rhs';
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
@@ -55,14 +53,14 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, 'a');
+$(a);
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: { x: '1' }, 'rhs'
- - 2: { x: '"x"' }, 'a'
+ - 1: { x: '1' }
+ - 2: { x: '"x"' }
  - eval returned: undefined
 
 Normalized calls: Same

@@ -292,7 +292,6 @@ e = function () {
   d = 54;
   return obje;
 };
-const tmpCallCallee$1 = $$;
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedObj$1 = b();
 const varInitAssignLhsComputedObj$2 = c();
@@ -302,7 +301,7 @@ varInitAssignLhsComputedObj$3.d = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$2.c = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs$3;
-tmpCallCallee$1(varInitAssignLhsComputedRhs$3);
+$$(varInitAssignLhsComputedRhs$3);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````

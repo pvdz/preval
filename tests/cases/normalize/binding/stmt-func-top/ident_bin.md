@@ -37,10 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = 2;
-  let c = 3;
-  let a = b + c;
-  $(a, b, c);
+  let a = 2 + 3;
+  $(a, 2, 3);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

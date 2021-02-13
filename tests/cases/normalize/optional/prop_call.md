@@ -42,10 +42,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = function (...args) {
-  const tmpCalleeParam = args;
   const tmpCompObj = this;
   const tmpCalleeParam$1 = tmpCompObj.y;
-  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(args, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);

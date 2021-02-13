@@ -42,14 +42,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let a = 1;
-  let b = 2;
-  let c = 3;
   let tmpReturnArg = undefined;
-  if (a) {
-    tmpReturnArg = b;
+  if (1) {
+    tmpReturnArg = 2;
   } else {
-    tmpReturnArg = c;
+    tmpReturnArg = 3;
   }
   return tmpReturnArg;
 }

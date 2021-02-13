@@ -33,13 +33,11 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 2 };
-let c = 3;
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedRhs = c;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.x = 3;
+let a = 3;
 export { a };
-$(a, b, c);
+$(3, b, 3);
 `````
 
 ## Result

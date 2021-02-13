@@ -28,10 +28,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
-let c = 3;
-let a = b;
-$(a, b, c);
+$(2, 2, 3);
 `````
 
 ## Result

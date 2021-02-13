@@ -52,10 +52,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = 2;
-let c = 3;
-let d = 4;
 const tmpSwitchTest = $('a');
 {
   let a_1;
@@ -68,8 +65,8 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      const tmpNestedAssignObj = $(c);
-      const tmpNestedAssignPropRhs = $(d);
+      const tmpNestedAssignObj = $(3);
+      const tmpNestedAssignPropRhs = $(4);
       tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
       b = tmpNestedAssignPropRhs;
       a_1 = b;
@@ -77,7 +74,7 @@ const tmpSwitchTest = $('a');
     }
   }
 }
-$(a, b, c);
+$(1, b, 3);
 `````
 
 ## Result

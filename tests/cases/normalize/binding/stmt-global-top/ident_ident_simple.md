@@ -30,10 +30,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 2;
-let c = 3;
-b = c;
+b = 3;
 let a = b;
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

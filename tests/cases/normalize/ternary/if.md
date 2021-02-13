@@ -38,14 +38,11 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 let tmpIfTest = undefined;
-if (a) {
-  tmpIfTest = b;
+if (1) {
+  tmpIfTest = 2;
 } else {
-  tmpIfTest = c;
+  tmpIfTest = 3;
 }
 if (tmpIfTest) {
   $(100);

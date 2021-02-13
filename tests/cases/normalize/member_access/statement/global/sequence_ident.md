@@ -27,10 +27,8 @@ tmpCompObj.length;
 ## Output
 
 `````js filename=intro
-let b = 'foo';
 $(1);
-const tmpCompObj = b;
-tmpCompObj.length;
+'foo'.length;
 `````
 
 ## Result

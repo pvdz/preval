@@ -27,7 +27,6 @@ y = arrPatternSplat[0];
 ## Output
 
 `````js filename=intro
-let x = 10;
 let y = 20;
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];

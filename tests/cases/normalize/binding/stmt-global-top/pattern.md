@@ -32,14 +32,11 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
-let bindingPatternArrRoot = z;
-let arrPatternSplat = [...bindingPatternArrRoot];
+let arrPatternSplat = [...z];
 let a = arrPatternSplat[0];
 let b = arrPatternSplat[1];
-$(a, b, x, y, z);
+$(a, b, 1, 2, z);
 `````
 
 ## Result

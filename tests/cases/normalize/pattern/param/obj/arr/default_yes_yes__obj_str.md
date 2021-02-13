@@ -77,9 +77,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...objPatternAfterDefault];
   return 'ok';
 }
-const tmpCallCallee$3 = f;
 const tmpCalleeParam$3 = { x: 'abc', a: 11, b: 12 };
-const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, 10);
+const tmpCalleeParam$2 = f(tmpCalleeParam$3, 10);
 $(tmpCalleeParam$2);
 `````
 

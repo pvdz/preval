@@ -47,11 +47,10 @@ function f() {
   let y = 2;
   let z = [10, 20, 30];
   let a;
-  const tmpNestedAssignArrPatternRhs = z;
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  const arrPatternSplat = [...z];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  a = z;
   $(a, x, y, z);
 }
 const tmpCalleeParam = f();

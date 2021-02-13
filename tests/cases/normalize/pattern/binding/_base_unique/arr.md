@@ -34,13 +34,11 @@ $(x);
 
 `````js filename=intro
 {
-  let x_1 = 1;
 }
 const bindingPatternArrRoot = [100];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
 {
-  let x_2 = 1;
 }
 $(x);
 `````

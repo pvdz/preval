@@ -34,12 +34,10 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
 let z = [10, 20, 30];
 {
-  $(a);
-  $(b);
+  $(1);
+  $(2);
   let bindingPatternArrRoot = $(z);
   let arrPatternSplat = [...bindingPatternArrRoot];
   let x = arrPatternSplat[0];

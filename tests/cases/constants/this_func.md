@@ -40,10 +40,9 @@ function f() {
   const x = this;
   $(x);
 }
-const tmpCallObj = f;
-const tmpCallVal = tmpCallObj.call;
+const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+tmpCallVal.call(f, tmpCalleeParam);
 `````
 
 ## Result

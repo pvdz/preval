@@ -34,13 +34,10 @@ let d = 4;
 
 `````js filename=intro
 var a;
-let b = 2;
-let c = 3;
-let d = 4;
 {
   a = 1;
   while (true) {
-    $(d);
+    $(4);
   }
 }
 `````

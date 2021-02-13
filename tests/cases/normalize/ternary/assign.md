@@ -35,13 +35,10 @@ $(a);
 
 `````js filename=intro
 let a = 1;
-let b = 2;
-let c = 3;
-let d = 4;
-if (b) {
-  a = c;
+if (2) {
+  a = 3;
 } else {
-  a = d;
+  a = 4;
 }
 $(a);
 `````

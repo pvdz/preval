@@ -30,12 +30,10 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
-let c = 3;
-$(b);
-let a = c;
+$(2);
+let a = 3;
 export { a };
-$(a, b, c);
+$(3, 2, 3);
 `````
 
 ## Result

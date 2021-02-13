@@ -55,8 +55,7 @@ const obj = {
 const varInitAssignLhsComputedObj = $(obj);
 const varInitAssignLhsComputedProp = $('x');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
-let x = 30;
-$(x);
+$(30);
 `````
 
 ## Result

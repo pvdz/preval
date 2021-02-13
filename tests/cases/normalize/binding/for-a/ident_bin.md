@@ -29,11 +29,8 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 {
-  let a_1 = b + c;
+  let a_1 = 2 + 3;
 }
 `````
 

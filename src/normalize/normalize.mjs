@@ -121,7 +121,9 @@ const VERBOSE_TRACING = true;
   - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
   - any binary expression between two literals
   - certain binary expressions between constants, or constants and literals
+  - bindings that only have writes, no reads, can be eliminated?
   - method names that are literals, probably classes and objects alike
+  - constant inlining with + or - unary
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.

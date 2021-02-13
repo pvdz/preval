@@ -66,12 +66,11 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-const tmpCallCallee$1 = f;
 const tmpArrElement$1 = { a: 1, b: 2, c: 3 };
 const tmpArrElement = [tmpArrElement$1, 14];
 const tmpObjLitVal = [tmpArrElement, 13];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);
 `````
 

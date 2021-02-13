@@ -29,10 +29,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-let b = 'foo';
 $(1);
-const tmpCompObj = b;
-let x = tmpCompObj.length;
+let x = 'foo'.length;
 $(x);
 `````
 

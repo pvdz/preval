@@ -38,9 +38,8 @@
 
 `````js filename=intro
 {
-  let x = 100;
   function f() {
-    return x;
+    return 100;
   }
   const tmpCalleeParam = f();
   $(tmpCalleeParam);

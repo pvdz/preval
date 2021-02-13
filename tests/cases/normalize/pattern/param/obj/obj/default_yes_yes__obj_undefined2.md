@@ -52,9 +52,8 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-const tmpCallCallee = f;
 const tmpCalleeParam = { x: undefined };
-tmpCallCallee(tmpCalleeParam);
+f(tmpCalleeParam);
 `````
 
 ## Result

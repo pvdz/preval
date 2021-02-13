@@ -46,10 +46,7 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = [10, 20];
-let x = 3;
-let y = 4;
 let p;
 let q;
 let tmpDoWhileFlag = true;
@@ -57,7 +54,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = x + y;
+    tmpIfTest = 3 + 4;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

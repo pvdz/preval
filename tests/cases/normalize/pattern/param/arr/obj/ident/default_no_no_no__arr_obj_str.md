@@ -44,10 +44,9 @@ function f(tmpParamPattern) {
   let x = arrPatternStep.x;
   return x;
 }
-const tmpCallCallee$1 = f;
 const tmpArrElement = { x: 'abc', y: 2, z: 3 };
 const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 200);
+const tmpCalleeParam = f(tmpCalleeParam$1, 200);
 $(tmpCalleeParam);
 `````
 

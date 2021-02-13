@@ -52,14 +52,11 @@ var g;
 var h;
 var x;
 var y;
-const tmpCallObj = x;
-const tmpCallVal = tmpCallObj.y;
-const tmpCalleeParam = x;
+const tmpCallVal = x.y;
 a = b.c;
 d = e[f];
-const tmpCompObj = g;
-const tmpCalleeParamSpread = tmpCompObj.h;
-tmpCallVal.call(tmpCallObj, tmpCalleeParam, 8, ...tmpCalleeParamSpread);
+const tmpCalleeParamSpread = g.h;
+tmpCallVal.call(x, x, 8, ...tmpCalleeParamSpread);
 `````
 
 ## Result

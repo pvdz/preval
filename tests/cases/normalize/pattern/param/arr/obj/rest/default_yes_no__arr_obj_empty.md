@@ -67,10 +67,9 @@ function f(tmpParamPattern) {
   let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return x;
 }
-const tmpCallCallee$3 = f;
 const tmpArrElement = {};
 const tmpCalleeParam$5 = [tmpArrElement, 20, 30];
-const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, 200);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5, 200);
 $(tmpCalleeParam$4);
 `````
 

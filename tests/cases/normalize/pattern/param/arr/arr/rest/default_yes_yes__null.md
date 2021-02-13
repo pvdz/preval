@@ -73,8 +73,7 @@ function f($tdz$__pattern) {
   let x = arrPatternSplat$1.slice(0);
   return 'bad';
 }
-const tmpCallCallee$1 = f;
-const tmpCalleeParam = tmpCallCallee$1(null, 200);
+const tmpCalleeParam = f(null, 200);
 $(tmpCalleeParam);
 `````
 

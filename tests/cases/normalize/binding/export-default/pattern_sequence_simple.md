@@ -35,13 +35,10 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
 let z = [10, 20, 30];
-$(a);
-$(b);
-let bindingPatternArrRoot = z;
-let arrPatternSplat = [...bindingPatternArrRoot];
+$(1);
+$(2);
+let arrPatternSplat = [...z];
 let x = arrPatternSplat[0];
 let y = arrPatternSplat[1];
 export { x, y };

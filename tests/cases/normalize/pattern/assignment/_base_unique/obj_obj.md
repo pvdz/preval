@@ -33,13 +33,11 @@ z_1 = objPatternNoDefault$1.z;
 
 `````js filename=intro
 {
-  let z = 1;
 }
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 z_1 = objPatternNoDefault$1.z;
 {
-  let z_2 = 1;
 }
 `````
 

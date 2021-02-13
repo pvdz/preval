@@ -43,15 +43,12 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = { x: 2 };
-  let c = 3;
-  let d = 4;
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedRhs$1 = $(d);
+  const varInitAssignLhsComputedObj$1 = $(3);
+  const varInitAssignLhsComputedRhs$1 = $(4);
   varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-  let a = varInitAssignLhsComputedRhs$1;
-  $(a, b, c, d);
+  $(varInitAssignLhsComputedRhs$1, b, 3, 4);
 }
 `````
 

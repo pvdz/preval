@@ -47,11 +47,9 @@ function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let b = { x: 2 };
-    let c = 3;
     b.x;
-    const tmpCompObj = c;
-    let a = tmpCompObj.foo;
-    $(a, b, c);
+    let a = (3).foo;
+    $(a, b, 3);
   }
 }
 const tmpCalleeParam = f();

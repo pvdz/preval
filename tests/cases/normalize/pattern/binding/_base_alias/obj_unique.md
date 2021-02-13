@@ -35,11 +35,9 @@ const a = bindingPatternObjRoot.x;
 
 `````js filename=intro
 {
-  let a_1 = 1;
 }
 const a = (1).x;
 {
-  let a_2 = 1;
 }
 `````
 

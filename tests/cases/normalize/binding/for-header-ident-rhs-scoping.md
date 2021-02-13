@@ -37,13 +37,10 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 1;
 {
   const tmpForInDeclRhs = [x_1];
   let x_1;
   for (x_1 in tmpForInDeclRhs) {
-    let y_1 = 2;
     $(x_1);
   }
 }

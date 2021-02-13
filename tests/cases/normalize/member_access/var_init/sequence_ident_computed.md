@@ -33,14 +33,11 @@ $(c);
 ## Output
 
 `````js filename=intro
-let b = 'foo';
-let c = 1;
 $(1);
-const tmpCompObj = b;
 const tmpCompProp = $('length');
-let x = tmpCompObj[tmpCompProp];
+let x = 'foo'[tmpCompProp];
 $(x);
-$(c);
+$(1);
 `````
 
 ## Result

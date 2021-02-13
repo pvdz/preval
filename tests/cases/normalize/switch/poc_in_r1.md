@@ -42,11 +42,9 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpSwitchValue = x;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

@@ -47,8 +47,7 @@ function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let z = [10, 20, 30];
-    let bindingPatternArrRoot = z;
-    let arrPatternSplat = [...bindingPatternArrRoot];
+    let arrPatternSplat = [...z];
     let x = arrPatternSplat[0];
     let y = arrPatternSplat[1];
     $(x, y, z);

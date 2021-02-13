@@ -40,13 +40,10 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = { x: 2 };
-  let c = 3;
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedRhs = c;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  let a = varInitAssignLhsComputedRhs;
-  $(a, b, c);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  $(3, b, 3);
 }
 `````
 

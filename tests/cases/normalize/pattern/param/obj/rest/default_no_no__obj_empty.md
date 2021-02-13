@@ -62,9 +62,8 @@ function f($tdz$__pattern) {
   let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return x;
 }
-const tmpCallCallee$3 = f;
 const tmpCalleeParam$5 = {};
-const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, 10);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
 $(tmpCalleeParam$4);
 `````
 

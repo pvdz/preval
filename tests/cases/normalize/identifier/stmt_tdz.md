@@ -26,7 +26,6 @@ $('fail');
 ## Output
 
 `````js filename=intro
-let x = 10;
 $('fail');
 `````
 

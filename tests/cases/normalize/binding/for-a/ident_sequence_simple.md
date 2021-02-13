@@ -30,12 +30,8 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 {
-  $(b);
-  let a_1 = c;
+  $(2);
 }
 `````
 

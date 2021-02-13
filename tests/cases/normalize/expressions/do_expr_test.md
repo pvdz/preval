@@ -40,19 +40,16 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let a = 1;
-let x = 3;
-let y = 4;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = x + y;
+    tmpIfTest = 3 + 4;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
-    $(a);
+    $(1);
   } else {
     break;
   }

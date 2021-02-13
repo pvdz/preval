@@ -70,9 +70,8 @@ function f(tmpParamPattern) {
   }
   return 'ok';
 }
-const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

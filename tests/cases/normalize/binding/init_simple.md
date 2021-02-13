@@ -25,8 +25,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = Infinity;
-$(x);
+$(Infinity);
 `````
 
 ## Result

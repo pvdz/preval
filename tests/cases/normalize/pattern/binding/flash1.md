@@ -88,9 +88,8 @@ function x(tmpParamPattern, tmpParamPattern$1) {
     foo = arrPatternBeforeDefault$1;
   }
   let objPatternNoDefault = tmpParamPattern$1.x;
-  const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  let x_1 = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let x_1 = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 }
 `````
 

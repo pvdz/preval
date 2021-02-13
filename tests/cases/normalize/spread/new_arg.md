@@ -41,21 +41,12 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 
 `````js filename=intro
 let a = 1;
-let b = 2;
-let c = 3;
 let d = 4;
-let e = 5;
-let f = 6;
-let g = 7;
-let h = 8;
-let y = 9;
-const tmpNewCallee = y;
 const tmpCalleeParam = x;
-a = b.c;
-d = e[f];
-const tmpCompObj = g;
-const tmpCalleeParamSpread = tmpCompObj.h;
-new tmpNewCallee(tmpCalleeParam, 8, ...tmpCalleeParamSpread);
+a = (2).c;
+d = (5)[6];
+const tmpCalleeParamSpread = (7).h;
+new 9(tmpCalleeParam, 8, ...tmpCalleeParamSpread);
 `````
 
 ## Result

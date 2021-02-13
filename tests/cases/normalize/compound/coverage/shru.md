@@ -29,8 +29,7 @@ $(a);
 
 `````js filename=intro
 let a = 1;
-let b = 2;
-a = a >>> b;
+a = a >>> 2;
 $(a);
 `````
 

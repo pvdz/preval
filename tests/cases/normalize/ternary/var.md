@@ -35,13 +35,10 @@ $(foo);
 
 `````js filename=intro
 var foo;
-let a = 1;
-let b = 2;
-let c = 3;
-if (a) {
-  foo = b;
+if (1) {
+  foo = 2;
 } else {
-  foo = c;
+  foo = 3;
 }
 $(foo);
 `````

@@ -36,17 +36,13 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
-let c = 3;
-let d = 4;
 {
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedRhs$1 = $(d);
+  const varInitAssignLhsComputedObj$1 = $(3);
+  const varInitAssignLhsComputedRhs$1 = $(4);
   varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-  let a_1 = varInitAssignLhsComputedRhs$1;
 }
 `````
 

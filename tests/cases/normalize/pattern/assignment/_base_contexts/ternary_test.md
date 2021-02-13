@@ -29,8 +29,6 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 
 `````js filename=intro
 let x = 1;
-let b = 2;
-let c = 3;
 let tmpIfTest;
 x = (1).x;
 tmpIfTest = 1;

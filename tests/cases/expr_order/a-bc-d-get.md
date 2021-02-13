@@ -46,11 +46,9 @@ let b = {
     $('should not be called');
   },
 };
-let d = 3;
-const tmpNestedPropAssignRhs = d;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(a, b, d);
+b.c = 3;
+a = 3;
+$(a, b, 3);
 `````
 
 ## Result

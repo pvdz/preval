@@ -31,11 +31,9 @@ x_1 = tmpAssignObjPatternRhs.x;
 
 `````js filename=intro
 {
-  let x = 1;
 }
 x_1 = (1).x;
 {
-  let x_2 = 1;
 }
 `````
 

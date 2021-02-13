@@ -30,10 +30,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 let o = $(undefined);
-const tmpDeleteOpt = o;
-const tmpIfTest = tmpDeleteOpt == null;
+const tmpIfTest = o == null;
 if (tmpIfTest) {
-  delete tmpDeleteOpt.x;
+  delete o.x;
 }
 `````
 

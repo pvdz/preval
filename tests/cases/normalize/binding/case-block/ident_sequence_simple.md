@@ -47,9 +47,6 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 const tmpSwitchTest = $('a');
 {
   let a_1;
@@ -62,13 +59,13 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      $(b);
-      a_1 = c;
+      $(2);
+      a_1 = 3;
       break tmpSwitchBreak;
     }
   }
 }
-$(a, b, c);
+$(1, 2, 3);
 `````
 
 ## Result

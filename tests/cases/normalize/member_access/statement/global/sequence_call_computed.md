@@ -30,12 +30,11 @@ $(c);
 ## Output
 
 `````js filename=intro
-let c = 1;
 $(1);
 const tmpCompObj = $(2);
 const tmpCompProp = $('toString');
 tmpCompObj[tmpCompProp];
-$(c);
+$(1);
 `````
 
 ## Result

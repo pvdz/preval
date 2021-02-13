@@ -64,10 +64,9 @@ function f() {
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 }
-const tmpCallObj = f;
-const tmpCallVal = tmpCallObj.call;
+const tmpCallVal = f.call;
 const tmpCalleeParam$1 = { x: 100 };
-const tmpCalleeParam = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1);
+const tmpCalleeParam = tmpCallVal.call(f, tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

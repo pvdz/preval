@@ -45,9 +45,8 @@ g();
 `````js filename=intro
 function g() {
   {
-    let x = 100;
     function f() {
-      return x;
+      return 100;
     }
     const tmpCalleeParam = f();
     $(tmpCalleeParam);

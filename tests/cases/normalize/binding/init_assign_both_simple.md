@@ -29,8 +29,7 @@ let a = b;
 
 `````js filename=intro
 let b = 10;
-let c = 20;
-b = c;
+b = 20;
 let a = b;
 `````
 

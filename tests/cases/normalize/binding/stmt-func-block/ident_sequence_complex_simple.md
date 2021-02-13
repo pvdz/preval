@@ -48,14 +48,10 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let b = 2;
-    let c = 3;
-    $(b);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedRhs = c;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    let a = varInitAssignLhsComputedRhs;
-    $(a, b, c);
+    $(2);
+    const varInitAssignLhsComputedObj = $(3);
+    varInitAssignLhsComputedObj.x = 3;
+    $(3, 2, 3);
   }
 }
 const tmpCalleeParam = f();

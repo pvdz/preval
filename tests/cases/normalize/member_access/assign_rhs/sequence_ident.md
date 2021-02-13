@@ -31,10 +31,8 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-let b = 'foo';
 $(1);
-const tmpAssignRhsProp = b;
-x = tmpAssignRhsProp.length;
+x = 'foo'.length;
 $(x);
 `````
 

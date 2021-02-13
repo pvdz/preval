@@ -32,12 +32,9 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-let b = 2;
-let c = 3;
-let d = 4;
 {
-  while (b) {
-    $(d);
+  while (2) {
+    $(4);
   }
 }
 `````

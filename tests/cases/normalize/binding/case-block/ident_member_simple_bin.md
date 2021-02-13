@@ -50,10 +50,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = { x: 2 };
-let c = 3;
-let d = 4;
 const tmpSwitchTest = $('a');
 {
   let varInitAssignLhsComputedRhs;
@@ -67,14 +64,14 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      varInitAssignLhsComputedRhs = c + d;
+      varInitAssignLhsComputedRhs = 3 + 4;
       b.x = varInitAssignLhsComputedRhs;
       a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;
     }
   }
 }
-$(a, b, c);
+$(1, b, 3);
 `````
 
 ## Result

@@ -40,9 +40,8 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 0;
 tmpSwitchBreak: {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     {
       $(3);

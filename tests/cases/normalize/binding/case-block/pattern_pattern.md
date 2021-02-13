@@ -59,8 +59,6 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
@@ -80,11 +78,10 @@ const tmpSwitchTest = $('a');
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       bindingPatternArrRoot = undefined;
-      const tmpNestedAssignArrPatternRhs = z;
-      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+      const arrPatternSplat$1 = [...z];
       x = arrPatternSplat$1[1];
       y = arrPatternSplat$1[2];
-      bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+      bindingPatternArrRoot = z;
       arrPatternSplat = [...bindingPatternArrRoot];
       a_1 = arrPatternSplat[0];
       b_1 = arrPatternSplat[1];
@@ -92,7 +89,7 @@ const tmpSwitchTest = $('a');
     }
   }
 }
-$(a, b, x, y, z);
+$(1, 2, x, y, z);
 `````
 
 ## Result

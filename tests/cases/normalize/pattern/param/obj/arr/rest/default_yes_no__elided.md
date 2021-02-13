@@ -61,10 +61,9 @@ function f(tmpParamPattern) {
   let y = arrPatternSplat.slice(0);
   return y;
 }
-const tmpCallCallee$2 = f;
 const tmpObjLitVal = [, , , 1];
 const tmpCalleeParam$2 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 10);
+const tmpCalleeParam$1 = f(tmpCalleeParam$2, 10);
 $(tmpCalleeParam$1);
 `````
 

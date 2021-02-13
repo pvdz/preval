@@ -40,9 +40,8 @@ switch (1) { default: let x = x; $('fail'); }
 `````js filename=intro
 {
   let x;
-  let tmpSwitchCaseToStart = 0;
   {
-    const tmpIfTest = tmpSwitchCaseToStart <= 0;
+    const tmpIfTest = 0 <= 0;
     if (tmpIfTest) {
       $('fail');
     }

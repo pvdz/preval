@@ -51,8 +51,7 @@ function f($tdz$__x) {
   }
   return x;
 }
-const tmpCallCallee$1 = f;
-const tmpCalleeParam = tmpCallCallee$1(null, 200);
+const tmpCalleeParam = f(null, 200);
 $(tmpCalleeParam);
 `````
 

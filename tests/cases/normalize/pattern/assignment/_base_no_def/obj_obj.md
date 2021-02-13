@@ -28,8 +28,6 @@ z = objPatternNoDefault$1.z;
 ## Output
 
 `````js filename=intro
-let x = 10;
-let y = 20;
 let z = 30;
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;

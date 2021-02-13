@@ -51,14 +51,11 @@ function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let b = { x: 2 };
-    let c = 3;
-    let d = 4;
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedRhs$1 = $(d);
+    const varInitAssignLhsComputedObj = $(3);
+    const varInitAssignLhsComputedRhs$1 = $(4);
     varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
     b.x = varInitAssignLhsComputedRhs$1;
-    let a = varInitAssignLhsComputedRhs$1;
-    $(a, b, c);
+    $(varInitAssignLhsComputedRhs$1, b, 3);
   }
 }
 const tmpCalleeParam = f();

@@ -31,9 +31,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let foo = 1;
 $(true);
-const tmpCalleeParam$1 = typeof foo;
+const tmpCalleeParam$1 = typeof 1;
 $(tmpCalleeParam$1);
 `````
 

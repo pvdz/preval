@@ -28,7 +28,6 @@ let tmpSwitchCaseToStart = 0;
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 0;
 `````
 
 ## Result

@@ -39,10 +39,9 @@ function f() {
   return 10;
 }
 let tmpCalleeParam = undefined;
-const tmpChainRootCall = f;
-const tmpIfTest = tmpChainRootCall != null;
+const tmpIfTest = f != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall();
+  const tmpChainElementCall = f();
   tmpCalleeParam = tmpChainElementCall;
 }
 $(tmpCalleeParam);

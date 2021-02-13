@@ -43,8 +43,6 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 1;
 {
   const tmpForInPatDeclRhs = [x_1];
   let tmpForInPatDeclLhs;
@@ -54,7 +52,6 @@ let y = 1;
     const arrPatternSplat = [...arrAssignPatternRhs];
     x_1 = arrPatternSplat[0];
     {
-      let y_1 = 2;
       $(x_1);
     }
   }

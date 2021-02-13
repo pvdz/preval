@@ -53,12 +53,25 @@ export function phase2(program, fdata, resolve, req) {
   let inlined = false;
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
-    if (meta.isConstant && !meta.isBuiltin) {
+
+    //ASSERT(meta.writes.length >= 1, 'all bindings should have some kind of point of update, or else it is an implicit global read, which can happen but would be a runtime error in strict mode', meta);
+
+    if (meta.writes.length === 1 && !meta.isConstant) {
+      log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
+      meta.isConstant = true;
+    }
+
+    if (meta.isConstant) {
       ASSERT(meta.writes.length === 1, 'a constant should have one write?', meta.writes);
       const write = meta.writes[0];
+      if (!write) {
+        log('TODO; uncomment me to figure out what');
+        return;
+      }
       //log('Write:', write);
 
       // Figure out the assigned value. This depends on the position of the identifier (var decl, param, assign).
+      // Note: any binding can be isConstant here. It is not determined by `const`, but by the number of writes.
       let assignee;
       if (write.parentNode.type === 'VariableDeclarator') {
         assignee = write.parentNode.init; // Must exist if the variable is a constant. We normalized for-header cases away.
@@ -69,6 +82,12 @@ export function phase2(program, fdata, resolve, req) {
         // Tough luck. Until we support parameters and all that.
         return;
       }
+
+      if (!assignee) {
+        log('TODO; uncomment me to figure out what');
+        return;
+      }
+
 
       if (
         assignee.type === 'Identifier' &&
@@ -157,6 +176,7 @@ export function phase2(program, fdata, resolve, req) {
         after(';');
       }
     }
+
   });
   log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
   groupEnd();

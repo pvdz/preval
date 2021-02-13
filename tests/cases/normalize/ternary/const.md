@@ -34,14 +34,11 @@ $(foo);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 let foo = undefined;
-if (a) {
-  foo = b;
+if (1) {
+  foo = 2;
 } else {
-  foo = c;
+  foo = 3;
 }
 $(foo);
 `````

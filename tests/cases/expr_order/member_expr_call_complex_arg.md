@@ -43,10 +43,9 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````js filename=intro
 var a;
 var x;
-const tmpCallObj = a;
-const tmpCallVal = tmpCallObj.b;
+const tmpCallVal = a.b;
 const tmpCalleeParam = x.y;
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+tmpCallVal.call(a, tmpCalleeParam);
 `````
 
 ## Result

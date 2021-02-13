@@ -53,8 +53,7 @@ const obj = {
 };
 const varInitAssignLhsComputedObj = $(obj);
 varInitAssignLhsComputedObj.x = 30;
-let x = 30;
-$(x);
+$(30);
 `````
 
 ## Result

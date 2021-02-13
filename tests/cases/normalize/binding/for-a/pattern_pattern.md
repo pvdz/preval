@@ -39,18 +39,15 @@ let z = [10, 20, 30];
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 {
   let bindingPatternArrRoot;
-  const tmpNestedAssignArrPatternRhs = z;
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  const arrPatternSplat$1 = [...z];
   x = arrPatternSplat$1[1];
   y = arrPatternSplat$1[2];
-  bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+  bindingPatternArrRoot = z;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a_1 = arrPatternSplat[0];
   let b_1 = arrPatternSplat[1];

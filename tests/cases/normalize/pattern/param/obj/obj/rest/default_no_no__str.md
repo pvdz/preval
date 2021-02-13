@@ -39,9 +39,8 @@ tmpCallCallee$1(tmpCalleeParam$3);
 `````js filename=intro
 function f(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
-  const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  let y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
   return 'bad';
 }
 const tmpCalleeParam$3 = f('abc', 10);

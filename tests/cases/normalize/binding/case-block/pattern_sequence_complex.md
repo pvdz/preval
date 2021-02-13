@@ -54,8 +54,6 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 {
@@ -82,7 +80,7 @@ const tmpSwitchTest = $('a');
     }
   }
 }
-$(x, y, z);
+$(1, 2, z);
 `````
 
 ## Result

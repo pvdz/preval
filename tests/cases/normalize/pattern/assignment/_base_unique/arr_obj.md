@@ -36,7 +36,6 @@ $(x_1);
 
 `````js filename=intro
 {
-  let x = 1;
 }
 const tmpArrElement = { x: 100 };
 const arrAssignPatternRhs = [tmpArrElement];
@@ -44,7 +43,6 @@ const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x_1 = arrPatternStep.x;
 {
-  let x_2 = 1;
 }
 $(x_1);
 `````

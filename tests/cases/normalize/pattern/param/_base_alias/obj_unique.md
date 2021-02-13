@@ -41,11 +41,9 @@ let y = 1;
 function g(tmpParamPattern) {
   let y_1 = tmpParamPattern.x;
   {
-    let y_2 = 2;
   }
   return y_1;
 }
-let y = 1;
 `````
 
 ## Result

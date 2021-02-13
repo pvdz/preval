@@ -35,14 +35,11 @@ $(c);
 
 `````js filename=intro
 let x = 10;
-let b = 'foo';
-let c = 1;
 $(1);
-const tmpAssignRhsCompObj = b;
 const tmpAssignRhsCompProp = $('length');
-x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+x = 'foo'[tmpAssignRhsCompProp];
 $(x);
-$(c);
+$(1);
 `````
 
 ## Result

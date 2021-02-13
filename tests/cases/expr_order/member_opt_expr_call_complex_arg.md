@@ -39,13 +39,12 @@ if (tmpIfTest) {
 `````js filename=intro
 var a;
 var x;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = a != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
+  const tmpChainElementObject = a.b;
   const tmpCallVal = tmpChainElementObject.call;
   const tmpCalleeParam$1 = x.y;
-  const tmpChainElementCall = tmpCallVal.call(tmpChainElementObject, tmpChainRootProp, tmpCalleeParam$1);
+  const tmpChainElementCall = tmpCallVal.call(tmpChainElementObject, a, tmpCalleeParam$1);
 }
 `````
 

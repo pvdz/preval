@@ -52,9 +52,6 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 const tmpSwitchTest = $('a');
 {
   let varInitAssignLhsComputedObj;
@@ -69,16 +66,16 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      $(b);
-      varInitAssignLhsComputedObj = $(c);
-      varInitAssignLhsComputedRhs = $(c);
+      $(2);
+      varInitAssignLhsComputedObj = $(3);
+      varInitAssignLhsComputedRhs = $(3);
       varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
       a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;
     }
   }
 }
-$(a, b, c);
+$(1, 2, 3);
 `````
 
 ## Result

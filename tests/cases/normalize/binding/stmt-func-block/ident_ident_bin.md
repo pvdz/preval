@@ -47,11 +47,9 @@ function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let b = 2;
-    let c = 3;
-    let d = 4;
-    b = c + d;
+    b = 3 + 4;
     let a = b;
-    $(a, b, c);
+    $(a, b, 3);
   }
 }
 const tmpCalleeParam = f();

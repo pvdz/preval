@@ -42,14 +42,12 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = 2;
-  let c = 3;
-  let d = 4;
-  const tmpNestedAssignObj = $(c);
-  const tmpNestedAssignPropRhs = $(d);
+  const tmpNestedAssignObj = $(3);
+  const tmpNestedAssignPropRhs = $(4);
   tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
   b = tmpNestedAssignPropRhs;
   let a = b;
-  $(a, b, c);
+  $(a, b, 3);
 }
 `````
 

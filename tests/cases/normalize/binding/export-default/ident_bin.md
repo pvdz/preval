@@ -29,11 +29,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
-let c = 3;
-let a = b + c;
+let a = 2 + 3;
 export { a };
-$(a, b, c);
+$(a, 2, 3);
 `````
 
 ## Result

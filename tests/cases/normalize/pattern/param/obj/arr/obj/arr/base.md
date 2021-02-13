@@ -57,12 +57,11 @@ function f(tmpParamPattern) {
   let arrPatternSplat$1 = [...objPatternNoDefault$1];
   return 'ok';
 }
-const tmpCallCallee$1 = f;
 const tmpObjLitVal$2 = [1, 2, 3];
 const tmpArrElement = { x: 15, y: tmpObjLitVal$2, c: 16 };
 const tmpObjLitVal = [tmpArrElement, 13, 14];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);
 `````
 

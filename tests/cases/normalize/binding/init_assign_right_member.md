@@ -29,11 +29,7 @@ let a = varInitAssignLhsComputedRhs;
 ## Output
 
 `````js filename=intro
-let b = 10;
-let c = 20;
-const varInitAssignLhsComputedRhs = c;
-b.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+(10).x = 20;
 `````
 
 ## Result

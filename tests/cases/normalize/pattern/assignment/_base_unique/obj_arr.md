@@ -33,13 +33,11 @@ y_1 = arrPatternSplat[0];
 
 `````js filename=intro
 {
-  let y = 1;
 }
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 y_1 = arrPatternSplat[0];
 {
-  let y_2 = 1;
 }
 `````
 

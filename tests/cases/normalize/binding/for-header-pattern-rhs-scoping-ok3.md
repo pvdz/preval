@@ -41,7 +41,6 @@ let y = {};
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = {};
 {
   const tmpForInPatDeclRhs = [y];

@@ -39,12 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let c = 'foo';
   $(1);
   const tmpCompObj = $(2);
   const tmpCompProp = $('toString');
   tmpCompObj[tmpCompProp];
-  $(c);
+  $('foo');
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

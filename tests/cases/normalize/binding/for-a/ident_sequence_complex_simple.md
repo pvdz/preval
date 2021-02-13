@@ -33,15 +33,10 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
 {
-  $(b);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedRhs = c;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
+  $(2);
+  const varInitAssignLhsComputedObj = $(3);
+  varInitAssignLhsComputedObj.x = 3;
 }
 `````
 

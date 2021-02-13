@@ -77,9 +77,8 @@ function f($tdz$__pattern) {
   let arrPatternSplat$1 = [...arrPatternStep];
   return 'ok';
 }
-const tmpCallCallee$3 = f;
 const tmpCalleeParam$3 = ['', 4, 5];
-const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, 200);
+const tmpCalleeParam$2 = f(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$2);
 `````
 

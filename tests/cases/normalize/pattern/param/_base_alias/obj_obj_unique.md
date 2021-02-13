@@ -54,17 +54,14 @@ function i(tmpParamPattern) {
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a_1 = objPatternNoDefault$1.z;
   {
-    let a_2 = 2;
   }
   return a_1;
 }
-let a = 1;
-const tmpCallCallee$1 = i;
 const tmpObjLitVal$2 = { a: 10 };
 const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = i(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

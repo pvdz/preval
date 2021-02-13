@@ -37,13 +37,11 @@ a_1 = objPatternNoDefault$1.z;
 
 `````js filename=intro
 {
-  let a = 1;
 }
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault$1.z;
 {
-  let a_2 = 1;
 }
 `````
 

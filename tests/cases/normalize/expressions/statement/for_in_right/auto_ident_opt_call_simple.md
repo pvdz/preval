@@ -23,7 +23,8 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
   const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall(1);
     tmpForInDeclRhs = tmpChainElementCall;
   }
@@ -40,7 +41,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
-  if ($) {
+  const tmpIfTest = $ != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = $(1);
     tmpForInDeclRhs = tmpChainElementCall;
   }

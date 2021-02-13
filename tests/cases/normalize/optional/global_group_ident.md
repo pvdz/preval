@@ -20,7 +20,8 @@ $(y);
 const a = { x: 1 };
 let y = undefined;
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   y = tmpChainElementObject;
 }
@@ -32,7 +33,8 @@ $(y);
 `````js filename=intro
 const a = { x: 1 };
 let y = undefined;
-if (a) {
+const tmpIfTest = a != null;
+if (tmpIfTest) {
   const tmpChainElementObject = a.x;
   y = tmpChainElementObject;
 }

@@ -44,18 +44,19 @@ switch (1) {
     if (tmpIfTest$2) {
       a = undefined;
       tmpChainRootCall = $;
-      if (tmpChainRootCall) {
+      const tmpIfTest$3 = tmpChainRootCall != null;
+      if (tmpIfTest$3) {
         const tmpChainElementCall = tmpChainRootCall(1);
         a = tmpChainElementCall;
       }
       $(a);
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
       $('fail2');
     }
   }
@@ -83,18 +84,19 @@ switch (1) {
     if (tmpIfTest$2) {
       a = undefined;
       tmpChainRootCall = $;
-      if (tmpChainRootCall) {
+      const tmpIfTest$3 = tmpChainRootCall != null;
+      if (tmpIfTest$3) {
         const tmpChainElementCall = tmpChainRootCall(1);
         a = tmpChainElementCall;
       }
       $(a);
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
       $('fail2');
     }
   }

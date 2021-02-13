@@ -25,7 +25,8 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
+  const tmpIfTest$1 = tmpChainRootCall != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainRootCall(1);
   }
 }
@@ -40,7 +41,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  if ($) {
+  const tmpIfTest$1 = $ != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall = $(1);
   }
 }

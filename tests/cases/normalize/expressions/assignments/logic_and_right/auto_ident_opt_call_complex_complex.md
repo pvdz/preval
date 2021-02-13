@@ -26,7 +26,8 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpCallObj = tmpChainElementCall;
     const tmpCallVal = tmpCallObj.call;
     const tmpCalleeParam$1 = tmpChainRootCall;
@@ -49,7 +50,8 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall = $($);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$2 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);

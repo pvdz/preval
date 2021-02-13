@@ -28,15 +28,16 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpChainRootProp = $(b);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchTest = tmpChainElementObject;
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
     $(100);
   }
 }
@@ -50,15 +51,16 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpChainRootProp = $(b);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchTest = tmpChainElementObject;
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
     $(100);
   }
 }

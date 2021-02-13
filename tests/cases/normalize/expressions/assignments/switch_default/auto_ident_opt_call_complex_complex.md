@@ -32,7 +32,8 @@ let tmpSwitchCaseToStart = 0;
     a = undefined;
     const tmpChainRootCall = $;
     const tmpChainElementCall = tmpChainRootCall($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpCallObj = tmpChainElementCall;
       const tmpCallVal = tmpCallObj.call;
       const tmpCalleeParam = tmpChainRootCall;
@@ -56,7 +57,8 @@ let tmpSwitchCaseToStart = 0;
   if (tmpIfTest) {
     a = undefined;
     const tmpChainElementCall = $($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpCallVal = tmpChainElementCall.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);

@@ -27,7 +27,8 @@ $(a);
 function f() {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = $(b);
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     tmpReturnArg = tmpChainElementObject;
   }
@@ -47,7 +48,8 @@ $(a);
 function f() {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = $(b);
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     tmpReturnArg = tmpChainElementObject;
   }

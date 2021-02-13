@@ -22,7 +22,8 @@ const a = undefined;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   tmpCalleeParam = tmpChainElementObject$1;
@@ -34,7 +35,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-if (undefined) {
+const tmpIfTest = undefined != null;
+if (tmpIfTest) {
   const tmpChainElementObject = undefined.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   tmpCalleeParam = tmpChainElementObject$1;

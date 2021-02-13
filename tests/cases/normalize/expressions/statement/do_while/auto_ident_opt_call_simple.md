@@ -29,7 +29,8 @@ while (true) {
   } else {
     tmpIfTest = undefined;
     const tmpChainRootCall = $;
-    if (tmpChainRootCall) {
+    const tmpIfTest$1 = tmpChainRootCall != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall = tmpChainRootCall(1);
       tmpIfTest = tmpChainElementCall;
     }
@@ -54,7 +55,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     tmpIfTest = undefined;
-    if ($) {
+    const tmpIfTest$1 = $ != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall = $(1);
       tmpIfTest = tmpChainElementCall;
     }

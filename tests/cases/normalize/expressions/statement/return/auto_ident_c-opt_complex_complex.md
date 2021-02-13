@@ -28,7 +28,8 @@ function f() {
   let tmpReturnArg = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpReturnArg = tmpChainElementObject;
@@ -49,7 +50,8 @@ $(a);
 function f() {
   let tmpReturnArg = undefined;
   const tmpChainElementCall = $(b);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpReturnArg = tmpChainElementObject;

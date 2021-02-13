@@ -25,9 +25,11 @@ tmpAssignMemLhsObj.b = 15;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.a;
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
     tmpCalleeParam = tmpChainElementObject$1;
   }
@@ -44,9 +46,11 @@ const obj = { a: tmpObjLitVal };
 const tmpAssignMemLhsObj = obj.a;
 tmpAssignMemLhsObj.b = 15;
 let tmpCalleeParam = undefined;
-if (obj) {
+const tmpIfTest = obj != null;
+if (tmpIfTest) {
   const tmpChainElementObject = obj.a;
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
     tmpCalleeParam = tmpChainElementObject$1;
   }

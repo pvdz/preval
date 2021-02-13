@@ -24,7 +24,8 @@ var a;
 var x;
 const tmpChainRootProp = a;
 const tmpChainElementObject = tmpChainRootProp.b;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpCallObj = tmpChainElementObject;
   const tmpCallVal = tmpCallObj.call;
   const tmpCalleeParam = tmpChainRootProp;
@@ -40,7 +41,8 @@ var a;
 var x;
 const tmpChainRootProp = a;
 const tmpChainElementObject = tmpChainRootProp.b;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpCallVal = tmpChainElementObject.call;
   const tmpCalleeParam$1 = x.y;
   const tmpChainElementCall = tmpCallVal.call(tmpChainElementObject, tmpChainRootProp, tmpCalleeParam$1);

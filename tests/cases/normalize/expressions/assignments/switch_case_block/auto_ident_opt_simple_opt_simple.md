@@ -42,9 +42,11 @@ if (tmpIfTest) {
     {
       a = undefined;
       const tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$2 = tmpChainRootProp != null;
+      if (tmpIfTest$2) {
         const tmpChainElementObject = tmpChainRootProp.x;
-        if (tmpChainElementObject) {
+        const tmpIfTest$3 = tmpChainElementObject != null;
+        if (tmpIfTest$3) {
           const tmpChainElementObject$1 = tmpChainElementObject.y;
           a = tmpChainElementObject$1;
         }
@@ -74,9 +76,11 @@ if (tmpIfTest) {
     {
       a = undefined;
       const tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$2 = tmpChainRootProp != null;
+      if (tmpIfTest$2) {
         const tmpChainElementObject = tmpChainRootProp.x;
-        if (tmpChainElementObject) {
+        const tmpIfTest$3 = tmpChainElementObject != null;
+        if (tmpIfTest$3) {
           const tmpChainElementObject$1 = tmpChainElementObject.y;
           a = tmpChainElementObject$1;
         }

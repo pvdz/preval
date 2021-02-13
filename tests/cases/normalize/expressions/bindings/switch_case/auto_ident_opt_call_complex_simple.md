@@ -37,7 +37,8 @@ switch (1) {
       a = undefined;
       tmpChainRootCall = $;
       tmpChainElementCall = tmpChainRootCall($);
-      if (tmpChainElementCall) {
+      const tmpIfTest$2 = tmpChainElementCall != null;
+      if (tmpIfTest$2) {
         const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
         a = tmpChainElementCall$1;
       }
@@ -65,7 +66,8 @@ switch (1) {
       a = undefined;
       tmpChainRootCall = $;
       tmpChainElementCall = tmpChainRootCall($);
-      if (tmpChainElementCall) {
+      const tmpIfTest$2 = tmpChainElementCall != null;
+      if (tmpIfTest$2) {
         const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
         a = tmpChainElementCall$1;
       }

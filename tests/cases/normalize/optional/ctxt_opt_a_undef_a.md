@@ -23,7 +23,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
@@ -37,7 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(undefined);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);

@@ -27,9 +27,11 @@ $(a);
 function f() {
   a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
     }
@@ -52,9 +54,11 @@ $(a);
 function f() {
   a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
     }

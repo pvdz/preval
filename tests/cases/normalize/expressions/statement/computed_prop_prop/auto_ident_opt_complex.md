@@ -29,7 +29,8 @@ const tmpCompObj = obj;
 let tmpCompProp = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCompProp = tmpChainElementObject;
 }
@@ -46,7 +47,8 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp = undefined;
 const tmpChainElementCall = $(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCompProp = tmpChainElementObject;
 }

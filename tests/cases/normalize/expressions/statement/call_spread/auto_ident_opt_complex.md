@@ -27,7 +27,8 @@ const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCalleeParamSpread = tmpChainElementObject;
 }
@@ -42,7 +43,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParamSpread = undefined;
 const tmpChainElementCall = $(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCalleeParamSpread = tmpChainElementObject;
 }

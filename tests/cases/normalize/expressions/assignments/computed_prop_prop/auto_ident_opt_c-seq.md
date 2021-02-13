@@ -28,7 +28,8 @@ let obj = {};
 const tmpCompObj = obj;
 a = undefined;
 const tmpChainRootProp = $(b);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }
@@ -46,7 +47,8 @@ let obj = {};
 const tmpCompObj = obj;
 a = undefined;
 const tmpChainRootProp = $(b);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }

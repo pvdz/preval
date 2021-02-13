@@ -35,7 +35,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpChainRootCall = $;
-    if (tmpChainRootCall) {
+    const tmpIfTest$2 = tmpChainRootCall != null;
+    if (tmpIfTest$2) {
       const tmpChainElementCall = tmpChainRootCall(1);
     }
   }
@@ -57,7 +58,8 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    if ($) {
+    const tmpIfTest$2 = $ != null;
+    if (tmpIfTest$2) {
       const tmpChainElementCall = $(1);
     }
   }

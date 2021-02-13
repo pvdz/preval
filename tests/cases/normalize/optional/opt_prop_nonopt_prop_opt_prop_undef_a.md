@@ -22,10 +22,12 @@ const a = undefined;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  if (tmpChainElementObject$1) {
+  const tmpIfTest$1 = tmpChainElementObject$1 != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$2 = tmpChainElementObject$1.d;
     tmpCalleeParam = tmpChainElementObject$2;
   }
@@ -37,10 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-if (undefined) {
+const tmpIfTest = undefined != null;
+if (tmpIfTest) {
   const tmpChainElementObject = undefined.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  if (tmpChainElementObject$1) {
+  const tmpIfTest$1 = tmpChainElementObject$1 != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$2 = tmpChainElementObject$1.d;
     tmpCalleeParam = tmpChainElementObject$2;
   }

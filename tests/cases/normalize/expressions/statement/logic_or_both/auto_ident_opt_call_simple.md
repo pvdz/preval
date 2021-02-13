@@ -22,14 +22,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest$1 = tmpChainRootCall != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
 } else {
   const tmpChainRootCall$1 = $;
-  if (tmpChainRootCall$1) {
+  const tmpIfTest$2 = tmpChainRootCall$1 != null;
+  if (tmpIfTest$2) {
     const tmpChainElementCall$1 = tmpChainRootCall$1(1);
   }
 }
@@ -41,13 +43,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-if ($) {
+const tmpIfTest$1 = $ != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
 } else {
-  if ($) {
+  const tmpIfTest$2 = $ != null;
+  if (tmpIfTest$2) {
     const tmpChainElementCall$1 = $(1);
   }
 }

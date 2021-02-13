@@ -26,15 +26,16 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   tmpSwitchTest = tmpChainElementCall$1;
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
     $(100);
   }
 }
@@ -47,15 +48,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpChainElementCall = $($);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpSwitchTest = tmpChainElementCall$1;
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
     $(100);
   }
 }

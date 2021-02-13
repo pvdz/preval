@@ -24,7 +24,8 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpCalleeParam$1 = tmpChainElementCall;
 }
@@ -38,7 +39,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
-if ($) {
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpCalleeParam$1 = tmpChainElementCall;
 }

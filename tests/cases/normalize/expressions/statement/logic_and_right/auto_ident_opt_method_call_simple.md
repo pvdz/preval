@@ -26,7 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   }
@@ -42,7 +43,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   }

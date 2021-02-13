@@ -24,12 +24,14 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
 }
 const tmpChainRootProp$1 = b;
-if (tmpChainRootProp$1) {
+const tmpIfTest$1 = tmpChainRootProp$1 != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.c;
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainRootProp$1, 1);
 }
@@ -42,12 +44,14 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
 }
 const tmpChainRootProp$1 = b;
-if (tmpChainRootProp$1) {
+const tmpIfTest$1 = tmpChainRootProp$1 != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.c;
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainRootProp$1, 1);
 }

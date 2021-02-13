@@ -70,7 +70,11 @@ export function phase2(program, fdata, resolve, req) {
         return;
       }
 
-      if (assignee.type === 'Identifier' && (fdata.globallyUniqueNamingRegistry.get(assignee.name).isBuiltin || fdata.globallyUniqueNamingRegistry.get(assignee.name).isConstant)) {
+      if (
+        assignee.type === 'Identifier' &&
+        (fdata.globallyUniqueNamingRegistry.get(assignee.name).isBuiltin ||
+          fdata.globallyUniqueNamingRegistry.get(assignee.name).isConstant)
+      ) {
         // If the identifier is a constant binding or builtin constant then replace all reads with a clone of it
 
         rule('Declaring a constant with a constant value should eliminate the binding');
@@ -98,7 +102,10 @@ export function phase2(program, fdata, resolve, req) {
           // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
           // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
           const { declParent, declProp, declIndex } = write.decl;
-          ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration', 'if not then indexes changed?');
+          ASSERT(
+            (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
+            'if not then indexes changed?',
+          );
           ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init.type === 'Identifier');
           if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
           else declParent[declProp] = AST.emptyStatement();
@@ -138,9 +145,12 @@ export function phase2(program, fdata, resolve, req) {
           // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
           // Note: the init was a lone literal (that's how we got here) so we should not need to preserve the init
           const { declParent, declProp, declIndex } = write.decl;
-          ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration', 'if not then indexes changed?');
+          ASSERT(
+            (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
+            'if not then indexes changed?',
+          );
           ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init.type === 'Literal');
-          if (declIndex >= 0) declParent[declProp][declIndex] =  AST.emptyStatement();
+          if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
           else declParent[declProp] = AST.emptyStatement();
         }
 

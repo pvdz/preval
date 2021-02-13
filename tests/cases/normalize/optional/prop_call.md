@@ -32,7 +32,8 @@ const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
 const tmpChainElementObject = tmpChainElementCall.x;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
 }
 `````
@@ -49,7 +50,8 @@ const tmpObjLitVal = function (...args) {
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.x;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
 }
 `````

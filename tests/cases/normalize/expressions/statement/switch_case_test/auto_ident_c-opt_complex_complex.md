@@ -31,7 +31,8 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpBinLhs = tmpChainElementObject;
@@ -41,7 +42,7 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 }
 $(a);
 `````
@@ -55,7 +56,8 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainElementCall = $(b);
-if (tmpChainElementCall) {
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpBinLhs = tmpChainElementObject;
@@ -65,7 +67,7 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 }
 $(a);
 `````

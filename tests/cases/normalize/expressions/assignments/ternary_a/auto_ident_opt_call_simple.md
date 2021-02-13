@@ -24,7 +24,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 a = undefined;
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest$1 = tmpChainRootCall != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
 }
@@ -44,7 +45,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 a = undefined;
-if ($) {
+const tmpIfTest$1 = $ != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }

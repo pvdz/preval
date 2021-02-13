@@ -52,7 +52,8 @@ switch (1) {
       b = { x: tmpObjLitVal };
       a = undefined;
       tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$3 = tmpChainRootProp != null;
+      if (tmpIfTest$3) {
         const tmpChainElementObject = tmpChainRootProp.x;
         const tmpChainElementObject$1 = tmpChainElementObject.y;
         const tmpChainElementObject$2 = tmpChainElementObject$1.z;
@@ -60,12 +61,12 @@ switch (1) {
       }
       $(a);
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
       $('fail2');
     }
   }
@@ -99,7 +100,8 @@ switch (1) {
       b = { x: tmpObjLitVal };
       a = undefined;
       tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$3 = tmpChainRootProp != null;
+      if (tmpIfTest$3) {
         const tmpChainElementObject = tmpChainRootProp.x;
         const tmpChainElementObject$1 = tmpChainElementObject.y;
         const tmpChainElementObject$2 = tmpChainElementObject$1.z;
@@ -107,12 +109,12 @@ switch (1) {
       }
       $(a);
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
       $('fail2');
     }
   }

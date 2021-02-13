@@ -16,7 +16,8 @@ $?.(15);
 
 `````js filename=intro
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(15);
 }
 `````
@@ -24,7 +25,8 @@ if (tmpChainRootCall) {
 ## Output
 
 `````js filename=intro
-if ($) {
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
   const tmpChainElementCall = $(15);
 }
 `````

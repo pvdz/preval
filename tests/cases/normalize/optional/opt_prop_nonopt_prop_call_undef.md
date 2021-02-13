@@ -20,7 +20,8 @@ a?.b.c(1);
 `````js filename=intro
 const a = undefined;
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
@@ -30,7 +31,8 @@ if (tmpChainRootProp) {
 ## Output
 
 `````js filename=intro
-if (undefined) {
+const tmpIfTest = undefined != null;
+if (tmpIfTest) {
   const tmpChainElementObject = undefined.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);

@@ -23,7 +23,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = undefined;
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
 }
@@ -31,7 +32,8 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
-  if (tmpChainRootCall$1) {
+  const tmpIfTest$1 = tmpChainRootCall$1 != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall$1 = tmpChainRootCall$1(1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }
@@ -47,14 +49,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = undefined;
-if ($) {
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  if ($) {
+  const tmpIfTest$1 = $ != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall$1 = $(1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }

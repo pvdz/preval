@@ -26,7 +26,8 @@
   let b = { x: 1 };
   let a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = 'x';
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
@@ -42,7 +43,8 @@
   let b = { x: 1 };
   let a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp['x'];
     a = tmpChainElementObject;
   }

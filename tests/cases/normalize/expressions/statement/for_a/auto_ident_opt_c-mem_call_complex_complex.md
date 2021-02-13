@@ -26,10 +26,12 @@ let a = { a: 999, b: 1000 };
 {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = $('$');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (tmpChainElementObject) {
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
       const tmpCallObj = tmpChainElementObject;
       const tmpCallVal = tmpCallObj.call;
       const tmpCalleeParam = tmpChainElementCall;
@@ -38,8 +40,8 @@ let a = { a: 999, b: 1000 };
     }
   }
   while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -55,18 +57,20 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   const tmpChainElementCall = $(b);
-  if (tmpChainElementCall) {
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = $('$');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (tmpChainElementObject) {
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
       const tmpCallVal = tmpChainElementObject.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     }
   }
   while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }

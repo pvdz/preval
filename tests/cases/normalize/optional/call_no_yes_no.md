@@ -49,7 +49,8 @@ let tmpCalleeParam = undefined;
 const tmpChainRootCall = a;
 const tmpChainElementCall = tmpChainRootCall();
 const tmpChainElementObject = tmpChainElementCall.b;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
   const tmpChainElementCall$2 = tmpChainElementObject$1.call(tmpChainElementCall$1);
@@ -83,7 +84,8 @@ let tmpCalleeParam = undefined;
 const tmpChainRootCall = a;
 const tmpChainElementCall = tmpChainRootCall();
 const tmpChainElementObject = tmpChainElementCall.b;
-if (tmpChainElementObject) {
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
   const tmpChainElementCall$2 = tmpChainElementObject$1.call(tmpChainElementCall$1);

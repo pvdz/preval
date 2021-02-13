@@ -22,7 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootCall = $;
-if (tmpChainRootCall) {
+const tmpIfTest$1 = tmpChainRootCall != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpIfTest = tmpChainElementCall;
 }
@@ -38,7 +39,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-if ($) {
+const tmpIfTest$1 = $ != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   tmpIfTest = tmpChainElementCall;
 }

@@ -19,8 +19,9 @@ $(delete null?.x);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpDeleteOpt = null;
-if (tmpDeleteOpt) {
-  let tmpCalleeParam = true;
+let tmpCalleeParam = true;
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
 } else {
   tmpCalleeParam = delete tmpDeleteOpt.x;
 }
@@ -31,8 +32,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpDeleteOpt = null;
-if (tmpDeleteOpt) {
-  let tmpCalleeParam = true;
+let tmpCalleeParam = true;
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
 } else {
   tmpCalleeParam = delete tmpDeleteOpt.x;
 }
@@ -45,8 +47,6 @@ Should call `$` with:
  - 1: true
  - eval returned: undefined
 
-Normalized calls: BAD?!
- - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')
+Final output calls: Same

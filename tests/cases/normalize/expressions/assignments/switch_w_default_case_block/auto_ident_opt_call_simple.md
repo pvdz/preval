@@ -47,18 +47,19 @@ if (tmpIfTest) {
     {
       a = undefined;
       const tmpChainRootCall = $;
-      if (tmpChainRootCall) {
+      const tmpIfTest$3 = tmpChainRootCall != null;
+      if (tmpIfTest$3) {
         const tmpChainElementCall = tmpChainRootCall(1);
         a = tmpChainElementCall;
       }
     }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
     $('fail2');
   }
 }
@@ -86,18 +87,19 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     {
       a = undefined;
-      if ($) {
+      const tmpIfTest$3 = $ != null;
+      if (tmpIfTest$3) {
         const tmpChainElementCall = $(1);
         a = tmpChainElementCall;
       }
     }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
     $('fail2');
   }
 }

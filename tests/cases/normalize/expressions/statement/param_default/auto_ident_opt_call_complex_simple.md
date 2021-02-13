@@ -27,7 +27,8 @@ function f($tdz$__p) {
     p = undefined;
     const tmpChainRootCall = $;
     const tmpChainElementCall = tmpChainRootCall($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
       p = tmpChainElementCall$1;
     }
@@ -51,7 +52,8 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     p = undefined;
     const tmpChainElementCall = $($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       p = tmpChainElementCall$1;
     }

@@ -38,7 +38,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$2 = tmpChainRootProp != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject = tmpChainRootProp.x;
     }
   }
@@ -62,7 +63,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$2 = tmpChainRootProp != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject = tmpChainRootProp.x;
     }
   }

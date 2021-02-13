@@ -49,10 +49,12 @@ if (tmpIfTest) {
     a = undefined;
     const tmpChainRootCall = $;
     const tmpChainElementCall = tmpChainRootCall(b);
-    if (tmpChainElementCall) {
+    const tmpIfTest$3 = tmpChainElementCall != null;
+    if (tmpIfTest$3) {
       const tmpChainRootComputed = $('$');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      if (tmpChainElementObject) {
+      const tmpIfTest$4 = tmpChainElementObject != null;
+      if (tmpIfTest$4) {
         const tmpCallObj = tmpChainElementObject;
         const tmpCallVal = tmpCallObj.call;
         const tmpCalleeParam = tmpChainElementCall;
@@ -62,12 +64,12 @@ if (tmpIfTest) {
       }
     }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$6) {
     $('fail2');
   }
 }
@@ -96,10 +98,12 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     a = undefined;
     const tmpChainElementCall = $(b);
-    if (tmpChainElementCall) {
+    const tmpIfTest$3 = tmpChainElementCall != null;
+    if (tmpIfTest$3) {
       const tmpChainRootComputed = $('$');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      if (tmpChainElementObject) {
+      const tmpIfTest$4 = tmpChainElementObject != null;
+      if (tmpIfTest$4) {
         const tmpCallVal = tmpChainElementObject.call;
         const tmpCalleeParam$1 = $(1);
         const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
@@ -107,12 +111,12 @@ if (tmpIfTest) {
       }
     }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$6) {
     $('fail2');
   }
 }

@@ -22,7 +22,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall(1);
   }
 }
@@ -34,7 +35,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  if ($) {
+  const tmpIfTest = $ != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = $(1);
   }
 }

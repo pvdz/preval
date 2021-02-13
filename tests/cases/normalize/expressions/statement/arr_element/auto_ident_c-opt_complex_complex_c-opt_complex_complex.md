@@ -26,20 +26,24 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$1 = tmpChainRootCall$1(b);
-if (tmpChainElementCall$1) {
+const tmpIfTest$2 = tmpChainElementCall$1 != null;
+if (tmpIfTest$2) {
   const tmpChainRootComputed$2 = $('x');
   const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-  if (tmpChainElementObject$2) {
+  const tmpIfTest$3 = tmpChainElementObject$2 != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $('y');
     const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
   }
@@ -54,19 +58,23 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpChainElementCall$1 = $(b);
-if (tmpChainElementCall$1) {
+const tmpIfTest$2 = tmpChainElementCall$1 != null;
+if (tmpIfTest$2) {
   const tmpChainRootComputed$2 = $('x');
   const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-  if (tmpChainElementObject$2) {
+  const tmpIfTest$3 = tmpChainElementObject$2 != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $('y');
     const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
   }

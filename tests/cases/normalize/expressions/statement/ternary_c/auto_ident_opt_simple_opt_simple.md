@@ -29,9 +29,11 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
+    const tmpIfTest$2 = tmpChainElementObject != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
     }
   }
@@ -50,9 +52,11 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
+    const tmpIfTest$2 = tmpChainElementObject != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
     }
   }

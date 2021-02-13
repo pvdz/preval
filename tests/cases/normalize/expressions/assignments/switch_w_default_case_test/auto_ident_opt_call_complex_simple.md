@@ -32,7 +32,8 @@ let tmpSwitchCaseToStart = 1;
 a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
-if (tmpChainElementCall) {
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   a = tmpChainElementCall$1;
 }
@@ -41,19 +42,19 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
+  const tmpIfTest$2 = 2 === tmpSwitchValue;
+  if (tmpIfTest$2) {
     tmpSwitchCaseToStart = 2;
   }
 }
 {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
     $('fail2');
   }
 }
@@ -68,7 +69,8 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 a = undefined;
 const tmpChainElementCall = $($);
-if (tmpChainElementCall) {
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   a = tmpChainElementCall$1;
 }
@@ -77,19 +79,19 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchTest;
-  if (tmpIfTest$1) {
+  const tmpIfTest$2 = 2 === tmpSwitchTest;
+  if (tmpIfTest$2) {
     tmpSwitchCaseToStart = 2;
   }
 }
 {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$5) {
     $('fail2');
   }
 }

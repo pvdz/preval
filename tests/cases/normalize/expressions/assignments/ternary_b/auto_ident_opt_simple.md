@@ -29,7 +29,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     tmpNestedComplexRhs = tmpChainElementObject;
   }
@@ -52,7 +53,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     tmpNestedComplexRhs = tmpChainElementObject;
   }

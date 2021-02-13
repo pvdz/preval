@@ -26,7 +26,8 @@ x = 10;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = f;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = x;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
@@ -43,7 +44,8 @@ f = { 10: 20 };
 x = 10;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = f;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = x;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;

@@ -33,7 +33,8 @@ let tmpSwitchCaseToStart = 0;
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainRootComputed = 'x';
       const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     }
@@ -53,7 +54,8 @@ let tmpSwitchCaseToStart = 0;
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp['x'];
     }
   }

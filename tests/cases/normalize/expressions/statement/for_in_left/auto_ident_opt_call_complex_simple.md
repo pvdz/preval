@@ -29,7 +29,8 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     let tmpAssignMemLhsObj = undefined;
     const tmpChainRootCall = $;
     const tmpChainElementCall = tmpChainRootCall($);
-    if (tmpChainElementCall) {
+    const tmpIfTest = tmpChainElementCall != null;
+    if (tmpIfTest) {
       const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
       tmpAssignMemLhsObj = tmpChainElementCall$1;
     }
@@ -50,7 +51,8 @@ const tmpForInRhs = $(tmpCalleeParam);
   for (tmpForInLhsNode in tmpForInRhs) {
     let tmpAssignMemLhsObj = undefined;
     const tmpChainElementCall = $($);
-    if (tmpChainElementCall) {
+    const tmpIfTest = tmpChainElementCall != null;
+    if (tmpIfTest) {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       tmpAssignMemLhsObj = tmpChainElementCall$1;
     }

@@ -21,7 +21,8 @@ a?.b.c(1);
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
@@ -33,7 +34,8 @@ if (tmpChainRootProp) {
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-if (a) {
+const tmpIfTest = a != null;
+if (tmpIfTest) {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);

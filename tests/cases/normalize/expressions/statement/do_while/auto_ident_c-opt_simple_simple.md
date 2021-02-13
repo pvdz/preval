@@ -32,7 +32,8 @@ while (true) {
   } else {
     tmpIfTest = undefined;
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainRootComputed = 'x';
       const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
       tmpIfTest = tmpChainElementObject;
@@ -60,7 +61,8 @@ while (true) {
   } else {
     tmpIfTest = undefined;
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp['x'];
       tmpIfTest = tmpChainElementObject;
     }

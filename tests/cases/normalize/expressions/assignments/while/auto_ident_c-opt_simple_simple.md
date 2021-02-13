@@ -26,7 +26,8 @@ let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed = 'x';
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
@@ -49,7 +50,8 @@ let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp['x'];
     a = tmpChainElementObject;
   }

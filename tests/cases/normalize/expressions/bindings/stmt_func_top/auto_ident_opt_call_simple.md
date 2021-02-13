@@ -24,7 +24,8 @@ $(f());
 function f() {
   let a = undefined;
   const tmpChainRootCall = $;
-  if (tmpChainRootCall) {
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall(1);
     a = tmpChainElementCall;
   }
@@ -40,7 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let a = undefined;
-  if ($) {
+  const tmpIfTest = $ != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
   }

@@ -35,11 +35,13 @@ let tmpSwitchCaseToStart = 0;
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
       const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      if (tmpChainElementObject$2) {
+      const tmpIfTest$2 = tmpChainElementObject$2 != null;
+      if (tmpIfTest$2) {
         const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
       }
     }
@@ -61,11 +63,13 @@ let tmpSwitchCaseToStart = 0;
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
       const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      if (tmpChainElementObject$2) {
+      const tmpIfTest$2 = tmpChainElementObject$2 != null;
+      if (tmpIfTest$2) {
         const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
       }
     }

@@ -26,7 +26,8 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainRootComputed = 'x';
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     tmpForInDeclRhs = tmpChainElementObject;
@@ -46,7 +47,8 @@ let a = { a: 999, b: 1000 };
 {
   let tmpForInDeclRhs = undefined;
   const tmpChainRootProp = b;
-  if (tmpChainRootProp) {
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp['x'];
     tmpForInDeclRhs = tmpChainElementObject;
   }

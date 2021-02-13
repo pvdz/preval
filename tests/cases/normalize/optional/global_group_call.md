@@ -18,7 +18,8 @@ $(y);
 `````js filename=intro
 let y = undefined;
 const tmpChainRootProp = $();
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   y = tmpChainElementObject;
 }
@@ -30,7 +31,8 @@ $(y);
 `````js filename=intro
 let y = undefined;
 const tmpChainRootProp = $();
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   y = tmpChainElementObject;
 }

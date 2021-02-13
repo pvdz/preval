@@ -20,7 +20,8 @@ delete o?.x;
 `````js filename=intro
 let o = $(undefined);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 `````
@@ -30,7 +31,8 @@ if (tmpDeleteOpt) {
 `````js filename=intro
 let o = $(undefined);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 `````
@@ -41,6 +43,10 @@ Should call `$` with:
  - 1: undefined
  - eval returned: undefined
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - 1: undefined
+ - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: undefined
+ - eval returned: ('<crash[ Cannot convert undefined or null to object ]>')

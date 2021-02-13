@@ -26,18 +26,22 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest$1 = tmpChainRootProp != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
+  const tmpIfTest$2 = tmpChainElementObject != null;
+  if (tmpIfTest$2) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpIfTest = tmpChainElementObject$1;
   }
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = b;
-  if (tmpChainRootProp$1) {
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-    if (tmpChainElementObject$2) {
+    const tmpIfTest$4 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$4) {
       const tmpChainElementObject$3 = tmpChainElementObject$2.y;
     }
   }
@@ -53,18 +57,22 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest$1 = tmpChainRootProp != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
+  const tmpIfTest$2 = tmpChainElementObject != null;
+  if (tmpIfTest$2) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpIfTest = tmpChainElementObject$1;
   }
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = b;
-  if (tmpChainRootProp$1) {
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-    if (tmpChainElementObject$2) {
+    const tmpIfTest$4 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$4) {
       const tmpChainElementObject$3 = tmpChainElementObject$2.y;
     }
   }

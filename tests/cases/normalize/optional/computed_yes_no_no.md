@@ -28,7 +28,8 @@ const d = 'd';
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = a;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = b;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   const tmpChainRootComputed$1 = c;
@@ -47,7 +48,8 @@ const tmpObjLitVal$1 = { d: 10 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-if (a) {
+const tmpIfTest = a != null;
+if (tmpIfTest) {
   const tmpChainElementObject = a['b'];
   const tmpChainElementObject$1 = tmpChainElementObject['c'];
   const tmpChainElementObject$2 = tmpChainElementObject$1['d'];

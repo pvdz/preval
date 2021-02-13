@@ -26,7 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpTemplateExpr = undefined;
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = 'x';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpTemplateExpr = tmpChainElementObject;
@@ -43,7 +44,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpTemplateExpr = undefined;
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp['x'];
   tmpTemplateExpr = tmpChainElementObject;
 }

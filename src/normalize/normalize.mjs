@@ -123,7 +123,6 @@ const VERBOSE_TRACING = true;
   - certain binary expressions between constants, or constants and literals
   - method names that are literals, probably classes and objects alike
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
-  - TODO: optional chaining is broken because it does not check for ==null, but falsy. add tests for empty string, 0, and false.
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
   - TODO: does coercion have observable side effects (that we care to support)?
@@ -2435,7 +2434,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                tmpName,
+                AST.binaryExpression('==', tmpName, 'null'),
                 AST.expressionStatement(AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed))),
               );
               body.splice(i, 1, ...newNodes, finalParent);
@@ -2453,10 +2452,13 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
 
               const tmpName = createFreshVar('tmpDeleteOpt');
-              const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
-              const finalParent = AST.ifStatement(
-                tmpName,
+              const newNodes = [
+                AST.variableDeclaration(tmpName, mem.object, 'const'),
                 AST.variableDeclaration(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
+              ];
+              const finalParent = AST.ifStatement(
+                AST.binaryExpression('==', tmpName, 'null'),
+                AST.emptyStatement(),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     AST.cloneSimple(wrapLhs),
@@ -2481,7 +2483,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                tmpName,
+                AST.binaryExpression('==', tmpName, 'null'),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     wrapLhs,
@@ -3389,7 +3391,7 @@ export function phaseNormalize(fdata, fname) {
               // up to the current `?.`). New nodes from the remainder of the chain will be added to the
               // body of this new `if` node.
               let nextLevel = [];
-              nodes.push(AST.ifStatement(prevObj, AST.blockStatement(nextLevel)));
+              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, 'null'), AST.blockStatement(nextLevel)));
               nodes = nextLevel;
             }
 
@@ -3423,7 +3425,7 @@ export function phaseNormalize(fdata, fname) {
               // up to the current `?.`). New nodes from the remainder of the chain will be added to the
               // body of this new `if` node.
               let nextLevel = [];
-              nodes.push(AST.ifStatement(prevObj, AST.blockStatement(nextLevel)));
+              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, 'null'), AST.blockStatement(nextLevel)));
               nodes = nextLevel;
             }
 

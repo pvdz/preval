@@ -52,21 +52,23 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     {
       const tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$3 = tmpChainRootProp != null;
+      if (tmpIfTest$3) {
         const tmpChainElementObject = tmpChainRootProp.x;
-        if (tmpChainElementObject) {
+        const tmpIfTest$4 = tmpChainElementObject != null;
+        if (tmpIfTest$4) {
           const tmpChainElementObject$1 = tmpChainElementObject.y;
         }
       }
     }
     break tmpSwitchBreak;
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$6) {
     $('fail2');
   }
 }
@@ -96,21 +98,23 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     {
       const tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$3 = tmpChainRootProp != null;
+      if (tmpIfTest$3) {
         const tmpChainElementObject = tmpChainRootProp.x;
-        if (tmpChainElementObject) {
+        const tmpIfTest$4 = tmpChainElementObject != null;
+        if (tmpIfTest$4) {
           const tmpChainElementObject$1 = tmpChainElementObject.y;
         }
       }
     }
     break tmpSwitchBreak;
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
     $('fail1');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
+  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$6) {
     $('fail2');
   }
 }

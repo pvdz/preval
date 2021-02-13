@@ -26,10 +26,12 @@ const tmpCallCallee = tmpChainRootCall;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$2 = tmpChainRootCall$1(a);
-if (tmpChainElementCall$2) {
+const tmpIfTest = tmpChainElementCall$2 != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall$2[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$2 = $('z');
@@ -38,7 +40,8 @@ if (tmpChainElementCall$2) {
   }
 }
 const tmpChainElementCall = tmpCallCallee(tmpCalleeParam);
-if (tmpChainElementCall) {
+const tmpIfTest$2 = tmpChainElementCall != null;
+if (tmpIfTest$2) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 100);
 }
 `````
@@ -51,10 +54,12 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let a = { x: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpChainElementCall$2 = $(a);
-if (tmpChainElementCall$2) {
+const tmpIfTest = tmpChainElementCall$2 != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall$2[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$2 = $('z');
@@ -63,7 +68,8 @@ if (tmpChainElementCall$2) {
   }
 }
 const tmpChainElementCall = $(tmpCalleeParam);
-if (tmpChainElementCall) {
+const tmpIfTest$2 = tmpChainElementCall != null;
+if (tmpIfTest$2) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 100);
 }
 `````

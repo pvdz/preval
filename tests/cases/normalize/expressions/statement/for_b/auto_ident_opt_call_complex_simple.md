@@ -25,7 +25,8 @@ let a = { a: 999, b: 1000 };
     let tmpIfTest = undefined;
     const tmpChainRootCall = $;
     const tmpChainElementCall = tmpChainRootCall($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
       tmpIfTest = tmpChainElementCall$1;
     }
@@ -47,7 +48,8 @@ let a = { a: 999, b: 1000 };
   while (true) {
     let tmpIfTest = undefined;
     const tmpChainElementCall = $($);
-    if (tmpChainElementCall) {
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       tmpIfTest = tmpChainElementCall$1;
     }

@@ -20,7 +20,8 @@ const obj = { foo: 10 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = 'foo';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
@@ -33,7 +34,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = { foo: 10 };
 let tmpCalleeParam = undefined;
-if (obj) {
+const tmpIfTest = obj != null;
+if (tmpIfTest) {
   const tmpChainElementObject = obj['foo'];
   tmpCalleeParam = tmpChainElementObject;
 }

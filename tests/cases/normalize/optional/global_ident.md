@@ -20,7 +20,8 @@ $(global?.foo);
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = global;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   tmpCalleeParam = tmpChainElementObject;
 }
@@ -32,7 +33,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = global;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   tmpCalleeParam = tmpChainElementObject;
 }

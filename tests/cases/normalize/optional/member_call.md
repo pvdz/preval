@@ -24,7 +24,8 @@ function f() {
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
-if (tmpChainRootCall) {
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall();
   tmpCalleeParam = tmpChainElementCall;
 }
@@ -39,7 +40,8 @@ function f() {
 }
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
-if (tmpChainRootCall) {
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall();
   tmpCalleeParam = tmpChainElementCall;
 }

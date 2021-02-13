@@ -34,7 +34,8 @@ let tmpSwitchCaseToStart = 0;
   if (tmpIfTest) {
     a = undefined;
     const tmpChainRootProp = $(b);
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.x;
       a = tmpChainElementObject;
     }
@@ -55,7 +56,8 @@ let tmpSwitchCaseToStart = 0;
   if (tmpIfTest) {
     a = undefined;
     const tmpChainRootProp = $(b);
-    if (tmpChainRootProp) {
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.x;
       a = tmpChainElementObject;
     }

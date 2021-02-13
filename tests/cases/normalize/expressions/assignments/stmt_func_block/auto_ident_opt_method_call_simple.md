@@ -32,7 +32,8 @@ function f() {
     let a = { a: 999, b: 1000 };
     a = undefined;
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
       a = tmpChainElementCall;
@@ -54,7 +55,8 @@ function f() {
     let a = { a: 999, b: 1000 };
     a = undefined;
     const tmpChainRootProp = b;
-    if (tmpChainRootProp) {
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
       a = tmpChainElementCall;

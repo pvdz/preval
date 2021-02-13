@@ -23,13 +23,15 @@ $(c);
 const a = 10;
 let b = undefined;
 const tmpChainRootProp = $(2);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
   b = tmpChainElementObject;
 }
 let c = undefined;
 const tmpChainRootProp$1 = b;
-if (tmpChainRootProp$1) {
+const tmpIfTest$1 = tmpChainRootProp$1 != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.length;
   c = tmpChainElementObject$1;
 }
@@ -41,13 +43,15 @@ $(c);
 `````js filename=intro
 let b = undefined;
 const tmpChainRootProp = $(2);
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
   b = tmpChainElementObject;
 }
 let c = undefined;
 const tmpChainRootProp$1 = b;
-if (tmpChainRootProp$1) {
+const tmpIfTest$1 = tmpChainRootProp$1 != null;
+if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.length;
   c = tmpChainElementObject$1;
 }

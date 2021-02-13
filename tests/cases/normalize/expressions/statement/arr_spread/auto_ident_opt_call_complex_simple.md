@@ -23,7 +23,8 @@ let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   tmpArrElToSpread = tmpChainElementCall$1;
 }
@@ -37,7 +38,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
 const tmpChainElementCall = $($);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpArrElToSpread = tmpChainElementCall$1;
 }

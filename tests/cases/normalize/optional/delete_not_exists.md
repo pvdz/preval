@@ -23,7 +23,8 @@ $(o);
 let o = {};
 $(o);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 $(o);
@@ -35,7 +36,8 @@ $(o);
 let o = {};
 $(o);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 $(o);

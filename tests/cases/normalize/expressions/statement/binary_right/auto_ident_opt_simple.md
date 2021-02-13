@@ -25,7 +25,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 $(100);
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
 }
 $(a);
@@ -38,7 +39,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 $(100);
 const tmpChainRootProp = b;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
 }
 $(a);

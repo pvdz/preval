@@ -22,7 +22,8 @@ $(f());
 function f() {
   let y = undefined;
   const tmpChainRootCall = $();
-  if (tmpChainRootCall) {
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall();
     y = tmpChainElementCall;
   }
@@ -40,7 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let y = undefined;
   const tmpChainRootCall = $();
-  if (tmpChainRootCall) {
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall();
     y = tmpChainElementCall;
   }

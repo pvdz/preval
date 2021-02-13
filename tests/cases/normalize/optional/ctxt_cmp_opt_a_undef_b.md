@@ -23,7 +23,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('b');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpChainRootComputed$1 = $('c');
@@ -40,7 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 const a = {};
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('b');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpChainRootComputed$1 = $('c');

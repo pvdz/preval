@@ -25,10 +25,12 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpCallObj = tmpChainElementObject;
     const tmpCallVal = tmpCallObj.call;
     const tmpCalleeParam = tmpChainElementCall;
@@ -38,10 +40,12 @@ if (tmpChainElementCall) {
 }
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$2 = tmpChainRootCall$1(b);
-if (tmpChainElementCall$2) {
+const tmpIfTest$2 = tmpChainElementCall$2 != null;
+if (tmpIfTest$2) {
   const tmpChainRootComputed$1 = $('$');
   const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
-  if (tmpChainElementObject$1) {
+  const tmpIfTest$3 = tmpChainElementObject$1 != null;
+  if (tmpIfTest$3) {
     const tmpCallObj$1 = tmpChainElementObject$1;
     const tmpCallVal$1 = tmpCallObj$1.call;
     const tmpCalleeParam$2 = tmpChainElementCall$2;
@@ -58,20 +62,24 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
-if (tmpChainElementCall) {
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
   }
 }
 const tmpChainElementCall$2 = $(b);
-if (tmpChainElementCall$2) {
+const tmpIfTest$2 = tmpChainElementCall$2 != null;
+if (tmpIfTest$2) {
   const tmpChainRootComputed$1 = $('$');
   const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
-  if (tmpChainElementObject$1) {
+  const tmpIfTest$3 = tmpChainElementObject$1 != null;
+  if (tmpIfTest$3) {
     const tmpCallVal$1 = tmpChainElementObject$1.call;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);

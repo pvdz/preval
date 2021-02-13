@@ -24,7 +24,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
-  if (tmpChainElementCall) {
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   }
 } else {
@@ -40,7 +41,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpChainElementCall = $($);
-  if (tmpChainElementCall) {
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
     const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   }
 } else {

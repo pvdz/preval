@@ -23,7 +23,8 @@ $(o);
 let o = { x: 1 };
 $(o);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 $(o);
@@ -35,7 +36,8 @@ $(o);
 let o = { x: 1 };
 $(o);
 const tmpDeleteOpt = o;
-if (tmpDeleteOpt) {
+const tmpIfTest = tmpDeleteOpt == null;
+if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
 $(o);
@@ -48,6 +50,12 @@ Should call `$` with:
  - 2: {}
  - eval returned: undefined
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - 1: { x: '1' }
+ - 2: { x: '1' }
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: { x: '1' }
+ - 2: { x: '1' }
+ - eval returned: undefined

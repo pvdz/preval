@@ -23,11 +23,14 @@ const obj = { a: tmpObjLitVal };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
-if (tmpChainRootProp) {
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.a;
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
-    if (tmpChainElementObject$1) {
+    const tmpIfTest$2 = tmpChainElementObject$1 != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject$2 = tmpChainElementObject$1.c;
       tmpCalleeParam = tmpChainElementObject$2;
     }
@@ -44,11 +47,14 @@ const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-if (obj) {
+const tmpIfTest = obj != null;
+if (tmpIfTest) {
   const tmpChainElementObject = obj.a;
-  if (tmpChainElementObject) {
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
-    if (tmpChainElementObject$1) {
+    const tmpIfTest$2 = tmpChainElementObject$1 != null;
+    if (tmpIfTest$2) {
       const tmpChainElementObject$2 = tmpChainElementObject$1.c;
       tmpCalleeParam = tmpChainElementObject$2;
     }

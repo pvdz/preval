@@ -43,7 +43,8 @@ switch (1) {
       b = { x: tmpObjLitVal };
       a = undefined;
       tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$2 = tmpChainRootProp != null;
+      if (tmpIfTest$2) {
         const tmpChainElementObject = tmpChainRootProp.x;
         const tmpChainElementObject$1 = tmpChainElementObject.y;
         const tmpChainElementObject$2 = tmpChainElementObject$1.z;
@@ -77,7 +78,8 @@ switch (1) {
       b = { x: tmpObjLitVal };
       a = undefined;
       tmpChainRootProp = b;
-      if (tmpChainRootProp) {
+      const tmpIfTest$2 = tmpChainRootProp != null;
+      if (tmpIfTest$2) {
         const tmpChainElementObject = tmpChainRootProp.x;
         const tmpChainElementObject$1 = tmpChainElementObject.y;
         const tmpChainElementObject$2 = tmpChainElementObject$1.z;

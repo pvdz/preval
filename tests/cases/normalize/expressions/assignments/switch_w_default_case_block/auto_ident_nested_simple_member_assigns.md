@@ -50,29 +50,20 @@ if (tmpIfTest) {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      let tmpNestedAssignPropRhs;
-      let tmpNestedAssignPropRhs$1;
-      let tmpNestedAssignPropRhs$2;
-      let tmpNestedAssignPropRhs$3;
-      let tmpNestedAssignPropRhs$4;
-      const tmpNestedPropAssignRhs = c;
+      const varInitAssignLhsComputedRhs$4 = c;
+      b.x = varInitAssignLhsComputedRhs$4;
+      const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$3;
+      const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+      b.x = varInitAssignLhsComputedRhs$2;
+      const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+      b.x = varInitAssignLhsComputedRhs$1;
+      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      b.x = varInitAssignLhsComputedRhs;
+      const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       b.x = tmpNestedPropAssignRhs;
-      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-      b.x = tmpNestedPropAssignRhs$1;
-      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-      b.x = tmpNestedPropAssignRhs$2;
-      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-      b.x = tmpNestedPropAssignRhs$3;
-      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-      b.x = tmpNestedPropAssignRhs$4;
-      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-      b.x = tmpNestedPropAssignRhs$5;
-      a = tmpNestedPropAssignRhs$5;
+      a = tmpNestedPropAssignRhs;
     }
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -110,29 +101,20 @@ if (tmpIfTest) {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      let tmpNestedAssignPropRhs;
-      let tmpNestedAssignPropRhs$1;
-      let tmpNestedAssignPropRhs$2;
-      let tmpNestedAssignPropRhs$3;
-      let tmpNestedAssignPropRhs$4;
-      const tmpNestedPropAssignRhs = c;
+      const varInitAssignLhsComputedRhs$4 = c;
+      b.x = varInitAssignLhsComputedRhs$4;
+      const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$3;
+      const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+      b.x = varInitAssignLhsComputedRhs$2;
+      const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+      b.x = varInitAssignLhsComputedRhs$1;
+      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      b.x = varInitAssignLhsComputedRhs;
+      const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
       b.x = tmpNestedPropAssignRhs;
-      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-      b.x = tmpNestedPropAssignRhs$1;
-      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-      b.x = tmpNestedPropAssignRhs$2;
-      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-      b.x = tmpNestedPropAssignRhs$3;
-      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-      b.x = tmpNestedPropAssignRhs$4;
-      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-      b.x = tmpNestedPropAssignRhs$5;
-      a = tmpNestedPropAssignRhs$5;
+      a = tmpNestedPropAssignRhs;
     }
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

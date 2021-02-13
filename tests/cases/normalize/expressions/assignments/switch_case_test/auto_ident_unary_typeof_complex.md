@@ -11,24 +11,24 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
-  case (a = typeof $(x)):
+  case (a = typeof $(arg)):
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -38,18 +38,18 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -59,7 +59,7 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

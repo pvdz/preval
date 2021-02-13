@@ -11,20 +11,20 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
   default:
-    typeof $(x);
+    typeof $(arg);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
@@ -32,17 +32,17 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(arg);
     typeof tmpUnaryArg;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
@@ -50,11 +50,11 @@ let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(arg);
     typeof tmpUnaryArg;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

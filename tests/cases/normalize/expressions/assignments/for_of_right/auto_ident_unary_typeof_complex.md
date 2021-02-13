@@ -11,49 +11,51 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (let x of (a = typeof $(x)));
-$(a, x);
+for (let x of (a = typeof $(arg)));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  const tmpUnaryArg = $(x_1);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpForOfDeclRhs = a;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  const tmpUnaryArg = $(x_1);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpForOfDeclRhs = a;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - 1: 1
+ - 2: 'number', 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

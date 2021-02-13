@@ -11,48 +11,48 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$($(1) ? (a = typeof x) : $(200));
-$(a, x);
+$($(1) ? (a = typeof arg) : $(200));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = typeof x;
+  const tmpNestedComplexRhs = typeof arg;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
   tmpCalleeParam = $(200);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = typeof x;
+  const tmpNestedComplexRhs = typeof arg;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

@@ -11,62 +11,62 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = ~x)) {}
+function f(p = (a = ~arg)) {}
 $(f());
-$(a);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = ~x;
+    const tmpNestedComplexRhs = ~arg;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = ~x;
+    const tmpNestedComplexRhs = ~arg;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: undefined
- - 2: -2
+ - 2: -2, 1
  - eval returned: undefined
 
 Normalized calls: Same

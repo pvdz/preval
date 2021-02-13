@@ -11,48 +11,48 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a = delete $(x).y) && (a = delete $(x).y));
-$(a, x);
+$((a = delete $(arg).y) && (a = delete $(arg).y));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpDeleteObj$1 = $(x);
+  const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpDeleteObj$1 = $(x);
+  const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

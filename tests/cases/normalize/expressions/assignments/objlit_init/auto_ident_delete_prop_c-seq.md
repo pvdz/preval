@@ -11,22 +11,22 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$({ x: (a = delete ($(1), $(2), $(x)).y) });
+$({ x: (a = delete ($(1), $(2), $(arg)).y) });
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
@@ -37,11 +37,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
@@ -56,7 +56,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: { x: 'true' }
- - 5: true, {}
+ - 5: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

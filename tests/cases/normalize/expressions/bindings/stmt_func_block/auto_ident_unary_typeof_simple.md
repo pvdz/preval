@@ -13,10 +13,10 @@
 `````js filename=intro
 function f() {
   {
-    let x = 1;
+    let arg = 1;
 
-    let a = typeof x;
-    $(a, x);
+    let a = typeof arg;
+    $(a, arg);
   }
 }
 $(f());
@@ -27,9 +27,9 @@ $(f());
 `````js filename=intro
 function f() {
   {
-    let x = 1;
-    let a = typeof x;
-    $(a, x);
+    let arg = 1;
+    let a = typeof arg;
+    $(a, arg);
   }
 }
 const tmpCallCallee = $;
@@ -42,9 +42,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   {
-    let x = 1;
-    let a = typeof x;
-    $(a, x);
+    let arg = 1;
+    let a = typeof arg;
+    $(a, arg);
   }
 }
 const tmpCalleeParam = f();

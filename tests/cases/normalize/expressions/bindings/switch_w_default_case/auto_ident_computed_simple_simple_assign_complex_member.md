@@ -29,6 +29,9 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCompObj;
+  let tmpCompProp;
+  let varInitAssignLhsComputedRhs;
   let a;
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
@@ -45,13 +48,11 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = { c: 10, d: 20 };
-      a = undefined;
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      b['c'] = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      tmpCompObj = $(b);
+      tmpCompProp = $('d');
+      varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+      b['c'] = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -71,6 +72,9 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCompObj;
+  let tmpCompProp;
+  let varInitAssignLhsComputedRhs;
   let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
@@ -86,13 +90,11 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = { c: 10, d: 20 };
-      a = undefined;
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      b['c'] = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      tmpCompObj = $(b);
+      tmpCompProp = $('d');
+      varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+      b['c'] = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

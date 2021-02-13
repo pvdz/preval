@@ -11,39 +11,39 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$({ [(a = typeof $(x))]: 10 });
-$(a, x);
+$({ [(a = typeof $(arg))]: 10 });
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

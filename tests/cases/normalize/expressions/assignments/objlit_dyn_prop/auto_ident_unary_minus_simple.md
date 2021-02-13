@@ -11,44 +11,44 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$({ [(a = -x)]: 10 });
-$(a);
+$({ [(a = -arg)]: 10 });
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = -x;
+a = -arg;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = -x;
+a = -arg;
 let tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: { '-1': '10' }
- - 2: -1
+ - 2: -1, 1
  - eval returned: undefined
 
 Normalized calls: Same

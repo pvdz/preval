@@ -11,10 +11,10 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = delete ($(1), $(2), $(x)).y) {}
+function f(p = delete ($(1), $(2), $(arg)).y) {}
 $(f());
 $(a, x);
 `````
@@ -22,19 +22,19 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = $(x);
-    arg = delete tmpDeleteObj.y;
+    const tmpDeleteObj = $(arg);
+    p = delete tmpDeleteObj.y;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -45,19 +45,19 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = $(x);
-    arg = delete tmpDeleteObj.y;
+    const tmpDeleteObj = $(arg);
+    p = delete tmpDeleteObj.y;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -71,7 +71,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: undefined
- - 5: { a: '999', b: '1000' }, {}
+ - 5: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

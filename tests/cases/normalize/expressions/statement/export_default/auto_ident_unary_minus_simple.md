@@ -11,31 +11,31 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-export default -x;
-$(a);
+export default -arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = -x;
+const tmpExportDefault = -arg;
 export { tmpExportDefault as default };
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = -x;
+const tmpExportDefault = -arg;
 export { tmpExportDefault as default };
-$(a);
+$(a, arg);
 `````
 
 ## Result

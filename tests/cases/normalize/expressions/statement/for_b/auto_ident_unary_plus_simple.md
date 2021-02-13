@@ -11,21 +11,21 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (; +x; $(1));
-$(a);
+for (; +arg; $(1));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    const tmpIfTest = +x;
+    const tmpIfTest = +arg;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -33,17 +33,17 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    const tmpIfTest = +x;
+    const tmpIfTest = +arg;
     if (tmpIfTest) {
       $(1);
     } else {
@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result

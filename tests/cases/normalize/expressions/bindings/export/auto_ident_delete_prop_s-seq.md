@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
-export let a = delete ($(1), $(2), x).y;
+export let a = delete ($(1), $(2), arg).y;
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteObj = x;
+const tmpDeleteObj = arg;
 let a = delete tmpDeleteObj.y;
 export { a };
 $(a, x);
@@ -32,10 +32,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteObj = x;
+const tmpDeleteObj = arg;
 let a = delete tmpDeleteObj.y;
 export { a };
 $(a, x);

@@ -11,41 +11,41 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-let xyz = (a = -x);
+let xyz = (a = -arg);
 $(xyz);
-$(a);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = -x;
+a = -arg;
 let xyz = a;
 $(xyz);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = -x;
+a = -arg;
 let xyz = a;
 $(xyz);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: -1
- - 2: -1
+ - 2: -1, 1
  - eval returned: undefined
 
 Normalized calls: Same

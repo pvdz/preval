@@ -26,11 +26,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpSwitchTest = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpSwitchTest = varInitAssignLhsComputedRhs;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -47,11 +46,8 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-tmpSwitchTest = 2;
-const tmpSwitchValue = tmpSwitchTest;
+const varInitAssignLhsComputedObj = b;
+varInitAssignLhsComputedObj.c = 2;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

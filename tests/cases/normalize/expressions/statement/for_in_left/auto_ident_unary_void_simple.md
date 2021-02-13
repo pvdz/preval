@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for ((void x).x in $({ x: 1 }));
-$(a);
+for ((void arg).x in $({ x: 1 }));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
@@ -33,13 +33,13 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -49,7 +49,7 @@ const tmpForInRhs = $(tmpCalleeParam);
     undefined.x = tmpForInLhsNode;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result

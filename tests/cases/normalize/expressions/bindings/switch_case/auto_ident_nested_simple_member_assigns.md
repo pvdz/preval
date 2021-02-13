@@ -27,6 +27,12 @@ switch (1) {
 {
   let b;
   let c;
+  let varInitAssignLhsComputedRhs$5;
+  let varInitAssignLhsComputedRhs$4;
+  let varInitAssignLhsComputedRhs$3;
+  let varInitAssignLhsComputedRhs$2;
+  let varInitAssignLhsComputedRhs$1;
+  let varInitAssignLhsComputedRhs;
   let a;
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
@@ -39,30 +45,19 @@ switch (1) {
     if (tmpIfTest$1) {
       b = { x: 1 };
       c = 3;
-      a = undefined;
-      let tmpNestedAssignPropRhs;
-      let tmpNestedAssignPropRhs$1;
-      let tmpNestedAssignPropRhs$2;
-      let tmpNestedAssignPropRhs$3;
-      let tmpNestedAssignPropRhs$4;
-      const tmpNestedPropAssignRhs = c;
-      b.x = tmpNestedPropAssignRhs;
-      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-      b.x = tmpNestedPropAssignRhs$1;
-      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-      b.x = tmpNestedPropAssignRhs$2;
-      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-      b.x = tmpNestedPropAssignRhs$3;
-      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-      b.x = tmpNestedPropAssignRhs$4;
-      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-      b.x = tmpNestedPropAssignRhs$5;
-      a = tmpNestedPropAssignRhs$5;
+      varInitAssignLhsComputedRhs$5 = c;
+      b.x = varInitAssignLhsComputedRhs$5;
+      varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
+      b.x = varInitAssignLhsComputedRhs$4;
+      varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$3;
+      varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+      b.x = varInitAssignLhsComputedRhs$2;
+      varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+      b.x = varInitAssignLhsComputedRhs$1;
+      varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      b.x = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b, c);
     }
   }
@@ -75,6 +70,12 @@ switch (1) {
 {
   let b;
   let c;
+  let varInitAssignLhsComputedRhs$5;
+  let varInitAssignLhsComputedRhs$4;
+  let varInitAssignLhsComputedRhs$3;
+  let varInitAssignLhsComputedRhs$2;
+  let varInitAssignLhsComputedRhs$1;
+  let varInitAssignLhsComputedRhs;
   let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
@@ -86,30 +87,19 @@ switch (1) {
     if (tmpIfTest$1) {
       b = { x: 1 };
       c = 3;
-      a = undefined;
-      let tmpNestedAssignPropRhs;
-      let tmpNestedAssignPropRhs$1;
-      let tmpNestedAssignPropRhs$2;
-      let tmpNestedAssignPropRhs$3;
-      let tmpNestedAssignPropRhs$4;
-      const tmpNestedPropAssignRhs = c;
-      b.x = tmpNestedPropAssignRhs;
-      tmpNestedAssignPropRhs$4 = tmpNestedPropAssignRhs;
-      const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$4;
-      b.x = tmpNestedPropAssignRhs$1;
-      tmpNestedAssignPropRhs$3 = tmpNestedPropAssignRhs$1;
-      const tmpNestedPropAssignRhs$2 = tmpNestedAssignPropRhs$3;
-      b.x = tmpNestedPropAssignRhs$2;
-      tmpNestedAssignPropRhs$2 = tmpNestedPropAssignRhs$2;
-      const tmpNestedPropAssignRhs$3 = tmpNestedAssignPropRhs$2;
-      b.x = tmpNestedPropAssignRhs$3;
-      tmpNestedAssignPropRhs$1 = tmpNestedPropAssignRhs$3;
-      const tmpNestedPropAssignRhs$4 = tmpNestedAssignPropRhs$1;
-      b.x = tmpNestedPropAssignRhs$4;
-      tmpNestedAssignPropRhs = tmpNestedPropAssignRhs$4;
-      const tmpNestedPropAssignRhs$5 = tmpNestedAssignPropRhs;
-      b.x = tmpNestedPropAssignRhs$5;
-      a = tmpNestedPropAssignRhs$5;
+      varInitAssignLhsComputedRhs$5 = c;
+      b.x = varInitAssignLhsComputedRhs$5;
+      varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
+      b.x = varInitAssignLhsComputedRhs$4;
+      varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$3;
+      varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+      b.x = varInitAssignLhsComputedRhs$2;
+      varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+      b.x = varInitAssignLhsComputedRhs$1;
+      varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      b.x = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b, c);
     }
   }

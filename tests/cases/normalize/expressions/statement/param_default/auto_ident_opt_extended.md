@@ -14,7 +14,7 @@
 let b = { x: { y: { z: 100 } } };
 
 let a = { a: 999, b: 1000 };
-function f(arg = b?.x.y.z) {}
+function f(p = b?.x.y.z) {}
 $(f());
 $(a);
 `````
@@ -22,20 +22,20 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = undefined;
+    p = undefined;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      arg = tmpChainElementObject$2;
+      p = tmpChainElementObject$2;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 const tmpObjLitVal$1 = { z: 100 };
@@ -51,20 +51,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = undefined;
+    p = undefined;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      arg = tmpChainElementObject$2;
+      p = tmpChainElementObject$2;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 const tmpObjLitVal$1 = { z: 100 };

@@ -11,28 +11,28 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
-export let a = void x;
-$(a);
+export let a = void arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = undefined;
 export { a };
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = undefined;
 export { a };
-$(a);
+$(a, arg);
 `````
 
 ## Result

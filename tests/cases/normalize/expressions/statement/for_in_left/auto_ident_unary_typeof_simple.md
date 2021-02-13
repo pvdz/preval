@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for ((typeof x).x in $({ x: 1 }));
-$(a, x);
+for ((typeof arg).x in $({ x: 1 }));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
@@ -29,28 +29,28 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpAssignMemLhsObj = typeof x;
+    const tmpAssignMemLhsObj = typeof arg;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpAssignMemLhsObj = typeof x;
+    const tmpAssignMemLhsObj = typeof arg;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

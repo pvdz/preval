@@ -23,11 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpArrElToSpread = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpArrElToSpread = varInitAssignLhsComputedRhs;
 [...tmpArrElToSpread];
 $(a, b);
 `````
@@ -37,11 +36,9 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-tmpArrElToSpread = 2;
-[...tmpArrElToSpread];
+const varInitAssignLhsComputedObj = b;
+varInitAssignLhsComputedObj.c = 2;
+[...2];
 $(a, b);
 `````
 

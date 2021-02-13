@@ -23,12 +23,10 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedAssignObj = $(b);
-  const tmpNestedAssignPropRhs = c + d;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedRhs = c + d;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 
@@ -40,12 +38,10 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedAssignObj = $(b);
-  const tmpNestedAssignPropRhs = c + d;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedRhs = c + d;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 

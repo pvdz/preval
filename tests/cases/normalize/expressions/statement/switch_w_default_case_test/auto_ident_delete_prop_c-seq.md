@@ -11,11 +11,11 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
-  case delete ($(1), $(2), $(x)).y:
+  case delete ($(1), $(2), $(arg)).y:
     break;
   default:
     $("fail1");
@@ -28,14 +28,14 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinLhs = delete tmpDeleteObj.y;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -66,14 +66,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinLhs = delete tmpDeleteObj.y;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -110,7 +110,7 @@ Should call `$` with:
  - 4: { y: '1' }
  - 5: 'fail1'
  - 6: 'fail2'
- - 7: { a: '999', b: '1000' }, {}
+ - 7: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

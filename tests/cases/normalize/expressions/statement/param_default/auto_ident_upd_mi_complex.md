@@ -14,7 +14,7 @@
 let b = { x: 1 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = --$($(b)).x) {}
+function f(p = --$($(b)).x) {}
 $(f());
 $(a, b);
 `````
@@ -22,9 +22,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
@@ -32,9 +32,9 @@ function f($tdz$__arg) {
     const tmpBinLhs = tmpNestedAssignObj.x;
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    arg = tmpNestedPropCompoundComplexRhs;
+    p = tmpNestedPropCompoundComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { x: 1 };
@@ -48,18 +48,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(b);
     const tmpNestedAssignObj = $(tmpCalleeParam);
     const tmpBinLhs = tmpNestedAssignObj.x;
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    arg = tmpNestedPropCompoundComplexRhs;
+    p = tmpNestedPropCompoundComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { x: 1 };

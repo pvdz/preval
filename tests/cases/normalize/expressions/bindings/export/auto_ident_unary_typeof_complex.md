@@ -11,30 +11,30 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
-export let a = typeof $(x);
-$(a, x);
+export let a = typeof $(arg);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
-const tmpUnaryArg = $(x);
+let arg = 1;
+const tmpUnaryArg = $(arg);
 let a = typeof tmpUnaryArg;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpUnaryArg = $(x);
+let arg = 1;
+const tmpUnaryArg = $(arg);
 let a = typeof tmpUnaryArg;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

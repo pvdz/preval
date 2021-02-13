@@ -11,24 +11,24 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$($(100) && (a = delete ($(1), $(2), $(x)).y));
+$($(100) && (a = delete ($(1), $(2), $(arg)).y));
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(1);
   $(2);
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -40,13 +40,13 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(1);
   $(2);
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -63,7 +63,7 @@ Should call `$` with:
  - 3: 2
  - 4: { y: '1' }
  - 5: true
- - 6: true, {}
+ - 6: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

@@ -11,20 +11,20 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-while ((a = typeof $(x))) $(100);
-$(a, x);
+while ((a = typeof $(arg))) $(100);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -33,16 +33,16 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -51,7 +51,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

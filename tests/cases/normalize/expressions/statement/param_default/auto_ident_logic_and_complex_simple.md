@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-function f(arg = $($(1)) && 2) {}
+function f(p = $($(1)) && 2) {}
 $(f());
 $(a);
 `````
@@ -20,18 +20,18 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    arg = tmpCallCallee(tmpCalleeParam);
-    if (arg) {
-      arg = 2;
+    p = tmpCallCallee(tmpCalleeParam);
+    if (p) {
+      p = 2;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };
@@ -44,17 +44,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
-    arg = $(tmpCalleeParam);
-    if (arg) {
-      arg = 2;
+    p = $(tmpCalleeParam);
+    if (p) {
+      p = 2;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

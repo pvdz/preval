@@ -11,50 +11,52 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-for (let x in (a = delete $(x)["y"]));
-$(a, x);
+for (let x in (a = delete $(arg)["y"]));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteCompObj = $(x_1);
+  const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = 'y';
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   let tmpForInDeclRhs = a;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
+  let x;
+  for (x in tmpForInDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteCompObj = $(x_1);
+  const tmpDeleteCompObj = $(arg);
   a = delete tmpDeleteCompObj['y'];
   let tmpForInDeclRhs = a;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
+  let x;
+  for (x in tmpForInDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - 1: { y: '1' }
+ - 2: true, {}
+ - eval returned: undefined
 
 Normalized calls: Same
 

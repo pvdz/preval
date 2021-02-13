@@ -21,12 +21,11 @@ $(a, b, c);
 `````js filename=intro
 let b = 2;
 let c = 3;
-let a;
 $(b);
-const tmpNestedAssignObj = $(c);
-const tmpNestedPropAssignRhs = c;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedRhs = c;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 
@@ -35,12 +34,11 @@ $(a, b, c);
 `````js filename=intro
 let b = 2;
 let c = 3;
-let a;
 $(b);
-const tmpNestedAssignObj = $(c);
-const tmpNestedPropAssignRhs = c;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedRhs = c;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 

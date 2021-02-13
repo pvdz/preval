@@ -11,39 +11,39 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-label: a = void x;
-$(a);
+label: a = void arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   a = undefined;
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   a = undefined;
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: undefined
+ - 1: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

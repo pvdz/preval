@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 do {
   $(100);
-} while (delete ($(1), $(2), x).y);
+} while (delete ($(1), $(2), arg).y);
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -32,7 +32,7 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     tmpIfTest = delete tmpDeleteObj.y;
   }
   if (tmpIfTest) {
@@ -48,7 +48,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -57,7 +57,7 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     tmpIfTest = delete tmpDeleteObj.y;
   }
   if (tmpIfTest) {

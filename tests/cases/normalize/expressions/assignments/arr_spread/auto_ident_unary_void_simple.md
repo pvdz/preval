@@ -11,36 +11,36 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$([...(a = void x)]);
-$(a);
+$([...(a = void arg)]);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = undefined;
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 a = undefined;
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result

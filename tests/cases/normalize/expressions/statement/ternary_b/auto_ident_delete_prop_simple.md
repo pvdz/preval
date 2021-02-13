@@ -11,39 +11,39 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$(1) ? delete x.y : $(200);
-$(a, x);
+$(1) ? delete arg.y : $(200);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  delete x.y;
+  delete arg.y;
 } else {
   $(200);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  delete x.y;
+  delete arg.y;
 } else {
   $(200);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

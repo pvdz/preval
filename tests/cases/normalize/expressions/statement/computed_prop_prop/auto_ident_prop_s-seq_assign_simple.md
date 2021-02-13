@@ -26,11 +26,10 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpCompProp = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpCompProp = varInitAssignLhsComputedRhs;
 tmpCompObj[tmpCompProp];
 $(a, b);
 `````
@@ -42,11 +41,9 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-tmpCompProp = 2;
-tmpCompObj[tmpCompProp];
+const varInitAssignLhsComputedObj = b;
+varInitAssignLhsComputedObj.c = 2;
+tmpCompObj[2];
 $(a, b);
 `````
 

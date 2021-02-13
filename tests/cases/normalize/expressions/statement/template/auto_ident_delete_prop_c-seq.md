@@ -11,22 +11,22 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$(`before  ${delete ($(1), $(2), $(x)).y}  after`);
+$(`before  ${delete ($(1), $(2), $(arg)).y}  after`);
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpTemplateExpr = delete tmpDeleteObj.y;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -36,11 +36,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpTemplateExpr = delete tmpDeleteObj.y;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
@@ -54,7 +54,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 'before  true  after'
- - 5: { a: '999', b: '1000' }, {}
+ - 5: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

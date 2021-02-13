@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-function f(arg = (a = [$(1), 2, $(3)])) {}
+function f(p = (a = [$(1), 2, $(3)])) {}
 $(f());
 $(a);
 `````
@@ -20,18 +20,18 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(1);
     const tmpArrElement$1 = 2;
     const tmpArrElement$2 = $(3);
     const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };
@@ -44,17 +44,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(1);
     const tmpArrElement$2 = $(3);
     const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

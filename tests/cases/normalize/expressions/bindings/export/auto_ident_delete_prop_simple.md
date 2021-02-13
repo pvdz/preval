@@ -11,28 +11,28 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
-export let a = delete x.y;
-$(a, x);
+export let a = delete arg.y;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
-let a = delete x.y;
+let arg = { y: 1 };
+let a = delete arg.y;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
-let a = delete x.y;
+let arg = { y: 1 };
+let a = delete arg.y;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

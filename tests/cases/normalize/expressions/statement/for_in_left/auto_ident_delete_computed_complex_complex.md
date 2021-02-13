@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-for ((delete $(x)[$("y")]).x in $({ x: 1 }));
-$(a, x);
+for ((delete $(arg)[$("y")]).x in $({ x: 1 }));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
@@ -29,32 +29,32 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpDeleteCompObj = $(x);
+    const tmpDeleteCompObj = $(arg);
     const tmpDeleteCompProp = $('y');
     const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpDeleteCompObj = $(x);
+    const tmpDeleteCompObj = $(arg);
     const tmpDeleteCompProp = $('y');
     const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

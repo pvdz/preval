@@ -11,39 +11,39 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = delete $(x)["y"])}  after`);
-$(a, x);
+$(`before  ${(a = delete $(arg)["y"])}  after`);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = 'y';
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 a = delete tmpDeleteCompObj['y'];
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

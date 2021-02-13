@@ -11,50 +11,50 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 function f() {
-  return !x;
+  return !arg;
 }
 $(f());
-$(a);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = !x;
+  const tmpReturnArg = !arg;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = !x;
+  const tmpReturnArg = !arg;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: false
- - 2: { a: '999', b: '1000' }
+ - 2: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
 Normalized calls: Same

@@ -12,9 +12,9 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
 
-  let a = delete ($(1), $(2), x).y;
+  let a = delete ($(1), $(2), arg).y;
   $(a, x);
 }
 `````
@@ -23,10 +23,10 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
   $(1);
   $(2);
-  const tmpDeleteObj = x;
+  const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
   $(a, x);
 }
@@ -36,10 +36,10 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
   $(1);
   $(2);
-  const tmpDeleteObj = x;
+  const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
   $(a, x);
 }
@@ -50,7 +50,7 @@
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: true, {}
+ - 3: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

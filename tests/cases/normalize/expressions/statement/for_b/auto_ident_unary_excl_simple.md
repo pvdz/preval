@@ -11,51 +11,51 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (; !x; $(1));
-$(a);
+for (; !arg; $(1));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    if (x) {
+    if (arg) {
       break;
     } else {
       $(1);
     }
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    if (x) {
+    if (arg) {
       break;
     } else {
       $(1);
     }
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: { a: '999', b: '1000' }
+ - 1: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
 Normalized calls: Same

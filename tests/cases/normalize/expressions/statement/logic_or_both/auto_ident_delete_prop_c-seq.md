@@ -11,27 +11,27 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-delete ($(1), $(2), $(x)).y || delete ($(1), $(2), $(x)).y;
+delete ($(1), $(2), $(arg)).y || delete ($(1), $(2), $(arg)).y;
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
 } else {
   $(1);
   $(2);
-  const tmpDeleteObj$1 = $(x);
+  const tmpDeleteObj$1 = $(arg);
   delete tmpDeleteObj$1.y;
 }
 $(a, x);
@@ -40,17 +40,17 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
 } else {
   $(1);
   $(2);
-  const tmpDeleteObj$1 = $(x);
+  const tmpDeleteObj$1 = $(arg);
   delete tmpDeleteObj$1.y;
 }
 $(a, x);
@@ -62,7 +62,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: { a: '999', b: '1000' }, {}
+ - 4: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

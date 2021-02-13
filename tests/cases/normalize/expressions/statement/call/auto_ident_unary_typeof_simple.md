@@ -11,32 +11,32 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$(typeof x);
-$(a, x);
+$(typeof arg);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = typeof x;
+const tmpCalleeParam = typeof arg;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = typeof x;
+const tmpCalleeParam = typeof arg;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

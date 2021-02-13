@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
-let a = delete ($(1), $(2), $(x)).y;
+let a = delete ($(1), $(2), $(arg)).y;
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 let a = delete tmpDeleteObj.y;
 $(a, x);
 `````
@@ -31,10 +31,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 let a = delete tmpDeleteObj.y;
 $(a, x);
 `````
@@ -45,7 +45,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: true, {}
+ - 4: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

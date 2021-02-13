@@ -11,47 +11,47 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-delete ($(1), $(2), x)[$("y")] + delete ($(1), $(2), x)[$("y")];
-$(a, x);
+delete ($(1), $(2), arg)[$("y")] + delete ($(1), $(2), arg)[$("y")];
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
-const tmpDeleteCompObj$1 = x;
+const tmpDeleteCompObj$1 = arg;
 const tmpDeleteCompProp$1 = $('y');
 delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
-const tmpDeleteCompObj$1 = x;
+const tmpDeleteCompObj$1 = arg;
 const tmpDeleteCompProp$1 = $('y');
 delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

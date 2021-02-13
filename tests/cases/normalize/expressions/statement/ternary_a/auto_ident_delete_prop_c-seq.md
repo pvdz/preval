@@ -11,21 +11,21 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-delete ($(1), $(2), $(x)).y ? $(100) : $(200);
+delete ($(1), $(2), $(arg)).y ? $(100) : $(200);
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
   $(100);
@@ -38,11 +38,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
   $(100);
@@ -59,7 +59,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 100
- - 5: { a: '999', b: '1000' }, {}
+ - 5: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

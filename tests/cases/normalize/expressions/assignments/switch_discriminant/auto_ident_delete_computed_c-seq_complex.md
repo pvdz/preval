@@ -11,24 +11,24 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-switch ((a = delete ($(1), $(2), $(x))[$("y")])) {
+switch ((a = delete ($(1), $(2), $(arg))[$("y")])) {
   default:
     $(100);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpSwitchTest = a;
@@ -40,17 +40,17 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpSwitchTest = a;
@@ -62,7 +62,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

@@ -11,47 +11,47 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 function f() {
-  return (a = typeof $(x));
+  return (a = typeof $(arg));
 }
 $(f());
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
 function f() {
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

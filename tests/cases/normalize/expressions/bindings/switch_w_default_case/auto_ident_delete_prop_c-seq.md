@@ -13,9 +13,9 @@
 `````js filename=intro
 switch (1) {
   case 1:
-    let x = { y: 1 };
+    let arg = { y: 1 };
 
-    let a = delete ($(1), $(2), $(x)).y;
+    let a = delete ($(1), $(2), $(arg)).y;
     $(a, x);
   default:
     $("fail1");
@@ -28,7 +28,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteObj;
   let a;
   const tmpSwitchValue = 1;
@@ -45,10 +45,10 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      x = { y: 1 };
+      arg = { y: 1 };
       $(1);
       $(2);
-      tmpDeleteObj = $(x);
+      tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
       $(a, x);
     }
@@ -68,7 +68,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteObj;
   let a;
   let tmpSwitchCaseToStart = 1;
@@ -84,10 +84,10 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      x = { y: 1 };
+      arg = { y: 1 };
       $(1);
       $(2);
-      tmpDeleteObj = $(x);
+      tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
       $(a, x);
     }
@@ -109,7 +109,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: true, {}
+ - 4: true, undefined
  - 5: 'fail1'
  - 6: 'fail2'
  - eval returned: undefined

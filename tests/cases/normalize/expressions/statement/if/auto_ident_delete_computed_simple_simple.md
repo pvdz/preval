@@ -11,29 +11,29 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-if (delete x["y"]);
-$(a, x);
+if (delete arg["y"]);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = delete x['y'];
-$(a, x);
+const tmpIfTest = delete arg['y'];
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = delete x['y'];
-$(a, x);
+const tmpIfTest = delete arg['y'];
+$(a, arg);
 `````
 
 ## Result

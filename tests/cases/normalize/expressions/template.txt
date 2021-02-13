@@ -53,7 +53,7 @@ const descs = {
   ['##', 'assignments/objlit_dyn_prop', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {[$3 = $4]: 10}  );\n$5'],
   ['##', 'assignments/objlit_init', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {x: $3 = $4}  );\n$5'],
   ['##', 'assignments/objlit_spread', '$1\nlet $3 = {a: 999, b: 1000};\n$(  {...($3 = $4)}  );\n$5'],
-  ['##', 'assignments/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(arg =  $3 = $4  ){}\n$(f());\n$5'],
+  ['##', 'assignments/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(p =  $3 = $4  ){}\n$(f());\n$5'],
   ['##', 'assignments/regular_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($3 = $4).a;\n$5'],
   ['##', 'assignments/return', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f() {  return $3 = $4; }\n$(f());\n$5'],
   ['##', 'assignments/stmt_global_top', '$1\nlet $3 = {a: 999, b: 1000};\n($3 = $4)\n$5'],
@@ -109,7 +109,7 @@ const descs = {
   ['###', 'statement/objlit_dyn_prop', '$1\nlet $3 = {a: 999, b: 1000};\n(  {[($4)]: 10}  );\n$5'],
   ['###', 'statement/objlit_init', '$1\nlet $3 = {a: 999, b: 1000};\n(  {x: ($4)}  );\n$5'],
   ['###', 'statement/objlit_spread', '$1\nlet $3 = {a: 999, b: 1000};\n(  {...($4)}  );\n$5'],
-  ['###', 'statement/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(arg =  ($4)  ){}\n$(f());\n$5'],
+  ['###', 'statement/param_default', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f(p =  ($4)  ){}\n$(f());\n$5'],
   ['###', 'statement/regular_prop_obj', '$1\nlet $3 = {a: 999, b: 1000};\nlet obj = {}; ($4).a;\n$5'],
   ['###', 'statement/return', '$1\nlet $3 = {a: 999, b: 1000};\nfunction f() {  return ($4); }\n$(f());\n$5'],
   ['###', 'statement/stmt_global_top', '$1\nlet $3 = {a: 999, b: 1000};\n($4)\n$5'],
@@ -568,25 +568,25 @@ $(a, x);
 
 # ident_unary_typeof_simple
 
-let x = 1;
-let a = typeof x;
-$(a, x);
+let arg = 1;
+let a = typeof arg;
+$(a, arg);
 
 ---
 
 # ident_unary_typeof_complex
 
-let x = 1;
-let a = typeof $(x);
-$(a, x);
+let arg = 1;
+let a = typeof $(arg);
+$(a, arg);
 
 ---
 
 # ident_unary_void_simple
 
-let x = 1;
-let a = void x;
-$(a);
+let arg = 1;
+let a = void arg;
+$(a, arg);
 
 ---
 
@@ -599,9 +599,9 @@ $(a);
 
 # ident_unary_excl_simple
 
-let x = 1;
-let a = ! x;
-$(a);
+let arg = 1;
+let a = ! arg;
+$(a, arg);
 
 ---
 
@@ -614,9 +614,9 @@ $(a);
 
 # ident_unary_plus_simple
 
-let x = 1;
-let a = +x;
-$(a);
+let arg = 1;
+let a = +arg;
+$(a, arg);
 
 ---
 
@@ -629,9 +629,9 @@ $(a);
 
 # ident_unary_minus_simple
 
-let x = 1;
-let a = -x;
-$(a);
+let arg = 1;
+let a = -arg;
+$(a, arg);
 
 ---
 
@@ -644,9 +644,9 @@ $(a);
 
 # ident_unary_tilde_simple
 
-let x = 1;
-let a = ~x;
-$(a);
+let arg = 1;
+let a = ~arg;
+$(a, arg);
 
 ---
 
@@ -659,80 +659,80 @@ $(a);
 
 # ident_delete_computed_simple_simple
 
-let x = {y: 1};
-let a = delete x['y'];
-$(a, x);
+let arg = {y: 1};
+let a = delete arg['y'];
+$(a, arg);
 
 ---
 
 # ident_delete_computed_complex_simple
 
-let x = {y: 1};
-let a = delete $(x)['y'];
-$(a, x);
+let arg = {y: 1};
+let a = delete $(arg)['y'];
+$(a, arg);
 
 ---
 
 # ident_delete_computed_simple_complex
 
-let x = {y: 1};
-let a = delete x[$('y')];
-$(a, x);
+let arg = {y: 1};
+let a = delete arg[$('y')];
+$(a, arg);
 
 ---
 
 # ident_delete_computed_complex_complex
 
-let x = {y: 1};
-let a = delete $(x)[$('y')];
-$(a, x);
+let arg = {y: 1};
+let a = delete $(arg)[$('y')];
+$(a, arg);
 
 ---
 
 # ident_delete_computed_s-seq_complex
 
-let x = {y: 1};
-let a = delete ($(1), $(2), x)[$('y')];
-$(a, x);
+let arg = {y: 1};
+let a = delete ($(1), $(2), arg)[$('y')];
+$(a, arg);
 
 ---
 
 # ident_delete_computed_c-seq_complex
 
-let x = {y: 1};
-let a = delete ($(1), $(2), $(x))[$('y')];
-$(a, x);
+let arg = {y: 1};
+let a = delete ($(1), $(2), $(arg))[$('y')];
+$(a, arg);
 
 ---
 
 # ident_delete_prop_simple
 
-let x = {y: 1};
-let a = delete x.y;
-$(a, x);
+let arg = {y: 1};
+let a = delete arg.y;
+$(a, arg);
 
 ---
 
 # ident_delete_prop_complex
 
-let x = {y: 1};
-let a = delete $(x).y;
-$(a, x);
+let arg = {y: 1};
+let a = delete $(arg).y;
+$(a, arg);
 
 ---
 
 # ident_delete_prop_s-seq
 
-let x = {y: 1};
-let a = delete ($(1), $(2), x).y;
+let arg = {y: 1};
+let a = delete ($(1), $(2), arg).y;
 $(a, x);
 
 ---
 
 # ident_delete_prop_c-seq
 
-let x = {y: 1};
-let a = delete ($(1), $(2), $(x)).y;
+let arg = {y: 1};
+let a = delete ($(1), $(2), $(arg)).y;
 $(a, x);
 
 ---

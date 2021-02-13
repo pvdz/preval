@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-throw (a = ~x);
-$(a);
+throw (a = ~arg);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = ~x;
+a = ~arg;
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -31,9 +31,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = ~x;
+a = ~arg;
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````

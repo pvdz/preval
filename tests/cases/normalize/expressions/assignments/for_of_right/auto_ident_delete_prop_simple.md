@@ -11,47 +11,47 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-for (let x of (a = delete x.y));
-$(a, x);
+for (let x of (a = delete arg.y));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  a = delete x_1.y;
+  a = delete arg.y;
   let tmpForOfDeclRhs = a;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  a = delete x_1.y;
+  a = delete arg.y;
   let tmpForOfDeclRhs = a;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
+  let x;
+  for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Normalized calls: Same
 

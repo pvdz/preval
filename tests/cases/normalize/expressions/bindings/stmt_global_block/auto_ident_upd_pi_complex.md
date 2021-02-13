@@ -24,14 +24,13 @@
 `````js filename=intro
 {
   let b = { x: 1 };
-  let a;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  let a = varInitAssignLhsComputedRhs;
   $(a, b);
 }
 `````
@@ -41,13 +40,12 @@
 `````js filename=intro
 {
   let b = { x: 1 };
-  let a;
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  let a = varInitAssignLhsComputedRhs;
   $(a, b);
 }
 `````

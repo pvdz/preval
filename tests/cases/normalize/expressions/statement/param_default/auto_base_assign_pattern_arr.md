@@ -14,7 +14,7 @@
 let b = [];
 
 let a = { a: 999, b: 1000 };
-function f(arg = ([b] = $([$(2)]))) {}
+function f(p = ([b] = $([$(2)]))) {}
 $(f());
 $(a, b);
 `````
@@ -22,9 +22,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpArrElement = $(2);
@@ -32,9 +32,9 @@ function f($tdz$__arg) {
     const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    arg = tmpNestedAssignArrPatternRhs;
+    p = tmpNestedAssignArrPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = [];
@@ -48,18 +48,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    arg = tmpNestedAssignArrPatternRhs;
+    p = tmpNestedAssignArrPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = [];

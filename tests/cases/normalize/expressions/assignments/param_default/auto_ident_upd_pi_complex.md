@@ -14,7 +14,7 @@
 let b = { x: 1 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = ++$($(b)).x)) {}
+function f(p = (a = ++$($(b)).x)) {}
 $(f());
 $(a, b);
 `````
@@ -22,22 +22,21 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
     const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    tmpNestedComplexRhs = tmpNestedPropCompoundComplexRhs;
+    const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+    const tmpBinLhs = varInitAssignLhsComputedObj.x;
+    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { x: 1 };
@@ -51,21 +50,20 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
     const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    tmpNestedComplexRhs = tmpNestedPropCompoundComplexRhs;
+    const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+    const tmpBinLhs = varInitAssignLhsComputedObj.x;
+    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { x: 1 };

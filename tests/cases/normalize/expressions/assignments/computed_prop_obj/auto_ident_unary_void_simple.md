@@ -11,36 +11,36 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = void x)["a"];
-$(a);
+(a = void arg)["a"];
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 a = undefined;
 let tmpCompObj = a;
 tmpCompObj.a;
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 a = undefined;
 let tmpCompObj = a;
 tmpCompObj.a;
-$(a);
+$(a, arg);
 `````
 
 ## Result

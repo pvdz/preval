@@ -11,43 +11,43 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (let xyz = (a = +x); ; $(1)) $(xyz);
-$(a);
+for (let xyz = (a = +arg); ; $(1)) $(xyz);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  a = +x;
+  a = +arg;
   let xyz = a;
   while (true) {
     $(xyz);
     $(1);
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  a = +x;
+  a = +arg;
   let xyz = a;
   while (true) {
     $(xyz);
     $(1);
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result

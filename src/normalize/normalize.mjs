@@ -749,7 +749,7 @@ export function phaseNormalize(fdata, fname) {
       case 'TryStatement':
         return transformTryStatement(node, body, i, parent);
       case 'VariableDeclaration':
-        return transformVariableDeclaration(node, body, i);
+        return transformVariableDeclaration(node, body, i, parent);
       case 'WhileStatement':
         return transformWhileStatement(node, body, i);
 
@@ -3370,7 +3370,7 @@ export function phaseNormalize(fdata, fname) {
         // a.b.c.d() -> tmp = a.b.c; tmp2 = tmp.d; if (tmp2) { tmp2.call(tmp, ...)
 
         function r(node) {
-          log('-> r:', node.type, node.property ? node.property.name : node.callee);
+          log('-> r:', node.type, node.property ? node.property.name : node.callee.type);
           if (node.type === 'MemberExpression') {
             if (node.object.type === 'MemberExpression' || node.object.type === 'CallExpression') {
               r(node.object);
@@ -5083,7 +5083,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
-  function transformVariableDeclaration(node, body, i) {
+  function transformVariableDeclaration(node, body, i, parent) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
       log('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
@@ -5139,7 +5139,7 @@ export function phaseNormalize(fdata, fname) {
     if (dnode.id.type === 'ObjectPattern') {
       rule('Binding object patterns not allowed');
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
-      before(node);
+      before(node, parent);
 
       const bindingPatternRootName = createFreshVar('bindingPatternObjRoot');
       const nameStack = [bindingPatternRootName];
@@ -5188,8 +5188,28 @@ export function phaseNormalize(fdata, fname) {
         // is an expression statement and then transforms go bad.
 
         if (dnode.init.left.type === 'Identifier') {
+          if (dnode.init.operator !== '=') {
+            rule('Var inits can not be compound assignments to ident');
+            example('let x = y *= z()', 'let x = y = y * z();');
+            before(node, parent);
+
+            dnode.init = AST.assignmentExpression(
+              dnode.init.left,
+              AST.binaryExpression(
+                dnode.init.operator.slice(0, -1), // *= becomes *
+                AST.cloneSimple(dnode.init.left),
+                dnode.init.right,
+              ),
+            );
+
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           rule('Var inits can not be assignments; lhs ident');
           example('let x = y = z()', 'y = z; let x = y;');
+          before(node, parent);
 
           const newNodes = [
             AST.expressionStatement(dnode.init),
@@ -5207,6 +5227,7 @@ export function phaseNormalize(fdata, fname) {
             ASSERT(dnode.id.type === 'Identifier');
             rule('Var inits can not be assignments; lhs computed complex prop');
             example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
+            before(node, parent);
 
             const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj');
             const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp');
@@ -5224,10 +5245,99 @@ export function phaseNormalize(fdata, fname) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
+
+          if (isComplexNode(dnode.init.left.object)) {
+            ASSERT(dnode.id.type === 'Identifier');
+            rule('Var inits can not be assignments; lhs regular complex prop');
+            example(
+              'let x = a().b = z()',
+              'tmp = a(); let x = tmp.b = z();',
+              () => dnode.init.operator === '=' && !dnode.init.left.computed,
+            );
+            example(
+              'let x = a()[b] = z()',
+              'tmp = a(); let x = tmp[b] = z();',
+              () => dnode.init.operator === '=' && dnode.init.left.computed,
+            );
+            example(
+              'let x = a().b *= z()',
+              'tmp = a(); let x = tmp.b *= z();',
+              () => dnode.init.operator !== '=' && !dnode.init.left.computed,
+            );
+            example(
+              'let x = a()[b] *= z()',
+              'tmp = a(); let x = tmp[b] *= z();',
+              () => dnode.init.operator !== '=' && dnode.init.left.computed,
+            );
+            before(node, parent);
+
+            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj');
+            const newNodes = [
+              AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
+              AST.variableDeclaration(
+                dnode.id,
+                AST.assignmentExpression(
+                  AST.memberExpression(tmpNameObj, dnode.init.left.property, dnode.init.left.computed),
+                  dnode.init.right,
+                  dnode.init.operator,
+                ),
+                node.kind,
+              ),
+            ];
+            body.splice(i, 1, ...newNodes);
+
+            after(newNodes);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          // At this point the assignment has an lhs that is a property and the object and property are simple (maybe computed)
+
+          if (dnode.init.operator !== '=') {
+            ASSERT(dnode.id.type === 'Identifier');
+            rule('Var inits can not be compound assignments to simple member');
+            example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
+            before(node);
+
+            dnode.init = AST.assignmentExpression(
+              dnode.init.left,
+              AST.binaryExpression(
+                dnode.init.operator.slice(0, -1), // *= becomes *
+                AST.cloneSimple(dnode.init.left),
+                dnode.init.right,
+              ),
+            );
+
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          // We should be able to stash the rhs without worrying about side effects by reading the lhs first.
+
+          ASSERT(dnode.id.type === 'Identifier');
+          rule('Var inits can not be assignments; lhs simple member');
+          example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
+          before(node, parent);
+
+          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs');
+          const newNodes = [
+            AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
+            AST.expressionStatement(AST.assignmentExpression(dnode.init.left, tmpNameRhs, dnode.init.operator)),
+            AST.variableDeclaration(dnode.id, tmpNameRhs, node.kind),
+          ];
+          body.splice(i, 1, ...newNodes);
+
+          after(newNodes);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
         }
 
-        rule('Var inits can not be assignments');
-        example('let x = a()[b()] = z()', 'let x, x = a()[b()] = z()');
+        // TODO: clean this up nicely as well. Shouldn't ultimately be a big deal, just yields better normalized results. Like above.
+
+        rule('Var inits can not be assignments; pattern lhs');
+        example('let x = [y] = z()', 'let x, x = [y] = z()');
+        before(node, parent);
 
         const newNodes = [
           AST.variableDeclaration(AST.cloneSimple(dnode.id)),

@@ -11,28 +11,28 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-throw !x;
-$(a);
+throw !arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpThrowArg = !x;
+const tmpThrowArg = !arg;
 throw tmpThrowArg;
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpThrowArg = !x;
+const tmpThrowArg = !arg;
 throw tmpThrowArg;
 `````
 

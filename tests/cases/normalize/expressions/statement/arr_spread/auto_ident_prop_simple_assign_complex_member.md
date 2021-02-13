@@ -23,13 +23,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-tmpArrElToSpread = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+const tmpArrElToSpread = varInitAssignLhsComputedRhs;
 [...tmpArrElToSpread];
 $(a, b);
 `````
@@ -39,13 +37,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-tmpArrElToSpread = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+const tmpArrElToSpread = varInitAssignLhsComputedRhs;
 [...tmpArrElToSpread];
 $(a, b);
 `````

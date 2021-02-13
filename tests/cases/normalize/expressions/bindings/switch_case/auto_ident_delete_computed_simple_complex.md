@@ -13,10 +13,10 @@
 `````js filename=intro
 switch (1) {
   case 1:
-    let x = { y: 1 };
+    let arg = { y: 1 };
 
-    let a = delete x[$("y")];
-    $(a, x);
+    let a = delete arg[$("y")];
+    $(a, arg);
 }
 `````
 
@@ -24,7 +24,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteCompObj;
   let tmpDeleteCompProp;
   let a;
@@ -37,11 +37,11 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = { y: 1 };
-      tmpDeleteCompObj = x;
+      arg = { y: 1 };
+      tmpDeleteCompObj = arg;
       tmpDeleteCompProp = $('y');
       a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-      $(a, x);
+      $(a, arg);
     }
   }
 }
@@ -51,7 +51,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteCompObj;
   let tmpDeleteCompProp;
   let a;
@@ -63,11 +63,11 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = { y: 1 };
-      tmpDeleteCompObj = x;
+      arg = { y: 1 };
+      tmpDeleteCompObj = arg;
       tmpDeleteCompProp = $('y');
       a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-      $(a, x);
+      $(a, arg);
     }
   }
 }

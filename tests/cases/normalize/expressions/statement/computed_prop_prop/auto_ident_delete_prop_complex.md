@@ -11,38 +11,38 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[delete $(x).y];
-$(a, x);
+obj[delete $(arg).y];
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpCompProp = delete tmpDeleteObj.y;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpCompProp = delete tmpDeleteObj.y;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

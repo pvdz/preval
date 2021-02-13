@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-function f(arg = $(1) ? (40, 50, 60) : $($(100))) {}
+function f(p = $(1) ? (40, 50, 60) : $($(100))) {}
 $(f());
 $(a);
 `````
@@ -20,20 +20,20 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      arg = 60;
+      p = 60;
     } else {
       const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      arg = tmpCallCallee(tmpCalleeParam);
+      p = tmpCallCallee(tmpCalleeParam);
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };
@@ -46,19 +46,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      arg = 60;
+      p = 60;
     } else {
       const tmpCalleeParam = $(100);
-      arg = $(tmpCalleeParam);
+      p = $(tmpCalleeParam);
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

@@ -11,23 +11,23 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a *= delete ($(1), $(2), $(x)).y));
+$((a *= delete ($(1), $(2), $(arg)).y));
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -38,12 +38,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -58,7 +58,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: NaN
- - 5: NaN, {}
+ - 5: NaN, undefined
  - eval returned: undefined
 
 Normalized calls: Same

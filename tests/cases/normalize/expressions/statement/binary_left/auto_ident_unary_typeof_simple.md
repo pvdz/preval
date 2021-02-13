@@ -11,31 +11,31 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-typeof x + $(100);
-$(a, x);
+typeof arg + $(100);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-typeof x;
+typeof arg;
 $(100);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-typeof x;
+typeof arg;
 $(100);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

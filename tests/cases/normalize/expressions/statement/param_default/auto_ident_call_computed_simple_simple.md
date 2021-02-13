@@ -14,7 +14,7 @@
 let b = { $ };
 
 let a = { a: 999, b: 1000 };
-function f(arg = b["$"](1)) {}
+function f(p = b["$"](1)) {}
 $(f());
 $(a);
 `````
@@ -22,13 +22,13 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = b['$'](1);
+    p = b['$'](1);
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { $: $ };
@@ -42,13 +42,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = b['$'](1);
+    p = b['$'](1);
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { $: $ };

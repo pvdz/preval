@@ -12,10 +12,10 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
 
-  let a = void x;
-  $(a);
+  let a = void arg;
+  $(a, arg);
 }
 `````
 
@@ -23,9 +23,9 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
   let a = undefined;
-  $(a);
+  $(a, arg);
 }
 `````
 
@@ -33,16 +33,16 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
   let a = undefined;
-  $(a);
+  $(a, arg);
 }
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: undefined
+ - 1: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

@@ -11,31 +11,31 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-if (delete $(x).y);
-$(a, x);
+if (delete $(arg).y);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

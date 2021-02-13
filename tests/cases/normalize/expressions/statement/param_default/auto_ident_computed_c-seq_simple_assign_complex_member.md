@@ -14,7 +14,7 @@
 let b = { c: 10, d: 20 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = ((1, 2, $(b))[$("c")] = $(b)[$("d")])) {}
+function f(p = ((1, 2, $(b))[$("c")] = $(b)[$("d")])) {}
 $(f());
 $(a, b);
 `````
@@ -22,9 +22,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('c');
@@ -33,9 +33,9 @@ function f($tdz$__arg) {
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    arg = tmpNestedPropAssignRhs;
+    p = tmpNestedPropAssignRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: 10, d: 20 };
@@ -49,9 +49,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('c');
@@ -60,9 +60,9 @@ function f($tdz$__arg) {
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    arg = tmpNestedPropAssignRhs;
+    p = tmpNestedPropAssignRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: 10, d: 20 };

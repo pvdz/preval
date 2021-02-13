@@ -24,11 +24,10 @@
 `````js filename=intro
 {
   let b = { c: 1 };
-  let a;
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  let a = varInitAssignLhsComputedRhs;
   $(a, b);
 }
 `````
@@ -38,10 +37,9 @@
 `````js filename=intro
 {
   let b = { c: 1 };
-  let a;
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
-  a = 2;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
+  let a = 2;
   $(a, b);
 }
 `````

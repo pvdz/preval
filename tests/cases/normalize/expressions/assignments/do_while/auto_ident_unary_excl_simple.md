@@ -11,26 +11,26 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 do {
   $(100);
-} while ((a = !x));
-$(a);
+} while ((a = !arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = !x;
+    const tmpNestedComplexRhs = !arg;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -41,20 +41,20 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = !x;
+    const tmpNestedComplexRhs = !arg;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -65,14 +65,14 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: 100
- - 2: false
+ - 2: false, 1
  - eval returned: undefined
 
 Normalized calls: Same

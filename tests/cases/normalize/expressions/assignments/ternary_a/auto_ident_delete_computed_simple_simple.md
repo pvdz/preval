@@ -11,21 +11,21 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a = delete x["y"]) ? $(100) : $(200));
-$(a, x);
+$((a = delete arg["y"]) ? $(100) : $(200));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = delete x['y'];
+a = delete arg['y'];
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -33,16 +33,16 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-a = delete x['y'];
+a = delete arg['y'];
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -50,7 +50,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

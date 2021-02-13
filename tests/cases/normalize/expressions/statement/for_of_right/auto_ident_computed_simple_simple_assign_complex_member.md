@@ -24,13 +24,11 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
-  tmpForOfDeclRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  b['c'] = varInitAssignLhsComputedRhs;
+  const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -44,13 +42,11 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
-  tmpForOfDeclRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  b['c'] = varInitAssignLhsComputedRhs;
+  const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
   let x;
   for (x of tmpForOfDeclRhs) {
   }

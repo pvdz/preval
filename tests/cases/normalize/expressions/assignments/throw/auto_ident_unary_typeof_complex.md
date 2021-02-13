@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-throw (a = typeof $(x));
-$(a, x);
+throw (a = typeof $(arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpThrowArg = a;
 throw tmpThrowArg;
@@ -32,9 +32,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpThrowArg = a;
 throw tmpThrowArg;

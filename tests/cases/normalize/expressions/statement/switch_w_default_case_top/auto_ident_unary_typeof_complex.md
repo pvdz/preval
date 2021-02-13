@@ -11,25 +11,25 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
   case $(1):
-    typeof $(x);
+    typeof $(arg);
     break;
   default:
     $("fail1");
   case 2:
     $("fail2");
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
@@ -47,7 +47,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(arg);
     typeof tmpUnaryArg;
     break tmpSwitchBreak;
   }
@@ -60,13 +60,13 @@ tmpSwitchBreak: {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
@@ -84,7 +84,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(arg);
     typeof tmpUnaryArg;
     break tmpSwitchBreak;
   }
@@ -97,7 +97,7 @@ tmpSwitchBreak: {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

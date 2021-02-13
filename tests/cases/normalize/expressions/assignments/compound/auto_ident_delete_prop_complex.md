@@ -11,40 +11,40 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a *= delete $(x).y));
-$(a, x);
+$((a *= delete $(arg).y));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

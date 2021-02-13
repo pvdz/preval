@@ -14,7 +14,7 @@
 let b = { c: 1 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = (1, 2, b).c = 2)) {}
+function f(p = (a = (1, 2, b).c = 2)) {}
 $(f());
 $(a, b);
 `````
@@ -22,19 +22,18 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = b;
+    const varInitAssignLhsComputedRhs = 2;
+    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: 1 };
@@ -48,18 +47,16 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
-    tmpNestedComplexRhs = 2;
-    a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    const varInitAssignLhsComputedObj = b;
+    varInitAssignLhsComputedObj.c = 2;
+    a = 2;
+    p = 2;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: 1 };

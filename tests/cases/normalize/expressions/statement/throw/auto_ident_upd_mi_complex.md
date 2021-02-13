@@ -23,14 +23,13 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpCallCallee = $;
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-tmpThrowArg = tmpNestedPropCompoundComplexRhs;
+const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpThrowArg = varInitAssignLhsComputedRhs;
 throw tmpThrowArg;
 `````
 
@@ -39,13 +38,12 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-tmpThrowArg = tmpNestedPropCompoundComplexRhs;
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpThrowArg = varInitAssignLhsComputedRhs;
 throw tmpThrowArg;
 `````
 

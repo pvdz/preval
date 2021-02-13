@@ -24,13 +24,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-xyz = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+let xyz = varInitAssignLhsComputedRhs;
 $(xyz);
 $(a, b);
 `````
@@ -40,13 +38,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-xyz = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+let xyz = varInitAssignLhsComputedRhs;
 $(xyz);
 $(a, b);
 `````

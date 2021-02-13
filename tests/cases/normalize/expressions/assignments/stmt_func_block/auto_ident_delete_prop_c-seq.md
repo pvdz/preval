@@ -13,10 +13,10 @@
 `````js filename=intro
 function f() {
   {
-    let x = { y: 1 };
+    let arg = { y: 1 };
 
     let a = { a: 999, b: 1000 };
-    a = delete ($(1), $(2), $(x)).y;
+    a = delete ($(1), $(2), $(arg)).y;
     $(a, x);
   }
 }
@@ -28,11 +28,11 @@ $(f());
 `````js filename=intro
 function f() {
   {
-    let x = { y: 1 };
+    let arg = { y: 1 };
     let a = { a: 999, b: 1000 };
     $(1);
     $(2);
-    const tmpDeleteObj = $(x);
+    const tmpDeleteObj = $(arg);
     a = delete tmpDeleteObj.y;
     $(a, x);
   }
@@ -47,11 +47,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   {
-    let x = { y: 1 };
+    let arg = { y: 1 };
     let a = { a: 999, b: 1000 };
     $(1);
     $(2);
-    const tmpDeleteObj = $(x);
+    const tmpDeleteObj = $(arg);
     a = delete tmpDeleteObj.y;
     $(a, x);
   }
@@ -66,7 +66,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: true, {}
+ - 4: true, undefined
  - 5: undefined
  - eval returned: undefined
 

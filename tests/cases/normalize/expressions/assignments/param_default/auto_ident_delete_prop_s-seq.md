@@ -11,10 +11,10 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = delete ($(1), $(2), x).y)) {}
+function f(p = (a = delete ($(1), $(2), arg).y)) {}
 $(f());
 $(a, x);
 `````
@@ -22,21 +22,21 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -47,21 +47,21 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -74,7 +74,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: undefined
- - 4: true, {}
+ - 4: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

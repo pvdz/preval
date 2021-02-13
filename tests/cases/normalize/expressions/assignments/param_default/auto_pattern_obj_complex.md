@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let { a } = { a: 999, b: 1000 };
-function f(arg = ({ a } = $({ a: 1, b: 2 }))) {}
+function f(p = ({ a } = $({ a: 1, b: 2 }))) {}
 $(f());
 $(a);
 `````
@@ -20,17 +20,17 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     a = tmpNestedAssignObjPatternRhs.a;
-    arg = tmpNestedAssignObjPatternRhs;
+    p = tmpNestedAssignObjPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let bindingPatternObjRoot = { a: 999, b: 1000 };
@@ -44,16 +44,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
     a = tmpNestedAssignObjPatternRhs.a;
-    arg = tmpNestedAssignObjPatternRhs;
+    p = tmpNestedAssignObjPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let bindingPatternObjRoot = { a: 999, b: 1000 };

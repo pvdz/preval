@@ -12,10 +12,10 @@
 
 `````js filename=intro
 function f() {
-  let x = { y: 1 };
+  let arg = { y: 1 };
 
-  let a = delete x.y;
-  $(a, x);
+  let a = delete arg.y;
+  $(a, arg);
 }
 $(f());
 `````
@@ -24,9 +24,9 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let x = { y: 1 };
-  let a = delete x.y;
-  $(a, x);
+  let arg = { y: 1 };
+  let a = delete arg.y;
+  $(a, arg);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -37,9 +37,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let x = { y: 1 };
-  let a = delete x.y;
-  $(a, x);
+  let arg = { y: 1 };
+  let a = delete arg.y;
+  $(a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

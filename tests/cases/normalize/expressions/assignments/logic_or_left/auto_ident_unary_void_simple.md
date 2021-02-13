@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$((a = void x) || $(100));
-$(a);
+$((a = void arg) || $(100));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = undefined;
@@ -31,13 +31,13 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 a = undefined;
 let tmpCalleeParam = a;
@@ -46,7 +46,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
@@ -54,7 +54,7 @@ $(a);
 Should call `$` with:
  - 1: 100
  - 2: 100
- - 3: undefined
+ - 3: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

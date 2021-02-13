@@ -29,6 +29,11 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let varInitAssignLhsComputedObj;
+  let tmpBinLhs;
+  let varInitAssignLhsComputedRhs;
   let a;
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
@@ -45,14 +50,13 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = { x: 1 };
-      a = undefined;
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(b);
-      const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-      const tmpBinLhs = tmpNestedAssignObj.x;
-      const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-      tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-      a = tmpNestedPropCompoundComplexRhs;
+      tmpCallCallee = $;
+      tmpCalleeParam = $(b);
+      varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+      tmpBinLhs = varInitAssignLhsComputedObj.x;
+      varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+      varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -72,6 +76,11 @@ switch (1) {
 `````js filename=intro
 {
   let b;
+  let tmpCallCallee;
+  let tmpCalleeParam;
+  let varInitAssignLhsComputedObj;
+  let tmpBinLhs;
+  let varInitAssignLhsComputedRhs;
   let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
@@ -87,13 +96,13 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = { x: 1 };
-      a = undefined;
-      const tmpCalleeParam = $(b);
-      const tmpNestedAssignObj = $(tmpCalleeParam);
-      const tmpBinLhs = tmpNestedAssignObj.x;
-      const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-      tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-      a = tmpNestedPropCompoundComplexRhs;
+      tmpCallCallee = $;
+      tmpCalleeParam = $(b);
+      varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+      tmpBinLhs = varInitAssignLhsComputedObj.x;
+      varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+      varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+      a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

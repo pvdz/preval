@@ -11,36 +11,36 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$(`before  ${typeof $(x)}  after`);
-$(a, x);
+$(`before  ${typeof $(arg)}  after`);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 const tmpTemplateExpr = typeof tmpUnaryArg;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 const tmpTemplateExpr = typeof tmpUnaryArg;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

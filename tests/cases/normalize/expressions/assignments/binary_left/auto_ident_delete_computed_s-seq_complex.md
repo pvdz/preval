@@ -11,46 +11,46 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a = delete ($(1), $(2), x)[$("y")]) + $(100));
-$(a, x);
+$((a = delete ($(1), $(2), arg)[$("y")]) + $(100));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

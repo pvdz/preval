@@ -11,38 +11,38 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$((a = ~x) + $(100));
-$(a);
+$((a = ~arg) + $(100));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = ~x;
+a = ~arg;
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = ~x;
+a = ~arg;
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
@@ -50,7 +50,7 @@ $(a);
 Should call `$` with:
  - 1: 100
  - 2: 98
- - 3: -2
+ - 3: -2, 1
  - eval returned: undefined
 
 Normalized calls: Same

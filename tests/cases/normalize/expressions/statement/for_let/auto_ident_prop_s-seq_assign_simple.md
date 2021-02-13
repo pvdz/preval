@@ -24,11 +24,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  xyz = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  let xyz = varInitAssignLhsComputedRhs;
   while (true) {
     $(xyz);
     $(1);
@@ -43,10 +42,9 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
-  xyz = 2;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
+  let xyz = 2;
   while (true) {
     $(xyz);
     $(1);

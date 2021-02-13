@@ -11,41 +11,41 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$`before ${-x} after`;
-$(a);
+$`before ${-arg} after`;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = -x;
+const tmpCalleeParam$1 = -arg;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = -x;
+const tmpCalleeParam$1 = -arg;
 $(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: ['before ', ' after'], -1
- - 2: { a: '999', b: '1000' }
+ - 2: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
 Normalized calls: Same

@@ -21,13 +21,11 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 10, d: 20 };
-let a;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b['c'] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b['c'] = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 export { a };
 $(a, b);
 `````
@@ -36,13 +34,11 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 10, d: 20 };
-let a;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b['c'] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b['c'] = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 export { a };
 $(a, b);
 `````

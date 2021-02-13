@@ -11,43 +11,43 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = !x)}  after`);
-$(a);
+$(`before  ${(a = !arg)}  after`);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = !x;
+a = !arg;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = !x;
+a = !arg;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: 'before  false  after'
- - 2: false
+ - 2: false, 1
  - eval returned: undefined
 
 Normalized calls: Same

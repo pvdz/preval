@@ -11,41 +11,41 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-export default a = delete ($(1), $(2), x)[$("y")];
-$(a, x);
+export default a = delete ($(1), $(2), arg)[$("y")];
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteCompObj = x;
+const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

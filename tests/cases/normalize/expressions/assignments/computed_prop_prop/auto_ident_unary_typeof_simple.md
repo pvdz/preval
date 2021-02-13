@@ -11,38 +11,38 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = typeof x)];
-$(a, x);
+obj[(a = typeof arg)];
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = typeof x;
+a = typeof arg;
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = typeof x;
+a = typeof arg;
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

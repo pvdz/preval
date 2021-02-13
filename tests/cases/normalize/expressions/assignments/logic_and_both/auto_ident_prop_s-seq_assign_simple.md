@@ -30,11 +30,10 @@ tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
-  const tmpNestedAssignObj$1 = b;
-  const tmpNestedPropAssignRhs$1 = 2;
-  tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs$1;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -52,12 +51,10 @@ tmpNestedAssignObj.c = 2;
 a = 2;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
-  const tmpNestedAssignObj$1 = b;
-  tmpNestedAssignObj$1.c = 2;
-  tmpNestedComplexRhs = 2;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
+  a = 2;
+  tmpCalleeParam = 2;
 }
 $(tmpCalleeParam);
 $(a, b);

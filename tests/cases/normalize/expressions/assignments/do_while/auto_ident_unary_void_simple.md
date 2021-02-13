@@ -11,19 +11,19 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 do {
   $(100);
-} while ((a = void x));
-$(a);
+} while ((a = void arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -41,13 +41,13 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -64,14 +64,14 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: 100
- - 2: undefined
+ - 2: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

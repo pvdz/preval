@@ -12,11 +12,11 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
 
   let a = { a: 999, b: 1000 };
-  typeof $(x);
-  $(a, x);
+  typeof $(arg);
+  $(a, arg);
 }
 `````
 
@@ -24,11 +24,11 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
   let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   typeof tmpUnaryArg;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -36,11 +36,11 @@
 
 `````js filename=intro
 {
-  let x = 1;
+  let arg = 1;
   let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(arg);
   typeof tmpUnaryArg;
-  $(a, x);
+  $(a, arg);
 }
 `````
 

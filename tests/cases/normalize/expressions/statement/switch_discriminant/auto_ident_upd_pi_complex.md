@@ -26,14 +26,13 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpCallCallee = $;
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-tmpSwitchTest = tmpNestedPropCompoundComplexRhs;
+const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpSwitchTest = varInitAssignLhsComputedRhs;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -50,13 +49,12 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest;
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-tmpSwitchTest = tmpNestedPropCompoundComplexRhs;
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpSwitchTest = varInitAssignLhsComputedRhs;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {

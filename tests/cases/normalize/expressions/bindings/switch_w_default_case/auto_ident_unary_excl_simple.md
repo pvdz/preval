@@ -13,10 +13,10 @@
 `````js filename=intro
 switch (1) {
   case 1:
-    let x = 1;
+    let arg = 1;
 
-    let a = !x;
-    $(a);
+    let a = !arg;
+    $(a, arg);
   default:
     $("fail1");
   case 2:
@@ -28,7 +28,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let a;
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
@@ -44,9 +44,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      x = 1;
-      a = !x;
-      $(a);
+      arg = 1;
+      a = !arg;
+      $(a, arg);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
@@ -64,7 +64,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
@@ -79,9 +79,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      x = 1;
-      a = !x;
-      $(a);
+      arg = 1;
+      a = !arg;
+      $(a, arg);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
@@ -98,7 +98,7 @@ switch (1) {
 ## Result
 
 Should call `$` with:
- - 1: false
+ - 1: false, 1
  - 2: 'fail1'
  - 3: 'fail2'
  - eval returned: undefined

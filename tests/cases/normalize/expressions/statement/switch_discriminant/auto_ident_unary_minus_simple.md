@@ -11,22 +11,22 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-switch (-x) {
+switch (-arg) {
   default:
     $(100);
 }
-$(a);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = -x;
+const tmpSwitchTest = -arg;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -35,15 +35,15 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = -x;
+const tmpSwitchTest = -arg;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
@@ -52,14 +52,14 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: 100
- - 2: { a: '999', b: '1000' }
+ - 2: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
 Normalized calls: Same

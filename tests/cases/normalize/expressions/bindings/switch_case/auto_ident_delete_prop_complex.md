@@ -13,10 +13,10 @@
 `````js filename=intro
 switch (1) {
   case 1:
-    let x = { y: 1 };
+    let arg = { y: 1 };
 
-    let a = delete $(x).y;
-    $(a, x);
+    let a = delete $(arg).y;
+    $(a, arg);
 }
 `````
 
@@ -24,7 +24,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteObj;
   let a;
   const tmpSwitchValue = 1;
@@ -36,10 +36,10 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = { y: 1 };
-      tmpDeleteObj = $(x);
+      arg = { y: 1 };
+      tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
   }
 }
@@ -49,7 +49,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let tmpDeleteObj;
   let a;
   let tmpSwitchCaseToStart = 1;
@@ -60,10 +60,10 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = { y: 1 };
-      tmpDeleteObj = $(x);
+      arg = { y: 1 };
+      tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
   }
 }

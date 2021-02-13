@@ -21,11 +21,9 @@ let a = b.x = c.x
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
-const tmpNestedAssignPropRhs = c.x;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = c.x;
+b.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 `````
 
 ## Output
@@ -33,11 +31,9 @@ a = tmpNestedPropAssignRhs;
 `````js filename=intro
 let b = 10;
 let c = 20;
-let a;
-const tmpNestedAssignPropRhs = c.x;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = c.x;
+b.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 `````
 
 ## Result

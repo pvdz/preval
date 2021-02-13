@@ -11,21 +11,21 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-[...delete ($(1), $(2), $(x)).y];
+[...delete ($(1), $(2), $(arg)).y];
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpArrElToSpread = delete tmpDeleteObj.y;
 [...tmpArrElToSpread];
 $(a, x);
@@ -34,11 +34,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpArrElToSpread = delete tmpDeleteObj.y;
 [...tmpArrElToSpread];
 $(a, x);

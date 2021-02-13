@@ -11,26 +11,26 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
-let a = typeof x;
-$(a, x);
+let a = typeof arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
-let a = typeof x;
-$(a, x);
+let arg = 1;
+let a = typeof arg;
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
-let a = typeof x;
-$(a, x);
+let arg = 1;
+let a = typeof arg;
+$(a, arg);
 `````
 
 ## Result

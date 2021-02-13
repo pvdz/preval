@@ -11,49 +11,46 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (let x in void x);
-$(a);
+for (let x in void arg);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   const tmpForInDeclRhs = undefined;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
+  let x;
+  for (x in tmpForInDeclRhs) {
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  let x_1;
-  for (x_1 in undefined) {
+  let x;
+  for (x in undefined) {
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Normalized calls: BAD?!
- - 1: { a: '999', b: '1000' }
+ - 1: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
-Final output calls: BAD!!
- - 1: { a: '999', b: '1000' }
- - eval returned: undefined
+Normalized calls: Same
+
+Final output calls: Same

@@ -11,43 +11,43 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$({ x: (a = void x) });
-$(a);
+$({ x: (a = void arg) });
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = undefined;
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 a = undefined;
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: { x: 'undefined' }
- - 2: undefined
+ - 2: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

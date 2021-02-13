@@ -22,11 +22,9 @@ $(a, b, c);
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-let a;
-const tmpNestedAssignPropRhs = c + d;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = c + d;
+b.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 
@@ -36,11 +34,9 @@ $(a, b, c);
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-let a;
-const tmpNestedAssignPropRhs = c + d;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = c + d;
+b.x = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 

@@ -11,43 +11,43 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-while (delete x.y) $(100);
-$(a, x);
+while (delete arg.y) $(100);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpIfTest = delete x.y;
+  const tmpIfTest = delete arg.y;
   if (tmpIfTest) {
     $(100);
   } else {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpIfTest = delete x.y;
+  const tmpIfTest = delete arg.y;
   if (tmpIfTest) {
     $(100);
   } else {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

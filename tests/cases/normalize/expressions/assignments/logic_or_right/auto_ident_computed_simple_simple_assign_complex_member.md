@@ -27,13 +27,11 @@ const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  b['c'] = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -49,13 +47,11 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  b['c'] = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

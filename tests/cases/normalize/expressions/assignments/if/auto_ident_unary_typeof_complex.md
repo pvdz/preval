@@ -11,33 +11,33 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-if ((a = typeof $(x)));
-$(a, x);
+if ((a = typeof $(arg)));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpIfTest = a;
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpIfTest = a;
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

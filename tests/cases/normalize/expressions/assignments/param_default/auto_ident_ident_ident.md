@@ -15,7 +15,7 @@ let b = 1,
   c = 2;
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = b = 2)) {}
+function f(p = (a = b = 2)) {}
 $(f());
 $(a, b, c);
 `````
@@ -23,16 +23,16 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     b = 2;
     let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = 1;
@@ -47,16 +47,16 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     b = 2;
     let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = 1;

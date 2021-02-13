@@ -14,7 +14,7 @@
 let b = { x: { y: { z: 100 } } };
 
 let a = { a: 999, b: 1000 };
-function f(arg = (a = b?.x.y.z)) {}
+function f(p = (a = b?.x.y.z)) {}
 $(f());
 $(a);
 `````
@@ -22,9 +22,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootProp = b;
@@ -35,9 +35,9 @@ function f($tdz$__arg) {
       tmpNestedComplexRhs = tmpChainElementObject$2;
     }
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 const tmpObjLitVal$1 = { z: 100 };
@@ -53,9 +53,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootProp = b;
@@ -66,9 +66,9 @@ function f($tdz$__arg) {
       tmpNestedComplexRhs = tmpChainElementObject$2;
     }
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 const tmpObjLitVal$1 = { z: 100 };

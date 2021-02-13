@@ -11,36 +11,36 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$(`before  ${delete $(x).y}  after`);
-$(a, x);
+$(`before  ${delete $(arg).y}  after`);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpTemplateExpr = delete tmpDeleteObj.y;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpTemplateExpr = delete tmpDeleteObj.y;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

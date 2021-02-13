@@ -33,11 +33,10 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpBinLhs = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpBinLhs = varInitAssignLhsComputedRhs;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -72,11 +71,9 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-tmpBinLhs = 2;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const varInitAssignLhsComputedObj = b;
+varInitAssignLhsComputedObj.c = 2;
+const tmpIfTest = 2 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

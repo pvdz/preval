@@ -25,13 +25,11 @@ a = [];
 b = 20;
 c = 30;
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(a);
+const varInitAssignLhsComputedObj = $(a);
 b = c;
-let tmpNestedAssignPropRhs = b;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+let varInitAssignLhsComputedRhs = b;
+varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -44,13 +42,11 @@ var c;
 a = [];
 b = 20;
 c = 30;
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(a);
+const varInitAssignLhsComputedObj = $(a);
 b = c;
-let tmpNestedAssignPropRhs = b;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+let varInitAssignLhsComputedRhs = b;
+varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam);
 `````
 

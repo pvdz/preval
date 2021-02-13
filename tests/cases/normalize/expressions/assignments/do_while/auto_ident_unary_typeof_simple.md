@@ -11,26 +11,26 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 do {
   $(100);
-} while ((a = typeof x));
-$(a, x);
+} while ((a = typeof arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = typeof x;
+    const tmpNestedComplexRhs = typeof arg;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -41,20 +41,20 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = typeof x;
+    const tmpNestedComplexRhs = typeof arg;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -65,7 +65,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

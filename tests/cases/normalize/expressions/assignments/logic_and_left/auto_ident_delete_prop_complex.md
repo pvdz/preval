@@ -11,42 +11,42 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$((a = delete $(x).y) && $(100));
-$(a, x);
+$((a = delete $(arg).y) && $(100));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

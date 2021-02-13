@@ -23,11 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-tmpThrowArg = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpThrowArg = varInitAssignLhsComputedRhs;
 throw tmpThrowArg;
 `````
 
@@ -36,11 +35,9 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
-tmpThrowArg = 2;
-throw tmpThrowArg;
+const varInitAssignLhsComputedObj = b;
+varInitAssignLhsComputedObj.c = 2;
+throw 2;
 `````
 
 ## Result

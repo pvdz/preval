@@ -29,11 +29,10 @@ function f() {
   if (tmpIfTest) {
     let b = { x: 2 };
     let c = 3;
-    let a;
-    const tmpNestedAssignObj = $(b);
-    const tmpNestedPropAssignRhs = c;
-    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedRhs = c;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
   }
 }
@@ -50,11 +49,10 @@ function f() {
   if (tmpIfTest) {
     let b = { x: 2 };
     let c = 3;
-    let a;
-    const tmpNestedAssignObj = $(b);
-    const tmpNestedPropAssignRhs = c;
-    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedRhs = c;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
   }
 }

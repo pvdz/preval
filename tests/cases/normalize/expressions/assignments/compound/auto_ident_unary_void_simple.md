@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$((a *= void x));
-$(a);
+$((a *= void arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
@@ -29,26 +29,26 @@ const tmpBinBothRhs = undefined;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 a = tmpBinBothLhs * undefined;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: NaN
- - 2: NaN
+ - 2: NaN, 1
  - eval returned: undefined
 
 Normalized calls: Same

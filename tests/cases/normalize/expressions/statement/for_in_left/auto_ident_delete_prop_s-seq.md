@@ -11,17 +11,17 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-for ((delete ($(1), $(2), x).y).x in $({ x: 1 }));
+for ((delete ($(1), $(2), arg).y).x in $({ x: 1 }));
 $(a, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
@@ -31,7 +31,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
   for (tmpForInLhsNode in tmpForInRhs) {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     const tmpAssignMemLhsObj = delete tmpDeleteObj.y;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
@@ -42,7 +42,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -51,7 +51,7 @@ const tmpForInRhs = $(tmpCalleeParam);
   for (tmpForInLhsNode in tmpForInRhs) {
     $(1);
     $(2);
-    const tmpDeleteObj = x;
+    const tmpDeleteObj = arg;
     const tmpAssignMemLhsObj = delete tmpDeleteObj.y;
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
@@ -65,7 +65,7 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: 1
  - 3: 2
- - 4: { a: '999', b: '1000' }, {}
+ - 4: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

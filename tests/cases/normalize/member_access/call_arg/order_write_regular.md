@@ -32,11 +32,10 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(obj);
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedRhs = 30;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -52,11 +51,9 @@ const obj = {
     $(20);
   },
 };
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(obj);
-tmpNestedAssignObj.x = 30;
-tmpCalleeParam = 30;
-$(tmpCalleeParam);
+const varInitAssignLhsComputedObj = $(obj);
+varInitAssignLhsComputedObj.x = 30;
+$(30);
 `````
 
 ## Result

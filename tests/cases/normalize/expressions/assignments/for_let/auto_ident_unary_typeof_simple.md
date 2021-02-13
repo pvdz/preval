@@ -11,43 +11,43 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-for (let xyz = (a = typeof x); ; $(1)) $(xyz);
-$(a, x);
+for (let xyz = (a = typeof arg); ; $(1)) $(xyz);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  a = typeof x;
+  a = typeof arg;
   let xyz = a;
   while (true) {
     $(xyz);
     $(1);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  a = typeof x;
+  a = typeof arg;
   let xyz = a;
   while (true) {
     $(xyz);
     $(1);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

@@ -30,12 +30,10 @@ function f() {
     let b = { x: 2 };
     let c = 3;
     let d = 4;
-    let a;
-    const tmpNestedAssignObj = $(b);
-    const tmpNestedAssignPropRhs = c + d;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedRhs = c + d;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
   }
 }
@@ -53,12 +51,10 @@ function f() {
     let b = { x: 2 };
     let c = 3;
     let d = 4;
-    let a;
-    const tmpNestedAssignObj = $(b);
-    const tmpNestedAssignPropRhs = c + d;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedRhs = c + d;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
   }
 }

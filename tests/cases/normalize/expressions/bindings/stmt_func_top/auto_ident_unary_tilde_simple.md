@@ -12,10 +12,10 @@
 
 `````js filename=intro
 function f() {
-  let x = 1;
+  let arg = 1;
 
-  let a = ~x;
-  $(a);
+  let a = ~arg;
+  $(a, arg);
 }
 $(f());
 `````
@@ -24,9 +24,9 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let x = 1;
-  let a = ~x;
-  $(a);
+  let arg = 1;
+  let a = ~arg;
+  $(a, arg);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -37,9 +37,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let x = 1;
-  let a = ~x;
-  $(a);
+  let arg = 1;
+  let a = ~arg;
+  $(a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -48,7 +48,7 @@ $(tmpCalleeParam);
 ## Result
 
 Should call `$` with:
- - 1: -2
+ - 1: -2, 1
  - 2: undefined
  - eval returned: undefined
 

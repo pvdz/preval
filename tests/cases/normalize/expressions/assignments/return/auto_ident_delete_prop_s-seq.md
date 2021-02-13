@@ -11,11 +11,11 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 function f() {
-  return (a = delete ($(1), $(2), x).y);
+  return (a = delete ($(1), $(2), arg).y);
 }
 $(f());
 $(a, x);
@@ -27,12 +27,12 @@ $(a, x);
 function f() {
   $(1);
   $(2);
-  const tmpDeleteObj = x;
+  const tmpDeleteObj = arg;
   a = delete tmpDeleteObj.y;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -46,12 +46,12 @@ $(a, x);
 function f() {
   $(1);
   $(2);
-  const tmpDeleteObj = x;
+  const tmpDeleteObj = arg;
   a = delete tmpDeleteObj.y;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -64,7 +64,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: true
- - 4: true, {}
+ - 4: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

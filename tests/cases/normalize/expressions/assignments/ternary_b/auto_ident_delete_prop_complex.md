@@ -11,23 +11,23 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-$($(1) ? (a = delete $(x).y) : $(200));
-$(a, x);
+$($(1) ? (a = delete $(arg).y) : $(200));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -35,18 +35,18 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -54,7 +54,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

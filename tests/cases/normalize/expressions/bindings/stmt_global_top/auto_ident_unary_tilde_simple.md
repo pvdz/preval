@@ -11,32 +11,32 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
-let a = ~x;
-$(a);
+let a = ~arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
-let a = ~x;
-$(a);
+let arg = 1;
+let a = ~arg;
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
-let a = ~x;
-$(a);
+let arg = 1;
+let a = ~arg;
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: -2
+ - 1: -2, 1
  - eval returned: undefined
 
 Normalized calls: Same

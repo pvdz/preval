@@ -13,10 +13,10 @@
 `````js filename=intro
 switch (1) {
   case 1:
-    let x = 1;
+    let arg = 1;
 
-    let a = !x;
-    $(a);
+    let a = !arg;
+    $(a, arg);
 }
 `````
 
@@ -24,7 +24,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let a;
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 1;
@@ -35,9 +35,9 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = 1;
-      a = !x;
-      $(a);
+      arg = 1;
+      a = !arg;
+      $(a, arg);
     }
   }
 }
@@ -47,7 +47,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
+  let arg;
   let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
@@ -57,9 +57,9 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = 1;
-      a = !x;
-      $(a);
+      arg = 1;
+      a = !arg;
+      $(a, arg);
     }
   }
 }
@@ -68,7 +68,7 @@ switch (1) {
 ## Result
 
 Should call `$` with:
- - 1: false
+ - 1: false, 1
  - eval returned: undefined
 
 Normalized calls: Same

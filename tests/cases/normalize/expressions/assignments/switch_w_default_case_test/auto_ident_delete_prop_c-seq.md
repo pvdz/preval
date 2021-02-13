@@ -11,11 +11,11 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
-  case (a = delete ($(1), $(2), $(x)).y):
+  case (a = delete ($(1), $(2), $(arg)).y):
   default:
     $("fail1");
   case 2:
@@ -27,14 +27,14 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -63,14 +63,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -105,7 +105,7 @@ Should call `$` with:
  - 4: { y: '1' }
  - 5: 'fail1'
  - 6: 'fail2'
- - 7: true, {}
+ - 7: true, undefined
  - eval returned: undefined
 
 Normalized calls: Same

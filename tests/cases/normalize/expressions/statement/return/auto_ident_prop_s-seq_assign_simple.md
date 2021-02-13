@@ -25,11 +25,10 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpReturnArg = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
 let b = { c: 1 };
@@ -44,11 +43,9 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
-  tmpReturnArg = 2;
-  return tmpReturnArg;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
+  return 2;
 }
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };

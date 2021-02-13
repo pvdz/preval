@@ -11,14 +11,14 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
 function f() {
-  return (a = void x);
+  return (a = void arg);
 }
 $(f());
-$(a);
+$(a, arg);
 `````
 
 ## Normalized
@@ -29,12 +29,12 @@ function f() {
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
@@ -45,18 +45,18 @@ function f() {
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: undefined
- - 2: undefined
+ - 2: undefined, 1
  - eval returned: undefined
 
 Normalized calls: Same

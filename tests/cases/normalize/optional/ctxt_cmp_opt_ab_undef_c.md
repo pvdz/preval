@@ -65,14 +65,6 @@ Should call `$` with:
  - 3: 'c'
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Normalized calls: BAD?!
- - 1: { b: '{}' }
- - 2: 'b'
- - 3: 'c'
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: { b: '{}' }
- - 2: 'b'
- - 3: 'c'
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Final output calls: Same

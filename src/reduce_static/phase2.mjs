@@ -56,7 +56,7 @@ export function phase2(program, fdata, resolve, req) {
     if (meta.isConstant && !meta.isBuiltin) {
       ASSERT(meta.writes.length === 1, 'a constant should have one write?', meta.writes);
       const write = meta.writes[0];
-      log('Write:', write);
+      //log('Write:', write);
 
       // Figure out the assigned value. This depends on the position of the identifier (var decl, param, assign).
       let assignee;

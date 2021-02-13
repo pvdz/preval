@@ -12,11 +12,11 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
 
   let a = { a: 999, b: 1000 };
-  delete x.y;
-  $(a, x);
+  delete arg.y;
+  $(a, arg);
 }
 `````
 
@@ -24,10 +24,10 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  delete x.y;
-  $(a, x);
+  delete arg.y;
+  $(a, arg);
 }
 `````
 
@@ -35,10 +35,10 @@
 
 `````js filename=intro
 {
-  let x = { y: 1 };
+  let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  delete x.y;
-  $(a, x);
+  delete arg.y;
+  $(a, arg);
 }
 `````
 

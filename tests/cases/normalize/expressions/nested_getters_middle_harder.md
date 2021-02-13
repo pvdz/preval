@@ -94,10 +94,9 @@ function f() {
   tmpCallCallee$1(tmpCalleeParam$1);
   $('-------- a.foo');
   const tmpCallCallee$2 = $;
-  let tmpCalleeParam$2;
-  const tmpNestedPropAssignRhs$1 = 4;
-  b.foo = tmpNestedPropAssignRhs$1;
-  tmpCalleeParam$2 = tmpNestedPropAssignRhs$1;
+  const varInitAssignLhsComputedRhs = 4;
+  b.foo = varInitAssignLhsComputedRhs;
+  const tmpCalleeParam$2 = varInitAssignLhsComputedRhs;
   tmpCallCallee$2(tmpCalleeParam$2);
   $('-------- a.foo = 4');
 }
@@ -134,10 +133,8 @@ function f() {
   const tmpCalleeParam$1 = b.foo;
   $(tmpCalleeParam$1);
   $('-------- a.foo');
-  let tmpCalleeParam$2;
   b.foo = 4;
-  tmpCalleeParam$2 = 4;
-  $(tmpCalleeParam$2);
+  $(4);
   $('-------- a.foo = 4');
 }
 f();

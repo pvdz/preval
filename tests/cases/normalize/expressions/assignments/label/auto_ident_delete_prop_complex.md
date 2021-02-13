@@ -11,35 +11,35 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-label: a = delete $(x).y;
-$(a, x);
+label: a = delete $(arg).y;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   a = delete tmpDeleteObj.y;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   a = delete tmpDeleteObj.y;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

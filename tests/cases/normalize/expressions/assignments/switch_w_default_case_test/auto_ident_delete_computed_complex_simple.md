@@ -11,28 +11,28 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 switch ($(1)) {
-  case (a = delete $(x)["y"]):
+  case (a = delete $(arg)["y"]):
   default:
     $("fail1");
   case 2:
     $("fail2");
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = 'y';
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpBinLhs = a;
@@ -56,18 +56,18 @@ if (tmpIfTest) {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpDeleteCompObj = $(x);
+const tmpDeleteCompObj = $(arg);
 a = delete tmpDeleteCompObj['y'];
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -90,7 +90,7 @@ if (tmpIfTest) {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

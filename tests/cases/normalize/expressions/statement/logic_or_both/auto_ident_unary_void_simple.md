@@ -11,42 +11,42 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-void x || void x;
-$(a);
+void arg || void arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = undefined;
 if (tmpIfTest) {
 } else {
   undefined;
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 if (undefined) {
 } else {
   undefined;
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
- - 1: { a: '999', b: '1000' }
+ - 1: { a: '999', b: '1000' }, 1
  - eval returned: undefined
 
 Normalized calls: Same

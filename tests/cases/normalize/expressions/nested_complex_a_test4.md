@@ -23,22 +23,20 @@ $($(a).length = b);
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(a);
-const tmpNestedPropAssignRhs = b;
-tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(a);
+const varInitAssignLhsComputedRhs = b;
+varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam;
-const tmpNestedAssignObj = $(a);
-const tmpNestedPropAssignRhs = b;
-tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(a);
+const varInitAssignLhsComputedRhs = b;
+varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam);
 `````
 

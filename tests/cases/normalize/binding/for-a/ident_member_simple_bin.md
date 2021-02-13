@@ -23,11 +23,9 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedAssignPropRhs = c + d;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = c + d;
+  b.x = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 
@@ -39,11 +37,9 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 {
-  let a_1;
-  const tmpNestedAssignPropRhs = c + d;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = c + d;
+  b.x = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 

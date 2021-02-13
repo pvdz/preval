@@ -30,13 +30,11 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b['c'] = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    b['c'] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -60,13 +58,11 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b['c'] = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    b['c'] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

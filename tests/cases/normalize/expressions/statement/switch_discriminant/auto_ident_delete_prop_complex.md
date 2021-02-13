@@ -11,22 +11,22 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-switch (delete $(x).y) {
+switch (delete $(arg).y) {
   default:
     $(100);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpSwitchTest = delete tmpDeleteObj.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
@@ -36,15 +36,15 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(x);
+const tmpDeleteObj = $(arg);
 const tmpSwitchTest = delete tmpDeleteObj.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
@@ -54,7 +54,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

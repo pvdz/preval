@@ -11,53 +11,53 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-$((a = -x) || (a = -x));
-$(a);
+$((a = -arg) || (a = -arg));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = -x;
+a = -arg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = -x;
+  const tmpNestedComplexRhs = -arg;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-a = -x;
+a = -arg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = -x;
+  const tmpNestedComplexRhs = -arg;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(a, arg);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: -1
- - 2: -1
+ - 2: -1, 1
  - eval returned: undefined
 
 Normalized calls: Same

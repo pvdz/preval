@@ -12,7 +12,7 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-function f(arg = (a = $($)?.(1))) {}
+function f(p = (a = $($)?.(1))) {}
 $(f());
 $(a);
 `````
@@ -20,9 +20,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootCall = $;
@@ -32,9 +32,9 @@ function f($tdz$__arg) {
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };
@@ -47,9 +47,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainElementCall = $($);
@@ -58,9 +58,9 @@ function f($tdz$__arg) {
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
     a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

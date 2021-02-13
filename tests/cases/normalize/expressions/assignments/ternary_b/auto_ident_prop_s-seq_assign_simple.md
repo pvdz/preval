@@ -27,11 +27,10 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  let tmpNestedComplexRhs;
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
@@ -49,12 +48,10 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  let tmpNestedComplexRhs;
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
-  tmpNestedComplexRhs = 2;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
+  a = 2;
+  tmpCalleeParam = 2;
 } else {
   tmpCalleeParam = $(200);
 }

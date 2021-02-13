@@ -11,37 +11,37 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-typeof x || typeof x;
-$(a, x);
+typeof arg || typeof arg;
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = typeof x;
+const tmpIfTest = typeof arg;
 if (tmpIfTest) {
 } else {
-  typeof x;
+  typeof arg;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = typeof x;
+const tmpIfTest = typeof arg;
 if (tmpIfTest) {
 } else {
-  typeof x;
+  typeof arg;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

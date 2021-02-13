@@ -11,10 +11,10 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-switch (delete ($(1), $(2), x).y) {
+switch (delete ($(1), $(2), arg).y) {
   default:
     $(100);
 }
@@ -24,11 +24,11 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = x;
+const tmpDeleteObj = arg;
 const tmpSwitchTest = delete tmpDeleteObj.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
@@ -44,11 +44,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = x;
+const tmpDeleteObj = arg;
 const tmpSwitchTest = delete tmpDeleteObj.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
@@ -67,7 +67,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: 100
- - 4: { a: '999', b: '1000' }, {}
+ - 4: { a: '999', b: '1000' }, undefined
  - eval returned: undefined
 
 Normalized calls: Same

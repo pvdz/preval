@@ -14,7 +14,7 @@
 let b = { c: $ };
 
 let a = { a: 999, b: 1000 };
-function f(arg = b?.c(1)) {}
+function f(p = b?.c(1)) {}
 $(f());
 $(a);
 `````
@@ -22,19 +22,19 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = undefined;
+    p = undefined;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-      arg = tmpChainElementCall;
+      p = tmpChainElementCall;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: $ };
@@ -48,19 +48,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    arg = undefined;
+    p = undefined;
     const tmpChainRootProp = b;
     if (tmpChainRootProp) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-      arg = tmpChainElementCall;
+      p = tmpChainElementCall;
     }
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let b = { c: $ };

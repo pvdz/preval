@@ -24,14 +24,13 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  tmpForInDeclRhs = tmpNestedPropCompoundComplexRhs;
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
   let x;
   for (x in tmpForInDeclRhs) {
   }
@@ -45,13 +44,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForInDeclRhs;
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  tmpForInDeclRhs = tmpNestedPropCompoundComplexRhs;
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
   let x;
   for (x in tmpForInDeclRhs) {
   }

@@ -24,11 +24,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpForOfDeclRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedRhs = 2;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
   let x;
   for (x of tmpForOfDeclRhs) {
   }
@@ -42,12 +41,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
-  tmpForOfDeclRhs = 2;
+  const varInitAssignLhsComputedObj = b;
+  varInitAssignLhsComputedObj.c = 2;
   let x;
-  for (x of tmpForOfDeclRhs) {
+  for (x of 2) {
   }
 }
 $(a, b);

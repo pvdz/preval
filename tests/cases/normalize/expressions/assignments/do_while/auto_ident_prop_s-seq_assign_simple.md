@@ -30,11 +30,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedObj = b;
+    const varInitAssignLhsComputedRhs = 2;
+    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -58,12 +57,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
-    tmpNestedComplexRhs = 2;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const varInitAssignLhsComputedObj = b;
+    varInitAssignLhsComputedObj.c = 2;
+    a = 2;
+    tmpIfTest = 2;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

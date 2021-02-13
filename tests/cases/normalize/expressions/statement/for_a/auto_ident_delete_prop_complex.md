@@ -11,20 +11,20 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
-for (delete $(x).y; $(0); );
-$(a, x);
+for (delete $(arg).y; $(0); );
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
   while (true) {
     const tmpIfTest = $(0);
@@ -34,16 +34,16 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteObj = $(x);
+  const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
   while (true) {
     const tmpIfTest = $(0);
@@ -53,7 +53,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

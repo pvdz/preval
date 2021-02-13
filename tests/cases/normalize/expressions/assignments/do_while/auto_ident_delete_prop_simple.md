@@ -11,26 +11,26 @@
 ## Input
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 do {
   $(100);
-} while ((a = delete x.y));
-$(a, x);
+} while ((a = delete arg.y));
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = delete x.y;
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -41,20 +41,20 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = { y: 1 };
+let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = delete x.y;
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -65,7 +65,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

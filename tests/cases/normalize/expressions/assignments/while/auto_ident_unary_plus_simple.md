@@ -11,20 +11,20 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 
 let a = { a: 999, b: 1000 };
-while ((a = +x)) $(100);
-$(a);
+while ((a = +arg)) $(100);
+$(a, arg);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = +x;
+  a = +arg;
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
@@ -32,16 +32,16 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 1;
+let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = +x;
+  a = +arg;
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
@@ -49,7 +49,7 @@ while (true) {
     break;
   }
 }
-$(a);
+$(a, arg);
 `````
 
 ## Result

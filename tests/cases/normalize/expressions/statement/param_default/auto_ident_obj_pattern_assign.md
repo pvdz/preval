@@ -15,7 +15,7 @@ let x = 1,
   y = 2;
 
 let a = { a: 999, b: 1000 };
-function f(arg = ({ x, y } = { x: $(3), y: $(4) })) {}
+function f(p = ({ x, y } = { x: $(3), y: $(4) })) {}
 $(f());
 $(a, x, y);
 `````
@@ -23,18 +23,18 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    arg = tmpNestedAssignObjPatternRhs;
+    p = tmpNestedAssignObjPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let x = 1;
@@ -49,18 +49,18 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+function f($tdz$__p) {
+  let p = undefined;
+  const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    arg = tmpNestedAssignObjPatternRhs;
+    p = tmpNestedAssignObjPatternRhs;
   } else {
-    arg = $tdz$__arg;
+    p = $tdz$__p;
   }
 }
 let x = 1;

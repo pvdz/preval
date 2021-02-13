@@ -49,8 +49,7 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 const tmpCallCallee$2 = f;
-const tmpObjLitVal = null;
-const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$4 = { x: null, b: 11, c: 12 };
 const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, 10);
 $(tmpCalleeParam$3);
 `````

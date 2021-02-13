@@ -43,8 +43,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = null;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
+const objPatternBeforeDefault = null.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

@@ -28,8 +28,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = null;
-const tmpCalleeParam = typeof tmpUnaryArg;
+const tmpCalleeParam = typeof null;
 $(tmpCalleeParam);
 `````
 

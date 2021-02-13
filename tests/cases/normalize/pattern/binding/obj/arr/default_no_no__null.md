@@ -27,8 +27,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = null;
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const objPatternNoDefault = null.x;
 const arrPatternSplat = [...objPatternNoDefault];
 $('bad');
 `````

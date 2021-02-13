@@ -112,7 +112,7 @@ export function phase2(program, fdata, resolve, req) {
         }
 
         after(';');
-      } else if (assignee.type === 'Literal' && !(assignee instanceof RegExp) && assignee.value != null) {
+      } else if (assignee.type === 'Literal' && (assignee.raw === 'null' || (!(assignee instanceof RegExp) && assignee.value != null))) {
         // Replace all reads of this name with a clone of the literal
 
         rule('Declaring a constant with a literal value should eliminate the binding');

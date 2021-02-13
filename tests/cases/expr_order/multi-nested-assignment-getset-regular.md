@@ -177,8 +177,7 @@ $$(obja, objb, objc, objd, obje);
 `````js filename=intro
 function $$(...a_1) {
   const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  const tmpObjLitVal = null;
-  const tmpCalleeParam$1 = { depth: tmpObjLitVal };
+  const tmpCalleeParam$1 = { depth: null };
   $(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a_1[0];
   return tmpReturnArg;

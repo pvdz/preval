@@ -31,12 +31,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpDeleteOpt = null;
 let tmpCalleeParam = true;
-const tmpIfTest = tmpDeleteOpt == null;
+const tmpIfTest = null == null;
 if (tmpIfTest) {
 } else {
-  tmpCalleeParam = delete tmpDeleteOpt.x;
+  tmpCalleeParam = delete null.x;
 }
 $(tmpCalleeParam);
 `````

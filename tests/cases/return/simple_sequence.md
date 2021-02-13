@@ -37,8 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   $(1);
   $(2);
-  const tmpReturnArg = null;
-  return tmpReturnArg;
+  return null;
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -267,8 +267,7 @@ const tmpCalleeParam = (anode, i) => {
   } else {
     const tmpCallObj$1 = newElements;
     const tmpCallVal$1 = tmpCallObj$1.push;
-    const tmpCalleeParam$1 = null;
-    const tmpReturnArg = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
+    const tmpReturnArg = tmpCallVal$1.call(tmpCallObj$1, null);
     return tmpReturnArg;
   }
   let valueNode = anode;

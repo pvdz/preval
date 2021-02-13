@@ -33,8 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = null;
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal };
+const tmpAssignObjPatternRhs = { x: null };
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

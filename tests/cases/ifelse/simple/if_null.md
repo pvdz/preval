@@ -24,8 +24,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = null;
-if (tmpIfTest) {
+if (null) {
   $();
 }
 `````

@@ -7,6 +7,7 @@ export function cloneSimple(node) {
   }
 
   if (node.type === 'Literal') {
+    if (node.raw === 'null') return literal(null, true); // be explicit for null
     return literal(node.value);
   }
 
@@ -290,7 +291,7 @@ export function labeledStatement(label, body) {
   };
 }
 
-export function literal(value) {
+export function literal(value, yesnull = false) {
   if (typeof value === 'number') {
     return {
       type: 'Literal',
@@ -317,6 +318,17 @@ export function literal(value) {
       type: 'Literal',
       value: false,
       raw: 'false',
+      $p: $p(),
+    };
+  } else if (value === null) {
+    ASSERT(
+      yesnull,
+      'when creating a literal with value `null` the yesnull param should be set explicitly. this prevents accidental problems with literals whose value is null but whose raw is not "null"',
+    );
+    return {
+      type: 'Literal',
+      value: null,
+      raw: 'null',
       $p: $p(),
     };
   } else {

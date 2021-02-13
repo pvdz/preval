@@ -72,8 +72,7 @@ function f($tdz$__pattern) {
   return x;
 }
 const tmpCallCallee$2 = f;
-const tmpObjLitVal = null;
-const tmpCalleeParam$2 = { x: tmpObjLitVal };
+const tmpCalleeParam$2 = { x: null };
 const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, 10);
 $(tmpCalleeParam$1);
 `````

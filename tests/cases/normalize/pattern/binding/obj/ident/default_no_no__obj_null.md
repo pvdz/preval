@@ -27,8 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = null;
-const bindingPatternObjRoot = { x: tmpObjLitVal };
+const bindingPatternObjRoot = { x: null };
 const x = bindingPatternObjRoot.x;
 $(x);
 `````

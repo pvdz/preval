@@ -96,8 +96,7 @@ function f($tdz$__pattern) {
   return x;
 }
 const tmpCallCallee$3 = f;
-const tmpArrElement$1 = null;
-const tmpArrElement = [tmpArrElement$1, 201];
+const tmpArrElement = [null, 201];
 const tmpCalleeParam$3 = [tmpArrElement, 4, 5];
 const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$2);

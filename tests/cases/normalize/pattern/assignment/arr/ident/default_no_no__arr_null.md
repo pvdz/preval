@@ -28,8 +28,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = null;
-const arrAssignPatternRhs = [tmpArrElement];
+const arrAssignPatternRhs = [null];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 $(x);

@@ -74,11 +74,9 @@ while (true) {
       const tmpChainRootComputed = $('$');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       if (tmpChainElementObject) {
-        const tmpCallObj = tmpChainElementObject;
-        const tmpCallVal = tmpCallObj.call;
-        const tmpCalleeParam = tmpChainElementCall;
+        const tmpCallVal = tmpChainElementObject.call;
         const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
         tmpNestedComplexRhs = tmpChainElementCall$1;
       }
     }

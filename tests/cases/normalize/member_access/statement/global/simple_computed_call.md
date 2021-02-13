@@ -26,9 +26,8 @@ tmpCompObj[tmpCompProp];
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCompObj = obj;
 const tmpCompProp = $('foo');
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 `````
 
 ## Result

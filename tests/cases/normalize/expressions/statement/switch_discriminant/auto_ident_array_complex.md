@@ -45,7 +45,6 @@ let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpSwitchTest = [tmpArrElement, 2, tmpArrElement$2];
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

@@ -52,9 +52,8 @@ function f() {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = a;
   const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpAssignComputedObj = tmpAssignMemLhsObj;
   const tmpAssignComputedRhs = $(2);
-  tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+  tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
   $(a);
 }
 const tmpCalleeParam$2 = f();

@@ -49,9 +49,8 @@ let d = 4;
   const varInitAssignLhsComputedProp$1 = $('y');
   const varInitAssignLhsComputedRhs$1 = $(d);
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+  let a_1 = varInitAssignLhsComputedRhs$1;
 }
 `````
 

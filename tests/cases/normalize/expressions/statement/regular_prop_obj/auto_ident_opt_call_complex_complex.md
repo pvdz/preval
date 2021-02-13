@@ -45,10 +45,9 @@ let obj = {};
 let tmpCompObj = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpCallObj = tmpChainElementCall;
-  const tmpCallVal = tmpCallObj.call;
+  const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$1);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpCompObj = tmpChainElementCall$1;
 }
 tmpCompObj.a;

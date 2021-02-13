@@ -56,10 +56,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -74,9 +73,8 @@ if (tmpIfTest) {
 }
 $(1);
 const tmpAssignMemLhsObj = a;
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

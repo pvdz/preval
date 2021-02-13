@@ -32,8 +32,7 @@ $(bar);
 
 `````js filename=intro
 const foo = /foo/g;
-const bar = foo;
-$(bar);
+$(foo);
 `````
 
 ## Result

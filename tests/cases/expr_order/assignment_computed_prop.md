@@ -30,10 +30,8 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````js filename=intro
 const tmpAssignComMemLhsObj = $(1);
 const tmpAssignComMemLhsProp = $(2);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(3);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 `````
 
 ## Result

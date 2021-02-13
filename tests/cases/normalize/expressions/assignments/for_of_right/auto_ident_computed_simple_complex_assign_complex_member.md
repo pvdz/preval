@@ -51,9 +51,8 @@ let a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
   let tmpForOfDeclRhs = a;
   let x;
   for (x of tmpForOfDeclRhs) {

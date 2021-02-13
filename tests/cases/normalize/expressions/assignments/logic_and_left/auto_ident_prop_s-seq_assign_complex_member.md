@@ -48,9 +48,8 @@ const tmpNestedAssignObj = b;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);

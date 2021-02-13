@@ -49,9 +49,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpPostUpdArgIdent;
+  tmpCalleeParam = tmpPostUpdArgIdent;
 } else {
   tmpCalleeParam = $(200);
 }

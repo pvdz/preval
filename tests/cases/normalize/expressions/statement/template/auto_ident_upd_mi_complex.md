@@ -46,8 +46,7 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpTemplateExpr = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${varInitAssignLhsComputedRhs}  after`;
 $(tmpCalleeParam);
 $(a, b);
 `````

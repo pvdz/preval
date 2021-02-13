@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for (let xyz = delete ($(1), $(2), arg).y; ; $(1)) $(xyz);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
     $(1);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
     $(1);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

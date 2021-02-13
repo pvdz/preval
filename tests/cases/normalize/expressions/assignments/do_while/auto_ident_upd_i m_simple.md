@@ -58,9 +58,8 @@ while (true) {
   } else {
     const tmpPostUpdArgIdent = b;
     b = b - 1;
-    const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpPostUpdArgIdent;
+    tmpIfTest = tmpPostUpdArgIdent;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

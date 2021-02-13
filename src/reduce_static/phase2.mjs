@@ -70,7 +70,7 @@ export function phase2(program, fdata, resolve, req) {
         return;
       }
 
-      if (assignee.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(assignee.name).isBuiltin) {
+      if (assignee.type === 'Identifier' && (fdata.globallyUniqueNamingRegistry.get(assignee.name).isBuiltin || fdata.globallyUniqueNamingRegistry.get(assignee.name).isConstant)) {
         // If the identifier is a constant binding or builtin constant then replace all reads with a clone of it
 
         rule('Declaring a constant with a constant value should eliminate the binding');

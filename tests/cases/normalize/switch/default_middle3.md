@@ -81,20 +81,19 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpSwitchTest = $(30);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(30);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(31);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
     const tmpBinLhs$2 = $(32);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchTest;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 3;
     }

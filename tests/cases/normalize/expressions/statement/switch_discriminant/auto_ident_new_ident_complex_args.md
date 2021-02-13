@@ -49,7 +49,6 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpSwitchTest = new $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

@@ -17,7 +17,7 @@ let a = { a: 999, b: 1000 };
 switch ($(1)) {
   case delete ($(1), $(2), arg).y:
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -48,20 +48,19 @@ $(a, x);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
 const tmpDeleteObj = arg;
 const tmpBinLhs = delete tmpDeleteObj.y;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -70,7 +69,7 @@ Should call `$` with:
  - 1: 1
  - 2: 1
  - 3: 2
- - 4: { a: '999', b: '1000' }, undefined
+ - 4: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 
 Normalized calls: Same

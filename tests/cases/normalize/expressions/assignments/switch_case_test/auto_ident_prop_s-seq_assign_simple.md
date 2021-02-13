@@ -49,13 +49,12 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpNestedAssignObj = b;
 tmpNestedAssignObj.c = 2;
 a = 2;
 let tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

@@ -75,9 +75,8 @@ c = {
   },
 };
 const tmpNestedAssignPropRhs = c.x;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+b.x = tmpNestedAssignPropRhs;
+a = tmpNestedAssignPropRhs;
 $(5, a);
 `````
 

@@ -16,7 +16,7 @@ switch (1) {
     let arg = { y: 1 };
 
     let a = delete ($(1), $(2), $(arg)).y;
-    $(a, x);
+    $(a, arg);
   default:
     $("fail1");
   case 2:
@@ -50,7 +50,7 @@ switch (1) {
       $(2);
       tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
@@ -89,7 +89,7 @@ switch (1) {
       $(2);
       tmpDeleteObj = $(arg);
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
@@ -109,7 +109,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: true, undefined
+ - 4: true, {}
  - 5: 'fail1'
  - 6: 'fail2'
  - eval returned: undefined

@@ -53,11 +53,9 @@ let a = { a: 999, b: 1000 };
     const tmpCalleeParam = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpIfTest = tmpPostUpdArgVal;
-    if (tmpIfTest) {
+    tmpPostUpdArgObj.x = tmpAssignMemRhs;
+    if (tmpPostUpdArgVal) {
       $(1);
     } else {
       break;

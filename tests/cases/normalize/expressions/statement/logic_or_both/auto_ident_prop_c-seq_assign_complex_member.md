@@ -51,15 +51,13 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+if (varInitAssignLhsComputedRhs) {
 } else {
   const tmpAssignMemLhsObj = $(b);
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````

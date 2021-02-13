@@ -16,7 +16,7 @@
 
   let a = { a: 999, b: 1000 };
   delete ($(1), $(2), arg).y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -30,7 +30,7 @@
   $(2);
   const tmpDeleteObj = arg;
   delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -44,7 +44,7 @@
   $(2);
   const tmpDeleteObj = arg;
   delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -53,7 +53,7 @@
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: { a: '999', b: '1000' }, undefined
+ - 3: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 
 Normalized calls: Same

@@ -76,30 +76,29 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 5;
 const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(4);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
     const tmpBinLhs$2 = $(5);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchTest;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 2;
     } else {
       const tmpBinLhs$3 = $(6);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchTest;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 3;
       } else {
         const tmpBinLhs$4 = $(7);
-        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
+        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchTest;
         if (tmpIfTest$4) {
           tmpSwitchCaseToStart = 4;
         }

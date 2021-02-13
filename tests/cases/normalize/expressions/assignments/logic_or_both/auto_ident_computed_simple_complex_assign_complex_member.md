@@ -59,9 +59,8 @@ const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
@@ -71,9 +70,8 @@ if (tmpCalleeParam) {
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpCalleeParam = varInitAssignLhsComputedRhs;
 }
 $(tmpCalleeParam);
 $(a, b);

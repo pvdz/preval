@@ -52,9 +52,8 @@ if (tmpCalleeParam) {
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpCalleeParam = varInitAssignLhsComputedRhs;
 }
 $(tmpCalleeParam);
 $(a, b);

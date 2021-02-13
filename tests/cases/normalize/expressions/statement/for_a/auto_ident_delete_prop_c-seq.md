@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for (delete ($(1), $(2), $(arg)).y; $(0); );
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -36,7 +36,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -57,7 +57,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -67,7 +67,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 0
- - 5: { a: '999', b: '1000' }, undefined
+ - 5: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 
 Normalized calls: Same

@@ -48,11 +48,9 @@ const tmpCompObj = obj;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCompProp = tmpPostUpdArgVal;
-tmpCompObj[tmpCompProp];
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+tmpCompObj[tmpPostUpdArgVal];
 $(a, b);
 `````
 

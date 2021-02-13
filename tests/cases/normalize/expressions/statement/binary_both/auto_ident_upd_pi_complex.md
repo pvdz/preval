@@ -48,15 +48,13 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const tmpAssignMemLhsObj = $(tmpCalleeParam);
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpCalleeParam$1 = $(b);
 const tmpAssignMemLhsObj$2 = $(tmpCalleeParam$1);
 const tmpCompoundAssignLhs$1 = tmpAssignMemLhsObj$2.x;
-const tmpAssignMemLhsObj$3 = tmpAssignMemLhsObj$2;
 const tmpAssignMemRhs$1 = tmpCompoundAssignLhs$1 + 1;
-tmpAssignMemLhsObj$3.x = tmpAssignMemRhs$1;
+tmpAssignMemLhsObj$2.x = tmpAssignMemRhs$1;
 $(a, b);
 `````
 

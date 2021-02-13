@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for ((a = delete ($(1), $(2), arg).y).x in $({ x: 1 }));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -37,7 +37,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -58,7 +58,7 @@ const tmpForInRhs = $(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -67,7 +67,7 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: 1
  - 3: 2
- - 4: true, undefined
+ - 4: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

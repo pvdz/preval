@@ -16,7 +16,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let xyz = (a = delete ($(1), $(2), arg).y);
 $(xyz);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -30,7 +30,7 @@ const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
 let xyz = a;
 $(xyz);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -44,7 +44,7 @@ const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
 let xyz = a;
 $(xyz);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -53,7 +53,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: true
- - 4: true, undefined
+ - 4: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

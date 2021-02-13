@@ -35,9 +35,8 @@ $(x);
 const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = tmpAssignObjPatternRhs.a;
 b = tmpAssignObjPatternRhs.b;
-const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = ['a', 'b'];
-x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, 'x');
+x = objPatternRest(tmpAssignObjPatternRhs, tmpCalleeParam$1, 'x');
 $(x);
 `````
 

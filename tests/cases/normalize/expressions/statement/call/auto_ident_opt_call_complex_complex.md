@@ -43,10 +43,9 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpCallObj = tmpChainElementCall;
-  const tmpCallVal = tmpCallObj.call;
+  const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$2 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$2);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
   tmpCalleeParam = tmpChainElementCall$1;
 }
 $(tmpCalleeParam);

@@ -65,16 +65,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpBinLhs = [tmpArrElement, 2, tmpArrElement$2];
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }

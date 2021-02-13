@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $((a = delete ($(1), $(2), $(arg)).y) || (a = delete ($(1), $(2), $(arg)).y));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -62,7 +62,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -72,7 +72,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: true
- - 5: true, undefined
+ - 5: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

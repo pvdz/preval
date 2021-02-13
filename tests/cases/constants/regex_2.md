@@ -18,7 +18,6 @@ There are some cases, like if we can statically detect that all usages of it are
 const foo = /foo/g;
 const bar = foo;
 $(bar);
-$(bar);
 `````
 
 ## Normalized
@@ -27,23 +26,19 @@ $(bar);
 const foo = /foo/g;
 const bar = foo;
 $(bar);
-$(bar);
 `````
 
 ## Output
 
 `````js filename=intro
 const foo = /foo/g;
-const bar = foo;
-$(bar);
-$(bar);
+$(foo);
 `````
 
 ## Result
 
 Should call `$` with:
  - 1: {}
- - 2: {}
  - eval returned: undefined
 
 Normalized calls: Same

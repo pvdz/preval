@@ -16,7 +16,7 @@ switch (1) {
     let arg = { y: 1 };
 
     let a = delete ($(1), $(2), arg).y;
-    $(a, x);
+    $(a, arg);
 }
 `````
 
@@ -41,7 +41,7 @@ switch (1) {
       $(2);
       tmpDeleteObj = arg;
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
   }
 }
@@ -67,7 +67,7 @@ switch (1) {
       $(2);
       tmpDeleteObj = arg;
       a = delete tmpDeleteObj.y;
-      $(a, x);
+      $(a, arg);
     }
   }
 }
@@ -78,7 +78,7 @@ switch (1) {
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: true, undefined
+ - 3: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

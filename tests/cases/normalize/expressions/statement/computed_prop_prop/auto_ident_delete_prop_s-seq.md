@@ -16,7 +16,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 obj[delete ($(1), $(2), arg).y];
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ $(2);
 const tmpDeleteObj = arg;
 const tmpCompProp = delete tmpDeleteObj.y;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -46,7 +46,7 @@ $(2);
 const tmpDeleteObj = arg;
 const tmpCompProp = delete tmpDeleteObj.y;
 tmpCompObj[tmpCompProp];
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -54,7 +54,7 @@ $(a, x);
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: { a: '999', b: '1000' }, undefined
+ - 3: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 
 Normalized calls: Same

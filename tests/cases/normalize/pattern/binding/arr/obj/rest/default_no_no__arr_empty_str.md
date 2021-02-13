@@ -35,9 +35,8 @@ $(x);
 const bindingPatternArrRoot = ['', 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const tmpCalleeParam = arrPatternStep;
 const tmpCalleeParam$1 = [];
-const x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
 $(x);
 `````
 

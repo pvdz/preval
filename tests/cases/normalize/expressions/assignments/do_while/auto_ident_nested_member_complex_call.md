@@ -74,11 +74,9 @@ while (true) {
     const varInitAssignLhsComputedProp$1 = $('y');
     const varInitAssignLhsComputedRhs$1 = $(d);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    a = varInitAssignLhsComputedRhs$1;
+    tmpIfTest = varInitAssignLhsComputedRhs$1;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

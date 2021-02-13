@@ -50,11 +50,9 @@ while (true) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpIfTest = tmpPostUpdArgVal;
-  if (tmpIfTest) {
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  if (tmpPostUpdArgVal) {
     $(100);
   } else {
     break;

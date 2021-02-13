@@ -40,8 +40,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpPostUpdArgIdent = b;
 b = b - 1;
-const tmpCalleeParam$1 = tmpPostUpdArgIdent;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpPostUpdArgIdent);
 $(a, b);
 `````
 

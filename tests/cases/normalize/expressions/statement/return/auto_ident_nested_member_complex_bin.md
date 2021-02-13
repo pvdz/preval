@@ -60,10 +60,8 @@ function f() {
   const varInitAssignLhsComputedProp$1 = $('y');
   const varInitAssignLhsComputedRhs$1 = d + e;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpReturnArg = varInitAssignLhsComputedRhs;
-  return tmpReturnArg;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+  return varInitAssignLhsComputedRhs$1;
 }
 let b = { x: 1 };
 let c = { y: 2 };

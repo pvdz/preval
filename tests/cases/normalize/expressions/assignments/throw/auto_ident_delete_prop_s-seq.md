@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 throw (a = delete ($(1), $(2), arg).y);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized

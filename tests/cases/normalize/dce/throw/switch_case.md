@@ -51,10 +51,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1, 'disc');
-  const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

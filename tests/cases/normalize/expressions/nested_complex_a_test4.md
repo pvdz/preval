@@ -36,8 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 const varInitAssignLhsComputedObj = $(a);
 const varInitAssignLhsComputedRhs = b;
 varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam);
+$(varInitAssignLhsComputedRhs);
 `````
 
 ## Result

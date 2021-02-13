@@ -47,10 +47,8 @@ const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 

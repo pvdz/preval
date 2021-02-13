@@ -44,9 +44,8 @@ let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(1);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

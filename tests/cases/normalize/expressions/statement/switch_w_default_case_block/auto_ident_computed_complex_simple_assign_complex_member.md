@@ -78,14 +78,13 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -95,11 +94,10 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     {
       const tmpAssignMemLhsObj = $(b);
-      const tmpAssignComputedObj = tmpAssignMemLhsObj;
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');
       const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-      tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+      tmpAssignMemLhsObj['c'] = tmpAssignComputedRhs;
     }
     break tmpSwitchBreak;
   }

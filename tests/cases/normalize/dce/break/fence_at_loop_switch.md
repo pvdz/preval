@@ -77,10 +77,9 @@ while (true) {
   if (tmpIfTest) {
     $('loop');
     const tmpSwitchTest = $(true, 'dis');
-    const tmpSwitchValue = tmpSwitchTest;
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(true, 'case');
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }

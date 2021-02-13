@@ -64,19 +64,13 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     const varInitAssignLhsComputedRhs$5 = c;
     b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$4;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$2;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    b.x = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$5;
+    a = varInitAssignLhsComputedRhs$5;
+    p = varInitAssignLhsComputedRhs$5;
   } else {
     p = $tdz$__p;
   }

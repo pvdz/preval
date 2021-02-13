@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $(`before  ${(a = delete ($(1), $(2), arg).y)}  after`);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ a = delete tmpDeleteObj.y;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -46,7 +46,7 @@ a = delete tmpDeleteObj.y;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -55,7 +55,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: 'before  true  after'
- - 4: true, undefined
+ - 4: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

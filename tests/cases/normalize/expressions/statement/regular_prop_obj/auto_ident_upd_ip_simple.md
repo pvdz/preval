@@ -40,8 +40,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpCompObj = tmpPostUpdArgIdent;
-tmpCompObj.a;
+tmpPostUpdArgIdent.a;
 $(a, b);
 `````
 

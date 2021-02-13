@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 export default a = delete ($(1), $(2), $(arg)).y;
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -29,7 +29,7 @@ const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -43,7 +43,7 @@ const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

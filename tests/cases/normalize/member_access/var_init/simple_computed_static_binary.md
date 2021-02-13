@@ -28,9 +28,8 @@ $(x);
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCompObj = obj;
 const tmpCompProp = 'fo' + 'o';
-let x = tmpCompObj[tmpCompProp];
+let x = obj[tmpCompProp];
 $(x);
 `````
 

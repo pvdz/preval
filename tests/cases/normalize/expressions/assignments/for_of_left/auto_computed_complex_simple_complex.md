@@ -57,9 +57,8 @@ const tmpForOfRhs = $(tmpCalleeParam);
   }
 }
 const tmpAssignMemLhsObj$1 = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj$1;
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj$1['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

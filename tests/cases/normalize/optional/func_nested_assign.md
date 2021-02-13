@@ -54,9 +54,8 @@ function f() {
   const tmpAssignMemLhsObj = obj.a;
   tmpAssignMemLhsObj.b = 15;
   let tmpCalleeParam = undefined;
-  const tmpChainRootProp = obj;
-  if (tmpChainRootProp) {
-    const tmpChainElementObject = tmpChainRootProp.a;
+  if (obj) {
+    const tmpChainElementObject = obj.a;
     if (tmpChainElementObject) {
       const tmpChainElementObject$1 = tmpChainElementObject.b;
       tmpCalleeParam = tmpChainElementObject$1;

@@ -55,9 +55,8 @@ const tmpForOfRhs = $(tmpCalleeParam);
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b['c'] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    b['c'] = tmpNestedAssignPropRhs;
+    a = tmpNestedAssignPropRhs;
     let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }

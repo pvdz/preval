@@ -46,11 +46,9 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$2 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$2);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCalleeParam$1 = tmpPostUpdArgVal;
-$(tmpCalleeParam, tmpCalleeParam$1);
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+$(tmpCalleeParam, tmpPostUpdArgVal);
 $(a, b);
 `````
 

@@ -65,9 +65,8 @@ while (true) {
     const tmpBinLhs = varInitAssignLhsComputedObj.x;
     const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
     varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = varInitAssignLhsComputedRhs;
+    tmpIfTest = varInitAssignLhsComputedRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

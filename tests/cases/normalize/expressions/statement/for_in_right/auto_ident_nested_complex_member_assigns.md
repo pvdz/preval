@@ -81,19 +81,13 @@ let a = { a: 999, b: 1000 };
   const varInitAssignLhsComputedProp$5 = $('x');
   const varInitAssignLhsComputedRhs$5 = c;
   varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$5;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
+  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$5;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
   let x;
-  for (x in tmpForInDeclRhs) {
+  for (x in varInitAssignLhsComputedRhs$5) {
   }
 }
 $(a, b, c);

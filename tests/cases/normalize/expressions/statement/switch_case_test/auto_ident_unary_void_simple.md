@@ -45,9 +45,8 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = undefined === tmpSwitchValue;
+const tmpIfTest = undefined === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

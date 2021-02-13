@@ -49,7 +49,6 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -57,9 +56,8 @@ let tmpSwitchCaseToStart = 0;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b['c'] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    b['c'] = tmpNestedAssignPropRhs;
+    a = tmpNestedAssignPropRhs;
   }
 }
 $(a, b);

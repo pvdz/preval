@@ -55,10 +55,9 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -68,9 +67,8 @@ if (tmpIfTest) {
     const tmpCalleeParam = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpPostUpdArgObj.x = tmpAssignMemRhs;
   }
 }
 $(a, b);

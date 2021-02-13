@@ -47,8 +47,7 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+if (varInitAssignLhsComputedRhs) {
 } else {
   $(100);
 }

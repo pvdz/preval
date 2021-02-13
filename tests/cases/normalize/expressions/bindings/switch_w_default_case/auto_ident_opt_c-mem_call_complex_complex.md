@@ -105,11 +105,10 @@ switch (1) {
         const tmpChainRootComputed = $('$');
         const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
         if (tmpChainElementObject) {
-          const tmpCallObj = tmpChainElementObject;
-          const tmpCallVal = tmpCallObj.call;
+          const tmpCallVal = tmpChainElementObject.call;
           const tmpCalleeParam = tmpChainElementCall;
           const tmpCalleeParam$1 = $(1);
-          const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+          const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpCalleeParam, tmpCalleeParam$1);
           a = tmpChainElementCall$1;
         }
       }

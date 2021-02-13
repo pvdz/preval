@@ -50,9 +50,8 @@ function f() {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   $(a, b);
 }
 const tmpCalleeParam$1 = f();

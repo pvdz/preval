@@ -51,12 +51,10 @@ if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam$1);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  a = tmpPostUpdArgVal;
+  tmpCalleeParam = tmpPostUpdArgVal;
 }
 $(tmpCalleeParam);
 $(a, b);

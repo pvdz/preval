@@ -79,7 +79,6 @@ const tmpSwitchTest = $(1);
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    const tmpBinBothLhs = tmpSwitchTest;
     let tmpBinBothRhs;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
@@ -87,7 +86,7 @@ const tmpSwitchTest = $(1);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
     tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
-    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+    tmpIfTest = tmpSwitchTest === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     tmpFallthrough = true;

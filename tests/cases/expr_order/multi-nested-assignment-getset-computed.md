@@ -304,14 +304,10 @@ const varInitAssignLhsComputedObj$3 = d();
 const varInitAssignLhsComputedProp$3 = $$('d');
 const varInitAssignLhsComputedRhs$3 = e();
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee$1(tmpCalleeParam$1);
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$3;
+tmpCallCallee$1(varInitAssignLhsComputedRhs$3);
 $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````

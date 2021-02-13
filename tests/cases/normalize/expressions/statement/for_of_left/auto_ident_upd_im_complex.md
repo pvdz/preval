@@ -56,11 +56,9 @@ const tmpForOfRhs = $(tmpCalleeParam);
     const tmpCalleeParam$1 = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam$1);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-    const tmpAssignMemLhsObj = tmpPostUpdArgVal;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+    tmpPostUpdArgObj.x = tmpAssignMemRhs;
+    tmpPostUpdArgVal.x = tmpForOfLhsNode;
   }
 }
 $(a, b);

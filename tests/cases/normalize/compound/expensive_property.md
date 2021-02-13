@@ -43,9 +43,8 @@ function superExpensiveFunction() {
 }
 const tmpAssignMemLhsObj = superExpensiveFunction();
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````
 
 ## Result

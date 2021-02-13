@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for (let x of delete ($(1), $(2), $(arg)).y);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ let a = { a: 999, b: 1000 };
   for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x_1);
+$(a, arg);
 `````
 
 ## Output
@@ -49,7 +49,7 @@ let a = { a: 999, b: 1000 };
   for (x of tmpForOfDeclRhs) {
   }
 }
-$(a, x_1);
+$(a, arg);
 `````
 
 ## Result

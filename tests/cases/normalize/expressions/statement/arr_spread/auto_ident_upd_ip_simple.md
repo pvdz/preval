@@ -37,8 +37,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpArrElToSpread = tmpPostUpdArgIdent;
-[...tmpArrElToSpread];
+[...tmpPostUpdArgIdent];
 $(a, b);
 `````
 

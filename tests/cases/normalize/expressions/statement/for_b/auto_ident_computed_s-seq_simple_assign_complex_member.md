@@ -55,8 +55,7 @@ let a = { a: 999, b: 1000 };
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpIfTest = varInitAssignLhsComputedRhs;
-    if (tmpIfTest) {
+    if (varInitAssignLhsComputedRhs) {
       $(1);
     } else {
       break;

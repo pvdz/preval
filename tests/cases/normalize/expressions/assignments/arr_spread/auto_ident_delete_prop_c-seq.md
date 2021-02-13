@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $([...(a = delete ($(1), $(2), $(arg)).y)]);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ a = delete tmpDeleteObj.y;
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -46,7 +46,7 @@ a = delete tmpDeleteObj.y;
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

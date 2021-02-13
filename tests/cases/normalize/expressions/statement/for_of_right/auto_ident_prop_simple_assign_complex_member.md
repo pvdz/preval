@@ -46,9 +46,8 @@ let a = { a: 999, b: 1000 };
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b.c = varInitAssignLhsComputedRhs;
-  const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
   let x;
-  for (x of tmpForOfDeclRhs) {
+  for (x of varInitAssignLhsComputedRhs) {
   }
 }
 $(a, b);

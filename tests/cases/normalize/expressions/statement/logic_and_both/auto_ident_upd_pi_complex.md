@@ -52,14 +52,12 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+if (varInitAssignLhsComputedRhs) {
   const tmpCalleeParam$1 = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 }
 $(a, b);
 `````

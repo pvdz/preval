@@ -38,9 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a = {};
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.b;
+if (a) {
+  const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   if (tmpChainElementObject$1) {
     const tmpChainElementObject$2 = tmpChainElementObject$1.d;

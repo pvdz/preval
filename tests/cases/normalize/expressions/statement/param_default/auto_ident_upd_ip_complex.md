@@ -56,9 +56,8 @@ function f($tdz$__p) {
     const tmpCalleeParam = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpPostUpdArgObj.x = tmpAssignMemRhs;
     p = tmpPostUpdArgVal;
   } else {
     p = $tdz$__p;

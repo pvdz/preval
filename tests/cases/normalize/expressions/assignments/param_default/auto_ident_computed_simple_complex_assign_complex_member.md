@@ -60,9 +60,8 @@ function f($tdz$__p) {
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = varInitAssignLhsComputedRhs;
+    p = varInitAssignLhsComputedRhs;
   } else {
     p = $tdz$__p;
   }

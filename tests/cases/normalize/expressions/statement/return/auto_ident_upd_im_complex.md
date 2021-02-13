@@ -50,11 +50,9 @@ function f() {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpReturnArg = tmpPostUpdArgVal;
-  return tmpReturnArg;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  return tmpPostUpdArgVal;
 }
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };

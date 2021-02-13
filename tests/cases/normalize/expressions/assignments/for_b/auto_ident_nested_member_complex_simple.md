@@ -65,10 +65,8 @@ let a = { a: 999, b: 1000 };
     const varInitAssignLhsComputedProp = $('y');
     const varInitAssignLhsComputedRhs = d;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+    a = varInitAssignLhsComputedRhs;
     let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);

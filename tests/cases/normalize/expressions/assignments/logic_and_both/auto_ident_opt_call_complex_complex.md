@@ -59,10 +59,9 @@ let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpCallObj = tmpChainElementCall;
-  const tmpCallVal = tmpCallObj.call;
+  const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$2 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$2);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
   a = tmpChainElementCall$1;
 }
 let tmpCalleeParam = a;
@@ -70,10 +69,9 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$2 = $($);
   if (tmpChainElementCall$2) {
-    const tmpCallObj$1 = tmpChainElementCall$2;
-    const tmpCallVal$1 = tmpCallObj$1.call;
+    const tmpCallVal$1 = tmpChainElementCall$2.call;
     const tmpCalleeParam$4 = $(1);
-    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, $, tmpCalleeParam$4);
+    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$4);
     tmpNestedComplexRhs = tmpChainElementCall$3;
   }
   a = tmpNestedComplexRhs;

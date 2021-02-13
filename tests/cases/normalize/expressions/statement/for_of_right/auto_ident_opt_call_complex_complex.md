@@ -47,10 +47,9 @@ let a = { a: 999, b: 1000 };
   let tmpForOfDeclRhs = undefined;
   const tmpChainElementCall = $($);
   if (tmpChainElementCall) {
-    const tmpCallObj = tmpChainElementCall;
-    const tmpCallVal = tmpCallObj.call;
+    const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
     tmpForOfDeclRhs = tmpChainElementCall$1;
   }
   let x;

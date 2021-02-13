@@ -50,7 +50,6 @@ const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpSwitchTest = new tmpNewCallee(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

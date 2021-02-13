@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $($(1) ? (a = delete ($(1), $(2), $(arg)).y) : $(200));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -37,7 +37,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -58,7 +58,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -69,7 +69,7 @@ Should call `$` with:
  - 3: 2
  - 4: { y: '1' }
  - 5: true
- - 6: true, undefined
+ - 6: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

@@ -59,7 +59,6 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -70,10 +69,8 @@ let tmpSwitchCaseToStart = 0;
     const varInitAssignLhsComputedProp = $('y');
     const varInitAssignLhsComputedRhs = $(d);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+    a = varInitAssignLhsComputedRhs;
   }
 }
 $(a, b, c, d);

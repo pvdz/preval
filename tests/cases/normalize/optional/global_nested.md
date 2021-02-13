@@ -39,9 +39,8 @@ const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = obj;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.a;
+if (obj) {
+  const tmpChainElementObject = obj.a;
   if (tmpChainElementObject) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
     tmpCalleeParam = tmpChainElementObject$1;

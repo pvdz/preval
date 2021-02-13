@@ -14,7 +14,7 @@
 let arg = { y: 1 };
 
 export let a = delete ($(1), $(2), arg).y;
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -26,7 +26,7 @@ $(2);
 const tmpDeleteObj = arg;
 let a = delete tmpDeleteObj.y;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -38,7 +38,7 @@ $(2);
 const tmpDeleteObj = arg;
 let a = delete tmpDeleteObj.y;
 export { a };
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

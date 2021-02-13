@@ -119,24 +119,23 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const tmpSwitchTest = $(1);
-  const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 4;
-  const tmpIfTest = 0 === tmpSwitchValue;
+  const tmpIfTest = 0 === tmpSwitchTest;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
     const tmpBinLhs = $(1);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
       const tmpBinLhs$1 = $(4);
-      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue;
+      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchTest;
       if (tmpIfTest$2) {
         tmpSwitchCaseToStart = 2;
       } else {
         const tmpBinLhs$2 = $(7);
-        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchValue;
+        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchTest;
         if (tmpIfTest$3) {
           tmpSwitchCaseToStart = 3;
         }

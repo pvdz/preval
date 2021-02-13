@@ -43,9 +43,8 @@ const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedRhs$1 = $(d);
 varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+let a = varInitAssignLhsComputedRhs$1;
 export { a };
 $(a, b, c, d);
 `````

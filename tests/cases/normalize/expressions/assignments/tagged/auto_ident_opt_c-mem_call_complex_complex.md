@@ -57,11 +57,9 @@ if (tmpChainElementCall) {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (tmpChainElementObject) {
-    const tmpCallObj = tmpChainElementObject;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam$2 = tmpChainElementCall;
+    const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$2, tmpCalleeParam$3);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
   }
 }

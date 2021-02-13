@@ -66,9 +66,8 @@ while (true) {
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = varInitAssignLhsComputedRhs;
+    tmpIfTest = varInitAssignLhsComputedRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

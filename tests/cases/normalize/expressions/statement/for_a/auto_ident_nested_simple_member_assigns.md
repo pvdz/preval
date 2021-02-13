@@ -60,16 +60,11 @@ let a = { a: 999, b: 1000 };
   const tmpAssignMemLhsObj = b;
   const varInitAssignLhsComputedRhs$4 = c;
   b.x = varInitAssignLhsComputedRhs$4;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  b.x = varInitAssignLhsComputedRhs$4;
+  b.x = varInitAssignLhsComputedRhs$4;
+  b.x = varInitAssignLhsComputedRhs$4;
+  b.x = varInitAssignLhsComputedRhs$4;
+  tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$4;
   while (true) {
     const tmpIfTest = $(0);
     if (tmpIfTest) {

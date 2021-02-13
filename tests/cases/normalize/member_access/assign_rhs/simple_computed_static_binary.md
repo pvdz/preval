@@ -31,9 +31,8 @@ $(x);
 `````js filename=intro
 const obj = { foo: 10 };
 let x = 10;
-const tmpAssignRhsCompObj = obj;
 const tmpAssignRhsCompProp = 'fo' + 'o';
-x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+x = obj[tmpAssignRhsCompProp];
 $(x);
 `````
 

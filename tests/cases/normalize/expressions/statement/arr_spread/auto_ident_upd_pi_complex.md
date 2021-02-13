@@ -44,8 +44,7 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpArrElToSpread = varInitAssignLhsComputedRhs;
-[...tmpArrElToSpread];
+[...varInitAssignLhsComputedRhs];
 $(a, b);
 `````
 

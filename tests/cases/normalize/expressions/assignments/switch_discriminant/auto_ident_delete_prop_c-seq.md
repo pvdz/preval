@@ -18,7 +18,7 @@ switch ((a = delete ($(1), $(2), $(arg)).y)) {
   default:
     $(100);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -60,7 +60,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -70,7 +70,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 100
- - 5: true, undefined
+ - 5: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

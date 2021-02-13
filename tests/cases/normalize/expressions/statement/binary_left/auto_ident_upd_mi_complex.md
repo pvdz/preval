@@ -42,9 +42,8 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const tmpAssignMemLhsObj = $(tmpCalleeParam);
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(100);
 $(a, b);
 `````

@@ -52,18 +52,16 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+b.c = tmpNestedAssignPropRhs;
+a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpCalleeParam = varInitAssignLhsComputedRhs;
 }
 $(tmpCalleeParam);
 $(a, b);

@@ -70,18 +70,12 @@ while (true) {
   } else {
     const varInitAssignLhsComputedRhs$4 = c;
     b.x = varInitAssignLhsComputedRhs$4;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$2;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs;
-    tmpIfTest = tmpNestedPropAssignRhs;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    tmpIfTest = varInitAssignLhsComputedRhs$4;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

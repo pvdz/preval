@@ -75,9 +75,8 @@ const obj = {
   },
 };
 const tmpCompoundAssignLhs = obj.x;
-const tmpAssignMemLhsObj = obj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+obj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 

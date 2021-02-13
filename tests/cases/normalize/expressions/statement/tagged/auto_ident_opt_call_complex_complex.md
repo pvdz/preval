@@ -45,10 +45,9 @@ const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall) {
-  const tmpCallObj = tmpChainElementCall;
-  const tmpCallVal = tmpCallObj.call;
+  const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, $, tmpCalleeParam$3);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpCalleeParam$1 = tmpChainElementCall$1;
 }
 $(tmpCalleeParam, tmpCalleeParam$1);

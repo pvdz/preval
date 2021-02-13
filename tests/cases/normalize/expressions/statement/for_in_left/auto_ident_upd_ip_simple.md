@@ -50,8 +50,7 @@ const tmpForInRhs = $(tmpCalleeParam);
   for (tmpForInLhsNode in tmpForInRhs) {
     const tmpPostUpdArgIdent = b;
     b = b + 1;
-    const tmpAssignMemLhsObj = tmpPostUpdArgIdent;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
+    tmpPostUpdArgIdent.x = tmpForInLhsNode;
   }
 }
 $(a, b);

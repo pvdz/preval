@@ -50,7 +50,6 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpSwitchTest = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

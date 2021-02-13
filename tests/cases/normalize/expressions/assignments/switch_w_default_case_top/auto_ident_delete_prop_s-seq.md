@@ -22,7 +22,7 @@ switch ($(1)) {
   case 2:
     $("fail2");
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -60,7 +60,7 @@ if (tmpIfTest) {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -69,14 +69,13 @@ $(a, x);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -98,7 +97,7 @@ if (tmpIfTest) {
     $('fail2');
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -110,7 +109,7 @@ Should call `$` with:
  - 4: 2
  - 5: 'fail1'
  - 6: 'fail2'
- - 7: true, undefined
+ - 7: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

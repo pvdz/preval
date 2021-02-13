@@ -43,8 +43,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
-const tmpTemplateExpr = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${varInitAssignLhsComputedRhs}  after`;
 $(tmpCalleeParam);
 $(a, b);
 `````

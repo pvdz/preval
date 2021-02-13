@@ -107,23 +107,15 @@ const varInitAssignLhsComputedObj$5 = $(b);
 const varInitAssignLhsComputedProp$5 = $('x');
 const varInitAssignLhsComputedRhs$5 = c;
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
+if (varInitAssignLhsComputedRhs$5) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('x');
-  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const varInitAssignLhsComputedObj$6 = $(b);
   const varInitAssignLhsComputedProp$6 = $('x');
   const varInitAssignLhsComputedObj$7 = $(b);
@@ -136,16 +128,11 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp$10 = $('x');
   const varInitAssignLhsComputedRhs$10 = c;
   varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = varInitAssignLhsComputedRhs$10;
-  const varInitAssignLhsComputedRhs$9 = varInitAssignLhsComputedRhs$10;
-  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
-  const varInitAssignLhsComputedRhs$8 = varInitAssignLhsComputedRhs$9;
-  varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = varInitAssignLhsComputedRhs$8;
-  const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$8;
-  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$6 = varInitAssignLhsComputedRhs$7;
-  varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = varInitAssignLhsComputedRhs$6;
-  const tmpAssignComputedRhs = varInitAssignLhsComputedRhs$6;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$10;
+  varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = varInitAssignLhsComputedRhs$10;
+  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$10;
+  varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = varInitAssignLhsComputedRhs$10;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$10;
 }
 $(a, b, c);
 `````

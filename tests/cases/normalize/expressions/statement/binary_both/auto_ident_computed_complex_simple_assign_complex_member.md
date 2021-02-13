@@ -46,17 +46,15 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj['c'] = tmpAssignComputedRhs;
 const tmpAssignMemLhsObj$1 = $(b);
-const tmpAssignComputedObj$1 = tmpAssignMemLhsObj$1;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
 const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComputedObj$1['c'] = tmpAssignComputedRhs$1;
+tmpAssignMemLhsObj$1['c'] = tmpAssignComputedRhs$1;
 $(a, b);
 `````
 

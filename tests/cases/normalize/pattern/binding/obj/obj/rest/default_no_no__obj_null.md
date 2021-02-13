@@ -35,9 +35,8 @@ $('bad');
 const tmpObjLitVal = null;
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-const y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+const y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 

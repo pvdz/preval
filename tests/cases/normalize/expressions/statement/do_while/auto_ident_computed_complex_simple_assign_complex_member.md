@@ -62,9 +62,8 @@ while (true) {
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
-    tmpIfTest = tmpNestedPropAssignRhs;
+    tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+    tmpIfTest = tmpNestedAssignPropRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

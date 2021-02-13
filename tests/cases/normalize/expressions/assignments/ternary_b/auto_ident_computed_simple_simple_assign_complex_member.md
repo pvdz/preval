@@ -53,9 +53,8 @@ if (tmpIfTest) {
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b['c'] = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpCalleeParam = varInitAssignLhsComputedRhs;
 } else {
   tmpCalleeParam = $(200);
 }

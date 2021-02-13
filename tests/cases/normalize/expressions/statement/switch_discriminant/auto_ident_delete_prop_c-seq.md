@@ -18,7 +18,7 @@ switch (delete ($(1), $(2), $(arg)).y) {
   default:
     $(100);
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -38,7 +38,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -50,7 +50,6 @@ $(1);
 $(2);
 const tmpDeleteObj = $(arg);
 const tmpSwitchTest = delete tmpDeleteObj.y;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -58,7 +57,7 @@ let tmpSwitchCaseToStart = 0;
     $(100);
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -68,7 +67,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 100
- - 5: { a: '999', b: '1000' }, undefined
+ - 5: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 
 Normalized calls: Same

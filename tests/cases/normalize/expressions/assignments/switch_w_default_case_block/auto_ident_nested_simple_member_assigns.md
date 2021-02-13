@@ -85,14 +85,13 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -103,18 +102,12 @@ if (tmpIfTest) {
     {
       const varInitAssignLhsComputedRhs$4 = c;
       b.x = varInitAssignLhsComputedRhs$4;
-      const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-      b.x = varInitAssignLhsComputedRhs$3;
-      const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-      b.x = varInitAssignLhsComputedRhs$2;
-      const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-      b.x = varInitAssignLhsComputedRhs$1;
-      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-      b.x = varInitAssignLhsComputedRhs;
-      const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      b.x = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
+      b.x = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$4;
+      b.x = varInitAssignLhsComputedRhs$4;
+      a = varInitAssignLhsComputedRhs$4;
     }
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

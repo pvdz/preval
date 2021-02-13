@@ -113,18 +113,14 @@ e = function () {
   return 5;
 };
 const tmpAssignMemLhsObj = a();
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const varInitAssignLhsComputedObj = b();
 const varInitAssignLhsComputedObj$1 = c();
 const varInitAssignLhsComputedObj$2 = d();
 const varInitAssignLhsComputedRhs$2 = e();
 varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$2;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$2;
+tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$2;
 $(a, b, c, d, e);
 `````
 

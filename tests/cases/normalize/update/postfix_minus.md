@@ -32,8 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 let x = 1;
 const tmpPostUpdArgIdent = x;
 x = x - 1;
-const tmpCalleeParam = tmpPostUpdArgIdent;
-$(tmpCalleeParam);
+$(tmpPostUpdArgIdent);
 `````
 
 ## Result

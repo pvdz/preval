@@ -48,12 +48,10 @@ let a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpForOfDeclRhs = tmpPostUpdArgVal;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
   let x;
-  for (x of tmpForOfDeclRhs) {
+  for (x of tmpPostUpdArgVal) {
   }
 }
 $(a, b);

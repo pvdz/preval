@@ -47,8 +47,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpPostUpdArgIdent = b;
     b = b + 1;
-    const tmpIfTest = tmpPostUpdArgIdent;
-    if (tmpIfTest) {
+    if (tmpPostUpdArgIdent) {
       $(1);
     } else {
       break;

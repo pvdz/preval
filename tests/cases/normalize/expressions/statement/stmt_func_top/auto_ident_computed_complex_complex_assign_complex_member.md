@@ -50,12 +50,10 @@ function f() {
   let a = { a: 999, b: 1000 };
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('c');
-  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
   $(a, b);
 }
 const tmpCalleeParam = f();

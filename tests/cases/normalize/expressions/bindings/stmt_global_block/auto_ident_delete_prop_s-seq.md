@@ -15,7 +15,7 @@
   let arg = { y: 1 };
 
   let a = delete ($(1), $(2), arg).y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -28,7 +28,7 @@
   $(2);
   const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -41,7 +41,7 @@
   $(2);
   const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 `````
 
@@ -50,7 +50,7 @@
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: true, undefined
+ - 3: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

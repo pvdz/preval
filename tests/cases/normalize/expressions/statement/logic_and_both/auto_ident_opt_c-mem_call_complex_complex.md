@@ -67,11 +67,9 @@ if (tmpChainElementCall) {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (tmpChainElementObject) {
-    const tmpCallObj = tmpChainElementObject;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainElementCall;
+    const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     tmpIfTest = tmpChainElementCall$1;
   }
 }
@@ -81,11 +79,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $('$');
     const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
     if (tmpChainElementObject$1) {
-      const tmpCallObj$1 = tmpChainElementObject$1;
-      const tmpCallVal$1 = tmpCallObj$1.call;
-      const tmpCalleeParam$2 = tmpChainElementCall$2;
+      const tmpCallVal$1 = tmpChainElementObject$1.call;
       const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$2, tmpCalleeParam$3);
+      const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);
     }
   }
 }

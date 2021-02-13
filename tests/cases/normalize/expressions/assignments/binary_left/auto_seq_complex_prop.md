@@ -48,9 +48,8 @@ const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 

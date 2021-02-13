@@ -30,8 +30,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = {};
-const y = x;
-const tmpCalleeParam = x >= y;
+const tmpCalleeParam = x >= x;
 $(tmpCalleeParam);
 `````
 

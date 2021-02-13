@@ -44,9 +44,8 @@ const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const tmpCalleeParam = objPatternNoDefault$1;
 const tmpCalleeParam$1 = [];
-const z = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+const z = objPatternRest(objPatternNoDefault$1, tmpCalleeParam$1, undefined);
 $(z);
 `````
 

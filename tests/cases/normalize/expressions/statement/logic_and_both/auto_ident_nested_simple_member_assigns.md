@@ -65,31 +65,20 @@ let c = 3;
 let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedRhs$5 = c;
 b.x = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$4;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-b.x = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-b.x = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-b.x = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+if (varInitAssignLhsComputedRhs$5) {
   const tmpAssignMemLhsObj = b;
   const varInitAssignLhsComputedRhs$10 = c;
   b.x = varInitAssignLhsComputedRhs$10;
-  const varInitAssignLhsComputedRhs$9 = varInitAssignLhsComputedRhs$10;
-  b.x = varInitAssignLhsComputedRhs$9;
-  const varInitAssignLhsComputedRhs$8 = varInitAssignLhsComputedRhs$9;
-  b.x = varInitAssignLhsComputedRhs$8;
-  const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$8;
-  b.x = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$6 = varInitAssignLhsComputedRhs$7;
-  b.x = varInitAssignLhsComputedRhs$6;
-  const tmpAssignMemRhs = varInitAssignLhsComputedRhs$6;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  b.x = varInitAssignLhsComputedRhs$10;
+  b.x = varInitAssignLhsComputedRhs$10;
+  b.x = varInitAssignLhsComputedRhs$10;
+  b.x = varInitAssignLhsComputedRhs$10;
+  tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$10;
 }
 $(a, b, c);
 `````

@@ -18,7 +18,7 @@ function f() {
   return (a = delete ($(1), $(2), $(arg)).y);
 }
 $(f());
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -55,7 +55,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -65,7 +65,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: true
- - 5: true, undefined
+ - 5: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

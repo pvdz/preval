@@ -51,7 +51,6 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('c');
@@ -59,8 +58,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpBinLhs = varInitAssignLhsComputedRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = varInitAssignLhsComputedRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

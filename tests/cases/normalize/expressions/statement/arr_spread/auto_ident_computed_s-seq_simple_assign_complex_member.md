@@ -45,8 +45,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpArrElToSpread = varInitAssignLhsComputedRhs;
-[...tmpArrElToSpread];
+[...varInitAssignLhsComputedRhs];
 $(a, b);
 `````
 

@@ -63,10 +63,9 @@ const tmpSwitchTest = $('a');
   let arrPatternSplat;
   let x_1;
   let y_1;
-  const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

@@ -41,11 +41,9 @@ var x;
 const tmpChainRootProp = a;
 if (tmpChainRootProp) {
   const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpCallObj = tmpChainElementObject;
-  const tmpCallVal = tmpCallObj.call;
-  const tmpCalleeParam = tmpChainRootProp;
+  const tmpCallVal = tmpChainElementObject.call;
   const tmpCalleeParam$1 = x.y;
-  const tmpChainElementCall = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+  const tmpChainElementCall = tmpCallVal.call(tmpChainElementObject, tmpChainRootProp, tmpCalleeParam$1);
 }
 `````
 

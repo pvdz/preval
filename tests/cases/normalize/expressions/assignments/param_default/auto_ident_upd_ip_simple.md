@@ -52,9 +52,8 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     const tmpPostUpdArgIdent = b;
     b = b + 1;
-    const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = tmpPostUpdArgIdent;
+    p = tmpPostUpdArgIdent;
   } else {
     p = $tdz$__p;
   }

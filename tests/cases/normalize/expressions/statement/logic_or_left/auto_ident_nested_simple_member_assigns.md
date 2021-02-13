@@ -53,18 +53,12 @@ let c = 3;
 let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedRhs$5 = c;
 b.x = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$4;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-b.x = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-b.x = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-b.x = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$5;
+if (varInitAssignLhsComputedRhs$5) {
 } else {
   $(100);
 }

@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $((a = delete ($(1), $(2), $(arg)).y) + $(100));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -48,7 +48,7 @@ let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -59,7 +59,7 @@ Should call `$` with:
  - 3: { y: '1' }
  - 4: 100
  - 5: 101
- - 6: true, undefined
+ - 6: true, {}
  - eval returned: undefined
 
 Normalized calls: Same

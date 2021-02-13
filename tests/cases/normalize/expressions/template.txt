@@ -725,7 +725,7 @@ $(a, arg);
 
 let arg = {y: 1};
 let a = delete ($(1), $(2), arg).y;
-$(a, x);
+$(a, arg);
 
 ---
 
@@ -733,7 +733,7 @@ $(a, x);
 
 let arg = {y: 1};
 let a = delete ($(1), $(2), $(arg)).y;
-$(a, x);
+$(a, arg);
 
 ---
 

@@ -36,8 +36,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpThrowArg = tmpPostUpdArgIdent;
-throw tmpThrowArg;
+throw tmpPostUpdArgIdent;
 `````
 
 ## Result

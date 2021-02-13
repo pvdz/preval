@@ -44,8 +44,7 @@ $(a, b);
 function f() {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  const tmpReturnArg = tmpPostUpdArgIdent;
-  return tmpReturnArg;
+  return tmpPostUpdArgIdent;
 }
 let b = 1;
 let a = { a: 999, b: 1000 };

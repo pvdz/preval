@@ -15,7 +15,7 @@ function f() {
   let arg = { y: 1 };
 
   let a = delete ($(1), $(2), arg).y;
-  $(a, x);
+  $(a, arg);
 }
 $(f());
 `````
@@ -29,7 +29,7 @@ function f() {
   $(2);
   const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -45,7 +45,7 @@ function f() {
   $(2);
   const tmpDeleteObj = arg;
   let a = delete tmpDeleteObj.y;
-  $(a, x);
+  $(a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -56,7 +56,7 @@ $(tmpCalleeParam);
 Should call `$` with:
  - 1: 1
  - 2: 2
- - 3: true, undefined
+ - 3: true, {}
  - 4: undefined
  - eval returned: undefined
 

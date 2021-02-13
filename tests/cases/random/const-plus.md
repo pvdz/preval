@@ -31,8 +31,7 @@ $(xyz);
 `````js filename=intro
 const y = 'b' + 'a';
 const z = 'a' + y;
-const xyz = z;
-$(xyz);
+$(z);
 `````
 
 ## Result

@@ -55,10 +55,9 @@ let d = 4;
 const tmpSwitchTest = $('a');
 {
   let a_1;
-  const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

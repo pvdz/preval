@@ -65,18 +65,12 @@ const tmpForOfRhs = $(tmpCalleeParam);
   for (tmpForOfLhsNode of tmpForOfRhs) {
     const varInitAssignLhsComputedRhs$4 = c;
     b.x = varInitAssignLhsComputedRhs$4;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$2;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$4;
+    a = varInitAssignLhsComputedRhs$4;
     let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }

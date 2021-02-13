@@ -58,9 +58,8 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
 a = tmpPostUpdArgVal;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -68,12 +67,10 @@ if (tmpCalleeParam) {
   const tmpCalleeParam$2 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$2);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-  const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj$1;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal$1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+  a = tmpPostUpdArgVal$1;
+  tmpCalleeParam = tmpPostUpdArgVal$1;
 }
 $(tmpCalleeParam);
 $(a, b);

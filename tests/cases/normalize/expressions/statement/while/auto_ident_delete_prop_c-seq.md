@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 while (delete ($(1), $(2), $(arg)).y) $(100);
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -34,7 +34,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -53,7 +53,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

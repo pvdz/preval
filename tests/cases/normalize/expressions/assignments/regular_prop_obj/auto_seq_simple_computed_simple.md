@@ -47,9 +47,8 @@ let tmpCompObj = a;
 tmpCompObj.a;
 $(1);
 const tmpAssignMemLhsObj = a;
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 

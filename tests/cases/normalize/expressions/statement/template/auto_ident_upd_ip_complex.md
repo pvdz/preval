@@ -45,11 +45,9 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpTemplateExpr = tmpPostUpdArgVal;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpCalleeParam = `before  ${tmpPostUpdArgVal}  after`;
 $(tmpCalleeParam);
 $(a, b);
 `````

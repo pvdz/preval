@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 $((a *= delete ($(1), $(2), $(arg)).y));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -48,7 +48,7 @@ const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
-$(a, x);
+$(a, arg);
 `````
 
 ## Result
@@ -58,7 +58,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: NaN
- - 5: NaN, undefined
+ - 5: NaN, {}
  - eval returned: undefined
 
 Normalized calls: Same

@@ -49,9 +49,8 @@ function f() {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
+  b['c'] = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

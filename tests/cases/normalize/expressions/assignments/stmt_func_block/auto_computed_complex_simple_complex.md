@@ -52,9 +52,8 @@ function f() {
     const tmpObjLitVal = $(1);
     a = { b: tmpObjLitVal };
     const tmpAssignMemLhsObj = $(a);
-    const tmpAssignComputedObj = tmpAssignMemLhsObj;
     const tmpAssignComputedRhs = $(2);
-    tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+    tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
     $(a);
   }
 }

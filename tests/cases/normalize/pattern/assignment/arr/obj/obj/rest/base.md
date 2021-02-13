@@ -45,9 +45,8 @@ const arrAssignPatternRhs = [tmpArrElement, 10];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
-const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(y);
 `````
 

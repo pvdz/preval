@@ -43,9 +43,8 @@ let d = 4;
   const varInitAssignLhsComputedObj = $(c);
   const varInitAssignLhsComputedRhs$1 = $(d);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
+  b.x = varInitAssignLhsComputedRhs$1;
+  let a_1 = varInitAssignLhsComputedRhs$1;
 }
 `````
 

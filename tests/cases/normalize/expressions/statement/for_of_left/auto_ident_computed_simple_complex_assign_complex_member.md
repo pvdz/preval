@@ -58,8 +58,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+    varInitAssignLhsComputedRhs.x = tmpForOfLhsNode;
   }
 }
 $(a, b);

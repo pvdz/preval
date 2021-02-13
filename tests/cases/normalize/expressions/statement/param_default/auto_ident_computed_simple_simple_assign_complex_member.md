@@ -54,9 +54,8 @@ function f($tdz$__p) {
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b['c'] = tmpNestedPropAssignRhs;
-    p = tmpNestedPropAssignRhs;
+    b['c'] = tmpNestedAssignPropRhs;
+    p = tmpNestedAssignPropRhs;
   } else {
     p = $tdz$__p;
   }

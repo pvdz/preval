@@ -45,9 +45,8 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpPostUpdArgIdent;
+  tmpCalleeParam = tmpPostUpdArgIdent;
 }
 $(tmpCalleeParam);
 $(a, b);

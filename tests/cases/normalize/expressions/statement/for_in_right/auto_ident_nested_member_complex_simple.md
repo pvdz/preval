@@ -58,11 +58,9 @@ let a = { a: 999, b: 1000 };
   const varInitAssignLhsComputedProp$1 = $('y');
   const varInitAssignLhsComputedRhs$1 = d;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
   let x;
-  for (x in tmpForInDeclRhs) {
+  for (x in varInitAssignLhsComputedRhs$1) {
   }
 }
 $(a, b, c, d);

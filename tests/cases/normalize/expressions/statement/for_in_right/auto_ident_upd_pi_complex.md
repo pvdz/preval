@@ -49,9 +49,8 @@ let a = { a: 999, b: 1000 };
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
   let x;
-  for (x in tmpForInDeclRhs) {
+  for (x in varInitAssignLhsComputedRhs) {
   }
 }
 $(a, b);

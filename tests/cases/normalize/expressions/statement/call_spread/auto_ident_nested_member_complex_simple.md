@@ -54,10 +54,8 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 const varInitAssignLhsComputedRhs$1 = d;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParamSpread = varInitAssignLhsComputedRhs;
-$(...tmpCalleeParamSpread);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(...varInitAssignLhsComputedRhs$1);
 $(a, b, c, d);
 `````
 

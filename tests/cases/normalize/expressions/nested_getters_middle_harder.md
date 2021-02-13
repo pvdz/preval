@@ -122,9 +122,8 @@ function f() {
   let a = 1;
   $('-------- let 1');
   const tmpNestedAssignPropRhs = $(6);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.foo = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
+  b.foo = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
   let tmpCalleeParam = a;
   $(tmpCalleeParam);
   $('-------- test case');

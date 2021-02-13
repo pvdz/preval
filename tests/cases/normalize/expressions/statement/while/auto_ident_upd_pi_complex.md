@@ -51,8 +51,7 @@ while (true) {
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpIfTest = varInitAssignLhsComputedRhs;
-  if (tmpIfTest) {
+  if (varInitAssignLhsComputedRhs) {
     $(100);
   } else {
     break;

@@ -62,14 +62,11 @@ let a = { a: 999, b: 1000 };
     if (tmpIfTest) {
       const tmpAssignComMemLhsObj = $(b);
       const tmpAssignComMemLhsProp = $('x');
-      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
       const varInitAssignLhsComputedObj = $(c);
       const varInitAssignLhsComputedProp = $('y');
       const varInitAssignLhsComputedRhs = d;
       varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-      const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
     } else {
       break;
     }

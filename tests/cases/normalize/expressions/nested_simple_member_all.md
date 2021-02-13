@@ -50,10 +50,8 @@ const varInitAssignLhsComputedObj$1 = $(b);
 const tmpCompObj = $(c);
 const varInitAssignLhsComputedRhs$1 = tmpCompObj.x;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam);
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1);
 `````
 
 ## Result

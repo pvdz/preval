@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for (let x in (a = delete ($(1), $(2), $(arg)).y));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
   for (x in tmpForInDeclRhs) {
   }
 }
-$(a, x_1);
+$(a, arg);
 `````
 
 ## Output
@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
   for (x in tmpForInDeclRhs) {
   }
 }
-$(a, x_1);
+$(a, arg);
 `````
 
 ## Result
@@ -60,17 +60,9 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: { y: '1' }
- - 4: true, undefined
+ - 4: true, {}
  - eval returned: undefined
 
-Normalized calls: BAD?!
- - 1: 1
- - 2: 2
- - 3: { y: '1' }
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 1
- - 2: 2
- - 3: { y: '1' }
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Final output calls: Same

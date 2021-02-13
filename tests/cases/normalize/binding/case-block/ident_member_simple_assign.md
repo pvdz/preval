@@ -65,10 +65,9 @@ const tmpSwitchTest = $('a');
   let varInitAssignLhsComputedRhs$1;
   let varInitAssignLhsComputedRhs;
   let a_1;
-  const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

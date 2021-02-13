@@ -42,8 +42,7 @@ let obj = {};
 const tmpCompObj = obj;
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpCompProp = tmpPostUpdArgIdent;
-tmpCompObj[tmpCompProp];
+tmpCompObj[tmpPostUpdArgIdent];
 $(a, b);
 `````
 

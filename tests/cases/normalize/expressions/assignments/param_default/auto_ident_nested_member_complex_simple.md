@@ -66,11 +66,9 @@ function f($tdz$__p) {
     const varInitAssignLhsComputedProp$1 = $('y');
     const varInitAssignLhsComputedRhs$1 = d;
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    a = varInitAssignLhsComputedRhs$1;
+    p = varInitAssignLhsComputedRhs$1;
   } else {
     p = $tdz$__p;
   }

@@ -37,9 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal = {};
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-if (tmpChainRootProp) {
-  const tmpChainElementObject = tmpChainRootProp.b;
+if (a) {
+  const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   tmpCalleeParam = tmpChainElementObject$1;
 }

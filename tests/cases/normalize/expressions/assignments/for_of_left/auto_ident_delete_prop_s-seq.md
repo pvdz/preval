@@ -15,7 +15,7 @@ let arg = { y: 1 };
 
 let a = { a: 999, b: 1000 };
 for ((a = delete ($(1), $(2), arg).y).x of $({ x: 1 }));
-$(a, x);
+$(a, arg);
 `````
 
 ## Normalized
@@ -37,7 +37,7 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Output
@@ -58,7 +58,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
-$(a, x);
+$(a, arg);
 `````
 
 ## Result

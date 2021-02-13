@@ -46,15 +46,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    a = b;
-    tmpIfTest = b;
+    a = 1;
+    tmpIfTest = 1;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -63,7 +62,7 @@ while (true) {
     break;
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

@@ -39,8 +39,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const varInitAssignLhsComputedObj = b;
-varInitAssignLhsComputedObj.c = 2;
+b.c = 2;
 (2).a;
 $(a, b);
 `````

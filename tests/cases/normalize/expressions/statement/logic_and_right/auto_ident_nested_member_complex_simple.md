@@ -48,7 +48,6 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
@@ -56,11 +55,10 @@ if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
   const varInitAssignLhsComputedProp = $('y');
-  const varInitAssignLhsComputedRhs = d;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 }
-$(a, b, c, d);
+$(a, b, c, 3);
 `````
 
 ## Result

@@ -56,15 +56,13 @@ $(a, b, c, d, e);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
-let e = 4;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = d + e;
+const varInitAssignLhsComputedRhs = 3 + 4;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 a = varInitAssignLhsComputedRhs;
@@ -75,7 +73,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, b, c, d, e);
+$(a, b, c, 3, 4);
 `````
 
 ## Result

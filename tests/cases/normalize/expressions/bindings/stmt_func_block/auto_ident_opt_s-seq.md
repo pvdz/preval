@@ -50,10 +50,9 @@ function f() {
   {
     let b = { x: 1 };
     let a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
+    const tmpIfTest = b != null;
     if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject = b.x;
       a = tmpChainElementObject;
     }
     $(a);

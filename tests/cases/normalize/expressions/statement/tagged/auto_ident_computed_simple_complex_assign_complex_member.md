@@ -42,12 +42,11 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(a, b);
 `````

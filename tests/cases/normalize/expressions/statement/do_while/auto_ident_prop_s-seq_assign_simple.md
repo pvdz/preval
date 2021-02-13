@@ -55,8 +55,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
+    b.c = 2;
     tmpIfTest = 2;
   }
   if (tmpIfTest) {

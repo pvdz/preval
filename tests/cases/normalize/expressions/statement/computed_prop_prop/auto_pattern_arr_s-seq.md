@@ -39,11 +39,10 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let obj = {};
-const tmpCompObj = obj;
 $(10);
 $(20);
 const tmpCompProp = [1, 2];
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

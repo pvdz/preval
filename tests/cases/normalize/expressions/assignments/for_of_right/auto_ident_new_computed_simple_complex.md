@@ -42,9 +42,8 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  const tmpCompObj = b;
   const tmpCompProp = $('$');
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  const tmpNewCallee = b[tmpCompProp];
   a = new tmpNewCallee(1);
   let tmpForOfDeclRhs = a;
   let x;

@@ -40,8 +40,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCompObj = b;
-  tmpCompObj.c;
+  b.c;
 }
 $(a, b);
 `````

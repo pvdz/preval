@@ -34,13 +34,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpCalleeParamSpread = x;
-$(...tmpCalleeParamSpread);
-$(a, x);
+$(...1);
+$(a, 1);
 `````
 
 ## Result

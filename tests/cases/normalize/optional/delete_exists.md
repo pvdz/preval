@@ -23,7 +23,7 @@ $(o);
 let o = { x: 1 };
 $(o);
 const tmpDeleteOpt = o;
-const tmpIfTest = tmpDeleteOpt == null;
+const tmpIfTest = tmpDeleteOpt != null;
 if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
@@ -35,7 +35,7 @@ $(o);
 `````js filename=intro
 let o = { x: 1 };
 $(o);
-const tmpIfTest = o == null;
+const tmpIfTest = o != null;
 if (tmpIfTest) {
   delete o.x;
 }
@@ -49,12 +49,6 @@ Should call `$` with:
  - 2: {}
  - eval returned: undefined
 
-Normalized calls: BAD?!
- - 1: { x: '1' }
- - 2: { x: '1' }
- - eval returned: undefined
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: { x: '1' }
- - 2: { x: '1' }
- - eval returned: undefined
+Final output calls: Same

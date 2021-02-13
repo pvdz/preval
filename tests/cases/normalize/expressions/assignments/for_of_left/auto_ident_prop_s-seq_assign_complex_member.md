@@ -53,11 +53,10 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpNestedAssignObj = b;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+    b.c = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
     let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;

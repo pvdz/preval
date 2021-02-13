@@ -33,9 +33,8 @@
 
 `````js filename=intro
 {
-  let x = 1;
-  let a = typeof x;
-  $(a, x);
+  let a = typeof 1;
+  $(a, 1);
 }
 `````
 

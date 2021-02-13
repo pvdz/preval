@@ -37,8 +37,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCompObj = b;
-const tmpCalleeParam$1 = tmpCompObj.c;
+const tmpCalleeParam$1 = b.c;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````

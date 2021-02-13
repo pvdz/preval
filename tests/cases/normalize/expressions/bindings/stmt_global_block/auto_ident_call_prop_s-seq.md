@@ -35,8 +35,7 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  const tmpCallObj = b;
-  let a = tmpCallObj.$(1);
+  let a = b.$(1);
   $(a);
 }
 `````

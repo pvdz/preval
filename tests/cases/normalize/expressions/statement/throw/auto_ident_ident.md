@@ -29,9 +29,8 @@ throw b;
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
-throw b;
+throw 1;
 `````
 
 ## Result

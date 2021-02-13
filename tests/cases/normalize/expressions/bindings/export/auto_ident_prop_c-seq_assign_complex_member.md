@@ -42,7 +42,7 @@ const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
 export { a };
-$(a, b);
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## Result

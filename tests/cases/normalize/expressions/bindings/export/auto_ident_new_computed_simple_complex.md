@@ -33,9 +33,8 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-const tmpCompObj = b;
 const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpNewCallee = b[tmpCompProp];
 let a = new tmpNewCallee(1);
 export { a };
 $(a);

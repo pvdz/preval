@@ -35,14 +35,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-a = typeof arg;
+a = typeof 1;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

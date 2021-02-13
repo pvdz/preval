@@ -69,9 +69,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCompObj = b;
 const tmpCompProp = $('c');
-const tmpBinLhs = tmpCompObj[tmpCompProp];
+const tmpBinLhs = b[tmpCompProp];
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

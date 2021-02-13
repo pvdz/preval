@@ -32,12 +32,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(1);
 const tmpExportDefault = typeof tmpUnaryArg;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

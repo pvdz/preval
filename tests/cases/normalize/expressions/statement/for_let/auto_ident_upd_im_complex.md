@@ -51,9 +51,8 @@ let a = { a: 999, b: 1000 };
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  let xyz = tmpPostUpdArgVal;
   while (true) {
-    $(xyz);
+    $(tmpPostUpdArgVal);
     $(1);
   }
 }

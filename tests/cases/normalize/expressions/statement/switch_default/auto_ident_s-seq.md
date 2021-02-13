@@ -42,18 +42,16 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(1);
     $(2);
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

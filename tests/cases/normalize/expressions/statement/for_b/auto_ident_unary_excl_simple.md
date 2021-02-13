@@ -38,18 +38,17 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    if (arg) {
+    if (1) {
       break;
     } else {
       $(1);
     }
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

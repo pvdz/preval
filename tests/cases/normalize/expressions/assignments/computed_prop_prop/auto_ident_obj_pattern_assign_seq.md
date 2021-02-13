@@ -48,7 +48,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -58,7 +57,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a, x, y);
 `````
 

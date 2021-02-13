@@ -50,8 +50,7 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpDeleteObj = arg;
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {

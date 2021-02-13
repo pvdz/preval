@@ -49,10 +49,9 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompObj = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject = b.x;
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;

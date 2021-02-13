@@ -37,8 +37,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpThrowArg = delete tmpDeleteObj.y;
+const tmpThrowArg = delete arg.y;
 throw tmpThrowArg;
 `````
 

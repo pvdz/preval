@@ -40,11 +40,9 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAssignRhsProp = b;
-a = tmpAssignRhsProp.c;
+a = b.c;
 let tmpBinBothLhs = a;
-const tmpAssignRhsProp$1 = b;
-a = tmpAssignRhsProp$1.c;
+a = b.c;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

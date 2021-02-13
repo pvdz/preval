@@ -29,10 +29,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(1);
 let a = typeof tmpUnaryArg;
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

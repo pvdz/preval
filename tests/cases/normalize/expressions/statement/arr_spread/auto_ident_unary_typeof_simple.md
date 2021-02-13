@@ -31,11 +31,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpArrElToSpread = typeof arg;
+const tmpArrElToSpread = typeof 1;
 [...tmpArrElToSpread];
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

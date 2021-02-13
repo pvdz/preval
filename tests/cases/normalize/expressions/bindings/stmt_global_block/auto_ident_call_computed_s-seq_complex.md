@@ -36,9 +36,8 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  let a = tmpCallCompObj[tmpCallCompProp](1);
+  let a = b[tmpCallCompProp](1);
   $(a);
 }
 `````

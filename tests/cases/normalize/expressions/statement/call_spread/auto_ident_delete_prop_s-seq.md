@@ -39,8 +39,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpCalleeParamSpread = delete tmpDeleteObj.y;
+const tmpCalleeParamSpread = delete arg.y;
 $(...tmpCalleeParamSpread);
 $(a, arg);
 `````

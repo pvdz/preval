@@ -47,9 +47,8 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpCompObj = b;
       const tmpCompProp = $('c');
-      tmpCompObj[tmpCompProp];
+      b[tmpCompProp];
     } else {
       break;
     }

@@ -55,11 +55,10 @@ const tmpForInRhs = $(tmpCalleeParam);
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
     a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
+    const tmpIfTest = b != null;
     if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+      const tmpChainElementObject = b.c;
+      const tmpChainElementCall = tmpChainElementObject.call(b, 1);
       a = tmpChainElementCall;
     }
     let tmpAssignMemLhsObj = a;

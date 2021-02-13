@@ -40,7 +40,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
@@ -48,7 +47,7 @@ if (tmpIfTest) {
   a = tmpChainElementCall;
 }
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

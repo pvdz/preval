@@ -31,12 +31,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 $(1);
 $(2);
-let a = x;
+let a = 1;
 export { a };
-$(a, x);
+$(1, 1);
 `````
 
 ## Result

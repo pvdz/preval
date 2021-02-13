@@ -36,16 +36,15 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpIfTest = $(x);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {
   $(100);
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

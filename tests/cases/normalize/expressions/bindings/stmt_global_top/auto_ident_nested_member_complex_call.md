@@ -42,16 +42,14 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
-const varInitAssignLhsComputedRhs$1 = $(d);
+const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-let a = varInitAssignLhsComputedRhs$1;
-$(a, b, c, d);
+$(varInitAssignLhsComputedRhs$1, b, c, 3);
 `````
 
 ## Result

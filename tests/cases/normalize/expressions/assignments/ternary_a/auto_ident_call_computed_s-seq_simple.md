@@ -43,8 +43,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-const tmpCallObj = b;
-a = tmpCallObj['$'](1);
+a = b['$'](1);
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);

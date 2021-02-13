@@ -60,9 +60,8 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpCallCompObj = b;
     const tmpCallCompProp = $('$');
-    a = tmpCallCompObj[tmpCallCompProp](1);
+    a = b[tmpCallCompProp](1);
   }
 }
 $(a);

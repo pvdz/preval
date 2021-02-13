@@ -92,10 +92,9 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     {
       a = undefined;
-      const tmpChainRootProp = b;
-      const tmpIfTest$3 = tmpChainRootProp != null;
+      const tmpIfTest$3 = b != null;
       if (tmpIfTest$3) {
-        const tmpChainElementObject = tmpChainRootProp['x'];
+        const tmpChainElementObject = b['x'];
         a = tmpChainElementObject;
       }
     }

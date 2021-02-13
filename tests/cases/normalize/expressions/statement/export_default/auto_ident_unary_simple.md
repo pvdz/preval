@@ -31,11 +31,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = typeof x;
+const tmpExportDefault = typeof 1;
 export { tmpExportDefault as default };
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

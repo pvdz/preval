@@ -43,7 +43,6 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 let tmpCompProp = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
@@ -51,7 +50,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpCompProp = tmpChainElementObject;
 }
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

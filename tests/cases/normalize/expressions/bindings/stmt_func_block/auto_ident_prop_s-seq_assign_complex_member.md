@@ -48,13 +48,11 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     let b = { c: 10, d: 20 };
-    const varInitAssignLhsComputedObj = b;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-    let a = varInitAssignLhsComputedRhs;
-    $(a, b);
+    b.c = varInitAssignLhsComputedRhs;
+    $(varInitAssignLhsComputedRhs, b);
   }
 }
 const tmpCalleeParam = f();

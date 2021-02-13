@@ -65,9 +65,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     {
-      const tmpCompObj = b;
       const tmpCompProp = $('$');
-      const tmpNewCallee = tmpCompObj[tmpCompProp];
+      const tmpNewCallee = b[tmpCompProp];
       a = new tmpNewCallee(1);
     }
   }

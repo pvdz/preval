@@ -41,13 +41,11 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
-const tmpCompObj$1 = b;
 const tmpCompProp$1 = $('$');
-const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
+const tmpNewCallee = b[tmpCompProp$1];
 a = new tmpNewCallee(1);
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

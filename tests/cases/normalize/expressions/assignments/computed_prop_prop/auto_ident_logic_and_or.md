@@ -47,7 +47,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpCalleeParam = $(1);
 a = $(tmpCalleeParam);
 if (a) {
@@ -60,7 +59,7 @@ if (a) {
   a = $(tmpCalleeParam$2);
 }
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

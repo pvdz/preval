@@ -46,14 +46,13 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(1);
     tmpIfTest = typeof tmpUnaryArg;
   }
   if (tmpIfTest) {
@@ -63,7 +62,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

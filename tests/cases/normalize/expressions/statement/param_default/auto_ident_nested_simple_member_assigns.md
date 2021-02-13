@@ -61,7 +61,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const varInitAssignLhsComputedRhs$4 = c;
+    const varInitAssignLhsComputedRhs$4 = 3;
     b.x = varInitAssignLhsComputedRhs$4;
     b.x = varInitAssignLhsComputedRhs$4;
     b.x = varInitAssignLhsComputedRhs$4;
@@ -74,11 +74,10 @@ function f($tdz$__p) {
   }
 }
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

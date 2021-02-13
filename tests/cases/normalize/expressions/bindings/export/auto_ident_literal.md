@@ -28,7 +28,7 @@ $(a);
 `````js filename=intro
 let a = 'foo';
 export { a };
-$(a);
+$('foo');
 `````
 
 ## Result

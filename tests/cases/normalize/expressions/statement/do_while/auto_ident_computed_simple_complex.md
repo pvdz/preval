@@ -54,9 +54,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpAssignRhsCompObj = b;
     const tmpAssignRhsCompProp = $('c');
-    tmpIfTest = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+    tmpIfTest = b[tmpAssignRhsCompProp];
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -39,7 +39,6 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
@@ -49,7 +48,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
     undefined.x = tmpForOfLhsNode;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

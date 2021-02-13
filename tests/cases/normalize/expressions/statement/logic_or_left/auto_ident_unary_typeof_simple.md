@@ -34,14 +34,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = typeof arg;
+const tmpIfTest = typeof 1;
 if (tmpIfTest) {
 } else {
   $(100);
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

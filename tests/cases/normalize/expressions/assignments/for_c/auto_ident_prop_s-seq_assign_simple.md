@@ -48,8 +48,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpNestedAssignObj = b;
-      tmpNestedAssignObj.c = 2;
+      b.c = 2;
       a = 2;
     } else {
       break;

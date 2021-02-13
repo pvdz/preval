@@ -46,8 +46,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpAssignRhsProp = b;
-      a = tmpAssignRhsProp.c;
+      a = b.c;
     } else {
       break;
     }

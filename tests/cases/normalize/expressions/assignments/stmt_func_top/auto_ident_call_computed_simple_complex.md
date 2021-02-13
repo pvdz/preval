@@ -43,9 +43,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  a = tmpCallCompObj[tmpCallCompProp](1);
+  a = b[tmpCallCompProp](1);
   $(a);
 }
 const tmpCalleeParam = f();

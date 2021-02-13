@@ -44,17 +44,15 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
-const varInitAssignLhsComputedRhs$5 = c;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-let a = varInitAssignLhsComputedRhs$5;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+let a = 3;
 export { a };
-$(a, b, c);
+$(3, b, 3);
 `````
 
 ## Result

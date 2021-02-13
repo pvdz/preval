@@ -87,8 +87,7 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     $(1);
     $(2);
-    const tmpDeleteObj = arg;
-    delete tmpDeleteObj.y;
+    delete arg.y;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

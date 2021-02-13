@@ -54,9 +54,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCompObj = b;
     const tmpCallCompProp = $('$');
-    tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
+    tmpIfTest = b[tmpCallCompProp](1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

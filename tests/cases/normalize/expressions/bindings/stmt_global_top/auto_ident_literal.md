@@ -25,8 +25,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 'foo';
-$(a);
+$('foo');
 `````
 
 ## Result

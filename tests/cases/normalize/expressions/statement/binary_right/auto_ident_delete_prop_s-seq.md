@@ -39,8 +39,7 @@ let a = { a: 999, b: 1000 };
 $(100);
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-delete tmpDeleteObj.y;
+delete arg.y;
 $(a, arg);
 `````
 

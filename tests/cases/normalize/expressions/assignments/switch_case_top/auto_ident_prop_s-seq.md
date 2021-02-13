@@ -59,8 +59,7 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpAssignRhsProp = b;
-    a = tmpAssignRhsProp.c;
+    a = b.c;
   }
 }
 $(a, b);

@@ -55,8 +55,6 @@ $(a, b, c, d, e);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
-let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -67,13 +65,13 @@ const tmpForInRhs = $(tmpCalleeParam);
     const varInitAssignLhsComputedProp = $('x');
     const varInitAssignLhsComputedObj$1 = $(c);
     const varInitAssignLhsComputedProp$1 = $('y');
-    const varInitAssignLhsComputedRhs$1 = d + e;
+    const varInitAssignLhsComputedRhs$1 = 3 + 4;
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
     varInitAssignLhsComputedRhs$1.x = tmpForInLhsNode;
   }
 }
-$(a, b, c, d, e);
+$(a, b, c, 3, 4);
 `````
 
 ## Result

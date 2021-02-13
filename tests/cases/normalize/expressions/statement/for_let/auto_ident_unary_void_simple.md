@@ -36,16 +36,14 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  let xyz = undefined;
   while (true) {
-    $(xyz);
+    $(undefined);
     $(1);
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

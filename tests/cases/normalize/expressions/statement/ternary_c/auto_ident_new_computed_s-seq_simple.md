@@ -43,8 +43,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCompObj = b;
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpNewCallee = b.$;
   new tmpNewCallee(1);
 }
 $(a);

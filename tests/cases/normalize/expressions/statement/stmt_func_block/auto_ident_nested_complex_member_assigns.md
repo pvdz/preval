@@ -74,7 +74,6 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     let b = { x: 1 };
-    let c = 3;
     let a = { a: 999, b: 1000 };
     const tmpAssignComMemLhsObj = $(b);
     const tmpAssignComMemLhsProp = $('x');
@@ -88,14 +87,13 @@ function f() {
     const varInitAssignLhsComputedProp$3 = $('x');
     const varInitAssignLhsComputedObj$4 = $(b);
     const varInitAssignLhsComputedProp$4 = $('x');
-    const varInitAssignLhsComputedRhs$4 = c;
-    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$4;
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$4;
-    $(a, b, c);
+    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+    $(a, b, 3);
   }
 }
 const tmpCalleeParam = f();

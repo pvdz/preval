@@ -67,11 +67,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     {
-      const tmpChainRootProp = b;
-      const tmpIfTest$2 = tmpChainRootProp != null;
+      const tmpIfTest$2 = b != null;
       if (tmpIfTest$2) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+        const tmpChainElementObject = b.c;
+        const tmpChainElementCall = tmpChainElementObject.call(b, 1);
       }
     }
   }

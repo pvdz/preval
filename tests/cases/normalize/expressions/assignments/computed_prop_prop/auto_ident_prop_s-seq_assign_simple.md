@@ -41,12 +41,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
+b.c = 2;
 a = 2;
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a, b);
 `````
 

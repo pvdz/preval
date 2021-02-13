@@ -40,7 +40,6 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
@@ -51,7 +50,7 @@ if (tmpIfTest) {
   tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

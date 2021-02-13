@@ -40,9 +40,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = { x: 1, y: 2, z: 3 };
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }

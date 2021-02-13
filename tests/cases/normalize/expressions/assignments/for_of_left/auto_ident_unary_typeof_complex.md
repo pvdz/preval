@@ -41,20 +41,19 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpUnaryArg = $(arg);
+    const tmpUnaryArg = $(1);
     a = typeof tmpUnaryArg;
     let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

@@ -33,11 +33,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 b = 2;
 let a = b;
 export { a };
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

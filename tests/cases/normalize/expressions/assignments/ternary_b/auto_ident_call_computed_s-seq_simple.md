@@ -46,8 +46,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallObj = b;
-  const tmpNestedComplexRhs = tmpCallObj['$'](1);
+  const tmpNestedComplexRhs = b['$'](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {

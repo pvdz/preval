@@ -49,12 +49,11 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    const varInitAssignLhsComputedObj = b;
     const varInitAssignLhsComputedProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     if (varInitAssignLhsComputedRhs) {
       $(1);
     } else {

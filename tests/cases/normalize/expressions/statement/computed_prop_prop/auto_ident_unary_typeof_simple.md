@@ -34,13 +34,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
-const tmpCompProp = typeof arg;
-tmpCompObj[tmpCompProp];
-$(a, arg);
+const tmpCompProp = typeof 1;
+obj[tmpCompProp];
+$(a, 1);
 `````
 
 ## Result

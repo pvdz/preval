@@ -30,10 +30,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

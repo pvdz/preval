@@ -88,8 +88,7 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpAssignMemLhsObj = b;
-      tmpAssignMemLhsObj.c = 2;
+      b.c = 2;
     }
     break tmpSwitchBreak;
   }

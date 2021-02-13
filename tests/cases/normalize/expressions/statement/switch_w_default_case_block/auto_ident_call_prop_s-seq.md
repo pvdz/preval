@@ -88,8 +88,7 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallObj = b;
-      tmpCallObj.$(1);
+      b.$(1);
     }
     break tmpSwitchBreak;
   }

@@ -28,9 +28,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
-let a = +arg;
-$(a, arg);
+let a = +1;
+$(a, 1);
 `````
 
 ## Result

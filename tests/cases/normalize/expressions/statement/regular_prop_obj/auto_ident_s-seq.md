@@ -35,14 +35,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
 $(1);
 $(2);
-const tmpCompObj = x;
-tmpCompObj.a;
-$(a, x);
+(1).a;
+$(a, 1);
 `````
 
 ## Result

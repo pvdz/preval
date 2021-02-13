@@ -45,8 +45,7 @@ let a = { a: 999, b: 1000 };
 {
   $(1);
   $(2);
-  const tmpDeleteObj = arg;
-  a = delete tmpDeleteObj.y;
+  a = delete arg.y;
   let xyz = a;
   while (true) {
     $(xyz);

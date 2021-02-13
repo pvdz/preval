@@ -50,10 +50,8 @@ const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }

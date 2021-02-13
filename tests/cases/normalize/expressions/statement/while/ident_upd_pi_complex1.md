@@ -46,8 +46,7 @@ while (t) {
   const tmpBinLhs = b.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
   b.x = varInitAssignLhsComputedRhs;
-  let p = varInitAssignLhsComputedRhs;
-  t = p;
+  t = varInitAssignLhsComputedRhs;
   $(100);
 }
 $(b);

@@ -50,8 +50,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const varInitAssignLhsComputedObj = b;
-  varInitAssignLhsComputedObj.c = 2;
+  b.c = 2;
   a = 2;
   tmpCalleeParam = 2;
 }

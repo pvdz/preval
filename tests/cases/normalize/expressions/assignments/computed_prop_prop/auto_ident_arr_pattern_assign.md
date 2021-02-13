@@ -47,7 +47,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
@@ -56,7 +55,7 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a, x, y);
 `````
 

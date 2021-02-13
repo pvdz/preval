@@ -43,8 +43,7 @@ let a = { a: 999, b: 1000 };
 {
   $(1);
   $(2);
-  const tmpDeleteObj = arg;
-  const tmpForInDeclRhs = delete tmpDeleteObj.y;
+  const tmpForInDeclRhs = delete arg.y;
   let x;
   for (x in tmpForInDeclRhs) {
   }

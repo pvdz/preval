@@ -35,15 +35,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 {
-  const tmpForInDeclRhs = b;
   let x;
-  for (x in tmpForInDeclRhs) {
+  for (x in 1) {
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

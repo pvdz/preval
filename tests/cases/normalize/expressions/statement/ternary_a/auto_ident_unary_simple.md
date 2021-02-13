@@ -35,15 +35,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = typeof x;
+const tmpIfTest = typeof 1;
 if (tmpIfTest) {
   $(100);
 } else {
   $(200);
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

@@ -19,7 +19,6 @@ $([][(![]+[])[!+[]+!![]+!![]]+([]+{})[+!![]]+(!![]+[])[+!![]]+(!![]+[])[+[]]][([
 ## Normalized
 
 `````js filename=intro
-let location = 'foo';
 const tmpCallCallee = $;
 const tmpCompObj = [];
 const tmpUnaryArg = [];
@@ -5031,7 +5030,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCompObj = [];
 const tmpUnaryArg = [];
 const tmpBinBothLhs$6 = !tmpUnaryArg;
@@ -10036,7 +10034,7 @@ const tmpBinBothRhs$893 = tmpBinBothLhs$1069 + tmpBinBothRhs$1069;
 const tmpCalleeParam$13 = tmpBinBothLhs$893 + tmpBinBothRhs$893;
 const tmpBinBothRhs = tmpCallCallee$13(tmpCalleeParam$13);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Result

@@ -39,13 +39,12 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  return b;
+  return 1;
 }
-let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

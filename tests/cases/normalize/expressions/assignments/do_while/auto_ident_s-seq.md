@@ -49,7 +49,6 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -58,9 +57,8 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpNestedComplexRhs = x;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = 1;
+    tmpIfTest = 1;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -69,7 +67,7 @@ while (true) {
     break;
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

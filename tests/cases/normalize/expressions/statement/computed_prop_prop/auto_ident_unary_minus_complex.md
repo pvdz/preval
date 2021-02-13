@@ -34,10 +34,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpUnaryArg = $(100);
 const tmpCompProp = -tmpUnaryArg;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

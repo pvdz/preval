@@ -47,18 +47,16 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = b;
 const tmpAssignComMemLhsProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const tmpAssignComMemLhsObj$1 = b;
+b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 const tmpAssignComMemLhsProp$1 = $('c');
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
 const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+b[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
 $(a, b);
 `````
 

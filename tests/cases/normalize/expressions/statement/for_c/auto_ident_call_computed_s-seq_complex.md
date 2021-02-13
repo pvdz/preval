@@ -47,9 +47,8 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpCallCompObj = b;
       const tmpCallCompProp = $('$');
-      tmpCallCompObj[tmpCallCompProp](1);
+      b[tmpCallCompProp](1);
     } else {
       break;
     }

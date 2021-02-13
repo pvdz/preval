@@ -48,11 +48,10 @@ const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  const tmpAssignMemLhsObj = b;
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  b.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````

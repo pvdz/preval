@@ -33,12 +33,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpTemplateExpr = -arg;
+const tmpTemplateExpr = -1;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

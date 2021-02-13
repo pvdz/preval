@@ -88,9 +88,8 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     $(1);
     $(2);
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    delete tmpDeleteCompObj[tmpDeleteCompProp];
+    delete arg[tmpDeleteCompProp];
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

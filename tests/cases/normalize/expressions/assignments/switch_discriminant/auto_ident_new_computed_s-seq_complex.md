@@ -47,15 +47,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
 const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }

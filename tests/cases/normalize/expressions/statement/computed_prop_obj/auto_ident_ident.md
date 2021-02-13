@@ -32,11 +32,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-b.a;
-$(a, b);
+(1).a;
+$(a, 1);
 `````
 
 ## Result

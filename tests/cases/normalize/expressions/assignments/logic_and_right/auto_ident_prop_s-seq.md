@@ -42,8 +42,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpCompObj = b;
-  const tmpNestedComplexRhs = tmpCompObj.c;
+  const tmpNestedComplexRhs = b.c;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

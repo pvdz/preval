@@ -96,7 +96,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
@@ -110,14 +109,13 @@ const varInitAssignLhsComputedObj$3 = $(b);
 const varInitAssignLhsComputedProp$3 = $('x');
 const varInitAssignLhsComputedObj$4 = $(b);
 const varInitAssignLhsComputedProp$4 = $('x');
-const varInitAssignLhsComputedRhs$4 = c;
-varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$4;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$4;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$4;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs$4;
-a = varInitAssignLhsComputedRhs$4;
+varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+a = 3;
 let tmpBinBothLhs = a;
 const tmpNestedAssignComMemberObj$1 = $(b);
 const tmpNestedAssignComMemberProp$1 = $('x');
@@ -131,18 +129,17 @@ const varInitAssignLhsComputedObj$8 = $(b);
 const varInitAssignLhsComputedProp$8 = $('x');
 const varInitAssignLhsComputedObj$9 = $(b);
 const varInitAssignLhsComputedProp$9 = $('x');
-const varInitAssignLhsComputedRhs$9 = c;
-varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$9;
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$9;
-a = varInitAssignLhsComputedRhs$9;
+varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
+a = 3;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

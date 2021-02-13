@@ -30,8 +30,7 @@
 
 `````js filename=intro
 {
-  let a = 'foo';
-  $(a);
+  $('foo');
 }
 `````
 

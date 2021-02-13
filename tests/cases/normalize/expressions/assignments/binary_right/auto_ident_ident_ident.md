@@ -39,7 +39,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 b = 2;
@@ -47,7 +46,7 @@ a = 2;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

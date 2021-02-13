@@ -38,17 +38,16 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    b.x = tmpForInLhsNode;
+    (1).x = tmpForInLhsNode;
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

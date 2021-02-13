@@ -44,13 +44,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-tmpCompObj[tmpPostUpdArgVal];
+obj[tmpPostUpdArgVal];
 $(a, b);
 `````
 

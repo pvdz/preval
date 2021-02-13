@@ -36,7 +36,7 @@ const tmpPostUpdArgIdent = b;
 b = b + 1;
 let a = tmpPostUpdArgIdent;
 export { a };
-$(a, b);
+$(tmpPostUpdArgIdent, b);
 `````
 
 ## Result

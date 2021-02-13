@@ -44,7 +44,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
@@ -60,7 +59,7 @@ let a = { a: 999, b: 1000 };
   for (x_1 in tmpForInDeclRhs) {
   }
 }
-$(a, x, y);
+$(a, 1, y);
 `````
 
 ## Result

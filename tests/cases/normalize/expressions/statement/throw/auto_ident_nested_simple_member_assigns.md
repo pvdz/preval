@@ -45,16 +45,14 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedRhs$5 = c;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-b.x = varInitAssignLhsComputedRhs$5;
-throw varInitAssignLhsComputedRhs$5;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+throw 3;
 `````
 
 ## Result

@@ -40,9 +40,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpCompObj = b;
   const tmpCompProp = $('c');
-  const tmpForOfDeclRhs = tmpCompObj[tmpCompProp];
+  const tmpForOfDeclRhs = b[tmpCompProp];
   let x;
   for (x of tmpForOfDeclRhs) {
   }

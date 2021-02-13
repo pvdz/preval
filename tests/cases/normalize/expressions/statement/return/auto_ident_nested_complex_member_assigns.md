@@ -80,7 +80,7 @@ function f() {
   const varInitAssignLhsComputedProp$4 = $('x');
   const varInitAssignLhsComputedObj$5 = $(b);
   const varInitAssignLhsComputedProp$5 = $('x');
-  const varInitAssignLhsComputedRhs$5 = c;
+  const varInitAssignLhsComputedRhs$5 = 3;
   varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
   varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$5;
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
@@ -90,11 +90,10 @@ function f() {
   return varInitAssignLhsComputedRhs$5;
 }
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

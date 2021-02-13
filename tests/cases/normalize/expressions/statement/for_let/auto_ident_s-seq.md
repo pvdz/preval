@@ -38,18 +38,16 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 {
   $(1);
   $(2);
-  let xyz = x;
   while (true) {
-    $(xyz);
+    $(1);
     $(1);
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

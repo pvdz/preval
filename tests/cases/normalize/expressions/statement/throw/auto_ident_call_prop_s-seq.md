@@ -33,8 +33,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallObj = b;
-const tmpThrowArg = tmpCallObj.$(1);
+const tmpThrowArg = b.$(1);
 throw tmpThrowArg;
 `````
 

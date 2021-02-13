@@ -60,10 +60,9 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
+  const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$2 = tmpChainElementObject$1.e;
     const tmpIfTest$1 = tmpChainElementObject$2 != null;

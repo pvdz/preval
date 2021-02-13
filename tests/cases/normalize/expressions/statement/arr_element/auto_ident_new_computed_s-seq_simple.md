@@ -37,11 +37,9 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
+const tmpNewCallee = b.$;
 new tmpNewCallee(1);
-const tmpCompObj$1 = b;
-const tmpNewCallee$1 = tmpCompObj$1.$;
+const tmpNewCallee$1 = b.$;
 new tmpNewCallee$1(1);
 $(a);
 `````

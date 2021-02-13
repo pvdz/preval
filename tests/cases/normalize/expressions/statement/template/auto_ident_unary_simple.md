@@ -33,12 +33,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpTemplateExpr = typeof x;
+const tmpTemplateExpr = typeof 1;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

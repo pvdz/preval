@@ -36,15 +36,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(1);
 const tmpBinBothRhs = typeof tmpUnaryArg;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

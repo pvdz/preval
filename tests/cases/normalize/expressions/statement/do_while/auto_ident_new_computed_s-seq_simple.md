@@ -54,8 +54,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCompObj = b;
-    const tmpNewCallee = tmpCompObj.$;
+    const tmpNewCallee = b.$;
     tmpIfTest = new tmpNewCallee(1);
   }
   if (tmpIfTest) {

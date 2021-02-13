@@ -44,14 +44,13 @@ $(a, x);
 function f() {
   $(1);
   $(2);
-  const tmpReturnArg = $(x);
+  const tmpReturnArg = $(1);
   return tmpReturnArg;
 }
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

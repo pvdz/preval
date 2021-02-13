@@ -51,11 +51,10 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpNestedAssignObj = b;
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');
       const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-      tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+      b.c = tmpNestedAssignPropRhs;
       a = tmpNestedAssignPropRhs;
     } else {
       break;

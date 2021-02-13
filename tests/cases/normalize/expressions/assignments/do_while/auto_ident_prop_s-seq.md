@@ -55,8 +55,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCompObj = b;
-    const tmpNestedComplexRhs = tmpCompObj.c;
+    const tmpNestedComplexRhs = b.c;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

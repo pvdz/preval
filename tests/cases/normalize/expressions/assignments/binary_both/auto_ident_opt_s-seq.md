@@ -51,18 +51,16 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpBinBothLhs = a;
 a = undefined;
-const tmpChainRootProp$1 = b;
-const tmpIfTest$1 = tmpChainRootProp$1 != null;
+const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  const tmpChainElementObject$1 = b.x;
   a = tmpChainElementObject$1;
 }
 let tmpBinBothRhs = a;

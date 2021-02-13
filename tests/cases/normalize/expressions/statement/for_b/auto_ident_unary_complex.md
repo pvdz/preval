@@ -40,11 +40,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    const tmpUnaryArg = $(x);
+    const tmpUnaryArg = $(1);
     const tmpIfTest = typeof tmpUnaryArg;
     if (tmpIfTest) {
       $(1);
@@ -53,7 +52,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

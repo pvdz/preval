@@ -42,13 +42,11 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+a = delete arg[tmpDeleteCompProp];
 let tmpBinBothLhs = a;
-const tmpDeleteCompObj$1 = arg;
 const tmpDeleteCompProp$1 = $('y');
-a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+a = delete arg[tmpDeleteCompProp$1];
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

@@ -70,9 +70,8 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+a = delete arg[tmpDeleteCompProp];
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {

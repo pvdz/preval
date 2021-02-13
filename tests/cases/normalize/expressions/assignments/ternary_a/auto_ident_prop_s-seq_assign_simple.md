@@ -45,8 +45,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-const tmpNestedAssignObj = b;
-tmpNestedAssignObj.c = 2;
+b.c = 2;
 a = 2;
 let tmpIfTest = a;
 if (tmpIfTest) {

@@ -42,11 +42,10 @@ let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
+  const tmpIfTest$1 = b != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    const tmpChainElementObject = b.c;
+    const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   }
 }
 $(a);

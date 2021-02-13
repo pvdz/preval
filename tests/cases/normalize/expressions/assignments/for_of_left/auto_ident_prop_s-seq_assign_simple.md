@@ -50,8 +50,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
+    b.c = 2;
     a = 2;
     let tmpAssignMemLhsObj = a;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;

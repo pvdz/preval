@@ -55,7 +55,6 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
@@ -63,10 +62,9 @@ let a = { a: 999, b: 1000 };
     const tmpNestedAssignComMemberProp = $('x');
     const varInitAssignLhsComputedObj = $(c);
     const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = d;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    a = 3;
     let tmpIfTest = a;
     if (tmpIfTest) {
       $(1);
@@ -75,7 +73,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, b, c, d);
+$(a, b, c, 3);
 `````
 
 ## Result

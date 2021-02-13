@@ -44,8 +44,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    const tmpCompObj = b;
-    const tmpIfTest = tmpCompObj.c;
+    const tmpIfTest = b.c;
     if (tmpIfTest) {
       $(1);
     } else {

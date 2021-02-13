@@ -30,9 +30,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpThrowArg = -arg;
+const tmpThrowArg = -1;
 throw tmpThrowArg;
 `````
 

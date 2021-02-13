@@ -48,14 +48,12 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject = b.x;
     }
   }
 }

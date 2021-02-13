@@ -48,16 +48,13 @@
 `````js filename=intro
 {
   let b = { x: 1 };
-  let c = 3;
-  const varInitAssignLhsComputedRhs$5 = c;
-  b.x = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$5;
-  let a = varInitAssignLhsComputedRhs$5;
-  $(a, b, c);
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  $(3, b, 3);
 }
 `````
 

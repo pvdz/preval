@@ -36,9 +36,8 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
 const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpNewCallee = b[tmpCompProp];
 const tmpExportDefault = new tmpNewCallee(1);
 export { tmpExportDefault as default };
 $(a);

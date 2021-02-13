@@ -47,9 +47,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpNestedComplexRhs = b[tmpCallCompProp](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {

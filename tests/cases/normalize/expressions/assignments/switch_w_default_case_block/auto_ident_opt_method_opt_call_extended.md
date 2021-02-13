@@ -101,10 +101,9 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     {
       a = undefined;
-      const tmpChainRootProp = b;
-      const tmpIfTest$3 = tmpChainRootProp != null;
+      const tmpIfTest$3 = b != null;
       if (tmpIfTest$3) {
-        const tmpChainElementObject = tmpChainRootProp.c;
+        const tmpChainElementObject = b.c;
         const tmpChainElementObject$1 = tmpChainElementObject.d;
         const tmpChainElementObject$2 = tmpChainElementObject$1.e;
         const tmpIfTest$4 = tmpChainElementObject$2 != null;

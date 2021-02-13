@@ -32,12 +32,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   a = undefined;
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

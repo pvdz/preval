@@ -35,11 +35,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpCompProp = tmpBinBothLhs + tmpBinBothRhs;
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

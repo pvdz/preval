@@ -32,11 +32,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-let xyz = -arg;
+let xyz = -1;
 $(xyz);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

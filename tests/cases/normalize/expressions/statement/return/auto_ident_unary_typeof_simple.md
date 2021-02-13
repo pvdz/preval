@@ -40,14 +40,13 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = typeof arg;
+  const tmpReturnArg = typeof 1;
   return tmpReturnArg;
 }
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

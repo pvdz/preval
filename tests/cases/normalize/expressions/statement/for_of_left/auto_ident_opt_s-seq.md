@@ -53,10 +53,9 @@ const tmpForOfRhs = $(tmpCalleeParam);
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
     let tmpAssignMemLhsObj = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
+    const tmpIfTest = b != null;
     if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject = b.x;
       tmpAssignMemLhsObj = tmpChainElementObject;
     }
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;

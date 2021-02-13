@@ -42,9 +42,8 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpIfTest = b[tmpCallCompProp](1);
   if (tmpIfTest) {
     $(100);
   } else {

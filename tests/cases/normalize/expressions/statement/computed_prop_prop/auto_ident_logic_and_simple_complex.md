@@ -38,13 +38,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 let tmpCompProp = 1;
 if (tmpCompProp) {
   const tmpCalleeParam = $(1);
   tmpCompProp = $(tmpCalleeParam);
 }
-tmpCompObj[tmpCompProp];
+obj[tmpCompProp];
 $(a);
 `````
 

@@ -40,10 +40,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-const tmpUnaryArg = $(arg);
+const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -52,7 +51,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

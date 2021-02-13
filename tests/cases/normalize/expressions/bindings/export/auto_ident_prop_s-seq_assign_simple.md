@@ -33,11 +33,10 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 1 };
-const varInitAssignLhsComputedObj = b;
-varInitAssignLhsComputedObj.c = 2;
+b.c = 2;
 let a = 2;
 export { a };
-$(a, b);
+$(2, b);
 `````
 
 ## Result

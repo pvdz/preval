@@ -38,10 +38,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = typeof arg;
+  a = typeof 1;
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
@@ -49,7 +48,7 @@ while (true) {
     break;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

@@ -54,10 +54,9 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
+  const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementObject = b.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$2 = tmpChainElementObject$1.z;
     tmpNestedComplexRhs = tmpChainElementObject$2;

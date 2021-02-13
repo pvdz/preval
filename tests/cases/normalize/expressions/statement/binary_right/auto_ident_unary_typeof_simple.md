@@ -31,11 +31,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 $(100);
-typeof arg;
-$(a, arg);
+typeof 1;
+$(a, 1);
 `````
 
 ## Result

@@ -30,11 +30,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 $(1);
 $(2);
-let a = x;
-$(a, x);
+$(1, 1);
 `````
 
 ## Result

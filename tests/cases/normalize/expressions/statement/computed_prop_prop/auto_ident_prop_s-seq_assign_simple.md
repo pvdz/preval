@@ -40,10 +40,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
-const varInitAssignLhsComputedObj = b;
-varInitAssignLhsComputedObj.c = 2;
-tmpCompObj[2];
+b.c = 2;
+obj[2];
 $(a, b);
 `````
 

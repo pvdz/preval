@@ -45,15 +45,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-a = tmpCallCompObj[tmpCallCompProp](1);
+a = b[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpCallCompObj$1 = b;
   const tmpCallCompProp$1 = $('$');
-  const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
+  const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

@@ -37,9 +37,8 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-const tmpTemplateExpr = tmpCallCompObj[tmpCallCompProp](1);
+const tmpTemplateExpr = b[tmpCallCompProp](1);
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

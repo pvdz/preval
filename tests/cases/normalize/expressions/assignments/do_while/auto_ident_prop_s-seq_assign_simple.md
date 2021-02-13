@@ -57,8 +57,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const varInitAssignLhsComputedObj = b;
-    varInitAssignLhsComputedObj.c = 2;
+    b.c = 2;
     a = 2;
     tmpIfTest = 2;
   }

@@ -29,10 +29,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let a = typeof x;
+let a = typeof 1;
 export { a };
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

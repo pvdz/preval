@@ -45,12 +45,10 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
-    const tmpCallObj = b;
-    tmpCallObj.$(1);
+    b.$(1);
   }
 }
 $(a);

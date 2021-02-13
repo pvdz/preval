@@ -50,16 +50,15 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     $(1);
     $(2);
-    p = x;
+    p = 1;
   } else {
     p = $tdz$__p;
   }
 }
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

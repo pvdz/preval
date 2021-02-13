@@ -40,9 +40,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let b = { $: $ };
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  let a = tmpCallCompObj[tmpCallCompProp](1);
+  let a = b[tmpCallCompProp](1);
   $(a);
 }
 const tmpCalleeParam = f();

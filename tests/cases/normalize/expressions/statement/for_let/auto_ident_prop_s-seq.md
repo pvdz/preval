@@ -40,8 +40,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpCompObj = b;
-  let xyz = tmpCompObj.c;
+  let xyz = b.c;
   while (true) {
     $(xyz);
     $(1);

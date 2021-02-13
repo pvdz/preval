@@ -29,10 +29,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = b;
+let a = 1;
 export { a };
-$(a, b);
+$(1, 1);
 `````
 
 ## Result

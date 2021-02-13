@@ -77,7 +77,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -96,14 +95,13 @@ while (true) {
     const varInitAssignLhsComputedProp$3 = $('x');
     const varInitAssignLhsComputedObj$4 = $(b);
     const varInitAssignLhsComputedProp$4 = $('x');
-    const varInitAssignLhsComputedRhs$4 = c;
-    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$4;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs$4;
-    tmpIfTest = varInitAssignLhsComputedRhs$4;
+    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    tmpIfTest = 3;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -112,7 +110,7 @@ while (true) {
     break;
   }
 }
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

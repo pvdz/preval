@@ -128,6 +128,8 @@ export function phase2(program, fdata, resolve, req) {
           ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init.type === 'Identifier');
           if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
           else declParent[declProp] = AST.emptyStatement();
+
+          fdata.globallyUniqueNamingRegistry.delete(name);
         }
 
         after(';');
@@ -171,6 +173,8 @@ export function phase2(program, fdata, resolve, req) {
           ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init.type === 'Literal');
           if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
           else declParent[declProp] = AST.emptyStatement();
+
+          fdata.globallyUniqueNamingRegistry.delete(name);
         }
 
         after(';');

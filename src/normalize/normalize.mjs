@@ -2436,7 +2436,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('==', tmpName, 'null'),
+                AST.binaryExpression('!=', tmpName, 'null'),
                 AST.expressionStatement(AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed))),
               );
               body.splice(i, 1, ...newNodes, finalParent);
@@ -2459,8 +2459,7 @@ export function phaseNormalize(fdata, fname) {
                 AST.variableDeclaration(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
               ];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('==', tmpName, 'null'),
-                AST.emptyStatement(),
+                AST.binaryExpression('!=', tmpName, 'null'),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     AST.cloneSimple(wrapLhs),
@@ -2485,7 +2484,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('==', tmpName, 'null'),
+                AST.binaryExpression('!=', tmpName, 'null'),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     wrapLhs,

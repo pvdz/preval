@@ -64,11 +64,10 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpNestedAssignObj = b;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+    b.c = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
   }
 }

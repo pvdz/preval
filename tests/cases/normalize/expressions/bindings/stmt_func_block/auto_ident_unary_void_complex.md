@@ -41,8 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     $(100);
-    let a = undefined;
-    $(a);
+    $(undefined);
   }
 }
 const tmpCalleeParam = f();

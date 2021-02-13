@@ -56,25 +56,22 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
 let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
-const varInitAssignLhsComputedRhs$1 = d;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-if (varInitAssignLhsComputedRhs$1) {
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+if (3) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('x');
   const varInitAssignLhsComputedObj$2 = $(c);
   const varInitAssignLhsComputedProp$2 = $('y');
-  const varInitAssignLhsComputedRhs$2 = d;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$2;
+  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 }
-$(a, b, c, d);
+$(a, b, c, 3);
 `````
 
 ## Result

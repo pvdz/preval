@@ -47,8 +47,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-a = delete tmpDeleteObj.y;
+a = delete arg.y;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);

@@ -63,8 +63,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     {
-      const tmpCallObj = b;
-      tmpCallObj.$(1);
+      b.$(1);
     }
   }
 }

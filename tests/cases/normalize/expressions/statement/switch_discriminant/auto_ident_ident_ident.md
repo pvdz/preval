@@ -45,19 +45,16 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 let tmpSwitchTest = b;
-const tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }
 }
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

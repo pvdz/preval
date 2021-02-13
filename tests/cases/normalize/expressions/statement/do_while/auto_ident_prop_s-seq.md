@@ -53,8 +53,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpAssignRhsProp = b;
-    tmpIfTest = tmpAssignRhsProp.c;
+    tmpIfTest = b.c;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

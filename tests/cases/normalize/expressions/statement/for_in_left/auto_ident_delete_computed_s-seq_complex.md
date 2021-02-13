@@ -52,9 +52,8 @@ const tmpForInRhs = $(tmpCalleeParam);
   for (tmpForInLhsNode in tmpForInRhs) {
     $(1);
     $(2);
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpAssignMemLhsObj = delete arg[tmpDeleteCompProp];
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }

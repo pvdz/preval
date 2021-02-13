@@ -60,12 +60,11 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const varInitAssignLhsComputedObj = b;
     const varInitAssignLhsComputedProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     a = varInitAssignLhsComputedRhs;
     tmpIfTest = varInitAssignLhsComputedRhs;
   }

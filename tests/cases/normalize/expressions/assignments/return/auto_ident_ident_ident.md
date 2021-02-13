@@ -50,11 +50,10 @@ function f() {
   return tmpReturnArg;
 }
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

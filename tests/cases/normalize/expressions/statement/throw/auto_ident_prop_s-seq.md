@@ -33,8 +33,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpThrowArg = tmpCompObj.c;
+const tmpThrowArg = b.c;
 throw tmpThrowArg;
 `````
 

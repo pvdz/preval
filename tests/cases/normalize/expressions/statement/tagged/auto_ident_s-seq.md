@@ -35,14 +35,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 $(1);
 $(2);
-const tmpCalleeParam$1 = x;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a, x);
+$(tmpCalleeParam, 1);
+$(a, 1);
 `````
 
 ## Result

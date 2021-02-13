@@ -35,14 +35,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
+const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

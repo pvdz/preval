@@ -69,8 +69,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
+const tmpNewCallee = b.$;
 const tmpBinLhs = new tmpNewCallee(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {

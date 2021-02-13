@@ -71,10 +71,9 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$2 = tmpChainRootProp != null;
+    const tmpIfTest$2 = b != null;
     if (tmpIfTest$2) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject = b.x;
       const tmpIfTest$3 = tmpChainElementObject != null;
       if (tmpIfTest$3) {
         const tmpChainElementObject$1 = tmpChainElementObject.y;

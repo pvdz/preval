@@ -39,19 +39,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      a = $(b);
+      a = $(1);
     } else {
       break;
     }
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

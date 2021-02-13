@@ -43,8 +43,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-const tmpAssignRhsProp = b;
-a = tmpAssignRhsProp.c;
+a = b.c;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);

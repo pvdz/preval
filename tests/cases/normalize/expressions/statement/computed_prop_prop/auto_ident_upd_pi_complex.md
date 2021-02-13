@@ -43,13 +43,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-tmpCompObj[varInitAssignLhsComputedRhs];
+obj[varInitAssignLhsComputedRhs];
 $(a, b);
 `````
 

@@ -38,17 +38,16 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
-a = b;
+a = 1;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  a = b;
-  tmpCalleeParam = b;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

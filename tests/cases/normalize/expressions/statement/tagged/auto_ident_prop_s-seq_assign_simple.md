@@ -39,8 +39,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const varInitAssignLhsComputedObj = b;
-varInitAssignLhsComputedObj.c = 2;
+b.c = 2;
 $(tmpCalleeParam, 2);
 $(a, b);
 `````

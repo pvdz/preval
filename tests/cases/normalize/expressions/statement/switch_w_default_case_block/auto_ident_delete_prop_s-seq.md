@@ -92,8 +92,7 @@ tmpSwitchBreak: {
     {
       $(1);
       $(2);
-      const tmpDeleteObj = arg;
-      delete tmpDeleteObj.y;
+      delete arg.y;
     }
     break tmpSwitchBreak;
   }

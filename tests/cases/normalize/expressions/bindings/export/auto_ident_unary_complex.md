@@ -30,11 +30,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(1);
 let a = typeof tmpUnaryArg;
 export { a };
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

@@ -40,19 +40,17 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
-  const tmpNestedComplexRhs = x;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

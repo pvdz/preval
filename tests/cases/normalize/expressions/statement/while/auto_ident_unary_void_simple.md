@@ -37,7 +37,6 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
   if (undefined) {
@@ -46,7 +45,7 @@ while (true) {
     break;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

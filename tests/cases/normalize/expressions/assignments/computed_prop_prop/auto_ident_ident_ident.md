@@ -39,15 +39,13 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = obj;
 b = 2;
 a = 2;
 let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, b, c);
+obj[tmpCompProp];
+$(a, b, 2);
 `````
 
 ## Result

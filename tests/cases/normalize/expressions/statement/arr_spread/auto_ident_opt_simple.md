@@ -40,10 +40,9 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject = b.x;
   tmpArrElToSpread = tmpChainElementObject;
 }
 [...tmpArrElToSpread];

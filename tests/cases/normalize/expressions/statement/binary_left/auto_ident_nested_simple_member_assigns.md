@@ -46,18 +46,15 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
-const varInitAssignLhsComputedRhs$4 = c;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$4;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
 $(100);
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

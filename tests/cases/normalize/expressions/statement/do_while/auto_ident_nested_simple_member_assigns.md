@@ -61,21 +61,19 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const varInitAssignLhsComputedRhs$4 = c;
-    b.x = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$4;
-    b.x = varInitAssignLhsComputedRhs$4;
-    tmpIfTest = varInitAssignLhsComputedRhs$4;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    tmpIfTest = 3;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -84,7 +82,7 @@ while (true) {
     break;
   }
 }
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

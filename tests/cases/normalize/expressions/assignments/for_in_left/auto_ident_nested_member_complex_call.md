@@ -55,7 +55,6 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 1 };
 let c = { y: 2 };
-let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -66,7 +65,7 @@ const tmpForInRhs = $(tmpCalleeParam);
     const tmpNestedAssignComMemberProp = $('x');
     const varInitAssignLhsComputedObj = $(c);
     const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = $(d);
+    const varInitAssignLhsComputedRhs = $(3);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
     a = varInitAssignLhsComputedRhs;
@@ -74,7 +73,7 @@ const tmpForInRhs = $(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, b, c, d);
+$(a, b, c, 3);
 `````
 
 ## Result

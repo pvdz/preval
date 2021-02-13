@@ -58,26 +58,22 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedRhs$4 = c;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-a = varInitAssignLhsComputedRhs$4;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+a = 3;
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }
 }
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

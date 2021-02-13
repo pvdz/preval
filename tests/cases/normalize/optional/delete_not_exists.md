@@ -23,7 +23,7 @@ $(o);
 let o = {};
 $(o);
 const tmpDeleteOpt = o;
-const tmpIfTest = tmpDeleteOpt == null;
+const tmpIfTest = tmpDeleteOpt != null;
 if (tmpIfTest) {
   delete tmpDeleteOpt.x;
 }
@@ -35,7 +35,7 @@ $(o);
 `````js filename=intro
 let o = {};
 $(o);
-const tmpIfTest = o == null;
+const tmpIfTest = o != null;
 if (tmpIfTest) {
   delete o.x;
 }

@@ -50,20 +50,18 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const varInitAssignLhsComputedRhs$4 = c;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-b.x = varInitAssignLhsComputedRhs$4;
-a = varInitAssignLhsComputedRhs$4;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+a = 3;
 let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

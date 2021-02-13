@@ -44,7 +44,7 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let a = tmpPostUpdArgVal;
 export { a };
-$(a, b);
+$(tmpPostUpdArgVal, b);
 `````
 
 ## Result

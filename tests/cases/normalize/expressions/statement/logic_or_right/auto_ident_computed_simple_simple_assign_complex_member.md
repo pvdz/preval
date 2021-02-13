@@ -44,11 +44,10 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpAssignComputedObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+  b['c'] = tmpAssignComputedRhs;
 }
 $(a, b);
 `````

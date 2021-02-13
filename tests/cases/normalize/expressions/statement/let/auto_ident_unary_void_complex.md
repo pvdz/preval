@@ -32,8 +32,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-let xyz = undefined;
-$(xyz);
+$(undefined);
 $(a);
 `````
 

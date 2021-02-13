@@ -46,8 +46,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  const varInitAssignLhsComputedObj = b;
-  varInitAssignLhsComputedObj.c = 2;
+  b.c = 2;
   a = 2;
   tmpCalleeParam = 2;
 }

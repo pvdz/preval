@@ -41,8 +41,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCompObj = b;
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpNewCallee = b.$;
   new tmpNewCallee(1);
 }
 $(a);

@@ -46,15 +46,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
 const tmpCompProp = $('$');
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpCompObj$1 = b;
   const tmpCompProp$1 = $('$');
-  const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
+  const tmpNewCallee$1 = b[tmpCompProp$1];
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

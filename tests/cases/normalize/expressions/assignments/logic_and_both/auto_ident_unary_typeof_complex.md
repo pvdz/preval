@@ -40,19 +40,18 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
+const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpUnaryArg$1 = $(arg);
+  const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

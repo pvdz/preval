@@ -41,7 +41,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
@@ -51,7 +50,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

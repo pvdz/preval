@@ -34,8 +34,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
+const tmpNewCallee = b.$;
 const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````

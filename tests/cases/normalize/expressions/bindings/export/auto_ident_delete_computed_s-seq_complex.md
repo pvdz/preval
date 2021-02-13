@@ -36,9 +36,8 @@ $(a, arg);
 let arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let a = delete arg[tmpDeleteCompProp];
 export { a };
 $(a, arg);
 `````

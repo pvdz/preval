@@ -54,16 +54,14 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let b = { x: 1 };
   let c = { y: 2 };
-  let d = 3;
   let a = { a: 999, b: 1000 };
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
   const varInitAssignLhsComputedProp = $('y');
-  const varInitAssignLhsComputedRhs = d;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
-  $(a, b, c, d);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  $(a, b, c, 3);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

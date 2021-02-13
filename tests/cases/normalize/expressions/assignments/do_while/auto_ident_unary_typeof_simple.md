@@ -47,14 +47,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = typeof arg;
+    const tmpNestedComplexRhs = typeof 1;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -65,7 +64,7 @@ while (true) {
     break;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

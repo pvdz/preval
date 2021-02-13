@@ -32,11 +32,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParamSpread = typeof x;
+const tmpCalleeParamSpread = typeof 1;
 $(...tmpCalleeParamSpread);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

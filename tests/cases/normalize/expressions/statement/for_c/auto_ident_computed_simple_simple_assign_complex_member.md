@@ -50,11 +50,10 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpAssignComputedObj = b;
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');
       const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-      tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+      b['c'] = tmpAssignComputedRhs;
     } else {
       break;
     }

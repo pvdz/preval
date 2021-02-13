@@ -35,10 +35,8 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-tmpCompObj.c;
-const tmpCompObj$1 = b;
-tmpCompObj$1.c;
+b.c;
+b.c;
 $(a, b);
 `````
 

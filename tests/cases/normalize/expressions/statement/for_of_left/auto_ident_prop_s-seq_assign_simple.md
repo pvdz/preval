@@ -49,8 +49,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    const varInitAssignLhsComputedObj = b;
-    varInitAssignLhsComputedObj.c = 2;
+    b.c = 2;
     (2).x = tmpForOfLhsNode;
   }
 }

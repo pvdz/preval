@@ -89,8 +89,7 @@ if (tmpIfTest) {
     {
       $(1);
       $(2);
-      const tmpDeleteObj = arg;
-      a = delete tmpDeleteObj.y;
+      a = delete arg.y;
     }
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

@@ -40,10 +40,9 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpIfTest = a;

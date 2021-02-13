@@ -46,7 +46,6 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -61,7 +60,7 @@ if (tmpIfTest) {
     a = undefined;
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

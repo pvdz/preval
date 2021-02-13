@@ -65,7 +65,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -82,7 +81,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    $(b);
+    $(1);
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -94,7 +93,7 @@ tmpSwitchBreak: {
     $('fail2');
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

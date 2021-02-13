@@ -37,14 +37,13 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 let tmpIfTest = b;
 if (tmpIfTest) {
   $(100);
 }
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

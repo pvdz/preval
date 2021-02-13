@@ -52,12 +52,11 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpNestedAssignComMemberObj = b;
       const tmpNestedAssignComMemberProp = $('c');
       const tmpCompObj = $(b);
       const tmpCompProp = $('d');
       const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+      b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
       a = tmpNestedAssignPropRhs;
     } else {
       break;

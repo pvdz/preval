@@ -42,16 +42,15 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpUnaryArg = $(arg);
+  const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
-let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

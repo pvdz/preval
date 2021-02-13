@@ -52,18 +52,17 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpNestedComplexRhs = x;
+    const tmpNestedComplexRhs = 1;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
     p = $tdz$__p;
   }
 }
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

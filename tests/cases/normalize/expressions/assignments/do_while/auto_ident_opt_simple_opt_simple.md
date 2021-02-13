@@ -67,10 +67,9 @@ while (true) {
   if (tmpIfTest) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject = b.x;
       const tmpIfTest$2 = tmpChainElementObject != null;
       if (tmpIfTest$2) {
         const tmpChainElementObject$1 = tmpChainElementObject.y;

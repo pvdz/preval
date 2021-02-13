@@ -59,8 +59,7 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpDeleteObj = arg;
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

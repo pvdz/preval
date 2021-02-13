@@ -32,11 +32,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = `before  ${b}  after`;
+const tmpCalleeParam = `before  ${1}  after`;
 $(tmpCalleeParam);
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

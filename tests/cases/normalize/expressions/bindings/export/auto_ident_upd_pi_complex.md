@@ -43,7 +43,7 @@ const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
 export { a };
-$(a, b);
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## Result

@@ -49,11 +49,10 @@ const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b['c'] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  const tmpAssignComputedObj = b;
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+  b['c'] = tmpAssignComputedRhs;
 }
 $(a, b);
 `````

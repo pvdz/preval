@@ -50,9 +50,8 @@ let a = { a: 999, b: 1000 };
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let xyz = varInitAssignLhsComputedRhs;
   while (true) {
-    $(xyz);
+    $(varInitAssignLhsComputedRhs);
     $(1);
   }
 }

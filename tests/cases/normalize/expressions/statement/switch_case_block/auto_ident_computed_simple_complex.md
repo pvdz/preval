@@ -64,9 +64,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     {
-      const tmpCompObj = b;
       const tmpCompProp = $('c');
-      tmpCompObj[tmpCompProp];
+      b[tmpCompProp];
     }
   }
 }

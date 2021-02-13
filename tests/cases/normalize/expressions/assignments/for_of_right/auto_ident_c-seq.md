@@ -38,7 +38,6 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 {
   $(1);
@@ -49,7 +48,7 @@ let a = { a: 999, b: 1000 };
   for (x_1 of tmpForOfDeclRhs) {
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

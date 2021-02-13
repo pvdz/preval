@@ -37,17 +37,16 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 {
-  a = typeof x;
+  a = typeof 1;
   let xyz = a;
   while (true) {
     $(xyz);
     $(1);
   }
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

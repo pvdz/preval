@@ -52,8 +52,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-a = delete tmpDeleteObj.y;
+a = delete arg.y;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {

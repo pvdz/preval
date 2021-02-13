@@ -43,16 +43,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-const tmpAssignMemLhsObj$2 = b;
+b.c = tmpAssignMemRhs;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
 const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignMemLhsObj$2.c = tmpAssignMemRhs$1;
+b.c = tmpAssignMemRhs$1;
 $(a, b);
 `````
 

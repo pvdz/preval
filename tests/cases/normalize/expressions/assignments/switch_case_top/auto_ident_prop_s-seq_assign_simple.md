@@ -61,8 +61,7 @@ if (tmpIfTest) {
 {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
+    b.c = 2;
     a = 2;
   }
 }

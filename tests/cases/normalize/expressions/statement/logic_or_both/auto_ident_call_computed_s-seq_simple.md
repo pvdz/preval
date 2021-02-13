@@ -38,12 +38,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallObj = b;
-const tmpIfTest = tmpCallObj['$'](1);
+const tmpIfTest = b['$'](1);
 if (tmpIfTest) {
 } else {
-  const tmpCallObj$1 = b;
-  tmpCallObj$1['$'](1);
+  b['$'](1);
 }
 $(a);
 `````

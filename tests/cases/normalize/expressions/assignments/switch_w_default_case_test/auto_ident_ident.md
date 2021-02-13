@@ -60,11 +60,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-a = b;
+a = 1;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
@@ -86,7 +85,7 @@ if (tmpIfTest) {
     $('fail2');
   }
 }
-$(a, b);
+$(a, 1);
 `````
 
 ## Result

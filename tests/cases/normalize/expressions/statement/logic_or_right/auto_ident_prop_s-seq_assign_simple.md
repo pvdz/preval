@@ -40,8 +40,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpAssignMemLhsObj = b;
-  tmpAssignMemLhsObj.c = 2;
+  b.c = 2;
 }
 $(a, b);
 `````

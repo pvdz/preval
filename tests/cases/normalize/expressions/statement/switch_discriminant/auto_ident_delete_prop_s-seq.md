@@ -48,11 +48,9 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpSwitchTest = delete tmpDeleteObj.y;
-let tmpSwitchCaseToStart = 0;
+const tmpSwitchTest = delete arg.y;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }

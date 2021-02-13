@@ -41,15 +41,14 @@ $(a, x);
 
 `````js filename=intro
 function f() {
-  const tmpUnaryArg = $(x);
+  const tmpUnaryArg = $(1);
   const tmpReturnArg = typeof tmpUnaryArg;
   return tmpReturnArg;
 }
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

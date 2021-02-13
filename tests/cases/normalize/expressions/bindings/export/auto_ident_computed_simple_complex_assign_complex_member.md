@@ -36,15 +36,14 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
 export { a };
-$(a, b);
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## Result

@@ -58,11 +58,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedAssignObj = b;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+    b.c = tmpNestedAssignPropRhs;
     tmpIfTest = tmpNestedAssignPropRhs;
   }
   if (tmpIfTest) {

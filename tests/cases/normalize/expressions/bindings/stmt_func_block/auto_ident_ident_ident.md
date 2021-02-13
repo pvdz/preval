@@ -46,10 +46,9 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   {
     let b = 1;
-    let c = 2;
     b = 2;
     let a = b;
-    $(a, b, c);
+    $(a, b, 2);
   }
 }
 const tmpCalleeParam = f();

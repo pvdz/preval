@@ -29,10 +29,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = undefined;
 export { a };
-$(a, arg);
+$(undefined, 1);
 `````
 
 ## Result

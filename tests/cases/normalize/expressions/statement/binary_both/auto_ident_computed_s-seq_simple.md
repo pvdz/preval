@@ -37,12 +37,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
 const tmpCompProp = $('c');
-tmpCompObj[tmpCompProp];
-const tmpCompObj$1 = b;
+b[tmpCompProp];
 const tmpCompProp$1 = $('c');
-tmpCompObj$1[tmpCompProp$1];
+b[tmpCompProp$1];
 $(a, b);
 `````
 

@@ -58,9 +58,8 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    tmpIfTest = delete arg[tmpDeleteCompProp];
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

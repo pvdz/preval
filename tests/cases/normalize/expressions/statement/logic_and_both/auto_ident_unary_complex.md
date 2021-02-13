@@ -35,15 +35,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
+const tmpUnaryArg = $(1);
 const tmpIfTest = typeof tmpUnaryArg;
 if (tmpIfTest) {
-  const tmpUnaryArg$1 = $(x);
+  const tmpUnaryArg$1 = $(1);
   typeof tmpUnaryArg$1;
 }
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

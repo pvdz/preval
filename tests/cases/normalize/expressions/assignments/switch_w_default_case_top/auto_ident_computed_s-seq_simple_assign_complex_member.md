@@ -87,12 +87,11 @@ if (tmpIfTest) {
 {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+    b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

@@ -49,8 +49,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpCompObj = b;
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpNewCallee = b.$;
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

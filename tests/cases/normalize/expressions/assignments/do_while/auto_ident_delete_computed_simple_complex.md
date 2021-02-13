@@ -56,9 +56,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

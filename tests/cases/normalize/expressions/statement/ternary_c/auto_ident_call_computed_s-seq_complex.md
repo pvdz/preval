@@ -43,9 +43,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  tmpCallCompObj[tmpCallCompProp](1);
+  b[tmpCallCompProp](1);
 }
 $(a);
 `````

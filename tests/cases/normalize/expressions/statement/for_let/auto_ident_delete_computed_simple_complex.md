@@ -41,9 +41,8 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
-  let xyz = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let xyz = delete arg[tmpDeleteCompProp];
   while (true) {
     $(xyz);
     $(1);

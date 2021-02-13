@@ -46,8 +46,7 @@ let a = { a: 999, b: 1000 };
   while (true) {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpAssignMemLhsObj = b;
-      tmpAssignMemLhsObj.c = 2;
+      b.c = 2;
     } else {
       break;
     }

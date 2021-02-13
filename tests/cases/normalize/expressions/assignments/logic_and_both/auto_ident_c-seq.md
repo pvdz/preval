@@ -42,21 +42,20 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = $(x);
+a = $(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   $(1);
   $(2);
-  const tmpNestedComplexRhs = $(x);
+  const tmpNestedComplexRhs = $(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

@@ -32,12 +32,10 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpThrowArg = x;
-throw tmpThrowArg;
+throw 1;
 `````
 
 ## Result

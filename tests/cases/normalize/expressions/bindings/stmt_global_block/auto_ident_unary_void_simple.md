@@ -33,9 +33,7 @@
 
 `````js filename=intro
 {
-  let arg = 1;
-  let a = undefined;
-  $(a, arg);
+  $(undefined, 1);
 }
 `````
 

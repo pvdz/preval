@@ -46,8 +46,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(1);
   $(2);
-  const tmpDeleteObj = arg;
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

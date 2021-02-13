@@ -51,7 +51,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
@@ -70,7 +69,7 @@ while (true) {
     break;
   }
 }
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

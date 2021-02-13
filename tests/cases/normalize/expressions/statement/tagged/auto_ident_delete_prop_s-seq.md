@@ -41,8 +41,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpCalleeParam$1 = delete tmpDeleteObj.y;
+const tmpCalleeParam$1 = delete arg.y;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, arg);
 `````

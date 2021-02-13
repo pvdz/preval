@@ -53,9 +53,8 @@ if (tmpIfTest) {
 } else {
   $(1);
   $(2);
-  const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

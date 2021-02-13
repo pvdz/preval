@@ -35,10 +35,9 @@
 
 `````js filename=intro
 {
-  let arg = 1;
   let a = { a: 999, b: 1000 };
-  +arg;
-  $(a, arg);
+  +1;
+  $(a, 1);
 }
 `````
 

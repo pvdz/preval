@@ -48,18 +48,17 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = typeof x;
+    const tmpNestedComplexRhs = typeof 1;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {
     arg = $tdz$__arg;
   }
 }
-let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-$(a, x);
+$(a, 1);
 `````
 
 ## Result

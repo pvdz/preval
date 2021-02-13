@@ -40,9 +40,8 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
-  const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpForOfDeclRhs = delete arg[tmpDeleteCompProp];
   let x;
   for (x of tmpForOfDeclRhs) {
   }

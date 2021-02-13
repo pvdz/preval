@@ -44,11 +44,10 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpNestedAssignObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+  b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   while (true) {
     $(1);

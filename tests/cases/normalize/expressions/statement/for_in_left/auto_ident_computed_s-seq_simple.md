@@ -48,9 +48,8 @@ const tmpForInRhs = $(tmpCalleeParam);
 {
   let tmpForInLhsNode;
   for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpCompObj = b;
     const tmpCompProp = $('c');
-    const tmpAssignMemLhsObj = tmpCompObj[tmpCompProp];
+    const tmpAssignMemLhsObj = b[tmpCompProp];
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }

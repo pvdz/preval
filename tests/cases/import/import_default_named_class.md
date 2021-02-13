@@ -6,9 +6,11 @@
 >
 > Import statements need special care in our system and our tests
 
-Anonymous functions are exported as frozen bindings. There is no way to change them, anyways.
+Named classes are default exported as live bindings.
 
-Their name should also be `'*default*'`, and we have no alternative transform available for this.
+This means that a change to the value of the binding should be reflected by the import.
+
+(Classes are defined as `let` bindings.)
 
 #TODO
 
@@ -16,12 +18,12 @@ Their name should also be `'*default*'`, and we have no alternative transform av
 
 `````js filename=intro
 import x from 'x';
-$(x);
-$(x.name);
+$(x); // 10
 `````
 
 `````js filename=x
 export default class X {};
+X = 10;
 `````
 
 ## Normalized
@@ -32,7 +34,9 @@ $(x);
 `````
 
 `````js filename=x
-export default class X {}
+let X = class {};
+export { X as default };
+X = 10;
 `````
 
 ## Output
@@ -43,7 +47,9 @@ $(x);
 `````
 
 `````js filename=x
-export default class X {}
+let X = class {};
+export { X as default };
+X = 10;
 `````
 
 ## Result

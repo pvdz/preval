@@ -48,9 +48,8 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpSwitchTest = [1, 2];
-let tmpSwitchCaseToStart = 0;
 {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
     $(100);
   }

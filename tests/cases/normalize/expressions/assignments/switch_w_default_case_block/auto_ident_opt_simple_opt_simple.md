@@ -97,10 +97,9 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     {
       a = undefined;
-      const tmpChainRootProp = b;
-      const tmpIfTest$3 = tmpChainRootProp != null;
+      const tmpIfTest$3 = b != null;
       if (tmpIfTest$3) {
-        const tmpChainElementObject = tmpChainRootProp.x;
+        const tmpChainElementObject = b.x;
         const tmpIfTest$4 = tmpChainElementObject != null;
         if (tmpIfTest$4) {
           const tmpChainElementObject$1 = tmpChainElementObject.y;

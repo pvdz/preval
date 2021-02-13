@@ -59,10 +59,9 @@ let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.c;
+  const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpIfTest$2 = tmpChainElementObject$2 != null;

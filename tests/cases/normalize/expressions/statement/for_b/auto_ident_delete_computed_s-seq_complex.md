@@ -49,9 +49,8 @@ let a = { a: 999, b: 1000 };
   while (true) {
     $(1);
     $(2);
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpIfTest = delete arg[tmpDeleteCompProp];
     if (tmpIfTest) {
       $(1);
     } else {

@@ -34,8 +34,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallObj = b;
-const tmpArrElToSpread = tmpCallObj['$'](1);
+const tmpArrElToSpread = b['$'](1);
 [...tmpArrElToSpread];
 $(a);
 `````

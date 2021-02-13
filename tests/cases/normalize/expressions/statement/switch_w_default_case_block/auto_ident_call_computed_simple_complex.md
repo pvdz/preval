@@ -89,9 +89,8 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      const tmpCallCompObj = b;
       const tmpCallCompProp = $('$');
-      tmpCallCompObj[tmpCallCompProp](1);
+      b[tmpCallCompProp](1);
     }
     break tmpSwitchBreak;
   }

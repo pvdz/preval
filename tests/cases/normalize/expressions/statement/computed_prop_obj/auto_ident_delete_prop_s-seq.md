@@ -41,8 +41,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpCompObj = delete tmpDeleteObj.y;
+const tmpCompObj = delete arg.y;
 tmpCompObj.a;
 $(a, arg);
 `````

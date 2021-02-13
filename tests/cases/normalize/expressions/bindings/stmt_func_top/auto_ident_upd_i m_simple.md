@@ -42,8 +42,7 @@ function f() {
   let b = 1;
   const tmpPostUpdArgIdent = b;
   b = b - 1;
-  let a = tmpPostUpdArgIdent;
-  $(a, b);
+  $(tmpPostUpdArgIdent, b);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

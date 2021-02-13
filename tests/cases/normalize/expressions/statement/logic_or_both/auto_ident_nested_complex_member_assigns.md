@@ -91,7 +91,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 1 };
-let c = 3;
 let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
@@ -105,14 +104,13 @@ const varInitAssignLhsComputedObj$4 = $(b);
 const varInitAssignLhsComputedProp$4 = $('x');
 const varInitAssignLhsComputedObj$5 = $(b);
 const varInitAssignLhsComputedProp$5 = $('x');
-const varInitAssignLhsComputedRhs$5 = c;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
-if (varInitAssignLhsComputedRhs$5) {
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+if (3) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('x');
@@ -126,15 +124,14 @@ if (varInitAssignLhsComputedRhs$5) {
   const varInitAssignLhsComputedProp$9 = $('x');
   const varInitAssignLhsComputedObj$10 = $(b);
   const varInitAssignLhsComputedProp$10 = $('x');
-  const varInitAssignLhsComputedRhs$10 = c;
-  varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = varInitAssignLhsComputedRhs$10;
-  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$10;
-  varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = varInitAssignLhsComputedRhs$10;
-  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$10;
-  varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = varInitAssignLhsComputedRhs$10;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$10;
+  varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 3;
+  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+  varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
+  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+  varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 }
-$(a, b, c);
+$(a, b, 3);
 `````
 
 ## Result

@@ -38,8 +38,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpDeleteObj = arg;
-const tmpExportDefault = delete tmpDeleteObj.y;
+const tmpExportDefault = delete arg.y;
 export { tmpExportDefault as default };
 $(a, arg);
 `````

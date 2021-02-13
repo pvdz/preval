@@ -81,8 +81,7 @@ if (tmpIfTest) {
 {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    const tmpCallObj = b;
-    a = tmpCallObj['$'](1);
+    a = b['$'](1);
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {

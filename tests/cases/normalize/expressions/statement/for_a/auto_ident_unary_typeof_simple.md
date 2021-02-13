@@ -39,10 +39,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = 1;
 let a = { a: 999, b: 1000 };
 {
-  typeof arg;
+  typeof 1;
   while (true) {
     const tmpIfTest = $(0);
     if (tmpIfTest) {
@@ -51,7 +50,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a, arg);
+$(a, 1);
 `````
 
 ## Result

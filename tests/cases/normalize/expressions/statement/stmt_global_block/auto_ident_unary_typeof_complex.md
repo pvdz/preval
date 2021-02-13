@@ -36,11 +36,10 @@
 
 `````js filename=intro
 {
-  let arg = 1;
   let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(arg);
+  const tmpUnaryArg = $(1);
   typeof tmpUnaryArg;
-  $(a, arg);
+  $(a, 1);
 }
 `````
 

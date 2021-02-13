@@ -46,11 +46,10 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpAssignComputedObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj['c'] = tmpAssignComputedRhs;
+  b['c'] = tmpAssignComputedRhs;
 }
 $(a, b);
 `````

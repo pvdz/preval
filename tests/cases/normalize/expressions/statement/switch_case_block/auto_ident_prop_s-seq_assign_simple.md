@@ -63,8 +63,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     {
-      const tmpAssignMemLhsObj = b;
-      tmpAssignMemLhsObj.c = 2;
+      b.c = 2;
     }
   }
 }

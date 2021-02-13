@@ -42,12 +42,11 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 varInitAssignLhsComputedRhs.a;
 $(a, b);
 `````

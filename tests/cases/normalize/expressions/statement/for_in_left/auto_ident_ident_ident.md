@@ -43,7 +43,6 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -55,7 +54,7 @@ const tmpForInRhs = $(tmpCalleeParam);
     tmpAssignMemLhsObj.x = tmpForInLhsNode;
   }
 }
-$(a, b, c);
+$(a, b, 2);
 `````
 
 ## Result

@@ -30,7 +30,7 @@ $(a);
 $(100);
 let a = undefined;
 export { a };
-$(a);
+$(undefined);
 `````
 
 ## Result

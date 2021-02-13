@@ -57,8 +57,7 @@ while (true) {
   } else {
     $(1);
     $(2);
-    const tmpDeleteObj = arg;
-    tmpIfTest = delete tmpDeleteObj.y;
+    tmpIfTest = delete arg.y;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -44,8 +44,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
+const tmpNewCallee = b.$;
 a = new tmpNewCallee(1);
 let tmpIfTest = a;
 if (tmpIfTest) {

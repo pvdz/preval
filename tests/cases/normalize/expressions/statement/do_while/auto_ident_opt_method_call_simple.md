@@ -60,11 +60,10 @@ while (true) {
   if (tmpIfTest) {
   } else {
     tmpIfTest = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+      const tmpChainElementObject = b.c;
+      const tmpChainElementCall = tmpChainElementObject.call(b, 1);
       tmpIfTest = tmpChainElementCall;
     }
   }

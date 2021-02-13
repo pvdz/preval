@@ -36,15 +36,14 @@ function f() {
     let a = { a: 999, b: 1000 };
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs;
-    const tmpNestedAssignComMemberObj$1 = $(c);
-    const tmpNestedAssignComMemberProp$1 = $('y');
-    const tmpNestedPropAssignRhs = d;
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-    a = tmpNestedPropAssignRhs$1;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedRhs = d;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     $(a, b, c, d);
   }
 }
@@ -64,15 +63,14 @@ function f() {
     let a = { a: 999, b: 1000 };
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs;
-    const tmpNestedAssignComMemberObj$1 = $(c);
-    const tmpNestedAssignComMemberProp$1 = $('y');
-    const tmpNestedPropAssignRhs = d;
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-    a = tmpNestedPropAssignRhs$1;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedRhs = d;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     $(a, b, c, d);
   }
 }

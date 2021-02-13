@@ -24,15 +24,13 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('c');
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpIfTest = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpIfTest = varInitAssignLhsComputedRhs;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -48,15 +46,13 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('c');
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpIfTest = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpIfTest = varInitAssignLhsComputedRhs;
   if (tmpIfTest) {
     $(100);
   } else {

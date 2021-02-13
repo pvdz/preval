@@ -26,15 +26,13 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignComMemberObj = b;
-    const tmpNestedAssignComMemberProp = $('c');
+    const varInitAssignLhsComputedObj = b;
+    const varInitAssignLhsComputedProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {
@@ -56,15 +54,13 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
-    const tmpNestedAssignComMemberObj = b;
-    const tmpNestedAssignComMemberProp = $('c');
+    const varInitAssignLhsComputedObj = b;
+    const varInitAssignLhsComputedProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    tmpNestedComplexRhs = tmpNestedPropAssignRhs;
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
   } else {

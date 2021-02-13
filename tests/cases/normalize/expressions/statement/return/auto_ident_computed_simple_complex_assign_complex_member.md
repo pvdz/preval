@@ -25,15 +25,13 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('c');
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpReturnArg = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
 let b = { c: 10, d: 20 };
@@ -48,15 +46,13 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('c');
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpReturnArg = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
 let b = { c: 10, d: 20 };

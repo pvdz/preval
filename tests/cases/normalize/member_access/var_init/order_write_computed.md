@@ -32,12 +32,11 @@ const obj = {
     $(20);
   },
 };
-let x;
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-x = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedRhs = 30;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+let x = varInitAssignLhsComputedRhs;
 $(x);
 `````
 
@@ -53,11 +52,10 @@ const obj = {
     $(20);
   },
 };
-let x;
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
-x = 30;
+const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedProp = $('x');
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+let x = 30;
 $(x);
 `````
 

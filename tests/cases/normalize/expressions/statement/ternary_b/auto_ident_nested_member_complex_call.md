@@ -33,13 +33,11 @@ if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $('x');
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  let tmpAssignComputedRhs;
-  const tmpNestedAssignComMemberObj = $(c);
-  const tmpNestedAssignComMemberProp = $('y');
-  const tmpNestedAssignPropRhs = $(d);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpAssignComputedRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedRhs = $(d);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 } else {
   $(200);
@@ -60,13 +58,11 @@ if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $('x');
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  let tmpAssignComputedRhs;
-  const tmpNestedAssignComMemberObj = $(c);
-  const tmpNestedAssignComMemberProp = $('y');
-  const tmpNestedAssignPropRhs = $(d);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  tmpAssignComputedRhs = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedRhs = $(d);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 } else {
   $(200);

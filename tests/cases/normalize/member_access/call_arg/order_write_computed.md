@@ -32,12 +32,11 @@ const obj = {
   },
 };
 const tmpCallCallee = $;
-let tmpCalleeParam;
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpCalleeParam = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedRhs = 30;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -53,12 +52,10 @@ const obj = {
     $(20);
   },
 };
-let tmpCalleeParam;
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
-tmpCalleeParam = 30;
-$(tmpCalleeParam);
+const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedProp = $('x');
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+$(30);
 `````
 
 ## Result

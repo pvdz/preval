@@ -30,16 +30,14 @@ function f($tdz$__arg) {
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs;
-    const tmpNestedAssignComMemberObj$1 = $(c);
-    const tmpNestedAssignComMemberProp$1 = $('y');
-    const tmpNestedAssignPropRhs$1 = $(d);
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-    arg = tmpNestedPropAssignRhs$1;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedRhs = $(d);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    arg = tmpNestedPropAssignRhs;
   } else {
     arg = $tdz$__arg;
   }
@@ -63,16 +61,14 @@ function f($tdz$__arg) {
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $('x');
-    let tmpNestedAssignPropRhs;
-    const tmpNestedAssignComMemberObj$1 = $(c);
-    const tmpNestedAssignComMemberProp$1 = $('y');
-    const tmpNestedAssignPropRhs$1 = $(d);
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-    tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-    const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-    arg = tmpNestedPropAssignRhs$1;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedRhs = $(d);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    arg = tmpNestedPropAssignRhs;
   } else {
     arg = $tdz$__arg;
   }

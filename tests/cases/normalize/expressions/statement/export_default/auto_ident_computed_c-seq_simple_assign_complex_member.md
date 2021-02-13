@@ -23,15 +23,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('c');
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpExportDefault = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpExportDefault = varInitAssignLhsComputedRhs;
 export { tmpExportDefault as default };
 $(a, b);
 `````
@@ -41,15 +39,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('c');
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-tmpExportDefault = tmpNestedPropAssignRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpExportDefault = varInitAssignLhsComputedRhs;
 export { tmpExportDefault as default };
 $(a, b);
 `````

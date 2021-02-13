@@ -24,6 +24,9 @@ let b = { x: 2 };
 let c = 3;
 const tmpSwitchTest = $('a');
 {
+  let varInitAssignLhsComputedObj;
+  let varInitAssignLhsComputedProp;
+  let varInitAssignLhsComputedRhs;
   let a_1;
   const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
@@ -35,12 +38,11 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      const tmpNestedPropAssignRhs = c;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-      a_1 = tmpNestedPropAssignRhs;
+      varInitAssignLhsComputedObj = $(b);
+      varInitAssignLhsComputedProp = $('x');
+      varInitAssignLhsComputedRhs = c;
+      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+      a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;
     }
   }
@@ -56,6 +58,9 @@ let b = { x: 2 };
 let c = 3;
 const tmpSwitchTest = $('a');
 {
+  let varInitAssignLhsComputedObj;
+  let varInitAssignLhsComputedProp;
+  let varInitAssignLhsComputedRhs;
   let a_1;
   const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
@@ -67,12 +72,11 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      a_1 = undefined;
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      const tmpNestedPropAssignRhs = c;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-      a_1 = tmpNestedPropAssignRhs;
+      varInitAssignLhsComputedObj = $(b);
+      varInitAssignLhsComputedProp = $('x');
+      varInitAssignLhsComputedRhs = c;
+      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+      a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;
     }
   }

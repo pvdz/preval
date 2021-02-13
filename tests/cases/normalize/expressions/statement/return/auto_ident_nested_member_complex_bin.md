@@ -28,19 +28,15 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  const tmpNestedAssignPropRhs$1 = d + e;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  tmpReturnArg = tmpNestedPropAssignRhs$1;
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(c);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  const varInitAssignLhsComputedRhs$1 = d + e;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
 let b = { x: 1 };
@@ -58,19 +54,15 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  let tmpNestedAssignPropRhs;
-  const tmpNestedAssignComMemberObj$1 = $(c);
-  const tmpNestedAssignComMemberProp$1 = $('y');
-  const tmpNestedAssignPropRhs$1 = d + e;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs$1;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs;
-  tmpNestedAssignPropRhs = tmpNestedPropAssignRhs;
-  const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs$1;
-  tmpReturnArg = tmpNestedPropAssignRhs$1;
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(c);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  const varInitAssignLhsComputedRhs$1 = d + e;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
 let b = { x: 1 };

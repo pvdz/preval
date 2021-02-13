@@ -22,12 +22,11 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  let a_1;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('x');
-  const tmpNestedPropAssignRhs = c;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedRhs = c;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 
@@ -38,12 +37,11 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 {
-  let a_1;
-  const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('x');
-  const tmpNestedPropAssignRhs = c;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a_1 = tmpNestedPropAssignRhs;
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedRhs = c;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  let a_1 = varInitAssignLhsComputedRhs;
 }
 `````
 

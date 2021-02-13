@@ -5202,6 +5202,30 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        if (dnode.init.left.type === 'MemberExpression') {
+          if (dnode.init.left.computed && isComplexNode(dnode.init.left.property)) {
+            ASSERT(dnode.id.type === 'Identifier');
+            rule('Var inits can not be assignments; lhs computed complex prop');
+            example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
+
+            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj');
+            const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp');
+            const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs');
+            const newNodes = [
+              AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
+              AST.variableDeclaration(tmpNameProp, dnode.init.left.property, 'const'),
+              AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
+              AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs)),
+              AST.variableDeclaration(AST.cloneSimple(dnode.id), tmpNameRhs, node.kind),
+            ];
+            body.splice(i, 1, ...newNodes);
+
+            after(newNodes);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
         rule('Var inits can not be assignments');
         example('let x = a()[b()] = z()', 'let x, x = a()[b()] = z()');
 

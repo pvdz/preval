@@ -2415,6 +2415,120 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        // Resolve some static cases.
+        // In general, we can safely and statically resolve these kinds of values;
+        // - number literals
+        // - string literals
+        // - booleans
+        // - null
+        // - undefined
+        // - Infinity
+        // - NaN
+        // Certain ** * / % + - << >> >>> < > <= >= in instanceof == != === !== & ^ |
+        // We could cross product all the things here but that's gonna lead to 7 * 22 * 7 = 1078 cases. So we're not gonna do that.
+
+        // Luckily we don't need to. Check whether the left and right are static values. Then switch apply the operator. Boom.
+
+        if (
+          (node.left.type === 'Literal' && node.left.value !== undefined) ||
+          (node.left.type === 'Identifier' && ['NaN', 'undefined', 'Infinity'].includes(node.left.name))
+        ) {
+          if (
+            (node.right.type === 'Literal' && node.right.value !== undefined) ||
+            (node.right.type === 'Identifier' && ['NaN', 'undefined', 'Infinity'].includes(node.right.name))
+          ) {
+            rule('Binary operation on two builtin primitives or values should be statically resolved');
+            example('1 + null', '1');
+            before(node, parentNode);
+
+            const lhs = node.left.type === 'Literal' ? node.left.value : { NaN, undefined, Infinity }[node.left.name];
+            const rhs = node.right.type === 'Literal' ? node.right.value : { NaN, undefined, Infinity }[node.right.name];
+
+            let result = undefined;
+            switch (node.operator) {
+              case '**':
+                result = lhs ** rhs;
+                break;
+              case '*':
+                result = lhs * rhs;
+                break;
+              case '/':
+                result = lhs / rhs;
+                break;
+              case '%':
+                result = lhs % rhs;
+                break;
+              case '+':
+                result = lhs + rhs;
+                break;
+              case '-':
+                result = lhs - rhs;
+                break;
+              case '<<':
+                result = lhs << rhs;
+                break;
+              case '>>':
+                result = lhs >> rhs;
+                break;
+              case '>>>':
+                result = lhs >>> rhs;
+                break;
+              case '<':
+                result = lhs < rhs;
+                break;
+              case '>':
+                result = lhs > rhs;
+                break;
+              case '<=':
+                result = lhs <= rhs;
+                break;
+              case '>=':
+                result = lhs >= rhs;
+                break;
+              case '==':
+                result = lhs == rhs;
+                break;
+              case '!=':
+                result = lhs != rhs;
+                break;
+              case '===':
+                result = lhs === rhs;
+                break;
+              case '!==':
+                result = lhs !== rhs;
+                break;
+              case '&':
+                result = lhs & rhs;
+                break;
+              case '^':
+                result = lhs ^ rhs;
+                break;
+              case 'in':
+                result = lhs in rhs;
+                break;
+              case 'instanceof':
+                result = lhs instanceof rhs;
+                break;
+              default:
+                return ASSERT(false, 'new op?');
+            }
+
+            log('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
+
+            const finalNode =
+              typeof result === 'string' || typeof result === 'boolean'
+                ? AST.literal(result)
+                : (ASSERT(typeof result === 'number'),
+                  isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result));
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
         return false;
       }
 
@@ -3259,9 +3373,7 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
 
               // Preserve the arg in case it has a side effect. Other rules may eliminate it anyways.
-              const newNodes = [
-                AST.expressionStatement(node.argument)
-              ];
+              const newNodes = [AST.expressionStatement(node.argument)];
               const finalNode = AST.literal('number');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
@@ -3280,9 +3392,7 @@ export function phaseNormalize(fdata, fname) {
               // Must preserve the argument since the argument might have an effect.
               // We're not going to hash out the details here since `typeof x` is fine even if `x` doesn't actually exist while
               // something like `typeof x.y()` is an observable side effect. So just keep the arg as is and let other rules fix it.
-              const newNodes = [
-                AST.expressionStatement(node.argument)
-              ];
+              const newNodes = [AST.expressionStatement(node.argument)];
               const finalNode = AST.literal('string');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
@@ -3300,9 +3410,7 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
-              const newNodes = [
-                AST.expressionStatement(node.argument)
-              ];
+              const newNodes = [AST.expressionStatement(node.argument)];
               const finalNode = AST.literal('boolean');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
@@ -3319,9 +3427,7 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
-              const newNodes = [
-                AST.expressionStatement(node.argument)
-              ];
+              const newNodes = [AST.expressionStatement(node.argument)];
               const finalNode = AST.literal('undefined');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);

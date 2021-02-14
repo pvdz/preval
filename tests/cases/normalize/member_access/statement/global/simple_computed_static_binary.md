@@ -18,7 +18,7 @@ obj['fo' + 'o'];
 `````js filename=intro
 const obj = { foo: 10 };
 const tmpCompObj = obj;
-const tmpCompProp = 'fo' + 'o';
+const tmpCompProp = 'foo';
 tmpCompObj[tmpCompProp];
 `````
 
@@ -26,8 +26,7 @@ tmpCompObj[tmpCompProp];
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCompProp = 'fo' + 'o';
-obj[tmpCompProp];
+obj['foo'];
 `````
 
 ## Result

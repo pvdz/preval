@@ -16,15 +16,14 @@ $('a' + 'b')
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'a' + 'b';
+const tmpCalleeParam = 'ab';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 'a' + 'b';
-$(tmpCalleeParam);
+$('ab');
 `````
 
 ## Result

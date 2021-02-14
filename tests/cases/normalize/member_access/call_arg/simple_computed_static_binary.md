@@ -19,7 +19,7 @@ $(obj['fo' + 'o']);
 const obj = { foo: 10 };
 const tmpCallCallee = $;
 const tmpCompObj = obj;
-const tmpCompProp = 'fo' + 'o';
+const tmpCompProp = 'foo';
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -28,8 +28,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCompProp = 'fo' + 'o';
-const tmpCalleeParam = obj[tmpCompProp];
+const tmpCalleeParam = obj['foo'];
 $(tmpCalleeParam);
 `````
 

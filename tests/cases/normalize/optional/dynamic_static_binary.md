@@ -22,7 +22,7 @@ let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'fo' + 'o';
+  const tmpChainRootComputed = 'foo';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
 }
@@ -36,8 +36,7 @@ const obj = { foo: 10 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = obj != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'fo' + 'o';
-  const tmpChainElementObject = obj[tmpChainRootComputed];
+  const tmpChainElementObject = obj['foo'];
   tmpCalleeParam = tmpChainElementObject;
 }
 $(tmpCalleeParam);

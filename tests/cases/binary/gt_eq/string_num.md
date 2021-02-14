@@ -16,15 +16,14 @@ $('x' >= 2);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'x' >= 2;
+const tmpCalleeParam = false;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 'x' >= 2;
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## Result

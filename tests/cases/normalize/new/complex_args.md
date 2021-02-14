@@ -19,7 +19,7 @@ $(new Array(5 + 5, $(), Array.prototype.length));
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpNewCallee = Array;
-const tmpCalleeParam$1 = 5 + 5;
+const tmpCalleeParam$1 = 10;
 const tmpCalleeParam$2 = $();
 const tmpCompObj = Array.prototype;
 const tmpCalleeParam$3 = tmpCompObj.length;
@@ -30,11 +30,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = 5 + 5;
 const tmpCalleeParam$2 = $();
 const tmpCompObj = Array.prototype;
 const tmpCalleeParam$3 = tmpCompObj.length;
-const tmpCalleeParam = new Array(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam = new Array(10, tmpCalleeParam$2, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 

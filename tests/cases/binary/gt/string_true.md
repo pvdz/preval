@@ -16,15 +16,14 @@ $('x' > 'x');
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'x' > 'x';
+const tmpCalleeParam = false;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 'x' > 'x';
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## Result

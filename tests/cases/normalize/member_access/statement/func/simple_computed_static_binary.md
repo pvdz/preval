@@ -22,7 +22,7 @@ $(f());
 function f() {
   const obj = { foo: 10 };
   const tmpCompObj = obj;
-  const tmpCompProp = 'fo' + 'o';
+  const tmpCompProp = 'foo';
   tmpCompObj[tmpCompProp];
 }
 const tmpCallCallee = $;
@@ -35,8 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const obj = { foo: 10 };
-  const tmpCompProp = 'fo' + 'o';
-  obj[tmpCompProp];
+  obj['foo'];
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

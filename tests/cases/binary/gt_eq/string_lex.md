@@ -16,15 +16,14 @@ $('b' >= 'a');
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'b' >= 'a';
+const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 'b' >= 'a';
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Result

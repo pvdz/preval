@@ -1,0 +1,40 @@
+# Preval test case
+
+# minus_infinity.md
+
+> normalize > unary > inv > minus_infinity
+>
+> Inverting literals should be statically resolved
+
+#TODO
+
+## Input
+
+`````js filename=intro
+$(!-Infinity);
+`````
+
+## Normalized
+
+`````js filename=intro
+const tmpCallCallee = $;
+const tmpCalleeParam = !-Infinity;
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpCalleeParam = !-Infinity;
+$(tmpCalleeParam);
+`````
+
+## Result
+
+Should call `$` with:
+ - 1: false
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

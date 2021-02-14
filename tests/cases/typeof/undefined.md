@@ -16,15 +16,14 @@ $(typeof undefined);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = typeof undefined;
+const tmpCalleeParam = 'undefined';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = typeof undefined;
-$(tmpCalleeParam);
+$('undefined');
 `````
 
 ## Result

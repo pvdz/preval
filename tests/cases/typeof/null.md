@@ -20,16 +20,14 @@ $(typeof null);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = null;
-const tmpCalleeParam = typeof tmpUnaryArg;
+const tmpCalleeParam = 'object';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = typeof null;
-$(tmpCalleeParam);
+$('object');
 `````
 
 ## Result

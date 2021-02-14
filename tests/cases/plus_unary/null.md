@@ -16,16 +16,14 @@ $(+null);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = null;
-const tmpCalleeParam = +tmpUnaryArg;
+const tmpCalleeParam = 0;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = +null;
-$(tmpCalleeParam);
+$(0);
 `````
 
 ## Result

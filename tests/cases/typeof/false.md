@@ -16,15 +16,14 @@ $(typeof false)
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = typeof false;
+const tmpCalleeParam = 'boolean';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = typeof false;
-$(tmpCalleeParam);
+$('boolean');
 `````
 
 ## Result

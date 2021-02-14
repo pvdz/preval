@@ -1,0 +1,39 @@
+# Preval test case
+
+# nan.md
+
+> normalize > unary > inv > nan
+>
+> Inverting literals should be statically resolved
+
+#TODO
+
+## Input
+
+`````js filename=intro
+$(!NaN);
+`````
+
+## Normalized
+
+`````js filename=intro
+const tmpCallCallee = $;
+const tmpCalleeParam = true;
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+$(true);
+`````
+
+## Result
+
+Should call `$` with:
+ - 1: true
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -16,15 +16,14 @@ $(typeof 1);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = typeof 1;
+const tmpCalleeParam = 'number';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = typeof 1;
-$(tmpCalleeParam);
+$('number');
 `````
 
 ## Result

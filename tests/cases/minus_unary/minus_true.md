@@ -16,7 +16,7 @@ $(-(-true));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = -true;
+const tmpUnaryArg = -1;
 const tmpCalleeParam = -tmpUnaryArg;
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -24,8 +24,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = -true;
-const tmpCalleeParam = -tmpUnaryArg;
+const tmpCalleeParam = -(-1);
 $(tmpCalleeParam);
 `````
 

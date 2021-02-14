@@ -16,15 +16,14 @@ $(!true);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = !true;
+const tmpCalleeParam = false;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = !true;
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## Result

@@ -84,6 +84,10 @@ const VERBOSE_TRACING = true;
   - Assignment of an ident to itself is eliminated
   - Statements that only have an identifier will be eliminated unless that identifier is an implicit global
   - DCE
+  - If the test of an `if` statement is a negative number, or a number with a `+` prefix, then still fold it.
+  - Remove `+` unary from number literals
+  - Remove double `-` unary from number literals
+  - Inlines various cases of unary `+`, `-`, and `!`
  */
 
 // low hanging fruit: async, iterators
@@ -123,7 +127,6 @@ const VERBOSE_TRACING = true;
   - certain binary expressions between constants, or constants and literals
   - bindings that only have writes, no reads, can be eliminated?
   - method names that are literals, probably classes and objects alike
-  - constant inlining with + or - unary
   - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -394,8 +397,8 @@ export function phaseNormalize(fdata, fname) {
     return names;
   }
 
-  function isComplexNode(node) {
-    ASSERT(isComplexNode.length === arguments.length, 'arg count');
+  function isComplexNode(node, incNested = true) {
+    ASSERT([1, 2].includes(arguments.length), 'arg count');
     // A node is simple if it is
     // - an identifier
     // - a literal (but not regex)
@@ -415,7 +418,7 @@ export function phaseNormalize(fdata, fname) {
     if (node.type === 'Identifier') {
       return false;
     }
-    if (node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+')) {
+    if (incNested && node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+')) {
       // -100 (is a unary expression!)
       if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
       // A little unlikely but you know
@@ -2418,6 +2421,7 @@ export function phaseNormalize(fdata, fname) {
       case 'UnaryExpression': {
         // Certain operators need special more care
         // - typeof, delete, -, +, ~, void, !
+        log('operator:', node.operator);
 
         if (node.operator === 'delete') {
           // This one is tricky because the result can not be "just an identifier". Unfortunately, it can be pretty
@@ -2593,6 +2597,740 @@ export function phaseNormalize(fdata, fname) {
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
+        }
+
+        if (node.operator === '+') {
+          if (node.argument.type === 'Literal') {
+            if (typeof node.argument.value === 'number') {
+              rule('The `+` unary operator on a number literal is a noop');
+              example('+100', '100');
+              before(node, parentNode);
+
+              const finalNode = node.argument;
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.raw === 'null') {
+              rule('The `+` unary operator on a null literal is a zero');
+              example('+null', '0');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(0);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === true) {
+              rule('The `+` unary operator on a true literal is a 1');
+              example('+true', '1');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(1);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === false) {
+              rule('The `+` unary operator on a false literal is a 0');
+              example('+false', '1');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(0);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === '') {
+              rule('The `+` unary operator on an empty string literal is a 0');
+              example('+""', '1');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(0);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'Identifier') {
+            if (node.argument.name === 'NaN') {
+              rule('A NaN with a `+` unary is a NaN');
+              example('+NaN', 'NaN');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'undefined') {
+              rule('An undefined with a `+` unary is a NaN');
+              example('+undefined', 'NaN');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'Infinity') {
+              rule('A `+` on Infinity is regular Infinity');
+              example('+Infinity', 'Infinity');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier('Infinity');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'UnaryExpression') {
+            if (['+', '-', '~'].includes(node.argument.operator)) {
+              rule('Plus operator in front of +-~ operator is a noop');
+              example('+-x', '-x', () => node.operator === '-');
+              example('+~x', '~x', () => node.operator === '~');
+              example('+(+x)', '+x', () => node.operator === '+');
+              before(node, parentNode);
+
+              const finalNode = node.argument;
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+        }
+
+        if (node.operator === '-') {
+          if (node.argument.type === 'Literal') {
+            if (node.argument.raw === 'null') {
+              rule('The `-` unary operator on a null literal is a _negative_ zero');
+              example('+null', '0');
+              before(node, parentNode);
+
+              node.argument = AST.literal(0);
+
+              after(node);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === true) {
+              rule('The `-` unary operator on a true literal is a -1');
+              example('+true', '1');
+              before(node, parentNode);
+
+              node.argument = AST.literal(1);
+
+              after(node);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === false) {
+              rule('The `-` unary operator on a false literal is a _negative_ 0');
+              example('+false', '1');
+              before(node, parentNode);
+
+              node.argument = AST.literal(0);
+
+              after(node);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === '') {
+              rule('The `+` unary operator on an empty string literal is a _negative_ 0');
+              example('+""', '1');
+              before(node, parentNode);
+
+              node.argument = AST.literal(0);
+
+              after(node);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'Identifier') {
+            if (node.argument.name === 'NaN') {
+              rule('A NaN with a `-` unary is a NaN');
+              example('+NaN', 'NaN');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'undefined') {
+              rule('An undefined with a `-` unary is a NaN');
+              example('+undefined', 'NaN');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'UnaryExpression') {
+            if (
+              node.argument.operator === '-' &&
+              node.argument.argument.type === 'Literal' &&
+              typeof node.argument.argument.value === 'number'
+            ) {
+              // "double negative"
+              // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
+              rule('The `-` unary operator on a number literal twice is a noop');
+              example('--100', '100');
+              before(node, parentNode);
+
+              const finalNode = node.argument.argument;
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+        }
+
+        if (node.operator === '!') {
+          if (node.argument.type === 'Literal') {
+            if (typeof node.argument.value === 'number') {
+              rule('Inverting a number should be replaced by a boolean');
+
+              if (node.argument.value === 0) {
+                example('!0', 'true');
+                before(node, parentNode);
+
+                const finalNode = AST.literal(true);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
+              } else {
+                example('!1', 'false');
+                before(node, parentNode);
+
+                const finalNode = AST.literal(false);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
+              }
+
+              after(body[i]);
+              return true;
+            }
+
+            if (node.argument.raw === 'null' || node.argument.value === false) {
+              if (node.argument.value === false) {
+                rule('Inverting a `false` should be replaced by a `true`');
+                example('!false', 'true');
+              } else {
+                rule('Inverting a `null` should be replaced by a `true`');
+                example('!null', 'true');
+              }
+              before(node, parentNode);
+
+              const finalNode = AST.literal(true);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              return true;
+            }
+
+            if (node.argument.value === true) {
+              rule('Inverting a `true` should be replaced by a `false`');
+              example('!true', 'false');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(false);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'Identifier') {
+            if (node.argument.name === 'NaN' || node.argument.name === 'undefined') {
+              if (node.argument.name === 'NaN') {
+                rule('Inverting NaN must be replaced by a true');
+                example('!NaN', 'true');
+              } else {
+                rule('Inverting undefined must be replaced by a true');
+                example('!undefined', 'true');
+              }
+              before(node, parentNode);
+
+              const finalNode = AST.literal(true);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'Infinity') {
+              rule('Inverting Infinity must be replaced by a false');
+              example('!Infinity', 'false');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(false);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'Unary') {
+            // !!x
+            if (node.argument.operator === '!' && node.argument.argument.type === 'Literal') {
+              // "double negative" on a literal
+              // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
+
+              if (typeof node.argument.argument.value === 'number') {
+                rule('The `-` unary operator on a number literal twice is a noop');
+                example('--100', '100');
+                before(node, parentNode);
+
+                const finalNode = node.argument.argument;
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
+
+                after(finalNode, finalParent);
+                return true;
+              }
+            }
+
+            // !-x
+            if (
+              node.argument.operator === '-' &&
+              node.argument.argument.type === 'Literal' &&
+              typeof node.argument.argument.value === 'number'
+            ) {
+              // TODO: we can do the same for ~
+              rule('The `!` unary on a `-` unary operator on a number literal should be resolved');
+              example('!-100', 'false');
+              example('!-0', 'true');
+              before(node, parentNode);
+
+              const finalNode = AST.identifier(node.argument.argument.value === 0);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              return true;
+            }
+
+            // !typeof x
+            if (node.argument.operator === 'typeof') {
+              // Probably never hits a real world case but at least there's a test
+              rule('Inverting the result of `typeof` always results in false');
+              example('!typeof x', 'false');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(false);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              return true;
+            }
+
+            // !void x
+            if (node.argument.operator === 'void') {
+              // Probably never hits a real world case but at least there's a test
+              rule('Inverting the result of `void` always results in true');
+              example('!void x', 'true');
+              before(node, parentNode);
+
+              const finalNode = AST.literal(true);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              return true;
+            }
+          }
+        }
+
+        if (node.operator === '~') {
+          if (node.argument.type === 'Literal') {
+            if (typeof node.argument.value === 'number') {
+              // Note: this is never a negative number because then the argument would be a unary expression
+              rule('The `~` unary operator on a number literal should be resolved');
+              example('~100', '-101');
+              example(String(node.argument.value), String(~node.argument.value));
+              before(node, parentNode);
+
+              const result = ~node.argument.value;
+              const finalNode = result < 0 ? AST.unaryExpression('-', AST.literal(-result)) : AST.literal(result);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.raw === 'null') {
+              rule('The `~` unary operator on a null literal is -1');
+              example('~null', '-1');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === true) {
+              rule('The `~` unary operator on a true literal is -2');
+              example('~true', '-2');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(2));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === false) {
+              rule('The `~` unary operator on a false literal is -1');
+              example('+false', '-1');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value === '') {
+              rule('The `~` unary operator on an empty string literal is a -1');
+              example('~""', '-1');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            // TODO: we can do any literal with runtime semantics...
+          }
+
+          if (node.argument.type === 'Identifier') {
+            if (node.argument.name === 'NaN') {
+              rule('A NaN with a `~` unary is -1');
+              example('~NaN', 'NaN');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'undefined') {
+              rule('An undefined with a `~` unary is -1');
+              example('~undefined', '-1');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'Infinity') {
+              rule('A `~` on Infinity is -1');
+              example('~Infinity', '-1');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+        }
+
+        if (node.operator === 'typeof') {
+          if (node.argument.type === 'Literal') {
+            if (typeof node.argument.value === 'number') {
+              rule('Typeof number is the string number');
+              example('typeof 5', '"number"');
+              before(node);
+
+              const finalNode = AST.literal('number');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (typeof node.argument.value === 'string') {
+              rule('Typeof string is the string string');
+              example('typeof "foo"', '"string"');
+              before(node);
+
+              const finalNode = AST.literal('string');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (typeof node.argument.value === 'boolean') {
+              rule('Typeof bool is the string boolean');
+              example('typeof true', '"boolean"');
+              example('typeof false', '"boolean"');
+              before(node);
+
+              const finalNode = AST.literal('boolean');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.raw === 'null') {
+              rule('Typeof null is the string object');
+              example('typeof null', '"object"');
+              before(node);
+
+              const finalNode = AST.literal('object');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.value instanceof RegExp) {
+              rule('Typeof regex is the string object');
+              example('typeof /foo/', '"object"');
+              before(node);
+
+              const finalNode = AST.literal('object');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'Identifier') {
+            if (node.argument.name === 'NaN') {
+              rule('Typeof NaN is the string number');
+              example('typeof NaN', '"number"');
+              before(node, parentNode);
+
+              const finalNode = AST.literal('number');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'undefined') {
+              rule('Typeof undefined is the string undefined');
+              example('typeof undefined', '"undefined"');
+              before(node, parentNode);
+
+              const finalNode = AST.literal('undefined');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.name === 'Infinity') {
+              rule('Typeof Infinity is the string number');
+              example('typeof Infinity', '"number"');
+              before(node, parentNode);
+
+              const finalNode = AST.literal('number');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (node.argument.type === 'UnaryExpression') {
+            // Most unaries return a fixed type so we could fold these safely
+            // Unfortunately this won't happen so much in the wild :p But if it does!
+            // Note that we need preserve the argument as its own statement in most cases
+            // For example, observe: `~{valueOf(){console.log('test')}}` for most operators.
+
+            if ('+-~'.includes(node.argument.operator)) {
+              // I mean, this'll probably never happen :)
+              rule('Typeof unary +-~ always returns a number');
+              example('typeof -x', '-x, "number"', () => node.argument.operator === '-');
+              example('typeof +x', '+x, "number"', () => node.argument.operator === '+');
+              example('typeof ~x', '~x, "number"', () => node.argument.operator === '~');
+              before(node, parentNode);
+
+              // Preserve the arg in case it has a side effect. Other rules may eliminate it anyways.
+              const newNodes = [
+                AST.expressionStatement(node.argument)
+              ];
+              const finalNode = AST.literal('number');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.operator === 'typeof') {
+              // I mean, this'll never happen :)
+              rule('Typeof typeof always returns a string');
+              example('typeof typeof x', 'typeof x, "string"');
+              before(node, parentNode);
+
+              // Must preserve the argument since the argument might have an effect.
+              // We're not going to hash out the details here since `typeof x` is fine even if `x` doesn't actually exist while
+              // something like `typeof x.y()` is an observable side effect. So just keep the arg as is and let other rules fix it.
+              const newNodes = [
+                AST.expressionStatement(node.argument)
+              ];
+              const finalNode = AST.literal('string');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.operator === 'delete' || node.argument.operator === '!') {
+              // I mean, this'll never happen :)
+              rule('Typeof delete or ! always returns a boolean');
+              example('typeof !x()', '!x(), "boolean"', () => node.argument.operator === '!');
+              example('typeof delete x().y', 'delete x().y, "boolean"', () => node.argument.operator === 'delete');
+              before(node, parentNode);
+
+              // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
+              const newNodes = [
+                AST.expressionStatement(node.argument)
+              ];
+              const finalNode = AST.literal('boolean');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.operator === 'void') {
+              // I mean, this'll never happen :)
+              rule('Typeof void always returns a undefined');
+              example('typeof void x()', 'x(), "undefined"');
+              before(node, parentNode);
+
+              // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
+              const newNodes = [
+                AST.expressionStatement(node.argument)
+              ];
+              const finalNode = AST.literal('undefined');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
         }
 
         if (node.argument.type === 'SequenceExpression') {
@@ -4029,22 +4767,45 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
   function transformIfStatement(node, body, i) {
-    if (node.test.type === 'UnaryExpression' && node.test.operator === '!') {
-      // It's kind of redundant since there are plenty of cases where we'll need to deal with
-      // the test in an abstracted form (like `if (!a && !b)` or smth). So maybe I'll drop this one later.
-      rule('The test of an if cannot be invert');
-      example('if (!x) y;', 'if (x) ; else y;', () => !node.alternate);
-      example('if (!x) y; else z;', 'if (x) z; else y;', () => node.alternate);
-      before(node);
+    if (node.test.type === 'UnaryExpression') {
+      if (node.test.operator === '!') {
+        // It's kind of redundant since there are plenty of cases where we'll need to deal with
+        // the test in an abstracted form (like `if (!a && !b)` or smth). So maybe I'll drop this one later.
+        rule('The test of an if cannot be invert');
+        example('if (!x) y;', 'if (x) ; else y;', () => !node.alternate);
+        example('if (!x) y; else z;', 'if (x) z; else y;', () => node.alternate);
+        before(node);
 
-      node.test = node.test.argument;
-      const tmp = node.consequent;
-      node.consequent = node.alternate || AST.emptyStatement();
-      node.alternate = tmp;
+        node.test = node.test.argument;
+        const tmp = node.consequent;
+        node.consequent = node.alternate || AST.emptyStatement();
+        node.alternate = tmp;
 
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (
+        (node.test.operator === '+' || node.test.operator === '-') &&
+        node.test.argument.type === 'Literal' &&
+        typeof node.test.argument.value === 'number'
+      ) {
+        rule('The if test of a number should be a boolean'); // Let another rule deal with it
+        if (node.test.argument.value === 0) {
+          // Doesn't matter whether it's +0 or -0 here. This is false now.
+          example('if (-0) f();', 'if (false) f();');
+          before(node);
+
+          node.test = AST.literal(false);
+        } else {
+          example('if (-1) f();', 'if (true) f();');
+          node.test = AST.literal(true);
+        }
+
+        after(node);
+        return true;
+      }
     }
 
     if (node.consequent.type !== 'BlockStatement') {
@@ -5365,8 +6126,9 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (isComplexNode(dnode.init)) {
-        log('- init is complex');
+      if (isComplexNode(dnode.init, false)) {
+        // false: returns true for simple unary as well
+        log('- init is complex, transforming expression');
         if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;

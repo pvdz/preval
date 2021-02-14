@@ -73,6 +73,10 @@ switch (0) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

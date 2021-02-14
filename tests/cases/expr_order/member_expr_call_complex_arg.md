@@ -48,6 +48,10 @@ const tmpCalleeParam = x.y;
 tmpCallVal.call(a, tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -36,6 +36,10 @@ for (a of b) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

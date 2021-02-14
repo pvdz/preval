@@ -36,6 +36,10 @@ b = b - 1;
 $(tmpPostUpdArgIdent, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

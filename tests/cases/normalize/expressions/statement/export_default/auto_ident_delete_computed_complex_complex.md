@@ -42,6 +42,10 @@ export { tmpExportDefault as default };
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

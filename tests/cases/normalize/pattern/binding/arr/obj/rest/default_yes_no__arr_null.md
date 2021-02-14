@@ -59,6 +59,10 @@ const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

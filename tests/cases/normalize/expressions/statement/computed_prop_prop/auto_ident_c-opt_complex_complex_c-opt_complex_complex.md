@@ -69,6 +69,10 @@ obj[tmpCompProp];
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

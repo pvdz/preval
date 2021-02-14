@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-let a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8,y=9;
+let a=1,b=2,c=3,d=4,e=5,f=6,g={h:[7]},h=8,x=8.5,y=String;
 new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````
 
@@ -24,9 +24,11 @@ let c = 3;
 let d = 4;
 let e = 5;
 let f = 6;
-let g = 7;
+const tmpObjLitVal = [7];
+let g = { h: tmpObjLitVal };
 let h = 8;
-let y = 9;
+let x = 8.5;
+let y = String;
 const tmpNewCallee = y;
 const tmpCalleeParam = x;
 const tmpCalleeParam$1 = 8;
@@ -42,17 +44,22 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 `````js filename=intro
 let a = 1;
 let d = 4;
-const tmpCalleeParam = x;
+const tmpObjLitVal = [7];
+let g = { h: tmpObjLitVal };
 a = (2).c;
 d = (5)[6];
-const tmpCalleeParamSpread = (7).h;
-new 9(tmpCalleeParam, 8, ...tmpCalleeParamSpread);
+const tmpCalleeParamSpread = g.h;
+new String(8.5, 8, ...tmpCalleeParamSpread);
 `````
+
+## Globals
+
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - eval returned: undefined
 
 Normalized calls: Same
 

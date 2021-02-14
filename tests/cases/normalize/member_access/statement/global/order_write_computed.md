@@ -53,6 +53,10 @@ const tmpAssignComMemLhsProp = $('x');
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

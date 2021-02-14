@@ -121,6 +121,10 @@ tmpSwitchBreak: {
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

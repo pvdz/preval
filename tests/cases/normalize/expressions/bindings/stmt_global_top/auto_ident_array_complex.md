@@ -34,6 +34,10 @@ let a = [tmpArrElement, 2, tmpArrElement$2];
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -39,6 +39,10 @@ const tmpThrowArg = delete tmpDeleteCompObj['y'];
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -45,6 +45,10 @@ const tmpCallObj = tmpCompObj.b;
 tmpCallObj.c();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

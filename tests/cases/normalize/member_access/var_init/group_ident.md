@@ -30,6 +30,10 @@ let x = $.length;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

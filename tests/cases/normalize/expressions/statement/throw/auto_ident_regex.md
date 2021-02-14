@@ -32,6 +32,10 @@ const tmpThrowArg = /foo/;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

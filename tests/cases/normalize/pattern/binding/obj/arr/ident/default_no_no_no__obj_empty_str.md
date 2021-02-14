@@ -35,6 +35,10 @@ const y = arrPatternSplat[0];
 $(y);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

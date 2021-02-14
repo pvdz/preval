@@ -31,6 +31,10 @@ const b = { get foo() {} };
 const b = { get foo() {} };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

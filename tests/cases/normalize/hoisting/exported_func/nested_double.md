@@ -59,6 +59,10 @@ $(tmpCalleeParam$1);
 export { g };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

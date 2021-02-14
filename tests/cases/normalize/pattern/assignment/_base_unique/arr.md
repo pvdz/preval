@@ -43,6 +43,12 @@ x_1 = arrPatternSplat[0];
 $(x_1);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x_1
+
 ## Result
 
 Should call `$` with:

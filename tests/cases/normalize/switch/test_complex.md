@@ -30,6 +30,10 @@ let tmpSwitchCaseToStart = 0;
 const tmpSwitchTest = $(1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

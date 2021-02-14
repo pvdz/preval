@@ -84,7 +84,8 @@ export function fromMarkdownCase(md, fname, config) {
       fname,
       mdHead: mdHead.trim(),
       mdChunks: chunks
-        .filter((s) => !s.startsWith('Output\n') && !s.startsWith('Normalized') && !s.startsWith('Uniformed') && !s.startsWith('Result'))
+        .filter((s) =>
+          !s.startsWith('Output\n') && !s.startsWith('Normalized') && !s.startsWith('Uniformed') && !s.startsWith('Globals') && !s.startsWith('Result'))
         .map((s) => '## ' + s.trim()),
       fin: {},
     };
@@ -136,7 +137,7 @@ export function toNormalizedResult(obj) {
   );
 }
 
-export function toEvaluationResult(evalled, files, skipFinal) {
+export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
   function printStack(stack) {
     return stack
       .map((s, i) => {
@@ -163,6 +164,10 @@ export function toEvaluationResult(evalled, files, skipFinal) {
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(files[key]).trim() + '\n`````')
       .join('\n\n') +
+    '\n\n## Globals\n\n' +
+    (implicitGlobals.size > 0
+      ? 'BAD@! Found ' + implicitGlobals.size + ' implicit global bindings:\n\n' + [...implicitGlobals].join(', ')
+      : 'None') +
     '\n\n## Result\n\n' +
     'Should call `$` with:\n' +
     printOutput +
@@ -215,7 +220,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     //      '\n`````',
     //  )
     //  .join('\n\n') +
-    toEvaluationResult(evalled, output.files)
+    toEvaluationResult(evalled, output.files, output.implicitGlobals, false)
   );
 }
 

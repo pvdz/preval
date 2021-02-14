@@ -39,6 +39,10 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -54,6 +54,10 @@ export { a };
 $(3, b, c, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

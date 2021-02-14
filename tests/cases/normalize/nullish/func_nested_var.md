@@ -64,6 +64,12 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+toString, length
+
 ## Result
 
 Should call `$` with:

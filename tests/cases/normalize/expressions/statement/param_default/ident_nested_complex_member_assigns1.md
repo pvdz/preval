@@ -52,6 +52,10 @@ f();
 $(100);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

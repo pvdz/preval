@@ -29,6 +29,10 @@ $('fail');
 $('fail');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

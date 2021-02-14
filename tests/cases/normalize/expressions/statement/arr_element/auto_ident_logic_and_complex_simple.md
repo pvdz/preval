@@ -40,6 +40,10 @@ const tmpIfTest$1 = $(tmpCalleeParam$1);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -46,6 +46,10 @@ a = tmpBinLhs === 'Identifier';
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

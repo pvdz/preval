@@ -11,6 +11,7 @@
 ## Input
 
 `````js filename=intro
+const a = 1, b = 2;
 function f({ x: {} = a } = b) {
   return 'ok';
 }
@@ -46,6 +47,8 @@ function f($tdz$__pattern) {
   }
   return 'ok';
 }
+const a = 1;
+const b = 2;
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
@@ -62,7 +65,7 @@ function f($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = b;
+    $tdz$__pattern_after_default = 2;
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
@@ -70,7 +73,7 @@ function f($tdz$__pattern) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    objPatternAfterDefault = a;
+    objPatternAfterDefault = 1;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -89,6 +92,10 @@ const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
 const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);
 `````
+
+## Globals
+
+None
 
 ## Result
 

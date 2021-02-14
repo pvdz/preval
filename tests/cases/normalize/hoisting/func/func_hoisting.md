@@ -52,6 +52,10 @@ a();
 $(a, b, d, f, h, x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

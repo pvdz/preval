@@ -58,6 +58,10 @@ $(...tmpCalleeParamSpread);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

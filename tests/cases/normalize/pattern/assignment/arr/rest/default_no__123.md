@@ -32,6 +32,12 @@ x = arrPatternSplat.slice(0);
 $('bad');
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

@@ -56,6 +56,10 @@ b = arrPatternSplat$1[0];
 $(a, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

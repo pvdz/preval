@@ -51,6 +51,10 @@ let b = arrPatternSplat[1];
 $(a, b, x, y, z);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -29,6 +29,10 @@ let x = 'foo'.toString();
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

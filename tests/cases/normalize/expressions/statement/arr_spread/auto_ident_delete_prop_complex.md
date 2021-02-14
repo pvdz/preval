@@ -40,6 +40,10 @@ const tmpArrElToSpread = delete tmpDeleteObj.y;
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -32,6 +32,12 @@ x = (1).x;
 tmpIfTest = 1;
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

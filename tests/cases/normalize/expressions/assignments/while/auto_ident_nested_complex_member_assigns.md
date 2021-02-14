@@ -102,6 +102,10 @@ while (true) {
 $(a, b, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -38,6 +38,10 @@ foo: while (true) {
 $(2);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -32,6 +32,10 @@ const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

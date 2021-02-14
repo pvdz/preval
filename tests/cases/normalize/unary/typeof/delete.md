@@ -32,6 +32,10 @@ delete tmpDeleteObj.x;
 $('boolean');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

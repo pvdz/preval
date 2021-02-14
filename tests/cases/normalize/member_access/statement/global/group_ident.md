@@ -27,6 +27,10 @@ $(1);
 $.length;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -28,6 +28,10 @@ $(x);
 $(false);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

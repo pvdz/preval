@@ -30,6 +30,12 @@ foo;
 $(true);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+foo
+
 ## Result
 
 Should call `$` with:

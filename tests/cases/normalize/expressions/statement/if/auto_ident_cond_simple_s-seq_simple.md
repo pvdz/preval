@@ -38,6 +38,10 @@ let tmpIfTest = undefined;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

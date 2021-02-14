@@ -38,6 +38,10 @@ varInitAssignLhsComputedObj.x = 3;
 $(3, 2, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

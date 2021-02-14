@@ -31,6 +31,10 @@ const x = -(-Infinity);
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

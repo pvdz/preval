@@ -59,6 +59,10 @@ x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

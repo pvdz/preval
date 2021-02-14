@@ -36,6 +36,10 @@ const tmpIfTest = delete arg['y'];
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

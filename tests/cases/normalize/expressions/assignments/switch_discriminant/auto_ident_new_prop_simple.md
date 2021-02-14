@@ -57,6 +57,10 @@ let tmpSwitchTest = a;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

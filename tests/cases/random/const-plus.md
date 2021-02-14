@@ -34,6 +34,10 @@ const z = 'a' + y;
 $(z);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

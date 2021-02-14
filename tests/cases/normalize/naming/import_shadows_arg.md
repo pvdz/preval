@@ -40,6 +40,12 @@ export { x };
 export { g };
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+f
+
 ## Result
 
 Should call `$` with:

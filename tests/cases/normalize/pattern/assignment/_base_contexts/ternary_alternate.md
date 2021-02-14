@@ -33,6 +33,12 @@ if (a) {
 }
 `````
 
+## Globals
+
+BAD@! Found 3 implicit global bindings:
+
+a, b, x
+
 ## Result
 
 Should call `$` with:

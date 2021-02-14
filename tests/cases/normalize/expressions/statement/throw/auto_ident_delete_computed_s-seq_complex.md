@@ -43,6 +43,10 @@ const tmpThrowArg = delete arg[tmpDeleteCompProp];
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

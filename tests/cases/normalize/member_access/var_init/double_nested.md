@@ -40,6 +40,10 @@ let x = tmpCompObj.c;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

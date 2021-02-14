@@ -34,6 +34,10 @@ let a = { a: 999, b: 1000 };
 throw undefined;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

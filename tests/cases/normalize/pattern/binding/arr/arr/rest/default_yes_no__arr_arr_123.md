@@ -53,6 +53,10 @@ const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -29,6 +29,10 @@ $(1);
 (2).foo;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

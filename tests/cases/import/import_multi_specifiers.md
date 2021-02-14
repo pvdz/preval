@@ -59,6 +59,12 @@ const tmpExportDefault = 100;
 export { tmpExportDefault as default };
 `````
 
+## Globals
+
+BAD@! Found 3 implicit global bindings:
+
+a, b, c
+
 ## Result
 
 Should call `$` with:

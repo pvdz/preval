@@ -35,6 +35,10 @@ const y = objPatternNoDefault.y;
 $(y);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

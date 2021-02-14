@@ -24,6 +24,10 @@ if (false) $();
 
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

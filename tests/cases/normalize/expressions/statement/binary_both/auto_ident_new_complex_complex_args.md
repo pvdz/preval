@@ -50,6 +50,10 @@ new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

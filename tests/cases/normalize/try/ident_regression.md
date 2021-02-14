@@ -51,6 +51,10 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -40,6 +40,10 @@ for (x of tmpForOfRhs) {
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

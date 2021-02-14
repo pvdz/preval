@@ -103,6 +103,10 @@ while (true) {
 $('after (not invoked)');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

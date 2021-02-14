@@ -32,6 +32,10 @@ const tmpCalleeParam = x >= x;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

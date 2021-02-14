@@ -35,6 +35,10 @@ let obj = {};
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -33,6 +33,10 @@ const tmpCalleeParam = [tmpArrElement];
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

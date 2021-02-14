@@ -59,6 +59,10 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

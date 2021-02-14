@@ -35,6 +35,10 @@ let val = undefined;
 $(val);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

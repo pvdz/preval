@@ -32,6 +32,10 @@ foo: {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -41,6 +41,12 @@ y_1 = arrPatternSplat[0];
 }
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+y_1
+
 ## Result
 
 Should call `$` with:

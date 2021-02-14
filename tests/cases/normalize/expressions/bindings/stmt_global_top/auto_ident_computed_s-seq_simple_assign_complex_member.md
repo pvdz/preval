@@ -43,6 +43,10 @@ b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

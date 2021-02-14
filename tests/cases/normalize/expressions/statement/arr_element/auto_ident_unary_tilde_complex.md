@@ -38,6 +38,10 @@ const tmpUnaryArg$1 = $(100);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

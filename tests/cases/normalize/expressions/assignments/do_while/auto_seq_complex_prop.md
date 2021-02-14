@@ -76,6 +76,10 @@ tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

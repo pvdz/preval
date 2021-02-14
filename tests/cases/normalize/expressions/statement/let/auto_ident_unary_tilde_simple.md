@@ -38,6 +38,10 @@ $(xyz);
 $(a, 1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

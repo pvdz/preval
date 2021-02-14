@@ -53,6 +53,10 @@ const tmpSwitchTest = tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

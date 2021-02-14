@@ -33,6 +33,10 @@ const tmpCompObj = obj.a;
 tmpCompObj.b;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

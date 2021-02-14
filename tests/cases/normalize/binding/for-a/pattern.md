@@ -40,6 +40,10 @@ let z = [10, 20, 30];
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -43,6 +43,10 @@ if (1) {
 $(foo);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

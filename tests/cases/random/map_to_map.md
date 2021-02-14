@@ -81,6 +81,10 @@ const tmpCalleeParam = tmpCallObj.get('$');
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

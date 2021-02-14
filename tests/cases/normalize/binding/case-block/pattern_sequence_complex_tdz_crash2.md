@@ -49,6 +49,10 @@ switch (1) { default: let x = x; $('fail'); }
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

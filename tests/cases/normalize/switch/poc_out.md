@@ -145,6 +145,10 @@ exit: {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -39,6 +39,10 @@ b.c = 2;
 throw 2;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

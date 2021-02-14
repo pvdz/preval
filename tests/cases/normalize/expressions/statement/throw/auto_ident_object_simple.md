@@ -32,6 +32,10 @@ const tmpThrowArg = { x: 1, y: 2, z: 3 };
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

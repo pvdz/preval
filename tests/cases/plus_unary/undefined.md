@@ -26,6 +26,10 @@ tmpCallCallee(tmpCalleeParam);
 $(NaN);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

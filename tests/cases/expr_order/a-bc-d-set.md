@@ -60,6 +60,10 @@ a = tmpNestedPropAssignRhs;
 $(a, b, d);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

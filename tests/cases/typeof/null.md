@@ -30,6 +30,10 @@ tmpCallCallee(tmpCalleeParam);
 $('object');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -32,6 +32,10 @@ const tmpIfTest = /foo/;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

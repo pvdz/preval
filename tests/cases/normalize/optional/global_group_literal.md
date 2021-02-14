@@ -40,6 +40,10 @@ if (tmpIfTest) {
 $(y);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

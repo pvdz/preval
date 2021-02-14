@@ -63,6 +63,10 @@ obj[varInitAssignLhsComputedRhs$1];
 $(a, b, c, 3, 4);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

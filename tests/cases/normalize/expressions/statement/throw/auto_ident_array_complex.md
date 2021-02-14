@@ -37,6 +37,10 @@ const tmpThrowArg = [tmpArrElement, 2, tmpArrElement$2];
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -80,6 +80,10 @@ obj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -49,6 +49,10 @@ b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

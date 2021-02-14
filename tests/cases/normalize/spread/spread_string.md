@@ -29,6 +29,10 @@ const x = ['h', 'e', 'l', 'l', 'o'];
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -30,6 +30,10 @@ const x = null.x;
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

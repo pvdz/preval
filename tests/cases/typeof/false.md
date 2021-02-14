@@ -26,6 +26,10 @@ tmpCallCallee(tmpCalleeParam);
 $('boolean');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

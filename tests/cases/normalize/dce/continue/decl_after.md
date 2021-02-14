@@ -60,6 +60,12 @@ while (true) {
 $('after, wont eval due to infinite loop');
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

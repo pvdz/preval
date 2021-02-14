@@ -26,6 +26,10 @@
 'foo'.length;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -43,6 +43,10 @@ tmpThrowArg = tmpNestedAssignObjPatternRhs;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

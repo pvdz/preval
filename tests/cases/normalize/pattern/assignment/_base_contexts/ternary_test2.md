@@ -36,6 +36,10 @@ x = (1).x;
 tmpIfTest = 1;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

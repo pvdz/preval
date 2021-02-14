@@ -35,6 +35,10 @@ const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -61,6 +61,10 @@ $(tmpCalleeParam$1);
 $(a, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

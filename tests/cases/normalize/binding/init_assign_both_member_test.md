@@ -80,6 +80,10 @@ a = tmpNestedAssignPropRhs;
 $(5, a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

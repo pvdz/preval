@@ -40,6 +40,10 @@ let j = tmpBinBothLhs + tmpBinBothRhs;
 $(j);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

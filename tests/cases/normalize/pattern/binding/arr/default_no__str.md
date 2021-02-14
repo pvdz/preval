@@ -30,6 +30,10 @@ const arrPatternSplat = [...'xyz'];
 $('ok');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

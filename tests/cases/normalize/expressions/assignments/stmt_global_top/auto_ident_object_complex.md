@@ -37,6 +37,10 @@ a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

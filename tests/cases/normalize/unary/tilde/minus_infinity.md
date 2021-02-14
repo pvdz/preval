@@ -29,6 +29,10 @@ const tmpCalleeParam = ~-Infinity;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

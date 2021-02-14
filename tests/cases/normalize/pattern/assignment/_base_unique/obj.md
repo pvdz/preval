@@ -37,6 +37,12 @@ x_1 = (1).x;
 }
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x_1
+
 ## Result
 
 Should call `$` with:

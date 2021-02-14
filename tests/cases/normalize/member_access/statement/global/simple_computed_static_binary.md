@@ -29,6 +29,10 @@ const obj = { foo: 10 };
 obj['foo'];
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

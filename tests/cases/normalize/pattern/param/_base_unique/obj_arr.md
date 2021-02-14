@@ -44,6 +44,10 @@ function i(tmpParamPattern) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

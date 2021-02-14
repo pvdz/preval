@@ -47,6 +47,10 @@ export { a };
 $(varInitAssignLhsComputedRhs, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

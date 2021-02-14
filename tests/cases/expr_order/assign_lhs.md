@@ -38,6 +38,10 @@ let j = tmpBinLhs + i;
 $(j);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

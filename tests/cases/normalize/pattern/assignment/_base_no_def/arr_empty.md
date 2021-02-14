@@ -36,6 +36,10 @@ const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

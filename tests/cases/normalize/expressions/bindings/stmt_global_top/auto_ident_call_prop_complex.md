@@ -35,6 +35,10 @@ let a = tmpCallObj.$(1);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

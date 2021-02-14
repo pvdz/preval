@@ -28,6 +28,10 @@ function f() {}
 function f() {}
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

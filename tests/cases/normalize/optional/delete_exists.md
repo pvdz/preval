@@ -42,6 +42,10 @@ if (tmpIfTest) {
 $(o);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

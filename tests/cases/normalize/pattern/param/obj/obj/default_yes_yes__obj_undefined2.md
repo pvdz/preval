@@ -56,6 +56,10 @@ const tmpCalleeParam = { x: undefined };
 f(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

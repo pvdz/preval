@@ -43,6 +43,10 @@ while (true) {
 $('after');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -31,6 +31,12 @@ let a = class x extends tmpClassSuper {};
 $(a, x);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

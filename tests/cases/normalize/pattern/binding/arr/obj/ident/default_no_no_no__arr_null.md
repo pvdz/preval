@@ -36,6 +36,10 @@ const x = arrPatternStep.x;
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -36,6 +36,10 @@ const y = -tmpUnaryArg;
 $(y);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

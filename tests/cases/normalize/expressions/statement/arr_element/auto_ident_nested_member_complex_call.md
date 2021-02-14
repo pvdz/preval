@@ -73,6 +73,10 @@ tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = varInitAssignLhsComputedRhs$
 $(a, b, c, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

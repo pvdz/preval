@@ -59,6 +59,10 @@ export { f };
 export { g };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -34,6 +34,10 @@ let tmpCalleeParam = x;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

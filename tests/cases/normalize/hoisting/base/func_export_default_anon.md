@@ -32,6 +32,12 @@ export default function () {}
 $(f);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+f
+
 ## Result
 
 Should call `$` with:

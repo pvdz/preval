@@ -43,6 +43,10 @@ b.c = varInitAssignLhsComputedRhs;
 throw varInitAssignLhsComputedRhs;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

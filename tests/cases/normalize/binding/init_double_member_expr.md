@@ -31,6 +31,10 @@ let x = tmpCompObj.toString;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -34,6 +34,10 @@ foo: if (true) $(1);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

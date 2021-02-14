@@ -39,6 +39,10 @@ a = b[tmpAssignRhsCompProp];
 $(a, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

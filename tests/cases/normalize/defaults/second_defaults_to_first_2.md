@@ -59,6 +59,10 @@ function f($tdz$__a, $tdz$__b) {
 f();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

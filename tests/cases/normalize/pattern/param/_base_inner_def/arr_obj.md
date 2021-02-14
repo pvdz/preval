@@ -48,6 +48,12 @@ function h(tmpParamPattern) {
 }
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+a
+
 ## Result
 
 Should call `$` with:

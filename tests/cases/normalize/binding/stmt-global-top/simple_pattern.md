@@ -45,6 +45,10 @@ a = z;
 $(a, x, y, z);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

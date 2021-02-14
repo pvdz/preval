@@ -48,6 +48,10 @@ $(x);
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

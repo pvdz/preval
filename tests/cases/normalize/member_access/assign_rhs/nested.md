@@ -39,6 +39,10 @@ x = tmpAssignRhsProp.b;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

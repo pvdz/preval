@@ -33,6 +33,10 @@ if (NaN) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -31,6 +31,10 @@ const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

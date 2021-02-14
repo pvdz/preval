@@ -38,6 +38,12 @@ $(x);
 $(c);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+c
+
 ## Result
 
 Should call `$` with:

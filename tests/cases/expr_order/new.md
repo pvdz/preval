@@ -38,6 +38,10 @@ let tmpCalleeParam$1 = i;
 new $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -32,6 +32,10 @@ typeof tmpUnaryArg;
 $('string');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

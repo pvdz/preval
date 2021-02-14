@@ -31,6 +31,10 @@ const tmpCalleeParam = 'xyz' == 'xyz';
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -307,6 +307,12 @@ const tmpCalleeParam = (anode, i) => {
 tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````
 
+## Globals
+
+BAD@! Found 8 implicit global bindings:
+
+node, newElements, crumb, isComplexNode, createFreshVarInCurrentRootScope, assigns, AST, uncrumb
+
 ## Result
 
 Should call `$` with:

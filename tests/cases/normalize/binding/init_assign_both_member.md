@@ -33,6 +33,10 @@ const varInitAssignLhsComputedRhs = (20).x;
 (10).x = varInitAssignLhsComputedRhs;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

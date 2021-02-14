@@ -60,6 +60,10 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

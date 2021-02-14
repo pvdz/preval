@@ -30,6 +30,10 @@ let a = { a: 999, b: 1000 };
 throw 'foo';
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

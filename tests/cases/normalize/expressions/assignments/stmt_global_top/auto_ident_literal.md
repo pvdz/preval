@@ -32,6 +32,10 @@ a = 'foo';
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

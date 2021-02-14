@@ -41,6 +41,10 @@ const tmpCallObj = obj.a;
 tmpCallObj.b();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

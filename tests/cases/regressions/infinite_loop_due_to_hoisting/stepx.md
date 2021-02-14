@@ -59,6 +59,12 @@ if (tmpTernaryTest) {
 f(tmpArg);
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+a, f
+
 ## Result
 
 Should call `$` with:

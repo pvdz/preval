@@ -30,6 +30,10 @@ const tmpCompObj = $($);
 tmpCompObj.length;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

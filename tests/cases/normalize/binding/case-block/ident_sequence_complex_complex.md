@@ -78,6 +78,10 @@ const tmpSwitchTest = $('a');
 $(1, 2, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

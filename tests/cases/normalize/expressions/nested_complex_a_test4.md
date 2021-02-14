@@ -39,9 +39,16 @@ varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+a, b
+
 ## Result
 
 Should call `$` with:
+ - 1: 5
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same

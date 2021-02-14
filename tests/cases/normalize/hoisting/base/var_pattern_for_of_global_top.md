@@ -54,6 +54,10 @@ const tmpForOfRhs = [tmpArrElement];
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

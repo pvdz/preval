@@ -39,6 +39,10 @@ a_1: while (true) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

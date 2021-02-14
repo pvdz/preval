@@ -36,6 +36,10 @@ const tmpCalleeParam$1 = typeof 1;
 $(tmpCalleeParam$1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

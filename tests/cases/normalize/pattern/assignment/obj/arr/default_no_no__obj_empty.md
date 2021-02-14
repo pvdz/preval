@@ -33,6 +33,10 @@ const arrPatternSplat = [...objPatternNoDefault];
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -30,6 +30,10 @@ const tmpCompObj = $(2);
 tmpCompObj.toString;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

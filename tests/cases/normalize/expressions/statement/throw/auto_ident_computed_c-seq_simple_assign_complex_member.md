@@ -47,6 +47,10 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComp
 throw varInitAssignLhsComputedRhs;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

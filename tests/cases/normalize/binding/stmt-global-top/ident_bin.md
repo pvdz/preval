@@ -32,6 +32,10 @@ let a = 2 + 3;
 $(a, 2, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

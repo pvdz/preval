@@ -29,6 +29,10 @@ const objPatternNoDefault$1 = objPatternNoDefault.y;
 const z = objPatternNoDefault$1.z;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

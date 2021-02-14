@@ -52,6 +52,10 @@ const tmpCompProp = $(c);
 tmpCompObj[tmpCompProp];
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

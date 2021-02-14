@@ -28,6 +28,10 @@ if (Infinity) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

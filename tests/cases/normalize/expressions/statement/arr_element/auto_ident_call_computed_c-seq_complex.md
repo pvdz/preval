@@ -46,6 +46,10 @@ tmpCallCompObj$1[tmpCallCompProp$1](1);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

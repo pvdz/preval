@@ -44,6 +44,10 @@ if (a) {
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

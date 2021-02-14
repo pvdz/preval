@@ -44,6 +44,12 @@ function g($tdz$__pattern) {
 }
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+b
+
 ## Result
 
 Should call `$` with:

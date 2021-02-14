@@ -51,6 +51,10 @@ const tmpSwitchTest = ~tmpUnaryArg;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

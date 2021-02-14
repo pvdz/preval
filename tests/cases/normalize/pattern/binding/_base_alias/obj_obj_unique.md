@@ -45,6 +45,10 @@ const a = objPatternNoDefault$1.z;
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

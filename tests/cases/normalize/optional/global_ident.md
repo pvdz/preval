@@ -41,6 +41,12 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+global
+
 ## Result
 
 Should call `$` with:

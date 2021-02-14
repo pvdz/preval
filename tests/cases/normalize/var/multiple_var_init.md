@@ -36,6 +36,10 @@ b = $(2);
 c = $(3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

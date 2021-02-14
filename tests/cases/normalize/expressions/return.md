@@ -34,6 +34,10 @@ function f(x, y) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

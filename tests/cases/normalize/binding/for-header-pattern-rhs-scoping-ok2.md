@@ -55,6 +55,10 @@ let y = {};
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

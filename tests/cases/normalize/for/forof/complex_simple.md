@@ -49,6 +49,10 @@ let b = { x: 1, y: 2 };
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

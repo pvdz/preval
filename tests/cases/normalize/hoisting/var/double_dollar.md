@@ -34,6 +34,10 @@ x = $(2);
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

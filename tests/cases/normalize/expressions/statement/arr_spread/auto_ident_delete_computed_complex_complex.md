@@ -42,6 +42,10 @@ const tmpArrElToSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

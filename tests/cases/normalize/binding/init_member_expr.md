@@ -29,6 +29,10 @@ let x = 'foo'.length;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

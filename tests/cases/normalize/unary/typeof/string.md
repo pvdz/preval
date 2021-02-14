@@ -28,6 +28,10 @@ tmpCallCallee(tmpCalleeParam);
 $('string');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

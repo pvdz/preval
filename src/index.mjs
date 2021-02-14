@@ -1,5 +1,6 @@
 import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
 
+import globals from './globals.mjs';
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
@@ -171,6 +172,14 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       mod.fdata = fdata;
 
       contents.files[fname] = tmat(fdata.tenkoOutput.ast, true);
+
+      // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
+      // that none are accidentally left behind / partially eliminated.
+      const set = new Set();
+      fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+        if (meta.isImplicitGlobal && !globals.has(name)) set.add(name);
+      });
+      contents.implicitGlobals = set;
     });
   }
 

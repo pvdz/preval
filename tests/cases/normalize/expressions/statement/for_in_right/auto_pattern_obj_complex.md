@@ -47,6 +47,10 @@ let a = bindingPatternObjRoot.a;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

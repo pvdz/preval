@@ -31,6 +31,10 @@ const x = bindingPatternObjRoot.x;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

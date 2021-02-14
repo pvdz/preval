@@ -30,6 +30,10 @@ const x = undefined.x;
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

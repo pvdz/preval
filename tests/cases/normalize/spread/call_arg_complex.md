@@ -59,6 +59,10 @@ const tmpCalleeParamSpread = g.h;
 tmpCallVal.call(x, x, 8, ...tmpCalleeParamSpread);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

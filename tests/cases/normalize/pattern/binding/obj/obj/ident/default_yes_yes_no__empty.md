@@ -63,6 +63,10 @@ if (tmpIfTest$1) {
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

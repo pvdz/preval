@@ -55,6 +55,10 @@ function g() {
 g();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

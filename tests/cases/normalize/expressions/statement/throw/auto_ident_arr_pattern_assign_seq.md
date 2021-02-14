@@ -57,6 +57,10 @@ tmpThrowArg = tmpNestedAssignArrPatternRhs;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

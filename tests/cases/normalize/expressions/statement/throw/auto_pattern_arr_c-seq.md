@@ -43,6 +43,10 @@ const tmpThrowArg = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

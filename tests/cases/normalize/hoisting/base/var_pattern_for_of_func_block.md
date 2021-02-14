@@ -69,6 +69,10 @@ function f() {
 f();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

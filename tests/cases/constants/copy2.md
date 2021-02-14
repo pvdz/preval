@@ -30,6 +30,10 @@ $(wow);
 $('five');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

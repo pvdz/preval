@@ -39,6 +39,10 @@ if (x) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

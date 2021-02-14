@@ -46,6 +46,10 @@ for (let [x] in {a: 1, b: 2}) $(x);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

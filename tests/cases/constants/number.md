@@ -28,6 +28,10 @@ $(bar);
 $(5);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

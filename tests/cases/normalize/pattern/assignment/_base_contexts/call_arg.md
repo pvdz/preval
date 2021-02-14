@@ -33,6 +33,12 @@ tmpCalleeParam = 1;
 tmpCallCallee(tmpCalleeParam);
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+f, x
+
 ## Result
 
 Should call `$` with:

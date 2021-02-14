@@ -41,6 +41,10 @@ let tmpIfTest = a;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

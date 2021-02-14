@@ -46,6 +46,10 @@ for ($(1); $(2); $(3)) $(4);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

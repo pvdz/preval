@@ -57,6 +57,10 @@ y = tmpAssignObjPatternRhs$1.y;
 $(a, x, y);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

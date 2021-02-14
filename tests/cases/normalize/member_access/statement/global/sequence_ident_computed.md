@@ -37,6 +37,10 @@ const tmpCompProp = $('length');
 $(1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -34,6 +34,10 @@ const tmpArrElToSpread = {};
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

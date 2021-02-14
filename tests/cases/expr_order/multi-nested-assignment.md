@@ -124,6 +124,10 @@ tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$2;
 $(a, b, c, d, e);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

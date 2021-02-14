@@ -36,6 +36,10 @@ a = tmpBinBothLhs * tmpBinBothRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

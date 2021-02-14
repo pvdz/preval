@@ -31,6 +31,10 @@ const tmpCalleeParam = [...'foo'];
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

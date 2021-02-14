@@ -50,6 +50,10 @@ delete tmpDeleteObj$1.y;
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

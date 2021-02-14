@@ -28,6 +28,10 @@ const tmpClassSuper = $(String);
 let x = class extends tmpClassSuper {};
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

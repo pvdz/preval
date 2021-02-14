@@ -33,6 +33,10 @@ b = 20;
 let a = b;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

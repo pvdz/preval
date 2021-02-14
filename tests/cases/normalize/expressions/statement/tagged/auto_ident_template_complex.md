@@ -31,6 +31,10 @@ let a = `foo${tmpTemplateExpr}`;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

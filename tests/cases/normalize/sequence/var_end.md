@@ -26,6 +26,10 @@ $(a);
 $(4);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

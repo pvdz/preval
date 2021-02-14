@@ -30,6 +30,10 @@ const tmpAssignMemLhsObj = $(2);
 tmpAssignMemLhsObj.x = 1;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

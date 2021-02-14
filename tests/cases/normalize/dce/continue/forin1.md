@@ -64,6 +64,10 @@ while (true) {
 $('after, wont eval due to infinite loop');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

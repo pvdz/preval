@@ -38,6 +38,10 @@ let tmpThrowArg = undefined;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

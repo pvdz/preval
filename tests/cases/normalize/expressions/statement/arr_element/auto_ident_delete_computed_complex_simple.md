@@ -44,6 +44,10 @@ delete tmpDeleteCompObj$1['y'];
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

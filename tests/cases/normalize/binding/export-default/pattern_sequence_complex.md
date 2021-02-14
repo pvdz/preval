@@ -46,6 +46,10 @@ export { x, y };
 $(x, y, z);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

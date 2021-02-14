@@ -30,6 +30,10 @@ let x = obj.foo;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

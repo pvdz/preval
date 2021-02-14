@@ -32,6 +32,10 @@ const tmpUnaryArg = $(100);
 $('boolean');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

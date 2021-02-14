@@ -47,6 +47,10 @@ a = 'Identifier' === tmpBinBothRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

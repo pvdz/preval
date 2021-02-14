@@ -40,6 +40,10 @@ const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

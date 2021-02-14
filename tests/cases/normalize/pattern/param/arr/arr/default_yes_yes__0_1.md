@@ -39,6 +39,10 @@ function f(tmp) {
 f(true);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -35,6 +35,10 @@ const tmpThrowArg = typeof 1;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

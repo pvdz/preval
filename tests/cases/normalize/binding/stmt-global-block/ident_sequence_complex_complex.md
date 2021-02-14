@@ -47,6 +47,10 @@ if (tmpIfTest) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

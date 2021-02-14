@@ -39,6 +39,10 @@ let d = 4;
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

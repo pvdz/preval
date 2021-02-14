@@ -51,6 +51,10 @@ const tmpCompObj = $(obj);
 tmpCompObj.x;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

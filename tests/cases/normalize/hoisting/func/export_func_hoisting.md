@@ -58,6 +58,10 @@ export { h };
 export { a };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

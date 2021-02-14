@@ -55,6 +55,10 @@ b.x = 3;
 throw 3;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

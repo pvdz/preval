@@ -68,6 +68,10 @@ let a = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

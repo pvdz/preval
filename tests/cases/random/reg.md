@@ -45,6 +45,10 @@ c = tmpBinLhs === 1;
 $(b, c);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

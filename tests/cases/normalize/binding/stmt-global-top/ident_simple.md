@@ -31,6 +31,10 @@ $(a, b, c);
 $(2, 2, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

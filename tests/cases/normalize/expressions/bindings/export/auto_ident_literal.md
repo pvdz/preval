@@ -31,6 +31,10 @@ export { a };
 $('foo');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

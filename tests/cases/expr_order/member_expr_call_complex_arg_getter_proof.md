@@ -76,6 +76,10 @@ const tmpCalleeParam = a.b;
 tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

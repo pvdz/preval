@@ -29,6 +29,10 @@ var x;
 x = 10;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

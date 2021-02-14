@@ -26,6 +26,10 @@ foo: if (false) $(1);
 
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

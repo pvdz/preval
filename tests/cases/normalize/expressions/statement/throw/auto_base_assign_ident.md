@@ -38,6 +38,10 @@ let tmpThrowArg = b;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

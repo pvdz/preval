@@ -32,6 +32,10 @@ const tmpIfTest = [1, 2, 3];
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -39,6 +39,10 @@ b = b + 1;
 throw tmpPostUpdArgIdent;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

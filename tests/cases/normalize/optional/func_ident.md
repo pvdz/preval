@@ -55,6 +55,12 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+global
+
 ## Result
 
 Should call `$` with:

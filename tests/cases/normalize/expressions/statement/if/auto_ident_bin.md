@@ -36,6 +36,10 @@ const tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

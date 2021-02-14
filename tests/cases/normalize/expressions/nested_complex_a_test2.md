@@ -36,10 +36,18 @@ const tmpCalleeParam = tmpCompObj.length;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+a
+
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 5
+ - 2: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

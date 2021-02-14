@@ -34,6 +34,10 @@ $(5);
 $(6);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

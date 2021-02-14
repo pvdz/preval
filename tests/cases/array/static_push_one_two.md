@@ -37,6 +37,10 @@ arr.push(2);
 $(arr);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

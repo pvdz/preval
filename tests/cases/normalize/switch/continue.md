@@ -102,6 +102,10 @@ while (run) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

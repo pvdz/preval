@@ -42,6 +42,10 @@ const tmpCallCompProp = b();
 tmpCallCompObj[tmpCallCompProp](1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

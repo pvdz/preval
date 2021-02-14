@@ -36,6 +36,10 @@ x = tmpAssignRhsProp.toString;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

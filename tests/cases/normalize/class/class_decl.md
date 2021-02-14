@@ -29,6 +29,10 @@ let x = class {};
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

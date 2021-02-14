@@ -30,6 +30,10 @@ $(1);
 $(true);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

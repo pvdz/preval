@@ -30,6 +30,10 @@ const x = (0).x;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

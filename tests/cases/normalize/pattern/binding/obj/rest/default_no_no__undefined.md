@@ -35,6 +35,10 @@ const x = objPatternRest(undefined, tmpCalleeParam$1, 'x');
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

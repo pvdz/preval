@@ -63,6 +63,10 @@ if (objPatternCrashTest) {
 $('bad');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

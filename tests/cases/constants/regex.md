@@ -35,6 +35,10 @@ const foo = /foo/g;
 $(foo);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

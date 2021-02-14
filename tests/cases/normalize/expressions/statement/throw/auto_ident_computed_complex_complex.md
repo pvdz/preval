@@ -40,6 +40,10 @@ const tmpThrowArg = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

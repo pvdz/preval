@@ -41,6 +41,10 @@ const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

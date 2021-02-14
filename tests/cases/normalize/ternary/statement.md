@@ -31,6 +31,10 @@ var b;
 var c;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -33,6 +33,10 @@ const tmpCalleeParam = tmpBinBothLhs >= tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

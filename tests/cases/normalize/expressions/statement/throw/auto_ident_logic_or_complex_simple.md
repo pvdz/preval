@@ -43,6 +43,10 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

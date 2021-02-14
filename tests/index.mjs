@@ -281,7 +281,7 @@ function runTestCase(
       }
       console.log(toNormalizedResult(output.normalized));
       console.log();
-      console.log(toEvaluationResult(evalled, output.files, true));
+      console.log(toEvaluationResult(evalled, output.files, output.implicitGlobals, true));
     }
   } else {
     const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError });

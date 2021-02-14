@@ -31,6 +31,10 @@ const tmpCalleeParam = `abc ${tmpTemplateExpr} def`;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

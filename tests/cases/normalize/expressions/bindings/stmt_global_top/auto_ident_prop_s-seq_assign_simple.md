@@ -36,6 +36,10 @@ b.c = 2;
 $(2, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

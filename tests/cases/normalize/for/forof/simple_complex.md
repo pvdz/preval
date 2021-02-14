@@ -38,6 +38,10 @@ for (a of tmpForOfRhs) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

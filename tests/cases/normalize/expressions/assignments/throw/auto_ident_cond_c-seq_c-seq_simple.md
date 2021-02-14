@@ -47,6 +47,10 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

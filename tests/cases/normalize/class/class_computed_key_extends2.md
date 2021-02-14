@@ -40,6 +40,10 @@ const tmpCompObj = x();
 tmpCompObj.y;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

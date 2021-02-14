@@ -49,6 +49,10 @@ tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

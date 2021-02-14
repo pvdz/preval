@@ -47,6 +47,10 @@ export { a };
 $(tmpPostUpdArgVal, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

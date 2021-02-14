@@ -28,6 +28,10 @@ $(bar);
 $(Infinity);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

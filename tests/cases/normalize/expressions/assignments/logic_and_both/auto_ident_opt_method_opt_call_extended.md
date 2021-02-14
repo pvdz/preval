@@ -101,6 +101,10 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -24,7 +24,7 @@ export function phase1(fdata, resolve, req, verbose) {
     globallyUniqueNamingRegistry.set(name, {
       name,
       isBuiltin: true,
-      implicit: false,
+      isImplicitGlobal: false,
       isExport: false, // Set below
       reads: [],
       writes: [],
@@ -101,19 +101,19 @@ export function phase1(fdata, resolve, req, verbose) {
         if (node.id) {
           const meta = globallyUniqueNamingRegistry.get(node.id.name);
           ASSERT(meta, 'there should be a meta for this name', node.id.name);
-          meta.isImplicit = false;
+          meta.isImplicitGlobal = false;
         }
 
         node.params.forEach((pnode) => {
           if (pnode.type === 'RestElement') {
             const meta = globallyUniqueNamingRegistry.get(pnode.argument.name);
             ASSERT(meta);
-            meta.isImplicit = false;
+            meta.isImplicitGlobal = false;
           } else {
             ASSERT(pnode.type === 'Identifier', 'params are spread or idents at this point', pnode);
             const meta = globallyUniqueNamingRegistry.get(pnode.name);
             ASSERT(meta);
-            meta.isImplicit = false;
+            meta.isImplicitGlobal = false;
           }
         });
 
@@ -124,7 +124,7 @@ export function phase1(fdata, resolve, req, verbose) {
         if (node.id) {
           const meta = globallyUniqueNamingRegistry.get(node.id.name);
           ASSERT(meta);
-          meta.isImplicit = false;
+          meta.isImplicitGlobal = false;
         }
         break;
       }
@@ -155,7 +155,7 @@ export function phase1(fdata, resolve, req, verbose) {
               name,
               isConstant: false, // Either declared as const or a builtin global that we can assume to be a constant
               isBuiltin: false,
-              implicit: 'unknown', // true until its not...
+              isImplicitGlobal: 'unknown', // true until its not...
               isExport: false, // Set below
               reads: [],
               writes: [],
@@ -304,7 +304,7 @@ export function phase1(fdata, resolve, req, verbose) {
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
-        meta.isImplicit = false;
+        meta.isImplicitGlobal = false;
         if (node.kind === 'const') {
           ASSERT(meta);
           meta.isConstant = true;

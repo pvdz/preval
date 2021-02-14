@@ -77,6 +77,10 @@ while (true) {
 $('after, do not evaluate (infinite loop)');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

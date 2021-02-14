@@ -29,6 +29,10 @@ let a = `fo${1}o`;
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

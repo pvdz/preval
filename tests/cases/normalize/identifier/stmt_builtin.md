@@ -26,6 +26,10 @@ Infinity;
 Infinity;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

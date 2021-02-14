@@ -29,6 +29,12 @@ const objPatternNoDefault$1 = objPatternNoDefault.y;
 a = objPatternNoDefault$1.z;
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+a
+
 ## Result
 
 Should call `$` with:

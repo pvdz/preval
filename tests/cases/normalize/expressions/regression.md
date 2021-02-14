@@ -47,6 +47,10 @@ const tmpAssignComMemLhsProp = a + b;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

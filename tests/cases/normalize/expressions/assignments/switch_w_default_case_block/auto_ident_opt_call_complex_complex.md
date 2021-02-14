@@ -114,6 +114,10 @@ if (tmpIfTest) {
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -42,6 +42,10 @@ if (tmpArrElToSpread) {
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

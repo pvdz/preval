@@ -30,6 +30,10 @@ const b = $(2);
 const c = $(3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

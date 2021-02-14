@@ -31,6 +31,10 @@ const obj = { x: 10 };
 $(obj);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

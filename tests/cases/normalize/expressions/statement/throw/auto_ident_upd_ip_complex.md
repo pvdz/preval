@@ -47,6 +47,10 @@ tmpPostUpdArgObj.x = tmpAssignMemRhs;
 throw tmpPostUpdArgVal;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

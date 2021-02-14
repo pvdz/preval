@@ -34,6 +34,10 @@ $(f);
 export { f as default };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

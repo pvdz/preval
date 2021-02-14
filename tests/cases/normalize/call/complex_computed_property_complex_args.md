@@ -48,6 +48,10 @@ const tmpCalleeParam$1 = $(2);
 tmpCallCompVal.call(tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

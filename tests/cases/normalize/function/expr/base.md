@@ -29,6 +29,10 @@ const f = function g() {};
 $(f);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

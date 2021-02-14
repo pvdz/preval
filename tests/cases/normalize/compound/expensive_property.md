@@ -47,6 +47,10 @@ const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

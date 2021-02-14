@@ -32,6 +32,10 @@ let a = varInitAssignLhsComputedRhs;
 (10).x = 20;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

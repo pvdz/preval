@@ -41,6 +41,12 @@ if (tmpIfTest) {
 }
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+a, y
+
 ## Result
 
 Should call `$` with:

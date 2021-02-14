@@ -311,6 +311,10 @@ $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

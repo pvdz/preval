@@ -44,6 +44,12 @@ z = objPatternNoDefault$1.z;
 $(z);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+z
+
 ## Result
 
 Should call `$` with:

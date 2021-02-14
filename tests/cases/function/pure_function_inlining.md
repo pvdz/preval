@@ -86,6 +86,10 @@ rule('I want it my way');
 rule('You have to listen to me');
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

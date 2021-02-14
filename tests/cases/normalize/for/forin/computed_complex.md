@@ -50,6 +50,10 @@ const tmpForInRhs = $(b);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

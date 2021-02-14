@@ -50,6 +50,12 @@ if (tmpIfTest$1) {
 $(c);
 `````
 
+## Globals
+
+BAD@! Found 2 implicit global bindings:
+
+toString, length
+
 ## Result
 
 Should call `$` with:

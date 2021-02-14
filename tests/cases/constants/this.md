@@ -31,6 +31,10 @@ const x = this;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -40,6 +40,10 @@ $(b);
 $(c);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

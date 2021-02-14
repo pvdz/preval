@@ -24,6 +24,10 @@ Date;
 Date;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

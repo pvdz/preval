@@ -40,6 +40,10 @@ const tmpCalleeParam = tmpCompObj.c;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

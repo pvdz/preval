@@ -34,6 +34,10 @@ let a = $(10);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

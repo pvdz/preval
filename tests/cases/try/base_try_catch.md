@@ -44,6 +44,12 @@ try {
 $(3);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+e
+
 ## Result
 
 Should call `$` with:

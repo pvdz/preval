@@ -47,6 +47,12 @@ x_1 = arrPatternStep.x;
 $(x_1);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x_1
+
 ## Result
 
 Should call `$` with:

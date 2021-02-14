@@ -83,6 +83,10 @@ a = 3;
 $(a, b, 3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

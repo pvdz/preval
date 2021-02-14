@@ -34,6 +34,10 @@ let x = class {
 };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

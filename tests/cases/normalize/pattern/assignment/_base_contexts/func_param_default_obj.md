@@ -47,6 +47,12 @@ const f = ($tdz$__a) => {
 };
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

@@ -43,6 +43,10 @@ b = tmpAssignObjPatternRhs.b;
 $(a, b);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

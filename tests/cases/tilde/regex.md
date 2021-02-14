@@ -29,6 +29,10 @@ const tmpCalleeParam = ~tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

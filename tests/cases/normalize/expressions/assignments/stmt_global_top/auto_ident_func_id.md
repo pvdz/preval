@@ -32,6 +32,10 @@ a = function f() {};
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -32,6 +32,10 @@ let x = (2).foo;
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

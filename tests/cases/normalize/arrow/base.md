@@ -35,6 +35,10 @@ const f = () => {
 f();
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

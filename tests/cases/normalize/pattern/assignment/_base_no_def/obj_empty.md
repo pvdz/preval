@@ -39,6 +39,10 @@ if (objPatternCrashTest) {
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

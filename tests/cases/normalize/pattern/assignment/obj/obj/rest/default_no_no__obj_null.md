@@ -39,6 +39,12 @@ y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+y
+
 ## Result
 
 Should call `$` with:

@@ -26,6 +26,10 @@ const tmpIfTest = $(1);
 const tmpIfTest = $(1);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

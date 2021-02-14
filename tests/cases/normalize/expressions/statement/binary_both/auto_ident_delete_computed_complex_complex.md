@@ -46,6 +46,10 @@ delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
 $(a, arg);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

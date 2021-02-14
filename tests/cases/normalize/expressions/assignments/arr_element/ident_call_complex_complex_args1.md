@@ -26,6 +26,10 @@ let b = { $: $ };
 let b = { $: $ };
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

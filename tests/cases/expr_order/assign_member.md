@@ -37,6 +37,10 @@ let tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

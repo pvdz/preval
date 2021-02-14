@@ -41,6 +41,10 @@ const tmpThrowArg = delete arg.y;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

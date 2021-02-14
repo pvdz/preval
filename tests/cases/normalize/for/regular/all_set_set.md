@@ -37,6 +37,10 @@ for (let b = 2, c = 3, d = 4; b; ) $(d);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

@@ -31,6 +31,10 @@ let x = class extends tmpClassSuper {};
 $(x);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

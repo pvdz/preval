@@ -38,6 +38,10 @@ const tmpThrowArg = tmpCompObj.c;
 throw tmpThrowArg;
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

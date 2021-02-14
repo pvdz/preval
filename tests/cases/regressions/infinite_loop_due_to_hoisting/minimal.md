@@ -11,14 +11,17 @@
 ## Input
 
 `````js filename=intro
-function g() {}
+const obj = {x: 1};
+
+function f() {}
 f(a.x === 1 ? 2 : 3);
 `````
 
 ## Normalized
 
 `````js filename=intro
-function g() {}
+function f() {}
+const obj = { x: 1 };
 const tmpCallCallee = f;
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;
@@ -34,8 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function g() {}
-const tmpCallCallee = f;
+function f() {}
+const obj = { x: 1 };
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;
 const tmpIfTest = tmpBinLhs === 1;
@@ -44,13 +47,19 @@ if (tmpIfTest) {
 } else {
   tmpCalleeParam = 3;
 }
-tmpCallCallee(tmpCalleeParam);
+f(tmpCalleeParam);
 `````
+
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+a
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined
 
 Normalized calls: Same
 

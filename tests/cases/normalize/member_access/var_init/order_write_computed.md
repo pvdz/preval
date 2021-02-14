@@ -58,6 +58,10 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
 $(30);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

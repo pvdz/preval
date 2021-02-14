@@ -67,6 +67,10 @@ const tmpForInRhs = $(tmpCalleeParam);
 $(a);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

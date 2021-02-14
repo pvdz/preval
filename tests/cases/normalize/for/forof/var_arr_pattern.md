@@ -44,6 +44,10 @@ for (let {x} of {a: 1, b: 2}) $(x);
 }
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

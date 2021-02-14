@@ -52,6 +52,10 @@ const tmpCalleeParam$3 = f(null, 200);
 $(tmpCalleeParam$3);
 `````
 
+## Globals
+
+None
+
 ## Result
 
 Should call `$` with:

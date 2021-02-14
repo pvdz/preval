@@ -39,6 +39,12 @@ x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+x
+
 ## Result
 
 Should call `$` with:

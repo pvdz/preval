@@ -15,6 +15,11 @@ export function cloneSimple(node) {
     return memberExpression(cloneSimple(node.object), cloneSimple(node.property), node.computed);
   }
 
+  if (node.type === 'UnaryExpression' && (node.operator === '+' || node.operator === '-') && node.argument.type === 'Literal' && typeof node.argument.value === 'number') {
+    // -5, +0.2e3
+    return unaryExpression(node.operator, cloneSimple(node.argument));
+  }
+
   ASSERT(false, 'add me', node);
 }
 

@@ -42,9 +42,8 @@ let a = { a: 999, b: 1000 };
 a = -1;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = -1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = -1;
+  tmpCalleeParam = -1;
 }
 $(tmpCalleeParam);
 $(a, 1);

@@ -31,7 +31,7 @@ $(a, arg);
 `````js filename=intro
 let a = -1;
 export { a };
-$(a, 1);
+$(-1, 1);
 `````
 
 ## Result

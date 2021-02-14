@@ -44,9 +44,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = -1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = -1;
+  tmpCalleeParam = -1;
 } else {
   tmpCalleeParam = $(200);
 }

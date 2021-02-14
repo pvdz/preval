@@ -33,8 +33,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = +1;
-$(xyz);
+$(+1);
 $(a, 1);
 `````
 

@@ -153,8 +153,17 @@ export function phase2(program, fdata, resolve, req) {
         }
 
         after(';');
-      } else if (assignee.type === 'Literal' && (assignee.raw === 'null' || (!(assignee instanceof RegExp) && assignee.value != null))) {
-        // Replace all reads of this name with a clone of the literal
+      } else if (
+        // numbers, null, true, false, strings
+        (assignee.type === 'Literal' && (assignee.raw === 'null' || (!(assignee instanceof RegExp) && assignee.value != null))) ||
+        // Negative numbers, or numbers with a + before it (noop which we should eliminate anyways... but probably not here).
+        // This kind of unary for other constants should be statically resolved (elsewhere), like `-null` is `-0` etc.
+        (assignee.type === 'UnaryExpression' &&
+          (assignee.operator === '+' || assignee.operator === '-') &&
+          assignee.argument.type === 'Literal' &&
+          typeof assignee.argument.value === 'number')
+      ) {
+        // Replace all reads of this name with a clone of the literal, ident, or unary
 
         rule('Declaring a constant with a literal value should eliminate the binding');
         example('const x = 100; f(x);', 'f(100);');
@@ -192,7 +201,7 @@ export function phase2(program, fdata, resolve, req) {
             (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
             'if not then indexes changed?',
           );
-          ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init.type === 'Literal');
+          ASSERT((declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0].init === assignee);
           if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
           else declParent[declProp] = AST.emptyStatement();
 

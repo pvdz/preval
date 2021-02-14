@@ -54,10 +54,9 @@ function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     p = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp['x'];
+      const tmpChainElementObject = b['x'];
       p = tmpChainElementObject;
     }
   } else {

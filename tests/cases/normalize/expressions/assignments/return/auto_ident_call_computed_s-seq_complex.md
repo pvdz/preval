@@ -43,9 +43,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
-  a = tmpCallCompObj[tmpCallCompProp](1);
+  a = b[tmpCallCompProp](1);
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

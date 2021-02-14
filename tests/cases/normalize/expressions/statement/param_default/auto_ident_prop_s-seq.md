@@ -47,8 +47,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpAssignRhsProp = b;
-    p = tmpAssignRhsProp.c;
+    p = b.c;
   } else {
     p = $tdz$__p;
   }

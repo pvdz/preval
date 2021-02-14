@@ -47,8 +47,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpCallObj = b;
-    p = tmpCallObj['$'](1);
+    p = b['$'](1);
   } else {
     p = $tdz$__p;
   }

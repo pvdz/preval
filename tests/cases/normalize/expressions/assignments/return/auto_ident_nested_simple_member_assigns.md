@@ -56,14 +56,13 @@ $(a, b, c);
 
 `````js filename=intro
 function f() {
-  const varInitAssignLhsComputedRhs$4 = 3;
-  b.x = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$4;
-  a = varInitAssignLhsComputedRhs$4;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  a = 3;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

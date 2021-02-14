@@ -51,8 +51,7 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = arg;
-    p = delete tmpDeleteObj.y;
+    p = delete arg.y;
   } else {
     p = $tdz$__p;
   }

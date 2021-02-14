@@ -124,6 +124,7 @@ const VERBOSE_TRACING = true;
   - bindings that only have writes, no reads, can be eliminated?
   - method names that are literals, probably classes and objects alike
   - constant inlining with + or - unary
+  - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
@@ -1192,6 +1193,8 @@ export function phaseNormalize(fdata, fname) {
           // Special case the member call because it changes the context
           if (callee.type === 'MemberExpression') {
             if (callee.computed) {
+              // We always need to compile to .call because we need to read the member expression before the call, which
+              // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               rule('Optional computed member call expression should be if-else');
               example('a()[b()]?.(c())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], (tmp3 != null ? tmp3.call(tmp, c()) : undefined)');
               before(node, parentNode);
@@ -1226,6 +1229,8 @@ export function phaseNormalize(fdata, fname) {
                 AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
                 AST.variableDeclaration(tmpNameFunc, AST.memberExpression(tmpNameObj, callee.property), 'const'),
               ];
+              // We always need to compile to .call because we need to read the member expression before the call, which
+              // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               const finalNode = AST.callExpression(AST.memberExpression(tmpNameFunc, 'call'), [
                 AST.identifier(tmpNameObj), // Context
                 ...args,
@@ -1318,6 +1323,8 @@ export function phaseNormalize(fdata, fname) {
             ];
             normalizeCallArgs(args, newArgs, newNodes);
             // Do a `.call` to preserve getter order AND context
+            // We always need to compile to .call because we need to read the member expression before the call, which
+            // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
@@ -1344,6 +1351,8 @@ export function phaseNormalize(fdata, fname) {
             ];
             normalizeCallArgs(args, newArgs, newNodes);
             // Do a `.call` to preserve getter order AND context
+            // We always need to compile to .call because we need to read the member expression before the call, which
+            // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
@@ -3432,6 +3441,8 @@ export function phaseNormalize(fdata, fname) {
 
             const tmpName = createFreshVar('tmpChainElementCall');
             log('Storing next callee', node.callee.name, 'in', tmpName);
+            // We always need to compile to .call because we need to read the member expression before the call, which
+            // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             nodes.push(
               AST.variableDeclaration(
                 tmpName,

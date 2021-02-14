@@ -51,9 +51,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpCompObj = b;
     const tmpCompProp = $('$');
-    const tmpNewCallee = tmpCompObj[tmpCompProp];
+    const tmpNewCallee = b[tmpCompProp];
     const tmpNestedComplexRhs = new tmpNewCallee(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;

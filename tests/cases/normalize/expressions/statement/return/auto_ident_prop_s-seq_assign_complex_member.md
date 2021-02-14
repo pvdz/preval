@@ -45,11 +45,10 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const varInitAssignLhsComputedObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   return varInitAssignLhsComputedRhs;
 }
 let b = { c: 10, d: 20 };

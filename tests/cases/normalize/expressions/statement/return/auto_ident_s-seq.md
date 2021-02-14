@@ -44,8 +44,7 @@ $(a, x);
 function f() {
   $(1);
   $(2);
-  const tmpReturnArg = 1;
-  return tmpReturnArg;
+  return 1;
 }
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

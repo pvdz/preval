@@ -62,15 +62,14 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const varInitAssignLhsComputedRhs$5 = 3;
-    b.x = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$5;
-    a = varInitAssignLhsComputedRhs$5;
-    p = varInitAssignLhsComputedRhs$5;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    a = 3;
+    p = 3;
   } else {
     p = $tdz$__p;
   }

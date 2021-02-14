@@ -53,12 +53,11 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+    b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
     p = tmpNestedAssignPropRhs;
   } else {
     p = $tdz$__p;

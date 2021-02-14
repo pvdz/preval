@@ -43,9 +43,8 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  a = delete arg[tmpDeleteCompProp];
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

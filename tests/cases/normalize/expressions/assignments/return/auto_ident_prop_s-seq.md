@@ -42,8 +42,7 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpAssignRhsProp = b;
-  a = tmpAssignRhsProp.c;
+  a = b.c;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

@@ -48,12 +48,11 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpNestedAssignComMemberObj = b;
   const tmpNestedAssignComMemberProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+  b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;

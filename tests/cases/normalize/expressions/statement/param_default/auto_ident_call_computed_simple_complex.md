@@ -48,9 +48,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpCallCompObj = b;
     const tmpCallCompProp = $('$');
-    p = tmpCallCompObj[tmpCallCompProp](1);
+    p = b[tmpCallCompProp](1);
   } else {
     p = $tdz$__p;
   }

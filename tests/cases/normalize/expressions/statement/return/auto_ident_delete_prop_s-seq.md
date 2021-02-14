@@ -45,8 +45,7 @@ $(a, arg);
 function f() {
   $(1);
   $(2);
-  const tmpDeleteObj = arg;
-  const tmpReturnArg = delete tmpDeleteObj.y;
+  const tmpReturnArg = delete arg.y;
   return tmpReturnArg;
 }
 let arg = { y: 1 };

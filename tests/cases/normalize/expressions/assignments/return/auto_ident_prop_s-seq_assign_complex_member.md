@@ -47,11 +47,10 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpNestedAssignObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+  b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;

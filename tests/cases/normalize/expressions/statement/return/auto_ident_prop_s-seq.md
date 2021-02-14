@@ -41,8 +41,7 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpCompObj = b;
-  const tmpReturnArg = tmpCompObj.c;
+  const tmpReturnArg = b.c;
   return tmpReturnArg;
 }
 let b = { c: 1 };

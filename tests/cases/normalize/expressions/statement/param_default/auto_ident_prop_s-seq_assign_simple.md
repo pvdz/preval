@@ -49,8 +49,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedAssignObj = b;
-    tmpNestedAssignObj.c = 2;
+    b.c = 2;
     p = 2;
   } else {
     p = $tdz$__p;

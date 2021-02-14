@@ -151,7 +151,7 @@ export function fmat(code, shouldPrint = VERBOSE) {
         arrowParens: 'always',
         endOfLine: 'lf',
       },
-    });
+    }).trim();
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
     throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);

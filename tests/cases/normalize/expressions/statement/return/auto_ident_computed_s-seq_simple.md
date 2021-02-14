@@ -42,9 +42,8 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpCompObj = b;
   const tmpCompProp = $('c');
-  const tmpReturnArg = tmpCompObj[tmpCompProp];
+  const tmpReturnArg = b[tmpCompProp];
   return tmpReturnArg;
 }
 let b = { c: 1 };

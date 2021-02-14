@@ -54,11 +54,10 @@ function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     p = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+      const tmpChainElementObject = b.c;
+      const tmpChainElementCall = tmpChainElementObject.call(b, 1);
       p = tmpChainElementCall;
     }
   } else {

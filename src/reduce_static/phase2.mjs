@@ -88,19 +88,18 @@ export function phase2(program, fdata, resolve, req) {
         return;
       }
 
+      const assigneeMeta = fdata.globallyUniqueNamingRegistry.get(assignee.name);
 
-      if (
-        assignee.type === 'Identifier' &&
-        (fdata.globallyUniqueNamingRegistry.get(assignee.name).isBuiltin ||
-          fdata.globallyUniqueNamingRegistry.get(assignee.name).isConstant)
-      ) {
+      if (assignee.type === 'Identifier' && (assigneeMeta.isBuiltin || assigneeMeta.isConstant)) {
         // If the identifier is a constant binding or builtin constant then replace all reads with a clone of it
 
         rule('Declaring a constant with a constant value should eliminate the binding');
-        example('const x = null; f(x);', 'f(null);');
+        example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
+        example('const x = f(); const y = x; g(y);', 'const x = f(); g(x);', () => !assigneeMeta.isBuiltin);
         before(write.parentNode);
 
         // With the new
+        group('Attempt to replace the reads of `' + name + '` with reads of `' + assignee.name);
         const clone = AST.cloneSimple(assignee);
         const reads = meta.reads;
         for (let i = 0; i < reads.length; ++i) {
@@ -108,13 +107,34 @@ export function phase2(program, fdata, resolve, req) {
           if (parentNode.type === 'ExportSpecifier') {
             log('Skipping export ident');
           } else {
+            log(
+              'Replacing a read of `' +
+                name +
+                '` with a read from `' +
+                clone.name +
+                '` (on prop `' +
+                parentNode.type +
+                '.' +
+                parentProp +
+                (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
+                ')' +
+                '`...',
+            );
+            before(parentNode);
             if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
             else parentNode[parentProp] = clone;
+            after(parentNode);
             inlined = true;
+            // Remove the read. This binding is read one fewer times
             reads.splice(i, 1);
+            // Add a read to the assignee. It is read one more time instead.
+            assigneeMeta.reads.push({ parentNode, parentProp, parentIndex, node: clone });
+            // We removed an element from the current loop so retry the current index
             --i;
           }
         }
+        log('Binding `' + name + '` has', reads.length, 'reads left after this');
+        groupEnd();
 
         if (reads.length === 0 && write.parentNode.type === 'VariableDeclarator') {
           ASSERT(write.decl, 'var decls should have the decl parent stuff recorded for this exact reason');
@@ -140,10 +160,7 @@ export function phase2(program, fdata, resolve, req) {
         example('const x = 100; f(x);', 'f(100);');
         before(write.parentNode);
 
-        //// Replace the old
-        //if (write.parentIndex >= 0) write.parentNode[write.parentProp][write.parentIndex] = AST.identifier('null');
-        //else write.parentNode[write.parentProp] = AST.identifier('null');
-
+        group('Attempt to replace the reads');
         // With the new
         const clone = AST.cloneSimple(assignee);
         const reads = meta.reads;
@@ -152,14 +169,19 @@ export function phase2(program, fdata, resolve, req) {
           if (parentNode.type === 'ExportSpecifier') {
             log('Skipping export ident');
           } else {
+            log('Replacing a read...');
+            before(parentNode);
             if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
             else parentNode[parentProp] = clone;
+            after(parentNode);
             inlined = true;
+            // No need to push a read back in. We don't need to track reads to builtin literals like `null` or `undefined` (I think)
             reads.splice(i, 1);
             --i;
           }
         }
-        log('Binding has', reads.length, 'reads left after this');
+        log('Binding `' + name + '` has', reads.length, 'reads left after this');
+        groupEnd();
 
         if (reads.length === 0 && write.parentNode.type === 'VariableDeclarator') {
           ASSERT(write.decl, 'var decls should have the decl parent stuff recorded for this exact reason');
@@ -180,10 +202,18 @@ export function phase2(program, fdata, resolve, req) {
         after(';');
       }
     }
-
   });
   log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
+
+  const ast = fdata.tenkoOutput.ast;
+  log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+
   groupEnd();
+  if (inlined) {
+    log('Trying again...');
+    groupEnd();
+    return phase2(program, fdata, resolve, req);
+  }
 
   walk(
     (node, before, nodeType, path) => {

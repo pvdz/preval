@@ -53,8 +53,7 @@ function f($tdz$__p) {
   if (tmpIfTest) {
     $(1);
     $(2);
-    const tmpDeleteObj = arg;
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {

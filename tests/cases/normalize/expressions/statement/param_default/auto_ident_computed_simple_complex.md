@@ -48,9 +48,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpAssignRhsCompObj = b;
     const tmpAssignRhsCompProp = $('c');
-    p = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+    p = b[tmpAssignRhsCompProp];
   } else {
     p = $tdz$__p;
   }

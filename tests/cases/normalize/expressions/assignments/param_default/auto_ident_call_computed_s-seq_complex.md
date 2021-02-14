@@ -50,9 +50,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpCallCompObj = b;
     const tmpCallCompProp = $('$');
-    const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
+    const tmpNestedComplexRhs = b[tmpCallCompProp](1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {

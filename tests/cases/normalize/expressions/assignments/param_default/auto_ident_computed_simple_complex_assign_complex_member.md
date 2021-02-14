@@ -54,12 +54,11 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const varInitAssignLhsComputedObj = b;
     const varInitAssignLhsComputedProp = $('c');
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     a = varInitAssignLhsComputedRhs;
     p = varInitAssignLhsComputedRhs;
   } else {

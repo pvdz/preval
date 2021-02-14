@@ -89,14 +89,13 @@ function f($tdz$__p) {
     const varInitAssignLhsComputedProp$3 = $('x');
     const varInitAssignLhsComputedObj$4 = $(b);
     const varInitAssignLhsComputedProp$4 = $('x');
-    const varInitAssignLhsComputedRhs$4 = 3;
-    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$4;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs$4;
-    p = varInitAssignLhsComputedRhs$4;
+    varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+    varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    p = 3;
   } else {
     p = $tdz$__p;
   }

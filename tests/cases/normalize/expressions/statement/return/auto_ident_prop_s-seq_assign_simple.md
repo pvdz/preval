@@ -43,8 +43,7 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const varInitAssignLhsComputedObj = b;
-  varInitAssignLhsComputedObj.c = 2;
+  b.c = 2;
   return 2;
 }
 let b = { c: 1 };

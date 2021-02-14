@@ -48,9 +48,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    p = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    p = delete arg[tmpDeleteCompProp];
   } else {
     p = $tdz$__p;
   }

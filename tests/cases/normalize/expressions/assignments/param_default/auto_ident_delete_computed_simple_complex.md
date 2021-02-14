@@ -50,9 +50,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {

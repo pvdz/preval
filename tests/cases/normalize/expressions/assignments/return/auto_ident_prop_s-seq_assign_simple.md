@@ -44,8 +44,7 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  const tmpNestedAssignObj = b;
-  tmpNestedAssignObj.c = 2;
+  b.c = 2;
   a = 2;
   let tmpReturnArg = a;
   return tmpReturnArg;

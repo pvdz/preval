@@ -43,8 +43,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  const tmpCompObj = b;
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpNewCallee = b.$;
   a = new tmpNewCallee(1);
   let tmpReturnArg = a;
   return tmpReturnArg;

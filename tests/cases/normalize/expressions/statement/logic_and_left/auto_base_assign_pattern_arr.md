@@ -42,13 +42,12 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpIfTest = tmpNestedAssignArrPatternRhs;
+const tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
   $(100);
 }

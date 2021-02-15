@@ -40,13 +40,12 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let xyz;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-xyz = tmpNestedAssignArrPatternRhs;
+const xyz = tmpNestedAssignArrPatternRhs;
 $(xyz);
 $(a);
 `````

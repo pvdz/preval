@@ -36,12 +36,11 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
-let a;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
+const a = tmpNestedAssignObjPatternRhs;
 export { a };
 $(a, b);
 `````

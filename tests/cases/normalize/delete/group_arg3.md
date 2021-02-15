@@ -32,8 +32,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-var foo;
-foo = 1;
+const foo = 1;
 $(true);
 const tmpCalleeParam$1 = typeof foo;
 $(tmpCalleeParam$1);

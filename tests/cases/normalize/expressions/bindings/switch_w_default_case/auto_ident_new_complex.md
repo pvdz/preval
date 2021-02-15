@@ -62,8 +62,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpNewCallee;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -77,8 +75,8 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      tmpNewCallee = $($);
-      a = new tmpNewCallee(1);
+      const tmpNewCallee = $($);
+      const a = new tmpNewCallee(1);
       $(a);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

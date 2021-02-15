@@ -51,10 +51,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
-  let tmpCallCompObj;
-  let tmpCallCompProp;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -63,10 +59,10 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      b = { $: $ };
-      tmpCallCompObj = $(b);
-      tmpCallCompProp = $('$');
-      a = tmpCallCompObj[tmpCallCompProp](1);
+      const b = { $: $ };
+      const tmpCallCompObj = $(b);
+      const tmpCallCompProp = $('$');
+      const a = tmpCallCompObj[tmpCallCompProp](1);
       $(a);
     }
   }

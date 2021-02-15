@@ -67,14 +67,13 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
   const tmpArrElement$2 = $(3);
   const tmpArrElement$3 = $(4);
   const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
+  const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

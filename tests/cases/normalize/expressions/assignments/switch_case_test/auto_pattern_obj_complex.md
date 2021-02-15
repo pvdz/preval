@@ -49,11 +49,10 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpBinLhs = tmpNestedAssignObjPatternRhs;
+const tmpBinLhs = tmpNestedAssignObjPatternRhs;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

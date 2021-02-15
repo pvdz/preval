@@ -61,13 +61,12 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+    const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

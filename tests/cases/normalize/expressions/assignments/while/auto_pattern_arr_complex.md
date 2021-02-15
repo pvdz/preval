@@ -46,12 +46,11 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 while (true) {
-  let tmpIfTest;
   const tmpCalleeParam = [1, 2];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  tmpIfTest = tmpNestedAssignArrPatternRhs;
+  const tmpIfTest = tmpNestedAssignArrPatternRhs;
   if (tmpIfTest) {
     $(100);
   } else {

@@ -81,7 +81,6 @@ var a;
 var b;
 var c;
 var d;
-var e;
 a = function () {
   $('a');
   return 1;
@@ -104,7 +103,7 @@ d = function () {
   c = 43;
   return 4;
 };
-e = function () {
+const e = function () {
   $('e');
   a = 51;
   b = 52;

@@ -64,11 +64,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpObjLitVal;
-  let b;
   let a;
-  let tmpChainRootCall;
-  let tmpChainElementCall;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -77,11 +73,11 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      tmpObjLitVal = { y: 1 };
-      b = { x: tmpObjLitVal };
+      const tmpObjLitVal = { y: 1 };
+      const b = { x: tmpObjLitVal };
       a = undefined;
-      tmpChainRootCall = $;
-      tmpChainElementCall = tmpChainRootCall(b);
+      const tmpChainRootCall = $;
+      const tmpChainElementCall = tmpChainRootCall(b);
       const tmpIfTest$2 = tmpChainElementCall != null;
       if (tmpIfTest$2) {
         const tmpChainRootComputed = $('x');

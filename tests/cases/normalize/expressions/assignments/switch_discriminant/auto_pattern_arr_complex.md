@@ -49,12 +49,11 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpSwitchTest;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpSwitchTest = tmpNestedAssignArrPatternRhs;
+const tmpSwitchTest = tmpNestedAssignArrPatternRhs;
 const tmpSwitchValue = tmpSwitchTest;
 {
   const tmpIfTest = 0 <= 0;

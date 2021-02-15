@@ -39,11 +39,10 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpCalleeParam$2 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$2);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
+const tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

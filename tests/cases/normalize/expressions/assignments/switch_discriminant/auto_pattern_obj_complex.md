@@ -46,11 +46,10 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpSwitchTest;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpSwitchTest = tmpNestedAssignObjPatternRhs;
+const tmpSwitchTest = tmpNestedAssignObjPatternRhs;
 const tmpSwitchValue = tmpSwitchTest;
 {
   const tmpIfTest = 0 <= 0;

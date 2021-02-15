@@ -14,6 +14,8 @@ export function phase1(fdata, resolve, req, verbose) {
   const funcStack = [];
   const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   const thisStack = [];
+  const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
+  let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
   const globallyUniqueLabelRegistry = new Map();
@@ -74,10 +76,22 @@ export function phase1(fdata, resolve, req, verbose) {
     switch (key) {
       case 'Program:before': {
         funcStack.push(node);
+        blockStack.push(node);
         break;
       }
       case 'Program:after': {
         funcStack.pop();
+        blockStack.pop();
+        break;
+      }
+
+      case 'BlockStatement:before': {
+        blockStack.push(node);
+        log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
+        break;
+      }
+      case 'BlockStatement:after': {
+        blockStack.pop();
         break;
       }
 
@@ -135,6 +149,7 @@ export function phase1(fdata, resolve, req, verbose) {
       }
 
       case 'Identifier:before': {
+        const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
         log('Ident:', name);
         const parentNode = path.nodes[path.nodes.length - 2];
@@ -148,6 +163,9 @@ export function phase1(fdata, resolve, req, verbose) {
           parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
         );
         if (kind !== 'none' && kind !== 'label' && name !== 'arguments') {
+          ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
+          ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
+          log('- Binding referenced in', currentScope.$p.pid);
           let meta = globallyUniqueNamingRegistry.get(name);
           if (!meta) {
             log('- Creating meta for `' + name + '`');
@@ -163,15 +181,58 @@ export function phase1(fdata, resolve, req, verbose) {
             globallyUniqueNamingRegistry.set(name, meta);
           }
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
-          if (kind === 'read') meta.reads.push({ parentNode, parentProp, parentIndex, node });
+          if (kind === 'read') {
+            meta.reads.push({
+              parentNode,
+              parentProp,
+              parentIndex,
+              node,
+              rwCounter: ++readWriteCounter,
+              scope: currentScope.$p.pid,
+              blockChain: blockStack.map((node) => node.$p.pid).join(','),
+            });
+          }
           if (kind === 'write') {
             if (parentNode.type === 'VariableDeclarator') {
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
-              meta.writes.push({ parentNode, parentProp, parentIndex, node, decl: { declParent, declProp, declIndex } });
+              meta.writes.push({
+                parentNode,
+                parentProp,
+                parentIndex,
+                node,
+                rwCounter: ++readWriteCounter,
+                scope: currentScope.$p.pid,
+                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+                decl: { declParent, declProp, declIndex },
+              });
+            } else if (parentNode.type === 'AssignmentExpression') {
+              ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements');
+              const assignParent = path.nodes[path.nodes.length - 4];
+              const assignProp = path.props[path.props.length - 3];
+              const assignIndex = path.indexes[path.indexes.length - 3];
+              meta.writes.push({
+                parentNode,
+                parentProp,
+                parentIndex,
+                node,
+                rwCounter: ++readWriteCounter,
+                scope: currentScope.$p.pid,
+                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+                assign: { assignParent, assignProp, assignIndex },
+              });
             } else {
-              meta.writes.push({ parentNode, parentProp, parentIndex, node });
+              // for-x lhs, param, etc
+              meta.writes.push({
+                parentNode,
+                parentProp,
+                parentIndex,
+                node,
+                rwCounter: ++readWriteCounter,
+                scope: currentScope.$p.pid,
+                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+              });
             }
           }
 

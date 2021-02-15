@@ -224,6 +224,137 @@ export function phase2(program, fdata, resolve, req) {
     return phase2(program, fdata, resolve, req);
   }
 
+  group('Checking for promotable vars');
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    if (meta.isBuiltin) return;
+
+    // A few situations;
+    // - The var is referenced from multiple scopes
+    //   -> define it, hoisted in the outer-most scope where it was referenced
+    // - The var is defined without init, written to once, read from multiple scopes
+    //   -> needs more analysis. maybe we can make it a constant.
+    // - The var is defined without init, written to once, read from one (different) scope
+    //   -> see if we can move the decl to the same scope. if not, more analysis is required to change it to constant
+    // - The var is defined without init, written to once, read from same scope.
+    //   -> if all reads happen in branches after the write, then the var is a constant
+
+    // Check if all usages of the binding is consolidated to one scope
+    const writeScopes = new Set();
+    meta.writes.forEach((write) => writeScopes.add(write.scope));
+    const readScopes = new Set();
+    meta.reads.forEach((write) => readScopes.add(write.scope));
+
+    // "Does the binding have two writes, of which the first was a decl and the second a regular assignment?"
+    if (meta.writes.length === 2 && meta.writes[0].decl && meta.writes[1].assign) {
+      group('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
+      const declData = meta.writes[0].decl;
+      const decl =
+        declData.declIndex >= 0 ? declData.declParent[declData.declProp][declData.declIndex] : declData.declParent[declData.declProp];
+      const decr = decl.declarations[0];
+      // Did the decl have no init? Because that's a case where we may ignore the "write", provided reads don't happen before it.
+      if (decr && decr.id && !decr.init) {
+        // This might be a constant. It is currently a var or let (not already a const because it has no init).
+        // Confirm that the reads happen in the same scope as the write. Ignore the decl as it doesn't write.
+        if (readScopes.size === 1 && readScopes.has(meta.writes[1].scope)) {
+          // The writes and all the reads happen in the same scope. Now confirm that the branch where
+          // the reads occur can all reach the branch (upwards) to where the write occurs.
+          // For example, `{ x=10; } x;` fails where `{ x=10; { x; } }` passes.
+
+          // Each read and write will have a blockChain property which is an array of block pids where the
+          // last pid is that of the block that contains the read or write.
+          // We need to validate here whether the read occurs in a block that is an ancestor of the block
+          // containing the write. This must mean the write chain is a prefix of the read...?
+
+          const writeChain = meta.writes[1].blockChain;
+          if (
+            meta.reads.every((read) => {
+              const pass = read.blockChain.startsWith(writeChain);
+              log('OOB check: does `' + read.blockChain + '` start with `' + writeChain + '` ?', pass);
+              return pass;
+            })
+          ) {
+            // Every read is in a block that is on the same level of, or an ancestor of, the block containing the write.
+            // As the final step We must now confirm that the first read occurs after the write.
+            // We stick to source order for now. We can use rwCounter for this purpose.
+            // Note that var statements are hoisted above func decls so that order should work out.
+            // All reads must have a higher value than the write.
+            const writeCounter = meta.writes[1].rwCounter;
+            // TODO: we can merge this step with the one above
+            if (
+              meta.reads.every((read) => {
+                log('Does the read appear later in source than the write?', read.rwCounter, '>', writeCounter);
+                return read.rwCounter > writeCounter;
+              })
+            ) {
+              log('The binding is a constant. Change the write to a const decl.');
+              // Drop the decl (the first write) and promote the second write to a const decl. Make sure to update the write too.
+
+              rule('Hoisted var decl that is a constant should become const');
+              example('var x; x = f(); g(x);', 'const x = f(); g(x);');
+              before(decl);
+              before(meta.writes[1].parentNode);
+
+              if (declData.declIndex >= 0) {
+                declData.declParent[declData.declProp][declData.declIndex] = AST.emptyStatement();
+              } else {
+                declData.declParent[declData.declProp] = AST.emptyStatement();
+              }
+
+              // Drop the empty var decl from the list
+              meta.writes.shift();
+
+              // Promote the only write left.
+              // The original code may not have been an expression statement but after normalization it must now be.
+              const assign = meta.writes[0];
+
+              ASSERT(
+                assign.assign.assignParent[assign.assign.assignProp][assign.assign.assignIndex].type === 'ExpressionStatement',
+                'all assignments should be normalized to expression statements',
+                assign,
+              );
+              ASSERT(
+                assign.assign.assignParent[assign.assign.assignProp][assign.assign.assignIndex].expression === assign.parentNode,
+                'the assignment should be in the expression statement',
+              );
+
+              declData.declParent[declData.declProp][declData.declIndex] = AST.emptyStatement();
+
+              const newNode = AST.variableDeclaration(assign.parentNode.left, assign.parentNode.right, 'const');
+
+              assign.assign.assignParent[assign.assign.assignProp][assign.assign.assignIndex] = newNode;
+
+              // Mark it as a constant for other reasons
+              meta.isConstant = true;
+
+              // Push a new write record for the const decl which replaces the old one for the assignment
+              meta.writes[0] = {
+                parentNode: newNode,
+                parentProp: 'declarations',
+                parentIndex: 0,
+                node: newNode.declarations[0].id,
+                rwCounter: assign.rwCounter,
+                scope: assign.scope,
+                blockChain: assign.blockChain,
+                decl: { declParent: assign.assign.assignParent, declProp: assign.assign.assignProp, declIndex: assign.assign.assignIndex },
+              };
+
+              after(newNode, assign.assign.assignParent);
+              inlined = true;
+            } else {
+              log('There was at least one read before the write. Binding may not be a constant (it could be).');
+            }
+          } else {
+            // At least one read appeared on a block that was not an ancestor of the block containing the write.
+            log('At least one read was oob and might read an `undefined`. Not a constant.');
+          }
+        }
+      }
+      groupEnd();
+    }
+  });
+
+  log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+
   walk(
     (node, before, nodeType, path) => {
       switch (nodeType + ':' + (before ? 'before' : 'after')) {

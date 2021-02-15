@@ -27,9 +27,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCallCallee = f;
-let tmpCalleeParam;
 x = (1).x;
-tmpCalleeParam = 1;
+const tmpCalleeParam = 1;
 tmpCallCallee(tmpCalleeParam);
 `````
 

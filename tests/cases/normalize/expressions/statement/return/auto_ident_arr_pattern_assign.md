@@ -49,14 +49,13 @@ $(a, x, y);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  tmpReturnArg = tmpNestedAssignArrPatternRhs;
+  const tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let x = 1;

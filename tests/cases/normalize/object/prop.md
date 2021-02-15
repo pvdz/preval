@@ -40,11 +40,9 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 `````js filename=intro
 const fdata = { name: 1 };
 let tmpElement_1 = 2;
-let tmpElement;
-let tmpArg_1;
 tmpElement_1 = fdata.name;
-tmpElement = [tmpElement_1, fdata];
-tmpArg_1 = [tmpElement];
+const tmpElement = [tmpElement_1, fdata];
+const tmpArg_1 = [tmpElement];
 const tmpObjLitVal = new Map(tmpArg_1);
 const tmpObjLitVal$1 = fdata.name;
 const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };

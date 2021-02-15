@@ -58,13 +58,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedProp;
-  let tmpCompObj;
-  let tmpCompProp;
-  let varInitAssignLhsComputedRhs;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -73,14 +66,14 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      b = { c: 10, d: 20 };
-      varInitAssignLhsComputedObj = b;
-      varInitAssignLhsComputedProp = $('c');
-      tmpCompObj = $(b);
-      tmpCompProp = $('d');
-      varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+      const b = { c: 10, d: 20 };
+      const varInitAssignLhsComputedObj = b;
+      const varInitAssignLhsComputedProp = $('c');
+      const tmpCompObj = $(b);
+      const tmpCompProp = $('d');
+      const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
       varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-      a = varInitAssignLhsComputedRhs;
+      const a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
   }

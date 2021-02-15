@@ -37,13 +37,12 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-let a;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
+const a = tmpNestedAssignArrPatternRhs;
 export { a };
 $(a, b);
 `````

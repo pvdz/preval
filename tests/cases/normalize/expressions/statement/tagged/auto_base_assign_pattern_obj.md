@@ -42,12 +42,11 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$2 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$2);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
+const tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````

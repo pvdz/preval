@@ -42,11 +42,10 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 {
-  let xyz;
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpNestedAssignObjPatternRhs.a;
-  xyz = tmpNestedAssignObjPatternRhs;
+  const xyz = tmpNestedAssignObjPatternRhs;
   while (true) {
     $(xyz);
     $(1);

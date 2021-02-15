@@ -70,8 +70,6 @@ switch (1) {
 `````js filename=intro
 {
   let a;
-  let tmpChainRootCall;
-  let tmpChainElementCall;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -86,8 +84,8 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       a = undefined;
-      tmpChainRootCall = $;
-      tmpChainElementCall = tmpChainRootCall($);
+      const tmpChainRootCall = $;
+      const tmpChainElementCall = tmpChainRootCall($);
       const tmpIfTest$3 = tmpChainElementCall != null;
       if (tmpIfTest$3) {
         const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);

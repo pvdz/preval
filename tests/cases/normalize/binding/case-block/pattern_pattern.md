@@ -65,7 +65,6 @@ let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 {
   let bindingPatternArrRoot;
-  let arrPatternSplat;
   let a_1;
   let b_1;
   let tmpSwitchCaseToStart = 1;
@@ -82,7 +81,7 @@ const tmpSwitchTest = $('a');
       x = arrPatternSplat$1[1];
       y = arrPatternSplat$1[2];
       bindingPatternArrRoot = z;
-      arrPatternSplat = [...bindingPatternArrRoot];
+      const arrPatternSplat = [...bindingPatternArrRoot];
       a_1 = arrPatternSplat[0];
       b_1 = arrPatternSplat[1];
       break tmpSwitchBreak;

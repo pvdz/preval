@@ -66,8 +66,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let bindingPatternArrRoot;
-  let arrPatternSplat;
   let x;
   let tmpSwitchCaseToStart = 2;
   const tmpIfTest = 1 === 1;
@@ -82,8 +80,8 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      bindingPatternArrRoot = [4, 5, 6];
-      arrPatternSplat = [...bindingPatternArrRoot];
+      const bindingPatternArrRoot = [4, 5, 6];
+      const arrPatternSplat = [...bindingPatternArrRoot];
       x = arrPatternSplat[0];
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

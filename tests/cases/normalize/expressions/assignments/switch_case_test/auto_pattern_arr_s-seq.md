@@ -52,13 +52,12 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpBinLhs = tmpNestedAssignArrPatternRhs;
+const tmpBinLhs = tmpNestedAssignArrPatternRhs;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

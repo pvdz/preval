@@ -47,13 +47,12 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  tmpReturnArg = tmpNestedAssignArrPatternRhs;
+  const tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let b = [];

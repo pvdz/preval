@@ -43,14 +43,13 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpArrElToSpread;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpArrElToSpread = tmpNestedAssignArrPatternRhs;
+const tmpArrElToSpread = tmpNestedAssignArrPatternRhs;
 [...tmpArrElToSpread];
 $(a, x, y);
 `````

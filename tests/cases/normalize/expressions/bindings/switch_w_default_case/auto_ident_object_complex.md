@@ -66,10 +66,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpObjLitVal;
-  let tmpObjLitVal$1;
-  let tmpObjLitVal$2;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -83,10 +79,10 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      tmpObjLitVal = $(1);
-      tmpObjLitVal$1 = 2;
-      tmpObjLitVal$2 = $(3);
-      a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+      const tmpObjLitVal = $(1);
+      const tmpObjLitVal$1 = 2;
+      const tmpObjLitVal$2 = $(3);
+      const a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
       $(a);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

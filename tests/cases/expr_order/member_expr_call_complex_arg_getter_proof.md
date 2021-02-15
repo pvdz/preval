@@ -56,15 +56,13 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var a;
-var x;
-a = {
+const a = {
   get b() {
     $('b.get');
     return 100;
   },
 };
-x = {
+const x = {
   get y() {
     $('y.get');
     return $;

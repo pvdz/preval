@@ -52,10 +52,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedRhs;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -64,11 +60,11 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      b = { c: 1 };
-      varInitAssignLhsComputedObj = b;
-      varInitAssignLhsComputedRhs = 2;
+      const b = { c: 1 };
+      const varInitAssignLhsComputedObj = b;
+      const varInitAssignLhsComputedRhs = 2;
       varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-      a = varInitAssignLhsComputedRhs;
+      const a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
   }

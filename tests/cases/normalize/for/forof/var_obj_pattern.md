@@ -36,11 +36,10 @@ for (let [x] of {a: 1, b: 2}) $(x);
 {
   const tmpForOfPatDeclRhs = { a: 1, b: 2 };
   let tmpForOfPatDeclLhs;
-  let x;
   for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
     const arrAssignPatternRhs = tmpForOfPatDeclLhs;
     const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
+    const x = arrPatternSplat[0];
     $(x);
   }
 }

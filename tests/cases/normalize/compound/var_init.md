@@ -33,13 +33,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
 let a = $(1);
 const tmpNestedCompoundLhs = a;
 const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
-x = tmpNestedComplexRhs;
+const x = tmpNestedComplexRhs;
 $(x);
 `````
 

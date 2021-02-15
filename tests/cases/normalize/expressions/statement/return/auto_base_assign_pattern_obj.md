@@ -46,12 +46,11 @@ $(a, b);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
-  tmpReturnArg = tmpNestedAssignObjPatternRhs;
+  const tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
 }
 let b = {};

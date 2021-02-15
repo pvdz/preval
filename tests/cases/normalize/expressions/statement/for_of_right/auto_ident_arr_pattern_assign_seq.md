@@ -49,7 +49,6 @@ $(a, x, y);
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let tmpForOfDeclRhs;
   $(x_1);
   $(y);
   const tmpArrElement = $(3);
@@ -58,7 +57,7 @@ let a = { a: 999, b: 1000 };
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x_1 = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
+  const tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
   let x_1;
   for (x_1 of tmpForOfDeclRhs) {
   }

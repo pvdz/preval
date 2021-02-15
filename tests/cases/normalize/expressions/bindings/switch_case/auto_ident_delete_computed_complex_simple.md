@@ -51,10 +51,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let arg;
-  let tmpDeleteCompObj;
-  let tmpDeleteCompProp;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -63,10 +59,10 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      arg = { y: 1 };
-      tmpDeleteCompObj = $(arg);
-      tmpDeleteCompProp = 'y';
-      a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+      const arg = { y: 1 };
+      const tmpDeleteCompObj = $(arg);
+      const tmpDeleteCompProp = 'y';
+      const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
       $(a, arg);
     }
   }

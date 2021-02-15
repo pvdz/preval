@@ -44,14 +44,13 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 $(10);
 $(20);
 const tmpCalleeParam$2 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$2);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
+const tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

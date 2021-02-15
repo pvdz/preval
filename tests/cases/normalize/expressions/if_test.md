@@ -32,12 +32,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x;
-let tmpIfTest;
 const tmpObjLitVal = $(1);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
-x = tmpNestedAssignObjPatternRhs.x;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
+const x = tmpNestedAssignObjPatternRhs.x;
+const tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   $(2);
 }

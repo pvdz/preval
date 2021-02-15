@@ -37,11 +37,10 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpCalleeParamSpread;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpCalleeParamSpread = tmpNestedAssignObjPatternRhs;
+const tmpCalleeParamSpread = tmpNestedAssignObjPatternRhs;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

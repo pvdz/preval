@@ -35,13 +35,11 @@ $(b, c);
 
 `````js filename=intro
 let b = [];
-let c;
-let tmpBinLhs;
 const tmpNestedAssignArrPatternRhs = [2];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpBinLhs = tmpNestedAssignArrPatternRhs;
-c = tmpBinLhs === 1;
+const tmpBinLhs = tmpNestedAssignArrPatternRhs;
+const c = tmpBinLhs === 1;
 $(b, c);
 `````
 

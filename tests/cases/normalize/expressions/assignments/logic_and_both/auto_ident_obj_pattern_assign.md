@@ -64,13 +64,12 @@ y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
   const tmpObjLitVal$2 = $(3);
   const tmpObjLitVal$3 = $(4);
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
   x = tmpNestedAssignObjPatternRhs$1.x;
   y = tmpNestedAssignObjPatternRhs$1.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
+  const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

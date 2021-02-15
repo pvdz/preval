@@ -71,10 +71,6 @@ switch (1) {
 `````js filename=intro
 {
   let b;
-  let tmpCallCallee;
-  let tmpCalleeParam;
-  let tmpCalleeParam$1;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -89,10 +85,10 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = { $: $ };
-      tmpCallCallee = $;
-      tmpCalleeParam = $(1);
-      tmpCalleeParam$1 = $(2);
-      a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(1);
+      const tmpCalleeParam$1 = $(2);
+      const a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
       $(a);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

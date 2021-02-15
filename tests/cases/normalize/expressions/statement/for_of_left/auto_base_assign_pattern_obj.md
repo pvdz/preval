@@ -52,12 +52,11 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    let tmpAssignMemLhsObj;
     const tmpObjLitVal = $(2);
     const tmpCalleeParam$1 = { b: tmpObjLitVal };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
     b = tmpNestedAssignObjPatternRhs.b;
-    tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
+    const tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

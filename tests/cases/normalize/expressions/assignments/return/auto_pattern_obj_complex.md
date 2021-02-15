@@ -43,11 +43,10 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpNestedAssignObjPatternRhs.a;
-  tmpReturnArg = tmpNestedAssignObjPatternRhs;
+  const tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
 }
 let bindingPatternObjRoot = { a: 999, b: 1000 };

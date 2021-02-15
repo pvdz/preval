@@ -51,7 +51,6 @@ $(a, x, y);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(x);
   $(y);
   const tmpArrElement = $(3);
@@ -60,7 +59,7 @@ function f() {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  tmpReturnArg = tmpNestedAssignArrPatternRhs;
+  const tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let x = 1;

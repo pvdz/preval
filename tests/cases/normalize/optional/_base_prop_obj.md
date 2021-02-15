@@ -34,8 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var f;
-f = { x: 10 };
+const f = { x: 10 };
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = f;
 const tmpIfTest = tmpChainRootProp != null;

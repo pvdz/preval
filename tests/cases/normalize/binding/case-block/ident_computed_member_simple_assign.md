@@ -64,12 +64,6 @@ $(a, b, c);
 let b = { x: 2 };
 const tmpSwitchTest = $('a');
 {
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedProp;
-  let varInitAssignLhsComputedObj$1;
-  let varInitAssignLhsComputedProp$1;
-  let varInitAssignLhsComputedRhs$1;
-  let varInitAssignLhsComputedRhs;
   let a_1;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
@@ -80,13 +74,13 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      varInitAssignLhsComputedObj = b;
-      varInitAssignLhsComputedProp = $('x');
-      varInitAssignLhsComputedObj$1 = $(3);
-      varInitAssignLhsComputedProp$1 = $('y');
-      varInitAssignLhsComputedRhs$1 = $(4);
+      const varInitAssignLhsComputedObj = b;
+      const varInitAssignLhsComputedProp = $('x');
+      const varInitAssignLhsComputedObj$1 = $(3);
+      const varInitAssignLhsComputedProp$1 = $('y');
+      const varInitAssignLhsComputedRhs$1 = $(4);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-      varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
       varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
       a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;

@@ -49,10 +49,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpArrElement;
-  let tmpArrElement$1;
-  let tmpArrElement$2;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -61,10 +57,10 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      tmpArrElement = $(1);
-      tmpArrElement$1 = 2;
-      tmpArrElement$2 = $(3);
-      a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+      const tmpArrElement = $(1);
+      const tmpArrElement$1 = 2;
+      const tmpArrElement$2 = $(3);
+      const a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
       $(a);
     }
   }

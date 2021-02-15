@@ -41,11 +41,10 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 {
-  let tmpForInDeclRhs;
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpNestedAssignObjPatternRhs.a;
-  tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
+  const tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
   let x;
   for (x in tmpForInDeclRhs) {
   }

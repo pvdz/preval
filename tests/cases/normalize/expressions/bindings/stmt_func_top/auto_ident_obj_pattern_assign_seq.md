@@ -49,7 +49,6 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let x = 1;
   let y = 2;
-  let a;
   $(x);
   $(y);
   const tmpObjLitVal = $(3);
@@ -57,7 +56,7 @@ function f() {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  a = tmpNestedAssignObjPatternRhs;
+  const a = tmpNestedAssignObjPatternRhs;
   $(a, x, y);
 }
 const tmpCalleeParam = f();

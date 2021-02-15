@@ -75,12 +75,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
-  let tmpCallCallee;
-  let tmpCalleeParam;
-  let tmpPostUpdArgObj;
-  let tmpPostUpdArgVal;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -94,15 +88,15 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      b = { x: 1 };
-      tmpCallCallee = $;
-      tmpCalleeParam = $(b);
-      tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-      tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+      const b = { x: 1 };
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(b);
+      const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+      const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
       const tmpAssignMemLhsObj = tmpPostUpdArgObj;
       const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
       tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-      a = tmpPostUpdArgVal;
+      const a = tmpPostUpdArgVal;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

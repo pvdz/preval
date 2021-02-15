@@ -74,7 +74,6 @@ y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
   $(x);
   $(y);
   const tmpArrElement$2 = $(3);
@@ -83,7 +82,7 @@ if (tmpCalleeParam) {
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
+  const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

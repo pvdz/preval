@@ -58,9 +58,6 @@ $(a, b, c);
 let b = { x: 2 };
 const tmpSwitchTest = $('a');
 {
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedRhs$1;
-  let varInitAssignLhsComputedRhs;
   let a_1;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
@@ -71,10 +68,10 @@ const tmpSwitchTest = $('a');
   tmpSwitchBreak: {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      varInitAssignLhsComputedObj = $(3);
-      varInitAssignLhsComputedRhs$1 = $(4);
+      const varInitAssignLhsComputedObj = $(3);
+      const varInitAssignLhsComputedRhs$1 = $(4);
       varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
-      varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
       b.x = varInitAssignLhsComputedRhs;
       a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;

@@ -42,11 +42,9 @@ f(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-var tmpBinaryLeft;
-var tmpTernaryTest;
 function g() {}
-tmpBinaryLeft = a.x;
-tmpTernaryTest = tmpBinaryLeft === 1;
+const tmpBinaryLeft = a.x;
+const tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
   tmpArg = 2;
 } else {

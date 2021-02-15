@@ -39,11 +39,10 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let obj = {};
-let tmpCompObj;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpCompObj = tmpNestedAssignObjPatternRhs;
+const tmpCompObj = tmpNestedAssignObjPatternRhs;
 tmpCompObj.a;
 $(a);
 `````

@@ -47,14 +47,13 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   $(10);
   $(20);
   const tmpCalleeParam = [1, 2];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat[0];
-  tmpReturnArg = tmpNestedAssignArrPatternRhs;
+  const tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };

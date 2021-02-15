@@ -38,10 +38,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 var a;
 var b;
-var c;
 a = 10;
 b = 20;
-c = {};
+const c = {};
 const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.x;
 b = tmpNestedComplexRhs;

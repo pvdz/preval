@@ -40,12 +40,11 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let xyz;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-xyz = tmpNestedAssignObjPatternRhs;
+const xyz = tmpNestedAssignObjPatternRhs;
 $(xyz);
 $(a, b);
 `````

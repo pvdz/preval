@@ -36,12 +36,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var a;
 var b;
-var c;
-a = [];
+const a = [];
 b = 20;
-c = 30;
+const c = 30;
 const varInitAssignLhsComputedObj = $(a);
 b = c;
 let varInitAssignLhsComputedRhs = b;

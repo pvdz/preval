@@ -44,11 +44,10 @@ if (tmpIfTest) {
   let x = 1;
   let y = 2;
   let z = [10, 20, 30];
-  let a;
   const arrPatternSplat = [...z];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  a = z;
+  const a = z;
   $(a, x, y, z);
 }
 `````

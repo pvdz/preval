@@ -37,9 +37,8 @@ $(x, a);
 ## Output
 
 `````js filename=intro
-var a;
 var x;
-a = 100;
+const a = 100;
 const tmpArrElement = {};
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];

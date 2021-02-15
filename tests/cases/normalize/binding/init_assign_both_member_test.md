@@ -53,10 +53,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-b = {
+const b = {
   get x() {
     $(1);
     return 10;
@@ -65,7 +62,7 @@ b = {
     $(2, n);
   },
 };
-c = {
+const c = {
   get x() {
     $(3);
     return 20;
@@ -76,7 +73,7 @@ c = {
 };
 const tmpNestedAssignPropRhs = c.x;
 b.x = tmpNestedAssignPropRhs;
-a = tmpNestedAssignPropRhs;
+const a = tmpNestedAssignPropRhs;
 $(5, a);
 `````
 

@@ -36,10 +36,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 var a;
 var b;
-var c;
 a = 10;
 b = 20;
-c = 30;
+const c = 30;
 b = c;
 a = c;
 let tmpCalleeParam = a;

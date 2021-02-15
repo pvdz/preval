@@ -54,8 +54,6 @@ $(a, b, c);
 `````js filename=intro
 const tmpSwitchTest = $('a');
 {
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedRhs;
   let a_1;
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $('a');
@@ -67,8 +65,8 @@ const tmpSwitchTest = $('a');
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
       $(2);
-      varInitAssignLhsComputedObj = $(3);
-      varInitAssignLhsComputedRhs = $(3);
+      const varInitAssignLhsComputedObj = $(3);
+      const varInitAssignLhsComputedRhs = $(3);
       varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
       a_1 = varInitAssignLhsComputedRhs;
       break tmpSwitchBreak;

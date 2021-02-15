@@ -68,11 +68,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpCallCallee;
-  let tmpCalleeParam;
-  let bindingPatternArrRoot;
-  let arrPatternSplat;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -86,11 +81,11 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      tmpCallCallee = $;
-      tmpCalleeParam = [1, 2];
-      bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
-      arrPatternSplat = [...bindingPatternArrRoot];
-      a = arrPatternSplat[0];
+      const tmpCallCallee = $;
+      const tmpCalleeParam = [1, 2];
+      const bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+      const arrPatternSplat = [...bindingPatternArrRoot];
+      const a = arrPatternSplat[0];
       $(a);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

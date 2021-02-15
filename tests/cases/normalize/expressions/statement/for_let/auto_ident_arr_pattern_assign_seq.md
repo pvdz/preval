@@ -51,7 +51,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 {
-  let xyz;
   $(x);
   $(y);
   const tmpArrElement = $(3);
@@ -60,7 +59,7 @@ let a = { a: 999, b: 1000 };
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  xyz = tmpNestedAssignArrPatternRhs;
+  const xyz = tmpNestedAssignArrPatternRhs;
   while (true) {
     $(xyz);
     $(1);

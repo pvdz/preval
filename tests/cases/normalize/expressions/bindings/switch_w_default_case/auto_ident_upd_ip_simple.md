@@ -68,8 +68,6 @@ switch (1) {
 `````js filename=intro
 {
   let b;
-  let tmpPostUpdArgIdent;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -84,9 +82,9 @@ switch (1) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       b = 1;
-      tmpPostUpdArgIdent = b;
+      const tmpPostUpdArgIdent = b;
       b = b + 1;
-      a = tmpPostUpdArgIdent;
+      const a = tmpPostUpdArgIdent;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

@@ -47,8 +47,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -57,8 +55,8 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      x = 1;
-      a = typeof x;
+      const x = 1;
+      const a = typeof x;
       $(a, x);
     }
   }

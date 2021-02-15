@@ -39,12 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-a = { x: 1 };
-b = { x: 2 };
-c = { x: 3 };
+const a = { x: 1 };
+const b = { x: 2 };
+const c = { x: 3 };
 const varInitAssignLhsComputedObj = $(a);
 const varInitAssignLhsComputedObj$1 = $(b);
 const tmpCompObj = $(c);

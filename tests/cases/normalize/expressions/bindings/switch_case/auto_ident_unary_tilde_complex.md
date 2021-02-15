@@ -45,8 +45,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpUnaryArg;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -55,8 +53,8 @@ switch (1) {
   {
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$1) {
-      tmpUnaryArg = $(100);
-      a = ~tmpUnaryArg;
+      const tmpUnaryArg = $(100);
+      const a = ~tmpUnaryArg;
       $(a);
     }
   }

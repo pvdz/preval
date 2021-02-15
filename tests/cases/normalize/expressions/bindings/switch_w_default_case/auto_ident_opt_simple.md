@@ -71,9 +71,7 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
   let a;
-  let tmpChainRootProp;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -87,9 +85,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      b = { x: 1 };
+      const b = { x: 1 };
       a = undefined;
-      tmpChainRootProp = b;
+      const tmpChainRootProp = b;
       const tmpIfTest$3 = tmpChainRootProp != null;
       if (tmpIfTest$3) {
         const tmpChainElementObject = tmpChainRootProp.x;

@@ -75,13 +75,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let b;
-  let tmpCallCallee;
-  let tmpCalleeParam;
-  let varInitAssignLhsComputedObj;
-  let tmpBinLhs;
-  let varInitAssignLhsComputedRhs;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -95,14 +88,14 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      b = { x: 1 };
-      tmpCallCallee = $;
-      tmpCalleeParam = $(b);
-      varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
-      tmpBinLhs = varInitAssignLhsComputedObj.x;
-      varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+      const b = { x: 1 };
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(b);
+      const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+      const tmpBinLhs = varInitAssignLhsComputedObj.x;
+      const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
       varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-      a = varInitAssignLhsComputedRhs;
+      const a = varInitAssignLhsComputedRhs;
       $(a, b);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

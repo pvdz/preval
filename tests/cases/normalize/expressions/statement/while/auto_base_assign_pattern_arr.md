@@ -47,13 +47,12 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  tmpIfTest = tmpNestedAssignArrPatternRhs;
+  const tmpIfTest = tmpNestedAssignArrPatternRhs;
   if (tmpIfTest) {
     $(100);
   } else {

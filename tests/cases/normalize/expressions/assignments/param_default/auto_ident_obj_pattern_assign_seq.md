@@ -58,7 +58,6 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
     $(x);
     $(y);
     const tmpObjLitVal = $(3);
@@ -66,7 +65,7 @@ function f($tdz$__p) {
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+    const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {

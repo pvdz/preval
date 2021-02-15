@@ -44,11 +44,10 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let tmpCalleeParam = undefined;
-let tmpIfTest;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
+const tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

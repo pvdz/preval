@@ -48,7 +48,6 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
 $(x);
 $(y);
 const tmpArrElement = $(3);
@@ -57,7 +56,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
+const tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, x, y);
 `````

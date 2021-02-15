@@ -39,11 +39,10 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpObjSpread;
 const tmpNestedAssignArrPatternRhs = b;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpObjSpread = tmpNestedAssignArrPatternRhs;
+const tmpObjSpread = tmpNestedAssignArrPatternRhs;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a, b);

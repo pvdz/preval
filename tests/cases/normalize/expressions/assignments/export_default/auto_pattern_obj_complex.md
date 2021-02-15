@@ -36,11 +36,10 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpExportDefault;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpExportDefault = tmpNestedAssignObjPatternRhs;
+const tmpExportDefault = tmpNestedAssignObjPatternRhs;
 export { tmpExportDefault as default };
 $(a);
 `````

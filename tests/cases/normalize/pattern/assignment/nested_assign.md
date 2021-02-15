@@ -27,10 +27,9 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y;
 const tmpNestedAssignObjPatternRhs = { x: 1 };
 x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs;
+const y = tmpNestedAssignObjPatternRhs;
 $(y);
 `````
 

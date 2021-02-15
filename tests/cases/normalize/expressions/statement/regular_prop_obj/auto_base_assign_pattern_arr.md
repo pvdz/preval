@@ -43,13 +43,12 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpCompObj = tmpNestedAssignArrPatternRhs;
+const tmpCompObj = tmpNestedAssignArrPatternRhs;
 tmpCompObj.a;
 $(a, b);
 `````

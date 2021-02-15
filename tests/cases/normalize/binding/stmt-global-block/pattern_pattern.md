@@ -47,11 +47,10 @@ if (tmpIfTest) {
   let x = 1;
   let y = 2;
   let z = [10, 20, 30];
-  let bindingPatternArrRoot;
   const arrPatternSplat$1 = [...z];
   x = arrPatternSplat$1[1];
   y = arrPatternSplat$1[2];
-  bindingPatternArrRoot = z;
+  const bindingPatternArrRoot = z;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   let b = arrPatternSplat[1];

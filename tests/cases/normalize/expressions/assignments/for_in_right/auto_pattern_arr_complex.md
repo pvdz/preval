@@ -44,12 +44,11 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 {
-  let tmpForInDeclRhs;
   const tmpCalleeParam = [1, 2];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
+  const tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
   let x;
   for (x in tmpForInDeclRhs) {
   }

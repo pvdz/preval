@@ -66,9 +66,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let x;
-  let tmpUnaryArg;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -82,9 +79,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      x = 1;
-      tmpUnaryArg = $(x);
-      a = typeof tmpUnaryArg;
+      const x = 1;
+      const tmpUnaryArg = $(x);
+      const a = typeof tmpUnaryArg;
       $(a, x);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

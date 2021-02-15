@@ -54,7 +54,6 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 {
   while (true) {
-    let tmpIfTest;
     $(x);
     $(y);
     const tmpObjLitVal = $(3);
@@ -62,7 +61,7 @@ let a = { a: 999, b: 1000 };
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
+    const tmpIfTest = tmpNestedAssignObjPatternRhs;
     if (tmpIfTest) {
       $(1);
     } else {

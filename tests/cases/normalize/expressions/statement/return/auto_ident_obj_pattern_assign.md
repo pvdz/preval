@@ -48,13 +48,12 @@ $(a, x, y);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg;
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  tmpReturnArg = tmpNestedAssignObjPatternRhs;
+  const tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
 }
 let x = 1;

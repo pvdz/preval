@@ -49,14 +49,13 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpCalleeParam = undefined;
-let tmpIfTest;
 $(10);
 $(20);
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpIfTest = tmpNestedAssignArrPatternRhs;
+const tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

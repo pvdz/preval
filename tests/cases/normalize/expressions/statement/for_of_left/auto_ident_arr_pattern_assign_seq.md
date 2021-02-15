@@ -58,7 +58,6 @@ const tmpForOfRhs = $(tmpCalleeParam);
 {
   let tmpForOfLhsNode;
   for (tmpForOfLhsNode of tmpForOfRhs) {
-    let tmpAssignMemLhsObj;
     $(x);
     $(y);
     const tmpArrElement = $(3);
@@ -67,7 +66,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;
+    const tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;
     tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
 }

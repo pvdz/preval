@@ -66,9 +66,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let arg;
-  let tmpDeleteObj;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -82,9 +79,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      arg = { y: 1 };
-      tmpDeleteObj = $(arg);
-      a = delete tmpDeleteObj.y;
+      const arg = { y: 1 };
+      const tmpDeleteObj = $(arg);
+      const a = delete tmpDeleteObj.y;
       $(a, arg);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

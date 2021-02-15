@@ -64,9 +64,6 @@ switch (1) {
 
 `````js filename=intro
 {
-  let tmpBinBothLhs;
-  let tmpBinBothRhs;
-  let a;
   let tmpSwitchCaseToStart = 1;
   const tmpIfTest = 1 === 1;
   if (tmpIfTest) {
@@ -80,9 +77,9 @@ switch (1) {
   {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
-      tmpBinBothLhs = $(1);
-      tmpBinBothRhs = $(2);
-      a = tmpBinBothLhs + tmpBinBothRhs;
+      const tmpBinBothLhs = $(1);
+      const tmpBinBothRhs = $(2);
+      const a = tmpBinBothLhs + tmpBinBothRhs;
       $(a);
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

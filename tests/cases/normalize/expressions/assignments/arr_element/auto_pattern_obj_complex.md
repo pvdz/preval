@@ -44,16 +44,14 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpBinBothLhs;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
-let tmpBinBothRhs;
+const tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
 const tmpCalleeParam$2 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$2);
 a = tmpNestedAssignObjPatternRhs$1.a;
-tmpBinBothRhs = tmpNestedAssignObjPatternRhs$1;
+const tmpBinBothRhs = tmpNestedAssignObjPatternRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

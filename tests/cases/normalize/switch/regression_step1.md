@@ -79,13 +79,12 @@ const tmpSwitchTest = $(1);
   let tmpIfTest = tmpFallthrough;
   if (tmpIfTest) {
   } else {
-    let tmpBinBothRhs;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
+    const tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
     tmpIfTest = tmpSwitchTest === tmpBinBothRhs;
   }
   if (tmpIfTest) {

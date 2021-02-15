@@ -39,12 +39,11 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpExportDefault = tmpNestedAssignObjPatternRhs;
+const tmpExportDefault = tmpNestedAssignObjPatternRhs;
 export { tmpExportDefault as default };
 $(a, b);
 `````

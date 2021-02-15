@@ -545,8 +545,8 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
           } else {
             // var x;
-            ASSERT(parentNode[parentProp][parentIndex] === node);
-            ASSERT(node && parentIndex >= 0);
+            ASSERT(node);
+            ASSERT((parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === node, 'should find parent', node);
             func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
           }
         }

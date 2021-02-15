@@ -140,6 +140,8 @@ const VERBOSE_TRACING = true;
   - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
   - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
   - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
+  - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
+  - TODO: how do we static compute something like `$(1) + 2 + 3` when it splits it like `tmp = $(1) + 2, tmp + 3` ...
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -5528,7 +5530,8 @@ export function phaseNormalize(fdata, fname) {
           }
 
           default:
-            ASSERT(false, 'what other node holds var or func decls?');
+            console.dir(parentNode, { depth: null });
+            ASSERT(false, 'what other node holds var or func decls?', parentNode);
         }
 
         groupEnd();

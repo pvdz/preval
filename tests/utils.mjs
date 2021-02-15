@@ -84,8 +84,14 @@ export function fromMarkdownCase(md, fname, config) {
       fname,
       mdHead: mdHead.trim(),
       mdChunks: chunks
-        .filter((s) =>
-          !s.startsWith('Output\n') && !s.startsWith('Normalized') && !s.startsWith('Uniformed') && !s.startsWith('Globals') && !s.startsWith('Result'))
+        .filter(
+          (s) =>
+            !s.startsWith('Output\n') &&
+            !s.startsWith('Normalized') &&
+            !s.startsWith('Uniformed') &&
+            !s.startsWith('Globals') &&
+            !s.startsWith('Result'),
+        )
         .map((s) => '## ' + s.trim()),
       fin: {},
     };
@@ -306,3 +312,4 @@ async function yn(msg = 'Answer?') {
  sets.forEach((map, day) => arr.push('// ' + day + '\nyarn --ignore-engines add ' + [...map.entries()].map(([name, ver]) => name + '@' + ver).join(' ')) )
  console.log(arr.join('\n\n'))
  */
+

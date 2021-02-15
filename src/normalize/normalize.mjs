@@ -134,7 +134,6 @@ const VERBOSE_TRACING = true;
   - TODO: do we properly simplify array literals with complex spreads?   
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
   - TODO: how does `arguments` work with the implicit unique binding stuff??
-  - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
   - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
   - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
   - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
@@ -791,7 +790,9 @@ export function phaseNormalize(fdata, fname) {
     // just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`
 
     const nominated = body.slice(i);
-    const toKeep = nominated.filter(node => node.type === 'VariableDeclaration' || node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration');
+    const toKeep = nominated.filter(
+      (node) => node.type === 'VariableDeclaration' || node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration',
+    );
     if (i + toKeep.length + 1 === body.length) {
       // This DCE call would not eliminate anything
       return false;
@@ -803,7 +804,11 @@ export function phaseNormalize(fdata, fname) {
 
     body.length = i + 1;
     if (toKeep.length > 0) {
-      log('Restoring', toKeep.length, 'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...');
+      log(
+        'Restoring',
+        toKeep.length,
+        'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...',
+      );
       body.push(...toKeep);
     }
 

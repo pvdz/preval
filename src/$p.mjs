@@ -6,7 +6,6 @@ export function $p() {
 
   return {
     pid, // Incremental unique id (may have gaps between consecutive nodes but will be unique)
-    explicitReturns: '', // '','yes','no'. Set if the node is a branching type where it matters
 
     // Add properties here in a comment but not actually (you would do this for perf) because it makes debugging more noisy
 

@@ -10,6 +10,7 @@ import { $p } from '../$p.mjs';
 
 export function prepareNormalization(fdata, resolve, req, verbose) {
   const ast = fdata.tenkoOutput.ast;
+  const fname = fdata.fname;
 
   const funcStack = [];
   const lexScopeStack = [];
@@ -404,45 +405,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         let lexes = lexScopeStack.slice(1);
         while (lexes[0] && ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(lexes[0].type)) lexes.shift(); // Drop global block scopes etc
 
-        const body = node.body.body;
-        let explicit = false;
-        if (node.expression) {
-          log('Arrow has expression so it always returns explicitly');
-          explicit = true;
-        } else {
-          //log('checking', body.length, 'statements to get explicitReturns state');
-          //for (let i = 0; i < body.length; ++i) {
-          //  if (body[i].$p.explicitReturns === 'yes' && body[i].type !== 'FunctionDeclaration') {
-          //    explicit = true;
-          //    // All branches of this statement returns, so the remainder must be dead code. Eliminate it now.
-          //    // Ignore if it is the last statement of the function
-          //    // TODO: hoisting. `function f(){ return g; function g(){} }`
-          //    if (i < body.length - 1) {
-          //      log(
-          //        '- Returning early. Slicing',
-          //        body.length - (i + 1),
-          //        'statements from this function that appeared after a return statement',
-          //      );
-          //
-          //      // It's trickier than it seems.
-          //      // DCE'd var decls must be inlined as `undefined` as their init is never visited.
-          //      // Func decls should only appear at toplevel so I think those are fine? But who knows at this point.
-          //
-          //      node.body.body.forEach((cnode, j) => {
-          //        if (!cnode) return;
-          //        if (j <= i) return;
-          //        if (cnode.type === 'FunctionDeclaration') return; // Do not remove function declarations
-          //        if (cnode.type === 'VariableDeclaration' && cnode.kind === 'var') return; // keep var decls, but not let/const (they're tdz'd)
-          //        node.body.body[j] = { type: 'EmptyStatement', $p: $p() };
-          //      });
-          //    }
-          //    break;
-          //  }
-          //}
-        }
-        node.$p.explicitReturns = explicit ? 'yes' : 'no';
-        log('- explicitReturns =', node.$p.explicitReturns);
-
         node.$p.parentScope = funcStack[funcStack.length - 1];
 
         break;
@@ -587,7 +549,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'ImportDefaultSpecifier: after': {
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
-        const resolvedSource = resolve(source, filename);
+        const resolvedSource = resolve(source, fname);
 
         ASSERT(node.specifiers, 'fixme if different', node);
 
@@ -598,14 +560,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         break;
       }
 
-      case 'MemberExpression:after': {
-        break;
-      }
-
-      case 'Super:after': {
-        break;
-      }
-
       case 'ThisExpression:after': {
         if (thisStack.length) {
           log('Marking func as having `this` access');
@@ -613,30 +567,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         }
         break;
       }
-
-      case 'ReturnStatement:before': {
-        node.$p.explicitReturns = 'yes'; // Per definition :)
-        break;
-      }
-
-      // block, if, else, try, catch, finally, switch, case, default, [with], label. Not the loops, can't guarantee them
-
-      case 'BlockStatement:after': // node.body
-        // If there is a node that has explicitReturns=yes and none of the nodes that precede it is break/continue/throw,
-        // then the block returns. Otherwise the block does not return.
-        for (let i = 0; i < node.body.length; ++i) {
-          const snode = node.body[i];
-          if (snode.$p.explicitReturns === 'yes') {
-            node.$p.explicitReturns = 'yes';
-            break;
-          }
-          if (node.type === 'BreakStatement' || node.type === 'ContinueStatement' || node.type === 'ThrowStatement') {
-            break;
-          }
-        }
-        if (node.$p.explicitReturns !== 'yes') node.$p.explicitReturns = 'no';
-        log('- explicitReturns:', node.$p.explicitReturns);
-        break;
 
       case 'BreakStatement:before':
       case 'ContinueStatement:before': {
@@ -665,102 +595,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         break;
       }
 
-      case 'IfStatement:after': // there is no ElseStatement (!), node.consequent and node.alternate
-        // The problem here is that each branch is not visited explicitly so we can't queue up a return tid for
-        // the `if` and the `else` separately. That's a little annoying. So we have to retroactively check the
-        // last statement, instead.
-
-        if (node.consequent.$p.explicitReturns !== 'yes') {
-          // The `if` statement must exist. If it is not returning then this doesn't either
-          node.$p.explicitReturns = 'no';
-        } else if (!node.alternate || node.alternate.$p.explicitReturns !== 'yes') {
-          // The `else` may not exist, in that case the whole thing doesn't return. Otherwise it only returns if the
-          // sub-statement returns.
-          node.$p.explicitReturns = 'no';
-        } else {
-          node.$p.explicitReturns = 'yes';
-        }
-        log('- explicitReturns:', node.$p.explicitReturns);
-        break;
-
-      // case 'TryStatement:before': {
-      //   // This is the catch scope (!)
-      //   node.handler.$p = {};
-      //   node.handler.$p.scope = {type: 'zscope', names: new Map};
-      //   break;
-      // }
-      case 'TryStatement:after': // node.block, node.handler, node.finalizer
-        // Tricky case. The `try` node returns if;
-        // - there is a finally block; the node returns when the finally returns, and does not when finally does not
-        // - there is only a catch block and both the blocks return
-        // Note that we ignore explicit `throw` statements, but we could later improve that situation.
-
-        if (node.finalizer) {
-          // If there is a finalizer block, I only care about the explicit return state of that block now.
-          // This is because it is guaranteed to be visited, and its return value trumps that of the try/catch blocks.
-          node.$p.explicitReturns = node.finalizer.$p.explicitReturns === 'yes' ? 'yes' : 'no';
-        } else if (node.block.$p.explicitReturns !== 'yes') {
-          // There is no finally, so the whole node cannot be explicitReturn if the `try` block is not
-          node.$p.explicitReturns = 'no';
-        } else if (node.handler.body.$p.explicitReturns !== 'yes') {
-          // There is no finally, so the whole node cannot be explicitReturn if the `catch` block is not
-          node.$p.explicitReturns = 'no';
-        } else {
-          // No finally and try and catch blocks return, so the whole node returns
-          node.$p.explicitReturns = 'yes';
-        }
-        log('- explicitReturns:', node.$p.explicitReturns);
-        break;
-
-      case 'SwitchStatement:after': // node.cases
-        // Only returns if all cases return AND one of the cases is a default
-        // Tricky case is when the case falls through and returns a following case.
-        // No real difference between case and default, except the default is mandatory for the switch to return expl.
-        let hasDefault = false;
-
-        // For each case check whether it returns explicitly (and before a break/continue) and if it doesn't, check
-        // the next case as well. Mark a default case but don't treat it differently otherwise. When all case blocks
-        // explicitly return then the whole switch node returns explicitly.
-        // In other words, this fails if for any case a `break/continue` is seen before a `return`, or when no `return`
-        // is seen at all since the start of the last `case`.
-        // Note: a node that is marked explicitReturns is similar to a return statement because all its branches return.
-
-        let seenReturnSinceLastCase = false;
-        let brokeBeforeReturned = false;
-        for (let i = 0; i < node.cases.length && !brokeBeforeReturned; ++i) {
-          seenReturnSinceLastCase = false;
-          const caseNode = node.cases[i];
-          if (!caseNode.test) hasDefault = true;
-          caseNode.consequent.some((node) => {
-            if (node) {
-              if (node.$p.explicitReturns || node.type === 'ReturnStatement') {
-                // Either this is the return statement, or it's a statement where all branches must lead to a return.
-                seenReturnSinceLastCase = true;
-                return true;
-              }
-              if (node.type === 'BreakStatement' || node.type === 'ContinueStatement') {
-                brokeBeforeReturned = true;
-                return true;
-              }
-            }
-          });
-        }
-        if (!seenReturnSinceLastCase || brokeBeforeReturned || !hasDefault) {
-          // Either no return statement was seen since, at least, the last case start, or at least one case exists
-          // that had a break/continue before the return statement. Either way, this switch is not an explicit return.
-          node.$p.explicitReturns = 'no';
-        } else {
-          // For all cases there was at least one return statement before the end of the swtich that was not preceded
-          // by a break or continue. This switch properly returns explicitly for all branches.
-          node.$p.explicitReturns = 'yes';
-        }
-        log('- explicitReturns:', node.$p.explicitReturns);
-        break;
-
-      case 'WithStatement:after': // node.body
-        ASSERT(false, 'with is not allowed in a "strict" context. The parser should have rejected this.');
-        break;
-
       case 'LabeledStatement:before': {
         labelStack.push(node);
         log('Label:', node.label.name);
@@ -777,8 +611,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       }
       case 'LabeledStatement:after': {
         labelStack.pop();
-        node.$p.explicitReturns = node.body.$p.explicitReturns === 'yes' ? 'yes' : 'no';
-        log('- explicitReturns:', node.$p.explicitReturns);
         break;
       }
     }

@@ -26,10 +26,10 @@ function f() {
 ## Normalized
 
 `````js filename=intro
+var x;
 function f() {
   return x;
 }
-var x;
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -42,10 +42,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+var x;
 function f() {
   return x;
 }
-var x;
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 x = 10;

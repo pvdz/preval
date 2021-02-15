@@ -28,10 +28,10 @@ f(tmpArg);
 ## Normalized
 
 `````js filename=intro
-function g() {}
 var tmpArg;
 var tmpBinaryLeft;
 var tmpTernaryTest;
+function g() {}
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
@@ -45,10 +45,10 @@ f(tmpArg);
 ## Output
 
 `````js filename=intro
-function g() {}
 var tmpArg;
 var tmpBinaryLeft;
 var tmpTernaryTest;
+function g() {}
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {

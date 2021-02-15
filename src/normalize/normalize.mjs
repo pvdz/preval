@@ -128,6 +128,8 @@ const VERBOSE_TRACING = true;
   - bindings that only have writes, no reads, can be eliminated?
   - method names that are literals, probably classes and objects alike
   - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
+  - if a var binding is only referenced in one scope then we can, at least, hoist it to that scope.
+    - runtime analysis may be able to get us closer to an initialization but that's gonna be much harder.
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: does coercion have observable side effects (that we care to support)? -> yes. valueOf and toString
@@ -139,6 +141,7 @@ const VERBOSE_TRACING = true;
   - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
   - TODO: how do we static compute something like `$(1) + 2 + 3` when it splits it like `tmp = $(1) + 2, tmp + 3` ...
   - TODO: why are func decls in funcs not being hoisted? like in tests/cases/dce/fd_after_return.md
+  - TODO: force update the title of tests to match the path name
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -5347,7 +5350,7 @@ export function phaseNormalize(fdata, fname) {
       hoistingRoot,
     );
 
-    // There are two things in two contexts that we hoist
+    // There are two things in three contexts that we hoist
     // - functions and variables
     // - exports and non-exports
     // - named exports and default exports
@@ -5372,7 +5375,7 @@ export function phaseNormalize(fdata, fname) {
     // The set of var names needs to be reduced by the name of hoisted functions
     // Actions:
     // - All vars are printed as `var x;` at the top, ordered by name
-    // - All functions are moved to the top, above the functions, ordered by name
+    // - All functions are moved to the top, below the hoisted var names, ordered by name
     // - All exported names are added at the bottom
     // - All var decls with inits are replaced with assignments
     // - All decls in a for-in or for-of header lhs are replaced with the .id
@@ -5585,6 +5588,11 @@ export function phaseNormalize(fdata, fname) {
       funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => set.delete(hoistNode.id.name));
 
       // This will invalidate all cached indexes moving forward!
+
+      // Sort them and then inject them at the top.
+      funcs.sort(([a], [b]) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
+      rootBody.unshift(...funcs.map(([hoistNode, rootIndex, rootChild, exportProp]) => hoistNode));
+
       const sorted = [...set].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
       rootBody.unshift(
         ...sorted.map((name) => {
@@ -5592,10 +5600,6 @@ export function phaseNormalize(fdata, fname) {
           return AST.variableDeclaration(name, undefined, 'var');
         }),
       );
-
-      // Sort them and then inject them at the top.
-      funcs.sort(([a], [b]) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
-      rootBody.unshift(...funcs.map(([hoistNode, rootIndex, rootChild, exportProp]) => hoistNode));
 
       // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
       // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.

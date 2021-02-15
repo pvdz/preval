@@ -34,13 +34,6 @@ $$(obja, objb, objc, objd, obje);
 ## Normalized
 
 `````js filename=intro
-function $$(...a_1) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  tmpCallCallee(tmpCalleeParam);
-  const tmpReturnArg = a_1[0];
-  return tmpReturnArg;
-}
 var a;
 var b;
 var c;
@@ -51,6 +44,13 @@ var objb;
 var objc;
 var objd;
 var obje;
+function $$(...a_1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
+  tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = a_1[0];
+  return tmpReturnArg;
+}
 obja = {
   get a() {
     $$('a.get');
@@ -177,12 +177,6 @@ $$(obja, objb, objc, objd, obje);
 ## Output
 
 `````js filename=intro
-function $$(...a_1) {
-  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
-  $(tmpCalleeParam);
-  const tmpReturnArg = a_1[0];
-  return tmpReturnArg;
-}
 var a;
 var b;
 var c;
@@ -193,6 +187,12 @@ var objb;
 var objc;
 var objd;
 var obje;
+function $$(...a_1) {
+  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a_1];
+  $(tmpCalleeParam);
+  const tmpReturnArg = a_1[0];
+  return tmpReturnArg;
+}
 obja = {
   get a() {
     $$('a.get');

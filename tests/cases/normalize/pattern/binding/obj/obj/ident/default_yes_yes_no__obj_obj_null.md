@@ -18,9 +18,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$1 = 1;
-const tmpObjLitVal$2 = null;
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 3 };
+const tmpObjLitVal = { x: 1, y: null, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;

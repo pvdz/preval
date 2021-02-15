@@ -18,8 +18,7 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = null;
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
+const bindingPatternArrRoot = [null, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 let objPatternCrashTest = arrPatternStep === undefined;

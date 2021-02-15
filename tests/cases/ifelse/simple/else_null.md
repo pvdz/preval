@@ -16,10 +16,7 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = null;
-if (tmpIfTest) {
-  $(1);
-} else {
+{
   $(2);
 }
 `````
@@ -27,9 +24,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-if (null) {
-  $(1);
-} else {
+{
   $(2);
 }
 `````

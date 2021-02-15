@@ -18,8 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = null;
-const tmpArrElement = { x: tmpObjLitVal, y: 2, z: 3 };
+const tmpArrElement = { x: null, y: 2, z: 3 };
 const arrAssignPatternRhs = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternBeforeDefault = arrPatternSplat[0];

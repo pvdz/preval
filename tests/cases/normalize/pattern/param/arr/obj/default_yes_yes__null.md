@@ -50,10 +50,7 @@ function f($tdz$__pattern) {
   return 'bad';
 }
 const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
-const tmpCalleeParam$2 = null;
-const tmpCalleeParam$3 = 100;
-const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$1 = f(null, 100);
 tmpCallCallee$1(tmpCalleeParam$1);
 `````
 

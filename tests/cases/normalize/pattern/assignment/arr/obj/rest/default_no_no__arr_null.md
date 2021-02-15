@@ -18,8 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = null;
-const arrAssignPatternRhs = [tmpArrElement, 20, 30];
+const arrAssignPatternRhs = [null, 20, 30];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const tmpCallCallee = objPatternRest;

@@ -18,17 +18,14 @@ $(1 - null);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinBothLhs = 1;
-const tmpBinBothRhs = null;
-const tmpCalleeParam = tmpBinBothLhs - tmpBinBothRhs;
+const tmpCalleeParam = 1;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 1 - null;
-$(tmpCalleeParam);
+$(1);
 `````
 
 ## Globals

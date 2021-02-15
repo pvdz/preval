@@ -18,8 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = null;
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal };
+const tmpAssignObjPatternRhs = { x: null };
 x = tmpAssignObjPatternRhs.x;
 $(x);
 `````

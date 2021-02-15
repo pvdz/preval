@@ -31,10 +31,7 @@ function f($tdz$__x) {
   return x;
 }
 const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = null;
-const tmpCalleeParam$2 = 200;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam = f(null, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 

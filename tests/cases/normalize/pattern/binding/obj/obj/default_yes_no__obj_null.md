@@ -18,8 +18,7 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = null;
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
+const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;

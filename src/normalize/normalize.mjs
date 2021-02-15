@@ -414,7 +414,7 @@ export function phaseNormalize(fdata, fname) {
     //       leading to hard to debug reference related issues.
 
     if (node.type === 'Literal') {
-      if (node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
+      if (node.raw !== 'null' && node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
       return false;
     }
     if (node.type === 'Identifier') {
@@ -5007,7 +5007,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (node.test.type === 'Literal') {
-      if (node.test.value === 0 || node.test.value === '' || node.test.value === false) {
+      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
         rule('Eliminate if-else with falsy test literal');
         example('if (0) f(); else g();', 'g();', () => node.alternate);
         example('if (0) f();', ';', () => !node.alternate);
@@ -5035,7 +5035,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (node.test.type === 'Identifier') {
-      if (['false', 'null', 'undefined', 'NaN'].includes(node.name)) {
+      if (['undefined', 'NaN'].includes(node.name)) {
         rule('Eliminate if-else with falsy identifier');
         example('if (false) f(); else g();', 'g();', () => node.alternate);
         example('if (false) f();', ';', () => node.alternate);

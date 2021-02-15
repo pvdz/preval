@@ -28,9 +28,7 @@ function f(tmpParamPattern) {
   let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return 'bad';
 }
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$3 = null;
-tmpCallCallee$1(tmpCalleeParam$3);
+f(null);
 `````
 
 ## Output

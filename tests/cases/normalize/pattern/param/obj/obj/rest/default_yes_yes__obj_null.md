@@ -50,8 +50,7 @@ function f($tdz$__pattern) {
 }
 const tmpCallCallee$3 = $;
 const tmpCallCallee$4 = f;
-const tmpObjLitVal$1 = null;
-const tmpCalleeParam$6 = { x: tmpObjLitVal$1, b: 11, c: 12 };
+const tmpCalleeParam$6 = { x: null, b: 11, c: 12 };
 const tmpCalleeParam$7 = 10;
 const tmpCalleeParam$5 = tmpCallCallee$4(tmpCalleeParam$6, tmpCalleeParam$7);
 tmpCallCallee$3(tmpCalleeParam$5);

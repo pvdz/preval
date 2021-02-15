@@ -53,9 +53,7 @@ function f($tdz$__pattern) {
   return 'bad';
 }
 const tmpCallCallee$2 = $;
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$3 = null;
-const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$2 = f(null);
 tmpCallCallee$2(tmpCalleeParam$2);
 `````
 

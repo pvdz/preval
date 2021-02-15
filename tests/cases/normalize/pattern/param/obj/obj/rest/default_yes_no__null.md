@@ -39,10 +39,7 @@ function f(tmpParamPattern) {
   return 'bad';
 }
 const tmpCallCallee$2 = $;
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$5 = null;
-const tmpCalleeParam$6 = 10;
-const tmpCalleeParam$4 = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$6);
+const tmpCalleeParam$4 = f(null, 10);
 tmpCallCallee$2(tmpCalleeParam$4);
 `````
 

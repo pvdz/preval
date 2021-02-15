@@ -18,8 +18,7 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = null;
-const arrAssignPatternRhs = [tmpArrElement, 4, 5];
+const arrAssignPatternRhs = [null, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;

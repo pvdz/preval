@@ -15,18 +15,13 @@ if (null) $();
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = null;
-if (tmpIfTest) {
-  $();
-}
+
 `````
 
 ## Output
 
 `````js filename=intro
-if (null) {
-  $();
-}
+
 `````
 
 ## Globals

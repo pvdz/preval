@@ -2454,88 +2454,95 @@ export function phaseNormalize(fdata, fname) {
             const lhs = node.left.type === 'Literal' ? node.left.value : { NaN, undefined, Infinity }[node.left.name];
             const rhs = node.right.type === 'Literal' ? node.right.value : { NaN, undefined, Infinity }[node.right.name];
 
-            let result = undefined;
-            switch (node.operator) {
-              case '**':
-                result = lhs ** rhs;
-                break;
-              case '*':
-                result = lhs * rhs;
-                break;
-              case '/':
-                result = lhs / rhs;
-                break;
-              case '%':
-                result = lhs % rhs;
-                break;
-              case '+':
-                result = lhs + rhs;
-                break;
-              case '-':
-                result = lhs - rhs;
-                break;
-              case '<<':
-                result = lhs << rhs;
-                break;
-              case '>>':
-                result = lhs >> rhs;
-                break;
-              case '>>>':
-                result = lhs >>> rhs;
-                break;
-              case '<':
-                result = lhs < rhs;
-                break;
-              case '>':
-                result = lhs > rhs;
-                break;
-              case '<=':
-                result = lhs <= rhs;
-                break;
-              case '>=':
-                result = lhs >= rhs;
-                break;
-              case '==':
-                result = lhs == rhs;
-                break;
-              case '!=':
-                result = lhs != rhs;
-                break;
-              case '===':
-                result = lhs === rhs;
-                break;
-              case '!==':
-                result = lhs !== rhs;
-                break;
-              case '&':
-                result = lhs & rhs;
-                break;
-              case '^':
-                result = lhs ^ rhs;
-                break;
-              case 'in':
-                result = lhs in rhs;
-                break;
-              case 'instanceof':
-                result = lhs instanceof rhs;
-                break;
-              default:
-                return ASSERT(false, 'new op?');
+            try {
+              let result = undefined;
+              switch (node.operator) {
+                case '**':
+                  result = lhs ** rhs;
+                  break;
+                case '*':
+                  result = lhs * rhs;
+                  break;
+                case '/':
+                  result = lhs / rhs;
+                  break;
+                case '%':
+                  result = lhs % rhs;
+                  break;
+                case '+':
+                  result = lhs + rhs;
+                  break;
+                case '-':
+                  result = lhs - rhs;
+                  break;
+                case '<<':
+                  result = lhs << rhs;
+                  break;
+                case '>>':
+                  result = lhs >> rhs;
+                  break;
+                case '>>>':
+                  result = lhs >>> rhs;
+                  break;
+                case '<':
+                  result = lhs < rhs;
+                  break;
+                case '>':
+                  result = lhs > rhs;
+                  break;
+                case '<=':
+                  result = lhs <= rhs;
+                  break;
+                case '>=':
+                  result = lhs >= rhs;
+                  break;
+                case '==':
+                  result = lhs == rhs;
+                  break;
+                case '!=':
+                  result = lhs != rhs;
+                  break;
+                case '===':
+                  result = lhs === rhs;
+                  break;
+                case '!==':
+                  result = lhs !== rhs;
+                  break;
+                case '&':
+                  result = lhs & rhs;
+                  break;
+                case '|':
+                  result = lhs | rhs;
+                  break;
+                case '^':
+                  result = lhs ^ rhs;
+                  break;
+                case 'in':
+                  result = lhs in rhs;
+                  break;
+                case 'instanceof':
+                  result = lhs instanceof rhs;
+                  break;
+                default:
+                  return ASSERT(false, 'new op?', node);
+              }
+
+              log('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
+
+              const finalNode =
+                typeof result === 'string' || typeof result === 'boolean'
+                  ? AST.literal(result)
+                  : (ASSERT(typeof result === 'number'),
+                    isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            } catch {
+              log('Operation resulted in an error so not inlining it');
             }
-
-            log('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
-
-            const finalNode =
-              typeof result === 'string' || typeof result === 'boolean'
-                ? AST.literal(result)
-                : (ASSERT(typeof result === 'number'),
-                  isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result));
-            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-            body[i] = finalParent;
-
-            after(finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
           }
         }
 

@@ -83,7 +83,7 @@ export function phase2(program, fdata, resolve, req) {
         return;
       }
 
-      if (!assignee) {
+      if (!assignee || assignee.name === 'arguments') {
         log('TODO; uncomment me to figure out what');
         return;
       }

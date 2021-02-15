@@ -5526,7 +5526,42 @@ export function phaseNormalize(fdata, fname) {
             hoistingRoot.body[exportIndex] = AST.emptyStatement();
             exportedNames.add(hoistNode.id.name);
             exportDefault = hoistNode.id.name; // max one of these ever
+            break;
+          }
 
+          case 'SwitchCase': {
+            // Switch case shares scope with all other in the same switch body. For hoisting not special.
+            // If there's an init, replace with assignment. Otherwise drop it entirely.
+            before(hoistNode, parentNode);
+            const newNodes = [];
+
+            if (hoistNode.type === 'FunctionDeclaration') {
+              funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
+              // We will inject this node at the top
+              parentNode[parentProp][parentIndex] = AST.emptyStatement();
+            } else {
+              // Decl is not normalized. Can have any number of declarators, can still be pattern
+              hoistNode.declarations.forEach((decl) => {
+                findBoundNamesInVarDeclarator(decl, names);
+                // Now we have the names, remove the var keyword from the declaration
+                // If there was no init, ignore this step
+                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+                if (decl.init) {
+                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                }
+              });
+              // Must replace one node with one new node to preserve indexes of other var statements that appear later
+              ASSERT(parentIndex >= 0, 'var decls in switch case must be inside an array');
+              parentNode[parentProp][parentIndex] = AST.expressionStatement(
+                newNodes.length === 0
+                  ? AST.identifier('undefined')
+                  : newNodes.length === 1
+                  ? newNodes[0]
+                  : AST.sequenceExpression(newNodes),
+              );
+            }
+
+            after(newNodes, parentNode);
             break;
           }
 

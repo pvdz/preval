@@ -28,6 +28,10 @@ $(f(1));
 function f(x) {
   const tmpReturnArg = g();
   return tmpReturnArg;
+  function g() {
+    const tmpReturnArg$1 = $();
+    return tmpReturnArg$1;
+  }
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
@@ -40,6 +44,10 @@ tmpCallCallee(tmpCalleeParam);
 function f(x) {
   const tmpReturnArg = g();
   return tmpReturnArg;
+  function g() {
+    const tmpReturnArg$1 = $();
+    return tmpReturnArg$1;
+  }
 }
 const tmpCalleeParam = f(1);
 $(tmpCalleeParam);
@@ -47,9 +55,7 @@ $(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-g
+None
 
 ## Result
 
@@ -58,8 +64,6 @@ Should call `$` with:
  - 2: undefined
  - eval returned: undefined
 
-Normalized calls: BAD?!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Final output calls: Same

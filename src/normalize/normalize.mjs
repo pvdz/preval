@@ -130,18 +130,16 @@ const VERBOSE_TRACING = true;
   - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
-  - TODO: sweep for AST modifications. Some nodes are used multiple times so changing a node inline is going to be a problem. Block might be an exception since we rely heavily on that.
-  - TODO: does coercion have observable side effects (that we care to support)?
+  - TODO: does coercion have observable side effects (that we care to support)? -> yes. valueOf and toString
   - TODO: do we properly simplify array literals with complex spreads?   
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
   - TODO: how does `arguments` work with the implicit unique binding stuff??
-  - TODO: DCE must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-  - TODO: DCE must not eliminate hoisted nodes (see fd_after_return.md)
   - TODO: drop the explicitReturns stuff since we only use it in phase 2. replace that usage with something else.
   - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
   - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
   - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
   - TODO: how do we static compute something like `$(1) + 2 + 3` when it splits it like `tmp = $(1) + 2, tmp + 3` ...
+  - TODO: why are func decls in funcs not being hoisted? like in tests/cases/dce/fd_after_return.md
 */
 
 const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
@@ -787,6 +785,32 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
+  function dce(body, i, desc) {
+    // This should be called after an abnormal flow control (return, break, continue, or throw.
+    // We have to take care about the remainder because it might introduce new binding names that we wouldn't want to eliminate
+    // just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`
+
+    const nominated = body.slice(i);
+    const toKeep = nominated.filter(node => node.type === 'VariableDeclaration' || node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration');
+    if (i + toKeep.length + 1 === body.length) {
+      // This DCE call would not eliminate anything
+      return false;
+    }
+
+    rule('Dead code elimination (DCE) for code after abnormal flow abort; ' + desc);
+    example('return; f();', 'return;');
+    before(body.slice(i));
+
+    body.length = i + 1;
+    if (toKeep.length > 0) {
+      log('Restoring', toKeep.length, 'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...');
+      body.push(...toKeep);
+    }
+
+    after(body.slice(i));
+    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    return true;
+  }
   function transformBlock(node, body, i, parent) {
     if (node.body.length === 0) {
       rule('Empty nested blocks should be eliminated');
@@ -809,16 +833,9 @@ export function phaseNormalize(fdata, fname) {
     );
     parent.$p.returnBreakContinueThrow = node.$p.returnBreakContinueThrow;
     if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a block that breaks flow in all branches must be DCE-ed');
-      example('return; f();', 'return;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+      if (dce(body, i, 'after block')) {
+        return true;
+      }
     }
 
     return false;
@@ -832,16 +849,9 @@ export function phaseNormalize(fdata, fname) {
     log(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
     parent.$p.returnBreakContinueThrow = 'break';
     if (body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a break must be DCE-ed');
-      example('break; f();', 'break;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+      if (dce(body, i, 'after break')) {
+        return true;
+      }
     }
     return false;
   }
@@ -868,16 +878,9 @@ export function phaseNormalize(fdata, fname) {
     log(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'continue';
     if (body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a continue must be DCE-ed');
-      example('continue x; f();', 'continue x;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+      if (dce(body, i, 'after block')) {
+        return true;
+      }
     }
 
     return false;
@@ -5057,16 +5060,9 @@ export function phaseNormalize(fdata, fname) {
       node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
 
       if (body.length > i + 1) {
-        // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-        rule('Statements after an if-else that breaks flow in both branches and on the same level must be DCE-ed');
-        example('return; f();', 'return;');
-        before(body.slice(i));
-
-        body.length = i + 1;
-
-        after(body.slice(i));
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
+        if (dce(body, i, 'after if-else')) {
+          return true;
+        }
       }
     }
 
@@ -5605,32 +5601,12 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a return on the same level must be DCE-ed');
-      example('return; f();', 'return;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
     log(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
     parent.$p.returnBreakContinueThrow = 'return';
     if (body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a return must be DCE-ed');
-      example('return x; f();', 'return x;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+      if (dce(body, i, 'after return')) {
+        return true;
+      }
     }
     return false;
   }
@@ -5942,16 +5918,9 @@ export function phaseNormalize(fdata, fname) {
     log(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'throw';
     if (body.length > i + 1) {
-      // TODO: must make sure any let bindings are properly cleaned up and don't leave accidental globals (`if (y) x = 1; return; let x`)
-      rule('Statements after a throw must be DCE-ed');
-      example('throw x; f();', 'throw x;');
-      before(body.slice(i));
-
-      body.length = i + 1;
-
-      after(body.slice(i));
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
+      if (dce(body, i, 'after throw')) {
+        return true;
+      }
     }
 
     return false;

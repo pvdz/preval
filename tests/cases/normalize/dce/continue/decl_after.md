@@ -35,6 +35,7 @@ while (true) {
       x = $('fail too');
     }
     continue;
+    let x = $('fail');
   } else {
     break;
   }
@@ -53,6 +54,7 @@ while (true) {
       x = $('fail too');
     }
     continue;
+    let x = $('fail');
   } else {
     break;
   }
@@ -62,9 +64,7 @@ $('after, wont eval due to infinite loop');
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

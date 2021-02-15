@@ -33,6 +33,7 @@ function f() {
     x = $('fail too');
   }
   return undefined;
+  let x = $('fail');
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -48,6 +49,7 @@ function f() {
     x = $('fail too');
   }
   return undefined;
+  let x = $('fail');
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -55,9 +57,7 @@ $(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

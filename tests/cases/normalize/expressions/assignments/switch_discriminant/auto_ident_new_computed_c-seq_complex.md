@@ -52,11 +52,9 @@ const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpSwitchTest = a;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

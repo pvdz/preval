@@ -83,10 +83,8 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpUnaryArg = $(100);
-      -tmpUnaryArg;
-    }
+    const tmpUnaryArg = $(100);
+    -tmpUnaryArg;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

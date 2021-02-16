@@ -39,13 +39,11 @@ a: {
 `````js filename=intro
 a: {
   b: {
-    {
-      const tmpIfTest = $(1);
-      if (tmpIfTest) {
-        break a;
-      } else {
-        break b;
-      }
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      break a;
+    } else {
+      break b;
     }
   }
 }

@@ -36,8 +36,6 @@ let x = 1;
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let x_1 = arrPatternSplat[0];
-  {
-  }
   return x_1;
 }
 `````

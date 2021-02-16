@@ -45,13 +45,11 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpPostUpdArgIdent = b;
-    b = b - 1;
-    tmpPostUpdArgIdent.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpPostUpdArgIdent = b;
+  b = b - 1;
+  tmpPostUpdArgIdent.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

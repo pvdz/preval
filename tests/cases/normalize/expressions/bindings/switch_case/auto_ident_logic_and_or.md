@@ -57,31 +57,27 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(1);
-      a = tmpCallCallee(tmpCalleeParam);
-      if (a) {
-        const tmpCalleeParam$1 = $(1);
-        a = $(tmpCalleeParam$1);
-      }
-      if (a) {
-      } else {
-        const tmpCalleeParam$2 = $(2);
-        a = $(tmpCalleeParam$2);
-      }
-      $(a);
-    }
+  if (a) {
+  } else {
+    const tmpCalleeParam$2 = $(2);
+    a = $(tmpCalleeParam$2);
   }
+  $(a);
 }
 `````
 

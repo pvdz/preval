@@ -30,10 +30,8 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-{
-  $(2);
-  let a_1 = $(3);
-}
+$(2);
+let a_1 = $(3);
 `````
 
 ## Globals

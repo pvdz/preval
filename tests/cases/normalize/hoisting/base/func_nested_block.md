@@ -44,13 +44,11 @@ g();
 
 `````js filename=intro
 function g() {
-  {
-    function f() {
-      return 100;
-    }
-    const tmpCalleeParam = f();
-    $(tmpCalleeParam);
+  function f() {
+    return 100;
   }
+  const tmpCalleeParam = f();
+  $(tmpCalleeParam);
 }
 g();
 `````

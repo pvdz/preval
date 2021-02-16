@@ -55,19 +55,17 @@ $(a, b, c);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      b.x = 3;
-      b.x = 3;
-      b.x = 3;
-      b.x = 3;
-      b.x = 3;
-      b.x = 3;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+  } else {
+    break;
   }
 }
 $(a, b, 3);

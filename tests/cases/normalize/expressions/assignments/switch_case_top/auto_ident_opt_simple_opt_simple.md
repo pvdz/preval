@@ -67,18 +67,16 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    a = undefined;
-    const tmpIfTest$2 = b != null;
-    if (tmpIfTest$2) {
-      const tmpChainElementObject = b.x;
-      const tmpIfTest$3 = tmpChainElementObject != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementObject$1 = tmpChainElementObject.y;
-        a = tmpChainElementObject$1;
-      }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  a = undefined;
+  const tmpIfTest$2 = b != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementObject = b.x;
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      a = tmpChainElementObject$1;
     }
   }
 }

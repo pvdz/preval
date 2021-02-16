@@ -40,14 +40,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
-  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpAssignRhsCompObj = $(b);
+const tmpAssignRhsCompProp = $('c');
+a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

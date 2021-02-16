@@ -39,13 +39,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
-  const tmpForOfDeclRhs = new tmpNewCallee(1);
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCompObj = $(b);
+const tmpNewCallee = tmpCompObj.$;
+const tmpForOfDeclRhs = new tmpNewCallee(1);
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

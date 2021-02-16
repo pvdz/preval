@@ -63,29 +63,27 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-{
-  let bindingPatternArrRoot;
-  let a_1;
-  let b_1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      bindingPatternArrRoot = undefined;
-      const arrPatternSplat$1 = [...z];
-      x = arrPatternSplat$1[1];
-      y = arrPatternSplat$1[2];
-      bindingPatternArrRoot = z;
-      const arrPatternSplat = [...bindingPatternArrRoot];
-      a_1 = arrPatternSplat[0];
-      b_1 = arrPatternSplat[1];
-      break tmpSwitchBreak;
-    }
+let bindingPatternArrRoot;
+let a_1;
+let b_1;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    bindingPatternArrRoot = undefined;
+    const arrPatternSplat$1 = [...z];
+    x = arrPatternSplat$1[1];
+    y = arrPatternSplat$1[2];
+    bindingPatternArrRoot = z;
+    const arrPatternSplat = [...bindingPatternArrRoot];
+    a_1 = arrPatternSplat[0];
+    b_1 = arrPatternSplat[1];
+    break tmpSwitchBreak;
   }
 }
 $(1, 2, x, y, z);

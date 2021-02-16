@@ -56,26 +56,24 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      a = undefined;
-      const tmpChainElementCall = $(b);
-      const tmpIfTest$1 = tmpChainElementCall != null;
-      if (tmpIfTest$1) {
-        const tmpChainRootComputed = $('x');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$2 = tmpChainElementObject != null;
-        if (tmpIfTest$2) {
-          const tmpChainRootComputed$1 = $('y');
-          const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-          a = tmpChainElementObject$1;
-        }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainElementCall = $(b);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed = $('x');
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$2 = tmpChainElementObject != null;
+      if (tmpIfTest$2) {
+        const tmpChainRootComputed$1 = $('y');
+        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+        a = tmpChainElementObject$1;
       }
-    } else {
-      break;
     }
+  } else {
+    break;
   }
 }
 $(a);

@@ -48,16 +48,14 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    $(1);
-    $(2);
-    const tmpDeleteCompProp = $('y');
-    a = delete arg[tmpDeleteCompProp];
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  $(1);
+  $(2);
+  const tmpDeleteCompProp = $('y');
+  a = delete arg[tmpDeleteCompProp];
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, arg);
 `````

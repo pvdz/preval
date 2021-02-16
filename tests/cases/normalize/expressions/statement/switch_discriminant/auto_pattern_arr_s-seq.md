@@ -48,11 +48,9 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpSwitchTest = [1, 2];
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

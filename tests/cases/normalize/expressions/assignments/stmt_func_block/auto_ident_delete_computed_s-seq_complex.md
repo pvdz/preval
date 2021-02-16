@@ -47,15 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let arg = { y: 1 };
-    let a = { a: 999, b: 1000 };
-    $(1);
-    $(2);
-    const tmpDeleteCompProp = $('y');
-    a = delete arg[tmpDeleteCompProp];
-    $(a, arg);
-  }
+  let arg = { y: 1 };
+  let a = { a: 999, b: 1000 };
+  $(1);
+  $(2);
+  const tmpDeleteCompProp = $('y');
+  a = delete arg[tmpDeleteCompProp];
+  $(a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

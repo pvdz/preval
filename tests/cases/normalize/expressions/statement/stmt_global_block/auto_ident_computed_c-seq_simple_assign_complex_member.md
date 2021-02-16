@@ -41,17 +41,15 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { c: 10, d: 20 };
-  let a = { a: 999, b: 1000 };
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('c');
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  $(a, b);
-}
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $('c');
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(a, b);
 `````
 
 ## Globals

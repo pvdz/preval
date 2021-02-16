@@ -40,16 +40,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpArrElement = $(1);
-      const tmpArrElement$2 = $(3);
-      a = [tmpArrElement, 2, tmpArrElement$2];
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpArrElement = $(1);
+    const tmpArrElement$2 = $(3);
+    a = [tmpArrElement, 2, tmpArrElement$2];
+  } else {
+    break;
   }
 }
 $(a);

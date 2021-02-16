@@ -46,17 +46,15 @@ $(a, x, y);
 `````js filename=intro
 let y = 2;
 let a = { a: 999, b: 1000 };
-{
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x_1 = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  const tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
-  }
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x_1 = arrPatternSplat[0];
+y = arrPatternSplat[1];
+const tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
 $(a, 1, y);
 `````

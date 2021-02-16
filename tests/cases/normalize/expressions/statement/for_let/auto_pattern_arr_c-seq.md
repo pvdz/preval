@@ -42,15 +42,13 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
-  $(10);
-  $(20);
-  const tmpCalleeParam = [1, 2];
-  let xyz = $(tmpCalleeParam);
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+$(10);
+$(20);
+const tmpCalleeParam = [1, 2];
+let xyz = $(tmpCalleeParam);
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

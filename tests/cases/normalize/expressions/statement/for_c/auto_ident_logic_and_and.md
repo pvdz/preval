@@ -49,23 +49,21 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCalleeParam = $(1);
-      let tmpIfTest$1 = $(tmpCalleeParam);
-      if (tmpIfTest$1) {
-        const tmpCalleeParam$1 = $(1);
-        tmpIfTest$1 = $(tmpCalleeParam$1);
-      }
-      if (tmpIfTest$1) {
-        const tmpCalleeParam$2 = $(2);
-        $(tmpCalleeParam$2);
-      }
-    } else {
-      break;
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCalleeParam = $(1);
+    let tmpIfTest$1 = $(tmpCalleeParam);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$1 = $(1);
+      tmpIfTest$1 = $(tmpCalleeParam$1);
     }
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$2 = $(2);
+      $(tmpCalleeParam$2);
+    }
+  } else {
+    break;
   }
 }
 $(a);

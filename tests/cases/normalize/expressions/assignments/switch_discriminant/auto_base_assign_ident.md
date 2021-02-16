@@ -50,11 +50,9 @@ const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpSwitchTest = a;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, b);
 `````

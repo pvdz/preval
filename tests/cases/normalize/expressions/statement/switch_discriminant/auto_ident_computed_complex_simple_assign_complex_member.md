@@ -53,11 +53,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, b);
 `````

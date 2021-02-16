@@ -30,11 +30,9 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpCallCallee = $($);
-  let a = tmpCallCallee(1);
-  $(a);
-}
+const tmpCallCallee = $($);
+let a = tmpCallCallee(1);
+$(a);
 `````
 
 ## Globals

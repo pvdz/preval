@@ -41,14 +41,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    const tmpAssignMemLhsObj = tmpBinBothLhs + tmpBinBothRhs;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  const tmpAssignMemLhsObj = tmpBinBothLhs + tmpBinBothRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

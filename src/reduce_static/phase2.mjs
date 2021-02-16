@@ -137,6 +137,7 @@ export function phase2(program, fdata, resolve, req) {
         groupEnd();
 
         if (reads.length === 0 && write.parentNode.type === 'VariableDeclarator') {
+          log('Zero reads left and it was a var decl. Replacing it with an empty statement.');
           ASSERT(write.decl, 'var decls should have the decl parent stuff recorded for this exact reason');
           // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
           // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
@@ -356,13 +357,33 @@ export function phase2(program, fdata, resolve, req) {
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   walk(
-    (node, before, nodeType, path) => {
-      switch (nodeType + ':' + (before ? 'before' : 'after')) {
+    (node, befor, nodeType, path) => {
+      switch (nodeType + ':' + (befor ? 'before' : 'after')) {
+        case 'Program:after':
+        case 'BlockStatement:before': {
+          // Fold up nested blocks. Should be safe now since all binding names are unique and there's no risk of collisions.
+          for (let i=node.body.length - 1; i>=0; --i) {
+            if (node.body[i].type === 'BlockStatement') {
+              if (nodeType === 'Program') {
+                rule('Blocks in global space should be eliminated');
+                example('a(); { b(); } c();', 'a(); b(); c();');
+              } else {
+                rule('Blocks nested in blocks should be smooshed');
+                example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
+              }
+              before(node);
+
+              node.body.splice(i, 1, ...node.body[i].body);
+
+              after(node);
+              inlined = true;
+            }
+          }
+        }
       }
     },
     fdata.tenkoOutput.ast,
     'ast',
   );
 
-  return false;
 }

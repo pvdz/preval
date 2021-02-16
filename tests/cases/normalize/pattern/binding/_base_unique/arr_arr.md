@@ -36,16 +36,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-{
-}
 const tmpArrElement = [100];
 const bindingPatternArrRoot = [tmpArrElement];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const x = arrPatternSplat$1[0];
-{
-}
 $(x);
 `````
 

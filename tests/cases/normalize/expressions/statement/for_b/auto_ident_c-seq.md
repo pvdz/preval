@@ -42,16 +42,14 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
+while (true) {
+  $(1);
+  $(2);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
     $(1);
-    $(2);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+  } else {
+    break;
   }
 }
 $(a, 1);

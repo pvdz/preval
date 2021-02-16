@@ -40,13 +40,11 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpDeleteCompObj = $(arg);
-  a = delete tmpDeleteCompObj['y'];
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpDeleteCompObj = $(arg);
+a = delete tmpDeleteCompObj['y'];
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);
 `````

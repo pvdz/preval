@@ -47,9 +47,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   let tmpNestedComplexRhs = undefined;
-  {
-    tmpNestedComplexRhs = 60;
-  }
+  tmpNestedComplexRhs = 60;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

@@ -86,11 +86,9 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpIfTest$3 = $ != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementCall = $(1);
-      }
+    const tmpIfTest$3 = $ != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementCall = $(1);
     }
     break tmpSwitchBreak;
   }

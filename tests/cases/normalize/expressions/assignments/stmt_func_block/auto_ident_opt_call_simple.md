@@ -46,16 +46,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    a = undefined;
-    const tmpIfTest = $ != null;
-    if (tmpIfTest) {
-      const tmpChainElementCall = $(1);
-      a = tmpChainElementCall;
-    }
-    $(a);
+  let a = { a: 999, b: 1000 };
+  a = undefined;
+  const tmpIfTest = $ != null;
+  if (tmpIfTest) {
+    const tmpChainElementCall = $(1);
+    a = tmpChainElementCall;
   }
+  $(a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

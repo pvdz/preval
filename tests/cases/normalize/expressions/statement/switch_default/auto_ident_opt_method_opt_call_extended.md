@@ -58,18 +58,16 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpIfTest$1 = b != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = b.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      const tmpIfTest$2 = tmpChainElementObject$2 != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-      }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpIfTest$1 = b != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = b.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+    const tmpIfTest$2 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$2) {
+      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
     }
   }
 }

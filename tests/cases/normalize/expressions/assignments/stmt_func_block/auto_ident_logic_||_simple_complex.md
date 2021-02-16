@@ -46,16 +46,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    a = 0;
-    if (a) {
-    } else {
-      const tmpCalleeParam = $(1);
-      a = $(tmpCalleeParam);
-    }
-    $(a);
+  let a = { a: 999, b: 1000 };
+  a = 0;
+  if (a) {
+  } else {
+    const tmpCalleeParam = $(1);
+    a = $(tmpCalleeParam);
   }
+  $(a);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

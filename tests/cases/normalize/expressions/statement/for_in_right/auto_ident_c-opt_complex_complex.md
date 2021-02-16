@@ -45,18 +45,16 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpForInDeclRhs = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpForInDeclRhs = tmpChainElementObject;
-  }
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+let tmpForInDeclRhs = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpForInDeclRhs = tmpChainElementObject;
+}
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

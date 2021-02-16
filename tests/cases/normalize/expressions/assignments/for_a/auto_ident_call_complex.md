@@ -34,12 +34,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
-  while (true) {
-    $(1);
-  }
+const tmpCallCallee = $($);
+a = tmpCallCallee(1);
+while (true) {
+  $(1);
 }
 $(a);
 `````

@@ -32,12 +32,10 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpCalleeParam = { a: 1, b: 2 };
-  let bindingPatternObjRoot = $(tmpCalleeParam);
-  let a = bindingPatternObjRoot.a;
-  $(a);
-}
+const tmpCalleeParam = { a: 1, b: 2 };
+let bindingPatternObjRoot = $(tmpCalleeParam);
+let a = bindingPatternObjRoot.a;
+$(a);
 `````
 
 ## Globals

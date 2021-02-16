@@ -42,19 +42,17 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpCallVal = tmpChainElementCall.call;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
-  }
-  $(a);
+let a = { a: 999, b: 1000 };
+a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpCallVal = tmpChainElementCall.call;
+  const tmpCalleeParam$1 = $(1);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
+  a = tmpChainElementCall$1;
 }
+$(a);
 `````
 
 ## Globals

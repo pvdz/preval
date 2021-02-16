@@ -45,17 +45,15 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
-  while (true) {
-    $(10);
-    $(20);
-    const tmpCalleeParam = [1, 2];
-    const tmpIfTest = $(tmpCalleeParam);
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  $(10);
+  $(20);
+  const tmpCalleeParam = [1, 2];
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

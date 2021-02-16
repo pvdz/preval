@@ -50,21 +50,19 @@ $(a, b, c);
 `````js filename=intro
 let b = 2;
 const tmpSwitchTest = $('a');
-{
-  let a_1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = 3 + 4;
-      a_1 = b;
-      break tmpSwitchBreak;
-    }
+let a_1;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    b = 3 + 4;
+    a_1 = b;
+    break tmpSwitchBreak;
   }
 }
 $(1, b, 3);

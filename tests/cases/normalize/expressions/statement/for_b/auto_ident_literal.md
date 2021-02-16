@@ -32,10 +32,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    $(1);
-  }
+while (true) {
+  $(1);
 }
 $(a);
 `````

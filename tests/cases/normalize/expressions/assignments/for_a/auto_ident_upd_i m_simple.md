@@ -39,13 +39,11 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  a = tmpPostUpdArgIdent;
-  while (true) {
-    $(1);
-  }
+const tmpPostUpdArgIdent = b;
+b = b - 1;
+a = tmpPostUpdArgIdent;
+while (true) {
+  $(1);
 }
 $(a, b);
 `````

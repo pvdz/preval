@@ -35,11 +35,9 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { c: 1 };
-  b.c = 2;
-  $(2, b);
-}
+let b = { c: 1 };
+b.c = 2;
+$(2, b);
 `````
 
 ## Globals

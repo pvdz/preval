@@ -46,15 +46,13 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpCalleeParam$1 = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-    a = tmpNestedAssignObjPatternRhs.a;
-    const tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
+  a = tmpNestedAssignObjPatternRhs.a;
+  const tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

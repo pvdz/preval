@@ -66,39 +66,35 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === 1;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === 1;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      a = undefined;
-      const tmpChainRootCall = $;
-      const tmpIfTest$3 = tmpChainRootCall != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementCall = tmpChainRootCall(1);
-        a = tmpChainElementCall;
-      }
-      $(a);
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$4) {
-      $('fail1');
-    }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
-      $('fail2');
-    }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  a = undefined;
+  const tmpChainRootCall = $;
+  const tmpIfTest$3 = tmpChainRootCall != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementCall = tmpChainRootCall(1);
+    a = tmpChainElementCall;
   }
+  $(a);
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$4) {
+  $('fail1');
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$5) {
+  $('fail2');
 }
 `````
 

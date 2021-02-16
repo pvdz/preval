@@ -41,12 +41,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpCalleeParam = { a: 1, b: 2 };
-    let bindingPatternObjRoot = $(tmpCalleeParam);
-    let a = bindingPatternObjRoot.a;
-    $(a);
-  }
+  const tmpCalleeParam = { a: 1, b: 2 };
+  let bindingPatternObjRoot = $(tmpCalleeParam);
+  let a = bindingPatternObjRoot.a;
+  $(a);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

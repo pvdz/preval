@@ -32,9 +32,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
-{
-  tmpThrowArg = 2;
-}
+tmpThrowArg = 2;
 throw tmpThrowArg;
 `````
 

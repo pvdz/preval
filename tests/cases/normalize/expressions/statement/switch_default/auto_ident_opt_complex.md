@@ -49,14 +49,12 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainElementCall.x;
-    }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainElementCall.x;
   }
 }
 $(a);

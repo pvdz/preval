@@ -43,17 +43,15 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
+while (true) {
+  $(1);
+  $(2);
+  a = 1;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
     $(1);
-    $(2);
-    a = 1;
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+  } else {
+    break;
   }
 }
 $(a, 1);

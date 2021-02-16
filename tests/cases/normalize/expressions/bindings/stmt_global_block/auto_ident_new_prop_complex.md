@@ -34,13 +34,11 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { $: $ };
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
-  let a = new tmpNewCallee(1);
-  $(a);
-}
+let b = { $: $ };
+const tmpCompObj = $(b);
+const tmpNewCallee = tmpCompObj.$;
+let a = new tmpNewCallee(1);
+$(a);
 `````
 
 ## Globals

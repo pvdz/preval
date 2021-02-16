@@ -67,21 +67,17 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpCalleeParam = $(0);
-      const tmpIfTest$2 = $(tmpCalleeParam);
-      if (tmpIfTest$2) {
-      } else {
-        const tmpCalleeParam$1 = $(1);
-        const tmpIfTest$3 = $(tmpCalleeParam$1);
-        if (tmpIfTest$3) {
-          const tmpCalleeParam$2 = $(2);
-          $(tmpCalleeParam$2);
-        }
-      }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCalleeParam = $(0);
+  const tmpIfTest$2 = $(tmpCalleeParam);
+  if (tmpIfTest$2) {
+  } else {
+    const tmpCalleeParam$1 = $(1);
+    const tmpIfTest$3 = $(tmpCalleeParam$1);
+    if (tmpIfTest$3) {
+      const tmpCalleeParam$2 = $(2);
+      $(tmpCalleeParam$2);
     }
   }
 }

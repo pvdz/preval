@@ -40,16 +40,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  if (30) {
-    a = 60;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
-  while (true) {
-    $(1);
-  }
+if (30) {
+  a = 60;
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+while (true) {
+  $(1);
 }
 $(a);
 `````

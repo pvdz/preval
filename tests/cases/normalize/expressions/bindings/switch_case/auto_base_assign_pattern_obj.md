@@ -52,27 +52,23 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let b;
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = {};
-      a = undefined;
-      const tmpObjLitVal = $(2);
-      const tmpCalleeParam = { b: tmpObjLitVal };
-      const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-      b = tmpNestedAssignObjPatternRhs.b;
-      a = tmpNestedAssignObjPatternRhs;
-      $(a, b);
-    }
-  }
+let b;
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  b = {};
+  a = undefined;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  $(a, b);
 }
 `````
 

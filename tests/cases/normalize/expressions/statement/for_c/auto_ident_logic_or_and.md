@@ -50,24 +50,22 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCalleeParam = $(0);
-      const tmpIfTest$1 = $(tmpCalleeParam);
-      if (tmpIfTest$1) {
-      } else {
-        const tmpCalleeParam$1 = $(1);
-        const tmpIfTest$2 = $(tmpCalleeParam$1);
-        if (tmpIfTest$2) {
-          const tmpCalleeParam$2 = $(2);
-          $(tmpCalleeParam$2);
-        }
-      }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCalleeParam = $(0);
+    const tmpIfTest$1 = $(tmpCalleeParam);
+    if (tmpIfTest$1) {
     } else {
-      break;
+      const tmpCalleeParam$1 = $(1);
+      const tmpIfTest$2 = $(tmpCalleeParam$1);
+      if (tmpIfTest$2) {
+        const tmpCalleeParam$2 = $(2);
+        $(tmpCalleeParam$2);
+      }
     }
+  } else {
+    break;
   }
 }
 $(a);

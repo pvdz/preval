@@ -32,10 +32,8 @@ let d = 4;
 ## Output
 
 `````js filename=intro
-{
-  while (2) {
-    $(4);
-  }
+while (2) {
+  $(4);
 }
 `````
 

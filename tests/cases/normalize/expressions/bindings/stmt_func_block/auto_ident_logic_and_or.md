@@ -51,20 +51,18 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpCalleeParam = $(1);
-    let a = $(tmpCalleeParam);
-    if (a) {
-      const tmpCalleeParam$1 = $(1);
-      a = $(tmpCalleeParam$1);
-    }
-    if (a) {
-    } else {
-      const tmpCalleeParam$2 = $(2);
-      a = $(tmpCalleeParam$2);
-    }
-    $(a);
+  const tmpCalleeParam = $(1);
+  let a = $(tmpCalleeParam);
+  if (a) {
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
   }
+  if (a) {
+  } else {
+    const tmpCalleeParam$2 = $(2);
+    a = $(tmpCalleeParam$2);
+  }
+  $(a);
 }
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);

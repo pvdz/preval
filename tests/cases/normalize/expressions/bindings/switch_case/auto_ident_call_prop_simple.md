@@ -46,20 +46,16 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const b = { $: $ };
-      const a = b.$(1);
-      $(a);
-    }
-  }
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const b = { $: $ };
+  const a = b.$(1);
+  $(a);
 }
 `````
 

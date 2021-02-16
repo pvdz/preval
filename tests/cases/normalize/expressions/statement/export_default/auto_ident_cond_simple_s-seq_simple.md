@@ -33,9 +33,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
-{
-  tmpExportDefault = 60;
-}
+tmpExportDefault = 60;
 export { tmpExportDefault as default };
 $(a);
 `````

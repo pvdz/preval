@@ -70,41 +70,37 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let b;
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === 1;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
+let b;
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === 1;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      b = [];
-      a = undefined;
-      const tmpArrElement = $(2);
-      const tmpCalleeParam = [tmpArrElement];
-      const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-      b = arrPatternSplat[0];
-      a = tmpNestedAssignArrPatternRhs;
-      $(a, b);
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      $('fail1');
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
-      $('fail2');
-    }
-  }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  b = [];
+  a = undefined;
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
+  $(a, b);
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  $('fail1');
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$4) {
+  $('fail2');
 }
 `````
 

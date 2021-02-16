@@ -44,13 +44,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpForOfDeclRhs = [10, 20];
-    let x;
-    for (x of tmpForOfDeclRhs) {
-      const tmpThrowArg = $(1, 'throw');
-      throw tmpThrowArg;
-    }
+  const tmpForOfDeclRhs = [10, 20];
+  let x;
+  for (x of tmpForOfDeclRhs) {
+    const tmpThrowArg = $(1, 'throw');
+    throw tmpThrowArg;
   }
 }
 const tmpCalleeParam = f();

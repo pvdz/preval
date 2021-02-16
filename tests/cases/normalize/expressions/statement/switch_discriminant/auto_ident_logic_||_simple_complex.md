@@ -52,11 +52,9 @@ if (tmpSwitchTest) {
   tmpSwitchTest = $(tmpCalleeParam);
 }
 const tmpSwitchValue = tmpSwitchTest;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

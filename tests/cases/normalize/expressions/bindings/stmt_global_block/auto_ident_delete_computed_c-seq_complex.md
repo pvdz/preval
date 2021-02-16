@@ -36,15 +36,13 @@
 ## Output
 
 `````js filename=intro
-{
-  let arg = { y: 1 };
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
-  let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  $(a, arg);
-}
+let arg = { y: 1 };
+$(1);
+$(2);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $('y');
+let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(a, arg);
 `````
 
 ## Globals

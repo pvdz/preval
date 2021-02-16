@@ -29,10 +29,8 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = /foo/;
-  $(a);
-}
+let a = /foo/;
+$(a);
 `````
 
 ## Globals

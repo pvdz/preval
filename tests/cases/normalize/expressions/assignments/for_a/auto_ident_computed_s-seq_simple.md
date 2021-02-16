@@ -39,12 +39,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpAssignRhsCompProp = $('c');
-  a = b[tmpAssignRhsCompProp];
-  while (true) {
-    $(1);
-  }
+const tmpAssignRhsCompProp = $('c');
+a = b[tmpAssignRhsCompProp];
+while (true) {
+  $(1);
 }
 $(a, b);
 `````

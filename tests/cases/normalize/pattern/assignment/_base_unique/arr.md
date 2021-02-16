@@ -33,13 +33,9 @@ $(x_1);
 ## Output
 
 `````js filename=intro
-{
-}
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x_1 = arrPatternSplat[0];
-{
-}
 $(x_1);
 `````
 

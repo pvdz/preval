@@ -45,18 +45,16 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  a = undefined;
-  const tmpIfTest = b != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
-  }
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+a = undefined;
+const tmpIfTest = b != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = b.x;
+  a = tmpChainElementObject;
+}
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

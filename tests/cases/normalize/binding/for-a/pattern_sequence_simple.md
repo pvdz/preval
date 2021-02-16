@@ -35,13 +35,11 @@ let z = [10, 20, 30];
 
 `````js filename=intro
 let z = [10, 20, 30];
-{
-  $(1);
-  $(2);
-  let arrPatternSplat = [...z];
-  let x = arrPatternSplat[0];
-  let y = arrPatternSplat[1];
-}
+$(1);
+$(2);
+let arrPatternSplat = [...z];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
 `````
 
 ## Globals

@@ -66,18 +66,14 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpArrElement = $(3);
-      const tmpArrElement$1 = $(4);
-      const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
 }
 $(a, x, y);
 `````

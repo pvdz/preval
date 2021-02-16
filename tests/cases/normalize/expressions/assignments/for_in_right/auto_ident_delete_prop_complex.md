@@ -39,13 +39,11 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpDeleteObj = $(arg);
-  a = delete tmpDeleteObj.y;
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpDeleteObj = $(arg);
+a = delete tmpDeleteObj.y;
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, arg);
 `````

@@ -38,13 +38,11 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(x_1);
-  a = typeof tmpUnaryArg;
-  let tmpForInDeclRhs = a;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
-  }
+const tmpUnaryArg = $(x_1);
+a = typeof tmpUnaryArg;
+let tmpForInDeclRhs = a;
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
 }
 $(a, 1);
 `````

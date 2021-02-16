@@ -45,13 +45,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
-    for (x in tmpForInDeclRhs) {
-      const tmpThrowArg = $(1, 'return');
-      throw tmpThrowArg;
-    }
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  let x;
+  for (x in tmpForInDeclRhs) {
+    const tmpThrowArg = $(1, 'return');
+    throw tmpThrowArg;
   }
   $('keep, do not eval');
 }

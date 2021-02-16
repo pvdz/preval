@@ -47,15 +47,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    let b = {};
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    const a = tmpNestedAssignObjPatternRhs;
-    $(a, b);
-  }
+  let b = {};
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  const a = tmpNestedAssignObjPatternRhs;
+  $(a, b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

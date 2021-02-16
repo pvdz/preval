@@ -33,15 +33,13 @@ for (let [x] in {a: 1, b: 2}) $(x);
 ## Output
 
 `````js filename=intro
-{
-  const tmpForInPatDeclRhs = { a: 1, b: 2 };
-  let tmpForInPatDeclLhs;
-  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    const arrAssignPatternRhs = tmpForInPatDeclLhs;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    const x = arrPatternSplat[0];
-    $(x);
-  }
+const tmpForInPatDeclRhs = { a: 1, b: 2 };
+let tmpForInPatDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  const x = arrPatternSplat[0];
+  $(x);
 }
 `````
 

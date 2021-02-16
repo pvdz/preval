@@ -41,17 +41,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  if (30) {
-    a = 60;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+if (30) {
+  a = 60;
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

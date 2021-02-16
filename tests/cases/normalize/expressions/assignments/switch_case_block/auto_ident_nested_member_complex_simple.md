@@ -72,19 +72,15 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      const varInitAssignLhsComputedObj = $(c);
-      const varInitAssignLhsComputedProp = $('y');
-      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-      a = 3;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $('x');
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+  a = 3;
 }
 $(a, b, c, 3);
 `````

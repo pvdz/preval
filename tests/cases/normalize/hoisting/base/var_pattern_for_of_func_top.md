@@ -49,14 +49,12 @@ function f() {
   $(x);
   const tmpArrElement = [100];
   const tmpForOfRhs = [tmpArrElement];
-  {
-    let tmpForOfLhsNode;
-    for (tmpForOfLhsNode of tmpForOfRhs) {
-      const arrAssignPatternRhs = tmpForOfLhsNode;
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      $(x, 'for');
-    }
+  let tmpForOfLhsNode;
+  for (tmpForOfLhsNode of tmpForOfRhs) {
+    const arrAssignPatternRhs = tmpForOfLhsNode;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, 'for');
   }
   $(x);
 }

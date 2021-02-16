@@ -38,8 +38,6 @@ function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y_1 = arrPatternSplat[0];
-  {
-  }
   return y_1;
 }
 `````

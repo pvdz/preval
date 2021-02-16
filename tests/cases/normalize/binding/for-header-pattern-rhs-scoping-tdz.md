@@ -43,18 +43,14 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-{
-  const tmpForInPatDeclRhs = [x_1];
-  let tmpForInPatDeclLhs;
-  let x_1;
-  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    const arrAssignPatternRhs = tmpForInPatDeclLhs;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    x_1 = arrPatternSplat[0];
-    {
-      $(x_1);
-    }
-  }
+const tmpForInPatDeclRhs = [x_1];
+let tmpForInPatDeclLhs;
+let x_1;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  x_1 = arrPatternSplat[0];
+  $(x_1);
 }
 `````
 

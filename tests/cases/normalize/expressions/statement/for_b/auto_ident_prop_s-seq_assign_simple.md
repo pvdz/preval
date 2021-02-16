@@ -44,14 +44,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    b.c = 2;
-    if (2) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  b.c = 2;
+  if (2) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, b);

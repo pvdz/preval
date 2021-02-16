@@ -94,17 +94,15 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpCalleeParam = $(1);
-      let tmpIfTest$3 = $(tmpCalleeParam);
-      if (tmpIfTest$3) {
-        const tmpCalleeParam$1 = $(1);
-        tmpIfTest$3 = $(tmpCalleeParam$1);
-      }
-      if (tmpIfTest$3) {
-        const tmpCalleeParam$2 = $(2);
-        $(tmpCalleeParam$2);
-      }
+    const tmpCalleeParam = $(1);
+    let tmpIfTest$3 = $(tmpCalleeParam);
+    if (tmpIfTest$3) {
+      const tmpCalleeParam$1 = $(1);
+      tmpIfTest$3 = $(tmpCalleeParam$1);
+    }
+    if (tmpIfTest$3) {
+      const tmpCalleeParam$2 = $(2);
+      $(tmpCalleeParam$2);
     }
     break tmpSwitchBreak;
   }

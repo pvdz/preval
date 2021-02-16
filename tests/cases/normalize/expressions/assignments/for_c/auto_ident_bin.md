@@ -39,16 +39,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpBinBothLhs = $(1);
-      const tmpBinBothRhs = $(2);
-      a = tmpBinBothLhs + tmpBinBothRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    a = tmpBinBothLhs + tmpBinBothRhs;
+  } else {
+    break;
   }
 }
 $(a);

@@ -34,12 +34,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $($);
-  const tmpForInDeclRhs = tmpCallCallee(1);
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpCallCallee = $($);
+const tmpForInDeclRhs = tmpCallCallee(1);
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

@@ -45,13 +45,11 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-    a = tmpAssignObjPatternRhs.a;
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+  a = tmpAssignObjPatternRhs.a;
 }
 $(a);
 `````

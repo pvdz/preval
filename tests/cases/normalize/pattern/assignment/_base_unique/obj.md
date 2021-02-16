@@ -30,11 +30,7 @@ x_1 = tmpAssignObjPatternRhs.x;
 ## Output
 
 `````js filename=intro
-{
-}
 x_1 = (1).x;
-{
-}
 `````
 
 ## Globals

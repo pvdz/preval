@@ -61,18 +61,14 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpIfTest$2 = $(30);
-      if (tmpIfTest$2) {
-        a = 60;
-      } else {
-        const tmpCalleeParam = $(100);
-        a = $(tmpCalleeParam);
-      }
-    }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpIfTest$2 = $(30);
+  if (tmpIfTest$2) {
+    a = 60;
+  } else {
+    const tmpCalleeParam = $(100);
+    a = $(tmpCalleeParam);
   }
 }
 $(a);

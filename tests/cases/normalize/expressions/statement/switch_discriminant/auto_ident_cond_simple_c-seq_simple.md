@@ -43,15 +43,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
-{
-  tmpSwitchTest = $(60);
-}
+tmpSwitchTest = $(60);
 const tmpSwitchValue = tmpSwitchTest;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

@@ -85,9 +85,7 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     {
-      {
-        $(2);
-      }
+      $(2);
     }
     break tmpSwitchBreak;
   }

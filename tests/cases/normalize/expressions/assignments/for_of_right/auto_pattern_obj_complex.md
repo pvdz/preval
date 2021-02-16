@@ -40,14 +40,12 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-{
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  a = tmpNestedAssignObjPatternRhs.a;
-  const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+a = tmpNestedAssignObjPatternRhs.a;
+const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

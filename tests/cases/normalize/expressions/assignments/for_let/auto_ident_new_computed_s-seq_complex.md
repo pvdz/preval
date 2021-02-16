@@ -42,15 +42,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompProp = $('$');
-  const tmpNewCallee = b[tmpCompProp];
-  a = new tmpNewCallee(1);
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCompProp = $('$');
+const tmpNewCallee = b[tmpCompProp];
+a = new tmpNewCallee(1);
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

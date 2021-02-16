@@ -27,11 +27,7 @@ foo: if (true) $(1);
 ## Output
 
 `````js filename=intro
-{
-  {
-    $(1);
-  }
-}
+$(1);
 `````
 
 ## Globals

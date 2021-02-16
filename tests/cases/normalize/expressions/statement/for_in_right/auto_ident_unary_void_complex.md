@@ -34,11 +34,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  $(100);
-  let x;
-  for (x in undefined) {
-  }
+$(100);
+let x;
+for (x in undefined) {
 }
 $(a);
 `````

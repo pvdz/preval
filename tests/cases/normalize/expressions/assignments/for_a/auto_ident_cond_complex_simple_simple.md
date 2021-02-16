@@ -40,17 +40,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = 2;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
-  while (true) {
-    $(1);
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = 2;
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+while (true) {
+  $(1);
 }
 $(a);
 `````

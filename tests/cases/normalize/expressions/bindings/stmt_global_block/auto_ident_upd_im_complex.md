@@ -39,15 +39,13 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  $(tmpPostUpdArgVal, b);
-}
+let b = { x: 1 };
+const tmpCalleeParam = $(b);
+const tmpPostUpdArgObj = $(tmpCalleeParam);
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+$(tmpPostUpdArgVal, b);
 `````
 
 ## Globals

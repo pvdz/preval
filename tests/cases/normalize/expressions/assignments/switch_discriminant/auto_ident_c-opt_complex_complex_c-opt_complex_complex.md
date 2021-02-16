@@ -73,11 +73,9 @@ if (tmpIfTest) {
   }
 }
 let tmpSwitchTest = a;
-{
-  const tmpIfTest$2 = 0 <= 0;
-  if (tmpIfTest$2) {
-    $(100);
-  }
+const tmpIfTest$2 = 0 <= 0;
+if (tmpIfTest$2) {
+  $(100);
 }
 $(a);
 `````

@@ -32,12 +32,10 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  $(100);
-  undefined;
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+$(100);
+undefined;
+$(a);
 `````
 
 ## Globals

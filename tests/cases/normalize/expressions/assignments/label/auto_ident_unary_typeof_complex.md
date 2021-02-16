@@ -34,10 +34,8 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(1);
-  a = typeof tmpUnaryArg;
-}
+const tmpUnaryArg = $(1);
+a = typeof tmpUnaryArg;
 $(a, 1);
 `````
 

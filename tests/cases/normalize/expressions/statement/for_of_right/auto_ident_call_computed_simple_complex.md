@@ -39,12 +39,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCompProp = $('$');
-  const tmpForOfDeclRhs = b[tmpCallCompProp](1);
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCallCompProp = $('$');
+const tmpForOfDeclRhs = b[tmpCallCompProp](1);
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

@@ -47,18 +47,16 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  let c = { y: 2 };
-  let a = { a: 999, b: 1000 };
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('x');
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $('y');
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-  $(a, b, c, 3);
-}
+let b = { x: 1 };
+let c = { y: 2 };
+let a = { a: 999, b: 1000 };
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $('x');
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $('y');
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+$(a, b, c, 3);
 `````
 
 ## Globals

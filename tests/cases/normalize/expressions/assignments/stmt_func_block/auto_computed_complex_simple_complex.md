@@ -47,15 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    const tmpObjLitVal = $(1);
-    a = { b: tmpObjLitVal };
-    const tmpAssignMemLhsObj = $(a);
-    const tmpAssignComputedRhs = $(2);
-    tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
-    $(a);
-  }
+  let a = { a: 999, b: 1000 };
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
+  const tmpAssignMemLhsObj = $(a);
+  const tmpAssignComputedRhs = $(2);
+  tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+  $(a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -56,17 +56,15 @@ let c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $('y');
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-    (3).x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(c);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  (3).x = tmpForInLhsNode;
 }
 $(a, b, c, 3);
 `````

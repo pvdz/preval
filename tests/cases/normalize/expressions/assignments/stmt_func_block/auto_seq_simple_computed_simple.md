@@ -49,18 +49,16 @@ tmpCallCallee$1(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    const tmpObjLitVal = $(1);
-    a = { b: tmpObjLitVal };
-    let tmpCallCallee = a;
-    const tmpCalleeParam = $(1);
-    const tmpCalleeParam$1 = a;
-    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-    const tmpAssignComputedRhs = $(2);
-    tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
-    $(a);
-  }
+  let a = { a: 999, b: 1000 };
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
+  let tmpCallCallee = a;
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = a;
+  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpAssignComputedRhs = $(2);
+  tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+  $(a);
 }
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

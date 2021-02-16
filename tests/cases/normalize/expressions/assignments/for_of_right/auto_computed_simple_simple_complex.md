@@ -40,13 +40,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpObjLitVal = $(1);
+a = { b: tmpObjLitVal };
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 const tmpAssignComputedObj = a;
 const tmpAssignComputedRhs = $(2);

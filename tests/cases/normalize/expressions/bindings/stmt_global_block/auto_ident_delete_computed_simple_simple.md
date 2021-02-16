@@ -32,11 +32,9 @@
 ## Output
 
 `````js filename=intro
-{
-  let arg = { y: 1 };
-  let a = delete arg['y'];
-  $(a, arg);
-}
+let arg = { y: 1 };
+let a = delete arg['y'];
+$(a, arg);
 `````
 
 ## Globals

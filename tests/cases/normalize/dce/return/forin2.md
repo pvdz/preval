@@ -46,13 +46,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpForOfDeclRhs = [10, 20];
-    let x;
-    for (x of tmpForOfDeclRhs) {
-      const tmpReturnArg = $(1, 'return');
-      return tmpReturnArg;
-    }
+  const tmpForOfDeclRhs = [10, 20];
+  let x;
+  for (x of tmpForOfDeclRhs) {
+    const tmpReturnArg = $(1, 'return');
+    return tmpReturnArg;
   }
   $('keep, do not eval');
 }

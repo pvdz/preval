@@ -38,14 +38,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    $(100);
-    if (undefined) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  $(100);
+  if (undefined) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

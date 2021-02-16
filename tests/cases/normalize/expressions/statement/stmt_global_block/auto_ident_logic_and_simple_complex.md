@@ -35,14 +35,10 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  {
-    const tmpCalleeParam = $(1);
-    $(tmpCalleeParam);
-  }
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(1);
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

@@ -50,9 +50,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    {
-      tmpIfTest = 60;
-    }
+    tmpIfTest = 60;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

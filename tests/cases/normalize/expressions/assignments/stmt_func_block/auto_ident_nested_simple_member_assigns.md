@@ -58,18 +58,16 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    let a = { a: 999, b: 1000 };
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    a = 3;
-    $(a, b, 3);
-  }
+  let b = { x: 1 };
+  let a = { a: 999, b: 1000 };
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  a = 3;
+  $(a, b, 3);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

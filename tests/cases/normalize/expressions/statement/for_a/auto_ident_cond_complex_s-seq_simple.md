@@ -43,19 +43,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+}
+while (true) {
+  const tmpIfTest$1 = $(0);
+  if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam = $(100);
-    $(tmpCalleeParam);
-  }
-  while (true) {
-    const tmpIfTest$1 = $(0);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
+    break;
   }
 }
 $(a);

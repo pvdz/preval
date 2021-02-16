@@ -46,17 +46,15 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpIfTest$1 = b != null;
-      if (tmpIfTest$1) {
-        const tmpChainElementObject = b['x'];
-      }
-    } else {
-      break;
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = b != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = b['x'];
     }
+  } else {
+    break;
   }
 }
 $(a);

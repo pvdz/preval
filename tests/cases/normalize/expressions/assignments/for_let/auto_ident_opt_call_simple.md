@@ -41,18 +41,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  a = undefined;
-  const tmpIfTest = $ != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = $(1);
-    a = tmpChainElementCall;
-  }
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+a = undefined;
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
+  const tmpChainElementCall = $(1);
+  a = tmpChainElementCall;
+}
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

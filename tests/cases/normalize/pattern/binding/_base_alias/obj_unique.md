@@ -34,11 +34,7 @@ const a = bindingPatternObjRoot.x;
 ## Output
 
 `````js filename=intro
-{
-}
 const a = (1).x;
-{
-}
 `````
 
 ## Globals

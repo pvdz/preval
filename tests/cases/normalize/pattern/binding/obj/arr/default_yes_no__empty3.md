@@ -29,9 +29,7 @@ $(val);
 
 `````js filename=intro
 let val = undefined;
-{
-  val = false;
-}
+val = false;
 $(val);
 `````
 

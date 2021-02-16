@@ -35,11 +35,9 @@ let d = 4;
 
 `````js filename=intro
 let b = { x: 2 };
-{
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedRhs = 3 + 4;
-  b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-}
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedRhs = 3 + 4;
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 `````
 
 ## Globals

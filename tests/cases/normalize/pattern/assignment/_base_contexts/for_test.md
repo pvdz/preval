@@ -24,9 +24,7 @@ for ({ x } = 1;false;) y;
 ## Output
 
 `````js filename=intro
-{
-  x = (1).x;
-}
+x = (1).x;
 `````
 
 ## Globals

@@ -51,19 +51,17 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let x = 1;
-    let y = 2;
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpNestedAssignObjPatternRhs.x;
-    y = tmpNestedAssignObjPatternRhs.y;
-    const a = tmpNestedAssignObjPatternRhs;
-    $(a, x, y);
-  }
+  let x = 1;
+  let y = 2;
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpNestedAssignObjPatternRhs.x;
+  y = tmpNestedAssignObjPatternRhs.y;
+  const a = tmpNestedAssignObjPatternRhs;
+  $(a, x, y);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

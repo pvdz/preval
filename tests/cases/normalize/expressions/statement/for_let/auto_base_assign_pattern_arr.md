@@ -45,17 +45,15 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-{
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  const xyz = tmpNestedAssignArrPatternRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+b = arrPatternSplat[0];
+const xyz = tmpNestedAssignArrPatternRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b);
 `````

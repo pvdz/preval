@@ -50,11 +50,9 @@ $(1);
 $(2);
 const tmpDeleteObj = $(arg);
 const tmpSwitchTest = delete tmpDeleteObj.y;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, arg);
 `````

@@ -81,21 +81,19 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      {
-        const tmpForInDeclRhs = { a: 1, b: 2 };
-        let x;
-        for (x in tmpForInDeclRhs) {
-          $('loop', x);
-          const tmpIfTest$1 = $(1, 'if');
-          if (tmpIfTest$1) {
-            $('pass');
-            const tmpReturnArg = $(100, 'return');
-            return tmpReturnArg;
-          } else {
-            $('do not visit');
-            const tmpReturnArg$1 = $(101, 'return');
-            return tmpReturnArg$1;
-          }
+      const tmpForInDeclRhs = { a: 1, b: 2 };
+      let x;
+      for (x in tmpForInDeclRhs) {
+        $('loop', x);
+        const tmpIfTest$1 = $(1, 'if');
+        if (tmpIfTest$1) {
+          $('pass');
+          const tmpReturnArg = $(100, 'return');
+          return tmpReturnArg;
+        } else {
+          $('do not visit');
+          const tmpReturnArg$1 = $(101, 'return');
+          return tmpReturnArg$1;
         }
       }
       $('after (not invoked but should not be eliminated)');

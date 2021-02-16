@@ -46,16 +46,14 @@ var x;
 
 `````js filename=intro
 var x;
-{
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-    $(x, 'fail');
-  }
-  x = 10;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    $(x);
-  }
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  $(x, 'fail');
+}
+x = 10;
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  $(x);
 }
 `````
 

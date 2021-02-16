@@ -37,13 +37,11 @@ let d = 4;
 
 `````js filename=intro
 let b = { x: 2 };
-{
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedObj$1 = $(3);
-  const varInitAssignLhsComputedRhs$1 = $(4);
-  varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-}
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedObj$1 = $(3);
+const varInitAssignLhsComputedRhs$1 = $(4);
+varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
 `````
 
 ## Globals

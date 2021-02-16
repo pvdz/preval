@@ -48,10 +48,8 @@ if (tmpIfTest) {
 }
 if (tmpIfTest) {
 } else {
-  {
-    const tmpCalleeParam$1 = $(1);
-    $(tmpCalleeParam$1);
-  }
+  const tmpCalleeParam$1 = $(1);
+  $(tmpCalleeParam$1);
 }
 $(a);
 `````

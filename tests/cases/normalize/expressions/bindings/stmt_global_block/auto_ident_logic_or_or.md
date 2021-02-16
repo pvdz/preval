@@ -43,21 +43,19 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpCalleeParam = $(0);
-  let a = $(tmpCalleeParam);
-  if (a) {
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-  }
-  if (a) {
-  } else {
-    const tmpCalleeParam$2 = $(2);
-    a = $(tmpCalleeParam$2);
-  }
-  $(a);
+const tmpCalleeParam = $(0);
+let a = $(tmpCalleeParam);
+if (a) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  a = $(tmpCalleeParam$1);
 }
+if (a) {
+} else {
+  const tmpCalleeParam$2 = $(2);
+  a = $(tmpCalleeParam$2);
+}
+$(a);
 `````
 
 ## Globals

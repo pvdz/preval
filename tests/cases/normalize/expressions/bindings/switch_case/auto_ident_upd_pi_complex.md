@@ -57,26 +57,22 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const b = { x: 1 };
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(b);
-      const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
-      const tmpBinLhs = varInitAssignLhsComputedObj.x;
-      const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-      varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-      const a = varInitAssignLhsComputedRhs;
-      $(a, b);
-    }
-  }
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const b = { x: 1 };
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  const a = varInitAssignLhsComputedRhs;
+  $(a, b);
 }
 `````
 

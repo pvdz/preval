@@ -36,14 +36,12 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { c: 10, d: 20 };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b.c = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b);
-}
+let b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## Globals

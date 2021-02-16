@@ -46,13 +46,11 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpNewCallee = tmpCompObj.$;
-    a = new tmpNewCallee(1);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpNewCallee = tmpCompObj.$;
+  a = new tmpNewCallee(1);
 }
 $(a);
 `````

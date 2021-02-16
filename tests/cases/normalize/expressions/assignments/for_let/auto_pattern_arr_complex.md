@@ -44,16 +44,14 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
-  const tmpCalleeParam = [1, 2];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
-  const xyz = tmpNestedAssignArrPatternRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCalleeParam = [1, 2];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+a = arrPatternSplat$1[0];
+const xyz = tmpNestedAssignArrPatternRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

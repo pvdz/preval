@@ -41,15 +41,13 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpUnaryArg = $(1);
-    const tmpIfTest = typeof tmpUnaryArg;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpUnaryArg = $(1);
+  const tmpIfTest = typeof tmpUnaryArg;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, 1);

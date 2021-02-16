@@ -37,15 +37,13 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  const tmpAssignMemLhsObj = $(a);
-  const tmpAssignMemRhs = $(2);
-  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+const tmpObjLitVal = $(1);
+a = { b: tmpObjLitVal };
+const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+$(a);
 `````
 
 ## Globals

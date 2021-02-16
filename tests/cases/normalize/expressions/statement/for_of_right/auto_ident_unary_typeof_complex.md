@@ -37,12 +37,10 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(1);
-  const tmpForOfDeclRhs = typeof tmpUnaryArg;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpUnaryArg = $(1);
+const tmpForOfDeclRhs = typeof tmpUnaryArg;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, 1);
 `````

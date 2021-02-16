@@ -39,14 +39,12 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  $(1);
-  $(2);
-  a = x_1;
-  let tmpForInDeclRhs = a;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
-  }
+$(1);
+$(2);
+a = x_1;
+let tmpForInDeclRhs = a;
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
 }
 $(a, 1);
 `````

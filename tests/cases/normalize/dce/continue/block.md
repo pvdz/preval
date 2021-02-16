@@ -42,9 +42,7 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    {
-      continue;
-    }
+    continue;
   } else {
     break;
   }

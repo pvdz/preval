@@ -30,10 +30,8 @@
 ## Output
 
 `````js filename=intro
-{
-  $(100);
-  $(undefined);
-}
+$(100);
+$(undefined);
 `````
 
 ## Globals

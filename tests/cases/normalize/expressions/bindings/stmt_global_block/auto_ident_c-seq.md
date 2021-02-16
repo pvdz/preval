@@ -34,12 +34,10 @@
 ## Output
 
 `````js filename=intro
-{
-  $(1);
-  $(2);
-  let a = $(1);
-  $(a, 1);
-}
+$(1);
+$(2);
+let a = $(1);
+$(a, 1);
 `````
 
 ## Globals

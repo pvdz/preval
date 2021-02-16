@@ -44,16 +44,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  new $(tmpCalleeParam, tmpCalleeParam$1);
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+new $(tmpCalleeParam, tmpCalleeParam$1);
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a);

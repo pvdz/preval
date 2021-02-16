@@ -65,14 +65,12 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      {
-        const tmpForInDeclRhs = { a: 1, b: 2 };
-        let x;
-        for (x in tmpForInDeclRhs) {
-          $('loop', x);
-          const tmpReturnArg = $(100, 'return');
-          return tmpReturnArg;
-        }
+      const tmpForInDeclRhs = { a: 1, b: 2 };
+      let x;
+      for (x in tmpForInDeclRhs) {
+        $('loop', x);
+        const tmpReturnArg = $(100, 'return');
+        return tmpReturnArg;
       }
       $('fail');
     } else {

@@ -31,9 +31,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  a = $(2);
-}
+a = $(2);
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````

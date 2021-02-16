@@ -46,16 +46,14 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  $(3, b, 3);
-}
+let b = { x: 1 };
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+$(3, b, 3);
 `````
 
 ## Globals

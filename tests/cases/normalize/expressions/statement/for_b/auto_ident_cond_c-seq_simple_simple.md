@@ -45,21 +45,19 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    let tmpIfTest = undefined;
-    const tmpIfTest$1 = $(30);
-    if (tmpIfTest$1) {
-      tmpIfTest = $(2);
-    } else {
-      const tmpCalleeParam = $(100);
-      tmpIfTest = $(tmpCalleeParam);
-    }
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpIfTest$1 = $(30);
+  if (tmpIfTest$1) {
+    tmpIfTest = $(2);
+  } else {
+    const tmpCalleeParam = $(100);
+    tmpIfTest = $(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

@@ -42,15 +42,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
+$(1);
+$(2);
+const tmpDeleteCompProp = $('y');
+let xyz = delete arg[tmpDeleteCompProp];
+while (true) {
+  $(xyz);
   $(1);
-  $(2);
-  const tmpDeleteCompProp = $('y');
-  let xyz = delete arg[tmpDeleteCompProp];
-  while (true) {
-    $(xyz);
-    $(1);
-  }
 }
 $(a, arg);
 `````

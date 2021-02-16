@@ -50,26 +50,22 @@ switch (0) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let b;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 0 === 0;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      a = 10;
-      b = 20;
-      const arrAssignPatternRhs = [30, 40];
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      $(a, b);
-    }
-  }
+let a;
+let b;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 0 === 0;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  a = 10;
+  b = 20;
+  const arrAssignPatternRhs = [30, 40];
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
+  $(a, b);
 }
 `````
 

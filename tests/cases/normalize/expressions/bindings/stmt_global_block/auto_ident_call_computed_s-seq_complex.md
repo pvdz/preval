@@ -34,12 +34,10 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { $: $ };
-  const tmpCallCompProp = $('$');
-  let a = b[tmpCallCompProp](1);
-  $(a);
-}
+let b = { $: $ };
+const tmpCallCompProp = $('$');
+let a = b[tmpCallCompProp](1);
+$(a);
 `````
 
 ## Globals

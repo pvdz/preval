@@ -37,12 +37,10 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-{
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpForInDeclRhs = $(tmpCalleeParam);
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForInDeclRhs = $(tmpCalleeParam);
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

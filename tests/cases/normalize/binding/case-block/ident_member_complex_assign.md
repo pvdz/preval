@@ -59,26 +59,24 @@ $(a, b, c, d);
 `````js filename=intro
 let b = { x: 2 };
 const tmpSwitchTest = $('a');
-{
-  let a_1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const varInitAssignLhsComputedObj = $(b);
-      const varInitAssignLhsComputedObj$1 = $(3);
-      const varInitAssignLhsComputedRhs$1 = $(4);
-      varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-      varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-      a_1 = varInitAssignLhsComputedRhs;
-      break tmpSwitchBreak;
-    }
+let a_1;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedObj$1 = $(3);
+    const varInitAssignLhsComputedRhs$1 = $(4);
+    varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    a_1 = varInitAssignLhsComputedRhs;
+    break tmpSwitchBreak;
   }
 }
 $(1, b, 3, 4);

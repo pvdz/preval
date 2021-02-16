@@ -57,12 +57,10 @@ function f() {
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpReturnArg = $(2, 'ret');
-      return tmpReturnArg;
-    }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpReturnArg = $(2, 'ret');
+    return tmpReturnArg;
   }
 }
 const tmpCalleeParam = f();

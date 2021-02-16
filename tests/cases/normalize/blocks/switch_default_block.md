@@ -38,13 +38,9 @@ let tmpSwitchCaseToStart = 0;
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    {
-      $(3);
-    }
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(3);
 }
 `````
 

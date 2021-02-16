@@ -39,10 +39,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  {
-    const tmpCalleeParam = $(1);
-    $(tmpCalleeParam);
-  }
+  const tmpCalleeParam = $(1);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

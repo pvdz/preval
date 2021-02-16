@@ -32,13 +32,9 @@ y_1 = arrPatternSplat[0];
 ## Output
 
 `````js filename=intro
-{
-}
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 y_1 = arrPatternSplat[0];
-{
-}
 `````
 
 ## Globals

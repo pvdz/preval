@@ -62,9 +62,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-{
-  a = 60;
-}
+a = 60;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
@@ -75,16 +73,14 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-{
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $('fail1');
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
-    $('fail2');
-  }
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  $('fail1');
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$4) {
+  $('fail2');
 }
 $(a);
 `````

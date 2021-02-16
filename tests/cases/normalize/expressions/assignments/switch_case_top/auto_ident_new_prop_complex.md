@@ -57,13 +57,11 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpCompObj = $(b);
-    const tmpNewCallee = tmpCompObj.$;
-    a = new tmpNewCallee(1);
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCompObj = $(b);
+  const tmpNewCallee = tmpCompObj.$;
+  a = new tmpNewCallee(1);
 }
 $(a);
 `````

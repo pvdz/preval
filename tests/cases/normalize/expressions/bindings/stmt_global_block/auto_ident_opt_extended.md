@@ -42,20 +42,18 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpObjLitVal$1 = { z: 100 };
-  const tmpObjLitVal = { y: tmpObjLitVal$1 };
-  let b = { x: tmpObjLitVal };
-  let a = undefined;
-  const tmpIfTest = b != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$2;
-  }
-  $(a);
+const tmpObjLitVal$1 = { z: 100 };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+let b = { x: tmpObjLitVal };
+let a = undefined;
+const tmpIfTest = b != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+  a = tmpChainElementObject$2;
 }
+$(a);
 `````
 
 ## Globals

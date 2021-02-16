@@ -48,16 +48,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    let b = [];
-    let a = { a: 999, b: 1000 };
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const arrAssignPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    b = arrPatternSplat[0];
-    $(a, b);
-  }
+  let b = [];
+  let a = { a: 999, b: 1000 };
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  b = arrPatternSplat[0];
+  $(a, b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

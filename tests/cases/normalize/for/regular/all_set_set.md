@@ -30,10 +30,8 @@ for (let b = 2, c = 3, d = 4; b; ) $(d);
 ## Output
 
 `````js filename=intro
-{
-  while (2) {
-    $(4);
-  }
+while (2) {
+  $(4);
 }
 `````
 

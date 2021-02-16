@@ -59,14 +59,12 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-    b = tmpAssignObjPatternRhs.b;
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpAssignObjPatternRhs.b;
 }
 $(a, b);
 `````

@@ -92,13 +92,11 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpCalleeParam = $(b);
-      const tmpAssignMemLhsObj = $(tmpCalleeParam);
-      const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-      const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    const tmpCalleeParam = $(b);
+    const tmpAssignMemLhsObj = $(tmpCalleeParam);
+    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

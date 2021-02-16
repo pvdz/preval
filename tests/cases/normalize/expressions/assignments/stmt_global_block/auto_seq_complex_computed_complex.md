@@ -43,19 +43,17 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  let tmpCallCallee = a;
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(a);
-  const tmpAssignComMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpAssignComMemLhsProp = $('b');
-  const tmpAssignComputedRhs = $(2);
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+const tmpObjLitVal = $(1);
+a = { b: tmpObjLitVal };
+let tmpCallCallee = a;
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(a);
+const tmpAssignComMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComputedRhs = $(2);
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(a);
 `````
 
 ## Globals

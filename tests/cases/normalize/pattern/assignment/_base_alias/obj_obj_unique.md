@@ -36,13 +36,9 @@ a_1 = objPatternNoDefault$1.z;
 ## Output
 
 `````js filename=intro
-{
-}
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 a_1 = objPatternNoDefault$1.z;
-{
-}
 `````
 
 ## Globals

@@ -31,10 +31,8 @@ let c = 3;
 
 `````js filename=intro
 let b = 2;
-{
-  b = 3;
-  let a_1 = b;
-}
+b = 3;
+let a_1 = b;
 `````
 
 ## Globals

@@ -40,16 +40,14 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  let a = { a: 999, b: 1000 };
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  $(a, b);
-}
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(b);
+const tmpAssignMemLhsObj = $(tmpCalleeParam);
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+$(a, b);
 `````
 
 ## Globals

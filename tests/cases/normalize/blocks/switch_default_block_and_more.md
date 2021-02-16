@@ -43,9 +43,7 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   const tmpIfTest = 0 <= 0;
   if (tmpIfTest) {
-    {
-      $(3);
-    }
+    $(3);
     break tmpSwitchBreak;
   }
 }

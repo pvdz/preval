@@ -62,16 +62,12 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      $(1);
-      $(2);
-      const tmpDeleteCompProp = $('y');
-      delete arg[tmpDeleteCompProp];
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  $(1);
+  $(2);
+  const tmpDeleteCompProp = $('y');
+  delete arg[tmpDeleteCompProp];
 }
 $(a, arg);
 `````

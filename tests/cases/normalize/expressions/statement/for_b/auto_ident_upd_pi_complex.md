@@ -47,18 +47,16 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    if (varInitAssignLhsComputedRhs) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  if (varInitAssignLhsComputedRhs) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, b);

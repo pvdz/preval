@@ -50,16 +50,14 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
 }
 $(a, b);
 `````

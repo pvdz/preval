@@ -32,14 +32,12 @@ for (let {x} of {a: 1, b: 2}) $(x);
 ## Output
 
 `````js filename=intro
-{
-  const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-  let tmpForOfPatDeclLhs;
-  for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-    const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
-    const x = tmpAssignObjPatternRhs.x;
-    $(x);
-  }
+const tmpForOfPatDeclRhs = { a: 1, b: 2 };
+let tmpForOfPatDeclLhs;
+for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
+  const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
+  const x = tmpAssignObjPatternRhs.x;
+  $(x);
 }
 `````
 

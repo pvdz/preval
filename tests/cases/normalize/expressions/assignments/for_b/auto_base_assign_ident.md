@@ -44,17 +44,15 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpNestedComplexRhs = $(2);
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, b);

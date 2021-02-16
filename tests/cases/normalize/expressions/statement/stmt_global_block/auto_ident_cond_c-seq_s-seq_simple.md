@@ -37,16 +37,14 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpIfTest = $(30);
-  if (tmpIfTest) {
-  } else {
-    const tmpCalleeParam = $(100);
-    $(tmpCalleeParam);
-  }
-  $(a);
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(30);
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
+$(a);
 `````
 
 ## Globals

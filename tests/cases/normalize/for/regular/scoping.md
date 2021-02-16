@@ -30,10 +30,8 @@ const x = 1;
 ## Output
 
 `````js filename=intro
-{
-  while (true) {
-    $(2);
-  }
+while (true) {
+  $(2);
 }
 `````
 

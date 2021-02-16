@@ -69,9 +69,7 @@ const tmpIfTest = 3 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b, c, 3);
 `````
 

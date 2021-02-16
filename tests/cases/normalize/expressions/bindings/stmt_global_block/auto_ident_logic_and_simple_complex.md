@@ -34,14 +34,12 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = 1;
-  if (a) {
-    const tmpCalleeParam = $(1);
-    a = $(tmpCalleeParam);
-  }
-  $(a);
+let a = 1;
+if (a) {
+  const tmpCalleeParam = $(1);
+  a = $(tmpCalleeParam);
 }
+$(a);
 `````
 
 ## Globals

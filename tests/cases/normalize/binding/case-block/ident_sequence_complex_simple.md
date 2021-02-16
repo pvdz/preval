@@ -53,24 +53,22 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpSwitchTest = $('a');
-{
-  let a_1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      $(2);
-      const varInitAssignLhsComputedObj = $(3);
-      const varInitAssignLhsComputedRhs = 3;
-      varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-      a_1 = varInitAssignLhsComputedRhs;
-      break tmpSwitchBreak;
-    }
+let a_1;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    $(2);
+    const varInitAssignLhsComputedObj = $(3);
+    const varInitAssignLhsComputedRhs = 3;
+    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    a_1 = varInitAssignLhsComputedRhs;
+    break tmpSwitchBreak;
   }
 }
 $(1, 2, 3);

@@ -41,13 +41,11 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 ## Output
 
 `````js filename=intro
-{
-  let AAAAAAAAAAAAAAAAAAAA;
-  try {
-    AAAAAAAAAAAAAAAAAAAA = false;
-  } catch {
-    AAAAAAAAAAAAAAAAAAAA = false;
-  }
+let AAAAAAAAAAAAAAAAAAAA;
+try {
+  AAAAAAAAAAAAAAAAAAAA = false;
+} catch {
+  AAAAAAAAAAAAAAAAAAAA = false;
 }
 `````
 

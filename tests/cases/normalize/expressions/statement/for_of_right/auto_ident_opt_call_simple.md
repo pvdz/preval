@@ -39,16 +39,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpForOfDeclRhs = undefined;
-  const tmpIfTest = $ != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = $(1);
-    tmpForOfDeclRhs = tmpChainElementCall;
-  }
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+let tmpForOfDeclRhs = undefined;
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
+  const tmpChainElementCall = $(1);
+  tmpForOfDeclRhs = tmpChainElementCall;
+}
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

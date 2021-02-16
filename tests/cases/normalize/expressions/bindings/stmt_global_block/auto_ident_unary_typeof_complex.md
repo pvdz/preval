@@ -33,11 +33,9 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpUnaryArg = $(1);
-  let a = typeof tmpUnaryArg;
-  $(a, 1);
-}
+const tmpUnaryArg = $(1);
+let a = typeof tmpUnaryArg;
+$(a, 1);
 `````
 
 ## Globals

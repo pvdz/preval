@@ -38,13 +38,11 @@ let z = [10, 20, 30];
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  let a_1;
-  const arrPatternSplat = [...z];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a_1 = z;
-}
+let a_1;
+const arrPatternSplat = [...z];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
+a_1 = z;
 `````
 
 ## Globals

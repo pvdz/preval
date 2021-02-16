@@ -38,8 +38,6 @@ function h(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let x_1 = arrPatternStep.x;
-  {
-  }
   return x_1;
 }
 `````

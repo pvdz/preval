@@ -37,14 +37,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$2 = $(3);
-  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$2 = $(3);
+a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

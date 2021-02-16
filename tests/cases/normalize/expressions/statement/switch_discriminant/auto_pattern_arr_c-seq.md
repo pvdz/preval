@@ -51,11 +51,9 @@ $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
 const tmpSwitchTest = $(tmpCalleeParam);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

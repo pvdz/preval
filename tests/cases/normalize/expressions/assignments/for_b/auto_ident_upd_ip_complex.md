@@ -49,20 +49,18 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = $(tmpCalleeParam);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-    tmpPostUpdArgObj.x = tmpAssignMemRhs;
-    a = tmpPostUpdArgVal;
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = $(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  a = tmpPostUpdArgVal;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, b);

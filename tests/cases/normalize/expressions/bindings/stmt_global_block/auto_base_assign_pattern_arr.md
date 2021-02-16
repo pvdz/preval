@@ -39,16 +39,14 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = [];
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  const a = tmpNestedAssignArrPatternRhs;
-  $(a, b);
-}
+let b = [];
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+b = arrPatternSplat[0];
+const a = tmpNestedAssignArrPatternRhs;
+$(a, b);
 `````
 
 ## Globals

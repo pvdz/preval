@@ -47,18 +47,16 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+const tmpCalleeParam = $(b);
+const tmpAssignMemLhsObj = $(tmpCalleeParam);
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b);

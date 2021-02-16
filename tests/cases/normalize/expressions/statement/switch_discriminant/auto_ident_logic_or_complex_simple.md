@@ -52,11 +52,9 @@ if (tmpSwitchTest) {
   tmpSwitchTest = 2;
 }
 const tmpSwitchValue = tmpSwitchTest;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

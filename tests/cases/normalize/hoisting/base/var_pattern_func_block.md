@@ -47,11 +47,9 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   var x;
   $(x);
-  {
-    const arrAssignPatternRhs = [10];
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-  }
+  const arrAssignPatternRhs = [10];
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
   $(x);
   return x;
 }

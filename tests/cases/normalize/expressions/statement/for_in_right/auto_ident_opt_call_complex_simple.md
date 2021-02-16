@@ -40,17 +40,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpForInDeclRhs = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-    tmpForInDeclRhs = tmpChainElementCall$1;
-  }
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+let tmpForInDeclRhs = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  tmpForInDeclRhs = tmpChainElementCall$1;
+}
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

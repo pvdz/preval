@@ -69,16 +69,14 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpAssignComMemLhsObj = $(b);
-    const tmpAssignComMemLhsProp = $('x');
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $('x');
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 }
 $(a, b, c, 3);
 `````

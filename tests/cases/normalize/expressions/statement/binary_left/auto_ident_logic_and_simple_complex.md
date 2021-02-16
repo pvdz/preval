@@ -33,10 +33,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCalleeParam = $(1);
-  $(tmpCalleeParam);
-}
+const tmpCalleeParam = $(1);
+$(tmpCalleeParam);
 $(100);
 $(a);
 `````

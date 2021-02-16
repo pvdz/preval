@@ -40,17 +40,13 @@ let y = {};
 
 `````js filename=intro
 let y = {};
-{
-  const tmpForInPatDeclRhs = [y];
-  let tmpForInPatDeclLhs;
-  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    const arrAssignPatternRhs = tmpForInPatDeclLhs;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    const x = arrPatternSplat[0];
-    {
-      $(x);
-    }
-  }
+const tmpForInPatDeclRhs = [y];
+let tmpForInPatDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  const x = arrPatternSplat[0];
+  $(x);
 }
 `````
 

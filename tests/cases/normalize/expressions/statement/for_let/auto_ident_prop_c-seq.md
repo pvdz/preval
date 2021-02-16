@@ -39,13 +39,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = $(b);
-  let xyz = tmpCompObj.c;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCompObj = $(b);
+let xyz = tmpCompObj.c;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b);
 `````

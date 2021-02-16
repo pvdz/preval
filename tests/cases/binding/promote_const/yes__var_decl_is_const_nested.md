@@ -36,12 +36,10 @@ var x;
 ## Output
 
 `````js filename=intro
-{
-  const x = $(10);
-  let tmpCalleeParam = x;
-  $(tmpCalleeParam);
-  $(x);
-}
+const x = $(10);
+let tmpCalleeParam = x;
+$(tmpCalleeParam);
+$(x);
 `````
 
 ## Globals

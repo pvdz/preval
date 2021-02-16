@@ -34,12 +34,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(100);
-  const tmpForInDeclRhs = -tmpUnaryArg;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpUnaryArg = $(100);
+const tmpForInDeclRhs = -tmpUnaryArg;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

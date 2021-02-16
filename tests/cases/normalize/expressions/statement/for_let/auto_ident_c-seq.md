@@ -39,14 +39,12 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
+$(1);
+$(2);
+let xyz = $(1);
+while (true) {
+  $(xyz);
   $(1);
-  $(2);
-  let xyz = $(1);
-  while (true) {
-    $(xyz);
-    $(1);
-  }
 }
 $(a, 1);
 `````

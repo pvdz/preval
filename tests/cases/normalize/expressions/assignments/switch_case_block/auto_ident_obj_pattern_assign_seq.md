@@ -68,20 +68,16 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      $(x);
-      $(y);
-      const tmpObjLitVal = $(3);
-      const tmpObjLitVal$1 = $(4);
-      const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-      x = tmpNestedAssignObjPatternRhs.x;
-      y = tmpNestedAssignObjPatternRhs.y;
-      a = tmpNestedAssignObjPatternRhs;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpNestedAssignObjPatternRhs.x;
+  y = tmpNestedAssignObjPatternRhs.y;
+  a = tmpNestedAssignObjPatternRhs;
 }
 $(a, x, y);
 `````

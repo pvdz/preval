@@ -30,11 +30,9 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpUnaryArg = $(100);
-  let a = !tmpUnaryArg;
-  $(a);
-}
+const tmpUnaryArg = $(100);
+let a = !tmpUnaryArg;
+$(a);
 `````
 
 ## Globals

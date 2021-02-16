@@ -47,16 +47,14 @@ tmpCallCallee$2(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    const tmpCalleeParam = $(1);
-    const tmpIfTest = $(tmpCalleeParam);
-    if (tmpIfTest) {
-      const tmpCalleeParam$1 = $(2);
-      $(tmpCalleeParam$1);
-    }
-    $(a);
+  let a = { a: 999, b: 1000 };
+  const tmpCalleeParam = $(1);
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
+    const tmpCalleeParam$1 = $(2);
+    $(tmpCalleeParam$1);
   }
+  $(a);
 }
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

@@ -58,26 +58,24 @@ $(x, y, z);
 `````js filename=intro
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-{
-  let a;
-  let b;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      $(1);
-      $(2);
-      const bindingPatternArrRoot = z;
-      const arrPatternSplat = [...bindingPatternArrRoot];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-      break tmpSwitchBreak;
-    }
+let a;
+let b;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    $(1);
+    $(2);
+    const bindingPatternArrRoot = z;
+    const arrPatternSplat = [...bindingPatternArrRoot];
+    a = arrPatternSplat[0];
+    b = arrPatternSplat[1];
+    break tmpSwitchBreak;
   }
 }
 $(1, 2, z);

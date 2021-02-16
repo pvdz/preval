@@ -65,14 +65,12 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      {
-        const tmpForInDeclRhs = { a: 1, b: 2 };
-        let x;
-        for (x in tmpForInDeclRhs) {
-          $('loop', x);
-          const tmpThrowArg = $(7, 'throw');
-          throw tmpThrowArg;
-        }
+      const tmpForInDeclRhs = { a: 1, b: 2 };
+      let x;
+      for (x in tmpForInDeclRhs) {
+        $('loop', x);
+        const tmpThrowArg = $(7, 'throw');
+        throw tmpThrowArg;
       }
       $('fail');
     } else {

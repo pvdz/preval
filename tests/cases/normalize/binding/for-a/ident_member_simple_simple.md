@@ -32,9 +32,7 @@ let c = 3;
 
 `````js filename=intro
 let b = { x: 2 };
-{
-  b.x = 3;
-}
+b.x = 3;
 `````
 
 ## Globals

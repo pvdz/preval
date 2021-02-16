@@ -42,17 +42,13 @@ let y = {};
 
 `````js filename=intro
 let y = {};
-{
-  const tmpForInPatDeclRhs = [y];
-  let tmpForInPatDeclLhs;
-  for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-    const arrAssignPatternRhs = tmpForInPatDeclLhs;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    const x_1 = arrPatternSplat[0];
-    {
-      $(x_1);
-    }
-  }
+const tmpForInPatDeclRhs = [y];
+let tmpForInPatDeclLhs;
+for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
+  const arrAssignPatternRhs = tmpForInPatDeclLhs;
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  const x_1 = arrPatternSplat[0];
+  $(x_1);
 }
 `````
 

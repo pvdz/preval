@@ -55,24 +55,22 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpObjLitVal$1 = { e: $ };
-    const tmpObjLitVal = { d: tmpObjLitVal$1 };
-    let b = { c: tmpObjLitVal };
-    let a = undefined;
-    const tmpIfTest = b != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = b.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      const tmpIfTest$1 = tmpChainElementObject$2 != null;
-      if (tmpIfTest$1) {
-        const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-        a = tmpChainElementCall;
-      }
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal = { d: tmpObjLitVal$1 };
+  let b = { c: tmpObjLitVal };
+  let a = undefined;
+  const tmpIfTest = b != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = b.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+      a = tmpChainElementCall;
     }
-    $(a);
   }
+  $(a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

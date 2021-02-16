@@ -33,10 +33,8 @@ let d = 4;
 
 `````js filename=intro
 let b = { x: 2 };
-{
-  const varInitAssignLhsComputedRhs = 3 + 4;
-  b.x = varInitAssignLhsComputedRhs;
-}
+const varInitAssignLhsComputedRhs = 3 + 4;
+b.x = varInitAssignLhsComputedRhs;
 `````
 
 ## Globals

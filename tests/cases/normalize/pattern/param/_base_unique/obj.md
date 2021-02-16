@@ -34,8 +34,6 @@ let x = 1;
 `````js filename=intro
 function g(tmpParamPattern) {
   let x_1 = tmpParamPattern.x;
-  {
-  }
   return x_1;
 }
 `````

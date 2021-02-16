@@ -93,13 +93,11 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpObjLitVal = $(3);
-      const tmpObjLitVal$1 = $(4);
-      const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-      x = tmpAssignObjPatternRhs.x;
-      y = tmpAssignObjPatternRhs.y;
-    }
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpAssignObjPatternRhs.x;
+    y = tmpAssignObjPatternRhs.y;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

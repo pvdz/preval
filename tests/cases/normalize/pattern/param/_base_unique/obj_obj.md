@@ -38,8 +38,6 @@ function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let z_1 = objPatternNoDefault$1.z;
-  {
-  }
   return z_1;
 }
 `````

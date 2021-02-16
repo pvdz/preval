@@ -50,26 +50,22 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  a = undefined;
+  if (30) {
+    a = $(2);
+  } else {
+    const tmpCalleeParam = $(100);
+    a = $(tmpCalleeParam);
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      a = undefined;
-      if (30) {
-        a = $(2);
-      } else {
-        const tmpCalleeParam = $(100);
-        a = $(tmpCalleeParam);
-      }
-      $(a);
-    }
-  }
+  $(a);
 }
 `````
 

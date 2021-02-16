@@ -43,15 +43,13 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCalleeParam = $(b);
-  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-  const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let x;
-  for (x of varInitAssignLhsComputedRhs) {
-  }
+const tmpCalleeParam = $(b);
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+let x;
+for (x of varInitAssignLhsComputedRhs) {
 }
 $(a, b);
 `````

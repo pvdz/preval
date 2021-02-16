@@ -32,9 +32,7 @@ $(x);
 `````js filename=intro
 var x;
 $(x);
-{
-  x = 10;
-}
+x = 10;
 $(x);
 `````
 

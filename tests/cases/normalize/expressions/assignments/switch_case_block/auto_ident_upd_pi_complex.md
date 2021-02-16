@@ -64,18 +64,14 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpCalleeParam = $(b);
-      const tmpNestedAssignObj = $(tmpCalleeParam);
-      const tmpBinLhs$1 = tmpNestedAssignObj.x;
-      const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
-      tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-      a = tmpNestedPropCompoundComplexRhs;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = $(tmpCalleeParam);
+  const tmpBinLhs$1 = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
 }
 $(a, b);
 `````

@@ -42,10 +42,8 @@ const tmpIfTest = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
 `````
 
 ## Globals

@@ -34,9 +34,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let xyz = undefined;
-{
-  xyz = 60;
-}
+xyz = 60;
 $(xyz);
 $(a);
 `````

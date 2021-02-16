@@ -34,12 +34,10 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { c: 1 };
-  const tmpCompProp = $('c');
-  let a = b[tmpCompProp];
-  $(a, b);
-}
+let b = { c: 1 };
+const tmpCompProp = $('c');
+let a = b[tmpCompProp];
+$(a, b);
 `````
 
 ## Globals

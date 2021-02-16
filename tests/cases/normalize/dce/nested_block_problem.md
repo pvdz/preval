@@ -42,9 +42,7 @@ x: {
 `````js filename=intro
 x: {
   {
-    {
-      break x;
-    }
+    break x;
   }
 }
 `````

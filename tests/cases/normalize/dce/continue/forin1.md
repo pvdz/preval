@@ -49,12 +49,10 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    {
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
-      for (x in tmpForInDeclRhs) {
-        continue;
-      }
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x;
+    for (x in tmpForInDeclRhs) {
+      continue;
     }
     $('keep');
   } else {

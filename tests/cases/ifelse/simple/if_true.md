@@ -23,9 +23,7 @@ if (true) $();
 ## Output
 
 `````js filename=intro
-{
-  $();
-}
+$();
 `````
 
 ## Globals

@@ -33,12 +33,10 @@ let c = 3;
 ## Output
 
 `````js filename=intro
-{
-  $(2);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(3);
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-}
+$(2);
+const varInitAssignLhsComputedObj = $(3);
+const varInitAssignLhsComputedRhs = $(3);
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 `````
 
 ## Globals

@@ -48,22 +48,18 @@ switch (0) {
 ## Output
 
 `````js filename=intro
-{
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 0 === 0;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const bindingPatternArrRoot = [10, 20];
-      const arrPatternSplat = [...bindingPatternArrRoot];
-      const a = arrPatternSplat[0];
-      const b = arrPatternSplat[1];
-      $(a, b);
-    }
-  }
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 0 === 0;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const bindingPatternArrRoot = [10, 20];
+  const arrPatternSplat = [...bindingPatternArrRoot];
+  const a = arrPatternSplat[0];
+  const b = arrPatternSplat[1];
+  $(a, b);
 }
 `````
 

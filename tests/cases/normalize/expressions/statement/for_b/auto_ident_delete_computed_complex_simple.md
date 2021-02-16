@@ -43,15 +43,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpDeleteCompObj = $(arg);
-    const tmpIfTest = delete tmpDeleteCompObj['y'];
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpDeleteCompObj = $(arg);
+  const tmpIfTest = delete tmpDeleteCompObj['y'];
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a, arg);

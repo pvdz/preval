@@ -43,13 +43,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$2 = $(3);
-    a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$2 = $(3);
+  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
 }
 $(a);
 `````

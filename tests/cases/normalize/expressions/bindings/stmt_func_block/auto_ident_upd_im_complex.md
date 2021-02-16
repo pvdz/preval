@@ -48,15 +48,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = $(tmpCalleeParam);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpPostUpdArgObj.x = tmpAssignMemRhs;
-    $(tmpPostUpdArgVal, b);
-  }
+  let b = { x: 1 };
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = $(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  $(tmpPostUpdArgVal, b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

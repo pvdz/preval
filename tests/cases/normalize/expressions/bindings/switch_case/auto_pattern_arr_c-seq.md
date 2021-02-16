@@ -52,25 +52,21 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      $(10);
-      $(20);
-      const tmpCallCallee = $;
-      const tmpCalleeParam = [1, 2];
-      const bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
-      const arrPatternSplat = [...bindingPatternArrRoot];
-      const a = arrPatternSplat[0];
-      $(a);
-    }
-  }
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  $(10);
+  $(20);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  const bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...bindingPatternArrRoot];
+  const a = arrPatternSplat[0];
+  $(a);
 }
 `````
 

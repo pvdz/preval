@@ -49,17 +49,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    let a = { a: 999, b: 1000 };
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
-    $(a, b);
-  }
+  let b = { x: 1 };
+  let a = { a: 999, b: 1000 };
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = $(tmpCalleeParam);
+  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+  $(a, b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

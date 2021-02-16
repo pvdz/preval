@@ -50,16 +50,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let b = { c: 10, d: 20 };
-    let a = { a: 999, b: 1000 };
-    const tmpAssignComMemLhsProp = $('c');
-    const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-    $(a, b);
-  }
+  let b = { c: 10, d: 20 };
+  let a = { a: 999, b: 1000 };
+  const tmpAssignComMemLhsProp = $('c');
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('d');
+  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+  b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  $(a, b);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

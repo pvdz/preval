@@ -46,15 +46,13 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    const tmpAssignRhsCompObj = $(b);
-    const tmpAssignRhsCompProp = $('c');
-    a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  const tmpAssignRhsCompObj = $(b);
+  const tmpAssignRhsCompProp = $('c');
+  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, b);
 `````

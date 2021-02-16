@@ -40,14 +40,12 @@ const tmpForOfRhs = $(b);
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-    const tmpCalleeParam = a.x;
-    $(tmpCalleeParam);
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  const tmpCalleeParam = a.x;
+  $(tmpCalleeParam);
 }
 `````
 

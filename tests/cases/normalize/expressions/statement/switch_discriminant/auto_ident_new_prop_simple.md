@@ -46,11 +46,9 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
 const tmpSwitchTest = new tmpNewCallee(1);
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

@@ -49,9 +49,7 @@ foo: {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       {
-        {
-          break foo;
-        }
+        break foo;
       }
     } else {
       break;

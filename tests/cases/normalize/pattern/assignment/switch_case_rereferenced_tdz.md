@@ -61,33 +61,29 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let b;
-  let tmpSwitchCaseToStart = 2;
-  const tmpIfTest = 0 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 1 === 1;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    }
+let a;
+let b;
+let tmpSwitchCaseToStart = 2;
+const tmpIfTest = 0 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 1 === 1;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      a = 10;
-      b = 20;
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      const arrAssignPatternRhs = [30, 40];
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      a = arrPatternSplat[0];
-      b = arrPatternSplat[1];
-    }
-  }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  a = 10;
+  b = 20;
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  const arrAssignPatternRhs = [30, 40];
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  a = arrPatternSplat[0];
+  b = arrPatternSplat[1];
 }
 `````
 

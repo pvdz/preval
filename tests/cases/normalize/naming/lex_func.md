@@ -47,13 +47,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    let a_1 = $(1);
-    $(a_1);
-    const tmpIfTest = $();
-    if (tmpIfTest) {
-      return a_1;
-    }
+  let a_1 = $(1);
+  $(a_1);
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    return a_1;
   }
   let a = $(1);
   $(a);

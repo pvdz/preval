@@ -34,11 +34,9 @@ let d = 4;
 
 `````js filename=intro
 var a;
-{
-  a = 1;
-  while (true) {
-    $(4);
-  }
+a = 1;
+while (true) {
+  $(4);
 }
 `````
 

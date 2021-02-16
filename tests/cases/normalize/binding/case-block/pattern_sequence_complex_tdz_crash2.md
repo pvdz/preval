@@ -38,14 +38,10 @@ switch (1) { default: let x = x; $('fail'); }
 ## Output
 
 `````js filename=intro
-{
-  let x;
-  {
-    const tmpIfTest = 0 <= 0;
-    if (tmpIfTest) {
-      $('fail');
-    }
-  }
+let x;
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $('fail');
 }
 `````
 

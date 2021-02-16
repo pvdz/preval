@@ -37,9 +37,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompProp = undefined;
-{
-  tmpCompProp = 60;
-}
+tmpCompProp = 60;
 obj[tmpCompProp];
 $(a);
 `````

@@ -39,11 +39,9 @@ tmpCallCallee$1(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpCallCallee = $($);
-    let a = tmpCallCallee(1);
-    $(a);
-  }
+  const tmpCallCallee = $($);
+  let a = tmpCallCallee(1);
+  $(a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

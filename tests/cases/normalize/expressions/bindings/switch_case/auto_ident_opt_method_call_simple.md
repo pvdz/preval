@@ -54,28 +54,24 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const b = { c: $ };
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$2 = tmpChainRootProp != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    a = tmpChainElementCall;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const b = { c: $ };
-      a = undefined;
-      const tmpChainRootProp = b;
-      const tmpIfTest$2 = tmpChainRootProp != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-        a = tmpChainElementCall;
-      }
-      $(a);
-    }
-  }
+  $(a);
 }
 `````
 

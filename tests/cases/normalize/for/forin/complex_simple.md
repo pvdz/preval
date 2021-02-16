@@ -38,14 +38,12 @@ let b = { x: 1, y: 2 };
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in b) {
-    const tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-    const tmpCalleeParam = a.x;
-    $(tmpCalleeParam);
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in b) {
+  const tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  const tmpCalleeParam = a.x;
+  $(tmpCalleeParam);
 }
 `````
 

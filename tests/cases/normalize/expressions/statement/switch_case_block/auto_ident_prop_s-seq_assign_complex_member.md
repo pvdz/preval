@@ -63,16 +63,12 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-      b.c = tmpAssignMemRhs;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('d');
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  b.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````

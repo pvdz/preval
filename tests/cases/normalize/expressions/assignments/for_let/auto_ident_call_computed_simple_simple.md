@@ -39,13 +39,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  a = b['$'](1);
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+a = b['$'](1);
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

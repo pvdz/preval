@@ -42,13 +42,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  {
-    const tmpCalleeParam = [1, 2];
-    let bindingPatternArrRoot = $(tmpCalleeParam);
-    let arrPatternSplat = [...bindingPatternArrRoot];
-    let a = arrPatternSplat[0];
-    $(a);
-  }
+  const tmpCalleeParam = [1, 2];
+  let bindingPatternArrRoot = $(tmpCalleeParam);
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let a = arrPatternSplat[0];
+  $(a);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

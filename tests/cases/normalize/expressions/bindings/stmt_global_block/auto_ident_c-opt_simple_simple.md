@@ -39,16 +39,14 @@
 ## Output
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  let a = undefined;
-  const tmpIfTest = b != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = b['x'];
-    a = tmpChainElementObject;
-  }
-  $(a);
+let b = { x: 1 };
+let a = undefined;
+const tmpIfTest = b != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = b['x'];
+  a = tmpChainElementObject;
 }
+$(a);
 `````
 
 ## Globals

@@ -63,16 +63,12 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpIfTest$2 = b != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementObject = b.c;
-        const tmpChainElementCall = tmpChainElementObject.call(b, 1);
-      }
-    }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpIfTest$2 = b != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementObject = b.c;
+    const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   }
 }
 $(a);

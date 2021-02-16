@@ -35,15 +35,11 @@ $(x_1);
 ## Output
 
 `````js filename=intro
-{
-}
 const tmpArrElement = { x: 100 };
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x_1 = arrPatternStep.x;
-{
-}
 $(x_1);
 `````
 

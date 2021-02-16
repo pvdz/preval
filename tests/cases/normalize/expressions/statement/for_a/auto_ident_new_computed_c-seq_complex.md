@@ -44,17 +44,15 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('$');
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  new tmpNewCallee(1);
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+const tmpCompObj = $(b);
+const tmpCompProp = $('$');
+const tmpNewCallee = tmpCompObj[tmpCompProp];
+new tmpNewCallee(1);
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a);

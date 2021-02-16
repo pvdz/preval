@@ -55,20 +55,18 @@ $(a, b, c, d);
 let b = { x: 1 };
 let c = { y: 2 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      const varInitAssignLhsComputedObj = $(c);
-      const varInitAssignLhsComputedProp = $('y');
-      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-      a = 3;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    a = 3;
+  } else {
+    break;
   }
 }
 $(a, b, c, 3);

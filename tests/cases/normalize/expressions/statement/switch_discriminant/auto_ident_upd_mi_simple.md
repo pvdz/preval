@@ -46,11 +46,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = b - 1;
 let tmpSwitchTest = b;
-{
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = 0 <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, b);
 `````

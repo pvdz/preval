@@ -29,10 +29,8 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = function () {};
-  $(a);
-}
+let a = function () {};
+$(a);
 `````
 
 ## Globals

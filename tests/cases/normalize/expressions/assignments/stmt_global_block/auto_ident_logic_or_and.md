@@ -44,21 +44,19 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpCalleeParam = $(0);
-  a = $(tmpCalleeParam);
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(0);
+a = $(tmpCalleeParam);
+if (a) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  a = $(tmpCalleeParam$1);
   if (a) {
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-    if (a) {
-      const tmpCalleeParam$2 = $(2);
-      a = $(tmpCalleeParam$2);
-    }
+    const tmpCalleeParam$2 = $(2);
+    a = $(tmpCalleeParam$2);
   }
-  $(a);
 }
+$(a);
 `````
 
 ## Globals

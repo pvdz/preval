@@ -30,11 +30,9 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpNewCallee = $($);
-  let a = new tmpNewCallee(1);
-  $(a);
-}
+const tmpNewCallee = $($);
+let a = new tmpNewCallee(1);
+$(a);
 `````
 
 ## Globals

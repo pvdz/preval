@@ -35,15 +35,13 @@
 ## Output
 
 `````js filename=intro
-{
-  let a = undefined;
-  const tmpIfTest = $ != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = $(1);
-    a = tmpChainElementCall;
-  }
-  $(a);
+let a = undefined;
+const tmpIfTest = $ != null;
+if (tmpIfTest) {
+  const tmpChainElementCall = $(1);
+  a = tmpChainElementCall;
 }
+$(a);
 `````
 
 ## Globals

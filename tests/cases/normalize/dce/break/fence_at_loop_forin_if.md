@@ -70,19 +70,17 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $('loop');
-    {
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
-      for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpIfTest$1 = $(1);
-        if (tmpIfTest$1) {
-          $('pass');
-          break;
-        } else {
-          $('do not visit');
-          break;
-        }
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x;
+    for (x in tmpForInDeclRhs) {
+      $('loop', x);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        $('pass');
+        break;
+      } else {
+        $('do not visit');
+        break;
       }
     }
     $('infiloop, do not eliminate');

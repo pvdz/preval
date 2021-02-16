@@ -45,16 +45,14 @@ $(a, x, y);
 `````js filename=intro
 let y = 2;
 let a = { a: 999, b: 1000 };
-{
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x_1 = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
-  }
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x_1 = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
 $(a, 1, y);
 `````

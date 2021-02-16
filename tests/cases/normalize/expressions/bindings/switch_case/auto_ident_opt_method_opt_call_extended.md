@@ -63,35 +63,31 @@ switch (1) {
 ## Output
 
 `````js filename=intro
-{
-  let a;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpObjLitVal$1 = { e: $ };
-      const tmpObjLitVal = { d: tmpObjLitVal$1 };
-      const b = { c: tmpObjLitVal };
-      a = undefined;
-      const tmpChainRootProp = b;
-      const tmpIfTest$2 = tmpChainRootProp != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementObject$1 = tmpChainElementObject.d;
-        const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-        const tmpIfTest$3 = tmpChainElementObject$2 != null;
-        if (tmpIfTest$3) {
-          const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-          a = tmpChainElementCall;
-        }
-      }
-      $(a);
+let a;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === 1;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal = { d: tmpObjLitVal$1 };
+  const b = { c: tmpObjLitVal };
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$2 = tmpChainRootProp != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+    const tmpIfTest$3 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+      a = tmpChainElementCall;
     }
   }
+  $(a);
 }
 `````
 

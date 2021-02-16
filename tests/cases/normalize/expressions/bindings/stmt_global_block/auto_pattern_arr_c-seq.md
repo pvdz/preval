@@ -35,15 +35,13 @@
 ## Output
 
 `````js filename=intro
-{
-  $(10);
-  $(20);
-  const tmpCalleeParam = [1, 2];
-  let bindingPatternArrRoot = $(tmpCalleeParam);
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  $(a);
-}
+$(10);
+$(20);
+const tmpCalleeParam = [1, 2];
+let bindingPatternArrRoot = $(tmpCalleeParam);
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+$(a);
 `````
 
 ## Globals

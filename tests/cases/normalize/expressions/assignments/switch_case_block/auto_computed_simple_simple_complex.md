@@ -60,14 +60,10 @@ const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpObjLitVal = $(1);
-      a = { b: tmpObjLitVal };
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
 }
 const tmpAssignComputedObj = a;
 const tmpAssignComputedRhs = $(2);

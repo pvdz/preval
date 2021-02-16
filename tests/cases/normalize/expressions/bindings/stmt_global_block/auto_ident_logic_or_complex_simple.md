@@ -35,15 +35,13 @@
 ## Output
 
 `````js filename=intro
-{
-  const tmpCalleeParam = $(0);
-  let a = $(tmpCalleeParam);
-  if (a) {
-  } else {
-    a = 2;
-  }
-  $(a);
+const tmpCalleeParam = $(0);
+let a = $(tmpCalleeParam);
+if (a) {
+} else {
+  a = 2;
 }
+$(a);
 `````
 
 ## Globals

@@ -113,9 +113,7 @@ exit: {
     tmpIfTest = x === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    {
-      $('A');
-    }
+    $('A');
     fallthrough = true;
   }
   let tmpIfTest$1 = fallthrough;
@@ -125,10 +123,8 @@ exit: {
     tmpIfTest$1 = x === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    {
-      $('B');
-      break exit;
-    }
+    $('B');
+    break exit;
   }
   let tmpIfTest$2 = fallthrough;
   if (tmpIfTest$2) {
@@ -137,10 +133,8 @@ exit: {
     tmpIfTest$2 = x === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
-    {
-      $('C');
-      break exit;
-    }
+    $('C');
+    break exit;
   }
 }
 `````

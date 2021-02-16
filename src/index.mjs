@@ -125,6 +125,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     group('- visiting "' + n + '", mark = ' + mod.mark);
     if (mod.mark !== MARK_NONE) {
       log('  - Already marked, skipping');
+      groupEnd();
       return;
     }
     if (mod.mark === MARK_TEMP) {
@@ -182,6 +183,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       contents.implicitGlobals = set;
     });
   }
+
+  groupEnd();
 
   return contents;
 }

@@ -353,6 +353,7 @@ export function phase2(program, fdata, resolve, req) {
       groupEnd();
     }
   });
+  groupEnd();
 
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
@@ -362,7 +363,7 @@ export function phase2(program, fdata, resolve, req) {
         case 'Program:after':
         case 'BlockStatement:before': {
           // Fold up nested blocks. Should be safe now since all binding names are unique and there's no risk of collisions.
-          for (let i=node.body.length - 1; i>=0; --i) {
+          for (let i = node.body.length - 1; i >= 0; --i) {
             if (node.body[i].type === 'BlockStatement') {
               if (nodeType === 'Program') {
                 rule('Blocks in global space should be eliminated');
@@ -386,4 +387,5 @@ export function phase2(program, fdata, resolve, req) {
     'ast',
   );
 
+  groupEnd();
 }

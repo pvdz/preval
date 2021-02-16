@@ -137,7 +137,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
   const exports = new Map();
   fdata.exports = exports;
 
-  group('\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  group(
+    '\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n',
+  );
 
   function findUniqueNameForBindingIdent(node, funcDeclId = false) {
     ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
@@ -274,7 +276,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
       do {
         group('Checking scope... (sid=', s.$sid, ')');
-        log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : ('yes, ' + s.names.size));
+        log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
         if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
           log('Breaking for function header scopes in Block');
           groupEnd();
@@ -290,9 +292,11 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
           log('- ignoring scope body in function node');
         } else if (node.type === 'CatchClause' && s.type !== Tenko.SCOPE_LAYER_CATCH_HEAD && s.type !== Tenko.SCOPE_LAYER_CATCH_BODY) {
           log('- in catch clause we only care about the two catch scopes');
+          groupEnd();
           break;
         } else if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_GLOBAL) {
           log('- do not process global scope in block');
+          groupEnd();
           break;
         } else if (
           node.type === 'BlockStatement' &&
@@ -300,6 +304,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
           !['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(path.nodes[path.nodes.length - 2].type)
         ) {
           log('- do not process func scope in a block that is not child of a function');
+          groupEnd();
           break;
         } else {
           s.names.forEach((v, name) => {

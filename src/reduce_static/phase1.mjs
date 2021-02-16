@@ -183,6 +183,7 @@ export function phase1(fdata, resolve, req, verbose) {
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
           if (kind === 'read') {
             meta.reads.push({
+              action: 'read',
               parentNode,
               parentProp,
               parentIndex,
@@ -198,6 +199,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
               meta.writes.push({
+                action: 'write',
                 parentNode,
                 parentProp,
                 parentIndex,
@@ -213,6 +215,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
               meta.writes.push({
+                action: 'write',
                 parentNode,
                 parentProp,
                 parentIndex,
@@ -225,6 +228,7 @@ export function phase1(fdata, resolve, req, verbose) {
             } else {
               // for-x lhs, param, etc
               meta.writes.push({
+                action: 'write',
                 parentNode,
                 parentProp,
                 parentIndex,

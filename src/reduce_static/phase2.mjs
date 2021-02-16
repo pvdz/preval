@@ -247,16 +247,9 @@ export function phase2(program, fdata, resolve, req) {
   group('Checking for promotable vars');
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
+    if (meta.isImplicitGlobal) return;
 
-    // A few situations;
-    // - The var is referenced from multiple scopes
-    //   -> define it, hoisted in the outer-most scope where it was referenced
-    // - The var is defined without init, written to once, read from multiple scopes
-    //   -> needs more analysis. maybe we can make it a constant.
-    // - The var is defined without init, written to once, read from one (different) scope
-    //   -> see if we can move the decl to the same scope. if not, more analysis is required to change it to constant
-    // - The var is defined without init, written to once, read from same scope.
-    //   -> if all reads happen in branches after the write, then the var is a constant
+    group('- `' + name + '`');
 
     // Check if all usages of the binding is consolidated to one scope
     const writeScopes = new Set();
@@ -264,10 +257,12 @@ export function phase2(program, fdata, resolve, req) {
     const readScopes = new Set();
     meta.reads.forEach((write) => readScopes.add(write.scope));
 
+    ASSERT(meta.writes.length > 0, 'all bindings must have at least some writes...'); // what about implicit globals?
+    const declData = meta.writes[0].decl;
+
     // "Does the binding have two writes, of which the first was a decl and the second a regular assignment?"
     if (meta.writes.length === 2 && meta.writes[0].decl && meta.writes[1].assign) {
       group('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
-      const declData = meta.writes[0].decl;
       const decl =
         declData.declIndex >= 0 ? declData.declParent[declData.declProp][declData.declIndex] : declData.declParent[declData.declProp];
       const decr = decl.declarations[0];
@@ -348,9 +343,10 @@ export function phase2(program, fdata, resolve, req) {
 
               // Push a new write record for the const decl which replaces the old one for the assignment
               meta.writes[0] = {
-                parentNode: newNode,
-                parentProp: 'declarations',
-                parentIndex: 0,
+                action: 'write',
+                parentNode: newNode.declarations[0],
+                parentProp: 'init',
+                parentIndex: -1,
                 node: newNode.declarations[0].id,
                 rwCounter: assign.rwCounter,
                 scope: assign.scope,
@@ -369,8 +365,11 @@ export function phase2(program, fdata, resolve, req) {
           }
         }
       }
+
       groupEnd();
     }
+
+    groupEnd();
   });
   groupEnd();
 

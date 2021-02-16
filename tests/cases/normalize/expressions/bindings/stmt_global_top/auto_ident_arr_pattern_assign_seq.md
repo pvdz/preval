@@ -49,8 +49,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const a = tmpNestedAssignArrPatternRhs;
-$(a, x, y);
+$(tmpNestedAssignArrPatternRhs, x, y);
 `````
 
 ## Globals

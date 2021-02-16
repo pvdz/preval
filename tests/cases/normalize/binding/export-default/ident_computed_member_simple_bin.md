@@ -36,11 +36,10 @@ $(a, b, c);
 `````js filename=intro
 let b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
-const varInitAssignLhsComputedRhs = 3 + 4;
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+b[varInitAssignLhsComputedProp] = 7;
+let a = 7;
 export { a };
-$(varInitAssignLhsComputedRhs, b, 3);
+$(7, b, 3);
 `````
 
 ## Globals

@@ -64,8 +64,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpBinLhs = tmpNestedAssignArrPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

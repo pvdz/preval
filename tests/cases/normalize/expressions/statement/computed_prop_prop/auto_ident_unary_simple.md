@@ -36,8 +36,7 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompProp = typeof 1;
-obj[tmpCompProp];
+obj.number;
 $(a, 1);
 `````
 

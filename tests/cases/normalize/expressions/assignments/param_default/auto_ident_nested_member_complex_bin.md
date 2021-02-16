@@ -66,11 +66,10 @@ function f($tdz$__p) {
     const varInitAssignLhsComputedProp = $('x');
     const varInitAssignLhsComputedObj$1 = $(c);
     const varInitAssignLhsComputedProp$1 = $('y');
-    const varInitAssignLhsComputedRhs$1 = 3 + 4;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-    a = varInitAssignLhsComputedRhs$1;
-    p = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    a = 7;
+    p = 7;
   } else {
     p = $tdz$__p;
   }

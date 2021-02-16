@@ -62,10 +62,7 @@ if (tmpIfTest) {
   tmpSwitchTest = tmpChainElementObject$2;
 }
 const tmpSwitchValue = tmpSwitchTest;
-const tmpIfTest$1 = 0 <= 0;
-if (tmpIfTest$1) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

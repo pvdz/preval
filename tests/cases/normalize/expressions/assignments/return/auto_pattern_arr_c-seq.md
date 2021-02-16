@@ -53,8 +53,7 @@ function f() {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat[0];
-  const tmpReturnArg = tmpNestedAssignArrPatternRhs;
-  return tmpReturnArg;
+  return tmpNestedAssignArrPatternRhs;
 }
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat$1 = [...bindingPatternArrRoot];

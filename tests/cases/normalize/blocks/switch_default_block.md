@@ -34,10 +34,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(3);
-}
+$(3);
 `````
 
 ## Globals

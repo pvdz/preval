@@ -48,9 +48,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x_1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
 let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+for (x_1 of tmpNestedAssignObjPatternRhs) {
 }
 $(a, 1, y);
 `````

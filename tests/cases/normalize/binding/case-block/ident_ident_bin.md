@@ -58,7 +58,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    b = 3 + 4;
+    b = 7;
     a_1 = b;
     break tmpSwitchBreak;
   }

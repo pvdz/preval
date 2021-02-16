@@ -53,7 +53,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = b['x'];
+    const tmpChainElementObject = b.x;
     tmpAssignMemLhsObj = tmpChainElementObject;
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;

@@ -57,7 +57,7 @@ let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpCalleeParam = a;
@@ -65,7 +65,7 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = b != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = b['x'];
+    const tmpChainElementObject$1 = b.x;
     tmpNestedComplexRhs = tmpChainElementObject$1;
   }
   a = tmpNestedComplexRhs;

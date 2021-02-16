@@ -39,12 +39,11 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = typeof 1;
+a = 'number';
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = typeof 1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = 'number';
+  tmpCalleeParam = 'number';
 }
 $(tmpCalleeParam);
 $(a, 1);

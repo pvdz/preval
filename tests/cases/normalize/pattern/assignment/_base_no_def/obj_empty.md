@@ -29,10 +29,10 @@ if (objPatternCrashTest) {
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = 1 === undefined;
+let objPatternCrashTest = false;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = 1 === null;
+  objPatternCrashTest = false;
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = (1).cannotDestructureThis;

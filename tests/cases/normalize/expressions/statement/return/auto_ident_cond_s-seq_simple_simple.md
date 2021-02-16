@@ -46,12 +46,7 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  if (30) {
-    tmpReturnArg = $(2);
-  } else {
-    const tmpCalleeParam = $(100);
-    tmpReturnArg = $(tmpCalleeParam);
-  }
+  tmpReturnArg = $(2);
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

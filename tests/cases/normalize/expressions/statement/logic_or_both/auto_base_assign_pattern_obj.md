@@ -50,8 +50,7 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-const tmpIfTest = tmpNestedAssignObjPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignObjPatternRhs) {
 } else {
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };

@@ -27,8 +27,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 'xyz' <= 'xyz';
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

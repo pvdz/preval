@@ -50,8 +50,7 @@ function f() {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  const a = tmpNestedAssignArrPatternRhs;
-  $(a, b);
+  $(tmpNestedAssignArrPatternRhs, b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

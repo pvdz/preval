@@ -50,8 +50,7 @@ while (true) {
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
-  const tmpIfTest = tmpNestedAssignObjPatternRhs;
-  if (tmpIfTest) {
+  if (tmpNestedAssignObjPatternRhs) {
     $(1);
   } else {
     break;

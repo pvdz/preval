@@ -36,7 +36,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = typeof 1;
+a = 'number';
 let tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);

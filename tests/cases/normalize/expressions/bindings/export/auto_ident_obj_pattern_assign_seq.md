@@ -50,7 +50,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 const a = tmpNestedAssignObjPatternRhs;
 export { a };
-$(a, x, y);
+$(tmpNestedAssignObjPatternRhs, x, y);
 `````
 
 ## Globals

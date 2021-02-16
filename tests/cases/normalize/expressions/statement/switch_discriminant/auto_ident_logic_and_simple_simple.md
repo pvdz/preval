@@ -45,10 +45,7 @@ if (tmpSwitchTest) {
   tmpSwitchTest = 2;
 }
 const tmpSwitchValue = tmpSwitchTest;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

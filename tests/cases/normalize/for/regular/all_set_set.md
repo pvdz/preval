@@ -28,7 +28,7 @@ while (b) {
 ## Output
 
 `````js filename=intro
-while (2) {
+while (true) {
   $(4);
 }
 `````

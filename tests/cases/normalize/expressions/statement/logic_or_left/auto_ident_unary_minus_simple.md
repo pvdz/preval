@@ -35,10 +35,6 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-if (-1) {
-} else {
-  $(100);
-}
 $(a, 1);
 `````
 

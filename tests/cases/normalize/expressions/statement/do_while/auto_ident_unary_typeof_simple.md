@@ -51,7 +51,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = typeof 1;
+    tmpIfTest = 'number';
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

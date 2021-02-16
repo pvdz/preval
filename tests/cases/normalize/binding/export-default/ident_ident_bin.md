@@ -32,7 +32,7 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 2;
-b = 3 + 4;
+b = 7;
 let a = b;
 export { a };
 $(a, b, 3);

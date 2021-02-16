@@ -64,7 +64,7 @@ while (true) {
     let tmpNestedComplexRhs = undefined;
     const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = b['x'];
+      const tmpChainElementObject = b.x;
       tmpNestedComplexRhs = tmpChainElementObject;
     }
     a = tmpNestedComplexRhs;

@@ -64,28 +64,17 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const b = { x: 1 };
-  const c = 3;
-  const varInitAssignLhsComputedRhs$5 = c;
-  b.x = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$4;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const a = varInitAssignLhsComputedRhs;
-  $(a, b, c);
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  $(3, b, 3);
 }
 `````
 

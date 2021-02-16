@@ -50,9 +50,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-const xyz = tmpNestedAssignObjPatternRhs;
 while (true) {
-  $(xyz);
+  $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
 $(a, x, y);

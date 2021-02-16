@@ -65,10 +65,7 @@ b.x = 3;
 b.x = 3;
 a = 3;
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, b, 3);
 `````
 

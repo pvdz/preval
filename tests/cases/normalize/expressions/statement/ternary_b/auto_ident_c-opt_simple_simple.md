@@ -46,7 +46,7 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = b != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = b['x'];
+    const tmpChainElementObject = b.x;
   }
 } else {
   $(200);

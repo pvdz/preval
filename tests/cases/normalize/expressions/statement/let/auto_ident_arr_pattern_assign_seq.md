@@ -54,8 +54,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const xyz = tmpNestedAssignArrPatternRhs;
-$(xyz);
+$(tmpNestedAssignArrPatternRhs);
 $(a, x, y);
 `````
 

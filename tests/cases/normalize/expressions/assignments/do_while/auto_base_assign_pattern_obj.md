@@ -64,9 +64,8 @@ while (true) {
     const tmpCalleeParam = { b: tmpObjLitVal };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
     b = tmpNestedAssignObjPatternRhs.b;
-    const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignObjPatternRhs;
+    tmpIfTest = tmpNestedAssignObjPatternRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

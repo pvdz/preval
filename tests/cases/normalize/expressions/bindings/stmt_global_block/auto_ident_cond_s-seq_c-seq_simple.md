@@ -36,12 +36,7 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-if (30) {
-  a = $(60);
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-}
+a = $(60);
 $(a);
 `````
 

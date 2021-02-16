@@ -44,7 +44,7 @@ let a = { a: 999, b: 1000 };
 let xyz = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   xyz = tmpChainElementObject;
 }
 $(xyz);

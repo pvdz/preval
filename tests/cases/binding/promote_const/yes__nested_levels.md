@@ -50,15 +50,14 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const x = 10;
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     const tmpIfTest$2 = $(3);
     if (tmpIfTest$2) {
-      $(x);
+      $(10);
     }
   }
-  $(x);
+  $(10);
 }
 `````
 

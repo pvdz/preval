@@ -55,10 +55,7 @@ const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, b);
 `````
 

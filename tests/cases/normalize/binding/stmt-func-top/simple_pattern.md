@@ -49,8 +49,7 @@ function f() {
   const arrPatternSplat = [...z];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  const a = z;
-  $(a, x, y, z);
+  $(z, x, y, z);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

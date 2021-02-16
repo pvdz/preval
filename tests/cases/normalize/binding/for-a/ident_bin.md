@@ -27,7 +27,7 @@ let a_1 = b + c;
 ## Output
 
 `````js filename=intro
-let a_1 = 2 + 3;
+
 `````
 
 ## Globals

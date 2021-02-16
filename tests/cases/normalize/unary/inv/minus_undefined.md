@@ -26,8 +26,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = !NaN;
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

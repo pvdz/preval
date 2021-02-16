@@ -49,10 +49,7 @@ if (a) {
   a = 2;
 }
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

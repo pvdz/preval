@@ -71,21 +71,19 @@ const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-a = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+a = 7;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $('x');
   const varInitAssignLhsComputedObj$2 = $(c);
   const varInitAssignLhsComputedProp$2 = $('y');
-  const varInitAssignLhsComputedRhs$2 = 3 + 4;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$2;
-  a = varInitAssignLhsComputedRhs$2;
-  tmpCalleeParam = varInitAssignLhsComputedRhs$2;
+  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+  a = 7;
+  tmpCalleeParam = 7;
 }
 $(tmpCalleeParam);
 $(a, b, c, 3, 4);

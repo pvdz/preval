@@ -49,10 +49,7 @@ if (tmpIfTest$1) {
 let a;
 let b;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 0 === 0;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = 10;

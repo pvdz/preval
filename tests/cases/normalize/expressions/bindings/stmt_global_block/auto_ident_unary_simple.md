@@ -30,8 +30,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = typeof 1;
-$(a, 1);
+$('number', 1);
 `````
 
 ## Globals

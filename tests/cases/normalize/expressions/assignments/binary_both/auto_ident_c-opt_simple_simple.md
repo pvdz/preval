@@ -55,14 +55,14 @@ let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpBinBothLhs = a;
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = b['x'];
+  const tmpChainElementObject$1 = b.x;
   a = tmpChainElementObject$1;
 }
 let tmpBinBothRhs = a;

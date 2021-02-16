@@ -38,12 +38,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
-if (30) {
-  tmpArrElToSpread = 60;
-} else {
-  const tmpCalleeParam = $(100);
-  tmpArrElToSpread = $(tmpCalleeParam);
-}
+tmpArrElToSpread = 60;
 [...tmpArrElToSpread];
 $(a);
 `````

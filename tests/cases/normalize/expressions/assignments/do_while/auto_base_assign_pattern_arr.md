@@ -66,9 +66,8 @@ while (true) {
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    tmpIfTest = tmpNestedAssignArrPatternRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

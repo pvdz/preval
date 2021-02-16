@@ -73,8 +73,7 @@ const c = {
 };
 const tmpNestedAssignPropRhs = c.x;
 b.x = tmpNestedAssignPropRhs;
-const a = tmpNestedAssignPropRhs;
-$(5, a);
+$(5, tmpNestedAssignPropRhs);
 `````
 
 ## Globals

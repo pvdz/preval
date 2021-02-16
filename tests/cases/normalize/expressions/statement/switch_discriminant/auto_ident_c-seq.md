@@ -45,10 +45,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, 1);
 `````
 

@@ -41,7 +41,7 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  a = typeof 1;
+  a = 'number';
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

@@ -28,8 +28,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCallCallee = f;
 x = (1).x;
-const tmpCalleeParam = 1;
-tmpCallCallee(tmpCalleeParam);
+tmpCallCallee(1);
 `````
 
 ## Globals

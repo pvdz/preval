@@ -38,12 +38,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
-if (30) {
-  tmpExportDefault = $(2);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpExportDefault = $(tmpCalleeParam);
-}
+tmpExportDefault = $(2);
 export { tmpExportDefault as default };
 $(a);
 `````

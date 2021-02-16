@@ -29,9 +29,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 2 + 3;
+let a = 5;
 export { a };
-$(a, 2, 3);
+$(5, 2, 3);
 `````
 
 ## Globals

@@ -43,7 +43,7 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 const a = z;
 export { a };
-$(a, x, y, z);
+$(z, x, y, z);
 `````
 
 ## Globals

@@ -74,9 +74,8 @@ while (true) {
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    tmpIfTest = tmpNestedAssignArrPatternRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

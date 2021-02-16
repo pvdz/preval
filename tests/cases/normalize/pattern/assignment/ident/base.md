@@ -27,8 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = 1;
-$(x);
+$(1);
 `````
 
 ## Globals

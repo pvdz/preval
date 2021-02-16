@@ -42,11 +42,9 @@ tmpCompObj[tmpCompProp];
 
 `````js filename=intro
 const a = $(1);
-const b = a;
 const c = $(2);
-const tmpCompObj = b;
 const tmpCompProp = $(c);
-tmpCompObj[tmpCompProp];
+a[tmpCompProp];
 `````
 
 ## Globals

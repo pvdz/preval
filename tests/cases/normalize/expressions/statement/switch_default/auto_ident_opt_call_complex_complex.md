@@ -47,15 +47,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpCallVal = tmpChainElementCall.call;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  }
+const tmpChainElementCall = $($);
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
+  const tmpCallVal = tmpChainElementCall.call;
+  const tmpCalleeParam$1 = $(1);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
 }
 $(a);
 `````

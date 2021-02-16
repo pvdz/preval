@@ -66,26 +66,18 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const b = { x: 1 };
   const c = { y: 2 };
-  const d = 3;
-  const e = 4;
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);
   const varInitAssignLhsComputedProp$1 = $('y');
-  const varInitAssignLhsComputedRhs$1 = d + e;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const a = varInitAssignLhsComputedRhs;
-  $(a, b, c, d, e);
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  $(7, b, c, 3, 4);
 }
 `````
 

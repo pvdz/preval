@@ -62,16 +62,14 @@ const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 const tmpAssignComMemLhsObj$1 = $(b);
 const tmpAssignComMemLhsProp$1 = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
-const varInitAssignLhsComputedRhs$1 = 3 + 4;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 7;
 $(a, b, c, 3, 4);
 `````
 

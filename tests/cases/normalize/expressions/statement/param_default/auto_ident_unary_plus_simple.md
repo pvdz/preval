@@ -46,7 +46,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = +1;
+    p = 1;
   } else {
     p = $tdz$__p;
   }

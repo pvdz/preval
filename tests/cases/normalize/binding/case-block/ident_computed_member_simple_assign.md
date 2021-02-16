@@ -71,15 +71,13 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const varInitAssignLhsComputedObj = b;
     const varInitAssignLhsComputedProp = $('x');
     const varInitAssignLhsComputedObj$1 = $(3);
     const varInitAssignLhsComputedProp$1 = $('y');
     const varInitAssignLhsComputedRhs$1 = $(4);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    a_1 = varInitAssignLhsComputedRhs;
+    b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    a_1 = varInitAssignLhsComputedRhs$1;
     break tmpSwitchBreak;
   }
 }

@@ -61,12 +61,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpSwitchTest = tmpNestedAssignArrPatternRhs;
-const tmpSwitchValue = tmpSwitchTest;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, x, y);
 `````
 

@@ -35,7 +35,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = !1;
+a = false;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

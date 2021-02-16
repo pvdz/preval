@@ -35,11 +35,7 @@ $(foo);
 
 `````js filename=intro
 let foo = undefined;
-if (1) {
-  foo = 2;
-} else {
-  foo = 3;
-}
+foo = 2;
 $(foo);
 `````
 

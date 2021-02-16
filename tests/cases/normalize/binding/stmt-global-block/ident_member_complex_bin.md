@@ -41,9 +41,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = { x: 2 };
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedRhs = 3 + 4;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b, 3);
+  varInitAssignLhsComputedObj.x = 7;
+  $(7, b, 3);
 }
 `````
 

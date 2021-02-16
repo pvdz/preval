@@ -51,14 +51,14 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
 } else {
   const tmpIfTest$2 = b != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject$1 = b['x'];
+    const tmpChainElementObject$1 = b.x;
   }
 }
 $(a);

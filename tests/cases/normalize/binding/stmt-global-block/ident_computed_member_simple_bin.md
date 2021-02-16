@@ -42,9 +42,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = { x: 2 };
   const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedRhs = 3 + 4;
-  b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b, 3);
+  b[varInitAssignLhsComputedProp] = 7;
+  $(7, b, 3);
 }
 `````
 

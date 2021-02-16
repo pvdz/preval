@@ -42,7 +42,7 @@ let a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpThrowArg = tmpChainElementObject;
 }
 throw tmpThrowArg;

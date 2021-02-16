@@ -63,7 +63,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpIfTest$2 = b != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject = b['x'];
+    const tmpChainElementObject = b.x;
   }
 }
 $(a);

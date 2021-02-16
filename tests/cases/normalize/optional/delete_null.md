@@ -30,12 +30,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = true;
-const tmpIfTest = null != null;
-if (tmpIfTest) {
-  tmpCalleeParam = delete null.x;
-}
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

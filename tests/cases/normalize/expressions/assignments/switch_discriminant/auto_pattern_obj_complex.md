@@ -47,12 +47,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-const tmpSwitchTest = tmpNestedAssignObjPatternRhs;
-const tmpSwitchValue = tmpSwitchTest;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

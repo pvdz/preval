@@ -46,8 +46,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  a = +1;
-  tmpCalleeParam = +1;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
 $(a, 1);

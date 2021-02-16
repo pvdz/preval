@@ -46,7 +46,7 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
 }
 while (true) {
   const tmpIfTest$1 = $(0);

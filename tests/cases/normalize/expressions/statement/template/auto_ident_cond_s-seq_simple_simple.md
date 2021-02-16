@@ -40,12 +40,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpTemplateExpr = undefined;
-if (30) {
-  tmpTemplateExpr = $(2);
-} else {
-  const tmpCalleeParam$1 = $(100);
-  tmpTemplateExpr = $(tmpCalleeParam$1);
-}
+tmpTemplateExpr = $(2);
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

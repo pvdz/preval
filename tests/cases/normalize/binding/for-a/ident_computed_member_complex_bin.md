@@ -35,8 +35,7 @@ let a_1 = varInitAssignLhsComputedRhs;
 let b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 `````
 
 ## Globals

@@ -61,10 +61,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, b, 3);
 `````
 

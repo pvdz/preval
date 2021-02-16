@@ -26,8 +26,7 @@ tmpCompObj.foo;
 
 `````js filename=intro
 x = (1).x;
-const tmpCompObj = 1;
-tmpCompObj.foo;
+(1).foo;
 `````
 
 ## Globals

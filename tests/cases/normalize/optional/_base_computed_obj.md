@@ -39,13 +39,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = { 10: 20 };
-const x = 10;
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = f;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = f != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = x;
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  const tmpChainElementObject = f[10];
   tmpCalleeParam = tmpChainElementObject;
 }
 $(tmpCalleeParam);

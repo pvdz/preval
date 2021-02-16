@@ -33,11 +33,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b = { x: 2 };
-const varInitAssignLhsComputedRhs = 3 + 4;
-b.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+b.x = 7;
+let a = 7;
 export { a };
-$(varInitAssignLhsComputedRhs, b, 3);
+$(7, b, 3);
 `````
 
 ## Globals

@@ -44,12 +44,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  if (30) {
-    a = $(2);
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
+  a = $(2);
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);

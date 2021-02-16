@@ -90,11 +90,7 @@ while (true) {
   varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  if (3) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, b, 3);
 `````

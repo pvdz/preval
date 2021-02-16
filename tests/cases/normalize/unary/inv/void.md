@@ -28,8 +28,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = !undefined;
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

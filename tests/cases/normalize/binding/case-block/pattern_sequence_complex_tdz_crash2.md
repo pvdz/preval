@@ -35,10 +35,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 let x;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $('fail');
-}
+$('fail');
 `````
 
 ## Globals

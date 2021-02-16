@@ -48,7 +48,7 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 const a = tmpNestedAssignArrPatternRhs;
 export { a };
-$(a, x, y);
+$(tmpNestedAssignArrPatternRhs, x, y);
 `````
 
 ## Globals

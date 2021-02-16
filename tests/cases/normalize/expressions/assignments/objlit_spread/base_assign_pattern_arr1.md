@@ -42,8 +42,7 @@ let a = { a: 999, b: 1000 };
 const tmpNestedAssignArrPatternRhs = b;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpObjSpread = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...tmpNestedAssignArrPatternRhs };
 $(tmpCalleeParam);
 $(a, b);
 `````

@@ -49,10 +49,7 @@ const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

@@ -40,12 +40,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-if (30) {
-  a = $(2);
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-}
+a = $(2);
 let tmpCompObj = a;
 tmpCompObj.a;
 $(a);

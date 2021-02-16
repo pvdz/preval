@@ -30,8 +30,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = !1;
-$(a, 1);
+$(false, 1);
 `````
 
 ## Globals

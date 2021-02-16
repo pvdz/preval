@@ -59,11 +59,7 @@ while (true) {
   const varInitAssignLhsComputedProp$1 = $('y');
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  if (3) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, b, c, 3);
 `````

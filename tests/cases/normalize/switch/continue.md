@@ -74,15 +74,7 @@ let run = true;
 while (run) {
   $(1);
   let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === 1;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
-  }
+  tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {

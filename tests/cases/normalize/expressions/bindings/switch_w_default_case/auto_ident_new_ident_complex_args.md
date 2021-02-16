@@ -67,22 +67,13 @@ if (tmpIfTest$4) {
 `````js filename=intro
 let b;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 2 === 1;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  }
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   b = { $: $ };
-  const tmpNewCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const a = new $(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

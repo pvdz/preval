@@ -46,8 +46,7 @@ const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-const tmpObjLitPropKey = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam = { [tmpNestedAssignArrPatternRhs]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

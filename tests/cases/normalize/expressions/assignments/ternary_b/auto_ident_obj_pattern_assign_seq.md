@@ -63,9 +63,8 @@ if (tmpIfTest) {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs;
+  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 } else {
   tmpCalleeParam = $(200);
 }

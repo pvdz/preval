@@ -33,7 +33,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = ~1;
+a = -2;
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, 1);

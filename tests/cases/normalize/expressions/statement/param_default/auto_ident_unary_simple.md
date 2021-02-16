@@ -46,7 +46,7 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    arg = typeof 1;
+    arg = 'number';
   } else {
     arg = $tdz$__arg;
   }

@@ -40,7 +40,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  ~1;
+  -2;
 }
 $(a, 1);
 `````

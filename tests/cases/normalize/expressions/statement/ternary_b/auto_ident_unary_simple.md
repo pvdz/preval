@@ -38,7 +38,6 @@ $(a, x);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  typeof 1;
 } else {
   $(200);
 }

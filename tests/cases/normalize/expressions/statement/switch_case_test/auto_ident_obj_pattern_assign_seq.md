@@ -62,8 +62,7 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-const tmpBinLhs = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

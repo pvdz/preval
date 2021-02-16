@@ -63,8 +63,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const bindingPatternArrRoot = z;
-    const arrPatternSplat = [...bindingPatternArrRoot];
+    const arrPatternSplat = [...z];
     x_1 = arrPatternSplat[0];
     y_1 = arrPatternSplat[1];
     break tmpSwitchBreak;

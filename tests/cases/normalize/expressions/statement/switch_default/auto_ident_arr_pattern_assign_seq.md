@@ -52,17 +52,14 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-}
+$(x);
+$(y);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...arrAssignPatternRhs];
+x = arrPatternSplat[0];
+y = arrPatternSplat[1];
 $(a, x, y);
 `````
 

@@ -36,7 +36,7 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-a = typeof 1;
+a = 'number';
 let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, 1);

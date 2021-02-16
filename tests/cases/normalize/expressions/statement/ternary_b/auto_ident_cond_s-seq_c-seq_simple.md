@@ -42,12 +42,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  if (30) {
-    $(60);
-  } else {
-    const tmpCalleeParam = $(100);
-    $(tmpCalleeParam);
-  }
+  $(60);
 } else {
   $(200);
 }

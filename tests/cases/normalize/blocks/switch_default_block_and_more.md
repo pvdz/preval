@@ -39,11 +39,8 @@ tmpSwitchBreak: {
 `````js filename=intro
 const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
-  const tmpIfTest = 0 <= 0;
-  if (tmpIfTest) {
-    $(3);
-    break tmpSwitchBreak;
-  }
+  $(3);
+  break tmpSwitchBreak;
 }
 `````
 

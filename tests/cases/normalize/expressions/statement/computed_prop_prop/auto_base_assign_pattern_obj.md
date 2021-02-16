@@ -47,8 +47,7 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-const tmpCompProp = tmpNestedAssignObjPatternRhs;
-obj[tmpCompProp];
+obj[tmpNestedAssignObjPatternRhs];
 $(a, b);
 `````
 

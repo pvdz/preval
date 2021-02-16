@@ -55,22 +55,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-if (30) {
-  a = 60;
-} else {
-  const tmpCalleeParam$1 = $(100);
-  a = $(tmpCalleeParam$1);
-}
+a = 60;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  if (30) {
-    tmpNestedComplexRhs = 60;
-  } else {
-    const tmpCalleeParam$2 = $(100);
-    tmpNestedComplexRhs = $(tmpCalleeParam$2);
-  }
+  tmpNestedComplexRhs = 60;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

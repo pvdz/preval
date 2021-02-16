@@ -35,8 +35,7 @@ $(x);
 const tmpObjLitVal = $(1);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
 const x = tmpNestedAssignObjPatternRhs.x;
-const tmpIfTest = tmpNestedAssignObjPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignObjPatternRhs) {
   $(2);
 }
 $(x);

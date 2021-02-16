@@ -53,8 +53,7 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-const tmpIfTest = tmpNestedAssignObjPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$2 = $(3);
   const tmpObjLitVal$3 = $(4);
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };

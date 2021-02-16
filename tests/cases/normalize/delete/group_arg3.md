@@ -32,10 +32,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const foo = 1;
 $(true);
-const tmpCalleeParam$1 = typeof foo;
-$(tmpCalleeParam$1);
+$('number');
 `````
 
 ## Globals

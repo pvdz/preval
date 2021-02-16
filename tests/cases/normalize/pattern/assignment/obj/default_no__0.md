@@ -33,10 +33,10 @@ $('ok');
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = 0 === undefined;
+let objPatternCrashTest = false;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = 0 === null;
+  objPatternCrashTest = false;
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = (0).cannotDestructureThis;

@@ -48,12 +48,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  if (30) {
-    tmpNestedComplexRhs = $(60);
-  } else {
-    const tmpCalleeParam$1 = $(100);
-    tmpNestedComplexRhs = $(tmpCalleeParam$1);
-  }
+  tmpNestedComplexRhs = $(60);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

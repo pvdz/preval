@@ -37,7 +37,7 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-a = ~1;
+a = -2;
 let tmpCompProp = a;
 obj[tmpCompProp];
 $(a, 1);

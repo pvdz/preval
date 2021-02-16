@@ -50,8 +50,7 @@ if (tmpIfTest) {
   const arrPatternSplat$1 = [...z];
   x = arrPatternSplat$1[1];
   y = arrPatternSplat$1[2];
-  const bindingPatternArrRoot = z;
-  let arrPatternSplat = [...bindingPatternArrRoot];
+  let arrPatternSplat = [...z];
   let a = arrPatternSplat[0];
   let b = arrPatternSplat[1];
   $(a, b, x, y, z);

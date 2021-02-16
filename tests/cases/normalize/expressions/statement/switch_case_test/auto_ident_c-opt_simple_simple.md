@@ -54,7 +54,7 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpBinLhs = tmpChainElementObject;
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;

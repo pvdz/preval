@@ -53,8 +53,7 @@ function f() {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  const tmpReturnArg = tmpNestedAssignObjPatternRhs;
-  return tmpReturnArg;
+  return tmpNestedAssignObjPatternRhs;
 }
 let x = 1;
 let y = 2;

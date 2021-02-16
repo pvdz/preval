@@ -50,8 +50,7 @@ function f() {
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
-  const tmpReturnArg = tmpNestedAssignObjPatternRhs;
-  return tmpReturnArg;
+  return tmpNestedAssignObjPatternRhs;
 }
 let b = {};
 let a = { a: 999, b: 1000 };

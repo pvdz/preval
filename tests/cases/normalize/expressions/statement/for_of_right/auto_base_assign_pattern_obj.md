@@ -45,9 +45,8 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-const tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of tmpNestedAssignObjPatternRhs) {
 }
 $(a, b);
 `````

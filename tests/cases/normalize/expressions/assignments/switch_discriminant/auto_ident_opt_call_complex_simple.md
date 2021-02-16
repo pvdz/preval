@@ -53,10 +53,7 @@ if (tmpIfTest) {
   a = tmpChainElementCall$1;
 }
 let tmpSwitchTest = a;
-const tmpIfTest$1 = 0 <= 0;
-if (tmpIfTest$1) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

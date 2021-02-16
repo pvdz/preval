@@ -37,12 +37,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
-if (30) {
-  tmpThrowArg = $(60);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpThrowArg = $(tmpCalleeParam);
-}
+tmpThrowArg = $(60);
 throw tmpThrowArg;
 `````
 

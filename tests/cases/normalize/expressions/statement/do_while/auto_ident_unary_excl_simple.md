@@ -51,7 +51,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = !1;
+    tmpIfTest = false;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

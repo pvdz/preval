@@ -60,9 +60,8 @@ function f($tdz$__p) {
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
-    const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    p = tmpNestedAssignArrPatternRhs;
   } else {
     p = $tdz$__p;
   }

@@ -33,8 +33,7 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParamSpread = typeof 1;
-$(...tmpCalleeParamSpread);
+$(...'number');
 $(a, 1);
 `````
 

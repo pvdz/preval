@@ -43,12 +43,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 let tmpBinBothRhs = undefined;
-if (30) {
-  tmpBinBothRhs = 60;
-} else {
-  const tmpCalleeParam$1 = $(100);
-  tmpBinBothRhs = $(tmpCalleeParam$1);
-}
+tmpBinBothRhs = 60;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);

@@ -29,8 +29,7 @@ $(y);
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = { x: 1 };
 x = tmpNestedAssignObjPatternRhs.x;
-const y = tmpNestedAssignObjPatternRhs;
-$(y);
+$(tmpNestedAssignObjPatternRhs);
 `````
 
 ## Globals

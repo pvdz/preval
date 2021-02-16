@@ -65,10 +65,9 @@ function f($tdz$__p) {
     const tmpNestedAssignComMemberProp = $('x');
     const varInitAssignLhsComputedObj = $(c);
     const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = 3 + 4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    p = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+    p = 7;
   } else {
     p = $tdz$__p;
   }

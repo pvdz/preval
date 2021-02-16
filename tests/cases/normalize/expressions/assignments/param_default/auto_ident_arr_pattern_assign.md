@@ -63,9 +63,8 @@ function f($tdz$__p) {
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
-    const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = tmpNestedAssignArrPatternRhs;
+    p = tmpNestedAssignArrPatternRhs;
   } else {
     p = $tdz$__p;
   }

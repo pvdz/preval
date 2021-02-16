@@ -34,13 +34,7 @@ $(foo);
 ## Output
 
 `````js filename=intro
-var foo;
-if (1) {
-  foo = 2;
-} else {
-  foo = 3;
-}
-$(foo);
+$(2);
 `````
 
 ## Globals

@@ -38,8 +38,7 @@ const tmpNestedCompoundLhs = a;
 const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
-const x = tmpNestedComplexRhs;
-$(x);
+$(tmpNestedComplexRhs);
 `````
 
 ## Globals

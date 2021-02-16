@@ -42,11 +42,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 function f() {
   let tmpCalleeParam = undefined;
-  const tmpIfTest = 'foo' != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = 'foo'.length;
-    tmpCalleeParam = tmpChainElementObject;
-  }
+  const tmpChainElementObject = 'foo'.length;
+  tmpCalleeParam = tmpChainElementObject;
   const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 }

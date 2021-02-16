@@ -42,8 +42,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  a = +1;
-  tmpCalleeParam = +1;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
 $(a, 1);

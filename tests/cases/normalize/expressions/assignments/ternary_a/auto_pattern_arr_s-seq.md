@@ -52,8 +52,7 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-const tmpIfTest = tmpNestedAssignArrPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignArrPatternRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

@@ -40,9 +40,8 @@ $(a, x);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = typeof 1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = 'number';
+  tmpCalleeParam = 'number';
 }
 $(tmpCalleeParam);
 $(a, 1);

@@ -59,8 +59,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  const tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  tmpNestedAssignArrPatternRhs.x = tmpForOfLhsNode;
 }
 $(a, x, y);
 `````

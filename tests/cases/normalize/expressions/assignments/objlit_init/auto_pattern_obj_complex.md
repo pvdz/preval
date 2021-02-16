@@ -41,8 +41,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
-const tmpObjLitVal = tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = { x: tmpObjLitVal };
+const tmpCalleeParam = { x: tmpNestedAssignObjPatternRhs };
 $(tmpCalleeParam);
 $(a);
 `````

@@ -72,12 +72,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
-if (30) {
-  tmpBinLhs = $(2);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpBinLhs = $(tmpCalleeParam);
-}
+tmpBinLhs = $(2);
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

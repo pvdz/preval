@@ -32,8 +32,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpArrElToSpread = !1;
-[...tmpArrElToSpread];
+[...false];
 $(a, 1);
 `````
 

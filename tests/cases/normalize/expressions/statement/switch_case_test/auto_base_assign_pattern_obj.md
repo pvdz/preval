@@ -54,8 +54,7 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-const tmpBinLhs = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

@@ -48,14 +48,11 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  a = undefined;
-  const tmpIfTest$1 = b != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
-  }
+a = undefined;
+const tmpIfTest$1 = b != null;
+if (tmpIfTest$1) {
+  const tmpChainElementObject = b.x;
+  a = tmpChainElementObject;
 }
 $(a);
 `````

@@ -79,8 +79,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpBinLhs = tmpNestedAssignArrPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

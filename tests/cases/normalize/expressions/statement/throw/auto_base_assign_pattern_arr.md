@@ -44,8 +44,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpThrowArg = tmpNestedAssignArrPatternRhs;
-throw tmpThrowArg;
+throw tmpNestedAssignArrPatternRhs;
 `````
 
 ## Globals

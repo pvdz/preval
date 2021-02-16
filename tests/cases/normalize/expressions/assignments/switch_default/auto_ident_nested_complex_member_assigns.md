@@ -71,28 +71,25 @@ $(a, b, c);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $('x');
-  const varInitAssignLhsComputedObj$2 = $(b);
-  const varInitAssignLhsComputedProp$2 = $('x');
-  const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $('x');
-  const varInitAssignLhsComputedObj$4 = $(b);
-  const varInitAssignLhsComputedProp$4 = $('x');
-  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
-}
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(b);
+const varInitAssignLhsComputedProp$1 = $('x');
+const varInitAssignLhsComputedObj$2 = $(b);
+const varInitAssignLhsComputedProp$2 = $('x');
+const varInitAssignLhsComputedObj$3 = $(b);
+const varInitAssignLhsComputedProp$3 = $('x');
+const varInitAssignLhsComputedObj$4 = $(b);
+const varInitAssignLhsComputedProp$4 = $('x');
+varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+a = 3;
 $(a, b, 3);
 `````
 

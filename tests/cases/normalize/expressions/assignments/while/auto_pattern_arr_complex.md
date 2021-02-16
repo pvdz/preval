@@ -50,8 +50,7 @@ while (true) {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  const tmpIfTest = tmpNestedAssignArrPatternRhs;
-  if (tmpIfTest) {
+  if (tmpNestedAssignArrPatternRhs) {
     $(100);
   } else {
     break;

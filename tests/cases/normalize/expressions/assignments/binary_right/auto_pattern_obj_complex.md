@@ -43,8 +43,7 @@ const tmpBinBothLhs = $(100);
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
-const tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
 $(tmpCalleeParam);
 $(a);
 `````

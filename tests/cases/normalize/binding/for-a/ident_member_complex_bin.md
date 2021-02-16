@@ -33,8 +33,7 @@ let a_1 = varInitAssignLhsComputedRhs;
 `````js filename=intro
 let b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.x = 7;
 `````
 
 ## Globals

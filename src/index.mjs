@@ -157,30 +157,44 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   if (!stopAfterNormalize) {
     // Traverse the dependency tree, bottom to top
     evalOrder.forEach((fname) => {
+      let changed = true;
       const mod = modules.get(fname);
-      const inputCode = mod.normalizedCode;
-      const fdata = phase0(inputCode, fname);
-      phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+      let inputCode = mod.normalizedCode;
+      let cycles = 0;
+      while (changed) {
+        const fdata = phase0(inputCode, fname);
+        phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
 
-      let changed = false;
-      do {
-        ++fdata.cycle;
+        ++cycles;
         changed = phase2(program, fdata, resolve, req);
-        //changed = phase3(program, fdata, resolve, req) || changed;
-        //changed = phase4(program, fdata, resolve, req) || changed;
-      } while (changed);
 
-      mod.fdata = fdata;
+        mod.fdata = fdata;
 
-      contents.files[fname] = tmat(fdata.tenkoOutput.ast, true);
+        const outCode = tmat(fdata.tenkoOutput.ast, true);
+        changed = outCode !== inputCode;
+        if (changed) {
+          log('Something changed in phase2 so we will be rerolling it again');
+          inputCode = outCode;
+          log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
 
-      // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
-      // that none are accidentally left behind / partially eliminated.
-      const set = new Set();
-      fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
-        if (meta.isImplicitGlobal && !globals.has(name)) set.add(name);
-      });
-      contents.implicitGlobals = set;
+          const fdata = parseCode(inputCode, fname);
+          prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phaseNormalize(fdata, fname);
+
+          inputCode = tmat(fdata.tenkoOutput.ast, true);
+        } else {
+          // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
+          // that none are accidentally left behind / partially eliminated.
+          const set = new Set();
+          fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+            if (meta.isImplicitGlobal && !globals.has(name)) set.add(name);
+          });
+          contents.implicitGlobals = set;
+
+          contents.files[fname] = outCode;
+        }
+      }
+      log('Ran for', cycles, 'cycles');
     });
   }
 

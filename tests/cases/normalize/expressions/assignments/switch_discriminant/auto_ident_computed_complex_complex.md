@@ -48,10 +48,7 @@ const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, b);
 `````
 

@@ -43,8 +43,7 @@ let z = [10, 20, 30];
 const arrPatternSplat$1 = [...z];
 x = arrPatternSplat$1[1];
 y = arrPatternSplat$1[2];
-const bindingPatternArrRoot = z;
-let arrPatternSplat = [...bindingPatternArrRoot];
+let arrPatternSplat = [...z];
 let a_1 = arrPatternSplat[0];
 let b_1 = arrPatternSplat[1];
 `````

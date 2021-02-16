@@ -43,11 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  if (1) {
-    tmpReturnArg = 2;
-  } else {
-    tmpReturnArg = 3;
-  }
+  tmpReturnArg = 2;
   return tmpReturnArg;
 }
 const tmpCalleeParam = f();

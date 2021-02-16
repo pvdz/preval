@@ -41,12 +41,11 @@ $(x);
 
 `````js filename=intro
 $('something');
-const x = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(x);
+  $(100);
 }
-$(x);
+$(100);
 `````
 
 ## Globals

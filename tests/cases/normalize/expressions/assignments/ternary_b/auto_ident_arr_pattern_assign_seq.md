@@ -65,9 +65,8 @@ if (tmpIfTest) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
-  const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpNestedAssignArrPatternRhs;
+  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 } else {
   tmpCalleeParam = $(200);
 }

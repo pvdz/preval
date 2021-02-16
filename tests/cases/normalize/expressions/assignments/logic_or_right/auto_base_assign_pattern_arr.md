@@ -55,9 +55,8 @@ if (tmpCalleeParam) {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  const tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpNestedAssignArrPatternRhs;
+  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 }
 $(tmpCalleeParam);
 $(a, b);

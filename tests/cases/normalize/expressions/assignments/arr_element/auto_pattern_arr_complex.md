@@ -52,13 +52,11 @@ const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-const tmpBinBothLhs = tmpNestedAssignArrPatternRhs;
 const tmpCalleeParam$2 = [1, 2];
 const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$2);
 const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
 a = arrPatternSplat$2[0];
-const tmpBinBothRhs = tmpNestedAssignArrPatternRhs$1;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
 $(a);
 `````

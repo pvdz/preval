@@ -69,9 +69,8 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
   x = tmpNestedAssignObjPatternRhs$1.x;
   y = tmpNestedAssignObjPatternRhs$1.y;
-  const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = tmpNestedAssignObjPatternRhs$1;
+  tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
 $(tmpCalleeParam);
 $(a, x, y);

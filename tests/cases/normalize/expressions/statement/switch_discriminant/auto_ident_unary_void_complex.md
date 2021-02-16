@@ -39,10 +39,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

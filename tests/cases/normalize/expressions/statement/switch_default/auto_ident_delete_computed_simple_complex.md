@@ -44,11 +44,8 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpDeleteCompProp = $('y');
-  delete arg[tmpDeleteCompProp];
-}
+const tmpDeleteCompProp = $('y');
+delete arg[tmpDeleteCompProp];
 $(a, arg);
 `````
 

@@ -47,7 +47,7 @@ let obj = {};
 let tmpCompProp = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpCompProp = tmpChainElementObject;
 }
 obj[tmpCompProp];

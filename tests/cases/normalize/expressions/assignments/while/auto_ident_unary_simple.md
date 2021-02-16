@@ -40,7 +40,7 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = typeof 1;
+  a = 'number';
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);

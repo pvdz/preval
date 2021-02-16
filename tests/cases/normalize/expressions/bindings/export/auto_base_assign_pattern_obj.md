@@ -42,7 +42,7 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 const a = tmpNestedAssignObjPatternRhs;
 export { a };
-$(a, b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 ## Globals

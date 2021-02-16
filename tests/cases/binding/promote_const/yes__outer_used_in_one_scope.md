@@ -56,13 +56,12 @@ f();
 `````js filename=intro
 function f() {
   $('something');
-  const x = 100;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $(x);
+    $(100);
   }
-  $(x);
-  return x;
+  $(100);
+  return 100;
 }
 f();
 `````

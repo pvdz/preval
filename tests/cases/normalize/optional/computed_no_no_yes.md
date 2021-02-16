@@ -48,11 +48,11 @@ const tmpObjLitVal$1 = { d: 10 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpChainElementObject = a['b'];
-const tmpChainElementObject$1 = tmpChainElementObject['c'];
+const tmpChainElementObject = a.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
 const tmpIfTest = tmpChainElementObject$1 != null;
 if (tmpIfTest) {
-  const tmpChainElementObject$2 = tmpChainElementObject$1['d'];
+  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
   tmpCalleeParam = tmpChainElementObject$2;
 }
 $(tmpCalleeParam);

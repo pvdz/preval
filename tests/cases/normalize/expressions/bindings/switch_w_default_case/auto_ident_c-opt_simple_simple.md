@@ -69,23 +69,14 @@ if (tmpIfTest$5) {
 `````js filename=intro
 let a;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 2 === 1;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  }
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   const b = { x: 1 };
   a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$3 = tmpChainRootProp != null;
+  const tmpIfTest$3 = b != null;
   if (tmpIfTest$3) {
-    const tmpChainElementObject = tmpChainRootProp['x'];
+    const tmpChainElementObject = b.x;
     a = tmpChainElementObject;
   }
   $(a);

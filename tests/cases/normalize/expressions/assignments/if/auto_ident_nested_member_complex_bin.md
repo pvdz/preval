@@ -53,10 +53,9 @@ const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-a = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+a = 7;
 let tmpIfTest = a;
 $(a, b, c, 3, 4);
 `````

@@ -40,8 +40,7 @@ let z = [10, 20, 30];
 const arrPatternSplat = [...z];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const a = z;
-$(a, x, y, z);
+$(z, x, y, z);
 `````
 
 ## Globals

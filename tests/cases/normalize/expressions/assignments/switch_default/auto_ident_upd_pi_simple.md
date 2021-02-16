@@ -45,13 +45,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-}
+const tmpNestedCompoundLhs = b;
+const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
 $(a, b);
 `````
 

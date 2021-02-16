@@ -69,8 +69,7 @@ tmpSwitchBreak: {
   if (tmpIfTest$1) {
     $(1);
     $(2);
-    const bindingPatternArrRoot = z;
-    const arrPatternSplat = [...bindingPatternArrRoot];
+    const arrPatternSplat = [...z];
     a = arrPatternSplat[0];
     b = arrPatternSplat[1];
     break tmpSwitchBreak;

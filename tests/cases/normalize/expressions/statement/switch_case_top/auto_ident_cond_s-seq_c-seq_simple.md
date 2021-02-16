@@ -58,12 +58,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  if (30) {
-    $(60);
-  } else {
-    const tmpCalleeParam = $(100);
-    $(tmpCalleeParam);
-  }
+  $(60);
 }
 $(a);
 `````

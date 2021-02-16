@@ -32,7 +32,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = typeof 1;
+const tmpExportDefault = 'number';
 export { tmpExportDefault as default };
 $(a, 1);
 `````

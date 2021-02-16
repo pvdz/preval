@@ -50,10 +50,7 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, arg);
 `````
 

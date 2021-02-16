@@ -41,9 +41,8 @@ let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-const tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in tmpNestedAssignObjPatternRhs) {
 }
 $(a);
 `````

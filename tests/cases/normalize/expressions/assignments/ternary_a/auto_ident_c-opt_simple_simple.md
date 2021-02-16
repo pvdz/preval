@@ -52,7 +52,7 @@ let tmpCalleeParam = undefined;
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpIfTest = a;

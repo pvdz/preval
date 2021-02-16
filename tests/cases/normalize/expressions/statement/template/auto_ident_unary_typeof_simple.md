@@ -34,8 +34,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpTemplateExpr = typeof 1;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${'number'}  after`;
 $(tmpCalleeParam);
 $(a, 1);
 `````

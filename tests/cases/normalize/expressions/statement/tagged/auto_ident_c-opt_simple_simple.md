@@ -46,7 +46,7 @@ const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpCalleeParam$1 = tmpChainElementObject;
 }
 $(tmpCalleeParam, tmpCalleeParam$1);

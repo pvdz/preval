@@ -39,11 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 var a;
 a = 10;
 const b = {};
-const c = 30;
 const tmpNestedAssignObj = $(b);
-const tmpNestedPropAssignRhs = c;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.x = 30;
+a = 30;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````

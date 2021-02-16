@@ -50,12 +50,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    if (30) {
-      p = $(60);
-    } else {
-      const tmpCalleeParam = $(100);
-      p = $(tmpCalleeParam);
-    }
+    p = $(60);
   } else {
     p = $tdz$__p;
   }

@@ -61,9 +61,8 @@ function f($tdz$__p) {
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = tmpNestedAssignObjPatternRhs;
+    p = tmpNestedAssignObjPatternRhs;
   } else {
     p = $tdz$__p;
   }

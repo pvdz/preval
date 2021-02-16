@@ -45,12 +45,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   let tmpIfTest = undefined;
-  if (30) {
-    tmpIfTest = $(2);
-  } else {
-    const tmpCalleeParam = $(100);
-    tmpIfTest = $(tmpCalleeParam);
-  }
+  tmpIfTest = $(2);
   if (tmpIfTest) {
     $(1);
   } else {

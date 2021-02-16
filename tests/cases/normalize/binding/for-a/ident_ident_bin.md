@@ -30,7 +30,7 @@ let a_1 = b;
 
 `````js filename=intro
 let b = 2;
-b = 3 + 4;
+b = 7;
 let a_1 = b;
 `````
 

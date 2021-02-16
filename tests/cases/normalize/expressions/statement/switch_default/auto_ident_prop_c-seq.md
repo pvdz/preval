@@ -43,11 +43,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpCompObj = $(b);
-  tmpCompObj.c;
-}
+const tmpCompObj = $(b);
+tmpCompObj.c;
 $(a, b);
 `````
 

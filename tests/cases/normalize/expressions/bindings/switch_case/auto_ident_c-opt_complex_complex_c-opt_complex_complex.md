@@ -61,17 +61,13 @@ if (tmpIfTest$1) {
 `````js filename=intro
 let a;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest$2 = tmpChainElementCall != null;
   if (tmpIfTest$2) {
     const tmpChainRootComputed = $('x');

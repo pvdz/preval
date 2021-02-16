@@ -61,8 +61,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  const tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  tmpNestedAssignObjPatternRhs.x = tmpForOfLhsNode;
 }
 $(a, x, y);
 `````

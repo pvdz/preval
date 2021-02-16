@@ -56,8 +56,7 @@ function f() {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  const a = tmpNestedAssignObjPatternRhs;
-  $(a, x, y);
+  $(tmpNestedAssignObjPatternRhs, x, y);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

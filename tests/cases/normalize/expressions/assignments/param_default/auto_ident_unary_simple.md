@@ -48,9 +48,8 @@ function f($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = typeof 1;
-    a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
+    a = 'number';
+    arg = 'number';
   } else {
     arg = $tdz$__arg;
   }

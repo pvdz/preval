@@ -46,9 +46,8 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-const tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of tmpNestedAssignArrPatternRhs) {
 }
 $(a);
 `````

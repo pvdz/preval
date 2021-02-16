@@ -38,10 +38,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  a = { x: 1, y: 2, z: 3 };
-}
+a = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 

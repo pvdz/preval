@@ -63,9 +63,8 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedRhs = 3 + 4;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    a_1 = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj.x = 7;
+    a_1 = 7;
     break tmpSwitchBreak;
   }
 }

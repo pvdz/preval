@@ -39,11 +39,7 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  if (-1) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, 1);
 `````

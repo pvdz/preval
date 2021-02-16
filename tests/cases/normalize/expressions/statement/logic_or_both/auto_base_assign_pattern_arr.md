@@ -53,8 +53,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpIfTest = tmpNestedAssignArrPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignArrPatternRhs) {
 } else {
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$1 = [tmpArrElement$1];

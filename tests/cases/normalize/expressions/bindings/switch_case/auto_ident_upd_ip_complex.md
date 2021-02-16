@@ -54,22 +54,16 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const b = { x: 1 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+  const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const a = tmpPostUpdArgVal;
-  $(a, b);
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  $(tmpPostUpdArgVal, b);
 }
 `````
 

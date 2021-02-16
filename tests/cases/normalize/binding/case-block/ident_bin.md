@@ -55,7 +55,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    a_1 = 2 + 3;
+    a_1 = 5;
     break tmpSwitchBreak;
   }
 }

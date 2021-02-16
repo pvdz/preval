@@ -48,8 +48,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    a = +1;
-    p = +1;
+    a = 1;
+    p = 1;
   } else {
     p = $tdz$__p;
   }

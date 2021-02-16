@@ -35,11 +35,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpIfTest = 10 != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = (10)[20];
-  tmpCalleeParam = tmpChainElementObject;
-}
+const tmpChainElementObject = (10)[20];
+tmpCalleeParam = tmpChainElementObject;
 $(tmpCalleeParam);
 `````
 

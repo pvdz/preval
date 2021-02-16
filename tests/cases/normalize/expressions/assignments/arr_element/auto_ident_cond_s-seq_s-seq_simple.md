@@ -51,19 +51,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-if (30) {
-  a = 60;
-} else {
-  const tmpCalleeParam$1 = $(100);
-  a = $(tmpCalleeParam$1);
-}
+a = 60;
 let tmpBinBothLhs = a;
-if (30) {
-  a = 60;
-} else {
-  const tmpCalleeParam$2 = $(100);
-  a = $(tmpCalleeParam$2);
-}
+a = 60;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

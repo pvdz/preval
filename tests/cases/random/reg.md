@@ -38,8 +38,7 @@ let b = [];
 const tmpNestedAssignArrPatternRhs = [2];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpBinLhs = tmpNestedAssignArrPatternRhs;
-const c = tmpBinLhs === 1;
+const c = tmpNestedAssignArrPatternRhs === 1;
 $(b, c);
 `````
 

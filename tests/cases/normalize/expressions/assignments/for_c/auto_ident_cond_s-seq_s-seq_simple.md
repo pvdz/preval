@@ -45,12 +45,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    if (30) {
-      a = 60;
-    } else {
-      const tmpCalleeParam = $(100);
-      a = $(tmpCalleeParam);
-    }
+    a = 60;
   } else {
     break;
   }

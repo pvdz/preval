@@ -32,14 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = null != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = null.toString;
-  const tmpChainElementCall = tmpChainElementObject.call(null);
-  tmpCalleeParam = tmpChainElementCall;
-}
-$(tmpCalleeParam);
+$(undefined);
 `````
 
 ## Globals

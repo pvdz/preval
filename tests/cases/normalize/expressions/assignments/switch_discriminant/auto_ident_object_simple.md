@@ -40,10 +40,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = { x: 1, y: 2, z: 3 };
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

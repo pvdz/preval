@@ -43,7 +43,7 @@ let a = { a: 999, b: 1000 };
 let tmpExportDefault = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   tmpExportDefault = tmpChainElementObject;
 }
 export { tmpExportDefault as default };

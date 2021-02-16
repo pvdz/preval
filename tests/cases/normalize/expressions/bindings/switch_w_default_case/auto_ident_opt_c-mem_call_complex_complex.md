@@ -79,21 +79,12 @@ if (tmpIfTest$6) {
 `````js filename=intro
 let a;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === 1;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 2 === 1;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  }
-}
+tmpSwitchCaseToStart = 0;
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   const b = { $: $ };
   a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest$3 = tmpChainElementCall != null;
   if (tmpIfTest$3) {
     const tmpChainRootComputed = $('$');
@@ -101,9 +92,8 @@ if (tmpIfTest$2) {
     const tmpIfTest$4 = tmpChainElementObject != null;
     if (tmpIfTest$4) {
       const tmpCallVal = tmpChainElementObject.call;
-      const tmpCalleeParam = tmpChainElementCall;
       const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpCalleeParam, tmpCalleeParam$1);
+      const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
     }
   }

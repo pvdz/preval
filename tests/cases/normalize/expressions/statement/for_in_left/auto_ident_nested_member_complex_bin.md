@@ -62,10 +62,9 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);
   const varInitAssignLhsComputedProp$1 = $('y');
-  const varInitAssignLhsComputedRhs$1 = 3 + 4;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedRhs$1.x = tmpForInLhsNode;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  (7).x = tmpForInLhsNode;
 }
 $(a, b, c, 3, 4);
 `````

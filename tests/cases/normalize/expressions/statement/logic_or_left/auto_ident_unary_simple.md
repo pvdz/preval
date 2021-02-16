@@ -35,11 +35,6 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = typeof 1;
-if (tmpIfTest) {
-} else {
-  $(100);
-}
 $(a, 1);
 `````
 

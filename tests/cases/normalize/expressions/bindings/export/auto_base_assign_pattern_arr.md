@@ -44,7 +44,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 const a = tmpNestedAssignArrPatternRhs;
 export { a };
-$(a, b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 ## Globals

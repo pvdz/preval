@@ -42,12 +42,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 let tmpCompProp = undefined;
-if (30) {
-  tmpCompProp = $(2);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpCompProp = $(tmpCalleeParam);
-}
+tmpCompProp = $(2);
 obj[tmpCompProp];
 $(a);
 `````

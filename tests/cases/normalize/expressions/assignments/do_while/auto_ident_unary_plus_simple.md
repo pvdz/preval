@@ -53,8 +53,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    a = +1;
-    tmpIfTest = +1;
+    a = 1;
+    tmpIfTest = 1;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

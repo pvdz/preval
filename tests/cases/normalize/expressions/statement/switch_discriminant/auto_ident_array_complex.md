@@ -43,10 +43,7 @@ let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpSwitchTest = [tmpArrElement, 2, tmpArrElement$2];
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

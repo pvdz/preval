@@ -48,9 +48,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = ~1;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = -2;
+    p = -2;
   } else {
     p = $tdz$__p;
   }

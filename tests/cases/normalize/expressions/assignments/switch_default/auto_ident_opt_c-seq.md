@@ -48,15 +48,12 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    a = tmpChainElementObject;
-  }
+a = undefined;
+const tmpChainRootProp = $(b);
+const tmpIfTest$1 = tmpChainRootProp != null;
+if (tmpIfTest$1) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  a = tmpChainElementObject;
 }
 $(a);
 `````

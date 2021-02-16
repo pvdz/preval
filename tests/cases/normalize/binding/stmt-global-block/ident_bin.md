@@ -35,8 +35,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let a = 2 + 3;
-  $(a, 2, 3);
+  $(5, 2, 3);
 }
 `````
 

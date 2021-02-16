@@ -45,12 +45,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  if (30) {
-    a = 60;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
+  a = 60;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

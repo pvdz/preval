@@ -75,10 +75,7 @@ rule('You have to listen to me');
 
 `````js filename=intro
 function rule(desc) {
-  const a = 'purple' + 'Rule:';
-  const b = a + 'reset';
-  const c = b + ' "';
-  const d = c + desc;
+  const d = 'purpleRule:reset "' + desc;
   const e = d + '"';
   $(e);
 }

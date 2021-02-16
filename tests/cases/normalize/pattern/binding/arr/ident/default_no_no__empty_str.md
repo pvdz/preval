@@ -27,7 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...''];
+const arrPatternSplat = [];
 const x = arrPatternSplat[0];
 $(x);
 `````

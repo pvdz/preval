@@ -31,12 +31,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = undefined != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = undefined.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
-}
+
 `````
 
 ## Globals

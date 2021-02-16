@@ -57,8 +57,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  const tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  tmpNestedAssignObjPatternRhs.x = tmpForInLhsNode;
 }
 $(a, x, y);
 `````

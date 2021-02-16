@@ -49,16 +49,13 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('c');
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-}
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('c');
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+a = tmpNestedAssignPropRhs;
 $(a, b);
 `````
 

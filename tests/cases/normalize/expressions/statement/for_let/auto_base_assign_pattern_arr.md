@@ -48,9 +48,8 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const xyz = tmpNestedAssignArrPatternRhs;
 while (true) {
-  $(xyz);
+  $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
 $(a, b);

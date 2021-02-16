@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const obj = { foo: 10 };
-  obj['foo'];
+  obj.foo;
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

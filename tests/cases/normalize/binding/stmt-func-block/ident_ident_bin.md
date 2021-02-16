@@ -47,7 +47,7 @@ function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let b = 2;
-    b = 3 + 4;
+    b = 7;
     let a = b;
     $(a, b, 3);
   }

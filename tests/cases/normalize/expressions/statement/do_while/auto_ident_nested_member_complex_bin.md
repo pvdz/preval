@@ -72,10 +72,9 @@ while (true) {
     const tmpNestedAssignComMemberProp = $('x');
     const varInitAssignLhsComputedObj = $(c);
     const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = 3 + 4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    tmpIfTest = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+    tmpIfTest = 7;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

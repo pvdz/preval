@@ -45,7 +45,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = 3 + 4;
+    tmpIfTest = 7;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

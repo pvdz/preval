@@ -53,9 +53,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = !1;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = false;
+    tmpIfTest = false;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

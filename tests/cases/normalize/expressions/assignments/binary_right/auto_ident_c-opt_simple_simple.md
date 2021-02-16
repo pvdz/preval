@@ -48,7 +48,7 @@ const tmpBinBothLhs = $(100);
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 let tmpBinBothRhs = a;

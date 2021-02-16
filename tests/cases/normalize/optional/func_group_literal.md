@@ -42,11 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   let y = undefined;
-  const tmpIfTest = 3 != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = (3).foo;
-    y = tmpChainElementObject;
-  }
+  const tmpChainElementObject = (3).foo;
+  y = tmpChainElementObject;
   const tmpReturnArg = $(y);
   return tmpReturnArg;
 }

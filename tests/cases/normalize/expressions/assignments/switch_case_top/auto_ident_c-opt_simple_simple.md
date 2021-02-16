@@ -65,7 +65,7 @@ if (tmpIfTest$1) {
   a = undefined;
   const tmpIfTest$2 = b != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject = b['x'];
+    const tmpChainElementObject = b.x;
     a = tmpChainElementObject;
   }
 }

@@ -86,11 +86,6 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    if (30) {
-    } else {
-      const tmpCalleeParam = $(100);
-      $(tmpCalleeParam);
-    }
     break tmpSwitchBreak;
   }
   const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;

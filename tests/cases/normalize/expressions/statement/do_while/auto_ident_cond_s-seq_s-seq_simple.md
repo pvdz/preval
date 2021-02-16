@@ -55,12 +55,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    if (30) {
-      tmpIfTest = 60;
-    } else {
-      const tmpCalleeParam = $(100);
-      tmpIfTest = $(tmpCalleeParam);
-    }
+    tmpIfTest = 60;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

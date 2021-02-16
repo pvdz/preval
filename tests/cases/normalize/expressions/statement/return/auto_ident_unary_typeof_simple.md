@@ -40,8 +40,7 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = typeof 1;
-  return tmpReturnArg;
+  return 'number';
 }
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

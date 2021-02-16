@@ -40,13 +40,12 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = !1;
+a = false;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = !1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = false;
+  tmpCalleeParam = false;
 }
 $(tmpCalleeParam);
 $(a, 1);

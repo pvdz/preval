@@ -47,10 +47,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 a = delete tmpDeleteCompObj['y'];
 let tmpSwitchTest = a;
-const tmpIfTest = 0 <= 0;
-if (tmpIfTest) {
-  $(100);
-}
+$(100);
 $(a, arg);
 `````
 

@@ -39,11 +39,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 let tmpIfTest = undefined;
-if (1) {
-  tmpIfTest = 2;
-} else {
-  tmpIfTest = 3;
-}
+tmpIfTest = 2;
 if (tmpIfTest) {
   $(100);
 } else {

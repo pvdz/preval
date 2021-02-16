@@ -54,7 +54,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  ~1;
+  -2;
 }
 $(a, 1);
 `````

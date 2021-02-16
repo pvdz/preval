@@ -51,8 +51,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpTemplateExpr = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${tmpNestedAssignArrPatternRhs}  after`;
 $(tmpCalleeParam);
 $(a, x, y);
 `````

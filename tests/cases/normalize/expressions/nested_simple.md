@@ -38,9 +38,8 @@ var a;
 var b;
 a = 10;
 b = 20;
-const c = 30;
-b = c;
-a = c;
+b = 30;
+a = 30;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````

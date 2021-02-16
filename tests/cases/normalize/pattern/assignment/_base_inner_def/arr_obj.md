@@ -38,7 +38,6 @@ $(x, a);
 
 `````js filename=intro
 var x;
-const a = 100;
 const tmpArrElement = {};
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
@@ -46,11 +45,11 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = a;
+  x = 100;
 } else {
   x = objPatternBeforeDefault;
 }
-$(x, a);
+$(x, 100);
 `````
 
 ## Globals

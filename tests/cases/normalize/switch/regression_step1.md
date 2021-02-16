@@ -81,8 +81,7 @@ if (tmpIfTest) {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  const tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
-  tmpIfTest = tmpSwitchTest === tmpBinBothRhs;
+  tmpIfTest = tmpSwitchTest === tmpNestedAssignArrPatternRhs;
 }
 if (tmpIfTest) {
   tmpFallthrough = true;

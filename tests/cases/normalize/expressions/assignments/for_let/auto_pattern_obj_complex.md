@@ -42,9 +42,8 @@ let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-const xyz = tmpNestedAssignObjPatternRhs;
 while (true) {
-  $(xyz);
+  $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
 $(a);

@@ -29,9 +29,7 @@ $(xyz);
 ## Output
 
 `````js filename=intro
-const y = 'b' + 'a';
-const z = 'a' + y;
-$(z);
+$('aba');
 `````
 
 ## Globals

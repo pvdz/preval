@@ -49,8 +49,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-const tmpCompProp = tmpNestedAssignArrPatternRhs;
-obj[tmpCompProp];
+obj[tmpNestedAssignArrPatternRhs];
 $(a, b);
 `````
 

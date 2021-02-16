@@ -68,10 +68,9 @@ const x = {
     return $;
   },
 };
-const tmpCallObj = x;
-const tmpCallVal = tmpCallObj.y;
+const tmpCallVal = x.y;
 const tmpCalleeParam = a.b;
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+tmpCallVal.call(x, tmpCalleeParam);
 `````
 
 ## Globals

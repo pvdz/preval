@@ -53,11 +53,11 @@ const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpIfTest = a != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = a['b'];
+  const tmpChainElementObject = a.b;
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainElementObject['c'];
-    const tmpChainElementObject$2 = tmpChainElementObject$1['d'];
+    const tmpChainElementObject$1 = tmpChainElementObject.c;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.d;
     tmpCalleeParam = tmpChainElementObject$2;
   }
 }

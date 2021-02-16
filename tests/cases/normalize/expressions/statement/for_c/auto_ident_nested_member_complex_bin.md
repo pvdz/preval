@@ -62,9 +62,8 @@ while (true) {
     const tmpAssignComMemLhsProp = $('x');
     const varInitAssignLhsComputedObj = $(c);
     const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = 3 + 4;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
   } else {
     break;
   }

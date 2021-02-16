@@ -32,11 +32,8 @@ $(y);
 
 `````js filename=intro
 let y = undefined;
-const tmpIfTest = 3 != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = (3).foo;
-  y = tmpChainElementObject;
-}
+const tmpChainElementObject = (3).foo;
+y = tmpChainElementObject;
 $(y);
 `````
 

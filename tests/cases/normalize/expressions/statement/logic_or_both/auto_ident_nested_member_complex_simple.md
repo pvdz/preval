@@ -64,15 +64,6 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-if (3) {
-} else {
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('x');
-  const varInitAssignLhsComputedObj$2 = $(c);
-  const varInitAssignLhsComputedProp$2 = $('y');
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-}
 $(a, b, c, 3);
 `````
 

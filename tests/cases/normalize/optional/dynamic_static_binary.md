@@ -36,7 +36,7 @@ const obj = { foo: 10 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = obj != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = obj['foo'];
+  const tmpChainElementObject = obj.foo;
   tmpCalleeParam = tmpChainElementObject;
 }
 $(tmpCalleeParam);

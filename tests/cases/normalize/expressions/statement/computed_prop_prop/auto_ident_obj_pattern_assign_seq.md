@@ -55,8 +55,7 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-const tmpCompProp = tmpNestedAssignObjPatternRhs;
-obj[tmpCompProp];
+obj[tmpNestedAssignObjPatternRhs];
 $(a, x, y);
 `````
 

@@ -55,7 +55,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = typeof 1;
+  a = 'number';
 }
 $(a, 1);
 `````

@@ -29,9 +29,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = ~1;
+let a = -2;
 export { a };
-$(a, 1);
+$(-2, 1);
 `````
 
 ## Globals

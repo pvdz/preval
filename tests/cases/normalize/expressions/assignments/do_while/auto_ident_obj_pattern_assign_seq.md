@@ -72,9 +72,8 @@ while (true) {
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    const tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = tmpNestedAssignObjPatternRhs;
+    tmpIfTest = tmpNestedAssignObjPatternRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

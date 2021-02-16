@@ -39,7 +39,7 @@ let b = { x: 1 };
 let a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = b['x'];
+  const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
 $(a);

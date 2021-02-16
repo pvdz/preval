@@ -41,7 +41,7 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  a = !1;
+  a = false;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

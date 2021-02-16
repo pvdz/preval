@@ -37,11 +37,10 @@ $(a, b, c);
 let b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
-const varInitAssignLhsComputedRhs = 3 + 4;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+let a = 7;
 export { a };
-$(varInitAssignLhsComputedRhs, b, 3);
+$(7, b, 3);
 `````
 
 ## Globals

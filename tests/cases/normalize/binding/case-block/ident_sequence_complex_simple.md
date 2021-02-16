@@ -63,9 +63,8 @@ tmpSwitchBreak: {
   if (tmpIfTest$1) {
     $(2);
     const varInitAssignLhsComputedObj = $(3);
-    const varInitAssignLhsComputedRhs = 3;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    a_1 = varInitAssignLhsComputedRhs;
+    varInitAssignLhsComputedObj.x = 3;
+    a_1 = 3;
     break tmpSwitchBreak;
   }
 }

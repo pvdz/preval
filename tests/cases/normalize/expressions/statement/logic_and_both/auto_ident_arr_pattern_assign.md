@@ -56,8 +56,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-const tmpIfTest = tmpNestedAssignArrPatternRhs;
-if (tmpIfTest) {
+if (tmpNestedAssignArrPatternRhs) {
   const tmpArrElement$2 = $(3);
   const tmpArrElement$3 = $(4);
   const arrAssignPatternRhs = [tmpArrElement$2, tmpArrElement$3];

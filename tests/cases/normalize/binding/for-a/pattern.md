@@ -21,12 +21,10 @@ for (let [x, y] = z;false;) $(x, y, z);
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  let bindingPatternArrRoot = z;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x_1 = arrPatternSplat[0];
-  let y_1 = arrPatternSplat[1];
-}
+let bindingPatternArrRoot = z;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x_1 = arrPatternSplat[0];
+let y_1 = arrPatternSplat[1];
 `````
 
 ## Output

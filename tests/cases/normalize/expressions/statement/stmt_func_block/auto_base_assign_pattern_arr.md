@@ -27,17 +27,15 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = [];
-    let a = { a: 999, b: 1000 };
-    const tmpCallCallee = $;
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    b = arrPatternSplat[0];
-    $(a, b);
-  }
+  let b = [];
+  let a = { a: 999, b: 1000 };
+  const tmpCallCallee = $;
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  b = arrPatternSplat[0];
+  $(a, b);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

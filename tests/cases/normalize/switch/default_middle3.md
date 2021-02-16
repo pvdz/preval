@@ -57,23 +57,21 @@ if (tmpIfTest) {
     }
   }
 }
-{
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    $('a');
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('b');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('c');
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$6) {
-    $('d');
-  }
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  $('a');
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$4) {
+  $('b');
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$5) {
+  $('c');
+}
+const tmpIfTest$6 = tmpSwitchCaseToStart <= 3;
+if (tmpIfTest$6) {
+  $('d');
 }
 `````
 

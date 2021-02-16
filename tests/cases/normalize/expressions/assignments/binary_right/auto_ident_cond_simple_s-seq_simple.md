@@ -22,9 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-{
-  a = 60;
-}
+a = 60;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);

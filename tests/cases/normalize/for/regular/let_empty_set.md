@@ -21,11 +21,9 @@ for (let a = 1; ; c) $(d);
 let b = 2;
 let c = 3;
 let d = 4;
-{
-  let a = 1;
-  while (true) {
-    $(d);
-  }
+let a = 1;
+while (true) {
+  $(d);
 }
 `````
 

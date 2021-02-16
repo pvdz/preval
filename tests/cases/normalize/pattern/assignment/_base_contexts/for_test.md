@@ -15,10 +15,8 @@ for ({ x } = 1;false;) y;
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpAssignObjPatternRhs = 1;
-  x = tmpAssignObjPatternRhs.x;
-}
+const tmpAssignObjPatternRhs = 1;
+x = tmpAssignObjPatternRhs.x;
 `````
 
 ## Output

@@ -20,13 +20,11 @@
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$1 = 2;
-  const tmpObjLitVal$2 = $(3);
-  let a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-  $(a);
-}
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$1 = 2;
+const tmpObjLitVal$2 = $(3);
+let a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+$(a);
 `````
 
 ## Output

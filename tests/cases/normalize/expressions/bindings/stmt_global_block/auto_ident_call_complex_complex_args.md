@@ -22,14 +22,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { $: $ };
-  const tmpCallCallee = $($);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  $(a);
-}
+let b = { $: $ };
+const tmpCallCallee = $($);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
 `````
 
 ## Output

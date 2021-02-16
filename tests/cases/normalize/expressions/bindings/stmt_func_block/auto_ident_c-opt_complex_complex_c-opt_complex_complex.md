@@ -26,25 +26,23 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpObjLitVal = { y: 1 };
-    let b = { x: tmpObjLitVal };
-    let a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest = tmpChainElementCall != null;
-    if (tmpIfTest) {
-      const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$1 = tmpChainElementObject != null;
-      if (tmpIfTest$1) {
-        const tmpChainRootComputed$1 = $('y');
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        a = tmpChainElementObject$1;
-      }
+  const tmpObjLitVal = { y: 1 };
+  let b = { x: tmpObjLitVal };
+  let a = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed$1 = $('y');
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
     }
-    $(a);
   }
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

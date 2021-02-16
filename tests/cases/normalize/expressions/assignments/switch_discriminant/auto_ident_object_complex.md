@@ -30,11 +30,9 @@ a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
 let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

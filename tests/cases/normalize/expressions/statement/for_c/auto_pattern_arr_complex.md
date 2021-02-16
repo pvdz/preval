@@ -22,16 +22,14 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = [1, 2];
-      tmpCallCallee(tmpCalleeParam);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = [1, 2];
+    tmpCallCallee(tmpCalleeParam);
+  } else {
+    break;
   }
 }
 $(a);

@@ -23,10 +23,8 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallObj = b;
-  tmpCallObj['$'](1);
-}
+const tmpCallObj = b;
+tmpCallObj['$'](1);
 $(a);
 `````
 

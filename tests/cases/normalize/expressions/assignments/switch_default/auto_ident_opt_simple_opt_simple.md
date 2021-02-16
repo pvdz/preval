@@ -30,19 +30,17 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      const tmpIfTest$2 = tmpChainElementObject != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementObject$1 = tmpChainElementObject.y;
-        a = tmpChainElementObject$1;
-      }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpIfTest$2 = tmpChainElementObject != null;
+    if (tmpIfTest$2) {
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      a = tmpChainElementObject$1;
     }
   }
 }

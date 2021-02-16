@@ -23,18 +23,12 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      {
-        {
-          break foo;
-        }
-      }
-    } else {
-      break;
-    }
+foo: while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    break foo;
+  } else {
+    break;
   }
 }
 $(2);
@@ -44,16 +38,12 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      {
-        break foo;
-      }
-    } else {
-      break;
-    }
+foo: while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    break foo;
+  } else {
+    break;
   }
 }
 $(2);

@@ -25,42 +25,38 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  a = undefined;
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
+    a = $(60);
   } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    a = tmpCallCallee(tmpCalleeParam);
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      a = undefined;
-      const tmpIfTest$3 = $(30);
-      if (tmpIfTest$3) {
-        a = $(60);
-      } else {
-        const tmpCallCallee = $;
-        const tmpCalleeParam = $(100);
-        a = tmpCallCallee(tmpCalleeParam);
-      }
-      $(a);
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$4) {
-      $('fail1');
-    }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
-      $('fail2');
-    }
-  }
+  $(a);
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$4) {
+  $('fail1');
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$5) {
+  $('fail2');
 }
 `````
 

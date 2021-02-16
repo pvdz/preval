@@ -24,13 +24,11 @@ for (let x in [x]) {
 `````js filename=intro
 let x = 1;
 let y = 1;
-{
-  const tmpForInDeclRhs = [x_1];
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
-    let y_1 = 2;
-    $(x_1);
-  }
+const tmpForInDeclRhs = [x_1];
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
+  let y_1 = 2;
+  $(x_1);
 }
 `````
 

@@ -23,18 +23,16 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpForInDeclRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpForInDeclRhs = tmpChainElementObject;
-  }
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+let tmpForInDeclRhs = undefined;
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = 'x';
+  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  tmpForInDeclRhs = tmpChainElementObject;
+}
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

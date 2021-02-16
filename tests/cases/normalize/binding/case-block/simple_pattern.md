@@ -24,26 +24,24 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-{
-  let a_1;
-  const tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      a_1 = undefined;
-      const tmpNestedAssignArrPatternRhs = z;
-      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-      x = arrPatternSplat[0];
-      y = arrPatternSplat[1];
-      a_1 = tmpNestedAssignArrPatternRhs;
-      break tmpSwitchBreak;
-    }
+let a_1;
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    a_1 = undefined;
+    const tmpNestedAssignArrPatternRhs = z;
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    a_1 = tmpNestedAssignArrPatternRhs;
+    break tmpSwitchBreak;
   }
 }
 $(a, x, y, z);

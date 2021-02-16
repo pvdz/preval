@@ -25,19 +25,17 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-{
-  $(x_1);
-  $(y);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x_1 = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  a = tmpNestedAssignObjPatternRhs;
-  let tmpForInDeclRhs = a;
-  let x_1;
-  for (x_1 in tmpForInDeclRhs) {
-  }
+$(x_1);
+$(y);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x_1 = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+a = tmpNestedAssignObjPatternRhs;
+let tmpForInDeclRhs = a;
+let x_1;
+for (x_1 in tmpForInDeclRhs) {
 }
 $(a, x, y);
 `````

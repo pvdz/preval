@@ -36,11 +36,9 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
-        continue;
-      }
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      continue;
     }
     $('keep');
   } else {

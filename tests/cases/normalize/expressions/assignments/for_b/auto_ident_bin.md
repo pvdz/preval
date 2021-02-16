@@ -20,17 +20,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    a = tmpBinBothLhs + tmpBinBothRhs;
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  a = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

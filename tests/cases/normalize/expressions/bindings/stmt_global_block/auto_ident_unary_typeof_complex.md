@@ -22,12 +22,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let arg = 1;
-  const tmpUnaryArg = $(arg);
-  let a = typeof tmpUnaryArg;
-  $(a, arg);
-}
+let arg = 1;
+const tmpUnaryArg = $(arg);
+let a = typeof tmpUnaryArg;
+$(a, arg);
 `````
 
 ## Output

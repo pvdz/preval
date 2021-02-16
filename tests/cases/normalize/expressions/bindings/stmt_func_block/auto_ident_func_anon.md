@@ -24,10 +24,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = function () {};
-    $(a);
-  }
+  let a = function () {};
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

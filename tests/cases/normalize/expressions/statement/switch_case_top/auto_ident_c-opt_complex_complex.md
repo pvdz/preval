@@ -34,16 +34,14 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest$2 = tmpChainElementCall != null;
-    if (tmpIfTest$2) {
-      const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$2 = tmpChainElementCall != null;
+  if (tmpIfTest$2) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   }
 }
 $(a);

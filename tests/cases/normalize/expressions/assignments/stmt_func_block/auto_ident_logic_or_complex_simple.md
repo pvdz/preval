@@ -25,17 +25,15 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(0);
-    a = tmpCallCallee(tmpCalleeParam);
-    if (a) {
-    } else {
-      a = 2;
-    }
-    $(a);
+  let a = { a: 999, b: 1000 };
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(0);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+  } else {
+    a = 2;
   }
+  $(a);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

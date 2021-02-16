@@ -27,13 +27,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
-    for (x in tmpForInDeclRhs) {
-      const tmpReturnArg = $(1, 'return');
-      return tmpReturnArg;
-    }
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  let x;
+  for (x in tmpForInDeclRhs) {
+    const tmpReturnArg = $(1, 'return');
+    return tmpReturnArg;
   }
   $('keep, do not eval');
 }

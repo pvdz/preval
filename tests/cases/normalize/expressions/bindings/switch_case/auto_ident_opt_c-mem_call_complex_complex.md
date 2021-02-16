@@ -23,41 +23,37 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let b;
-  let a;
-  let tmpChainRootCall;
-  let tmpChainElementCall;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = { $: $ };
-      a = undefined;
-      tmpChainRootCall = $;
-      tmpChainElementCall = tmpChainRootCall(b);
-      const tmpIfTest$2 = tmpChainElementCall != null;
-      if (tmpIfTest$2) {
-        const tmpChainRootComputed = $('$');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$3 = tmpChainElementObject != null;
-        if (tmpIfTest$3) {
-          const tmpCallObj = tmpChainElementObject;
-          const tmpCallVal = tmpCallObj.call;
-          const tmpCalleeParam = tmpChainElementCall;
-          const tmpCalleeParam$1 = $(1);
-          const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-          a = tmpChainElementCall$1;
-        }
-      }
-      $(a);
+let b;
+let a;
+let tmpChainRootCall;
+let tmpChainElementCall;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  b = { $: $ };
+  a = undefined;
+  tmpChainRootCall = $;
+  tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$2 = tmpChainElementCall != null;
+  if (tmpIfTest$2) {
+    const tmpChainRootComputed = $('$');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpCallObj = tmpChainElementObject;
+      const tmpCallVal = tmpCallObj.call;
+      const tmpCalleeParam = tmpChainElementCall;
+      const tmpCalleeParam$1 = $(1);
+      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+      a = tmpChainElementCall$1;
     }
   }
+  $(a);
 }
 `````
 

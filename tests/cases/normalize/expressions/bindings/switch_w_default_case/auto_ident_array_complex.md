@@ -25,40 +25,36 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpArrElement;
-  let tmpArrElement$1;
-  let tmpArrElement$2;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
+let tmpArrElement;
+let tmpArrElement$1;
+let tmpArrElement$2;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      tmpArrElement = $(1);
-      tmpArrElement$1 = 2;
-      tmpArrElement$2 = $(3);
-      a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-      $(a);
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      $('fail1');
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
-      $('fail2');
-    }
-  }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  tmpArrElement = $(1);
+  tmpArrElement$1 = 2;
+  tmpArrElement$2 = $(3);
+  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  $(a);
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  $('fail1');
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$4) {
+  $('fail2');
 }
 `````
 

@@ -23,22 +23,20 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainRootComputed = 'x';
-      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-      a = tmpChainElementObject;
-    }
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = 'x';
+    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+    a = tmpChainElementObject;
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

@@ -26,13 +26,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let x = 1;
-    $(1);
-    $(2);
-    let a = x;
-    $(a, x);
-  }
+  let x = 1;
+  $(1);
+  $(2);
+  let a = x;
+  $(a, x);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

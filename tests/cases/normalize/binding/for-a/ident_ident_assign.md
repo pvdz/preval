@@ -22,14 +22,12 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-{
-  const tmpNestedAssignObj = $(c);
-  const tmpNestedAssignPropRhs = $(d);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-  b = tmpNestedPropAssignRhs;
-  let a_1 = b;
-}
+const tmpNestedAssignObj = $(c);
+const tmpNestedAssignPropRhs = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+b = tmpNestedPropAssignRhs;
+let a_1 = b;
 `````
 
 ## Output

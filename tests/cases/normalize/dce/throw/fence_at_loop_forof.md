@@ -36,14 +36,12 @@ function f() {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      {
-        const tmpForOfDeclRhs = [1, 2];
-        let x;
-        for (x of tmpForOfDeclRhs) {
-          $('loop', x);
-          const tmpThrowArg = $(7, 'throw');
-          throw tmpThrowArg;
-        }
+      const tmpForOfDeclRhs = [1, 2];
+      let x;
+      for (x of tmpForOfDeclRhs) {
+        $('loop', x);
+        const tmpThrowArg = $(7, 'throw');
+        throw tmpThrowArg;
       }
       $('do not visit, do not eliminate');
     } else {

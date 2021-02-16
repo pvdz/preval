@@ -23,19 +23,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let xyz = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainElementCall.x;
-    xyz = tmpChainElementObject;
-  }
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  xyz = tmpChainElementObject;
+}
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

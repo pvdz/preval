@@ -25,9 +25,7 @@ function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
-    {
-      tmpNestedComplexRhs = $(2);
-    }
+    tmpNestedComplexRhs = $(2);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {

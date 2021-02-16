@@ -26,9 +26,7 @@ $('after');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    {
-      break;
-    }
+    break;
   } else {
     break;
   }

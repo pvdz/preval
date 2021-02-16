@@ -27,25 +27,23 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    let tmpAssignMemLhsObj = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest = tmpChainElementCall != null;
-    if (tmpIfTest) {
-      const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$1 = tmpChainElementObject != null;
-      if (tmpIfTest$1) {
-        const tmpChainRootComputed$1 = $('y');
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        tmpAssignMemLhsObj = tmpChainElementObject$1;
-      }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  let tmpAssignMemLhsObj = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed$1 = $('y');
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      tmpAssignMemLhsObj = tmpChainElementObject$1;
     }
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

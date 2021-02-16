@@ -29,18 +29,16 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-    const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    a = tmpPostUpdArgVal;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  a = tmpPostUpdArgVal;
 }
 $(a, b);
 `````

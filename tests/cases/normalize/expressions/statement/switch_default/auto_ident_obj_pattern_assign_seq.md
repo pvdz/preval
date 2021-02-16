@@ -31,17 +31,15 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpAssignObjPatternRhs.x;
-    y = tmpAssignObjPatternRhs.y;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpAssignObjPatternRhs.x;
+  y = tmpAssignObjPatternRhs.y;
 }
 $(a, x, y);
 `````

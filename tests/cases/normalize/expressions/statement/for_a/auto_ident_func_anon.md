@@ -20,14 +20,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  (function () {});
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+(function () {});
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a);

@@ -20,14 +20,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = [1, 2];
-  let bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  $(a);
-}
+const tmpCallCallee = $;
+const tmpCalleeParam = [1, 2];
+let bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+$(a);
 `````
 
 ## Output

@@ -23,9 +23,7 @@ $(f());
 `````js filename=intro
 function f() {
   let a = undefined;
-  {
-    a = $(2);
-  }
+  a = $(2);
   $(a);
 }
 const tmpCallCallee$1 = $;

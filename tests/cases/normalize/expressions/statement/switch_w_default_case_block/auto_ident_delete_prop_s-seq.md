@@ -49,12 +49,10 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      $(1);
-      $(2);
-      const tmpDeleteObj = arg;
-      delete tmpDeleteObj.y;
-    }
+    $(1);
+    $(2);
+    const tmpDeleteObj = arg;
+    delete tmpDeleteObj.y;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

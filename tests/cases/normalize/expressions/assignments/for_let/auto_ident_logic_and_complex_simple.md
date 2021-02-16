@@ -20,18 +20,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
-  if (a) {
-    a = 2;
-  }
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+a = tmpCallCallee(tmpCalleeParam);
+if (a) {
+  a = 2;
+}
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

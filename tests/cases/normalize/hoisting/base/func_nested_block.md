@@ -27,15 +27,13 @@ g();
 
 `````js filename=intro
 function g() {
-  {
-    let x = 100;
-    function f() {
-      return x;
-    }
-    const tmpCallCallee = $;
-    const tmpCalleeParam = f();
-    tmpCallCallee(tmpCalleeParam);
+  let x = 100;
+  function f() {
+    return x;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f();
+  tmpCallCallee(tmpCalleeParam);
 }
 g();
 `````

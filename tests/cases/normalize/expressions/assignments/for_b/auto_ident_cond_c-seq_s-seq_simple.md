@@ -20,22 +20,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest$1 = $(30);
-    if (tmpIfTest$1) {
-      a = 60;
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      a = tmpCallCallee(tmpCalleeParam);
-    }
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest$1 = $(30);
+  if (tmpIfTest$1) {
+    a = 60;
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    a = tmpCallCallee(tmpCalleeParam);
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

@@ -20,20 +20,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  let tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
-  }
-  if (tmpIfTest) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpCallCallee$2(tmpCalleeParam$2);
-  }
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(1);
+  tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+}
+if (tmpIfTest) {
+  const tmpCallCallee$2 = $;
+  const tmpCalleeParam$2 = $(2);
+  tmpCallCallee$2(tmpCalleeParam$2);
 }
 $(a);
 `````

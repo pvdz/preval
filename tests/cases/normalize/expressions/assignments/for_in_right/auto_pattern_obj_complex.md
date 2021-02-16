@@ -21,16 +21,14 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-{
-  let tmpForInDeclRhs;
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  a = tmpNestedAssignObjPatternRhs.a;
-  tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+let tmpForInDeclRhs;
+const tmpCallCallee = $;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+a = tmpNestedAssignObjPatternRhs.a;
+tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

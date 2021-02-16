@@ -22,27 +22,25 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { $: $ };
-  let a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = $('$');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpCallObj = tmpChainElementObject;
-      const tmpCallVal = tmpCallObj.call;
-      const tmpCalleeParam = tmpChainElementCall;
-      const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-      a = tmpChainElementCall$1;
-    }
+let b = { $: $ };
+let a = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = $('$');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
+    const tmpCallObj = tmpChainElementObject;
+    const tmpCallVal = tmpCallObj.call;
+    const tmpCalleeParam = tmpChainElementCall;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+    a = tmpChainElementCall$1;
   }
-  $(a);
 }
+$(a);
 `````
 
 ## Output

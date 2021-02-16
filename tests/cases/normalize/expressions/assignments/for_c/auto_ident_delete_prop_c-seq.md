@@ -23,17 +23,15 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      $(1);
-      $(2);
-      const tmpDeleteObj = $(arg);
-      a = delete tmpDeleteObj.y;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $(1);
+    $(2);
+    const tmpDeleteObj = $(arg);
+    a = delete tmpDeleteObj.y;
+  } else {
+    break;
   }
 }
 $(a, arg);

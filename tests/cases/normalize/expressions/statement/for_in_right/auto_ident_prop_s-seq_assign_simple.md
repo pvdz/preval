@@ -23,14 +23,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedRhs = 2;
-  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

@@ -24,26 +24,22 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let b;
-  let c;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = 1;
-      c = 2;
-      b = 2;
-      a = b;
-      $(a, b, c);
-    }
-  }
+let b;
+let c;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  b = 1;
+  c = 2;
+  b = 2;
+  a = b;
+  $(a, b, c);
 }
 `````
 

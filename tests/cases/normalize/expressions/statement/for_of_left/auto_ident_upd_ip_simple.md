@@ -26,14 +26,12 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpPostUpdArgIdent = b;
-    b = b + 1;
-    const tmpAssignMemLhsObj = tmpPostUpdArgIdent;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpPostUpdArgIdent = b;
+  b = b + 1;
+  const tmpAssignMemLhsObj = tmpPostUpdArgIdent;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

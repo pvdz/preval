@@ -23,12 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  b = b + 1;
-  let tmpForInDeclRhs = b;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+b = b + 1;
+let tmpForInDeclRhs = b;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

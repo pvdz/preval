@@ -21,13 +21,11 @@ for (let a = ($(b), $(c)).x = $(c);false;) $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
-{
-  $(b);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedRhs = $(c);
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
-}
+$(b);
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedRhs = $(c);
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+let a_1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

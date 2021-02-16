@@ -32,13 +32,11 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $('loop');
-    {
-      const tmpForOfDeclRhs = [1, 2];
-      let x;
-      for (x of tmpForOfDeclRhs) {
-        $('loop', x);
-        continue;
-      }
+    const tmpForOfDeclRhs = [1, 2];
+    let x;
+    for (x of tmpForOfDeclRhs) {
+      $('loop', x);
+      continue;
     }
     $('infiloop, do not eliminate');
   } else {

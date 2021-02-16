@@ -28,21 +28,19 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    let c = { y: 2 };
-    let d = 3;
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $('y');
-    const varInitAssignLhsComputedRhs$1 = $(d);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    let a = varInitAssignLhsComputedRhs;
-    $(a, b, c, d);
-  }
+  let b = { x: 1 };
+  let c = { y: 2 };
+  let d = 3;
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(c);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  const varInitAssignLhsComputedRhs$1 = $(d);
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  let a = varInitAssignLhsComputedRhs;
+  $(a, b, c, d);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -23,20 +23,18 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(b);
-      const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-      const tmpBinLhs = tmpNestedAssignObj.x;
-      const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-      tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-      a = tmpNestedPropCompoundComplexRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(b);
+    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+    const tmpBinLhs = tmpNestedAssignObj.x;
+    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+    a = tmpNestedPropCompoundComplexRhs;
+  } else {
+    break;
   }
 }
 $(a, b);

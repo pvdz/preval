@@ -34,17 +34,15 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
-    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 }
 $(a, b);
 `````

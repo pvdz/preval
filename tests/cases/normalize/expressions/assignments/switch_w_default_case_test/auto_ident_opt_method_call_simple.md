@@ -50,16 +50,14 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-{
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
-  }
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$4) {
+  $('fail1');
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$5) {
+  $('fail2');
 }
 $(a);
 `````

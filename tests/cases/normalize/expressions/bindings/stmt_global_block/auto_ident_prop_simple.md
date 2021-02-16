@@ -22,11 +22,9 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { c: 1 };
-  let a = b.c;
-  $(a, b);
-}
+let b = { c: 1 };
+let a = b.c;
+$(a, b);
 `````
 
 ## Output

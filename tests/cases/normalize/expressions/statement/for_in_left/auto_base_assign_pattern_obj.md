@@ -26,18 +26,16 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    let tmpAssignMemLhsObj;
-    const tmpCallCallee$1 = $;
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam$1 = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
-    b = tmpNestedAssignObjPatternRhs.b;
-    tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  let tmpAssignMemLhsObj;
+  const tmpCallCallee$1 = $;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam$1 = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  b = tmpNestedAssignObjPatternRhs.b;
+  tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, b);
 `````

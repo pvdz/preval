@@ -29,15 +29,13 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainElementCall.x;
-    }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainElementCall.x;
   }
 }
 $(a);

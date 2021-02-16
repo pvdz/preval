@@ -26,12 +26,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let x = 1;
-    const tmpUnaryArg = $(x);
-    let a = typeof tmpUnaryArg;
-    $(a, x);
-  }
+  let x = 1;
+  const tmpUnaryArg = $(x);
+  let a = typeof tmpUnaryArg;
+  $(a, x);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -23,17 +23,15 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { x: 1 };
-  let a = { a: 999, b: 1000 };
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainElementCall.x;
-  }
-  $(a);
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainElementCall.x;
 }
+$(a);
 `````
 
 ## Output

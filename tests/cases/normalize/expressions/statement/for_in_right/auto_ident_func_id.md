@@ -20,11 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpForInDeclRhs = function f() {};
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpForInDeclRhs = function f() {};
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

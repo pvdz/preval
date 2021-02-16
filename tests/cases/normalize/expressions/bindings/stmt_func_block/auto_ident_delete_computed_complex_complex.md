@@ -26,13 +26,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let arg = { y: 1 };
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $('y');
-    let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    $(a, arg);
-  }
+  let arg = { y: 1 };
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $('y');
+  let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

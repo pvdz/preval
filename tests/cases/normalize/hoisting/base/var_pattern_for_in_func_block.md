@@ -27,17 +27,13 @@ f();
 function f() {
   var x;
   $(x);
-  {
-    const tmpForInRhs = { y: 100 };
-    {
-      let tmpForInLhsNode;
-      for (tmpForInLhsNode in tmpForInRhs) {
-        const arrAssignPatternRhs = tmpForInLhsNode;
-        const arrPatternSplat = [...arrAssignPatternRhs];
-        x = arrPatternSplat[0];
-        $(x, 'for');
-      }
-    }
+  const tmpForInRhs = { y: 100 };
+  let tmpForInLhsNode;
+  for (tmpForInLhsNode in tmpForInRhs) {
+    const arrAssignPatternRhs = tmpForInLhsNode;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, 'for');
   }
   $(x);
 }
@@ -51,14 +47,12 @@ function f() {
   var x;
   $(x);
   const tmpForInRhs = { y: 100 };
-  {
-    let tmpForInLhsNode;
-    for (tmpForInLhsNode in tmpForInRhs) {
-      const arrAssignPatternRhs = tmpForInLhsNode;
-      const arrPatternSplat = [...arrAssignPatternRhs];
-      x = arrPatternSplat[0];
-      $(x, 'for');
-    }
+  let tmpForInLhsNode;
+  for (tmpForInLhsNode in tmpForInRhs) {
+    const arrAssignPatternRhs = tmpForInLhsNode;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, 'for');
   }
   $(x);
 }

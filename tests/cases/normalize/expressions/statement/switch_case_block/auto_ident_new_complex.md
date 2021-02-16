@@ -32,14 +32,10 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpNewCallee = $($);
-      new tmpNewCallee(1);
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpNewCallee = $($);
+  new tmpNewCallee(1);
 }
 $(a);
 `````

@@ -29,12 +29,10 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpAssignRhsProp = $(b);
-    a = tmpAssignRhsProp.c;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpAssignRhsProp = $(b);
+  a = tmpAssignRhsProp.c;
 }
 $(a, b);
 `````

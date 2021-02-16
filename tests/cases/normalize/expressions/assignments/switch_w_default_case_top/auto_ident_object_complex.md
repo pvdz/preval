@@ -40,22 +40,20 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-{
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$1 = 2;
-    const tmpObjLitVal$2 = $(3);
-    a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $('fail1');
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
-    $('fail2');
-  }
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = 2;
+  const tmpObjLitVal$2 = $(3);
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  $('fail1');
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$4) {
+  $('fail2');
 }
 $(a);
 `````

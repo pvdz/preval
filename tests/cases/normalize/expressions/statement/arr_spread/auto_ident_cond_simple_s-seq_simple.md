@@ -21,9 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
-{
-  tmpArrElToSpread = 60;
-}
+tmpArrElToSpread = 60;
 [...tmpArrElToSpread];
 $(a);
 `````

@@ -50,18 +50,16 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpChainRootCall = $;
-      const tmpChainElementCall = tmpChainRootCall(b);
-      const tmpIfTest$3 = tmpChainElementCall != null;
-      if (tmpIfTest$3) {
-        const tmpChainRootComputed = $('x');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$4 = tmpChainElementObject != null;
-        if (tmpIfTest$4) {
-          const tmpChainRootComputed$1 = $('y');
-          const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        }
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest$3 = tmpChainElementCall != null;
+    if (tmpIfTest$3) {
+      const tmpChainRootComputed = $('x');
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$4 = tmpChainElementObject != null;
+      if (tmpIfTest$4) {
+        const tmpChainRootComputed$1 = $('y');
+        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       }
     }
     break tmpSwitchBreak;

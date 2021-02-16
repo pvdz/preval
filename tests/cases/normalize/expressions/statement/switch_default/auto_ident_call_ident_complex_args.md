@@ -29,14 +29,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    const tmpCalleeParam$1 = $(2);
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 }
 $(a);
 `````

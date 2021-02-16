@@ -23,30 +23,28 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      a = undefined;
-      const tmpChainRootCall = $;
-      const tmpChainElementCall = tmpChainRootCall(b);
-      const tmpIfTest$1 = tmpChainElementCall != null;
-      if (tmpIfTest$1) {
-        const tmpChainRootComputed = $('$');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$2 = tmpChainElementObject != null;
-        if (tmpIfTest$2) {
-          const tmpCallObj = tmpChainElementObject;
-          const tmpCallVal = tmpCallObj.call;
-          const tmpCalleeParam = tmpChainElementCall;
-          const tmpCalleeParam$1 = $(1);
-          const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-          a = tmpChainElementCall$1;
-        }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed = $('$');
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$2 = tmpChainElementObject != null;
+      if (tmpIfTest$2) {
+        const tmpCallObj = tmpChainElementObject;
+        const tmpCallVal = tmpCallObj.call;
+        const tmpCalleeParam = tmpChainElementCall;
+        const tmpCalleeParam$1 = $(1);
+        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        a = tmpChainElementCall$1;
       }
-    } else {
-      break;
     }
+  } else {
+    break;
   }
 }
 $(a);

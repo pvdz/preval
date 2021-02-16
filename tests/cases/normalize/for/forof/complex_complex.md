@@ -22,15 +22,13 @@ for ($(a).x of $(b)) $(a.x);
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-    const tmpCallCallee = $;
-    const tmpCalleeParam = a.x;
-    tmpCallCallee(tmpCalleeParam);
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  const tmpCallCallee = $;
+  const tmpCalleeParam = a.x;
+  tmpCallCallee(tmpCalleeParam);
 }
 `````
 

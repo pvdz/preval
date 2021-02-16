@@ -20,12 +20,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  let a = tmpBinBothLhs + tmpBinBothRhs;
-  $(a);
-}
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+let a = tmpBinBothLhs + tmpBinBothRhs;
+$(a);
 `````
 
 ## Output

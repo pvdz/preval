@@ -23,25 +23,21 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let arg;
-  let tmpDeleteObj;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      arg = { y: 1 };
-      tmpDeleteObj = $(arg);
-      a = delete tmpDeleteObj.y;
-      $(a, arg);
-    }
-  }
+let arg;
+let tmpDeleteObj;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  arg = { y: 1 };
+  tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
+  $(a, arg);
 }
 `````
 

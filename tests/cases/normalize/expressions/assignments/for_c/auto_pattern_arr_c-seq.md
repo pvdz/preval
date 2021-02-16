@@ -22,20 +22,18 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      $(10);
-      $(20);
-      const tmpCallCallee = $;
-      const tmpCalleeParam = [1, 2];
-      const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-      const arrPatternSplat$1 = [...arrAssignPatternRhs];
-      a = arrPatternSplat$1[0];
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $(10);
+    $(20);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = [1, 2];
+    const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrPatternSplat$1 = [...arrAssignPatternRhs];
+    a = arrPatternSplat$1[0];
+  } else {
+    break;
   }
 }
 $(a);

@@ -26,13 +26,11 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    a = tmpBinBothLhs + tmpBinBothRhs;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  a = tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````

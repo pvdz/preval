@@ -24,9 +24,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  {
-    $(60);
-  }
+  $(60);
 }
 $(a);
 `````

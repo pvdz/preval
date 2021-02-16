@@ -24,9 +24,7 @@ $(a);
 `````js filename=intro
 function f() {
   let tmpReturnArg = undefined;
-  {
-    tmpReturnArg = 2;
-  }
+  tmpReturnArg = 2;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

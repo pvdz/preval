@@ -24,14 +24,12 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    $(10);
-    $(20);
-    let bindingPatternArrRoot = [1, 2];
-    let arrPatternSplat = [...bindingPatternArrRoot];
-    let a = arrPatternSplat[0];
-    $(a);
-  }
+  $(10);
+  $(20);
+  let bindingPatternArrRoot = [1, 2];
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let a = arrPatternSplat[0];
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

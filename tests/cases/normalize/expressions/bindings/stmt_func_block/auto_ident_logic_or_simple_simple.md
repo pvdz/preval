@@ -24,14 +24,12 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = 0;
-    if (a) {
-    } else {
-      a = 2;
-    }
-    $(a);
+  let a = 0;
+  if (a) {
+  } else {
+    a = 2;
   }
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

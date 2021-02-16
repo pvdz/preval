@@ -22,9 +22,7 @@ function f([ x ]) {
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let x_1 = arrPatternSplat[0];
-  {
-    let x_2 = 2;
-  }
+  let x_2 = 2;
   return x_1;
 }
 let x = 1;

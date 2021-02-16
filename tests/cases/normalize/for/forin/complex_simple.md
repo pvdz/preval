@@ -21,15 +21,13 @@ for ($(a).x in b) $(a.x);
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in b) {
-    const tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-    const tmpCallCallee = $;
-    const tmpCalleeParam = a.x;
-    tmpCallCallee(tmpCalleeParam);
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in b) {
+  const tmpAssignMemLhsObj = $(a);
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  const tmpCallCallee = $;
+  const tmpCalleeParam = a.x;
+  tmpCallCallee(tmpCalleeParam);
 }
 `````
 

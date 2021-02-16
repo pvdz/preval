@@ -21,9 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-{
-  a = 2;
-}
+a = 2;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };

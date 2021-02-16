@@ -22,16 +22,12 @@ switch (1) { default: let x = x; $('fail'); }
 ## Normalized
 
 `````js filename=intro
-{
-  let x;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 0;
-  {
-    const tmpIfTest = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest) {
-      $('fail');
-    }
-  }
+let x;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 0;
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $('fail');
 }
 `````
 

@@ -23,9 +23,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  {
-    a = 60;
-  }
+  a = 60;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }

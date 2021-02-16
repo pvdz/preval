@@ -36,11 +36,9 @@ a = arrPatternSplat$1[0];
 tmpSwitchTest = tmpNestedAssignArrPatternRhs;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a);
 `````

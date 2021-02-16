@@ -23,20 +23,18 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(0);
-    let tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
-    if (tmpAssignMemLhsObj) {
-    } else {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      tmpAssignMemLhsObj = tmpCallCallee$2(tmpCalleeParam$2);
-    }
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(0);
+  let tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
+  if (tmpAssignMemLhsObj) {
+  } else {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpAssignMemLhsObj = tmpCallCallee$2(tmpCalleeParam$2);
   }
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

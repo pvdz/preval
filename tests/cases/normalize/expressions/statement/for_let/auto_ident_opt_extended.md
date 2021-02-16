@@ -25,20 +25,18 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-{
-  let xyz = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    xyz = tmpChainElementObject$2;
-  }
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz = undefined;
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+  xyz = tmpChainElementObject$2;
+}
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

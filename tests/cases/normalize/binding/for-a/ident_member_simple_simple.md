@@ -21,11 +21,9 @@ for (let a = b.x = c;false;) $(a, b, c);
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-{
-  const varInitAssignLhsComputedRhs = c;
-  b.x = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
-}
+const varInitAssignLhsComputedRhs = c;
+b.x = varInitAssignLhsComputedRhs;
+let a_1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

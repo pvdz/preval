@@ -21,15 +21,11 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpCallCallee(tmpCalleeParam);
-  }
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+tmpCallCallee(tmpCalleeParam);
+$(a);
 `````
 
 ## Output

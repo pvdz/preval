@@ -23,19 +23,17 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-{
-  let xyz;
-  const tmpCallCallee = $;
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  xyz = tmpNestedAssignArrPatternRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz;
+const tmpCallCallee = $;
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+b = arrPatternSplat[0];
+xyz = tmpNestedAssignArrPatternRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b);
 `````

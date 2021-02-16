@@ -21,9 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
-{
-  tmpThrowArg = $(60);
-}
+tmpThrowArg = $(60);
 throw tmpThrowArg;
 `````
 

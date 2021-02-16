@@ -17,11 +17,7 @@ foo: if (true) $(1);
 ## Normalized
 
 `````js filename=intro
-{
-  {
-    $(1);
-  }
-}
+$(1);
 `````
 
 ## Output

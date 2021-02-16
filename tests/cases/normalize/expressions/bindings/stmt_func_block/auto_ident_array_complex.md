@@ -24,13 +24,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
-    const tmpArrElement$2 = $(3);
-    let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-    $(a);
-  }
+  const tmpArrElement = $(1);
+  const tmpArrElement$1 = 2;
+  const tmpArrElement$2 = $(3);
+  let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

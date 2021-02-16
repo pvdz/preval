@@ -28,15 +28,13 @@ let a = arrPatternSplat[0];
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(10);
-    $(20);
-    const arrAssignPatternRhs = [1, 2];
-    const arrPatternSplat$1 = [...arrAssignPatternRhs];
-    a = arrPatternSplat$1[0];
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(10);
+  $(20);
+  const arrAssignPatternRhs = [1, 2];
+  const arrPatternSplat$1 = [...arrAssignPatternRhs];
+  a = arrPatternSplat$1[0];
 }
 $(a);
 `````

@@ -23,31 +23,27 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let b;
-  let a;
-  let tmpChainRootProp;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let b;
+let a;
+let tmpChainRootProp;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  b = { c: $ };
+  a = undefined;
+  tmpChainRootProp = b;
+  const tmpIfTest$2 = tmpChainRootProp != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    a = tmpChainElementCall;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = { c: $ };
-      a = undefined;
-      tmpChainRootProp = b;
-      const tmpIfTest$2 = tmpChainRootProp != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementObject = tmpChainRootProp.c;
-        const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-        a = tmpChainElementCall;
-      }
-      $(a);
-    }
-  }
+  $(a);
 }
 `````
 

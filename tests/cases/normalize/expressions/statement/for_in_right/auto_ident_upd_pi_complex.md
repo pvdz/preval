@@ -23,17 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
-  const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpCallCallee = $;
+const tmpCalleeParam = $(b);
+const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

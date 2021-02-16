@@ -21,14 +21,12 @@ for (let [x, y] = ($(a), $(b), $(z));false;) $(a, b, x, y, z);
 let a = 1;
 let b = 2;
 let z = [10, 20, 30];
-{
-  $(a);
-  $(b);
-  let bindingPatternArrRoot = $(z);
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x = arrPatternSplat[0];
-  let y = arrPatternSplat[1];
-}
+$(a);
+$(b);
+let bindingPatternArrRoot = $(z);
+let arrPatternSplat = [...bindingPatternArrRoot];
+let x = arrPatternSplat[0];
+let y = arrPatternSplat[1];
 `````
 
 ## Output

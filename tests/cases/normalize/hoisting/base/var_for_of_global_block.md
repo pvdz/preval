@@ -23,11 +23,9 @@ $(x);
 `````js filename=intro
 var x;
 $(x);
-{
-  const tmpForOfRhs = [100];
-  for (x of tmpForOfRhs) {
-    $(x, 'for');
-  }
+const tmpForOfRhs = [100];
+for (x of tmpForOfRhs) {
+  $(x, 'for');
 }
 $(x);
 `````

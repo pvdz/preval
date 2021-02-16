@@ -27,14 +27,12 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { $: $ };
-    let a = { a: 999, b: 1000 };
-    const tmpCallCompObj = b;
-    const tmpCallCompProp = $('$');
-    tmpCallCompObj[tmpCallCompProp](1);
-    $(a);
-  }
+  let b = { $: $ };
+  let a = { a: 999, b: 1000 };
+  const tmpCallCompObj = b;
+  const tmpCallCompProp = $('$');
+  tmpCallCompObj[tmpCallCompProp](1);
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

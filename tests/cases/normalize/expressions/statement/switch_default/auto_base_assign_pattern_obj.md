@@ -29,15 +29,13 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    b = tmpAssignObjPatternRhs.b;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  b = tmpAssignObjPatternRhs.b;
 }
 $(a, b);
 `````

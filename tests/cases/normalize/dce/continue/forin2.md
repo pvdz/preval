@@ -29,12 +29,10 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    {
-      const tmpForOfDeclRhs = [10, 20];
-      let x;
-      for (x of tmpForOfDeclRhs) {
-        continue;
-      }
+    const tmpForOfDeclRhs = [10, 20];
+    let x;
+    for (x of tmpForOfDeclRhs) {
+      continue;
     }
     $('keep');
   } else {

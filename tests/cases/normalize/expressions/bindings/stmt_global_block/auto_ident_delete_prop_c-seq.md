@@ -22,14 +22,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let arg = { y: 1 };
-  $(1);
-  $(2);
-  const tmpDeleteObj = $(arg);
-  let a = delete tmpDeleteObj.y;
-  $(a, arg);
-}
+let arg = { y: 1 };
+$(1);
+$(2);
+const tmpDeleteObj = $(arg);
+let a = delete tmpDeleteObj.y;
+$(a, arg);
 `````
 
 ## Output

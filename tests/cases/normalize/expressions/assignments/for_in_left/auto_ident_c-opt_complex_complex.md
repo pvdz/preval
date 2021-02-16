@@ -26,21 +26,19 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest = tmpChainElementCall != null;
-    if (tmpIfTest) {
-      const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      a = tmpChainElementObject;
-    }
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  a = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    a = tmpChainElementObject;
   }
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

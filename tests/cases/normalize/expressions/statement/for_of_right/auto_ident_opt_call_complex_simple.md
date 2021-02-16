@@ -20,18 +20,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpForOfDeclRhs = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-    tmpForOfDeclRhs = tmpChainElementCall$1;
-  }
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+let tmpForOfDeclRhs = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  tmpForOfDeclRhs = tmpChainElementCall$1;
+}
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

@@ -17,16 +17,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let z = 1;
-}
+let z = 1;
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 z_1 = objPatternNoDefault$1.z;
-{
-  let z_2 = 1;
-}
+let z_2 = 1;
 `````
 
 ## Output

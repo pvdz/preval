@@ -19,9 +19,7 @@ if (true) {
 ## Normalized
 
 `````js filename=intro
-{
-  $(1);
-}
+$(1);
 `````
 
 ## Output

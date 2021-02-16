@@ -23,19 +23,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpForOfDeclRhs = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpForOfDeclRhs = tmpChainElementObject;
-  }
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+let tmpForOfDeclRhs = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpForOfDeclRhs = tmpChainElementObject;
+}
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

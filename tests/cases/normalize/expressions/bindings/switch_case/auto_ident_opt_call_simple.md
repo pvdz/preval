@@ -21,28 +21,24 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let a;
-  let tmpChainRootCall;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let a;
+let tmpChainRootCall;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  a = undefined;
+  tmpChainRootCall = $;
+  const tmpIfTest$2 = tmpChainRootCall != null;
+  if (tmpIfTest$2) {
+    const tmpChainElementCall = tmpChainRootCall(1);
+    a = tmpChainElementCall;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      a = undefined;
-      tmpChainRootCall = $;
-      const tmpIfTest$2 = tmpChainRootCall != null;
-      if (tmpIfTest$2) {
-        const tmpChainElementCall = tmpChainRootCall(1);
-        a = tmpChainElementCall;
-      }
-      $(a);
-    }
-  }
+  $(a);
 }
 `````
 

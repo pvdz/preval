@@ -28,11 +28,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = b;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, b);
 `````

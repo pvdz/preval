@@ -50,15 +50,13 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpChainRootProp = b;
-      const tmpIfTest$3 = tmpChainRootProp != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementObject = tmpChainRootProp.x;
-        const tmpIfTest$4 = tmpChainElementObject != null;
-        if (tmpIfTest$4) {
-          const tmpChainElementObject$1 = tmpChainElementObject.y;
-        }
+    const tmpChainRootProp = b;
+    const tmpIfTest$3 = tmpChainRootProp != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpIfTest$4 = tmpChainElementObject != null;
+      if (tmpIfTest$4) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
       }
     }
     break tmpSwitchBreak;

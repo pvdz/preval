@@ -27,14 +27,12 @@ let a = bindingPatternObjRoot.a;
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    a = tmpAssignObjPatternRhs.a;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpAssignObjPatternRhs.a;
 }
 $(a);
 `````

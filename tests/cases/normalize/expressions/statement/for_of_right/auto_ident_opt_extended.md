@@ -25,19 +25,17 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-{
-  let tmpForOfDeclRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpForOfDeclRhs = tmpChainElementObject$2;
-  }
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+let tmpForOfDeclRhs = undefined;
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+  tmpForOfDeclRhs = tmpChainElementObject$2;
+}
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

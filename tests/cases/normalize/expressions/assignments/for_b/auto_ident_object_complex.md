@@ -20,18 +20,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$1 = 2;
-    const tmpObjLitVal$2 = $(3);
-    a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-    let tmpIfTest = a;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+while (true) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = 2;
+  const tmpObjLitVal$2 = $(3);
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
   }
 }
 $(a);

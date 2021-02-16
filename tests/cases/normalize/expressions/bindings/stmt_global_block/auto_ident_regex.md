@@ -20,10 +20,8 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = /foo/;
-  $(a);
-}
+let a = /foo/;
+$(a);
 `````
 
 ## Output

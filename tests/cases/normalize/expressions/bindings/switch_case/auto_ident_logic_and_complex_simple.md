@@ -21,28 +21,24 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpCallCallee;
-  let tmpCalleeParam;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let tmpCallCallee;
+let tmpCalleeParam;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  tmpCallCallee = $;
+  tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    a = 2;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      tmpCallCallee = $;
-      tmpCalleeParam = $(1);
-      a = tmpCallCallee(tmpCalleeParam);
-      if (a) {
-        a = 2;
-      }
-      $(a);
-    }
-  }
+  $(a);
 }
 `````
 

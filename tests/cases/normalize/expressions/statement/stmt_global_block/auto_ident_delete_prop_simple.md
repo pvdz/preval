@@ -23,12 +23,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
-  delete arg.y;
-  $(a, arg);
-}
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+delete arg.y;
+$(a, arg);
 `````
 
 ## Output

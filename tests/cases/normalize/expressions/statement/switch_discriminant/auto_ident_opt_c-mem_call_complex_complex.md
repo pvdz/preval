@@ -45,11 +45,9 @@ if (tmpIfTest) {
 }
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    $(100);
-  }
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  $(100);
 }
 $(a);
 `````

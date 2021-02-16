@@ -29,13 +29,11 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpNestedComplexRhs = $(2);
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpNestedComplexRhs = $(2);
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
 }
 $(a, b);
 `````

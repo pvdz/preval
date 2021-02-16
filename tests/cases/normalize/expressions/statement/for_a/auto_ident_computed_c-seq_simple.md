@@ -23,16 +23,14 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('c');
-  tmpCompObj[tmpCompProp];
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+const tmpCompObj = $(b);
+const tmpCompProp = $('c');
+tmpCompObj[tmpCompProp];
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, b);

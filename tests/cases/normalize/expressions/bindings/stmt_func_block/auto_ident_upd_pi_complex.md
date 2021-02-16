@@ -26,17 +26,15 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    let a = varInitAssignLhsComputedRhs;
-    $(a, b);
-  }
+  let b = { x: 1 };
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  let a = varInitAssignLhsComputedRhs;
+  $(a, b);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

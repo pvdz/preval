@@ -28,12 +28,10 @@ $('after');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    {
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
-      for (x in tmpForInDeclRhs) {
-        break;
-      }
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x;
+    for (x in tmpForInDeclRhs) {
+      break;
     }
   } else {
     break;

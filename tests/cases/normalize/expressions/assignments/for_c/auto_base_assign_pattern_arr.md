@@ -23,20 +23,18 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpArrElement = $(2);
-      const tmpCalleeParam = [tmpArrElement];
-      const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-      const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-      b = arrPatternSplat[0];
-      a = tmpNestedAssignArrPatternRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpArrElement = $(2);
+    const tmpCalleeParam = [tmpArrElement];
+    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    b = arrPatternSplat[0];
+    a = tmpNestedAssignArrPatternRhs;
+  } else {
+    break;
   }
 }
 $(a, b);

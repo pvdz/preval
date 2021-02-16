@@ -23,11 +23,9 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpForOfDeclRhs = delete arg['y'];
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpForOfDeclRhs = delete arg['y'];
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);
 `````

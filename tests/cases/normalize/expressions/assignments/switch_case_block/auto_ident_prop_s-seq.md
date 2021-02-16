@@ -35,14 +35,10 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpAssignRhsProp = b;
-      a = tmpAssignRhsProp.c;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpAssignRhsProp = b;
+  a = tmpAssignRhsProp.c;
 }
 $(a, b);
 `````

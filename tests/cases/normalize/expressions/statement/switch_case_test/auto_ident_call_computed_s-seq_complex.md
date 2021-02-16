@@ -35,9 +35,7 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

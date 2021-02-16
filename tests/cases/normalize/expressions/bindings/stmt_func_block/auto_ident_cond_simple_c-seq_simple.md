@@ -24,13 +24,9 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = undefined;
-    {
-      a = $(60);
-    }
-    $(a);
-  }
+  let a = undefined;
+  a = $(60);
+  $(a);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -42,9 +38,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 function f() {
   let a = undefined;
-  {
-    a = $(60);
-  }
+  a = $(60);
   $(a);
 }
 const tmpCalleeParam$1 = f();

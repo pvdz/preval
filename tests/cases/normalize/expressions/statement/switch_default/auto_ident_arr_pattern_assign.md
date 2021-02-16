@@ -31,16 +31,14 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
 }
 $(a, x, y);
 `````

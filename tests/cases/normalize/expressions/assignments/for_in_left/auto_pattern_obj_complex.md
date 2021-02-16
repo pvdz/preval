@@ -24,17 +24,15 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    let tmpAssignMemLhsObj;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
-    a = tmpNestedAssignObjPatternRhs.a;
-    tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  let tmpAssignMemLhsObj;
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  a = tmpNestedAssignObjPatternRhs.a;
+  tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

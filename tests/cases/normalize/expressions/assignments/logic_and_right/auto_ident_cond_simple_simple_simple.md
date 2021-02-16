@@ -24,9 +24,7 @@ const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  {
-    tmpNestedComplexRhs = 2;
-  }
+  tmpNestedComplexRhs = 2;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

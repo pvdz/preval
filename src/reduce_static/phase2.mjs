@@ -357,35 +357,5 @@ export function phase2(program, fdata, resolve, req) {
 
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
-  walk(
-    (node, befor, nodeType, path) => {
-      switch (nodeType + ':' + (befor ? 'before' : 'after')) {
-        case 'Program:after':
-        case 'BlockStatement:before': {
-          // Fold up nested blocks. Should be safe now since all binding names are unique and there's no risk of collisions.
-          for (let i = node.body.length - 1; i >= 0; --i) {
-            if (node.body[i].type === 'BlockStatement') {
-              if (nodeType === 'Program') {
-                rule('Blocks in global space should be eliminated');
-                example('a(); { b(); } c();', 'a(); b(); c();');
-              } else {
-                rule('Blocks nested in blocks should be smooshed');
-                example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
-              }
-              before(node);
-
-              node.body.splice(i, 1, ...node.body[i].body);
-
-              after(node);
-              inlined = true;
-            }
-          }
-        }
-      }
-    },
-    fdata.tenkoOutput.ast,
-    'ast',
-  );
-
   groupEnd();
 }

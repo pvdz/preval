@@ -25,18 +25,16 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-{
-  let xyz;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  xyz = tmpNestedAssignObjPatternRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz;
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+xyz = tmpNestedAssignObjPatternRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, x, y);
 `````

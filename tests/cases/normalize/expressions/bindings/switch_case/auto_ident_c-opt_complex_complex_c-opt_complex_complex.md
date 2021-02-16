@@ -23,40 +23,36 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpObjLitVal;
-  let b;
-  let a;
-  let tmpChainRootCall;
-  let tmpChainElementCall;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      tmpObjLitVal = { y: 1 };
-      b = { x: tmpObjLitVal };
-      a = undefined;
-      tmpChainRootCall = $;
-      tmpChainElementCall = tmpChainRootCall(b);
-      const tmpIfTest$2 = tmpChainElementCall != null;
-      if (tmpIfTest$2) {
-        const tmpChainRootComputed = $('x');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$3 = tmpChainElementObject != null;
-        if (tmpIfTest$3) {
-          const tmpChainRootComputed$1 = $('y');
-          const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-          a = tmpChainElementObject$1;
-        }
-      }
-      $(a);
+let tmpObjLitVal;
+let b;
+let a;
+let tmpChainRootCall;
+let tmpChainElementCall;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  tmpObjLitVal = { y: 1 };
+  b = { x: tmpObjLitVal };
+  a = undefined;
+  tmpChainRootCall = $;
+  tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$2 = tmpChainElementCall != null;
+  if (tmpIfTest$2) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpChainRootComputed$1 = $('y');
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
     }
   }
+  $(a);
 }
 `````
 

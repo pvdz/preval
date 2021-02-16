@@ -20,13 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-  }
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
 }
 $(a);
 `````

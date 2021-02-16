@@ -32,20 +32,18 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $('y');
-    const varInitAssignLhsComputedRhs$1 = d + e;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(c);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  const varInitAssignLhsComputedRhs$1 = d + e;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b, c, d, e);
 `````

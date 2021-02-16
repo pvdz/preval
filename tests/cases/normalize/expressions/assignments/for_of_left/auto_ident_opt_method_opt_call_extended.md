@@ -28,25 +28,23 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      const tmpIfTest$1 = tmpChainElementObject$2 != null;
-      if (tmpIfTest$1) {
-        const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-        a = tmpChainElementCall;
-      }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+      a = tmpChainElementCall;
     }
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
   }
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

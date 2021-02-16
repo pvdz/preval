@@ -27,20 +27,18 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpObjLitVal$1 = { z: 100 };
-    const tmpObjLitVal = { y: tmpObjLitVal$1 };
-    let b = { x: tmpObjLitVal };
-    let a = { a: 999, b: 1000 };
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    }
-    $(a);
+  const tmpObjLitVal$1 = { z: 100 };
+  const tmpObjLitVal = { y: tmpObjLitVal$1 };
+  let b = { x: tmpObjLitVal };
+  let a = { a: 999, b: 1000 };
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   }
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

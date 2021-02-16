@@ -21,15 +21,13 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  a = 0;
-  if (a) {
-  } else {
-    a = 2;
-  }
-  $(a);
+let a = { a: 999, b: 1000 };
+a = 0;
+if (a) {
+} else {
+  a = 2;
 }
+$(a);
 `````
 
 ## Output

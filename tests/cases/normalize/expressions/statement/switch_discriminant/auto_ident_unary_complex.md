@@ -30,11 +30,9 @@ const tmpUnaryArg = $(x);
 const tmpSwitchTest = typeof tmpUnaryArg;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, x);
 `````

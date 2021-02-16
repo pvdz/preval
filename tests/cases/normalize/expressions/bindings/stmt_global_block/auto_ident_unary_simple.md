@@ -22,11 +22,9 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let x = 1;
-  let a = typeof x;
-  $(a, x);
-}
+let x = 1;
+let a = typeof x;
+$(a, x);
 `````
 
 ## Output

@@ -24,16 +24,14 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = undefined;
-    const tmpChainRootCall = $;
-    const tmpIfTest = tmpChainRootCall != null;
-    if (tmpIfTest) {
-      const tmpChainElementCall = tmpChainRootCall(1);
-      a = tmpChainElementCall;
-    }
-    $(a);
+  let a = undefined;
+  const tmpChainRootCall = $;
+  const tmpIfTest = tmpChainRootCall != null;
+  if (tmpIfTest) {
+    const tmpChainElementCall = tmpChainRootCall(1);
+    a = tmpChainElementCall;
   }
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -23,17 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpNestedAssignObj = b;
-      const tmpNestedPropAssignRhs = 2;
-      tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpNestedAssignObj = b;
+    const tmpNestedPropAssignRhs = 2;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+  } else {
+    break;
   }
 }
 $(a, b);

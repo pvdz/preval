@@ -21,14 +21,12 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  let xyz = tmpCallCallee(tmpCalleeParam);
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCallCallee = $;
+const tmpCalleeParam = { a: 1, b: 2 };
+let xyz = tmpCallCallee(tmpCalleeParam);
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

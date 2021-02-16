@@ -29,11 +29,7 @@ x: {
 
 `````js filename=intro
 x: {
-  {
-    {
-      break x;
-    }
-  }
+  break x;
 }
 `````
 
@@ -41,9 +37,7 @@ x: {
 
 `````js filename=intro
 x: {
-  {
-    break x;
-  }
+  break x;
 }
 `````
 

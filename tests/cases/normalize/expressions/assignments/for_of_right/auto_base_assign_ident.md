@@ -23,14 +23,12 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpNestedComplexRhs = $(2);
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
 `````

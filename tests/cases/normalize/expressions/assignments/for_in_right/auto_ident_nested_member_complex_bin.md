@@ -29,21 +29,19 @@ let c = { y: 2 };
 let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
-{
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $('y');
-  const varInitAssignLhsComputedRhs = d + e;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedRhs = d + e;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, c, d, e);
 `````

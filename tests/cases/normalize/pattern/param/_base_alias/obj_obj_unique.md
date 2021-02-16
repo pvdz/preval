@@ -30,9 +30,7 @@ function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a_1 = objPatternNoDefault$1.z;
-  {
-    let a_2 = 2;
-  }
+  let a_2 = 2;
   return a_1;
 }
 let a = 1;

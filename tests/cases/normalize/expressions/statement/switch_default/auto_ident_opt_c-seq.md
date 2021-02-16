@@ -29,14 +29,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpChainRootProp = $(b);
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-    }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpChainRootProp = $(b);
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
   }
 }
 $(a);

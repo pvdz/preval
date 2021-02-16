@@ -17,15 +17,13 @@ for (let {x} of {a: 1, b: 2}) $(x);
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-  let tmpForOfPatDeclLhs;
-  let x;
-  for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-    const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
-    x = tmpAssignObjPatternRhs.x;
-    $(x);
-  }
+const tmpForOfPatDeclRhs = { a: 1, b: 2 };
+let tmpForOfPatDeclLhs;
+let x;
+for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
+  const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
+  x = tmpAssignObjPatternRhs.x;
+  $(x);
 }
 `````
 

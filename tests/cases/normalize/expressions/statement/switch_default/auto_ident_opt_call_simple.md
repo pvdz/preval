@@ -26,14 +26,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpChainRootCall = $;
-    const tmpIfTest$1 = tmpChainRootCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementCall = tmpChainRootCall(1);
-    }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpIfTest$1 = tmpChainRootCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementCall = tmpChainRootCall(1);
   }
 }
 $(a);

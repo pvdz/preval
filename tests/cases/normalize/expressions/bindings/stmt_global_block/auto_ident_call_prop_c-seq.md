@@ -22,12 +22,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { $: $ };
-  const tmpCallObj = $(b);
-  let a = tmpCallObj.$(1);
-  $(a);
-}
+let b = { $: $ };
+const tmpCallObj = $(b);
+let a = tmpCallObj.$(1);
+$(a);
 `````
 
 ## Output

@@ -23,17 +23,15 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-{
-  let bindingPatternArrRoot;
-  const tmpNestedAssignArrPatternRhs = z;
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat$1[1];
-  y = arrPatternSplat$1[2];
-  bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a_1 = arrPatternSplat[0];
-  let b_1 = arrPatternSplat[1];
-}
+let bindingPatternArrRoot;
+const tmpNestedAssignArrPatternRhs = z;
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat$1[1];
+y = arrPatternSplat$1[2];
+bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a_1 = arrPatternSplat[0];
+let b_1 = arrPatternSplat[1];
 `````
 
 ## Output

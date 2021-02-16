@@ -44,15 +44,13 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 1;
   }
 }
-{
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    $(11);
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $(22);
-  }
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  $(11);
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
+  $(22);
 }
 `````
 

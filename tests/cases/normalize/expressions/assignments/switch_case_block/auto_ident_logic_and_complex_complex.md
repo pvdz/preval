@@ -32,19 +32,15 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(1);
-      a = tmpCallCallee(tmpCalleeParam);
-      if (a) {
-        const tmpCallCallee$1 = $;
-        const tmpCalleeParam$1 = $(2);
-        a = tmpCallCallee$1(tmpCalleeParam$1);
-      }
-    }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(2);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
   }
 }
 $(a);

@@ -51,21 +51,19 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpAssignMemLhsObj = b;
-      const varInitAssignLhsComputedRhs$4 = c;
-      b.x = varInitAssignLhsComputedRhs$4;
-      const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-      b.x = varInitAssignLhsComputedRhs$3;
-      const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-      b.x = varInitAssignLhsComputedRhs$2;
-      const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-      b.x = varInitAssignLhsComputedRhs$1;
-      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-      b.x = varInitAssignLhsComputedRhs;
-      const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-      tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    }
+    const tmpAssignMemLhsObj = b;
+    const varInitAssignLhsComputedRhs$4 = c;
+    b.x = varInitAssignLhsComputedRhs$4;
+    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+    b.x = varInitAssignLhsComputedRhs$3;
+    const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+    b.x = varInitAssignLhsComputedRhs$2;
+    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+    b.x = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    b.x = varInitAssignLhsComputedRhs;
+    const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

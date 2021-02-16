@@ -23,20 +23,18 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpAssignMemLhsObj = $(b);
-      const tmpAssignComputedObj = tmpAssignMemLhsObj;
-      const tmpAssignComputedProp = 'c';
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpAssignMemLhsObj = $(b);
+    const tmpAssignComputedObj = tmpAssignMemLhsObj;
+    const tmpAssignComputedProp = 'c';
+    const tmpCompObj = $(b);
+    const tmpCompProp = $('d');
+    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  } else {
+    break;
   }
 }
 $(a, b);

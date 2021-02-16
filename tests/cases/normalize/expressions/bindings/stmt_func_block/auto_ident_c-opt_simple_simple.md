@@ -26,18 +26,16 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    let a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainRootComputed = 'x';
-      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-      a = tmpChainElementObject;
-    }
-    $(a);
+  let b = { x: 1 };
+  let a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
+    const tmpChainRootComputed = 'x';
+    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+    a = tmpChainElementObject;
   }
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

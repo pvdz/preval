@@ -22,15 +22,13 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-{
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedRhs$1 = $(d);
-  varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let a_1 = varInitAssignLhsComputedRhs;
-}
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedRhs$1 = $(d);
+varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+let a_1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

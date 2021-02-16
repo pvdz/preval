@@ -28,9 +28,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    {
-      tmpNestedComplexRhs = 2;
-    }
+    tmpNestedComplexRhs = 2;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

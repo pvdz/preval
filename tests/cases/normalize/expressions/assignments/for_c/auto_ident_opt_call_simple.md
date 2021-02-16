@@ -20,20 +20,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      a = undefined;
-      const tmpChainRootCall = $;
-      const tmpIfTest$1 = tmpChainRootCall != null;
-      if (tmpIfTest$1) {
-        const tmpChainElementCall = tmpChainRootCall(1);
-        a = tmpChainElementCall;
-      }
-    } else {
-      break;
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpIfTest$1 = tmpChainRootCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementCall = tmpChainRootCall(1);
+      a = tmpChainElementCall;
     }
+  } else {
+    break;
   }
 }
 $(a);

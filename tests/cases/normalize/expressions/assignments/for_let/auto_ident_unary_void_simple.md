@@ -23,13 +23,11 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-{
-  a = undefined;
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+a = undefined;
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, arg);
 `````

@@ -28,21 +28,19 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    a = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      a = tmpChainElementObject$2;
-    }
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+    a = tmpChainElementObject$2;
   }
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

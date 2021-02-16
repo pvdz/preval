@@ -20,18 +20,16 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = undefined;
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
-    a = $(2);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
-  }
-  $(a);
+let a = undefined;
+const tmpIfTest = 30;
+if (tmpIfTest) {
+  a = $(2);
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(100);
+  a = tmpCallCallee(tmpCalleeParam);
 }
+$(a);
 `````
 
 ## Output

@@ -25,18 +25,16 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    let tmpAssignMemLhsObj;
-    $(10);
-    $(20);
-    const tmpNestedAssignArrPatternRhs = [1, 2];
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
-    tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  let tmpAssignMemLhsObj;
+  $(10);
+  $(20);
+  const tmpNestedAssignArrPatternRhs = [1, 2];
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat$1[0];
+  tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

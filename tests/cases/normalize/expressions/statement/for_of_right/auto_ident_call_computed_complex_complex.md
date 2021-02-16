@@ -23,13 +23,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $('$');
-  const tmpForOfDeclRhs = tmpCallCompObj[tmpCallCompProp](1);
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $('$');
+const tmpForOfDeclRhs = tmpCallCompObj[tmpCallCompProp](1);
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

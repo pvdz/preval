@@ -26,19 +26,17 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpCallObj = tmpChainElementCall;
-      const tmpCallVal = tmpCallObj.call;
-      const tmpCalleeParam = tmpChainRootCall;
-      const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-    }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpCallObj = tmpChainElementCall;
+    const tmpCallVal = tmpCallObj.call;
+    const tmpCalleeParam = tmpChainRootCall;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   }
 }
 $(a);

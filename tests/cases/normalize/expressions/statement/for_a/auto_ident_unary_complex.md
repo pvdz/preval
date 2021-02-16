@@ -23,15 +23,13 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(x);
-  typeof tmpUnaryArg;
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
+const tmpUnaryArg = $(x);
+typeof tmpUnaryArg;
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
   }
 }
 $(a, x);

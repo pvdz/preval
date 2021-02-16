@@ -24,10 +24,8 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpThrowArg = $(1, 'throw');
-    throw tmpThrowArg;
-  }
+  const tmpThrowArg = $(1, 'throw');
+  throw tmpThrowArg;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

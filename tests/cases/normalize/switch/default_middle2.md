@@ -27,10 +27,8 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
 `````
 
 ## Output

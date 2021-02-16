@@ -21,9 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-{
-  a = 60;
-}
+a = 60;
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);

@@ -23,15 +23,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedRhs = 2;
-  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  let xyz = varInitAssignLhsComputedRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+let xyz = varInitAssignLhsComputedRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b);
 `````

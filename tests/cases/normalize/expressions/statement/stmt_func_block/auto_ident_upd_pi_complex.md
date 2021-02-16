@@ -27,18 +27,16 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { x: 1 };
-    let a = { a: 999, b: 1000 };
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
-    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-    $(a, b);
-  }
+  let b = { x: 1 };
+  let a = { a: 999, b: 1000 };
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  $(a, b);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

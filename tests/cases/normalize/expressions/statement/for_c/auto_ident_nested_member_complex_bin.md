@@ -29,23 +29,21 @@ let c = { y: 2 };
 let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpAssignComMemLhsObj = $(b);
-      const tmpAssignComMemLhsProp = $('x');
-      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-      const varInitAssignLhsComputedObj = $(c);
-      const varInitAssignLhsComputedProp = $('y');
-      const varInitAssignLhsComputedRhs = d + e;
-      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-      const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpAssignComMemLhsObj = $(b);
+    const tmpAssignComMemLhsProp = $('x');
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedRhs = d + e;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  } else {
+    break;
   }
 }
 $(a, b, c, d, e);

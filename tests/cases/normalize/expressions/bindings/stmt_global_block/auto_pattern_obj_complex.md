@@ -20,13 +20,11 @@
 ## Normalized
 
 `````js filename=intro
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
-  let a = bindingPatternObjRoot.a;
-  $(a);
-}
+const tmpCallCallee = $;
+const tmpCalleeParam = { a: 1, b: 2 };
+let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+let a = bindingPatternObjRoot.a;
+$(a);
 `````
 
 ## Output

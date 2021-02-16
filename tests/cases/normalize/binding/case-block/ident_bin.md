@@ -23,21 +23,19 @@ let a = 1;
 let b = 2;
 let c = 3;
 const tmpSwitchTest = $('a');
-{
-  let a_1;
-  const tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      a_1 = b + c;
-      break tmpSwitchBreak;
-    }
+let a_1;
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    a_1 = b + c;
+    break tmpSwitchBreak;
   }
 }
 $(a, b, c);

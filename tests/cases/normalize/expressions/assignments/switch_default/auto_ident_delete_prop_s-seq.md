@@ -29,14 +29,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(1);
-    $(2);
-    const tmpDeleteObj = arg;
-    a = delete tmpDeleteObj.y;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpDeleteObj = arg;
+  a = delete tmpDeleteObj.y;
 }
 $(a, arg);
 `````

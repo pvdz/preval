@@ -23,13 +23,11 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
-  const tmpForInDeclRhs = tmpPostUpdArgIdent;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpPostUpdArgIdent = b;
+b = b + 1;
+const tmpForInDeclRhs = tmpPostUpdArgIdent;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

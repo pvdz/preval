@@ -24,35 +24,33 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 const tmpSwitchTest = $('a');
-{
-  let varInitAssignLhsComputedObj;
-  let varInitAssignLhsComputedProp;
-  let varInitAssignLhsComputedObj$1;
-  let varInitAssignLhsComputedProp$1;
-  let varInitAssignLhsComputedRhs$1;
-  let varInitAssignLhsComputedRhs;
-  let a_1;
-  const tmpSwitchValue = tmpSwitchTest;
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $('a');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      varInitAssignLhsComputedObj = $(b);
-      varInitAssignLhsComputedProp = $('x');
-      varInitAssignLhsComputedObj$1 = $(c);
-      varInitAssignLhsComputedProp$1 = $('y');
-      varInitAssignLhsComputedRhs$1 = $(d);
-      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-      varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-      a_1 = varInitAssignLhsComputedRhs;
-      break tmpSwitchBreak;
-    }
+let varInitAssignLhsComputedObj;
+let varInitAssignLhsComputedProp;
+let varInitAssignLhsComputedObj$1;
+let varInitAssignLhsComputedProp$1;
+let varInitAssignLhsComputedRhs$1;
+let varInitAssignLhsComputedRhs;
+let a_1;
+const tmpSwitchValue = tmpSwitchTest;
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $('a');
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchBreak: {
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    varInitAssignLhsComputedObj = $(b);
+    varInitAssignLhsComputedProp = $('x');
+    varInitAssignLhsComputedObj$1 = $(c);
+    varInitAssignLhsComputedProp$1 = $('y');
+    varInitAssignLhsComputedRhs$1 = $(d);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    a_1 = varInitAssignLhsComputedRhs;
+    break tmpSwitchBreak;
   }
 }
 $(a, b, c, d);

@@ -23,12 +23,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = b;
-  const tmpForOfDeclRhs = tmpCompObj.c;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCompObj = b;
+const tmpForOfDeclRhs = tmpCompObj.c;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
 `````

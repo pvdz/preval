@@ -39,16 +39,14 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
-        $('keep, do not eval');
-        continue;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        continue;
-      }
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$2) {
+      $('keep, do not eval');
+      continue;
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      continue;
     }
     $('eliminate');
   } else {

@@ -20,27 +20,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      tmpCallCallee$2(tmpCalleeParam$2);
-    }
+const tmpCallCallee = $;
+const tmpCalleeParam = $(0);
+const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+if (tmpIfTest) {
+} else {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(1);
+  const tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
+  if (tmpIfTest$1) {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpCallCallee$2(tmpCalleeParam$2);
   }
-  while (true) {
-    const tmpIfTest$2 = $(0);
-    if (tmpIfTest$2) {
-    } else {
-      break;
-    }
+}
+while (true) {
+  const tmpIfTest$2 = $(0);
+  if (tmpIfTest$2) {
+  } else {
+    break;
   }
 }
 $(a);

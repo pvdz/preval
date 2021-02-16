@@ -27,13 +27,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { c: 1 };
-    let a = { a: 999, b: 1000 };
-    const tmpAssignRhsProp = $(b);
-    a = tmpAssignRhsProp.c;
-    $(a, b);
-  }
+  let b = { c: 1 };
+  let a = { a: 999, b: 1000 };
+  const tmpAssignRhsProp = $(b);
+  a = tmpAssignRhsProp.c;
+  $(a, b);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

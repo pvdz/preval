@@ -33,12 +33,10 @@ function f() {
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpThrowArg = $(2, 'ret');
-      throw tmpThrowArg;
-    }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpThrowArg = $(2, 'ret');
+    throw tmpThrowArg;
   }
   $('keep, do not eval');
 }

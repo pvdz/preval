@@ -20,16 +20,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  a = 0;
-  if (a) {
-  } else {
-    a = 2;
-  }
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+a = 0;
+if (a) {
+} else {
+  a = 2;
+}
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

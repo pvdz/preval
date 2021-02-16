@@ -26,19 +26,17 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(b);
-    const tmpPostUpdArgObj = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj;
-    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-    const tmpAssignMemLhsObj = tmpPostUpdArgVal;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(b);
+  const tmpPostUpdArgObj = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj;
+  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  const tmpAssignMemLhsObj = tmpPostUpdArgVal;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

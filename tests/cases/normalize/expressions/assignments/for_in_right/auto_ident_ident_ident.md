@@ -25,13 +25,11 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-{
-  b = 2;
-  a = 2;
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+b = 2;
+a = 2;
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
 `````

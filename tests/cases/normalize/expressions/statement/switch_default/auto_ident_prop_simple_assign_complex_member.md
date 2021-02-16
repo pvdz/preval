@@ -29,15 +29,13 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpAssignMemLhsObj = b;
-    const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
-    const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpAssignMemLhsObj = b;
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('d');
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````

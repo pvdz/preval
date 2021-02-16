@@ -26,18 +26,16 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForInLhsNode;
-  for (tmpForInLhsNode in tmpForInRhs) {
-    const varInitAssignLhsComputedObj = b;
-    const varInitAssignLhsComputedProp = $('c');
-    const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
-    tmpAssignMemLhsObj.x = tmpForInLhsNode;
-  }
+let tmpForInLhsNode;
+for (tmpForInLhsNode in tmpForInRhs) {
+  const varInitAssignLhsComputedObj = b;
+  const varInitAssignLhsComputedProp = $('c');
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('d');
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a, b);
 `````

@@ -37,11 +37,9 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpSwitchTest = tmpNestedAssignObjPatternRhs;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(100);
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  $(100);
 }
 $(a, x, y);
 `````

@@ -18,15 +18,11 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-{
-  let x = 1;
-}
+let x = 1;
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x_1 = arrPatternSplat[0];
-{
-  let x_2 = 1;
-}
+let x_2 = 1;
 $(x_1);
 `````
 

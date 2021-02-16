@@ -25,25 +25,23 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-{
-  const varInitAssignLhsComputedRhs$4 = c;
-  b.x = varInitAssignLhsComputedRhs$4;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const varInitAssignLhsComputedRhs$4 = c;
+b.x = varInitAssignLhsComputedRhs$4;
+const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+b.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+b.x = varInitAssignLhsComputedRhs$2;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+b.x = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+b.x = varInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
 `````

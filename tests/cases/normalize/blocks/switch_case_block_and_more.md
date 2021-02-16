@@ -33,9 +33,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    {
-      $(3);
-    }
+    $(3);
     break tmpSwitchBreak;
   }
 }

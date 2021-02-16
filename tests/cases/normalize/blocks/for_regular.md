@@ -15,16 +15,14 @@ for ($(1); $(2); $(3)) $(4);
 ## Normalized
 
 `````js filename=intro
-{
-  $(1);
-  while (true) {
-    const tmpIfTest = $(2);
-    if (tmpIfTest) {
-      $(4);
-      $(3);
-    } else {
-      break;
-    }
+$(1);
+while (true) {
+  const tmpIfTest = $(2);
+  if (tmpIfTest) {
+    $(4);
+    $(3);
+  } else {
+    break;
   }
 }
 `````

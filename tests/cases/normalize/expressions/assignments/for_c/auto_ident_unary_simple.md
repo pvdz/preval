@@ -23,14 +23,12 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      a = typeof x;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    a = typeof x;
+  } else {
+    break;
   }
 }
 $(a, x);

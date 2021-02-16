@@ -28,9 +28,7 @@ let tmpSwitchCaseToStart = 0;
 tmpSwitchBreak: {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest) {
-    {
-      $(3);
-    }
+    $(3);
     break tmpSwitchBreak;
   }
 }

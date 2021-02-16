@@ -23,32 +23,28 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let b;
-  let varInitAssignLhsComputedObj;
-  let tmpCompObj;
-  let tmpCompProp;
-  let varInitAssignLhsComputedRhs;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      b = { c: 10, d: 20 };
-      varInitAssignLhsComputedObj = $(b);
-      tmpCompObj = $(b);
-      tmpCompProp = $('d');
-      varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-      varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-      a = varInitAssignLhsComputedRhs;
-      $(a, b);
-    }
-  }
+let b;
+let varInitAssignLhsComputedObj;
+let tmpCompObj;
+let tmpCompProp;
+let varInitAssignLhsComputedRhs;
+let a;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  b = { c: 10, d: 20 };
+  varInitAssignLhsComputedObj = $(b);
+  tmpCompObj = $(b);
+  tmpCompProp = $('d');
+  varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+  a = varInitAssignLhsComputedRhs;
+  $(a, b);
 }
 `````
 

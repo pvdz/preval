@@ -29,20 +29,18 @@ let c = { y: 2 };
 let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
-{
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $('y');
-  const varInitAssignLhsComputedRhs$1 = d + e;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  let xyz = varInitAssignLhsComputedRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedRhs$1 = d + e;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+let xyz = varInitAssignLhsComputedRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b, c, d, e);
 `````

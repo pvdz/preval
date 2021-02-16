@@ -49,14 +49,12 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    {
-      const tmpAssignComputedObj = b;
-      const tmpAssignComputedProp = 'c';
-      const tmpCompObj = $(b);
-      const tmpCompProp = $('d');
-      const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    }
+    const tmpAssignComputedObj = b;
+    const tmpAssignComputedProp = 'c';
+    const tmpCompObj = $(b);
+    const tmpCompProp = $('d');
+    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

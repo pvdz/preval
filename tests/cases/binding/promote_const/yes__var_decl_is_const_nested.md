@@ -24,13 +24,11 @@ var x;
 
 `````js filename=intro
 var x;
-{
-  const tmpCallCallee = $;
-  x = $(10);
-  let tmpCalleeParam = x;
-  tmpCallCallee(tmpCalleeParam);
-  $(x);
-}
+const tmpCallCallee = $;
+x = $(10);
+let tmpCalleeParam = x;
+tmpCallCallee(tmpCalleeParam);
+$(x);
 `````
 
 ## Output

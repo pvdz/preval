@@ -22,14 +22,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let b = { c: 1 };
-  const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedRhs = 2;
-  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  let a = varInitAssignLhsComputedRhs;
-  $(a, b);
-}
+let b = { c: 1 };
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+let a = varInitAssignLhsComputedRhs;
+$(a, b);
 `````
 
 ## Output

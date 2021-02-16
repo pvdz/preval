@@ -17,14 +17,10 @@ const { x } = 1;
 ## Normalized
 
 `````js filename=intro
-{
-  let x_1 = 1;
-}
+let x_1 = 1;
 const bindingPatternObjRoot = 1;
 const x = bindingPatternObjRoot.x;
-{
-  let x_2 = 1;
-}
+let x_2 = 1;
 `````
 
 ## Output

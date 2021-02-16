@@ -27,13 +27,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let arg = 1;
-    let a = { a: 999, b: 1000 };
-    const tmpUnaryArg = $(arg);
-    typeof tmpUnaryArg;
-    $(a, arg);
-  }
+  let arg = 1;
+  let a = { a: 999, b: 1000 };
+  const tmpUnaryArg = $(arg);
+  typeof tmpUnaryArg;
+  $(a, arg);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

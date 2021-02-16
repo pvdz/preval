@@ -29,17 +29,15 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
 }
 $(a, b);
 `````

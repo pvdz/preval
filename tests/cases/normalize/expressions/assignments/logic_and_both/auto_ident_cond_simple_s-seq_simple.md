@@ -21,15 +21,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-{
-  a = 60;
-}
+a = 60;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  {
-    tmpNestedComplexRhs = 60;
-  }
+  tmpNestedComplexRhs = 60;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

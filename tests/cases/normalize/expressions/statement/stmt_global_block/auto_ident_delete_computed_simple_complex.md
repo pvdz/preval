@@ -23,14 +23,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
-  const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $('y');
-  delete tmpDeleteCompObj[tmpDeleteCompProp];
-  $(a, arg);
-}
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+const tmpDeleteCompObj = arg;
+const tmpDeleteCompProp = $('y');
+delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(a, arg);
 `````
 
 ## Output

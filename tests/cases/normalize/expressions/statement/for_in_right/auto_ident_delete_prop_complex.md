@@ -23,12 +23,10 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpDeleteObj = $(arg);
-  const tmpForInDeclRhs = delete tmpDeleteObj.y;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpDeleteObj = $(arg);
+const tmpForInDeclRhs = delete tmpDeleteObj.y;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, arg);
 `````

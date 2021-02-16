@@ -21,12 +21,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(100);
-  +tmpUnaryArg;
-  $(a);
-}
+let a = { a: 999, b: 1000 };
+const tmpUnaryArg = $(100);
++tmpUnaryArg;
+$(a);
 `````
 
 ## Output

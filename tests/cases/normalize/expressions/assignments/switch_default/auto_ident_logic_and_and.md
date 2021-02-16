@@ -26,22 +26,20 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    a = tmpCallCallee(tmpCalleeParam);
-    if (a) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(1);
-      a = tmpCallCallee$1(tmpCalleeParam$1);
-    }
-    if (a) {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      a = tmpCallCallee$2(tmpCalleeParam$2);
-    }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
+  }
+  if (a) {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    a = tmpCallCallee$2(tmpCalleeParam$2);
   }
 }
 $(a);

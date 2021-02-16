@@ -43,27 +43,25 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-{
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest$3 = tmpChainElementCall != null;
-    if (tmpIfTest$3) {
-      const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      a = tmpChainElementObject;
-    }
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  a = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$3 = tmpChainElementCall != null;
+  if (tmpIfTest$3) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    a = tmpChainElementObject;
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
-  }
+}
+const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$4) {
+  $('fail1');
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$5) {
+  $('fail2');
 }
 $(a);
 `````

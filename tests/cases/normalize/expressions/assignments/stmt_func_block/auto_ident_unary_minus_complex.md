@@ -25,12 +25,10 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    const tmpUnaryArg = $(100);
-    a = -tmpUnaryArg;
-    $(a);
-  }
+  let a = { a: 999, b: 1000 };
+  const tmpUnaryArg = $(100);
+  a = -tmpUnaryArg;
+  $(a);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

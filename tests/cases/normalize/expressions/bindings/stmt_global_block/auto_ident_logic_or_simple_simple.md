@@ -20,14 +20,12 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = 0;
-  if (a) {
-  } else {
-    a = 2;
-  }
-  $(a);
+let a = 0;
+if (a) {
+} else {
+  a = 2;
 }
+$(a);
 `````
 
 ## Output

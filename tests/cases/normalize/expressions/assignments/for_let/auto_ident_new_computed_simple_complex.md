@@ -23,16 +23,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = b;
-  const tmpCompProp = $('$');
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  a = new tmpNewCallee(1);
-  let xyz = a;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+const tmpCompObj = b;
+const tmpCompProp = $('$');
+const tmpNewCallee = tmpCompObj[tmpCompProp];
+a = new tmpNewCallee(1);
+let xyz = a;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

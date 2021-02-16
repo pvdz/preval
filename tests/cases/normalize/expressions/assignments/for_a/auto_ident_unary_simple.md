@@ -23,11 +23,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  a = typeof x;
-  while (true) {
-    $(1);
-  }
+a = typeof x;
+while (true) {
+  $(1);
 }
 $(a, x);
 `````

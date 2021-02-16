@@ -23,15 +23,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpForOfDeclRhs = a;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpNestedAssignObj = b;
+const tmpNestedPropAssignRhs = 2;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpForOfDeclRhs = a;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
 `````

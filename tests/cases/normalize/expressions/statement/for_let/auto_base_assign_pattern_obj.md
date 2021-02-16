@@ -23,18 +23,16 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-{
-  let xyz;
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  xyz = tmpNestedAssignObjPatternRhs;
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz;
+const tmpCallCallee = $;
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+b = tmpNestedAssignObjPatternRhs.b;
+xyz = tmpNestedAssignObjPatternRhs;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a, b);
 `````

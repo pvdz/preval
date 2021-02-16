@@ -37,17 +37,15 @@ function f() {
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }
-  {
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      $('keep, do not eval');
-      throw 'wrong exit';
-    }
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$2) {
-      const tmpThrowArg = $(2, 'ret');
-      throw tmpThrowArg;
-    }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    $('keep, do not eval');
+    throw 'wrong exit';
+  }
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$2) {
+    const tmpThrowArg = $(2, 'ret');
+    throw tmpThrowArg;
   }
   $('fail');
 }

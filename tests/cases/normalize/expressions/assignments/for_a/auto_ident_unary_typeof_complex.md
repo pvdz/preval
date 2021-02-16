@@ -23,12 +23,10 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpUnaryArg = $(arg);
-  a = typeof tmpUnaryArg;
-  while (true) {
-    $(1);
-  }
+const tmpUnaryArg = $(arg);
+a = typeof tmpUnaryArg;
+while (true) {
+  $(1);
 }
 $(a, arg);
 `````

@@ -26,14 +26,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
-    const tmpArrElement$2 = $(3);
-    a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpArrElement = $(1);
+  const tmpArrElement$1 = 2;
+  const tmpArrElement$2 = $(3);
+  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 }
 $(a);
 `````

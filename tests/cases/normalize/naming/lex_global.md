@@ -20,10 +20,8 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-{
-  let a_1 = $(1);
-  $(a_1);
-}
+let a_1 = $(1);
+$(a_1);
 let a = $(2);
 $(a);
 `````

@@ -17,14 +17,10 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let x = 1;
-}
+let x = 1;
 const tmpAssignObjPatternRhs = 1;
 x_1 = tmpAssignObjPatternRhs.x;
-{
-  let x_2 = 1;
-}
+let x_2 = 1;
 `````
 
 ## Output

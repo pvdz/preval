@@ -21,17 +21,15 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = { a: 1, b: 2 };
-      const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-      a = tmpAssignObjPatternRhs.a;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    a = tmpAssignObjPatternRhs.a;
+  } else {
+    break;
   }
 }
 $(a);

@@ -23,15 +23,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = varInitAssignLhsComputedRhs;
-  const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
-  let x;
-  for (x of tmpForOfDeclRhs) {
-  }
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b['c'] = varInitAssignLhsComputedRhs;
+const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
+let x;
+for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
 `````

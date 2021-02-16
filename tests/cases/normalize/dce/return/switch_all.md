@@ -53,23 +53,21 @@ function f() {
       tmpSwitchCaseToStart = 1;
     }
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      $('keep, do not eval');
-      return undefined;
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      $('keep, eval');
-      return undefined;
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
-      $('keep, do not eval');
-      const tmpReturnArg = $(2, 'ret');
-      return tmpReturnArg;
-    }
+  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$2) {
+    $('keep, do not eval');
+    return undefined;
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$3) {
+    $('keep, eval');
+    return undefined;
+  }
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$4) {
+    $('keep, do not eval');
+    const tmpReturnArg = $(2, 'ret');
+    return tmpReturnArg;
   }
   $('eliminate after switch');
 }

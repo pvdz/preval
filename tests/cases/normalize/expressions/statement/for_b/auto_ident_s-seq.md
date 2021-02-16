@@ -23,16 +23,14 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
+while (true) {
+  $(1);
+  $(2);
+  const tmpIfTest = x;
+  if (tmpIfTest) {
     $(1);
-    $(2);
-    const tmpIfTest = x;
-    if (tmpIfTest) {
-      $(1);
-    } else {
-      break;
-    }
+  } else {
+    break;
   }
 }
 $(a, x);

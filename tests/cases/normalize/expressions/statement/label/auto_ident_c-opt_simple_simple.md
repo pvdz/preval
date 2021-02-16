@@ -23,13 +23,11 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  }
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = 'x';
+  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
 }
 $(a);
 `````

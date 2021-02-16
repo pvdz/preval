@@ -20,14 +20,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(100);
+  tmpCallCallee(tmpCalleeParam);
 }
 $(a);
 `````

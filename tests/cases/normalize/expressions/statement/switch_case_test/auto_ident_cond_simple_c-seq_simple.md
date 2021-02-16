@@ -26,16 +26,12 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
-{
-  tmpBinLhs = $(60);
-}
+tmpBinLhs = $(60);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

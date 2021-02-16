@@ -22,11 +22,9 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let arg = 1;
-  let a = undefined;
-  $(a, arg);
-}
+let arg = 1;
+let a = undefined;
+$(a, arg);
 `````
 
 ## Output

@@ -21,17 +21,15 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let bindingPatternArrRoot = { a: 999, b: 1000 };
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  $(10);
-  $(20);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = [1, 2];
-  tmpCallCallee(tmpCalleeParam);
-  $(a);
-}
+let bindingPatternArrRoot = { a: 999, b: 1000 };
+let arrPatternSplat = [...bindingPatternArrRoot];
+let a = arrPatternSplat[0];
+$(10);
+$(20);
+const tmpCallCallee = $;
+const tmpCalleeParam = [1, 2];
+tmpCallCallee(tmpCalleeParam);
+$(a);
 `````
 
 ## Output

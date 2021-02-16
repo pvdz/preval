@@ -39,22 +39,18 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpNestedAssignComMemberObj = $(b);
-      const tmpNestedAssignComMemberProp = $('x');
-      const varInitAssignLhsComputedObj = $(c);
-      const varInitAssignLhsComputedProp = $('y');
-      const varInitAssignLhsComputedRhs = $(d);
-      varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-      const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-      tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-      a = tmpNestedPropAssignRhs;
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $('x');
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedRhs = $(d);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
 }
 $(a, b, c, d);
 `````

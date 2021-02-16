@@ -27,53 +27,49 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-{
-  let tmpObjLitVal;
-  let b;
-  let a;
-  let tmpChainRootCall;
-  let tmpChainElementCall;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
+let tmpObjLitVal;
+let b;
+let a;
+let tmpChainRootCall;
+let tmpChainElementCall;
+const tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$2) {
+  tmpObjLitVal = { y: 1 };
+  b = { x: tmpObjLitVal };
+  a = undefined;
+  tmpChainRootCall = $;
+  tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$3 = tmpChainElementCall != null;
+  if (tmpIfTest$3) {
+    const tmpChainRootComputed = $('x');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$4 = tmpChainElementObject != null;
+    if (tmpIfTest$4) {
+      const tmpChainRootComputed$1 = $('y');
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
     }
   }
-  {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      tmpObjLitVal = { y: 1 };
-      b = { x: tmpObjLitVal };
-      a = undefined;
-      tmpChainRootCall = $;
-      tmpChainElementCall = tmpChainRootCall(b);
-      const tmpIfTest$3 = tmpChainElementCall != null;
-      if (tmpIfTest$3) {
-        const tmpChainRootComputed = $('x');
-        const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-        const tmpIfTest$4 = tmpChainElementObject != null;
-        if (tmpIfTest$4) {
-          const tmpChainRootComputed$1 = $('y');
-          const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-          a = tmpChainElementObject$1;
-        }
-      }
-      $(a);
-    }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $('fail1');
-    }
-    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$6) {
-      $('fail2');
-    }
-  }
+  $(a);
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $('fail1');
+}
+const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$6) {
+  $('fail2');
 }
 `````
 

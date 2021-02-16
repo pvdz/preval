@@ -23,17 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-{
-  let tmpForInDeclRhs;
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+let tmpForInDeclRhs;
+const tmpCallCallee = $;
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+b = tmpNestedAssignObjPatternRhs.b;
+tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a, b);
 `````

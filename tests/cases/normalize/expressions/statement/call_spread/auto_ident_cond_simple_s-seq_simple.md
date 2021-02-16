@@ -22,9 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
-{
-  tmpCalleeParamSpread = 60;
-}
+tmpCalleeParamSpread = 60;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
 `````

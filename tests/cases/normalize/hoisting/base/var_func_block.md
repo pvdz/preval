@@ -28,9 +28,7 @@ $(f());
 function f() {
   var x;
   $(x);
-  {
-    x = 10;
-  }
+  x = 10;
   $(x);
   return x;
 }

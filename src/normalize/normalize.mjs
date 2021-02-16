@@ -831,6 +831,29 @@ export function phaseNormalize(fdata, fname) {
       body.splice(i, 1, newNode);
 
       after(newNode, parent);
+      return true;
+    }
+
+    if (parent.type === 'BlockStatement') {
+      rule('Nested blocks should be smooshed');
+      example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
+      before(node, parent);
+
+      body.splice(i, 1, ...node.body);
+
+      after(parent);
+      return true;
+    }
+
+    if (parent.type === 'Program') {
+      rule('Top level blocks should be eliminated');
+      example('a(); { b(); } c();', 'a(); b(); c();');
+      before(node, parent);
+
+      body.splice(i, 1, ...node.body);
+
+      after(parent);
+      return true;
     }
 
     if (anyBlock(node)) {

@@ -25,13 +25,9 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let a = { a: 999, b: 1000 };
-    {
-      a = $(2);
-    }
-    $(a);
-  }
+  let a = { a: 999, b: 1000 };
+  a = $(2);
+  $(a);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -43,9 +39,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 function f() {
   let a = { a: 999, b: 1000 };
-  {
-    a = $(2);
-  }
+  a = $(2);
   $(a);
 }
 const tmpCalleeParam$1 = f();

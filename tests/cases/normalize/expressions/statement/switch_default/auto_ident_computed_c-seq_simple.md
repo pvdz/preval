@@ -29,13 +29,11 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-{
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $('c');
-    tmpCompObj[tmpCompProp];
-  }
+const tmpIfTest = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $('c');
+  tmpCompObj[tmpCompProp];
 }
 $(a, b);
 `````

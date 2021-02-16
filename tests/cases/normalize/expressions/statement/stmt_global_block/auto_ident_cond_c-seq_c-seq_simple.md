@@ -21,18 +21,16 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  const tmpIfTest = $(30);
-  if (tmpIfTest) {
-    $(60);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
-  }
-  $(a);
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(30);
+if (tmpIfTest) {
+  $(60);
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(100);
+  tmpCallCallee(tmpCalleeParam);
 }
+$(a);
 `````
 
 ## Output

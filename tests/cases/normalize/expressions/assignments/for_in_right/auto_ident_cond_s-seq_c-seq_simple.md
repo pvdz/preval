@@ -20,19 +20,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
-    a = $(60);
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
-  }
-  let tmpForInDeclRhs = a;
-  let x;
-  for (x in tmpForInDeclRhs) {
-  }
+const tmpIfTest = 30;
+if (tmpIfTest) {
+  a = $(60);
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(100);
+  a = tmpCallCallee(tmpCalleeParam);
+}
+let tmpForInDeclRhs = a;
+let x;
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

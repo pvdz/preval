@@ -20,25 +20,23 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  while (true) {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      a = undefined;
-      const tmpChainRootCall = $;
-      const tmpChainElementCall = tmpChainRootCall($);
-      const tmpIfTest$1 = tmpChainElementCall != null;
-      if (tmpIfTest$1) {
-        const tmpCallObj = tmpChainElementCall;
-        const tmpCallVal = tmpCallObj.call;
-        const tmpCalleeParam = tmpChainRootCall;
-        const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-        a = tmpChainElementCall$1;
-      }
-    } else {
-      break;
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpCallObj = tmpChainElementCall;
+      const tmpCallVal = tmpCallObj.call;
+      const tmpCalleeParam = tmpChainRootCall;
+      const tmpCalleeParam$1 = $(1);
+      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+      a = tmpChainElementCall$1;
     }
+  } else {
+    break;
   }
 }
 $(a);

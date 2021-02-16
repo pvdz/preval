@@ -32,16 +32,12 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-{
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    {
-      const tmpObjLitVal = $(1);
-      const tmpObjLitVal$1 = 2;
-      const tmpObjLitVal$2 = $(3);
-      a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-    }
-  }
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = 2;
+  const tmpObjLitVal$2 = $(3);
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
 }
 $(a);
 `````

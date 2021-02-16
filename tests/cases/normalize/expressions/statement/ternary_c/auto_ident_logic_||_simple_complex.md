@@ -24,11 +24,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpCallCallee(tmpCalleeParam);
-  }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  tmpCallCallee(tmpCalleeParam);
 }
 $(a);
 `````

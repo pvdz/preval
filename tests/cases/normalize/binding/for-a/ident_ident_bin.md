@@ -22,10 +22,8 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-{
-  b = c + d;
-  let a_1 = b;
-}
+b = c + d;
+let a_1 = b;
 `````
 
 ## Output

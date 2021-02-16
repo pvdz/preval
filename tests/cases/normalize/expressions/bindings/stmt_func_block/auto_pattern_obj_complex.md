@@ -24,13 +24,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 1, b: 2 };
-    let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
-    let a = bindingPatternObjRoot.a;
-    $(a);
-  }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+  let a = bindingPatternObjRoot.a;
+  $(a);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

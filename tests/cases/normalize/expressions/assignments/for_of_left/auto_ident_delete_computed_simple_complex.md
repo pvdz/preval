@@ -26,15 +26,13 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-{
-  let tmpForOfLhsNode;
-  for (tmpForOfLhsNode of tmpForOfRhs) {
-    const tmpDeleteCompObj = arg;
-    const tmpDeleteCompProp = $('y');
-    a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    let tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForOfLhsNode;
-  }
+let tmpForOfLhsNode;
+for (tmpForOfLhsNode of tmpForOfRhs) {
+  const tmpDeleteCompObj = arg;
+  const tmpDeleteCompProp = $('y');
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpAssignMemLhsObj = a;
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, arg);
 `````

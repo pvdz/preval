@@ -22,9 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   let tmpIfTest = undefined;
-  {
-    tmpIfTest = $(2);
-  }
+  tmpIfTest = $(2);
   if (tmpIfTest) {
     $(100);
   } else {

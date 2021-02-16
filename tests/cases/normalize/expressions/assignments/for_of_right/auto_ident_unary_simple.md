@@ -23,12 +23,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  a = typeof x_1;
-  let tmpForOfDeclRhs = a;
-  let x_1;
-  for (x_1 of tmpForOfDeclRhs) {
-  }
+a = typeof x_1;
+let tmpForOfDeclRhs = a;
+let x_1;
+for (x_1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````

@@ -20,12 +20,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let xyz = function () {};
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz = function () {};
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

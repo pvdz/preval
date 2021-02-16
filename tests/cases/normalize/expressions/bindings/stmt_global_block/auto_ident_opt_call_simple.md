@@ -20,16 +20,14 @@
 ## Normalized
 
 `````js filename=intro
-{
-  let a = undefined;
-  const tmpChainRootCall = $;
-  const tmpIfTest = tmpChainRootCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = tmpChainRootCall(1);
-    a = tmpChainElementCall;
-  }
-  $(a);
+let a = undefined;
+const tmpChainRootCall = $;
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall = tmpChainRootCall(1);
+  a = tmpChainElementCall;
 }
+$(a);
 `````
 
 ## Output

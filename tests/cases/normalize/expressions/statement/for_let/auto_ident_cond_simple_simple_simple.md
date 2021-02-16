@@ -20,15 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let xyz = undefined;
-  {
-    xyz = 2;
-  }
-  while (true) {
-    $(xyz);
-    $(1);
-  }
+let xyz = undefined;
+xyz = 2;
+while (true) {
+  $(xyz);
+  $(1);
 }
 $(a);
 `````

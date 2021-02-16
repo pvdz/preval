@@ -27,15 +27,13 @@ $(f());
 
 `````js filename=intro
 function f() {
-  {
-    let b = { c: 1 };
-    let a = { a: 999, b: 1000 };
-    const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    $(a, b);
-  }
+  let b = { c: 1 };
+  let a = { a: 999, b: 1000 };
+  const tmpNestedAssignObj = b;
+  const tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(a, b);
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

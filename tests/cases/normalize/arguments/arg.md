@@ -20,11 +20,7 @@ function f() {
 
 `````js filename=intro
 function f() {
-  const tmpCallObj = f;
-  const tmpCallVal = tmpCallObj.apply;
-  const tmpCalleeParam = this;
-  const tmpCalleeParam$1 = arguments;
-  tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+  f.apply(this, arguments);
 }
 `````
 
@@ -32,10 +28,7 @@ function f() {
 
 `````js filename=intro
 function f() {
-  const tmpCallVal = f.apply;
-  const tmpCalleeParam = this;
-  const tmpCalleeParam$1 = arguments;
-  tmpCallVal.call(f, tmpCalleeParam, tmpCalleeParam$1);
+  f.apply(this, arguments);
 }
 `````
 

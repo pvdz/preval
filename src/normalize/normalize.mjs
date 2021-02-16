@@ -428,6 +428,8 @@ export function phaseNormalize(fdata, fname) {
       if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
     }
     if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
+    if (node.type === 'ThisExpression') return false;
+    if (node.type === 'Super') return false;
 
     return true;
   }

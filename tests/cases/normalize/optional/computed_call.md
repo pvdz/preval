@@ -24,8 +24,7 @@ $(a)[$('x')]?.(1, 2, 3);
 const tmpObjLitVal = function (...args) {
   const tmpCallCallee = $;
   const tmpCalleeParam = args;
-  const tmpCompObj = this;
-  const tmpCalleeParam$1 = tmpCompObj.y;
+  const tmpCalleeParam$1 = this.y;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };
@@ -43,8 +42,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = function (...args) {
-  const tmpCompObj = this;
-  const tmpCalleeParam$1 = tmpCompObj.y;
+  const tmpCalleeParam$1 = this.y;
   $(args, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };

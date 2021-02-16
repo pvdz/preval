@@ -37,8 +37,7 @@ $(f.call({x: 100}));
 `````js filename=intro
 function f() {
   const g = () => {
-    const tmpCompObj = this;
-    const tmpReturnArg = tmpCompObj.x;
+    const tmpReturnArg = this.x;
     return tmpReturnArg;
   };
   const tmpReturnArg$1 = g();
@@ -57,8 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const g = () => {
-    const tmpCompObj = this;
-    const tmpReturnArg = tmpCompObj.x;
+    const tmpReturnArg = this.x;
     return tmpReturnArg;
   };
   const tmpReturnArg$1 = g();

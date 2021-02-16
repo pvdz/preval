@@ -41,9 +41,9 @@ function i($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let y = arrPatternSplat[0];
+  const objPatternNoDefault = $tdz$__pattern_after_default.x;
+  const arrPatternSplat = [...objPatternNoDefault];
+  const y = arrPatternSplat[0];
   return y;
 }
 `````

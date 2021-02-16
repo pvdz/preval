@@ -37,12 +37,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
-let tmpObjLitPropKey = a;
+const tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a);

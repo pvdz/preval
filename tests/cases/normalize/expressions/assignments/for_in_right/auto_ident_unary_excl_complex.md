@@ -35,7 +35,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = !tmpUnaryArg;
-let tmpForInDeclRhs = a;
+const tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }

@@ -38,7 +38,7 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 a = tmpBinBothLhs * false;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, 1);
 `````

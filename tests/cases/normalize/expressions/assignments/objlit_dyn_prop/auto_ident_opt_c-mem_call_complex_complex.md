@@ -51,7 +51,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainElementCall = $(b);
@@ -67,7 +67,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-let tmpObjLitPropKey = a;
+const tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a);

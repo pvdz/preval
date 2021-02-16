@@ -41,7 +41,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpBinBothRhs = [tmpArrElement, 2, tmpArrElement$2];
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

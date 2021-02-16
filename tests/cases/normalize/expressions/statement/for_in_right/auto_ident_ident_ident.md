@@ -37,9 +37,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 b = 2;
-let tmpForInDeclRhs = b;
+const tmpForInDeclRhs = b;
 let x;
 for (x in tmpForInDeclRhs) {
 }

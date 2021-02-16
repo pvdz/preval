@@ -25,7 +25,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = class extends y {};
+const x = class extends y {};
 $(x);
 `````
 

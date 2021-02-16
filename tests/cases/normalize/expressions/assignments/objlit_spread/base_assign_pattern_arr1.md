@@ -38,7 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpNestedAssignArrPatternRhs = b;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];

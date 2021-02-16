@@ -41,7 +41,7 @@ $(a);
 function f() {
   const tmpNewCallee = $($);
   a = new tmpNewCallee(1);
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

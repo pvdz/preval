@@ -48,7 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let b = { x: 2 };
+    const b = { x: 2 };
     const varInitAssignLhsComputedObj = $(b);
     varInitAssignLhsComputedObj.x = 7;
     $(7, b, 3);

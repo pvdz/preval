@@ -35,8 +35,8 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
 ## Output
 
 `````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
+const a = {};
+const b = { x: 1, y: 2 };
 const tmpForOfRhs = $(b);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {

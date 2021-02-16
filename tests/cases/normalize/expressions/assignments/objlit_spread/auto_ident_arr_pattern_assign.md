@@ -52,7 +52,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let tmpObjSpread = a;
+const tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a, x, y);

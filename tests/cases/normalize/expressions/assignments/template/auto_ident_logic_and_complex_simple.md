@@ -42,7 +42,7 @@ a = $(tmpCalleeParam$1);
 if (a) {
   a = 2;
 }
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

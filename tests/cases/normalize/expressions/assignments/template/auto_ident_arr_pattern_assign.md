@@ -52,7 +52,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a, x, y);

@@ -42,7 +42,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

@@ -31,8 +31,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
-let bindingPatternObjRoot = $(tmpCalleeParam);
-let a = bindingPatternObjRoot.a;
+const bindingPatternObjRoot = $(tmpCalleeParam);
+const a = bindingPatternObjRoot.a;
 $(a);
 `````
 

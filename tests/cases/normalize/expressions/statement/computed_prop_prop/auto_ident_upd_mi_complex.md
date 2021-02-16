@@ -40,9 +40,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
+const obj = {};
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;

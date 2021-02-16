@@ -45,7 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(b);
@@ -54,7 +54,7 @@ while (true) {
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

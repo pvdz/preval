@@ -44,7 +44,7 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````

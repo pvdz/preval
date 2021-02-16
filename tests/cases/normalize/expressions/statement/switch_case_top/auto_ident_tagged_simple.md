@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['fo', 'o'];
-let a = $(tmpCalleeParam, 1);
+const a = $(tmpCalleeParam, 1);
 $(a);
 `````
 

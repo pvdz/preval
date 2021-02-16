@@ -52,7 +52,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
   a = tmpChainElementCall$1;
 }
-let tmpArrSpread = a;
+const tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);

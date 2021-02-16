@@ -86,7 +86,7 @@ let s = String;
 const tmpClassSuper = $(s);
 const tmpClassComputedKey = $('f');
 s = Number;
-let x = class extends tmpClassSuper {
+const x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100, 'method');
     return tmpReturnArg;

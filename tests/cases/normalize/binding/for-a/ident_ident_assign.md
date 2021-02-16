@@ -38,7 +38,7 @@ const tmpNestedAssignObj = $(3);
 const tmpNestedAssignPropRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
 b = tmpNestedAssignPropRhs;
-let a_1 = b;
+const a_1 = b;
 `````
 
 ## Globals

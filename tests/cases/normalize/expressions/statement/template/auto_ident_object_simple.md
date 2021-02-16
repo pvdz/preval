@@ -30,7 +30,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpTemplateExpr = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

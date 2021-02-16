@@ -54,10 +54,10 @@ function f() {
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

@@ -33,11 +33,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 a = delete tmpDeleteCompObj['y'];
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a, arg);
 `````
 

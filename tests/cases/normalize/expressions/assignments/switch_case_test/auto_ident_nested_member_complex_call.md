@@ -54,8 +54,8 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
+const b = { x: 1 };
+const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -67,7 +67,7 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 a = varInitAssignLhsComputedRhs;
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

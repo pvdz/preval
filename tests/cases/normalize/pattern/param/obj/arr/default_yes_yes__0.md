@@ -62,7 +62,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -71,7 +71,7 @@ function f($tdz$__pattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let arrPatternSplat = [...objPatternAfterDefault];
+  const arrPatternSplat = [...objPatternAfterDefault];
   return 'ok';
 }
 const tmpCalleeParam$2 = f(0, 10);

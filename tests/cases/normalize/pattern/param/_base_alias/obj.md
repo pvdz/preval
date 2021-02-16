@@ -25,7 +25,7 @@ function g(tmpParamPattern) {
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let y = tmpParamPattern.x;
+  const y = tmpParamPattern.x;
   return y;
 }
 `````

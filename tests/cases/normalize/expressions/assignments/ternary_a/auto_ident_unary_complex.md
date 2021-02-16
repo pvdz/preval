@@ -44,7 +44,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

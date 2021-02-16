@@ -41,7 +41,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = -tmpUnaryArg;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

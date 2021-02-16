@@ -48,7 +48,7 @@ if (tmpBinBothRhs) {
   tmpBinBothRhs = $(tmpCalleeParam$2);
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

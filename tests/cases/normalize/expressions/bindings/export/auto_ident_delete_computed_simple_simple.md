@@ -29,8 +29,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
-let a = delete arg['y'];
+const arg = { y: 1 };
+const a = delete arg['y'];
 export { a };
 $(a, arg);
 `````

@@ -35,7 +35,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = !tmpUnaryArg;
-let tmpObjSpread = a;
+const tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a);

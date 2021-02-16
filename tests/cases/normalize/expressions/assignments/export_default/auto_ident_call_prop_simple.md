@@ -32,10 +32,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = b.$(1);
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

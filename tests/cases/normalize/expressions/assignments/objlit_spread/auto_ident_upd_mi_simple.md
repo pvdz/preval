@@ -43,7 +43,7 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpObjSpread = a;
+const tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a, b);

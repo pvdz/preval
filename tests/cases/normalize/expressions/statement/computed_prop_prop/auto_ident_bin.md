@@ -33,8 +33,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
+const a = { a: 999, b: 1000 };
+const obj = {};
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpCompProp = tmpBinBothLhs + tmpBinBothRhs;

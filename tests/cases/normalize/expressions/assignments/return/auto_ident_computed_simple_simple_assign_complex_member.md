@@ -51,10 +51,10 @@ function f() {
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b['c'] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { c: 10, d: 20 };
+const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

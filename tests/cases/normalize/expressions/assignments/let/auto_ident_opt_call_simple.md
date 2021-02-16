@@ -43,7 +43,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

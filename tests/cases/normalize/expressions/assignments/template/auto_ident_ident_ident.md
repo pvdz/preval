@@ -41,7 +41,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a, b, 2);

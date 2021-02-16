@@ -25,7 +25,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = class x {};
+const a = class x {};
 $(a, x);
 `````
 

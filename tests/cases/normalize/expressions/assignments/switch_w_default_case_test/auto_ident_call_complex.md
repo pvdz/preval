@@ -61,7 +61,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCallCallee = $($);
 a = tmpCallCallee(1);
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

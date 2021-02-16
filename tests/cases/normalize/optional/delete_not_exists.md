@@ -33,7 +33,7 @@ $(o);
 ## Output
 
 `````js filename=intro
-let o = {};
+const o = {};
 $(o);
 const tmpIfTest = o != null;
 if (tmpIfTest) {

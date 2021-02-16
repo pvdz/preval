@@ -43,7 +43,7 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a, b);

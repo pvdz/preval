@@ -37,7 +37,7 @@ let y = 1;
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let y_1 = tmpParamPattern.x;
+  const y_1 = tmpParamPattern.x;
   return y_1;
 }
 `````

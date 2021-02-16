@@ -53,7 +53,7 @@ while (true) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

@@ -34,7 +34,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
 a = tmpCallCallee$1(1);
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

@@ -60,7 +60,7 @@ function f() {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let x = 1;

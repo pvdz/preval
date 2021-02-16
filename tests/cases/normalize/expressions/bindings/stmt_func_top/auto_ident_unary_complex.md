@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const tmpUnaryArg = $(1);
-  let a = typeof tmpUnaryArg;
+  const a = typeof tmpUnaryArg;
   $(a, 1);
 }
 const tmpCalleeParam = f();

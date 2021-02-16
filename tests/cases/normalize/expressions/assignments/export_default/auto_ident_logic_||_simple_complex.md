@@ -42,7 +42,7 @@ if (a) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 }
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

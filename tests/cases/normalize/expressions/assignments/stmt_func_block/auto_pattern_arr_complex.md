@@ -44,8 +44,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let bindingPatternArrRoot = { a: 999, b: 1000 };
-  let arrPatternSplat = [...bindingPatternArrRoot];
+  const bindingPatternArrRoot = { a: 999, b: 1000 };
+  const arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);

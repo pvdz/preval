@@ -29,7 +29,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = false;
+const a = false;
 export { a };
 $(false, 1);
 `````

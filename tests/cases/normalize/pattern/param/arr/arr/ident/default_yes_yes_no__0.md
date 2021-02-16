@@ -52,8 +52,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
@@ -62,8 +62,8 @@ function f(tmpParamPattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+  const arrPatternSplat$1 = [...arrPatternStep];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
   let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {

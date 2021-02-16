@@ -55,7 +55,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
 }
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

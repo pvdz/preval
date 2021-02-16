@@ -41,7 +41,7 @@ $(a, b, d);
 
 `````js filename=intro
 let a = 1;
-let b = {
+const b = {
   get c() {
     $('should not be called');
   },

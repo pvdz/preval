@@ -37,7 +37,7 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Output
 
 `````js filename=intro
-let y = {};
+const y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {

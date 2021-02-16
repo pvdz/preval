@@ -70,8 +70,8 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
+  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -80,7 +80,7 @@ function f($tdz$__pattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  let objPatternBeforeDefault = arrPatternStep.x;
+  const objPatternBeforeDefault = arrPatternStep.x;
   let x = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {

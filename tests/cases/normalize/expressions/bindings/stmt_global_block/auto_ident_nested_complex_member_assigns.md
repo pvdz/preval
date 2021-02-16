@@ -58,7 +58,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(b);

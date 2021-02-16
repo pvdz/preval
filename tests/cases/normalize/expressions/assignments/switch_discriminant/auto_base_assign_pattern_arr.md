@@ -54,7 +54,7 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

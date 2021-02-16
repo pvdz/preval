@@ -59,7 +59,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 a = function f() {};
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

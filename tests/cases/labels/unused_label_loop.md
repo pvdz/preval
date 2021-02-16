@@ -36,7 +36,7 @@ while (true) {
 let x = 2;
 while (true) {
   x = x - 1;
-  let tmpIfTest = x;
+  const tmpIfTest = x;
   if (tmpIfTest) {
     $(x);
   } else {

@@ -51,7 +51,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);

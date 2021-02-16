@@ -34,7 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompProp = $('$');
 a = b[tmpCallCompProp](1);

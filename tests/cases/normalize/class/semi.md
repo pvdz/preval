@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = class {
+const x = class {
   a() {}
   b() {}
 };

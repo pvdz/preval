@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, 2, tmpArrElement$2];
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a);
 `````
 

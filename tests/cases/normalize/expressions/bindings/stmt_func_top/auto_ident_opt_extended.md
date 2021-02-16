@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpObjLitVal$1 = { z: 100 };
   const tmpObjLitVal = { y: tmpObjLitVal$1 };
-  let b = { x: tmpObjLitVal };
+  const b = { x: tmpObjLitVal };
   let a = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {

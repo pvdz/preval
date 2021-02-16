@@ -61,16 +61,16 @@ function x(tmpParamPattern, tmpParamPattern$1) {
 
 `````js filename=intro
 function x(tmpParamPattern, tmpParamPattern$1) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let arrPatternStep$1 = arrPatternSplat$1[0];
-  let arrPatternSplat$2 = [...arrPatternStep$1];
-  let arrPatternStep$2 = arrPatternSplat$2[0];
-  let arrPatternSplat$3 = [...arrPatternStep$2];
-  let arrPatternStep$3 = arrPatternSplat$3[0];
-  let arrPatternSplat$4 = [...arrPatternStep$3];
-  let arrPatternBeforeDefault = arrPatternSplat$4[0];
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const arrPatternSplat$1 = [...arrPatternStep];
+  const arrPatternStep$1 = arrPatternSplat$1[0];
+  const arrPatternSplat$2 = [...arrPatternStep$1];
+  const arrPatternStep$2 = arrPatternSplat$2[0];
+  const arrPatternSplat$3 = [...arrPatternStep$2];
+  const arrPatternStep$3 = arrPatternSplat$3[0];
+  const arrPatternSplat$4 = [...arrPatternStep$3];
+  const arrPatternBeforeDefault = arrPatternSplat$4[0];
   let arrPatternStep$4 = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
@@ -78,8 +78,8 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   } else {
     arrPatternStep$4 = arrPatternBeforeDefault;
   }
-  let arrPatternSplat$5 = [...arrPatternStep$4];
-  let arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
+  const arrPatternSplat$5 = [...arrPatternStep$4];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
   let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
@@ -87,9 +87,9 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   } else {
     foo = arrPatternBeforeDefault$1;
   }
-  let objPatternNoDefault = tmpParamPattern$1.x;
+  const objPatternNoDefault = tmpParamPattern$1.x;
   const tmpCalleeParam$1 = [];
-  let x_1 = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+  const x_1 = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 }
 `````
 

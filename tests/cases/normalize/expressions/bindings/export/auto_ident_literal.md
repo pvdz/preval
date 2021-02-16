@@ -26,7 +26,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 'foo';
+const a = 'foo';
 export { a };
 $('foo');
 `````

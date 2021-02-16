@@ -46,10 +46,10 @@ $(a, b);
 function f() {
   b.c = 2;
   a = 2;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

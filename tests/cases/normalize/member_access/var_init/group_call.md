@@ -29,7 +29,7 @@ $(x);
 $(1);
 $(2);
 const tmpCompObj = $($);
-let x = tmpCompObj.length;
+const x = tmpCompObj.length;
 $(x);
 `````
 

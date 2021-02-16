@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -72,7 +72,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
       a = tmpChainElementObject$1;
     }
   }
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

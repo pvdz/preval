@@ -36,7 +36,7 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 1;
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }

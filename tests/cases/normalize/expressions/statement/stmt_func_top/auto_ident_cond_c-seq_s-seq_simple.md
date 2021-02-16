@@ -42,7 +42,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let a = { a: 999, b: 1000 };
+  const a = { a: 999, b: 1000 };
   const tmpIfTest = $(30);
   if (tmpIfTest) {
   } else {

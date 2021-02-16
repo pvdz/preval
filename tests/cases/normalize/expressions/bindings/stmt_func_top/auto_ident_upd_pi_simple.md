@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let b = 1;
   b = b + 1;
-  let a = b;
+  const a = b;
   $(a, b);
 }
 const tmpCalleeParam = f();

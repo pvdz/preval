@@ -44,7 +44,7 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````

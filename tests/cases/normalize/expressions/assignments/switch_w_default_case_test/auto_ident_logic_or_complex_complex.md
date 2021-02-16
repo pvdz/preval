@@ -73,7 +73,7 @@ if (a) {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
 }
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

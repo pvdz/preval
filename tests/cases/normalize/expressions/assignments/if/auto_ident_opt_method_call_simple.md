@@ -38,7 +38,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
+const b = { c: $ };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest$1 = b != null;
@@ -47,7 +47,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   a = tmpChainElementCall;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a);
 `````
 

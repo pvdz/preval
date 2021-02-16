@@ -55,7 +55,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
+const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 a = undefined;
@@ -70,7 +70,7 @@ if (tmpIfTest$1) {
     a = tmpChainElementCall;
   }
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

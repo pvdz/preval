@@ -49,10 +49,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let arrPatternStep$1 = arrPatternSplat$1[0];
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const arrPatternSplat$1 = [...arrPatternStep];
+  const arrPatternStep$1 = arrPatternSplat$1[0];
   let objPatternCrashTest = arrPatternStep$1 === undefined;
   if (objPatternCrashTest) {
   } else {

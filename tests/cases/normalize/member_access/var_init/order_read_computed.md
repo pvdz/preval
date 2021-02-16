@@ -52,7 +52,7 @@ const obj = {
 };
 const tmpCompObj = $(obj);
 const tmpCompProp = $('x');
-let x = tmpCompObj[tmpCompProp];
+const x = tmpCompObj[tmpCompProp];
 $(x);
 `````
 

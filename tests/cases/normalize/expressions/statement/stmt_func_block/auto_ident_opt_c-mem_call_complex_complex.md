@@ -55,8 +55,8 @@ tmpCallCallee(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  let b = { $: $ };
-  let a = { a: 999, b: 1000 };
+  const b = { $: $ };
+  const a = { a: 999, b: 1000 };
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {

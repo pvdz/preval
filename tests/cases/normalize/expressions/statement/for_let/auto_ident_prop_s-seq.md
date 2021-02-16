@@ -35,9 +35,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-let xyz = b.c;
+const b = { c: 1 };
+const a = { a: 999, b: 1000 };
+const xyz = b.c;
 while (true) {
   $(xyz);
   $(1);

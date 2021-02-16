@@ -41,10 +41,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = b.$(1);
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

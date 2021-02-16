@@ -51,9 +51,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -68,7 +68,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-let tmpCompProp = a;
+const tmpCompProp = a;
 obj[tmpCompProp];
 $(a);
 `````

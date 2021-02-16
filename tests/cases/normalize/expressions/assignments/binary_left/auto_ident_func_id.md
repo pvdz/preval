@@ -34,7 +34,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = function f() {};
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

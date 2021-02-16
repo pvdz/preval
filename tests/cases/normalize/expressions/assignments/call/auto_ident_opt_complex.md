@@ -40,7 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainElementCall = $(b);
@@ -49,7 +49,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -43,7 +43,7 @@ const tmpBinBothLhs = $(100);
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, b);

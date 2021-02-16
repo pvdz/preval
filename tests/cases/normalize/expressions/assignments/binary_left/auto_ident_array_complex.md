@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, 2, tmpArrElement$2];
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

@@ -43,7 +43,7 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

@@ -48,7 +48,7 @@ a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 }
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

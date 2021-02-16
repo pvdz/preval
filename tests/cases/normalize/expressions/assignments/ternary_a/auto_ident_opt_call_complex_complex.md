@@ -58,7 +58,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
   a = tmpChainElementCall$1;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

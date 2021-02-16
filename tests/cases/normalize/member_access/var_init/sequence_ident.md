@@ -30,7 +30,7 @@ $(x);
 
 `````js filename=intro
 $(1);
-let x = 'foo'.length;
+const x = 'foo'.length;
 $(x);
 `````
 

@@ -40,7 +40,7 @@ let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, b);
 `````

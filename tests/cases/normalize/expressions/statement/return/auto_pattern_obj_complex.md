@@ -44,8 +44,8 @@ function f() {
   const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 }
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+const a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

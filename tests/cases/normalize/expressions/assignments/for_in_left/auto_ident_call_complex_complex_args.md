@@ -41,7 +41,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -51,7 +51,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCalleeParam$1 = $(1);
   const tmpCalleeParam$2 = $(2);
   a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

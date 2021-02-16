@@ -32,7 +32,7 @@ function g(tmpParamPattern) {
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let objPatternBeforeDefault = tmpParamPattern.x;
+  const objPatternBeforeDefault = tmpParamPattern.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {

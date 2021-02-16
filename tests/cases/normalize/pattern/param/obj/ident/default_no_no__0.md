@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let x = tmpParamPattern.x;
+  const x = tmpParamPattern.x;
   return x;
 }
 const tmpCalleeParam = f(0, 10);

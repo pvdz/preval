@@ -47,10 +47,10 @@ function f() {
   $(1);
   $(2);
   a = delete arg.y;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let arg = { y: 1 };
+const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

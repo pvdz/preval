@@ -41,7 +41,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let b = { x: 2 };
+  const b = { x: 2 };
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs$1 = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;

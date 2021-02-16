@@ -40,7 +40,7 @@ a = 1;
 if (a) {
   a = 2;
 }
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

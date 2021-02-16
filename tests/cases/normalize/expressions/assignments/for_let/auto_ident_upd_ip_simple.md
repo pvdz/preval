@@ -42,7 +42,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 a = tmpPostUpdArgIdent;
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

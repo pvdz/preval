@@ -49,7 +49,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

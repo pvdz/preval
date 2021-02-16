@@ -28,10 +28,10 @@ function i(tmpParamPattern) {
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let x = arrPatternSplat$1[0];
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const arrPatternSplat$1 = [...arrPatternStep];
+  const x = arrPatternSplat$1[0];
   return x;
 }
 `````

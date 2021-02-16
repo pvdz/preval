@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
-  let a = tmpBinBothLhs + tmpBinBothRhs;
+  const a = tmpBinBothLhs + tmpBinBothRhs;
   $(a);
 }
 const tmpCalleeParam = f();

@@ -45,7 +45,7 @@ a = 1;
 if (a) {
   a = 2;
 }
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

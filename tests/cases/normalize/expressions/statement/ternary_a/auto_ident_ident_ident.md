@@ -39,9 +39,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 b = 2;
-let tmpIfTest = b;
+const tmpIfTest = b;
 if (tmpIfTest) {
   $(100);
 } else {

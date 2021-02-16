@@ -61,9 +61,9 @@ function f() {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
   return varInitAssignLhsComputedRhs$1;
 }
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const c = { y: 2 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, b, c, 3);

@@ -67,7 +67,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 b = 2;
 a = 2;
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

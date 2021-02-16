@@ -31,7 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;

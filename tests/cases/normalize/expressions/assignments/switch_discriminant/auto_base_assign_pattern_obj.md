@@ -52,7 +52,7 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

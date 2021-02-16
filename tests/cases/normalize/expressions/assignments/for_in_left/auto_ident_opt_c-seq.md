@@ -44,7 +44,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -57,7 +57,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
   }
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

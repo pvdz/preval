@@ -46,7 +46,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

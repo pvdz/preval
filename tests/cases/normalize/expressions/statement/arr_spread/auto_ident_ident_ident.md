@@ -35,9 +35,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 b = 2;
-let tmpArrElToSpread = b;
+const tmpArrElToSpread = b;
 [...tmpArrElToSpread];
 $(a, b, 2);
 `````

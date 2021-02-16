@@ -36,7 +36,7 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = typeof x_1;
-let tmpForInDeclRhs = a;
+const tmpForInDeclRhs = a;
 let x_1;
 for (x_1 in tmpForInDeclRhs) {
 }

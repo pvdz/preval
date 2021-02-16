@@ -41,7 +41,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 a = tmpCallCallee(1);
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

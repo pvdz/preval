@@ -41,7 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { c: 1 };
+  const b = { c: 1 };
   let a = { a: 999, b: 1000 };
   const tmpAssignRhsCompProp = $('c');
   a = b[tmpAssignRhsCompProp];

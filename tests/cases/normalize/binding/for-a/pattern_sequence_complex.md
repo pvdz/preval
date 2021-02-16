@@ -32,13 +32,13 @@ let y = arrPatternSplat[1];
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 $(1);
 $(2);
-let bindingPatternArrRoot = $(z);
-let arrPatternSplat = [...bindingPatternArrRoot];
-let x = arrPatternSplat[0];
-let y = arrPatternSplat[1];
+const bindingPatternArrRoot = $(z);
+const arrPatternSplat = [...bindingPatternArrRoot];
+const x = arrPatternSplat[0];
+const y = arrPatternSplat[1];
 `````
 
 ## Globals

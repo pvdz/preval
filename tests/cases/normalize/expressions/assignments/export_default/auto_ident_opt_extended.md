@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest = b != null;
@@ -54,7 +54,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

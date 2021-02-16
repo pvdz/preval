@@ -41,7 +41,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a);
 `````
 

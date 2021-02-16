@@ -55,7 +55,7 @@ if (a) {
     a = $(tmpCalleeParam$2);
   }
 }
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

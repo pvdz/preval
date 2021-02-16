@@ -32,10 +32,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-let xyz = [tmpArrElement, 2, tmpArrElement$2];
+const xyz = [tmpArrElement, 2, tmpArrElement$2];
 $(xyz);
 $(a);
 `````

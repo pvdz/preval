@@ -38,12 +38,12 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 b.c = 2;
 a = tmpBinBothLhs * 2;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, b);
 `````

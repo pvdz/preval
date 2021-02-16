@@ -58,8 +58,8 @@ function f() {
   }
   return tmpReturnArg;
 }
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

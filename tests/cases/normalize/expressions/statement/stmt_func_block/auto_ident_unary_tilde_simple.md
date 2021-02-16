@@ -41,7 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let a = { a: 999, b: 1000 };
+  const a = { a: 999, b: 1000 };
   -2;
   $(a, 1);
 }

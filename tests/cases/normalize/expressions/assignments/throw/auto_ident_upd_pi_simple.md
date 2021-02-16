@@ -40,7 +40,7 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

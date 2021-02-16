@@ -38,14 +38,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('$');
 const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
 a = new tmpNewCallee(1);
-let tmpCompProp = a;
+const tmpCompProp = a;
 obj[tmpCompProp];
 $(a);
 `````

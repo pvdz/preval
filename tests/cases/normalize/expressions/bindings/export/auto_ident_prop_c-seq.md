@@ -30,9 +30,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
+const b = { c: 1 };
 const tmpCompObj = $(b);
-let a = tmpCompObj.c;
+const a = tmpCompObj.c;
 export { a };
 $(a, b);
 `````

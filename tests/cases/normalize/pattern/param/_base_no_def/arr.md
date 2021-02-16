@@ -26,8 +26,8 @@ function f(tmpParamPattern) {
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let x = arrPatternSplat[0];
+  const arrPatternSplat = [...tmpParamPattern];
+  const x = arrPatternSplat[0];
   return x;
 }
 `````

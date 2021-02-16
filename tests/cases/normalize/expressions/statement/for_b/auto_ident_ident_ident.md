@@ -41,10 +41,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 while (true) {
   b = 2;
-  let tmpIfTest = b;
+  const tmpIfTest = b;
   if (tmpIfTest) {
     $(1);
   } else {

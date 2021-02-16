@@ -38,7 +38,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 $(1);
@@ -46,7 +46,7 @@ $(2);
 const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, arg);
 `````

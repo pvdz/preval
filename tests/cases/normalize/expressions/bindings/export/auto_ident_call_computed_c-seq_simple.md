@@ -30,9 +30,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 const tmpCallObj = $(b);
-let a = tmpCallObj['$'](1);
+const a = tmpCallObj['$'](1);
 export { a };
 $(a);
 `````

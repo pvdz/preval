@@ -40,7 +40,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b - 1;
 a = tmpPostUpdArgIdent;
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, b);
 `````

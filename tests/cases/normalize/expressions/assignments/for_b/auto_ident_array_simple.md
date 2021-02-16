@@ -38,7 +38,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   a = [1, 2, 3];
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

@@ -54,7 +54,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let objPatternBeforeDefault = tmpParamPattern.x;
+  const objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
@@ -63,7 +63,7 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+  const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {

@@ -41,13 +41,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam, tmpCalleeParam$1);
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

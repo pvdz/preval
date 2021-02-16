@@ -44,7 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-let tmpForInDeclRhs = a;
+const tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }

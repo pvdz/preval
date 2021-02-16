@@ -46,9 +46,9 @@ function f() {
   const tmpReturnArg = [1, 2];
   return tmpReturnArg;
 }
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

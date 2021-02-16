@@ -41,7 +41,7 @@ const tmpBinBothLhs = a;
 const tmpUnaryArg = $(1);
 const tmpBinBothRhs = typeof tmpUnaryArg;
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, 1);
 `````

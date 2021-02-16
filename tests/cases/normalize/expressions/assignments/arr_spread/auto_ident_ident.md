@@ -36,7 +36,7 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 1;
-let tmpArrSpread = a;
+const tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a, 1);

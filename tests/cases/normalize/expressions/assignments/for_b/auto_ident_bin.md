@@ -42,7 +42,7 @@ while (true) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   a = tmpBinBothLhs + tmpBinBothRhs;
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

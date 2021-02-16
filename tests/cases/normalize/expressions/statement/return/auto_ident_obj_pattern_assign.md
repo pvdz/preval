@@ -57,7 +57,7 @@ function f() {
 }
 let x = 1;
 let y = 2;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, x, y);

@@ -40,13 +40,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $('c');
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

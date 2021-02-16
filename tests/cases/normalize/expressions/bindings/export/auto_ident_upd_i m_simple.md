@@ -34,7 +34,7 @@ $(a, b);
 let b = 1;
 const tmpPostUpdArgIdent = b;
 b = b - 1;
-let a = tmpPostUpdArgIdent;
+const a = tmpPostUpdArgIdent;
 export { a };
 $(tmpPostUpdArgIdent, b);
 `````

@@ -56,7 +56,7 @@ function f($tdz$__p) {
     p = $tdz$__p;
   }
 }
-let bindingPatternObjRoot = { a: 999, b: 1000 };
+const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

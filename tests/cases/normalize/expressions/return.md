@@ -29,7 +29,7 @@ function f(x, y) {
 `````js filename=intro
 function f(x, y) {
   x = y;
-  let tmpReturnArg = x;
+  const tmpReturnArg = x;
   return tmpReturnArg;
 }
 `````

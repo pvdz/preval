@@ -46,7 +46,7 @@ $(a, b, c);
 function f() {
   b = 2;
   a = 2;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;

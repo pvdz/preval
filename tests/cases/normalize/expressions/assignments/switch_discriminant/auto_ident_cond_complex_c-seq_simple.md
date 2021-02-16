@@ -52,7 +52,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
 }
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

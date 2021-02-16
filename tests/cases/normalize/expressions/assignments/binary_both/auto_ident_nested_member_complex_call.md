@@ -61,8 +61,8 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
+const b = { x: 1 };
+const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
@@ -72,7 +72,7 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 a = varInitAssignLhsComputedRhs;
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpNestedAssignComMemberObj$1 = $(b);
 const tmpNestedAssignComMemberProp$1 = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
@@ -81,7 +81,7 @@ const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
 a = varInitAssignLhsComputedRhs$1;
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, b, c, 3);

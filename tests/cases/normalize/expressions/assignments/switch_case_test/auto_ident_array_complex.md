@@ -47,7 +47,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, 2, tmpArrElement$2];
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

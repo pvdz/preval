@@ -35,13 +35,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
+const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+const a = varInitAssignLhsComputedRhs;
 export { a };
 $(varInitAssignLhsComputedRhs, b);
 `````

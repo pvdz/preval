@@ -59,7 +59,7 @@ $(a, b, x, y, z);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 let bindingPatternArrRoot;
 let a_1;

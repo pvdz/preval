@@ -28,10 +28,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot = [1, 2];
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
+const bindingPatternArrRoot = [1, 2];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
+const b = arrPatternSplat[1];
 $(a, b);
 `````
 

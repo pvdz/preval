@@ -46,7 +46,7 @@ function f() {
   $(1);
   $(2);
   a = $(1);
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

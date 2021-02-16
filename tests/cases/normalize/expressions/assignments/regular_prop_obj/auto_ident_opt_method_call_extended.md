@@ -47,9 +47,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
+const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
@@ -59,7 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
-let tmpCompObj = a;
+const tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

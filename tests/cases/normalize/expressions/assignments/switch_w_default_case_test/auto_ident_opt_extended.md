@@ -70,7 +70,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -82,7 +82,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

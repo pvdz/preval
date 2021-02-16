@@ -47,10 +47,10 @@ function f() {
   const tmpCompProp = $('$');
   const tmpNewCallee = b[tmpCompProp];
   a = new tmpNewCallee(1);
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

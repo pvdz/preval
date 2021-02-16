@@ -40,7 +40,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCallCallee = $($);
   a = tmpCallCallee(1);
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

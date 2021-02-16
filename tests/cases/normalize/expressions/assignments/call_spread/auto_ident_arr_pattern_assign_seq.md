@@ -55,7 +55,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, x, y);
 `````

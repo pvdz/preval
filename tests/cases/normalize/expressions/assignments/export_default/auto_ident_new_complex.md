@@ -33,7 +33,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 a = new tmpNewCallee(1);
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

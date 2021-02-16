@@ -29,7 +29,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = 5;
+const a = 5;
 export { a };
 $(5, 2, 3);
 `````

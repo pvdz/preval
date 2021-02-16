@@ -45,7 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
+const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpNestedAssignComMemberObj = $(b);
@@ -55,7 +55,7 @@ while (true) {
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

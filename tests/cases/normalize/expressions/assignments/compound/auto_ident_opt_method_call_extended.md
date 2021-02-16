@@ -48,7 +48,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
+const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 let tmpBinBothRhs = undefined;
@@ -61,7 +61,7 @@ if (tmpIfTest) {
   tmpBinBothRhs = tmpChainElementCall;
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

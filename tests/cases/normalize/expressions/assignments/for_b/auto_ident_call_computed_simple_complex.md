@@ -40,12 +40,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCallCompProp = $('$');
   a = b[tmpCallCompProp](1);
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

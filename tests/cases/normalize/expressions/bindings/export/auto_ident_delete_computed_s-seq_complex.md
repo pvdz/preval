@@ -33,11 +33,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-let a = delete arg[tmpDeleteCompProp];
+const a = delete arg[tmpDeleteCompProp];
 export { a };
 $(a, arg);
 `````

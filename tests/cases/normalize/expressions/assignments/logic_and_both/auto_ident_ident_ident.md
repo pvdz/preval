@@ -49,7 +49,7 @@ a = 2;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   b = 2;
-  let tmpNestedComplexRhs = b;
+  const tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

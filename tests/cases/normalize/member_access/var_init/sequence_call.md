@@ -29,7 +29,7 @@ $(x);
 `````js filename=intro
 $(1);
 const tmpCompObj = $(2);
-let x = tmpCompObj.toString;
+const x = tmpCompObj.toString;
 $(x);
 `````
 

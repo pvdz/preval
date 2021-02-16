@@ -62,7 +62,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a, x, y);
 `````

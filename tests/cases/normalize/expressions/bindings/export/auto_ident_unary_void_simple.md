@@ -29,7 +29,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = undefined;
+const a = undefined;
 export { a };
 $(undefined, 1);
 `````

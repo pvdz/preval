@@ -33,10 +33,10 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
 b[varInitAssignLhsComputedProp] = 3;
-let a = 3;
+const a = 3;
 export { a };
 $(3, b, 3);
 `````

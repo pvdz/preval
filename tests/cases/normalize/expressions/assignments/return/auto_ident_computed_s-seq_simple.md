@@ -45,10 +45,10 @@ $(a, b);
 function f() {
   const tmpAssignRhsCompProp = $('c');
   a = b[tmpAssignRhsCompProp];
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

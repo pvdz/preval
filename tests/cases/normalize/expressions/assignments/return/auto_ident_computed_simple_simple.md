@@ -42,10 +42,10 @@ $(a, b);
 `````js filename=intro
 function f() {
   a = b['c'];
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

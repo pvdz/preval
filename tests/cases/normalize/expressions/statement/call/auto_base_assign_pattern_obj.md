@@ -39,7 +39,7 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);

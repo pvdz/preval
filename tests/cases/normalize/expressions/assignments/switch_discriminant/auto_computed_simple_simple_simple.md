@@ -43,7 +43,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 a['b'] = 2;
 $(a);

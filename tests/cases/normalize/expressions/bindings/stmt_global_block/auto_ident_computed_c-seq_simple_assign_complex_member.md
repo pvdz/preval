@@ -36,7 +36,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
+const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);

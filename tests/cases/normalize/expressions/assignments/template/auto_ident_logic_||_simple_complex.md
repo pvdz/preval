@@ -44,7 +44,7 @@ if (a) {
   const tmpCalleeParam$1 = $(1);
   a = $(tmpCalleeParam$1);
 }
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

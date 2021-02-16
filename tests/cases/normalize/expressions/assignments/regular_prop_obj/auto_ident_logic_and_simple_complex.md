@@ -37,13 +37,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 a = 1;
 if (a) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 }
-let tmpCompObj = a;
+const tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

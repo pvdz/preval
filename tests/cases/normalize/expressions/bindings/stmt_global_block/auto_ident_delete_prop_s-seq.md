@@ -33,10 +33,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 $(1);
 $(2);
-let a = delete arg.y;
+const a = delete arg.y;
 $(a, arg);
 `````
 

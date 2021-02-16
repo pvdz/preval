@@ -40,8 +40,8 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let x = arrPatternSplat[0];
+  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  const x = arrPatternSplat[0];
   return x;
 }
 `````

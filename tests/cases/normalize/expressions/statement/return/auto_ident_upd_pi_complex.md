@@ -53,8 +53,8 @@ function f() {
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   return varInitAssignLhsComputedRhs;
 }
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a, b);

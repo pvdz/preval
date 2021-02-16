@@ -40,7 +40,7 @@ a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 }
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

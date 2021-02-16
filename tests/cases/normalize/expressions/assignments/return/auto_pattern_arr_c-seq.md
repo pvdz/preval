@@ -55,8 +55,8 @@ function f() {
   a = arrPatternSplat[0];
   return tmpNestedAssignArrPatternRhs;
 }
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat$1 = [...bindingPatternArrRoot];
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat$1 = [...bindingPatternArrRoot];
 let a = arrPatternSplat$1[0];
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

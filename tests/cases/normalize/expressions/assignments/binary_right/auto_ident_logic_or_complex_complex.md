@@ -49,7 +49,7 @@ if (a) {
   const tmpCalleeParam$2 = $(2);
   a = $(tmpCalleeParam$2);
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

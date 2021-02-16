@@ -30,10 +30,10 @@ let y_1 = arrPatternSplat[1];
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
-let arrPatternSplat = [...z];
-let x_1 = arrPatternSplat[0];
-let y_1 = arrPatternSplat[1];
+const z = [10, 20, 30];
+const arrPatternSplat = [...z];
+const x_1 = arrPatternSplat[0];
+const y_1 = arrPatternSplat[1];
 `````
 
 ## Globals

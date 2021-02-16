@@ -52,14 +52,14 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpCalleeParam$2 = $(0);
 a = $(tmpCalleeParam$2);
 if (a) {
 } else {
   a = 2;
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

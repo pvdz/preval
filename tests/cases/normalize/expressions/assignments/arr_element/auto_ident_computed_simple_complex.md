@@ -40,14 +40,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
+const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompProp = $('c');
 a = b[tmpAssignRhsCompProp];
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpAssignRhsCompProp$1 = $('c');
 a = b[tmpAssignRhsCompProp$1];
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, b);

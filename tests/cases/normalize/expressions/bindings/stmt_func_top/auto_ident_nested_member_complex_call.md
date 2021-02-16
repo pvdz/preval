@@ -49,8 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { x: 1 };
-  let c = { y: 2 };
+  const b = { x: 1 };
+  const c = { y: 2 };
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);

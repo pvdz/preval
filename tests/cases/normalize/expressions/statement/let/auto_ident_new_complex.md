@@ -30,9 +30,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-let xyz = new tmpNewCallee(1);
+const xyz = new tmpNewCallee(1);
 $(xyz);
 $(a);
 `````

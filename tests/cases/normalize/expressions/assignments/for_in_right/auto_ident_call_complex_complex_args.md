@@ -37,13 +37,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpForInDeclRhs = a;
+const tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }

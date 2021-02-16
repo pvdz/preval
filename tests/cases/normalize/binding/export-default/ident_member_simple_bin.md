@@ -32,9 +32,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 b.x = 7;
-let a = 7;
+const a = 7;
 export { a };
 $(7, b, 3);
 `````

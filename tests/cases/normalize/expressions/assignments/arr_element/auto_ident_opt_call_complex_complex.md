@@ -65,7 +65,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
   a = tmpChainElementCall$1;
 }
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 a = undefined;
 const tmpChainElementCall$2 = $($);
 const tmpIfTest$1 = tmpChainElementCall$2 != null;
@@ -75,7 +75,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$4);
   a = tmpChainElementCall$3;
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

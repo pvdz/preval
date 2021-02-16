@@ -39,7 +39,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, 2, tmpArrElement$2];
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

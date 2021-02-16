@@ -38,7 +38,7 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-let tmpObjSpread = a;
+const tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a, 1);

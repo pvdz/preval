@@ -35,12 +35,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
 $(10);
 $(20);
-let xyz = [1, 2];
+const xyz = [1, 2];
 while (true) {
   $(xyz);
   $(1);

@@ -33,9 +33,9 @@ let x = 1;
 
 `````js filename=intro
 function h(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let x_1 = arrPatternStep.x;
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const x_1 = arrPatternStep.x;
   return x_1;
 }
 `````

@@ -43,15 +43,15 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
+const b = { x: 1 };
+const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-let a = 7;
+const a = 7;
 export { a };
 $(7, b, c, 3, 4);
 `````

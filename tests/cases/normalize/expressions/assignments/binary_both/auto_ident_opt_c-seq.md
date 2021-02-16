@@ -48,7 +48,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainRootProp = $(b);
@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 a = undefined;
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
@@ -65,7 +65,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   a = tmpChainElementObject$1;
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

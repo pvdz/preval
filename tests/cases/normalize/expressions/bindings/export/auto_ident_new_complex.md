@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-let a = new tmpNewCallee(1);
+const a = new tmpNewCallee(1);
 export { a };
 $(a);
 `````

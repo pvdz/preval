@@ -42,8 +42,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
+const b = { c: tmpObjLitVal };
+const a = { a: 999, b: 1000 };
 $(100);
 const tmpIfTest = b != null;
 if (tmpIfTest) {

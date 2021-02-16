@@ -42,7 +42,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 b = 2;
 a = 2;
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b, 2);
 `````

@@ -124,7 +124,7 @@ function f() {
   const tmpNestedAssignPropRhs = $(6);
   b.foo = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  let tmpCalleeParam = a;
+  const tmpCalleeParam = a;
   $(tmpCalleeParam);
   $('-------- test case');
   $(a);

@@ -33,7 +33,7 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 let a = {};
 const tmpAssignMemLhsObj = a;
 a = $();
-let tmpAssignMemRhs = a;
+const tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 

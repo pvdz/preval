@@ -46,7 +46,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
 }
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }

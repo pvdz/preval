@@ -34,7 +34,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = -tmpUnaryArg;
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

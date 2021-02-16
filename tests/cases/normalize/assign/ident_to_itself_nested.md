@@ -33,7 +33,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = $(10);
+const a = $(10);
 let x = $(20);
 x = a;
 $(a, x);

@@ -41,7 +41,7 @@ tmpCallCallee$1(tmpCalleeParam$3);
 `````js filename=intro
 function f(tmpParamPattern) {
   const tmpCalleeParam$1 = [];
-  let x = objPatternRest(tmpParamPattern, tmpCalleeParam$1, undefined);
+  const x = objPatternRest(tmpParamPattern, tmpCalleeParam$1, undefined);
   return x;
 }
 const tmpCalleeParam$4 = { x: 1, b: 2, c: 3 };

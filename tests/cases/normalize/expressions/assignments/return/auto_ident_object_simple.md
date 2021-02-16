@@ -39,7 +39,7 @@ $(a);
 `````js filename=intro
 function f() {
   a = { x: 1, y: 2, z: 3 };
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

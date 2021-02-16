@@ -49,7 +49,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 b.x = 3;
 b.x = 3;
@@ -58,7 +58,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 a = 3;
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a, b, 3);

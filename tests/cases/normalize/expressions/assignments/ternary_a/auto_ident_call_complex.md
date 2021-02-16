@@ -41,7 +41,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCallCallee$1 = $($);
 a = tmpCallCallee$1(1);
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

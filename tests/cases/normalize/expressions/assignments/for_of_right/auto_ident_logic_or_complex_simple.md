@@ -44,7 +44,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }

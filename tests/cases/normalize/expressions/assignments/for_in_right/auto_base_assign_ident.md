@@ -41,7 +41,7 @@ let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpForInDeclRhs = a;
+const tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }

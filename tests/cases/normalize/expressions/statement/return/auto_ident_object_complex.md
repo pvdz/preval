@@ -45,7 +45,7 @@ function f() {
   const tmpReturnArg = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
   return tmpReturnArg;
 }
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

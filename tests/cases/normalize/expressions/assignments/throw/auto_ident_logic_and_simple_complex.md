@@ -39,7 +39,7 @@ if (a) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 }
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

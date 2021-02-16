@@ -46,7 +46,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   b = 2;
   a = 2;
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

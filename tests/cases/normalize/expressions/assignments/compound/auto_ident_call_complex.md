@@ -38,7 +38,7 @@ const tmpBinBothLhs = a;
 const tmpCallCallee$1 = $($);
 const tmpBinBothRhs = tmpCallCallee$1(1);
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

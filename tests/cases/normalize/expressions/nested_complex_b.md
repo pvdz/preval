@@ -42,7 +42,7 @@ const b = [];
 const tmpNestedAssignObj = $(b);
 tmpNestedAssignObj.length = 30;
 a = 30;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 

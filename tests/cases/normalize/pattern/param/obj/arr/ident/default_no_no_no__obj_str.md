@@ -38,9 +38,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let y = arrPatternSplat[0];
+  const objPatternNoDefault = tmpParamPattern.x;
+  const arrPatternSplat = [...objPatternNoDefault];
+  const y = arrPatternSplat[0];
   return y;
 }
 const tmpCalleeParam$1 = { x: 'abc', a: 11, b: 12 };

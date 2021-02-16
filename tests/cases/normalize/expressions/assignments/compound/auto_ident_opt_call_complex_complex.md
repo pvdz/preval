@@ -55,7 +55,7 @@ if (tmpIfTest) {
   tmpBinBothRhs = tmpChainElementCall$1;
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

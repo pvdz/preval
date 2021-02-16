@@ -40,7 +40,7 @@ if (a) {
 } else {
   a = 2;
 }
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

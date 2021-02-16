@@ -61,7 +61,7 @@ while (true) {
       a = $(tmpCalleeParam$2);
     }
   }
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

@@ -34,8 +34,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+const a = bindingPatternObjRoot.a;
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {

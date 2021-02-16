@@ -37,14 +37,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let b = { x: 1 };
+const b = { x: 1 };
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 

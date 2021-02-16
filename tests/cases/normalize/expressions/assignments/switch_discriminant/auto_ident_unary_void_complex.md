@@ -41,7 +41,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(100);
 a = undefined;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

@@ -35,7 +35,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
 a = tmpCallCallee$1(1);
-let tmpObjLitVal = a;
+const tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);

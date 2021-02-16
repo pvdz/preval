@@ -33,10 +33,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 $(100);
 a = undefined;
-let tmpCompObj = a;
+const tmpCompObj = a;
 tmpCompObj.a;
 $(a);
 `````

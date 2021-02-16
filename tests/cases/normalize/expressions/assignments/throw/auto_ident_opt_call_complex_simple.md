@@ -43,7 +43,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   a = tmpChainElementCall$1;
 }
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

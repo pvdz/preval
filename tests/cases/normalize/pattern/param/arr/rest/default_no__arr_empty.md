@@ -37,8 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let x = arrPatternSplat.slice(0);
+  const arrPatternSplat = [...tmpParamPattern];
+  const x = arrPatternSplat.slice(0);
   return x;
 }
 const tmpCalleeParam$1 = [];

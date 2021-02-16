@@ -40,7 +40,7 @@ const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
 const tmpBinBothRhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a);
 `````

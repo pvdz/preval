@@ -49,11 +49,11 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternNoDefault = arrPatternStep.x;
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const objPatternNoDefault = arrPatternStep.x;
   const tmpCalleeParam$1 = [];
-  let y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+  const y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
   return y;
 }
 const tmpObjLitVal = { a: 1, b: 2, c: 3 };

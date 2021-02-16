@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const tmpObjLitVal = { y: 1 };
-  let b = { x: tmpObjLitVal };
+  const b = { x: tmpObjLitVal };
   let a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;

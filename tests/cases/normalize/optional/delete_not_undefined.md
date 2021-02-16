@@ -29,7 +29,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let o = $(undefined);
+const o = $(undefined);
 const tmpIfTest = o != null;
 if (tmpIfTest) {
   delete o.x;

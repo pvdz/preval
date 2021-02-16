@@ -38,10 +38,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
+const a = { a: 999, b: 1000 };
+const obj = {};
 b = 2;
-let tmpCompProp = b;
+const tmpCompProp = b;
 obj[tmpCompProp];
 $(a, b, 2);
 `````

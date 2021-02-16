@@ -33,7 +33,7 @@ $(a, x);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 'number';
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a, 1);
 `````
 

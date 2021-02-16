@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let b = { x: 2 };
+    const b = { x: 2 };
     const varInitAssignLhsComputedObj = $(b);
     const varInitAssignLhsComputedObj$1 = $(3);
     const varInitAssignLhsComputedRhs$1 = $(4);

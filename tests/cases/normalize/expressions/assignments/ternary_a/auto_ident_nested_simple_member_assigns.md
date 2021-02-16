@@ -54,7 +54,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 b.x = 3;
@@ -64,7 +64,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 a = 3;
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

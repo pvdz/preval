@@ -49,7 +49,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   a = tmpPostUpdArgIdent;
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);

@@ -49,10 +49,10 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
+const b = { x: 1 };
+const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
@@ -60,7 +60,7 @@ const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 a = 7;
-let tmpCompObj = a;
+const tmpCompObj = a;
 tmpCompObj.a;
 $(a, b, c, 3, 4);
 `````

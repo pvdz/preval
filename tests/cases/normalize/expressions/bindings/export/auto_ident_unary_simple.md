@@ -29,7 +29,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = 'number';
+const a = 'number';
 export { a };
 $('number', 1);
 `````

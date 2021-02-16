@@ -43,7 +43,7 @@ while (true) {
   const tmpArrElement = $(1);
   const tmpArrElement$2 = $(3);
   a = [tmpArrElement, 2, tmpArrElement$2];
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

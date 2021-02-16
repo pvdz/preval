@@ -29,8 +29,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = b.$(1);
+const b = { $: $ };
+const a = b.$(1);
 $(a);
 `````
 

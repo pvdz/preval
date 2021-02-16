@@ -39,7 +39,7 @@ a = 1;
 if (a) {
   a = 2;
 }
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }

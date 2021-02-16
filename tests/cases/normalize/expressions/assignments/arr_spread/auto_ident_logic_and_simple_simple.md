@@ -39,7 +39,7 @@ a = 1;
 if (a) {
   a = 2;
 }
-let tmpArrSpread = a;
+const tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);

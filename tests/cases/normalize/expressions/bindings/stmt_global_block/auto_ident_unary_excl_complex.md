@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a = !tmpUnaryArg;
+const a = !tmpUnaryArg;
 $(a);
 `````
 

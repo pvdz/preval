@@ -34,7 +34,7 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 let i = 0;
 const tmpCalleeParam = i;
 i = i + 1;
-let tmpCalleeParam$1 = i;
+const tmpCalleeParam$1 = i;
 new $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

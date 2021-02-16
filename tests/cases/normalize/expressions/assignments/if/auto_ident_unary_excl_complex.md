@@ -32,7 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = !tmpUnaryArg;
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a);
 `````
 

@@ -37,7 +37,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(3);
 const varInitAssignLhsComputedProp$1 = $('y');

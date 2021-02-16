@@ -34,9 +34,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-let xyz = delete arg['y'];
+const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
+const xyz = delete arg['y'];
 while (true) {
   $(xyz);
   $(1);

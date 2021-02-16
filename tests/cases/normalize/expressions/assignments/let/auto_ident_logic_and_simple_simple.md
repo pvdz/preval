@@ -38,7 +38,7 @@ a = 1;
 if (a) {
   a = 2;
 }
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

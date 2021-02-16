@@ -39,7 +39,7 @@ $(a);
 let a = 0;
 let b = 1;
 const tmpObjLitVal = { y: 10 };
-let c = { x: tmpObjLitVal };
+const c = { x: tmpObjLitVal };
 b = c.x;
 const tmpCompObj = b;
 const tmpBinBothRhs = tmpCompObj.y;

@@ -32,7 +32,7 @@ throw tmpThrowArg;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 a = tmpCallCallee(1);
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

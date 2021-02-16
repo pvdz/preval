@@ -50,7 +50,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpCalleeParam = $(0);
 let tmpIfTest$1 = $(tmpCalleeParam);

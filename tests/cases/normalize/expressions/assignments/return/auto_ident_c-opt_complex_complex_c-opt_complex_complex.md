@@ -68,11 +68,11 @@ function f() {
       a = tmpChainElementObject$1;
     }
   }
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

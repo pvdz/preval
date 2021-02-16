@@ -46,8 +46,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
+const b = { c: $ };
+const a = { a: 999, b: 1000 };
 let tmpSwitchTest = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {

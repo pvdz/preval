@@ -55,7 +55,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
     const tmpCalleeParam$2 = $(2);
     a = $(tmpCalleeParam$2);
   }
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

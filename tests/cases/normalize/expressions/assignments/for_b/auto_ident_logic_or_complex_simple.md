@@ -49,7 +49,7 @@ while (true) {
   } else {
     a = 2;
   }
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

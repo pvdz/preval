@@ -39,7 +39,7 @@ function g($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let x = $tdz$__pattern_after_default.x;
+  const x = $tdz$__pattern_after_default.x;
   return x;
 }
 `````

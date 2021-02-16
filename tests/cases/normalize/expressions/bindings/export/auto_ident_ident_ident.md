@@ -34,7 +34,7 @@ $(a, b, c);
 `````js filename=intro
 let b = 1;
 b = 2;
-let a = b;
+const a = b;
 export { a };
 $(a, b, 2);
 `````

@@ -50,7 +50,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-let x = tmpCompObj.x;
+const x = tmpCompObj.x;
 $(x);
 `````
 

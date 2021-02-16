@@ -40,7 +40,7 @@ $(b);
 ## Output
 
 `````js filename=intro
-let b = { x: 5 };
+const b = { x: 5 };
 let t = true;
 while (t) {
   const tmpBinLhs = b.x;

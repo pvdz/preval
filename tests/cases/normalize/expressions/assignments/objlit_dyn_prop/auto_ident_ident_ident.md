@@ -42,7 +42,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
-let tmpObjLitPropKey = a;
+const tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a, b, 2);

@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(1);
 a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, 1);
 `````

@@ -55,7 +55,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x_1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x_1;
 for (x_1 of tmpForOfDeclRhs) {
 }

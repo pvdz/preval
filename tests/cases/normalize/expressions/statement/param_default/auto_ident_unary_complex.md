@@ -53,7 +53,7 @@ function f($tdz$__arg) {
     arg = $tdz$__arg;
   }
 }
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, 1);

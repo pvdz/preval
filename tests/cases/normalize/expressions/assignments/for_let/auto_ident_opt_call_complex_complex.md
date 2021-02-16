@@ -53,7 +53,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   a = tmpChainElementCall$1;
 }
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

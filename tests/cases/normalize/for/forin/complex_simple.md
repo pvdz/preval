@@ -34,8 +34,8 @@ for (tmpForInLhsNode in b) {
 ## Output
 
 `````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
+const a = {};
+const b = { x: 1, y: 2 };
 let tmpForInLhsNode;
 for (tmpForInLhsNode in b) {
   const tmpAssignMemLhsObj = $(a);

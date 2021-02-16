@@ -42,10 +42,10 @@ function i($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let x = arrPatternSplat$1[0];
+  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  const arrPatternStep = arrPatternSplat[0];
+  const arrPatternSplat$1 = [...arrPatternStep];
+  const x = arrPatternSplat$1[0];
   return x;
 }
 `````

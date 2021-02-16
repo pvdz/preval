@@ -25,7 +25,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { x: 1, y: 2, z: 3 };
+const a = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 

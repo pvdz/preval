@@ -25,7 +25,7 @@ $(x);
 
 `````js filename=intro
 const tmpCompObj = $('foo');
-let x = tmpCompObj.length;
+const x = tmpCompObj.length;
 $(x);
 `````
 

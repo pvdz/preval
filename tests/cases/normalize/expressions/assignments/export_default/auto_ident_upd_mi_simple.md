@@ -41,7 +41,7 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, b);
 `````

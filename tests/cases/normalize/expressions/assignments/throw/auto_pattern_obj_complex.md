@@ -33,7 +33,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
+const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);

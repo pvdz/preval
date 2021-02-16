@@ -70,8 +70,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { x: 1 };
-  let a = { a: 999, b: 1000 };
+  const b = { x: 1 };
+  const a = { a: 999, b: 1000 };
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $('x');
   const varInitAssignLhsComputedObj = $(b);

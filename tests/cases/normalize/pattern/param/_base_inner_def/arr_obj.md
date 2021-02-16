@@ -34,9 +34,9 @@ function h(tmpParamPattern) {
 
 `````js filename=intro
 function h(tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternBeforeDefault = arrPatternStep.x;
+  const arrPatternSplat = [...tmpParamPattern];
+  const arrPatternStep = arrPatternSplat[0];
+  const objPatternBeforeDefault = arrPatternStep.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {

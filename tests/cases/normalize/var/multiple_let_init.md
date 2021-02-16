@@ -25,9 +25,9 @@ let c = $(3);
 ## Output
 
 `````js filename=intro
-let a = $(1);
-let b = $(2);
-let c = $(3);
+const a = $(1);
+const b = $(2);
+const c = $(3);
 `````
 
 ## Globals

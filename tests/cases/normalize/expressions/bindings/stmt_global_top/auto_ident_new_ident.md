@@ -25,7 +25,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = new $(1);
+const a = new $(1);
 $(a);
 `````
 

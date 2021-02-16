@@ -29,7 +29,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = -2;
+const a = -2;
 export { a };
 $(-2, 1);
 `````

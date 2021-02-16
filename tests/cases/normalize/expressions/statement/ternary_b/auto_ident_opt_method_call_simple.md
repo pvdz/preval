@@ -40,8 +40,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
+const b = { c: $ };
+const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = b != null;

@@ -46,7 +46,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let b = { x: 1 };
+  const b = { x: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);

@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { x: 2 };
+  const b = { x: 2 };
   b.x = 7;
   $(7, b, 3);
 }

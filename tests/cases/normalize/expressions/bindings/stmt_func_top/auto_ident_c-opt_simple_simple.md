@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { x: 1 };
+  const b = { x: 1 };
   let a = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {

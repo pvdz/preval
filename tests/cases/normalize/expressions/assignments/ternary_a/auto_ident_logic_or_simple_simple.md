@@ -47,7 +47,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

@@ -44,7 +44,7 @@ function f() {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$2 = $(3);
   a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

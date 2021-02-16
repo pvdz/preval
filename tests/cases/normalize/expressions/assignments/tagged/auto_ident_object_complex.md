@@ -39,7 +39,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
 a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

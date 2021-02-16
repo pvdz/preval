@@ -36,7 +36,7 @@ x = 1;
 if (x) {
   x = $(2);
 }
-let tmpCalleeParam = x;
+const tmpCalleeParam = x;
 $(tmpCalleeParam);
 `````
 

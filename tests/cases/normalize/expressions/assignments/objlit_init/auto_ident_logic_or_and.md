@@ -56,7 +56,7 @@ if (a) {
     a = $(tmpCalleeParam$3);
   }
 }
-let tmpObjLitVal = a;
+const tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);

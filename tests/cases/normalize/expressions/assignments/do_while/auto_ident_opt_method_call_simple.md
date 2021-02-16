@@ -54,7 +54,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
+const b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {

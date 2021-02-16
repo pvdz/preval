@@ -29,7 +29,7 @@ let a_1 = $(c);
 
 `````js filename=intro
 $(2);
-let a_1 = $(3);
+const a_1 = $(3);
 `````
 
 ## Globals

@@ -50,8 +50,8 @@ function f() {
   b['c'] = varInitAssignLhsComputedRhs;
   return varInitAssignLhsComputedRhs;
 }
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
+const b = { c: 10, d: 20 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, b);

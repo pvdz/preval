@@ -46,7 +46,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 a = undefined;
@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

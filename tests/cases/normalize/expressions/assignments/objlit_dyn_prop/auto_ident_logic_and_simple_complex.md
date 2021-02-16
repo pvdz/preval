@@ -43,7 +43,7 @@ if (a) {
   const tmpCalleeParam$1 = $(1);
   a = $(tmpCalleeParam$1);
 }
-let tmpObjLitPropKey = a;
+const tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a);

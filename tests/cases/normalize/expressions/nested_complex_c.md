@@ -45,7 +45,7 @@ const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.length;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 

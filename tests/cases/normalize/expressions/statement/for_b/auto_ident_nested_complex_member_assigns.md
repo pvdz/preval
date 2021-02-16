@@ -69,8 +69,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 while (true) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');

@@ -37,8 +37,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
+const a = { a: 999, b: 1000 };
+const obj = {};
 let tmpCompObj = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;

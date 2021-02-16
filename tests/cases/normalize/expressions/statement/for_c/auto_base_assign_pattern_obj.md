@@ -42,7 +42,7 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {

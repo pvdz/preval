@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let b = { x: 2 };
+    const b = { x: 2 };
     const varInitAssignLhsComputedProp = $('x');
     b[varInitAssignLhsComputedProp] = 7;
     $(7, b, 3);

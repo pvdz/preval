@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = $(2);
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
 a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

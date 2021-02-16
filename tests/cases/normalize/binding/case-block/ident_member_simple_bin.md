@@ -48,7 +48,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const tmpSwitchTest = $('a');
 let a_1;
 let tmpSwitchCaseToStart = 1;

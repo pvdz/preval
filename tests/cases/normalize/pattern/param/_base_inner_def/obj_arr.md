@@ -34,9 +34,9 @@ function i(tmpParamPattern) {
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
+  const objPatternNoDefault = tmpParamPattern.x;
+  const arrPatternSplat = [...objPatternNoDefault];
+  const arrPatternBeforeDefault = arrPatternSplat[0];
   let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {

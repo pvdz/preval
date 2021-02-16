@@ -45,7 +45,7 @@ export { g };
 
 `````js filename=intro
 function f() {
-  let x_1 = $(1);
+  const x_1 = $(1);
   return x_1;
 }
 function g(x_2) {

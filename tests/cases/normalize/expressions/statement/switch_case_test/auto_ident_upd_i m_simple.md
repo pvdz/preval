@@ -43,7 +43,7 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpPostUpdArgIdent = b;

@@ -36,12 +36,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
-let xyz = a;
+const xyz = a;
 $(xyz);
 $(a);
 `````

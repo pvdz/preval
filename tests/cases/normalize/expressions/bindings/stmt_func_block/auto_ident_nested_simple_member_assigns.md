@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { x: 1 };
+  const b = { x: 1 };
   b.x = 3;
   b.x = 3;
   b.x = 3;

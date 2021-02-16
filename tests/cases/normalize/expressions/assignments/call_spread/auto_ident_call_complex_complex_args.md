@@ -36,13 +36,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 a = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1);
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

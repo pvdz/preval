@@ -45,7 +45,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   a = tmpBinBothLhs + tmpBinBothRhs;
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

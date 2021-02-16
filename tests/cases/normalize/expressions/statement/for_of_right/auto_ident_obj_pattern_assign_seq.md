@@ -44,7 +44,7 @@ $(a, x, y);
 
 `````js filename=intro
 let y = 2;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 $(x_1);
 $(y);
 const tmpObjLitVal = $(3);

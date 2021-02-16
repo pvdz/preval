@@ -40,7 +40,7 @@ const tmpBinBothLhs = $(100);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
 a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

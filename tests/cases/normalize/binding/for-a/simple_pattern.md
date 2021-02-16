@@ -35,7 +35,7 @@ a_1 = tmpNestedAssignArrPatternRhs;
 `````js filename=intro
 let x = 1;
 let y = 2;
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 let a_1;
 const arrPatternSplat = [...z];
 x = arrPatternSplat[0];

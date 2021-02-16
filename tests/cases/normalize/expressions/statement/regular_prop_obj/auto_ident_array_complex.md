@@ -33,8 +33,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
+const a = { a: 999, b: 1000 };
+const obj = {};
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpCompObj = [tmpArrElement, 2, tmpArrElement$2];

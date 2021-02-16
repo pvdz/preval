@@ -55,10 +55,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let arrPatternSplat = [...objPatternNoDefault$1];
-  let arrPatternStep = arrPatternSplat[0];
+  const objPatternNoDefault = tmpParamPattern.x;
+  const objPatternNoDefault$1 = objPatternNoDefault.y;
+  const arrPatternSplat = [...objPatternNoDefault$1];
+  const arrPatternStep = arrPatternSplat[0];
   let objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
   } else {

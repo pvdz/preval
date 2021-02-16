@@ -35,7 +35,7 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpCompProp = $('length');
-let x = 'foo'[tmpCompProp];
+const x = 'foo'[tmpCompProp];
 $(x);
 $(1);
 `````

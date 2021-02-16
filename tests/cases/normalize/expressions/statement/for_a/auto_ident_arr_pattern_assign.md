@@ -46,7 +46,7 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];

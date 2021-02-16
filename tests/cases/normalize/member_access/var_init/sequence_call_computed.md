@@ -33,7 +33,7 @@ $(c);
 $(1);
 const tmpCompObj = $(2);
 const tmpCompProp = $('toString');
-let x = tmpCompObj[tmpCompProp];
+const x = tmpCompObj[tmpCompProp];
 $(x);
 $(c);
 `````

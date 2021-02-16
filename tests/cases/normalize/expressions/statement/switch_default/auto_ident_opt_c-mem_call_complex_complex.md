@@ -53,8 +53,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;

@@ -44,7 +44,7 @@ let tmpCalleeParam = undefined;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
 a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

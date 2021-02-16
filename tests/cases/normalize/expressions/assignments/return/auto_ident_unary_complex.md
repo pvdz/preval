@@ -44,7 +44,7 @@ $(a, x);
 function f() {
   const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

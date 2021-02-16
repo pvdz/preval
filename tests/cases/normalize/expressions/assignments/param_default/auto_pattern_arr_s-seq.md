@@ -60,8 +60,8 @@ function f($tdz$__p) {
     p = $tdz$__p;
   }
 }
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat$1 = [...bindingPatternArrRoot];
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat$1 = [...bindingPatternArrRoot];
 let a = arrPatternSplat$1[0];
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

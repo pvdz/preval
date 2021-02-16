@@ -70,7 +70,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -81,7 +81,7 @@ function f($tdz$__pattern) {
   }
   const tmpCalleeParam$2 = objPatternAfterDefault;
   const tmpCalleeParam$3 = [];
-  let y = objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
+  const y = objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
   return y;
 }
 const tmpObjLitVal$1 = { x: 1, y: 2, z: 3 };

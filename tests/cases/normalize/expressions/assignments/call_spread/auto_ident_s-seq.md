@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = 1;
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a, 1);
 `````

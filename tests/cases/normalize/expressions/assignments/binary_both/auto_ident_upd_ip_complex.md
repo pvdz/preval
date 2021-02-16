@@ -50,7 +50,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
@@ -58,14 +58,14 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 a = tmpPostUpdArgVal;
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpCalleeParam$2 = $(b);
 const tmpPostUpdArgObj$1 = $(tmpCalleeParam$2);
 const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
 const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
 tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
 a = tmpPostUpdArgVal$1;
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, b);

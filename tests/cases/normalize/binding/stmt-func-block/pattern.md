@@ -46,10 +46,10 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let z = [10, 20, 30];
-    let arrPatternSplat = [...z];
-    let x = arrPatternSplat[0];
-    let y = arrPatternSplat[1];
+    const z = [10, 20, 30];
+    const arrPatternSplat = [...z];
+    const x = arrPatternSplat[0];
+    const y = arrPatternSplat[1];
     $(x, y, z);
   }
 }

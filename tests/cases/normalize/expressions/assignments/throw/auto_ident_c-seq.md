@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = $(1);
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

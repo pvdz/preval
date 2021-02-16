@@ -43,7 +43,7 @@ let tmpCalleeParam = undefined;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

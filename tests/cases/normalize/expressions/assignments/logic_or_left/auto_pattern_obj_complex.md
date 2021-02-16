@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
+const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let tmpCalleeParam;
 const tmpCalleeParam$1 = { a: 1, b: 2 };

@@ -30,7 +30,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-let a = typeof tmpUnaryArg;
+const a = typeof tmpUnaryArg;
 $(a, 1);
 `````
 

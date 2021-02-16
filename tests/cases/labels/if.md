@@ -37,7 +37,7 @@ $(2);
 ## Output
 
 `````js filename=intro
-let x = $(100);
+const x = $(100);
 $(0);
 foo: {
   if (x) {

@@ -46,7 +46,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$2 = $(3);
   a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);

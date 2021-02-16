@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = () => {};
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
 `````

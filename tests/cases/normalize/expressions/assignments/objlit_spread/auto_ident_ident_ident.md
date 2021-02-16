@@ -41,7 +41,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
-let tmpObjSpread = a;
+const tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a, b, 2);

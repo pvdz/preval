@@ -27,7 +27,7 @@ $(a);
 
 `````js filename=intro
 const tmpTemplateExpr = $(1);
-let a = `foo${tmpTemplateExpr}`;
+const a = `foo${tmpTemplateExpr}`;
 $(a);
 `````
 

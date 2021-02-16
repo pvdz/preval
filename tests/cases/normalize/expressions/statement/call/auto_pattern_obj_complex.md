@@ -32,8 +32,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+const a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 $(tmpCalleeParam);

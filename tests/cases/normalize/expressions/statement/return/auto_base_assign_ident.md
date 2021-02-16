@@ -42,11 +42,11 @@ $(a, b);
 `````js filename=intro
 function f() {
   b = $(2);
-  let tmpReturnArg = b;
+  const tmpReturnArg = b;
   return tmpReturnArg;
 }
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, b);

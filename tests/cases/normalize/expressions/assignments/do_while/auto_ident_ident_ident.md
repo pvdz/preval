@@ -58,7 +58,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     b = 2;
-    let tmpNestedComplexRhs = b;
+    const tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

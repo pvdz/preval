@@ -50,7 +50,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

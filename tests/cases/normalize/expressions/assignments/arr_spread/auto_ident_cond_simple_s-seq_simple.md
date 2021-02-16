@@ -33,7 +33,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 60;
-let tmpArrSpread = a;
+const tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);

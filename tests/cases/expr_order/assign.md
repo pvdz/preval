@@ -35,8 +35,8 @@ $(j);
 let i = 0;
 const tmpBinBothLhs = i;
 i = i + 1;
-let tmpBinBothRhs = i;
-let j = tmpBinBothLhs + tmpBinBothRhs;
+const tmpBinBothRhs = i;
+const j = tmpBinBothLhs + tmpBinBothRhs;
 $(j);
 `````
 

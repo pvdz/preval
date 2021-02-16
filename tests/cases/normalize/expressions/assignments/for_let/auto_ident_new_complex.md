@@ -36,7 +36,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 a = new tmpNewCallee(1);
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

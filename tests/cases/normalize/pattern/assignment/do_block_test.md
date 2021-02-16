@@ -46,7 +46,7 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-let b = [10, 20];
+const b = [10, 20];
 let p;
 let q;
 let tmpDoWhileFlag = true;

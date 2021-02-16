@@ -35,10 +35,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
+const b = { c: 1 };
+const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-let xyz = tmpCompObj.c;
+const xyz = tmpCompObj.c;
 while (true) {
   $(xyz);
   $(1);

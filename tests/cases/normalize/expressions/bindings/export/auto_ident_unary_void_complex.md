@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let a = undefined;
+const a = undefined;
 export { a };
 $(undefined);
 `````

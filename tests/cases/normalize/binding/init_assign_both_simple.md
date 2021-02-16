@@ -30,7 +30,7 @@ let a = b;
 `````js filename=intro
 let b = 10;
 b = 20;
-let a = b;
+const a = b;
 `````
 
 ## Globals

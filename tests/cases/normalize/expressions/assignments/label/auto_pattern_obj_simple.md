@@ -27,9 +27,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 1, b: 2 };
-let a = bindingPatternObjRoot.a;
-let b = bindingPatternObjRoot.b;
+const bindingPatternObjRoot = { a: 1, b: 2 };
+const a = bindingPatternObjRoot.a;
+const b = bindingPatternObjRoot.b;
 $(a, b);
 `````
 

@@ -42,7 +42,7 @@ function f() {
   const tmpReturnArg = ~tmpUnaryArg;
   return tmpReturnArg;
 }
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

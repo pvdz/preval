@@ -41,7 +41,7 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpArrElement = $(2);
 const tmpCalleeParam$2 = [tmpArrElement];

@@ -25,7 +25,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 'foo'.length;
+const x = 'foo'.length;
 $(x);
 `````
 

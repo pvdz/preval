@@ -44,7 +44,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
@@ -54,7 +54,7 @@ while (true) {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
   }
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
   } else {

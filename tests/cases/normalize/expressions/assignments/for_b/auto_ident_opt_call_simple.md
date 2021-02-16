@@ -49,7 +49,7 @@ while (true) {
     const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
   }
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

@@ -36,8 +36,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpForInDeclRhs = new tmpNewCallee(1);

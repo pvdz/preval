@@ -39,7 +39,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let b = { x: 2 };
+  const b = { x: 2 };
   const varInitAssignLhsComputedProp = $('x');
   b[varInitAssignLhsComputedProp] = 3;
   $(3, b, 3);

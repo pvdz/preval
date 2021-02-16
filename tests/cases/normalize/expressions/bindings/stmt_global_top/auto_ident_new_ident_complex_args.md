@@ -31,10 +31,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let a = new $(tmpCalleeParam, tmpCalleeParam$1);
+const a = new $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

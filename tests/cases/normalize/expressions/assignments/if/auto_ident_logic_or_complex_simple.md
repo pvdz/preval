@@ -41,7 +41,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpIfTest = a;
+const tmpIfTest = a;
 $(a);
 `````
 

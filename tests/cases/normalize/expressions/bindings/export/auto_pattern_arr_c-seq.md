@@ -35,9 +35,9 @@ $(a);
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-let bindingPatternArrRoot = $(tmpCalleeParam);
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
 export { a };
 $(a);
 `````

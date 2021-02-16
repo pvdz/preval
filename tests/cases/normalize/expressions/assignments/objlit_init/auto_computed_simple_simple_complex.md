@@ -40,7 +40,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal$1 = $(1);
 a = { b: tmpObjLitVal$1 };
-let tmpObjLitVal = a;
+const tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 const tmpAssignComputedObj = a;

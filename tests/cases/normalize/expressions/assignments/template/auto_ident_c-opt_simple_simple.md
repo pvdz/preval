@@ -41,7 +41,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
+const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest = b != null;
@@ -49,7 +49,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
-let tmpTemplateExpr = a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);

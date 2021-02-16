@@ -40,7 +40,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = $(1);
-let tmpArrSpread = a;
+const tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a, 1);

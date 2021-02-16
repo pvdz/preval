@@ -49,11 +49,11 @@ import { c as c } from 'd';
 `````
 
 `````js filename=d
-let a = 10;
+const a = 10;
 export { a };
-let b = 20;
+const b = 20;
 export { b };
-let c = 30;
+const c = 30;
 export { c };
 const tmpExportDefault = 100;
 export { tmpExportDefault as default };

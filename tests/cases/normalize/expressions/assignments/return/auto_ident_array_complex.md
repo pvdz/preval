@@ -44,7 +44,7 @@ function f() {
   const tmpArrElement = $(1);
   const tmpArrElement$2 = $(3);
   a = [tmpArrElement, 2, tmpArrElement$2];
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

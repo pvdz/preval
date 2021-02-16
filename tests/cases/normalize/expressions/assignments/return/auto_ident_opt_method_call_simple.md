@@ -55,10 +55,10 @@ function f() {
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     a = tmpChainElementCall;
   }
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
-let b = { c: $ };
+const b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

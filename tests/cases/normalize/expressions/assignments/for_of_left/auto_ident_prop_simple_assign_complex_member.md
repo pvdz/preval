@@ -43,7 +43,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
+const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
@@ -54,7 +54,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);

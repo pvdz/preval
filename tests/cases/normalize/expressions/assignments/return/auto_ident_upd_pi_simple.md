@@ -48,7 +48,7 @@ function f() {
   const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let b = 1;

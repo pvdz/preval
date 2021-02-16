@@ -39,7 +39,7 @@ const tmpNestedAssignObj = $(3);
 const tmpNestedAssignPropRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
 b = tmpNestedAssignPropRhs;
-let a = b;
+const a = b;
 $(a, b, 3);
 `````
 

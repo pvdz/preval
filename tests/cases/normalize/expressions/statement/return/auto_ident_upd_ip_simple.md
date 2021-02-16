@@ -47,7 +47,7 @@ function f() {
   return tmpPostUpdArgIdent;
 }
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a, b);

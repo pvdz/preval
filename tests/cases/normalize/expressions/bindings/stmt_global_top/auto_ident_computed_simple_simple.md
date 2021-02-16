@@ -28,8 +28,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = b.c;
+const b = { c: 1 };
+const a = b.c;
 $(a, b);
 `````
 

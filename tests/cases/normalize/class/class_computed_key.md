@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpClassComputedKey = $('f');
-let x = class {
+const x = class {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100);
     return tmpReturnArg;

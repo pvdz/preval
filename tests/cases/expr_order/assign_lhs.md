@@ -33,8 +33,8 @@ $(j);
 `````js filename=intro
 let i = 0;
 i = i + 1;
-let tmpBinLhs = i;
-let j = tmpBinLhs + i;
+const tmpBinLhs = i;
+const j = tmpBinLhs + i;
 $(j);
 `````
 

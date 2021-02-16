@@ -59,6 +59,25 @@ export function phase2(program, fdata, resolve, req) {
     if (meta.writes.length === 1 && !meta.isConstant) {
       log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
       meta.isConstant = true;
+      if (meta.writes[0].decl) {
+        const { declParent, declProp, declIndex } = meta.writes[0].decl;
+        const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+
+        ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
+        ASSERT(varDecl.kind === 'var' || varDecl.kind === 'let', 'so it must be a var or let right now', varDecl.declParent);
+        if (varDecl.declarations[0].init) {
+          rule('A binding decl where the binding has one write must be a const');
+          rule('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
+          rule('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
+          before(meta.writes[0].decl.declParent);
+
+          varDecl.kind = 'const';
+
+          after(meta.writes[0].decl.declParent);
+        } else {
+          log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
+        }
+      }
     }
 
     if (meta.isConstant) {

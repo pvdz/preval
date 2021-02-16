@@ -61,12 +61,12 @@ function f() {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
     a = tmpChainElementCall;
   }
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
+const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

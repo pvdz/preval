@@ -33,9 +33,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
+const b = { c: 1 };
+const a = { a: 999, b: 1000 };
+const obj = {};
 const tmpCompObj = b.c;
 tmpCompObj.a;
 $(a, b);

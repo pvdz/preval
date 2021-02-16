@@ -39,13 +39,13 @@ $(a, b, x, y, z);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 const arrPatternSplat$1 = [...z];
 x = arrPatternSplat$1[1];
 y = arrPatternSplat$1[2];
-let arrPatternSplat = [...z];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
+const arrPatternSplat = [...z];
+const a = arrPatternSplat[0];
+const b = arrPatternSplat[1];
 $(a, b, x, y, z);
 `````
 

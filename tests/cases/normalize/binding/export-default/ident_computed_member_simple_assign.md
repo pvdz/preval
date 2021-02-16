@@ -38,14 +38,14 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(3);
 const varInitAssignLhsComputedProp$1 = $('y');
 const varInitAssignLhsComputedRhs$1 = $(4);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-let a = varInitAssignLhsComputedRhs$1;
+const a = varInitAssignLhsComputedRhs$1;
 export { a };
 $(varInitAssignLhsComputedRhs$1, b, 3);
 `````

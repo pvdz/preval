@@ -43,7 +43,7 @@ const tmpBinBothLhs = a;
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 a = tmpBinBothLhs * tmpPostUpdArgIdent;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 $(tmpCalleeParam);
 $(a, b);
 `````

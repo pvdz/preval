@@ -42,16 +42,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 const tmpCompProp$1 = $('$');
 const tmpNewCallee$1 = b[tmpCompProp$1];
 a = new tmpNewCallee$1(1);
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

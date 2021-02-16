@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-let a = [tmpArrElement, 2, tmpArrElement$2];
+const a = [tmpArrElement, 2, tmpArrElement$2];
 export { a };
 $(a);
 `````

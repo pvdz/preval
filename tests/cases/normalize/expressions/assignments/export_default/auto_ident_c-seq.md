@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = $(1);
-let tmpExportDefault = a;
+const tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a, 1);
 `````

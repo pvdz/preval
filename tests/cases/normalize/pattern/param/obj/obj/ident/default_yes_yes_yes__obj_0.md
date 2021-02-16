@@ -72,7 +72,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -81,7 +81,7 @@ function f($tdz$__pattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+  const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   let y = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$2) {

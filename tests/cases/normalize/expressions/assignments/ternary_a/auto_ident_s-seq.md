@@ -46,7 +46,7 @@ let tmpCalleeParam = undefined;
 $(1);
 $(2);
 a = 1;
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

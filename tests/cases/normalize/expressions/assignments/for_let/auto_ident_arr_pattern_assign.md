@@ -53,7 +53,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-let xyz = a;
+const xyz = a;
 while (true) {
   $(xyz);
   $(1);

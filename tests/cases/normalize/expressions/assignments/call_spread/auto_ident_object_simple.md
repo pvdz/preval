@@ -32,7 +32,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = { x: 1, y: 2, z: 3 };
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

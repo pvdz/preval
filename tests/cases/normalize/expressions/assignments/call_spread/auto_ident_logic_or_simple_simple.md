@@ -40,7 +40,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
 $(a);
 `````

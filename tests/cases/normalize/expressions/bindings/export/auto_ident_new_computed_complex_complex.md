@@ -32,11 +32,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-let a = new tmpNewCallee(1);
+const a = new tmpNewCallee(1);
 export { a };
 $(a);
 `````

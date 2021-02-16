@@ -42,8 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
+  const arg = { y: 1 };
+  const a = { a: 999, b: 1000 };
   const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
   $(a, arg);

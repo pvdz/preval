@@ -37,9 +37,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let obj = {};
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
+const obj = {};
 const tmpCompProp$1 = $('$');
 const tmpNewCallee = b[tmpCompProp$1];
 const tmpCompProp = new tmpNewCallee(1);

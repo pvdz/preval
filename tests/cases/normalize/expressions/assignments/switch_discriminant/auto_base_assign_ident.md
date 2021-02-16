@@ -47,7 +47,7 @@ let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpSwitchTest = a;
+const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

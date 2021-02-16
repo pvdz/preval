@@ -121,7 +121,7 @@ function f() {
   $('-------- let 1');
   b.foo = 5;
   a = 5;
-  let tmpCalleeParam = a;
+  const tmpCalleeParam = a;
   $(tmpCalleeParam);
   $('-------- test case');
   $(a);

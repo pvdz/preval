@@ -42,8 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = { $: $ };
-  let a = { a: 999, b: 1000 };
+  const b = { $: $ };
+  const a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];

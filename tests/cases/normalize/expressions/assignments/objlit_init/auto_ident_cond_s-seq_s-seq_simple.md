@@ -40,7 +40,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 60;
-let tmpObjLitVal = a;
+const tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);

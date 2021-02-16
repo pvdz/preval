@@ -51,7 +51,7 @@ if (tmpIfTest$2) {
 `````js filename=intro
 const tmpObjLitVal$1 = { z: $ };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let a = { x: tmpObjLitVal };
+const a = { x: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpChainElementCall$2 = $(a);
 const tmpIfTest = tmpChainElementCall$2 != null;

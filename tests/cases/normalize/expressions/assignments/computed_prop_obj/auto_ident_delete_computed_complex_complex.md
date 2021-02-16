@@ -36,13 +36,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCompObj = a;
+const tmpCompObj = a;
 tmpCompObj.a;
 $(a, arg);
 `````

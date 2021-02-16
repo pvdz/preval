@@ -37,7 +37,7 @@ const tmpAssignMemLhsObj = a;
 const tmpBinBothLhs = a;
 const tmpBinBothRhs = $();
 a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpAssignMemRhs = a;
+const tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 

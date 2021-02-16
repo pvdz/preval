@@ -48,9 +48,9 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const c = { y: 2 };
+const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);

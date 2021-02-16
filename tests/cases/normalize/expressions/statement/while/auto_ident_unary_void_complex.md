@@ -35,7 +35,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 while (true) {
   $(100);
   if (undefined) {

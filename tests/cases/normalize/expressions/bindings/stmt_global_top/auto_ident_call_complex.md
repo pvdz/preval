@@ -27,7 +27,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $($);
-let a = tmpCallCallee(1);
+const a = tmpCallCallee(1);
 $(a);
 `````
 

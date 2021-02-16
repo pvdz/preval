@@ -33,11 +33,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
-let xyz = $(tmpCalleeParam);
+const xyz = $(tmpCalleeParam);
 $(xyz);
 $(a);
 `````

@@ -41,7 +41,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

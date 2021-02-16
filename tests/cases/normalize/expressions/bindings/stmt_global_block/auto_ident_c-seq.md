@@ -34,7 +34,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-let a = $(1);
+const a = $(1);
 $(a, 1);
 `````
 

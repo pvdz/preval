@@ -32,7 +32,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
 varInitAssignLhsComputedObj.x = 7;
 $(7, b, 3);

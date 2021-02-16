@@ -31,9 +31,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let arg = { y: 1 };
+const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
-let a = delete tmpDeleteCompObj['y'];
+const a = delete tmpDeleteCompObj['y'];
 export { a };
 $(a, arg);
 `````

@@ -35,8 +35,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpNewCallee = b.$;
 const tmpCalleeParam$1 = new tmpNewCallee(1);

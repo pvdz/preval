@@ -27,7 +27,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = function f() {};
+const a = function f() {};
 $(a);
 `````
 

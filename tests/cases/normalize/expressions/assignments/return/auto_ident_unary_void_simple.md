@@ -42,7 +42,7 @@ $(a, arg);
 `````js filename=intro
 function f() {
   a = undefined;
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

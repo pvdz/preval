@@ -27,9 +27,9 @@ function i(tmpParamPattern) {
 
 `````js filename=intro
 function i(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let y = arrPatternSplat[0];
+  const objPatternNoDefault = tmpParamPattern.x;
+  const arrPatternSplat = [...objPatternNoDefault];
+  const y = arrPatternSplat[0];
   return y;
 }
 `````

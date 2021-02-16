@@ -45,8 +45,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 $(100);
 b.x = 3;
 b.x = 3;

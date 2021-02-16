@@ -47,7 +47,7 @@ function f() {
   let a = { a: 999, b: 1000 };
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
-  let tmpCallCallee = a;
+  const tmpCallCallee = a;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = a;
   const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);

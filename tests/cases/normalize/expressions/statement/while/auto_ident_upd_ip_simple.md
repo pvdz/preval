@@ -40,7 +40,7 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 while (true) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;

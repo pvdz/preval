@@ -51,7 +51,7 @@ function f() {
     const tmpCalleeParam$1 = $(2);
     a = $(tmpCalleeParam$1);
   }
-  let tmpReturnArg = a;
+  const tmpReturnArg = a;
   return tmpReturnArg;
 }
 let a = { a: 999, b: 1000 };

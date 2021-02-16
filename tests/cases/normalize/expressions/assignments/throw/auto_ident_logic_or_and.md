@@ -53,7 +53,7 @@ if (a) {
     a = $(tmpCalleeParam$2);
   }
 }
-let tmpThrowArg = a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

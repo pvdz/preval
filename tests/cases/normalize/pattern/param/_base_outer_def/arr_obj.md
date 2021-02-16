@@ -41,9 +41,9 @@ function h($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
-  let arrPatternStep = arrPatternSplat[0];
-  let x = arrPatternStep.x;
+  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  const arrPatternStep = arrPatternSplat[0];
+  const x = arrPatternStep.x;
   return x;
 }
 `````

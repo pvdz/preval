@@ -37,7 +37,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let xyz = a;
+const xyz = a;
 $(xyz);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;

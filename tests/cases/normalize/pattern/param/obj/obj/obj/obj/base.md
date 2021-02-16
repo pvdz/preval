@@ -56,9 +56,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let objPatternNoDefault$2 = objPatternNoDefault$1.z;
+  const objPatternNoDefault = tmpParamPattern.x;
+  const objPatternNoDefault$1 = objPatternNoDefault.y;
+  const objPatternNoDefault$2 = objPatternNoDefault$1.z;
   let objPatternCrashTest = objPatternNoDefault$2 === undefined;
   if (objPatternCrashTest) {
   } else {

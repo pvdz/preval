@@ -41,7 +41,7 @@ const a = {};
 b = 20;
 const varInitAssignLhsComputedObj = $(a);
 b = 30;
-let varInitAssignLhsComputedRhs = b;
+const varInitAssignLhsComputedRhs = b;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````

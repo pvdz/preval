@@ -33,7 +33,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const a = { a: 999, b: 1000 };
 let tmpThrowArg = 0;
 if (tmpThrowArg) {
 } else {

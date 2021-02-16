@@ -47,7 +47,7 @@ function f() {
   varInitAssignLhsComputedObj.x = 3;
   tmpAssignMemLhsObj.x = 3;
 }
-let b = { x: 1 };
+const b = { x: 1 };
 f();
 $(100);
 `````

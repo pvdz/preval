@@ -27,7 +27,7 @@ $(x);
 
 `````js filename=intro
 const tmpCallObj = 'foo'.length;
-let x = tmpCallObj.toString();
+const x = tmpCallObj.toString();
 $(x);
 `````
 

@@ -39,7 +39,7 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   let b = 2;
   b = 7;
-  let a = b;
+  const a = b;
   $(a, b, 3);
 }
 `````

@@ -42,7 +42,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 a = tmpPostUpdArgIdent;
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````

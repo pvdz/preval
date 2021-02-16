@@ -34,12 +34,12 @@ $(a, b, x, y, z);
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 $(1);
 $(2);
-let arrPatternSplat = [...z];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
+const arrPatternSplat = [...z];
+const a = arrPatternSplat[0];
+const b = arrPatternSplat[1];
 $(a, b, 1, 2, z);
 `````
 

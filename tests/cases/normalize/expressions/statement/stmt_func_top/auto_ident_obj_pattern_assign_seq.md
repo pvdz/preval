@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   let x = 1;
   let y = 2;
-  let a = { a: 999, b: 1000 };
+  const a = { a: 999, b: 1000 };
   $(x);
   $(y);
   const tmpObjLitVal = $(3);

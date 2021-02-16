@@ -32,7 +32,7 @@ let a_1 = varInitAssignLhsComputedRhs;
 ## Output
 
 `````js filename=intro
-let b = { x: 2 };
+const b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
 b[varInitAssignLhsComputedProp] = 7;
 `````

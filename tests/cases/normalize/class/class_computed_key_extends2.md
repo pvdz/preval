@@ -33,7 +33,7 @@ tmpCompObj.y;
 ## Output
 
 `````js filename=intro
-let x = class {
+const x = class {
   x() {}
 };
 const tmpCompObj = x();

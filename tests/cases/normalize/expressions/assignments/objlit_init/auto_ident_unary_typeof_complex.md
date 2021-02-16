@@ -38,7 +38,7 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-let tmpObjLitVal = a;
+const tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a, 1);

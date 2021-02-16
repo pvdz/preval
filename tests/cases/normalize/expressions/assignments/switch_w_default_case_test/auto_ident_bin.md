@@ -63,7 +63,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

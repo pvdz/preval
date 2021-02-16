@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
-  let y = objPatternNoDefault.y;
+  const objPatternNoDefault = tmpParamPattern.x;
+  const y = objPatternNoDefault.y;
   return y;
 }
 const tmpObjLitVal = { x: 1, y: 'abc', z: 3 };

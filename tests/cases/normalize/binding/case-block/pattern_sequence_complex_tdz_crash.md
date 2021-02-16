@@ -56,7 +56,7 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-let z = [10, 20, 30];
+const z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 let x_1;
 let y_1;

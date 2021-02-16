@@ -54,7 +54,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  let tmpAssignMemLhsObj = a;
+  const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, b);

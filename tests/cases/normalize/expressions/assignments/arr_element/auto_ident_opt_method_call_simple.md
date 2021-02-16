@@ -50,7 +50,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { c: $ };
+const b = { c: $ };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpIfTest = b != null;
@@ -59,7 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   a = tmpChainElementCall;
 }
-let tmpBinBothLhs = a;
+const tmpBinBothLhs = a;
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
@@ -67,7 +67,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
   a = tmpChainElementCall$1;
 }
-let tmpBinBothRhs = a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

@@ -47,7 +47,7 @@ while (true) {
   if (a) {
     a = 2;
   }
-  let tmpIfTest = a;
+  const tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
   } else {

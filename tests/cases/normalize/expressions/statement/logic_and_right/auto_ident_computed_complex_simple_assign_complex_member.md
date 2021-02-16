@@ -39,8 +39,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
+const b = { c: 10, d: 20 };
+const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpAssignMemLhsObj = $(b);

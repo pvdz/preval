@@ -38,7 +38,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

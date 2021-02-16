@@ -42,7 +42,7 @@ if (a) {
 } else {
   a = 2;
 }
-let tmpCalleeParam$1 = a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

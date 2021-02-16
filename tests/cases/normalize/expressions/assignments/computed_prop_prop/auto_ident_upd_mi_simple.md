@@ -40,12 +40,12 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let obj = {};
+const obj = {};
 const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpCompProp = a;
+const tmpCompProp = a;
 obj[tmpCompProp];
 $(a, b);
 `````

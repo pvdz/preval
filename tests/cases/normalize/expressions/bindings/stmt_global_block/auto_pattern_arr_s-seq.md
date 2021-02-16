@@ -33,9 +33,9 @@ $(a);
 `````js filename=intro
 $(10);
 $(20);
-let bindingPatternArrRoot = [1, 2];
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const bindingPatternArrRoot = [1, 2];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
 $(a);
 `````
 

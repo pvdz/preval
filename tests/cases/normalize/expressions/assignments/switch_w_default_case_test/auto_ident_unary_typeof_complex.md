@@ -64,7 +64,7 @@ const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

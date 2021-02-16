@@ -30,9 +30,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = { c: 1 };
+const b = { c: 1 };
 const tmpCompProp = $('c');
-let a = b[tmpCompProp];
+const a = b[tmpCompProp];
 $(a, b);
 `````
 

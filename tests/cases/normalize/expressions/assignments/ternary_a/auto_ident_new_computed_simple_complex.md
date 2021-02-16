@@ -42,13 +42,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
-let tmpIfTest = a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {

@@ -30,7 +30,7 @@ for (a in b) {
 
 `````js filename=intro
 let a;
-let b = { x: 1, y: 2 };
+const b = { x: 1, y: 2 };
 for (a in b) {
   $(a);
 }

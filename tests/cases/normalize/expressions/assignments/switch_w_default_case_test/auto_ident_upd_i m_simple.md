@@ -67,7 +67,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpPostUpdArgIdent = b;
 b = b - 1;
 a = tmpPostUpdArgIdent;
-let tmpBinLhs = a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

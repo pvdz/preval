@@ -47,8 +47,8 @@ function f() {
   const tmpReturnArg = tmpCallCompObj[tmpCallCompProp](1);
   return tmpReturnArg;
 }
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

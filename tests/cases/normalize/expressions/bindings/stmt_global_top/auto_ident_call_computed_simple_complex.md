@@ -30,9 +30,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
+const b = { $: $ };
 const tmpCallCompProp = $('$');
-let a = b[tmpCallCompProp](1);
+const a = b[tmpCallCompProp](1);
 $(a);
 `````
 

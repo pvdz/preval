@@ -42,7 +42,7 @@ a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 }
-let tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }

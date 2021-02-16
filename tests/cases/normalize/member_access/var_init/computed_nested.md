@@ -32,7 +32,7 @@ const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCompObj = obj.a;
-let x = tmpCompObj.b;
+const x = tmpCompObj.b;
 $(x);
 `````
 

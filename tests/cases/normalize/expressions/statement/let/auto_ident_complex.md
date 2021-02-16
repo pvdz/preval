@@ -32,8 +32,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let xyz = $(1);
+const a = { a: 999, b: 1000 };
+const xyz = $(1);
 $(xyz);
 $(a, 1);
 `````

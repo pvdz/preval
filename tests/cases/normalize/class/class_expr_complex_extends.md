@@ -27,7 +27,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpClassSuper = $(String);
-let a = class x extends tmpClassSuper {};
+const a = class x extends tmpClassSuper {};
 $(a, x);
 `````
 

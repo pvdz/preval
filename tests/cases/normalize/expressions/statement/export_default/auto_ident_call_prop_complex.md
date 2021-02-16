@@ -32,8 +32,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
+const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 const tmpExportDefault = tmpCallObj.$(1);
 export { tmpExportDefault as default };

@@ -7,7 +7,7 @@ export function cloneSimple(node) {
   }
 
   if (node.type === 'Literal') {
-    if (node.raw === 'null') return literal(null, true); // be explicit for null
+    if (node.raw === 'null') return nul(); // be explicit for null
     return literal(node.value);
   }
 
@@ -202,6 +202,10 @@ export function expressionStatement(expression) {
   };
 }
 
+export function fals() {
+  return literal(false);
+}
+
 export function forInStatement(left, right, body) {
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
@@ -383,6 +387,10 @@ export function newExpression(callee, args) {
   };
 }
 
+export function nul() {
+  return literal(null, true);
+}
+
 export function objectExpression(...properties) {
   if (Array.isArray(properties[0])) properties = properties[0];
 
@@ -391,6 +399,10 @@ export function objectExpression(...properties) {
     properties,
     $p: $p(),
   };
+}
+
+export function one() {
+  return literal(1);
 }
 
 export function property(key, value, shorthand = false, computed = false, kind = 'init', method = false) {
@@ -486,6 +498,10 @@ export function throwStatement(argument = null) {
   };
 }
 
+export function tru() {
+  return literal(true);
+}
+
 export function unaryExpression(operator, argument) {
   ASSERT(typeof operator === 'string');
   if (typeof argument === 'string') argument = identifier(argument);
@@ -544,4 +560,8 @@ export function whileStatement(test, body) {
     body,
     $p: $p(),
   };
+}
+
+export function zero() {
+  return literal(0);
 }

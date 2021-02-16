@@ -548,7 +548,7 @@ export function phaseNormalize(fdata, fname) {
         FRESH,
         AST.logicalExpression(
           '&&',
-          AST.logicalExpression('||', AST.binaryExpression('===', lastThing, 'undefined'), AST.binaryExpression('===', lastThing, 'null')),
+          AST.logicalExpression('||', AST.binaryExpression('===', lastThing, 'undefined'), AST.binaryExpression('===', lastThing, AST.nul())),
           AST.memberExpression(lastThing, 'cannotDestructureThis'),
         ),
       ]);
@@ -922,10 +922,10 @@ export function phaseNormalize(fdata, fname) {
 
     const tmpName = createFreshVar('tmpDoWhileFlag');
     const newNodes = [
-      AST.variableDeclaration(tmpName, 'true', 'let'),
+      AST.variableDeclaration(tmpName, AST.tru(), 'let'),
       AST.whileStatement(
         AST.logicalExpression('||', tmpName, node.test),
-        AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, 'false')), ...node.body.body),
+        AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals())), ...node.body.body),
       ),
     ];
     body.splice(i, 1, ...newNodes);
@@ -1268,7 +1268,7 @@ export function phaseNormalize(fdata, fname) {
           const tmpName = createFreshVar('tmpOptCallFunc');
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           const finalNode = AST.conditionalExpression(
-            AST.binaryExpression('==', tmpName, 'null'),
+            AST.binaryExpression('==', tmpName, AST.nul()),
             'undefined',
             AST.callExpression(tmpName, [...args]),
           );
@@ -1304,7 +1304,7 @@ export function phaseNormalize(fdata, fname) {
             const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
             normalizeCallArgs(args, newArgs, newNodes);
             const finalNode = AST.conditionalExpression(
-              AST.binaryExpression('==', tmpName, 'null'),
+              AST.binaryExpression('==', tmpName, AST.nul()),
               'undefined',
               AST.callExpression(AST.memberExpression(tmpName, callee.property, callee.computed), newArgs),
             );
@@ -1554,7 +1554,7 @@ export function phaseNormalize(fdata, fname) {
           const tmpNameObj = createFreshVar('tmpOptObj');
           const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
           const finalNode = AST.conditionalExpression(
-            AST.binaryExpression('==', tmpNameObj, 'null'),
+            AST.binaryExpression('==', tmpNameObj, AST.nul()),
             'undefined',
             AST.memberExpression(tmpNameObj, node.property, node.computed),
           );
@@ -2583,7 +2583,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('!=', tmpName, 'null'),
+                AST.binaryExpression('!=', tmpName, AST.nul()),
                 AST.expressionStatement(AST.unaryExpression('delete', AST.memberExpression(tmpName, mem.property, mem.computed))),
               );
               body.splice(i, 1, ...newNodes, finalParent);
@@ -2603,10 +2603,10 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [
                 AST.variableDeclaration(tmpName, mem.object, 'const'),
-                AST.variableDeclaration(wrapLhs, 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
+                AST.variableDeclaration(wrapLhs, AST.tru(), varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
               ];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('!=', tmpName, 'null'),
+                AST.binaryExpression('!=', tmpName, AST.nul()),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     AST.cloneSimple(wrapLhs),
@@ -2631,7 +2631,7 @@ export function phaseNormalize(fdata, fname) {
               const tmpName = createFreshVar('tmpDeleteOpt');
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
-                AST.binaryExpression('!=', tmpName, 'null'),
+                AST.binaryExpression('!=', tmpName, AST.nul()),
                 AST.expressionStatement(
                   AST.assignmentExpression(
                     wrapLhs,
@@ -2639,7 +2639,7 @@ export function phaseNormalize(fdata, fname) {
                   ),
                 ),
                 AST.expressionStatement(
-                  AST.assignmentExpression(AST.cloneSimple(wrapLhs), 'true', varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
+                  AST.assignmentExpression(AST.cloneSimple(wrapLhs), AST.tru(), varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
                 ),
               );
               body.splice(i, 1, ...newNodes, finalParent);
@@ -2708,7 +2708,7 @@ export function phaseNormalize(fdata, fname) {
           before(node, parentNode);
 
           const newNodes = [AST.expressionStatement(node.argument)];
-          const finalNode = AST.identifier('true');
+          const finalNode = AST.tru();
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
           body.splice(i, 1, ...newNodes, finalParent);
 
@@ -2754,7 +2754,7 @@ export function phaseNormalize(fdata, fname) {
               example('+null', '0');
               before(node, parentNode);
 
-              const finalNode = AST.literal(0);
+              const finalNode = AST.zero();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -2768,7 +2768,7 @@ export function phaseNormalize(fdata, fname) {
               example('+true', '1');
               before(node, parentNode);
 
-              const finalNode = AST.literal(1);
+              const finalNode = AST.one();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -2782,7 +2782,7 @@ export function phaseNormalize(fdata, fname) {
               example('+false', '1');
               before(node, parentNode);
 
-              const finalNode = AST.literal(0);
+              const finalNode = AST.zero();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -2796,7 +2796,7 @@ export function phaseNormalize(fdata, fname) {
               example('+""', '1');
               before(node, parentNode);
 
-              const finalNode = AST.literal(0);
+              const finalNode = AST.zero();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -2876,7 +2876,7 @@ export function phaseNormalize(fdata, fname) {
               example('+null', '0');
               before(node, parentNode);
 
-              node.argument = AST.literal(0);
+              node.argument = AST.zero();
 
               after(node);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2888,7 +2888,7 @@ export function phaseNormalize(fdata, fname) {
               example('+true', '1');
               before(node, parentNode);
 
-              node.argument = AST.literal(1);
+              node.argument = AST.one();
 
               after(node);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2900,7 +2900,7 @@ export function phaseNormalize(fdata, fname) {
               example('+false', '1');
               before(node, parentNode);
 
-              node.argument = AST.literal(0);
+              node.argument = AST.zero();
 
               after(node);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2912,7 +2912,7 @@ export function phaseNormalize(fdata, fname) {
               example('+""', '1');
               before(node, parentNode);
 
-              node.argument = AST.literal(0);
+              node.argument = AST.zero();
 
               after(node);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2982,14 +2982,14 @@ export function phaseNormalize(fdata, fname) {
                 example('!0', 'true');
                 before(node, parentNode);
 
-                const finalNode = AST.literal(true);
+                const finalNode = AST.tru();
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body[i] = finalParent;
               } else {
                 example('!1', 'false');
                 before(node, parentNode);
 
-                const finalNode = AST.literal(false);
+                const finalNode = AST.fals();
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body[i] = finalParent;
               }
@@ -3008,7 +3008,7 @@ export function phaseNormalize(fdata, fname) {
               }
               before(node, parentNode);
 
-              const finalNode = AST.literal(true);
+              const finalNode = AST.tru();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3021,7 +3021,7 @@ export function phaseNormalize(fdata, fname) {
               example('!true', 'false');
               before(node, parentNode);
 
-              const finalNode = AST.literal(false);
+              const finalNode = AST.fals();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3041,7 +3041,7 @@ export function phaseNormalize(fdata, fname) {
               }
               before(node, parentNode);
 
-              const finalNode = AST.literal(true);
+              const finalNode = AST.tru();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3055,7 +3055,7 @@ export function phaseNormalize(fdata, fname) {
               example('!Infinity', 'false');
               before(node, parentNode);
 
-              const finalNode = AST.literal(false);
+              const finalNode = AST.fals();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3112,7 +3112,7 @@ export function phaseNormalize(fdata, fname) {
               example('!typeof x', 'false');
               before(node, parentNode);
 
-              const finalNode = AST.literal(false);
+              const finalNode = AST.fals();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3127,7 +3127,7 @@ export function phaseNormalize(fdata, fname) {
               example('!void x', 'true');
               before(node, parentNode);
 
-              const finalNode = AST.literal(true);
+              const finalNode = AST.tru();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3161,7 +3161,7 @@ export function phaseNormalize(fdata, fname) {
               example('~null', '-1');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3189,7 +3189,7 @@ export function phaseNormalize(fdata, fname) {
               example('+false', '-1');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3203,7 +3203,7 @@ export function phaseNormalize(fdata, fname) {
               example('~""', '-1');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3221,7 +3221,7 @@ export function phaseNormalize(fdata, fname) {
               example('~NaN', 'NaN');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3235,7 +3235,7 @@ export function phaseNormalize(fdata, fname) {
               example('~undefined', '-1');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3249,7 +3249,7 @@ export function phaseNormalize(fdata, fname) {
               example('~Infinity', '-1');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.literal(1));
+              const finalNode = AST.unaryExpression('-', AST.one());
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3515,7 +3515,7 @@ export function phaseNormalize(fdata, fname) {
             before(node, parentNode);
 
             const finalParent = AST.ifStatement(
-              AST.binaryExpression('==', node.left, 'null'),
+              AST.binaryExpression('==', node.left, AST.nul()),
               AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right)),
             );
             body[i] = finalParent;
@@ -3546,7 +3546,7 @@ export function phaseNormalize(fdata, fname) {
               node.left,
             ),
             AST.ifStatement(
-              AST.binaryExpression('==', AST.cloneSimple(wrapLhs), 'null'),
+              AST.binaryExpression('==', AST.cloneSimple(wrapLhs), AST.nul()),
               AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(wrapLhs), node.right)),
             ),
           ];
@@ -3745,7 +3745,7 @@ export function phaseNormalize(fdata, fname) {
           example('--f()[g()]', 'f()[g()] -= 1', () => node.operator === '--');
           before(node, parentNode);
 
-          const finalNode = AST.assignmentExpression(arg, AST.literal(1), node.operator === '++' ? '+=' : '-=');
+          const finalNode = AST.assignmentExpression(arg, AST.one(), node.operator === '++' ? '+=' : '-=');
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
           body.splice(i, 1, finalParent);
 
@@ -3768,7 +3768,7 @@ export function phaseNormalize(fdata, fname) {
           const newNodes = [
             AST.variableDeclaration(tmpName, arg.name, 'const'),
             AST.expressionStatement(
-              AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', arg.name, AST.literal(1))),
+              AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', arg.name, AST.one())),
             ),
           ];
           const finalNode = AST.identifier(tmpName);
@@ -3804,7 +3804,7 @@ export function phaseNormalize(fdata, fname) {
             AST.expressionStatement(
               AST.assignmentExpression(
                 AST.memberExpression(tmpNameObj, tmpNameProp, true),
-                AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.literal(1)),
+                AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.one()),
               ),
             ),
           ];
@@ -3837,7 +3837,7 @@ export function phaseNormalize(fdata, fname) {
           AST.expressionStatement(
             AST.assignmentExpression(
               AST.memberExpression(tmpNameObj, AST.cloneSimple(arg.property)),
-              AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.literal(1)),
+              AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.one()),
             ),
           ),
         ];
@@ -4265,7 +4265,7 @@ export function phaseNormalize(fdata, fname) {
               // up to the current `?.`). New nodes from the remainder of the chain will be added to the
               // body of this new `if` node.
               let nextLevel = [];
-              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, 'null'), AST.blockStatement(nextLevel)));
+              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, AST.nul()), AST.blockStatement(nextLevel)));
               nodes = nextLevel;
             }
 
@@ -4299,7 +4299,7 @@ export function phaseNormalize(fdata, fname) {
               // up to the current `?.`). New nodes from the remainder of the chain will be added to the
               // body of this new `if` node.
               let nextLevel = [];
-              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, 'null'), AST.blockStatement(nextLevel)));
+              nodes.push(AST.ifStatement(AST.binaryExpression('!=', prevObj, AST.nul()), AST.blockStatement(nextLevel)));
               nodes = nextLevel;
             }
 
@@ -4482,7 +4482,7 @@ export function phaseNormalize(fdata, fname) {
     const newNode = AST.blockStatement(
       node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
       AST.whileStatement(
-        node.test || 'true',
+        node.test || AST.tru(),
         AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
       ),
     );
@@ -4923,10 +4923,10 @@ export function phaseNormalize(fdata, fname) {
           example('if (-0) f();', 'if (false) f();');
           before(node);
 
-          node.test = AST.literal(false);
+          node.test = AST.fals();
         } else {
           example('if (-1) f();', 'if (true) f();');
-          node.test = AST.literal(true);
+          node.test = AST.tru();
         }
 
         after(node);
@@ -6273,7 +6273,7 @@ export function phaseNormalize(fdata, fname) {
       example('while (f()) z()', 'while (true) { if (f()) z(); else break; }');
       before(node);
 
-      const newNode = AST.whileStatement('true', AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
+      const newNode = AST.whileStatement(AST.tru(), AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
       body[i] = newNode;
 
       after(newNode);
@@ -6297,7 +6297,7 @@ export function phaseNormalize(fdata, fname) {
     anyBlock(node.body);
 
     if (node.test.type === 'Literal') {
-      if (node.test.value === 0 || node.test.value === '' || node.test.value === false) {
+      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
         rule('Eliminate while with falsy literal');
         example('while (false) f();', ';');
         before(node);
@@ -6321,7 +6321,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (node.test.type === 'Identifier') {
-      if (['false', 'null', 'undefined', 'NaN'].includes(node.name)) {
+      if (['undefined', 'NaN'].includes(node.name)) {
         rule('Eliminate while with falsy identifier');
         example('while (false) f();', ';');
         before(node);

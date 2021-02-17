@@ -26,13 +26,17 @@ $(b);
 `````js filename=intro
 let b = { x: 5 };
 let t = true;
-while (t) {
-  const tmpBinLhs = b.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  b.x = varInitAssignLhsComputedRhs;
-  let p = varInitAssignLhsComputedRhs;
-  t = p;
-  $(100);
+while (true) {
+  if (t) {
+    const tmpBinLhs = b.x;
+    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+    b.x = varInitAssignLhsComputedRhs;
+    let p = varInitAssignLhsComputedRhs;
+    t = p;
+    $(100);
+  } else {
+    break;
+  }
 }
 $(b);
 `````
@@ -42,12 +46,16 @@ $(b);
 `````js filename=intro
 const b = { x: 5 };
 let t = true;
-while (t) {
-  const tmpBinLhs = b.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  b.x = varInitAssignLhsComputedRhs;
-  t = varInitAssignLhsComputedRhs;
-  $(100);
+while (true) {
+  if (t) {
+    const tmpBinLhs = b.x;
+    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+    b.x = varInitAssignLhsComputedRhs;
+    t = varInitAssignLhsComputedRhs;
+    $(100);
+  } else {
+    break;
+  }
 }
 $(b);
 `````

@@ -6293,8 +6293,13 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
   function transformWhileStatement(node, body, i) {
-    if (isComplexNode(node.test)) {
-      rule('While test must be simple node');
+    if (node.test.type !== 'Literal' || node.test.value !== true) {
+      // We do this because it makes all reads that relate to the loop be inside the block.
+      // There are heuristics that want to know whether a binding is used inside a loop and if
+      // we don't do this then parts of the loop may not be inside the block. And we already
+      // do this transform anyways so it's easier to then just do it for everything, anyways.
+
+      rule('While test must be true');
       example('while (f()) z()', 'while (true) { if (f()) z(); else break; }');
       before(node);
 
@@ -6321,7 +6326,30 @@ export function phaseNormalize(fdata, fname) {
 
     anyBlock(node.body);
 
-    if (node.test.type === 'Literal') {
+    if (node.body.body.length === 1 && node.body.body[0].type === 'BreakStatement') {
+      const brk = node.body.body[0];
+      if (brk.label) {
+        rule('A while with only a break statement must be removed; labeled break');
+        example('x: { while (true) { break x; } }', 'x: { break x; }');
+        before(node);
+
+        body[[i]] = brk;
+
+        after(body[[i]]);
+        return true;
+      }
+
+      rule('A while with only a break statement must be removed; break without label');
+      example('while (true) { break; }', ';');
+      before(node);
+
+      body[[i]] = AST.emptyStatement();
+
+      after(body[[i]]);
+      return true;
+    }
+
+    if (node.test.type === 'Literal' && node.test.value !== true) {
       if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
         rule('Eliminate while with falsy literal');
         example('while (false) f();', ';');

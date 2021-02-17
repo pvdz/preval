@@ -15,6 +15,7 @@ export function phase1(fdata, resolve, req, verbose) {
   const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   const thisStack = [];
   const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
+  const blockIds = []; // Same as blockStack except only contains its $p.pid's. Negative if the parent was a loop of sorts.
   let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
@@ -65,6 +66,10 @@ export function phase1(fdata, resolve, req, verbose) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
 
+    const parentNode = path.nodes[path.nodes.length - 2];
+    const parentProp = path.props[path.props.length - 1];
+    const parentIndex = path.indexes[path.indexes.length - 1];
+
     if (before) {
       node.$p = $p();
     }
@@ -77,21 +82,25 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'Program:before': {
         funcStack.push(node);
         blockStack.push(node);
+        blockIds.push(node);
         break;
       }
       case 'Program:after': {
         funcStack.pop();
         blockStack.pop();
+        blockIds.pop();
         break;
       }
 
       case 'BlockStatement:before': {
         blockStack.push(node);
+        blockIds.push((parentNode.type === 'WhileStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') ? -node.$p.pid : node.$p.pid);
         log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
         break;
       }
       case 'BlockStatement:after': {
         blockStack.pop();
+        blockIds.pop();
         break;
       }
 
@@ -152,9 +161,6 @@ export function phase1(fdata, resolve, req, verbose) {
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
         log('Ident:', name);
-        const parentNode = path.nodes[path.nodes.length - 2];
-        const parentProp = path.props[path.props.length - 1];
-        const parentIndex = path.indexes[path.indexes.length - 1];
         const kind = getIdentUsageKind(parentNode, parentProp);
         log('- Ident kind:', kind);
 
@@ -190,7 +196,8 @@ export function phase1(fdata, resolve, req, verbose) {
               node,
               rwCounter: ++readWriteCounter,
               scope: currentScope.$p.pid,
-              blockChain: blockStack.map((node) => node.$p.pid).join(','),
+              blockChain: blockIds.join(','),
+              innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
             });
           }
           if (kind === 'write') {
@@ -206,7 +213,8 @@ export function phase1(fdata, resolve, req, verbose) {
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
-                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+                blockChain: blockIds.join(','),
+                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
                 decl: { declParent, declProp, declIndex },
               });
             } else if (parentNode.type === 'AssignmentExpression') {
@@ -222,7 +230,8 @@ export function phase1(fdata, resolve, req, verbose) {
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
-                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+                blockChain: blockIds.join(','),
+                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
                 assign: { assignParent, assignProp, assignIndex },
               });
             } else {
@@ -235,7 +244,8 @@ export function phase1(fdata, resolve, req, verbose) {
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
-                blockChain: blockStack.map((node) => node.$p.pid).join(','),
+                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
+                blockChain: blockIds.join(','),
               });
             }
           }

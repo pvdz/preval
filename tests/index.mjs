@@ -168,10 +168,10 @@ function runTestCase(
               clone[key] = '<get/set>';
             }
           });
-          return (JSON.stringify(clone) ?? '"' + typeof a + '"').replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+          return (JSON.stringify(clone) ?? '"' + typeof a + '"').replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
         }
 
-        return (JSON.stringify(a) ?? '"' + typeof a + '"').replace(/function(?: \w*)?\(\) ?\{/g, 'function() {');
+        return (JSON.stringify(a) ?? '"' + typeof a + '"').replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
       }
       function $(...a) {
         if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner');
@@ -217,7 +217,7 @@ function runTestCase(
         .replace(/.*Cannot read property 'call' of .*/, '<ref> is not function/iterable') // We transform member calls to .call() so the test should be okay to assume they are the same error
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
-        .replace(/Cannot access '\w+' before initialization/, "Cannot access '<ref>' before initialization");
+        .replace(/Cannot access '[\w$]+' before initialization/, "Cannot access '<ref>' before initialization");
       stack.push('"<crash[ ' + msg.replace(/"/g, '\\"') + ' ]>"');
 
       if (withOutput) {

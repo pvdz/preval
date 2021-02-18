@@ -37,14 +37,12 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-var a;
-var x;
-const tmpChainElementObject = a.b;
+const tmpChainElementObject = undefined.b;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementObject.call;
-  const tmpCalleeParam$1 = x.y;
-  tmpCallVal.call(tmpChainElementObject, a, tmpCalleeParam$1);
+  const tmpCalleeParam$1 = undefined.y;
+  tmpCallVal.call(tmpChainElementObject, undefined, tmpCalleeParam$1);
 }
 `````
 

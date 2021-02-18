@@ -51,7 +51,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 let SSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$2 = tmpChainElementCall != null;

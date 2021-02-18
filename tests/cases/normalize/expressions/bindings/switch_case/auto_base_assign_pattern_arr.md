@@ -49,8 +49,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let b;
-let a;
 [];
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];

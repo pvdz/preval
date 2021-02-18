@@ -59,7 +59,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let SSA_a = undefined;

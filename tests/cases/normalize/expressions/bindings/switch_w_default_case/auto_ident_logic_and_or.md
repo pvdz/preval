@@ -70,7 +70,6 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let a;
 const tmpCalleeParam = $(1);
 let SSA_a = $(tmpCalleeParam);
 if (SSA_a) {

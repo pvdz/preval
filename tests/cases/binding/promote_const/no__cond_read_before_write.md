@@ -43,10 +43,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-var x;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  $(x, 'fail');
+  $(undefined, 'fail');
 }
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {

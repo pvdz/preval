@@ -63,7 +63,6 @@ if (tmpIfTest$5) {
 ## Output
 
 `````js filename=intro
-let a;
 const SSA_a$1 = $(60);
 $(SSA_a$1);
 $('fail1');

@@ -62,7 +62,6 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let b;
 $(1, 0);
 $('fail1');
 $('fail2');

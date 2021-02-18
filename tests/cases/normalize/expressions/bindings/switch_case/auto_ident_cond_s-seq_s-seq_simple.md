@@ -46,7 +46,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 $(60);
 `````
 

@@ -34,8 +34,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
-$(x);
+$(undefined);
 $(10);
 `````
 

@@ -43,8 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  var x;
-  $(x);
+  $(undefined);
   const arrAssignPatternRhs = [10];
   const arrPatternSplat = [...arrAssignPatternRhs];
   const SSA_x = arrPatternSplat[0];

@@ -53,9 +53,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let x;
-let y;
-let a;
 $(1);
 $(2);
 const tmpObjLitVal = $(3);

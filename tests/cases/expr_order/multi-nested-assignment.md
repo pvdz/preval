@@ -77,10 +77,6 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
 let SSA_a = function () {
   $('a');
   return 1;

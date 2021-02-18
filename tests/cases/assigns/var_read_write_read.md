@@ -31,9 +31,8 @@ $(x, 'b');
 ## Output
 
 `````js filename=intro
-var x;
 $(1);
-$(x, 'a');
+$(undefined, 'a');
 const SSA_x = $(2);
 $(SSA_x, 'b');
 `````

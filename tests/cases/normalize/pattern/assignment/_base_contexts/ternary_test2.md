@@ -28,8 +28,6 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-let b;
-let c;
 (1).x;
 `````
 

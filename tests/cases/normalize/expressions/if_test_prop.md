@@ -27,7 +27,6 @@ const tmpIfTest = tmpCompObj.foo;
 ## Output
 
 `````js filename=intro
-let y;
 x = (1).x;
 (1).foo;
 `````

@@ -26,9 +26,7 @@ var c;
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
+
 `````
 
 ## Globals

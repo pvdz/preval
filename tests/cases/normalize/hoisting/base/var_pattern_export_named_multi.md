@@ -36,9 +36,7 @@ export { y };
 ## Output
 
 `````js filename=intro
-var x;
-var y;
-$(x, y);
+$(undefined, undefined);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const SSA_x = arrPatternSplat[0];

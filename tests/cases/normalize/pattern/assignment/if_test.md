@@ -26,7 +26,6 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-let y;
 x = (1).x;
 `````
 

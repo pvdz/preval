@@ -37,15 +37,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-var a;
-var x;
-const tmpIfTest = a != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = a.b;
-  const tmpCallVal = tmpChainElementObject.call;
-  const tmpCalleeParam$1 = x.y;
-  tmpCallVal.call(tmpChainElementObject, a, tmpCalleeParam$1);
-}
+
 `````
 
 ## Globals

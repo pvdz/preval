@@ -1,18 +1,17 @@
 # Preval test case
 
-# nested_simple.md
+# multiple_var_no_init.md
 
-> normalize > assignment > nested_simple
+> normalize > var > multiple_var_no_init
 >
-> Nested assignments should be split up
+> Declaring multiple bindings should be normalized to separate declarations such that there is one binding per declaration.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-var a = 10, b = 20, c = 30;
-$(a = b = c);
+var a, b, c
 `````
 
 ## Normalized
@@ -21,20 +20,12 @@ $(a = b = c);
 var a;
 var b;
 var c;
-a = 10;
-b = 20;
-c = 30;
-const tmpCallCallee = $;
-b = c;
-a = c;
-let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(30);
+
 `````
 
 ## Globals
@@ -44,7 +35,6 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 30
  - eval returned: undefined
 
 Normalized calls: Same

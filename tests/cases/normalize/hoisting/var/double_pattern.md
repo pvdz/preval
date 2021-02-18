@@ -37,8 +37,6 @@ $(x, y);
 ## Output
 
 `````js filename=intro
-var x;
-var y;
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const SSA_x = arrPatternSplat[0];

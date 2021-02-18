@@ -97,14 +97,13 @@ exit: {
 ## Output
 
 `````js filename=intro
-let x;
 let fallthrough = false;
 exit: {
   let tmpIfTest = fallthrough;
   if (tmpIfTest) {
   } else {
     const tmpBinBothRhs = $(1);
-    tmpIfTest = x === tmpBinBothRhs;
+    tmpIfTest = undefined === tmpBinBothRhs;
   }
   if (tmpIfTest) {
     $('A');
@@ -114,7 +113,7 @@ exit: {
   if (tmpIfTest$1) {
   } else {
     const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = x === tmpBinBothRhs$1;
+    tmpIfTest$1 = undefined === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
     $('B');
@@ -124,7 +123,7 @@ exit: {
   if (tmpIfTest$2) {
   } else {
     const tmpBinBothRhs$2 = $(3);
-    tmpIfTest$2 = x === tmpBinBothRhs$2;
+    tmpIfTest$2 = undefined === tmpBinBothRhs$2;
   }
   if (tmpIfTest$2) {
     $('C');

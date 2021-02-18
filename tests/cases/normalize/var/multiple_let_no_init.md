@@ -32,12 +32,9 @@ $(c);
 ## Output
 
 `````js filename=intro
-let a;
-let b;
-let c;
-$(a);
-$(b);
-$(c);
+$(undefined);
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

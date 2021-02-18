@@ -37,8 +37,7 @@ f();
 
 `````js filename=intro
 function f() {
-  var x;
-  $(x);
+  $(undefined);
   $(10);
 }
 f();

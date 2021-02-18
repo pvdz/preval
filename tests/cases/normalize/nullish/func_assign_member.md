@@ -41,7 +41,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  var y;
   let SSA_y = $();
   const tmpIfTest = SSA_y == null;
   if (tmpIfTest) {

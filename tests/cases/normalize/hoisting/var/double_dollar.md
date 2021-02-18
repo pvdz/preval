@@ -28,7 +28,6 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
 $(1);
 const SSA_x$1 = $(2);
 $(SSA_x$1);

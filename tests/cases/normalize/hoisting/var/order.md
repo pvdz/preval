@@ -32,10 +32,7 @@ b = $();
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-$(a, b, c);
+$(undefined, undefined, undefined);
 $();
 $();
 $();

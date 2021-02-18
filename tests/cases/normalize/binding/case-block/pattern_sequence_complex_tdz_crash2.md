@@ -34,7 +34,6 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let x;
 $('fail');
 `````
 

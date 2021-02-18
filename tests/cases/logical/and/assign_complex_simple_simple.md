@@ -31,7 +31,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var x;
 let SSA_x = 1;
 if (SSA_x) {
   SSA_x = 2;

@@ -41,7 +41,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 let SSA_a = 1;
 if (SSA_a) {
   SSA_a = 2;

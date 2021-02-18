@@ -41,11 +41,9 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-var a;
-var x;
-const tmpCallVal = a.b;
-const tmpCalleeParam = x.y;
-tmpCallVal.call(a, tmpCalleeParam);
+const tmpCallVal = undefined.b;
+const tmpCalleeParam = undefined.y;
+tmpCallVal.call(undefined, tmpCalleeParam);
 `````
 
 ## Globals

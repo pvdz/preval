@@ -69,9 +69,6 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let x;
-let y;
-let a;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

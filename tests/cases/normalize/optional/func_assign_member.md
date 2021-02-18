@@ -43,7 +43,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  var y;
   let SSA_y = undefined;
   const tmpChainRootProp = $();
   const tmpIfTest = tmpChainRootProp != null;

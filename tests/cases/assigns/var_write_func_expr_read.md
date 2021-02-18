@@ -33,7 +33,6 @@ f();
 ## Output
 
 `````js filename=intro
-var x;
 $(1);
 const SSA_x = $(2);
 const f = function () {

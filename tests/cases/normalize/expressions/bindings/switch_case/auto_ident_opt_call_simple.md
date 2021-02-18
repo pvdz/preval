@@ -45,7 +45,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 let SSA_a = undefined;
 const tmpIfTest$2 = $ != null;
 if (tmpIfTest$2) {

@@ -49,7 +49,6 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-let tmpCalleeParam;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];

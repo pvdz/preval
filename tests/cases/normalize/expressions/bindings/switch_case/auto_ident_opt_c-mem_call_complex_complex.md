@@ -60,7 +60,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 const b = { $: $ };
 let SSA_a = undefined;
 const tmpChainElementCall = $(b);

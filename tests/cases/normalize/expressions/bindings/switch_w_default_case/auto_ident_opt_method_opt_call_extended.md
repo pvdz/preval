@@ -76,7 +76,6 @@ if (tmpIfTest$6) {
 ## Output
 
 `````js filename=intro
-let a;
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };

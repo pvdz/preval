@@ -61,7 +61,6 @@ let x = 1;
 let y = 2;
 const z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-let bindingPatternArrRoot;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;

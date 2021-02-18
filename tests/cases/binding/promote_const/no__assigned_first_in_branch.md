@@ -35,7 +35,6 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
 let SSA_x = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {

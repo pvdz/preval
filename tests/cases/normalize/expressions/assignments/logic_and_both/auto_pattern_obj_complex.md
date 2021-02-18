@@ -44,7 +44,6 @@ $(a);
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 bindingPatternObjRoot.a;
-let tmpCalleeParam;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 let SSA_a = tmpNestedAssignObjPatternRhs.a;

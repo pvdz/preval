@@ -43,7 +43,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let b;
 const SSA_b$1 = $(2);
 $(SSA_b$1, SSA_b$1);
 `````

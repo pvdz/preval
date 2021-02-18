@@ -28,7 +28,6 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
 $(2);
 `````
 

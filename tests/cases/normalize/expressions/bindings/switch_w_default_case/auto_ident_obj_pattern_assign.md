@@ -68,9 +68,6 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let x;
-let y;
-let a;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

@@ -29,8 +29,7 @@ export { x };
 ## Output
 
 `````js filename=intro
-var x;
-$(x);
+$(undefined);
 const SSA_x = 10;
 $(10);
 export { SSA_x as x };

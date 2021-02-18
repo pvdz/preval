@@ -46,8 +46,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
-let b;
 const arrAssignPatternRhs = [30, 40];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const SSA_a$1 = arrPatternSplat[0];

@@ -50,7 +50,6 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a;
 const b = { x: 1 };
 let SSA_a = undefined;
 const tmpIfTest$2 = b != null;

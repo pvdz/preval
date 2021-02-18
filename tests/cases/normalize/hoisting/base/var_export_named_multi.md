@@ -32,9 +32,7 @@ export { y };
 ## Output
 
 `````js filename=intro
-var x;
-var y;
-$(x, y);
+$(undefined, undefined);
 const SSA_x = 10;
 const SSA_y = 20;
 $(10, 20);

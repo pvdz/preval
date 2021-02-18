@@ -72,7 +72,6 @@ if (tmpIfTest$5) {
 ## Output
 
 `````js filename=intro
-let a;
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };

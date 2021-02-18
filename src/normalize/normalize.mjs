@@ -1155,7 +1155,6 @@ export function phaseNormalize(fdata, fname) {
 
     switch (node.type) {
       case 'Identifier':
-        // TODO: usage tracking
         log('- name: `' + node.name + '`');
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
@@ -6016,9 +6015,9 @@ export function phaseNormalize(fdata, fname) {
   function transformVariableDeclaration(node, body, i, parent) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
-      log('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
-      log('let a = 1, b = 2', 'let a = 1; var b = 2', () => node.kind === 'let');
-      log('const a = 1, b = 2', 'const a = 1; var b = 2', () => node.kind === 'const');
+      example('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
+      example('let a = 1, b = 2', 'let a = 1; var b = 2', () => node.kind === 'let');
+      example('const a = 1, b = 2', 'const a = 1; var b = 2', () => node.kind === 'const');
       before(node);
 
       const newNodes = node.declarations.map((dec) => AST.variableDeclarationFromDeclaration(dec, node.kind));

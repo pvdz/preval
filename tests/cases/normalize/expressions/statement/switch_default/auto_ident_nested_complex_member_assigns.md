@@ -70,7 +70,7 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $('x');
 const varInitAssignLhsComputedObj = $(b);

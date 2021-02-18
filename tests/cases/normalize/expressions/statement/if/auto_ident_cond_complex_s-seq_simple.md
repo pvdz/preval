@@ -36,13 +36,12 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
+undefined;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  tmpIfTest = 60;
 } else {
   const tmpCalleeParam = $(100);
-  tmpIfTest = $(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

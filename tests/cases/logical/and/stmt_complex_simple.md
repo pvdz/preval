@@ -23,7 +23,7 @@ const tmpIfTest = $(1);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+$(1);
 `````
 
 ## Globals

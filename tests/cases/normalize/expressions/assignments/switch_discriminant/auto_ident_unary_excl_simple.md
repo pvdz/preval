@@ -42,7 +42,6 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = false;
-const tmpSwitchTest = a;
 $(100);
 $(a, 1);
 `````

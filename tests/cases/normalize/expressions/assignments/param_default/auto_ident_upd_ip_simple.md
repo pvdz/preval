@@ -47,15 +47,12 @@ $(a, b);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent = b;
     b = b + 1;
     a = tmpPostUpdArgIdent;
-    p = tmpPostUpdArgIdent;
-  } else {
-    p = $tdz$__p;
   }
 }
 let b = 1;

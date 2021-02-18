@@ -47,15 +47,12 @@ $(a, arg);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpDeleteCompProp = $('y');
     const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 const arg = { y: 1 };

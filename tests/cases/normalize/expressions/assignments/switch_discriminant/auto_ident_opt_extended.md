@@ -62,7 +62,6 @@ if (tmpIfTest) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

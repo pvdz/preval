@@ -61,7 +61,6 @@ if (tmpIfTest$1) {
     a = tmpChainElementCall;
   }
 }
-const tmpIfTest = a;
 $(a);
 `````
 

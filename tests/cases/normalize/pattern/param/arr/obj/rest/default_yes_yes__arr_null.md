@@ -82,7 +82,7 @@ function f($tdz$__pattern) {
   }
   const tmpCalleeParam$2 = arrPatternStep;
   const tmpCalleeParam$3 = [];
-  const x = objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
+  objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
   return 'bad';
 }
 const tmpCalleeParam$6 = [null, 20, 30];

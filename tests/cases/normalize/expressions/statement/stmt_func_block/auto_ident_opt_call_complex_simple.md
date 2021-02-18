@@ -47,7 +47,7 @@ function f() {
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+    tmpChainElementCall.call($, 1);
   }
   $(a);
 }

@@ -56,7 +56,7 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  const arrPatternSplat = [...objPatternAfterDefault];
+  [...objPatternAfterDefault];
   return 'ok';
 }
 const tmpObjLitVal = [''];

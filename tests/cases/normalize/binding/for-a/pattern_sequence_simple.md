@@ -36,8 +36,8 @@ const z = [10, 20, 30];
 $(1);
 $(2);
 const arrPatternSplat = [...z];
-const x = arrPatternSplat[0];
-const y = arrPatternSplat[1];
+arrPatternSplat[0];
+arrPatternSplat[1];
 `````
 
 ## Globals

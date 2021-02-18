@@ -48,14 +48,12 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
+undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
-  tmpSwitchTest = tmpChainElementCall;
+  tmpChainElementObject.call(b, 1);
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

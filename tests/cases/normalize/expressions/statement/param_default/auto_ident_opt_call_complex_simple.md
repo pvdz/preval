@@ -47,18 +47,15 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpChainElementCall = $($);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-      p = tmpChainElementCall$1;
+      tmpChainElementCall.call($, 1);
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const a = { a: 999, b: 1000 };

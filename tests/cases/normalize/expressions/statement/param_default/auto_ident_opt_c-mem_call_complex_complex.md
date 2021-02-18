@@ -59,10 +59,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpChainElementCall = $(b);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
@@ -72,12 +72,9 @@ function f($tdz$__p) {
       if (tmpIfTest$2) {
         const tmpCallVal = tmpChainElementObject.call;
         const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-        p = tmpChainElementCall$1;
+        tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       }
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { $: $ };

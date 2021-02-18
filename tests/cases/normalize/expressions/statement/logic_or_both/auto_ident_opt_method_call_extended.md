@@ -72,7 +72,7 @@ if (tmpIfTest) {
     const tmpChainElementObject$3 = b.c;
     const tmpChainElementObject$4 = tmpChainElementObject$3.d;
     const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-    const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+    tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
   }
 }
 $(a);

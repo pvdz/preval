@@ -49,7 +49,6 @@ if (tmpSwitchTest) {
   const tmpCalleeParam = $(1);
   tmpSwitchTest = $(tmpCalleeParam);
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

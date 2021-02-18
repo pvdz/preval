@@ -46,15 +46,12 @@ $(a, arg);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(1);
     const tmpNestedComplexRhs = typeof tmpUnaryArg;
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

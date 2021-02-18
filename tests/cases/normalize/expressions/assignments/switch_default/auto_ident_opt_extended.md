@@ -53,7 +53,7 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {

@@ -30,7 +30,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpThrowArg = 1;
 if (tmpThrowArg) {
   tmpThrowArg = 2;

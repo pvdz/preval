@@ -44,7 +44,6 @@ let tmpSwitchTest = 1;
 if (tmpSwitchTest) {
   tmpSwitchTest = 2;
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

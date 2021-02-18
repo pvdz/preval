@@ -45,7 +45,7 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const tmpSwitchTest = tmpCallCompObj[tmpCallCompProp](1);
+tmpCallCompObj[tmpCallCompProp](1);
 $(100);
 $(a);
 `````

@@ -39,7 +39,6 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const obj = {};
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');

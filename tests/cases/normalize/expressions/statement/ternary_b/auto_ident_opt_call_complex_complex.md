@@ -49,7 +49,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
+    tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   }
 } else {
   $(200);

@@ -60,7 +60,7 @@ if (tmpIfTest) {
   const tmpIfTest$2 = b != null;
   if (tmpIfTest$2) {
     const tmpChainElementObject$1 = b.c;
-    const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
+    tmpChainElementObject$1.call(b, 1);
   }
 }
 $(a);

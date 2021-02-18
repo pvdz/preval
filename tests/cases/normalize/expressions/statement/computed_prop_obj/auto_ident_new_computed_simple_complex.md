@@ -38,7 +38,6 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpCompObj = new tmpNewCallee(1);

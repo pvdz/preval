@@ -32,8 +32,8 @@ let y_1 = arrPatternSplat[1];
 `````js filename=intro
 const z = [10, 20, 30];
 const arrPatternSplat = [...z];
-const x_1 = arrPatternSplat[0];
-const y_1 = arrPatternSplat[1];
+arrPatternSplat[0];
+arrPatternSplat[1];
 `````
 
 ## Globals

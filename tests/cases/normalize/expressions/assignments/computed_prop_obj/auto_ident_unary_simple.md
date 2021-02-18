@@ -35,7 +35,6 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const obj = {};
 a = 'number';
 const tmpCompObj = a;
 tmpCompObj.a;

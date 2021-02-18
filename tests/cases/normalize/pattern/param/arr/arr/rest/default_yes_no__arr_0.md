@@ -56,7 +56,7 @@ function f(tmpParamPattern) {
     arrPatternStep = arrPatternBeforeDefault;
   }
   const arrPatternSplat$1 = [...arrPatternStep];
-  const x = arrPatternSplat$1.slice(0);
+  arrPatternSplat$1.slice(0);
   return 'bad';
 }
 const tmpCalleeParam$1 = [0, 4, 5];

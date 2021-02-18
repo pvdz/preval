@@ -56,7 +56,7 @@ $(a, b, c, d);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
@@ -66,9 +66,6 @@ function f($tdz$__p) {
     const varInitAssignLhsComputedRhs = $(3);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    p = varInitAssignLhsComputedRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { x: 1 };

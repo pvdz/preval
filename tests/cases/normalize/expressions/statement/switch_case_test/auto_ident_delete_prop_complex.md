@@ -43,15 +43,9 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpDeleteObj = $(arg);
-const tmpBinLhs = delete tmpDeleteObj.y;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+delete tmpDeleteObj.y;
 $(a, arg);
 `````
 

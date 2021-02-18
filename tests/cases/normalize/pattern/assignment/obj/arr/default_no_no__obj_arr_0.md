@@ -31,7 +31,7 @@ $('ok');
 const tmpObjLitVal = [0];
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const arrPatternSplat = [...objPatternNoDefault];
+[...objPatternNoDefault];
 $('ok');
 `````
 

@@ -50,7 +50,7 @@ function f($tdz$__pattern) {
   } else {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
-  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  [...$tdz$__pattern_after_default];
   return 'ok';
 }
 const tmpCalleeParam$1 = [, , 1];

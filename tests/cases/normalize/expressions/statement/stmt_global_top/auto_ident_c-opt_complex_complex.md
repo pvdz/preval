@@ -42,7 +42,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpChainElementCall[tmpChainRootComputed];
 }
 $(a);
 `````

@@ -46,8 +46,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall != null;
@@ -55,12 +54,6 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   a = tmpChainElementCall$1;
 }
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

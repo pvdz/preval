@@ -57,19 +57,13 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const tmpIfTest = 7 === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b, c, 3, 4);
 `````
 

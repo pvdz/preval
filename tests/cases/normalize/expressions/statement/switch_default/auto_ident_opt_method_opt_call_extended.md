@@ -55,7 +55,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.c;
@@ -63,7 +63,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpIfTest$2 = tmpChainElementObject$2 != null;
   if (tmpIfTest$2) {
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
   }
 }
 $(a);

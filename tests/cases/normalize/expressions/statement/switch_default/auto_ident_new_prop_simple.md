@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpNewCallee = b.$;
 new tmpNewCallee(1);
 $(a);

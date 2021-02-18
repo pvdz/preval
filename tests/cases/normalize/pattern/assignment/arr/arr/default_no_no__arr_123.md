@@ -31,7 +31,7 @@ $('bad');
 const arrAssignPatternRhs = [1, 2, 3, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
+[...arrPatternStep];
 $('bad');
 `````
 

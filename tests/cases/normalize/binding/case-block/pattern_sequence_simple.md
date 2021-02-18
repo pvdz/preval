@@ -56,8 +56,6 @@ $(x, y, z);
 `````js filename=intro
 const z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-let a;
-let b;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
@@ -70,8 +68,8 @@ tmpSwitchBreak: {
     $(1);
     $(2);
     const arrPatternSplat = [...z];
-    a = arrPatternSplat[0];
-    b = arrPatternSplat[1];
+    arrPatternSplat[0];
+    arrPatternSplat[1];
     break tmpSwitchBreak;
   }
 }

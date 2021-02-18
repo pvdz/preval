@@ -47,7 +47,6 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 a = tmpNestedAssignPropRhs;
-const tmpIfTest = a;
 $(a, b);
 `````
 

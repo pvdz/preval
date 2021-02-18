@@ -47,7 +47,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const obj = {};
 let tmpCompObj = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {

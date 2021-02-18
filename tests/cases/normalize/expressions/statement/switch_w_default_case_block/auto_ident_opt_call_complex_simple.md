@@ -88,7 +88,7 @@ tmpSwitchBreak: {
     const tmpChainElementCall = $($);
     const tmpIfTest$3 = tmpChainElementCall != null;
     if (tmpIfTest$3) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+      tmpChainElementCall.call($, 1);
     }
     break tmpSwitchBreak;
   }

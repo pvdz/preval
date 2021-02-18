@@ -59,7 +59,7 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const varInitAssignLhsComputedObj = $(b);
@@ -69,9 +69,6 @@ function f($tdz$__p) {
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
     a = 7;
-    p = 7;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { x: 1 };

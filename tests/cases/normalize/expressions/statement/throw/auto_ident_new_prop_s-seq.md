@@ -33,7 +33,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
 const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;

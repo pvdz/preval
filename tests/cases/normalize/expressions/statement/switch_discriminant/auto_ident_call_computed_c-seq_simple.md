@@ -43,7 +43,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-const tmpSwitchTest = tmpCallObj['$'](1);
+tmpCallObj['$'](1);
 $(100);
 $(a);
 `````

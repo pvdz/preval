@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
@@ -65,9 +65,6 @@ function f($tdz$__p) {
       tmpNestedComplexRhs = tmpChainElementObject;
     }
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { x: 1 };

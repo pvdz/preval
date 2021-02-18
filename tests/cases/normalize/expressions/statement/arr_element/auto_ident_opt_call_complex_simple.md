@@ -42,12 +42,12 @@ const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  tmpChainElementCall.call($, 1);
 }
 const tmpChainElementCall$2 = $($);
 const tmpIfTest$1 = tmpChainElementCall$2 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall$3 = tmpChainElementCall$2.call($, 1);
+  tmpChainElementCall$2.call($, 1);
 }
 $(a);
 `````

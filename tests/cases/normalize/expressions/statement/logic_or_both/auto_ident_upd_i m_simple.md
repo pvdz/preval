@@ -43,7 +43,6 @@ const tmpPostUpdArgIdent = b;
 b = b - 1;
 if (tmpPostUpdArgIdent) {
 } else {
-  const tmpPostUpdArgIdent$1 = b;
   b = b - 1;
 }
 $(a, b);

@@ -34,7 +34,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpIfTest = tmpCompObj.c;
+tmpCompObj.c;
 $(a, b);
 `````
 

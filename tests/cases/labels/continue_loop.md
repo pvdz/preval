@@ -35,10 +35,8 @@ $(2);
 ## Output
 
 `````js filename=intro
-let fail = false;
 foo: while (true) {
   $(1);
-  fail = true;
   continue foo;
 }
 $(2);

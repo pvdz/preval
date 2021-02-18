@@ -42,7 +42,7 @@ $(a, x);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-const tmpSwitchTest = typeof tmpUnaryArg;
+typeof tmpUnaryArg;
 $(100);
 $(a, 1);
 `````

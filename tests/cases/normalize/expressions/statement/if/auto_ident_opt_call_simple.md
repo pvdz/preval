@@ -34,11 +34,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
+undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall = $(1);
-  tmpIfTest = tmpChainElementCall;
+  $(1);
 }
 $(a);
 `````

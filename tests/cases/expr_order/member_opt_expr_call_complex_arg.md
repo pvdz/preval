@@ -44,7 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = a.b;
   const tmpCallVal = tmpChainElementObject.call;
   const tmpCalleeParam$1 = x.y;
-  const tmpChainElementCall = tmpCallVal.call(tmpChainElementObject, a, tmpCalleeParam$1);
+  tmpCallVal.call(tmpChainElementObject, a, tmpCalleeParam$1);
 }
 `````
 

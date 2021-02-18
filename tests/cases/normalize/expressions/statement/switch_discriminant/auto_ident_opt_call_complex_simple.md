@@ -44,14 +44,12 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
+undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  tmpSwitchTest = tmpChainElementCall$1;
+  tmpChainElementCall.call($, 1);
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

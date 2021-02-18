@@ -39,7 +39,6 @@ let a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 a = new tmpNewCallee(1);
-const tmpIfTest = a;
 $(a);
 `````
 

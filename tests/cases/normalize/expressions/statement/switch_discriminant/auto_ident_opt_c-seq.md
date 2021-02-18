@@ -47,14 +47,12 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
+undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSwitchTest = tmpChainElementObject;
+  tmpChainRootProp.x;
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

@@ -45,13 +45,11 @@ $(a, arg);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpDeleteCompObj = $(arg);
-    p = delete tmpDeleteCompObj['y'];
-  } else {
-    p = $tdz$__p;
+    delete tmpDeleteCompObj['y'];
   }
 }
 const arg = { y: 1 };

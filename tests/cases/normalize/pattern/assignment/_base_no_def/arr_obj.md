@@ -26,10 +26,9 @@ x = arrPatternStep.x;
 ## Output
 
 `````js filename=intro
-let x = 10;
 const arrPatternSplat = [...1];
 const arrPatternStep = arrPatternSplat[0];
-x = arrPatternStep.x;
+arrPatternStep.x;
 `````
 
 ## Globals

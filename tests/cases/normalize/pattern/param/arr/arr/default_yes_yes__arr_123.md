@@ -74,7 +74,7 @@ function f($tdz$__pattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  const arrPatternSplat$1 = [...arrPatternStep];
+  [...arrPatternStep];
   return 'ok';
 }
 const tmpCalleeParam$3 = [1, 2, 3, 4, 5];

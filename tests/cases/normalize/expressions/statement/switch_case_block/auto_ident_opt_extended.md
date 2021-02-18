@@ -70,7 +70,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$2) {
     const tmpChainElementObject = b.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+    tmpChainElementObject$1.z;
   }
 }
 $(a);

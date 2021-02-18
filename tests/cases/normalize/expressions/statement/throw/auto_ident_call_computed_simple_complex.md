@@ -33,7 +33,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCallCompProp = $('$');
 const tmpThrowArg = b[tmpCallCompProp](1);
 throw tmpThrowArg;

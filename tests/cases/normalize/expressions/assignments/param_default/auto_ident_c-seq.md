@@ -47,16 +47,13 @@ $(a, x);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
     const tmpNestedComplexRhs = $(1);
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

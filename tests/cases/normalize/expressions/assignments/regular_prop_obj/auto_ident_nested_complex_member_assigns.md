@@ -65,7 +65,6 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const obj = {};
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(b);

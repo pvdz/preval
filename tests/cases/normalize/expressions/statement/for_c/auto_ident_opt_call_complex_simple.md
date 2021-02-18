@@ -46,7 +46,7 @@ while (true) {
     const tmpChainElementCall = $($);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+      tmpChainElementCall.call($, 1);
     }
   } else {
     break;

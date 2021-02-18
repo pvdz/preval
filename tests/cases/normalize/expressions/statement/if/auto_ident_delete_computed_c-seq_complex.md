@@ -40,7 +40,7 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 `````
 

@@ -28,7 +28,7 @@ $('bad');
 
 `````js filename=intro
 const objPatternNoDefault = undefined.x;
-const arrPatternSplat = [...objPatternNoDefault];
+[...objPatternNoDefault];
 $('bad');
 `````
 

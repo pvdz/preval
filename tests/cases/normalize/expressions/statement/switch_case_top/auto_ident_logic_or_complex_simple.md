@@ -54,7 +54,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpCalleeParam = $(0);
-  const tmpIfTest$2 = $(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

@@ -57,7 +57,7 @@ while (true) {
       const tmpChainElementObject = b.x;
       const tmpIfTest$2 = tmpChainElementObject != null;
       if (tmpIfTest$2) {
-        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        tmpChainElementObject.y;
       }
     }
   } else {

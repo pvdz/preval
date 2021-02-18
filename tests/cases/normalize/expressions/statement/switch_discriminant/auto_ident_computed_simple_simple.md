@@ -41,7 +41,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = b.c;
+b.c;
 $(100);
 $(a, b);
 `````

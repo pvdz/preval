@@ -30,9 +30,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
+$(1);
+$(2);
 $(a);
 `````
 

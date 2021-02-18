@@ -26,7 +26,7 @@ let x_2 = 1;
 ## Output
 
 `````js filename=intro
-const x = (1).x;
+(1).x;
 `````
 
 ## Globals

@@ -49,7 +49,6 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const obj = {};
 b.x = 3;
 b.x = 3;
 b.x = 3;

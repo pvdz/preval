@@ -33,7 +33,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+arrPatternSplat[0];
 $(10);
 $(20);
 const tmpThrowArg = [1, 2];

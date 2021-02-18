@@ -39,7 +39,7 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-const tmpIfTest = $(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

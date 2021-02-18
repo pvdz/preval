@@ -32,7 +32,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 b = $(2);
 const tmpThrowArg = b;
 throw tmpThrowArg;

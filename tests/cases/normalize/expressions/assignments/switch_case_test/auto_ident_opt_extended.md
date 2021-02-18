@@ -55,8 +55,7 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
@@ -65,12 +64,6 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

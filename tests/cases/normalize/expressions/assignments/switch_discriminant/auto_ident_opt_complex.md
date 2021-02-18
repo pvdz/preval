@@ -56,7 +56,6 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
 }
-const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

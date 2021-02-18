@@ -28,7 +28,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpThrowArg = tmpCallCallee(1);
 throw tmpThrowArg;

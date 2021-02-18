@@ -26,7 +26,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const x = undefined.x;
+undefined.x;
 $('bad');
 `````
 

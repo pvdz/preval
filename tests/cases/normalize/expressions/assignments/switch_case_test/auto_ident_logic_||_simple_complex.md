@@ -45,20 +45,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 a = 0;
 if (a) {
 } else {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 }
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

@@ -31,7 +31,7 @@ $('bad');
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
-const x = arrPatternStep.x;
+arrPatternStep.x;
 $('bad');
 `````
 

@@ -27,7 +27,7 @@ $('ok');
 
 `````js filename=intro
 const bindingPatternArrRoot = [, , 1];
-const arrPatternSplat = [...bindingPatternArrRoot];
+[...bindingPatternArrRoot];
 $('ok');
 `````
 

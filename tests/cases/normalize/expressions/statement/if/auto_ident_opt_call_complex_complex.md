@@ -39,14 +39,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
+undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  tmpIfTest = tmpChainElementCall$1;
+  tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
 }
 $(a);
 `````

@@ -41,7 +41,6 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
 a = delete arg[tmpDeleteCompProp];
-const tmpIfTest = a;
 $(a, arg);
 `````
 

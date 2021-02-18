@@ -33,7 +33,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];

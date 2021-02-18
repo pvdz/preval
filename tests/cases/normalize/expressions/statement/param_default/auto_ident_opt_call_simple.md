@@ -46,17 +46,14 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpIfTest$1 = $ != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall = $(1);
-      p = tmpChainElementCall;
+      $(1);
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const a = { a: 999, b: 1000 };

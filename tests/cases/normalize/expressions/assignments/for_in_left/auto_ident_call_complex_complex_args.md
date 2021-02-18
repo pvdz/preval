@@ -41,7 +41,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
+$;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);

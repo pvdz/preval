@@ -52,7 +52,7 @@ function f($tdz$__pattern) {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   const arrPatternSplat = [...$tdz$__pattern_after_default];
-  const x = arrPatternSplat.slice(0);
+  arrPatternSplat.slice(0);
   return 'bad';
 }
 const tmpCalleeParam$1 = f(null, 200);

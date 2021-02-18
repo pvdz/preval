@@ -46,7 +46,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 const a = { a: 999, b: 1000 };
-const obj = {};
 $(x);
 $(y);
 const tmpObjLitVal = $(3);

@@ -37,7 +37,6 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const obj = {};
 $(10);
 $(20);
 const tmpCompObj = [1, 2];

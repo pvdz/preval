@@ -43,16 +43,9 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, 1);
 `````
 

@@ -66,7 +66,7 @@ if (tmpIfTest$1) {
   const tmpIfTest$2 = tmpChainElementCall != null;
   if (tmpIfTest$2) {
     const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    tmpChainElementCall[tmpChainRootComputed];
   }
 }
 $(a);

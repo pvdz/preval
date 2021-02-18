@@ -42,10 +42,8 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamS
 ## Output
 
 `````js filename=intro
-var a;
 var b;
 var c;
-var d;
 var e;
 var f;
 var g;
@@ -53,8 +51,8 @@ var h;
 var x;
 var y;
 const tmpCallVal = x.y;
-a = b.c;
-d = e[f];
+b.c;
+e[f];
 const tmpCalleeParamSpread = g.h;
 tmpCallVal.call(x, x, 8, ...tmpCalleeParamSpread);
 `````

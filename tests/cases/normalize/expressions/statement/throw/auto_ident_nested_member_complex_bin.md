@@ -46,7 +46,6 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);

@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpSwitchTest = $(1);
+$(1);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 a = tmpAssignObjPatternRhs.a;

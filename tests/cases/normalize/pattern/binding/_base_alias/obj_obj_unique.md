@@ -34,7 +34,7 @@ let a_2 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const a = objPatternNoDefault$1.z;
+objPatternNoDefault$1.z;
 `````
 
 ## Globals

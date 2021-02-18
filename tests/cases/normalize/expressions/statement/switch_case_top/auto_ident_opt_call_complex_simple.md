@@ -59,7 +59,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = $($);
   const tmpIfTest$2 = tmpChainElementCall != null;
   if (tmpIfTest$2) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+    tmpChainElementCall.call($, 1);
   }
 }
 $(a);

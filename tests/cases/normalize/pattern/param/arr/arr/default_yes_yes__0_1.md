@@ -33,7 +33,7 @@ f(true);
 
 `````js filename=intro
 function f(tmp) {
-  const arrPatternSplat = [...tmp];
+  [...tmp];
   return 'bad';
 }
 f(true);

@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  const b = { $: $ };
+  $;
   const a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);

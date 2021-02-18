@@ -41,12 +41,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f(tmpParamPattern) {
   const objPatternBeforeDefault = tmpParamPattern.x;
-  let x = undefined;
+  undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('fail');
-  } else {
-    x = objPatternBeforeDefault;
+    $('fail');
   }
   return 'bad';
 }

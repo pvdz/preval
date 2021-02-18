@@ -46,7 +46,6 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 a = tmpPostUpdArgVal;
-const tmpIfTest = a;
 $(a, b);
 `````
 

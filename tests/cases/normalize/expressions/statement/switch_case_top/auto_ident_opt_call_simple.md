@@ -57,7 +57,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpIfTest$2 = $ != null;
   if (tmpIfTest$2) {
-    const tmpChainElementCall = $(1);
+    $(1);
   }
 }
 $(a);

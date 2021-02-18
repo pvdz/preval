@@ -40,7 +40,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 $(100);
 $(a, 1);
 `````

@@ -31,7 +31,7 @@ $('bad');
 const bindingPatternObjRoot = { x: 0, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
-const y = arrPatternSplat[0];
+arrPatternSplat[0];
 $('bad');
 `````
 

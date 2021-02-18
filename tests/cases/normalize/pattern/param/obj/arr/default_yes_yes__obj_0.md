@@ -74,7 +74,7 @@ function f($tdz$__pattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  const arrPatternSplat = [...objPatternAfterDefault];
+  [...objPatternAfterDefault];
   return 'bad';
 }
 const tmpCalleeParam$3 = { x: 0, a: 11, b: 12 };

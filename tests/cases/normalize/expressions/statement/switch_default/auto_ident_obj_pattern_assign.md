@@ -48,7 +48,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

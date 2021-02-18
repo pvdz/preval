@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
   const arrPatternStep = arrPatternSplat[0];
-  const arrPatternSplat$1 = [...arrPatternStep];
+  [...arrPatternStep];
   return 'ok';
 }
 const tmpCalleeParam$1 = ['abc', 4, 5];

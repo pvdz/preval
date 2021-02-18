@@ -41,13 +41,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $($);
-    p = tmpCallCallee(1);
-  } else {
-    p = $tdz$__p;
+    tmpCallCallee(1);
   }
 }
 const a = { a: 999, b: 1000 };

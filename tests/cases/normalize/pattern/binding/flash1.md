@@ -79,17 +79,12 @@ function x(tmpParamPattern, tmpParamPattern$1) {
     arrPatternStep$4 = arrPatternBeforeDefault;
   }
   const arrPatternSplat$5 = [...arrPatternStep$4];
-  const arrPatternBeforeDefault$1 = arrPatternSplat$5[0];
-  let foo = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$1) {
-    foo = x_1;
-  } else {
-    foo = arrPatternBeforeDefault$1;
-  }
+  arrPatternSplat$5[0];
+  undefined;
+  undefined;
   const objPatternNoDefault = tmpParamPattern$1.x;
   const tmpCalleeParam$1 = [];
-  const x_1 = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+  objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 }
 `````
 

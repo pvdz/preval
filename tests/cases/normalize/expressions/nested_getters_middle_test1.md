@@ -28,7 +28,7 @@ const b = { get foo() {} };
 ## Output
 
 `````js filename=intro
-const b = { get foo() {} };
+
 `````
 
 ## Globals

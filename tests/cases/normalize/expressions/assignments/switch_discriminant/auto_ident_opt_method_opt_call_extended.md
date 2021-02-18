@@ -70,7 +70,6 @@ if (tmpIfTest) {
     a = tmpChainElementCall;
   }
 }
-const tmpSwitchTest = a;
 $(100);
 $(a);
 `````

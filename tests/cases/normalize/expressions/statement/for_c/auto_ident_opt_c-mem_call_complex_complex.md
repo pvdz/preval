@@ -65,7 +65,7 @@ while (true) {
       if (tmpIfTest$2) {
         const tmpCallVal = tmpChainElementObject.call;
         const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+        tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       }
     }
   } else {

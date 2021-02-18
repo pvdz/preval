@@ -44,7 +44,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $ != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall = $(1);
+      $(1);
     }
   } else {
     break;

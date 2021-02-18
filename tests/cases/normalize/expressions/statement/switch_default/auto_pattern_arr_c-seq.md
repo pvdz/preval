@@ -45,7 +45,7 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpSwitchTest = $(1);
+$(1);
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];

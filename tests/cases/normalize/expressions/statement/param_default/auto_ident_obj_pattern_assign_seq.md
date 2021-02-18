@@ -52,7 +52,7 @@ $(a, x, y);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(x);
@@ -62,9 +62,6 @@ function f($tdz$__p) {
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
-    p = tmpNestedAssignObjPatternRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 let x = 1;

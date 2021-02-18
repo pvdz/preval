@@ -25,8 +25,7 @@ x = 10;
 ## Output
 
 `````js filename=intro
-var x;
-x = 10;
+
 `````
 
 ## Globals

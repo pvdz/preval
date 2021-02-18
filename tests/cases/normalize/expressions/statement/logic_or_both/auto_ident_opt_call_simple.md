@@ -52,7 +52,7 @@ if (tmpIfTest) {
 } else {
   const tmpIfTest$2 = $ != null;
   if (tmpIfTest$2) {
-    const tmpChainElementCall$1 = $(1);
+    $(1);
   }
 }
 $(a);

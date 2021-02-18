@@ -35,7 +35,6 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpUnaryArg = $(1);
 const tmpCompObj = typeof tmpUnaryArg;
 tmpCompObj.a;

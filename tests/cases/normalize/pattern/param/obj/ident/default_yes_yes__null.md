@@ -58,12 +58,10 @@ function f($tdz$__pattern) {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let x = undefined;
+  undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
-  } else {
-    x = objPatternBeforeDefault;
+    $('fail');
   }
   return 'bad';
 }

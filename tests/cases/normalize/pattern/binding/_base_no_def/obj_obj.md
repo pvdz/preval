@@ -26,7 +26,7 @@ const z = objPatternNoDefault$1.z;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const z = objPatternNoDefault$1.z;
+objPatternNoDefault$1.z;
 `````
 
 ## Globals

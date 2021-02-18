@@ -52,14 +52,14 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
+  tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
 }
 const tmpChainElementCall$2 = $($);
 const tmpIfTest$1 = tmpChainElementCall$2 != null;
 if (tmpIfTest$1) {
   const tmpCallVal$1 = tmpChainElementCall$2.call;
   const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$3);
+  tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$3);
 }
 $(a);
 `````

@@ -66,7 +66,7 @@ if (tmpIfTest) {
   if (tmpIfTest$2) {
     const tmpCallVal$1 = tmpChainElementCall$2.call;
     const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$3);
+    tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$3);
   }
 }
 $(a);

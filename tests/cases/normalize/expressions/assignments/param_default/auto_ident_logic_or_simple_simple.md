@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs = 0;
@@ -55,9 +55,6 @@ function f($tdz$__p) {
       tmpNestedComplexRhs = 2;
     }
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 let a = { a: 999, b: 1000 };

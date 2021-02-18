@@ -33,12 +33,10 @@ if (tmpIfTest) {
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-let x = undefined;
+undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = a;
-} else {
-  x = arrPatternBeforeDefault;
+  a;
 }
 `````
 

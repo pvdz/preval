@@ -64,7 +64,6 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 a = 3;
-const tmpSwitchTest = a;
 $(100);
 $(a, b, 3);
 `````

@@ -25,9 +25,9 @@ const c = $(3);
 ## Output
 
 `````js filename=intro
-const a = $(1);
-const b = $(2);
-const c = $(3);
+$(1);
+$(2);
+$(3);
 `````
 
 ## Globals

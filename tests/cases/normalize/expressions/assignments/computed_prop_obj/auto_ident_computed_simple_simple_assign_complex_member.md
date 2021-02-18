@@ -41,7 +41,6 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const obj = {};
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp];

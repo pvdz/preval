@@ -41,10 +41,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall = $(1);
+  $(1);
 }
 $(a);
 `````

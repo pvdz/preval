@@ -30,7 +30,7 @@ let a_2 = 1;
 ## Output
 
 `````js filename=intro
-const a = (1).x;
+(1).x;
 `````
 
 ## Globals

@@ -44,14 +44,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(10);
     $(20);
-    p = [1, 2];
-  } else {
-    p = $tdz$__p;
   }
 }
 const bindingPatternArrRoot = { a: 999, b: 1000 };

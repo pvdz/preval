@@ -32,7 +32,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-const tmpIfTest = $(tmpCalleeParam);
+$(tmpCalleeParam);
 $(100);
 $(a);
 `````

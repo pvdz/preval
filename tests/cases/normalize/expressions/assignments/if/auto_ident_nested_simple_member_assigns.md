@@ -55,7 +55,6 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 a = 3;
-const tmpIfTest = a;
 $(a, b, 3);
 `````
 

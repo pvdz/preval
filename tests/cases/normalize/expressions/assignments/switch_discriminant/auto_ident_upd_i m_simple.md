@@ -47,7 +47,6 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b - 1;
 a = tmpPostUpdArgIdent;
-const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

@@ -28,12 +28,9 @@ c = $(3);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-a = $(1);
-b = $(2);
-c = $(3);
+$(1);
+$(2);
+$(3);
 `````
 
 ## Globals

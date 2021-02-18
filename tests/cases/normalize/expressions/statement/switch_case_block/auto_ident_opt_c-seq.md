@@ -63,7 +63,7 @@ if (tmpIfTest$1) {
   const tmpChainRootProp = $(b);
   const tmpIfTest$2 = tmpChainRootProp != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject = tmpChainRootProp.x;
+    tmpChainRootProp.x;
   }
 }
 $(a);

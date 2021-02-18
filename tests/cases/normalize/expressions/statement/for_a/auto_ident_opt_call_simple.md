@@ -41,7 +41,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = $(1);
+  $(1);
 }
 while (true) {
   const tmpIfTest$1 = $(0);

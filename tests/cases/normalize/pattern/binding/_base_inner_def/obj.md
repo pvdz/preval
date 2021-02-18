@@ -30,12 +30,10 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
-let x = undefined;
+undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = b;
-} else {
-  x = objPatternBeforeDefault;
+  b;
 }
 `````
 

@@ -51,7 +51,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$2 = [];
-const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
 $('bad');
 `````
 

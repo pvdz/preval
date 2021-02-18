@@ -61,7 +61,6 @@ if (tmpSwitchTest) {
     tmpSwitchTest = $(tmpCalleeParam$2);
   }
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

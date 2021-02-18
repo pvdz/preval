@@ -30,7 +30,7 @@ $('bad');
 `````js filename=intro
 const arrPatternSplat = [];
 const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
+[...arrPatternStep];
 $('bad');
 `````
 

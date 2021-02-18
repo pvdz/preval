@@ -40,7 +40,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 function f() {
   const a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(1);
-  const tmpIfTest = $(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(a);
 }
 const tmpCalleeParam$1 = f();

@@ -50,8 +50,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -59,12 +58,6 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 a = tmpNestedAssignPropRhs;
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b);
 `````
 

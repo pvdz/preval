@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
-  const arrPatternSplat = [...objPatternNoDefault];
+  [...objPatternNoDefault];
   return 'ok';
 }
 const tmpObjLitVal = [undefined];

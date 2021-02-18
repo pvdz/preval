@@ -52,7 +52,6 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b['c'] = tmpNestedAssignPropRhs;
 a = tmpNestedAssignPropRhs;
-const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

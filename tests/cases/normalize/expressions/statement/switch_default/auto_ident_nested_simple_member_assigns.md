@@ -55,7 +55,7 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 b.x = 3;
 b.x = 3;
 b.x = 3;

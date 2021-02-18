@@ -33,7 +33,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const obj = {};
 const tmpCallCallee = $($);
 a = tmpCallCallee(1);
 const tmpCompObj = a;

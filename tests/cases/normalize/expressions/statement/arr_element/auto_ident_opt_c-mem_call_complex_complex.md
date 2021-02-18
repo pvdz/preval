@@ -70,7 +70,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
   }
 }
 const tmpChainElementCall$2 = $(b);
@@ -82,7 +82,7 @@ if (tmpIfTest$2) {
   if (tmpIfTest$3) {
     const tmpCallVal$1 = tmpChainElementObject$1.call;
     const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);
+    tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);
   }
 }
 $(a);

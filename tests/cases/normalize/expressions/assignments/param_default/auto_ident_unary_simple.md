@@ -45,13 +45,10 @@ $(a, x);
 
 `````js filename=intro
 function f($tdz$__arg) {
-  let arg = undefined;
+  undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     a = 'number';
-    arg = 'number';
-  } else {
-    arg = $tdz$__arg;
   }
 }
 let a = { a: 999, b: 1000 };

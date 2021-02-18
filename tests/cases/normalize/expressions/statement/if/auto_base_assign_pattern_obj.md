@@ -38,12 +38,10 @@ $(a, b);
 `````js filename=intro
 let b = {};
 const a = { a: 999, b: 1000 };
-let tmpIfTest;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
 $(a, b);
 `````
 

@@ -26,7 +26,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null];
+[...null];
 $('bad');
 `````
 

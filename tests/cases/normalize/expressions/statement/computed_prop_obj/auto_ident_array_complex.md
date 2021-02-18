@@ -34,7 +34,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const tmpCompObj = [tmpArrElement, 2, tmpArrElement$2];

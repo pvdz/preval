@@ -50,7 +50,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   const tmpIfTest$2 = $ != null;
   if (tmpIfTest$2) {
-    const tmpChainElementCall$1 = $(1);
+    $(1);
   }
 }
 $(a);

@@ -39,7 +39,6 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = delete arg.y;
-const tmpIfTest = a;
 $(a, arg);
 `````
 

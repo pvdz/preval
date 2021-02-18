@@ -27,7 +27,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = $(15);
+  $(15);
 }
 `````
 

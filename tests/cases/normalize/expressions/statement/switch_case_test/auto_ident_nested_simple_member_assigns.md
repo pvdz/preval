@@ -56,19 +56,13 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpIfTest = 3 === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b, 3);
 `````
 

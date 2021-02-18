@@ -65,7 +65,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpChainElementCall$1 = $(b);
@@ -76,7 +76,7 @@ if (tmpIfTest$2) {
   const tmpIfTest$3 = tmpChainElementObject$2 != null;
   if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $('y');
-    const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
+    tmpChainElementObject$2[tmpChainRootComputed$3];
   }
 }
 $(a);

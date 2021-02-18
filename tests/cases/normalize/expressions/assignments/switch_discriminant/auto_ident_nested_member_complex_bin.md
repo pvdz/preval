@@ -65,7 +65,6 @@ const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 a = 7;
-const tmpSwitchTest = a;
 $(100);
 $(a, b, c, 3, 4);
 `````

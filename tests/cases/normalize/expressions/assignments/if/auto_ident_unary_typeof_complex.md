@@ -35,7 +35,6 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 a = typeof tmpUnaryArg;
-const tmpIfTest = a;
 $(a, 1);
 `````
 

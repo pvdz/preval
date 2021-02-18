@@ -57,10 +57,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpChainElementCall = $(b);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
@@ -69,12 +69,9 @@ function f($tdz$__p) {
       const tmpIfTest$2 = tmpChainElementObject != null;
       if (tmpIfTest$2) {
         const tmpChainRootComputed$1 = $('y');
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        p = tmpChainElementObject$1;
+        tmpChainElementObject[tmpChainRootComputed$1];
       }
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const tmpObjLitVal = { y: 1 };

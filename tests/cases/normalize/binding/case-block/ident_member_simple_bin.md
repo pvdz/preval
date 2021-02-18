@@ -50,7 +50,6 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 2 };
 const tmpSwitchTest = $('a');
-let a_1;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
@@ -61,7 +60,6 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     b.x = 7;
-    a_1 = 7;
     break tmpSwitchBreak;
   }
 }

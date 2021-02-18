@@ -42,7 +42,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 $(a, arg);

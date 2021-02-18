@@ -34,9 +34,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = $(1);
-const tmpIfTest$1 = $(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

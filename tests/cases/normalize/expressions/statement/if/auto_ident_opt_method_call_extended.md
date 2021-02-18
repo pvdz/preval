@@ -45,14 +45,13 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
+undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-  tmpIfTest = tmpChainElementCall;
+  tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
 }
 $(a);
 `````

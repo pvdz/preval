@@ -41,7 +41,6 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-const obj = {};
 const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $('d');

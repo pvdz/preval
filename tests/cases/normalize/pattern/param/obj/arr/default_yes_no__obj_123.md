@@ -55,7 +55,7 @@ function f(tmpParamPattern) {
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
-  const arrPatternSplat = [...objPatternAfterDefault];
+  [...objPatternAfterDefault];
   return 'ok';
 }
 const tmpCalleeParam$2 = { x: 1, a: 2, b: 3 };

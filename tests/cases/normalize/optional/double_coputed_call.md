@@ -70,7 +70,7 @@ if (tmpIfTest) {
 const tmpChainElementCall = $(tmpCalleeParam);
 const tmpIfTest$2 = tmpChainElementCall != null;
 if (tmpIfTest$2) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call($, 100);
+  tmpChainElementCall.call($, 100);
 }
 `````
 

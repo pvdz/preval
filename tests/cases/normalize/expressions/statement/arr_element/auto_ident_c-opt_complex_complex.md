@@ -49,13 +49,13 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpChainElementCall[tmpChainRootComputed];
 }
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$1 = tmpChainElementCall$1 != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed$1 = $('x');
-  const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+  tmpChainElementCall$1[tmpChainRootComputed$1];
 }
 $(a);
 `````

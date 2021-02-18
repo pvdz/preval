@@ -48,7 +48,7 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {

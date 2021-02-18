@@ -40,7 +40,7 @@ tmpCallCallee$1(tmpCalleeParam$3);
 function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const tmpCalleeParam$1 = [];
-  const y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+  objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
   return 'bad';
 }
 const tmpCalleeParam$3 = f(null, 10);

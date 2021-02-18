@@ -37,7 +37,7 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
+$(1);
 tmpSwitchBreak: {
   $(3);
   break tmpSwitchBreak;

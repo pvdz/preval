@@ -36,7 +36,7 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 `````
 

@@ -51,7 +51,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 $(x);
 $(y);
 const tmpObjLitVal = $(3);

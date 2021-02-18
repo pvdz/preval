@@ -36,7 +36,6 @@ const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
 a = new tmpNewCallee(1);
-const tmpIfTest = a;
 $(a);
 `````
 

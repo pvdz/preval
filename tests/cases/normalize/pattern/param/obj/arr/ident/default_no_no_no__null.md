@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
-  const y = arrPatternSplat[0];
+  arrPatternSplat[0];
   return 'bad';
 }
 const tmpCalleeParam = f(null, 10);

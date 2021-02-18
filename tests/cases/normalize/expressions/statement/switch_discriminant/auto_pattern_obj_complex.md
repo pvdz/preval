@@ -42,7 +42,7 @@ $(a);
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpSwitchTest = $(tmpCalleeParam);
+$(tmpCalleeParam);
 $(100);
 $(a);
 `````

@@ -31,7 +31,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 const tmpThrowArg = typeof tmpUnaryArg;
 throw tmpThrowArg;

@@ -42,7 +42,7 @@ $(100);
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+  tmpChainElementObject.call(b, 1);
 }
 $(a);
 `````

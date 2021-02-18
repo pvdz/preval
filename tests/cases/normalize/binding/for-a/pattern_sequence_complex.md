@@ -37,8 +37,8 @@ $(1);
 $(2);
 const bindingPatternArrRoot = $(z);
 const arrPatternSplat = [...bindingPatternArrRoot];
-const x = arrPatternSplat[0];
-const y = arrPatternSplat[1];
+arrPatternSplat[0];
+arrPatternSplat[1];
 `````
 
 ## Globals

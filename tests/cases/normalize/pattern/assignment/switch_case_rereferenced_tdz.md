@@ -57,21 +57,14 @@ if (tmpIfTest$3) {
 ## Output
 
 `````js filename=intro
-let a;
-let b;
 let tmpSwitchCaseToStart = 2;
 tmpSwitchCaseToStart = 1;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  a = 10;
-  b = 20;
-}
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
   const arrAssignPatternRhs = [30, 40];
   const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
 }
 `````
 

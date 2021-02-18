@@ -36,7 +36,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
+$;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);

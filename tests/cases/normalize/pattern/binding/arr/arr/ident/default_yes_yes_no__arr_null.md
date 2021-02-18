@@ -58,12 +58,10 @@ if (tmpIfTest) {
 }
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-let x = undefined;
+undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  x = $('fail');
-} else {
-  x = arrPatternBeforeDefault$1;
+  $('fail');
 }
 $('bad');
 `````

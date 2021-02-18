@@ -30,7 +30,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
-const tmpIfTest = tmpCallCallee(1);
+tmpCallCallee(1);
 $(a);
 `````
 

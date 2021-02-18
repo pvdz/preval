@@ -50,21 +50,14 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+$(1);
+undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpBinLhs = tmpChainElementObject;
+  tmpChainElementCall[tmpChainRootComputed];
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

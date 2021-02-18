@@ -54,7 +54,7 @@ function f(tmpParamPattern) {
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  const arrPatternSplat$1 = [...arrPatternStep];
+  [...arrPatternStep];
   return 'bad';
 }
 const tmpCalleeParam$1 = f();

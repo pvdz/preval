@@ -34,12 +34,10 @@ $('bad');
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
-let x = undefined;
+undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
-} else {
-  x = objPatternBeforeDefault;
+  $('fail');
 }
 $('bad');
 `````

@@ -44,13 +44,11 @@ $(a, b);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpAssignRhsProp = $(b);
-    p = tmpAssignRhsProp['c'];
-  } else {
-    p = $tdz$__p;
+    tmpAssignRhsProp.c;
   }
 }
 const b = { c: 1 };

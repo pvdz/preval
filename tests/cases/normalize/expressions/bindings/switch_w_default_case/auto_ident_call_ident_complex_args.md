@@ -65,12 +65,11 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let b;
 let tmpSwitchCaseToStart = 1;
 tmpSwitchCaseToStart = 0;
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  b = { $: $ };
+  $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   const a = $(tmpCalleeParam, tmpCalleeParam$1);

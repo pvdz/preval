@@ -27,7 +27,7 @@ let tmpSwitchCaseToStart = 0;
 ## Output
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
+$(1);
 `````
 
 ## Globals

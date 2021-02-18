@@ -43,13 +43,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = { a: 1, b: 2 };
-    p = $(tmpCalleeParam);
-  } else {
-    p = $tdz$__p;
+    $(tmpCalleeParam);
   }
 }
 const bindingPatternObjRoot = { a: 999, b: 1000 };

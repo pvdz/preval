@@ -92,7 +92,7 @@ tmpSwitchBreak: {
     const tmpIfTest$3 = b != null;
     if (tmpIfTest$3) {
       const tmpChainElementObject = b.c;
-      const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+      tmpChainElementObject.call(b, 1);
     }
     break tmpSwitchBreak;
   }

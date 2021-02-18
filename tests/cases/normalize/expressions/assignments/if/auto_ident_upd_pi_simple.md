@@ -40,7 +40,6 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-const tmpIfTest = a;
 $(a, b);
 `````
 

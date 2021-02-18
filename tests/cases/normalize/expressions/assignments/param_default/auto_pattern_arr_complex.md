@@ -47,16 +47,13 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = [1, 2];
     const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     a = arrPatternSplat[0];
-    p = tmpNestedAssignArrPatternRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 const bindingPatternArrRoot = { a: 999, b: 1000 };

@@ -34,7 +34,7 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-const f = ($tdz$__a) => {
+($tdz$__a) => {
   let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {

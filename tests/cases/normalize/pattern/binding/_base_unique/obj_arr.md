@@ -30,7 +30,7 @@ let y_2 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
-const y = arrPatternSplat[0];
+arrPatternSplat[0];
 `````
 
 ## Globals

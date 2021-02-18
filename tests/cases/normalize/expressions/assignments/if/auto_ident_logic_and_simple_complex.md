@@ -39,7 +39,6 @@ if (a) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 }
-const tmpIfTest = a;
 $(a);
 `````
 

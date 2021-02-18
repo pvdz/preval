@@ -51,7 +51,6 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpSwitchTest = a;
 $(100);
 $(a, arg);
 `````

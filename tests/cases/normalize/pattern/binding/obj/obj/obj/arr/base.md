@@ -46,7 +46,7 @@ const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternNoDefault$2 = objPatternNoDefault$1.z;
-const arrPatternSplat = [...objPatternNoDefault$2];
+[...objPatternNoDefault$2];
 $('ok');
 `````
 

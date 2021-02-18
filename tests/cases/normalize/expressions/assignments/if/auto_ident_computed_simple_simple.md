@@ -34,7 +34,6 @@ $(a, b);
 const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 a = b['c'];
-const tmpIfTest = a;
 $(a, b);
 `````
 

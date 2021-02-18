@@ -92,7 +92,7 @@ tmpSwitchBreak: {
     const tmpIfTest$3 = tmpChainElementCall != null;
     if (tmpIfTest$3) {
       const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      tmpChainElementCall[tmpChainRootComputed];
     }
     break tmpSwitchBreak;
   }

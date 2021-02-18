@@ -53,7 +53,6 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$2;
 }
-const tmpIfTest = a;
 $(a);
 `````
 

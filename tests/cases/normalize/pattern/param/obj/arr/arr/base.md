@@ -44,7 +44,7 @@ function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
   const arrPatternStep = arrPatternSplat[0];
-  const arrPatternSplat$1 = [...arrPatternStep];
+  [...arrPatternStep];
   return 'ok';
 }
 const tmpArrElement = [1, 2, 3];

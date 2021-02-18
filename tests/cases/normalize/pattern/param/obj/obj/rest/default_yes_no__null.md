@@ -58,7 +58,7 @@ function f(tmpParamPattern) {
   }
   const tmpCalleeParam$1 = objPatternAfterDefault;
   const tmpCalleeParam$2 = [];
-  const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+  objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
 const tmpCalleeParam$4 = f(null, 10);

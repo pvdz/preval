@@ -43,13 +43,8 @@ $(a, x);
 
 `````js filename=intro
 function f($tdz$__arg) {
-  let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
-  if (tmpIfTest) {
-    arg = 'number';
-  } else {
-    arg = $tdz$__arg;
-  }
+  undefined;
+  undefined;
 }
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

@@ -38,7 +38,6 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpIfTest = a;
 $(a);
 `````
 

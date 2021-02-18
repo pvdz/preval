@@ -52,7 +52,7 @@ function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
   const objPatternNoDefault$2 = objPatternNoDefault$1.z;
-  const arrPatternSplat = [...objPatternNoDefault$2];
+  [...objPatternNoDefault$2];
   return 'ok';
 }
 const tmpObjLitVal$3 = [1, 2, 3];

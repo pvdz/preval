@@ -47,12 +47,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = $(60);
-  } else {
-    p = $tdz$__p;
+    $(60);
   }
 }
 const a = { a: 999, b: 1000 };

@@ -32,7 +32,7 @@ $('bad');
 const arrPatternSplat = [...null];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-const x = arrPatternSplat$1[0];
+arrPatternSplat$1[0];
 $('bad');
 `````
 

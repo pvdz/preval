@@ -56,14 +56,14 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
 }
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$3 = b.c;
   const tmpChainElementObject$4 = tmpChainElementObject$3.d;
   const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-  const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
 }
 $(a);
 `````

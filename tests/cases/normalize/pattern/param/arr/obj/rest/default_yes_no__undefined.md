@@ -60,7 +60,7 @@ function f(tmpParamPattern) {
   }
   const tmpCalleeParam$1 = arrPatternStep;
   const tmpCalleeParam$2 = [];
-  const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+  objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
 const tmpCalleeParam$4 = f(undefined, 200);

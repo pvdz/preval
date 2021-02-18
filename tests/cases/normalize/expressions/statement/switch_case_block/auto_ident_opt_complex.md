@@ -64,7 +64,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = $(b);
   const tmpIfTest$2 = tmpChainElementCall != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject = tmpChainElementCall.x;
+    tmpChainElementCall.x;
   }
 }
 $(a);

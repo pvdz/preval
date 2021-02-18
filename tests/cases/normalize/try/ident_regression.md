@@ -39,12 +39,8 @@ try {
 ## Output
 
 `````js filename=intro
-let AAAAAAAAAAAAAAAAAAAA;
 try {
-  AAAAAAAAAAAAAAAAAAAA = false;
-} catch {
-  AAAAAAAAAAAAAAAAAAAA = false;
-}
+} catch {}
 `````
 
 ## Globals

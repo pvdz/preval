@@ -35,10 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var a;
-var b;
 a = 10;
-b = 20;
-b = 30;
 a = 30;
 const tmpCalleeParam = a;
 $(tmpCalleeParam);

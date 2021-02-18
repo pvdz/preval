@@ -42,7 +42,6 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const obj = {};
 let tmpCompObj = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {

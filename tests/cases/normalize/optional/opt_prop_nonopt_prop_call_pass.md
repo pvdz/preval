@@ -38,7 +38,7 @@ const tmpIfTest = a != null;
 if (tmpIfTest) {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
+  tmpChainElementObject$1.call(tmpChainElementObject, 1);
 }
 `````
 

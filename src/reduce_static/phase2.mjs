@@ -283,6 +283,69 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
         return;
       }
     }
+
+    if (meta.reads.length === 0 && meta.writes[0].decl) {
+      ASSERT(meta.writes.length);
+      log('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
+      // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
+      // If any writes are eliminated this way, drop them from the books and queue them up
+
+      // If the decl is used in a for-x, export, or catch binding (or?) then we must keep the binding decl (should only be one).
+      const keepDecl = meta.writes.some((write) => !write.decl && !write.assign);
+
+      rule('Write-only bindings should be eliminated');
+      example('let a = f(); a = g();', 'f(); g();');
+
+      for (let i = 0; i < meta.writes.length; ++i) {
+        const write = meta.writes[i];
+        if (write.decl && !keepDecl) {
+          // Replace the decl with the init.
+
+          const { declParent, declProp, declIndex } = write.decl;
+          const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+          log('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
+          before(node, declParent);
+
+          ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
+          //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
+          log('Var decl queued for actual deletion');
+          toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
+          meta.writes.splice(i, 1);
+
+          inlined = true;
+          --i;
+        } else if (write.assign) {
+          // Replace the assignment with the rhs
+
+          const { assignParent, assignProp, assignIndex } = write.assign;
+          const node = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
+          log('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
+          before(node, assignParent);
+
+          ASSERT(
+            node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression',
+            'if not then indexes changed?',
+            node,
+          );
+          log('Assignment queued for actual deletion');
+          toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
+          meta.writes.splice(i, 1);
+
+          inlined = true;
+          --i;
+        }
+      }
+
+      if (meta.writes.length === 0) {
+        fdata.globallyUniqueNamingRegistry.delete(name);
+      }
+      if (inlined) {
+        groupEnd();
+        return;
+      }
+    }
+
+    groupEnd();
   });
   log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
 
@@ -425,6 +488,31 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
     groupEnd();
   });
   groupEnd();
+
+  // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
+  group('Actually eliminate var decls and assignments that were rendered redundant');
+  toEliminate.forEach(({ parent, prop, index }) => {
+    const node = index >= 0 ? parent[prop][index] : parent[prop];
+    before(node, parent);
+    if (node.type === 'ExpressionStatement') {
+      ASSERT(node.expression.type === 'AssignmentExpression');
+      node.expression = node.expression.right;
+      after(node);
+    } else {
+      ASSERT(node.type === 'VariableDeclaration');
+      const init = node.declarations[0].init;
+      const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
+      if (index >= 0) {
+        parent[prop][index] = newNode;
+      } else {
+        parent[prop] = newNode;
+      }
+
+      after(newNode, parent);
+    }
+  });
+  groupEnd();
+  // The reads data is unreliable from here on out and requires a new phase1 step!
 
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 

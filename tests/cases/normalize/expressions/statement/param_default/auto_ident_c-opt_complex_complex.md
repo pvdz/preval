@@ -51,19 +51,16 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpChainElementCall = $(b);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
       const tmpChainRootComputed = $('x');
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      p = tmpChainElementObject;
+      tmpChainElementCall[tmpChainRootComputed];
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { x: 1 };

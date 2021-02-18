@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCompObj = $(b);
@@ -56,9 +56,6 @@ function f($tdz$__p) {
     const tmpNewCallee = tmpCompObj[tmpCompProp];
     const tmpNestedComplexRhs = new tmpNewCallee(1);
     a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { $: $ };

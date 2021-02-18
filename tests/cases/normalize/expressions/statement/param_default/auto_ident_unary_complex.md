@@ -44,13 +44,11 @@ $(a, x);
 
 `````js filename=intro
 function f($tdz$__arg) {
-  let arg = undefined;
+  undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(1);
-    arg = typeof tmpUnaryArg;
-  } else {
-    arg = $tdz$__arg;
+    typeof tmpUnaryArg;
   }
 }
 const a = { a: 999, b: 1000 };

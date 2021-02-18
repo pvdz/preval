@@ -56,7 +56,7 @@ function f($tdz$__pattern) {
   }
   const tmpCalleeParam$1 = $tdz$__pattern_after_default;
   const tmpCalleeParam$2 = [];
-  const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+  objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
   return 'bad';
 }
 const tmpCalleeParam$4 = f(null, 10);

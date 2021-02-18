@@ -58,7 +58,7 @@ if (tmpIfTest) {
 } else {
   const tmpIfTest$2 = b != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject$1 = b.x;
+    b.x;
   }
 }
 $(a);

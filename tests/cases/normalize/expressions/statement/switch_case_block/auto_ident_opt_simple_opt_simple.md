@@ -71,7 +71,7 @@ if (tmpIfTest$1) {
     const tmpChainElementObject = b.x;
     const tmpIfTest$3 = tmpChainElementObject != null;
     if (tmpIfTest$3) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      tmpChainElementObject.y;
     }
   }
 }

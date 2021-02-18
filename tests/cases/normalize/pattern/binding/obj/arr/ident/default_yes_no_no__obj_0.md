@@ -38,14 +38,9 @@ $('bad');
 const bindingPatternObjRoot = { x: 0, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = 'fail';
-} else {
-  y = arrPatternBeforeDefault;
-}
+arrPatternSplat[0];
+undefined;
+undefined;
 $('bad');
 `````
 

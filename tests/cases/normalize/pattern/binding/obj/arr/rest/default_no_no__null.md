@@ -30,7 +30,7 @@ $('bad');
 `````js filename=intro
 const objPatternNoDefault = null.x;
 const arrPatternSplat = [...objPatternNoDefault];
-const y = arrPatternSplat.slice(0);
+arrPatternSplat.slice(0);
 $('bad');
 `````
 

@@ -44,12 +44,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = b['$'](1);
-  } else {
-    p = $tdz$__p;
+    b['$'](1);
   }
 }
 const b = { $: $ };

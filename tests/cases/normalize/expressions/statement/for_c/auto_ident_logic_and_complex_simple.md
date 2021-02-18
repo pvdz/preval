@@ -41,7 +41,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam);
+    $(tmpCalleeParam);
   } else {
     break;
   }

@@ -84,12 +84,10 @@ function f($tdz$__pattern) {
     arrPatternStep = arrPatternBeforeDefault;
   }
   const objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
+  undefined;
   const tmpIfTest$2 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$2) {
-    x = $('pass');
-  } else {
-    x = objPatternBeforeDefault;
+    $('pass');
   }
   return 'bad';
 }

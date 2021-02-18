@@ -40,9 +40,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const tmpSwitchTest = [tmpArrElement, 2, tmpArrElement$2];
+$(1);
+$(3);
 $(100);
 $(a);
 `````

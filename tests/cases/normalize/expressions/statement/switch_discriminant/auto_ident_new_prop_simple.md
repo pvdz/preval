@@ -43,7 +43,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-const tmpSwitchTest = new tmpNewCallee(1);
+new tmpNewCallee(1);
 $(100);
 $(a);
 `````

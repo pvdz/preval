@@ -28,9 +28,7 @@ let a = b;
 ## Output
 
 `````js filename=intro
-let b = 10;
-b = (20).x;
-const a = b;
+(20).x;
 `````
 
 ## Globals

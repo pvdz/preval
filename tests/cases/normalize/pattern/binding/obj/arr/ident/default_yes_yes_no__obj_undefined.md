@@ -55,14 +55,9 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = 'fail';
-} else {
-  y = arrPatternBeforeDefault;
-}
+arrPatternSplat[0];
+undefined;
+undefined;
 $('bad');
 `````
 

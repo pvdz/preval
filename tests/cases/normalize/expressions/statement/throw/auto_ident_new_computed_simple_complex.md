@@ -34,7 +34,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpThrowArg = new tmpNewCallee(1);

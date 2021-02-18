@@ -31,7 +31,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+$(1);
 $(a, 1);
 `````
 

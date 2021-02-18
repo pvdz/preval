@@ -43,12 +43,10 @@ $(a, arg);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = delete arg.y;
-  } else {
-    p = $tdz$__p;
+    delete arg.y;
   }
 }
 const arg = { y: 1 };

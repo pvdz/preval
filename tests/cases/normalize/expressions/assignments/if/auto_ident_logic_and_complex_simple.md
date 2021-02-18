@@ -39,7 +39,6 @@ a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 }
-const tmpIfTest = a;
 $(a);
 `````
 

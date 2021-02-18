@@ -28,7 +28,7 @@ $('bad');
 
 `````js filename=intro
 const arrPatternSplat = [...1];
-const x = arrPatternSplat.slice(0);
+arrPatternSplat.slice(0);
 $('bad');
 `````
 

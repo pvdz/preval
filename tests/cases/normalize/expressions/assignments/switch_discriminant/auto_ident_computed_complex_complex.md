@@ -47,7 +47,6 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpSwitchTest = a;
 $(100);
 $(a, b);
 `````

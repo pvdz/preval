@@ -46,7 +46,7 @@ const a = { a: 999, b: 1000 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpChainRootProp.x;
 }
 while (true) {
   const tmpIfTest$1 = $(0);

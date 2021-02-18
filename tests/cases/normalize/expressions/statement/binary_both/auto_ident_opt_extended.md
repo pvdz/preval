@@ -53,13 +53,13 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+  tmpChainElementObject$1.z;
 }
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$3 = b.x;
   const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-  const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+  tmpChainElementObject$4.z;
 }
 $(a);
 `````

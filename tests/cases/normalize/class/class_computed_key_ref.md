@@ -29,9 +29,9 @@ let x = class {
 ## Output
 
 `````js filename=intro
-const x = class {
+(class {
   ['y']() {}
-};
+});
 `````
 
 ## Globals

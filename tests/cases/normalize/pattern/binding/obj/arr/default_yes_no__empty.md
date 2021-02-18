@@ -45,7 +45,7 @@ if (tmpIfTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const arrPatternSplat = [...objPatternAfterDefault];
+[...objPatternAfterDefault];
 $('ok');
 `````
 

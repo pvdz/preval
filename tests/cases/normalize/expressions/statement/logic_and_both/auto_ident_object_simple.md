@@ -28,7 +28,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpIfTest = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 

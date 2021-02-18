@@ -45,13 +45,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallCompProp = $('$');
-    p = b[tmpCallCompProp](1);
-  } else {
-    p = $tdz$__p;
+    b[tmpCallCompProp](1);
   }
 }
 const b = { $: $ };

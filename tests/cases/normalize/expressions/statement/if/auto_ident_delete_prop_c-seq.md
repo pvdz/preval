@@ -38,7 +38,7 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpIfTest = delete tmpDeleteObj.y;
+delete tmpDeleteObj.y;
 $(a, arg);
 `````
 

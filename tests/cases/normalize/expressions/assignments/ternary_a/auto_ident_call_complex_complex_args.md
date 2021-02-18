@@ -42,7 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
+$;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCallCallee$1 = $($);

@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f(tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
-  const x = arrPatternSplat.slice(0);
+  arrPatternSplat.slice(0);
   return 'bad';
 }
 const tmpCalleeParam = f(null, 200);

@@ -26,7 +26,7 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const x = null.x;
+null.x;
 $('bad');
 `````
 

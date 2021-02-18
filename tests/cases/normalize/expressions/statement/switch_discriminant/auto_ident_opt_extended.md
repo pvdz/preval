@@ -53,15 +53,13 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
+undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpSwitchTest = tmpChainElementObject$2;
+  tmpChainElementObject$1.z;
 }
-const tmpSwitchValue = tmpSwitchTest;
 $(100);
 $(a);
 `````

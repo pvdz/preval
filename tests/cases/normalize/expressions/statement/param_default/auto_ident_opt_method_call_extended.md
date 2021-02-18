@@ -54,20 +54,17 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = undefined;
+    undefined;
     const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
       const tmpChainElementObject = b.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
       const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-      p = tmpChainElementCall;
+      tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const tmpObjLitVal$1 = { e: $ };

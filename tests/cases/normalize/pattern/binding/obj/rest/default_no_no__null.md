@@ -31,7 +31,7 @@ $('bad');
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];
-const x = objPatternRest(null, tmpCalleeParam$1, 'x');
+objPatternRest(null, tmpCalleeParam$1, 'x');
 $('bad');
 `````
 

@@ -46,12 +46,12 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+  tmpChainElementObject.call(b, 1);
 }
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = b.c;
-  const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
+  tmpChainElementObject$1.call(b, 1);
 }
 $(a);
 `````

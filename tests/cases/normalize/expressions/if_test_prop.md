@@ -29,7 +29,7 @@ const tmpIfTest = tmpCompObj.foo;
 `````js filename=intro
 let y;
 x = (1).x;
-const tmpIfTest = (1).foo;
+(1).foo;
 `````
 
 ## Globals

@@ -40,7 +40,6 @@ $(1);
 $(2);
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
-const tmpIfTest = a;
 $(a, arg);
 `````
 

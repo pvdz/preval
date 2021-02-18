@@ -43,7 +43,6 @@ $(a, b);
 let b = 1;
 const a = { a: 999, b: 1000 };
 b = b - 1;
-const tmpSwitchTest = b;
 $(100);
 $(a, b);
 `````

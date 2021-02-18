@@ -39,7 +39,6 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 let tmpThrowArg = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;

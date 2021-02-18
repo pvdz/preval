@@ -43,7 +43,6 @@ $(a, arg);
 const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 a = delete arg['y'];
-const tmpSwitchTest = a;
 $(100);
 $(a, arg);
 `````

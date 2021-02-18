@@ -42,14 +42,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    p = tmpBinBothLhs + tmpBinBothRhs;
-  } else {
-    p = $tdz$__p;
+    $(1);
+    $(2);
   }
 }
 const a = { a: 999, b: 1000 };

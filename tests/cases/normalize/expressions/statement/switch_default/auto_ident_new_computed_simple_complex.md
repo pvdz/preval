@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);

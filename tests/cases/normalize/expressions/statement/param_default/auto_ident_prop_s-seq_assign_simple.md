@@ -46,13 +46,10 @@ $(a, b);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     b.c = 2;
-    p = 2;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { c: 1 };

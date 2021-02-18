@@ -89,7 +89,7 @@ tmpSwitchBreak: {
     const tmpChainRootProp = $(b);
     const tmpIfTest$3 = tmpChainRootProp != null;
     if (tmpIfTest$3) {
-      const tmpChainElementObject = tmpChainRootProp.x;
+      tmpChainRootProp.x;
     }
     break tmpSwitchBreak;
   }

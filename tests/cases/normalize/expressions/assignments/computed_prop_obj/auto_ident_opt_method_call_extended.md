@@ -49,7 +49,6 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const obj = {};
 a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {

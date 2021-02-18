@@ -46,7 +46,7 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
-const tmpSwitchTest = new tmpNewCallee(1);
+new tmpNewCallee(1);
 $(100);
 $(a);
 `````

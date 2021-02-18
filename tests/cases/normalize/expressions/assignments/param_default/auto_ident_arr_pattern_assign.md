@@ -54,7 +54,7 @@ $(a, x, y);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(3);
@@ -64,9 +64,6 @@ function f($tdz$__p) {
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;
-    p = tmpNestedAssignArrPatternRhs;
-  } else {
-    p = $tdz$__p;
   }
 }
 let x = 1;

@@ -59,7 +59,7 @@ $(a, b, c);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     b.x = 3;
@@ -69,9 +69,6 @@ function f($tdz$__p) {
     b.x = 3;
     b.x = 3;
     a = 3;
-    p = 3;
-  } else {
-    p = $tdz$__p;
   }
 }
 const b = { x: 1 };

@@ -42,8 +42,7 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-const tmpPostUpdArgIdent = b;
+$(1);
 b = b - 1;
 $(a, b);
 `````

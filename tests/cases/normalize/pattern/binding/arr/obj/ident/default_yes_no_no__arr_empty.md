@@ -39,12 +39,10 @@ const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
+undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = objPatternBeforeDefault;
+  $('pass');
 }
 $('bad');
 `````

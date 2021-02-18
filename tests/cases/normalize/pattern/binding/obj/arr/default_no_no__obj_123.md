@@ -29,7 +29,7 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = { x: 1, a: 2, b: 3 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
+[...objPatternNoDefault];
 $('bad');
 `````
 

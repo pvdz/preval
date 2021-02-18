@@ -33,12 +33,9 @@ let a_1 = b;
 ## Output
 
 `````js filename=intro
-let b = 2;
 const tmpNestedAssignObj = $(3);
 const tmpNestedAssignPropRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-b = tmpNestedAssignPropRhs;
-const a_1 = b;
 `````
 
 ## Globals

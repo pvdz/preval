@@ -44,12 +44,12 @@ const a = { a: 999, b: 1000 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpChainRootProp.x;
 }
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  tmpChainRootProp$1.x;
 }
 $(a);
 `````

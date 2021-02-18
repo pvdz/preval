@@ -42,7 +42,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpPostUpdArgIdent = b;
   b = b + 1;
 }
 $(a, b);

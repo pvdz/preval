@@ -58,7 +58,7 @@ function f() {
     const tmpChainElementObject = b.x;
     const tmpIfTest$1 = tmpChainElementObject != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      tmpChainElementObject.y;
     }
   }
   $(a);

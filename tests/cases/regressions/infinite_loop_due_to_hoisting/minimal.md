@@ -38,7 +38,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {}
-const obj = { x: 1 };
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;
 const tmpIfTest = tmpBinLhs === 1;

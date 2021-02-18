@@ -42,12 +42,10 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 ## Output
 
 `````js filename=intro
-let a = 1;
-let d = 4;
 const tmpObjLitVal = [7];
 const g = { h: tmpObjLitVal };
-a = (2).c;
-d = (5)[6];
+(2).c;
+(5)[6];
 const tmpCalleeParamSpread = g.h;
 new String(8.5, 8, ...tmpCalleeParamSpread);
 `````

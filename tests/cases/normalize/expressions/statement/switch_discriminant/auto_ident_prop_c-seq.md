@@ -43,7 +43,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpSwitchTest = tmpCompObj.c;
+tmpCompObj.c;
 $(100);
 $(a, b);
 `````

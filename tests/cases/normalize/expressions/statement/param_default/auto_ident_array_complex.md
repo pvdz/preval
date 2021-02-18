@@ -43,14 +43,11 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
+  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpArrElement = $(1);
-    const tmpArrElement$2 = $(3);
-    p = [tmpArrElement, 2, tmpArrElement$2];
-  } else {
-    p = $tdz$__p;
+    $(1);
+    $(3);
   }
 }
 const a = { a: 999, b: 1000 };

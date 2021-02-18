@@ -61,7 +61,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
+$;
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -79,7 +79,6 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
   $('fail1');

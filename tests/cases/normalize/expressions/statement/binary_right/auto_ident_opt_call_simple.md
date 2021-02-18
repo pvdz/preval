@@ -36,7 +36,7 @@ const a = { a: 999, b: 1000 };
 $(100);
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = $(1);
+  $(1);
 }
 $(a);
 `````

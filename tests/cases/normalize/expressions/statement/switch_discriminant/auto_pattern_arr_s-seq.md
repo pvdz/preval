@@ -45,7 +45,6 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpSwitchTest = [1, 2];
 $(100);
 $(a);
 `````

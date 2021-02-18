@@ -28,12 +28,9 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 ## Output
 
 `````js filename=intro
-let x;
 let b;
 let c;
-let tmpIfTest;
-x = (1).x;
-tmpIfTest = 1;
+(1).x;
 `````
 
 ## Globals

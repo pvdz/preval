@@ -47,7 +47,7 @@ if (tmpIfTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const arrPatternSplat$1 = [...arrPatternStep];
+[...arrPatternStep];
 $('bad');
 `````
 

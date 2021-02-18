@@ -51,13 +51,13 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+$(1);
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$2 = tmpChainElementObject != null;
   if (tmpIfTest$2) {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    tmpChainElementObject.y;
   }
 }
 $(a);

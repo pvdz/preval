@@ -47,7 +47,7 @@ if (tmpIfTest) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
-const x = arrPatternSplat$1.slice(0);
+arrPatternSplat$1.slice(0);
 $('bad');
 `````
 

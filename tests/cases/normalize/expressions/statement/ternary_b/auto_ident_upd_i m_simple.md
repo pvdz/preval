@@ -40,7 +40,6 @@ let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpPostUpdArgIdent = b;
   b = b - 1;
 } else {
   $(200);

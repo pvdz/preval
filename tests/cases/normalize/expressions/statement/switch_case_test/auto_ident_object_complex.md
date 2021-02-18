@@ -41,16 +41,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const tmpBinLhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+$(1);
+$(1);
+$(3);
 $(a);
 `````
 

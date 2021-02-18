@@ -41,22 +41,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 0;
-if (a) {
+let SSA_a = 0;
+if (SSA_a) {
 } else {
-  a = 2;
+  SSA_a = 2;
 }
-const tmpBinBothLhs = a;
-a = 0;
-if (a) {
+const tmpBinBothLhs = SSA_a;
+let SSA_a$1 = 0;
+if (SSA_a$1) {
 } else {
-  a = 2;
+  SSA_a$1 = 2;
 }
-const tmpBinBothRhs = a;
+const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

@@ -33,11 +33,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
-a = tmpNestedComplexRhs;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw tmpNestedComplexRhs;
 `````
 
 ## Globals

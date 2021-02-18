@@ -47,9 +47,8 @@ $(x);
 `````
 
 `````js filename=x
-let X = class {};
+const X = class {};
 export { X as default };
-X = 10;
 `````
 
 ## Globals

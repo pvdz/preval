@@ -33,14 +33,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = function () {};
-let tmpCalleeParam = a;
+const SSA_a = function () {};
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

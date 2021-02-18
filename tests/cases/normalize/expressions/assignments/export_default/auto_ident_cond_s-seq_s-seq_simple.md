@@ -36,11 +36,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 60;
-const tmpExportDefault = a;
+const tmpExportDefault = 60;
 export { tmpExportDefault as default };
-$(a);
+$(60);
 `````
 
 ## Globals

@@ -31,11 +31,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
 $(100);
-b = $(2);
-$(a, b);
+const SSA_b = $(2);
+$(a, SSA_b);
 `````
 
 ## Globals

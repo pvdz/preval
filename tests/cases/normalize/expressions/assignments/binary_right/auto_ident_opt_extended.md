@@ -48,20 +48,19 @@ $(a);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
+  SSA_a = tmpChainElementObject$2;
 }
-const tmpBinBothRhs = a;
+const tmpBinBothRhs = SSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

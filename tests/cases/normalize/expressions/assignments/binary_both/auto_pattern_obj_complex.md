@@ -43,16 +43,16 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-a = tmpNestedAssignObjPatternRhs.a;
+tmpNestedAssignObjPatternRhs.a;
 const tmpCalleeParam$2 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$2);
-a = tmpNestedAssignObjPatternRhs$1.a;
+const SSA_a$1 = tmpNestedAssignObjPatternRhs$1.a;
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

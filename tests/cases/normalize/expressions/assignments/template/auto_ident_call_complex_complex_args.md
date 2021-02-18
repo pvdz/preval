@@ -38,15 +38,13 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
-a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
-const tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const SSA_a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam = `before  ${SSA_a}  after`;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -35,15 +35,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 1;
-if (a) {
-  a = 2;
+let SSA_a = 1;
+if (SSA_a) {
+  SSA_a = 2;
 }
-const tmpObjLitPropKey = a;
+const tmpObjLitPropKey = SSA_a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

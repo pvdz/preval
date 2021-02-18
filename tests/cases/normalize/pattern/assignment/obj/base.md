@@ -40,7 +40,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+  tmpAssignObjPatternRhs.cannotDestructureThis;
 }
 $('ok');
 `````

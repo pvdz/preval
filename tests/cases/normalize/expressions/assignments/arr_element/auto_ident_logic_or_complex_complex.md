@@ -49,26 +49,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(0);
-a = $(tmpCalleeParam$1);
-if (a) {
+let SSA_a = $(tmpCalleeParam$1);
+if (SSA_a) {
 } else {
   const tmpCalleeParam$2 = $(2);
-  a = $(tmpCalleeParam$2);
+  SSA_a = $(tmpCalleeParam$2);
 }
-const tmpBinBothLhs = a;
+const tmpBinBothLhs = SSA_a;
 const tmpCalleeParam$3 = $(0);
-a = $(tmpCalleeParam$3);
-if (a) {
+let SSA_a$1 = $(tmpCalleeParam$3);
+if (SSA_a$1) {
 } else {
   const tmpCalleeParam$4 = $(2);
-  a = $(tmpCalleeParam$4);
+  SSA_a$1 = $(tmpCalleeParam$4);
 }
-const tmpBinBothRhs = a;
+const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

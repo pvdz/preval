@@ -44,13 +44,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $('y');
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  $(a, arg);
+  const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(SSA_a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

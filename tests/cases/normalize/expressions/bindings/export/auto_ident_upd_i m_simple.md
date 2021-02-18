@@ -31,12 +31,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-const tmpPostUpdArgIdent = b;
-b = b - 1;
-const a = tmpPostUpdArgIdent;
+const a = 1;
 export { a };
-$(tmpPostUpdArgIdent, b);
+$(1, 0);
 `````
 
 ## Globals

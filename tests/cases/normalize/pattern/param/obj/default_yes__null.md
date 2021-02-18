@@ -60,7 +60,7 @@ function f($tdz$__pattern) {
     objPatternCrashTest = $tdz$__pattern_after_default === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+    $tdz$__pattern_after_default.cannotDestructureThis;
   }
   return 'bad';
 }

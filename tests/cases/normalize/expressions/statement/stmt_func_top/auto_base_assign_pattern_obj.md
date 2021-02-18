@@ -43,13 +43,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let b = {};
   const a = { a: 999, b: 1000 };
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpAssignObjPatternRhs.b;
-  $(a, b);
+  const SSA_b = tmpAssignObjPatternRhs.b;
+  $(a, SSA_b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

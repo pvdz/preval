@@ -52,11 +52,10 @@ const obj = {
     $(20);
   },
 };
-let x = 10;
 const tmpAssignRhsCompObj = $(obj);
 const tmpAssignRhsCompProp = $('x');
-x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(x);
+const SSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(SSA_x);
 `````
 
 ## Globals

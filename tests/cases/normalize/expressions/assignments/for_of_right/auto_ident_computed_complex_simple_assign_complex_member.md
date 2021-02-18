@@ -41,18 +41,15 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
-a = tmpNestedAssignPropRhs;
-const tmpForOfDeclRhs = a;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of tmpNestedAssignPropRhs) {
 }
-$(a, b);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Globals

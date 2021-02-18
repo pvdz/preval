@@ -39,15 +39,14 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
+  SSA_a = tmpChainElementObject;
 }
-const tmpThrowArg = a;
+const tmpThrowArg = SSA_a;
 throw tmpThrowArg;
 `````
 

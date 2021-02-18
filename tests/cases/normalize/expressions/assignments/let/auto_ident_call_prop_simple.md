@@ -34,11 +34,9 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
-a = b.$(1);
-const xyz = a;
-$(xyz);
-$(a);
+const SSA_a = b.$(1);
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

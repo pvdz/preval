@@ -40,18 +40,18 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 let tmpCalleeParam;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-a = tmpNestedAssignObjPatternRhs.a;
-tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-if (tmpCalleeParam) {
+const SSA_a = tmpNestedAssignObjPatternRhs.a;
+let SSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+if (SSA_tmpCalleeParam) {
 } else {
-  tmpCalleeParam = $(100);
+  SSA_tmpCalleeParam = $(100);
 }
-$(tmpCalleeParam);
-$(a);
+$(SSA_tmpCalleeParam);
+$(SSA_a);
 `````
 
 ## Globals

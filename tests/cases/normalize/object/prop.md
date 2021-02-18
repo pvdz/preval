@@ -39,9 +39,8 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 
 `````js filename=intro
 const fdata = { name: 1 };
-let tmpElement_1 = 2;
-tmpElement_1 = fdata.name;
-const tmpElement = [tmpElement_1, fdata];
+const SSA_tmpElement_1 = fdata.name;
+const tmpElement = [SSA_tmpElement_1, fdata];
 const tmpArg_1 = [tmpElement];
 new Map(tmpArg_1);
 fdata.name;

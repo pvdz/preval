@@ -44,16 +44,8 @@ if (tmpIfTest$3) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 2;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  $(1);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $(2);
-}
+$(1);
+$(2);
 `````
 
 ## Globals

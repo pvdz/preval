@@ -485,6 +485,171 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
       groupEnd();
     }
 
+    // If a binding start with a var decl as first write (prevents func decl closure problem) and the next
+    // usage is an assignment write then the first decl can be dropped (if it has an init then that becomes
+    // the statement) and the next write becomes the decl. This should hold even if the binding becomes a
+    // closure since func decls will be hoisted and so will appear earlier and any other closure won't be
+    // able to be called until it is defined (-> source order read) so that can't cause problems either.
+    // This only holds if all future reads have the blockchain of the first read as a prefix of their own.
+    // A future update might improve that by doing branch analysis or branch extrapolation.
+    // Additionally, we can't do this for loops since they obviously do revisit the previous name. If the
+    // last write was in the same loop then the above applies anyways. Otherwise it's trickier. So we track
+    // it. If a block was was the body of a loop (must be `while` or `fox-x` at this point) then the number
+    // in the blockChain will be negative.
+
+    // A write can be SSA'd if
+    // - all future writes are assigns (not params, for-x or something else)
+    // - all reads must reach the write
+    // - all prior reads are in the same scope
+    // - if the write is in a loop,
+    //   - there are no prior reads in the same or an even deeper loop
+    //   - all future reads are in the same scope
+
+    // "Is this binding defined through a var decl?" -- prevents params, forx, func decl closures, implicit globals, and TDZ cases.
+    if (declData) {
+      log('The binding `' + name + '` has a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
+
+      const rwOrder = [...meta.reads, ...meta.writes].sort(({ rwCounter: a }, { rwCounter: b }) => (a < b ? -1 : a > b ? 1 : 0));
+      log('rwOrder:', [rwOrder.map((o) => o.action).join(', ')]);
+      // Note: we asserted that the first write is a var decl, but a closure in func decl may still put a read as the first source ref
+      if (rwOrder[0].action === 'write') {
+        ASSERT(rwOrder[0].decl, 'the first write should be a decl, or maybe this is TDZ');
+        ASSERT(
+          rwOrder.slice(1).every((rw) => !rw.decl),
+          'a binding should have no more than one var decl after normalization',
+        );
+
+        log('The initial binding:');
+        source(rwOrder[0].parentNode);
+
+        // Bail as soon as we find a read/write in a different scope. In that case we have a TDZ or closure
+        // and source-order-"future" read/writes can not (easily) statically be guaranteed to be safe.
+        const bindingScope = rwOrder[0].scope;
+
+        // Note: rwOrder may have holes after the loop but during the loop, a and b should not be null
+        for (let i = 1; i < rwOrder.length; ++i) {
+          const a = rwOrder[i - 1];
+          const b = rwOrder[i];
+
+          log('- rwOrder[' + i + '] =', b.action);
+          source(b.parentNode);
+
+          if (b.scope !== bindingScope) {
+            // TODO: I think there are situations where we can stlil safely support this case
+            log('Found a read/write in a different scope. Bailing as we cannot guarantee the remaining read/writes.');
+            break;
+          }
+
+          if (b.action === 'write') {
+            // Must be
+            // - an assignment
+            // - all future reads must reach this write
+            // - if the current write is inside a loop (while, for-x)
+            //   - all future reads must not be outside the current loop
+            //   - all future reads must be in the same scope
+            //   - all previous reads must be before the current loop
+
+            log('Is the write an assign?', !!b.assign);
+
+            // Verify that the write is an assign that happens in the same scope because we must ignore closures for now
+            ASSERT(!b.decl, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
+            if (b.assign) {
+              // Must verify that all remaining usages can reach this write
+
+              let loopId = b.innerLoop;
+              log('Write inside a loop?', loopId);
+              let canSSA = true;
+              if (loopId) {
+                log('Checking if all previous reads can reach this write (it is bad if they do)');
+                // All previous reads must not be able to reach this assign (because that implies they're part of the loop)
+                for (let j = 0; j < i; ++j) {
+                  const c = rwOrder[j];
+                  log('-', j, ':', c.action, ', same loop:', loopId === c.innerLoop, ', can reach:', c.blockChain.startsWith(b.blockChain));
+                  if (loopId === c.innerLoop) {
+                    log('At least one previous ref is in the same loop so this we can not SSA');
+                    canSSA = false;
+                    break;
+                  }
+                  if (c.blockChain.startsWith(b.blockChain)) {
+                    log('At least one previous ref can reach this write so this we can not SSA');
+                    canSSA = false;
+                    break;
+                  }
+                }
+              }
+              if (canSSA) {
+                log('Checking if all future reads can reach this write (good) and that they are in the same scope (good)');
+                for (let j = i + 1; j < rwOrder.length; ++j) {
+                  const c = rwOrder[j];
+                  log('-', j, ': can reach:', c.blockChain.startsWith(b.blockChain), ', same scope:', b.scope === c.scope);
+                  // Closure? Only relevant if assignment is in a loop.
+                  if (loopId && b.scope !== c.scope) {
+                    log('At least one future read/write was in a different scope');
+                    canSSA = false;
+                    break;
+                  }
+                  // A usage c can reach another usage b if the blockChain of b is a prefix of the blockchain of c
+                  if (!c.blockChain.startsWith(b.blockChain)) {
+                    log('At least one future read/write can not reach this assignment');
+                    canSSA = false;
+                    break;
+                  }
+                }
+              }
+
+              if (canSSA) {
+                log('Applying SSA now');
+                rule('A redundant assign where remaining usages can all reach it must be SSA-ed');
+                example('let x = 10; x = 20; f(x);', 'let x = 10; let x2 = 20; f(x2);');
+                before(b.node);
+
+                const newName = createFreshVar(name.startsWith('SSA_') ? name : 'SSA_' + name);
+                const newMeta = fdata.globallyUniqueNamingRegistry.get(newName);
+                b.node.name = newName;
+
+                // Convert the assignment node represented by `b` into a let decl
+
+                meta.writes.splice(meta.writes.indexOf(b), 1);
+                newMeta.writes.push(b);
+
+                // Replace the assignment with a var decl of the same kind
+                const { assignParent, assignProp, assignIndex } = b.assign;
+                const assignExpr = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
+                ASSERT(b.parentNode.type === 'AssignmentExpression', 'if not then indexes changed?', assignExpr);
+                ASSERT(b.parentNode.left === b.node, 'should still be node');
+                const rhs = b.parentNode.right;
+                const newNode = AST.variableDeclaration(b.node, rhs, 'let'); // it SHOULD be fine to change this to a let...?
+                if (assignIndex >= 0) assignParent[assignProp][assignIndex] = newNode;
+                else assignParent[assignProp] = newNode;
+
+                for (let j = i + 1; j < rwOrder.length; ++j) {
+                  const c = rwOrder[j];
+
+                  if (c.action === 'write') {
+                    meta.writes.splice(meta.writes.indexOf(c), 1);
+                    newMeta.writes.push(c);
+                  } else {
+                    meta.reads.splice(meta.reads.indexOf(c), 1);
+                    newMeta.reads.push(c);
+                  }
+
+                  c.node.name = newName;
+                }
+
+                after(b.node);
+
+                //endit
+              } else {
+                log('At least one subsequent usage can not reach this write so we can not easily SSA here');
+              }
+            }
+          } else {
+            // Either a or b wasn't a write
+          }
+        }
+      }
+    }
+
     groupEnd();
   });
   groupEnd();
@@ -517,4 +682,74 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   groupEnd();
+
+  function generateUniqueGlobalName(name) {
+    // Create a (module) globally unique name. Then use that name for the local scope.
+    let n = 0;
+    if (fdata.globallyUniqueNamingRegistry.has(name)) {
+      while (fdata.globallyUniqueNamingRegistry.has(name + '$' + ++n));
+    }
+    return n ? name + '$' + n : name;
+  }
+  function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
+    if (!fdata.globallyUniqueNamingRegistry.has(name)) {
+      fdata.globallyUniqueNamingRegistry.set(name, {
+        // ident meta data
+        uid: ++fdata.globalNameCounter,
+        originalName,
+        uniqueName: name,
+        isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
+        isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
+        knownBuiltin, // Make a distinction between known builtins and unknown builtins.
+        // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
+        // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
+        // var/let a;
+        // var/const/let a = b;
+        // const a = b;
+        // import a, b as a, * as a, {a, b as a} from 'x';
+        // export var/let a
+        // export var/const/let a = b
+        // function a(){};
+        // export function a(){};
+        // a = b;
+        // a+= b;
+        // var/const/let [a, b: a] = b;
+        // [a, b: a] = b;
+        // var/const/let {a, b: a} = b;
+        // ({a, b: a} = b);
+        // [b: a] = c;
+        // ++a;
+        // a++;
+        // for (a in b);
+        // for ([a] in b);
+        // for ({a} in b);
+        // In a nutshell there are six concrete areas to look for updates;
+        // - [x] binding declarations
+        //   - [x] regular
+        //   - [x] destructuring
+        //   - [ ] exported
+        //   - [x] could be inside `for` header
+        // - [x] param names
+        //   - [x] regular
+        //   - [x] patterns
+        // - [x] assigning
+        //   - [x] regular
+        //   - [x] compound
+        //   - [x] destructuring array
+        //   - [x] destructuring object
+        // - [ ] imports of any kind
+        // - [x] function declarations
+        // - [ ] update expressions, pre or postifx, inc or dec
+        // - [ ] for-loop lhs
+        writes: [], // {parent, prop, index} indirect reference ot the node being assigned
+        reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
+      });
+    }
+  }
+  function createFreshVar(name) {
+    ASSERT(createFreshVar.length === arguments.length, 'arg count');
+    const tmpName = generateUniqueGlobalName(name);
+    registerGlobalIdent(tmpName, tmpName);
+    return tmpName;
+  }
 }

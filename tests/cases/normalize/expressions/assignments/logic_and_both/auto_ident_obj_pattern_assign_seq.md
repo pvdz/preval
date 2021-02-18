@@ -58,31 +58,28 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = a;
+let SSA_x = tmpNestedAssignObjPatternRhs.x;
+let SSA_y = tmpNestedAssignObjPatternRhs.y;
+let SSA_a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  $(x);
-  $(y);
+  $(SSA_x);
+  $(SSA_y);
   const tmpObjLitVal$2 = $(3);
   const tmpObjLitVal$3 = $(4);
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
-  x = tmpNestedAssignObjPatternRhs$1.x;
-  y = tmpNestedAssignObjPatternRhs$1.y;
-  a = tmpNestedAssignObjPatternRhs$1;
+  SSA_x = tmpNestedAssignObjPatternRhs$1.x;
+  SSA_y = tmpNestedAssignObjPatternRhs$1.y;
+  SSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(a, x, y);
+$(SSA_a, SSA_x, SSA_y);
 `````
 
 ## Globals

@@ -37,16 +37,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = b;
-b = b - 1;
-if (tmpPostUpdArgIdent) {
-  $(100);
-} else {
-  $(200);
-}
-$(a, b);
+$(100);
+$(a, 0);
 `````
 
 ## Globals

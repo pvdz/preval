@@ -62,26 +62,20 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-a = 3;
-const tmpBinBothLhs = a;
 const tmpNestedAssignComMemberObj$1 = $(b);
 const tmpNestedAssignComMemberProp$1 = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-a = 3;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, b, c, 3);
+$(6);
+$(3, b, c, 3);
 `````
 
 ## Globals

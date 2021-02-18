@@ -34,12 +34,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-a = undefined;
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a, 1);
+$(tmpCalleeParam, undefined);
+$(undefined, 1);
 `````
 
 ## Globals

@@ -53,29 +53,26 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = a;
+let SSA_x = arrPatternSplat[0];
+let SSA_y = arrPatternSplat[1];
+let SSA_a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   const tmpArrElement$2 = $(3);
   const tmpArrElement$3 = $(4);
   const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  x = arrPatternSplat$1[0];
-  y = arrPatternSplat$1[1];
-  a = tmpNestedAssignArrPatternRhs$1;
+  SSA_x = arrPatternSplat$1[0];
+  SSA_y = arrPatternSplat$1[1];
+  SSA_a = tmpNestedAssignArrPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(a, x, y);
+$(SSA_a, SSA_x, SSA_y);
 `````
 
 ## Globals

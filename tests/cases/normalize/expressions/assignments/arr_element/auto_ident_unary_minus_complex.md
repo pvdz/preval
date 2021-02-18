@@ -35,16 +35,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-a = -tmpUnaryArg;
-const tmpBinBothLhs = a;
+const SSA_a = -tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
-a = -tmpUnaryArg$1;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a$1 = -tmpUnaryArg$1;
+const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

@@ -40,16 +40,15 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
+  SSA_a = tmpChainElementObject;
 }
-const tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = SSA_a;
 $(...tmpCalleeParamSpread);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

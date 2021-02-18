@@ -38,16 +38,14 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpForInDeclRhs = a;
+const SSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in SSA_a) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

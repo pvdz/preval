@@ -41,12 +41,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-a.b = 2;
-$(a);
+const SSA_a = { b: tmpObjLitVal };
+SSA_a.b = 2;
+$(SSA_a);
 `````
 
 ## Globals

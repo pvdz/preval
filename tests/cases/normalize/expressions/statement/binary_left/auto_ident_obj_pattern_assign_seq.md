@@ -39,18 +39,16 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const a = { a: 999, b: 1000 };
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpAssignObjPatternRhs.x;
-y = tmpAssignObjPatternRhs.y;
+const SSA_x = tmpAssignObjPatternRhs.x;
+const SSA_y = tmpAssignObjPatternRhs.y;
 $(100);
-$(a, x, y);
+$(a, SSA_x, SSA_y);
 `````
 
 ## Globals

@@ -49,18 +49,16 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-a = tmpBinBothLhs * 3;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a, b, c, 3);
+const SSA_a = a * 3;
+$(SSA_a);
+$(SSA_a, b, c, 3);
 `````
 
 ## Globals

@@ -71,29 +71,14 @@ if (tmpIfTest$4) {
 let x;
 let y;
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  x = 1;
-  y = 2;
-  a = undefined;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  a = tmpNestedAssignObjPatternRhs;
-  $(a, x, y);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const SSA_x$1 = tmpNestedAssignObjPatternRhs.x;
+const SSA_y$1 = tmpNestedAssignObjPatternRhs.y;
+$(tmpNestedAssignObjPatternRhs, SSA_x$1, SSA_y$1);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

@@ -42,19 +42,17 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
-const tmpIfTest = a;
-if (tmpIfTest) {
+const SSA_a = new tmpNewCallee(1);
+if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

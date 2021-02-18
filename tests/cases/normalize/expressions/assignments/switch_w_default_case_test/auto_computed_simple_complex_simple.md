@@ -60,13 +60,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const SSA_a = { b: tmpObjLitVal };
+const tmpIfTest = SSA_a === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -83,10 +81,9 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
+SSA_a[tmpAssignComMemLhsProp] = 2;
+$(SSA_a);
 `````
 
 ## Globals

@@ -51,7 +51,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const obj = {};
 b.x = 3;
 b.x = 3;
@@ -59,10 +58,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-a = 3;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, b, 3);
+obj[3];
+$(3, b, 3);
 `````
 
 ## Globals

@@ -42,21 +42,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-const tmpBinBothLhs = a;
-const tmpNestedCompoundLhs$1 = b;
-const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs$1 - 1;
-b = tmpNestedComplexRhs$1;
-a = tmpNestedComplexRhs$1;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = 0 + -1;
 $(tmpCalleeParam);
-$(a, b);
+$(-1, -1);
 `````
 
 ## Globals

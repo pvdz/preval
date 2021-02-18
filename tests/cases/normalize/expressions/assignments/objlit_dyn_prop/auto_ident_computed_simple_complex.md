@@ -38,13 +38,11 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompProp = $('c');
-a = b[tmpAssignRhsCompProp];
-const tmpObjLitPropKey = a;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const SSA_a = b[tmpAssignRhsCompProp];
+const tmpCalleeParam = { [SSA_a]: 10 };
 $(tmpCalleeParam);
-$(a, b);
+$(SSA_a, b);
 `````
 
 ## Globals

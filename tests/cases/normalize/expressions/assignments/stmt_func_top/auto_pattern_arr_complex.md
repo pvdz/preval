@@ -44,12 +44,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 function f() {
   const bindingPatternArrRoot = { a: 999, b: 1000 };
   const arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
+  arrPatternSplat[0];
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
-  $(a);
+  const SSA_a = arrPatternSplat$1[0];
+  $(SSA_a);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

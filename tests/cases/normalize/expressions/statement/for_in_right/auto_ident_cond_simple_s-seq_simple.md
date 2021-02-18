@@ -32,10 +32,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
-tmpForInDeclRhs = 60;
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in 60) {
 }
 $(a);
 `````

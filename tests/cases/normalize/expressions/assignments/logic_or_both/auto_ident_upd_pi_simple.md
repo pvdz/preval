@@ -43,22 +43,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-let tmpCalleeParam = a;
+let SSA_b = 2;
+let SSA_a = 2;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
-  b = b + 1;
-  const tmpNestedComplexRhs$1 = b;
-  a = tmpNestedComplexRhs$1;
+  SSA_b = SSA_b + 1;
+  const tmpNestedComplexRhs$1 = SSA_b;
+  SSA_a = tmpNestedComplexRhs$1;
   tmpCalleeParam = tmpNestedComplexRhs$1;
 }
 $(tmpCalleeParam);
-$(a, b);
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

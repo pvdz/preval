@@ -44,18 +44,17 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
+    SSA_a = tmpChainElementObject$1;
   }
 }
-const tmpThrowArg = a;
+const tmpThrowArg = SSA_a;
 throw tmpThrowArg;
 `````
 

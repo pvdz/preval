@@ -45,10 +45,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
-  tmpNestedComplexRhs = $(60);
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const SSA_tmpNestedComplexRhs = $(60);
+  a = SSA_tmpNestedComplexRhs;
+  tmpCalleeParam = SSA_tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

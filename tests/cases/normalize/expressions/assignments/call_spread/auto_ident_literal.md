@@ -30,11 +30,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'foo';
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a);
+$(...'foo');
+$('foo');
 `````
 
 ## Globals

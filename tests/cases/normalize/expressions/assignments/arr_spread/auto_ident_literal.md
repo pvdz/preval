@@ -31,12 +31,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'foo';
-const tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = ['f', 'o', 'o'];
 $(tmpCalleeParam);
-$(a);
+$('foo');
 `````
 
 ## Globals

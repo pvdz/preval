@@ -64,22 +64,10 @@ if (tmpIfTest$5) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  a = undefined;
-  a = $(60);
-  $(a);
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
-  $('fail1');
-}
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
-  $('fail2');
-}
+const SSA_a$1 = $(60);
+$(SSA_a$1);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

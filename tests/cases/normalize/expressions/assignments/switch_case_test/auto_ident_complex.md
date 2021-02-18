@@ -41,10 +41,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
-a = $(1);
-$(a, 1);
+const SSA_a = $(1);
+$(SSA_a, 1);
 `````
 
 ## Globals

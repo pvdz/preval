@@ -47,19 +47,18 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-  a = tmpChainElementCall;
+  SSA_a = tmpChainElementCall;
 }
-const tmpCalleeParam = a;
+const tmpCalleeParam = SSA_a;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

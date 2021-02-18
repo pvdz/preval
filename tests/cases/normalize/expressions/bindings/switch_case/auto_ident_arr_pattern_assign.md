@@ -55,22 +55,13 @@ if (tmpIfTest$1) {
 let x;
 let y;
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  x = 1;
-  y = 2;
-  a = undefined;
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  $(a, x, y);
-}
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_x$1 = arrPatternSplat[0];
+const SSA_y$1 = arrPatternSplat[1];
+$(tmpNestedAssignArrPatternRhs, SSA_x$1, SSA_y$1);
 `````
 
 ## Globals

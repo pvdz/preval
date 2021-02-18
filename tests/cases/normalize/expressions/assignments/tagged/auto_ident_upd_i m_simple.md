@@ -36,15 +36,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpPostUpdArgIdent = b;
-b = b - 1;
-a = tmpPostUpdArgIdent;
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a, b);
+$(tmpCalleeParam, 1);
+$(1, 0);
 `````
 
 ## Globals

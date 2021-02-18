@@ -43,20 +43,19 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = a;
+let SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $('y');
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

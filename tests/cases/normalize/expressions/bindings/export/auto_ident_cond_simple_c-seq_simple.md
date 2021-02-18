@@ -27,10 +27,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-a = $(60);
-export { a };
-$(a);
+const SSA_a = $(60);
+export { SSA_a as a };
+$(SSA_a);
 `````
 
 ## Globals

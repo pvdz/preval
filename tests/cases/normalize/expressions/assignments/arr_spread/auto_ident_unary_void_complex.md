@@ -32,13 +32,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(100);
-a = undefined;
-const tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = [...undefined];
 $(tmpCalleeParam);
-$(a);
+$(undefined);
 `````
 
 ## Globals

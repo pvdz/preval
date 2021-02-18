@@ -40,8 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
@@ -50,10 +49,9 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(100);
   tmpBinBothRhs = $(tmpCalleeParam$1);
 }
-a = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a);
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

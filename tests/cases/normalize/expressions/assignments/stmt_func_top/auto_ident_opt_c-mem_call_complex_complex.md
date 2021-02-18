@@ -56,8 +56,7 @@ tmpCallCallee(tmpCalleeParam$2);
 `````js filename=intro
 function f() {
   const b = { $: $ };
-  let a = { a: 999, b: 1000 };
-  a = undefined;
+  let SSA_a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
@@ -68,10 +67,10 @@ function f() {
       const tmpCallVal = tmpChainElementObject.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-      a = tmpChainElementCall$1;
+      SSA_a = tmpChainElementCall$1;
     }
   }
-  $(a);
+  $(SSA_a);
 }
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

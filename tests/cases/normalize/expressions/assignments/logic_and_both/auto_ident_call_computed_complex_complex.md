@@ -43,20 +43,19 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-a = tmpCallCompObj[tmpCallCompProp](1);
-let tmpCalleeParam = a;
+let SSA_a = tmpCallCompObj[tmpCallCompProp](1);
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $('$');
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -34,9 +34,8 @@ $(a, x);
 
 `````js filename=intro
 const a = $(10);
-let x = $(20);
-x = a;
-$(a, x);
+$(20);
+$(a, a);
 `````
 
 ## Globals

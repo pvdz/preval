@@ -35,12 +35,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
-a = delete tmpDeleteCompObj['y'];
-const tmpExportDefault = a;
+const SSA_a = delete tmpDeleteCompObj['y'];
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

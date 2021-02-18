@@ -84,7 +84,7 @@ function f($tdz$__pattern) {
     objPatternCrashTest = objPatternAfterDefault === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    objPatternAfterDefault.cannotDestructureThis;
   }
   return 'bad';
 }

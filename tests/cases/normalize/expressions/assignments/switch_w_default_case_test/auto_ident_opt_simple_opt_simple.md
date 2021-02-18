@@ -71,20 +71,19 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$2 = tmpChainElementObject != null;
   if (tmpIfTest$2) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
+    SSA_a = tmpChainElementObject$1;
   }
 }
-const tmpBinLhs = a;
+const tmpBinLhs = SSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -102,7 +101,7 @@ const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$6) {
   $('fail2');
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

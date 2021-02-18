@@ -35,11 +35,11 @@ export { y };
 var x;
 var y;
 $(x, y);
-x = 10;
-y = 20;
-$(x, y);
-export { x };
-export { y };
+const SSA_x = 10;
+const SSA_y = 20;
+$(10, 20);
+export { SSA_x as x };
+export { SSA_y as y };
 `````
 
 ## Globals

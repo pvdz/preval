@@ -63,19 +63,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const b = { x: 1 };
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  $(3, b, 3);
-}
+const b = { x: 1 };
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+$(3, b, 3);
 `````
 
 ## Globals

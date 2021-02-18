@@ -42,19 +42,18 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-a = tmpCallObj.$(1);
-let tmpCalleeParam = a;
+let SSA_a = tmpCallObj.$(1);
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpCallObj$1 = $(b);
   const tmpNestedComplexRhs = tmpCallObj$1.$(1);
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

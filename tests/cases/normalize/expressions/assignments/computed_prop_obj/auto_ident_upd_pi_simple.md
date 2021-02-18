@@ -37,15 +37,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-const tmpCompObj = a;
-tmpCompObj.a;
-$(a, b);
+(2).a;
+$(2, 2);
 `````
 
 ## Globals

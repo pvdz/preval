@@ -41,17 +41,16 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
-a = $(tmpCalleeParam$1, tmpCalleeParam$2);
-let tmpCalleeParam = a;
+const SSA_a = $(tmpCalleeParam$1, tmpCalleeParam$2);
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

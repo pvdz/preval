@@ -44,7 +44,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  arrPatternStep.cannotDestructureThis;
 }
 $('ok');
 `````

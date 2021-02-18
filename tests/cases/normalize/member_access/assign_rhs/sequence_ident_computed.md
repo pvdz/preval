@@ -34,11 +34,10 @@ $(c);
 ## Output
 
 `````js filename=intro
-let x = 10;
 $(1);
 const tmpAssignRhsCompProp = $('length');
-x = 'foo'[tmpAssignRhsCompProp];
-$(x);
+const SSA_x = 'foo'[tmpAssignRhsCompProp];
+$(SSA_x);
 $(1);
 `````
 

@@ -43,19 +43,18 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let y = 2;
 const a = { a: 999, b: 1000 };
 $(x_1);
-$(y);
+$(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x_1 = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
+const SSA_y = tmpNestedAssignObjPatternRhs.y;
 let x_1;
 for (x_1 in tmpNestedAssignObjPatternRhs) {
 }
-$(a, 1, y);
+$(a, 1, SSA_y);
 `````
 
 ## Globals

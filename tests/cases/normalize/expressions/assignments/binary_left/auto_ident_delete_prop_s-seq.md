@@ -39,15 +39,13 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = delete arg.y;
-const tmpBinBothLhs = a;
+const SSA_a = delete arg.y;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = SSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

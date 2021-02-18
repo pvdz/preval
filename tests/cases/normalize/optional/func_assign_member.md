@@ -44,14 +44,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   var y;
-  y = undefined;
+  let SSA_y = undefined;
   const tmpChainRootProp = $();
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.foo;
-    y = tmpChainElementObject;
+    SSA_y = tmpChainElementObject;
   }
-  const tmpReturnArg = $(y);
+  const tmpReturnArg = $(SSA_y);
   return tmpReturnArg;
 }
 const tmpCalleeParam = f();

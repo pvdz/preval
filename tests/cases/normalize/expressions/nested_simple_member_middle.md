@@ -37,13 +37,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var a;
-a = 10;
 const b = {};
 const tmpNestedAssignObj = $(b);
 tmpNestedAssignObj.x = 30;
-a = 30;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(30);
 `````
 
 ## Globals

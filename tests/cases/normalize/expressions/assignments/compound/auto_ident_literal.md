@@ -30,11 +30,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = a * 'foo';
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a);
+const a = { a: 999, b: 1000 };
+const SSA_a = a * 'foo';
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

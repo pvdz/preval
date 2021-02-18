@@ -44,20 +44,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-let tmpCalleeParam = a;
+const SSA_a = { b: tmpObjLitVal };
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
 $(1);
-const tmpAssignComMemLhsObj = $(a);
+const tmpAssignComMemLhsObj = $(SSA_a);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -36,11 +36,10 @@ const tmpObjLitVal$2 = $();
 const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-let x = 10;
 const tmpCompObj = obj.a;
 const tmpAssignRhsProp = tmpCompObj.b;
-x = tmpAssignRhsProp.c;
-$(x);
+const SSA_x = tmpAssignRhsProp.c;
+$(SSA_x);
 `````
 
 ## Globals

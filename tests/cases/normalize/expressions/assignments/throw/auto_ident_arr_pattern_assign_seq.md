@@ -41,20 +41,15 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+arrPatternSplat[0];
+arrPatternSplat[1];
+throw tmpNestedAssignArrPatternRhs;
 `````
 
 ## Globals

@@ -48,15 +48,13 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
 $(100);
-$(a, b);
+$(tmpPostUpdArgVal, b);
 `````
 
 ## Globals

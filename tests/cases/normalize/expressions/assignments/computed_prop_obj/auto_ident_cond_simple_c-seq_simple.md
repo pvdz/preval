@@ -31,11 +31,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = $(60);
-const tmpCompObj = a;
-tmpCompObj.a;
-$(a);
+const SSA_a = $(60);
+SSA_a.a;
+$(SSA_a);
 `````
 
 ## Globals

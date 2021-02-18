@@ -35,15 +35,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-b = $(2);
-const tmpIfTest = b;
-if (tmpIfTest) {
+const SSA_b = $(2);
+if (SSA_b) {
 } else {
   $(100);
 }
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

@@ -36,15 +36,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
+[];
 const a = { a: 999, b: 1000 };
 $(100);
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-b = arrPatternSplat[0];
-$(a, b);
+const SSA_b = arrPatternSplat[0];
+$(a, SSA_b);
 `````
 
 ## Globals

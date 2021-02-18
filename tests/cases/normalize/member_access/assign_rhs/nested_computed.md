@@ -33,10 +33,9 @@ $(x);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-let x = 10;
 const tmpAssignRhsProp = obj.a;
-x = tmpAssignRhsProp['b'];
-$(x);
+const SSA_x = tmpAssignRhsProp.b;
+$(SSA_x);
 `````
 
 ## Globals

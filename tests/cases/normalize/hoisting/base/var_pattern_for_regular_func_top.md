@@ -41,8 +41,8 @@ function f() {
   $(x);
   const arrAssignPatternRhs = [10];
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  $(x);
+  const SSA_x = arrPatternSplat[0];
+  $(SSA_x);
 }
 f();
 `````

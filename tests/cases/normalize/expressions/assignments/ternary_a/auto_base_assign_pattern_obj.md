@@ -44,22 +44,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = a;
-if (tmpIfTest) {
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
+if (tmpNestedAssignObjPatternRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, b);
+$(tmpNestedAssignObjPatternRhs, SSA_b);
 `````
 
 ## Globals

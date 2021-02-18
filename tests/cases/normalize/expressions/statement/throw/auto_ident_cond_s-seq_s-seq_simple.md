@@ -35,9 +35,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = undefined;
-tmpThrowArg = 60;
-throw tmpThrowArg;
+throw 60;
 `````
 
 ## Globals

@@ -35,12 +35,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
-const tmpCompObj = a;
-tmpCompObj.a;
-$(a, 1);
+const SSA_a = typeof tmpUnaryArg;
+SSA_a.a;
+$(SSA_a, 1);
 `````
 
 ## Globals

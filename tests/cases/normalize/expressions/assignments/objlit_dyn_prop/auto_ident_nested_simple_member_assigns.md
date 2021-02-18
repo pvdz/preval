@@ -51,18 +51,15 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-a = 3;
-const tmpObjLitPropKey = a;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam = { [3]: 10 };
 $(tmpCalleeParam);
-$(a, b, 3);
+$(3, b, 3);
 `````
 
 ## Globals

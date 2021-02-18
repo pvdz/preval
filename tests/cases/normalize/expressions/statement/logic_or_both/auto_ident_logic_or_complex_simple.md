@@ -49,7 +49,7 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(0);
-  tmpIfTest = $(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 $(a);
 `````

@@ -45,20 +45,19 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = delete arg.y;
-let tmpCalleeParam = a;
+let SSA_a = delete arg.y;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   $(1);
   $(2);
   const tmpNestedComplexRhs = delete arg.y;
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

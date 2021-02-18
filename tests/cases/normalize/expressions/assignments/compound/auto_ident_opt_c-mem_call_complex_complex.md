@@ -52,8 +52,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -68,10 +67,9 @@ if (tmpIfTest) {
     tmpBinBothRhs = tmpChainElementCall$1;
   }
 }
-a = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a);
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

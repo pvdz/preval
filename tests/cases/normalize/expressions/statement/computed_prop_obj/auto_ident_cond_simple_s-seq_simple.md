@@ -32,9 +32,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCompObj = undefined;
-tmpCompObj = 60;
-tmpCompObj.a;
+(60).a;
 $(a);
 `````
 

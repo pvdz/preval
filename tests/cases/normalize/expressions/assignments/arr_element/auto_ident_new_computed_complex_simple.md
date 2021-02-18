@@ -41,18 +41,15 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
-const tmpBinBothLhs = a;
+const SSA_a = new tmpNewCallee(1);
 const tmpCompObj$1 = $(b);
 const tmpNewCallee$1 = tmpCompObj$1.$;
-a = new tmpNewCallee$1(1);
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a$1 = new tmpNewCallee$1(1);
+const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

@@ -42,22 +42,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  SSA_a = tmpChainElementCall;
 }
-const tmpIfTest = a;
+const tmpIfTest = SSA_a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

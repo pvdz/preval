@@ -27,9 +27,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = $(1);
-a = $(2);
-$(a);
+$(1);
+const SSA_a = $(2);
+$(SSA_a);
 `````
 
 ## Globals

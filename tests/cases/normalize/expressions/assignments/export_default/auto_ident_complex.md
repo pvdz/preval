@@ -32,11 +32,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = $(1);
-const tmpExportDefault = a;
+const SSA_a = $(1);
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

@@ -37,12 +37,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompProp = $('c');
-a = b[tmpAssignRhsCompProp];
-const tmpCompObj = a;
-tmpCompObj.a;
-$(a, b);
+const SSA_a = b[tmpAssignRhsCompProp];
+SSA_a.a;
+$(SSA_a, b);
 `````
 
 ## Globals

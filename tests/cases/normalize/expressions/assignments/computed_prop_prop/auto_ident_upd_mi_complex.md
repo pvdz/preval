@@ -42,17 +42,14 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, b);
+obj[tmpNestedPropCompoundComplexRhs];
+$(tmpNestedPropCompoundComplexRhs, b);
 `````
 
 ## Globals

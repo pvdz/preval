@@ -35,14 +35,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 100;
 const tmpArrElement = {};
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const tmpCalleeParam$1 = [];
-x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
-$(x);
+const SSA_x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
+$(SSA_x);
 `````
 
 ## Globals

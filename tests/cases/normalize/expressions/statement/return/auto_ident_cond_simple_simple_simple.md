@@ -38,9 +38,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = undefined;
-  tmpReturnArg = 2;
-  return tmpReturnArg;
+  return 2;
 }
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

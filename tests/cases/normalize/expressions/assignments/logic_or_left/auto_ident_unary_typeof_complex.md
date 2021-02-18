@@ -38,16 +38,15 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
-let tmpCalleeParam = a;
+const SSA_a = typeof tmpUnaryArg;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

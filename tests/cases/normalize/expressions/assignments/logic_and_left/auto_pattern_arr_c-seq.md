@@ -44,20 +44,20 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+arrPatternSplat[0];
 let tmpCalleeParam;
 $(10);
 $(20);
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
-tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
+const SSA_a = arrPatternSplat$1[0];
+let SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+if (SSA_tmpCalleeParam) {
+  SSA_tmpCalleeParam = $(100);
 }
-$(tmpCalleeParam);
-$(a);
+$(SSA_tmpCalleeParam);
+$(SSA_a);
 `````
 
 ## Globals

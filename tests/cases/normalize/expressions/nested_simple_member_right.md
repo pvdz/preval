@@ -37,13 +37,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var a;
-a = 10;
 const c = {};
 const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.x;
-a = tmpNestedComplexRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(tmpNestedComplexRhs);
 `````
 
 ## Globals

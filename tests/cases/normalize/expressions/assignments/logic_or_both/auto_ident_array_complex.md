@@ -42,21 +42,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-a = [tmpArrElement, 2, tmpArrElement$2];
-let tmpCalleeParam = a;
+let SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpArrElement$3 = $(1);
   const tmpArrElement$5 = $(3);
   const tmpNestedComplexRhs = [tmpArrElement$3, 2, tmpArrElement$5];
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

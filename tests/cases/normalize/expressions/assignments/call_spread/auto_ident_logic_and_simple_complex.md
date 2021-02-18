@@ -35,15 +35,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 1;
-if (a) {
+let SSA_a = 1;
+if (SSA_a) {
   const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
+  SSA_a = $(tmpCalleeParam);
 }
-const tmpCalleeParamSpread = a;
+const tmpCalleeParamSpread = SSA_a;
 $(...tmpCalleeParamSpread);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

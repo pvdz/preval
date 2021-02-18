@@ -29,10 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = 1;
-const tmpPostUpdArgIdent = x;
-x = x + 1;
-$(tmpPostUpdArgIdent);
+$(1);
 `````
 
 ## Globals

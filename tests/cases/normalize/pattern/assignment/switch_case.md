@@ -48,18 +48,11 @@ if (tmpIfTest$1) {
 `````js filename=intro
 let a;
 let b;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  a = 10;
-  b = 20;
-  const arrAssignPatternRhs = [30, 40];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-  $(a, b);
-}
+const arrAssignPatternRhs = [30, 40];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const SSA_a$1 = arrPatternSplat[0];
+const SSA_b$1 = arrPatternSplat[1];
+$(SSA_a$1, SSA_b$1);
 `````
 
 ## Globals

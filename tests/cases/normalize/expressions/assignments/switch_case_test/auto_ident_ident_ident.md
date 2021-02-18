@@ -44,12 +44,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 $(1);
-b = 2;
-a = 2;
-$(a, b, 2);
+$(2, 2, 2);
 `````
 
 ## Globals

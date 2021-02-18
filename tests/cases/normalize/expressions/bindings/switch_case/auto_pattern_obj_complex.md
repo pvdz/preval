@@ -44,15 +44,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const bindingPatternObjRoot = $(tmpCalleeParam);
-  const a = bindingPatternObjRoot.a;
-  $(a);
-}
+const tmpCalleeParam = { a: 1, b: 2 };
+const bindingPatternObjRoot = $(tmpCalleeParam);
+const a = bindingPatternObjRoot.a;
+$(a);
 `````
 
 ## Globals

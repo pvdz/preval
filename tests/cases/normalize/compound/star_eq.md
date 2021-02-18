@@ -29,11 +29,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = $(1);
-const tmpBinBothLhs = a;
+const a = $(1);
 const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs * tmpBinBothRhs;
-$(a);
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
 `````
 
 ## Globals

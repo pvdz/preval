@@ -73,8 +73,8 @@ tmpSwitchBreak: {
     $(y_1);
     const bindingPatternArrRoot = $(z);
     const arrPatternSplat = [...bindingPatternArrRoot];
-    x_1 = arrPatternSplat[0];
-    y_1 = arrPatternSplat[1];
+    arrPatternSplat[0];
+    arrPatternSplat[1];
     break tmpSwitchBreak;
   }
 }

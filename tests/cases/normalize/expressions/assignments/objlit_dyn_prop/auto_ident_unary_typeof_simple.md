@@ -35,12 +35,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'number';
-const tmpObjLitPropKey = a;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam = { ['number']: 10 };
 $(tmpCalleeParam);
-$(a, 1);
+$('number', 1);
 `````
 
 ## Globals

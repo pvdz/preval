@@ -38,15 +38,12 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 tmpNestedAssignObjPatternRhs.x;
 tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw tmpNestedAssignObjPatternRhs;
 `````
 
 ## Globals

@@ -49,15 +49,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const b = { c: 10, d: 20 };
-  let a = { a: 999, b: 1000 };
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('c');
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  $(a, b);
+  $(tmpNestedAssignPropRhs, b);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

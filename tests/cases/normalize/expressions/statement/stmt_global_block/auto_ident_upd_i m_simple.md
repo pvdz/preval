@@ -33,10 +33,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-b = b - 1;
-$(a, b);
+$(a, 0);
 `````
 
 ## Globals

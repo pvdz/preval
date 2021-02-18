@@ -42,16 +42,11 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  a = 1;
-  if (a) {
-    a = 2;
-  }
-  $(a);
+let SSA_a = 1;
+if (SSA_a) {
+  SSA_a = 2;
 }
+$(SSA_a);
 `````
 
 ## Globals

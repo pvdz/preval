@@ -41,10 +41,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 100;
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-x = undefined;
+let SSA_x = undefined;
 const tmpIfTest = a != null;
 if (tmpIfTest) {
   const tmpChainElementObject = a.b;
@@ -52,10 +51,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$1 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
-    x = tmpChainElementCall;
+    SSA_x = tmpChainElementCall;
   }
 }
-$(x);
+$(SSA_x);
 `````
 
 ## Globals

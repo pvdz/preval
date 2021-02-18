@@ -33,9 +33,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1 = undefined;
-tmpCalleeParam$1 = 2;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, 2);
 $(a);
 `````
 

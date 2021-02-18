@@ -34,12 +34,10 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+throw SSA_a;
 `````
 
 ## Globals

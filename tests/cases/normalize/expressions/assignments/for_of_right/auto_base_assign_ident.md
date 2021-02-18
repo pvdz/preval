@@ -36,16 +36,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-const tmpForOfDeclRhs = a;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of tmpNestedComplexRhs) {
 }
-$(a, b);
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
 ## Globals

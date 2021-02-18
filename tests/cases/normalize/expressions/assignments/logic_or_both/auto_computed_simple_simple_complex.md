@@ -43,22 +43,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-let tmpCalleeParam = a;
+let SSA_a = { b: tmpObjLitVal };
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal$1 = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-const tmpAssignComputedObj = a;
+const tmpAssignComputedObj = SSA_a;
 const tmpAssignComputedRhs = $(2);
 tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -69,24 +69,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
+[];
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpFallthrough = false;
-let tmpIfTest = tmpFallthrough;
-if (tmpIfTest) {
-} else {
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  tmpIfTest = tmpSwitchTest === tmpNestedAssignArrPatternRhs;
-}
-if (tmpIfTest) {
-  tmpFallthrough = true;
-}
-$(a, b);
+$(1);
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_b = arrPatternSplat[0];
+$(a, SSA_b);
 `````
 
 ## Globals

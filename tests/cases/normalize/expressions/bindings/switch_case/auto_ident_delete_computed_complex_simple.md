@@ -46,15 +46,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const arg = { y: 1 };
-  const tmpDeleteCompObj = $(arg);
-  const a = delete tmpDeleteCompObj['y'];
-  $(a, arg);
-}
+const arg = { y: 1 };
+const tmpDeleteCompObj = $(arg);
+const a = delete tmpDeleteCompObj['y'];
+$(a, arg);
 `````
 
 ## Globals

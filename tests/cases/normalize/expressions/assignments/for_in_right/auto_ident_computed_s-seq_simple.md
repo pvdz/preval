@@ -37,14 +37,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompProp = $('c');
-a = b[tmpAssignRhsCompProp];
-const tmpForInDeclRhs = a;
+const SSA_a = b[tmpAssignRhsCompProp];
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in SSA_a) {
 }
-$(a, b);
+$(SSA_a, b);
 `````
 
 ## Globals

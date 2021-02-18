@@ -31,9 +31,9 @@ export { x };
 `````js filename=intro
 var x;
 $(x);
-x = 10;
-$(x);
-export { x };
+const SSA_x = 10;
+$(10);
+export { SSA_x as x };
 `````
 
 ## Globals

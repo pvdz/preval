@@ -36,17 +36,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  SSA_a = tmpChainElementCall;
 }
 while (true) {
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

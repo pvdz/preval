@@ -26,9 +26,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-a = 60;
-$(a);
+$(60);
 `````
 
 ## Globals

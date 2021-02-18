@@ -29,10 +29,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 $(1);
-x = (2).foo;
-$(x);
+const SSA_x = (2).foo;
+$(SSA_x);
 `````
 
 ## Globals

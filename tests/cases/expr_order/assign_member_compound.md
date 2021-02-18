@@ -33,13 +33,11 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-let a = {};
+const a = {};
 const tmpCompoundAssignLhs = a.foo;
-const tmpAssignMemLhsObj = a;
-a = $();
-const tmpBinBothRhs = a;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + tmpBinBothRhs;
-tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+const SSA_a = $();
+const tmpAssignMemRhs = tmpCompoundAssignLhs + SSA_a;
+a.foo = tmpAssignMemRhs;
 `````
 
 ## Globals

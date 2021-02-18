@@ -46,22 +46,19 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
-a = tmpNestedAssignPropRhs;
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (tmpNestedAssignPropRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, b);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Globals

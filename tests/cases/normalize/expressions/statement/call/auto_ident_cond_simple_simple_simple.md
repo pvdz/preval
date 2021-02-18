@@ -31,9 +31,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-tmpCalleeParam = 2;
-$(tmpCalleeParam);
+$(2);
 $(a);
 `````
 

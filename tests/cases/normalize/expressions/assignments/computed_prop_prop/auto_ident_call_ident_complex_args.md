@@ -39,14 +39,12 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-a = $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a);
+const SSA_a = $(tmpCalleeParam, tmpCalleeParam$1);
+obj[SSA_a];
+$(SSA_a);
 `````
 
 ## Globals

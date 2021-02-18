@@ -61,19 +61,10 @@ if (tmpIfTest$3) {
 ## Output
 
 `````js filename=intro
-let x;
-let tmpSwitchCaseToStart = 2;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const bindingPatternArrRoot = [4, 5, 6];
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  x = arrPatternSplat[0];
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $(x);
-}
+const bindingPatternArrRoot = [4, 5, 6];
+const arrPatternSplat = [...bindingPatternArrRoot];
+const x = arrPatternSplat[0];
+$(x);
 `````
 
 ## Globals

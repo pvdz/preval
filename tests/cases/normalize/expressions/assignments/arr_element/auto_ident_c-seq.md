@@ -40,18 +40,15 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = $(1);
-const tmpBinBothLhs = a;
+const SSA_a = $(1);
 $(1);
 $(2);
-a = $(1);
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a$1 = $(1);
+const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-$(a, 1);
+$(SSA_a$1, 1);
 `````
 
 ## Globals

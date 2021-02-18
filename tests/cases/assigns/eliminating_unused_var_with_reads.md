@@ -1,0 +1,59 @@
+# Preval test case
+
+# eliminating_unused_var_with_reads.md
+
+> assigns > eliminating_unused_var_with_reads
+>
+> Trying to create a test case with a variable that is unused but has a read for another variable.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let x = $('unknown 1');
+let z = $('unknown 2'); // This is dropped after `unused` is dropped
+$(x);
+let unused = x + z; // Can't eliminate the init, can't reduce it further, won't inline it. But the binding is unused so the decl is removed.
+x = $('unknown 3'); // This has to be made a constant in the first cycle. The unused binding would be eliminated in the same cycle.
+$(x);
+`````
+
+## Normalized
+
+`````js filename=intro
+let x = $('unknown 1');
+let z = $('unknown 2');
+$(x);
+let unused = x + z;
+x = $('unknown 3');
+$(x);
+`````
+
+## Output
+
+`````js filename=intro
+const x = $('unknown 1');
+$('unknown 2');
+$(x);
+const SSA_x = $('unknown 3');
+$(SSA_x);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'unknown 1'
+ - 2: 'unknown 2'
+ - 3: 'unknown 1'
+ - 4: 'unknown 3'
+ - 5: 'unknown 3'
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

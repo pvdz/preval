@@ -35,14 +35,14 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-a = tmpAssignObjPatternRhs.a;
+const SSA_a = tmpAssignObjPatternRhs.a;
 while (true) {
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -37,14 +37,12 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-const xyz = a;
-$(xyz);
-$(a, arg);
+const SSA_a = delete tmpDeleteObj.y;
+$(SSA_a);
+$(SSA_a, arg);
 `````
 
 ## Globals

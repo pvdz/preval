@@ -44,12 +44,11 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-a = $(tmpCalleeParam, tmpCalleeParam$1);
+const SSA_a = $(tmpCalleeParam, tmpCalleeParam$1);
 $(100);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

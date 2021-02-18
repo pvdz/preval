@@ -32,10 +32,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let b = 1;
-const tmpPostUpdArgIdent = b;
-b = b - 1;
-throw tmpPostUpdArgIdent;
+throw 1;
 `````
 
 ## Globals

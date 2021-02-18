@@ -36,13 +36,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-a = delete arg['y'];
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a = delete arg['y'];
+const tmpCalleeParam = tmpBinBothLhs + SSA_a;
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

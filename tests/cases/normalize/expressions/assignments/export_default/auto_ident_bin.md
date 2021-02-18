@@ -31,13 +31,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs + tmpBinBothRhs;
-const tmpExportDefault = a;
+const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

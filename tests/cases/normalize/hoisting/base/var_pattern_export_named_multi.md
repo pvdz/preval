@@ -41,13 +41,13 @@ var y;
 $(x, y);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
+const SSA_x = arrPatternSplat[0];
 const arrAssignPatternRhs$1 = [20];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-y = arrPatternSplat$1[0];
-$(x, y);
-export { x };
-export { y };
+const SSA_y = arrPatternSplat$1[0];
+$(SSA_x, SSA_y);
+export { SSA_x as x };
+export { SSA_y as y };
 `````
 
 ## Globals

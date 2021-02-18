@@ -31,13 +31,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
-a = tmpCallCallee(1);
+const SSA_a = tmpCallCallee(1);
 while (true) {
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

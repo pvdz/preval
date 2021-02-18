@@ -38,17 +38,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-a = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-const tmpAssignComputedObj = a;
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
-$(a);
+SSA_a['b'] = tmpAssignComputedRhs;
+$(SSA_a);
 `````
 
 ## Globals

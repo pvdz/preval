@@ -32,12 +32,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'foo';
-const tmpObjLitPropKey = a;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam = { ['foo']: 10 };
 $(tmpCalleeParam);
-$(a);
+$('foo');
 `````
 
 ## Globals

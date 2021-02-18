@@ -40,16 +40,14 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-$(tmpNestedAssignObjPatternRhs, x, y);
+const SSA_x = tmpNestedAssignObjPatternRhs.x;
+const SSA_y = tmpNestedAssignObjPatternRhs.y;
+$(tmpNestedAssignObjPatternRhs, SSA_x, SSA_y);
 `````
 
 ## Globals

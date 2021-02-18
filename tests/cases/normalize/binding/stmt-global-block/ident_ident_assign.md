@@ -41,13 +41,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let b = 2;
   const tmpNestedAssignObj = $(3);
   const tmpNestedAssignPropRhs = $(4);
   tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-  b = tmpNestedAssignPropRhs;
-  const a = b;
-  $(a, b, 3);
+  $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 }
 `````
 

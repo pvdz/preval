@@ -32,9 +32,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpTemplateExpr = undefined;
-tmpTemplateExpr = $(2);
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const SSA_tmpTemplateExpr = $(2);
+const tmpCalleeParam = `before  ${SSA_tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

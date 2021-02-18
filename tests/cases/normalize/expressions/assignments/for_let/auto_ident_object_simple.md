@@ -32,14 +32,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = { x: 1, y: 2, z: 3 };
-const xyz = a;
+const SSA_a = { x: 1, y: 2, z: 3 };
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -47,10 +47,10 @@ $(a);
 const a = { a: 999, b: 1000 };
 $(1);
 const tmpCalleeParam = $(1);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 $(a);
 `````

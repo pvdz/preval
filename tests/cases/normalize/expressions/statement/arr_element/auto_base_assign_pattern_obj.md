@@ -39,17 +39,16 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-b = tmpAssignObjPatternRhs.b;
+tmpAssignObjPatternRhs.b;
 const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
 const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-b = tmpAssignObjPatternRhs$1.b;
-$(a, b);
+const SSA_b$1 = tmpAssignObjPatternRhs$1.b;
+$(a, SSA_b$1);
 `````
 
 ## Globals

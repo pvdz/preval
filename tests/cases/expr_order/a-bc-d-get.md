@@ -40,15 +40,13 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-let a = 1;
 const b = {
   get c() {
     $('should not be called');
   },
 };
 b.c = 3;
-a = 3;
-$(a, b, 3);
+$(3, b, 3);
 `````
 
 ## Globals

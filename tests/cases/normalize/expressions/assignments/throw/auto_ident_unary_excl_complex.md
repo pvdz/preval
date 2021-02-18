@@ -29,11 +29,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-a = !tmpUnaryArg;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = !tmpUnaryArg;
+throw SSA_a;
 `````
 
 ## Globals

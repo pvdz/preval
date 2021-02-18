@@ -41,20 +41,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (tmpNestedComplexRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, b);
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
 ## Globals

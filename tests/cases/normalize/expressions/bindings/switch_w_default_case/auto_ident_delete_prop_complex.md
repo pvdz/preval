@@ -61,23 +61,12 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const arg = { y: 1 };
-  const tmpDeleteObj = $(arg);
-  const a = delete tmpDeleteObj.y;
-  $(a, arg);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+const a = delete tmpDeleteObj.y;
+$(a, arg);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

@@ -72,30 +72,15 @@ if (tmpIfTest$4) {
 let x;
 let y;
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  x = 1;
-  y = 2;
-  a = undefined;
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  $(a, x, y);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_x$1 = arrPatternSplat[0];
+const SSA_y$1 = arrPatternSplat[1];
+$(tmpNestedAssignArrPatternRhs, SSA_x$1, SSA_y$1);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

@@ -32,13 +32,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'foo';
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = 'foo' + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$('foo');
 `````
 
 ## Globals

@@ -39,11 +39,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 $(100);
-a = undefined;
-$(a);
+undefined;
+$(undefined);
 `````
 
 ## Globals

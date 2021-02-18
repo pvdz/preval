@@ -38,9 +38,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-tmpCalleeParam = $(2);
-$(tmpCalleeParam);
+const SSA_tmpCalleeParam = $(2);
+$(SSA_tmpCalleeParam);
 $(a);
 `````
 

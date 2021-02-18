@@ -42,18 +42,16 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+[];
+const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpBinBothLhs * tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a, b);
+const SSA_b = arrPatternSplat[0];
+const SSA_a = a * tmpNestedAssignArrPatternRhs;
+$(SSA_a);
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

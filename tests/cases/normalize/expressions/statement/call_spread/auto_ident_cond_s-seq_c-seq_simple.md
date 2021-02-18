@@ -38,9 +38,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread = undefined;
-tmpCalleeParamSpread = $(60);
-$(...tmpCalleeParamSpread);
+const SSA_tmpCalleeParamSpread = $(60);
+$(...SSA_tmpCalleeParamSpread);
 $(a);
 `````
 

@@ -46,14 +46,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let b = [];
+  [];
   const a = { a: 999, b: 1000 };
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
-  b = arrPatternSplat[0];
-  $(a, b);
+  const SSA_b = arrPatternSplat[0];
+  $(a, SSA_b);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

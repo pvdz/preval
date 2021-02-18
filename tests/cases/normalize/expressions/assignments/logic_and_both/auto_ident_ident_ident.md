@@ -42,19 +42,17 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-b = 2;
-a = 2;
-let tmpCalleeParam = a;
+let SSA_b = 2;
+let SSA_a = 2;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  b = 2;
-  const tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
+  SSA_b = 2;
+  const tmpNestedComplexRhs = SSA_b;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, b, 2);
+$(SSA_a, SSA_b, 2);
 `````
 
 ## Globals

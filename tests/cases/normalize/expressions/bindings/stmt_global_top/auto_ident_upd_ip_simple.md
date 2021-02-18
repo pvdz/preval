@@ -30,10 +30,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-const tmpPostUpdArgIdent = b;
-b = b + 1;
-$(tmpPostUpdArgIdent, b);
+$(1, 2);
 `````
 
 ## Globals

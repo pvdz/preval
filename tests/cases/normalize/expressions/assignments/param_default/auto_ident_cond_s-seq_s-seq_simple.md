@@ -53,9 +53,7 @@ function f($tdz$__p) {
   undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs = undefined;
-    tmpNestedComplexRhs = 60;
-    a = tmpNestedComplexRhs;
+    a = 60;
   }
 }
 let a = { a: 999, b: 1000 };

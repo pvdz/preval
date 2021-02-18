@@ -69,14 +69,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
 const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-b = tmpNestedAssignObjPatternRhs.b;
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -100,7 +99,7 @@ tmpSwitchBreak: {
     $('fail2');
   }
 }
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

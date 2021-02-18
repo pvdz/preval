@@ -34,13 +34,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = false;
-const tmpForOfDeclRhs = a;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of false) {
 }
-$(a, 1);
+$(false, 1);
 `````
 
 ## Globals

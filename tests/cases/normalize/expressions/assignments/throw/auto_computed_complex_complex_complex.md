@@ -30,11 +30,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = { b: tmpObjLitVal };
+throw SSA_a;
 `````
 
 ## Globals

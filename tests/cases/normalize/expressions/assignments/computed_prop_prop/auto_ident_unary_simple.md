@@ -35,12 +35,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
-a = 'number';
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, 1);
+obj.number;
+$('number', 1);
 `````
 
 ## Globals

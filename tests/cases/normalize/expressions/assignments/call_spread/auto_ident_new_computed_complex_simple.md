@@ -36,13 +36,11 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a);
+const SSA_a = new tmpNewCallee(1);
+$(...SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

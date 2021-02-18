@@ -52,7 +52,7 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$2 = $(2);
-  tmpIfTest = $(tmpCalleeParam$2);
+  $(tmpCalleeParam$2);
 }
 $(a);
 `````

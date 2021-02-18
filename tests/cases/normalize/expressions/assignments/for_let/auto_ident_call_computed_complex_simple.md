@@ -37,15 +37,13 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-a = tmpCallObj['$'](1);
-const xyz = a;
+const SSA_a = tmpCallObj['$'](1);
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

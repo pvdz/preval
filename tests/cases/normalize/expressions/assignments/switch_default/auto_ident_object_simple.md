@@ -36,10 +36,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
-a = { x: 1, y: 2, z: 3 };
-$(a);
+const SSA_a = { x: 1, y: 2, z: 3 };
+$(SSA_a);
 `````
 
 ## Globals

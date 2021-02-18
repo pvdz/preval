@@ -53,11 +53,9 @@ const obj = {
     $(20);
   },
 };
-let x = 10;
 const tmpNestedAssignObj = $(obj);
 tmpNestedAssignObj.x = 30;
-x = 30;
-$(x);
+$(30);
 `````
 
 ## Globals

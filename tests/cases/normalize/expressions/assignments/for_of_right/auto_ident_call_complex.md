@@ -32,14 +32,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
-a = tmpCallCallee(1);
-const tmpForOfDeclRhs = a;
+const SSA_a = tmpCallCallee(1);
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of SSA_a) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

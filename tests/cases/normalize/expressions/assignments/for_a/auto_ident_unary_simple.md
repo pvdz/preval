@@ -33,12 +33,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 'number';
 while (true) {
   $(1);
 }
-$(a, 1);
+$('number', 1);
 `````
 
 ## Globals

@@ -37,16 +37,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCalleeParam = $(1);
-a = $(tmpCalleeParam);
-if (a) {
-  a = 2;
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
+  SSA_a = 2;
 }
-const tmpCompProp = a;
+const tmpCompProp = SSA_a;
 obj[tmpCompProp];
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

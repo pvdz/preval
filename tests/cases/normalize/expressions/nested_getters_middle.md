@@ -117,14 +117,11 @@ function f() {
     },
   };
   $('-------- bound');
-  let a = 1;
   $('-------- let 1');
   b.foo = 5;
-  a = 5;
-  const tmpCalleeParam = a;
-  $(tmpCalleeParam);
+  $(5);
   $('-------- test case');
-  $(a);
+  $(5);
   $('-------- a');
   const tmpCalleeParam$1 = b.foo;
   $(tmpCalleeParam$1);

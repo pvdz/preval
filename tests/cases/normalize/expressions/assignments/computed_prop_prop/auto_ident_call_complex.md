@@ -33,13 +33,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCallCallee = $($);
-a = tmpCallCallee(1);
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a);
+const SSA_a = tmpCallCallee(1);
+obj[SSA_a];
+$(SSA_a);
 `````
 
 ## Globals

@@ -38,12 +38,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 var b;
 const a = [];
-b = 20;
 const varInitAssignLhsComputedObj = $(a);
-b = 30;
-const varInitAssignLhsComputedRhs = b;
-varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
+varInitAssignLhsComputedObj.length = 30;
+$(30);
 `````
 
 ## Globals

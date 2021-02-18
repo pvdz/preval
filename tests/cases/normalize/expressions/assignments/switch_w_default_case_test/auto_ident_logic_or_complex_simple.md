@@ -61,16 +61,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(0);
-a = $(tmpCalleeParam);
-if (a) {
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
 } else {
-  a = 2;
+  SSA_a = 2;
 }
-const tmpBinLhs = a;
+const tmpBinLhs = SSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -88,7 +87,7 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

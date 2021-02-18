@@ -47,22 +47,19 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (tmpPostUpdArgVal) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, b);
+$(tmpPostUpdArgVal, b);
 `````
 
 ## Globals

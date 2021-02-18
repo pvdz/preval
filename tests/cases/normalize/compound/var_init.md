@@ -33,11 +33,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-let a = $(1);
-const tmpNestedCompoundLhs = a;
+const a = $(1);
 const tmpBinBothRhs = $(2);
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + tmpBinBothRhs;
-a = tmpNestedComplexRhs;
+const tmpNestedComplexRhs = a + tmpBinBothRhs;
 $(tmpNestedComplexRhs);
 `````
 

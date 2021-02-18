@@ -37,15 +37,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 const obj = {};
-const tmpPostUpdArgIdent = b;
-b = b + 1;
-a = tmpPostUpdArgIdent;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, b);
+obj[1];
+$(1, 2);
 `````
 
 ## Globals

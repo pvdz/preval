@@ -35,12 +35,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-a = tmpBinBothLhs * 'number';
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a, 1);
+const a = { a: 999, b: 1000 };
+const SSA_a = a * 'number';
+$(SSA_a);
+$(SSA_a, 1);
 `````
 
 ## Globals

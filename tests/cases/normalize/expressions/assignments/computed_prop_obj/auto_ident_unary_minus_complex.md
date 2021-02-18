@@ -32,12 +32,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-a = -tmpUnaryArg;
-const tmpCompObj = a;
-tmpCompObj.a;
-$(a);
+const SSA_a = -tmpUnaryArg;
+SSA_a.a;
+$(SSA_a);
 `````
 
 ## Globals

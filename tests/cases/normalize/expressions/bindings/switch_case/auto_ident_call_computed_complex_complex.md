@@ -46,16 +46,11 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const b = { $: $ };
-  const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $('$');
-  const a = tmpCallCompObj[tmpCallCompProp](1);
-  $(a);
-}
+const b = { $: $ };
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $('$');
+const a = tmpCallCompObj[tmpCallCompProp](1);
+$(a);
 `````
 
 ## Globals

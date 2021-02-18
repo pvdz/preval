@@ -33,13 +33,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpUnaryArg = $(100);
-a = -tmpUnaryArg;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a);
+const SSA_a = -tmpUnaryArg;
+obj[SSA_a];
+$(SSA_a);
 `````
 
 ## Globals

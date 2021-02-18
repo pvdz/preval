@@ -61,27 +61,22 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const b = { $: $ };
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest$2 = tmpChainElementCall != null;
-  if (tmpIfTest$2) {
-    const tmpChainRootComputed = $('$');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpCallVal = tmpChainElementObject.call;
-      const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-      a = tmpChainElementCall$1;
-    }
+const b = { $: $ };
+let SSA_a = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest$2 = tmpChainElementCall != null;
+if (tmpIfTest$2) {
+  const tmpChainRootComputed = $('$');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
+    const tmpCallVal = tmpChainElementObject.call;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    SSA_a = tmpChainElementCall$1;
   }
-  $(a);
 }
+$(SSA_a);
 `````
 
 ## Globals

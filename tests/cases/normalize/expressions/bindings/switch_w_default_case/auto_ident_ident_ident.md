@@ -64,23 +64,9 @@ if (tmpIfTest$4) {
 
 `````js filename=intro
 let b;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  b = 1;
-  b = 2;
-  const a = b;
-  $(a, b, 2);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+$(2, 2, 2);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

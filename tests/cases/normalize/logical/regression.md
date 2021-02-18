@@ -29,11 +29,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let tmpIfTest = false;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = $(2);
-}
+$(2);
 `````
 
 ## Globals

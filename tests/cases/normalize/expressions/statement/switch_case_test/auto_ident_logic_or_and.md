@@ -53,14 +53,14 @@ $(a);
 const a = { a: 999, b: 1000 };
 $(1);
 const tmpCalleeParam = $(0);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpBinLhs = $(tmpCalleeParam$1);
-  if (tmpBinLhs) {
+  const SSA_tmpBinLhs = $(tmpCalleeParam$1);
+  if (SSA_tmpBinLhs) {
     const tmpCalleeParam$2 = $(2);
-    tmpBinLhs = $(tmpCalleeParam$2);
+    $(tmpCalleeParam$2);
   }
 }
 $(a);

@@ -40,18 +40,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
+[];
 const tmpCalleeParam = ['before ', ' after'];
 const tmpArrElement = $(2);
 const tmpCalleeParam$2 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$2);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a, b);
+const SSA_b = arrPatternSplat[0];
+$(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
+$(tmpNestedAssignArrPatternRhs, SSA_b);
 `````
 
 ## Globals

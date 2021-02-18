@@ -31,10 +31,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = undefined;
 const tmpChainElementObject = (3).foo;
-y = tmpChainElementObject;
-$(y);
+$(tmpChainElementObject);
 `````
 
 ## Globals

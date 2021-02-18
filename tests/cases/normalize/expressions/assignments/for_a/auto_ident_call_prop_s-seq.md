@@ -35,12 +35,11 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
-a = b.$(1);
+const SSA_a = b.$(1);
 while (true) {
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

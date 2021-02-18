@@ -40,10 +40,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpSwitchTest = 1;
-if (tmpSwitchTest) {
-  tmpSwitchTest = 2;
-}
 $(100);
 $(a);
 `````

@@ -35,12 +35,10 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = delete arg.y;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = delete arg.y;
+throw SSA_a;
 `````
 
 ## Globals

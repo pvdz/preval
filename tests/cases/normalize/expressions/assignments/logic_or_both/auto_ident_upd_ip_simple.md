@@ -43,21 +43,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = b;
-b = b + 1;
-a = tmpPostUpdArgIdent;
-let tmpCalleeParam = a;
+let SSA_b = 2;
+let SSA_a = 1;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
-  const tmpPostUpdArgIdent$1 = b;
-  b = b + 1;
-  a = tmpPostUpdArgIdent$1;
+  const tmpPostUpdArgIdent$1 = SSA_b;
+  SSA_b = SSA_b + 1;
+  SSA_a = tmpPostUpdArgIdent$1;
   tmpCalleeParam = tmpPostUpdArgIdent$1;
 }
 $(tmpCalleeParam);
-$(a, b);
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

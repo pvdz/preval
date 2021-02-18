@@ -66,25 +66,14 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const b = { c: 10, d: 20 };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b.c = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b);
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+$(varInitAssignLhsComputedRhs, b);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

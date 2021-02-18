@@ -37,16 +37,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
-const tmpExportDefault = a;
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpExportDefault = tmpNestedAssignObjPatternRhs;
 export { tmpExportDefault as default };
-$(a, b);
+$(tmpNestedAssignObjPatternRhs, SSA_b);
 `````
 
 ## Globals

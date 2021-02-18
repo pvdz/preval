@@ -39,15 +39,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-b = tmpNestedAssignObjPatternRhs.b;
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpCalleeParam = `before  ${tmpNestedAssignObjPatternRhs}  after`;
 $(tmpCalleeParam);
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

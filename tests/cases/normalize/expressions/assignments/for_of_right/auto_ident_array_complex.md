@@ -34,15 +34,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
-a = [tmpArrElement, 2, tmpArrElement$2];
-const tmpForOfDeclRhs = a;
+const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of SSA_a) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

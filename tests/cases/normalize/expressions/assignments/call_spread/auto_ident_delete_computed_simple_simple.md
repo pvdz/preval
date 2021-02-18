@@ -34,11 +34,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-a = delete arg['y'];
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a, arg);
+const SSA_a = delete arg['y'];
+$(...SSA_a);
+$(SSA_a, arg);
 `````
 
 ## Globals

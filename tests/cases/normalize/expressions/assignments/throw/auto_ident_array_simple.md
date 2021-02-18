@@ -28,10 +28,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = [1, 2, 3];
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = [1, 2, 3];
+throw SSA_a;
 `````
 
 ## Globals

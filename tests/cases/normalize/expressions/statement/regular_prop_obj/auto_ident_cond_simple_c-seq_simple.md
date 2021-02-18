@@ -32,9 +32,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCompObj = undefined;
-tmpCompObj = $(60);
-tmpCompObj.a;
+const SSA_tmpCompObj = $(60);
+SSA_tmpCompObj.a;
 $(a);
 `````
 

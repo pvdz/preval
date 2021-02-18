@@ -40,18 +40,17 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
-let tmpCalleeParam = a;
+let SSA_a = typeof tmpUnaryArg;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

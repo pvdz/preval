@@ -35,13 +35,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
-const tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
+const SSA_a = typeof tmpUnaryArg;
+const tmpCalleeParam = [...SSA_a];
 $(tmpCalleeParam);
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

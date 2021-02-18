@@ -35,13 +35,12 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpExportDefault = a;
+const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

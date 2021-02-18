@@ -49,18 +49,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
-a = undefined;
+let SSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  a = tmpChainElementCall$1;
+  SSA_a = tmpChainElementCall$1;
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

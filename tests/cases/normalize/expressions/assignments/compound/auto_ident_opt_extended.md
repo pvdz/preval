@@ -48,8 +48,7 @@ $(a);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
@@ -58,10 +57,9 @@ if (tmpIfTest) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   tmpBinBothRhs = tmpChainElementObject$2;
 }
-a = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a);
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

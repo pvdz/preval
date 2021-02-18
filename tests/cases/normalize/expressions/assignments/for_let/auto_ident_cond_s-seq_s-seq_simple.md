@@ -39,14 +39,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 60;
-const xyz = a;
 while (true) {
-  $(xyz);
+  $(60);
   $(1);
 }
-$(a);
+$(60);
 `````
 
 ## Globals

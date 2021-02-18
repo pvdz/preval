@@ -81,46 +81,46 @@ var a;
 var b;
 var c;
 var d;
-a = function () {
+let SSA_a = function () {
   $('a');
   return 1;
 };
-b = function () {
+let SSA_b = function () {
   $('b');
-  a = 21;
+  SSA_a = 21;
   return 2;
 };
-c = function () {
+let SSA_c = function () {
   $('c');
-  a = 31;
-  b = 32;
+  SSA_a = 31;
+  SSA_b = 32;
   return 3;
 };
-d = function () {
+let SSA_d = function () {
   $('d');
-  a = 41;
-  b = 42;
-  c = 43;
+  SSA_a = 41;
+  SSA_b = 42;
+  SSA_c = 43;
   return 4;
 };
 const e = function () {
   $('e');
-  a = 51;
-  b = 52;
-  c = 53;
-  d = 54;
+  SSA_a = 51;
+  SSA_b = 52;
+  SSA_c = 53;
+  SSA_d = 54;
   return 5;
 };
-const tmpAssignMemLhsObj = a();
-const varInitAssignLhsComputedObj = b();
-const varInitAssignLhsComputedObj$1 = c();
-const varInitAssignLhsComputedObj$2 = d();
+const tmpAssignMemLhsObj = SSA_a();
+const varInitAssignLhsComputedObj = SSA_b();
+const varInitAssignLhsComputedObj$1 = SSA_c();
+const varInitAssignLhsComputedObj$2 = SSA_d();
 const varInitAssignLhsComputedRhs$2 = e();
 varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$2;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$2;
 tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$2;
-$(a, b, c, d, e);
+$(SSA_a, SSA_b, SSA_c, SSA_d, e);
 `````
 
 ## Globals

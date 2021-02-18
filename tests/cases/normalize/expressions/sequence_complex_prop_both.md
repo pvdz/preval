@@ -40,19 +40,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
-let b = 1;
 const tmpObjLitVal = { y: 10 };
 const c = { x: tmpObjLitVal };
 const p = { x: 20 };
 p.x;
 const tmpCompObj = $(30);
 const tmpBinBothLhs = tmpCompObj.y;
-b = c.x;
-const tmpCompObj$1 = $(b);
+const SSA_b = c.x;
+const tmpCompObj$1 = $(SSA_b);
 const tmpBinBothRhs = tmpCompObj$1.y;
-a = tmpBinBothLhs === tmpBinBothRhs;
-$(a);
+const SSA_a = tmpBinBothLhs === tmpBinBothRhs;
+$(SSA_a);
 `````
 
 ## Globals

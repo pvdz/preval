@@ -38,19 +38,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs + tmpBinBothRhs;
-const tmpIfTest = a;
-if (tmpIfTest) {
+const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

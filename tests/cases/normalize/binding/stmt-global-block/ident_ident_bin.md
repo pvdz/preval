@@ -37,10 +37,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let b = 2;
-  b = 7;
-  const a = b;
-  $(a, b, 3);
+  $(7, 7, 3);
 }
 `````
 

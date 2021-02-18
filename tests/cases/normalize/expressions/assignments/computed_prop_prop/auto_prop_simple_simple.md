@@ -35,14 +35,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-const tmpCompProp = a;
-obj[tmpCompProp];
-a.b = 2;
-$(a);
+const SSA_a = { b: tmpObjLitVal };
+obj[SSA_a];
+SSA_a.b = 2;
+$(SSA_a);
 `````
 
 ## Globals

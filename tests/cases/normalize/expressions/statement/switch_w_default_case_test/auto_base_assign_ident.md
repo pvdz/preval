@@ -64,13 +64,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-b = $(2);
-const tmpBinLhs = b;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const SSA_b = $(2);
+const tmpIfTest = SSA_b === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -93,7 +91,7 @@ tmpSwitchBreak: {
     $('fail2');
   }
 }
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

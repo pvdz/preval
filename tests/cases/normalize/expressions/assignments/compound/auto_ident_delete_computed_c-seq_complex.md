@@ -40,17 +40,15 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
-$(a, arg);
+const SSA_a = a * tmpBinBothRhs;
+$(SSA_a);
+$(SSA_a, arg);
 `````
 
 ## Globals

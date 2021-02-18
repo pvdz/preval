@@ -48,14 +48,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(0);
-a = $(tmpCalleeParam$1);
-if (a) {
+let SSA_a = $(tmpCalleeParam$1);
+if (SSA_a) {
 } else {
-  a = 2;
+  SSA_a = 2;
 }
-let tmpCalleeParam = a;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpCalleeParam$2 = $(0);
@@ -64,11 +63,11 @@ if (tmpCalleeParam) {
   } else {
     tmpNestedComplexRhs = 2;
   }
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

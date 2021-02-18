@@ -35,13 +35,13 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+arrPatternSplat[0];
 $(10);
 $(20);
 const arrAssignPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-a = arrPatternSplat$1[0];
-$(a);
+const SSA_a = arrPatternSplat$1[0];
+$(SSA_a);
 `````
 
 ## Globals

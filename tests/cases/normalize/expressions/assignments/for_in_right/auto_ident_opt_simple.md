@@ -41,18 +41,17 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
+  SSA_a = tmpChainElementObject;
 }
-const tmpForInDeclRhs = a;
+const tmpForInDeclRhs = SSA_a;
 let x;
 for (x in tmpForInDeclRhs) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

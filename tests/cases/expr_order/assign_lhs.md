@@ -31,11 +31,7 @@ $(j);
 ## Output
 
 `````js filename=intro
-let i = 0;
-i = i + 1;
-const tmpBinLhs = i;
-const j = tmpBinLhs + i;
-$(j);
+$(2);
 `````
 
 ## Globals

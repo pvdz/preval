@@ -70,8 +70,8 @@ tmpSwitchBreak: {
     $(x_1);
     $(y_1);
     const arrPatternSplat = [...z];
-    x_1 = arrPatternSplat[0];
-    y_1 = arrPatternSplat[1];
+    arrPatternSplat[0];
+    arrPatternSplat[1];
     break tmpSwitchBreak;
   }
 }

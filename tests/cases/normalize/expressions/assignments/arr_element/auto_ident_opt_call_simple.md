@@ -45,24 +45,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  SSA_a = tmpChainElementCall;
 }
-const tmpBinBothLhs = a;
-a = undefined;
+const tmpBinBothLhs = SSA_a;
+let SSA_a$1 = undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall$1 = $(1);
-  a = tmpChainElementCall$1;
+  SSA_a$1 = tmpChainElementCall$1;
 }
-const tmpBinBothRhs = a;
+const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

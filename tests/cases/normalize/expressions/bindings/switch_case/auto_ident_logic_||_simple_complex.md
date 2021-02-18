@@ -45,18 +45,13 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  a = 0;
-  if (a) {
-  } else {
-    const tmpCalleeParam = $(1);
-    a = $(tmpCalleeParam);
-  }
-  $(a);
+let SSA_a = 0;
+if (SSA_a) {
+} else {
+  const tmpCalleeParam = $(1);
+  SSA_a = $(tmpCalleeParam);
 }
+$(SSA_a);
 `````
 
 ## Globals

@@ -38,19 +38,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
-a = tmpCallCallee$1(1);
-let tmpCalleeParam = a;
+let SSA_a = tmpCallCallee$1(1);
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpCallCallee$2 = $($);
   const tmpNestedComplexRhs = tmpCallCallee$2(1);
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

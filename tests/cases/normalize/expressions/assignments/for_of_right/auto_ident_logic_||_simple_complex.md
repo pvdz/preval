@@ -37,18 +37,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 0;
-if (a) {
+let SSA_a = 0;
+if (SSA_a) {
 } else {
   const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
+  SSA_a = $(tmpCalleeParam);
 }
-const tmpForOfDeclRhs = a;
+const tmpForOfDeclRhs = SSA_a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

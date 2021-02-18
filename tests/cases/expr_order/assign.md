@@ -32,12 +32,7 @@ $(j);
 ## Output
 
 `````js filename=intro
-let i = 0;
-const tmpBinBothLhs = i;
-i = i + 1;
-const tmpBinBothRhs = i;
-const j = tmpBinBothLhs + tmpBinBothRhs;
-$(j);
+$(1);
 `````
 
 ## Globals

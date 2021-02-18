@@ -37,15 +37,13 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpForOfDeclRhs = a;
+const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of SSA_a) {
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -36,14 +36,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = 1;
-const tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${1}  after`;
 $(tmpCalleeParam);
-$(a, 1);
+$(1, 1);
 `````
 
 ## Globals

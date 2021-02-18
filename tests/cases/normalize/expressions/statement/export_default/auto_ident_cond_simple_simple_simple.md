@@ -30,9 +30,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
-tmpExportDefault = 2;
-export { tmpExportDefault as default };
+const SSA_tmpExportDefault = 2;
+export { SSA_tmpExportDefault as default };
 $(a);
 `````
 

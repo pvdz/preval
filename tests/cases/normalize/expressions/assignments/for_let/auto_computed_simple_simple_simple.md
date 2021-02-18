@@ -35,16 +35,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-const xyz = a;
+const SSA_a = { b: tmpObjLitVal };
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-a['b'] = 2;
-$(a);
+SSA_a['b'] = 2;
+$(SSA_a);
 `````
 
 ## Globals

@@ -37,13 +37,13 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$2 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$2);
-a = tmpNestedAssignObjPatternRhs.a;
+const SSA_a = tmpNestedAssignObjPatternRhs.a;
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

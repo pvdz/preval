@@ -40,7 +40,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+  bindingPatternObjRoot.cannotDestructureThis;
 }
 $('ok');
 `````

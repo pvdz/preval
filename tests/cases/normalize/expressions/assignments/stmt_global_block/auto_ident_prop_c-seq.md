@@ -34,10 +34,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp.c;
-$(a, b);
+const SSA_a = tmpAssignRhsProp.c;
+$(SSA_a, b);
 `````
 
 ## Globals

@@ -44,14 +44,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
+const SSA_a = { b: tmpObjLitVal };
 $(100);
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj = $(SSA_a);
 const tmpAssignComputedRhs = $(2);
 tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

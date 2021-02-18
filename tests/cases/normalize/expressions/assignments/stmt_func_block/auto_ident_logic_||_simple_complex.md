@@ -44,14 +44,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  let a = { a: 999, b: 1000 };
-  a = 0;
-  if (a) {
+  let SSA_a = 0;
+  if (SSA_a) {
   } else {
     const tmpCalleeParam = $(1);
-    a = $(tmpCalleeParam);
+    SSA_a = $(tmpCalleeParam);
   }
-  $(a);
+  $(SSA_a);
 }
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

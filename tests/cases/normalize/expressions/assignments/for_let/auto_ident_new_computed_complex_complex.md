@@ -39,17 +39,15 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-a = new tmpNewCallee(1);
-const xyz = a;
+const SSA_a = new tmpNewCallee(1);
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

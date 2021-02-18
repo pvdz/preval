@@ -40,9 +40,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-tmpIfTest = $(60);
-if (tmpIfTest) {
+const SSA_tmpIfTest = $(60);
+if (SSA_tmpIfTest) {
 } else {
   $(100);
 }

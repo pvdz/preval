@@ -33,12 +33,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-a = typeof tmpUnaryArg;
-const tmpExportDefault = a;
+const SSA_a = typeof tmpUnaryArg;
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

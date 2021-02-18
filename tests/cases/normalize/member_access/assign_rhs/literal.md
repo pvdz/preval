@@ -27,9 +27,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
-x = 'foo'.length;
-$(x);
+const SSA_x = 'foo'.length;
+$(SSA_x);
 `````
 
 ## Globals

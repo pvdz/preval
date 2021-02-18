@@ -45,16 +45,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = 1;
-    if (p) {
-      const tmpCalleeParam = $(1);
-      p = $(tmpCalleeParam);
-    }
-  } else {
-    p = $tdz$__p;
+    const tmpCalleeParam = $(1);
+    $(tmpCalleeParam);
   }
 }
 const a = { a: 999, b: 1000 };

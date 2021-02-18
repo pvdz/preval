@@ -39,17 +39,14 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
-a = undefined;
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (undefined) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, 1);
+$(undefined, 1);
 `````
 
 ## Globals

@@ -39,18 +39,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
-a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-const tmpBinBothLhs = a;
+const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
 const tmpObjLitVal$3 = $(1);
 const tmpObjLitVal$5 = $(3);
-a = { x: tmpObjLitVal$3, y: 2, z: tmpObjLitVal$5 };
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a$1 = { x: tmpObjLitVal$3, y: 2, z: tmpObjLitVal$5 };
+const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

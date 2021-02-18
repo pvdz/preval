@@ -40,10 +40,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = undefined;
-xyz = 60;
 while (true) {
-  $(xyz);
+  $(60);
   $(1);
 }
 $(a);

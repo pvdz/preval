@@ -41,20 +41,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-const tmpPostUpdArgIdent = b;
-b = b + 1;
-a = tmpPostUpdArgIdent;
-const tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
-$(a, b);
+const SSA_tmpCalleeParam = $(100);
+$(SSA_tmpCalleeParam);
+$(1, 2);
 `````
 
 ## Globals

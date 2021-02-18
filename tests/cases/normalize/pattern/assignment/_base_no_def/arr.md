@@ -35,11 +35,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-$(x);
+const SSA_x = arrPatternSplat[0];
+$(SSA_x);
 `````
 
 ## Globals

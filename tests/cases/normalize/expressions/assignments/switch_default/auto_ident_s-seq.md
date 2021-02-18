@@ -41,12 +41,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 $(1);
 $(2);
-a = 1;
-$(a, 1);
+$(1, 1);
 `````
 
 ## Globals

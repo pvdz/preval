@@ -48,18 +48,13 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  $(10);
-  $(20);
-  const tmpCalleeParam = [1, 2];
-  const bindingPatternArrRoot = $(tmpCalleeParam);
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const a = arrPatternSplat[0];
-  $(a);
-}
+$(10);
+$(20);
+const tmpCalleeParam = [1, 2];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
+$(a);
 `````
 
 ## Globals

@@ -51,14 +51,14 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-let tmpSwitchTest = $(tmpCalleeParam);
+const tmpSwitchTest = $(tmpCalleeParam);
 if (tmpSwitchTest) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpSwitchTest = $(tmpCalleeParam$1);
-  if (tmpSwitchTest) {
+  const SSA_tmpSwitchTest = $(tmpCalleeParam$1);
+  if (SSA_tmpSwitchTest) {
     const tmpCalleeParam$2 = $(2);
-    tmpSwitchTest = $(tmpCalleeParam$2);
+    $(tmpCalleeParam$2);
   }
 }
 $(100);

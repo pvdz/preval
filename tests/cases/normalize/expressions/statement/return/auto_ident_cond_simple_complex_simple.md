@@ -38,9 +38,8 @@ $(a);
 
 `````js filename=intro
 function f() {
-  let tmpReturnArg = undefined;
-  tmpReturnArg = $(2);
-  return tmpReturnArg;
+  const SSA_tmpReturnArg = $(2);
+  return SSA_tmpReturnArg;
 }
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

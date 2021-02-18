@@ -35,10 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 var a;
-a = 10;
-a = 30;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(30);
 `````
 
 ## Globals

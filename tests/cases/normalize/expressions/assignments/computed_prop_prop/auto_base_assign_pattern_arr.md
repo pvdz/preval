@@ -41,18 +41,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
+[];
 const obj = {};
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, b);
+const SSA_b = arrPatternSplat[0];
+obj[tmpNestedAssignArrPatternRhs];
+$(tmpNestedAssignArrPatternRhs, SSA_b);
 `````
 
 ## Globals

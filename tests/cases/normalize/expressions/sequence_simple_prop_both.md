@@ -31,11 +31,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
 const tmpBinBothLhs = 'Identifier'.length;
 const tmpBinBothRhs = 'woop'.length;
-a = tmpBinBothLhs === tmpBinBothRhs;
-$(a);
+const SSA_a = tmpBinBothLhs === tmpBinBothRhs;
+$(SSA_a);
 `````
 
 ## Globals

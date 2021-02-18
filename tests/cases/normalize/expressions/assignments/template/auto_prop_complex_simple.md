@@ -35,15 +35,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-const tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const SSA_a = { b: tmpObjLitVal };
+const tmpCalleeParam = `before  ${SSA_a}  after`;
 $(tmpCalleeParam);
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj = $(SSA_a);
 tmpAssignMemLhsObj.b = 2;
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

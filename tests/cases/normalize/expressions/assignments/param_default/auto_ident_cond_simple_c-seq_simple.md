@@ -46,9 +46,8 @@ function f($tdz$__p) {
   undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs = undefined;
-    tmpNestedComplexRhs = $(60);
-    a = tmpNestedComplexRhs;
+    const SSA_tmpNestedComplexRhs = $(60);
+    a = SSA_tmpNestedComplexRhs;
   }
 }
 let a = { a: 999, b: 1000 };

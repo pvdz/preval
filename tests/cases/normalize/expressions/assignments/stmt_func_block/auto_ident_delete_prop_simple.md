@@ -42,9 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
-  a = delete arg.y;
-  $(a, arg);
+  const SSA_a = delete arg.y;
+  $(SSA_a, arg);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

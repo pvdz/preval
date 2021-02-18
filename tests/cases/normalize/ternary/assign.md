@@ -34,9 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 1;
-a = 3;
-$(a);
+$(3);
 `````
 
 ## Globals

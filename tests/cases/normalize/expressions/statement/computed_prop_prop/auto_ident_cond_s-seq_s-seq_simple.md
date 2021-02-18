@@ -41,9 +41,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-let tmpCompProp = undefined;
-tmpCompProp = 60;
-obj[tmpCompProp];
+obj[60];
 $(a);
 `````
 

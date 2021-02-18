@@ -52,27 +52,26 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
+[];
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = a;
+let SSA_b = arrPatternSplat[0];
+let SSA_a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$2 = [tmpArrElement$1];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$2);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  b = arrPatternSplat$1[0];
-  a = tmpNestedAssignArrPatternRhs$1;
+  SSA_b = arrPatternSplat$1[0];
+  SSA_a = tmpNestedAssignArrPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(a, b);
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

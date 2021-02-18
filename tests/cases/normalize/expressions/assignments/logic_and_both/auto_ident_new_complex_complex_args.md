@@ -45,22 +45,21 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
-a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
-let tmpCalleeParam = a;
+let SSA_a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$3 = $(1);
   const tmpCalleeParam$4 = $(2);
   const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$4);
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

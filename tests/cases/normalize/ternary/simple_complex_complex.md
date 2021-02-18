@@ -29,11 +29,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-a = $(2);
-let b = undefined;
-b = $(5);
-$(a, b);
+const SSA_a = $(2);
+const SSA_b = $(5);
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

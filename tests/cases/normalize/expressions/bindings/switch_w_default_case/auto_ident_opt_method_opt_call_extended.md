@@ -77,35 +77,24 @@ if (tmpIfTest$6) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const tmpObjLitVal$1 = { e: $ };
-  const tmpObjLitVal = { d: tmpObjLitVal$1 };
-  const b = { c: tmpObjLitVal };
-  a = undefined;
-  const tmpIfTest$3 = b != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-    const tmpIfTest$4 = tmpChainElementObject$2 != null;
-    if (tmpIfTest$4) {
-      const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-      a = tmpChainElementCall;
-    }
+const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal = { d: tmpObjLitVal$1 };
+const b = { c: tmpObjLitVal };
+let SSA_a = undefined;
+const tmpIfTest$3 = b != null;
+if (tmpIfTest$3) {
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+  const tmpIfTest$4 = tmpChainElementObject$2 != null;
+  if (tmpIfTest$4) {
+    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    SSA_a = tmpChainElementCall;
   }
-  $(a);
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $('fail1');
-}
-const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$6) {
-  $('fail2');
-}
+$(SSA_a);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

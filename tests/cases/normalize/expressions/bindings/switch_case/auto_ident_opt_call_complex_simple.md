@@ -48,19 +48,14 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest$2 = tmpChainElementCall != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-    a = tmpChainElementCall$1;
-  }
-  $(a);
+let SSA_a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest$2 = tmpChainElementCall != null;
+if (tmpIfTest$2) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  SSA_a = tmpChainElementCall$1;
 }
+$(SSA_a);
 `````
 
 ## Globals

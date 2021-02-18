@@ -41,9 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   var x;
   $(x);
-  x = 10;
-  $(x);
-  return x;
+  $(10);
+  return 10;
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

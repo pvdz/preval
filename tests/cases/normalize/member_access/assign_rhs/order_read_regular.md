@@ -51,10 +51,9 @@ const obj = {
     $(20);
   },
 };
-let x = 10;
 const tmpAssignRhsProp = $(obj);
-x = tmpAssignRhsProp.x;
-$(x);
+const SSA_x = tmpAssignRhsProp.x;
+$(SSA_x);
 `````
 
 ## Globals

@@ -43,16 +43,16 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+arrPatternSplat[0];
 const obj = {};
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
+const SSA_a = arrPatternSplat$1[0];
 obj[tmpNestedAssignArrPatternRhs];
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

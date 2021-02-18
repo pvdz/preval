@@ -40,10 +40,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = undefined;
-xyz = $(60);
+const SSA_xyz = $(60);
 while (true) {
-  $(xyz);
+  $(SSA_xyz);
   $(1);
 }
 $(a);

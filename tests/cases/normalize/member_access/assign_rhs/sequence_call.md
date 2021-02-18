@@ -29,11 +29,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 $(1);
 const tmpAssignRhsProp = $(2);
-x = tmpAssignRhsProp.toString;
-$(x);
+const SSA_x = tmpAssignRhsProp.toString;
+$(SSA_x);
 `````
 
 ## Globals

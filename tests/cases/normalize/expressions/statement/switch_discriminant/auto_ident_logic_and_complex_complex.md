@@ -45,10 +45,10 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-let tmpSwitchTest = $(tmpCalleeParam);
+const tmpSwitchTest = $(tmpCalleeParam);
 if (tmpSwitchTest) {
   const tmpCalleeParam$1 = $(2);
-  tmpSwitchTest = $(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 $(100);
 $(a);

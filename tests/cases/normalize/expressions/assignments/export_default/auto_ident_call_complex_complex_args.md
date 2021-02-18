@@ -36,14 +36,13 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpExportDefault = a;
+const SSA_a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

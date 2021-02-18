@@ -50,13 +50,11 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let x = 1;
-    let y = 2;
     const z = [10, 20, 30];
     const arrPatternSplat = [...z];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    $(z, x, y, z);
+    const SSA_x = arrPatternSplat[0];
+    const SSA_y = arrPatternSplat[1];
+    $(z, SSA_x, SSA_y, z);
   }
 }
 const tmpCalleeParam = f();

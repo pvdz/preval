@@ -37,15 +37,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-b = 2;
-const xyz = b;
 while (true) {
-  $(xyz);
+  $(2);
   $(1);
 }
-$(a, b, 2);
+$(a, 2, 2);
 `````
 
 ## Globals

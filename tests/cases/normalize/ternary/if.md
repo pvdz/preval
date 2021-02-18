@@ -38,13 +38,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let tmpIfTest = undefined;
-tmpIfTest = 2;
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
+$(100);
 `````
 
 ## Globals

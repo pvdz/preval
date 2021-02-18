@@ -42,10 +42,6 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(1);
-let tmpBinLhs = 1;
-if (tmpBinLhs) {
-  tmpBinLhs = 2;
-}
 $(a);
 `````
 

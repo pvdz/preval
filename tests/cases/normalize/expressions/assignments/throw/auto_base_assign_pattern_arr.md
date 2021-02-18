@@ -38,15 +38,12 @@ throw tmpThrowArg;
 
 `````js filename=intro
 [];
-let a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw tmpNestedAssignArrPatternRhs;
 `````
 
 ## Globals

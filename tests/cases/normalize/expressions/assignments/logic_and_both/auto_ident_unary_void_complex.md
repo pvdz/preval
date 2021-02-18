@@ -37,17 +37,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(100);
-a = undefined;
-let tmpCalleeParam = a;
+let SSA_a = undefined;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   $(100);
-  a = undefined;
+  SSA_a = undefined;
   tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -65,19 +65,10 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 2;
-tmpSwitchCaseToStart = 0;
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    $(3);
-    $(4);
-    break tmpSwitchBreak;
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    break tmpSwitchBreak;
-  }
+  $(3);
+  $(4);
+  break tmpSwitchBreak;
 }
 `````
 

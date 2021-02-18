@@ -119,15 +119,12 @@ function f() {
     },
   };
   $('-------- bound');
-  let a = 1;
   $('-------- let 1');
   const tmpNestedAssignPropRhs = $(6);
   b.foo = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  const tmpCalleeParam = a;
-  $(tmpCalleeParam);
+  $(tmpNestedAssignPropRhs);
   $('-------- test case');
-  $(a);
+  $(tmpNestedAssignPropRhs);
   $('-------- a');
   const tmpCalleeParam$1 = b.foo;
   $(tmpCalleeParam$1);

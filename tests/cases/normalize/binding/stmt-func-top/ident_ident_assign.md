@@ -43,13 +43,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = 2;
   const tmpNestedAssignObj = $(3);
   const tmpNestedAssignPropRhs = $(4);
   tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-  b = tmpNestedAssignPropRhs;
-  const a = b;
-  $(a, b, 3);
+  $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

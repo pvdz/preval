@@ -33,12 +33,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = 1;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw 1;
 `````
 
 ## Globals

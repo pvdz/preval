@@ -34,15 +34,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-a = +tmpUnaryArg;
-let tmpCalleeParam = a;
+const SSA_a = +tmpUnaryArg;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

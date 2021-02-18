@@ -82,10 +82,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-let s = String;
-const tmpClassSuper = $(s);
+const tmpClassSuper = $(String);
 const tmpClassComputedKey = $('f');
-s = Number;
 const x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100, 'method');

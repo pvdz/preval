@@ -43,20 +43,20 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 let tmpCalleeParam;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-a = tmpNestedAssignObjPatternRhs.a;
-tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-if (tmpCalleeParam) {
+let SSA_a = tmpNestedAssignObjPatternRhs.a;
+let SSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+if (SSA_tmpCalleeParam) {
   const tmpCalleeParam$2 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$2);
-  a = tmpNestedAssignObjPatternRhs$1.a;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  SSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  SSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
-$(tmpCalleeParam);
-$(a);
+$(SSA_tmpCalleeParam);
+$(SSA_a);
 `````
 
 ## Globals

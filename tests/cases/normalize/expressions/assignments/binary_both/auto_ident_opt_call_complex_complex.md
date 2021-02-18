@@ -55,30 +55,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$2 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$2);
-  a = tmpChainElementCall$1;
+  SSA_a = tmpChainElementCall$1;
 }
-const tmpBinBothLhs = a;
-a = undefined;
+const tmpBinBothLhs = SSA_a;
+let SSA_a$1 = undefined;
 const tmpChainElementCall$2 = $($);
 const tmpIfTest$1 = tmpChainElementCall$2 != null;
 if (tmpIfTest$1) {
   const tmpCallVal$1 = tmpChainElementCall$2.call;
   const tmpCalleeParam$4 = $(1);
   const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$4);
-  a = tmpChainElementCall$3;
+  SSA_a$1 = tmpChainElementCall$3;
 }
-const tmpBinBothRhs = a;
+const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

@@ -35,15 +35,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
-let b = 1;
 const tmpObjLitVal = { y: 10 };
 const c = { x: tmpObjLitVal };
-b = c.x;
-const tmpCompObj = b;
-const tmpBinLhs = tmpCompObj.y;
-a = tmpBinLhs === 'Identifier';
-$(a);
+const SSA_b = c.x;
+const tmpBinLhs = SSA_b.y;
+const SSA_a = tmpBinLhs === 'Identifier';
+$(SSA_a);
 `````
 
 ## Globals

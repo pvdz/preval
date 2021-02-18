@@ -39,7 +39,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = false;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = 'abc'.cannotDestructureThis;
+  'abc'.cannotDestructureThis;
 }
 $('ok');
 `````

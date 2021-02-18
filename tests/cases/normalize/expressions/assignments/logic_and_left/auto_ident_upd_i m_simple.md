@@ -38,17 +38,12 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = b;
-b = b - 1;
-a = tmpPostUpdArgIdent;
-let tmpCalleeParam = a;
+let tmpCalleeParam = 1;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(a, b);
+$(1, 0);
 `````
 
 ## Globals

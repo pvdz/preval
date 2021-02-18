@@ -28,9 +28,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = function f() {};
-$(a);
+const SSA_a = function f() {};
+$(SSA_a);
 `````
 
 ## Globals

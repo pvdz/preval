@@ -30,14 +30,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 const tmpArrElement = [100];
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x = arrPatternSplat$1[0];
-$(x);
+const SSA_x = arrPatternSplat$1[0];
+$(SSA_x);
 `````
 
 ## Globals

@@ -44,7 +44,6 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-let a = 1;
 let b = {
   set c(x) {
     $('b.set');
@@ -56,8 +55,7 @@ let b = {
 let d = 3;
 const tmpNestedPropAssignRhs = d;
 b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(a, b, d);
+$(tmpNestedPropAssignRhs, b, d);
 `````
 
 ## Globals

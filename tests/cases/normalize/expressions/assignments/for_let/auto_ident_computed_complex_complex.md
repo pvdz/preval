@@ -38,16 +38,14 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const xyz = a;
+const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-$(a, b);
+$(SSA_a, b);
 `````
 
 ## Globals

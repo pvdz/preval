@@ -46,23 +46,22 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-let tmpCalleeParam = a;
+let SSA_a = delete tmpDeleteObj.y;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
-  a = tmpNestedComplexRhs;
+  SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

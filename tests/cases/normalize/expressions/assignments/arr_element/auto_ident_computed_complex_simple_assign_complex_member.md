@@ -49,24 +49,19 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
-a = tmpNestedAssignPropRhs;
-const tmpBinBothLhs = a;
 const tmpNestedAssignObj$1 = $(b);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
 const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignObj$1['c'] = tmpNestedAssignPropRhs$1;
-a = tmpNestedAssignPropRhs$1;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1;
 $(tmpCalleeParam);
-$(a, b);
+$(tmpNestedAssignPropRhs$1, b);
 `````
 
 ## Globals

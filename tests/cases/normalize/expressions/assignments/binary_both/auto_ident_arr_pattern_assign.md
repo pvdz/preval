@@ -50,28 +50,21 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
-const tmpBinBothLhs = a;
+arrPatternSplat[0];
+arrPatternSplat[1];
 const tmpArrElement$2 = $(3);
 const tmpArrElement$3 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-x = arrPatternSplat$1[0];
-y = arrPatternSplat$1[1];
-a = tmpNestedAssignArrPatternRhs$1;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_x$1 = arrPatternSplat$1[0];
+const SSA_y$1 = arrPatternSplat$1[1];
+const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
-$(a, x, y);
+$(tmpNestedAssignArrPatternRhs$1, SSA_x$1, SSA_y$1);
 `````
 
 ## Globals

@@ -43,20 +43,19 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-let a = { a: 999, b: 1000 };
-a = undefined;
+let SSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
-  a = tmpChainElementCall;
+  SSA_a = tmpChainElementCall;
 }
-const xyz = a;
+const xyz = SSA_a;
 while (true) {
   $(xyz);
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

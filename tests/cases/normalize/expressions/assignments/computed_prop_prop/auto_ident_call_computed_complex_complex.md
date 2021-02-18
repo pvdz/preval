@@ -38,14 +38,12 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a);
+const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
+obj[SSA_a];
+$(SSA_a);
 `````
 
 ## Globals

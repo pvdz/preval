@@ -47,17 +47,14 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
-    p = $(tmpCalleeParam);
-    if (p) {
+    const SSA_p = $(tmpCalleeParam);
+    if (SSA_p) {
       const tmpCalleeParam$1 = $(2);
-      p = $(tmpCalleeParam$1);
+      $(tmpCalleeParam$1);
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const a = { a: 999, b: 1000 };

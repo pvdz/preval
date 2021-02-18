@@ -30,9 +30,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpArrElToSpread = undefined;
-tmpArrElToSpread = 2;
-[...tmpArrElToSpread];
+[...2];
 $(a);
 `````
 

@@ -35,12 +35,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const obj = {};
-a = -2;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, 1);
+obj[-2];
+$(-2, 1);
 `````
 
 ## Globals

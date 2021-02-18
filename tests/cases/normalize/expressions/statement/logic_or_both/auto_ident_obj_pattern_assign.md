@@ -46,23 +46,21 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
+let SSA_x = tmpNestedAssignObjPatternRhs.x;
+let SSA_y = tmpNestedAssignObjPatternRhs.y;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
   const tmpObjLitVal$2 = $(3);
   const tmpObjLitVal$3 = $(4);
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
-  x = tmpAssignObjPatternRhs.x;
-  y = tmpAssignObjPatternRhs.y;
+  SSA_x = tmpAssignObjPatternRhs.x;
+  SSA_y = tmpAssignObjPatternRhs.y;
 }
-$(a, x, y);
+$(a, SSA_x, SSA_y);
 `````
 
 ## Globals

@@ -33,13 +33,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = b;
-b = b + 1;
-const tmpExportDefault = tmpPostUpdArgIdent;
+const tmpExportDefault = 1;
 export { tmpExportDefault as default };
-$(a, b);
+$(a, 2);
 `````
 
 ## Globals

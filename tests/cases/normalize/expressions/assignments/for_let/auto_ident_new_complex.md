@@ -33,15 +33,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-a = new tmpNewCallee(1);
-const xyz = a;
+const SSA_a = new tmpNewCallee(1);
 while (true) {
-  $(xyz);
+  $(SSA_a);
   $(1);
 }
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

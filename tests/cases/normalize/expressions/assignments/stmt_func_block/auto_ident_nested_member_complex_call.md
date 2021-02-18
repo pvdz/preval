@@ -56,7 +56,6 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const b = { x: 1 };
   const c = { y: 2 };
-  let a = { a: 999, b: 1000 };
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
@@ -64,8 +63,7 @@ function f() {
   const varInitAssignLhsComputedRhs = $(3);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
-  $(a, b, c, 3);
+  $(varInitAssignLhsComputedRhs, b, c, 3);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

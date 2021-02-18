@@ -38,13 +38,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpDeleteCompObj = $(arg);
-a = delete tmpDeleteCompObj['y'];
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, arg);
+const SSA_a = delete tmpDeleteCompObj['y'];
+obj[SSA_a];
+$(SSA_a, arg);
 `````
 
 ## Globals

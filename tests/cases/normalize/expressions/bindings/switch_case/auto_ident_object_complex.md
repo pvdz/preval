@@ -44,15 +44,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$2 = $(3);
-  const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  $(a);
-}
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$2 = $(3);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+$(a);
 `````
 
 ## Globals

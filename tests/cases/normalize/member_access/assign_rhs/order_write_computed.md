@@ -54,12 +54,10 @@ const obj = {
     $(20);
   },
 };
-let x = 10;
 const tmpNestedAssignComMemberObj = $(obj);
 const tmpNestedAssignComMemberProp = $('x');
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
-x = 30;
-$(x);
+$(30);
 `````
 
 ## Globals

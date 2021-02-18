@@ -37,15 +37,10 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-b = 2;
-a = 2;
-const tmpForOfDeclRhs = a;
 let x;
-for (x of tmpForOfDeclRhs) {
+for (x of 2) {
 }
-$(a, b, 2);
+$(2, 2, 2);
 `````
 
 ## Globals

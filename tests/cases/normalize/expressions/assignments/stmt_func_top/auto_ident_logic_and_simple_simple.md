@@ -39,12 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let a = { a: 999, b: 1000 };
-  a = 1;
-  if (a) {
-    a = 2;
+  let SSA_a = 1;
+  if (SSA_a) {
+    SSA_a = 2;
   }
-  $(a);
+  $(SSA_a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -42,11 +42,10 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 $(1);
 const tmpCallCompProp = $('$');
-a = b[tmpCallCompProp](1);
-$(a);
+const SSA_a = b[tmpCallCompProp](1);
+$(SSA_a);
 `````
 
 ## Globals

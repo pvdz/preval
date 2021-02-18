@@ -38,9 +38,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = undefined;
-xyz = $(60);
-$(xyz);
+const SSA_xyz = $(60);
+$(SSA_xyz);
 $(a);
 `````
 

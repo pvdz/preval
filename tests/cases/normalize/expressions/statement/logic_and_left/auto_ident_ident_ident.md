@@ -36,14 +36,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-b = 2;
-const tmpIfTest = b;
-if (tmpIfTest) {
-  $(100);
-}
-$(a, b, 2);
+$(100);
+$(a, 2, 2);
 `````
 
 ## Globals

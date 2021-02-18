@@ -57,24 +57,19 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const tmpObjLitVal$1 = { e: $ };
-  const tmpObjLitVal = { d: tmpObjLitVal$1 };
-  const b = { c: tmpObjLitVal };
-  a = undefined;
-  const tmpIfTest$2 = b != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    a = tmpChainElementCall;
-  }
-  $(a);
+const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal = { d: tmpObjLitVal$1 };
+const b = { c: tmpObjLitVal };
+let SSA_a = undefined;
+const tmpIfTest$2 = b != null;
+if (tmpIfTest$2) {
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  SSA_a = tmpChainElementCall;
 }
+$(SSA_a);
 `````
 
 ## Globals

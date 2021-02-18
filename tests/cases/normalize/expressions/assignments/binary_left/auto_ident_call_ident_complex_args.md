@@ -39,15 +39,13 @@ $(a);
 
 `````js filename=intro
 $;
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
-a = $(tmpCalleeParam$1, tmpCalleeParam$2);
-const tmpBinBothLhs = a;
+const SSA_a = $(tmpCalleeParam$1, tmpCalleeParam$2);
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = SSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

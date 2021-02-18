@@ -34,12 +34,12 @@ $(b, c);
 ## Output
 
 `````js filename=intro
-let b = [];
+[];
 const tmpNestedAssignArrPatternRhs = [2];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
+const SSA_b = arrPatternSplat[0];
 const c = tmpNestedAssignArrPatternRhs === 1;
-$(b, c);
+$(SSA_b, c);
 `````
 
 ## Globals

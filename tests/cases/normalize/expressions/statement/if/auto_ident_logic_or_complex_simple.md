@@ -35,11 +35,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  tmpIfTest = 2;
-}
+$(tmpCalleeParam);
 $(a);
 `````
 

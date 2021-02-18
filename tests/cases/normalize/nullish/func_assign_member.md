@@ -42,12 +42,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   var y;
-  y = $();
-  const tmpIfTest = y == null;
+  let SSA_y = $();
+  const tmpIfTest = SSA_y == null;
   if (tmpIfTest) {
-    y = foo;
+    SSA_y = foo;
   }
-  const tmpReturnArg = $(y);
+  const tmpReturnArg = $(SSA_y);
   return tmpReturnArg;
 }
 const tmpCalleeParam = f();

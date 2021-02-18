@@ -35,14 +35,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x_1);
-a = typeof tmpUnaryArg;
-const tmpForInDeclRhs = a;
+const SSA_a = typeof tmpUnaryArg;
 let x_1;
-for (x_1 in tmpForInDeclRhs) {
+for (x_1 in SSA_a) {
 }
-$(a, 1);
+$(SSA_a, 1);
 `````
 
 ## Globals

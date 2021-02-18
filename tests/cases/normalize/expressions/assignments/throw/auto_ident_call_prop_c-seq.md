@@ -33,11 +33,9 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-a = tmpCallObj.$(1);
-const tmpThrowArg = a;
-throw tmpThrowArg;
+const SSA_a = tmpCallObj.$(1);
+throw SSA_a;
 `````
 
 ## Globals

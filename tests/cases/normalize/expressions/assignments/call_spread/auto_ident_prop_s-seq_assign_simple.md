@@ -37,12 +37,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 b.c = 2;
-a = 2;
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a, b);
+$(...2);
+$(2, b);
 `````
 
 ## Globals

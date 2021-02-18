@@ -43,7 +43,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
 const obj = {};
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('c');
@@ -51,10 +50,8 @@ const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-a = tmpNestedAssignPropRhs;
-const tmpCompProp = a;
-obj[tmpCompProp];
-$(a, b);
+obj[tmpNestedAssignPropRhs];
+$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Globals

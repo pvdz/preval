@@ -53,22 +53,19 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(0);
-    p = $(tmpCalleeParam);
-    if (p) {
+    const SSA_p = $(tmpCalleeParam);
+    if (SSA_p) {
     } else {
       const tmpCalleeParam$1 = $(1);
-      p = $(tmpCalleeParam$1);
-      if (p) {
+      const SSA_p$1 = $(tmpCalleeParam$1);
+      if (SSA_p$1) {
         const tmpCalleeParam$2 = $(2);
-        p = $(tmpCalleeParam$2);
+        $(tmpCalleeParam$2);
       }
     }
-  } else {
-    p = $tdz$__p;
   }
 }
 const a = { a: 999, b: 1000 };

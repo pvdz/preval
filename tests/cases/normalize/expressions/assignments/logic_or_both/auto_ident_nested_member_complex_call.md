@@ -65,7 +65,6 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
@@ -73,8 +72,8 @@ const varInitAssignLhsComputedProp = $('y');
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-a = varInitAssignLhsComputedRhs;
-let tmpCalleeParam = a;
+let SSA_a = varInitAssignLhsComputedRhs;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const varInitAssignLhsComputedObj$1 = $(b);
@@ -84,11 +83,11 @@ if (tmpCalleeParam) {
   const varInitAssignLhsComputedRhs$2 = $(3);
   varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$2;
-  a = varInitAssignLhsComputedRhs$2;
+  SSA_a = varInitAssignLhsComputedRhs$2;
   tmpCalleeParam = varInitAssignLhsComputedRhs$2;
 }
 $(tmpCalleeParam);
-$(a, b, c, 3);
+$(SSA_a, b, c, 3);
 `````
 
 ## Globals

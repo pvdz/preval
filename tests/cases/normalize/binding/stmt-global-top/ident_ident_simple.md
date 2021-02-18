@@ -29,10 +29,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
-b = 3;
-const a = b;
-$(a, b, 3);
+$(3, 3, 3);
 `````
 
 ## Globals

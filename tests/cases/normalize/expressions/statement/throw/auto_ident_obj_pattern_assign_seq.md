@@ -40,15 +40,13 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
+tmpNestedAssignObjPatternRhs.x;
+tmpNestedAssignObjPatternRhs.y;
 throw tmpNestedAssignObjPatternRhs;
 `````
 

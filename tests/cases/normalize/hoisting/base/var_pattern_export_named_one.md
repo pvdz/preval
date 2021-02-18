@@ -35,9 +35,9 @@ var x;
 $(x);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-$(x);
-export { x };
+const SSA_x = arrPatternSplat[0];
+$(SSA_x);
+export { SSA_x as x };
 `````
 
 ## Globals

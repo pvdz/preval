@@ -62,26 +62,15 @@ if (tmpIfTest$4) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  a = 0;
-  if (a) {
-  } else {
-    const tmpCalleeParam = $(1);
-    a = $(tmpCalleeParam);
-  }
-  $(a);
+let SSA_a = 0;
+if (SSA_a) {
+} else {
+  const tmpCalleeParam = $(1);
+  SSA_a = $(tmpCalleeParam);
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  $('fail1');
-}
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
-  $('fail2');
-}
+$(SSA_a);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

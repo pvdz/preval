@@ -47,26 +47,24 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const a = { a: 999, b: 1000 };
-$(x);
-$(y);
+$(1);
+$(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-$(x);
-$(y);
+const SSA_x = arrPatternSplat[0];
+const SSA_y = arrPatternSplat[1];
+$(SSA_x);
+$(SSA_y);
 const tmpArrElement$2 = $(3);
 const tmpArrElement$3 = $(4);
 const arrAssignPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-x = arrPatternSplat$1[0];
-y = arrPatternSplat$1[1];
-$(a, x, y);
+const SSA_x$1 = arrPatternSplat$1[0];
+const SSA_y$1 = arrPatternSplat$1[1];
+$(a, SSA_x$1, SSA_y$1);
 `````
 
 ## Globals

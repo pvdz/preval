@@ -39,10 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  let b = 1;
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  $(tmpPostUpdArgIdent, b);
+  $(1, 0);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

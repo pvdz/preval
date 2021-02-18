@@ -28,9 +28,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = undefined;
-tmpThrowArg = 2;
-throw tmpThrowArg;
+throw 2;
 `````
 
 ## Globals

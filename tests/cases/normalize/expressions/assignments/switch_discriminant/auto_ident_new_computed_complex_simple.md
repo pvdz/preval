@@ -43,12 +43,11 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
+const SSA_a = new tmpNewCallee(1);
 $(100);
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

@@ -55,23 +55,15 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-a = 3;
-const tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
-$(a, b, 3);
+const SSA_tmpCalleeParam = $(100);
+$(SSA_tmpCalleeParam);
+$(3, b, 3);
 `````
 
 ## Globals

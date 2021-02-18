@@ -29,11 +29,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(100);
-a = undefined;
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw undefined;
 `````
 
 ## Globals

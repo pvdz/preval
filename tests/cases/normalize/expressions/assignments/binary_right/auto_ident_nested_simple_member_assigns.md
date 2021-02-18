@@ -51,7 +51,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 b.x = 3;
 b.x = 3;
@@ -59,11 +58,9 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-a = 3;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + 3;
 $(tmpCalleeParam);
-$(a, b, 3);
+$(3, b, 3);
 `````
 
 ## Globals

@@ -52,7 +52,7 @@ function f(tmpParamPattern) {
     objPatternCrashTest = objPatternNoDefault === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+    objPatternNoDefault.cannotDestructureThis;
   }
   return 'ok';
 }

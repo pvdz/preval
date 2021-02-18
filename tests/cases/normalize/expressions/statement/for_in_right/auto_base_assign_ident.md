@@ -34,14 +34,12 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const a = { a: 999, b: 1000 };
-b = $(2);
-const tmpForInDeclRhs = b;
+const SSA_b = $(2);
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in SSA_b) {
 }
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

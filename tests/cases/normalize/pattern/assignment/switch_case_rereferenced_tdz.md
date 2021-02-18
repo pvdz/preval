@@ -57,15 +57,10 @@ if (tmpIfTest$3) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 2;
-tmpSwitchCaseToStart = 1;
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
-  const arrAssignPatternRhs = [30, 40];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
-}
+const arrAssignPatternRhs = [30, 40];
+const arrPatternSplat = [...arrAssignPatternRhs];
+arrPatternSplat[0];
+arrPatternSplat[1];
 `````
 
 ## Globals

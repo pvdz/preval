@@ -31,10 +31,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpChainElementCall = false();
-tmpCalleeParam = tmpChainElementCall;
-$(tmpCalleeParam);
+$(tmpChainElementCall);
 `````
 
 ## Globals

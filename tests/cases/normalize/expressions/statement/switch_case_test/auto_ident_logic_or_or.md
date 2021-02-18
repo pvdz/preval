@@ -63,7 +63,7 @@ if (tmpBinLhs) {
 if (tmpBinLhs) {
 } else {
   const tmpCalleeParam$2 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$2);
+  $(tmpCalleeParam$2);
 }
 $(a);
 `````

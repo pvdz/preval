@@ -29,11 +29,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-a = [1, 2, 3];
-const tmpExportDefault = a;
+const SSA_a = [1, 2, 3];
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

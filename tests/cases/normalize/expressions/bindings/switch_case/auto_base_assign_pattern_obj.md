@@ -50,19 +50,11 @@ if (tmpIfTest$1) {
 `````js filename=intro
 let b;
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  b = {};
-  a = undefined;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  $(a, b);
-}
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const SSA_b$1 = tmpNestedAssignObjPatternRhs.b;
+$(tmpNestedAssignObjPatternRhs, SSA_b$1);
 `````
 
 ## Globals

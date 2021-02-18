@@ -44,20 +44,18 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-a = delete arg[tmpDeleteCompProp];
-const tmpIfTest = a;
-if (tmpIfTest) {
+const SSA_a = delete arg[tmpDeleteCompProp];
+if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a, arg);
 `````
 
 ## Globals

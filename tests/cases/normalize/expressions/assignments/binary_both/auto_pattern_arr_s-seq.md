@@ -47,20 +47,20 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+arrPatternSplat[0];
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
+arrPatternSplat$1[0];
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs$1 = [1, 2];
 const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-a = arrPatternSplat$2[0];
+const SSA_a$1 = arrPatternSplat$2[0];
 const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
-$(a);
+$(SSA_a$1);
 `````
 
 ## Globals

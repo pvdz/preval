@@ -47,14 +47,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const b = { c: 1 };
-  b.c = 2;
-  $(2, b);
-}
+const b = { c: 1 };
+b.c = 2;
+$(2, b);
 `````
 
 ## Globals

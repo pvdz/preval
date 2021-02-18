@@ -41,14 +41,14 @@ $(x, y, z);
 var x;
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
+const SSA_x = arrPatternSplat[0];
 const y = arrPatternSplat[1];
-$(x, y);
+$(SSA_x, y);
 const arrAssignPatternRhs$1 = [4, 5, 6];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-x = arrPatternSplat$1[0];
+const SSA_x$1 = arrPatternSplat$1[0];
 const z = arrPatternSplat$1[1];
-$(x, y, z);
+$(SSA_x$1, y, z);
 `````
 
 ## Globals

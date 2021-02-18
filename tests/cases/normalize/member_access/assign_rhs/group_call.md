@@ -28,12 +28,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 $(1);
 $(2);
 const tmpAssignRhsProp = $($);
-x = tmpAssignRhsProp.length;
-$(x);
+const SSA_x = tmpAssignRhsProp.length;
+$(SSA_x);
 `````
 
 ## Globals

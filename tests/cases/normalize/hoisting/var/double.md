@@ -29,9 +29,7 @@ $(x);
 
 `````js filename=intro
 var x;
-x = 1;
-x = 2;
-$(x);
+$(2);
 `````
 
 ## Globals

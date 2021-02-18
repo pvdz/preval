@@ -48,17 +48,15 @@ tmpCallCallee$1(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  let a = { a: 999, b: 1000 };
   const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  const tmpCallCallee = a;
+  const SSA_a = { b: tmpObjLitVal };
   const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(a);
-  const tmpAssignComMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam$1 = $(SSA_a);
+  const tmpAssignComMemLhsObj = SSA_a(tmpCalleeParam, tmpCalleeParam$1);
   const tmpAssignComMemLhsProp = $('b');
   const tmpAssignComputedRhs = $(2);
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  $(a);
+  $(SSA_a);
 }
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

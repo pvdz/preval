@@ -55,8 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
-  let a = { a: 999, b: 1000 };
-  a = undefined;
+  let SSA_a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
@@ -66,10 +65,10 @@ function f() {
     if (tmpIfTest$1) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
+      SSA_a = tmpChainElementObject$1;
     }
   }
-  $(a);
+  $(SSA_a);
 }
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

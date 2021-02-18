@@ -42,13 +42,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
+[];
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-b = arrPatternSplat[0];
+const SSA_b = arrPatternSplat[0];
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -56,7 +56,7 @@ while (true) {
     break;
   }
 }
-$(a, b);
+$(a, SSA_b);
 `````
 
 ## Globals

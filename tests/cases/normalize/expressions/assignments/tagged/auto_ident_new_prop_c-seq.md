@@ -37,14 +37,12 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+const SSA_a = new tmpNewCallee(1);
+$(tmpCalleeParam, SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

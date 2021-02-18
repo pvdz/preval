@@ -37,16 +37,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpNestedComplexRhs;
 $(tmpCalleeParam);
-$(a, b);
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
 ## Globals

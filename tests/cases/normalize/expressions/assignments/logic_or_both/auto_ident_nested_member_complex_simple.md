@@ -64,15 +64,14 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-a = 3;
-let tmpCalleeParam = a;
+let SSA_a = 3;
+let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const varInitAssignLhsComputedObj$1 = $(b);
@@ -81,11 +80,11 @@ if (tmpCalleeParam) {
   const varInitAssignLhsComputedProp$2 = $('y');
   varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-  a = 3;
+  SSA_a = 3;
   tmpCalleeParam = 3;
 }
 $(tmpCalleeParam);
-$(a, b, c, 3);
+$(SSA_a, b, c, 3);
 `````
 
 ## Globals

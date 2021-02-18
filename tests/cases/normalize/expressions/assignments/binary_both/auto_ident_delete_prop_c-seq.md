@@ -43,20 +43,17 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-const tmpBinBothLhs = a;
+const SSA_a = delete tmpDeleteObj.y;
 $(1);
 $(2);
 const tmpDeleteObj$1 = $(arg);
-a = delete tmpDeleteObj$1.y;
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const SSA_a$1 = delete tmpDeleteObj$1.y;
+const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-$(a, arg);
+$(SSA_a$1, arg);
 `````
 
 ## Globals

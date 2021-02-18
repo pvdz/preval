@@ -34,12 +34,11 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
-const tmpExportDefault = a;
+const SSA_a = tmpAssignRhsProp.c;
+const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-$(a, b);
+$(SSA_a, b);
 `````
 
 ## Globals

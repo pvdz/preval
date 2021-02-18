@@ -40,14 +40,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const tmpUnaryArg = $(100);
-  const a = -tmpUnaryArg;
-  $(a);
-}
+const tmpUnaryArg = $(100);
+const a = -tmpUnaryArg;
+$(a);
 `````
 
 ## Globals

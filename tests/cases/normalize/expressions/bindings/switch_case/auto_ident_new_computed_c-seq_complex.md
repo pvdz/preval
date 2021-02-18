@@ -48,17 +48,12 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const b = { $: $ };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('$');
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const a = new tmpNewCallee(1);
-  $(a);
-}
+const b = { $: $ };
+const tmpCompObj = $(b);
+const tmpCompProp = $('$');
+const tmpNewCallee = tmpCompObj[tmpCompProp];
+const a = new tmpNewCallee(1);
+$(a);
 `````
 
 ## Globals

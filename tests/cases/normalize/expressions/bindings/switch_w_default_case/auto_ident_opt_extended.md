@@ -73,31 +73,20 @@ if (tmpIfTest$5) {
 
 `````js filename=intro
 let a;
-let tmpSwitchCaseToStart = 1;
-tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const tmpObjLitVal$1 = { z: 100 };
-  const tmpObjLitVal = { y: tmpObjLitVal$1 };
-  const b = { x: tmpObjLitVal };
-  a = undefined;
-  const tmpIfTest$3 = b != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$2;
-  }
-  $(a);
+const tmpObjLitVal$1 = { z: 100 };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+const b = { x: tmpObjLitVal };
+let SSA_a = undefined;
+const tmpIfTest$3 = b != null;
+if (tmpIfTest$3) {
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+  SSA_a = tmpChainElementObject$2;
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
-  $('fail1');
-}
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
-  $('fail2');
-}
+$(SSA_a);
+$('fail1');
+$('fail2');
 `````
 
 ## Globals

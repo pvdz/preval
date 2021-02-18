@@ -32,11 +32,11 @@ $(a);
 
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-a = tmpAssignObjPatternRhs.a;
-$(a);
+const SSA_a = tmpAssignObjPatternRhs.a;
+$(SSA_a);
 `````
 
 ## Globals

@@ -41,7 +41,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-[];
 const tmpBinBothLhs = $(100);
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];

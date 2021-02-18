@@ -46,7 +46,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  [];
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);

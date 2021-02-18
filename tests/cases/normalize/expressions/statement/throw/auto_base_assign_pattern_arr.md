@@ -37,7 +37,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-[];
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);

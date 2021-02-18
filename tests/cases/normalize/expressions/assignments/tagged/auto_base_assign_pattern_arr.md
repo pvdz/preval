@@ -40,7 +40,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-[];
 const tmpCalleeParam = ['before ', ' after'];
 const tmpArrElement = $(2);
 const tmpCalleeParam$2 = [tmpArrElement];

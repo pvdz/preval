@@ -3858,21 +3858,20 @@ export function phaseNormalize(fdata, fname) {
 
         if (wrapKind === 'statement') {
           // Consider an array statements that only has simple spreads to be okay
+          // For normalization purposes, we want one array with spread per statement
           if (
-            node.elements.every((enode) => {
-              if (enode && enode.type !== 'SpreadElement') {
-                // Don't want to keep non-spreads in an array statement. There's no point.
-                return false;
-              }
-              // `[...x];` will trigger the iterator on x and so is an observable side effect
-              return !isComplexNode(enode.argument);
-            })
+            node.elements.length === 1 &&
+            node.elements[0] &&
+            node.elements[0].type === 'SpreadElement' &&
+            !isComplexNode(node.elements[0].argument)
           ) {
+            log('This is an array with only a spread with simple arg. Base case that we keep as is.');
             return false;
           }
 
-          rule('Array cannot be a statement');
+          rule('Array statements are only allowed with one spread');
           example('[a, b()];', 'a; b();');
+          example('[...a, ...b];', '[...a]; [...b];');
           before(node, parentNode);
 
           const newNodes = [];
@@ -3880,20 +3879,28 @@ export function phaseNormalize(fdata, fname) {
             if (!enode) return;
 
             if (enode.type === 'SpreadElement') {
-              const tmpName = createFreshVar('tmpArrElToSpread', fdata);
-              const newNode = AST.variableDeclaration(tmpName, enode.argument, 'const');
-              newNodes.push(newNode);
-              // Spread it to trigger iterators and to make sure still errors happen
-              const spread = AST.expressionStatement(AST.arrayExpression(AST.spreadElement(tmpName)));
-              newNodes.push(spread);
-            } else {
-              const newNode = AST.expressionStatement(enode);
-              newNodes.push(newNode);
+              // Replace with fresh array with one spread. Make sure the arg is simple.
+
+              if (isComplexNode(enode.argument)) {
+                const tmpName = createFreshVar('tmpArrElToSpread', fdata);
+                const newNode = AST.variableDeclaration(tmpName, enode.argument, 'const');
+                newNodes.push(newNode);
+                const spread = AST.expressionStatement(AST.arrayExpression(AST.spreadElement(tmpName)));
+                newNodes.push(spread);
+              } else {
+                const spread = AST.expressionStatement(AST.arrayExpression(enode));
+                newNodes.push(spread);
+              }
+              return;
             }
+
+            // Otherwise this was a regular element. Just move it to a statement.
+            const newNode = AST.expressionStatement(enode);
+            newNodes.push(newNode);
           });
           body.splice(i, 1, ...newNodes);
 
-          after(newNodes);
+          after(newNodes, parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }

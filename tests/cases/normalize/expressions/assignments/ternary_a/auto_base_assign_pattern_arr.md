@@ -45,7 +45,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-[];
 let tmpCalleeParam = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];

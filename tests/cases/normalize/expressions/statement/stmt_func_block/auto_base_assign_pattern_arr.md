@@ -46,7 +46,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  [];
   const a = { a: 999, b: 1000 };
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];

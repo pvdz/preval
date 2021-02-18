@@ -42,7 +42,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-[];
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);

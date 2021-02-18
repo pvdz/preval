@@ -44,7 +44,6 @@ tmpCallCallee(tmpCalleeParam$2);
 
 `````js filename=intro
 function f() {
-  $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   const SSA_a = new $(tmpCalleeParam, tmpCalleeParam$1);

@@ -34,7 +34,6 @@ if (tmpIfTest) {
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;

@@ -34,7 +34,6 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(100);
-  undefined;
 }
 $(a);
 `````
@@ -53,7 +52,6 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(100);
-  undefined;
 }
 $(a);
 `````

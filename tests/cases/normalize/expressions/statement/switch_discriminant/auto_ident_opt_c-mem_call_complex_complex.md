@@ -57,7 +57,6 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {

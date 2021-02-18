@@ -43,7 +43,6 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
   const arrPatternBeforeDefault = arrPatternSplat[0];
-  undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     $('fail');

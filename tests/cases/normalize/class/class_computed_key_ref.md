@@ -29,7 +29,7 @@ let x = class {
 ## Output
 
 `````js filename=intro
-undefined;
+
 `````
 
 ## Globals

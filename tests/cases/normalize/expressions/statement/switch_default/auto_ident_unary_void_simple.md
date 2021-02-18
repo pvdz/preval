@@ -30,9 +30,6 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  undefined;
-}
 $(a, arg);
 `````
 
@@ -41,7 +38,6 @@ $(a, arg);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(1);
-undefined;
 $(a, 1);
 `````
 

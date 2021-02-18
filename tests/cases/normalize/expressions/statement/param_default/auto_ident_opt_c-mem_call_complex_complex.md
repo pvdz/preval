@@ -59,10 +59,8 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    undefined;
     const tmpChainElementCall = $(b);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {

@@ -61,7 +61,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpNewCallee = $($);

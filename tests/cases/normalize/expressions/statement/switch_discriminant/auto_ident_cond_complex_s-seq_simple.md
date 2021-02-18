@@ -45,7 +45,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {

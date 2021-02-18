@@ -45,7 +45,6 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     $(100);
-    undefined;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -80,7 +79,6 @@ tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
     $(100);
-    undefined;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

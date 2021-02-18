@@ -24,7 +24,6 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   $(100);
-  undefined;
 }
 $(a);
 `````
@@ -37,7 +36,6 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   $(100);
-  undefined;
 }
 $(a);
 `````

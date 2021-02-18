@@ -81,7 +81,6 @@ function f($tdz$__pattern) {
   }
   const arrPatternSplat$1 = [...arrPatternStep];
   const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  undefined;
   const tmpIfTest$2 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$2) {
     $('fail');

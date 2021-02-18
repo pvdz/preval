@@ -38,7 +38,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
 const SSA_a = $(tmpCalleeParam$1, tmpCalleeParam$2);

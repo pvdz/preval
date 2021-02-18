@@ -62,7 +62,6 @@ function f(tmpParamPattern) {
     arrPatternStep = arrPatternBeforeDefault;
   }
   const objPatternBeforeDefault = arrPatternStep.x;
-  undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     $('pass');

@@ -24,7 +24,6 @@ $(100);
 const tmpIfTest = undefined;
 if (tmpIfTest) {
   $(100);
-  undefined;
 }
 $(a);
 `````
@@ -36,7 +35,6 @@ const a = { a: 999, b: 1000 };
 $(100);
 if (undefined) {
   $(100);
-  undefined;
 }
 $(a);
 `````

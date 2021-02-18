@@ -45,8 +45,6 @@ function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
   arrPatternSplat[0];
-  undefined;
-  undefined;
   return 'bad';
 }
 const tmpCalleeParam = f('', 10);

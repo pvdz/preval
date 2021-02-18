@@ -15,13 +15,13 @@ Date;
 ## Normalized
 
 `````js filename=intro
-Date;
+
 `````
 
 ## Output
 
 `````js filename=intro
-Date;
+
 `````
 
 ## Globals

@@ -40,7 +40,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {

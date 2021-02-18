@@ -38,8 +38,6 @@ $('bad');
 const objPatternNoDefault = undefined.x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-undefined;
-undefined;
 $('bad');
 `````
 

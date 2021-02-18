@@ -39,7 +39,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {

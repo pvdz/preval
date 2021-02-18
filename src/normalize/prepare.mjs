@@ -29,7 +29,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
-  globals.forEach((_, name) => registerGlobalIdent(fdata, name, name, { isImplicitGlobal: true, knownBuiltin: true }));
+  globals.forEach((_, name) => registerGlobalIdent(fdata, name, name, { isImplicitGlobal: false, knownBuiltin: true }));
 
   const globallyUniqueLabelRegistry = new Map();
   fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;

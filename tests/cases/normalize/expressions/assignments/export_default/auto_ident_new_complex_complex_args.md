@@ -35,7 +35,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);

@@ -43,12 +43,10 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(100);
     a = undefined;
-    undefined;
   }
 }
 let a = { a: 999, b: 1000 };

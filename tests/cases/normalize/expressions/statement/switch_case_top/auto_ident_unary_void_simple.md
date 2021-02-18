@@ -35,9 +35,6 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  undefined;
-}
 $(a, arg);
 `````
 
@@ -45,17 +42,8 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  undefined;
-}
+$(1);
+$(1);
 $(a, 1);
 `````
 

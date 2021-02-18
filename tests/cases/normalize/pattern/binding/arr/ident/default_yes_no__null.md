@@ -36,7 +36,6 @@ $('bad');
 `````js filename=intro
 const arrPatternSplat = [...null];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('fail');

@@ -23,7 +23,6 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-undefined;
 $(a, arg);
 `````
 
@@ -31,7 +30,6 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-undefined;
 $(a, 1);
 `````
 

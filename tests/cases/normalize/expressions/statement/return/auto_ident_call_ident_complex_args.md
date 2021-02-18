@@ -48,7 +48,6 @@ function f() {
   const tmpReturnArg = $(tmpCalleeParam, tmpCalleeParam$1);
   return tmpReturnArg;
 }
-$;
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

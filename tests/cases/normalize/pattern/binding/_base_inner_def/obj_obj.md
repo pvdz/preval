@@ -34,7 +34,6 @@ if (tmpIfTest) {
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
-undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;

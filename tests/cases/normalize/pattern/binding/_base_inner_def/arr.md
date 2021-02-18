@@ -33,7 +33,6 @@ if (tmpIfTest) {
 const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;

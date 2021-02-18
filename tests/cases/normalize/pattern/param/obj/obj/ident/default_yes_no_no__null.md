@@ -43,7 +43,6 @@ tmpCallCallee(tmpCalleeParam);
 function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternBeforeDefault = objPatternNoDefault.y;
-  undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     $('fail');

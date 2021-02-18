@@ -47,7 +47,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;

@@ -36,7 +36,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);

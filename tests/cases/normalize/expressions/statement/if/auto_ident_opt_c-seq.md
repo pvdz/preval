@@ -38,7 +38,6 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {

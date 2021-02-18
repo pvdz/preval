@@ -57,7 +57,6 @@ function f($tdz$__pattern) {
   }
   const arrPatternSplat = [...$tdz$__pattern_after_default];
   const arrPatternBeforeDefault = arrPatternSplat[0];
-  undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     $('fail');

@@ -48,8 +48,6 @@ function f(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
   arrPatternSplat[0];
-  undefined;
-  undefined;
   return 'bad';
 }
 const tmpCalleeParam$1 = { a: 11, b: 12 };

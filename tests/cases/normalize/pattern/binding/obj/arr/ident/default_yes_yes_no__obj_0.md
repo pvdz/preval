@@ -56,8 +56,6 @@ if (tmpIfTest) {
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 arrPatternSplat[0];
-undefined;
-undefined;
 $('bad');
 `````
 

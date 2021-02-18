@@ -42,7 +42,6 @@ $(a, arg);
 
 `````js filename=intro
 $(1);
-undefined;
 $(undefined, 1);
 `````
 

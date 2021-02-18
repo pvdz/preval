@@ -25,7 +25,6 @@ let x = class extends tmpClassSuper {};
 
 `````js filename=intro
 $(String);
-undefined;
 `````
 
 ## Globals

@@ -38,7 +38,6 @@ $('bad');
 const arrPatternSplat = [...0];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
-undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('pass');

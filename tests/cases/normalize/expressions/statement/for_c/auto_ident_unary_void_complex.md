@@ -24,7 +24,6 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(100);
-    undefined;
   } else {
     break;
   }
@@ -40,7 +39,6 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(100);
-    undefined;
   } else {
     break;
   }

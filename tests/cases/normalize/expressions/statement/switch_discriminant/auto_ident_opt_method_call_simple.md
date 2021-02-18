@@ -48,7 +48,6 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;

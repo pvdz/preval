@@ -54,10 +54,8 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    undefined;
     const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {
       const tmpChainElementObject = b.x;

@@ -42,7 +42,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 let tmpCalleeParam = undefined;
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);

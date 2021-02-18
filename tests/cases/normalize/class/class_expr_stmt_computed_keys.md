@@ -22,7 +22,6 @@
 `````js filename=intro
 const tmpClassComputedKey = $('a');
 const tmpClassComputedKey$1 = $('b');
-undefined;
 `````
 
 ## Output
@@ -30,7 +29,6 @@ undefined;
 `````js filename=intro
 $('a');
 $('b');
-undefined;
 `````
 
 ## Globals

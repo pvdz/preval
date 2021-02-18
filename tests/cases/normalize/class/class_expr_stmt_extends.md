@@ -18,14 +18,12 @@
 
 `````js filename=intro
 const tmpClassSuper = $(Number);
-undefined;
 `````
 
 ## Output
 
 `````js filename=intro
 $(Number);
-undefined;
 `````
 
 ## Globals

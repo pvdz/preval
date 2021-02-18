@@ -40,12 +40,7 @@ f();
 ## Output
 
 `````js filename=intro
-function f($tdz$__a, $tdz$__b) {
-  undefined;
-  undefined;
-  undefined;
-  undefined;
-}
+function f($tdz$__a, $tdz$__b) {}
 f();
 `````
 

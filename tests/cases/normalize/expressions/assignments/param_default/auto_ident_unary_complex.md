@@ -46,7 +46,6 @@ $(a, x);
 
 `````js filename=intro
 function f($tdz$__arg) {
-  undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(1);

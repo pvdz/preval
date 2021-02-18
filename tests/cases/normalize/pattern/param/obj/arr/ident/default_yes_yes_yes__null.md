@@ -81,8 +81,6 @@ function f($tdz$__pattern) {
   }
   const arrPatternSplat = [...objPatternAfterDefault];
   arrPatternSplat[0];
-  undefined;
-  undefined;
   return 'bad';
 }
 const tmpCalleeParam$2 = f(null, 10);

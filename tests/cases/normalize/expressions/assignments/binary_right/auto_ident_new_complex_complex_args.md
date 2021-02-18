@@ -38,7 +38,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const tmpBinBothLhs = $(100);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);

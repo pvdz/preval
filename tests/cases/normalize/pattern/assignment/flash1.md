@@ -80,8 +80,6 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   }
   const arrPatternSplat$5 = [...arrPatternStep$4];
   arrPatternSplat$5[0];
-  undefined;
-  undefined;
   const objPatternNoDefault = tmpParamPattern$1.x;
   const tmpCalleeParam$1 = [];
   objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);

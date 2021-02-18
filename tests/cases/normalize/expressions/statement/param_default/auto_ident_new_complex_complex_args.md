@@ -46,7 +46,6 @@ $(a);
 
 `````js filename=intro
 function f($tdz$__p) {
-  undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpNewCallee = $($);
@@ -55,7 +54,6 @@ function f($tdz$__p) {
     new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   }
 }
-$;
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);

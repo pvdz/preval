@@ -44,7 +44,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-$;
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$2 = $(2);
 let SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$2);

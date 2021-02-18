@@ -46,10 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
-  undefined;
-  undefined;
-}
+function f($tdz$__p) {}
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

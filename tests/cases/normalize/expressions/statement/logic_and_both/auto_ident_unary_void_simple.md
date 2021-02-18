@@ -24,9 +24,6 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = undefined;
-if (tmpIfTest) {
-  undefined;
-}
 $(a, arg);
 `````
 
@@ -34,9 +31,6 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-if (undefined) {
-  undefined;
-}
 $(a, 1);
 `````
 

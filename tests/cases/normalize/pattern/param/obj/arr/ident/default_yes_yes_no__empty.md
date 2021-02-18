@@ -62,8 +62,6 @@ function f(tmpParamPattern) {
   }
   const arrPatternSplat = [...objPatternAfterDefault];
   arrPatternSplat[0];
-  undefined;
-  undefined;
   return 'bad';
 }
 const tmpCalleeParam$1 = f();

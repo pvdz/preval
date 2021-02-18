@@ -29,7 +29,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-undefined;
 $(a);
 `````
 

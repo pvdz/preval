@@ -53,7 +53,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;

@@ -34,7 +34,6 @@ $('bad');
 
 `````js filename=intro
 const objPatternBeforeDefault = null.x;
-undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('fail');

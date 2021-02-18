@@ -54,7 +54,6 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-undefined;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   $('fail');

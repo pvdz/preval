@@ -29,7 +29,6 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
-  undefined;
 }
 $(a);
 `````
@@ -40,7 +39,6 @@ $(a);
 const a = { a: 999, b: 1000 };
 $(1);
 $(100);
-undefined;
 $(a);
 `````
 

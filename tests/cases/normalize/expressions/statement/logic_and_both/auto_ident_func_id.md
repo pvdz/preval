@@ -22,7 +22,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = function f() {};
 if (tmpIfTest) {
-  (function f$1() {});
+  undefined;
 }
 $(a);
 `````
@@ -33,7 +33,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpIfTest = function f() {};
 if (tmpIfTest) {
-  (function f$1() {});
+  undefined;
 }
 $(a);
 `````

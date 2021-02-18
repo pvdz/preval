@@ -43,7 +43,7 @@ function f($tdz$__p) {
   undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    (function f$1() {});
+    undefined;
   }
 }
 const a = { a: 999, b: 1000 };

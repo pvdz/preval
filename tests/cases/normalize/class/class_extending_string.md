@@ -24,8 +24,8 @@ let x = class extends tmpClassSuper {};
 ## Output
 
 `````js filename=intro
-const tmpClassSuper = $(String);
-(class extends tmpClassSuper {});
+$(String);
+undefined;
 `````
 
 ## Globals

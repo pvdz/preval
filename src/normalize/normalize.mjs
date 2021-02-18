@@ -1131,6 +1131,19 @@ export function phaseNormalize(fdata, fname) {
       case 'FunctionExpression': {
         // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
 
+        // If this is a statement then drop the whole thing without processing it
+        if (wrapKind === 'statement') {
+          rule('Function expressions that are statements should be dropped');
+          example('(function(){});', 'undefined;');
+          before(node, parentNode);
+
+          body[i] = AST.expressionStatement(AST.identifier('undefined'));
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         if (hoistingOnce(node)) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -4400,6 +4413,19 @@ export function phaseNormalize(fdata, fname) {
 
         log('Processing class body..');
         anyBlock(node.body);
+
+        // After processing, if this is a statement, drop what's left of the class
+        if (wrapKind === 'statement') {
+          rule('Class expressions that are statements should be outlined and dropped');
+          example('(class{});', 'undefined;');
+          before(node, parentNode);
+
+          body[i] = AST.expressionStatement(AST.identifier('undefined'));
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
 
         return false;
       }

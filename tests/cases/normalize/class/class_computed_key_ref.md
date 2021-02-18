@@ -29,9 +29,7 @@ let x = class {
 ## Output
 
 `````js filename=intro
-(class {
-  ['y']() {}
-});
+undefined;
 `````
 
 ## Globals

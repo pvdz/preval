@@ -30,8 +30,8 @@ x = arrPatternSplat$1[1];
 y = arrPatternSplat$1[2];
 bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
 let arrPatternSplat = [...bindingPatternArrRoot];
-let a_1 = arrPatternSplat[0];
-let b_1 = arrPatternSplat[1];
+let a$1 = arrPatternSplat[0];
+let b$1 = arrPatternSplat[1];
 `````
 
 ## Output

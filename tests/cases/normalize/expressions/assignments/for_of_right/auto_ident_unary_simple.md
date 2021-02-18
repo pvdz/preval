@@ -23,10 +23,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-a = typeof x_1;
+a = typeof x$1;
 let tmpForOfDeclRhs = a;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````
@@ -34,9 +34,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const SSA_a = typeof x_1;
-let x_1;
-for (x_1 of SSA_a) {
+const SSA_a = typeof x$1;
+let x$1;
+for (x$1 of SSA_a) {
 }
 $(SSA_a, 1);
 `````

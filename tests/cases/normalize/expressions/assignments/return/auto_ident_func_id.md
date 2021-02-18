@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  a = function f_1() {};
+  a = function f$1() {};
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
@@ -38,7 +38,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  a = function f_1() {};
+  a = function f$1() {};
   const tmpReturnArg = a;
   return tmpReturnArg;
 }

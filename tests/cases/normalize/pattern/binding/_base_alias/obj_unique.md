@@ -21,10 +21,10 @@ const { x: a } = 1
 ## Normalized
 
 `````js filename=intro
-let a_1 = 1;
+let a$1 = 1;
 const bindingPatternObjRoot = 1;
 const a = bindingPatternObjRoot.x;
-let a_2 = 1;
+let a$2 = 1;
 `````
 
 ## Output

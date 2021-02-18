@@ -28,12 +28,12 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x_1 = tmpNestedAssignObjPatternRhs.x;
+x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpForOfDeclRhs = a;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x, y);
 `````
@@ -44,10 +44,10 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x_1 = tmpNestedAssignObjPatternRhs.x;
+x$1 = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
-let x_1;
-for (x_1 of tmpNestedAssignObjPatternRhs) {
+let x$1;
+for (x$1 of tmpNestedAssignObjPatternRhs) {
 }
 $(tmpNestedAssignObjPatternRhs, 1, SSA_y);
 `````

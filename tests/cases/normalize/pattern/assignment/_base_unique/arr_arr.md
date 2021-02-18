@@ -24,9 +24,9 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x_1 = arrPatternSplat$1[0];
-let x_2 = 1;
-$(x_1);
+x$1 = arrPatternSplat$1[0];
+let x$2 = 1;
+$(x$1);
 `````
 
 ## Output
@@ -37,15 +37,15 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x_1 = arrPatternSplat$1[0];
-$(x_1);
+x$1 = arrPatternSplat$1[0];
+$(x$1);
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x_1
+x$1
 
 ## Result
 

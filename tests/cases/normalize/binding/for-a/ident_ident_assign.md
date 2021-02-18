@@ -27,7 +27,7 @@ const tmpNestedAssignPropRhs = $(d);
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 b = tmpNestedPropAssignRhs;
-let a_1 = b;
+let a$1 = b;
 `````
 
 ## Output

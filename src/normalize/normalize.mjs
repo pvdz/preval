@@ -1,4 +1,5 @@
 import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from '../utils.mjs';
+import { createFreshVar } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
 import globals from '../globals.mjs';
 import walk from '../../lib/walk.mjs';
@@ -220,71 +221,6 @@ export function phaseNormalize(fdata, fname) {
     );
   }
 
-  function generateUniqueGlobalName(name) {
-    // Create a (module) globally unique name. Then use that name for the local scope.
-    let n = 0;
-    if (fdata.globallyUniqueNamingRegistry.has(name)) {
-      while (fdata.globallyUniqueNamingRegistry.has(name + '$' + ++n));
-    }
-    return n ? name + '$' + n : name;
-  }
-
-  function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
-    if (!fdata.globallyUniqueNamingRegistry.has(name)) {
-      fdata.globallyUniqueNamingRegistry.set(name, {
-        // ident meta data
-        uid: ++fdata.globalNameCounter,
-        originalName,
-        uniqueName: name,
-        isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
-        isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
-        knownBuiltin, // Make a distinction between known builtins and unknown builtins.
-        // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
-        // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
-        // var/let a;
-        // var/const/let a = b;
-        // const a = b;
-        // import a, b as a, * as a, {a, b as a} from 'x';
-        // export var/let a
-        // export var/const/let a = b
-        // function a(){};
-        // export function a(){};
-        // a = b;
-        // a+= b;
-        // var/const/let [a, b: a] = b;
-        // [a, b: a] = b;
-        // var/const/let {a, b: a} = b;
-        // ({a, b: a} = b);
-        // [b: a] = c;
-        // ++a;
-        // a++;
-        // for (a in b);
-        // for ([a] in b);
-        // for ({a} in b);
-        // In a nutshell there are six concrete areas to look for updates;
-        // - [x] binding declarations
-        //   - [x] regular
-        //   - [x] destructuring
-        //   - [ ] exported
-        //   - [x] could be inside `for` header
-        // - [x] param names
-        //   - [x] regular
-        //   - [x] patterns
-        // - [x] assigning
-        //   - [x] regular
-        //   - [x] compound
-        //   - [x] destructuring array
-        //   - [x] destructuring object
-        // - [ ] imports of any kind
-        // - [x] function declarations
-        // - [ ] update expressions, pre or postifx, inc or dec
-        // - [ ] for-loop lhs
-        writes: [], // {parent, prop, index} indirect reference ot the node being assigned
-        reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-      });
-    }
-  }
-
   function createNewUniqueLabel(name) {
     let n = 0;
     if (fdata.globallyUniqueLabelRegistry.has(name)) {
@@ -336,13 +272,6 @@ export function phaseNormalize(fdata, fname) {
   groupEnd();
 
   return somethingChanged;
-
-  function createFreshVar(name) {
-    ASSERT(createFreshVar.length === arguments.length, 'arg count');
-    const tmpName = generateUniqueGlobalName(name);
-    registerGlobalIdent(tmpName, tmpName);
-    return tmpName;
-  }
 
   function findBoundNamesInVarDeclaration(node, names = []) {
     ASSERT(node.type === 'VariableDeclaration');
@@ -489,12 +418,12 @@ export function phaseNormalize(fdata, fname) {
         // after processing the node. Should not be a problem... Fingers crossed.
 
         // The param value before applying the default value checks
-        const paramNameBeforeDefault = createFreshVar('objPatternBeforeDefault');
+        const paramNameBeforeDefault = createFreshVar('objPatternBeforeDefault', fdata);
         log('  - Regular prop `' + propNode.key.name + '` with default');
         log('  - Stored into `' + paramNameBeforeDefault + '`');
 
         // If this is a leaf then use the actual name, otherwise use a placeholder
-        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternAfterDefault');
+        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternAfterDefault', fdata);
         cacheNameStack.push(paramNameAfterDefault);
 
         // Store the property in this name. It's a regular property access and the previous step should
@@ -515,7 +444,7 @@ export function phaseNormalize(fdata, fname) {
         );
       } else {
         // If this is a leaf then use the actual name, otherwise use a placeholder
-        const paramNameWithoutDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternNoDefault');
+        const paramNameWithoutDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternNoDefault', fdata);
         cacheNameStack.push(paramNameWithoutDefault);
         log('  - Regular prop `' + propNode.key.name + '` without default');
         log('  - Stored into `' + paramNameWithoutDefault + '`');
@@ -543,14 +472,18 @@ export function phaseNormalize(fdata, fname) {
 
     if (!node.properties.length) {
       // No properties so we need to explicitly make sure it throws if the value is null/undefined
-      const paramNameBeforeDefault = createFreshVar('objPatternCrashTest'); // Unused. Should eliminate easily.
+      const paramNameBeforeDefault = createFreshVar('objPatternCrashTest', fdata); // Unused. Should eliminate easily.
       const lastThing = cacheNameStack[cacheNameStack.length - 1];
       newBindings.push([
         paramNameBeforeDefault,
         FRESH,
         AST.logicalExpression(
           '&&',
-          AST.logicalExpression('||', AST.binaryExpression('===', lastThing, 'undefined'), AST.binaryExpression('===', lastThing, AST.nul())),
+          AST.logicalExpression(
+            '||',
+            AST.binaryExpression('===', lastThing, 'undefined'),
+            AST.binaryExpression('===', lastThing, AST.nul()),
+          ),
           AST.memberExpression(lastThing, 'cannotDestructureThis'),
         ),
       ]);
@@ -563,7 +496,7 @@ export function phaseNormalize(fdata, fname) {
     // kind = param, var, assign
     group('- walkArrayPattern', kind);
 
-    const arrSplatName = node.type === 'Identifier' ? node.name : createFreshVar('arrPatternSplat');
+    const arrSplatName = node.type === 'Identifier' ? node.name : createFreshVar('arrPatternSplat', fdata);
     cacheNameStack.push(arrSplatName);
     // Store this property in a local variable. Because it's an array pattern, we need to invoke the iterator. The easiest
     // way syntactically is to spread it into an array. Especially since we'll want indexed access to it later, anyways.
@@ -622,12 +555,12 @@ export function phaseNormalize(fdata, fname) {
         // after processing the node. Should not be a problem... Fingers crossed.
 
         // The param value before applying the default value checks
-        const paramNameBeforeDefault = createFreshVar('arrPatternBeforeDefault');
+        const paramNameBeforeDefault = createFreshVar('arrPatternBeforeDefault', fdata);
 
         // Store this element in a local variable. If it's a leaf, use the actual
         // element name as the binding, otherwise create a fresh var for it.
 
-        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep');
+        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep', fdata);
         cacheNameStack.push(paramNameAfterDefault);
 
         // Store the property in this name
@@ -654,7 +587,7 @@ export function phaseNormalize(fdata, fname) {
         // Store this element in a local variable. If it's a leaf, use the actual
         // element name as the binding, otherwise create a fresh var for it.
 
-        const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep');
+        const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep', fdata);
         cacheNameStack.push(bindingName);
 
         // Store the property in this name
@@ -945,7 +878,7 @@ export function phaseNormalize(fdata, fname) {
     example('do { f(); } while(g());', 'let tmp = true; while (tmp || g()) { tmp = false; g(); }');
     before(node);
 
-    const tmpName = createFreshVar('tmpDoWhileFlag');
+    const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
     const newNodes = [
       AST.variableDeclaration(tmpName, AST.tru(), 'let'),
       AST.whileStatement(
@@ -964,12 +897,12 @@ export function phaseNormalize(fdata, fname) {
     // This is used for `new` and regular function calls
     args.forEach((anode) => {
       if (anode.type === 'SpreadElement') {
-        const tmpName = createFreshVar('tmpCalleeParamSpread');
+        const tmpName = createFreshVar('tmpCalleeParamSpread', fdata);
         newNodes.push(AST.variableDeclaration(tmpName, anode.argument, 'const'));
         anode.argument = AST.identifier(tmpName);
         newArgs.push(anode);
       } else {
-        const tmpName = createFreshVar('tmpCalleeParam');
+        const tmpName = createFreshVar('tmpCalleeParam', fdata);
         newNodes.push(AST.variableDeclaration(tmpName, anode, 'const'));
         newArgs.push(AST.identifier(tmpName));
       }
@@ -1024,7 +957,7 @@ export function phaseNormalize(fdata, fname) {
     example('export default x', 'tmp = x; export {tmp as default};');
     before(node);
 
-    const tmpName = createFreshVar('tmpExportDefault');
+    const tmpName = createFreshVar('tmpExportDefault', fdata);
     const newNodes = [
       AST.variableDeclaration(tmpName, node.declaration, 'const'),
       AST._exportNamedDeclarationFromNames(tmpName, 'default'),
@@ -1239,9 +1172,9 @@ export function phaseNormalize(fdata, fname) {
               example('a()[b()]?.(c())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], (tmp3 != null ? tmp3.call(tmp, c()) : undefined)');
               before(node, parentNode);
 
-              const tmpNameObj = createFreshVar('tmpOptCallMemObj');
-              const tmpNameProp = createFreshVar('tmpOptCallMemProp');
-              const tmpNameFunc = createFreshVar('tmpOptCallMemFunc');
+              const tmpNameObj = createFreshVar('tmpOptCallMemObj', fdata);
+              const tmpNameProp = createFreshVar('tmpOptCallMemProp', fdata);
+              const tmpNameFunc = createFreshVar('tmpOptCallMemFunc', fdata);
               const newNodes = [
                 AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
                 AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
@@ -1263,8 +1196,8 @@ export function phaseNormalize(fdata, fname) {
               example('a().b?.(c())', 'tmp = a(), (tmp != null ? tmp.b(c()) : undefined)');
               before(node, parentNode);
 
-              const tmpNameObj = createFreshVar('tmpOptCallMemObj');
-              const tmpNameFunc = createFreshVar('tmpOptCallMemFunc');
+              const tmpNameObj = createFreshVar('tmpOptCallMemObj', fdata);
+              const tmpNameFunc = createFreshVar('tmpOptCallMemFunc', fdata);
               const newNodes = [
                 AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
                 AST.variableDeclaration(tmpNameFunc, AST.memberExpression(tmpNameObj, callee.property), 'const'),
@@ -1289,7 +1222,7 @@ export function phaseNormalize(fdata, fname) {
           example('a()?.(b())', 'tmp = a(), (tmp != null ? tmp(b()) : undefined)');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpOptCallFunc');
+          const tmpName = createFreshVar('tmpOptCallFunc', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           const finalNode = AST.conditionalExpression(
             AST.binaryExpression('==', tmpName, AST.nul()),
@@ -1324,7 +1257,7 @@ export function phaseNormalize(fdata, fname) {
             before(node, parentNode);
 
             const newArgs = [];
-            const tmpName = createFreshVar('tmpOptMemberCallObj');
+            const tmpName = createFreshVar('tmpOptMemberCallObj', fdata);
             const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
             normalizeCallArgs(args, newArgs, newNodes);
             const finalNode = AST.conditionalExpression(
@@ -1353,9 +1286,9 @@ export function phaseNormalize(fdata, fname) {
             before(node, parentNode);
 
             const newArgs = [];
-            const tmpNameObj = createFreshVar('tmpCallCompObj');
-            const tmpNameProp = createFreshVar('tmpCallCompProp');
-            const tmpNameVal = createFreshVar('tmpCallCompVal');
+            const tmpNameObj = createFreshVar('tmpCallCompObj', fdata);
+            const tmpNameProp = createFreshVar('tmpCallCompProp', fdata);
+            const tmpNameVal = createFreshVar('tmpCallCompVal', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
               AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
@@ -1383,8 +1316,8 @@ export function phaseNormalize(fdata, fname) {
             before(node, parentNode);
 
             const newArgs = [];
-            const tmpNameObj = createFreshVar('tmpCallObj');
-            const tmpNameVal = createFreshVar('tmpCallVal');
+            const tmpNameObj = createFreshVar('tmpCallObj', fdata);
+            const tmpNameVal = createFreshVar('tmpCallVal', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
               AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, callee.property), 'const'),
@@ -1409,8 +1342,8 @@ export function phaseNormalize(fdata, fname) {
             example('a()[b()]()', 'tmp = a(), tmp2 = b(), tmp[tmp2]()');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpCallCompObj');
-            const tmpNameProp = createFreshVar('tmpCallCompProp');
+            const tmpNameObj = createFreshVar('tmpCallCompObj', fdata);
+            const tmpNameProp = createFreshVar('tmpCallCompProp', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
               AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
@@ -1432,7 +1365,7 @@ export function phaseNormalize(fdata, fname) {
             example('a()[b]()', 'tmp = a(), tmp[b]()', () => callee.computed);
             before(node, parentNode);
 
-            const tmpName = createFreshVar('tmpCallObj');
+            const tmpName = createFreshVar('tmpCallObj', fdata);
             const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
             const finalNode = AST.callExpression(AST.memberExpression(tmpName, callee.property, callee.computed), args);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1462,7 +1395,7 @@ export function phaseNormalize(fdata, fname) {
           before(node, parentNode);
 
           const newArgs = [];
-          const tmpName = createFreshVar('tmpCallCallee');
+          const tmpName = createFreshVar('tmpCallCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           normalizeCallArgs(args, newArgs, newNodes);
           const finalNode = AST.callExpression(tmpName, newArgs);
@@ -1482,7 +1415,7 @@ export function phaseNormalize(fdata, fname) {
           example('a()(x, y)', 'tmp = a(), tmp(x, y)');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpCallCallee');
+          const tmpName = createFreshVar('tmpCallCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           const finalNode = AST.callExpression(tmpName, args);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1524,7 +1457,7 @@ export function phaseNormalize(fdata, fname) {
           before(node, parentNode);
 
           const newArgs = [];
-          const tmpName = createFreshVar('tmpNewCallee');
+          const tmpName = createFreshVar('tmpNewCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           normalizeCallArgs(args, newArgs, newNodes);
           const finalNode = AST.newExpression(tmpName, newArgs);
@@ -1544,7 +1477,7 @@ export function phaseNormalize(fdata, fname) {
           example('new (a())(x, y)', 'tmp = a(), new tmp(x, y)');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpNewCallee');
+          const tmpName = createFreshVar('tmpNewCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           const finalNode = AST.newExpression(tmpName, args);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1575,7 +1508,7 @@ export function phaseNormalize(fdata, fname) {
           example('a()?[b()]', 'tmp = a(), (tmp != null ? tmp[b()] : undefined)', () => node.computed);
           before(node, parentNode);
 
-          const tmpNameObj = createFreshVar('tmpOptObj');
+          const tmpNameObj = createFreshVar('tmpOptObj', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
           const finalNode = AST.conditionalExpression(
             AST.binaryExpression('==', tmpNameObj, AST.nul()),
@@ -1596,8 +1529,8 @@ export function phaseNormalize(fdata, fname) {
           example('a()[b()]', 'tmp = a(), tmp2 = b(), a[b]');
           before(node, parentNode);
 
-          const tmpNameObj = createFreshVar('tmpCompObj');
-          const tmpNameProp = createFreshVar('tmpCompProp');
+          const tmpNameObj = createFreshVar('tmpCompObj', fdata);
+          const tmpNameProp = createFreshVar('tmpCompProp', fdata);
           const newNodes = [
             AST.variableDeclaration(tmpNameObj, node.object, 'const'),
             AST.variableDeclaration(tmpNameProp, node.property, 'const'),
@@ -1617,7 +1550,7 @@ export function phaseNormalize(fdata, fname) {
           example('f().x', 'tmp = f(), tmp.x');
           before(node, parentNode);
 
-          const tmpNameObj = createFreshVar('tmpCompObj');
+          const tmpNameObj = createFreshVar('tmpCompObj', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
           const finalNode = AST.memberExpression(tmpNameObj, node.property, node.computed);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1678,7 +1611,7 @@ export function phaseNormalize(fdata, fname) {
         log('-', lhs.type, node.operator, rhs.type);
 
         if (lhs.type === 'ObjectPattern') {
-          const tmpNameRhs = createFreshVar('tmpAssignObjPatternRhs');
+          const tmpNameRhs = createFreshVar('tmpAssignObjPatternRhs', fdata);
           const cacheNameStack = [tmpNameRhs];
           const newBindings = [];
 
@@ -1723,7 +1656,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (lhs.type === 'ArrayPattern') {
-          const rhsTmpName = createFreshVar('arrAssignPatternRhs');
+          const rhsTmpName = createFreshVar('arrAssignPatternRhs', fdata);
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
 
@@ -1789,8 +1722,8 @@ export function phaseNormalize(fdata, fname) {
             example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignComMemLhsObj');
-            const tmpNameProp = createFreshVar('tmpAssignComMemLhsProp');
+            const tmpNameObj = createFreshVar('tmpAssignComMemLhsObj', fdata);
+            const tmpNameProp = createFreshVar('tmpAssignComMemLhsProp', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
               AST.variableDeclaration(tmpNameProp, b, 'const'), // tmp2 = b()
@@ -1818,7 +1751,7 @@ export function phaseNormalize(fdata, fname) {
             example('a()[b()] += c()', '(tmp = a(), tmp2[b()] += c())', () => node.computed && node.operator !== '=');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignMemLhsObj');
+            const tmpNameObj = createFreshVar('tmpAssignMemLhsObj', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
             ];
@@ -1845,7 +1778,7 @@ export function phaseNormalize(fdata, fname) {
             example('a[b] += c()', 'tmp = a[b], tmp[b] = tmp + c()', () => mem.computed);
             before(node, parentNode);
 
-            const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs');
+            const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs', fdata);
             // tmp = a.b, or tmp = a[b]
             const newNodes = [
               AST.variableDeclaration(tmpNameLhs, AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed), 'const'),
@@ -1871,9 +1804,9 @@ export function phaseNormalize(fdata, fname) {
             example('a[b] = c()', 'tmp = a, tmp2 = b, tmp3 = c(), tmp[tmp2] = tmp3');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignComputedObj');
-            const tmpNameProp = createFreshVar('tmpAssignComputedProp');
-            const tmpNameRhs = createFreshVar('tmpAssignComputedRhs');
+            const tmpNameObj = createFreshVar('tmpAssignComputedObj', fdata);
+            const tmpNameProp = createFreshVar('tmpAssignComputedProp', fdata);
+            const tmpNameRhs = createFreshVar('tmpAssignComputedRhs', fdata);
             ASSERT(node.operator === '=');
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
@@ -1898,8 +1831,8 @@ export function phaseNormalize(fdata, fname) {
             example('a.b = c()', '(tmp = a, tmp2 = c(), tmp).b = tmp2');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignMemLhsObj');
-            const tmpNameRhs = createFreshVar('tmpAssignMemRhs');
+            const tmpNameObj = createFreshVar('tmpAssignMemLhsObj', fdata);
+            const tmpNameRhs = createFreshVar('tmpAssignMemRhs', fdata);
             ASSERT(node.operator === '=');
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, a, 'const'), // tmp = a()
@@ -1977,7 +1910,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b *= c()', 'tmp = b, a = b = tmp * c()');
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpNestedCompoundLhs');
+              const tmpName = createFreshVar('tmpNestedCompoundLhs', fdata);
               // tmp = b
               const newNodes = [AST.variableDeclaration(tmpName, b, 'const')];
               // a = b = tmp * c()
@@ -2002,7 +1935,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b = c()', 'tmp = c(), a = b = tmp');
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpNestedComplexRhs');
+              const tmpName = createFreshVar('tmpNestedComplexRhs', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, c, 'const')];
               const finalNode = AST.assignmentExpression(a, AST.assignmentExpression(b, tmpName));
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -2049,8 +1982,8 @@ export function phaseNormalize(fdata, fname) {
               example('a = b[c()] *= d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => rhs.operator !== '=');
               before(node, parentNode);
 
-              const tmpNameObj = createFreshVar('tmpNestedAssignComMemberObj');
-              const tmpNameProp = createFreshVar('tmpNestedAssignComMemberProp');
+              const tmpNameObj = createFreshVar('tmpNestedAssignComMemberObj', fdata);
+              const tmpNameProp = createFreshVar('tmpNestedAssignComMemberProp', fdata);
               const newNodes = [AST.variableDeclaration(tmpNameObj, b, 'const'), AST.variableDeclaration(tmpNameProp, c, 'const')];
               // a = tmp[tmp2] = d
               const finalNode = AST.assignmentExpression(
@@ -2074,7 +2007,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b()[c] = d', 'tmp = b(), a = tmp[c] = d()', () => rhsLhs.computed);
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpNestedAssignObj');
+              const tmpName = createFreshVar('tmpNestedAssignObj', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, b, 'const')];
               const finalNode = AST.assignmentExpression(
                 a,
@@ -2097,7 +2030,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b.c *= d()', 'tmp = b.c * d(), a = b.c = tmp');
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs');
+              const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs', fdata);
               const newNodes = [
                 AST.variableDeclaration(tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), AST.cloneSimple(rhsLhs), d), 'const'),
                 AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(rhsLhs), tmpName)),
@@ -2123,7 +2056,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b[c] = d()', 'tmp = d(), a = b[c] = tmp', () => rhsLhs.computed);
               before(node, parentNode);
 
-              const tmpNameRhs = createFreshVar('tmpNestedAssignPropRhs');
+              const tmpNameRhs = createFreshVar('tmpNestedAssignPropRhs', fdata);
               const newNodes = [
                 // tmp = d()
                 AST.variableDeclaration(tmpNameRhs, d, 'const'),
@@ -2155,7 +2088,7 @@ export function phaseNormalize(fdata, fname) {
               example('a = b.c = d', 'tmp = d, b.c = tmp, a = tmp');
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpNestedPropAssignRhs');
+              const tmpName = createFreshVar('tmpNestedPropAssignRhs', fdata);
               const newNodes = [
                 AST.variableDeclaration(tmpName, d, 'const'),
                 AST.expressionStatement(AST.assignmentExpression(rhsLhs, tmpName)),
@@ -2173,7 +2106,7 @@ export function phaseNormalize(fdata, fname) {
 
           if (rhsLhs.type === 'ObjectPattern') {
             rule('Object patterns in nested assign are not allowed');
-            const tmpNameRhs = createFreshVar('tmpNestedAssignObjPatternRhs');
+            const tmpNameRhs = createFreshVar('tmpNestedAssignObjPatternRhs', fdata);
             const cacheNameStack = [tmpNameRhs];
             const newBindings = [];
 
@@ -2219,7 +2152,7 @@ export function phaseNormalize(fdata, fname) {
 
           if (rhsLhs.type === 'ArrayPattern') {
             rule('Array patterns in nested assign are not allowed');
-            const tmpNameRhs = createFreshVar('tmpNestedAssignArrPatternRhs');
+            const tmpNameRhs = createFreshVar('tmpNestedAssignArrPatternRhs', fdata);
             const cacheNameStack = [tmpNameRhs];
             const newBindings = [];
 
@@ -2292,8 +2225,8 @@ export function phaseNormalize(fdata, fname) {
             example('x = a = b?.[c()]', 'tmp = b; if (tmp) a = tmp[c()]; else a = undefined;', () => rhs.computed);
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignOptMem');
-            const tmpNameVal = createFreshVar('tmpAssignOptVal');
+            const tmpNameObj = createFreshVar('tmpAssignOptMem', fdata);
+            const tmpNameVal = createFreshVar('tmpAssignOptVal', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, rhs.object, 'const'),
               AST.variableDeclaration(tmpNameVal, 'undefined', 'let'),
@@ -2317,8 +2250,8 @@ export function phaseNormalize(fdata, fname) {
             example('a = b()[c()]', 'tmp = b(), tmp2 = c(), a = tmp[tmp2]');
             before(node, parentNode);
 
-            const tmpNameObj = createFreshVar('tmpAssignRhsCompObj');
-            const tmpNameProp = createFreshVar('tmpAssignRhsCompProp');
+            const tmpNameObj = createFreshVar('tmpAssignRhsCompObj', fdata);
+            const tmpNameProp = createFreshVar('tmpAssignRhsCompProp', fdata);
             const newNodes = [
               // const tmp = b()
               AST.variableDeclaration(tmpNameObj, rhs.object, 'const'),
@@ -2342,7 +2275,7 @@ export function phaseNormalize(fdata, fname) {
             example('a = b()[c]', 'tmp = b(), a = tmp[c]', () => rhs.computed);
             before(node, parentNode);
 
-            const tmpName = createFreshVar('tmpAssignRhsProp');
+            const tmpName = createFreshVar('tmpAssignRhsProp', fdata);
             // const tmp = b()
             const newNodes = [AST.variableDeclaration(tmpName, rhs.object, 'const')];
             const finalNode = AST.assignmentExpression(lhs, AST.memberExpression(tmpName, rhs.property, rhs.computed));
@@ -2419,8 +2352,8 @@ export function phaseNormalize(fdata, fname) {
           example('a * f()', 'tmp = a, tmp2 = f(), tmp * tmp2');
           before(node, parentNode);
 
-          const tmpNameLhs = createFreshVar('tmpBinBothLhs');
-          const tmpNameRhs = createFreshVar('tmpBinBothRhs');
+          const tmpNameLhs = createFreshVar('tmpBinBothLhs', fdata);
+          const tmpNameRhs = createFreshVar('tmpBinBothRhs', fdata);
           const newNodes = [
             AST.variableDeclaration(tmpNameLhs, node.left, 'const'),
             AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
@@ -2440,7 +2373,7 @@ export function phaseNormalize(fdata, fname) {
           example('f() * a', 'tmp = f(), tmp * a');
           before(node, parentNode);
 
-          const tmpNameLhs = createFreshVar('tmpBinLhs');
+          const tmpNameLhs = createFreshVar('tmpBinLhs', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameLhs, node.left, 'const')];
           const finalNode = AST.binaryExpression(node.operator, tmpNameLhs, node.right);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -2604,7 +2537,7 @@ export function phaseNormalize(fdata, fname) {
               example('delete a?.[b()];', 'tmp = a; if (a) delete a[b()];', () => mem.computed);
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpDeleteOpt');
+              const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
                 AST.binaryExpression('!=', tmpName, AST.nul()),
@@ -2624,7 +2557,7 @@ export function phaseNormalize(fdata, fname) {
               example('let x = delete a?.[b()];', 'tmp = a; let x = true; if (a) x = delete a[b()];', () => mem.computed);
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpDeleteOpt');
+              const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [
                 AST.variableDeclaration(tmpName, mem.object, 'const'),
                 AST.variableDeclaration(wrapLhs, AST.tru(), varOrAssignKind === 'const' ? 'let' : varOrAssignKind),
@@ -2652,7 +2585,7 @@ export function phaseNormalize(fdata, fname) {
               example('x = delete a?.[b()];', 'tmp = a; if (a) x = delete a[b()]; else x = true;', () => mem.computed);
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpDeleteOpt');
+              const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
               const finalParent = AST.ifStatement(
                 AST.binaryExpression('!=', tmpName, AST.nul()),
@@ -2683,8 +2616,8 @@ export function phaseNormalize(fdata, fname) {
                 example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
                 before(node, parentNode);
 
-                const tmpNameObj = createFreshVar('tmpDeleteCompObj');
-                const tmpNameProp = createFreshVar('tmpDeleteCompProp');
+                const tmpNameObj = createFreshVar('tmpDeleteCompObj', fdata);
+                const tmpNameProp = createFreshVar('tmpDeleteCompProp', fdata);
                 const newNodes = [
                   AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
                   AST.variableDeclaration(tmpNameProp, arg.property, 'const'),
@@ -2708,7 +2641,7 @@ export function phaseNormalize(fdata, fname) {
               example('delete f().x', 'tmp = f(), delete tmp.x');
               before(node, parentNode);
 
-              const tmpName = createFreshVar('tmpDeleteObj');
+              const tmpName = createFreshVar('tmpDeleteObj', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, arg.object, 'const')];
               const finalNode = AST.unaryExpression('delete', AST.memberExpression(tmpName, arg.property));
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3506,7 +3439,7 @@ export function phaseNormalize(fdata, fname) {
           example('!f()', 'tmp = f(), !tmp');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpUnaryArg');
+          const tmpName = createFreshVar('tmpUnaryArg', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, node.argument, 'const')];
           const finalNode = AST.unaryExpression(node.operator, tmpName);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3788,7 +3721,7 @@ export function phaseNormalize(fdata, fname) {
           example('a--', 'tmp = a, a = a - 1, tmp', () => node.operator === '--');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpPostUpdArgIdent');
+          const tmpName = createFreshVar('tmpPostUpdArgIdent', fdata);
           const newNodes = [
             AST.variableDeclaration(tmpName, arg.name, 'const'),
             AST.expressionStatement(
@@ -3814,9 +3747,9 @@ export function phaseNormalize(fdata, fname) {
           example('f()[g()]--', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 - 1, tmp3', () => node.operator === '--');
           before(node, parentNode);
 
-          const tmpNameObj = createFreshVar('tmpPostUpdArgComObj');
-          const tmpNameProp = createFreshVar('tmpPostUpdArgComProp');
-          const tmpNameVal = createFreshVar('tmpPostUpdArgComVal');
+          const tmpNameObj = createFreshVar('tmpPostUpdArgComObj', fdata);
+          const tmpNameProp = createFreshVar('tmpPostUpdArgComProp', fdata);
+          const tmpNameVal = createFreshVar('tmpPostUpdArgComVal', fdata);
           const newNodes = [
             // tmp = f()
             AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
@@ -3849,8 +3782,8 @@ export function phaseNormalize(fdata, fname) {
         example('f().x--', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 - 1, tmp2', () => node.operator === '--');
         before(node, parentNode);
 
-        const tmpNameObj = createFreshVar('tmpPostUpdArgObj');
-        const tmpNameVal = createFreshVar('tmpPostUpdArgVal');
+        const tmpNameObj = createFreshVar('tmpPostUpdArgObj', fdata);
+        const tmpNameVal = createFreshVar('tmpPostUpdArgVal', fdata);
 
         const newNodes = [
           // tmp = f()
@@ -3934,7 +3867,7 @@ export function phaseNormalize(fdata, fname) {
             if (!enode) return;
 
             if (enode.type === 'SpreadElement') {
-              const tmpName = createFreshVar('tmpArrElToSpread');
+              const tmpName = createFreshVar('tmpArrElToSpread', fdata);
               const newNode = AST.variableDeclaration(tmpName, enode.argument, 'const');
               newNodes.push(newNode);
               // Spread it to trigger iterators and to make sure still errors happen
@@ -3974,11 +3907,11 @@ export function phaseNormalize(fdata, fname) {
               // do not remove elided elements
               newNames.push([null, false]);
             } else if (enode.type === 'SpreadElement') {
-              const tmpName = createFreshVar('tmpArrSpread');
+              const tmpName = createFreshVar('tmpArrSpread', fdata);
               newNodes.push(AST.variableDeclaration(tmpName, enode.argument, 'const'));
               newNames.push([tmpName, true]);
             } else {
-              const tmpName = createFreshVar('tmpArrElement');
+              const tmpName = createFreshVar('tmpArrElement', fdata);
               newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
               newNames.push([tmpName, false]);
             }
@@ -4068,7 +4001,7 @@ export function phaseNormalize(fdata, fname) {
               const pnode = node.properties[i];
 
               if (pnode.type === 'SpreadElement') {
-                const tmpName = createFreshVar('tmpObjSpread');
+                const tmpName = createFreshVar('tmpObjSpread', fdata);
                 newNodes.push(AST.variableDeclaration(tmpName, pnode.argument, 'const'));
                 newProps.push(AST.spreadElement(tmpName));
               } else if (pnode.kind !== 'init' || pnode.method) {
@@ -4076,13 +4009,13 @@ export function phaseNormalize(fdata, fname) {
                 newProps.push(pnode);
               } else if (pnode.computed) {
                 // Must also cache the computed property keys
-                const tmpNameKey = createFreshVar('tmpObjLitPropKey');
-                const tmpNameVal = createFreshVar('tmpObjLitPropVal');
+                const tmpNameKey = createFreshVar('tmpObjLitPropKey', fdata);
+                const tmpNameVal = createFreshVar('tmpObjLitPropVal', fdata);
                 newNodes.push(AST.variableDeclaration(tmpNameKey, pnode.key, 'const'));
                 newNodes.push(AST.variableDeclaration(tmpNameVal, pnode.value, 'const'));
                 newProps.push(AST.property(tmpNameKey, tmpNameVal, false, true));
               } else {
-                const tmpName = createFreshVar('tmpObjLitVal');
+                const tmpName = createFreshVar('tmpObjLitVal', fdata);
                 newNodes.push(AST.variableDeclaration(tmpName, pnode.value, 'const'));
                 newProps.push(AST.property(pnode.key, tmpName, false, false));
               }
@@ -4202,7 +4135,7 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
             }
 
-            const tmpName = createFreshVar('tmpTemplateExpr');
+            const tmpName = createFreshVar('tmpTemplateExpr', fdata);
             newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
             node.expressions[i] = AST.identifier(tmpName);
           }
@@ -4276,7 +4209,7 @@ export function phaseNormalize(fdata, fname) {
             if (node.object.type === 'MemberExpression' || node.object.type === 'CallExpression') {
               r(node.object);
             } else {
-              const tmpName = createFreshVar('tmpChainRootProp');
+              const tmpName = createFreshVar('tmpChainRootProp', fdata);
               log('  - Left most object will be stored in', tmpName);
               lastObj = prevObj;
               prevObj = tmpName;
@@ -4295,12 +4228,12 @@ export function phaseNormalize(fdata, fname) {
 
             if (node.computed) {
               // a?.[b()]?.() -> tmp = a; if (a) { tmp2 = b(); tmp3 = tmp[tmp2]; if (tmp3) tmp3.call(tmp2); }
-              const tmpName = createFreshVar('tmpChainRootComputed');
+              const tmpName = createFreshVar('tmpChainRootComputed', fdata);
               nodes.push(AST.variableDeclaration(tmpName, node.property, 'const'));
               node.property = AST.identifier(tmpName);
             }
 
-            const tmpName = createFreshVar('tmpChainElementObject');
+            const tmpName = createFreshVar('tmpChainElementObject', fdata);
             log('Storing next property', node.property.name, 'in', tmpName);
             nodes.push(AST.variableDeclaration(tmpName, AST.memberExpression(prevObj, node.property, node.computed), 'const'));
             lastObj = prevObj;
@@ -4310,7 +4243,7 @@ export function phaseNormalize(fdata, fname) {
             if (node.callee.type === 'MemberExpression' || node.callee.type === 'CallExpression') {
               r(node.callee);
             } else {
-              const tmpName = createFreshVar('tmpChainRootCall');
+              const tmpName = createFreshVar('tmpChainRootCall', fdata);
               log('  - Left most callee will be stored in', tmpName);
               lastObj = prevObj;
               prevObj = tmpName;
@@ -4327,7 +4260,7 @@ export function phaseNormalize(fdata, fname) {
               nodes = nextLevel;
             }
 
-            const tmpName = createFreshVar('tmpChainElementCall');
+            const tmpName = createFreshVar('tmpChainElementCall', fdata);
             log('Storing next callee', node.callee.name, 'in', tmpName);
             // We always need to compile to .call because we need to read the member expression before the call, which
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
@@ -4428,14 +4361,14 @@ export function phaseNormalize(fdata, fname) {
 
           const newNodes = [];
           if (node.superClass) {
-            const tmpNameSuper = createFreshVar('tmpClassSuper');
+            const tmpNameSuper = createFreshVar('tmpClassSuper', fdata);
             newNodes.push(AST.variableDeclaration(tmpNameSuper, node.superClass, 'const'));
             node.superClass = AST.identifier(tmpNameSuper);
           }
           for (let i = 0; i <= last; ++i) {
             const enode = node.body.body[i];
             if (enode.computed) {
-              const tmpNameKey = createFreshVar('tmpClassComputedKey');
+              const tmpNameKey = createFreshVar('tmpClassComputedKey', fdata);
               newNodes.push(AST.variableDeclaration(tmpNameKey, enode.key, 'const'));
               enode.key = AST.identifier(tmpNameKey);
             }
@@ -4454,7 +4387,7 @@ export function phaseNormalize(fdata, fname) {
           example('class x extends f() {}', 'tmp = f(); class x extends tmp {}');
           before(node);
 
-          const tmpNameSuper = createFreshVar('tmpClassSuper');
+          const tmpNameSuper = createFreshVar('tmpClassSuper', fdata);
           const newNode = AST.variableDeclaration(tmpNameSuper, node.superClass, 'const');
           node.superClass = AST.identifier(tmpNameSuper);
           body.splice(i, 0, newNode);
@@ -4557,7 +4490,7 @@ export function phaseNormalize(fdata, fname) {
         }
         before(node);
 
-        const tmpNameRhs = createFreshVar(forin ? 'tmpForInDeclRhs' : 'tmpForOfDeclRhs');
+        const tmpNameRhs = createFreshVar(forin ? 'tmpForInDeclRhs' : 'tmpForOfDeclRhs', fdata);
         const lhsName = varid.name;
         const newNode = AST.blockStatement(
           AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
@@ -4602,8 +4535,8 @@ export function phaseNormalize(fdata, fname) {
         'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
       );
 
-      const tmpNameRhs = createFreshVar(forin ? 'tmpForInPatDeclRhs' : 'tmpForOfPatDeclRhs');
-      const tmpNameLhs = createFreshVar(forin ? 'tmpForInPatDeclLhs' : 'tmpForOfPatDeclLhs');
+      const tmpNameRhs = createFreshVar(forin ? 'tmpForInPatDeclRhs' : 'tmpForOfPatDeclRhs', fdata);
+      const tmpNameLhs = createFreshVar(forin ? 'tmpForInPatDeclLhs' : 'tmpForOfPatDeclLhs', fdata);
       const boundNames = findBoundNamesInVarDeclaration(node.left);
       log('- Pattern bound these names:', boundNames);
       const newNode = AST.blockStatement(
@@ -4648,7 +4581,7 @@ export function phaseNormalize(fdata, fname) {
       }
       before(node);
 
-      const tmpName = createFreshVar(forin ? 'tmpForInRhs' : 'tmpForOfRhs');
+      const tmpName = createFreshVar(forin ? 'tmpForInRhs' : 'tmpForOfRhs', fdata);
       const newNode = AST.variableDeclaration(tmpName, node.right, 'const');
       body.splice(i, 0, newNode);
       node.right = AST.identifier(tmpName);
@@ -4701,7 +4634,7 @@ export function phaseNormalize(fdata, fname) {
       }
       before(node);
 
-      const tmpName = createFreshVar(forin ? 'tmpForInLhsNode' : 'tmpForOfLhsNode');
+      const tmpName = createFreshVar(forin ? 'tmpForInLhsNode' : 'tmpForOfLhsNode', fdata);
       const newNode = AST.blockStatement(
         AST.variableDeclaration(tmpName),
         forin
@@ -4794,7 +4727,7 @@ export function phaseNormalize(fdata, fname) {
         if (pnode.left.type === 'Identifier') {
           // ident param with default
 
-          const newParamName = createFreshVar('$tdz$__' + pnode.left.name);
+          const newParamName = createFreshVar('$tdz$__' + pnode.left.name, fdata);
           cacheNameStack.push(newParamName);
 
           log('Replacing param default with a local variable');
@@ -4815,14 +4748,14 @@ export function phaseNormalize(fdata, fname) {
         // pattern param with default
 
         // Param name to hold the object to destructure
-        const newParamName = createFreshVar('$tdz$__pattern');
+        const newParamName = createFreshVar('$tdz$__pattern', fdata);
         cacheNameStack.push(newParamName);
         log('Replacing param default with a local variable');
         const newIdentNode = AST.identifier(newParamName);
         node.params[i] = newIdentNode;
 
         // Create unique var containing the initial param value after resolving default values
-        const undefaultName = createFreshVar('$tdz$__pattern_after_default');
+        const undefaultName = createFreshVar('$tdz$__pattern_after_default', fdata);
         cacheNameStack.push(undefaultName);
         log('Replacing param default with a local variable');
         const undefaultNameNode = AST.identifier(undefaultName);
@@ -4866,7 +4799,7 @@ export function phaseNormalize(fdata, fname) {
 
       ASSERT(pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern', 'wat else?', pnode);
 
-      const newParamName = createFreshVar('tmpParamPattern');
+      const newParamName = createFreshVar('tmpParamPattern', fdata);
       cacheNameStack.push(newParamName);
       log('- Replacing the pattern param with', '`' + newParamName + '`');
       // Replace the pattern with a variable that receives the whole object
@@ -4987,7 +4920,7 @@ export function phaseNormalize(fdata, fname) {
       example('if (f());', 'const tmp = f(); if (tmp);');
       before(node);
 
-      const tmpName = createFreshVar('tmpIfTest');
+      const tmpName = createFreshVar('tmpIfTest', fdata);
       const newNode = AST.variableDeclaration(tmpName, node.test, 'const');
       body.splice(i, 0, newNode);
       node.test = AST.identifier(tmpName);
@@ -5665,7 +5598,7 @@ export function phaseNormalize(fdata, fname) {
       before(node);
 
       // TODO: this may need to be moved to phase2/phase4 because this case might (re)appear after every step
-      const tmpName = createFreshVar('tmpReturnArg');
+      const tmpName = createFreshVar('tmpReturnArg', fdata);
       const newNode = AST.variableDeclaration(tmpName, node.argument, 'const');
       body.splice(i, 0, newNode);
       node.argument = AST.identifier(tmpName);
@@ -5691,7 +5624,7 @@ export function phaseNormalize(fdata, fname) {
       example('switch (f()) {}', '{ let tmp = f(); switch (tmp) {} }');
       before(node);
 
-      const tmpName = createFreshVar('tmpSwitchTest');
+      const tmpName = createFreshVar('tmpSwitchTest', fdata);
       const newNode = AST.variableDeclaration(tmpName, node.discriminant, 'const');
       body.splice(i, 0, newNode);
       node.discriminant = AST.identifier(tmpName);
@@ -5779,8 +5712,8 @@ export function phaseNormalize(fdata, fname) {
       before(node);
 
       const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
-      const tmpNameValue = createFreshVar('tmpSwitchValue');
-      const tmpNameCase = createFreshVar('tmpSwitchCaseToStart');
+      const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
+      const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
       const defaultIndex = node.cases.findIndex((n) => !n.test);
 
       function labelEmptyBreaks(snode) {
@@ -5844,9 +5777,9 @@ export function phaseNormalize(fdata, fname) {
       );
       before(node); // omit this one?
 
-      const tmpVal = createFreshVar('tmpSwitchValue');
-      const tmpDef = createFreshVar('tmpSwitchVisitDefault');
-      const tmpFall = createFreshVar('tmpSwitchFallthrough');
+      const tmpVal = createFreshVar('tmpSwitchValue', fdata);
+      const tmpDef = createFreshVar('tmpSwitchVisitDefault', fdata);
+      const tmpFall = createFreshVar('tmpSwitchFallthrough', fdata);
 
       const newNode = AST.blockStatement(
         AST.variableDeclaration(tmpVal, node.discriminant, 'const'),
@@ -5939,7 +5872,7 @@ export function phaseNormalize(fdata, fname) {
 
     const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
 
-    const tmpFall = createFreshVar('tmpFallthrough');
+    const tmpFall = createFreshVar('tmpFallthrough', fdata);
     fdata.globallyUniqueLabelRegistry.set(tmpLabel, true); // Mark as being reserved
     const newNode = AST.labeledStatement(
       tmpLabel,
@@ -5980,7 +5913,7 @@ export function phaseNormalize(fdata, fname) {
       example('throw $()', 'let tmp = $(); throw tmp;');
       before(node);
 
-      const tmpName = createFreshVar('tmpThrowArg');
+      const tmpName = createFreshVar('tmpThrowArg', fdata);
       const newNode = AST.variableDeclaration(tmpName, node.argument, 'const');
       body.splice(i, 0, newNode);
       node.argument = AST.identifier(tmpName);
@@ -6037,7 +5970,7 @@ export function phaseNormalize(fdata, fname) {
       example('let [x] = y()', 'let tmp = y(), tmp1 = [...tmp], x = tmp1[0]');
       before(node);
 
-      const bindingPatternRootName = createFreshVar('bindingPatternArrRoot'); // TODO: rename to tmp prefix
+      const bindingPatternRootName = createFreshVar('bindingPatternArrRoot', fdata); // TODO: rename to tmp prefix
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
@@ -6070,7 +6003,7 @@ export function phaseNormalize(fdata, fname) {
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
       before(node, parent);
 
-      const bindingPatternRootName = createFreshVar('bindingPatternObjRoot');
+      const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
@@ -6158,9 +6091,9 @@ export function phaseNormalize(fdata, fname) {
             example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
             before(node, parent);
 
-            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj');
-            const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp');
-            const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs');
+            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
+            const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
+            const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
               AST.variableDeclaration(tmpNameProp, dnode.init.left.property, 'const'),
@@ -6200,7 +6133,7 @@ export function phaseNormalize(fdata, fname) {
             );
             before(node, parent);
 
-            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj');
+            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
             const newNodes = [
               AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
               AST.variableDeclaration(
@@ -6249,7 +6182,7 @@ export function phaseNormalize(fdata, fname) {
           example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
           before(node, parent);
 
-          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs');
+          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
           const newNodes = [
             AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
             AST.expressionStatement(AST.assignmentExpression(dnode.init.left, tmpNameRhs, dnode.init.operator)),

@@ -24,29 +24,29 @@ for (let [x] in [x]) {
 `````js filename=intro
 let x = 1;
 let y = 1;
-const tmpForInPatDeclRhs = [x_1];
+const tmpForInPatDeclRhs = [x$1];
 let tmpForInPatDeclLhs;
-let x_1;
+let x$1;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x_1 = arrPatternSplat[0];
-  let y_1 = 2;
-  $(x_1);
+  x$1 = arrPatternSplat[0];
+  let y$1 = 2;
+  $(x$1);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpForInPatDeclRhs = [x_1];
+const tmpForInPatDeclRhs = [x$1];
 let tmpForInPatDeclLhs;
-let x_1;
+let x$1;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x_1 = arrPatternSplat[0];
-  $(x_1);
+  x$1 = arrPatternSplat[0];
+  $(x$1);
 }
 `````
 

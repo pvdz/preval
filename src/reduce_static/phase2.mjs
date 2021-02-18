@@ -1,4 +1,5 @@
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, getIdentUsageKind, PURPLE, DIM, YELLOW } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, PURPLE, DIM, YELLOW } from '../utils.mjs';
+import { getIdentUsageKind, createFreshVar, createReadRef, createWriteRef } from '../bindings.mjs';
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 
@@ -165,17 +166,18 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
             // Remove the read. This binding is read one fewer times
             reads.splice(i, 1);
             // Add a read to the assignee. It is read one more time instead.
-            assigneeMeta.reads.push({
-              action: 'read',
-              parentNode,
-              parentProp,
-              parentIndex,
-              node: clone,
-              rwCounter: oldRead.rwCounter,
-              scope: oldRead.scope,
-              blockChain: oldRead.blockChain,
-              innerLoop: oldRead.innerLoop,
-            });
+            assigneeMeta.reads.push(
+              createReadRef({
+                parentNode,
+                parentProp,
+                parentIndex,
+                node: clone,
+                rwCounter: oldRead.rwCounter,
+                scope: oldRead.scope,
+                blockChain: oldRead.blockChain,
+                innerLoop: oldRead.innerLoop,
+              }),
+            );
             // We removed an element from the current loop so retry the current index
             --i;
           }
@@ -457,8 +459,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
               meta.isConstant = true;
 
               // Push a new write record for the const decl which replaces the old one for the assignment
-              meta.writes[0] = {
-                action: 'write',
+              meta.writes[0] = createWriteRef({
                 parentNode: newNode.declarations[0],
                 parentProp: 'init',
                 parentIndex: -1,
@@ -468,7 +469,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
                 blockChain: assign.blockChain,
                 innerLoop: assign.innerLoop,
                 decl: { declParent: assign.assign.assignParent, declProp: assign.assign.assignProp, declIndex: assign.assign.assignIndex },
-              };
+              });
 
               after(newNode, assign.assign.assignParent);
               inlined = true;
@@ -603,7 +604,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
                 example('let x = 10; x = 20; f(x);', 'let x = 10; let x2 = 20; f(x2);');
                 before(b.node);
 
-                const newName = createFreshVar(name.startsWith('SSA_') ? name : 'SSA_' + name);
+                const newName = createFreshVar(name.startsWith('SSA_') ? name : 'SSA_' + name, fdata);
                 const newMeta = fdata.globallyUniqueNamingRegistry.get(newName);
                 b.node.name = newName;
 
@@ -682,74 +683,4 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   groupEnd();
-
-  function generateUniqueGlobalName(name) {
-    // Create a (module) globally unique name. Then use that name for the local scope.
-    let n = 0;
-    if (fdata.globallyUniqueNamingRegistry.has(name)) {
-      while (fdata.globallyUniqueNamingRegistry.has(name + '$' + ++n));
-    }
-    return n ? name + '$' + n : name;
-  }
-  function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
-    if (!fdata.globallyUniqueNamingRegistry.has(name)) {
-      fdata.globallyUniqueNamingRegistry.set(name, {
-        // ident meta data
-        uid: ++fdata.globalNameCounter,
-        originalName,
-        uniqueName: name,
-        isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
-        isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
-        knownBuiltin, // Make a distinction between known builtins and unknown builtins.
-        // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
-        // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
-        // var/let a;
-        // var/const/let a = b;
-        // const a = b;
-        // import a, b as a, * as a, {a, b as a} from 'x';
-        // export var/let a
-        // export var/const/let a = b
-        // function a(){};
-        // export function a(){};
-        // a = b;
-        // a+= b;
-        // var/const/let [a, b: a] = b;
-        // [a, b: a] = b;
-        // var/const/let {a, b: a} = b;
-        // ({a, b: a} = b);
-        // [b: a] = c;
-        // ++a;
-        // a++;
-        // for (a in b);
-        // for ([a] in b);
-        // for ({a} in b);
-        // In a nutshell there are six concrete areas to look for updates;
-        // - [x] binding declarations
-        //   - [x] regular
-        //   - [x] destructuring
-        //   - [ ] exported
-        //   - [x] could be inside `for` header
-        // - [x] param names
-        //   - [x] regular
-        //   - [x] patterns
-        // - [x] assigning
-        //   - [x] regular
-        //   - [x] compound
-        //   - [x] destructuring array
-        //   - [x] destructuring object
-        // - [ ] imports of any kind
-        // - [x] function declarations
-        // - [ ] update expressions, pre or postifx, inc or dec
-        // - [ ] for-loop lhs
-        writes: [], // {parent, prop, index} indirect reference ot the node being assigned
-        reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-      });
-    }
-  }
-  function createFreshVar(name) {
-    ASSERT(createFreshVar.length === arguments.length, 'arg count');
-    const tmpName = generateUniqueGlobalName(name);
-    registerGlobalIdent(tmpName, tmpName);
-    return tmpName;
-  }
 }

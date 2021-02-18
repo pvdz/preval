@@ -1,5 +1,12 @@
 import walk from '../../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, getIdentUsageKind } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
+import {
+  getIdentUsageKind,
+  generateUniqueGlobalName,
+  registerGlobalIdent,
+  createUniqueGlobalLabel,
+  registerGlobalLabel,
+} from '../bindings.mjs';
 import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
@@ -21,117 +28,12 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
-  function createUniqueGlobalName(name) {
-    // Create a (module) globally unique name. Then use that name for the local scope.
-    let n = 0;
-    if (globallyUniqueNamingRegistry.has(name)) {
-      while (globallyUniqueNamingRegistry.has(name + '_' + ++n));
-    }
-    return n ? name + '_' + n : name;
-  }
-  function registerGlobalIdent(name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
-    ASSERT(!globallyUniqueNamingRegistry.has(name), 'should prevent trying to register it multiple times...');
-    log('- Registered `' + name + '` as a new unique global');
-    const meta = {
-      // ident meta data
-      uid: ++fdata.globalNameCounter,
-      originalName,
-      uniqueName: name,
-      isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
-      isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
-      knownBuiltin, // Make a distinction between known builtins and unknown builtins.
-      // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
-      // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
-      // var/let a;
-      // var/const/let a = b;
-      // const a = b;
-      // import a, b as a, * as a, {a, b as a} from 'x';
-      // export var/let a
-      // export var/const/let a = b
-      // function a(){};
-      // export function a(){};
-      // a = b;
-      // a+= b;
-      // var/const/let [a, b: a] = b;
-      // [a, b: a] = b;
-      // var/const/let {a, b: a} = b;
-      // ({a, b: a} = b);
-      // [b: a] = c;
-      // ++a;
-      // a++;
-      // for (a in b);
-      // for ([a] in b);
-      // for ({a} in b);
-      // In a nutshell there are six concrete areas to look for updates;
-      // - [x] binding declarations
-      //   - [x] regular
-      //   - [ ] destructuring
-      //   - [ ] exported
-      //   - [x] could be inside `for` header
-      // - [ ] param names
-      //   - [ ] regular
-      //   - [ ] patterns
-      // - [ ] assigning
-      //   - [ ] regular
-      //   - [ ] compound
-      //   - [ ] destructuring array
-      //   - [ ] destructuring object
-      // - [ ] imports of any kind
-      // - [ ] function declarations
-      // - [ ] update expressions, pre or postifx, inc or dec
-      // - [ ] for-loop lhs
-      writes: [], // {parent, prop, index} indirect reference ot the node being assigned
-      // - ident as expression statement (rare)
-      // - ident object of member expression
-      // - rhs of assignment
-      // - ident on either side of compound assignment
-      // - ident on either side of binary expression
-      // - ident rhs inside for-in/for-of
-      // - ident inside statement header of any kind
-      // - ident as callee of call / new
-      // - ident as arg of call / new
-      // - ident as arg of ++/--
-      // - ident as computed property
-      // Maybe easier to list non-usages of idents
-      // - lhs of regular assignment (not compound!)
-      // - lhs of for-in/for-of
-      // - id of variable declaration
-      // - id of func/class
-      // - param names
-      // - binding names in patterns (not inits)
-      // - imported names
-      // Probably best to make explicit yes/no lists and to warn against unexpected forms
-      reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
-    };
-    globallyUniqueNamingRegistry.set(name, meta);
-    return meta;
-  }
-  globals.forEach((_, name) => registerGlobalIdent(name, name, { isImplicitGlobal: true, knownBuiltin: true }));
+  fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
+  globals.forEach((_, name) => registerGlobalIdent(fdata, name, name, { isImplicitGlobal: true, knownBuiltin: true }));
 
   const globallyUniqueLabelRegistry = new Map();
-  function createUniqueGlobalLabel(name) {
-    // Create a (module) globally unique label name.
-    let n = 0;
-    if (globallyUniqueLabelRegistry.has(name)) {
-      while (globallyUniqueLabelRegistry.has(name + '_' + ++n));
-    }
-    return n ? name + '_' + n : name;
-  }
-  function registerGlobalLabel(name, originalName, labelNode) {
-    ASSERT(!globallyUniqueLabelRegistry.has(name), 'this func should be called with the unique label name');
-
-    globallyUniqueLabelRegistry.set(name, {
-      // ident meta data
-      uid: ++fdata.globalNameCounter,
-      originalName,
-      uniqueName: name,
-      labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
-      usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-    });
-  }
-
-  fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
   fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
+
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;
   const exports = new Map();
@@ -168,9 +70,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       log('The ident `' + node.name + '` could not be resolved and is an implicit global');
       // Register one...
       log('Creating implicit global binding for `' + node.name + '` now');
-      const uniqueName = createUniqueGlobalName(node.name);
+      const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
       log('-->', uniqueName);
-      const meta = registerGlobalIdent(uniqueName, node.name, { isImplicitGlobal: true });
+      const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
       log('- Meta:', {
         ...meta,
         reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
@@ -321,9 +223,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               return;
             }
 
-            const uniqueName = createUniqueGlobalName(name);
+            const uniqueName = generateUniqueGlobalName(name, globallyUniqueNamingRegistry);
             log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
-            registerGlobalIdent(uniqueName, name);
+            registerGlobalIdent(fdata, uniqueName, name);
             node.$p.nameMapping.set(name, uniqueName);
           });
         }
@@ -604,8 +506,8 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         labelStack.push(node);
         log('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name);
-        registerGlobalLabel(uniqueName, node.label.name, node);
+        const uniqueName = createUniqueGlobalLabel(node.label.name, globallyUniqueLabelRegistry);
+        registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
           log('- Unique label name:', uniqueName);
           node.label.name = uniqueName;

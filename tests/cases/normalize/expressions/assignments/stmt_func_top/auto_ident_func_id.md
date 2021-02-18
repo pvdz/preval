@@ -24,7 +24,7 @@ $(f());
 `````js filename=intro
 function f() {
   let a = { a: 999, b: 1000 };
-  a = function f_1() {};
+  a = function f$1() {};
   $(a);
 }
 const tmpCallCallee = $;
@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const SSA_a = function f_1() {};
+  const SSA_a = function f$1() {};
   $(SSA_a);
 }
 const tmpCalleeParam = f();

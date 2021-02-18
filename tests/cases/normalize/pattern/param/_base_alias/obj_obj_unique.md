@@ -29,9 +29,9 @@ $(i({x: {y: {z: {a: 10}}}}));
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let a_1 = objPatternNoDefault$1.z;
-  let a_2 = 2;
-  return a_1;
+  let a$1 = objPatternNoDefault$1.z;
+  let a$2 = 2;
+  return a$1;
 }
 let a = 1;
 const tmpCallCallee = $;
@@ -50,8 +50,8 @@ tmpCallCallee(tmpCalleeParam);
 function i(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
-  const a_1 = objPatternNoDefault$1.z;
-  return a_1;
+  const a$1 = objPatternNoDefault$1.z;
+  return a$1;
 }
 const tmpObjLitVal$2 = { a: 10 };
 const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };

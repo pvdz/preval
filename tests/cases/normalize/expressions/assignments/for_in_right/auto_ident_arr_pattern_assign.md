@@ -29,12 +29,12 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x_1 = arrPatternSplat[0];
+x$1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpForInDeclRhs = a;
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
+let x$1;
+for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x, y);
 `````
@@ -46,10 +46,10 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x_1 = arrPatternSplat[0];
+x$1 = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-let x_1;
-for (x_1 in tmpNestedAssignArrPatternRhs) {
+let x$1;
+for (x$1 in tmpNestedAssignArrPatternRhs) {
 }
 $(tmpNestedAssignArrPatternRhs, 1, SSA_y);
 `````

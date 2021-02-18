@@ -42,11 +42,11 @@ var obja;
 var objb;
 var objc;
 var objd;
-function $$(...a_1) {
+function $$(...a$1) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
+  const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, '::', ...a$1];
   tmpCallCallee(tmpCalleeParam);
-  const tmpReturnArg = a_1[0];
+  const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 }
 obja = {
@@ -66,8 +66,8 @@ objb = {
     a = 210;
     return 100;
   },
-  set b(x_1) {
-    $$('b.set', x_1);
+  set b(x$1) {
+    $$('b.set', x$1);
     a = 2100;
     e = 'failb';
     return 2000;
@@ -80,8 +80,8 @@ objc = {
     b = 320;
     return 100;
   },
-  set c(x_2) {
-    $$('c.set', x_2);
+  set c(x$2) {
+    $$('c.set', x$2);
     a = 3100;
     b = 3200;
     e = 'failc';
@@ -96,8 +96,8 @@ objd = {
     c = 430;
     return 100;
   },
-  set d(x_3) {
-    $$('d.set', x_3);
+  set d(x$3) {
+    $$('d.set', x$3);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -163,10 +163,10 @@ var obja;
 var objb;
 var objc;
 var objd;
-function $$(...a_1) {
-  const tmpCalleeParam = ['$:', a_1, b, c, d, e, obja, objb, objc, objd, '::', ...a_1];
+function $$(...a$1) {
+  const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, '::', ...a$1];
   $(tmpCalleeParam);
-  const tmpReturnArg = a_1[0];
+  const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 }
 obja = {
@@ -186,8 +186,8 @@ objb = {
     a = 210;
     return 100;
   },
-  set b(x_1) {
-    $$('b.set', x_1);
+  set b(x$1) {
+    $$('b.set', x$1);
     a = 2100;
     e = 'failb';
     return 2000;
@@ -200,8 +200,8 @@ objc = {
     b = 320;
     return 100;
   },
-  set c(x_2) {
-    $$('c.set', x_2);
+  set c(x$2) {
+    $$('c.set', x$2);
     a = 3100;
     b = 3200;
     e = 'failc';
@@ -216,8 +216,8 @@ objd = {
     c = 430;
     return 100;
   },
-  set d(x_3) {
-    $$('d.set', x_3);
+  set d(x$3) {
+    $$('d.set', x$3);
     a = 4100;
     b = 4200;
     c = 4300;

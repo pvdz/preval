@@ -21,9 +21,9 @@ function f([ x ]) {
 `````js filename=intro
 function f(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
-  let x_1 = arrPatternSplat[0];
-  let x_2 = 2;
-  return x_1;
+  let x$1 = arrPatternSplat[0];
+  let x$2 = 2;
+  return x$1;
 }
 let x = 1;
 `````
@@ -33,8 +33,8 @@ let x = 1;
 `````js filename=intro
 function f(tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
-  const x_1 = arrPatternSplat[0];
-  return x_1;
+  const x$1 = arrPatternSplat[0];
+  return x$1;
 }
 `````
 

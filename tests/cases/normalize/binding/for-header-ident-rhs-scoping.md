@@ -24,21 +24,21 @@ for (let x in [x]) {
 `````js filename=intro
 let x = 1;
 let y = 1;
-const tmpForInDeclRhs = [x_1];
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
-  let y_1 = 2;
-  $(x_1);
+const tmpForInDeclRhs = [x$1];
+let x$1;
+for (x$1 in tmpForInDeclRhs) {
+  let y$1 = 2;
+  $(x$1);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = [x_1];
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
-  $(x_1);
+const tmpForInDeclRhs = [x$1];
+let x$1;
+for (x$1 in tmpForInDeclRhs) {
+  $(x$1);
 }
 `````
 

@@ -21,9 +21,9 @@ $(x);
 let x = 1;
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x_1 = arrPatternSplat[0];
-let x_2 = 1;
-$(x_1);
+x$1 = arrPatternSplat[0];
+let x$2 = 1;
+$(x$1);
 `````
 
 ## Output
@@ -31,15 +31,15 @@ $(x_1);
 `````js filename=intro
 const arrAssignPatternRhs = [100];
 const arrPatternSplat = [...arrAssignPatternRhs];
-x_1 = arrPatternSplat[0];
-$(x_1);
+x$1 = arrPatternSplat[0];
+$(x$1);
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x_1
+x$1
 
 ## Result
 

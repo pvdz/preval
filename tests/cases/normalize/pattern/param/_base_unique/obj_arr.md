@@ -22,9 +22,9 @@ function i({x: [ y ]}) {
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
-  let y_1 = arrPatternSplat[0];
-  let y_2 = 2;
-  return y_1;
+  let y$1 = arrPatternSplat[0];
+  let y$2 = 2;
+  return y$1;
 }
 let y = 1;
 `````
@@ -35,8 +35,8 @@ let y = 1;
 function i(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
-  const y_1 = arrPatternSplat[0];
-  return y_1;
+  const y$1 = arrPatternSplat[0];
+  return y$1;
 }
 `````
 

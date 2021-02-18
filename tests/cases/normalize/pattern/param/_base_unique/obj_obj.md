@@ -22,9 +22,9 @@ function i({x: {y: {z}}}) {
 function i(tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z_1 = objPatternNoDefault$1.z;
-  let z_2 = 2;
-  return z_1;
+  let z$1 = objPatternNoDefault$1.z;
+  let z$2 = 2;
+  return z$1;
 }
 let z = 1;
 `````
@@ -35,8 +35,8 @@ let z = 1;
 function i(tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
-  const z_1 = objPatternNoDefault$1.z;
-  return z_1;
+  const z$1 = objPatternNoDefault$1.z;
+  return z$1;
 }
 `````
 

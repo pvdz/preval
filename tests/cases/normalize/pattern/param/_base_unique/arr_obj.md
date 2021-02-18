@@ -22,9 +22,9 @@ function h([{ x }]) {
 function h(tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
-  let x_1 = arrPatternStep.x;
-  let x_2 = 2;
-  return x_1;
+  let x$1 = arrPatternStep.x;
+  let x$2 = 2;
+  return x$1;
 }
 let x = 1;
 `````
@@ -35,8 +35,8 @@ let x = 1;
 function h(tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
   const arrPatternStep = arrPatternSplat[0];
-  const x_1 = arrPatternStep.x;
-  return x_1;
+  const x$1 = arrPatternStep.x;
+  return x$1;
 }
 `````
 

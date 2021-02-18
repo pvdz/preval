@@ -25,10 +25,10 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-a = x_1;
+a = x$1;
 let tmpForInDeclRhs = a;
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
+let x$1;
+for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x);
 `````
@@ -38,9 +38,9 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const SSA_a = x_1;
-let x_1;
-for (x_1 in SSA_a) {
+const SSA_a = x$1;
+let x$1;
+for (x$1 in SSA_a) {
 }
 $(SSA_a, 1);
 `````

@@ -23,7 +23,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function f() {};
 let tmpBinBothLhs = a;
-a = function f_1() {};
+a = function f$1() {};
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 const SSA_a = function f() {};
-const SSA_a$1 = function f_1() {};
+const SSA_a$1 = function f$1() {};
 const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
 $(SSA_a$1);

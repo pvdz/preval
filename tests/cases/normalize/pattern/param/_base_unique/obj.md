@@ -20,9 +20,9 @@ function g({ x }) {
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  let x_1 = tmpParamPattern.x;
-  let x_2 = 2;
-  return x_1;
+  let x$1 = tmpParamPattern.x;
+  let x$2 = 2;
+  return x$1;
 }
 let x = 1;
 `````
@@ -31,8 +31,8 @@ let x = 1;
 
 `````js filename=intro
 function g(tmpParamPattern) {
-  const x_1 = tmpParamPattern.x;
-  return x_1;
+  const x$1 = tmpParamPattern.x;
+  return x$1;
 }
 `````
 

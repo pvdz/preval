@@ -22,7 +22,7 @@ let a = 1;
 let b = 2;
 let c = 3;
 $(b);
-let a_1 = $(c);
+let a$1 = $(c);
 `````
 
 ## Output

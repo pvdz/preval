@@ -44,7 +44,7 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   let foo = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    foo = x_1;
+    foo = x$1;
   } else {
     foo = arrPatternBeforeDefault$1;
   }
@@ -53,7 +53,7 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$2 = undefined;
-  let x_1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  let x$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 `````
 

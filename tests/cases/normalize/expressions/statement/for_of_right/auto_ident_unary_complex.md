@@ -23,10 +23,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x_1);
+const tmpUnaryArg = $(x$1);
 const tmpForOfDeclRhs = typeof tmpUnaryArg;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````
@@ -35,10 +35,10 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x_1);
+const tmpUnaryArg = $(x$1);
 const tmpForOfDeclRhs = typeof tmpUnaryArg;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, 1);
 `````

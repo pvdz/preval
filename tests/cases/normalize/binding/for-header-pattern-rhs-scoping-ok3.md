@@ -25,12 +25,12 @@ let x = 1;
 let y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs;
-let x_1;
+let x$1;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x_1 = arrPatternSplat[0];
-  $(x_1);
+  x$1 = arrPatternSplat[0];
+  $(x$1);
 }
 `````
 
@@ -43,8 +43,8 @@ let tmpForInPatDeclLhs;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  const x_1 = arrPatternSplat[0];
-  $(x_1);
+  const x$1 = arrPatternSplat[0];
+  $(x$1);
 }
 `````
 

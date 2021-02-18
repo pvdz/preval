@@ -23,7 +23,7 @@ let a = 1;
 let b = 2;
 let c = 3;
 const tmpSwitchTest = $('a');
-let a_1;
+let a$1;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
@@ -35,7 +35,7 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     b = c;
-    a_1 = b;
+    a$1 = b;
     break tmpSwitchBreak;
   }
 }

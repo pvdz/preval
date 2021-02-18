@@ -21,7 +21,7 @@ for (let a = b + c;false;) $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
-let a_1 = b + c;
+let a$1 = b + c;
 `````
 
 ## Output

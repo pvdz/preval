@@ -27,8 +27,8 @@ let z = [10, 20, 30];
 const tmpSwitchTest = $('a');
 let bindingPatternArrRoot;
 let arrPatternSplat;
-let x_1;
-let y_1;
+let x$1;
+let y$1;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
@@ -39,12 +39,12 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    $(x_1);
-    $(y_1);
+    $(x$1);
+    $(y$1);
     bindingPatternArrRoot = z;
     arrPatternSplat = [...bindingPatternArrRoot];
-    x_1 = arrPatternSplat[0];
-    y_1 = arrPatternSplat[1];
+    x$1 = arrPatternSplat[0];
+    y$1 = arrPatternSplat[1];
     break tmpSwitchBreak;
   }
 }
@@ -56,8 +56,8 @@ $(x, y, z);
 `````js filename=intro
 const z = [10, 20, 30];
 const tmpSwitchTest = $('a');
-let x_1;
-let y_1;
+let x$1;
+let y$1;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
@@ -67,8 +67,8 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    $(x_1);
-    $(y_1);
+    $(x$1);
+    $(y$1);
     const arrPatternSplat = [...z];
     arrPatternSplat[0];
     arrPatternSplat[1];

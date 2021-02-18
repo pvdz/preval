@@ -24,7 +24,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = function f_1() {};
+    p = function f$1() {};
   } else {
     p = $tdz$__p;
   }
@@ -43,7 +43,7 @@ function f($tdz$__p) {
   undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    (function f_1() {});
+    (function f$1() {});
   }
 }
 const a = { a: 999, b: 1000 };

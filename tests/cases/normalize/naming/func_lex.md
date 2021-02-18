@@ -28,11 +28,11 @@ $(f());
 function f() {
   let a = $(1);
   $(a);
-  let a_1 = $(1);
-  $(a_1);
+  let a$1 = $(1);
+  $(a$1);
   const tmpIfTest = $();
   if (tmpIfTest) {
-    return a_1;
+    return a$1;
   }
   return a;
 }
@@ -47,11 +47,11 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const a = $(1);
   $(a);
-  const a_1 = $(1);
-  $(a_1);
+  const a$1 = $(1);
+  $(a$1);
   const tmpIfTest = $();
   if (tmpIfTest) {
-    return a_1;
+    return a$1;
   }
   return a;
 }

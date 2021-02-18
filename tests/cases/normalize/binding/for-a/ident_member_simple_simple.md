@@ -23,7 +23,7 @@ let b = { x: 2 };
 let c = 3;
 const varInitAssignLhsComputedRhs = c;
 b.x = varInitAssignLhsComputedRhs;
-let a_1 = varInitAssignLhsComputedRhs;
+let a$1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

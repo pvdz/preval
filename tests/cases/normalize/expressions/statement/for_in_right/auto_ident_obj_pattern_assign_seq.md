@@ -26,16 +26,16 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpForInDeclRhs;
-$(x_1);
+$(x$1);
 $(y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x_1 = tmpNestedAssignObjPatternRhs.x;
+x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
-let x_1;
-for (x_1 in tmpForInDeclRhs) {
+let x$1;
+for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x, y);
 `````
@@ -44,15 +44,15 @@ $(a, x, y);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(x_1);
+$(x$1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x_1 = tmpNestedAssignObjPatternRhs.x;
+x$1 = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
-let x_1;
-for (x_1 in tmpNestedAssignObjPatternRhs) {
+let x$1;
+for (x$1 in tmpNestedAssignObjPatternRhs) {
 }
 $(a, 1, SSA_y);
 `````

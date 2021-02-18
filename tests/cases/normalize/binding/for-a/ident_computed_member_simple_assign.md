@@ -30,7 +30,7 @@ const varInitAssignLhsComputedRhs$1 = $(d);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a_1 = varInitAssignLhsComputedRhs;
+let a$1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

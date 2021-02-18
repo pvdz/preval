@@ -26,11 +26,11 @@ $(f());
 
 `````js filename=intro
 function f() {
-  let a_1 = $(1);
-  $(a_1);
+  let a$1 = $(1);
+  $(a$1);
   const tmpIfTest = $();
   if (tmpIfTest) {
-    return a_1;
+    return a$1;
   }
   let a = $(1);
   $(a);
@@ -45,11 +45,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const a_1 = $(1);
-  $(a_1);
+  const a$1 = $(1);
+  $(a$1);
   const tmpIfTest = $();
   if (tmpIfTest) {
-    return a_1;
+    return a$1;
   }
   const a = $(1);
   $(a);

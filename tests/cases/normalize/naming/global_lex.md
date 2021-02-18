@@ -22,8 +22,8 @@ $(a);
 `````js filename=intro
 let a = $(1);
 $(a);
-let a_1 = $(1);
-$(a_1);
+let a$1 = $(1);
+$(a$1);
 `````
 
 ## Output
@@ -31,8 +31,8 @@ $(a_1);
 `````js filename=intro
 const a = $(1);
 $(a);
-const a_1 = $(1);
-$(a_1);
+const a$1 = $(1);
+$(a$1);
 `````
 
 ## Globals

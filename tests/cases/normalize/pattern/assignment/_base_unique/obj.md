@@ -19,21 +19,21 @@
 `````js filename=intro
 let x = 1;
 const tmpAssignObjPatternRhs = 1;
-x_1 = tmpAssignObjPatternRhs.x;
-let x_2 = 1;
+x$1 = tmpAssignObjPatternRhs.x;
+let x$2 = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-x_1 = (1).x;
+x$1 = (1).x;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x_1
+x$1
 
 ## Result
 

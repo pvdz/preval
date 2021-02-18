@@ -30,7 +30,7 @@ let varInitAssignLhsComputedObj$1;
 let varInitAssignLhsComputedProp$1;
 let varInitAssignLhsComputedRhs$1;
 let varInitAssignLhsComputedRhs;
-let a_1;
+let a$1;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
@@ -49,7 +49,7 @@ tmpSwitchBreak: {
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    a_1 = varInitAssignLhsComputedRhs;
+    a$1 = varInitAssignLhsComputedRhs;
     break tmpSwitchBreak;
   }
 }

@@ -21,8 +21,8 @@ let z = 1;
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-z_1 = objPatternNoDefault$1.z;
-let z_2 = 1;
+z$1 = objPatternNoDefault$1.z;
+let z$2 = 1;
 `````
 
 ## Output
@@ -30,14 +30,14 @@ let z_2 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-z_1 = objPatternNoDefault$1.z;
+z$1 = objPatternNoDefault$1.z;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-z_1
+z$1
 
 ## Result
 

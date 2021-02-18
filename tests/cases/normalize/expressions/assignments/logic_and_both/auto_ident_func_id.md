@@ -24,7 +24,7 @@ const tmpCallCallee = $;
 a = function f() {};
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = function f_1() {};
+  const tmpNestedComplexRhs = function f$1() {};
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -38,7 +38,7 @@ $(a);
 let SSA_a = function f() {};
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = function f_1() {};
+  const tmpNestedComplexRhs = function f$1() {};
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

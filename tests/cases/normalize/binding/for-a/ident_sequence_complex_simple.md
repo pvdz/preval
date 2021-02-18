@@ -25,7 +25,7 @@ $(b);
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedRhs = c;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let a_1 = varInitAssignLhsComputedRhs;
+let a$1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output

@@ -28,21 +28,21 @@ $(a?.().b?.().c?.().d);
 
 `````js filename=intro
 function a() {
-  const a_1 = {
+  const a$1 = {
     a() {
-      return a_1;
+      return a$1;
     },
     b() {
-      return a_1;
+      return a$1;
     },
     c() {
-      return a_1;
+      return a$1;
     },
     d() {
-      return a_1;
+      return a$1;
     },
   };
-  return a_1;
+  return a$1;
 }
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
@@ -70,21 +70,21 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function a() {
-  const a_1 = {
+  const a$1 = {
     a() {
-      return a_1;
+      return a$1;
     },
     b() {
-      return a_1;
+      return a$1;
     },
     c() {
-      return a_1;
+      return a$1;
     },
     d() {
-      return a_1;
+      return a$1;
     },
   };
-  return a_1;
+  return a$1;
 }
 let tmpCalleeParam = undefined;
 const tmpIfTest = a != null;

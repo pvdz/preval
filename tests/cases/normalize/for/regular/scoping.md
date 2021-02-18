@@ -19,9 +19,9 @@ for (const x = 2;;) $(x);
 
 `````js filename=intro
 const x = 1;
-const x_1 = 2;
+const x$1 = 2;
 while (true) {
-  $(x_1);
+  $(x$1);
 }
 `````
 

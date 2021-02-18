@@ -1,5 +1,6 @@
 import walk from '../../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, getIdentUsageKind } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
+import { getIdentUsageKind, createUniqueGlobalLabel, registerGlobalLabel, createReadRef, createWriteRef } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
@@ -33,26 +34,6 @@ export function phase1(fdata, resolve, req, verbose) {
       writes: [],
     }),
   );
-
-  function createUniqueGlobalLabel(name) {
-    // Create a (module) globally unique label name.
-    let n = 0;
-    if (globallyUniqueLabelRegistry.has(name)) {
-      while (globallyUniqueLabelRegistry.has(name + '_' + ++n));
-    }
-    return n ? name + '_' + n : name;
-  }
-  function registerGlobalLabel(name, originalName, labelNode) {
-    ASSERT(!globallyUniqueLabelRegistry.has(name), 'this func should be called with the unique label name');
-
-    globallyUniqueLabelRegistry.set(name, {
-      // ident meta data
-      originalName,
-      uniqueName: name,
-      labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
-      usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-    });
-  }
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   const exports = new Map();
@@ -94,7 +75,11 @@ export function phase1(fdata, resolve, req, verbose) {
 
       case 'BlockStatement:before': {
         blockStack.push(node);
-        blockIds.push((parentNode.type === 'WhileStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') ? -node.$p.pid : node.$p.pid);
+        blockIds.push(
+          parentNode.type === 'WhileStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement'
+            ? -node.$p.pid
+            : node.$p.pid,
+        );
         log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
         break;
       }
@@ -188,65 +173,69 @@ export function phase1(fdata, resolve, req, verbose) {
           }
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
           if (kind === 'read') {
-            meta.reads.push({
-              action: 'read',
-              parentNode,
-              parentProp,
-              parentIndex,
-              node,
-              rwCounter: ++readWriteCounter,
-              scope: currentScope.$p.pid,
-              blockChain: blockIds.join(','),
-              innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
-            });
+            meta.reads.push(
+              createReadRef({
+                parentNode,
+                parentProp,
+                parentIndex,
+                node,
+                rwCounter: ++readWriteCounter,
+                scope: currentScope.$p.pid,
+                blockChain: blockIds.join(','),
+                innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+              }),
+            );
           }
           if (kind === 'write') {
             if (parentNode.type === 'VariableDeclarator') {
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
-              meta.writes.push({
-                action: 'write',
-                parentNode,
-                parentProp,
-                parentIndex,
-                node,
-                rwCounter: ++readWriteCounter,
-                scope: currentScope.$p.pid,
-                blockChain: blockIds.join(','),
-                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
-                decl: { declParent, declProp, declIndex },
-              });
+              meta.writes.push(
+                createWriteRef({
+                  parentNode,
+                  parentProp,
+                  parentIndex,
+                  node,
+                  rwCounter: ++readWriteCounter,
+                  scope: currentScope.$p.pid,
+                  blockChain: blockIds.join(','),
+                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  decl: { declParent, declProp, declIndex },
+                }),
+              );
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements');
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
-              meta.writes.push({
-                action: 'write',
-                parentNode,
-                parentProp,
-                parentIndex,
-                node,
-                rwCounter: ++readWriteCounter,
-                scope: currentScope.$p.pid,
-                blockChain: blockIds.join(','),
-                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
-                assign: { assignParent, assignProp, assignIndex },
-              });
+              meta.writes.push(
+                createWriteRef({
+                  parentNode,
+                  parentProp,
+                  parentIndex,
+                  node,
+                  rwCounter: ++readWriteCounter,
+                  scope: currentScope.$p.pid,
+                  blockChain: blockIds.join(','),
+                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  assign: { assignParent, assignProp, assignIndex },
+                }),
+              );
             } else {
               // for-x lhs, param, etc
-              meta.writes.push({
-                action: 'write',
-                parentNode,
-                parentProp,
-                parentIndex,
-                node,
-                rwCounter: ++readWriteCounter,
-                scope: currentScope.$p.pid,
-                innerLoop: blockIds.filter(n => n<0).pop() ?? 0,
-                blockChain: blockIds.join(','),
-              });
+              meta.writes.push(
+                createWriteRef({
+                  parentNode,
+                  parentProp,
+                  parentIndex,
+                  node,
+                  rwCounter: ++readWriteCounter,
+                  scope: currentScope.$p.pid,
+                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  blockChain: blockIds.join(','),
+                }),
+              );
             }
           }
 
@@ -360,8 +349,8 @@ export function phase1(fdata, resolve, req, verbose) {
         labelStack.push(node);
         log('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name);
-        registerGlobalLabel(uniqueName, node.label.name, node);
+        const uniqueName = createUniqueGlobalLabel(node.label.name, globallyUniqueLabelRegistry);
+        registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
           log('- Unique label name:', uniqueName);
           node.label.name = uniqueName;

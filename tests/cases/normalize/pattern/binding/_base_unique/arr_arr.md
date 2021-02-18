@@ -18,14 +18,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x_1 = 1;
+let x$1 = 1;
 const tmpArrElement = [100];
 const bindingPatternArrRoot = [tmpArrElement];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const x = arrPatternSplat$1[0];
-let x_2 = 1;
+let x$2 = 1;
 $(x);
 `````
 

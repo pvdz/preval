@@ -24,7 +24,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = function f_1() {};
+    const tmpNestedComplexRhs = function f$1() {};
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -45,7 +45,7 @@ function f($tdz$__p) {
   undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = function f_1() {};
+    const tmpNestedComplexRhs = function f$1() {};
     a = tmpNestedComplexRhs;
   }
 }

@@ -17,12 +17,12 @@ const {x: [ y ]} = 1;
 ## Normalized
 
 `````js filename=intro
-let y_1 = 1;
+let y$1 = 1;
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
-let y_2 = 1;
+let y$2 = 1;
 `````
 
 ## Output

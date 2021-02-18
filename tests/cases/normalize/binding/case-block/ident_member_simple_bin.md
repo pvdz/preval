@@ -25,7 +25,7 @@ let c = 3;
 let d = 4;
 const tmpSwitchTest = $('a');
 let varInitAssignLhsComputedRhs;
-let a_1;
+let a$1;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
@@ -38,7 +38,7 @@ tmpSwitchBreak: {
   if (tmpIfTest$1) {
     varInitAssignLhsComputedRhs = c + d;
     b.x = varInitAssignLhsComputedRhs;
-    a_1 = varInitAssignLhsComputedRhs;
+    a$1 = varInitAssignLhsComputedRhs;
     break tmpSwitchBreak;
   }
 }

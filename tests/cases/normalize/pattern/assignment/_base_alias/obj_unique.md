@@ -23,21 +23,21 @@ In particular, the pattern's "y" should be replaced with a different name.
 `````js filename=intro
 let a = 1;
 const tmpAssignObjPatternRhs = 1;
-a_1 = tmpAssignObjPatternRhs.x;
-let a_2 = 1;
+a$1 = tmpAssignObjPatternRhs.x;
+let a$2 = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-a_1 = (1).x;
+a$1 = (1).x;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-a_1
+a$1
 
 ## Result
 

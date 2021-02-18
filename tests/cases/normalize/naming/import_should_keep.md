@@ -26,11 +26,11 @@ export const x = $(f());
 
 `````js filename=intro
 function f() {
-  let x_1 = $(1);
-  return x_1;
+  let x$1 = $(1);
+  return x$1;
 }
-function g(x_2) {
-  return x_2;
+function g(x$2) {
+  return x$2;
 }
 export class c {}
 const tmpCallCallee = $;
@@ -45,11 +45,11 @@ export { g };
 
 `````js filename=intro
 function f() {
-  const x_1 = $(1);
-  return x_1;
+  const x$1 = $(1);
+  return x$1;
 }
-function g(x_2) {
-  return x_2;
+function g(x$2) {
+  return x$2;
 }
 export class c {}
 const tmpCalleeParam = f();

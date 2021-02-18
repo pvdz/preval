@@ -20,8 +20,8 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let a_1 = $(1);
-$(a_1);
+let a$1 = $(1);
+$(a$1);
 let a = $(2);
 $(a);
 `````
@@ -29,8 +29,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a_1 = $(1);
-$(a_1);
+const a$1 = $(1);
+$(a$1);
 const a = $(2);
 $(a);
 `````

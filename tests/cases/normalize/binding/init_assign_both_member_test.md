@@ -39,8 +39,8 @@ c = {
     $(3);
     return 20;
   },
-  set x(n_1) {
-    $(4, n_1);
+  set x(n$1) {
+    $(4, n$1);
   },
 };
 const tmpNestedAssignPropRhs = c.x;
@@ -67,8 +67,8 @@ const c = {
     $(3);
     return 20;
   },
-  set x(n_1) {
-    $(4, n_1);
+  set x(n$1) {
+    $(4, n$1);
   },
 };
 const tmpNestedAssignPropRhs = c.x;

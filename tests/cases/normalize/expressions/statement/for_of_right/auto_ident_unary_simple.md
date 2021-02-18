@@ -23,9 +23,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpForOfDeclRhs = typeof x_1;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+const tmpForOfDeclRhs = typeof x$1;
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x);
 `````
@@ -34,9 +34,9 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpForOfDeclRhs = typeof x_1;
-let x_1;
-for (x_1 of tmpForOfDeclRhs) {
+const tmpForOfDeclRhs = typeof x$1;
+let x$1;
+for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, 1);
 `````

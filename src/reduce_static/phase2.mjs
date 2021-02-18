@@ -46,13 +46,25 @@ function after(node, parentNode) {
   }
 }
 
-export function phase2(program, fdata, resolve, req) {
+export function phase2(program, fdata, resolve, req, toEliminate = []) {
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
+
+  // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
+  // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
+  // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
+  // relationships which might otherwise break. This means a binding may have been removed from the books
+  // even though it's technically still part of the AST. But since we take the books as leading in this step
+  // that should not be a problem.
 
   group('Checking for inlinable constants');
   let inlined = false;
-  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+  // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
+  //       Take care to preserve body[index] ordering. Don't add/remove elements to any body array.
+  //       Preserve the parent of any identifier as detaching them may affect future steps.
+  //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
+  fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
+    group('-- name:', name);
 
     //ASSERT(meta.writes.length >= 1, 'all bindings should have some kind of point of update, or else it is an implicit global read, which can happen but would be a runtime error in strict mode', meta);
 
@@ -67,8 +79,8 @@ export function phase2(program, fdata, resolve, req) {
         ASSERT(varDecl.kind === 'var' || varDecl.kind === 'let', 'so it must be a var or let right now', varDecl.declParent);
         if (varDecl.declarations[0].init) {
           rule('A binding decl where the binding has one write must be a const');
-          rule('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
-          rule('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
+          example('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
+          example('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
           before(meta.writes[0].decl.declParent);
 
           varDecl.kind = 'const';
@@ -80,14 +92,12 @@ export function phase2(program, fdata, resolve, req) {
       }
     }
 
+    // Attempt to fold up constants
     if (meta.isConstant) {
+      log('Is a constant');
       ASSERT(meta.writes.length === 1, 'a constant should have one write?', meta.writes);
       const write = meta.writes[0];
-      if (!write) {
-        log('TODO; uncomment me to figure out what');
-        return;
-      }
-      //log('Write:', write);
+      ASSERT(write, 'figure out whats wrong if this breaks');
 
       // Figure out the assigned value. This depends on the position of the identifier (var decl, param, assign).
       // Note: any binding can be isConstant here. It is not determined by `const`, but by the number of writes.
@@ -99,18 +109,24 @@ export function phase2(program, fdata, resolve, req) {
         assignee = write.parentNode.right;
       } else {
         // Tough luck. Until we support parameters and all that.
+        groupEnd();
         return;
       }
 
       if (!assignee || assignee.name === 'arguments') {
-        log('TODO; uncomment me to figure out what');
+        log('TODO; uncomment me to figure out what to do with `arguments`');
+        groupEnd();
         return;
       }
 
       const assigneeMeta = fdata.globallyUniqueNamingRegistry.get(assignee.name);
 
       if (assignee.type === 'Identifier' && (assigneeMeta.isBuiltin || assigneeMeta.isConstant)) {
-        // If the identifier is a constant binding or builtin constant then replace all reads with a clone of it
+        // `const x = undefined;` but rhs is NOT a literal
+        // If the identifier has isConstant=true or isBuiltin=true then
+        // - eliminate the decl (this will get queued)
+        // - replace all reads with a clone of it
+        // - deregister the name
 
         rule('Declaring a constant with a constant value should eliminate the binding');
         example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
@@ -118,11 +134,13 @@ export function phase2(program, fdata, resolve, req) {
         before(write.parentNode);
 
         // With the new
-        group('Attempt to replace the reads of `' + name + '` with reads of `' + assignee.name);
+        group('Attempt to replace the', meta.reads.length, 'reads of `' + name + '` with reads of `' + assignee.name);
         const clone = AST.cloneSimple(assignee);
         const reads = meta.reads;
         for (let i = 0; i < reads.length; ++i) {
-          const { parentNode, parentProp, parentIndex } = reads[i];
+          // Note: this parent may not be part of the AST anymore (!) (ex. if a var decl with complex init was eliminated)
+          const oldRead = reads[i];
+          const { parentNode, parentProp, parentIndex } = oldRead;
           if (parentNode.type === 'ExportSpecifier') {
             log('Skipping export ident');
           } else {
@@ -139,15 +157,25 @@ export function phase2(program, fdata, resolve, req) {
                 ')' +
                 '`...',
             );
-            before(parentNode);
+            before(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
             if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
             else parentNode[parentProp] = clone;
-            after(parentNode);
+            after(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
             inlined = true;
             // Remove the read. This binding is read one fewer times
             reads.splice(i, 1);
             // Add a read to the assignee. It is read one more time instead.
-            assigneeMeta.reads.push({ parentNode, parentProp, parentIndex, node: clone });
+            assigneeMeta.reads.push({
+              action: 'read',
+              parentNode,
+              parentProp,
+              parentIndex,
+              node: clone,
+              rwCounter: oldRead.rwCounter,
+              scope: oldRead.scope,
+              blockChain: oldRead.blockChain,
+              innerLoop: oldRead.innerLoop,
+            });
             // We removed an element from the current loop so retry the current index
             --i;
           }
@@ -155,9 +183,9 @@ export function phase2(program, fdata, resolve, req) {
         log('Binding `' + name + '` has', reads.length, 'reads left after this');
         groupEnd();
 
-        if (reads.length === 0 && write.parentNode.type === 'VariableDeclarator') {
+        if (reads.length === 0 && write.decl) {
+          group('Eliminating var decl');
           log('Zero reads left and it was a var decl. Replacing it with an empty statement.');
-          ASSERT(write.decl, 'var decls should have the decl parent stuff recorded for this exact reason');
           // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
           // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
           const { declParent, declProp, declIndex } = write.decl;
@@ -170,26 +198,37 @@ export function phase2(program, fdata, resolve, req) {
           else declParent[declProp] = AST.emptyStatement();
 
           fdata.globallyUniqueNamingRegistry.delete(name);
+          groupEnd();
         }
 
         after(';');
-      } else if (
+        groupEnd();
+        return;
+      }
+
+      if (
         // numbers, null, true, false, strings
-        (assignee.type === 'Literal' && (assignee.raw === 'null' || (!(assignee instanceof RegExp) && assignee.value != null))) ||
+        (assignee.type === 'Literal' &&
+          (assignee.raw === 'null' ||
+            assignee.value === true ||
+            assignee.value === false ||
+            typeof assignee.value === 'string' ||
+            typeof assignee.value === 'number')) ||
         // Negative numbers, or numbers with a + before it (noop which we should eliminate anyways... but probably not here).
         // This kind of unary for other constants should be statically resolved (elsewhere), like `-null` is `-0` etc.
         (assignee.type === 'UnaryExpression' &&
-          (assignee.operator === '+' || assignee.operator === '-') &&
+          (assignee.operator === '+' || assignee.operator === '-') && // + shouldn't appear here after normalization but okay
           assignee.argument.type === 'Literal' &&
           typeof assignee.argument.value === 'number')
       ) {
+        // `const x = 5;`
         // Replace all reads of this name with a clone of the literal, ident, or unary
 
         rule('Declaring a constant with a literal value should eliminate the binding');
         example('const x = 100; f(x);', 'f(100);');
         before(write.parentNode);
 
-        group('Attempt to replace the reads');
+        group('Attempt to replace the', meta.reads.length, 'reads');
         // With the new
         const clone = AST.cloneSimple(assignee);
         const reads = meta.reads;
@@ -198,25 +237,34 @@ export function phase2(program, fdata, resolve, req) {
           if (parentNode.type === 'ExportSpecifier') {
             log('Skipping export ident');
           } else {
-            log('Replacing a read...');
-            before(parentNode);
+            group(
+              'Replacing a read with the literal...',
+              parentNode.type + '.' + parentProp,
+              parentNode.$p.pid,
+              (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]).type,
+              (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]).$p.pid,
+            );
+
+            before(parentNode, write.assign ? write.assign.assignParent : write.decl ? write.decl.declParent : wat);
             if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
             else parentNode[parentProp] = clone;
-            after(parentNode);
+            after(parentNode, write.assign ? write.assign.assignParent : write.decl ? write.decl.declParent : wat);
             inlined = true;
             // No need to push a read back in. We don't need to track reads to builtin literals like `null` or `undefined` (I think)
             reads.splice(i, 1);
             --i;
+            groupEnd();
           }
         }
         log('Binding `' + name + '` has', reads.length, 'reads left after this');
         groupEnd();
 
-        if (reads.length === 0 && write.parentNode.type === 'VariableDeclarator') {
-          ASSERT(write.decl, 'var decls should have the decl parent stuff recorded for this exact reason');
+        if (reads.length === 0 && write.decl) {
+          group('Deleting the var decl');
           // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
           // Note: the init was a lone literal (that's how we got here) so we should not need to preserve the init
           const { declParent, declProp, declIndex } = write.decl;
+          before(declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp], declParent);
           ASSERT(
             (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
             'if not then indexes changed?',
@@ -226,9 +274,13 @@ export function phase2(program, fdata, resolve, req) {
           else declParent[declProp] = AST.emptyStatement();
 
           fdata.globallyUniqueNamingRegistry.delete(name);
+          after(AST.emptyStatement(), declParent);
+          groupEnd();
         }
 
         after(';');
+        groupEnd();
+        return;
       }
     }
   });
@@ -241,7 +293,7 @@ export function phase2(program, fdata, resolve, req) {
   if (inlined) {
     log('Trying again...');
     groupEnd();
-    return phase2(program, fdata, resolve, req);
+    return phase2(program, fdata, resolve, req, toEliminate);
   }
 
   group('Checking for promotable vars');
@@ -351,6 +403,7 @@ export function phase2(program, fdata, resolve, req) {
                 rwCounter: assign.rwCounter,
                 scope: assign.scope,
                 blockChain: assign.blockChain,
+                innerLoop: assign.innerLoop,
                 decl: { declParent: assign.assign.assignParent, declProp: assign.assign.assignProp, declIndex: assign.assign.assignIndex },
               };
 

@@ -27,7 +27,7 @@ a = { b: tmpObjLitVal };
 let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 $(...SSA_a);
 const tmpAssignMemLhsObj = $(SSA_a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(SSA_a);
 `````
 

@@ -27,7 +27,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-const tmpSwitchTest = tmpCallObj['$'](1);
+const tmpSwitchTest = tmpCallObj.$(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-b['$'](1);
+b.$(1);
 $(100);
 $(a);
 `````

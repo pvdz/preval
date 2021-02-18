@@ -51,7 +51,7 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -79,7 +79,7 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

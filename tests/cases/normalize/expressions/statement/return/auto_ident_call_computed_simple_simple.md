@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = b['$'](1);
+  const tmpReturnArg = b.$(1);
   return tmpReturnArg;
 }
 let b = { $: $ };
@@ -40,7 +40,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  const tmpReturnArg = b['$'](1);
+  const tmpReturnArg = b.$(1);
   return tmpReturnArg;
 }
 const b = { $: $ };

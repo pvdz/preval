@@ -32,7 +32,7 @@ while (true) {
   }
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -51,7 +51,7 @@ while (true) {
   }
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 

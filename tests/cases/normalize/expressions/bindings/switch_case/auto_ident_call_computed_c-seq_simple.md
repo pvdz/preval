@@ -36,7 +36,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { $: $ };
   tmpCallObj = $(b);
-  a = tmpCallObj['$'](1);
+  a = tmpCallObj.$(1);
   $(a);
 }
 `````
@@ -46,7 +46,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const a = tmpCallObj['$'](1);
+const a = tmpCallObj.$(1);
 $(a);
 `````
 

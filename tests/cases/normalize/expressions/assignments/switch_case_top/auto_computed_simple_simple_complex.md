@@ -37,10 +37,9 @@ if (tmpIfTest$1) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -60,9 +59,9 @@ if (tmpIfTest$1) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 

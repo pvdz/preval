@@ -27,7 +27,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````
@@ -41,7 +41,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````

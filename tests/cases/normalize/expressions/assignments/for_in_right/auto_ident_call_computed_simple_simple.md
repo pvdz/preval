@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-a = b['$'](1);
+a = b.$(1);
 let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
@@ -35,7 +35,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 let x;
 for (x in SSA_a) {
 }

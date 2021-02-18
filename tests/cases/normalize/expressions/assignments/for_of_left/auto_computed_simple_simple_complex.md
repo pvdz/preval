@@ -31,10 +31,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -51,9 +50,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 

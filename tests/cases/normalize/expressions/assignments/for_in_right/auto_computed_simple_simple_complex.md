@@ -27,10 +27,9 @@ let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -42,8 +41,8 @@ const SSA_a = { b: tmpObjLitVal };
 let x;
 for (x in SSA_a) {
 }
-const tmpAssignComputedRhs = $(2);
-SSA_a['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+SSA_a.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

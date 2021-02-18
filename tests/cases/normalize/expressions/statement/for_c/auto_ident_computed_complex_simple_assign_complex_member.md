@@ -27,12 +27,11 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignMemLhsObj = $(b);
-    const tmpAssignComputedObj = tmpAssignMemLhsObj;
-    const tmpAssignComputedProp = 'c';
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+    tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
   } else {
     break;
   }
@@ -51,8 +50,8 @@ while (true) {
     const tmpAssignMemLhsObj = $(b);
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignMemLhsObj['c'] = tmpAssignComputedRhs;
+    const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+    tmpAssignMemLhsObj.c = tmpAssignMemRhs;
   } else {
     break;
   }

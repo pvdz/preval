@@ -32,7 +32,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-a = b['$'](1);
+a = b.$(1);
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -61,7 +61,7 @@ $(a);
 const b = { $: $ };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 const tmpIfTest = SSA_a === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 function f() {
   const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp['c'];
+  a = tmpAssignRhsProp.c;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
@@ -43,7 +43,7 @@ $(a, b);
 `````js filename=intro
 function f() {
   const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp['c'];
+  a = tmpAssignRhsProp.c;
   const tmpReturnArg = a;
   return tmpReturnArg;
 }

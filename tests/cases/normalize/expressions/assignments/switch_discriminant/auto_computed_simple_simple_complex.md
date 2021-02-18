@@ -33,10 +33,9 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -46,8 +45,8 @@ $(a);
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 $(100);
-const tmpAssignComputedRhs = $(2);
-SSA_a['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+SSA_a.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

@@ -28,7 +28,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b['c'] = tmpNestedPropAssignRhs;
+b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -45,7 +45,7 @@ const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-b['c'] = tmpNestedAssignPropRhs;
+b.c = tmpNestedAssignPropRhs;
 let tmpCalleeParam = tmpNestedAssignPropRhs;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);

@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
+a = tmpAssignRhsProp.c;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);

@@ -30,7 +30,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = b['$'](1);
+    const tmpNestedComplexRhs = b.$(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -54,7 +54,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = b['$'](1);
+    const tmpNestedComplexRhs = b.$(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

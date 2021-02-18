@@ -26,7 +26,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = b['$'](1);
+    p = b.$(1);
   } else {
     p = $tdz$__p;
   }
@@ -45,7 +45,7 @@ $(a);
 function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    b['$'](1);
+    b.$(1);
   }
 }
 const b = { $: $ };

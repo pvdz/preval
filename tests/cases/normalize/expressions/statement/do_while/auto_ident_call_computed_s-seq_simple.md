@@ -31,7 +31,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallObj = b;
-    tmpIfTest = tmpCallObj['$'](1);
+    tmpIfTest = tmpCallObj.$(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -53,7 +53,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = b['$'](1);
+    tmpIfTest = b.$(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

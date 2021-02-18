@@ -30,7 +30,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = b['c'];
+    tmpIfTest = b.c;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -52,7 +52,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = b['c'];
+    tmpIfTest = b.c;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -42,7 +42,7 @@ if (tmpIfTest$1) {
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
 }
 $(a, b);
@@ -66,7 +66,7 @@ if (tmpIfTest$1) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
 }
 $(a, b);

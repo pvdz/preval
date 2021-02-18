@@ -31,7 +31,7 @@ const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  a = delete arg['y'];
+  a = delete arg.y;
 }
 $(a, arg);
 `````
@@ -41,7 +41,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 $(1);
-const SSA_a = delete arg['y'];
+const SSA_a = delete arg.y;
 $(SSA_a, arg);
 `````
 

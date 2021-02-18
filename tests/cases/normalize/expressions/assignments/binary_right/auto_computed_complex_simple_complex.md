@@ -29,10 +29,9 @@ let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -45,8 +44,8 @@ const SSA_a = { b: tmpObjLitVal };
 const tmpCalleeParam = tmpBinBothLhs + SSA_a;
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(SSA_a);
-const tmpAssignComputedRhs = $(2);
-tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

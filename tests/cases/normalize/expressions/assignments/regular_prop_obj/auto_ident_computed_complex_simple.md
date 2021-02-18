@@ -26,7 +26,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
+a = tmpAssignRhsProp.c;
 let tmpCompObj = a;
 tmpCompObj.a;
 $(a, b);

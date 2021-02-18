@@ -27,7 +27,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignRhsProp = $(b);
-    a = tmpAssignRhsProp['c'];
+    a = tmpAssignRhsProp.c;
   } else {
     break;
   }
@@ -44,7 +44,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignRhsProp = $(b);
-    a = tmpAssignRhsProp['c'];
+    a = tmpAssignRhsProp.c;
   } else {
     break;
   }

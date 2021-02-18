@@ -32,7 +32,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp['c'];
+  a = tmpAssignRhsProp.c;
 }
 $(a, b);
 `````

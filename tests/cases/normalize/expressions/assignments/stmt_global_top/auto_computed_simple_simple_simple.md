@@ -23,7 +23,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -32,7 +32,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

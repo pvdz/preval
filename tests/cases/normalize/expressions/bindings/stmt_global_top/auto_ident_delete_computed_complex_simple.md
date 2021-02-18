@@ -21,9 +21,8 @@ $(a, arg);
 
 `````js filename=intro
 let arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+let a = delete tmpDeleteObj.y;
 $(a, arg);
 `````
 
@@ -31,8 +30,8 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const a = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const a = delete tmpDeleteObj.y;
 $(a, arg);
 `````
 

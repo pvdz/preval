@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParamSpread = b['$'](1);
+const tmpCalleeParamSpread = b.$(1);
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
 `````
@@ -34,7 +34,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParamSpread = b['$'](1);
+const tmpCalleeParamSpread = b.$(1);
 $(...tmpCalleeParamSpread);
 $(a);
 `````

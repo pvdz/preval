@@ -24,7 +24,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = delete arg['y'];
+const tmpCalleeParam = delete arg.y;
 tmpCallCallee(tmpCalleeParam);
 $(a, arg);
 `````
@@ -34,7 +34,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = delete arg['y'];
+const tmpCalleeParam = delete arg.y;
 $(tmpCalleeParam);
 $(a, arg);
 `````

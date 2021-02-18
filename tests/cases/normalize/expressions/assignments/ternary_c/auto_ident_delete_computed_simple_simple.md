@@ -29,7 +29,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = delete arg['y'];
+  const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -47,7 +47,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = delete arg['y'];
+  const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

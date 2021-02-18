@@ -26,7 +26,7 @@
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-tmpCallObj['$'](1);
+tmpCallObj.$(1);
 $(a);
 `````
 
@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-b['$'](1);
+b.$(1);
 $(a);
 `````
 

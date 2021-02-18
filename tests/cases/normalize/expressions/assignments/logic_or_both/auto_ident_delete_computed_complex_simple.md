@@ -24,15 +24,13 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = 'y';
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  const tmpDeleteObj$1 = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -44,13 +42,13 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-let SSA_a = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+let SSA_a = delete tmpDeleteObj.y;
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj$1['y'];
+  const tmpDeleteObj$1 = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

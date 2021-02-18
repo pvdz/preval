@@ -27,7 +27,7 @@ $(f());
 function f() {
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
-  b['$'](1);
+  b.$(1);
   $(a);
 }
 const tmpCallCallee = $;
@@ -41,7 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const b = { $: $ };
   const a = { a: 999, b: 1000 };
-  b['$'](1);
+  b.$(1);
   $(a);
 }
 const tmpCalleeParam = f();

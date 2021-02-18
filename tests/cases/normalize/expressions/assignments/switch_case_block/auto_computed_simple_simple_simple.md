@@ -38,7 +38,7 @@ if (tmpIfTest$1) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -58,7 +58,7 @@ if (tmpIfTest$1) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

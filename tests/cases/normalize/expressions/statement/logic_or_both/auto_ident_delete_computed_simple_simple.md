@@ -23,10 +23,10 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = delete arg['y'];
+const tmpIfTest = delete arg.y;
 if (tmpIfTest) {
 } else {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````
@@ -36,10 +36,10 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = delete arg['y'];
+const tmpIfTest = delete arg.y;
 if (tmpIfTest) {
 } else {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````

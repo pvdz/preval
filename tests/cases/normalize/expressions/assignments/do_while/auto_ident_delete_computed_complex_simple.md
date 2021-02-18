@@ -30,9 +30,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = 'y';
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpDeleteObj = $(arg);
+    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -56,8 +55,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpDeleteCompObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
+    const tmpDeleteObj = $(arg);
+    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

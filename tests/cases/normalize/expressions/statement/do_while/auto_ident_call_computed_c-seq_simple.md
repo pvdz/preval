@@ -31,7 +31,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallObj = $(b);
-    tmpIfTest = tmpCallObj['$'](1);
+    tmpIfTest = tmpCallObj.$(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -54,7 +54,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallObj = $(b);
-    tmpIfTest = tmpCallObj['$'](1);
+    tmpIfTest = tmpCallObj.$(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

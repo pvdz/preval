@@ -28,9 +28,8 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = 'y';
-  const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpDeleteObj = $(arg);
+  const tmpAssignMemLhsObj = delete tmpDeleteObj.y;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, arg);
@@ -45,8 +44,8 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpAssignMemLhsObj = delete tmpDeleteCompObj['y'];
+  const tmpDeleteObj = $(arg);
+  const tmpAssignMemLhsObj = delete tmpDeleteObj.y;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a, arg);

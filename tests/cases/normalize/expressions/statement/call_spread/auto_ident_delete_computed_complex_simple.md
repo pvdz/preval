@@ -24,9 +24,8 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-const tmpCalleeParamSpread = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+const tmpCalleeParamSpread = delete tmpDeleteObj.y;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a, arg);
 `````
@@ -36,8 +35,8 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpCalleeParamSpread = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const tmpCalleeParamSpread = delete tmpDeleteObj.y;
 $(...tmpCalleeParamSpread);
 $(a, arg);
 `````

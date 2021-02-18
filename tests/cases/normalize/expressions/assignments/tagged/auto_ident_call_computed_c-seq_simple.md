@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallObj = $(b);
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -38,7 +38,7 @@ $(a);
 const b = { $: $ };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallObj = $(b);
-const SSA_a = tmpCallObj['$'](1);
+const SSA_a = tmpCallObj.$(1);
 $(tmpCalleeParam, SSA_a);
 $(SSA_a);
 `````

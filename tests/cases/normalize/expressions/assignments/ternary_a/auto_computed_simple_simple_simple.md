@@ -32,7 +32,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(200);
 }
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -48,7 +48,7 @@ if (SSA_a) {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

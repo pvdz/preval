@@ -51,7 +51,7 @@ if (tmpIfTest$2) {
   tmpCompObj = $(b);
   tmpCompProp = $('d');
   varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
   $(a, b);
 }
@@ -73,7 +73,7 @@ const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 $('fail1');
 $('fail2');

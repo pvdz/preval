@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = varInitAssignLhsComputedRhs;
+b.c = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
   $(100);
@@ -42,7 +42,7 @@ const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = varInitAssignLhsComputedRhs;
+b.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(100);
 }

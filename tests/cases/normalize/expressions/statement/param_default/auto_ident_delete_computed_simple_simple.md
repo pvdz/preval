@@ -26,7 +26,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    p = delete arg['y'];
+    p = delete arg.y;
   } else {
     p = $tdz$__p;
   }
@@ -45,7 +45,7 @@ $(a, arg);
 function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    delete arg['y'];
+    delete arg.y;
   }
 }
 const arg = { y: 1 };

@@ -27,7 +27,7 @@ let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -39,7 +39,7 @@ const SSA_a = { b: tmpObjLitVal };
 let x;
 for (x in SSA_a) {
 }
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

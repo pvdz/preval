@@ -29,7 +29,7 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpCallObj = b;
-const tmpBinLhs = tmpCallObj['$'](1);
+const tmpBinLhs = tmpCallObj.$(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -44,7 +44,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 $(1);
-b['$'](1);
+b.$(1);
 $(a);
 `````
 

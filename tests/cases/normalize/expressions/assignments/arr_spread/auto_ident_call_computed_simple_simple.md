@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = b['$'](1);
+a = b.$(1);
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
@@ -35,7 +35,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 const tmpCalleeParam = [...SSA_a];
 $(tmpCalleeParam);
 $(SSA_a);

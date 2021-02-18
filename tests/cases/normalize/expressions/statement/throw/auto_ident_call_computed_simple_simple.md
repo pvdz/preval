@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpThrowArg = b['$'](1);
+const tmpThrowArg = b.$(1);
 throw tmpThrowArg;
 `````
 
@@ -31,7 +31,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-const tmpThrowArg = b['$'](1);
+const tmpThrowArg = b.$(1);
 throw tmpThrowArg;
 `````
 

@@ -24,7 +24,7 @@ let b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = varInitAssignLhsComputedRhs;
+b.c = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
 $(a, b);
 `````
@@ -36,7 +36,7 @@ const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = varInitAssignLhsComputedRhs;
+b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 `````
 

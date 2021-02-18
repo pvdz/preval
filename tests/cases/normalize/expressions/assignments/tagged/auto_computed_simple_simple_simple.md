@@ -27,7 +27,7 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 $(tmpCalleeParam, SSA_a);
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

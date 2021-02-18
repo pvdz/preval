@@ -32,7 +32,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpCallObj = b;
-  tmpCallObj['$'](1);
+  tmpCallObj.$(1);
 }
 $(a);
 `````
@@ -43,7 +43,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 $(1);
-b['$'](1);
+b.$(1);
 $(a);
 `````
 

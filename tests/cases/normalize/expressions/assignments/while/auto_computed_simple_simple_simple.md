@@ -31,7 +31,7 @@ while (true) {
     break;
   }
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -49,7 +49,7 @@ while (true) {
     break;
   }
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

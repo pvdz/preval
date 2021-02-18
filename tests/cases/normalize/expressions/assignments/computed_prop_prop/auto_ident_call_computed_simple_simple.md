@@ -26,7 +26,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = b['$'](1);
+a = b.$(1);
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -37,7 +37,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const obj = {};
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 obj[SSA_a];
 $(SSA_a);
 `````

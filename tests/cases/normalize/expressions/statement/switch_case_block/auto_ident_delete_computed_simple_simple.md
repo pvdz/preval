@@ -37,7 +37,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````
@@ -56,7 +56,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````

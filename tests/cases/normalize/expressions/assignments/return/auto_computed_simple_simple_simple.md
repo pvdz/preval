@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -49,7 +49,7 @@ function f() {
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

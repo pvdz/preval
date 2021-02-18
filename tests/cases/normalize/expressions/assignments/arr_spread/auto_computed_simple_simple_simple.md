@@ -27,7 +27,7 @@ a = { b: tmpObjLitVal };
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 const tmpCalleeParam = [...SSA_a];
 $(tmpCalleeParam);
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

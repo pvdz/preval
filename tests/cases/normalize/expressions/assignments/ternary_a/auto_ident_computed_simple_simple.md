@@ -25,7 +25,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = b['c'];
+a = b.c;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);

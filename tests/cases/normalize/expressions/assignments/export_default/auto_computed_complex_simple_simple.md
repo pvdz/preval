@@ -26,7 +26,7 @@ a = { b: tmpObjLitVal };
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ const SSA_a = { b: tmpObjLitVal };
 const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
 const tmpAssignMemLhsObj = $(SSA_a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(SSA_a);
 `````
 

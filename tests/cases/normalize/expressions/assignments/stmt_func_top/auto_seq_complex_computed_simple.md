@@ -30,10 +30,9 @@ function f() {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(a);
   const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpAssignComputedObj = tmpAssignMemLhsObj;
-  const tmpAssignComputedProp = 'b';
-  const tmpAssignComputedRhs = $(2);
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+  const tmpAssignMemRhs = $(2);
+  tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
   $(a);
 }
 const tmpCallCallee$1 = $;
@@ -50,8 +49,8 @@ function f() {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(SSA_a);
   const tmpAssignMemLhsObj = SSA_a(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpAssignComputedRhs = $(2);
-  tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = $(2);
+  tmpAssignMemLhsObj.b = tmpAssignMemRhs;
   $(SSA_a);
 }
 const tmpCalleeParam$2 = f();

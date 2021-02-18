@@ -24,19 +24,17 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'c';
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-const tmpAssignMemLhsObj$1 = $(b);
-const tmpAssignComputedObj$1 = tmpAssignMemLhsObj$1;
-const tmpAssignComputedProp$1 = 'c';
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
+const tmpAssignMemLhsObj$2 = $(b);
+const tmpAssignMemLhsObj$3 = tmpAssignMemLhsObj$2;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
+const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
+tmpAssignMemLhsObj$3.c = tmpAssignMemRhs$1;
 $(a, b);
 `````
 
@@ -48,13 +46,13 @@ const a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignMemLhsObj['c'] = tmpAssignComputedRhs;
-const tmpAssignMemLhsObj$1 = $(b);
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+const tmpAssignMemLhsObj$2 = $(b);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignMemLhsObj$1['c'] = tmpAssignComputedRhs$1;
+const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
+tmpAssignMemLhsObj$2.c = tmpAssignMemRhs$1;
 $(a, b);
 `````
 

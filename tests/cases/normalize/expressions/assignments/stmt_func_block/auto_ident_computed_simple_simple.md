@@ -29,7 +29,7 @@ $(f());
 function f() {
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
-  a = b['c'];
+  a = b.c;
   $(a, b);
 }
 const tmpCallCallee = $;

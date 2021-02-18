@@ -27,7 +27,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCallObj = b;
-    a = tmpCallObj['$'](1);
+    a = tmpCallObj.$(1);
   } else {
     break;
   }
@@ -43,7 +43,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = b['$'](1);
+    a = b.$(1);
   } else {
     break;
   }

@@ -29,7 +29,7 @@ function f() {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
 }
@@ -49,7 +49,7 @@ function f() {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   return varInitAssignLhsComputedRhs;
 }
 const b = { c: 10, d: 20 };

@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-a = delete arg['y'];
+a = delete arg.y;
 $(a, arg);
 `````
 
@@ -31,7 +31,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const SSA_a = delete arg['y'];
+const SSA_a = delete arg.y;
 $(SSA_a, arg);
 `````
 

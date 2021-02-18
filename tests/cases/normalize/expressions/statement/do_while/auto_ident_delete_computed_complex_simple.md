@@ -30,9 +30,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = 'y';
-    tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpDeleteObj = $(arg);
+    tmpIfTest = delete tmpDeleteObj.y;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -54,8 +53,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpDeleteCompObj = $(arg);
-    tmpIfTest = delete tmpDeleteCompObj['y'];
+    const tmpDeleteObj = $(arg);
+    tmpIfTest = delete tmpDeleteObj.y;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

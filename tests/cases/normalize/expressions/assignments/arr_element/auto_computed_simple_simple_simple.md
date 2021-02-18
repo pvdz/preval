@@ -30,7 +30,7 @@ a = { b: tmpObjLitVal$1 };
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -43,7 +43,7 @@ const tmpObjLitVal$1 = $(1);
 const SSA_a$1 = { b: tmpObjLitVal$1 };
 const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
-SSA_a$1['b'] = 2;
+SSA_a$1.b = 2;
 $(SSA_a$1);
 `````
 

@@ -25,7 +25,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = delete arg['y'];
+a = delete arg.y;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -41,7 +41,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 let tmpCalleeParam = undefined;
-const SSA_a = delete arg['y'];
+const SSA_a = delete arg.y;
 if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {

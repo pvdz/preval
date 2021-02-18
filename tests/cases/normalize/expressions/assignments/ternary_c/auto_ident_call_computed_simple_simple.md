@@ -29,7 +29,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = b['$'](1);
+  const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -47,7 +47,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = b['$'](1);
+  const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

@@ -27,7 +27,7 @@ function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallObj = $(b);
-    const tmpNestedComplexRhs = tmpCallObj['$'](1);
+    const tmpNestedComplexRhs = tmpCallObj.$(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -49,7 +49,7 @@ function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCallObj = $(b);
-    const tmpNestedComplexRhs = tmpCallObj['$'](1);
+    const tmpNestedComplexRhs = tmpCallObj.$(1);
     a = tmpNestedComplexRhs;
   }
 }

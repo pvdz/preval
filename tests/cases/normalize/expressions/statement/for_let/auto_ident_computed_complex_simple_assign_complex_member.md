@@ -27,7 +27,7 @@ const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 let xyz = varInitAssignLhsComputedRhs;
 while (true) {
   $(xyz);
@@ -45,7 +45,7 @@ const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 while (true) {
   $(varInitAssignLhsComputedRhs);
   $(1);

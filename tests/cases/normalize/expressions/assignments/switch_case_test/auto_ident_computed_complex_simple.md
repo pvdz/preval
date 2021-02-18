@@ -29,7 +29,7 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
+a = tmpAssignRhsProp.c;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

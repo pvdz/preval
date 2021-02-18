@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpArrElToSpread = b['$'](1);
+const tmpArrElToSpread = b.$(1);
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -33,7 +33,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpArrElToSpread = b['$'](1);
+const tmpArrElToSpread = b.$(1);
 [...tmpArrElToSpread];
 $(a);
 `````

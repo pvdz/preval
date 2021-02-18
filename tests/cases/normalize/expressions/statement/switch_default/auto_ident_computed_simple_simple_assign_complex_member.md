@@ -31,12 +31,11 @@ const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  const tmpAssignComputedObj = b;
-  const tmpAssignComputedProp = 'c';
+  const tmpAssignMemLhsObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````
@@ -49,8 +48,8 @@ const a = { a: 999, b: 1000 };
 $(1);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+b.c = tmpAssignMemRhs;
 $(a, b);
 `````
 

@@ -30,7 +30,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   const tmpCallObj = $(b);
-  const tmpNestedComplexRhs = tmpCallObj['$'](1);
+  const tmpNestedComplexRhs = tmpCallObj.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -49,7 +49,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   const tmpCallObj = $(b);
-  const tmpNestedComplexRhs = tmpCallObj['$'](1);
+  const tmpNestedComplexRhs = tmpCallObj.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

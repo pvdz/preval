@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = b['$'](1);
+const tmpSwitchTest = b.$(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-b['$'](1);
+b.$(1);
 $(100);
 $(a);
 `````

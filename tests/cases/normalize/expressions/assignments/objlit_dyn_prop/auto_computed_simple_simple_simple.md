@@ -28,7 +28,7 @@ let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -39,7 +39,7 @@ const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 const tmpCalleeParam = { [SSA_a]: 10 };
 $(tmpCalleeParam);
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

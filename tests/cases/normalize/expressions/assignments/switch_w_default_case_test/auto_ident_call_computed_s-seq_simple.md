@@ -33,7 +33,7 @@ const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 const tmpCallObj = b;
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -62,7 +62,7 @@ $(a);
 const b = { $: $ };
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 const tmpIfTest = SSA_a === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

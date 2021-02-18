@@ -26,7 +26,7 @@ $(f());
 function f() {
   let b = { $: $ };
   const tmpCallObj = b;
-  let a = tmpCallObj['$'](1);
+  let a = tmpCallObj.$(1);
   $(a);
 }
 const tmpCallCallee = $;
@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const b = { $: $ };
-  const a = b['$'](1);
+  const a = b.$(1);
   $(a);
 }
 const tmpCalleeParam = f();

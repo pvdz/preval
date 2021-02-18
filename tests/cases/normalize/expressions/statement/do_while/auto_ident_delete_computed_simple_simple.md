@@ -30,7 +30,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = delete arg['y'];
+    tmpIfTest = delete arg.y;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -52,7 +52,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = delete arg['y'];
+    tmpIfTest = delete arg.y;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

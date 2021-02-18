@@ -25,9 +25,8 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+a = delete tmpDeleteObj.y;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -43,8 +42,8 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 let tmpCalleeParam = undefined;
-const tmpDeleteCompObj = $(arg);
-const SSA_a = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const SSA_a = delete tmpDeleteObj.y;
 if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {

@@ -25,9 +25,8 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = 'y';
-  const tmpReturnArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpDeleteObj = $(arg);
+  const tmpReturnArg = delete tmpDeleteObj.y;
   return tmpReturnArg;
 }
 let arg = { y: 1 };
@@ -42,8 +41,8 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  const tmpDeleteCompObj = $(arg);
-  const tmpReturnArg = delete tmpDeleteCompObj['y'];
+  const tmpDeleteObj = $(arg);
+  const tmpReturnArg = delete tmpDeleteObj.y;
   return tmpReturnArg;
 }
 const arg = { y: 1 };

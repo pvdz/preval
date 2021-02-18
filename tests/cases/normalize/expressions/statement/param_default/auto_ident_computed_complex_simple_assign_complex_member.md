@@ -31,7 +31,7 @@ function f($tdz$__p) {
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
     p = tmpNestedPropAssignRhs;
   } else {
     p = $tdz$__p;
@@ -55,7 +55,7 @@ function f($tdz$__p) {
     const tmpCompObj = $(b);
     const tmpCompProp = $('d');
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
   }
 }
 const b = { c: 10, d: 20 };

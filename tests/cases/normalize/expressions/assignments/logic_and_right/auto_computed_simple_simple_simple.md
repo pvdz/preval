@@ -30,7 +30,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -46,7 +46,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

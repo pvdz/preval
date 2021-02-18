@@ -157,3 +157,16 @@ export function fmat(code, shouldPrint = VERBOSE) {
     throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
   }
 }
+
+export function isProperIdent(node) {
+  if (node.type === 'Literal' && typeof node.value === 'string') {
+    const str = node.value;
+    // If the key name is a legit key then why not. Let's just test it.
+    try {
+      // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
+      return !!(/^[\w_$]+$/.test(str) && Function('foo.' + str) && true);
+    } catch {
+      return false;
+    }
+  }
+}

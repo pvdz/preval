@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpExportDefault = delete arg['y'];
+const tmpExportDefault = delete arg.y;
 export { tmpExportDefault as default };
 $(a, arg);
 `````
@@ -33,7 +33,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpExportDefault = delete arg['y'];
+const tmpExportDefault = delete arg.y;
 export { tmpExportDefault as default };
 $(a, arg);
 `````

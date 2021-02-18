@@ -34,10 +34,9 @@ const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -54,8 +53,8 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedRhs = $(2);
-tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 

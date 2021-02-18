@@ -23,9 +23,8 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-const tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 
@@ -33,8 +32,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpThrowArg = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 

@@ -28,7 +28,7 @@ let x;
 for (x in tmpForInDeclRhs) {
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -41,7 +41,7 @@ let x;
 for (x in SSA_a) {
 }
 const tmpAssignMemLhsObj = $(SSA_a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(SSA_a);
 `````
 

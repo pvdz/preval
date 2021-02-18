@@ -38,7 +38,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpCallObj = b;
-  a = tmpCallObj['$'](1);
+  a = tmpCallObj.$(1);
 }
 $(a);
 `````
@@ -57,7 +57,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = b['$'](1);
+  a = b.$(1);
 }
 $(a);
 `````

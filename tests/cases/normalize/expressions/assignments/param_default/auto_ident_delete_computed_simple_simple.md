@@ -26,7 +26,7 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = delete arg['y'];
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -47,7 +47,7 @@ $(a, arg);
 function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = delete arg['y'];
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
   }
 }

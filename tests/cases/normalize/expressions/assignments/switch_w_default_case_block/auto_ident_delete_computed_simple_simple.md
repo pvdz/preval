@@ -46,7 +46,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = delete arg['y'];
+  a = delete arg.y;
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
@@ -78,7 +78,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = delete arg['y'];
+  a = delete arg.y;
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {

@@ -31,7 +31,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpAssignRhsProp = $(b);
-    tmpIfTest = tmpAssignRhsProp['c'];
+    tmpIfTest = tmpAssignRhsProp.c;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -54,7 +54,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpAssignRhsProp = $(b);
-    tmpIfTest = tmpAssignRhsProp['c'];
+    tmpIfTest = tmpAssignRhsProp.c;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

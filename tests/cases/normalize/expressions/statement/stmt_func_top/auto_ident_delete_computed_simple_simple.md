@@ -27,7 +27,7 @@ $(f());
 function f() {
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  delete arg['y'];
+  delete arg.y;
   $(a, arg);
 }
 const tmpCallCallee = $;
@@ -41,7 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const arg = { y: 1 };
   const a = { a: 999, b: 1000 };
-  delete arg['y'];
+  delete arg.y;
   $(a, arg);
 }
 const tmpCalleeParam = f();

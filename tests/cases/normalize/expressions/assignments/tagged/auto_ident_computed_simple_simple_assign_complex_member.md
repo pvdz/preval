@@ -29,7 +29,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b['c'] = tmpNestedPropAssignRhs;
+b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
@@ -44,7 +44,7 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-b['c'] = tmpNestedAssignPropRhs;
+b.c = tmpNestedAssignPropRhs;
 $(tmpCalleeParam, tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````

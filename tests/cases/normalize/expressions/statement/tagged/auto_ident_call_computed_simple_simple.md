@@ -25,7 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = b['$'](1);
+const tmpCalleeParam$1 = b.$(1);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -36,7 +36,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = b['$'](1);
+const tmpCalleeParam$1 = b.$(1);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

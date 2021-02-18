@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
@@ -36,7 +36,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 let x;
 for (x in SSA_a) {
 }

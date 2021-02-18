@@ -23,7 +23,7 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let x = 10;
 const tmpAssignRhsProp = obj.a;
-x = tmpAssignRhsProp['b'];
+x = tmpAssignRhsProp.b;
 $(x);
 `````
 

@@ -34,7 +34,7 @@ if (tmpIfTest) {
 }
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -54,7 +54,7 @@ if (tmpIfTest) {
 }
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 

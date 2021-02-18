@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let xyz = a;
 while (true) {
   $(xyz);
@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 while (true) {
   $(SSA_a);
   $(1);

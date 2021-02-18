@@ -31,7 +31,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -50,7 +50,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   varInitAssignLhsComputedRhs.x = tmpForInLhsNode;
 }
 $(a, b);

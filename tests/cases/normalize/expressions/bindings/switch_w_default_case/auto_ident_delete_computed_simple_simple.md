@@ -43,7 +43,7 @@ if (tmpIfTest) {
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   arg = { y: 1 };
-  a = delete arg['y'];
+  a = delete arg.y;
   $(a, arg);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -60,7 +60,7 @@ if (tmpIfTest$4) {
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = delete arg['y'];
+const a = delete arg.y;
 $(a, arg);
 $('fail1');
 $('fail2');

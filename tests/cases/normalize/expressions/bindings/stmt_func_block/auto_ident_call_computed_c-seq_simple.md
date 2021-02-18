@@ -28,7 +28,7 @@ $(f());
 function f() {
   let b = { $: $ };
   const tmpCallObj = $(b);
-  let a = tmpCallObj['$'](1);
+  let a = tmpCallObj.$(1);
   $(a);
 }
 const tmpCallCallee = $;
@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 function f() {
   const b = { $: $ };
   const tmpCallObj = $(b);
-  const a = tmpCallObj['$'](1);
+  const a = tmpCallObj.$(1);
   $(a);
 }
 const tmpCalleeParam = f();

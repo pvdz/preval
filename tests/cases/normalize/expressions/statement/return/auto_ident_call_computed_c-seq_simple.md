@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 function f() {
   const tmpCallObj = $(b);
-  const tmpReturnArg = tmpCallObj['$'](1);
+  const tmpReturnArg = tmpCallObj.$(1);
   return tmpReturnArg;
 }
 let b = { $: $ };
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 function f() {
   const tmpCallObj = $(b);
-  const tmpReturnArg = tmpCallObj['$'](1);
+  const tmpReturnArg = tmpCallObj.$(1);
   return tmpReturnArg;
 }
 const b = { $: $ };

@@ -29,10 +29,9 @@ const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -45,8 +44,8 @@ const tmpCalleeParam = [...SSA_a];
 $(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(SSA_a);
-const tmpAssignComputedRhs = $(2);
-tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

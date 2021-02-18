@@ -27,7 +27,7 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCompObj = a;
 tmpCompObj.a;
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -37,7 +37,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 SSA_a.a;
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

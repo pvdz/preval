@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 const tmpCallObj = b;
-let a = tmpCallObj['$'](1);
+let a = tmpCallObj.$(1);
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = b['$'](1);
+const a = b.$(1);
 $(a);
 `````
 

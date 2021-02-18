@@ -51,10 +51,9 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-const tmpAssignComputedObj = a;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -82,8 +81,8 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-const tmpAssignComputedRhs = $(2);
-SSA_a['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+SSA_a.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

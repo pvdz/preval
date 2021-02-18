@@ -25,7 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCallObj = b;
-const tmpCalleeParam = tmpCallObj['$'](1);
+const tmpCalleeParam = tmpCallObj.$(1);
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = b['$'](1);
+const tmpCalleeParam = b.$(1);
 $(tmpCalleeParam);
 $(a);
 `````

@@ -34,7 +34,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   arg = { y: 1 };
-  a = delete arg['y'];
+  a = delete arg.y;
   $(a, arg);
 }
 `````
@@ -43,7 +43,7 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = delete arg['y'];
+const a = delete arg.y;
 $(a, arg);
 `````
 

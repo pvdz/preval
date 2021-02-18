@@ -34,7 +34,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { $: $ };
-  a = b['$'](1);
+  a = b.$(1);
   $(a);
 }
 `````
@@ -43,7 +43,7 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const b = { $: $ };
-const a = b['$'](1);
+const a = b.$(1);
 $(a);
 `````
 

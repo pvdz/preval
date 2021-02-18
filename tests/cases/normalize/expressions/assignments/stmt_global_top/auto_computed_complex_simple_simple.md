@@ -24,7 +24,7 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -34,7 +34,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(SSA_a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(SSA_a);
 `````
 

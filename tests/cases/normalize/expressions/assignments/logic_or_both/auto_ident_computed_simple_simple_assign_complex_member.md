@@ -28,7 +28,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b['c'] = tmpNestedPropAssignRhs;
+b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -36,7 +36,7 @@ if (tmpCalleeParam) {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  b['c'] = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -52,7 +52,7 @@ const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-b['c'] = tmpNestedAssignPropRhs;
+b.c = tmpNestedAssignPropRhs;
 let SSA_a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
@@ -60,7 +60,7 @@ if (tmpCalleeParam) {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
-  b['c'] = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   SSA_a = varInitAssignLhsComputedRhs;
   tmpCalleeParam = varInitAssignLhsComputedRhs;
 }

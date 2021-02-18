@@ -32,7 +32,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { ['foo']: 10 };
+const tmpCalleeParam = { foo: 10 };
 $(tmpCalleeParam);
 $('foo');
 `````

@@ -26,10 +26,9 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -39,8 +38,8 @@ $(a);
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(SSA_a);
-const tmpAssignComputedRhs = $(2);
-tmpAssignMemLhsObj['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(SSA_a);
 `````
 

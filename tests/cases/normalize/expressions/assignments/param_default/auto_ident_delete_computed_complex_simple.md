@@ -26,9 +26,8 @@ function f($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = 'y';
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpDeleteObj = $(arg);
+    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -49,8 +48,8 @@ $(a, arg);
 function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpDeleteCompObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
+    const tmpDeleteObj = $(arg);
+    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
   }
 }

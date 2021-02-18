@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = b['c'];
+  a = b.c;
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
@@ -41,7 +41,7 @@ $(a, b);
 const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = b['c'];
+  a = b.c;
   const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);

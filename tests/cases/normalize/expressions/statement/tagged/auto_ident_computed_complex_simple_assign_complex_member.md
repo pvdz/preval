@@ -29,7 +29,7 @@ const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
@@ -45,7 +45,7 @@ const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj['c'] = varInitAssignLhsComputedRhs;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(a, b);
 `````

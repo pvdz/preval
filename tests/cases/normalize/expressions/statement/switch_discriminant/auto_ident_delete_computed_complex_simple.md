@@ -26,9 +26,8 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-const tmpSwitchTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+const tmpSwitchTest = delete tmpDeleteObj.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -43,8 +42,8 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+delete tmpDeleteObj.y;
 $(100);
 $(a, arg);
 `````

@@ -24,8 +24,7 @@ switch (1) {
 
 `````js filename=intro
 let arg;
-let tmpDeleteCompObj;
-let tmpDeleteCompProp;
+let tmpDeleteObj;
 let a;
 const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 1;
@@ -36,9 +35,8 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   arg = { y: 1 };
-  tmpDeleteCompObj = $(arg);
-  tmpDeleteCompProp = 'y';
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
   $(a, arg);
 }
 `````
@@ -47,8 +45,8 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const a = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const a = delete tmpDeleteObj.y;
 $(a, arg);
 `````
 

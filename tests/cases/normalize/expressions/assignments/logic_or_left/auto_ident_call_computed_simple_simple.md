@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = b['$'](1);
+a = b.$(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
@@ -38,7 +38,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {

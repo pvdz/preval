@@ -33,7 +33,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -54,7 +54,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

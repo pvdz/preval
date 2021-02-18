@@ -31,7 +31,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpSwitchTest = a;
 const tmpSwitchValue = tmpSwitchTest;
@@ -51,7 +51,7 @@ const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 $(100);
 $(tmpNestedAssignPropRhs, b);
 `````

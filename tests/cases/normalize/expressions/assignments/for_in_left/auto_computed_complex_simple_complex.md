@@ -32,10 +32,9 @@ for (tmpForInLhsNode in tmpForInRhs) {
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 const tmpAssignMemLhsObj$1 = $(a);
-const tmpAssignComputedObj = tmpAssignMemLhsObj$1;
-const tmpAssignComputedProp = 'b';
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpAssignMemLhsObj$2 = tmpAssignMemLhsObj$1;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$2.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -53,8 +52,8 @@ for (tmpForInLhsNode in tmpForInRhs) {
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 const tmpAssignMemLhsObj$1 = $(a);
-const tmpAssignComputedRhs = $(2);
-tmpAssignMemLhsObj$1['b'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 

@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
 $(a);
@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const SSA_a = tmpCallObj['$'](1);
+const SSA_a = tmpCallObj.$(1);
 const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
 $(SSA_a);

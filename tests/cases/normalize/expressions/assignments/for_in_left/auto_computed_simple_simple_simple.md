@@ -31,7 +31,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -48,7 +48,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

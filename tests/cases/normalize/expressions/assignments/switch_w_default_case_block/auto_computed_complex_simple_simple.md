@@ -56,7 +56,7 @@ if (tmpIfTest$4) {
   $('fail2');
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -90,7 +90,7 @@ if (tmpIfTest$4) {
   $('fail2');
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 

@@ -26,9 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = 'y';
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpDeleteObj = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -43,8 +42,8 @@ const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj['y'];
+  const tmpDeleteObj = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

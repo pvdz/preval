@@ -27,7 +27,7 @@ $(f());
 function f() {
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  a = delete arg['y'];
+  a = delete arg.y;
   $(a, arg);
 }
 const tmpCallCallee = $;
@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 function f() {
   const arg = { y: 1 };
-  const SSA_a = delete arg['y'];
+  const SSA_a = delete arg.y;
   $(SSA_a, arg);
 }
 const tmpCalleeParam = f();

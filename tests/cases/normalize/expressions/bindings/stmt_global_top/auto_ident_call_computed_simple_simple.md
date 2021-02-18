@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-let a = b['$'](1);
+let a = b.$(1);
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = b['$'](1);
+const a = b.$(1);
 $(a);
 `````
 

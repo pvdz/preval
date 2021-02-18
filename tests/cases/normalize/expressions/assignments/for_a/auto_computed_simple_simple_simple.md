@@ -26,7 +26,7 @@ a = { b: tmpObjLitVal };
 while (true) {
   $(1);
 }
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ const SSA_a = { b: tmpObjLitVal };
 while (true) {
   $(1);
 }
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

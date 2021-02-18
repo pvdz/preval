@@ -36,9 +36,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = 'y';
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
 }
 $(a, arg);
 `````
@@ -57,8 +56,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpDeleteCompObj = $(arg);
-  a = delete tmpDeleteCompObj['y'];
+  const tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
 }
 $(a, arg);
 `````

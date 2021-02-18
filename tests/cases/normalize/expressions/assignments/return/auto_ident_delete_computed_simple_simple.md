@@ -25,7 +25,7 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  a = delete arg['y'];
+  a = delete arg.y;
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
@@ -41,7 +41,7 @@ $(a, arg);
 
 `````js filename=intro
 function f() {
-  a = delete arg['y'];
+  a = delete arg.y;
   const tmpReturnArg = a;
   return tmpReturnArg;
 }

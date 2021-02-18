@@ -43,7 +43,7 @@ if (tmpIfTest) {
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   b = { $: $ };
-  a = b['$'](1);
+  a = b.$(1);
   $(a);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -60,7 +60,7 @@ if (tmpIfTest$4) {
 
 `````js filename=intro
 const b = { $: $ };
-const a = b['$'](1);
+const a = b.$(1);
 $(a);
 $('fail1');
 $('fail2');

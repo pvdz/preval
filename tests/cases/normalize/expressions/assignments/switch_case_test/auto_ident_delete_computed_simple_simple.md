@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
-a = delete arg['y'];
+a = delete arg.y;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -43,7 +43,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 $(1);
-const SSA_a = delete arg['y'];
+const SSA_a = delete arg.y;
 $(SSA_a, arg);
 `````
 

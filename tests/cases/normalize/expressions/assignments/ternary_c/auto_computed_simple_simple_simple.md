@@ -33,7 +33,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 tmpCallCallee(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -52,7 +52,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 

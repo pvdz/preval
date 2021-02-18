@@ -1,4 +1,4 @@
-import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat } from '../utils.mjs';
+import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat, isProperIdent } from '../utils.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
 import globals from '../globals.mjs';
@@ -1172,6 +1172,20 @@ export function phaseNormalize(fdata, fname) {
         const callee = node.callee;
         const args = node.arguments;
 
+        if (callee.type === 'MemberExpression' && callee.computed) {
+          if (isProperIdent(callee.property)) {
+            rule('Computed property that is a proper ident must be regular property; callee');
+            example('a["x"]()', 'a.x()');
+            before(callee, node);
+
+            callee.property = AST.identifier(callee.property.value);
+            callee.computed = false;
+
+            after(callee, node);
+            return true;
+          }
+        }
+
         if (node.optional) {
           // `x = a?.b()` -> `let x = a; if (x != null) x = x.b(); else x = undefined;`
           // (This is NOT `a?.b()` !! see below)
@@ -1575,17 +1589,8 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (node.computed && node.property.type === 'Literal' && typeof node.property.value === 'string') {
-          // If the key name is a legit key then why not. Let's just test it.
-          let simpleIdent;
-          try {
-            // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
-            simpleIdent = !!(/^[\w_$]+$/.test(node.property.value) && Function('foo.' + node.property.value) && true);
-          } catch {
-            simpleIdent = false;
-          }
-          if (simpleIdent) {
-            rule('Computed property that is valid ident must be member expression');
+        if (node.computed && isProperIdent(node.property)) {
+            rule('Computed property that is valid ident must be member expression; prop');
             log('- `a["foo"]` --> `a.foo`');
             log('- Name: `' + node.property.value + '`');
             before(node, parentNode);
@@ -1596,7 +1601,6 @@ export function phaseNormalize(fdata, fname) {
             after(node, parentNode);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
-          }
         }
 
         return false;
@@ -1728,6 +1732,20 @@ export function phaseNormalize(fdata, fname) {
 
           // Must start with object/property because we don't want to duplicate complex nodes while eliminating compound assignments
           // The reason is that compound assignments read before they write so the getters also become an observable side effect
+
+          if (mem.computed && isProperIdent(mem.property)) {
+            rule('Computed property that is valid ident must be member expression; assign rhs');
+            log('- `a["foo"]` --> `a.foo`');
+            log('- Name: `' + mem.property.value + '`');
+            before(mem, parentNode);
+
+            mem.computed = false;
+            mem.property = AST.identifier(mem.property.value);
+
+            after(mem, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
 
           if (mem.computed && isComplexNode(b)) {
             // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
@@ -2302,6 +2320,20 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
+          if (rhs.computed && isProperIdent(rhs.property)) {
+            rule('Computed property that is valid ident must be member expression; assign rhs');
+            log('- `a["foo"]` --> `a.foo`');
+            log('- Name: `' + rhs.property.value + '`');
+            before(rhs, parentNode);
+
+            rhs.computed = false;
+            rhs.property = AST.identifier(rhs.property.value);
+
+            after(rhs, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           // Assignment of simple member expression to ident or simple member expression is atomic
           return false;
         }
@@ -2624,6 +2656,20 @@ export function phaseNormalize(fdata, fname) {
 
           if (arg.type === 'MemberExpression') {
             if (arg.computed) {
+              if ( isProperIdent(arg.property)) {
+                rule('Computed property that is valid ident must be member expression; delete');
+                log('- `a["foo"]` --> `a.foo`');
+                log('- Name: `' + arg.property.value + '`');
+                before(arg, parentNode);
+
+                arg.computed = false;
+                arg.property = AST.identifier(arg.property.value);
+
+                after(arg, parentNode);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
               if (isComplexNode(arg.object) || isComplexNode(arg.property)) {
                 rule('Argument of delete must be simple computed member expression with simple property');
                 example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
@@ -3953,6 +3999,22 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ObjectExpression': {
+        let changes = false;
+        node.properties.forEach((pnode) => {
+          if (pnode.computed &&  isProperIdent(pnode.key)) {
+            rule('Object literal computed key that is ident must be ident');
+            example('{["x"]: y}', '{x: y}');
+            before(node, parentNode);
+
+            pnode.computed = false;
+            pnode.key = AST.identifier(pnode.key.value);
+
+            after(node, parentNode);
+            changes = true;
+          }
+        });
+        if (changes) return true;
+
         if (wrapKind === 'statement') {
           rule('Object cannot be a statement');
           example('({x: a, [y()]: b(), c, ...d()});', 'a; y(); b(); c; d();');
@@ -4260,6 +4322,9 @@ export function phaseNormalize(fdata, fname) {
             prevObj = tmpName;
             prevComputed = node.computed;
           } else if (node.type === 'CallExpression') {
+
+
+
             if (node.callee.type === 'MemberExpression' || node.callee.type === 'CallExpression') {
               r(node.callee);
             } else {

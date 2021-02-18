@@ -25,7 +25,7 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpExportDefault = a;
 export { tmpExportDefault as default };
-a['b'] = 2;
+a.b = 2;
 $(a);
 `````
 
@@ -36,7 +36,7 @@ const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
 const tmpExportDefault = SSA_a;
 export { tmpExportDefault as default };
-SSA_a['b'] = 2;
+SSA_a.b = 2;
 $(SSA_a);
 `````
 

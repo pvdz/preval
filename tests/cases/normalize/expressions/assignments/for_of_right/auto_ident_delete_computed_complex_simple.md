@@ -23,9 +23,8 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = 'y';
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteObj = $(arg);
+a = delete tmpDeleteObj.y;
 let tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
@@ -37,8 +36,8 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const SSA_a = delete tmpDeleteCompObj['y'];
+const tmpDeleteObj = $(arg);
+const SSA_a = delete tmpDeleteObj.y;
 let x;
 for (x of SSA_a) {
 }

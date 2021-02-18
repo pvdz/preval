@@ -23,18 +23,16 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpAssignComputedObj = b;
-const tmpAssignComputedProp = 'c';
+const tmpAssignMemLhsObj = b;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-const tmpAssignComputedObj$1 = b;
-const tmpAssignComputedProp$1 = 'c';
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+const tmpAssignMemLhsObj$1 = b;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
+const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs$1;
 $(a, b);
 `````
 
@@ -45,12 +43,12 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = tmpAssignComputedRhs;
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+b.c = tmpAssignMemRhs;
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-b['c'] = tmpAssignComputedRhs$1;
+const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
+b.c = tmpAssignMemRhs$1;
 $(a, b);
 `````
 

@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  a = b['$'](1);
+  a = b.$(1);
   let tmpReturnArg = a;
   return tmpReturnArg;
 }
@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 function f() {
-  a = b['$'](1);
+  a = b.$(1);
   const tmpReturnArg = a;
   return tmpReturnArg;
 }

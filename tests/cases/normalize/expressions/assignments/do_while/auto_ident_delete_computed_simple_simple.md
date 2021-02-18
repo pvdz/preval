@@ -30,7 +30,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = delete arg['y'];
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -54,7 +54,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = delete arg['y'];
+    const tmpNestedComplexRhs = delete arg.y;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

@@ -26,7 +26,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
+a = tmpAssignRhsProp.c;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);

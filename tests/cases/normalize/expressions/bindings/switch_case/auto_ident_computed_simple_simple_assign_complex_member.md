@@ -40,7 +40,7 @@ if (tmpIfTest$1) {
   tmpCompObj = $(b);
   tmpCompProp = $('d');
   varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = varInitAssignLhsComputedRhs;
+  b.c = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
   $(a, b);
 }
@@ -53,7 +53,7 @@ const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b['c'] = varInitAssignLhsComputedRhs;
+b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 `````
 

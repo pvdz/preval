@@ -27,7 +27,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCallObj = $(b);
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -39,7 +39,7 @@ $(a);
 const b = { $: $ };
 const obj = {};
 const tmpCallObj = $(b);
-const SSA_a = tmpCallObj['$'](1);
+const SSA_a = tmpCallObj.$(1);
 obj[SSA_a];
 $(SSA_a);
 `````

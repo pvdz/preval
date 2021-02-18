@@ -31,7 +31,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallObj = $(b);
-    const tmpNestedComplexRhs = tmpCallObj['$'](1);
+    const tmpNestedComplexRhs = tmpCallObj.$(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -56,7 +56,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallObj = $(b);
-    const tmpNestedComplexRhs = tmpCallObj['$'](1);
+    const tmpNestedComplexRhs = tmpCallObj.$(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

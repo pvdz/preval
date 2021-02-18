@@ -25,7 +25,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````
@@ -37,7 +37,7 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  delete arg['y'];
+  delete arg.y;
 }
 $(a, arg);
 `````

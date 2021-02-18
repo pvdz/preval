@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-const tmpExportDefault = tmpCallObj['$'](1);
+const tmpExportDefault = tmpCallObj.$(1);
 export { tmpExportDefault as default };
 $(a);
 `````
@@ -35,7 +35,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-const tmpExportDefault = tmpCallObj['$'](1);
+const tmpExportDefault = tmpCallObj.$(1);
 export { tmpExportDefault as default };
 $(a);
 `````

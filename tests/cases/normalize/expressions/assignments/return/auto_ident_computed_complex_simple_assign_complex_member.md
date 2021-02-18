@@ -30,7 +30,7 @@ function f() {
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj['c'] = tmpNestedPropAssignRhs;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
@@ -51,7 +51,7 @@ function f() {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj['c'] = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   const tmpReturnArg = a;
   return tmpReturnArg;

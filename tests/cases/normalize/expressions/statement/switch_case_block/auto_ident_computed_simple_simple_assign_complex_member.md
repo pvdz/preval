@@ -37,12 +37,11 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpAssignComputedObj = b;
-  const tmpAssignComputedProp = 'c';
+  const tmpAssignMemLhsObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````
@@ -63,8 +62,8 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  b.c = tmpAssignMemRhs;
 }
 $(a, b);
 `````

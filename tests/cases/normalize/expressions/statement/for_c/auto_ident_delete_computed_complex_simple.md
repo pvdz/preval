@@ -26,9 +26,8 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = 'y';
-    delete tmpDeleteCompObj[tmpDeleteCompProp];
+    const tmpDeleteObj = $(arg);
+    delete tmpDeleteObj.y;
   } else {
     break;
   }
@@ -44,8 +43,8 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpDeleteCompObj = $(arg);
-    delete tmpDeleteCompObj['y'];
+    const tmpDeleteObj = $(arg);
+    delete tmpDeleteObj.y;
   } else {
     break;
   }

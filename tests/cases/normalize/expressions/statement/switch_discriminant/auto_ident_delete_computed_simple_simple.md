@@ -26,7 +26,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = delete arg['y'];
+const tmpSwitchTest = delete arg.y;
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -41,7 +41,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-delete arg['y'];
+delete arg.y;
 $(100);
 $(a, arg);
 `````

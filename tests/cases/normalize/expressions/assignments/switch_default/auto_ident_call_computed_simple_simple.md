@@ -31,7 +31,7 @@ const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  a = b['$'](1);
+  a = b.$(1);
 }
 $(a);
 `````
@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 $(1);
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 $(SSA_a);
 `````
 

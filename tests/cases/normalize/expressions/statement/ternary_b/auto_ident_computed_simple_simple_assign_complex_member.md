@@ -25,12 +25,11 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpAssignComputedObj = b;
-  const tmpAssignComputedProp = 'c';
+  const tmpAssignMemLhsObj = b;
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 } else {
   $(200);
 }
@@ -46,8 +45,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  b['c'] = tmpAssignComputedRhs;
+  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  b.c = tmpAssignMemRhs;
 } else {
   $(200);
 }

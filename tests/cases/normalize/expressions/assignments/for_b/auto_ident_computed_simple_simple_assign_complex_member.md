@@ -28,7 +28,7 @@ while (true) {
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b['c'] = tmpNestedPropAssignRhs;
+  b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -49,7 +49,7 @@ while (true) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  b['c'] = tmpNestedAssignPropRhs;
+  b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   const tmpIfTest = a;
   if (tmpIfTest) {

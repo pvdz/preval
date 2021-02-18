@@ -24,10 +24,10 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = b['$'](1);
+a = b.$(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = b['$'](1);
+  const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -39,10 +39,10 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let SSA_a = b['$'](1);
+let SSA_a = b.$(1);
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = b['$'](1);
+  const tmpNestedComplexRhs = b.$(1);
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

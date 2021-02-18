@@ -38,7 +38,7 @@ if (tmpIfTest$1) {
   a = { b: tmpObjLitVal };
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
@@ -59,7 +59,7 @@ if (tmpIfTest$1) {
   a = { b: tmpObjLitVal };
 }
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj['b'] = 2;
+tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 

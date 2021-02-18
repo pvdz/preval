@@ -25,7 +25,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpAssignRhsProp = $(b);
-a = tmpAssignRhsProp['c'];
+a = tmpAssignRhsProp.c;
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);

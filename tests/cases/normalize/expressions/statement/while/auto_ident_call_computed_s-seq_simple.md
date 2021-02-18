@@ -25,7 +25,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCallObj = b;
-  const tmpIfTest = tmpCallObj['$'](1);
+  const tmpIfTest = tmpCallObj.$(1);
   if (tmpIfTest) {
     $(100);
   } else {
@@ -41,7 +41,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 while (true) {
-  const tmpIfTest = b['$'](1);
+  const tmpIfTest = b.$(1);
   if (tmpIfTest) {
     $(100);
   } else {

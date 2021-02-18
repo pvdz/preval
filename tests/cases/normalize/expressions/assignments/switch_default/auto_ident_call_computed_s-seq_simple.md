@@ -32,7 +32,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpCallObj = b;
-  a = tmpCallObj['$'](1);
+  a = tmpCallObj.$(1);
 }
 $(a);
 `````
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 $(1);
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 $(SSA_a);
 `````
 

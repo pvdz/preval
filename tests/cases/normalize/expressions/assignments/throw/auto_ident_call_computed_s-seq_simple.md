@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-a = tmpCallObj['$'](1);
+a = tmpCallObj.$(1);
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -33,7 +33,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { $: $ };
-const SSA_a = b['$'](1);
+const SSA_a = b.$(1);
 throw SSA_a;
 `````
 

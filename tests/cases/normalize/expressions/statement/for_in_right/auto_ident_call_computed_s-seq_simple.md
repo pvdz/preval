@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-const tmpForInDeclRhs = tmpCallObj['$'](1);
+const tmpForInDeclRhs = tmpCallObj.$(1);
 let x;
 for (x in tmpForInDeclRhs) {
 }
@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = b['$'](1);
+const tmpForInDeclRhs = b.$(1);
 let x;
 for (x in tmpForInDeclRhs) {
 }

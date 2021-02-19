@@ -23,14 +23,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = tmpChainElementObject;
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -39,13 +42,16 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
-  tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = tmpChainElementObject;
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

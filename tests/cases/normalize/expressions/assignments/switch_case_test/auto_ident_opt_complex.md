@@ -49,7 +49,8 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 let SSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
@@ -57,6 +58,12 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   SSA_a = tmpChainElementObject;
 }
+const tmpBinLhs = SSA_a;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a);
 `````
 

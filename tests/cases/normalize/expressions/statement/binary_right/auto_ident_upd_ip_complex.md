@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCallCallee = $;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
@@ -31,6 +31,8 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpBinBothRhs = tmpPostUpdArgVal;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -39,12 +41,13 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
+tmpBinBothLhs + tmpPostUpdArgVal;
 $(a, b);
 `````
 

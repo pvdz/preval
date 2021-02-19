@@ -23,8 +23,9 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-delete arg.y;
-$(100);
+const tmpBinBothLhs = delete arg.y;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -33,8 +34,9 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-delete arg.y;
-$(100);
+const tmpBinBothLhs = delete arg.y;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 

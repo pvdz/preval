@@ -24,6 +24,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -34,9 +35,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinBothLhs = tmpChainElementObject$1;
   }
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -46,6 +49,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
@@ -54,10 +58,12 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
-    tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinBothLhs = tmpChainElementObject$1;
   }
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

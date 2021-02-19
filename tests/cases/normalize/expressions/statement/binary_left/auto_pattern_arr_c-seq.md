@@ -26,8 +26,9 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-tmpCallCallee(tmpCalleeParam);
-$(100);
+const tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -40,8 +41,9 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-$(tmpCalleeParam);
-$(100);
+const tmpBinBothLhs = $(tmpCalleeParam);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

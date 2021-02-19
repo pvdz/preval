@@ -24,9 +24,10 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(arg);
-typeof tmpUnaryArg;
+const tmpBinBothLhs = typeof tmpUnaryArg;
 const tmpUnaryArg$1 = $(arg);
-typeof tmpUnaryArg$1;
+const tmpBinBothRhs = typeof tmpUnaryArg$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -35,9 +36,10 @@ $(a, arg);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-typeof tmpUnaryArg;
+const tmpBinBothLhs = typeof tmpUnaryArg;
 const tmpUnaryArg$1 = $(1);
-typeof tmpUnaryArg$1;
+const tmpBinBothRhs = typeof tmpUnaryArg$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, 1);
 `````
 

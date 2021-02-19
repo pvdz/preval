@@ -25,8 +25,11 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
+const tmpBinBothLhs = x;
 $(1);
 $(2);
+const tmpBinBothRhs = x;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, x);
 `````
 

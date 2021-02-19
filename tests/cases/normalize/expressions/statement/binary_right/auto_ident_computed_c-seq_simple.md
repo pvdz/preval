@@ -23,10 +23,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
-tmpCompObj[tmpCompProp];
+const tmpBinBothRhs = tmpCompObj[tmpCompProp];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -35,10 +36,11 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
-tmpCompObj[tmpCompProp];
+const tmpBinBothRhs = tmpCompObj[tmpCompProp];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 

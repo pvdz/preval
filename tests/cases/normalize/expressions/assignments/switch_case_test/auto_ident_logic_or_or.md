@@ -52,7 +52,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(0);
 let SSA_a = $(tmpCalleeParam);
 if (SSA_a) {
@@ -65,6 +66,12 @@ if (SSA_a) {
   const tmpCalleeParam$2 = $(2);
   SSA_a = $(tmpCalleeParam$2);
 }
+const tmpBinLhs = SSA_a;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a);
 `````
 

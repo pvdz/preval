@@ -111,10 +111,14 @@ tmpSwitchBreak: {
   if (tmpIfTest$5) {
     $(3);
   }
+  tmpSwitchCaseToStart <= 1;
+  tmpSwitchCaseToStart <= 2;
   const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
   if (tmpIfTest$8) {
     break tmpSwitchBreak;
   }
+  tmpSwitchCaseToStart <= 4;
+  tmpSwitchCaseToStart <= 5;
 }
 `````
 

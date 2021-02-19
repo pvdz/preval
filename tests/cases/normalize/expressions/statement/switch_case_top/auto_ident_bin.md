@@ -33,8 +33,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $(1);
-  $(2);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````
@@ -52,8 +53,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $(1);
-  $(2);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````

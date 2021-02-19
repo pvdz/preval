@@ -23,10 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
-tmpAssignMemLhsObj.c = 2;
-const tmpAssignMemLhsObj$1 = b;
-tmpAssignMemLhsObj$1.c = 2;
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpBinBothLhs = varInitAssignLhsComputedRhs;
+const varInitAssignLhsComputedObj$1 = b;
+const varInitAssignLhsComputedRhs$1 = 2;
+varInitAssignLhsComputedObj$1.c = varInitAssignLhsComputedRhs$1;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 

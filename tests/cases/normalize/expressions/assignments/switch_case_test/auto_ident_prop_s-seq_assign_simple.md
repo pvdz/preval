@@ -45,8 +45,14 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 b.c = 2;
+const tmpIfTest = 2 === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(2, b);
 `````
 

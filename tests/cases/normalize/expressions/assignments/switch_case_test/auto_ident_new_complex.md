@@ -39,9 +39,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpNewCallee = $($);
 const SSA_a = new tmpNewCallee(1);
+const tmpIfTest = SSA_a === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a);
 `````
 

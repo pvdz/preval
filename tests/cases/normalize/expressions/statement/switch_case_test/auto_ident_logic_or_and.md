@@ -51,18 +51,24 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(0);
-const tmpBinLhs = $(tmpCalleeParam);
+let tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  const SSA_tmpBinLhs = $(tmpCalleeParam$1);
-  if (SSA_tmpBinLhs) {
+  tmpBinLhs = $(tmpCalleeParam$1);
+  if (tmpBinLhs) {
     const tmpCalleeParam$2 = $(2);
-    $(tmpCalleeParam$2);
+    tmpBinLhs = $(tmpCalleeParam$2);
   }
 }
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

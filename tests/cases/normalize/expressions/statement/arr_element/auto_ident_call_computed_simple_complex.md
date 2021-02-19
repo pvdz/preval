@@ -25,10 +25,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpBinBothLhs = tmpCallCompObj[tmpCallCompProp](1);
 const tmpCallCompObj$1 = b;
 const tmpCallCompProp$1 = $('$');
-tmpCallCompObj$1[tmpCallCompProp$1](1);
+const tmpBinBothRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -38,9 +39,10 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallCompProp = $('$');
-b[tmpCallCompProp](1);
+const tmpBinBothLhs = b[tmpCallCompProp](1);
 const tmpCallCompProp$1 = $('$');
-b[tmpCallCompProp$1](1);
+const tmpBinBothRhs = b[tmpCallCompProp$1](1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

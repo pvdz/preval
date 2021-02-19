@@ -44,10 +44,16 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpIfTest = SSA_a === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a, arg);
 `````
 

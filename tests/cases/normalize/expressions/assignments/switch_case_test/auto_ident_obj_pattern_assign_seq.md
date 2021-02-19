@@ -50,7 +50,8 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
 const tmpObjLitVal = $(3);
@@ -58,6 +59,11 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const SSA_x = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
+const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(tmpNestedAssignObjPatternRhs, SSA_x, SSA_y);
 `````
 

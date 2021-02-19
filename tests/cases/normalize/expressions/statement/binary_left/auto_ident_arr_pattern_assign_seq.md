@@ -25,15 +25,18 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs;
 $(x);
 $(y);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-$(100);
+tmpBinBothLhs = tmpNestedAssignArrPatternRhs;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, x, y);
 `````
 
@@ -45,11 +48,12 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_x = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-$(100);
+const tmpBinBothRhs = $(100);
+tmpNestedAssignArrPatternRhs + tmpBinBothRhs;
 $(a, SSA_x, SSA_y);
 `````
 

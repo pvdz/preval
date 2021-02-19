@@ -20,22 +20,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpIfTest = 30;
 if (tmpIfTest) {
-  $(2);
+  tmpBinBothLhs = $(2);
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
+  tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
 }
+let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
-  $(2);
+  tmpBinBothRhs = $(2);
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(100);
-  tmpCallCallee$1(tmpCalleeParam$1);
+  tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -43,8 +46,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(2);
-$(2);
+const SSA_tmpBinBothLhs = $(2);
+const SSA_tmpBinBothRhs = $(2);
+SSA_tmpBinBothLhs + SSA_tmpBinBothRhs;
 $(a);
 `````
 

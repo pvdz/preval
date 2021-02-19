@@ -23,12 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs;
 const tmpCallCallee = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-b = tmpAssignObjPatternRhs.b;
-$(100);
+const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+b = tmpNestedAssignObjPatternRhs.b;
+tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -38,9 +41,10 @@ $(a, b);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b = tmpAssignObjPatternRhs.b;
-$(100);
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpBinBothRhs = $(100);
+tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
 $(a, SSA_b);
 `````
 

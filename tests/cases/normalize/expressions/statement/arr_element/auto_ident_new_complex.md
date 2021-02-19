@@ -21,9 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpNewCallee$1 = $($);
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -32,9 +33,10 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpNewCallee$1 = $($);
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

@@ -43,9 +43,15 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpAssignRhsProp = $(b);
 const SSA_a = tmpAssignRhsProp.c;
+const tmpIfTest = SSA_a === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a, b);
 `````
 

@@ -20,12 +20,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
+  tmpBinBothLhs = tmpChainElementCall;
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -33,11 +36,14 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
-  $(1);
+  const tmpChainElementCall = $(1);
+  tmpBinBothLhs = tmpChainElementCall;
 }
-$(100);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

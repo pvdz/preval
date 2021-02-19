@@ -25,10 +25,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpCompObj$1 = b;
 const tmpNewCallee$1 = tmpCompObj$1.$;
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -38,9 +39,10 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpNewCallee$1 = b.$;
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

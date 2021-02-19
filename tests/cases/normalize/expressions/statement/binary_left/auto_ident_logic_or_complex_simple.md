@@ -22,8 +22,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-$(100);
+let tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+if (tmpBinBothLhs) {
+} else {
+  tmpBinBothLhs = 2;
+}
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -32,8 +37,13 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-$(tmpCalleeParam);
-$(100);
+let tmpBinBothLhs = $(tmpCalleeParam);
+if (tmpBinBothLhs) {
+} else {
+  tmpBinBothLhs = 2;
+}
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

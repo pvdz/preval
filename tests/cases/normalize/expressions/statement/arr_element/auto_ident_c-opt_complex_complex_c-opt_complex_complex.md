@@ -24,6 +24,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -34,8 +35,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinBothLhs = tmpChainElementObject$1;
   }
 }
+let tmpBinBothRhs = undefined;
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$1 = tmpChainRootCall$1(b);
 const tmpIfTest$2 = tmpChainElementCall$1 != null;
@@ -46,8 +49,10 @@ if (tmpIfTest$2) {
   if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $('y');
     const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
+    tmpBinBothRhs = tmpChainElementObject$3;
   }
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -57,6 +62,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
@@ -65,9 +71,11 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
-    tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinBothLhs = tmpChainElementObject$1;
   }
 }
+let tmpBinBothRhs = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$2 = tmpChainElementCall$1 != null;
 if (tmpIfTest$2) {
@@ -76,9 +84,11 @@ if (tmpIfTest$2) {
   const tmpIfTest$3 = tmpChainElementObject$2 != null;
   if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $('y');
-    tmpChainElementObject$2[tmpChainRootComputed$3];
+    const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
+    tmpBinBothRhs = tmpChainElementObject$3;
   }
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

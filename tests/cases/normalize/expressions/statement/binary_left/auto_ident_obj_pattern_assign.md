@@ -25,12 +25,15 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpAssignObjPatternRhs.x;
-y = tmpAssignObjPatternRhs.y;
-$(100);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, x, y);
 `````
 
@@ -40,10 +43,11 @@ $(a, x, y);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const SSA_x = tmpAssignObjPatternRhs.x;
-const SSA_y = tmpAssignObjPatternRhs.y;
-$(100);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const SSA_x = tmpNestedAssignObjPatternRhs.x;
+const SSA_y = tmpNestedAssignObjPatternRhs.y;
+const tmpBinBothRhs = $(100);
+tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
 $(a, SSA_x, SSA_y);
 `````
 

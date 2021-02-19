@@ -21,10 +21,11 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-tmpCallCallee(tmpCalleeParam);
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -33,9 +34,10 @@ $(a);
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
-$(tmpCalleeParam);
+const tmpBinBothRhs = $(tmpCalleeParam);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

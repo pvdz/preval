@@ -20,14 +20,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  tmpBinBothRhs = 2;
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
+  tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -35,13 +38,16 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  tmpBinBothRhs = 2;
 } else {
   const tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  tmpBinBothRhs = $(tmpCalleeParam);
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

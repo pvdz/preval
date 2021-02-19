@@ -25,9 +25,10 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-$(100);
-const tmpAssignMemLhsObj = b;
-const varInitAssignLhsComputedRhs$4 = c;
+const tmpBinBothLhs = $(100);
+const varInitAssignLhsComputedRhs$5 = c;
+b.x = varInitAssignLhsComputedRhs$5;
+const varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
 b.x = varInitAssignLhsComputedRhs$4;
 const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
 b.x = varInitAssignLhsComputedRhs$3;
@@ -37,8 +38,8 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b, c);
 `````
 
@@ -47,13 +48,14 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
+tmpBinBothLhs + 3;
 $(a, b, 3);
 `````
 

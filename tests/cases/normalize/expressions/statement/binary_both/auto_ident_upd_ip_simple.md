@@ -25,8 +25,11 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
+const tmpBinBothLhs = tmpPostUpdArgIdent;
 const tmpPostUpdArgIdent$1 = b;
 b = b + 1;
+const tmpBinBothRhs = tmpPostUpdArgIdent$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 

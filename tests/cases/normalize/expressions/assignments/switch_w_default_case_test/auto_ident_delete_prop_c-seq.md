@@ -77,6 +77,7 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
+tmpSwitchCaseToStart <= 0;
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
   $('fail1');

@@ -20,6 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = function () {};
+const tmpBinBothRhs = function () {};
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -27,6 +30,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+const tmpBinBothLhs = function () {};
+const tmpBinBothRhs = function () {};
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

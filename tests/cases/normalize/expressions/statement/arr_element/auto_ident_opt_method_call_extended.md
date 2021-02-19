@@ -25,6 +25,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
@@ -32,7 +33,9 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  tmpBinBothLhs = tmpChainElementCall;
 }
+let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
@@ -40,7 +43,9 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$4 = tmpChainElementObject$3.d;
   const tmpChainElementObject$5 = tmpChainElementObject$4.e;
   const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  tmpBinBothRhs = tmpChainElementCall$1;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -51,20 +56,25 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  tmpBinBothLhs = tmpChainElementCall;
 }
+let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$3 = b.c;
   const tmpChainElementObject$4 = tmpChainElementObject$3.d;
   const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-  tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  tmpBinBothRhs = tmpChainElementCall$1;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

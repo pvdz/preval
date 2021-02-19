@@ -41,8 +41,13 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-$(1);
--2;
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = -2 === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(-2, 1);
 `````
 

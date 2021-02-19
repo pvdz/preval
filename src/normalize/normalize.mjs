@@ -1590,17 +1590,17 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.computed && isProperIdent(node.property)) {
-            rule('Computed property that is valid ident must be member expression; prop');
-            log('- `a["foo"]` --> `a.foo`');
-            log('- Name: `' + node.property.value + '`');
-            before(node, parentNode);
+          rule('Computed property that is valid ident must be member expression; prop');
+          log('- `a["foo"]` --> `a.foo`');
+          log('- Name: `' + node.property.value + '`');
+          before(node, parentNode);
 
-            node.computed = false;
-            node.property = AST.identifier(node.property.value);
+          node.computed = false;
+          node.property = AST.identifier(node.property.value);
 
-            after(node, parentNode);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
+          after(node, parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
         }
 
         return false;
@@ -2376,20 +2376,30 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'BinaryExpression': {
+        // ** * / % + - << >> >>> < > <= >= in instanceof == != === !== & ^ |
+        // Must be careful not to eliminate coercion! (triggers valueOf / toString)
+        log('Operator:', node.operator);
+
         if (wrapKind === 'statement') {
-          rule('Binary expression as statement must be split');
-          example('a + b;', 'a; b;');
-          before(node, parentNode);
+          if (['===', '!=='].includes(node.operator)) {
+            rule('Binary expression without coercion as statement must be split');
+            example('a + b;', 'a; b;');
+            before(node, parentNode);
 
-          const newNodes = [AST.expressionStatement(node.left)];
-          const finalNode = node.right;
-          const finalParent = AST.expressionStatement(finalNode);
-          body.splice(i, 1, ...newNodes, finalParent);
+            const newNodes = [AST.expressionStatement(node.left)];
+            const finalNode = node.right;
+            const finalParent = AST.expressionStatement(finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
 
-          after(newNodes);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+            after(newNodes);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          // TODO: if we know the lhs or rhs is of a certain kind then we can replace the expression with
+          //       two individual expressions that force the coercion with that sort of literal while
+          //       eliminating the dependency to each other.
         }
 
         if (isComplexNode(node.right)) {
@@ -2656,7 +2666,7 @@ export function phaseNormalize(fdata, fname) {
 
           if (arg.type === 'MemberExpression') {
             if (arg.computed) {
-              if ( isProperIdent(arg.property)) {
+              if (isProperIdent(arg.property)) {
                 rule('Computed property that is valid ident must be member expression; delete');
                 log('- `a["foo"]` --> `a.foo`');
                 log('- Name: `' + arg.property.value + '`');
@@ -4001,7 +4011,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ObjectExpression': {
         let changes = false;
         node.properties.forEach((pnode) => {
-          if (pnode.computed &&  isProperIdent(pnode.key)) {
+          if (pnode.computed && isProperIdent(pnode.key)) {
             rule('Object literal computed key that is ident must be ident');
             example('{["x"]: y}', '{x: y}');
             before(node, parentNode);

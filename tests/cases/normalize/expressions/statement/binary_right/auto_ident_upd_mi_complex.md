@@ -23,14 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCallCallee = $;
 const tmpCalleeParam = $(b);
-const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
-const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -39,12 +40,13 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpCalleeParam = $(b);
-const tmpAssignMemLhsObj = $(tmpCalleeParam);
-const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+tmpBinBothLhs + varInitAssignLhsComputedRhs;
 $(a, b);
 `````
 

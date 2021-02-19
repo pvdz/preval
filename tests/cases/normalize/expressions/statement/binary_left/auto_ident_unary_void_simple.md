@@ -23,7 +23,9 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = undefined;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -31,7 +33,8 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothRhs = $(100);
+undefined + tmpBinBothRhs;
 $(a, 1);
 `````
 

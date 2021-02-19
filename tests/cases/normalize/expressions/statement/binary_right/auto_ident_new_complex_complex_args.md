@@ -23,11 +23,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpBinBothRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -35,11 +36,12 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpBinBothRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

@@ -21,9 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
--tmpUnaryArg;
+const tmpBinBothLhs = -tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
--tmpUnaryArg$1;
+const tmpBinBothRhs = -tmpUnaryArg$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -32,9 +33,10 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
--tmpUnaryArg;
+const tmpBinBothLhs = -tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
--tmpUnaryArg$1;
+const tmpBinBothRhs = -tmpUnaryArg$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

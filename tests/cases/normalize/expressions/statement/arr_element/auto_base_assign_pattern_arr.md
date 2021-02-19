@@ -23,18 +23,23 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
-const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
+tmpBinBothLhs = tmpNestedAssignArrPatternRhs;
+let tmpBinBothRhs;
 const tmpCallCallee$1 = $;
 const tmpArrElement$1 = $(2);
 const tmpCalleeParam$1 = [tmpArrElement$1];
-const arrAssignPatternRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+const tmpNestedAssignArrPatternRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 b = arrPatternSplat$1[0];
+tmpBinBothRhs = tmpNestedAssignArrPatternRhs$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -44,14 +49,15 @@ $(a, b);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
-const arrAssignPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 const tmpArrElement$1 = $(2);
 const tmpCalleeParam$1 = [tmpArrElement$1];
-const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 const SSA_b$1 = arrPatternSplat$1[0];
+tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(a, SSA_b$1);
 `````
 

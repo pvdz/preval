@@ -26,11 +26,12 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpCompObj$1 = b;
 const tmpCompProp$1 = $('$');
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -41,10 +42,11 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
-new tmpNewCallee(1);
+const tmpBinBothLhs = new tmpNewCallee(1);
 const tmpCompProp$1 = $('$');
 const tmpNewCallee$1 = b[tmpCompProp$1];
-new tmpNewCallee$1(1);
+const tmpBinBothRhs = new tmpNewCallee$1(1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

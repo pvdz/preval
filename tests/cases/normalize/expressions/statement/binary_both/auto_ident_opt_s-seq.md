@@ -23,16 +23,21 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
+  tmpBinBothLhs = tmpChainElementObject;
 }
+let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  tmpBinBothRhs = tmpChainElementObject$1;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -41,14 +46,19 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
-  b.x;
+  const tmpChainElementObject = b.x;
+  tmpBinBothLhs = tmpChainElementObject;
 }
+let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  b.x;
+  const tmpChainElementObject$1 = b.x;
+  tmpBinBothRhs = tmpChainElementObject$1;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

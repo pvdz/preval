@@ -44,13 +44,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 let SSA_a = 0;
 if (SSA_a) {
 } else {
   const tmpCalleeParam = $(1);
   SSA_a = $(tmpCalleeParam);
 }
+const tmpBinLhs = SSA_a;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a);
 `````
 

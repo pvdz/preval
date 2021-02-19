@@ -24,7 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 b = b + 1;
+let tmpBinBothLhs = b;
 b = b + 1;
+let tmpBinBothRhs = b;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 

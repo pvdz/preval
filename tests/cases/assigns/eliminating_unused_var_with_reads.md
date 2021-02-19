@@ -34,8 +34,9 @@ $(x);
 
 `````js filename=intro
 const x = $('unknown 1');
-$('unknown 2');
+const z = $('unknown 2');
 $(x);
+x + z;
 const SSA_x = $('unknown 3');
 $(SSA_x);
 `````

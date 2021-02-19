@@ -40,9 +40,16 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
-$(1);
-$(2);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

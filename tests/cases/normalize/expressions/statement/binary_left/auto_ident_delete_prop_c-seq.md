@@ -26,8 +26,9 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-delete tmpDeleteObj.y;
-$(100);
+const tmpBinBothLhs = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -39,8 +40,9 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-delete tmpDeleteObj.y;
-$(100);
+const tmpBinBothLhs = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 

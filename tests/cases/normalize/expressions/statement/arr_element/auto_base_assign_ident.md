@@ -24,7 +24,10 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 b = $(2);
+let tmpBinBothLhs = b;
 b = $(2);
+let tmpBinBothRhs = b;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -32,8 +35,9 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(2);
+const SSA_b = $(2);
 const SSA_b$1 = $(2);
+SSA_b + SSA_b$1;
 $(a, SSA_b$1);
 `````
 

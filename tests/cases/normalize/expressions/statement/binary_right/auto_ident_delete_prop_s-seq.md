@@ -23,11 +23,12 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 $(1);
 $(2);
 const tmpDeleteObj = arg;
-delete tmpDeleteObj.y;
+const tmpBinBothRhs = delete tmpDeleteObj.y;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -36,10 +37,11 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
 $(1);
 $(2);
-delete arg.y;
+const tmpBinBothRhs = delete arg.y;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 

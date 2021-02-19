@@ -20,6 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
+tmpBinBothLhs = 60;
+let tmpBinBothRhs = undefined;
+tmpBinBothRhs = 60;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

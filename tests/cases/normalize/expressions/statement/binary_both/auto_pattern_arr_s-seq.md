@@ -24,8 +24,11 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
+const tmpBinBothLhs = [1, 2];
 $(10);
 $(20);
+const tmpBinBothRhs = [1, 2];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -37,8 +40,11 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
+const tmpBinBothLhs = [1, 2];
 $(10);
 $(20);
+const tmpBinBothRhs = [1, 2];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

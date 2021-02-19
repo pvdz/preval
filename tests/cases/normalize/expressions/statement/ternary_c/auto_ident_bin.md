@@ -24,8 +24,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  $(1);
-  $(2);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````
@@ -38,8 +39,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  $(1);
-  $(2);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````

@@ -23,8 +23,9 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-typeof x;
-typeof x;
+const tmpBinBothLhs = typeof x;
+const tmpBinBothRhs = typeof x;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, x);
 `````
 

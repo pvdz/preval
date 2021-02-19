@@ -43,9 +43,15 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpDeleteObj = $(arg);
 const SSA_a = delete tmpDeleteObj.y;
+const tmpIfTest = SSA_a === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a, arg);
 `````
 

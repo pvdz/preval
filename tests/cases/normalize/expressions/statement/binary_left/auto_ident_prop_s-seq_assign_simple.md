@@ -23,9 +23,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
-tmpAssignMemLhsObj.c = 2;
-$(100);
+const varInitAssignLhsComputedObj = b;
+const varInitAssignLhsComputedRhs = 2;
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const tmpBinBothLhs = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -35,7 +38,8 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 b.c = 2;
-$(100);
+const tmpBinBothRhs = $(100);
+2 + tmpBinBothRhs;
 $(a, b);
 `````
 

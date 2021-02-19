@@ -23,13 +23,16 @@ $(a);
 `````js filename=intro
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+  tmpBinBothRhs = tmpChainElementCall;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -38,12 +41,15 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-$(100);
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
-  tmpChainElementObject.call(b, 1);
+  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+  tmpBinBothRhs = tmpChainElementCall;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

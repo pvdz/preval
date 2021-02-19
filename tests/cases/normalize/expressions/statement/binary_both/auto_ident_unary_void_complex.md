@@ -21,7 +21,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
+const tmpBinBothLhs = undefined;
 $(100);
+const tmpBinBothRhs = undefined;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

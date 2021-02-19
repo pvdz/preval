@@ -34,7 +34,14 @@ const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
 ## Output
 
 `````js filename=intro
-$(30);
+let tmpSwitchCaseToStart = 0;
+const tmpBinLhs = $(30);
+const tmpIfTest = tmpBinLhs === 6;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 1;
+}
+tmpSwitchCaseToStart <= 0;
+tmpSwitchCaseToStart <= 1;
 `````
 
 ## Globals

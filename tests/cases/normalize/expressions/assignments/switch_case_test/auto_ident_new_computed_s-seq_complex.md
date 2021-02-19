@@ -45,10 +45,16 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const SSA_a = new tmpNewCallee(1);
+const tmpIfTest = SSA_a === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(SSA_a);
 `````
 

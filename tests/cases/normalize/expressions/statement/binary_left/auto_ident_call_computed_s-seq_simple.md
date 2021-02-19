@@ -24,8 +24,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-tmpCallObj.$(1);
-$(100);
+const tmpBinBothLhs = tmpCallObj.$(1);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -34,8 +35,9 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-b.$(1);
-$(100);
+const tmpBinBothLhs = b.$(1);
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

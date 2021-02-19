@@ -27,8 +27,9 @@ $(1);
 $(2);
 const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(100);
+const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -40,8 +41,9 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-delete arg[tmpDeleteCompProp];
-$(100);
+const tmpBinBothLhs = delete arg[tmpDeleteCompProp];
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 

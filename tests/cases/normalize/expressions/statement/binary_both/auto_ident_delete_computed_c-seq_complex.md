@@ -27,12 +27,13 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompObj$1 = $(arg);
 const tmpDeleteCompProp$1 = $('y');
-delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+const tmpBinBothRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 
@@ -45,12 +46,13 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompObj$1 = $(arg);
 const tmpDeleteCompProp$1 = $('y');
-delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+const tmpBinBothRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
 `````
 

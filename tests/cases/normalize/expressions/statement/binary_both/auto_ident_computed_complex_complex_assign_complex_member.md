@@ -23,22 +23,21 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('c');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-const tmpAssignComMemLhsObj$1 = $(b);
-const tmpAssignComMemLhsProp$1 = $('c');
-const tmpAssignComputedObj$1 = tmpAssignComMemLhsObj$1;
-const tmpAssignComputedProp$1 = tmpAssignComMemLhsProp$1;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpBinBothLhs = varInitAssignLhsComputedRhs;
+const varInitAssignLhsComputedObj$1 = $(b);
+const varInitAssignLhsComputedProp$1 = $('c');
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
+const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs$1;
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
@@ -47,18 +46,19 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('c');
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const tmpAssignComMemLhsObj$1 = $(b);
-const tmpAssignComMemLhsProp$1 = $('c');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const varInitAssignLhsComputedObj$1 = $(b);
+const varInitAssignLhsComputedProp$1 = $('c');
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('d');
-const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
 $(a, b);
 `````
 

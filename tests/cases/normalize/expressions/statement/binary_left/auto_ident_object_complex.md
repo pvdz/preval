@@ -20,9 +20,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(1);
-$(3);
-$(100);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$1 = 2;
+const tmpObjLitVal$2 = $(3);
+const tmpBinBothLhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -30,9 +33,11 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
-$(3);
-$(100);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$2 = $(3);
+const tmpBinBothLhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

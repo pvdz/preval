@@ -22,34 +22,35 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
+let tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+if (tmpBinBothLhs) {
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpBinBothLhs = tmpCallCallee$1(tmpCalleeParam$1);
 }
-if (tmpIfTest) {
+if (tmpBinBothLhs) {
 } else {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(2);
-  tmpCallCallee$2(tmpCalleeParam$2);
+  tmpBinBothLhs = tmpCallCallee$2(tmpCalleeParam$2);
 }
 const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = $(0);
-let tmpIfTest$1 = tmpCallCallee$3(tmpCalleeParam$3);
-if (tmpIfTest$1) {
+let tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
+if (tmpBinBothRhs) {
 } else {
   const tmpCallCallee$4 = $;
   const tmpCalleeParam$4 = $(1);
-  tmpIfTest$1 = tmpCallCallee$4(tmpCalleeParam$4);
+  tmpBinBothRhs = tmpCallCallee$4(tmpCalleeParam$4);
 }
-if (tmpIfTest$1) {
+if (tmpBinBothRhs) {
 } else {
   const tmpCallCallee$5 = $;
   const tmpCalleeParam$5 = $(2);
-  tmpCallCallee$5(tmpCalleeParam$5);
+  tmpBinBothRhs = tmpCallCallee$5(tmpCalleeParam$5);
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -58,29 +59,30 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
+let tmpBinBothLhs = $(tmpCalleeParam);
+if (tmpBinBothLhs) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpIfTest = $(tmpCalleeParam$1);
+  tmpBinBothLhs = $(tmpCalleeParam$1);
 }
-if (tmpIfTest) {
+if (tmpBinBothLhs) {
 } else {
   const tmpCalleeParam$2 = $(2);
-  $(tmpCalleeParam$2);
+  tmpBinBothLhs = $(tmpCalleeParam$2);
 }
 const tmpCalleeParam$3 = $(0);
-let tmpIfTest$1 = $(tmpCalleeParam$3);
-if (tmpIfTest$1) {
+let tmpBinBothRhs = $(tmpCalleeParam$3);
+if (tmpBinBothRhs) {
 } else {
   const tmpCalleeParam$4 = $(1);
-  tmpIfTest$1 = $(tmpCalleeParam$4);
+  tmpBinBothRhs = $(tmpCalleeParam$4);
 }
-if (tmpIfTest$1) {
+if (tmpBinBothRhs) {
 } else {
   const tmpCalleeParam$5 = $(2);
-  $(tmpCalleeParam$5);
+  tmpBinBothRhs = $(tmpCalleeParam$5);
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

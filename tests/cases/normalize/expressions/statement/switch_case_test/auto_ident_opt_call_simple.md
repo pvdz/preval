@@ -44,11 +44,19 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs = undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
-  $(1);
+  const tmpChainElementCall = $(1);
+  tmpBinLhs = tmpChainElementCall;
 }
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

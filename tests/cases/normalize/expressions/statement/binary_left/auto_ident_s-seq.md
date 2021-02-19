@@ -25,7 +25,9 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-$(100);
+const tmpBinBothLhs = x;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a, x);
 `````
 
@@ -35,7 +37,8 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-$(100);
+const tmpBinBothRhs = $(100);
+1 + tmpBinBothRhs;
 $(a, 1);
 `````
 

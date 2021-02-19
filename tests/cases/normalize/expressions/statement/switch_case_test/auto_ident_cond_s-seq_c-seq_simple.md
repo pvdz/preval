@@ -46,8 +46,14 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
-$(60);
+const tmpSwitchTest = $(1);
+let tmpSwitchCaseToStart = 1;
+const SSA_tmpBinLhs = $(60);
+const tmpIfTest = SSA_tmpBinLhs === tmpSwitchTest;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+}
+tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

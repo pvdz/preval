@@ -44,8 +44,9 @@ $(a);
 function f($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    $(1);
-    $(2);
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    tmpBinBothLhs + tmpBinBothRhs;
   }
 }
 const a = { a: 999, b: 1000 };

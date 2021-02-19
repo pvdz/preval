@@ -23,6 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -36,8 +37,10 @@ if (tmpIfTest) {
     const tmpCalleeParam = tmpChainElementCall;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+    tmpBinBothLhs = tmpChainElementCall$1;
   }
 }
+let tmpBinBothRhs = undefined;
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$2 = tmpChainRootCall$1(b);
 const tmpIfTest$2 = tmpChainElementCall$2 != null;
@@ -51,8 +54,10 @@ if (tmpIfTest$2) {
     const tmpCalleeParam$2 = tmpChainElementCall$2;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$2, tmpCalleeParam$3);
+    tmpBinBothRhs = tmpChainElementCall$3;
   }
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
@@ -61,6 +66,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
@@ -70,9 +76,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
-    tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    tmpBinBothLhs = tmpChainElementCall$1;
   }
 }
+let tmpBinBothRhs = undefined;
 const tmpChainElementCall$2 = $(b);
 const tmpIfTest$2 = tmpChainElementCall$2 != null;
 if (tmpIfTest$2) {
@@ -82,9 +90,11 @@ if (tmpIfTest$2) {
   if (tmpIfTest$3) {
     const tmpCallVal$1 = tmpChainElementObject$1.call;
     const tmpCalleeParam$3 = $(1);
-    tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);
+    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$3);
+    tmpBinBothRhs = tmpChainElementCall$3;
   }
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

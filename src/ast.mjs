@@ -15,7 +15,12 @@ export function cloneSimple(node) {
     return memberExpression(cloneSimple(node.object), cloneSimple(node.property), node.computed);
   }
 
-  if (node.type === 'UnaryExpression' && (node.operator === '+' || node.operator === '-') && node.argument.type === 'Literal' && typeof node.argument.value === 'number') {
+  if (
+    node.type === 'UnaryExpression' &&
+    (node.operator === '+' || node.operator === '-') &&
+    node.argument.type === 'Literal' &&
+    typeof node.argument.value === 'number'
+  ) {
     // -5, +0.2e3
     return unaryExpression(node.operator, cloneSimple(node.argument));
   }
@@ -484,6 +489,13 @@ export function switchStatement(discriminant, cases) {
     type: 'SwitchStatement',
     discriminant,
     cases,
+    $p: $p(),
+  };
+}
+
+export function thisExpression() {
+  return {
+    type: 'ThisExpression',
     $p: $p(),
   };
 }

@@ -96,13 +96,12 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
     // Attempt to fold up constants
     if (meta.isConstant) {
       log('Is a constant');
-      ASSERT(meta.name === name)
+      ASSERT(meta.name === name);
       if (attemptConstantInlining(meta, fdata)) {
         groupEnd();
         inlined = true;
         return;
       }
-
     }
 
     if (meta.reads.length === 0 && meta.writes[0].decl) {
@@ -503,6 +502,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
 }
 
 function attemptConstantInlining(meta, fdata) {
+  ASSERT(meta.isConstant);
   ASSERT(meta.writes.length === 1, 'a constant should have one write?', meta.writes);
   const write = meta.writes[0];
   ASSERT(write, 'figure out whats wrong if this breaks');
@@ -516,8 +516,7 @@ function attemptConstantInlining(meta, fdata) {
       // Var decl without init. Substitute undefined here.
       rhs = AST.identifier('undefined');
     }
-  }
-  else if (write.parentNode.type === 'AssignmentExpression') {
+  } else if (write.parentNode.type === 'AssignmentExpression') {
     // Must be a regular assignment
     rhs = write.parentNode.right;
   } else {
@@ -560,16 +559,16 @@ function attemptConstantInlining(meta, fdata) {
       } else {
         log(
           'Replacing a read of `' +
-          meta.name +
-          '` with a read from `' +
-          clone.name +
-          '` (on prop `' +
-          parentNode.type +
-          '.' +
-          parentProp +
-          (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
-          ')' +
-          '`...',
+            meta.name +
+            '` with a read from `' +
+            clone.name +
+            '` (on prop `' +
+            parentNode.type +
+            '.' +
+            parentProp +
+            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
+            ')' +
+            '`...',
         );
         before(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
         if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
@@ -622,6 +621,56 @@ function attemptConstantInlining(meta, fdata) {
     after(';');
     groupEnd();
     return inlined;
+  }
+
+  if (rhs.type === 'ThisExpression') {
+    // We can safely replace all occurrences of the constant binding that appear
+    // in the same scope. TODO: or that appear in the scope of an arrow (next level).
+    rule('The `this` is already an immutable constant in the same scope');
+    example('const x = this; f(x);', 'f(this);');
+    before(write.parentNode);
+
+    // With the new
+    group('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with `this`');
+    const writeScope = write.scope;
+    const reads = meta.reads;
+    let inlined = false;
+    for (let i = 0; i < reads.length; ++i) {
+      // Note: this parent may not be part of the AST anymore (!) (ex. if a var decl with complex init was eliminated)
+      const oldRead = reads[i];
+      const { parentNode, parentProp, parentIndex } = oldRead;
+      if (parentNode.type === 'ExportSpecifier') {
+        log('Skipping export ident');
+      } else if (oldRead.scope !== writeScope) {
+        // TODO: would be fine for arrows.
+        log('Cannot replace a read in a different scope because that is a different ref for `this`.');
+      } else {
+        log(
+          'Replacing a read of `' +
+            meta.name +
+            '` with a `this` (on prop `' +
+            parentNode.type +
+            '.' +
+            parentProp +
+            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
+            ')' +
+            '`...',
+        );
+        before(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
+        if (parentIndex >= 0) parentNode[parentProp][parentIndex] = AST.thisExpression();
+        else parentNode[parentProp] = AST.thisExpression();
+        after(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
+        inlined = true;
+        // Remove the read. This binding is read one fewer times
+        reads.splice(i, 1);
+        // We removed an element from the current loop so retry the current index
+        --i;
+      }
+    }
+    log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
+    groupEnd();
+
+    after(write.parentNode);
   }
 
   if (

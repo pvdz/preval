@@ -14,10 +14,10 @@ Note: in strict mode this in global is gonna be bad.
 
 `````js filename=intro
 function f() {
-    const x = this;
-    $(x);
+  const x = this;
+  return x;
 }
-f.call({pass: 1});
+$(f());
 `````
 
 ## Normalized
@@ -25,23 +25,21 @@ f.call({pass: 1});
 `````js filename=intro
 function f() {
   const x = this;
-  $(x);
+  return x;
 }
-const tmpCallObj = f;
-const tmpCallVal = tmpCallObj.call;
-const tmpCalleeParam = { pass: 1 };
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 function f() {
-  $(this);
+  return this;
 }
-const tmpCallVal = f.call;
-const tmpCalleeParam = { pass: 1 };
-tmpCallVal.call(f, tmpCalleeParam);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals
@@ -51,8 +49,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { pass: '1' }
- - eval returned: undefined
+ - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
 
 Normalized calls: Same
 

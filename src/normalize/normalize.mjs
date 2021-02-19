@@ -4427,7 +4427,16 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ThisExpression': {
-        // I don't think we need to do anything with this one during this phase?
+        if (wrapKind === 'statement') {
+          rule('Eliminate a this statement');
+          example('this;', ';');
+          before(node, parentNode);
+
+          body[i] = AST.emptyStatement();
+
+          after(AST.emptyStatement());
+          return true;
+        }
         return false;
       }
 

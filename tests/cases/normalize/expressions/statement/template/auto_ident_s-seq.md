@@ -38,8 +38,7 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpCalleeParam = `before  ${1}  after`;
-$(tmpCalleeParam);
+$('before  1  after');
 $(a, 1);
 `````
 

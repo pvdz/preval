@@ -56,8 +56,7 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const tmpCalleeParam = `before  ${7}  after`;
-$(tmpCalleeParam);
+$('before  7  after');
 $(a, b, c, 3, 4);
 `````
 

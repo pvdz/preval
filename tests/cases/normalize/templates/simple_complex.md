@@ -19,7 +19,7 @@ $(`abc ${ 10 } ${ $(20) } def`);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpTemplateExpr = $(20);
-const tmpCalleeParam = `abc ${10} ${tmpTemplateExpr} def`;
+const tmpCalleeParam = `abc 10 ${tmpTemplateExpr} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -27,7 +27,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpTemplateExpr = $(20);
-const tmpCalleeParam = `abc ${10} ${tmpTemplateExpr} def`;
+const tmpCalleeParam = `abc 10 ${tmpTemplateExpr} def`;
 $(tmpCalleeParam);
 `````
 

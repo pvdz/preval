@@ -31,8 +31,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = `before  ${60}  after`;
-$(tmpCalleeParam);
+$('before  60  after');
 $(60);
 `````
 

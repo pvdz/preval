@@ -18,15 +18,14 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let a = `fo${1}o`;
+let a = 'fo1o';
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = `fo${1}o`;
-$(a);
+$('fo1o');
 `````
 
 ## Globals

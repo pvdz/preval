@@ -4219,6 +4219,8 @@ export function phaseNormalize(fdata, fname) {
         }
 
         const newNodes = [];
+        let changes = false;
+        let hasStrings = false;
         node.expressions.forEach((enode, i) => {
           if (isComplexNode(enode)) {
             if (newNodes.length === 0) {
@@ -4231,6 +4233,55 @@ export function phaseNormalize(fdata, fname) {
             newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
             node.expressions[i] = AST.identifier(tmpName);
           }
+
+          if (enode.type === 'Identifier' && ['NaN', 'Infinity', 'undefined'].includes(enode.name)) {
+            rule('Template expressions that are builtin values should be serialized');
+            example('`x${NaN}y`', '`x${"NaN"}y`', () => enode.name === 'NaN');
+            example('`x${Infinity}y`', '`x${"Infinity"}y`', () => enode.name === 'Infinity');
+            example('`x${undefined}y`', '`x${"undefined"}y`', () => enode.name === 'undefined');
+            before(enode, node);
+
+            node.expressions[i] = AST.literal(enode.name);
+
+            after(node.expressions[i], node);
+            changes = true;
+            // The next step, which inlines literals, can pick this up immediately
+          }
+
+          if (enode.type === 'Literal') {
+            // Note: we fold up strings after this loop
+            if (enode.raw === 'null' || typeof enode.value === 'number' || enode.value === true || enode.value === false) {
+              rule('Template expressions that are literal values should be serialized');
+              example('`x${"abc"}y`', '`xabcy`');
+              example('`x${true}y`', '`xtruey`');
+              before(enode, node);
+
+              // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
+              node.expressions[i] = AST.literal(String(enode.value));
+
+              after(node.expressions[i], node);
+              changes = true;
+            }
+
+            if (typeof enode.value === 'string') {
+              hasStrings = true;
+            }
+          }
+
+          if (enode.type === 'TemplateLiteral' && enode.expressions.length === 0) {
+              rule('Template expressions that are literal values should be serialized');
+              example('`x${"abc"}y`', '`xabcy`');
+              example('`x${true}y`', '`xtruey`');
+              before(enode, node);
+
+              // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
+              node.expressions[i] = AST.literal(String(enode.quasis[0].value.raw));
+
+              after(node.expressions[i], node);
+              changes = true;
+
+              hasStrings = true;
+          }
         });
         if (newNodes.length > 0) {
           body.splice(i, 0, ...newNodes);
@@ -4238,6 +4289,36 @@ export function phaseNormalize(fdata, fname) {
           after(newNodes);
           after(node, parentNode); // did not replace node
           assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+        if (changes) {
+          return true;
+        }
+
+        if (hasStrings) {
+          rule('A template with string expressions should concat them');
+          example('`a${"x"}b`', '`axb`');
+          before(node);
+
+          for (let i = 0; i < node.expressions.length; ++i) {
+            const expr = node.expressions[i];
+            if (expr.type === 'Literal' && typeof expr.value === 'string') {
+              const a = node.quasis[i];
+              const c = node.quasis[i + 1];
+              log(a,c);
+              ASSERT(
+                a.type === 'TemplateElement' && c.type === 'TemplateElement' && typeof a.value.raw === 'string' && typeof c.value.raw === 'string',
+                'quasis are strings?',
+                a,
+                c,
+              );
+              node.quasis.splice(i, 2, AST.templateElement(a.value.raw + expr.value + c.value.raw, i === node.expressions.length - 1));
+              node.expressions.splice(i, 1);
+              --i;
+            }
+          }
+
+          after(node);
           return true;
         }
 
@@ -6329,7 +6410,7 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (isComplexNode(dnode.init, false)) {
+      if (isComplexNode(dnode.init, false) || dnode.init.type === 'TemplateLiteral') {
         // false: returns true for simple unary as well
         log('- init is complex, transforming expression');
         if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {

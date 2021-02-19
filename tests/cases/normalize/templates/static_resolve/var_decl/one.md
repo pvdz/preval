@@ -1,0 +1,43 @@
+# Preval test case
+
+# one.md
+
+> normalize > templates > static_resolve > var_decl > one
+>
+> Templates should be able to resolve literals
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let x = `${1}`;
+$(x);
+`````
+
+## Normalized
+
+`````js filename=intro
+let x = '1';
+$(x);
+`````
+
+## Output
+
+`````js filename=intro
+$('1');
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: '1'
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

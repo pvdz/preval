@@ -18,15 +18,14 @@ $(`abc ${ 10 } ${ 20 } def`);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = `abc ${10} ${20} def`;
+const tmpCalleeParam = 'abc 10 20 def';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = `abc ${10} ${20} def`;
-$(tmpCalleeParam);
+$('abc 10 20 def');
 `````
 
 ## Globals

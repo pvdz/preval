@@ -34,8 +34,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = `before  ${undefined}  after`;
-$(tmpCalleeParam);
+$('before  undefined  after');
 $(undefined, 1);
 `````
 

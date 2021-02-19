@@ -32,8 +32,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = `before  ${60}  after`;
-$(tmpCalleeParam);
+$('before  60  after');
 $(a);
 `````
 

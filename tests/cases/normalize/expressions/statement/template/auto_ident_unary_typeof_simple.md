@@ -34,8 +34,7 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = `before  ${'number'}  after`;
-$(tmpCalleeParam);
+$('before  number  after');
 $(a, 1);
 `````
 

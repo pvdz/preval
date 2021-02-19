@@ -493,6 +493,19 @@ export function switchStatement(discriminant, cases) {
   };
 }
 
+export function templateElement(raw, tail, cooked = raw) {
+  ASSERT(typeof raw === 'string');
+  ASSERT(typeof cooked === 'string');
+  ASSERT(typeof tail === 'boolean');
+
+  return {
+    type: 'TemplateElement',
+    tail,
+    value: {raw, cooked},
+    $p: $p(),
+  }
+}
+
 export function thisExpression() {
   return {
     type: 'ThisExpression',

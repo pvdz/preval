@@ -1,0 +1,43 @@
+# Preval test case
+
+# nan.md
+
+> normalize > templates > static_resolve > arg > nan
+>
+> Templates should be able to resolve literals
+
+#TODO
+
+## Input
+
+`````js filename=intro
+$(`${NaN}`);
+`````
+
+## Normalized
+
+`````js filename=intro
+const tmpCallCallee = $;
+const tmpCalleeParam = 'NaN';
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+$('NaN');
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'NaN'
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

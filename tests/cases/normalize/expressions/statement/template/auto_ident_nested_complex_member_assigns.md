@@ -83,8 +83,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const tmpCalleeParam = `before  ${3}  after`;
-$(tmpCalleeParam);
+$('before  3  after');
 $(a, b, 3);
 `````
 

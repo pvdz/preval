@@ -37,8 +37,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = `before  ${0}  after`;
-$(tmpCalleeParam);
+$('before  0  after');
 $(0, 0);
 `````
 

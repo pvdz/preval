@@ -56,8 +56,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpCalleeParam = `before  ${3}  after`;
-$(tmpCalleeParam);
+$('before  3  after');
 $(3, b, 3);
 `````
 

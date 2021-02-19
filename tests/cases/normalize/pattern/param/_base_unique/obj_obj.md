@@ -32,12 +32,7 @@ let z = 1;
 ## Output
 
 `````js filename=intro
-function i(tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const objPatternNoDefault$1 = objPatternNoDefault.y;
-  const z$1 = objPatternNoDefault$1.z;
-  return z$1;
-}
+
 `````
 
 ## Globals

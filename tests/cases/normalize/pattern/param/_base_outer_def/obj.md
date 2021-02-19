@@ -31,24 +31,12 @@ function g($tdz$__pattern) {
 ## Output
 
 `````js filename=intro
-function g($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
-  if (tmpIfTest) {
-    $tdz$__pattern_after_default = b;
-  } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
-  }
-  const x = $tdz$__pattern_after_default.x;
-  return x;
-}
+
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-b
+None
 
 ## Result
 

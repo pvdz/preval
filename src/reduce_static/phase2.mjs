@@ -65,9 +65,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
-    group('-- name:', name);
-
-    //ASSERT(meta.writes.length >= 1, 'all bindings should have some kind of point of update, or else it is an implicit global read, which can happen but would be a runtime error in strict mode', meta);
+    group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
     if (meta.writes.length === 1 && !meta.isConstant) {
       log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
@@ -106,7 +104,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
 
     if (meta.reads.length === 0 && meta.writes[0].decl) {
       ASSERT(meta.writes.length);
-      log('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
+      group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
       // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
       // If any writes are eliminated this way, drop them from the books and queue them up
 
@@ -159,10 +157,27 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
       if (meta.writes.length === 0) {
         fdata.globallyUniqueNamingRegistry.delete(name);
       }
+      groupEnd();
       if (inlined) {
         groupEnd();
         return;
       }
+    }
+
+    if (meta.reads.length === 0 && meta.writes.length === 1 && meta.writes[0].funcDecl) {
+      group();
+      rule('Unused function declaration should be removed');
+      example('function f(){}', '');
+      toEliminate.push({
+        parent: meta.writes[0].funcDecl.funcParent,
+        prop: meta.writes[0].funcDecl.funcProp,
+        index: meta.writes[0].funcDecl.funcIndex,
+      });
+      fdata.globallyUniqueNamingRegistry.delete(name);
+      log('Scheduled `' + name + '` for deletion...');
+      groupEnd();
+      groupEnd();
+      return;
     }
 
     groupEnd();
@@ -480,8 +495,16 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
       ASSERT(node.expression.type === 'AssignmentExpression');
       node.expression = node.expression.right;
       after(node);
+    } else if (node.type === 'FunctionDeclaration') {
+      ASSERT(node.id);
+      log('Eliminating `' + node.id.name + '`');
+      if (index >= 0) {
+        parent[prop][index] = AST.emptyStatement();
+      } else {
+        parent[prop] = AST.emptyStatement();
+      }
     } else {
-      ASSERT(node.type === 'VariableDeclaration');
+      ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
       const init = node.declarations[0].init;
       const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
       if (index >= 0) {

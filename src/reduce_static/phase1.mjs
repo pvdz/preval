@@ -188,6 +188,7 @@ export function phase1(fdata, resolve, req, verbose) {
           }
           if (kind === 'write') {
             if (parentNode.type === 'VariableDeclarator') {
+              ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
@@ -205,6 +206,7 @@ export function phase1(fdata, resolve, req, verbose) {
                 }),
               );
             } else if (parentNode.type === 'AssignmentExpression') {
+              ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements');
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
@@ -220,6 +222,24 @@ export function phase1(fdata, resolve, req, verbose) {
                   blockChain: blockIds.join(','),
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
                   assign: { assignParent, assignProp, assignIndex },
+                }),
+              );
+            } else if (parentNode.type === 'FunctionDeclaration' && parentProp === 'id') {
+              // opposed to a param
+              const funcParent = path.nodes[path.nodes.length - 3];
+              const funcProp = path.props[path.props.length - 2];
+              const funcIndex = path.indexes[path.indexes.length - 2];
+              meta.writes.push(
+                createWriteRef({
+                  parentNode,
+                  parentProp,
+                  parentIndex,
+                  node,
+                  rwCounter: ++readWriteCounter,
+                  scope: currentScope.$p.pid,
+                  blockChain: blockIds.join(','),
+                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  funcDecl: { funcParent, funcProp, funcIndex },
                 }),
               );
             } else {

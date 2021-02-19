@@ -26,12 +26,7 @@ function h(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-function h(tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const arrPatternStep = arrPatternSplat[0];
-  const x = arrPatternStep.x;
-  return x;
-}
+
 `````
 
 ## Globals

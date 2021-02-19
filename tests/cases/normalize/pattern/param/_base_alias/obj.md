@@ -24,10 +24,7 @@ function g(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-function g(tmpParamPattern) {
-  const y = tmpParamPattern.x;
-  return y;
-}
+
 `````
 
 ## Globals

@@ -42,7 +42,6 @@ f(tmpArg);
 
 `````js filename=intro
 var tmpArg;
-function g() {}
 const tmpBinaryLeft = a.x;
 const tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {

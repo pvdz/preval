@@ -32,12 +32,7 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-function h(tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const arrPatternStep = arrPatternSplat[0];
-  const x$1 = arrPatternStep.x;
-  return x$1;
-}
+
 `````
 
 ## Globals

@@ -26,12 +26,7 @@ function i(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-function i(tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const arrPatternSplat = [...objPatternNoDefault];
-  const y = arrPatternSplat[0];
-  return y;
-}
+
 `````
 
 ## Globals

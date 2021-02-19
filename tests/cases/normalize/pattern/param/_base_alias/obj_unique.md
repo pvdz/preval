@@ -36,10 +36,7 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-function g(tmpParamPattern) {
-  const y$1 = tmpParamPattern.x;
-  return y$1;
-}
+
 `````
 
 ## Globals

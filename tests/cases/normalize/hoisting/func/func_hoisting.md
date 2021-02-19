@@ -46,7 +46,6 @@ function b() {}
 function d() {}
 function f() {}
 function h() {}
-function l() {}
 function x() {}
 a();
 $(a, b, d, f, h, x);

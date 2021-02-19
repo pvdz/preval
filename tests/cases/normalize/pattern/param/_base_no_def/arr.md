@@ -25,11 +25,7 @@ function f(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const x = arrPatternSplat[0];
-  return x;
-}
+
 `````
 
 ## Globals

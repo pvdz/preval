@@ -25,7 +25,7 @@ function f() {}
 ## Output
 
 `````js filename=intro
-function f() {}
+
 `````
 
 ## Globals

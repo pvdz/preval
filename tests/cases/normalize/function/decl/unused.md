@@ -1,33 +1,37 @@
 # Preval test case
 
-# obj.md
+# unused.md
 
-> normalize > pattern > param > _base > obj
+> normalize > function > decl > unused
 >
-> Testing simple pattern normalizations
+> An unused func decl should be removed
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-function f(x, y) {
-  return x = y;
+let x = 1; // This can not be inlined as long as function f exists... but it is not used!
+function f() {
+  x = 2;
 }
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f(x, y) {
-  x = y;
-  let tmpReturnArg = x;
-  return tmpReturnArg;
+function f() {
+  x = 2;
 }
+let x = 1;
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-
+$(1);
 `````
 
 ## Globals
@@ -37,6 +41,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 1
  - eval returned: undefined
 
 Normalized calls: Same

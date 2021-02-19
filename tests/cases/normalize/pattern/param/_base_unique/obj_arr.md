@@ -32,12 +32,7 @@ let y = 1;
 ## Output
 
 `````js filename=intro
-function i(tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const arrPatternSplat = [...objPatternNoDefault];
-  const y$1 = arrPatternSplat[0];
-  return y$1;
-}
+
 `````
 
 ## Globals

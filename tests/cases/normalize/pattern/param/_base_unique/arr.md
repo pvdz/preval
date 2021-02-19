@@ -31,11 +31,7 @@ let x = 1;
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const x$1 = arrPatternSplat[0];
-  return x$1;
-}
+
 `````
 
 ## Globals

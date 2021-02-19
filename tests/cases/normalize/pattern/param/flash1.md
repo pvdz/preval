@@ -60,37 +60,12 @@ function x(tmpParamPattern, tmpParamPattern$1) {
 ## Output
 
 `````js filename=intro
-function x(tmpParamPattern, tmpParamPattern$1) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const arrPatternStep = arrPatternSplat[0];
-  const arrPatternSplat$1 = [...arrPatternStep];
-  const arrPatternStep$1 = arrPatternSplat$1[0];
-  const arrPatternSplat$2 = [...arrPatternStep$1];
-  const arrPatternStep$2 = arrPatternSplat$2[0];
-  const arrPatternSplat$3 = [...arrPatternStep$2];
-  const arrPatternStep$3 = arrPatternSplat$3[0];
-  const arrPatternSplat$4 = [...arrPatternStep$3];
-  const arrPatternBeforeDefault = arrPatternSplat$4[0];
-  let arrPatternStep$4 = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    arrPatternStep$4 = y;
-  } else {
-    arrPatternStep$4 = arrPatternBeforeDefault;
-  }
-  const arrPatternSplat$5 = [...arrPatternStep$4];
-  arrPatternSplat$5[0];
-  const objPatternNoDefault = tmpParamPattern$1.x;
-  const tmpCalleeParam$1 = [];
-  objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-}
+
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-y
+None
 
 ## Result
 

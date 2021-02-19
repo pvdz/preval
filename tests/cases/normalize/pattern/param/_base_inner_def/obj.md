@@ -31,24 +31,12 @@ function g(tmpParamPattern) {
 ## Output
 
 `````js filename=intro
-function g(tmpParamPattern) {
-  const objPatternBeforeDefault = tmpParamPattern.x;
-  let x = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    x = b;
-  } else {
-    x = objPatternBeforeDefault;
-  }
-  return x;
-}
+
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-b
+None
 
 ## Result
 

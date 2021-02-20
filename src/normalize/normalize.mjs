@@ -4413,9 +4413,6 @@ export function phaseNormalize(fdata, fname) {
             prevObj = tmpName;
             prevComputed = node.computed;
           } else if (node.type === 'CallExpression') {
-
-
-
             if (node.callee.type === 'MemberExpression' || node.callee.type === 'CallExpression') {
               r(node.callee);
             } else {

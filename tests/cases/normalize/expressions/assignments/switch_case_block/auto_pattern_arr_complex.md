@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > assignments > switch_case_block > auto_pattern_arr_complex
+> Normalize > Expressions > Assignments > Switch case block > Auto pattern arr complex
 >
 > Normalization of assignments should work the same everywhere they are
 

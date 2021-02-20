@@ -1,8 +1,8 @@
 # Preval test case
 
-# else_obj.md
+# else_infinity.md
 
-> ifelse > simple > else_obj
+> Ifelse > Simple > Else infinity
 >
 > Eliminate simple tautology
 

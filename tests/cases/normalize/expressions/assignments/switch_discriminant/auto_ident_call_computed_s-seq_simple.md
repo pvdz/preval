@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_s-seq_simple.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_call_computed_s-seq_simple
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident call computed s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

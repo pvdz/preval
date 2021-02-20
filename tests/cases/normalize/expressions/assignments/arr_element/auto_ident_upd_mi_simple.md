@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_upd_mi_simple
+> Normalize > Expressions > Assignments > Arr element > Auto ident upd mi simple
 >
 > Normalization of assignments should work the same everywhere they are
 

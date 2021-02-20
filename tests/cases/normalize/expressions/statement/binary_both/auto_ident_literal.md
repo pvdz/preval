@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > statement > binary_both > auto_ident_literal
+> Normalize > Expressions > Statement > Binary both > Auto ident literal
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

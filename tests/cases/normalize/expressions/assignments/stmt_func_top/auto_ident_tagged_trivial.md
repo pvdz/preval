@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_tagged_trivial
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident tagged trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

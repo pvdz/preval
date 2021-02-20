@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# assign_pattern_prop.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Expressions > Assign pattern prop
 >
 > Testing simple pattern normalizations
 

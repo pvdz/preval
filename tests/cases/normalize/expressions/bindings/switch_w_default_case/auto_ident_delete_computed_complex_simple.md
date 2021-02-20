@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_simple.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_delete_computed_complex_simple
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident delete computed complex simple
 >
 > Normalization of var decls should work the same everywhere they are
 

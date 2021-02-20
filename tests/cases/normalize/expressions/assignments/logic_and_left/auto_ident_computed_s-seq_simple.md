@@ -2,7 +2,7 @@
 
 # auto_ident_computed_s-seq_simple.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_computed_s-seq_simple
+> Normalize > Expressions > Assignments > Logic and left > Auto ident computed s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

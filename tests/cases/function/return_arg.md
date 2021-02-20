@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_arg.md
 
-> function > return_string
+> Function > Return arg
 >
 > Function that its own arg
 

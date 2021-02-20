@@ -2,7 +2,7 @@
 
 # auto_ident_template_trivial.md
 
-> normalize > expressions > statement > throw > auto_ident_template_trivial
+> Normalize > Expressions > Statement > Throw > Auto ident template trivial
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_delete_computed_c-seq_complex
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident delete computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

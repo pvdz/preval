@@ -2,7 +2,7 @@
 
 # stmt_empty.md
 
-> normalize > array > stmt_empty
+> Normalize > Array > Stmt empty
 >
 > Array statements should be eliminated
 

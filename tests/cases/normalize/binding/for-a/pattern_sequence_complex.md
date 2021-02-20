@@ -2,7 +2,7 @@
 
 # pattern_sequence_complex.md
 
-> normalize > assignment > for-a > pattern_sequence_complex
+> Normalize > Binding > For-a > Pattern sequence complex
 >
 > Assignments of all kinds should be normalized in all circumstances
 

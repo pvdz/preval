@@ -2,7 +2,7 @@
 
 # computed_no_yes_no.md
 
-> normalize > optional > computed_no_yes_no
+> Normalize > Optional > Computed no yes no
 >
 > Mix optional with regular member expressions
 

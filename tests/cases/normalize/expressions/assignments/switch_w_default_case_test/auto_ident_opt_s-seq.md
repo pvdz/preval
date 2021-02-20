@@ -2,7 +2,7 @@
 
 # auto_ident_opt_s-seq.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_opt_s-seq
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident opt s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

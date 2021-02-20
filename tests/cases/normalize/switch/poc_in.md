@@ -2,7 +2,7 @@
 
 # poc_in.md
 
-> normalize > switch > poc_in
+> Normalize > Switch > Poc in
 >
 > Fall through example
 

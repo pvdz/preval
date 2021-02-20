@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_complex.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_tagged_complex
+> Normalize > Expressions > Assignments > Arr element > Auto ident tagged complex
 >
 > Normalization of assignments should work the same everywhere they are
 

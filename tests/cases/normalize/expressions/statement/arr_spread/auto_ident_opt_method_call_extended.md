@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_call_extended.md
 
-> normalize > expressions > statement > arr_spread > auto_ident_opt_method_call_extended
+> Normalize > Expressions > Statement > Arr spread > Auto ident opt method call extended
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

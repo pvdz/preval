@@ -1,8 +1,8 @@
 # Preval test case
 
-# arrow_this.md
+# arrow_arguments.md
 
-> normalize > arrow > arrow_this
+> Normalize > Arrow > Arrow arguments
 >
 > Basic case of this wrapping
 

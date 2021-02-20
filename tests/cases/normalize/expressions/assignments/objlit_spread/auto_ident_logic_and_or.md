@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_logic_and_or
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident logic and or
 >
 > Normalization of assignments should work the same everywhere they are
 

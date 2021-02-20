@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_simple.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_new_prop_simple
+> Normalize > Expressions > Assignments > Switch case block > Auto ident new prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

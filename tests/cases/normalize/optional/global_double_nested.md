@@ -2,7 +2,7 @@
 
 # global_double_nested.md
 
-> normalize > member_access > global_double_nested
+> Normalize > Optional > Global double nested
 >
 > Ident property access should not be changed
 

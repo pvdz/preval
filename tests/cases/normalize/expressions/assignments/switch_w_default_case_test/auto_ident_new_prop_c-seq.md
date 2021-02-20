@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_c-seq.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_new_prop_c-seq
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident new prop c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

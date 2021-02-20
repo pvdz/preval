@@ -2,7 +2,7 @@
 
 # auto_ident_prop_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > switch_case_top > auto_ident_prop_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Switch case top > Auto ident prop simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

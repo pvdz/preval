@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident arr pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

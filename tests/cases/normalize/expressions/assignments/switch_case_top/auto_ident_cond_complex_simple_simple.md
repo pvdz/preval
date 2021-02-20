@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_simple_simple.md
 
-> normalize > expressions > assignments > switch_case_top > auto_ident_cond_complex_simple_simple
+> Normalize > Expressions > Assignments > Switch case top > Auto ident cond complex simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

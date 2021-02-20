@@ -1,8 +1,8 @@
 # Preval test case
 
-# multi-nested-assignment-getset.md
+# multi-nested-assignment-getset-computed-rhs-simple.md
 
-> expr_order > multi-nested-assignment-getset
+> Expr order > Multi-nested-assignment-getset-computed-rhs-simple
 >
 > Check whether transform is correct even with multiple nesting levels. The runtime expects to call abcde in that order. Using getters and setters for maximal carnage.
 

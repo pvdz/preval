@@ -2,7 +2,7 @@
 
 # one_pattern.md
 
-> normalize > switch > one_pattern
+> Normalize > Switch > One pattern
 >
 > A switch that contains a pattern needs to have that pattern to be normalized before being able to decompose the switch itself because all bindings need to be declared before the switch in order to make the decomposition safe/correct.
 

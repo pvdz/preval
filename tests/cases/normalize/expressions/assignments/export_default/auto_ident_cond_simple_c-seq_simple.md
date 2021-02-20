@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_c-seq_simple.md
 
-> normalize > expressions > assignments > export_default > auto_ident_cond_simple_c-seq_simple
+> Normalize > Expressions > Assignments > Export default > Auto ident cond simple c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

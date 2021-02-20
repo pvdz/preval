@@ -2,7 +2,7 @@
 
 # var.md
 
-> normalize > ternary > var
+> Normalize > Ternary > Var
 >
 > Example of rewriting a var decl with ternary as init
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# useless_arg.md
+# group_arg.md
 
-> normalize > delete > useless_arg
+> Normalize > Delete > Group arg
 >
 > Delete on non-property is valid but useless
 

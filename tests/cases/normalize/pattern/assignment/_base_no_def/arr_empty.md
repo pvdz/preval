@@ -1,8 +1,8 @@
 # Preval test case
 
-# 1.md
+# arr_empty.md
 
-> normalize > pattern > param > _base > 1
+> Normalize > Pattern > Assignment > Base no def > Arr empty
 >
 > Testing simple pattern normalizations
 

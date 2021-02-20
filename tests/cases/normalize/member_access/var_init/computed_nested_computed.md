@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_nested.md
+# computed_nested_computed.md
 
-> normalize > member_access > global_nested
+> Normalize > Member access > Var init > Computed nested computed
 >
 > Ident property access should not be changed
 

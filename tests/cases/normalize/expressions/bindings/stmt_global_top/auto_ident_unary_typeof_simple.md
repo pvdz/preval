@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > bindings > stmt_global_top > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Bindings > Stmt global top > Auto ident unary typeof simple
 >
 > Normalization of var decls should work the same everywhere they are
 

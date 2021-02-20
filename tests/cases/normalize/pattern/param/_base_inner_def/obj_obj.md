@@ -2,7 +2,7 @@
 
 # obj_obj.md
 
-> normalize > pattern > param > _base > obj_obj
+> Normalize > Pattern > Param > Base inner def > Obj obj
 >
 > Testing simple pattern normalizations
 

@@ -2,7 +2,7 @@
 
 # nested_double.md
 
-> normalize > hoisting > func > nested_double
+> Normalize > Hoisting > Func > Nested double
 >
 > Note: not valid in global. Function declarations are hoisted and will be initialized at the start of a function. So they should be moved to the very top. Even above var decls of the same name, if any. Their order should not matter.
 

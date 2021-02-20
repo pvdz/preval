@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# infinity.md
 
-> exprstmt > null
+> Exprstmt > Infinity
 >
 > Nulls as statement can be eliminated
 

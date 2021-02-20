@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_pattern_arr_complex
+> Normalize > Expressions > Assignments > Computed prop obj > Auto pattern arr complex
 >
 > Normalization of assignments should work the same everywhere they are
 

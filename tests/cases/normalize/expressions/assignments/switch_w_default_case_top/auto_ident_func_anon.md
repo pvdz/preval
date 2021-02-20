@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

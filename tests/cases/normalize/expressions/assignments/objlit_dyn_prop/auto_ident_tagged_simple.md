@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

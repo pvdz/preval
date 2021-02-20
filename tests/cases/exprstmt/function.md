@@ -2,7 +2,7 @@
 
 # function.md
 
-> exprstmt > function
+> Exprstmt > Function
 >
 > Unused functions without side-effects can be eliminated. Okay it's not an expression. You got me.
 

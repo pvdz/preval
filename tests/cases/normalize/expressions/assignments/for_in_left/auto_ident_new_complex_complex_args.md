@@ -2,7 +2,7 @@
 
 # auto_ident_new_complex_complex_args.md
 
-> normalize > expressions > assignments > for_in_left > auto_ident_new_complex_complex_args
+> Normalize > Expressions > Assignments > For in left > Auto ident new complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

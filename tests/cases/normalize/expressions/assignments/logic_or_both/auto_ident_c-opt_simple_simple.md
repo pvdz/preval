@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_simple_simple.md
 
-> normalize > expressions > assignments > logic_or_both > auto_ident_c-opt_simple_simple
+> Normalize > Expressions > Assignments > Logic or both > Auto ident c-opt simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

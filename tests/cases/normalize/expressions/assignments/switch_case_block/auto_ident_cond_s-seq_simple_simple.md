@@ -2,7 +2,7 @@
 
 # auto_ident_cond_s-seq_simple_simple.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_cond_s-seq_simple_simple
+> Normalize > Expressions > Assignments > Switch case block > Auto ident cond s-seq simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

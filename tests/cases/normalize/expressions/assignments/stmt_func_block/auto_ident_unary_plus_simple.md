@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_simple.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_unary_plus_simple
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident unary plus simple
 >
 > Normalization of assignments should work the same everywhere they are
 

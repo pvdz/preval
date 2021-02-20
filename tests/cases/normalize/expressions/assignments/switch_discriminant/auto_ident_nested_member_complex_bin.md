@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident nested member complex bin
 >
 > Normalization of assignments should work the same everywhere they are
 

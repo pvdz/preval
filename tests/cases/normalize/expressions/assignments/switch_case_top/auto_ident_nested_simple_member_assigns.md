@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > assignments > switch_case_top > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Assignments > Switch case top > Auto ident nested simple member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

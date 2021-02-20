@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_arrow
+> Normalize > Expressions > Assignments > Switch case block > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

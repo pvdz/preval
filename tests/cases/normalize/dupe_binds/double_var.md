@@ -2,7 +2,7 @@
 
 # double_var.md
 
-> normalize > dupe_binds > double_var
+> Normalize > Dupe binds > Double var
 >
 > Vars can be redeclared many times. Doesn't matter.
 

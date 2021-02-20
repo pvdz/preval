@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_complex_simple.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_call_computed_complex_simple
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident call computed complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

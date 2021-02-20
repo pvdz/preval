@@ -2,7 +2,7 @@
 
 # nested_after_use.md
 
-> normalize > hoisting > func > nested_after_use
+> Normalize > Hoisting > Exported func > Nested after use
 >
 > Function declarations are hoisted and will be initialized at the start of a function. So they should be moved to the very top. Even above var decls of the same name, if any. Their order should not matter.
 

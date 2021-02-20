@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_simple_assign_complex_member.md
 
-> normalize > expressions > statement > switch_discriminant > auto_ident_computed_simple_simple_assign_complex_member
+> Normalize > Expressions > Statement > Switch discriminant > Auto ident computed simple simple assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

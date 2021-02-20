@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_regex
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

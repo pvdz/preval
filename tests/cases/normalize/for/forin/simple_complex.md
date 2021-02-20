@@ -2,7 +2,7 @@
 
 # simple_complex.md
 
-> normalize > for > forin > simple_complex
+> Normalize > For > Forin > Simple complex
 >
 > For-in must be normalized
 

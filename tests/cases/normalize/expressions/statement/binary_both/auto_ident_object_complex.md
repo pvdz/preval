@@ -2,7 +2,7 @@
 
 # auto_ident_object_complex.md
 
-> normalize > expressions > statement > binary_both > auto_ident_object_complex
+> Normalize > Expressions > Statement > Binary both > Auto ident object complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # if_new.md
 
-> ifelse > harder > if_new
+> Ifelse > Harder > If new
 >
 > The `new` operator is guaranteed to return an object which is always truthy
 

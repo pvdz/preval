@@ -2,7 +2,7 @@
 
 # simple_pattern.md
 
-> normalize > assignment > export-default > simple_pattern
+> Normalize > Binding > Export-default > Simple pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 

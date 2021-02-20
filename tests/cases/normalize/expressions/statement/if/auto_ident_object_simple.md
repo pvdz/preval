@@ -2,7 +2,7 @@
 
 # auto_ident_object_simple.md
 
-> normalize > expressions > statement > if > auto_ident_object_simple
+> Normalize > Expressions > Statement > If > Auto ident object simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

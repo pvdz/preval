@@ -2,7 +2,7 @@
 
 # map_to_map.md
 
-> random > map_to_map
+> Random > Map to map
 >
 > Defining a map with primitives that is immediately converted to another map
 

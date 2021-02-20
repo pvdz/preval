@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

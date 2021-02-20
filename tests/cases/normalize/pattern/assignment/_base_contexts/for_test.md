@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# for_test.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Base contexts > For test
 >
 > Testing simple pattern normalizations
 

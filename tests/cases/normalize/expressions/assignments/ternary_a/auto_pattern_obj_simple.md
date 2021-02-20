@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > ternary_a > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > Ternary a > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

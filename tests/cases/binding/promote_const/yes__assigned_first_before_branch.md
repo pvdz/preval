@@ -1,8 +1,8 @@
 # Preval test case
 
-# hoisting_use_before_define.md
+# yes__assigned_first_before_branch.md
 
-> binding > hoisting_use_before_define
+> Binding > Promote const > Yes  assigned first before branch
 >
 > Trying to create classic tdz problems
 

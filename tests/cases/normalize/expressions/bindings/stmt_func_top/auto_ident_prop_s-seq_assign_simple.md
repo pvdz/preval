@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident prop s-seq assign simple
 >
 > Normalization of var decls should work the same everywhere they are
 

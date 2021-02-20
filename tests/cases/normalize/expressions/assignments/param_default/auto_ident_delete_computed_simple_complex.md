@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_complex.md
 
-> normalize > expressions > assignments > param_default > auto_ident_delete_computed_simple_complex
+> Normalize > Expressions > Assignments > Param default > Auto ident delete computed simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

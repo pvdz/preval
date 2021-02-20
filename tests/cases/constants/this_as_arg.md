@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# this_as_arg.md
 
-> constants > null
+> Constants > This as arg
 >
 > A constant set to null should be eliminated
 

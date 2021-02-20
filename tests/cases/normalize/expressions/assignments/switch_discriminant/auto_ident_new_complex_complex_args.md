@@ -2,7 +2,7 @@
 
 # auto_ident_new_complex_complex_args.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_new_complex_complex_args
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident new complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

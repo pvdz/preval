@@ -1,8 +1,8 @@
 # Preval test case
 
-# early_access.md
+# early_access_hard.md
 
-> normalize > var > early_access
+> Normalize > Var > Early access hard
 >
 > Actual early access case
 

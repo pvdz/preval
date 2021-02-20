@@ -1,8 +1,8 @@
 # Preval test case
 
-# var.md
+# return.md
 
-> normalize > ternary > var
+> Normalize > Ternary > Return
 >
 > Example of rewriting a return statement with ternary
 

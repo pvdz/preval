@@ -1,8 +1,8 @@
 # Preval test case
 
-# redundant_back2back.md
+# write_read_write_read_write.md
 
-> assigns > redundant_back2back
+> Assigns > Write read write read write
 >
 > Testing binding mutation optimizations
 

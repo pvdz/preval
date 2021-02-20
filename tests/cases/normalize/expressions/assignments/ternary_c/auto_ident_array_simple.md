@@ -2,7 +2,7 @@
 
 # auto_ident_array_simple.md
 
-> normalize > expressions > assignments > ternary_c > auto_ident_array_simple
+> Normalize > Expressions > Assignments > Ternary c > Auto ident array simple
 >
 > Normalization of assignments should work the same everywhere they are
 

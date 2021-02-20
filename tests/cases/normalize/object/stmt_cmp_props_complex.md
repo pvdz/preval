@@ -1,8 +1,8 @@
 # Preval test case
 
-# stmt_empty.md
+# stmt_cmp_props_complex.md
 
-> normalize > object > stmt_empty
+> Normalize > Object > Stmt cmp props complex
 >
 > Objects as statement should be eliminated
 

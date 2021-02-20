@@ -2,7 +2,7 @@
 
 # simple_implicit_read.md
 
-> globals > simple_implicit_read
+> Globals > Simple implicit read
 >
 > Reading from an implicit global
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# opt_prop_nonopt_prop_call_pass.md
+# opt_prop_nonopt_prop_pass.md
 
-> normalize > optional > opt_prop_nonopt_prop_call_pass
+> Normalize > Optional > Opt prop nonopt prop pass
 >
 > Make sure this works properly
 

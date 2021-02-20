@@ -2,7 +2,7 @@
 
 # pattern_sequence_simple.md
 
-> normalize > assignment > for-a > pattern_sequence_simple
+> Normalize > Binding > For-a > Pattern sequence simple
 >
 > Assignments of all kinds should be normalized in all circumstances
 

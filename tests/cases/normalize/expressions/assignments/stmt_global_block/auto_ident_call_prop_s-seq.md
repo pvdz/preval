@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_s-seq.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_call_prop_s-seq
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident call prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

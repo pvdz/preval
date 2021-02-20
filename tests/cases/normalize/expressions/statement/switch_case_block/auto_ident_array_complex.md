@@ -2,7 +2,7 @@
 
 # auto_ident_array_complex.md
 
-> normalize > expressions > statement > switch_case_block > auto_ident_array_complex
+> Normalize > Expressions > Statement > Switch case block > Auto ident array complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

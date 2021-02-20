@@ -2,7 +2,7 @@
 
 # decl_after.md
 
-> normalize > dce > return > decl_after
+> Normalize > Dce > Return > Decl after
 >
 > Can we DCE without worrying about things?
 

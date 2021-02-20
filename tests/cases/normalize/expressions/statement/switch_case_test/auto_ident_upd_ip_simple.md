@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > statement > switch_case_test > auto_ident_upd_ip_simple
+> Normalize > Expressions > Statement > Switch case test > Auto ident upd ip simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

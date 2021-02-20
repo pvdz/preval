@@ -2,7 +2,7 @@
 
 # auto_ident_prop_complex.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_prop_complex
+> Normalize > Expressions > Statement > Ternary b > Auto ident prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

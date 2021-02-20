@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

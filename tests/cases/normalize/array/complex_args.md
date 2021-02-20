@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# complex_args.md
 
-> normalize > new > call
+> Normalize > Array > Complex args
 >
 > An array with complex elements should be normalized to a temp var
 

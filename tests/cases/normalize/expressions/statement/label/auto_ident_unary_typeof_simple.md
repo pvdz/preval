@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > statement > label > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Statement > Label > Auto ident unary typeof simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

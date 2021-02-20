@@ -2,7 +2,7 @@
 
 # empty_string_call.md
 
-> normalize > optional > empty_string_call
+> Normalize > Optional > Empty string call
 >
 > Empty string should make `?.` to return undefined. This should throw, not return undefined.
 

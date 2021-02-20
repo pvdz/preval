@@ -2,7 +2,7 @@
 
 # step1.md
 
-> regressions > func_call_ternary > step1
+> Regressions > Infinite loop due to hoisting > Step1
 >
 > Minimal test case for an infinite loop at some point. This is after one step of normalization (at the time).
 

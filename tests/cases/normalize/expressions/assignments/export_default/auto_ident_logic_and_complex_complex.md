@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_complex_complex.md
 
-> normalize > expressions > assignments > export_default > auto_ident_logic_and_complex_complex
+> Normalize > Expressions > Assignments > Export default > Auto ident logic and complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

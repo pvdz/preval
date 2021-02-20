@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_complex.md
 
-> normalize > expressions > statement > regular_prop_obj > auto_ident_delete_prop_complex
+> Normalize > Expressions > Statement > Regular prop obj > Auto ident delete prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

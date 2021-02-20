@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_string_tostring.md
 
-> function > return_string
+> Function > Return string tostring
 >
 > A function that returns Date.now()
 

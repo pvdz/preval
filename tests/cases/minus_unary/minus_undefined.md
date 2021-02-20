@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_undefined.md
+# minus_undefined.md
 
-> plusmin > min_undefined
+> Minus unary > Minus undefined
 >
 > Literals with a minus unary coerced to a negative number (or positive if the arg is negative)
 

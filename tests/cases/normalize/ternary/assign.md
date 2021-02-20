@@ -2,7 +2,7 @@
 
 # assign.md
 
-> normalize > ternary > assign
+> Normalize > Ternary > Assign
 >
 > If an assignment is a statement then a ternary should become an if-else
 

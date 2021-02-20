@@ -2,7 +2,7 @@
 
 # nested_getters_middle.md
 
-> normalize > assignment > nested_getters_middle
+> Normalize > Expressions > Nested getters middle
 >
 > Example of how getters and setters make the transform for `a=b.foo=c` non-trivial.
 

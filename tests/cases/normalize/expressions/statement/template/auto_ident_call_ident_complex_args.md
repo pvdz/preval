@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > statement > template > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Statement > Template > Auto ident call ident complex args
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

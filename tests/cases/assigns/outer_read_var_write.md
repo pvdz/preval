@@ -2,7 +2,7 @@
 
 # outer_read_var_write.md
 
-> assigns > outer_read_var_write
+> Assigns > Outer read var write
 >
 > Turning a var into a const. Or not.
 

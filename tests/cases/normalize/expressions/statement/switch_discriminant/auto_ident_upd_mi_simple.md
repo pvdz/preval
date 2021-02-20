@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > statement > switch_discriminant > auto_ident_upd_mi_simple
+> Normalize > Expressions > Statement > Switch discriminant > Auto ident upd mi simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

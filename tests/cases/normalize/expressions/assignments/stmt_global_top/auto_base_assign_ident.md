@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_base_assign_ident
+> Normalize > Expressions > Assignments > Stmt global top > Auto base assign ident
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_complex_member.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_prop_s-seq_assign_complex_member
+> Normalize > Expressions > Assignments > Objlit init > Auto ident prop s-seq assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

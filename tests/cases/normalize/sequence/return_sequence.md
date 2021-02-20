@@ -2,7 +2,7 @@
 
 # return_sequence.md
 
-> normalize > sequence > return_sequence
+> Normalize > Sequence > Return sequence
 >
 > Returning a sequence
 

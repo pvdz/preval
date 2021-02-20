@@ -2,7 +2,7 @@
 
 # base.md
 
-> normalize > dowhile > base
+> Normalize > Dowhile > Base
 >
 > We transform do-while to regular while
 

@@ -2,7 +2,7 @@
 
 # number.md
 
-> exprstmt > number
+> Exprstmt > Number
 >
 > Numbers as statement can be eliminated
 

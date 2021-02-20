@@ -2,7 +2,7 @@
 
 # auto_ident_prop_complex.md
 
-> normalize > expressions > statement > switch_case_test > auto_ident_prop_complex
+> Normalize > Expressions > Statement > Switch case test > Auto ident prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > assignments > for_b > auto_ident_upd_ip_simple
+> Normalize > Expressions > Assignments > For b > Auto ident upd ip simple
 >
 > Normalization of assignments should work the same everywhere they are
 

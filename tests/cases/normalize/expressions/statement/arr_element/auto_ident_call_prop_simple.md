@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > statement > arr_element > auto_ident_call_prop_simple
+> Normalize > Expressions > Statement > Arr element > Auto ident call prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

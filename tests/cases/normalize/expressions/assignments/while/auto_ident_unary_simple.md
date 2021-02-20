@@ -2,7 +2,7 @@
 
 # auto_ident_unary_simple.md
 
-> normalize > expressions > assignments > while > auto_ident_unary_simple
+> Normalize > Expressions > Assignments > While > Auto ident unary simple
 >
 > Normalization of assignments should work the same everywhere they are
 

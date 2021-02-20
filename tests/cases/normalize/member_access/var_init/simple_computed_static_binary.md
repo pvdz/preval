@@ -1,8 +1,8 @@
 # Preval test case
 
-# dynamic_static.md
+# simple_computed_static_binary.md
 
-> normalize > member_access > dynamic_static
+> Normalize > Member access > Var init > Simple computed static binary
 >
 > Member expressions with literal keys should be inlined. When they are static expressions they should still be normalized after normalization.
 

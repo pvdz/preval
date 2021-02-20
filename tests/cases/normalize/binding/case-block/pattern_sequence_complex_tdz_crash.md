@@ -1,8 +1,8 @@
 # Preval test case
 
-# pattern_sequence_complex.md
+# pattern_sequence_complex_tdz_crash.md
 
-> normalize > assignment > case-block > pattern_sequence_complex
+> Normalize > Binding > Case-block > Pattern sequence complex tdz crash
 >
 > Assignments of all kinds should be normalized in all circumstances
 

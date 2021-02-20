@@ -1,8 +1,8 @@
 # Preval test case
 
-# default_yes_yes__0.md
+# default_yes_yes__0_1.md
 
-> normalize > pattern >  > param > arr > arr > default_yes_yes__0
+> Normalize > Pattern > Param > Arr > Arr > Default yes yes  0 1
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

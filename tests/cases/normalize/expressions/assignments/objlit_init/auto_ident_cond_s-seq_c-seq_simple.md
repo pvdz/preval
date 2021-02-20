@@ -2,7 +2,7 @@
 
 # auto_ident_cond_s-seq_c-seq_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_cond_s-seq_c-seq_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto ident cond s-seq c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

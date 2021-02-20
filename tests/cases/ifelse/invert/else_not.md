@@ -2,7 +2,7 @@
 
 # else_not.md
 
-> ifelse > invert > else_not
+> Ifelse > Invert > Else not
 >
 > Invert the logic
 

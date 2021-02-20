@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_array_empty
+> Normalize > Expressions > Bindings > Switch case > Auto ident array empty
 >
 > Normalization of var decls should work the same everywhere they are
 

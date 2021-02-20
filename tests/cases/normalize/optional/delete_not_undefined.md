@@ -2,7 +2,7 @@
 
 # delete_not_undefined.md
 
-> normalize > optional > delete_not_undefined
+> Normalize > Optional > Delete not undefined
 >
 > Delete on member expression is special casing. Works with optional chaining.
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# hoisting_use_before_define.md
+# no__hoisting_use_before_define.md
 
-> binding > hoisting_use_before_define
+> Binding > Promote const > No  hoisting use before define
 >
 > Trying to create classic tdz problems
 

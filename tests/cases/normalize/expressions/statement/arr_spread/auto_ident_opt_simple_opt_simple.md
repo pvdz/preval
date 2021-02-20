@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple_opt_simple.md
 
-> normalize > expressions > statement > arr_spread > auto_ident_opt_simple_opt_simple
+> Normalize > Expressions > Statement > Arr spread > Auto ident opt simple opt simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

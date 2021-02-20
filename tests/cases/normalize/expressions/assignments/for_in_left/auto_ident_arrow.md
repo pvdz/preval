@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > for_in_left > auto_ident_arrow
+> Normalize > Expressions > Assignments > For in left > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

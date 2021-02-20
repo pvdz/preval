@@ -1,8 +1,8 @@
 # Preval test case
 
-# 5.md
+# arr_arr.md
 
-> normalize > pattern > param > _base > 5
+> Normalize > Pattern > Assignment > Base unique > Arr arr
 >
 > Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
 

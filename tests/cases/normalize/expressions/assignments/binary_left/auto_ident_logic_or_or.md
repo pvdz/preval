@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_or.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_logic_or_or
+> Normalize > Expressions > Assignments > Binary left > Auto ident logic or or
 >
 > Normalization of assignments should work the same everywhere they are
 

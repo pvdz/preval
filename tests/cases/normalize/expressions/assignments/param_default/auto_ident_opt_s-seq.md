@@ -2,7 +2,7 @@
 
 # auto_ident_opt_s-seq.md
 
-> normalize > expressions > assignments > param_default > auto_ident_opt_s-seq
+> Normalize > Expressions > Assignments > Param default > Auto ident opt s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

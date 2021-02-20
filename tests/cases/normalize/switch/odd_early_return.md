@@ -2,7 +2,7 @@
 
 # odd_early_return.md
 
-> normalize > switch > odd_early_return
+> Normalize > Switch > Odd early return
 >
 > Sorting out the branching stuff
 

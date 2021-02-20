@@ -2,7 +2,7 @@
 
 # prop_no_yes_no.md
 
-> normalize > nullish > prop_no_yes_no
+> Normalize > Nullish > Prop no yes no
 >
 > Mix nullish with regular member expressions
 

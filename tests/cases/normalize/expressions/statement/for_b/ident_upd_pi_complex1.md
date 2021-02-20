@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_upd_pi_complex.md
+# ident_upd_pi_complex1.md
 
-> normalize > expressions > statement > for_b > auto_ident_upd_pi_complex
+> Normalize > Expressions > Statement > For b > Ident upd pi complex1
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

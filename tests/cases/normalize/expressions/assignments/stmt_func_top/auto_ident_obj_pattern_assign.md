@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

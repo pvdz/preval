@@ -2,7 +2,7 @@
 
 # regression.md
 
-> normalize > assignment > regression
+> Normalize > Expressions > Regression
 >
 > This case was being transformed incorrectly, with a sequence ending up as the lhs of an assignment (which is invalid).
 

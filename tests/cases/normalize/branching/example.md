@@ -2,7 +2,7 @@
 
 # example.md
 
-> normalize > branching > example
+> Normalize > Branching > Example
 >
 > Just toying with the idea here
 

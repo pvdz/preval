@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > logic_or_both > auto_ident_regex
+> Normalize > Expressions > Assignments > Logic or both > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

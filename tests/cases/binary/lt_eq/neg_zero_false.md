@@ -2,7 +2,7 @@
 
 # neg_zero_false.md
 
-> eq > neg_zero_false
+> Binary > Lt eq > Neg zero false
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

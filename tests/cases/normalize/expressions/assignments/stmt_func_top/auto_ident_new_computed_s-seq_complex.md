@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_complex.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_new_computed_s-seq_complex
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident new computed s-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

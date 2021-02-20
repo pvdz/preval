@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_simple_complex.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_logic_and_simple_complex
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident logic and simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

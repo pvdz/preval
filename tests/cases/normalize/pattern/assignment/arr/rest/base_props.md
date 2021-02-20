@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# base_props.md
 
-> normalize > pattern >  > param > arr > rest > base
+> Normalize > Pattern > Assignment > Arr > Rest > Base props
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

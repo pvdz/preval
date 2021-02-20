@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_s-seq_complex.md
 
-> normalize > expressions > assignments > logic_and_right > auto_ident_delete_computed_s-seq_complex
+> Normalize > Expressions > Assignments > Logic and right > Auto ident delete computed s-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign_seq.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_obj_pattern_assign_seq
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident obj pattern assign seq
 >
 > Normalization of assignments should work the same everywhere they are
 

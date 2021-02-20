@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

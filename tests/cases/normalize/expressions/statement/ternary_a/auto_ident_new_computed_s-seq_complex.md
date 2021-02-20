@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_complex.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_new_computed_s-seq_complex
+> Normalize > Expressions > Statement > Ternary a > Auto ident new computed s-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

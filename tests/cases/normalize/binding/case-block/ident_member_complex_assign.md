@@ -2,7 +2,7 @@
 
 # ident_member_complex_assign.md
 
-> normalize > assignment > case-block > ident_member_complex_assign
+> Normalize > Binding > Case-block > Ident member complex assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

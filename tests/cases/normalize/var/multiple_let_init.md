@@ -2,7 +2,7 @@
 
 # multiple_let_init.md
 
-> normalize > var > multiple_let_init
+> Normalize > Var > Multiple let init
 >
 > Declaring multiple bindings should be normalized to separate declarations such that there is one binding per declaration.
 

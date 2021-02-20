@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_simple.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_delete_computed_complex_simple
+> Normalize > Expressions > Statement > Objlit spread > Auto ident delete computed complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

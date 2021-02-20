@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_call.md
+# sequence_ident_computed.md
 
-> normalize > member_access > global_group_call
+> Normalize > Member access > Assign rhs > Sequence ident computed
 >
 > Want to make sure we don't accidentally screw up ordering with multiple var decls
 

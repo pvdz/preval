@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_complex.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_delete_computed_complex_complex
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident delete computed complex complex
 >
 > Normalization of var decls should work the same everywhere they are
 

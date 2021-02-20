@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > statement > switch_discriminant > auto_pattern_arr_s-seq
+> Normalize > Expressions > Statement > Switch discriminant > Auto pattern arr s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > assignments > param_default > auto_base_assign_pattern_obj
+> Normalize > Expressions > Assignments > Param default > Auto base assign pattern obj
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > statement > stmt_global_block > auto_pattern_arr_complex
+> Normalize > Expressions > Statement > Stmt global block > Auto pattern arr complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

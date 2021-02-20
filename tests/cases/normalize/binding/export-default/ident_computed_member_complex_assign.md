@@ -2,7 +2,7 @@
 
 # ident_computed_member_complex_assign.md
 
-> normalize > assignment > export-default > ident_computed_member_complex_assign
+> Normalize > Binding > Export-default > Ident computed member complex assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

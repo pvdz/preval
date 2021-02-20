@@ -2,7 +2,7 @@
 
 # computed_key_number_jard.md
 
-> normalize > object > computed_key_number_jard
+> Normalize > Object > Computed key number jard
 >
 > Computed key that is a number value might as well not be computed but has to be converted properly
 

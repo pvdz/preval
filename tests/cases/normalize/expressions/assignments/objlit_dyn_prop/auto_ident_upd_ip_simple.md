@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_upd_ip_simple
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident upd ip simple
 >
 > Normalization of assignments should work the same everywhere they are
 

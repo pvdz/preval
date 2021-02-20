@@ -1,8 +1,8 @@
 # Preval test case
 
-# end.md
+# if.md
 
-> normalize > sequence > end
+> Normalize > Sequence > If
 >
 > Making sure that breaking up sequences doesn't run into sub-statement trouble here.
 

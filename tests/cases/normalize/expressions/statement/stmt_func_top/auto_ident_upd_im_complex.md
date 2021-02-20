@@ -2,7 +2,7 @@
 
 # auto_ident_upd_im_complex.md
 
-> normalize > expressions > statement > stmt_func_top > auto_ident_upd_im_complex
+> Normalize > Expressions > Statement > Stmt func top > Auto ident upd im complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

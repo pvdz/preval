@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > while > auto_ident_call_computed_c-seq_complex
+> Normalize > Expressions > Assignments > While > Auto ident call computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > for_in_left > auto_ident_regex
+> Normalize > Expressions > Assignments > For in left > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

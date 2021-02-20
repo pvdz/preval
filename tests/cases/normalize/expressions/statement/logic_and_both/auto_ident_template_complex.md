@@ -2,7 +2,7 @@
 
 # auto_ident_template_complex.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_template_complex
+> Normalize > Expressions > Statement > Logic and both > Auto ident template complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

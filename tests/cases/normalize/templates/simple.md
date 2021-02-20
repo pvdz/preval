@@ -2,7 +2,7 @@
 
 # simple.md
 
-> normalize > templates > simple
+> Normalize > Templates > Simple
 >
 > A template that has complex elements should be normalized to only contain simple ones
 

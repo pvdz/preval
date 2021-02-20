@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_pattern_obj_complex
+> Normalize > Expressions > Assignments > Switch w default case block > Auto pattern obj complex
 >
 > Normalization of assignments should work the same everywhere they are
 

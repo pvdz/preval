@@ -1,8 +1,8 @@
 # Preval test case
 
-# poc.md
+# poc_out.md
 
-> normalize > switch > poc
+> Normalize > Switch > Poc out
 >
 > Just a thought
 

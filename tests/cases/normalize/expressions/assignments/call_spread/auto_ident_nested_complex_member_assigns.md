@@ -2,7 +2,7 @@
 
 # auto_ident_nested_complex_member_assigns.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_nested_complex_member_assigns
+> Normalize > Expressions > Assignments > Call spread > Auto ident nested complex member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

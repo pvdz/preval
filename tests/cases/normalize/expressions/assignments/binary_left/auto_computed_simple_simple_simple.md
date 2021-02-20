@@ -2,7 +2,7 @@
 
 # auto_computed_simple_simple_simple.md
 
-> normalize > expressions > assignments > binary_left > auto_computed_simple_simple_simple
+> Normalize > Expressions > Assignments > Binary left > Auto computed simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

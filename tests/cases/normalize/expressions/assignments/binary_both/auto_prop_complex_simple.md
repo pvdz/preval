@@ -2,7 +2,7 @@
 
 # auto_prop_complex_simple.md
 
-> normalize > expressions > assignments > binary_both > auto_prop_complex_simple
+> Normalize > Expressions > Assignments > Binary both > Auto prop complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

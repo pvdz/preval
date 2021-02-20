@@ -2,7 +2,7 @@
 
 # import_should_keep.md
 
-> normalize > naming > import_should_keep
+> Normalize > Naming > Import should keep
 >
 > The exported names are "observable" so their name should remain the same after the normalization step, at least.
 

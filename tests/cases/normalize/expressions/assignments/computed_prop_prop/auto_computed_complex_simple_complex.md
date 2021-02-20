@@ -2,7 +2,7 @@
 
 # auto_computed_complex_simple_complex.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_computed_complex_simple_complex
+> Normalize > Expressions > Assignments > Computed prop prop > Auto computed complex simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

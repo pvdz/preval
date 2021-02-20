@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# literal_and_call.md
 
-> normalize > new > call
+> Normalize > Array > Literal and call
 >
 > Make sure empty array works
 

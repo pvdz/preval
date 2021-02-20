@@ -1,8 +1,8 @@
 # Preval test case
 
-# unused.md
+# unused_only_return.md
 
-> normalize > return > unused
+> Normalize > Return > Unused only return
 >
 > Unused return statements should be eliminated
 

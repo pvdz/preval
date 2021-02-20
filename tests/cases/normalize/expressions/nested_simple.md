@@ -2,7 +2,7 @@
 
 # nested_simple.md
 
-> normalize > assignment > nested_simple
+> Normalize > Expressions > Nested simple
 >
 > Nested assignments should be split up
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_prop_simple
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_prop_simple_complex.md
 
-> normalize > expressions > assignments > arr_element > auto_prop_simple_complex
+> Normalize > Expressions > Assignments > Arr element > Auto prop simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > assignments > for_in_right > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Assignments > For in right > Auto ident nested member complex bin
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_call.md
+# global_nested_var.md
 
-> normalize > member_access > global_group_call
+> Normalize > Nullish > Global nested var
 >
 > Want to make sure we don't accidentally screw up ordering with multiple var decls
 

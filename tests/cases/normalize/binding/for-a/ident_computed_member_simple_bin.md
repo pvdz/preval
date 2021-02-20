@@ -2,7 +2,7 @@
 
 # ident_computed_member_simple_bin.md
 
-> normalize > assignment > for-a > ident_computed_member_simple_bin
+> Normalize > Binding > For-a > Ident computed member simple bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 

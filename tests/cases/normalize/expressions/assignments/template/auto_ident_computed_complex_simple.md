@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_simple.md
 
-> normalize > expressions > assignments > template > auto_ident_computed_complex_simple
+> Normalize > Expressions > Assignments > Template > Auto ident computed complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

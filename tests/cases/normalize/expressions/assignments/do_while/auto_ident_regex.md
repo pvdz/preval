@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > do_while > auto_ident_regex
+> Normalize > Expressions > Assignments > Do while > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

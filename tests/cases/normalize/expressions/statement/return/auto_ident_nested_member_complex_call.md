@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_call.md
 
-> normalize > expressions > statement > return > auto_ident_nested_member_complex_call
+> Normalize > Expressions > Statement > Return > Auto ident nested member complex call
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

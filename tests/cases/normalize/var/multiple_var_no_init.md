@@ -2,7 +2,7 @@
 
 # multiple_var_no_init.md
 
-> normalize > var > multiple_var_no_init
+> Normalize > Var > Multiple var no init
 >
 > Declaring multiple bindings should be normalized to separate declarations such that there is one binding per declaration.
 

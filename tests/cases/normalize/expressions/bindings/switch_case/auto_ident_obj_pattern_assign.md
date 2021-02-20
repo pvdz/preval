@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Bindings > Switch case > Auto ident obj pattern assign
 >
 > Normalization of var decls should work the same everywhere they are
 

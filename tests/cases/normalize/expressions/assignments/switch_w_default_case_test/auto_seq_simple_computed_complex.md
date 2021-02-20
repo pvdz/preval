@@ -2,7 +2,7 @@
 
 # auto_seq_simple_computed_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_seq_simple_computed_complex
+> Normalize > Expressions > Assignments > Switch w default case test > Auto seq simple computed complex
 >
 > Normalization of assignments should work the same everywhere they are
 

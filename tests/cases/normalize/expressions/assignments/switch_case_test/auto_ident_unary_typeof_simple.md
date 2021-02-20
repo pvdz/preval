@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto ident unary typeof simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_double_nested.md
+# double_nested.md
 
-> normalize > member_access > global_double_nested
+> Normalize > Member access > Assign rhs > Double nested
 >
 > Ident property access should not be changed
 

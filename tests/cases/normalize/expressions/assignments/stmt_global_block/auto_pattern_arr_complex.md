@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_pattern_arr_complex
+> Normalize > Expressions > Assignments > Stmt global block > Auto pattern arr complex
 >
 > Normalization of assignments should work the same everywhere they are
 

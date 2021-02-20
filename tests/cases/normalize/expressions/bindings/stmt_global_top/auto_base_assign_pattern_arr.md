@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > bindings > stmt_global_top > auto_base_assign_pattern_arr
+> Normalize > Expressions > Bindings > Stmt global top > Auto base assign pattern arr
 >
 > Normalization of var decls should work the same everywhere they are
 

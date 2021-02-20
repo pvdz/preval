@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_complex.md
 
-> normalize > expressions > statement > switch_w_default_case_block > auto_ident_opt_call_complex_complex
+> Normalize > Expressions > Statement > Switch w default case block > Auto ident opt call complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

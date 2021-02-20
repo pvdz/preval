@@ -1,8 +1,8 @@
 # Preval test case
 
-# if-break.md
+# nested_block_problem.md
 
-> normalize > switch > if-break
+> Normalize > Dce > Nested block problem
 >
 > Breaks don't need to be toplevel to a case...
 

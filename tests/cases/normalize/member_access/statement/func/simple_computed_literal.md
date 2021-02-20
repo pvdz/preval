@@ -1,8 +1,8 @@
 # Preval test case
 
-# dynamic_static.md
+# simple_computed_literal.md
 
-> normalize > member_access > dynamic_static
+> Normalize > Member access > Statement > Func > Simple computed literal
 >
 > Member expressions with literal keys should be inlined
 

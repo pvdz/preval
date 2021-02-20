@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_arrow
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

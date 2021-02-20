@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple_complex.md
+# assign_complex_simple_complex.md
 
-> logical > and > simple_complex
+> Logical > And > Assign complex simple complex
 >
 > Logical ops need to be normalized
 

@@ -2,7 +2,7 @@
 
 # semi.md
 
-> normalize > class > semi
+> Normalize > Class > Semi
 >
 > Classes can have semi's. They shouldn't matter.
 

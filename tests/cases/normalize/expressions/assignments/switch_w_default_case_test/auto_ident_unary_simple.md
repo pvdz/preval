@@ -2,7 +2,7 @@
 
 # auto_ident_unary_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_unary_simple
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident unary simple
 >
 > Normalization of assignments should work the same everywhere they are
 

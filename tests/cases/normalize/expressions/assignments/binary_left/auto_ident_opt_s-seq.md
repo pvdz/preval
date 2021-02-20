@@ -2,7 +2,7 @@
 
 # auto_ident_opt_s-seq.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_opt_s-seq
+> Normalize > Expressions > Assignments > Binary left > Auto ident opt s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

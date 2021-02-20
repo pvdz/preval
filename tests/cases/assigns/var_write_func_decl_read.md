@@ -2,7 +2,7 @@
 
 # var_write_func_decl_read.md
 
-> assigns > var_write_func_decl_read
+> Assigns > Var write func decl read
 >
 > Turning a var into a const. Or not.
 

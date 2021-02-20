@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_unary_typeof_complex
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident unary typeof complex
 >
 > Normalization of assignments should work the same everywhere they are
 

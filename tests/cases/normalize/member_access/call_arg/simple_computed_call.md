@@ -1,8 +1,8 @@
 # Preval test case
 
-# dynamic.md
+# simple_computed_call.md
 
-> normalize > member_access > dynamic
+> Normalize > Member access > Call arg > Simple computed call
 >
 > Dynamic property access should be normalized like all the other things
 

@@ -2,7 +2,7 @@
 
 # default_no__123.md
 
-> normalize > pattern >  > param > obj > default_no__123
+> Normalize > Pattern > Binding > Obj > Default no  123
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

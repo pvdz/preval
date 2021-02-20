@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_s-seq_simple.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_cond_complex_s-seq_simple
+> Normalize > Expressions > Assignments > Arr element > Auto ident cond complex s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

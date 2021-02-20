@@ -2,7 +2,7 @@
 
 # infinity.md
 
-> normalize > unary > inv > infinity
+> Normalize > Unary > Inv > Infinity
 >
 > Inverting literals should be statically resolved
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_sequence.md
+# if_sequence_prop.md
 
-> normalize > sequence > return_sequence
+> Normalize > Sequence > If sequence prop
 >
 > Conditional sequence with property
 

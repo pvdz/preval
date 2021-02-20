@@ -2,7 +2,7 @@
 
 # auto_computed_complex_simple_simple.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_computed_complex_simple_simple
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto computed complex simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # minus_zero.md
 
-> normalize > unary > minus > minus_zero
+> Normalize > Unary > Plus > Minus zero
 >
 > Unaries should be statically resolved where possible
 

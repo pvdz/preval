@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident new ident complex args
 >
 > Normalization of var decls should work the same everywhere they are
 

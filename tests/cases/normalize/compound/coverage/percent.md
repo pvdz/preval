@@ -2,7 +2,7 @@
 
 # percent.md
 
-> normalize > compound > coverage > percent
+> Normalize > Compound > Coverage > Percent
 >
 > Compound assignments should destructure to regular assignments
 

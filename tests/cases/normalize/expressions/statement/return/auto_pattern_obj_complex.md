@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > statement > return > auto_pattern_obj_complex
+> Normalize > Expressions > Statement > Return > Auto pattern obj complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

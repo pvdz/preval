@@ -2,7 +2,7 @@
 
 # auto_prop_complex_simple.md
 
-> normalize > expressions > assignments > ternary_c > auto_prop_complex_simple
+> Normalize > Expressions > Assignments > Ternary c > Auto prop complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # if_else.md
 
-> normalize > blocks > if_else
+> Normalize > Blocks > If else
 >
 > Add blocks to sub-statements
 

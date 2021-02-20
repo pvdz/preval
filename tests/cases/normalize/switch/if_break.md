@@ -1,8 +1,8 @@
 # Preval test case
 
-# if-break.md
+# if_break.md
 
-> normalize > switch > if-break
+> Normalize > Switch > If break
 >
 > Breaks don't need to be toplevel to a case...
 

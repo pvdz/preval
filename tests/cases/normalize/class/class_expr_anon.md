@@ -2,7 +2,7 @@
 
 # class_expr_anon.md
 
-> normalize > class > class_expr_anon
+> Normalize > Class > Class expr anon
 >
 > Class expression base
 

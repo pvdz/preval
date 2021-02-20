@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

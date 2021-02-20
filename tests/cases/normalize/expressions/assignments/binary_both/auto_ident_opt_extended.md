@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Binary both > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

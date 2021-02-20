@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > switch_default > auto_ident_call_computed_c-seq_complex
+> Normalize > Expressions > Assignments > Switch default > Auto ident call computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > for_in_right > auto_ident_object_empty
+> Normalize > Expressions > Assignments > For in right > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

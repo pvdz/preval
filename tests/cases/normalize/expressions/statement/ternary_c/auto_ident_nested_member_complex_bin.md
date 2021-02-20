@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Statement > Ternary c > Auto ident nested member complex bin
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

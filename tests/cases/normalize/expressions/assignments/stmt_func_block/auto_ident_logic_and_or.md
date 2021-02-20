@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_logic_and_or
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident logic and or
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_simple_assign_complex_member.md
 
-> normalize > expressions > bindings > export > auto_ident_computed_complex_simple_assign_complex_member
+> Normalize > Expressions > Bindings > Export > Auto ident computed complex simple assign complex member
 >
 > Normalization of var decls should work the same everywhere they are
 

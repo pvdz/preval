@@ -2,7 +2,7 @@
 
 # auto_ident_object_complex.md
 
-> normalize > expressions > statement > for_c > auto_ident_object_complex
+> Normalize > Expressions > Statement > For c > Auto ident object complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # double_coputed.md
 
-> normalize > optional > double_coputed
+> Normalize > Optional > Double coputed
 >
 > Order of complex expressions in double optional computed property
 

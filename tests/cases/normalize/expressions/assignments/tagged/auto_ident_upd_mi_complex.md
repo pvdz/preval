@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_complex.md
 
-> normalize > expressions > assignments > tagged > auto_ident_upd_mi_complex
+> Normalize > Expressions > Assignments > Tagged > Auto ident upd mi complex
 >
 > Normalization of assignments should work the same everywhere they are
 

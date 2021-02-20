@@ -2,7 +2,7 @@
 
 # if_arr_empty_len.md
 
-> ifelse > simple > if_arr_empty_len
+> Ifelse > Simple > If arr empty len
 >
 > Eliminate simple tautology
 

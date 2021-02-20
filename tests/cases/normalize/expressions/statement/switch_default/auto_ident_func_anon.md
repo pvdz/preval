@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > statement > switch_default > auto_ident_func_anon
+> Normalize > Expressions > Statement > Switch default > Auto ident func anon
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

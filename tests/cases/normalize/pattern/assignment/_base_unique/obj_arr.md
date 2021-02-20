@@ -2,7 +2,7 @@
 
 # obj_arr.md
 
-> normalize > pattern > param > _base > obj_arr
+> Normalize > Pattern > Assignment > Base unique > Obj arr
 >
 > Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
 

@@ -2,7 +2,7 @@
 
 # div.md
 
-> normalize > binary > div
+> Normalize > Binary > Div
 >
 > Baseline binary expressions to cover ops
 

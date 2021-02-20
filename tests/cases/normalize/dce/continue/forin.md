@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# forin.md
 
-> normalize > dce > base
+> Normalize > Dce > Continue > Forin
 >
 > Any statements that follow a return in the same parent should be eliminated.
 

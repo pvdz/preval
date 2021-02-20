@@ -2,7 +2,7 @@
 
 # undefined.md
 
-> normalize > unary > minus > undefined
+> Normalize > Unary > Tilde > Undefined
 >
 > Unaries should be statically resolved where possible
 

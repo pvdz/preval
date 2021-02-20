@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_s-seq.md
 
-> normalize > expressions > assignments > logic_and_right > auto_ident_delete_prop_s-seq
+> Normalize > Expressions > Assignments > Logic and right > Auto ident delete prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

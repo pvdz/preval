@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-mem_call_complex_complex.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_opt_c-mem_call_complex_complex
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident opt c-mem call complex complex
 >
 > Normalization of var decls should work the same everywhere they are
 

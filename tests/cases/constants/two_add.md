@@ -1,8 +1,8 @@
 # Preval test case
 
-# two.md
+# two_add.md
 
-> constants > two
+> Constants > Two add
 >
 > Two constants, nothing happens
 

@@ -2,7 +2,7 @@
 
 # auto_seq_complex_computed_simple.md
 
-> normalize > expressions > assignments > arr_element > auto_seq_complex_computed_simple
+> Normalize > Expressions > Assignments > Arr element > Auto seq complex computed simple
 >
 > Normalization of assignments should work the same everywhere they are
 

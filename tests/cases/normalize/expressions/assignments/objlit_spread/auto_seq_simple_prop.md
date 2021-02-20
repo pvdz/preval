@@ -2,7 +2,7 @@
 
 # auto_seq_simple_prop.md
 
-> normalize > expressions > assignments > objlit_spread > auto_seq_simple_prop
+> Normalize > Expressions > Assignments > Objlit spread > Auto seq simple prop
 >
 > Normalization of assignments should work the same everywhere they are
 

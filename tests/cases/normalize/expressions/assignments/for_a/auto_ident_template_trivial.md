@@ -2,7 +2,7 @@
 
 # auto_ident_template_trivial.md
 
-> normalize > expressions > assignments > for_a > auto_ident_template_trivial
+> Normalize > Expressions > Assignments > For a > Auto ident template trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_simple.md
 
-> normalize > expressions > assignments > for_b > auto_ident_unary_minus_simple
+> Normalize > Expressions > Assignments > For b > Auto ident unary minus simple
 >
 > Normalization of assignments should work the same everywhere they are
 

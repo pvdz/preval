@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > assignments > logic_or_right > auto_base_assign_pattern_obj
+> Normalize > Expressions > Assignments > Logic or right > Auto base assign pattern obj
 >
 > Normalization of assignments should work the same everywhere they are
 

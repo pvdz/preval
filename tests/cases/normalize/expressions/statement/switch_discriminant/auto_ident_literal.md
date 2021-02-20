@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > statement > switch_discriminant > auto_ident_literal
+> Normalize > Expressions > Statement > Switch discriminant > Auto ident literal
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

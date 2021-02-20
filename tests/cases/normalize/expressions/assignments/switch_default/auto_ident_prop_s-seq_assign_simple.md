@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > assignments > switch_default > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Assignments > Switch default > Auto ident prop s-seq assign simple
 >
 > Normalization of assignments should work the same everywhere they are
 

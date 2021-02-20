@@ -2,7 +2,7 @@
 
 # string.md
 
-> normalize > templates > static_resolve > assign > string
+> Normalize > Templates > Static resolve > Assign > String
 >
 > Templates should be able to resolve literals
 

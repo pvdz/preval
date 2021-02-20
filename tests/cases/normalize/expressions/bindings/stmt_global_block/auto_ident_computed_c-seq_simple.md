@@ -2,7 +2,7 @@
 
 # auto_ident_computed_c-seq_simple.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_computed_c-seq_simple
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident computed c-seq simple
 >
 > Normalization of var decls should work the same everywhere they are
 

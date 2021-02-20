@@ -2,7 +2,7 @@
 
 # auto_ident_prop_complex_assign_complex_member.md
 
-> normalize > expressions > bindings > stmt_global_top > auto_ident_prop_complex_assign_complex_member
+> Normalize > Expressions > Bindings > Stmt global top > Auto ident prop complex assign complex member
 >
 > Normalization of var decls should work the same everywhere they are
 

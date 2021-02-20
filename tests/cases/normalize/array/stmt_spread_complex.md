@@ -2,7 +2,7 @@
 
 # stmt_spread_complex.md
 
-> normalize > array > stmt_spread_complex
+> Normalize > Array > Stmt spread complex
 >
 > Array statements should be eliminated
 

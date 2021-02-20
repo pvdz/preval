@@ -2,7 +2,7 @@
 
 # auto_ident_array_complex.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_array_complex
+> Normalize > Expressions > Assignments > Objlit init > Auto ident array complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# property.md
+# expensive_property.md
 
-> normalize > compound > property
+> Normalize > Compound > Expensive property
 >
 > When decomposing compound assignments to properties we must make sure to retain observable runtime semantics. Consider: "what if the property is a getter?"
 

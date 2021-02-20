@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_and.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_logic_and_and
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident logic and and
 >
 > Normalization of assignments should work the same everywhere they are
 

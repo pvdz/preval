@@ -2,7 +2,7 @@
 
 # ident_bin.md
 
-> normalize > assignment > stmt > ident_bin
+> Normalize > Binding > Stmt-func-block > Ident bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 

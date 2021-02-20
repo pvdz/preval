@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_pattern_arr_c-seq
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto pattern arr c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

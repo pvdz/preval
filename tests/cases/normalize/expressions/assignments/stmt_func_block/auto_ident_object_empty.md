@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_object_empty
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # default_no_no__arr_123.md
 
-> normalize > pattern >  > param > arr > arr > rest > default_no_no__arr_123
+> Normalize > Pattern > Assignment > Arr > Arr > Rest > Default no no  arr 123
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

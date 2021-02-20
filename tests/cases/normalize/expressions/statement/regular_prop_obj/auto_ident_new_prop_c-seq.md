@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_c-seq.md
 
-> normalize > expressions > statement > regular_prop_obj > auto_ident_new_prop_c-seq
+> Normalize > Expressions > Statement > Regular prop obj > Auto ident new prop c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

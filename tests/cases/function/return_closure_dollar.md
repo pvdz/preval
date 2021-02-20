@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_closure_dollar.md
 
-> function > return_string
+> Function > Return closure dollar
 >
 > Function that returns a closure
 

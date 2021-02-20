@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_c-seq.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_delete_prop_c-seq
+> Normalize > Expressions > Statement > Logic and both > Auto ident delete prop c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

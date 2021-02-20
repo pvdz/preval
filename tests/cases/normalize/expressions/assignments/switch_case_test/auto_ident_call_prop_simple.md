@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_call_prop_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto ident call prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

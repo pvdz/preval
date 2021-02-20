@@ -2,7 +2,7 @@
 
 # import_multi_specifiers.md
 
-> import > import_multi_specifiers
+> Import > Import multi specifiers
 >
 > We want to normalize imports to have exactly one specifier
 

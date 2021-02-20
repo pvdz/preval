@@ -2,7 +2,7 @@
 
 # auto_ident_cond_s-seq_c-seq_simple.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_cond_s-seq_c-seq_simple
+> Normalize > Expressions > Assignments > Ternary a > Auto ident cond s-seq c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

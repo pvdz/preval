@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident nested simple member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

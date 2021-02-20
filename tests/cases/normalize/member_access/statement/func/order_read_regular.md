@@ -2,7 +2,7 @@
 
 # order_read_regular.md
 
-> normalize > member_access > statement > func > order_read_regular
+> Normalize > Member access > Statement > Func > Order read regular
 >
 > Test evaluation order of member expression through getters and setters
 

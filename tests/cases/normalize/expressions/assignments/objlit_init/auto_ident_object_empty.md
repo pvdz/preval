@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_object_empty
+> Normalize > Expressions > Assignments > Objlit init > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

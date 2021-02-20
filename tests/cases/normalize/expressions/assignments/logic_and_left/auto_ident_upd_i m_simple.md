@@ -2,7 +2,7 @@
 
 # auto_ident_upd_i m_simple.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_upd_i m_simple
+> Normalize > Expressions > Assignments > Logic and left > Auto ident upd i m simple
 >
 > Normalization of assignments should work the same everywhere they are
 

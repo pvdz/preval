@@ -2,7 +2,7 @@
 
 # else_arr.md
 
-> ifelse > else_arr
+> Ifelse > Simple > Else arr
 >
 > Eliminate simple tautology
 

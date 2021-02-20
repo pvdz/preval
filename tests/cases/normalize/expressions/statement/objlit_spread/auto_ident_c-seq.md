@@ -2,7 +2,7 @@
 
 # auto_ident_c-seq.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_c-seq
+> Normalize > Expressions > Statement > Objlit spread > Auto ident c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

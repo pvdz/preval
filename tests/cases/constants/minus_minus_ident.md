@@ -1,8 +1,8 @@
 # Preval test case
 
-# minus_number.md
+# minus_minus_ident.md
 
-> constants > minus_number
+> Constants > Minus minus ident
 >
 > Double negative is positive. On a number that should have no observable side effects. On an ident that may trigger coercion.
 

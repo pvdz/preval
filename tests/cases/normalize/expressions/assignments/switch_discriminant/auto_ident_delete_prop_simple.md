@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_delete_prop_simple
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident delete prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

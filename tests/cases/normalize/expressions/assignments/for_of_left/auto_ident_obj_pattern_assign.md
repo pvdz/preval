@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > for_of_left > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > For of left > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

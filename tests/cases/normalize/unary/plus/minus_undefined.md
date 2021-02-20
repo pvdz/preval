@@ -2,7 +2,7 @@
 
 # minus_undefined.md
 
-> normalize > unary > minus > minus_undefined
+> Normalize > Unary > Plus > Minus undefined
 >
 > Unaries should be statically resolved where possible
 

@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > statement > switch_case_test > auto_ident_object_empty
+> Normalize > Expressions > Statement > Switch case test > Auto ident object empty
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

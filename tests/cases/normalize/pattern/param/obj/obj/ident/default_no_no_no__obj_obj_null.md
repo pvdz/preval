@@ -2,7 +2,7 @@
 
 # default_no_no_no__obj_obj_null.md
 
-> normalize > pattern >  > param > obj > obj > ident > default_no_no_no__obj_obj_null
+> Normalize > Pattern > Param > Obj > Obj > Ident > Default no no no  obj obj null
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

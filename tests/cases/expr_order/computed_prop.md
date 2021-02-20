@@ -2,7 +2,7 @@
 
 # computed_prop.md
 
-> expr_order > computed_prop
+> Expr order > Computed prop
 >
 > The object is evaluated before the computed property
 

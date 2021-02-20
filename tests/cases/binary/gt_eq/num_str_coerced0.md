@@ -1,8 +1,8 @@
 # Preval test case
 
-# num_str.md
+# num_str_coerced0.md
 
-> eq > num_str
+> Binary > Gt eq > Num str coerced0
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

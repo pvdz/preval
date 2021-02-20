@@ -2,7 +2,7 @@
 
 # regex.md
 
-> exprstmt > regex
+> Exprstmt > Regex
 >
 > Regexes as statement can be eliminated
 

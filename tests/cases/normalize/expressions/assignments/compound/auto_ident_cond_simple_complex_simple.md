@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_complex_simple.md
 
-> normalize > expressions > assignments > compound > auto_ident_cond_simple_complex_simple
+> Normalize > Expressions > Assignments > Compound > Auto ident cond simple complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

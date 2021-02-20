@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_complex.md
 
-> normalize > expressions > assignments > for_in_left > auto_ident_delete_prop_complex
+> Normalize > Expressions > Assignments > For in left > Auto ident delete prop complex
 >
 > Normalization of assignments should work the same everywhere they are
 

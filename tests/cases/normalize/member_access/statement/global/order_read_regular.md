@@ -2,7 +2,7 @@
 
 # order_read_regular.md
 
-> normalize > member_access > statement > global > order_read_regular
+> Normalize > Member access > Statement > Global > Order read regular
 >
 > Test evaluation order of member expression through getters and setters
 

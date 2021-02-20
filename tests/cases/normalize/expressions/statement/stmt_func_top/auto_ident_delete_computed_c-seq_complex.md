@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_c-seq_complex.md
 
-> normalize > expressions > statement > stmt_func_top > auto_ident_delete_computed_c-seq_complex
+> Normalize > Expressions > Statement > Stmt func top > Auto ident delete computed c-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_c-seq_simple.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_cond_complex_c-seq_simple
+> Normalize > Expressions > Statement > Objlit spread > Auto ident cond complex c-seq simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

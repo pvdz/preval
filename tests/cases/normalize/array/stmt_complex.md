@@ -2,7 +2,7 @@
 
 # stmt_complex.md
 
-> normalize > array > stmt_complex
+> Normalize > Array > Stmt complex
 >
 > Array statements should be eliminated
 

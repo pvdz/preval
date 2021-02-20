@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_complex.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_unary_minus_complex
+> Normalize > Expressions > Statement > Ternary c > Auto ident unary minus complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

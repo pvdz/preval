@@ -2,7 +2,7 @@
 
 # copy.md
 
-> constants > copy
+> Constants > Copy
 >
 > Copy one constant into another. Should fold them.
 

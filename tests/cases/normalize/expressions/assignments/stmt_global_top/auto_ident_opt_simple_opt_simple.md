@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple_opt_simple.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_opt_simple_opt_simple
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident opt simple opt simple
 >
 > Normalization of assignments should work the same everywhere they are
 

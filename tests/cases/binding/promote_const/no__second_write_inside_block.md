@@ -1,8 +1,8 @@
 # Preval test case
 
-# second_write_inside_block.md
+# no__second_write_inside_block.md
 
-> binding > second_write_inside_block
+> Binding > Promote const > No  second write inside block
 >
 > Check what happens when the first write is in the same scope but in a deeper block, which would screw up if you'd create a constant for it.
 

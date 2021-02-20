@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > statement > call_spread > auto_ident_tagged_trivial
+> Normalize > Expressions > Statement > Call spread > Auto ident tagged trivial
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

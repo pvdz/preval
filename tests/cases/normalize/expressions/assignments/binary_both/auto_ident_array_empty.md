@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Binary both > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_simple_simple.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_cond_simple_simple_simple
+> Normalize > Expressions > Assignments > Logic and left > Auto ident cond simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

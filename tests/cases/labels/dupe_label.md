@@ -2,7 +2,7 @@
 
 # dupe_label.md
 
-> labels > dupe_label
+> Labels > Dupe label
 >
 > Labels should not throw
 

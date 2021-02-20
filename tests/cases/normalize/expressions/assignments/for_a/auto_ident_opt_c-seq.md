@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-seq.md
 
-> normalize > expressions > assignments > for_a > auto_ident_opt_c-seq
+> Normalize > Expressions > Assignments > For a > Auto ident opt c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

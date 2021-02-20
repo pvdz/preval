@@ -2,7 +2,7 @@
 
 # auto_seq_simple_computed_simple.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_seq_simple_computed_simple
+> Normalize > Expressions > Assignments > Stmt func top > Auto seq simple computed simple
 >
 > Normalization of assignments should work the same everywhere they are
 

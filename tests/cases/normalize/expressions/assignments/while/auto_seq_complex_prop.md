@@ -2,7 +2,7 @@
 
 # auto_seq_complex_prop.md
 
-> normalize > expressions > assignments > while > auto_seq_complex_prop
+> Normalize > Expressions > Assignments > While > Auto seq complex prop
 >
 > Normalization of assignments should work the same everywhere they are
 

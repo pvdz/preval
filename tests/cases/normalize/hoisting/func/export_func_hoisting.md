@@ -1,8 +1,8 @@
 # Preval test case
 
-# func_hoisting_order.md
+# export_func_hoisting.md
 
-> normalize > functions > func_hoisting_order
+> Normalize > Hoisting > Func > Export func hoisting
 >
 > The result should be that the functions appear in lexicographical order
 

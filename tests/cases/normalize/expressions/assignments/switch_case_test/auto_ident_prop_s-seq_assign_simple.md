@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto ident prop s-seq assign simple
 >
 > Normalization of assignments should work the same everywhere they are
 

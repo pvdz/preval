@@ -1,8 +1,8 @@
 # Preval test case
 
-# coercion.md
+# coercion_valueof.md
 
-> normalize > binary > coercion
+> Normalize > Binary > Coercion valueof
 >
 > Comparison ops trigger coercion mechanisms.
 

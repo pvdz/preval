@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_upd_mi_simple
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident upd mi simple
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_simple.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_opt_call_complex_simple
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident opt call complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

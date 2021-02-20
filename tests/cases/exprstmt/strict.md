@@ -2,7 +2,7 @@
 
 # strict.md
 
-> exprstmt > strict
+> Exprstmt > Strict
 >
 > String as statement can be eliminated, even "use strict", because we assume module goal
 

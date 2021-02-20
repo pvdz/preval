@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_call_extended.md
 
-> normalize > expressions > statement > switch_w_default_case_test > auto_ident_opt_method_call_extended
+> Normalize > Expressions > Statement > Switch w default case test > Auto ident opt method call extended
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

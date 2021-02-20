@@ -2,7 +2,7 @@
 
 # logical.md
 
-> normalize > branching > logical
+> Normalize > Branching > Logical
 >
 > The logical operators should normalize to concrete branching logic
 

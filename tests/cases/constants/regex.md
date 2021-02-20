@@ -1,8 +1,8 @@
 # Preval test case
 
-# copy.md
+# regex.md
 
-> constants > copy
+> Constants > Regex
 >
 > Copy one constant into another. Should fold them.
 

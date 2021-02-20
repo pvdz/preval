@@ -2,7 +2,7 @@
 
 # ident_regression.md
 
-> normalize > switch > ident_regression
+> Normalize > Try > Ident regression
 >
 > This minimal case was causing the ident in the try to be malformed
 

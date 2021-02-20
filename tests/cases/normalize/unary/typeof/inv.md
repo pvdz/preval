@@ -2,7 +2,7 @@
 
 # inv.md
 
-> normalize > unary > typeof > inv
+> Normalize > Unary > Typeof > Inv
 >
 > Typeof always returns a string
 

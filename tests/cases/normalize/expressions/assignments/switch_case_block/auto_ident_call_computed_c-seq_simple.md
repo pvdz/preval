@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_simple.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_call_computed_c-seq_simple
+> Normalize > Expressions > Assignments > Switch case block > Auto ident call computed c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

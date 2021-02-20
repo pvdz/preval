@@ -2,7 +2,7 @@
 
 # ident_ident_assign.md
 
-> normalize > assignment > stmt > ident_ident_assign
+> Normalize > Binding > Stmt-global-top > Ident ident assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

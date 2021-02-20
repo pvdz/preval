@@ -2,7 +2,7 @@
 
 # flash1.md
 
-> normalize > pattern > param > flash1
+> Normalize > Pattern > Assignment > Flash1
 >
 > https://twitter.com/buzyescayadev/status/1343866976939098113 
 

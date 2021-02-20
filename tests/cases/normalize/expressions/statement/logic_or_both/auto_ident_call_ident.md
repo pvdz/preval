@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident.md
 
-> normalize > expressions > statement > logic_or_both > auto_ident_call_ident
+> Normalize > Expressions > Statement > Logic or both > Auto ident call ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

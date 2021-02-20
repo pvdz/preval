@@ -2,7 +2,7 @@
 
 # if_false.md
 
-> ifelse > simple > if_false
+> Ifelse > Simple > If false
 >
 > Eliminate simple tautology
 

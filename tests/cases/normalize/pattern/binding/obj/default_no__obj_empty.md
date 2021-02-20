@@ -2,7 +2,7 @@
 
 # default_no__obj_empty.md
 
-> normalize > pattern >  > param > obj > default_no__obj_empty
+> Normalize > Pattern > Binding > Obj > Default no  obj empty
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

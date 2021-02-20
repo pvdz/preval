@@ -2,7 +2,7 @@
 
 # ctxt_opt_bc_pass.md
 
-> normalize > optional > ctxt_opt_bc_pass
+> Normalize > Optional > Ctxt opt bc pass
 >
 > Ensure context is passed on properly in various optional chaining cases
 

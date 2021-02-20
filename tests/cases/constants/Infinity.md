@@ -1,8 +1,8 @@
 # Preval test case
 
-# copy.md
+# Infinity.md
 
-> constants > copy
+> Constants > Infinity
 >
 > Copy one constant into another. Should fold them.
 

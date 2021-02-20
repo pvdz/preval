@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_c-seq_simple.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_cond_complex_c-seq_simple
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident cond complex c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

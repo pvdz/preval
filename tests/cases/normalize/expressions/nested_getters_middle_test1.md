@@ -1,8 +1,8 @@
 # Preval test case
 
-# nested_getters_middle.md
+# nested_getters_middle_test1.md
 
-> normalize > assignment > nested_getters_middle
+> Normalize > Expressions > Nested getters middle test1
 >
 > Trying to minimize a regression
 

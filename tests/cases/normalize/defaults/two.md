@@ -2,7 +2,7 @@
 
 # two.md
 
-> normalize > defaults > two
+> Normalize > Defaults > Two
 >
 > Rewrite function param defaults to equivalent body code
 

@@ -2,7 +2,7 @@
 
 # member_prop.md
 
-> normalize > nullish > member_prop
+> Normalize > Nullish > Member prop
 >
 > nullish chaining fun
 

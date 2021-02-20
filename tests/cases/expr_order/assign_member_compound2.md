@@ -1,8 +1,8 @@
 # Preval test case
 
-# order.md
+# assign_member_compound2.md
 
-> assignment > order
+> Expr order > Assign member compound2
 >
 > The order of occurrence is relevant.
 

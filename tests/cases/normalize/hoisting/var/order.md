@@ -2,7 +2,7 @@
 
 # order.md
 
-> normalize > hoisting > var > order
+> Normalize > Hoisting > Var > Order
 >
 > Check order of moving them up. We try to keep the order, even if it shouldn't matter.
 

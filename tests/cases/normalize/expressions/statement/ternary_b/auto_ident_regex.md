@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_regex
+> Normalize > Expressions > Statement > Ternary b > Auto ident regex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

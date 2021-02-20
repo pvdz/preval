@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_call_simple.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_opt_method_call_simple
+> Normalize > Expressions > Statement > Ternary b > Auto ident opt method call simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

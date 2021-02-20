@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_base_assign_ident
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto base assign ident
 >
 > Normalization of assignments should work the same everywhere they are
 

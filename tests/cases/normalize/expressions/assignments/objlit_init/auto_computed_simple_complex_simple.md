@@ -2,7 +2,7 @@
 
 # auto_computed_simple_complex_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_computed_simple_complex_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto computed simple complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

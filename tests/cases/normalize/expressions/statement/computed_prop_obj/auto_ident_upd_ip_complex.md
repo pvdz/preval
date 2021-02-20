@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_complex.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_ident_upd_ip_complex
+> Normalize > Expressions > Statement > Computed prop obj > Auto ident upd ip complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

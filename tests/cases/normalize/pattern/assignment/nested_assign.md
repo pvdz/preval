@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# nested_assign.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Nested assign
 >
 > Testing simple pattern normalizations
 

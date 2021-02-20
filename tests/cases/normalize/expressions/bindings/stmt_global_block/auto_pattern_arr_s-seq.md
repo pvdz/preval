@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_pattern_arr_s-seq
+> Normalize > Expressions > Bindings > Stmt global block > Auto pattern arr s-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

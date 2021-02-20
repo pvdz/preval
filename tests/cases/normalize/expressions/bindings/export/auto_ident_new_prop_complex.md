@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_complex.md
 
-> normalize > expressions > bindings > export > auto_ident_new_prop_complex
+> Normalize > Expressions > Bindings > Export > Auto ident new prop complex
 >
 > Normalization of var decls should work the same everywhere they are
 

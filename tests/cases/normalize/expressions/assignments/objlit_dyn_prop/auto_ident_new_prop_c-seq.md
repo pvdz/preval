@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_c-seq.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_new_prop_c-seq
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident new prop c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

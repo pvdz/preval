@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > assignments > ternary_b > auto_base_assign_pattern_arr
+> Normalize > Expressions > Assignments > Ternary b > Auto base assign pattern arr
 >
 > Normalization of assignments should work the same everywhere they are
 

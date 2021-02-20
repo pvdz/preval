@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_complex_complex.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_logic_or_complex_complex
+> Normalize > Expressions > Assignments > Objlit init > Auto ident logic or complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

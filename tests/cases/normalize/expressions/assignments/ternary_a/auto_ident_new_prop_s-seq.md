@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_s-seq.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_new_prop_s-seq
+> Normalize > Expressions > Assignments > Ternary a > Auto ident new prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

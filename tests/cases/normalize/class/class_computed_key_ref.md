@@ -1,8 +1,8 @@
 # Preval test case
 
-# class_computed_key_extends.md
+# class_computed_key_ref.md
 
-> normalize > class > class_computed_key_extends
+> Normalize > Class > Class computed key ref
 >
 > Make sure the transform of computed key does not change something that can change the super class value
 

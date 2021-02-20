@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > bindings > stmt_global_top > auto_ident_regex
+> Normalize > Expressions > Bindings > Stmt global top > Auto ident regex
 >
 > Normalization of var decls should work the same everywhere they are
 

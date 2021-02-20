@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_block.md
+# var_for_in_global_top.md
 
-> normalize > hoisting > global_block
+> Normalize > Hoisting > Base > Var for in global top
 >
 > Hosting in a block should end up in the parent
 

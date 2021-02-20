@@ -2,7 +2,7 @@
 
 # auto_computed_simple_simple_simple.md
 
-> normalize > expressions > assignments > for_in_left > auto_computed_simple_simple_simple
+> Normalize > Expressions > Assignments > For in left > Auto computed simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

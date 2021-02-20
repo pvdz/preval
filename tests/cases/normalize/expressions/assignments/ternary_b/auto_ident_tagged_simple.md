@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Ternary b > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

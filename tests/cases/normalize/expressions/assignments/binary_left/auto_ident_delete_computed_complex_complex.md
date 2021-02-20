@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_complex.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_delete_computed_complex_complex
+> Normalize > Expressions > Assignments > Binary left > Auto ident delete computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

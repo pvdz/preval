@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > Stmt func block > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

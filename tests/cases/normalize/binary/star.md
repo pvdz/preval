@@ -2,7 +2,7 @@
 
 # star.md
 
-> normalize > binary > star
+> Normalize > Binary > Star
 >
 > Baseline binary expressions to cover ops
 

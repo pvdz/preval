@@ -2,7 +2,7 @@
 
 # class_expr_named.md
 
-> normalize > class > class_expr_named
+> Normalize > Class > Class expr named
 >
 > Class expression base
 

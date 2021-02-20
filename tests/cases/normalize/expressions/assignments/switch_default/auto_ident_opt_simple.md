@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple.md
 
-> normalize > expressions > assignments > switch_default > auto_ident_opt_simple
+> Normalize > Expressions > Assignments > Switch default > Auto ident opt simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# ctxt_opt_c_pass.md
+# ctxt_cmp_opt_c_pass.md
 
-> normalize > optional > ctxt_opt_c_pass
+> Normalize > Optional > Ctxt cmp opt c pass
 >
 > Ensure context is passed on properly in various optional chaining cases
 

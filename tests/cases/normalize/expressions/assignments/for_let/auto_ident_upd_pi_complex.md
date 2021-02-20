@@ -2,7 +2,7 @@
 
 # auto_ident_upd_pi_complex.md
 
-> normalize > expressions > assignments > for_let > auto_ident_upd_pi_complex
+> Normalize > Expressions > Assignments > For let > Auto ident upd pi complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_bin.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_bin
+> Normalize > Expressions > Statement > Ternary a > Auto ident bin
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

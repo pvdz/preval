@@ -2,7 +2,7 @@
 
 # one.md
 
-> normalize > templates > static_resolve > assign > one
+> Normalize > Templates > Static resolve > Assign > One
 >
 > Templates should be able to resolve literals
 

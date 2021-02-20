@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_simple_simple.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_new_computed_simple_simple
+> Normalize > Expressions > Assignments > Call spread > Auto ident new computed simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

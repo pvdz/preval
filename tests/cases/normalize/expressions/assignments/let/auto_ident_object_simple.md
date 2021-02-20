@@ -2,7 +2,7 @@
 
 # auto_ident_object_simple.md
 
-> normalize > expressions > assignments > let > auto_ident_object_simple
+> Normalize > Expressions > Assignments > Let > Auto ident object simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # default_yes__arr_elided.md
 
-> normalize > pattern >  > param > arr > default_yes__arr_elided
+> Normalize > Pattern > Param > Arr > Default yes  arr elided
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

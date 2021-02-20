@@ -1,8 +1,8 @@
 # Preval test case
 
-# plus_false.md
+# false.md
 
-> plusmin > plus_false
+> Plus unary > False
 >
 > Literals with a plus unary coerced to number without the plus
 

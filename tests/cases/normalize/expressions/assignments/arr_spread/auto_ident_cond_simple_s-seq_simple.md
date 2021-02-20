@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_s-seq_simple.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_cond_simple_s-seq_simple
+> Normalize > Expressions > Assignments > Arr spread > Auto ident cond simple s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

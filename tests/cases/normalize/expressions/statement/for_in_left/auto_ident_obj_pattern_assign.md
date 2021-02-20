@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > statement > for_in_left > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Statement > For in left > Auto ident obj pattern assign
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

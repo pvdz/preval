@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_complex.md
 
-> normalize > expressions > statement > param_default > auto_ident_unary_minus_complex
+> Normalize > Expressions > Statement > Param default > Auto ident unary minus complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_obj.md
+# if_func.md
 
-> ifelse > simple > if_obj
+> Ifelse > Simple > If func
 >
 > Eliminate simple tautology
 

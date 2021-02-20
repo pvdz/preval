@@ -194,6 +194,20 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nBAD~! Expected to throw an error but none was thrown ;(\n';
   }
 
+  mdHead = mdHead.replace(
+    /# Preval test case\n\n# .*\n\n> .*/,
+    '# Preval test case\n\n# ' +
+      path.basename(fname).trim() +
+      '\n\n> ' +
+      fname
+        .slice(0, -3) // Remove .md
+        .replace(/.*tests\/cases\//, '')
+        .split('/')
+        .map((s) => s.replace(/_/g, ' ').trim())
+        .map(s => s[0].toUpperCase() + s.slice(1))
+        .join(' > '),
+  );
+
   return (
     '' +
     mdHead +
@@ -312,4 +326,3 @@ async function yn(msg = 'Answer?') {
  sets.forEach((map, day) => arr.push('// ' + day + '\nyarn --ignore-engines add ' + [...map.entries()].map(([name, ver]) => name + '@' + ver).join(' ')) )
  console.log(arr.join('\n\n'))
  */
-

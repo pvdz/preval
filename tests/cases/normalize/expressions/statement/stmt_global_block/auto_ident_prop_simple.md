@@ -2,7 +2,7 @@
 
 # auto_ident_prop_simple.md
 
-> normalize > expressions > statement > stmt_global_block > auto_ident_prop_simple
+> Normalize > Expressions > Statement > Stmt global block > Auto ident prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

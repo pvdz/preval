@@ -2,7 +2,7 @@
 
 # swtich_default_no_init.md
 
-> normalize > hoisting > var > swtich_default_no_init
+> Normalize > Hoisting > Func > Swtich default no init
 >
 > Vars can be declared in a switch case
 

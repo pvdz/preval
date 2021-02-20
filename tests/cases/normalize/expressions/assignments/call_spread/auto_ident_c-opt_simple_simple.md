@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_simple_simple.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_c-opt_simple_simple
+> Normalize > Expressions > Assignments > Call spread > Auto ident c-opt simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

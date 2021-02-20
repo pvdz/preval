@@ -1,8 +1,8 @@
 # Preval test case
 
-# false_prop.md
+# null_prop.md
 
-> normalize > optional > false_prop
+> Normalize > Optional > Null prop
 >
 > Empty string should make `?.` to return undefined.
 

@@ -2,7 +2,7 @@
 
 # order_write_regular.md
 
-> normalize > member_access > statement > func > order_write_regular
+> Normalize > Member access > Statement > Func > Order write regular
 >
 > Test evaluation order of member expression through getters and setters
 

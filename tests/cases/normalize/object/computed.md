@@ -2,7 +2,7 @@
 
 # computed.md
 
-> normalize > object > computed
+> Normalize > Object > Computed
 >
 > Computed keys
 

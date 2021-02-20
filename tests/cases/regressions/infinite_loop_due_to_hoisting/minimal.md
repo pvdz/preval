@@ -2,7 +2,7 @@
 
 # minimal.md
 
-> regressions > infinite_loop_due_to_hoisting > minimal
+> Regressions > Infinite loop due to hoisting > Minimal
 >
 > Minimal test case for an infinite loop at some point. The problem was hoisting triggering "changes" when there weren't any.
 

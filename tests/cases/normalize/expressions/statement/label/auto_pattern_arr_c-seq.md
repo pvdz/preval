@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > statement > label > auto_pattern_arr_c-seq
+> Normalize > Expressions > Statement > Label > Auto pattern arr c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

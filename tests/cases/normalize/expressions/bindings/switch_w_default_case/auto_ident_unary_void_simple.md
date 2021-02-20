@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_simple.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_unary_void_simple
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident unary void simple
 >
 > Normalization of var decls should work the same everywhere they are
 

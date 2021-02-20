@@ -1,8 +1,8 @@
 # Preval test case
 
-# switch.md
+# switch_default_block_and_more.md
 
-> normalize > blocks > switch
+> Normalize > Blocks > Switch default block and more
 >
 > Add blocks to sub-statements. Let's do this for cases as well, for now. Maybe that's a mistake :)
 

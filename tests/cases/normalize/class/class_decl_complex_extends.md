@@ -2,7 +2,7 @@
 
 # class_decl_complex_extends.md
 
-> normalize > class > class_decl_complex_extends
+> Normalize > Class > Class decl complex extends
 >
 > Extends should be a simple node
 

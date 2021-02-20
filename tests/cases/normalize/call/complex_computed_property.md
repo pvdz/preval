@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_object.md
+# complex_computed_property.md
 
-> normalize > call > complex_object
+> Normalize > Call > Complex computed property
 >
 > Calls should have simple objects
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# map_to_map.md
+# map_to_map_reg1.md
 
-> random > map_to_map
+> Spread > Map to map reg1
 >
 > Broken spread case
 

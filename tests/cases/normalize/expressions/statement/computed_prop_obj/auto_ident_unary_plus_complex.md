@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_complex.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_ident_unary_plus_complex
+> Normalize > Expressions > Statement > Computed prop obj > Auto ident unary plus complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

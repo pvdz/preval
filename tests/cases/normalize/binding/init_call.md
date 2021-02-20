@@ -2,7 +2,7 @@
 
 # init_call.md
 
-> normalize > binding > init_call
+> Normalize > Binding > Init call
 >
 > Binding declaration with a simple call should not be outlined
 

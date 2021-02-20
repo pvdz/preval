@@ -2,7 +2,7 @@
 
 # auto_ident_template_trivial.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_template_trivial
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident template trivial
 >
 > Normalization of var decls should work the same everywhere they are
 

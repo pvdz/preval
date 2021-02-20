@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_complex.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_unary_excl_complex
+> Normalize > Expressions > Assignments > Switch case test > Auto ident unary excl complex
 >
 > Normalization of assignments should work the same everywhere they are
 

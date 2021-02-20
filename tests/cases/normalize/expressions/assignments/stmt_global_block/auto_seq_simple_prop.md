@@ -2,7 +2,7 @@
 
 # auto_seq_simple_prop.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_seq_simple_prop
+> Normalize > Expressions > Assignments > Stmt global block > Auto seq simple prop
 >
 > Normalization of assignments should work the same everywhere they are
 

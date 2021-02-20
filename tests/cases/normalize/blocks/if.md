@@ -2,7 +2,7 @@
 
 # if.md
 
-> normalize > blocks > if
+> Normalize > Blocks > If
 >
 > Add blocks to sub-statements
 

@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_arrow
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

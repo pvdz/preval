@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# empty.md
 
-> normalize > new > call
+> Normalize > Array > Empty
 >
 > Make sure empty array works
 

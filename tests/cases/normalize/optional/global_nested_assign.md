@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_nested.md
+# global_nested_assign.md
 
-> normalize > member_access > global_nested
+> Normalize > Optional > Global nested assign
 >
 > Assignment to nested property should normalize just fine
 

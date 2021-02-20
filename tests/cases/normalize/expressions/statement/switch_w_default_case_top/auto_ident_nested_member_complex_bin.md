@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > statement > switch_w_default_case_top > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Statement > Switch w default case top > Auto ident nested member complex bin
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

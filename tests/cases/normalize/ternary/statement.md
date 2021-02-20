@@ -2,7 +2,7 @@
 
 # statement.md
 
-> normalize > ternary > statement
+> Normalize > Ternary > Statement
 >
 > A statement that is a ternary should be an if-else
 

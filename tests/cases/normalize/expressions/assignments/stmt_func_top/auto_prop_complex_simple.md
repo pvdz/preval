@@ -2,7 +2,7 @@
 
 # auto_prop_complex_simple.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_prop_complex_simple
+> Normalize > Expressions > Assignments > Stmt func top > Auto prop complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_cond_s-seq_s-seq_simple.md
 
-> normalize > expressions > bindings > export > auto_ident_cond_s-seq_s-seq_simple
+> Normalize > Expressions > Bindings > Export > Auto ident cond s-seq s-seq simple
 >
 > Normalization of var decls should work the same everywhere they are
 

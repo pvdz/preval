@@ -2,7 +2,7 @@
 
 # auto_ident_prop_c-seq_assign_complex_member.md
 
-> normalize > expressions > statement > throw > auto_ident_prop_c-seq_assign_complex_member
+> Normalize > Expressions > Statement > Throw > Auto ident prop c-seq assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

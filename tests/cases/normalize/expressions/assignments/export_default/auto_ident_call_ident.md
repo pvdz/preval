@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident.md
 
-> normalize > expressions > assignments > export_default > auto_ident_call_ident
+> Normalize > Expressions > Assignments > Export default > Auto ident call ident
 >
 > Normalization of assignments should work the same everywhere they are
 

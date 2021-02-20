@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_s-seq_complex.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_delete_computed_s-seq_complex
+> Normalize > Expressions > Statement > Logic and both > Auto ident delete computed s-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

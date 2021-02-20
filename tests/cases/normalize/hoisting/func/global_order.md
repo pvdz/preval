@@ -2,7 +2,7 @@
 
 # global_order.md
 
-> normalize > hoisting > func > global_order
+> Normalize > Hoisting > Func > Global order
 >
 > How do we normalize multiple func decls on the same level?
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# var.md
+# if.md
 
-> normalize > ternary > var
+> Normalize > Ternary > If
 >
 > Example of rewriting an if with ternary
 

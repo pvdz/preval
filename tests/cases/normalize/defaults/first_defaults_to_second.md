@@ -2,7 +2,7 @@
 
 # first_defaults_to_second.md
 
-> normalize > defaults > first_defaults_to_second
+> Normalize > Defaults > First defaults to second
 >
 > Rewrite function param defaults to equivalent body code
 

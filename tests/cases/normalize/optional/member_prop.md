@@ -2,7 +2,7 @@
 
 # member_prop.md
 
-> normalize > optional > member_prop
+> Normalize > Optional > Member prop
 >
 > Optional chaining fun
 

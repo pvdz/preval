@@ -2,7 +2,7 @@
 
 # array.md
 
-> exprstmt > array
+> Exprstmt > Array
 >
 > Arrays without side-effects as statement can be eliminated
 

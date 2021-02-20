@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign_seq.md
 
-> normalize > expressions > assignments > if > auto_ident_arr_pattern_assign_seq
+> Normalize > Expressions > Assignments > If > Auto ident arr pattern assign seq
 >
 > Normalization of assignments should work the same everywhere they are
 

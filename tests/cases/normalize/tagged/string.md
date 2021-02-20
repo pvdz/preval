@@ -2,7 +2,7 @@
 
 # string.md
 
-> normalize > templates > string
+> Normalize > Tagged > String
 >
 > A tagged template that is just a string
 

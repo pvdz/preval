@@ -1,8 +1,8 @@
 # Preval test case
 
-# export_named_multi_var.md
+# var_pattern_export_named_multi.md
 
-> normalize > hoisting > export_named_multi_var
+> Normalize > Hoisting > Base > Var pattern export named multi
 >
 > Exported var bindings are still hoisted
 

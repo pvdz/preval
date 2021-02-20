@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex_c-opt_complex_complex.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_c-opt_complex_complex_c-opt_complex_complex
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident c-opt complex complex c-opt complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

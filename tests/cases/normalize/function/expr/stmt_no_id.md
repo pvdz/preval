@@ -2,7 +2,7 @@
 
 # stmt_no_id.md
 
-> normalize > function > expr > stmt_no_id
+> Normalize > Function > Expr > Stmt no id
 >
 > A function expression that is a statement should be dropped.
 

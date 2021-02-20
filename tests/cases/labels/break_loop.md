@@ -2,7 +2,7 @@
 
 # break_loop.md
 
-> labels > break_loop
+> Labels > Break loop
 >
 > Labels should not throw
 

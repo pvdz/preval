@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_s-seq.md
 
-> normalize > expressions > assignments > compound > auto_ident_new_prop_s-seq
+> Normalize > Expressions > Assignments > Compound > Auto ident new prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

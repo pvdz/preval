@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_tagged_trivial
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident tagged trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

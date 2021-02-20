@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_pattern_arr_simple
+> Normalize > Expressions > Assignments > Stmt func top > Auto pattern arr simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# true.md
 
-> constants > null
+> Constants > True
 >
 > A constant set to true should be eliminated
 

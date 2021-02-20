@@ -1,8 +1,8 @@
 # Preval test case
 
-# redundant_continue_label.md
+# necessary_continue_label.md
 
-> labels > redundant_continue_label
+> Labels > Necessary continue label
 >
 > The label is necessary here since an unqualified continue would implicitly target the inner loop.
 

@@ -2,7 +2,7 @@
 
 # auto_seq_complex_prop.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_seq_complex_prop
+> Normalize > Expressions > Assignments > Switch discriminant > Auto seq complex prop
 >
 > Normalization of assignments should work the same everywhere they are
 

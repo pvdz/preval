@@ -1,8 +1,8 @@
 # Preval test case
 
-# else_obj.md
+# else_nan.md
 
-> ifelse > simple > else_obj
+> Ifelse > Simple > Else nan
 >
 > Eliminate simple tautology
 

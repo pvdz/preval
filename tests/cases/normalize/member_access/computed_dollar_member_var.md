@@ -1,8 +1,8 @@
 # Preval test case
 
-# computed_dollar.md
+# computed_dollar_member_var.md
 
-> normalize > member_access > computed_dollar
+> Normalize > Member access > Computed dollar member var
 >
 > Regression: computed property name of dollar was not inlined
 

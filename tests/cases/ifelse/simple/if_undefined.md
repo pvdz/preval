@@ -2,7 +2,7 @@
 
 # if_undefined.md
 
-> ifelse > simple > if_undefined
+> Ifelse > Simple > If undefined
 >
 > Eliminate simple tautology
 

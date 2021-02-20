@@ -2,7 +2,7 @@
 
 # ssa_problem.md
 
-> closures > ssa_problem
+> Closures > Ssa problem
 >
 > Trying to come up wtih ssa problem cases regarding closures
 

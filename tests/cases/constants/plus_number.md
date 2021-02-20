@@ -1,8 +1,8 @@
 # Preval test case
 
-# minus_number.md
+# plus_number.md
 
-> constants > minus_number
+> Constants > Plus number
 >
 > Positive numbers should be treated as constants as well. But the minus is dropped either way so it should be easy.
 

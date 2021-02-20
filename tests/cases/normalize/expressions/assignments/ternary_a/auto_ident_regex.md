@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_regex
+> Normalize > Expressions > Assignments > Ternary a > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

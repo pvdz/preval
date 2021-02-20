@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_complex.md
 
-> normalize > expressions > statement > objlit_init > auto_ident_call_prop_complex
+> Normalize > Expressions > Statement > Objlit init > Auto ident call prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

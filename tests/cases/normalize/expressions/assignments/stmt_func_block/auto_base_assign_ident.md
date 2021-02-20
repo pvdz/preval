@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_base_assign_ident
+> Normalize > Expressions > Assignments > Stmt func block > Auto base assign ident
 >
 > Normalization of assignments should work the same everywhere they are
 

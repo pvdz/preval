@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_zero.md
+# minus_one.md
 
-> plusmin > min_zero
+> Typeof > Minus one
 >
 > Inlining `typeof` when we know something is a literal
 

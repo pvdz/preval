@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_simple.md
 
-> normalize > expressions > statement > switch_case_block > auto_ident_nested_member_complex_simple
+> Normalize > Expressions > Statement > Switch case block > Auto ident nested member complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

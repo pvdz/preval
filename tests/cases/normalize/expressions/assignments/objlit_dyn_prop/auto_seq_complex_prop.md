@@ -2,7 +2,7 @@
 
 # auto_seq_complex_prop.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_seq_complex_prop
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto seq complex prop
 >
 > Normalization of assignments should work the same everywhere they are
 

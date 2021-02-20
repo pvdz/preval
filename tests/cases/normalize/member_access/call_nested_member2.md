@@ -1,8 +1,8 @@
 # Preval test case
 
-# call_nested_member.md
+# call_nested_member2.md
 
-> normalize > sequence > call_nested_member
+> Normalize > Member access > Call nested member2
 >
 > Calling a nested object structure should cache one level but not break the context
 

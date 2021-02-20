@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_simple.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_unary_tilde_simple
+> Normalize > Expressions > Assignments > Logic and both > Auto ident unary tilde simple
 >
 > Normalization of assignments should work the same everywhere they are
 

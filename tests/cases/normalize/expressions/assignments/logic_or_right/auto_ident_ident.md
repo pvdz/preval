@@ -2,7 +2,7 @@
 
 # auto_ident_ident.md
 
-> normalize > expressions > assignments > logic_or_right > auto_ident_ident
+> Normalize > Expressions > Assignments > Logic or right > Auto ident ident
 >
 > Normalization of assignments should work the same everywhere they are
 

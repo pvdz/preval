@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_prop_s-seq
+> Normalize > Expressions > Assignments > Logic and both > Auto ident prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

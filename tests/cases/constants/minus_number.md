@@ -2,7 +2,7 @@
 
 # minus_number.md
 
-> constants > minus_number
+> Constants > Minus number
 >
 > Negative numbers should be treated as constants as well
 

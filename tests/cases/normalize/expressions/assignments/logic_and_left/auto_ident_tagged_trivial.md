@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_tagged_trivial
+> Normalize > Expressions > Assignments > Logic and left > Auto ident tagged trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

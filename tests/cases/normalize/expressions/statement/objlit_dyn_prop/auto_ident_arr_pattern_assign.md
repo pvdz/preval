@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > statement > objlit_dyn_prop > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Statement > Objlit dyn prop > Auto ident arr pattern assign
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

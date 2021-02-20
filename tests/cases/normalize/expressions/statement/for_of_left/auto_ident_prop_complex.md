@@ -2,7 +2,7 @@
 
 # auto_ident_prop_complex.md
 
-> normalize > expressions > statement > for_of_left > auto_ident_prop_complex
+> Normalize > Expressions > Statement > For of left > Auto ident prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

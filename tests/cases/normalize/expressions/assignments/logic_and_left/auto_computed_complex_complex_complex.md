@@ -2,7 +2,7 @@
 
 # auto_computed_complex_complex_complex.md
 
-> normalize > expressions > assignments > logic_and_left > auto_computed_complex_complex_complex
+> Normalize > Expressions > Assignments > Logic and left > Auto computed complex complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

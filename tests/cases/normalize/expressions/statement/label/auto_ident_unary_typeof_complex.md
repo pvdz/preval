@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_complex.md
 
-> normalize > expressions > statement > label > auto_ident_unary_typeof_complex
+> Normalize > Expressions > Statement > Label > Auto ident unary typeof complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

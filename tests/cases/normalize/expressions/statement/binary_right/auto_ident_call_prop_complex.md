@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_complex.md
 
-> normalize > expressions > statement > binary_right > auto_ident_call_prop_complex
+> Normalize > Expressions > Statement > Binary right > Auto ident call prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

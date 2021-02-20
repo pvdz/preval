@@ -2,7 +2,7 @@
 
 # auto_ident_cond_c-seq_s-seq_simple.md
 
-> normalize > expressions > assignments > do_while > auto_ident_cond_c-seq_s-seq_simple
+> Normalize > Expressions > Assignments > Do while > Auto ident cond c-seq s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident arr pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

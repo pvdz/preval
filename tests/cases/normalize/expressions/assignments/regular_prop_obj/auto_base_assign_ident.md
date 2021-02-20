@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_base_assign_ident
+> Normalize > Expressions > Assignments > Regular prop obj > Auto base assign ident
 >
 > Normalization of assignments should work the same everywhere they are
 

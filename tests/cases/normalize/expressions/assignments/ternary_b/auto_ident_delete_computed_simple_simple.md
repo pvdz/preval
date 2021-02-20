@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_simple.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_delete_computed_simple_simple
+> Normalize > Expressions > Assignments > Ternary b > Auto ident delete computed simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

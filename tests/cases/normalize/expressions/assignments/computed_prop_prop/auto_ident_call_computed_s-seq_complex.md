@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_s-seq_complex.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_call_computed_s-seq_complex
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident call computed s-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # double_pattern.md
 
-> normalize > hoisting > var > double_pattern
+> Normalize > Hoisting > Var > Double pattern
 >
 > Silly case of a double var pattern binding
 

@@ -2,7 +2,7 @@
 
 # auto_ident_computed_s-seq_simple_assign_complex_member.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_computed_s-seq_simple_assign_complex_member
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident computed s-seq simple assign complex member
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_complex.md
 
-> normalize > expressions > assignments > template > auto_ident_unary_typeof_complex
+> Normalize > Expressions > Assignments > Template > Auto ident unary typeof complex
 >
 > Normalization of assignments should work the same everywhere they are
 

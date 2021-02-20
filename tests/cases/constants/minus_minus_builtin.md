@@ -1,8 +1,8 @@
 # Preval test case
 
-# minus_number.md
+# minus_minus_builtin.md
 
-> constants > minus_number
+> Constants > Minus minus builtin
 >
 > Double negative is positive. These should be statically resolved for builtins.
 

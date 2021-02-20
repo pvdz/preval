@@ -2,7 +2,7 @@
 
 # for_in.md
 
-> normalize > blocks > for_in
+> Normalize > Blocks > For in
 >
 > Add blocks to sub-statements
 

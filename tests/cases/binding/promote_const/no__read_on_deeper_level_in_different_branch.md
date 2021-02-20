@@ -1,8 +1,8 @@
 # Preval test case
 
-# read_on_deeper_level_in_different_branch.md
+# no__read_on_deeper_level_in_different_branch.md
 
-> binding > read_on_deeper_level_in_different_branch
+> Binding > Promote const > No  read on deeper level in different branch
 >
 > Confirm that we properly deal with a read of a var binding that occurs in a different branch from the assignment.
 

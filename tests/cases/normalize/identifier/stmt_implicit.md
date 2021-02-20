@@ -2,7 +2,7 @@
 
 # stmt_implicit.md
 
-> normalize > identifier > stmt_implicit
+> Normalize > Identifier > Stmt implicit
 >
 > Implicit global statement should not be eliminated
 

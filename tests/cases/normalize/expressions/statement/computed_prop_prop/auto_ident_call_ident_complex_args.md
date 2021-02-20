@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Statement > Computed prop prop > Auto ident call ident complex args
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

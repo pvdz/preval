@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Switch case test > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

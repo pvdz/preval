@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_arrow
+> Normalize > Expressions > Statement > Ternary c > Auto ident arrow
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

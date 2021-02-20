@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_complex.md
 
-> normalize > expressions > statement > stmt_func_block > auto_ident_computed_simple_complex
+> Normalize > Expressions > Statement > Stmt func block > Auto ident computed simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

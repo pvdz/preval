@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_simple_simple.md
 
-> normalize > expressions > statement > stmt_global_block > auto_ident_logic_or_simple_simple
+> Normalize > Expressions > Statement > Stmt global block > Auto ident logic or simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

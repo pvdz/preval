@@ -2,7 +2,7 @@
 
 # tilde.md
 
-> normalize > unary > typeof > tilde
+> Normalize > Unary > Typeof > Tilde
 >
 > Typeof always returns a string
 

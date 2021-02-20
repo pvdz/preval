@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > assignments > binary_both > auto_pattern_obj_complex
+> Normalize > Expressions > Assignments > Binary both > Auto pattern obj complex
 >
 > Normalization of assignments should work the same everywhere they are
 

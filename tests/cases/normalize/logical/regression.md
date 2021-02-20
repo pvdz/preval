@@ -2,7 +2,7 @@
 
 # regression.md
 
-> normalize > logical > regression
+> Normalize > Logical > Regression
 >
 > This particular case was breaking
 

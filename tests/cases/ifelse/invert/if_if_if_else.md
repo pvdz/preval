@@ -1,8 +1,8 @@
 # Preval test case
 
-# if-if-else.md
+# if_if_if_else.md
 
-> ifelse > invert > if-if-else
+> Ifelse > Invert > If if if else
 >
 > Test else-matching
 

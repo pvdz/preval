@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > statement > if > auto_ident_delete_prop_simple
+> Normalize > Expressions > Statement > If > Auto ident delete prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

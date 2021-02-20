@@ -2,7 +2,7 @@
 
 # stmt_hoisted.md
 
-> normalize > identifier > stmt_hoisted
+> Normalize > Identifier > Stmt hoisted
 >
 > Hoisted global statement should be eliminated
 

@@ -2,7 +2,7 @@
 
 # auto_ident_object_simple.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_object_simple
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident object simple
 >
 > Normalization of assignments should work the same everywhere they are
 

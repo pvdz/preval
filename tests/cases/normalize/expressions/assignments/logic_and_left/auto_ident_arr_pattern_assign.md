@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Assignments > Logic and left > Auto ident arr pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

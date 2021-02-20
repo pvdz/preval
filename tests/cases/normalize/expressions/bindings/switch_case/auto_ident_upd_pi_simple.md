@@ -2,7 +2,7 @@
 
 # auto_ident_upd_pi_simple.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_upd_pi_simple
+> Normalize > Expressions > Bindings > Switch case > Auto ident upd pi simple
 >
 > Normalization of var decls should work the same everywhere they are
 

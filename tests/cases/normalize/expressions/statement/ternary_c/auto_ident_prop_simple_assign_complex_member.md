@@ -2,7 +2,7 @@
 
 # auto_ident_prop_simple_assign_complex_member.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_prop_simple_assign_complex_member
+> Normalize > Expressions > Statement > Ternary c > Auto ident prop simple assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

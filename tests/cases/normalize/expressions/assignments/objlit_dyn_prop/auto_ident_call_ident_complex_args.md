@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident call ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

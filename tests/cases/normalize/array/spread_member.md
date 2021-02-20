@@ -2,7 +2,7 @@
 
 # spread_member.md
 
-> normalize > array > spread_member
+> Normalize > Array > Spread member
 >
 > Spread arg that is simple should not change
 

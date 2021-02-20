@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_and.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_logic_and_and
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident logic and and
 >
 > Normalization of var decls should work the same everywhere they are
 

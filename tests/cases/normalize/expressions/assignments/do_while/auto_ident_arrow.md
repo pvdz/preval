@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > do_while > auto_ident_arrow
+> Normalize > Expressions > Assignments > Do while > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

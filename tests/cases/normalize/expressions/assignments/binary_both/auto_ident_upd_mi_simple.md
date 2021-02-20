@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_upd_mi_simple
+> Normalize > Expressions > Assignments > Binary both > Auto ident upd mi simple
 >
 > Normalization of assignments should work the same everywhere they are
 

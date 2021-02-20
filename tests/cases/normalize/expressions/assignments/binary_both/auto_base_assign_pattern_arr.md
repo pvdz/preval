@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > assignments > binary_both > auto_base_assign_pattern_arr
+> Normalize > Expressions > Assignments > Binary both > Auto base assign pattern arr
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_simple.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_unary_void_simple
+> Normalize > Expressions > Assignments > Ternary a > Auto ident unary void simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > for_of_left > auto_ident_delete_computed_c-seq_complex
+> Normalize > Expressions > Assignments > For of left > Auto ident delete computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

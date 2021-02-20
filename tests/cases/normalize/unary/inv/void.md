@@ -1,8 +1,8 @@
 # Preval test case
 
-# typeof.md
+# void.md
 
-> normalize > unary > inv > typeof
+> Normalize > Unary > Inv > Void
 >
 > Typeof always returns a non-empty string so inverting it is always `false`
 

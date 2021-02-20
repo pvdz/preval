@@ -2,7 +2,7 @@
 
 # auto_ident_array_complex.md
 
-> normalize > expressions > assignments > param_default > auto_ident_array_complex
+> Normalize > Expressions > Assignments > Param default > Auto ident array complex
 >
 > Normalization of assignments should work the same everywhere they are
 

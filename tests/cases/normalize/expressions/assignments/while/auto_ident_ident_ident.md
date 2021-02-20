@@ -2,7 +2,7 @@
 
 # auto_ident_ident_ident.md
 
-> normalize > expressions > assignments > while > auto_ident_ident_ident
+> Normalize > Expressions > Assignments > While > Auto ident ident ident
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # inferrable.md
 
-> normalize > unary > inv > inferrable
+> Normalize > Unary > Inv > Inferrable
 >
 > In this case we could infer the value of the variable because it is inverted after having seen it checked.
 

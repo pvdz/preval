@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > compound > auto_ident_computed_complex_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Compound > Auto ident computed complex simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

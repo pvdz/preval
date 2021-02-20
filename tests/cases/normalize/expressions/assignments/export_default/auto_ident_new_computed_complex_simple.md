@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_complex_simple.md
 
-> normalize > expressions > assignments > export_default > auto_ident_new_computed_complex_simple
+> Normalize > Expressions > Assignments > Export default > Auto ident new computed complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # regex.md
 
-> normalize > unary > typeof > regex
+> Normalize > Unary > Typeof > Regex
 >
 > Typeof always returns a string
 

@@ -2,7 +2,7 @@
 
 # one.md
 
-> normalize > defaults > one
+> Normalize > Defaults > One
 >
 > Rewrite function param defaults to equivalent body code
 

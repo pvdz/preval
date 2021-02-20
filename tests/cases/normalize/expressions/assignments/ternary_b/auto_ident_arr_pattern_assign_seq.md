@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign_seq.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_arr_pattern_assign_seq
+> Normalize > Expressions > Assignments > Ternary b > Auto ident arr pattern assign seq
 >
 > Normalization of assignments should work the same everywhere they are
 

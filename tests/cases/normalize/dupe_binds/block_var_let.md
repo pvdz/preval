@@ -1,8 +1,8 @@
 # Preval test case
 
-# func_param_let_shadow.md
+# block_var_let.md
 
-> normalize > dupe_binds > func_param_let_shadow
+> Normalize > Dupe binds > Block var let
 >
 > Func params can be shadowed by let 
 

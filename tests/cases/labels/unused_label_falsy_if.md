@@ -1,8 +1,8 @@
 # Preval test case
 
-# unused_label.md
+# unused_label_falsy_if.md
 
-> labels > unused_label
+> Labels > Unused label falsy if
 >
 > Labels should not throw
 

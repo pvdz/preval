@@ -2,7 +2,7 @@
 
 # false.md
 
-> normalize > unary > minus > false
+> Normalize > Unary > Tilde > False
 >
 > Unaries should be statically resolved where possible
 

@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_complex_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_logic_and_complex_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto ident logic and complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# elided.md
 
-> normalize > new > call
+> Normalize > Array > Elided
 >
 > Make sure normalization doesn't choke over elided elements
 

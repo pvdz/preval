@@ -2,7 +2,7 @@
 
 # postfix_minus.md
 
-> normalize > update > postfix_minus
+> Normalize > Update > Postfix minus
 >
 > Update expressions should be transformed to regular binary expression assignments
 

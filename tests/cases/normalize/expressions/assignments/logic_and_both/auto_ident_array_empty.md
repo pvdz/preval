@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Logic and both > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

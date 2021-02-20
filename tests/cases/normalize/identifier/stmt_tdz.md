@@ -2,7 +2,7 @@
 
 # stmt_tdz.md
 
-> normalize > identifier > stmt_tdz
+> Normalize > Identifier > Stmt tdz
 >
 > Known ident that will trigger tdz will still be eliminated, for now. Impossible to safely detect but we can improve some cases later.
 

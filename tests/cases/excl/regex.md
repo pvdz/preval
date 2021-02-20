@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_regex.md
+# regex.md
 
-> plusmin > min_regex
+> Excl > Regex
 >
 > Literals with a `!` unary should get inlined
 

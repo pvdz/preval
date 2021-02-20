@@ -2,7 +2,7 @@
 
 # return_sequence_prop.md
 
-> normalize > sequence > return_sequence_prop
+> Normalize > Sequence > Return sequence prop
 >
 > Returning a member express on a sequence
 

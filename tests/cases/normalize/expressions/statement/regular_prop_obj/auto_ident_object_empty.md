@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > statement > regular_prop_obj > auto_ident_object_empty
+> Normalize > Expressions > Statement > Regular prop obj > Auto ident object empty
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

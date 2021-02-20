@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_simple.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_delete_computed_complex_simple
+> Normalize > Expressions > Statement > Ternary c > Auto ident delete computed complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

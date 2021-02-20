@@ -2,7 +2,7 @@
 
 # auto_ident_s-seq.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_s-seq
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# _base.md
+# set_set_set.md
 
-> normalize > for > regular > _base
+> Normalize > For > Regular > Set set set
 >
 > Regular for-loop
 

@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_complex_assign_complex_member.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_computed_complex_complex_assign_complex_member
+> Normalize > Expressions > Assignments > Arr spread > Auto ident computed complex complex assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

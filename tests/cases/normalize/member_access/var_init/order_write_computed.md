@@ -2,7 +2,7 @@
 
 # order_write_computed.md
 
-> normalize > member_access > var_init > order_write_computed
+> Normalize > Member access > Var init > Order write computed
 >
 > Test evaluation order of member expression through getters and setters
 

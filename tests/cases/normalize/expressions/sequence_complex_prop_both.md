@@ -1,8 +1,8 @@
 # Preval test case
 
-# sequence_simple_prop.md
+# sequence_complex_prop_both.md
 
-> normalize > assignment > sequence_simple_prop
+> Normalize > Expressions > Sequence complex prop both
 >
 > An assignment with rhs of a property on a sequence that ends with a complex node
 

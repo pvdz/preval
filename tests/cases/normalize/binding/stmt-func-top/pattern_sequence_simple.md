@@ -2,7 +2,7 @@
 
 # pattern_sequence_simple.md
 
-> normalize > assignment > stmt > pattern_sequence_simple
+> Normalize > Binding > Stmt-func-top > Pattern sequence simple
 >
 > Assignments of all kinds should be normalized in all circumstances
 

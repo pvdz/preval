@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# switch_case.md
 
-> normalize > dce > base
+> Normalize > Dce > Throw > Switch case
 >
 > Any statements that follow a return in the same parent should be eliminated.
 

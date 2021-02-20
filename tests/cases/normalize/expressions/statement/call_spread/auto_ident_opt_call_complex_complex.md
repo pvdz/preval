@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_complex.md
 
-> normalize > expressions > statement > call_spread > auto_ident_opt_call_complex_complex
+> Normalize > Expressions > Statement > Call spread > Auto ident opt call complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

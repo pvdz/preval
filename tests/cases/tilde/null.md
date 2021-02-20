@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_null.md
+# null.md
 
-> plusmin > min_null
+> Tilde > Null
 >
 > Inlining `~` when we know something is a literal
 

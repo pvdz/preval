@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_s-seq_complex.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_delete_computed_s-seq_complex
+> Normalize > Expressions > Bindings > Switch case > Auto ident delete computed s-seq complex
 >
 > Normalization of var decls should work the same everywhere they are
 

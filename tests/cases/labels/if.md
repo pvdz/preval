@@ -1,8 +1,8 @@
 # Preval test case
 
-# labeled.md
+# if.md
 
-> labels > labeled
+> Labels > If
 >
 > Make sure the labeled `if` doesn't screw up transforms
 

@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_upd_ip_simple
+> Normalize > Expressions > Assignments > Call spread > Auto ident upd ip simple
 >
 > Normalization of assignments should work the same everywhere they are
 

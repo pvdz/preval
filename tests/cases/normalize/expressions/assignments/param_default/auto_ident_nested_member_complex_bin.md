@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > assignments > param_default > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Assignments > Param default > Auto ident nested member complex bin
 >
 > Normalization of assignments should work the same everywhere they are
 

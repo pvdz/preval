@@ -1,8 +1,8 @@
 # Preval test case
 
-# call_arg_order.md
+# call_arg_order_1.md
 
-> normalize > sequence > call_arg_order
+> Normalize > Sequence > Call arg order 1
 >
 > In a call we can only trivially outline sequence expressions of the first arg. We can do the other ones but that requires temporary assignment of all non-ident/non-literals to ensure no side effects.
 

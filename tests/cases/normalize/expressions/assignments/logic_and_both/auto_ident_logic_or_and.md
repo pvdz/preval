@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_and.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_logic_or_and
+> Normalize > Expressions > Assignments > Logic and both > Auto ident logic or and
 >
 > Normalization of assignments should work the same everywhere they are
 

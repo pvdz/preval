@@ -2,7 +2,7 @@
 
 # empty.md
 
-> normalize > label > empty
+> Normalize > Label > Empty
 >
 > Empty label body checks
 

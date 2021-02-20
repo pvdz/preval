@@ -2,7 +2,7 @@
 
 # auto_ident_upd_pi_simple.md
 
-> normalize > expressions > statement > export_default > auto_ident_upd_pi_simple
+> Normalize > Expressions > Statement > Export default > Auto ident upd pi simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

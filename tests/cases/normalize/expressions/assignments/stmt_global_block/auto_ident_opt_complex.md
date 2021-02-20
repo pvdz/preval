@@ -2,7 +2,7 @@
 
 # auto_ident_opt_complex.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_opt_complex
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident opt complex
 >
 > Normalization of assignments should work the same everywhere they are
 

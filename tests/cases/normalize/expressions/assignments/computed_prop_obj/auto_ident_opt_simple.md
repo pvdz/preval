@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_opt_simple
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident opt simple
 >
 > Normalization of assignments should work the same everywhere they are
 

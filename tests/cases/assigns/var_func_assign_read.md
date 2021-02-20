@@ -2,7 +2,7 @@
 
 # var_func_assign_read.md
 
-> assigns > var_func_assign_read
+> Assigns > Var func assign read
 >
 > Turning a var into a const. Or not.
 

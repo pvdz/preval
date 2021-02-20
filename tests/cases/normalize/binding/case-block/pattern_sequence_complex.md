@@ -2,7 +2,7 @@
 
 # pattern_sequence_complex.md
 
-> normalize > assignment > case-block > pattern_sequence_complex
+> Normalize > Binding > Case-block > Pattern sequence complex
 >
 > Assignments of all kinds should be normalized in all circumstances
 

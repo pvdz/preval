@@ -2,7 +2,7 @@
 
 # scoping.md
 
-> normalize > for > regular > scoping
+> Normalize > For > Regular > Scoping
 >
 > The var decl in a for-header has its own scope so our transform should not break that
 

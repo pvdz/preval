@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > statement > throw > auto_ident_array_empty
+> Normalize > Expressions > Statement > Throw > Auto ident array empty
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

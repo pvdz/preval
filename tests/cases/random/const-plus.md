@@ -2,7 +2,7 @@
 
 # const-plus.md
 
-> random > const-plus
+> Random > Const-plus
 >
 > Const inlining with addition inlining will require a loop of sorts
 

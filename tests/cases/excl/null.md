@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_null.md
+# null.md
 
-> plusmin > min_null
+> Excl > Null
 >
 > Literals with a `!` unary should get inlined
 

@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_literal
+> Normalize > Expressions > Assignments > Ternary a > Auto ident literal
 >
 > Normalization of assignments should work the same everywhere they are
 

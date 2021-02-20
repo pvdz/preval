@@ -1,8 +1,8 @@
 # Preval test case
 
-# nested.md
+# continue_with_dupe.md
 
-> labels > nested
+> Labels > Continue with dupe
 >
 > Labels should not throw
 

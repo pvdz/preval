@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_and.md
 
-> normalize > expressions > statement > logic_or_both > auto_ident_logic_and_and
+> Normalize > Expressions > Statement > Logic or both > Auto ident logic and and
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

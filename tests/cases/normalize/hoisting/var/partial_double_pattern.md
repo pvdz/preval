@@ -2,7 +2,7 @@
 
 # partial_double_pattern.md
 
-> normalize > hoisting > var > partial_double_pattern
+> Normalize > Hoisting > Var > Partial double pattern
 >
 > Silly case of a double var pattern binding
 

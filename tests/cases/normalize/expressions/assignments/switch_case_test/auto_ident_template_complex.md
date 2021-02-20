@@ -2,7 +2,7 @@
 
 # auto_ident_template_complex.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_template_complex
+> Normalize > Expressions > Assignments > Switch case test > Auto ident template complex
 >
 > Normalization of assignments should work the same everywhere they are
 

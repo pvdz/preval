@@ -2,7 +2,7 @@
 
 # _base_prop_obj.md
 
-> normalize > nullish > _base_prop_obj
+> Normalize > Nullish > Base prop obj
 >
 > Simple example
 

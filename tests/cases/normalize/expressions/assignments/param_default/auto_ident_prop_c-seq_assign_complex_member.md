@@ -2,7 +2,7 @@
 
 # auto_ident_prop_c-seq_assign_complex_member.md
 
-> normalize > expressions > assignments > param_default > auto_ident_prop_c-seq_assign_complex_member
+> Normalize > Expressions > Assignments > Param default > Auto ident prop c-seq assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

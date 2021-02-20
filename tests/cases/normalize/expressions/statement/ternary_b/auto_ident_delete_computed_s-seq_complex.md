@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_s-seq_complex.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_delete_computed_s-seq_complex
+> Normalize > Expressions > Statement > Ternary b > Auto ident delete computed s-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

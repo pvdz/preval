@@ -2,7 +2,7 @@
 
 # default_yes_no__0.md
 
-> normalize > pattern >  > param > arr > obj > default_yes_no__0
+> Normalize > Pattern > Param > Arr > Obj > Default yes no  0
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

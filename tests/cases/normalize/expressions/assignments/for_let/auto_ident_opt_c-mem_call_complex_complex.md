@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-mem_call_complex_complex.md
 
-> normalize > expressions > assignments > for_let > auto_ident_opt_c-mem_call_complex_complex
+> Normalize > Expressions > Assignments > For let > Auto ident opt c-mem call complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

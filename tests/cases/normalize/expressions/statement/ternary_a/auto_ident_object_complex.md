@@ -2,7 +2,7 @@
 
 # auto_ident_object_complex.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_object_complex
+> Normalize > Expressions > Statement > Ternary a > Auto ident object complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

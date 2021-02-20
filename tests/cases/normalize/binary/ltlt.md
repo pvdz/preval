@@ -2,7 +2,7 @@
 
 # ltlt.md
 
-> normalize > binary > ltlt
+> Normalize > Binary > Ltlt
 >
 > Baseline binary expressions to cover ops
 

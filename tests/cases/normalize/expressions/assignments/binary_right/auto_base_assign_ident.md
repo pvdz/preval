@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > assignments > binary_right > auto_base_assign_ident
+> Normalize > Expressions > Assignments > Binary right > Auto base assign ident
 >
 > Normalization of assignments should work the same everywhere they are
 

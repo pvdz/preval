@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# ternary_alternate.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Base contexts > Ternary alternate
 >
 > Testing simple pattern normalizations
 

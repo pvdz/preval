@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_complex.md
 
-> normalize > expressions > statement > stmt_global_block > auto_ident_unary_minus_complex
+> Normalize > Expressions > Statement > Stmt global block > Auto ident unary minus complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

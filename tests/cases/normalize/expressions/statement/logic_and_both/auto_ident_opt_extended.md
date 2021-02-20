@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_opt_extended
+> Normalize > Expressions > Statement > Logic and both > Auto ident opt extended
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

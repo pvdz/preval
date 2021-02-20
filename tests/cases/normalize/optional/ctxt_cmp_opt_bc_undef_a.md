@@ -1,8 +1,8 @@
 # Preval test case
 
-# ctxt_opt_bc_undef_a.md
+# ctxt_cmp_opt_bc_undef_a.md
 
-> normalize > optional > ctxt_opt_bc_undef_a
+> Normalize > Optional > Ctxt cmp opt bc undef a
 >
 > Ensure context is passed on properly in various optional chaining cases
 

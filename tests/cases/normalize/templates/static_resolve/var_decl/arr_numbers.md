@@ -2,7 +2,7 @@
 
 # arr_numbers.md
 
-> normalize > templates > static_resolve > var_decl > arr_numbers
+> Normalize > Templates > Static resolve > Var decl > Arr numbers
 >
 > Templates should be able to resolve literals
 

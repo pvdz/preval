@@ -2,7 +2,7 @@
 
 # var_write_func_expr_read.md
 
-> assigns > var_write_func_expr_read
+> Assigns > Var write func expr read
 >
 > Turning a var into a const. Or not.
 

@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-seq.md
 
-> normalize > expressions > statement > call > auto_ident_opt_c-seq
+> Normalize > Expressions > Statement > Call > Auto ident opt c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

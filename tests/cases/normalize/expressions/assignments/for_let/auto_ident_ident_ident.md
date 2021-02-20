@@ -2,7 +2,7 @@
 
 # auto_ident_ident_ident.md
 
-> normalize > expressions > assignments > for_let > auto_ident_ident_ident
+> Normalize > Expressions > Assignments > For let > Auto ident ident ident
 >
 > Normalization of assignments should work the same everywhere they are
 

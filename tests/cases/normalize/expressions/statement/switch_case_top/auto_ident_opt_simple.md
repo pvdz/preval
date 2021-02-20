@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple.md
 
-> normalize > expressions > statement > switch_case_top > auto_ident_opt_simple
+> Normalize > Expressions > Statement > Switch case top > Auto ident opt simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

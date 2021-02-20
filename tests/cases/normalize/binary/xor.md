@@ -2,7 +2,7 @@
 
 # xor.md
 
-> normalize > binary > xor
+> Normalize > Binary > Xor
 >
 > Baseline binary expressions to cover ops
 

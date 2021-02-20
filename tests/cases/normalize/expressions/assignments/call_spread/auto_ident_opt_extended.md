@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Call spread > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

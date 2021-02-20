@@ -2,7 +2,7 @@
 
 # auto_computed_simple_simple_complex.md
 
-> normalize > expressions > assignments > template > auto_computed_simple_simple_complex
+> Normalize > Expressions > Assignments > Template > Auto computed simple simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

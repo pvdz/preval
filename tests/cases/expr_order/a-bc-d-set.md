@@ -1,8 +1,8 @@
 # Preval test case
 
-# a-bc-d.md
+# a-bc-d-set.md
 
-> expr_order > a-bc-d
+> Expr order > A-bc-d-set
 >
 > Double check whether this can't be broken
 

@@ -2,7 +2,7 @@
 
 # member_call.md
 
-> normalize > optional > member_call
+> Normalize > Optional > Member call
 >
 > Optional chaining fun
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# if_else1.md
 
-> normalize > dce > base
+> Normalize > Dce > Return > If else1
 >
 > Any statements that follow a return in the same parent should be eliminated.
 

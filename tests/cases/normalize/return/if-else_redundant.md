@@ -1,8 +1,8 @@
 # Preval test case
 
-# unused.md
+# if-else_redundant.md
 
-> normalize > return > unused
+> Normalize > Return > If-else redundant
 >
 > Unused return statements should be eliminated
 

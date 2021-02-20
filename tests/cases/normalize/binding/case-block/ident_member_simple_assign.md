@@ -2,7 +2,7 @@
 
 # ident_member_simple_assign.md
 
-> normalize > assignment > case-block > ident_member_simple_assign
+> Normalize > Binding > Case-block > Ident member simple assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

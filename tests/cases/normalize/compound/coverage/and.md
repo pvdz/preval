@@ -2,7 +2,7 @@
 
 # and.md
 
-> normalize > compound > coverage > and
+> Normalize > Compound > Coverage > And
 >
 > Compound assignments should destructure to regular assignments
 

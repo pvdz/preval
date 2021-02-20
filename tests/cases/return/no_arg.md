@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_sequence.md
+# no_arg.md
 
-> return > complex_sequence
+> Return > No arg
 >
 > Returning a sequence that ends in a simple node
 

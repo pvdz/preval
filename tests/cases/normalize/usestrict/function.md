@@ -1,8 +1,8 @@
 # Preval test case
 
-# global.md
+# function.md
 
-> normalize > usestrict > global
+> Normalize > Usestrict > Function
 >
 > Make sure the directive is not kept because of its special status
 

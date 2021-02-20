@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_s-seq_simple.md
 
-> normalize > expressions > statement > param_default > auto_ident_call_computed_s-seq_simple
+> Normalize > Expressions > Statement > Param default > Auto ident call computed s-seq simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_delete_prop_simple
+> Normalize > Expressions > Assignments > Arr spread > Auto ident delete prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

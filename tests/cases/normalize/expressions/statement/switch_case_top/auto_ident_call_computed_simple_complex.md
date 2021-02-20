@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_simple_complex.md
 
-> normalize > expressions > statement > switch_case_top > auto_ident_call_computed_simple_complex
+> Normalize > Expressions > Statement > Switch case top > Auto ident call computed simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

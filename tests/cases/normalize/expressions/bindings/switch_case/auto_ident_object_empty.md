@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_object_empty
+> Normalize > Expressions > Bindings > Switch case > Auto ident object empty
 >
 > Normalization of var decls should work the same everywhere they are
 

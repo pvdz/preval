@@ -1,8 +1,8 @@
 # Preval test case
 
-# init_assign.md
+# init_assign_both_simple.md
 
-> normalize > binding > init_assign
+> Normalize > Binding > Init assign both simple
 >
 > Should normalize assignment init to separate line
 

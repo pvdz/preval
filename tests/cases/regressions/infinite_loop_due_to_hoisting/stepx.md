@@ -2,7 +2,7 @@
 
 # stepx.md
 
-> regressions > infinite_loop_due_to_hoisting > stepx
+> Regressions > Infinite loop due to hoisting > Stepx
 >
 > This was after some steps. I think it should be finished here.
 

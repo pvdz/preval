@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > statement > switch_w_default_case_block > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Statement > Switch w default case block > Auto ident prop s-seq assign simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

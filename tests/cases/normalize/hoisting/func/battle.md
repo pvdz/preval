@@ -2,7 +2,7 @@
 
 # battle.md
 
-> normalize > hoisting > func > battle
+> Normalize > Hoisting > Func > Battle
 >
 > Who wins?
 

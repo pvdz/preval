@@ -1,8 +1,8 @@
 # Preval test case
 
-# switch_case.md
+# switch_case_rereferenced_tdz.md
 
-> normalize > pattern > binding > switch_case
+> Normalize > Pattern > Binding > Switch case rereferenced tdz
 >
 > Scope of a switch block is shared between all cases so bindings need to be hoisted above it
 

@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_complex_simple.md
 
-> normalize > expressions > statement > throw > auto_ident_logic_or_complex_simple
+> Normalize > Expressions > Statement > Throw > Auto ident logic or complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

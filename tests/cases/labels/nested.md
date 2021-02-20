@@ -2,7 +2,7 @@
 
 # nested.md
 
-> labels > nested
+> Labels > Nested
 >
 > Labels should not throw
 

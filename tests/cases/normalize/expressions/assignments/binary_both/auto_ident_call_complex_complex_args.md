@@ -2,7 +2,7 @@
 
 # auto_ident_call_complex_complex_args.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_call_complex_complex_args
+> Normalize > Expressions > Assignments > Binary both > Auto ident call complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

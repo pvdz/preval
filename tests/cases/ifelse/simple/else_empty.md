@@ -1,8 +1,8 @@
 # Preval test case
 
-# else_arr.md
+# else_empty.md
 
-> ifelse > else_arr
+> Ifelse > Simple > Else empty
 >
 > Eliminate simple tautology
 

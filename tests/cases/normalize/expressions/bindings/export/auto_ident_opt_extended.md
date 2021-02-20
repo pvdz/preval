@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > bindings > export > auto_ident_opt_extended
+> Normalize > Expressions > Bindings > Export > Auto ident opt extended
 >
 > Normalization of var decls should work the same everywhere they are
 

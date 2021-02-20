@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_call.md
+# func_assign_member.md
 
-> normalize > member_access > global_group_call
+> Normalize > Nullish > Func assign member
 >
 > Assignment of a member expression where the object is a sequence
 

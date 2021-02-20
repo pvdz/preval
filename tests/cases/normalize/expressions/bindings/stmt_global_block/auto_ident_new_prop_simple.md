@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_simple.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_new_prop_simple
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident new prop simple
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > statement > for_b > auto_ident_literal
+> Normalize > Expressions > Statement > For b > Auto ident literal
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > statement > regular_prop_obj > auto_ident_func_anon
+> Normalize > Expressions > Statement > Regular prop obj > Auto ident func anon
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

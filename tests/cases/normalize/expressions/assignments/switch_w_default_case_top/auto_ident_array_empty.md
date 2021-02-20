@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

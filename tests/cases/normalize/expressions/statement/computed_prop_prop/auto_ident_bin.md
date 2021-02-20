@@ -2,7 +2,7 @@
 
 # auto_ident_bin.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_ident_bin
+> Normalize > Expressions > Statement > Computed prop prop > Auto ident bin
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# export_default_func_anon.md
+# func_export_default_anon.md
 
-> normalize > hoisting > export_default_func_anon
+> Normalize > Hoisting > Base > Func export default anon
 >
 > This should not be hoisted because you can't refer to it anyways
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# computed_prop.md
+# assignment_reg_prop.md
 
-> expr_order > computed_prop
+> Expr order > Assignment reg prop
 >
 > Object evals before rhs
 

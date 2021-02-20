@@ -2,7 +2,7 @@
 
 # string.md
 
-> exprstmt > string
+> Exprstmt > String
 >
 > String as statement can be eliminated
 

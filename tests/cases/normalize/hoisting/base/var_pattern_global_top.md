@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_block.md
+# var_pattern_global_top.md
 
-> normalize > hoisting > global_block
+> Normalize > Hoisting > Base > Var pattern global top
 >
 > Hosting in a block should end up in the parent
 

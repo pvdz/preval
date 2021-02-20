@@ -1,8 +1,8 @@
 # Preval test case
 
-# multiple_var_no_init.md
+# multiple_vars_no_init_unused.md
 
-> normalize > var > multiple_var_no_init
+> Normalize > Var > Multiple vars no init unused
 >
 > Declaring multiple bindings should be normalized to separate declarations such that there is one binding per declaration.
 

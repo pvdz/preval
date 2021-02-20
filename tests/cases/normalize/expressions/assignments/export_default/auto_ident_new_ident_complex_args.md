@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > assignments > export_default > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Assignments > Export default > Auto ident new ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

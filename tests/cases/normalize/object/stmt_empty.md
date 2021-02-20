@@ -2,7 +2,7 @@
 
 # stmt_empty.md
 
-> normalize > object > stmt_empty
+> Normalize > Object > Stmt empty
 >
 > Objects as statement should be eliminated
 

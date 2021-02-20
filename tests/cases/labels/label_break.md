@@ -2,7 +2,7 @@
 
 # label_break.md
 
-> labels > label_break
+> Labels > Label break
 >
 > This is a pseudo-switch
 

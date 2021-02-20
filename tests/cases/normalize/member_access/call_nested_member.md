@@ -2,7 +2,7 @@
 
 # call_nested_member.md
 
-> normalize > sequence > call_nested_member
+> Normalize > Member access > Call nested member
 >
 > Calling a nested object structure should cache one level but not break the context
 

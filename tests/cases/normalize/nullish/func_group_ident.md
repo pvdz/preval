@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_ident.md
+# func_group_ident.md
 
-> normalize > member_access > global_group_ident
+> Normalize > Nullish > Func group ident
 >
 > This is sort of what we transform into, with a trailing ident
 

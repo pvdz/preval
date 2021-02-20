@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_simple_simple.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_cond_complex_simple_simple
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident cond complex simple simple
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # global_lex.md
 
-> normalize > naming > global_lex
+> Normalize > Naming > Global lex
 >
 > First a global binding shadowed by block binding
 

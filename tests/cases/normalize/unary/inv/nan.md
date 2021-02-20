@@ -2,7 +2,7 @@
 
 # nan.md
 
-> normalize > unary > inv > nan
+> Normalize > Unary > Inv > Nan
 >
 > Inverting literals should be statically resolved
 

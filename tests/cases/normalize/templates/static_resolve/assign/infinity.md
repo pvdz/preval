@@ -2,7 +2,7 @@
 
 # infinity.md
 
-> normalize > templates > static_resolve > assign > infinity
+> Normalize > Templates > Static resolve > Assign > Infinity
 >
 > Templates should be able to resolve literals
 

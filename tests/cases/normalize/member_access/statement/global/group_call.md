@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_call.md
+# group_call.md
 
-> normalize > member_access > global_group_call
+> Normalize > Member access > Statement > Global > Group call
 >
 > Counter test to ensure we still process groups that don't end with an ident or literal
 

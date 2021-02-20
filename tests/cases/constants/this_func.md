@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# this_func.md
 
-> constants > null
+> Constants > This func
 >
 > A constant set to null should be eliminated
 

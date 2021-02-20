@@ -2,7 +2,7 @@
 
 # ident_sequence_complex.md
 
-> normalize > assignment > export-default > ident_sequence_complex
+> Normalize > Binding > Export-default > Ident sequence complex
 >
 > Assignments of all kinds should be normalized in all circumstances
 

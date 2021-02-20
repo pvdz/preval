@@ -2,7 +2,7 @@
 
 # ident_member_simple_assign.md
 
-> normalize > assignment > export-default > ident_member_simple_assign
+> Normalize > Binding > Export-default > Ident member simple assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

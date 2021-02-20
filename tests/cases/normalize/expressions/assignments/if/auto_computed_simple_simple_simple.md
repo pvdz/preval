@@ -2,7 +2,7 @@
 
 # auto_computed_simple_simple_simple.md
 
-> normalize > expressions > assignments > if > auto_computed_simple_simple_simple
+> Normalize > Expressions > Assignments > If > Auto computed simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

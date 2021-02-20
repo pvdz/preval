@@ -2,7 +2,7 @@
 
 # swtich_case_init.md
 
-> normalize > hoisting > func > swtich_case_init
+> Normalize > Hoisting > Func > Swtich case init
 >
 > Vars can be declared in a switch case
 

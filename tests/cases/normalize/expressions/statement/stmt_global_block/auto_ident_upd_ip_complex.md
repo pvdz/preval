@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_complex.md
 
-> normalize > expressions > statement > stmt_global_block > auto_ident_upd_ip_complex
+> Normalize > Expressions > Statement > Stmt global block > Auto ident upd ip complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

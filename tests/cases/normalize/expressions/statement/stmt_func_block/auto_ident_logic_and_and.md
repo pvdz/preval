@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_and.md
 
-> normalize > expressions > statement > stmt_func_block > auto_ident_logic_and_and
+> Normalize > Expressions > Statement > Stmt func block > Auto ident logic and and
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

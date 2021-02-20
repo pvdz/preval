@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_pattern_arr_c-seq
+> Normalize > Expressions > Assignments > Regular prop obj > Auto pattern arr c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

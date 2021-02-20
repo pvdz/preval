@@ -2,7 +2,7 @@
 
 # _base_prop_obj.md
 
-> normalize > optional > _base_prop_obj
+> Normalize > Optional > Base prop obj
 >
 > Simple example
 

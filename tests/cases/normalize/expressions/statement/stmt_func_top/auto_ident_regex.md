@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > statement > stmt_func_top > auto_ident_regex
+> Normalize > Expressions > Statement > Stmt func top > Auto ident regex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_nested_member_complex_simple
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident nested member complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

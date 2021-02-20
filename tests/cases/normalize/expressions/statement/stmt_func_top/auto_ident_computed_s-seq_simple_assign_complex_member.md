@@ -2,7 +2,7 @@
 
 # auto_ident_computed_s-seq_simple_assign_complex_member.md
 
-> normalize > expressions > statement > stmt_func_top > auto_ident_computed_s-seq_simple_assign_complex_member
+> Normalize > Expressions > Statement > Stmt func top > Auto ident computed s-seq simple assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

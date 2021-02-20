@@ -2,7 +2,7 @@
 
 # default_yes_yes__empty_str.md
 
-> normalize > pattern >  > param > obj > obj > rest > default_yes_yes__empty_str
+> Normalize > Pattern > Param > Obj > Obj > Rest > Default yes yes  empty str
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > statement > for_of_left > auto_ident_object_empty
+> Normalize > Expressions > Statement > For of left > Auto ident object empty
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

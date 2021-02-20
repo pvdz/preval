@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_complex.md
 
-> normalize > expressions > bindings > export > auto_ident_delete_computed_simple_complex
+> Normalize > Expressions > Bindings > Export > Auto ident delete computed simple complex
 >
 > Normalization of var decls should work the same everywhere they are
 

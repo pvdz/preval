@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_dollar.md
 
-> function > return_string
+> Function > Return dollar
 >
 > Function that returns a special dollar func call
 

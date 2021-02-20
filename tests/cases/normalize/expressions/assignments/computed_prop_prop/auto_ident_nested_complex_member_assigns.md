@@ -2,7 +2,7 @@
 
 # auto_ident_nested_complex_member_assigns.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_nested_complex_member_assigns
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident nested complex member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

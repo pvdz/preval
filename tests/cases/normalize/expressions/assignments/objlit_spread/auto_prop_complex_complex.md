@@ -2,7 +2,7 @@
 
 # auto_prop_complex_complex.md
 
-> normalize > expressions > assignments > objlit_spread > auto_prop_complex_complex
+> Normalize > Expressions > Assignments > Objlit spread > Auto prop complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

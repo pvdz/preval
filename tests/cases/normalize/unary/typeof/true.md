@@ -2,7 +2,7 @@
 
 # true.md
 
-> normalize > unary > typeof > true
+> Normalize > Unary > Typeof > True
 >
 > Typeof always returns a string
 

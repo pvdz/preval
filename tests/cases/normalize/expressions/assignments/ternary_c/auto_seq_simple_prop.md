@@ -2,7 +2,7 @@
 
 # auto_seq_simple_prop.md
 
-> normalize > expressions > assignments > ternary_c > auto_seq_simple_prop
+> Normalize > Expressions > Assignments > Ternary c > Auto seq simple prop
 >
 > Normalization of assignments should work the same everywhere they are
 

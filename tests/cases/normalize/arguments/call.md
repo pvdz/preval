@@ -2,7 +2,7 @@
 
 # call.md
 
-> normalize > arguments > call
+> Normalize > Arguments > Call
 >
 > Normalizing call args when they are not identifier or literal
 

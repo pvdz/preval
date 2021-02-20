@@ -2,7 +2,7 @@
 
 # class_computed_key.md
 
-> normalize > class > class_computed_key
+> Normalize > Class > Class computed key
 >
 > The computed key of a class should be evaluated outside of the class body, before the class.
 

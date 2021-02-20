@@ -2,7 +2,7 @@
 
 # delete_null.md
 
-> normalize > optional > delete_null
+> Normalize > Optional > Delete null
 >
 > Delete on member expression is special casing. Works with optional chaining.
 

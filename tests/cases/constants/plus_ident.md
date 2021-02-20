@@ -1,8 +1,8 @@
 # Preval test case
 
-# minus_number.md
+# plus_ident.md
 
-> constants > minus_number
+> Constants > Plus ident
 >
 > Positive idents that are not builtins should be treated as normal
 

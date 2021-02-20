@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_c-seq_complex.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_ident_new_computed_c-seq_complex
+> Normalize > Expressions > Statement > Computed prop prop > Auto ident new computed c-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

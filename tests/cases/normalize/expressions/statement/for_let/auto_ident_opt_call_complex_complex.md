@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_complex.md
 
-> normalize > expressions > statement > for_let > auto_ident_opt_call_complex_complex
+> Normalize > Expressions > Statement > For let > Auto ident opt call complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

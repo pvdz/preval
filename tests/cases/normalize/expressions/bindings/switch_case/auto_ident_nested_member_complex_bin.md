@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Bindings > Switch case > Auto ident nested member complex bin
 >
 > Normalization of var decls should work the same everywhere they are
 

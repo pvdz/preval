@@ -2,7 +2,7 @@
 
 # true.md
 
-> exprstmt > true
+> Exprstmt > True
 >
 > Booleans as statement can be eliminated
 

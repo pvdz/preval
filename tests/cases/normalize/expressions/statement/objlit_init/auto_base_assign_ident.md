@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > statement > objlit_init > auto_base_assign_ident
+> Normalize > Expressions > Statement > Objlit init > Auto base assign ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

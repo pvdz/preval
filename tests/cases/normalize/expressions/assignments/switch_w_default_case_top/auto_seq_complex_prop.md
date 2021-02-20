@@ -2,7 +2,7 @@
 
 # auto_seq_complex_prop.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_seq_complex_prop
+> Normalize > Expressions > Assignments > Switch w default case top > Auto seq complex prop
 >
 > Normalization of assignments should work the same everywhere they are
 

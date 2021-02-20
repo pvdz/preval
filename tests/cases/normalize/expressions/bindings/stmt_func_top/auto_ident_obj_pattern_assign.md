@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident obj pattern assign
 >
 > Normalization of var decls should work the same everywhere they are
 

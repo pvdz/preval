@@ -2,7 +2,7 @@
 
 # dynamic.md
 
-> normalize > member_access > dynamic
+> Normalize > Optional > Dynamic
 >
 > Dynamic property access should be normalized like all the other things
 

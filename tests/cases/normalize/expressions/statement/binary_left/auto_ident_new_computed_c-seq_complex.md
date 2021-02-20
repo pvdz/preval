@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_c-seq_complex.md
 
-> normalize > expressions > statement > binary_left > auto_ident_new_computed_c-seq_complex
+> Normalize > Expressions > Statement > Binary left > Auto ident new computed c-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

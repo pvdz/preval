@@ -2,7 +2,7 @@
 
 # star.md
 
-> normalize > compound > coverage > star
+> Normalize > Compound > Coverage > Star
 >
 > Compound assignments should destructure to regular assignments
 

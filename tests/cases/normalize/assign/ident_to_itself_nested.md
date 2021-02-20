@@ -1,8 +1,8 @@
 # Preval test case
 
-# ident_to_itself.md
+# ident_to_itself_nested.md
 
-> normalize > assign > ident_to_itself
+> Normalize > Assign > Ident to itself nested
 >
 > An ident that assigns to itself should be considered a noop
 

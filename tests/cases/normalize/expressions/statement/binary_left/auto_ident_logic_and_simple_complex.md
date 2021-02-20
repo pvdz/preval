@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_simple_complex.md
 
-> normalize > expressions > statement > binary_left > auto_ident_logic_and_simple_complex
+> Normalize > Expressions > Statement > Binary left > Auto ident logic and simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

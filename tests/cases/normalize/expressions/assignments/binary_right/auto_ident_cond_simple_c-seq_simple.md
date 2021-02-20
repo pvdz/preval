@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_c-seq_simple.md
 
-> normalize > expressions > assignments > binary_right > auto_ident_cond_simple_c-seq_simple
+> Normalize > Expressions > Assignments > Binary right > Auto ident cond simple c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

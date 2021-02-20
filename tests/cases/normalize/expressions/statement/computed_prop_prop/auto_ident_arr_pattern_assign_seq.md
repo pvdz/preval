@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign_seq.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_ident_arr_pattern_assign_seq
+> Normalize > Expressions > Statement > Computed prop prop > Auto ident arr pattern assign seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident call ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

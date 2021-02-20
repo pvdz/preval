@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > do_while > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Do while > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > label > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Label > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

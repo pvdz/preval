@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_object_empty
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

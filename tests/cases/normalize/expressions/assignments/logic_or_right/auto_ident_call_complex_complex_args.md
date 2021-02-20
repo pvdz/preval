@@ -2,7 +2,7 @@
 
 # auto_ident_call_complex_complex_args.md
 
-> normalize > expressions > assignments > logic_or_right > auto_ident_call_complex_complex_args
+> Normalize > Expressions > Assignments > Logic or right > Auto ident call complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Assignments > Binary both > Auto ident prop s-seq assign simple
 >
 > Normalization of assignments should work the same everywhere they are
 

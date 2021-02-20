@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > bindings > export > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Bindings > Export > Auto ident nested simple member assigns
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # for_of.md
 
-> normalize > blocks > for_of
+> Normalize > Blocks > For of
 >
 > Add blocks to sub-statements
 

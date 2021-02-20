@@ -1,8 +1,8 @@
 # Preval test case
 
-# end.md
+# global_end.md
 
-> normalize > sequence > end
+> Normalize > Sequence > Global end
 >
 > Nested groups can be flattened. We only care about the normalized output for this case. (I mean, it'll be resolved entirely, obviously)
 

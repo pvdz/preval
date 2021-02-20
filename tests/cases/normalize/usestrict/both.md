@@ -1,8 +1,8 @@
 # Preval test case
 
-# global.md
+# both.md
 
-> normalize > usestrict > global
+> Normalize > Usestrict > Both
 >
 > Make sure the directive is not kept because of its special status
 

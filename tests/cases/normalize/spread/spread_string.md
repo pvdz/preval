@@ -2,7 +2,7 @@
 
 # spread_string.md
 
-> normalize > spread > spread_string
+> Normalize > Spread > Spread string
 >
 > Literal operations can be extrapolated and reduced
 

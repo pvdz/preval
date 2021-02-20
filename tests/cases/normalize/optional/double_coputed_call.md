@@ -1,8 +1,8 @@
 # Preval test case
 
-# double_coputed.md
+# double_coputed_call.md
 
-> normalize > optional > double_coputed
+> Normalize > Optional > Double coputed call
 >
 > Order of complex expressions in double optional computed property
 

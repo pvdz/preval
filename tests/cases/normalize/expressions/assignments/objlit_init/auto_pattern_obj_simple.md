@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

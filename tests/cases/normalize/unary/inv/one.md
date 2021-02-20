@@ -2,7 +2,7 @@
 
 # one.md
 
-> normalize > unary > inv > one
+> Normalize > Unary > Inv > One
 >
 > Inverting literals should be statically resolved
 

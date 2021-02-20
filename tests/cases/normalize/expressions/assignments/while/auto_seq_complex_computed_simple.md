@@ -2,7 +2,7 @@
 
 # auto_seq_complex_computed_simple.md
 
-> normalize > expressions > assignments > while > auto_seq_complex_computed_simple
+> Normalize > Expressions > Assignments > While > Auto seq complex computed simple
 >
 > Normalization of assignments should work the same everywhere they are
 

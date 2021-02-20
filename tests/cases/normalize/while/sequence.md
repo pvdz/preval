@@ -2,7 +2,7 @@
 
 # sequence.md
 
-> normalize > while > sequence
+> Normalize > While > Sequence
 >
 > Test should be normalized
 

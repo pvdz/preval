@@ -1,8 +1,8 @@
 # Preval test case
 
-# export_named_func.md
+# func_export_named.md
 
-> normalize > hoisting > export_named_func
+> Normalize > Hoisting > Base > Func export named
 >
 > Exported func decls are still hoisted
 

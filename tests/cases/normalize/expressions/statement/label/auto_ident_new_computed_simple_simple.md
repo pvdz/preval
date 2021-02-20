@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_simple_simple.md
 
-> normalize > expressions > statement > label > auto_ident_new_computed_simple_simple
+> Normalize > Expressions > Statement > Label > Auto ident new computed simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_call_prop.md
+# global_call_ident.md
 
-> normalize > member_access > global_call_prop
+> Normalize > Optional > Global call ident
 >
 > Ident property access should not be changed
 

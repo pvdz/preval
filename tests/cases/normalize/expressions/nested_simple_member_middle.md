@@ -1,8 +1,8 @@
 # Preval test case
 
-# nested_simple.md
+# nested_simple_member_middle.md
 
-> normalize > assignment > nested_simple
+> Normalize > Expressions > Nested simple member middle
 >
 > Nested assignments should be split up
 

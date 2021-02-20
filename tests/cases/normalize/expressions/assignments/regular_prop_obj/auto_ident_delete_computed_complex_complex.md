@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_complex.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_delete_computed_complex_complex
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident delete computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

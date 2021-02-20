@@ -2,7 +2,7 @@
 
 # init_member_expr.md
 
-> normalize > binding > init_member_expr
+> Normalize > Binding > Init member expr
 >
 > Binding declaration with a simple init should not be outlined
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# labeled.md
+# for.md
 
-> labels > labeled
+> Labels > For
 >
 > If the sub-statement of a label is a loop then it should not become a block since that would be a syntax error with labeled continue.
 

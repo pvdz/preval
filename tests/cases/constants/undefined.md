@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# undefined.md
 
-> constants > null
+> Constants > Undefined
 >
 > A constant set to undefined should be eliminated
 

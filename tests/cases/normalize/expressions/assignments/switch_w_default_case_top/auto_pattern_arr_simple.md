@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_pattern_arr_simple
+> Normalize > Expressions > Assignments > Switch w default case top > Auto pattern arr simple
 >
 > Normalization of assignments should work the same everywhere they are
 

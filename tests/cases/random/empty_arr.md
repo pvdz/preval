@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_base_assign_pattern_arr.md
+# empty_arr.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_base_assign_pattern_arr
+> Random > Empty arr
 >
 > Special path to leaving empty arrs at some point.
 

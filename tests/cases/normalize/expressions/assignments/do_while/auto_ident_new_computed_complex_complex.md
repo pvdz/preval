@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_complex_complex.md
 
-> normalize > expressions > assignments > do_while > auto_ident_new_computed_complex_complex
+> Normalize > Expressions > Assignments > Do while > Auto ident new computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

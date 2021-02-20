@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > if > auto_ident_array_empty
+> Normalize > Expressions > Assignments > If > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

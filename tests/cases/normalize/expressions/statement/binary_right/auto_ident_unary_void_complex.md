@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > statement > binary_right > auto_ident_unary_void_complex
+> Normalize > Expressions > Statement > Binary right > Auto ident unary void complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

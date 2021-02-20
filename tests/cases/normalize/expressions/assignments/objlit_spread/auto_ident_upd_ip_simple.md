@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_upd_ip_simple
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident upd ip simple
 >
 > Normalization of assignments should work the same everywhere they are
 

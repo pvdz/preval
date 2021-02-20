@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > statement > stmt_func_block > auto_base_assign_pattern_arr
+> Normalize > Expressions > Statement > Stmt func block > Auto base assign pattern arr
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

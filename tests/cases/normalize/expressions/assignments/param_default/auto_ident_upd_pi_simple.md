@@ -2,7 +2,7 @@
 
 # auto_ident_upd_pi_simple.md
 
-> normalize > expressions > assignments > param_default > auto_ident_upd_pi_simple
+> Normalize > Expressions > Assignments > Param default > Auto ident upd pi simple
 >
 > Normalization of assignments should work the same everywhere they are
 

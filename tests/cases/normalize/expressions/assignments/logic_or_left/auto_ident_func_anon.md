@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > logic_or_left > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Logic or left > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

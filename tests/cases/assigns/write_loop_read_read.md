@@ -2,7 +2,7 @@
 
 # write_loop_read_read.md
 
-> assigns > write_loop_read_read
+> Assigns > Write loop read read
 >
 > Turning a var into a const. Or not.
 

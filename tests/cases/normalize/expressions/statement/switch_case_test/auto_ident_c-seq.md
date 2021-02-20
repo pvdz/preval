@@ -2,7 +2,7 @@
 
 # auto_ident_c-seq.md
 
-> normalize > expressions > statement > switch_case_test > auto_ident_c-seq
+> Normalize > Expressions > Statement > Switch case test > Auto ident c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

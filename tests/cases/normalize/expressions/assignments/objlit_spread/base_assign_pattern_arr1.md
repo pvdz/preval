@@ -2,7 +2,7 @@
 
 # base_assign_pattern_arr1.md
 
-> normalize > expressions > assignments > objlit_spread > base_assign_pattern_arr1
+> Normalize > Expressions > Assignments > Objlit spread > Base assign pattern arr1
 >
 > Normalization of assignments should work the same everywhere they are
 

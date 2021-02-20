@@ -2,7 +2,7 @@
 
 # percent.md
 
-> normalize > binary > percent
+> Normalize > Binary > Percent
 >
 > Baseline binary expressions to cover ops
 

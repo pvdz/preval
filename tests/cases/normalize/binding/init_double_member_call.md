@@ -2,7 +2,7 @@
 
 # init_double_member_call.md
 
-> normalize > binding > init_double_member_call
+> Normalize > Binding > Init double member call
 >
 > Binding declaration with a long init should be outlined
 

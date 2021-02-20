@@ -2,7 +2,7 @@
 
 # auto_ident_computed_s-seq_simple.md
 
-> normalize > expressions > assignments > call > auto_ident_computed_s-seq_simple
+> Normalize > Expressions > Assignments > Call > Auto ident computed s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

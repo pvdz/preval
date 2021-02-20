@@ -2,7 +2,7 @@
 
 # init_double_member_expr.md
 
-> normalize > binding > init_double_member_expr
+> Normalize > Binding > Init double member expr
 >
 > Binding declaration with a long init should be outlined
 

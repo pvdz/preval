@@ -2,7 +2,7 @@
 
 # eqeqeq.md
 
-> normalize > binary > eqeqeq
+> Normalize > Binary > Eqeqeq
 >
 > Baseline binary expressions to cover ops
 

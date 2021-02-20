@@ -2,7 +2,7 @@
 
 # infinity.md
 
-> normalize > unary > minus > infinity
+> Normalize > Unary > Tilde > Infinity
 >
 > Unaries should be statically resolved where possible
 

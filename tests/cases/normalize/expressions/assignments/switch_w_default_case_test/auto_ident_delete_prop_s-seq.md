@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_s-seq.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_delete_prop_s-seq
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident delete prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

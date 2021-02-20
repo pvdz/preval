@@ -2,7 +2,7 @@
 
 # pattern_sequence_complex.md
 
-> normalize > assignment > export-default > pattern_sequence_complex
+> Normalize > Binding > Export-default > Pattern sequence complex
 >
 > Assignments of all kinds should be normalized in all circumstances
 

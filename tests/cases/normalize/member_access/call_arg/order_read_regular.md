@@ -2,7 +2,7 @@
 
 # order_read_regular.md
 
-> normalize > member_access > call_arg > order_read_regular
+> Normalize > Member access > Call arg > Order read regular
 >
 > Test evaluation order of member expression through getters and setters
 

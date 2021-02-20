@@ -1,8 +1,8 @@
 # Preval test case
 
-# spread_string.md
+# spread_array.md
 
-> normalize > spread > spread_string
+> Normalize > Spread > Spread array
 >
 > Spreading an array literal can be resolved statically
 

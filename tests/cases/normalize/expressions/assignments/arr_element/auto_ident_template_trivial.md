@@ -2,7 +2,7 @@
 
 # auto_ident_template_trivial.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_template_trivial
+> Normalize > Expressions > Assignments > Arr element > Auto ident template trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

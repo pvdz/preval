@@ -2,7 +2,7 @@
 
 # _base_call_func.md
 
-> normalize > optional > _base_call_func
+> Normalize > Optional > Base call func
 >
 > Simple example
 

@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident nested member complex bin
 >
 > Normalization of assignments should work the same everywhere they are
 

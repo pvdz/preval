@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > statement > export_default > auto_ident_unary_void_complex
+> Normalize > Expressions > Statement > Export default > Auto ident unary void complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

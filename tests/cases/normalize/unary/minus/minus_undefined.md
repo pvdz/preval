@@ -2,7 +2,7 @@
 
 # minus_undefined.md
 
-> normalize > unary > minus > minus_undefined
+> Normalize > Unary > Minus > Minus undefined
 >
 > Negative literals should be statically resolved where possible
 

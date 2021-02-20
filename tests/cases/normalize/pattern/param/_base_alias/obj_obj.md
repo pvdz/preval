@@ -2,7 +2,7 @@
 
 # obj_obj.md
 
-> normalize > pattern > param > _base > obj_obj
+> Normalize > Pattern > Param > Base alias > Obj obj
 >
 > Testing simple pattern normalizations
 

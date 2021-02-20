@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_or.md
 
-> normalize > expressions > statement > switch_case_top > auto_ident_logic_or_or
+> Normalize > Expressions > Statement > Switch case top > Auto ident logic or or
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

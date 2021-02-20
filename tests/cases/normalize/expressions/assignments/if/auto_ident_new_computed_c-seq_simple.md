@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_c-seq_simple.md
 
-> normalize > expressions > assignments > if > auto_ident_new_computed_c-seq_simple
+> Normalize > Expressions > Assignments > If > Auto ident new computed c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

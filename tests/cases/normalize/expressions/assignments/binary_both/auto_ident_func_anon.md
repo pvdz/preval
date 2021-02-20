@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Binary both > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

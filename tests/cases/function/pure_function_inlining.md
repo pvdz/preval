@@ -2,7 +2,7 @@
 
 # pure_function_inlining.md
 
-> function > pure_function_inlining
+> Function > Pure function inlining
 >
 > We have a pure function that is called with two different strings. Can it detect the inlining?
 

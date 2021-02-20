@@ -2,7 +2,7 @@
 
 # auto_ident_unary_simple.md
 
-> normalize > expressions > assignments > template > auto_ident_unary_simple
+> Normalize > Expressions > Assignments > Template > Auto ident unary simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_regex
+> Normalize > Expressions > Assignments > Binary left > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

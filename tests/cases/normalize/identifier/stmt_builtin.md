@@ -2,7 +2,7 @@
 
 # stmt_builtin.md
 
-> normalize > identifier > stmt_builtin
+> Normalize > Identifier > Stmt builtin
 >
 > Builtin global statement should be eliminated
 

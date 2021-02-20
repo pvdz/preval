@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_simple.md
 
-> normalize > expressions > statement > tagged > auto_ident_unary_void_simple
+> Normalize > Expressions > Statement > Tagged > Auto ident unary void simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_c-seq.md
 
-> normalize > expressions > statement > for_a > auto_ident_c-seq
+> Normalize > Expressions > Statement > For a > Auto ident c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

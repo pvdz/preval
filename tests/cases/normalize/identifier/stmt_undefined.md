@@ -1,8 +1,8 @@
 # Preval test case
 
-# stmt_builtin.md
+# stmt_undefined.md
 
-> normalize > identifier > stmt_builtin
+> Normalize > Identifier > Stmt undefined
 >
 > Builtin global statement should be eliminated
 

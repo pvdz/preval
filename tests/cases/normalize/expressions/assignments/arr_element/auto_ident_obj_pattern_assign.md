@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > Arr element > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

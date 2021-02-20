@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_complex.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_unary_plus_complex
+> Normalize > Expressions > Assignments > Call spread > Auto ident unary plus complex
 >
 > Normalization of assignments should work the same everywhere they are
 

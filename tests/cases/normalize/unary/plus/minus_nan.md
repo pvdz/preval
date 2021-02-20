@@ -2,7 +2,7 @@
 
 # minus_nan.md
 
-> normalize > unary > minus > minus_nan
+> Normalize > Unary > Plus > Minus nan
 >
 > Unaries should be statically resolved where possible
 

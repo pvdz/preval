@@ -2,7 +2,7 @@
 
 # ident_sequence_simple.md
 
-> normalize > assignment > case-block > ident_sequence_simple
+> Normalize > Binding > Case-block > Ident sequence simple
 >
 > Assignments of all kinds should be normalized in all circumstances
 

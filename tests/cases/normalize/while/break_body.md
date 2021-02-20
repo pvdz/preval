@@ -2,7 +2,7 @@
 
 # break_body.md
 
-> normalize > while > break_body
+> Normalize > While > Break body
 >
 > While with just a break should be eliminated
 

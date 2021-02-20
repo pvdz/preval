@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_or.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_logic_or_or
+> Normalize > Expressions > Bindings > Switch case > Auto ident logic or or
 >
 > Normalization of var decls should work the same everywhere they are
 

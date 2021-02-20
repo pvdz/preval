@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_simple.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_opt_call_complex_simple
+> Normalize > Expressions > Assignments > Arr spread > Auto ident opt call complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

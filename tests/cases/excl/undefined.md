@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_undefined.md
+# undefined.md
 
-> plusmin > min_undefined
+> Excl > Undefined
 >
 > Literals with a `!` unary should get inlined
 

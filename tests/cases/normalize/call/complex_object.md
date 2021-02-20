@@ -2,7 +2,7 @@
 
 # complex_object.md
 
-> normalize > call > complex_object
+> Normalize > Call > Complex object
 >
 > Calls should have simple objects
 

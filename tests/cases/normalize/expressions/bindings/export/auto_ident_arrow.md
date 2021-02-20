@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > bindings > export > auto_ident_arrow
+> Normalize > Expressions > Bindings > Export > Auto ident arrow
 >
 > Normalization of var decls should work the same everywhere they are
 

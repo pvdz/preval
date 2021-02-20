@@ -1,8 +1,8 @@
 # Preval test case
 
-# num_str.md
+# num_str_coerced.md
 
-> eq > num_str
+> Binary > Neq weak > Num str coerced
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

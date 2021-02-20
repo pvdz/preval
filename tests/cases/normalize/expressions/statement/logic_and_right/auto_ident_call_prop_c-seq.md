@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_c-seq.md
 
-> normalize > expressions > statement > logic_and_right > auto_ident_call_prop_c-seq
+> Normalize > Expressions > Statement > Logic and right > Auto ident call prop c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

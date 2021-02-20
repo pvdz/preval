@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_s-seq.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_call_prop_s-seq
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident call prop s-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

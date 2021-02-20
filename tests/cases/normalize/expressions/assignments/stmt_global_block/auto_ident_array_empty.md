@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

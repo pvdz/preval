@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_c-seq_complex.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_new_computed_c-seq_complex
+> Normalize > Expressions > Statement > Logic and both > Auto ident new computed c-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

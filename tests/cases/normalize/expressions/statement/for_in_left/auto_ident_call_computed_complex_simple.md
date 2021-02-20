@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_complex_simple.md
 
-> normalize > expressions > statement > for_in_left > auto_ident_call_computed_complex_simple
+> Normalize > Expressions > Statement > For in left > Auto ident call computed complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

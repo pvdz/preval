@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple_opt_simple.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_opt_simple_opt_simple
+> Normalize > Expressions > Statement > Objlit spread > Auto ident opt simple opt simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

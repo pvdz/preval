@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > for_in_right > auto_ident_computed_complex_simple_assign_complex_member
+> Normalize > Expressions > Assignments > For in right > Auto ident computed complex simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

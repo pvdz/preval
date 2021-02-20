@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_complex.md
 
-> normalize > expressions > assignments > for_a > auto_ident_unary_minus_complex
+> Normalize > Expressions > Assignments > For a > Auto ident unary minus complex
 >
 > Normalization of assignments should work the same everywhere they are
 

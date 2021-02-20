@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign_seq.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_arr_pattern_assign_seq
+> Normalize > Expressions > Bindings > Switch case > Auto ident arr pattern assign seq
 >
 > Normalization of var decls should work the same everywhere they are
 

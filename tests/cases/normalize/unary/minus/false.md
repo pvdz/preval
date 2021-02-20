@@ -2,7 +2,7 @@
 
 # false.md
 
-> normalize > unary > minus > false
+> Normalize > Unary > Minus > False
 >
 > Negative literals should be statically resolved where possible
 

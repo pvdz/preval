@@ -2,7 +2,7 @@
 
 # auto_ident_array_complex.md
 
-> normalize > expressions > statement > logic_and_both > auto_ident_array_complex
+> Normalize > Expressions > Statement > Logic and both > Auto ident array complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

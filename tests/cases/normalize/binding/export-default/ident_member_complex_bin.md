@@ -2,7 +2,7 @@
 
 # ident_member_complex_bin.md
 
-> normalize > assignment > export-default > ident_member_complex_bin
+> Normalize > Binding > Export-default > Ident member complex bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 

@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_logic_and_or
+> Normalize > Expressions > Assignments > Arr element > Auto ident logic and or
 >
 > Normalization of assignments should work the same everywhere they are
 

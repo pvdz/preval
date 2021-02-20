@@ -2,7 +2,7 @@
 
 # order_write_computed.md
 
-> normalize > member_access > assign_rhs > order_write_computed
+> Normalize > Member access > Assign rhs > Order write computed
 >
 > Test evaluation order of member expression through getters and setters
 

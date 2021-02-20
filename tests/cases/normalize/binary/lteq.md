@@ -2,7 +2,7 @@
 
 # lteq.md
 
-> normalize > binary > lteq
+> Normalize > Binary > Lteq
 >
 > Baseline binary expressions to cover ops
 

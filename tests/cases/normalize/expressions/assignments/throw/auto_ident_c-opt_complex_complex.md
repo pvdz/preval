@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex.md
 
-> normalize > expressions > assignments > throw > auto_ident_c-opt_complex_complex
+> Normalize > Expressions > Assignments > Throw > Auto ident c-opt complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

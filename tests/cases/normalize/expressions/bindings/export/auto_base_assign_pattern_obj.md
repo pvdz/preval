@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > bindings > export > auto_base_assign_pattern_obj
+> Normalize > Expressions > Bindings > Export > Auto base assign pattern obj
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # plus_eq.md
 
-> normalize > compound > plus_eq
+> Normalize > Compound > Plus eq
 >
 > Compound assignments should be decomposed. This means fewer cases to worry about. We can recompose them in the last step.
 

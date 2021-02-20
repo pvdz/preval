@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > for_c > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > For c > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

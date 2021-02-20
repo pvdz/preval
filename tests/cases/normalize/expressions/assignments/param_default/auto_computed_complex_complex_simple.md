@@ -2,7 +2,7 @@
 
 # auto_computed_complex_complex_simple.md
 
-> normalize > expressions > assignments > param_default > auto_computed_complex_complex_simple
+> Normalize > Expressions > Assignments > Param default > Auto computed complex complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

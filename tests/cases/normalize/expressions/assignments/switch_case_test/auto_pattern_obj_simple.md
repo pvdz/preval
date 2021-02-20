@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_simple.md
 
-> normalize > expressions > statement > switch_w_default_case_top > auto_ident_new_prop_simple
+> Normalize > Expressions > Statement > Switch w default case top > Auto ident new prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

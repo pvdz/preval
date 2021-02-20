@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > statement > switch_w_default_case_block > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Statement > Switch w default case block > Auto ident unary typeof simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

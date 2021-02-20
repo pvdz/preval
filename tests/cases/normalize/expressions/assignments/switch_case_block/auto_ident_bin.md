@@ -2,7 +2,7 @@
 
 # auto_ident_bin.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_bin
+> Normalize > Expressions > Assignments > Switch case block > Auto ident bin
 >
 > Normalization of assignments should work the same everywhere they are
 

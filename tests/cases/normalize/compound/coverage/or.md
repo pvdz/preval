@@ -2,7 +2,7 @@
 
 # or.md
 
-> normalize > compound > coverage > or
+> Normalize > Compound > Coverage > Or
 >
 > Compound assignments should destructure to regular assignments
 

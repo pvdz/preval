@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_regex
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

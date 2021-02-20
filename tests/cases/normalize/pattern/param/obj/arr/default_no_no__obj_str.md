@@ -2,7 +2,7 @@
 
 # default_no_no__obj_str.md
 
-> normalize > pattern >  > param > obj > arr > default_no_no__obj_str
+> Normalize > Pattern > Param > Obj > Arr > Default no no  obj str
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

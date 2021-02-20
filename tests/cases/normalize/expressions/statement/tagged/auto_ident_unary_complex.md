@@ -2,7 +2,7 @@
 
 # auto_ident_unary_complex.md
 
-> normalize > expressions > statement > tagged > auto_ident_unary_complex
+> Normalize > Expressions > Statement > Tagged > Auto ident unary complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

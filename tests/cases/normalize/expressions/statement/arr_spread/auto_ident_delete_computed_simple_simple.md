@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_simple.md
 
-> normalize > expressions > statement > arr_spread > auto_ident_delete_computed_simple_simple
+> Normalize > Expressions > Statement > Arr spread > Auto ident delete computed simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

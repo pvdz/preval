@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_simple.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_new_computed_s-seq_simple
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident new computed s-seq simple
 >
 > Normalization of var decls should work the same everywhere they are
 

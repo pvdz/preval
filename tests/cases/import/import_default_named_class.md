@@ -1,8 +1,8 @@
 # Preval test case
 
-# import_default.md
+# import_default_named_class.md
 
-> import > import_default
+> Import > Import default named class
 >
 > Import statements need special care in our system and our tests
 

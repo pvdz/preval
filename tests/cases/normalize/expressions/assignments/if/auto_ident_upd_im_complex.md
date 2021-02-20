@@ -2,7 +2,7 @@
 
 # auto_ident_upd_im_complex.md
 
-> normalize > expressions > assignments > if > auto_ident_upd_im_complex
+> Normalize > Expressions > Assignments > If > Auto ident upd im complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # _base_computed_obj.md
 
-> normalize > optional > _base_computed_obj
+> Normalize > Optional > Base computed obj
 >
 > Simple example
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_simple.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_delete_computed_complex_simple
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident delete computed complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

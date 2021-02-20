@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_call.md
+# func_group_member.md
 
-> normalize > member_access > global_group_call
+> Normalize > Nullish > Func group member
 >
 > Counter test to ensure we still process groups that don't end with an ident or literal
 

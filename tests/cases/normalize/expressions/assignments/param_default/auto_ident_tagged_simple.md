@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > param_default > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Param default > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

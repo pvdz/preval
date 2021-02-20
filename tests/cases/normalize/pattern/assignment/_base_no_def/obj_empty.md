@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# obj_empty.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Base no def > Obj empty
 >
 > Testing simple pattern normalizations
 

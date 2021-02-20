@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_complex.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_unary_excl_complex
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident unary excl complex
 >
 > Normalization of assignments should work the same everywhere they are
 

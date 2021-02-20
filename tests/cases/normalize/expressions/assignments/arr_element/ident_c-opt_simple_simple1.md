@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_c-opt_simple_simple.md
+# ident_c-opt_simple_simple1.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_c-opt_simple_simple
+> Normalize > Expressions > Assignments > Arr element > Ident c-opt simple simple1
 >
 > Normalization of assignments should work the same everywhere they are
 

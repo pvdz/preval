@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_complex_complex.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_call_computed_complex_complex
+> Normalize > Expressions > Assignments > Switch case test > Auto ident call computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

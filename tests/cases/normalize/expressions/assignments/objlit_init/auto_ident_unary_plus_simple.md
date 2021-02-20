@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_unary_plus_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto ident unary plus simple
 >
 > Normalization of assignments should work the same everywhere they are
 

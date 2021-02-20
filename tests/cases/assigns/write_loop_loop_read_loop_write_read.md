@@ -1,8 +1,8 @@
 # Preval test case
 
-# var_branch_write_branch_read_outer_read.md
+# write_loop_loop_read_loop_write_read.md
 
-> assigns > var_branch_write_branch_read_outer_read
+> Assigns > Write loop loop read loop write read
 >
 > Turning a var into a const. Or not.
 

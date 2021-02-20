@@ -2,7 +2,7 @@
 
 # undefined.md
 
-> exprstmt > undefined
+> Exprstmt > Undefined
 >
 > Undefineds as statement can be eliminated
 

@@ -2,7 +2,7 @@
 
 # prefix_plus.md
 
-> normalize > update > prefix_plus
+> Normalize > Update > Prefix plus
 >
 > Update expressions should be transformed to regular binary expression assignments
 

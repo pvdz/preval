@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

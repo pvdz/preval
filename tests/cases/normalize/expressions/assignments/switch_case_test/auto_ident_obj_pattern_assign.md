@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > Switch case test > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

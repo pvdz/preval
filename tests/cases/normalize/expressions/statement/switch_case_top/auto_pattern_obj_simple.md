@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > statement > switch_case_top > auto_pattern_obj_simple
+> Normalize > Expressions > Statement > Switch case top > Auto pattern obj simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

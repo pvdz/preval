@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple_opt_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_opt_simple_opt_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto ident opt simple opt simple
 >
 > Normalization of assignments should work the same everywhere they are
 

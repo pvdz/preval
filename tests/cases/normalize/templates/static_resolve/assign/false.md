@@ -2,7 +2,7 @@
 
 # false.md
 
-> normalize > templates > static_resolve > assign > false
+> Normalize > Templates > Static resolve > Assign > False
 >
 > Templates should be able to resolve literals
 

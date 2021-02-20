@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_simple_simple.md
 
-> normalize > expressions > assignments > return > auto_ident_c-opt_simple_simple
+> Normalize > Expressions > Assignments > Return > Auto ident c-opt simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

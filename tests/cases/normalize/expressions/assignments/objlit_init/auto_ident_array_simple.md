@@ -2,7 +2,7 @@
 
 # auto_ident_array_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_array_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto ident array simple
 >
 > Normalization of assignments should work the same everywhere they are
 

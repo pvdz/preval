@@ -2,7 +2,7 @@
 
 # auto_ident_template_complex.md
 
-> normalize > expressions > assignments > logic_or_left > auto_ident_template_complex
+> Normalize > Expressions > Assignments > Logic or left > Auto ident template complex
 >
 > Normalization of assignments should work the same everywhere they are
 

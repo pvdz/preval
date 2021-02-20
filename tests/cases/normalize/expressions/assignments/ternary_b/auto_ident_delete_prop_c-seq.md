@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_c-seq.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_delete_prop_c-seq
+> Normalize > Expressions > Assignments > Ternary b > Auto ident delete prop c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

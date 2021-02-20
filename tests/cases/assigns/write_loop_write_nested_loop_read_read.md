@@ -2,7 +2,7 @@
 
 # write_loop_write_nested_loop_read_read.md
 
-> assigns > write_loop_write_nested_loop_read_read
+> Assigns > Write loop write nested loop read read
 >
 > Turning a var into a const. Or not.
 

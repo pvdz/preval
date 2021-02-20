@@ -2,7 +2,7 @@
 
 # auto_prop_simple_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_prop_simple_simple
+> Normalize > Expressions > Assignments > Switch w default case top > Auto prop simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

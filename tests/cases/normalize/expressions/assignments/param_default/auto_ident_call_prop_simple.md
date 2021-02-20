@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > assignments > param_default > auto_ident_call_prop_simple
+> Normalize > Expressions > Assignments > Param default > Auto ident call prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

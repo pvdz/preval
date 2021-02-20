@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_literal
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident literal
 >
 > Normalization of assignments should work the same everywhere they are
 

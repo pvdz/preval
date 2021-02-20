@@ -2,7 +2,7 @@
 
 # coercion.md
 
-> normalize > binary > coercion
+> Normalize > Binary > Coercion
 >
 > Comparison ops trigger coercion mechanisms.
 

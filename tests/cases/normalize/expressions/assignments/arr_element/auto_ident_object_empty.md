@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_object_empty
+> Normalize > Expressions > Assignments > Arr element > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

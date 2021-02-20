@@ -2,7 +2,7 @@
 
 # auto_ident_new_complex_complex_args.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_new_complex_complex_args
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident new complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

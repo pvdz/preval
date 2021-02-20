@@ -2,7 +2,7 @@
 
 # global_group_literal.md
 
-> normalize > member_access > global_group_literal
+> Normalize > Optional > Global group literal
 >
 > We shouldn't transform member expressions on group ending in a literal
 

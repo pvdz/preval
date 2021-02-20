@@ -2,7 +2,7 @@
 
 # auto_ident_computed_c-seq_simple_assign_complex_member.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_computed_c-seq_simple_assign_complex_member
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident computed c-seq simple assign complex member
 >
 > Normalization of var decls should work the same everywhere they are
 

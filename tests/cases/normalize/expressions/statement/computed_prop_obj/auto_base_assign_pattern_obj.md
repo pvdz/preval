@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_base_assign_pattern_obj
+> Normalize > Expressions > Statement > Computed prop obj > Auto base assign pattern obj
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_simple.md
 
-> normalize > expressions > statement > binary_both > auto_ident_unary_tilde_simple
+> Normalize > Expressions > Statement > Binary both > Auto ident unary tilde simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

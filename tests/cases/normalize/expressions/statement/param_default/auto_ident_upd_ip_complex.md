@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_complex.md
 
-> normalize > expressions > statement > param_default > auto_ident_upd_ip_complex
+> Normalize > Expressions > Statement > Param default > Auto ident upd ip complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

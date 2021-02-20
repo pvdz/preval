@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq.md
 
-> normalize > expressions > statement > export_default > auto_ident_prop_s-seq
+> Normalize > Expressions > Statement > Export default > Auto ident prop s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

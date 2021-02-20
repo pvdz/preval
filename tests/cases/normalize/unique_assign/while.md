@@ -1,8 +1,8 @@
 # Preval test case
 
-# copy.md
+# while.md
 
-> normalize > unique_assign > copy
+> Normalize > Unique assign > While
 >
 > The normalization step should make it so that each binding is only assigned to once. It should create fresh bindings for every mutation.
 

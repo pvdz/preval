@@ -1,8 +1,8 @@
 # Preval test case
 
-# mutable_param.md
+# mutable_param_ident.md
 
-> function > mutable_param
+> Function > Mutable param ident
 >
 > Param names can be written to
 

@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_s-seq.md
 
-> normalize > expressions > statement > arr_element > auto_ident_new_prop_s-seq
+> Normalize > Expressions > Statement > Arr element > Auto ident new prop s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # else_obj.md
 
-> ifelse > simple > else_obj
+> Ifelse > Simple > Else obj
 >
 > Eliminate simple tautology
 

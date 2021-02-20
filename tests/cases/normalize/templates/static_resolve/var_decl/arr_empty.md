@@ -2,7 +2,7 @@
 
 # arr_empty.md
 
-> normalize > templates > static_resolve > var_decl > arr_empty
+> Normalize > Templates > Static resolve > Var decl > Arr empty
 >
 > Templates should be able to resolve literals
 

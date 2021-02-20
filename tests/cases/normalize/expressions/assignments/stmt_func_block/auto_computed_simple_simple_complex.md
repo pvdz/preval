@@ -2,7 +2,7 @@
 
 # auto_computed_simple_simple_complex.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_computed_simple_simple_complex
+> Normalize > Expressions > Assignments > Stmt func block > Auto computed simple simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

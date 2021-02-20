@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_logic_and_or
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident logic and or
 >
 > Normalization of assignments should work the same everywhere they are
 

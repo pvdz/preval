@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > for_in_right > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > For in right > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

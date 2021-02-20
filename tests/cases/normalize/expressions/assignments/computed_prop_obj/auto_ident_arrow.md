@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_arrow
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

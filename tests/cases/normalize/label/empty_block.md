@@ -1,8 +1,8 @@
 # Preval test case
 
-# empty.md
+# empty_block.md
 
-> normalize > label > empty
+> Normalize > Label > Empty block
 >
 > Empty label body checks
 

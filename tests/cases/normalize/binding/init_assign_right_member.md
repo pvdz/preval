@@ -1,8 +1,8 @@
 # Preval test case
 
-# init_assign.md
+# init_assign_right_member.md
 
-> normalize > binding > init_assign
+> Normalize > Binding > Init assign right member
 >
 > Should normalize assignment init to separate line
 

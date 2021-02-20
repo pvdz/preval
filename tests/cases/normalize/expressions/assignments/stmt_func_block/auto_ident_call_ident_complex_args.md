@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident call ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

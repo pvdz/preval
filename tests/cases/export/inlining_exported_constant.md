@@ -2,7 +2,7 @@
 
 # inlining_exported_constant.md
 
-> export > inlining_exported_constant
+> Export > Inlining exported constant
 >
 > The constant is redundant but is exported. We need to properly handle that.
 

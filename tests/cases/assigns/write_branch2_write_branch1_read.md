@@ -1,8 +1,8 @@
 # Preval test case
 
-# redundant_back2back.md
+# write_branch2_write_branch1_read.md
 
-> assigns > redundant_back2back
+> Assigns > Write branch2 write branch1 read
 >
 > Testing binding mutation optimizations
 

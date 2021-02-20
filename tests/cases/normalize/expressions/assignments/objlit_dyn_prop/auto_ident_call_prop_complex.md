@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_complex.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_call_prop_complex
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident call prop complex
 >
 > Normalization of assignments should work the same everywhere they are
 

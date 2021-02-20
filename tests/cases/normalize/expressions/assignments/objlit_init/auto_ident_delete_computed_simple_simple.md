@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_delete_computed_simple_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto ident delete computed simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

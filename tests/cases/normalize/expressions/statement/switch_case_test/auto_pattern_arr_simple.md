@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > statement > switch_case_test > auto_pattern_arr_simple
+> Normalize > Expressions > Statement > Switch case test > Auto pattern arr simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_opt_complex.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_opt_complex
+> Normalize > Expressions > Assignments > Ternary a > Auto ident opt complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_call_ident
+> Normalize > Expressions > Assignments > Ternary a > Auto ident call ident
 >
 > Normalization of assignments should work the same everywhere they are
 

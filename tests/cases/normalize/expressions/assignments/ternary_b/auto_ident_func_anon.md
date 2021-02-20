@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Ternary b > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

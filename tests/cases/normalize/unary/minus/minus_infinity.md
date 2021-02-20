@@ -2,7 +2,7 @@
 
 # minus_infinity.md
 
-> normalize > unary > minus > minus_infinity
+> Normalize > Unary > Minus > Minus infinity
 >
 > Negative literals should be statically resolved where possible
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# pattern_sequence_simple.md
+# pattern_sequence_simple_tdz.md
 
-> normalize > assignment > case-block > pattern_sequence_simple
+> Normalize > Binding > Case-block > Pattern sequence simple tdz
 >
 > Assignments of all kinds should be normalized in all circumstances
 

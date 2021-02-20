@@ -2,7 +2,7 @@
 
 # return_string.md
 
-> function > return_string
+> Function > Return string
 >
 > A function that returns a string
 

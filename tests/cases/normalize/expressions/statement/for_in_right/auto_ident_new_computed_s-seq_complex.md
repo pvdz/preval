@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_complex.md
 
-> normalize > expressions > statement > for_in_right > auto_ident_new_computed_s-seq_complex
+> Normalize > Expressions > Statement > For in right > Auto ident new computed s-seq complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_simple.md
 
-> normalize > expressions > statement > binary_right > auto_ident_opt_call_simple
+> Normalize > Expressions > Statement > Binary right > Auto ident opt call simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

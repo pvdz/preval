@@ -2,7 +2,7 @@
 
 # unused.md
 
-> normalize > function > decl > unused
+> Normalize > Function > Decl > Unused
 >
 > An unused func decl should be removed
 

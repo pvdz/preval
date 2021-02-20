@@ -2,7 +2,7 @@
 
 # ident_to_itself.md
 
-> normalize > assign > ident_to_itself
+> Normalize > Assign > Ident to itself
 >
 > An ident that assigns to itself should be considered a noop
 

@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_simple.md
 
-> normalize > expressions > assignments > switch_case_top > auto_ident_new_computed_s-seq_simple
+> Normalize > Expressions > Assignments > Switch case top > Auto ident new computed s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

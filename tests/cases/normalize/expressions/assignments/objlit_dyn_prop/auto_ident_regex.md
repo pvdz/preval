@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_regex
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

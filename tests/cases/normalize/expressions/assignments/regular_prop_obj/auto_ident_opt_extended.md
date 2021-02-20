@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

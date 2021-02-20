@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_complex_complex.md
 
-> normalize > expressions > statement > for_a > auto_ident_new_computed_complex_complex
+> Normalize > Expressions > Statement > For a > Auto ident new computed complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_false.md
+# if_void_dollar.md
 
-> ifelse > simple > if_false
+> Ifelse > Harder > If void dollar
 >
 > Eliminate simple tautology
 

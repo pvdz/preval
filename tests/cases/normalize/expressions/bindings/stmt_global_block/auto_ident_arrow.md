@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_arrow
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident arrow
 >
 > Normalization of var decls should work the same everywhere they are
 

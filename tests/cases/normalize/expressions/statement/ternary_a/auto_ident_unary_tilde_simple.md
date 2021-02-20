@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_simple.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_unary_tilde_simple
+> Normalize > Expressions > Statement > Ternary a > Auto ident unary tilde simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

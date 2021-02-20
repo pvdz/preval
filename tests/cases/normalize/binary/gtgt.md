@@ -2,7 +2,7 @@
 
 # gtgt.md
 
-> normalize > binary > gtgt
+> Normalize > Binary > Gtgt
 >
 > Baseline binary expressions to cover ops
 

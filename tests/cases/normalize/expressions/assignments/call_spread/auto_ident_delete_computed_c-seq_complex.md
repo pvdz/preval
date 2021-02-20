@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_delete_computed_c-seq_complex
+> Normalize > Expressions > Assignments > Call spread > Auto ident delete computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

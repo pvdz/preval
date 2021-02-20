@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > assignments > if > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Assignments > If > Auto ident unary typeof simple
 >
 > Normalization of assignments should work the same everywhere they are
 

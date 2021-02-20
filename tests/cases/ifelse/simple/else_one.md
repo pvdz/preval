@@ -2,7 +2,7 @@
 
 # else_one.md
 
-> ifelse > simple > else_one
+> Ifelse > Simple > Else one
 >
 > Eliminate simple tautology
 

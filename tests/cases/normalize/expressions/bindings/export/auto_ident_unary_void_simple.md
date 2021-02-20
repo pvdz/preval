@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_simple.md
 
-> normalize > expressions > bindings > export > auto_ident_unary_void_simple
+> Normalize > Expressions > Bindings > Export > Auto ident unary void simple
 >
 > Normalization of var decls should work the same everywhere they are
 

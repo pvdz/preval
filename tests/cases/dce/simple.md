@@ -2,7 +2,7 @@
 
 # simple.md
 
-> dce > simple
+> Dce > Simple
 >
 > Simple case of dead code elimination
 

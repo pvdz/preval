@@ -1,8 +1,8 @@
 # Preval test case
 
-# call_arg.md
+# new_arg.md
 
-> normalize > spread > call_arg
+> Normalize > Spread > New arg
 >
 > Spread should normalize itself
 

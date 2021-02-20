@@ -2,7 +2,7 @@
 
 # var_write_read.md
 
-> assigns > var_write_read
+> Assigns > Var write read
 >
 > Turning a var into a const. Or not.
 

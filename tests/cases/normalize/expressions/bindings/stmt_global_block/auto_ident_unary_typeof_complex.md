@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_complex.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_unary_typeof_complex
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident unary typeof complex
 >
 > Normalization of var decls should work the same everywhere they are
 

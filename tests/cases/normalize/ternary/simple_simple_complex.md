@@ -2,7 +2,7 @@
 
 # simple_simple_complex.md
 
-> normalize > ternary > simple_simple_complex
+> Normalize > Ternary > Simple simple complex
 >
 > Ternary (conditional expressions) should have their args be normalized. But they shouldn't be pulled out, obviously.
 

@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_c-seq_simple.md
 
-> normalize > expressions > statement > binary_right > auto_ident_cond_simple_c-seq_simple
+> Normalize > Expressions > Statement > Binary right > Auto ident cond simple c-seq simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

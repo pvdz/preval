@@ -2,7 +2,7 @@
 
 # nan.md
 
-> normalize > templates > static_resolve > assign > nan
+> Normalize > Templates > Static resolve > Assign > Nan
 >
 > Templates should be able to resolve literals
 

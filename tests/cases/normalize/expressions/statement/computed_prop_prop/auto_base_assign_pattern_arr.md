@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_base_assign_pattern_arr
+> Normalize > Expressions > Statement > Computed prop prop > Auto base assign pattern arr
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_bin.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_bin
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident bin
 >
 > Normalization of assignments should work the same everywhere they are
 

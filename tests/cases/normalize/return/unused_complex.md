@@ -1,8 +1,8 @@
 # Preval test case
 
-# unused.md
+# unused_complex.md
 
-> normalize > return > unused
+> Normalize > Return > Unused complex
 >
 > Unused return statements should be eliminated
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_simple.md
 
-> normalize > expressions > statement > for_c > auto_ident_delete_computed_complex_simple
+> Normalize > Expressions > Statement > For c > Auto ident delete computed complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

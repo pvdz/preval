@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_upd_mi_simple
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident upd mi simple
 >
 > Normalization of assignments should work the same everywhere they are
 

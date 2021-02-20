@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_simple_simple.md
 
-> normalize > expressions > statement > for_b > auto_ident_call_computed_simple_simple
+> Normalize > Expressions > Statement > For b > Auto ident call computed simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

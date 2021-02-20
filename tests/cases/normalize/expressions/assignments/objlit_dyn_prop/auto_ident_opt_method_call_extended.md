@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_call_extended.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_opt_method_call_extended
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident opt method call extended
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# computed_prop.md
+# computed_prop_2.md
 
-> expr_order > computed_prop
+> Expr order > Computed prop 2
 >
 > The object is evaluated before the computed property
 

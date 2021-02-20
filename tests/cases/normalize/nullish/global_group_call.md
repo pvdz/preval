@@ -2,7 +2,7 @@
 
 # global_group_call.md
 
-> normalize > member_access > global_group_call
+> Normalize > Nullish > Global group call
 >
 > Counter test to ensure we still process groups that don't end with an ident or literal
 

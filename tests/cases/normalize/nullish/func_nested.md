@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_nested.md
+# func_nested.md
 
-> normalize > member_access > global_nested
+> Normalize > Nullish > Func nested
 >
 > Ident property access should not be changed
 

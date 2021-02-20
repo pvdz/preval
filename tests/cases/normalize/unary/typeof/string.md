@@ -2,7 +2,7 @@
 
 # string.md
 
-> normalize > unary > typeof > string
+> Normalize > Unary > Typeof > String
 >
 > Typeof always returns a string
 

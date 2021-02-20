@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_computed_simple_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident computed simple simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq_assign_simple.md
 
-> normalize > expressions > statement > label > auto_ident_prop_s-seq_assign_simple
+> Normalize > Expressions > Statement > Label > Auto ident prop s-seq assign simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

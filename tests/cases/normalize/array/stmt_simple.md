@@ -2,7 +2,7 @@
 
 # stmt_simple.md
 
-> normalize > array > stmt_simple
+> Normalize > Array > Stmt simple
 >
 > Array statements should be eliminated
 

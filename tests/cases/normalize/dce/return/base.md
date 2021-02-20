@@ -2,7 +2,7 @@
 
 # base.md
 
-> normalize > dce > base
+> Normalize > Dce > Return > Base
 >
 > Any statements that follow a return in the same parent should be eliminated.
 

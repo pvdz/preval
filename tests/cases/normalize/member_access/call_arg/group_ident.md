@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_ident.md
+# group_ident.md
 
-> normalize > member_access > global_group_ident
+> Normalize > Member access > Call arg > Group ident
 >
 > This is sort of what we transform into, with a trailing ident
 

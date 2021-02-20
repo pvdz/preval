@@ -2,7 +2,7 @@
 
 # method_param_default.md
 
-> normalize > class > method_param_default
+> Normalize > Class > Method param default
 >
 > Class with method default should be transformed properly
 

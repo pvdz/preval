@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_group_literal.md
+# group_literal.md
 
-> normalize > member_access > global_group_literal
+> Normalize > Member access > Assign rhs > Group literal
 >
 > We shouldn't transform member expressions on group ending in a literal
 

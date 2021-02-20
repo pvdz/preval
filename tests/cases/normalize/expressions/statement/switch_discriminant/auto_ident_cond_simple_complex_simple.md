@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_complex_simple.md
 
-> normalize > expressions > statement > switch_discriminant > auto_ident_cond_simple_complex_simple
+> Normalize > Expressions > Statement > Switch discriminant > Auto ident cond simple complex simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

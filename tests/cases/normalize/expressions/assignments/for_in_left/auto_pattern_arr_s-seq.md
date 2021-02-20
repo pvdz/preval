@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > assignments > for_in_left > auto_pattern_arr_s-seq
+> Normalize > Expressions > Assignments > For in left > Auto pattern arr s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

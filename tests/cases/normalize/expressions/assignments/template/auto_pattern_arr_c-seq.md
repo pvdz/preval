@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > assignments > template > auto_pattern_arr_c-seq
+> Normalize > Expressions > Assignments > Template > Auto pattern arr c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

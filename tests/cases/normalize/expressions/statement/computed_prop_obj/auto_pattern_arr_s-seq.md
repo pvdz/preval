@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_pattern_arr_s-seq
+> Normalize > Expressions > Statement > Computed prop obj > Auto pattern arr s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

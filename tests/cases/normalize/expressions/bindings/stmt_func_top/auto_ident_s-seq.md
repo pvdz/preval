@@ -2,7 +2,7 @@
 
 # auto_ident_s-seq.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_s-seq
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident s-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

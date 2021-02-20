@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident.md
 
-> normalize > expressions > assignments > switch_case_test > auto_ident_new_ident
+> Normalize > Expressions > Assignments > Switch case test > Auto ident new ident
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > statement > do_while > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Statement > Do while > Auto ident nested simple member assigns
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

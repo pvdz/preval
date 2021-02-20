@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > statement > arr_spread > auto_ident_unary_void_complex
+> Normalize > Expressions > Statement > Arr spread > Auto ident unary void complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

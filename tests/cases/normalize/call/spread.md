@@ -2,7 +2,7 @@
 
 # spread.md
 
-> normalize > call > spread
+> Normalize > Call > Spread
 >
 > Spread should be fine
 

@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > statement > throw > auto_base_assign_pattern_obj
+> Normalize > Expressions > Statement > Throw > Auto base assign pattern obj
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

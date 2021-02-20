@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_call_computed_c-seq_complex
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident call computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# second_defaults_to_first.md
+# second_defaults_to_first_2.md
 
-> normalize > defaults > second_defaults_to_first
+> Normalize > Defaults > Second defaults to first 2
 >
 > Rewrite function param defaults to equivalent body code
 

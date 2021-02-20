@@ -2,7 +2,7 @@
 
 # do_while.md
 
-> normalize > blocks > do_while
+> Normalize > Blocks > Do while
 >
 > Add blocks to sub-statements
 

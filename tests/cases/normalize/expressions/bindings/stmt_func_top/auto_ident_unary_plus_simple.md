@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_simple.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_unary_plus_simple
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident unary plus simple
 >
 > Normalization of var decls should work the same everywhere they are
 

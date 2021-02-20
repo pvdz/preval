@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident new ident complex args
 >
 > Normalization of var decls should work the same everywhere they are
 

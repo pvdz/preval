@@ -2,7 +2,7 @@
 
 # auto_ident_prop_c-seq.md
 
-> normalize > expressions > assignments > call > auto_ident_prop_c-seq
+> Normalize > Expressions > Assignments > Call > Auto ident prop c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

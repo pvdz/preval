@@ -2,7 +2,7 @@
 
 # auto_ident_computed_s-seq_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > tagged > auto_ident_computed_s-seq_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Tagged > Auto ident computed s-seq simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

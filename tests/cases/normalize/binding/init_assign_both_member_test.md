@@ -1,8 +1,8 @@
 # Preval test case
 
-# init_assign.md
+# init_assign_both_member_test.md
 
-> normalize > binding > init_assign
+> Normalize > Binding > Init assign both member test
 >
 > Should normalize assignment init to separate line
 

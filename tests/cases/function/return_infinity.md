@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_infinity.md
 
-> function > return_string
+> Function > Return infinity
 >
 > A function that returns Infinity
 

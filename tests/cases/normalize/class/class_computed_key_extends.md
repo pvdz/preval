@@ -2,7 +2,7 @@
 
 # class_computed_key_extends.md
 
-> normalize > class > class_computed_key_extends
+> Normalize > Class > Class computed key extends
 >
 > Make sure the transform of computed key does not change something that can change the super class value
 

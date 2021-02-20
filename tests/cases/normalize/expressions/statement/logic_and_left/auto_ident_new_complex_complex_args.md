@@ -2,7 +2,7 @@
 
 # auto_ident_new_complex_complex_args.md
 
-> normalize > expressions > statement > logic_and_left > auto_ident_new_complex_complex_args
+> Normalize > Expressions > Statement > Logic and left > Auto ident new complex complex args
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

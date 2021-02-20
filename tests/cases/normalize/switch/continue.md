@@ -1,8 +1,8 @@
 # Preval test case
 
-# continue_SKIP.md
+# continue.md
 
-> normalize > switch > continue_SKIP
+> Normalize > Switch > Continue
 >
 > If a switch with non-last-default case gets transformed to a loop then continue statements inside a switch no longer work as they did before...
 

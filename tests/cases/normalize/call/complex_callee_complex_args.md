@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_object.md
+# complex_callee_complex_args.md
 
-> normalize > call > complex_object
+> Normalize > Call > Complex callee complex args
 >
 > Calls should have simple idents
 

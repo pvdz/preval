@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > statement > logic_or_right > auto_pattern_arr_complex
+> Normalize > Expressions > Statement > Logic or right > Auto pattern arr complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # ctxt_opt_c_undef_a.md
 
-> normalize > optional > ctxt_opt_c_undef_a
+> Normalize > Optional > Ctxt opt c undef a
 >
 > Ensure context is passed on properly in various optional chaining cases
 

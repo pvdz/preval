@@ -2,7 +2,7 @@
 
 # auto_ident_logic_||_simple_complex.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_logic_||_simple_complex
+> Normalize > Expressions > Statement > Ternary a > Auto ident logic || simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_simple.md
 
-> normalize > expressions > statement > switch_w_default_case_test > auto_ident_computed_simple_simple
+> Normalize > Expressions > Statement > Switch w default case test > Auto ident computed simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

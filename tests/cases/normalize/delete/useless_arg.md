@@ -2,7 +2,7 @@
 
 # useless_arg.md
 
-> normalize > delete > useless_arg
+> Normalize > Delete > Useless arg
 >
 > Delete on non-property is valid but useless
 

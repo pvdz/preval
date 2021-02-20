@@ -2,7 +2,7 @@
 
 # write_loop_write_loop_branch_read.md
 
-> assigns > write_loop_write_loop_branch_read
+> Assigns > Write loop write loop branch read
 >
 > Turning a var into a const. Or not.
 

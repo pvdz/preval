@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_pattern_arr_simple
+> Normalize > Expressions > Bindings > Stmt func block > Auto pattern arr simple
 >
 > Normalization of var decls should work the same everywhere they are
 

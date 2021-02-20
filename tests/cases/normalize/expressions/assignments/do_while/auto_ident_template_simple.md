@@ -2,7 +2,7 @@
 
 # auto_ident_template_simple.md
 
-> normalize > expressions > assignments > do_while > auto_ident_template_simple
+> Normalize > Expressions > Assignments > Do while > Auto ident template simple
 >
 > Normalization of assignments should work the same everywhere they are
 

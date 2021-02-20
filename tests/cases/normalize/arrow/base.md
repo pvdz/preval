@@ -2,7 +2,7 @@
 
 # base.md
 
-> normalize > arrow > base
+> Normalize > Arrow > Base
 >
 > Simple arrow case
 

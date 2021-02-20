@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_complex_complex.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_opt_call_complex_complex
+> Normalize > Expressions > Bindings > Switch case > Auto ident opt call complex complex
 >
 > Normalization of var decls should work the same everywhere they are
 

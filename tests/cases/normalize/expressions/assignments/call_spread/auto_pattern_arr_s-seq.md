@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > assignments > call_spread > auto_pattern_arr_s-seq
+> Normalize > Expressions > Assignments > Call spread > Auto pattern arr s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

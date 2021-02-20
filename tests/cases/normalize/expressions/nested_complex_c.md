@@ -2,7 +2,7 @@
 
 # nested_complex_c.md
 
-> normalize > assignment > nested_complex_c
+> Normalize > Expressions > Nested complex c
 >
 > Nested assignments should be split up
 

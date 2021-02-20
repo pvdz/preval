@@ -2,7 +2,7 @@
 
 # auto_ident_cond_complex_simple_simple.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_cond_complex_simple_simple
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident cond complex simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

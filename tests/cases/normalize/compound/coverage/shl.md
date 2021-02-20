@@ -2,7 +2,7 @@
 
 # shl.md
 
-> normalize > compound > coverage > shl
+> Normalize > Compound > Coverage > Shl
 >
 > Compound assignments should destructure to regular assignments
 

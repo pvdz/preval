@@ -2,7 +2,7 @@
 
 # auto_ident_logic_||_simple_complex.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_logic_||_simple_complex
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident logic || simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

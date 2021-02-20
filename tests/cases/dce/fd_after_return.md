@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# fd_after_return.md
 
-> function > return_string
+> Dce > Fd after return
 >
 > Func decl after return that is used
 

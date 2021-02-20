@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_call_ident
+> Normalize > Expressions > Assignments > Binary left > Auto ident call ident
 >
 > Normalization of assignments should work the same everywhere they are
 

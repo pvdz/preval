@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > template > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > Template > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

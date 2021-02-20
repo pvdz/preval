@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > assignments > binary_left > auto_pattern_arr_simple
+> Normalize > Expressions > Assignments > Binary left > Auto pattern arr simple
 >
 > Normalization of assignments should work the same everywhere they are
 

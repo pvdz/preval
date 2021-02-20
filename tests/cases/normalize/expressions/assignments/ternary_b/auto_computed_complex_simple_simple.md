@@ -2,7 +2,7 @@
 
 # auto_computed_complex_simple_simple.md
 
-> normalize > expressions > assignments > ternary_b > auto_computed_complex_simple_simple
+> Normalize > Expressions > Assignments > Ternary b > Auto computed complex simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

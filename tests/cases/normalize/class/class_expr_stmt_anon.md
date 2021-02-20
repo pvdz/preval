@@ -2,7 +2,7 @@
 
 # class_expr_stmt_anon.md
 
-> normalize > class > class_expr_stmt_anon
+> Normalize > Class > Class expr stmt anon
 >
 > Class expression as a statement (possible as we can see here, not the same as a decl), should be dropped entirely.
 

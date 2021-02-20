@@ -2,7 +2,7 @@
 
 # single_bang_sequence.md
 
-> normalize > unary > inv > single_bang_sequence
+> Normalize > Unary > Inv > Single bang sequence
 >
 > This is an example of a single bang that can be moved into a sequence
 

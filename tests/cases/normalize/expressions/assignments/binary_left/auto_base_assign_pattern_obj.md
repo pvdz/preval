@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > assignments > binary_left > auto_base_assign_pattern_obj
+> Normalize > Expressions > Assignments > Binary left > Auto base assign pattern obj
 >
 > Normalization of assignments should work the same everywhere they are
 

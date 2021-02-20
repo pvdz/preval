@@ -1,8 +1,8 @@
 # Preval test case
 
-# string_false.md
+# string_lex_false.md
 
-> eq > string_false
+> Binary > Lt > String lex false
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

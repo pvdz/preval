@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_simple_simple.md
 
-> normalize > expressions > statement > export_default > auto_ident_cond_simple_simple_simple
+> Normalize > Expressions > Statement > Export default > Auto ident cond simple simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

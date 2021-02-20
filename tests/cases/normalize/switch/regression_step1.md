@@ -1,8 +1,8 @@
 # Preval test case
 
-# regressio.md
+# regression_step1.md
 
-> normalize > switch > regressio
+> Normalize > Switch > Regression step1
 >
 > Transformation after one step gets screwed
 

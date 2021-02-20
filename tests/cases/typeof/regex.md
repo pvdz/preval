@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_regex.md
+# regex.md
 
-> plusmin > min_regex
+> Typeof > Regex
 >
 > Inlining `typeof` when we know something is a literal
 

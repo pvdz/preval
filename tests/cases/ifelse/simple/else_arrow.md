@@ -1,8 +1,8 @@
 # Preval test case
 
-# else_obj.md
+# else_arrow.md
 
-> ifelse > simple > else_obj
+> Ifelse > Simple > Else arrow
 >
 > Eliminate simple tautology
 

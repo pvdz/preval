@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_seq_simple_computed_complex.md
+# reg_seq_simple_computed_complex1.md
 
-> normalize > expressions > assignments > for_of_right > auto_seq_simple_computed_complex
+> Normalize > Expressions > Assignments > For of right > Reg seq simple computed complex1
 >
 > Normalization of assignments should work the same everywhere they are
 

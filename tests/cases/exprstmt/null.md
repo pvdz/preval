@@ -2,7 +2,7 @@
 
 # null.md
 
-> exprstmt > null
+> Exprstmt > Null
 >
 > Nulls as statement can be eliminated
 

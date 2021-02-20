@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > assignments > logic_and_left > auto_base_assign_pattern_arr
+> Normalize > Expressions > Assignments > Logic and left > Auto base assign pattern arr
 >
 > Normalization of assignments should work the same everywhere they are
 

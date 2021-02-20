@@ -2,7 +2,7 @@
 
 # one.md
 
-> constants > one
+> Constants > One
 >
 > Single constant, nothing happens
 

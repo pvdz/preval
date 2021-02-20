@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_lex.md
+# lex_global.md
 
-> normalize > naming > global_lex
+> Normalize > Naming > Lex global
 >
 > First a block binding shadowing a later global binding
 

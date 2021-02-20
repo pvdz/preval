@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_s-seq_complex.md
 
-> normalize > expressions > assignments > param_default > auto_ident_call_computed_s-seq_complex
+> Normalize > Expressions > Assignments > Param default > Auto ident call computed s-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

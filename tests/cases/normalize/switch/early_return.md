@@ -2,7 +2,7 @@
 
 # early_return.md
 
-> normalize > switch > early_return
+> Normalize > Switch > Early return
 >
 > Sorting out the branching stuff
 

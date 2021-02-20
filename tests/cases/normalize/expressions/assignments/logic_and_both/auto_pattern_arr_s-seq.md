@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_s-seq.md
 
-> normalize > expressions > assignments > logic_and_both > auto_pattern_arr_s-seq
+> Normalize > Expressions > Assignments > Logic and both > Auto pattern arr s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

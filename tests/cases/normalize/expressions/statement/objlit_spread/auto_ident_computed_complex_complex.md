@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_complex.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_computed_complex_complex
+> Normalize > Expressions > Statement > Objlit spread > Auto ident computed complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

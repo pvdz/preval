@@ -2,7 +2,7 @@
 
 # auto_computed_complex_simple_complex.md
 
-> normalize > expressions > assignments > switch_case_test > auto_computed_complex_simple_complex
+> Normalize > Expressions > Assignments > Switch case test > Auto computed complex simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

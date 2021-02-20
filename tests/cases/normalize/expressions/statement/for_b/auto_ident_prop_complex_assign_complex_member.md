@@ -2,7 +2,7 @@
 
 # auto_ident_prop_complex_assign_complex_member.md
 
-> normalize > expressions > statement > for_b > auto_ident_prop_complex_assign_complex_member
+> Normalize > Expressions > Statement > For b > Auto ident prop complex assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

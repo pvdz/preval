@@ -1,8 +1,8 @@
 # Preval test case
 
-# var.md
+# const.md
 
-> normalize > ternary > var
+> Normalize > Ternary > Const
 >
 > Example of rewriting a var decl with ternary as init
 

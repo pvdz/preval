@@ -2,7 +2,7 @@
 
 # ident_sequence_complex.md
 
-> normalize > assignment > case-block > ident_sequence_complex
+> Normalize > Binding > Case-block > Ident sequence complex
 >
 > Assignments of all kinds should be normalized in all circumstances
 

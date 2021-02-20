@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_simple_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_delete_computed_simple_complex
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident delete computed simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

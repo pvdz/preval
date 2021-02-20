@@ -2,7 +2,7 @@
 
 # global.md
 
-> normalize > usestrict > global
+> Normalize > Usestrict > Global
 >
 > Make sure the directive is not kept because of its special status
 

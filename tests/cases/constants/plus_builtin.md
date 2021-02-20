@@ -1,8 +1,8 @@
 # Preval test case
 
-# minus_number.md
+# plus_builtin.md
 
-> constants > minus_number
+> Constants > Plus builtin
 >
 > Positive Infinity should be treated as a constant as well.
 

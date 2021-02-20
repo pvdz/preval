@@ -2,7 +2,7 @@
 
 # auto_computed_simple_complex_complex.md
 
-> normalize > expressions > assignments > ternary_c > auto_computed_simple_complex_complex
+> Normalize > Expressions > Assignments > Ternary c > Auto computed simple complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

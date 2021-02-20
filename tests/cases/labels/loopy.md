@@ -2,7 +2,7 @@
 
 # loopy.md
 
-> labels > loopy
+> Labels > Loopy
 >
 > An alternative way of looping
 

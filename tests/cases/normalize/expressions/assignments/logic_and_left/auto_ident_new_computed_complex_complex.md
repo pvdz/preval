@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_complex_complex.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_new_computed_complex_complex
+> Normalize > Expressions > Assignments > Logic and left > Auto ident new computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

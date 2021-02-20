@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > assignments > logic_or_right > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Assignments > Logic or right > Auto ident nested simple member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

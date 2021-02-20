@@ -2,7 +2,7 @@
 
 # empty_body.md
 
-> normalize > while > empty_body
+> Normalize > While > Empty body
 >
 > A loop cannot be eliminated but can be normalized
 

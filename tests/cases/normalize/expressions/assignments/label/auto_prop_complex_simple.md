@@ -2,7 +2,7 @@
 
 # auto_prop_complex_simple.md
 
-> normalize > expressions > assignments > label > auto_prop_complex_simple
+> Normalize > Expressions > Assignments > Label > Auto prop complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

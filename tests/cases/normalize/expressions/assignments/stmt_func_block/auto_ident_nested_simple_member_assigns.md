@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident nested simple member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

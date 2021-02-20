@@ -2,7 +2,7 @@
 
 # member_computed.md
 
-> normalize > optional > member_computed
+> Normalize > Optional > Member computed
 >
 > Optional chaining fun
 

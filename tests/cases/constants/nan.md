@@ -1,8 +1,8 @@
 # Preval test case
 
-# copy.md
+# nan.md
 
-> constants > copy
+> Constants > Nan
 >
 > Copy one constant into another. Should fold them.
 

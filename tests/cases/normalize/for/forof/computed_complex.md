@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple_complex.md
+# computed_complex.md
 
-> normalize > for > forin > simple_complex
+> Normalize > For > Forof > Computed complex
 >
 > For-in must be normalized
 

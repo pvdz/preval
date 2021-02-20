@@ -1,8 +1,8 @@
 # Preval test case
 
-# plus_eq.md
+# var_init.md
 
-> normalize > compound > plus_eq
+> Normalize > Compound > Var init
 >
 > Compound assignments should be decomposed. This means fewer cases to worry about. We can recompose them in the last step.
 

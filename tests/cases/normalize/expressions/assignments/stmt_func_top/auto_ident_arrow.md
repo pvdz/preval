@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_arrow
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

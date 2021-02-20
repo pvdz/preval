@@ -2,7 +2,7 @@
 
 # auto_ident_array_simple.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_array_simple
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident array simple
 >
 > Normalization of var decls should work the same everywhere they are
 

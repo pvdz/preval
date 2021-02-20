@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_regex.md
+# regex.md
 
-> plusmin > min_regex
+> Tilde > Regex
 >
 > Inlining `~` when we know something is a literal
 

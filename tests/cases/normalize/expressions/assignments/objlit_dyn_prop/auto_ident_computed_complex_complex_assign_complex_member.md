@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_complex_assign_complex_member.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_computed_complex_complex_assign_complex_member
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident computed complex complex assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

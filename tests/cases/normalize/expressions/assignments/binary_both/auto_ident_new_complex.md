@@ -2,7 +2,7 @@
 
 # auto_ident_new_complex.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_new_complex
+> Normalize > Expressions > Assignments > Binary both > Auto ident new complex
 >
 > Normalization of assignments should work the same everywhere they are
 

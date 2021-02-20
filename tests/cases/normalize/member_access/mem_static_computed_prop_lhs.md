@@ -2,7 +2,7 @@
 
 # mem_static_computed_prop_lhs.md
 
-> normalize > member_access > mem_static_computed_prop_lhs
+> Normalize > Member access > Mem static computed prop lhs
 >
 > assigning to member expression where the lhs is a computed member expression with a static property
 

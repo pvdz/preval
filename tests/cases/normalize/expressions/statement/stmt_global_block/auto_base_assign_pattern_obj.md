@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > statement > stmt_global_block > auto_base_assign_pattern_obj
+> Normalize > Expressions > Statement > Stmt global block > Auto base assign pattern obj
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

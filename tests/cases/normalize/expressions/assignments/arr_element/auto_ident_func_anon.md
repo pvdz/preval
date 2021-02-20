@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Arr element > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

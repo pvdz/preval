@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# func_param_default_arr.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Base contexts > Func param default arr
 >
 > Testing simple pattern normalizations
 

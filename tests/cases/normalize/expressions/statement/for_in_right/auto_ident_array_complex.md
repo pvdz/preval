@@ -2,7 +2,7 @@
 
 # auto_ident_array_complex.md
 
-> normalize > expressions > statement > for_in_right > auto_ident_array_complex
+> Normalize > Expressions > Statement > For in right > Auto ident array complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

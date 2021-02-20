@@ -2,7 +2,7 @@
 
 # auto_ident_c-seq.md
 
-> normalize > expressions > statement > stmt_global_top > auto_ident_c-seq
+> Normalize > Expressions > Statement > Stmt global top > Auto ident c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

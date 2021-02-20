@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_simple_simple.md
 
-> normalize > expressions > assignments > objlit_dyn_prop > auto_ident_cond_simple_simple_simple
+> Normalize > Expressions > Assignments > Objlit dyn prop > Auto ident cond simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

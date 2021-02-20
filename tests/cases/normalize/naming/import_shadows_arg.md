@@ -1,8 +1,8 @@
 # Preval test case
 
-# import_should_keep.md
+# import_shadows_arg.md
 
-> normalize > naming > import_should_keep
+> Normalize > Naming > Import shadows arg
 >
 > The name of an arg that appears earlier in a file appeared to shadow the name of an exported global.
 

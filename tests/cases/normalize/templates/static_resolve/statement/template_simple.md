@@ -2,7 +2,7 @@
 
 # template_simple.md
 
-> normalize > templates > static_resolve > statement > template_simple
+> Normalize > Templates > Static resolve > Statement > Template simple
 >
 > Templates should be able to resolve literals
 

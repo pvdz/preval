@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > statement > switch_case_test > auto_base_assign_pattern_obj
+> Normalize > Expressions > Statement > Switch case test > Auto base assign pattern obj
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

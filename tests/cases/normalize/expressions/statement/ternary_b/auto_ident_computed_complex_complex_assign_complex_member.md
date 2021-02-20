@@ -2,7 +2,7 @@
 
 # auto_ident_computed_complex_complex_assign_complex_member.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_computed_complex_complex_assign_complex_member
+> Normalize > Expressions > Statement > Ternary b > Auto ident computed complex complex assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

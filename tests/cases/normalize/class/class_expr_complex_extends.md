@@ -2,7 +2,7 @@
 
 # class_expr_complex_extends.md
 
-> normalize > class > class_expr_complex_extends
+> Normalize > Class > Class expr complex extends
 >
 > Extends should be a simple node
 

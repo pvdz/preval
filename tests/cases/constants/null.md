@@ -2,7 +2,7 @@
 
 # null.md
 
-> constants > null
+> Constants > Null
 >
 > A constant set to null should be eliminated
 

@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_c-seq.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_delete_prop_c-seq
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident delete prop c-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# var_decl_is_const_nested.md
+# yes__var_decl_is_const_nested.md
 
-> binding > var_decl_is_const_nested
+> Binding > Promote const > Yes  var decl is const nested
 >
 > This is a var decl that is actually a constant but the only write is nested in something else. After our normalization steps it has to be a statement.
 

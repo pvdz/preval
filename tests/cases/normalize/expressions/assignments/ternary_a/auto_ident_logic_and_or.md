@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > assignments > ternary_a > auto_ident_logic_and_or
+> Normalize > Expressions > Assignments > Ternary a > Auto ident logic and or
 >
 > Normalization of assignments should work the same everywhere they are
 

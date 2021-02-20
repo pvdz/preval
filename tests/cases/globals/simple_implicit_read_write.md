@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple_implicit_read.md
+# simple_implicit_read_write.md
 
-> globals > simple_implicit_read
+> Globals > Simple implicit read write
 >
 > Writing to an implicit global
 

@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_complex.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_new_prop_complex
+> Normalize > Expressions > Assignments > Logic and left > Auto ident new prop complex
 >
 > Normalization of assignments should work the same everywhere they are
 

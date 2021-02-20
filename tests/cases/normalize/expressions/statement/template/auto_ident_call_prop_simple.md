@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > statement > template > auto_ident_call_prop_simple
+> Normalize > Expressions > Statement > Template > Auto ident call prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

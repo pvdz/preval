@@ -2,7 +2,7 @@
 
 # ident_sequence_simple.md
 
-> normalize > assignment > for-a > ident_sequence_simple
+> Normalize > Binding > For-a > Ident sequence simple
 >
 > Assignments of all kinds should be normalized in all circumstances
 

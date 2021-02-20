@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > statement > ternary_a > auto_pattern_obj_simple
+> Normalize > Expressions > Statement > Ternary a > Auto pattern obj simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # delete_not_exists.md
 
-> normalize > optional > delete_not_exists
+> Normalize > Optional > Delete not exists
 >
 > Delete on member expression is special casing. Works with optional chaining.
 

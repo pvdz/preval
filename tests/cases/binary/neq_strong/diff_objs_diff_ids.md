@@ -2,7 +2,7 @@
 
 # diff_objs_diff_ids.md
 
-> eq > diff_objs_diff_ids
+> Binary > Neq strong > Diff objs diff ids
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

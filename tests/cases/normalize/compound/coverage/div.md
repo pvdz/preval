@@ -2,7 +2,7 @@
 
 # div.md
 
-> normalize > compound > coverage > div
+> Normalize > Compound > Coverage > Div
 >
 > Compound assignments should destructure to regular assignments
 

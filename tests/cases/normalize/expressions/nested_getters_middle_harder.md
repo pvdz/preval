@@ -1,8 +1,8 @@
 # Preval test case
 
-# nested_getters_middle.md
+# nested_getters_middle_harder.md
 
-> normalize > assignment > nested_getters_middle
+> Normalize > Expressions > Nested getters middle harder
 >
 > Example of how getters and setters make the transform for `a=b.foo=c` non-trivial.
 

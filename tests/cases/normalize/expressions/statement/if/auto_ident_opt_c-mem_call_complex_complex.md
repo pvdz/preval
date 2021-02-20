@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-mem_call_complex_complex.md
 
-> normalize > expressions > statement > if > auto_ident_opt_c-mem_call_complex_complex
+> Normalize > Expressions > Statement > If > Auto ident opt c-mem call complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

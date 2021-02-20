@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_simple.md
 
-> normalize > expressions > assignments > for_of_right > auto_ident_unary_excl_simple
+> Normalize > Expressions > Assignments > For of right > Auto ident unary excl simple
 >
 > Normalization of assignments should work the same everywhere they are
 

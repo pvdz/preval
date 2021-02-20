@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > assignments > let > auto_pattern_arr_complex
+> Normalize > Expressions > Assignments > Let > Auto pattern arr complex
 >
 > Normalization of assignments should work the same everywhere they are
 

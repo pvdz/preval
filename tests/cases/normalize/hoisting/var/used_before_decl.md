@@ -2,7 +2,7 @@
 
 # used_before_decl.md
 
-> normalize > hoisting > var > used_before_decl
+> Normalize > Hoisting > Var > Used before decl
 >
 > Hoisting a var puts the var declaration at the top while actually invoking the initialization at the point of code. Normalization should fix this.
 

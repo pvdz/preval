@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# global.md
 
-> constants > null
+> Normalize > This > Global
 >
 > A constant set to null should be eliminated
 

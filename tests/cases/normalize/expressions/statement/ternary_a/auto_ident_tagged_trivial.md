@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_tagged_trivial
+> Normalize > Expressions > Statement > Ternary a > Auto ident tagged trivial
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

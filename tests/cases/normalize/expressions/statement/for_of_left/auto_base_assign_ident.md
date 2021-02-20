@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > statement > for_of_left > auto_base_assign_ident
+> Normalize > Expressions > Statement > For of left > Auto base assign ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

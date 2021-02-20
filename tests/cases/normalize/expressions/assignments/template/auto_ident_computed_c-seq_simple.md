@@ -2,7 +2,7 @@
 
 # auto_ident_computed_c-seq_simple.md
 
-> normalize > expressions > assignments > template > auto_ident_computed_c-seq_simple
+> Normalize > Expressions > Assignments > Template > Auto ident computed c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

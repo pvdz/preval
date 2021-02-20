@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_complex.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_unary_excl_complex
+> Normalize > Expressions > Bindings > Switch case > Auto ident unary excl complex
 >
 > Normalization of var decls should work the same everywhere they are
 

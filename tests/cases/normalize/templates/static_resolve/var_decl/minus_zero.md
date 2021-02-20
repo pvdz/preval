@@ -2,7 +2,7 @@
 
 # minus_zero.md
 
-> normalize > templates > static_resolve > var_decl > minus_zero
+> Normalize > Templates > Static resolve > Var decl > Minus zero
 >
 > Templates should be able to resolve literals
 

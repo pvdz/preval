@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > param_default > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Param default > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

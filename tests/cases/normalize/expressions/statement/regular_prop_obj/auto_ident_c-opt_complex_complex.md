@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex.md
 
-> normalize > expressions > statement > regular_prop_obj > auto_ident_c-opt_complex_complex
+> Normalize > Expressions > Statement > Regular prop obj > Auto ident c-opt complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

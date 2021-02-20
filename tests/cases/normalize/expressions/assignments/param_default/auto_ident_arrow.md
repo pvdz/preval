@@ -2,7 +2,7 @@
 
 # auto_ident_arrow.md
 
-> normalize > expressions > assignments > param_default > auto_ident_arrow
+> Normalize > Expressions > Assignments > Param default > Auto ident arrow
 >
 > Normalization of assignments should work the same everywhere they are
 

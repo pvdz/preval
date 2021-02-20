@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-seq.md
 
-> normalize > expressions > statement > binary_both > auto_ident_opt_c-seq
+> Normalize > Expressions > Statement > Binary both > Auto ident opt c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

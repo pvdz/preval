@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > assignments > do_while > auto_base_assign_pattern_obj
+> Normalize > Expressions > Assignments > Do while > Auto base assign pattern obj
 >
 > Normalization of assignments should work the same everywhere they are
 

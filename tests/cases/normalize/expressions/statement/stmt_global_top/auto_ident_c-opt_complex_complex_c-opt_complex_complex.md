@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex_c-opt_complex_complex.md
 
-> normalize > expressions > statement > stmt_global_top > auto_ident_c-opt_complex_complex_c-opt_complex_complex
+> Normalize > Expressions > Statement > Stmt global top > Auto ident c-opt complex complex c-opt complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

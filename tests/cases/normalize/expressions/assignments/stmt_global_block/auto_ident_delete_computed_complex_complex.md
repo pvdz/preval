@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_complex.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_delete_computed_complex_complex
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident delete computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

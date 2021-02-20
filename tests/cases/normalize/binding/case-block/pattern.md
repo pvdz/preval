@@ -2,7 +2,7 @@
 
 # pattern.md
 
-> normalize > assignment > case-block > pattern
+> Normalize > Binding > Case-block > Pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 

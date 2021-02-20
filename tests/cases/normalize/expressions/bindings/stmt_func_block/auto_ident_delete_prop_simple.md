@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_delete_prop_simple
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident delete prop simple
 >
 > Normalization of var decls should work the same everywhere they are
 

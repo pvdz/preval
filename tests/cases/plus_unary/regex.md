@@ -1,8 +1,8 @@
 # Preval test case
 
-# plus_regex.md
+# regex.md
 
-> plusmin > plus_regex
+> Plus unary > Regex
 >
 > Literals with a plus unary coerced to number without the plus
 

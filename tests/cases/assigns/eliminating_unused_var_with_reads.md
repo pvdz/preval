@@ -2,7 +2,7 @@
 
 # eliminating_unused_var_with_reads.md
 
-> assigns > eliminating_unused_var_with_reads
+> Assigns > Eliminating unused var with reads
 >
 > Trying to create a test case with a variable that is unused but has a read for another variable.
 

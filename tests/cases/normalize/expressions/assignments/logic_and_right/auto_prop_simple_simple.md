@@ -2,7 +2,7 @@
 
 # auto_prop_simple_simple.md
 
-> normalize > expressions > assignments > logic_and_right > auto_prop_simple_simple
+> Normalize > Expressions > Assignments > Logic and right > Auto prop simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

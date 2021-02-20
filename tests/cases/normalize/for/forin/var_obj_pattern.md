@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple_complex.md
+# var_obj_pattern.md
 
-> normalize > for > forin > simple_complex
+> Normalize > For > Forin > Var obj pattern
 >
 > For-in must be normalized
 

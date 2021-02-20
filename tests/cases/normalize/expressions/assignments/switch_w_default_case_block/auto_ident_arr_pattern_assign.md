@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident arr pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

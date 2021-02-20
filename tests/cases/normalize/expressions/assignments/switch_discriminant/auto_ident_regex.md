@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_ident_regex
+> Normalize > Expressions > Assignments > Switch discriminant > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

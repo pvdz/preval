@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_complex_complex.md
 
-> normalize > expressions > assignments > tagged > auto_ident_call_computed_complex_complex
+> Normalize > Expressions > Assignments > Tagged > Auto ident call computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

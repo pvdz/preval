@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_complex.md
 
-> normalize > expressions > bindings > export > auto_ident_upd_ip_complex
+> Normalize > Expressions > Bindings > Export > Auto ident upd ip complex
 >
 > Normalization of var decls should work the same everywhere they are
 

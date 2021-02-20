@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_c-seq.md
 
-> normalize > expressions > statement > for_of_left > auto_ident_delete_prop_c-seq
+> Normalize > Expressions > Statement > For of left > Auto ident delete prop c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

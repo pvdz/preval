@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# negative.md
 
-> normalize > new > call
+> Normalize > Array > Negative
 >
 > Make sure negative numbers are considered a literal too
 

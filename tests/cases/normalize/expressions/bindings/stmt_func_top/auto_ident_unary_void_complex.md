@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_unary_void_complex
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident unary void complex
 >
 > Normalization of var decls should work the same everywhere they are
 

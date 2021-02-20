@@ -2,7 +2,7 @@
 
 # auto_ident_unary_typeof_simple.md
 
-> normalize > expressions > statement > ternary_b > auto_ident_unary_typeof_simple
+> Normalize > Expressions > Statement > Ternary b > Auto ident unary typeof simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

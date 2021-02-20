@@ -1,8 +1,8 @@
 # Preval test case
 
-# import_default.md
+# import_default_anon_func.md
 
-> import > import_default
+> Import > Import default anon func
 >
 > Import statements need special care in our system and our tests
 

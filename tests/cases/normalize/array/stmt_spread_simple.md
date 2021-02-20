@@ -2,7 +2,7 @@
 
 # stmt_spread_simple.md
 
-> normalize > array > stmt_spread_simple
+> Normalize > Array > Stmt spread simple
 >
 > Array statements should be eliminated
 

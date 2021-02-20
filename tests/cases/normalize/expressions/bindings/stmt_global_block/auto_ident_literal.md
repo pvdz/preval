@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_literal
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident literal
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # multiple_const_init.md
 
-> normalize > var > multiple_const_init
+> Normalize > Var > Multiple const init
 >
 > Declaring multiple bindings should be normalized to separate declarations such that there is one binding per declaration.
 

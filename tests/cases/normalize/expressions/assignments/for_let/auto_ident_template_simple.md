@@ -2,7 +2,7 @@
 
 # auto_ident_template_simple.md
 
-> normalize > expressions > assignments > for_let > auto_ident_template_simple
+> Normalize > Expressions > Assignments > For let > Auto ident template simple
 >
 > Normalization of assignments should work the same everywhere they are
 

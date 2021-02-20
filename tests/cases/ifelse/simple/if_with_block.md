@@ -2,7 +2,7 @@
 
 # if_with_block.md
 
-> ifelse > simple > if_with_block
+> Ifelse > Simple > If with block
 >
 > Eliminate simple tautology
 

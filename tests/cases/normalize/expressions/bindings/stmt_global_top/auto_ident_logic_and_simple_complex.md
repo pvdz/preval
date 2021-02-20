@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_simple_complex.md
 
-> normalize > expressions > bindings > stmt_global_top > auto_ident_logic_and_simple_complex
+> Normalize > Expressions > Bindings > Stmt global top > Auto ident logic and simple complex
 >
 > Normalization of var decls should work the same everywhere they are
 

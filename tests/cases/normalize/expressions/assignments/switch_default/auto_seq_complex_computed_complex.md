@@ -2,7 +2,7 @@
 
 # auto_seq_complex_computed_complex.md
 
-> normalize > expressions > assignments > switch_default > auto_seq_complex_computed_complex
+> Normalize > Expressions > Assignments > Switch default > Auto seq complex computed complex
 >
 > Normalization of assignments should work the same everywhere they are
 

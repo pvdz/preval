@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_trivial.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_tagged_trivial
+> Normalize > Expressions > Assignments > Binary both > Auto ident tagged trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

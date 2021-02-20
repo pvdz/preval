@@ -2,7 +2,7 @@
 
 # undefined.md
 
-> normalize > unary > typeof > undefined
+> Normalize > Unary > Typeof > Undefined
 >
 > Typeof always returns a string
 

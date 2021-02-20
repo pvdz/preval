@@ -2,7 +2,7 @@
 
 # null.md
 
-> normalize > templates > static_resolve > var_decl > null
+> Normalize > Templates > Static resolve > Var decl > Null
 >
 > Templates should be able to resolve literals
 

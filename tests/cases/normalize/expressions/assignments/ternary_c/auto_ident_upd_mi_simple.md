@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_simple.md
 
-> normalize > expressions > assignments > ternary_c > auto_ident_upd_mi_simple
+> Normalize > Expressions > Assignments > Ternary c > Auto ident upd mi simple
 >
 > Normalization of assignments should work the same everywhere they are
 

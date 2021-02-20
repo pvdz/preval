@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_or.md
 
-> normalize > expressions > assignments > switch_default > auto_ident_logic_or_or
+> Normalize > Expressions > Assignments > Switch default > Auto ident logic or or
 >
 > Normalization of assignments should work the same everywhere they are
 

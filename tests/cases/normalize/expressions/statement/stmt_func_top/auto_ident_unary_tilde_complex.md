@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_complex.md
 
-> normalize > expressions > statement > stmt_func_top > auto_ident_unary_tilde_complex
+> Normalize > Expressions > Statement > Stmt func top > Auto ident unary tilde complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

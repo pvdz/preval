@@ -1,8 +1,8 @@
 # Preval test case
 
-# static_push.md
+# static_push_one_two.md
 
-> array > static_push
+> Array > Static push one two
 >
 > Pushing a few static values to an array
 

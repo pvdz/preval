@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_complex.md
+# complex_complex_one_param.md
 
-> normalize > templates > complex_complex
+> Normalize > Tagged > Complex complex one param
 >
 > A tagged template that has complex elements should be normalized to only contain simple ones
 

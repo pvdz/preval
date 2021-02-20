@@ -2,7 +2,7 @@
 
 # string_true.md
 
-> eq > string_true
+> Binary > Eq strong > String true
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

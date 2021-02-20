@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > statement > export_default > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Statement > Export default > Auto ident new ident complex args
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

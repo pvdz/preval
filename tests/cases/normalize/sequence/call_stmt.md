@@ -2,7 +2,7 @@
 
 # call_stmt.md
 
-> normalize > sequence > call_stmt
+> Normalize > Sequence > Call stmt
 >
 > Expression statement that is a call with callee that is a sequence
 

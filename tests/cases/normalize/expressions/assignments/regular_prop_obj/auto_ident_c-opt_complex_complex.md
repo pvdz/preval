@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_c-opt_complex_complex
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident c-opt complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

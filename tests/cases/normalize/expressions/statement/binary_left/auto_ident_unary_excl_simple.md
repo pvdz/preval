@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_simple.md
 
-> normalize > expressions > statement > binary_left > auto_ident_unary_excl_simple
+> Normalize > Expressions > Statement > Binary left > Auto ident unary excl simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

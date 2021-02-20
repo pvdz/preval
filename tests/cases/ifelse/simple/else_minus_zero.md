@@ -1,8 +1,8 @@
 # Preval test case
 
-# else_zero.md
+# else_minus_zero.md
 
-> ifelse > simple > else_zero
+> Ifelse > Simple > Else minus zero
 >
 > Eliminate simple tautology
 

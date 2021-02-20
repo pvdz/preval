@@ -2,7 +2,7 @@
 
 # delete.md
 
-> normalize > unary > typeof > delete
+> Normalize > Unary > Typeof > Delete
 >
 > Typeof always returns a string
 

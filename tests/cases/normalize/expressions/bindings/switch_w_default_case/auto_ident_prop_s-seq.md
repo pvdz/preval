@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_prop_s-seq
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident prop s-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

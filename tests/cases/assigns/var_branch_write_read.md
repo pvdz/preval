@@ -2,7 +2,7 @@
 
 # var_branch_write_read.md
 
-> assigns > var_branch_write_read
+> Assigns > Var branch write read
 >
 > Turning a var into a const. Or not.
 

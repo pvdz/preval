@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_undefined.md
+# undefined.md
 
-> plusmin > min_undefined
+> Tilde > Undefined
 >
 > Inlining `~` when we know something is a literal
 

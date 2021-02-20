@@ -2,7 +2,7 @@
 
 # auto_ident_unary_minus_complex.md
 
-> normalize > expressions > bindings > stmt_func_block > auto_ident_unary_minus_complex
+> Normalize > Expressions > Bindings > Stmt func block > Auto ident unary minus complex
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_complex_complex.md
 
-> normalize > expressions > statement > param_default > auto_ident_c-opt_complex_complex
+> Normalize > Expressions > Statement > Param default > Auto ident c-opt complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

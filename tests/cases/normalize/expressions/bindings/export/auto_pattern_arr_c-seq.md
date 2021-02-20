@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > bindings > export > auto_pattern_arr_c-seq
+> Normalize > Expressions > Bindings > Export > Auto pattern arr c-seq
 >
 > Normalization of var decls should work the same everywhere they are
 

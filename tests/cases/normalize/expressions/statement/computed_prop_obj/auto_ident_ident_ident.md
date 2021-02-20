@@ -2,7 +2,7 @@
 
 # auto_ident_ident_ident.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_ident_ident_ident
+> Normalize > Expressions > Statement > Computed prop obj > Auto ident ident ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

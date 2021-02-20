@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_object_empty
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident object empty
 >
 > Normalization of assignments should work the same everywhere they are
 

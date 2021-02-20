@@ -2,7 +2,7 @@
 
 # default_yes_no_no__obj_obj_undefined.md
 
-> normalize > pattern >  > param > obj > obj > ident > default_yes_no_no__obj_obj_undefined
+> Normalize > Pattern > Assignment > Obj > Obj > Ident > Default yes no no  obj obj undefined
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

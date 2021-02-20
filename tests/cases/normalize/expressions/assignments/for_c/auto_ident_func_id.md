@@ -2,7 +2,7 @@
 
 # auto_ident_func_id.md
 
-> normalize > expressions > assignments > for_c > auto_ident_func_id
+> Normalize > Expressions > Assignments > For c > Auto ident func id
 >
 > Normalization of assignments should work the same everywhere they are
 

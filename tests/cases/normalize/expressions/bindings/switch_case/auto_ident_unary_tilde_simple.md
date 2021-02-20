@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_simple.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_unary_tilde_simple
+> Normalize > Expressions > Bindings > Switch case > Auto ident unary tilde simple
 >
 > Normalization of var decls should work the same everywhere they are
 

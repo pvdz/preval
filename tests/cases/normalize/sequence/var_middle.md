@@ -1,8 +1,8 @@
 # Preval test case
 
-# middle.md
+# var_middle.md
 
-> normalize > sequence > middle
+> Normalize > Sequence > Var middle
 >
 > Nested groups can be flattened. We only care about the normalized output for this case. (I mean, it'll be resolved entirely, obviously)
 

@@ -2,7 +2,7 @@
 
 # pattern_pattern.md
 
-> normalize > assignment > for-a > pattern_pattern
+> Normalize > Binding > For-a > Pattern pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 

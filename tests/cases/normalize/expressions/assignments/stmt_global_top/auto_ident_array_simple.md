@@ -2,7 +2,7 @@
 
 # auto_ident_array_simple.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_array_simple
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident array simple
 >
 > Normalization of assignments should work the same everywhere they are
 

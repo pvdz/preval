@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident nested member complex bin
 >
 > Normalization of var decls should work the same everywhere they are
 

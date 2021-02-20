@@ -2,7 +2,7 @@
 
 # obj.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Binding > Base unique > Obj
 >
 > Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
 

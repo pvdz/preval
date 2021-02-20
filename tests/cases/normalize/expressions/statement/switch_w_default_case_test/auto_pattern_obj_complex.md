@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > statement > switch_w_default_case_test > auto_pattern_obj_complex
+> Normalize > Expressions > Statement > Switch w default case test > Auto pattern obj complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

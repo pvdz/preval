@@ -1,8 +1,8 @@
 # Preval test case
 
-# mutable_param.md
+# mutable_param_arr_pattern.md
 
-> function > mutable_param
+> Function > Mutable param arr pattern
 >
 > Param names can be written to
 

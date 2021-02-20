@@ -2,7 +2,7 @@
 
 # auto_ident_ident.md
 
-> normalize > expressions > statement > if > auto_ident_ident
+> Normalize > Expressions > Statement > If > Auto ident ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

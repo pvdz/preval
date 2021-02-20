@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_simple_complex.md
 
-> normalize > expressions > statement > objlit_dyn_prop > auto_ident_logic_and_simple_complex
+> Normalize > Expressions > Statement > Objlit dyn prop > Auto ident logic and simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

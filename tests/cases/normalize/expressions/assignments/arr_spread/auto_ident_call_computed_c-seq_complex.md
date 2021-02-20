@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_complex.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_call_computed_c-seq_complex
+> Normalize > Expressions > Assignments > Arr spread > Auto ident call computed c-seq complex
 >
 > Normalization of assignments should work the same everywhere they are
 

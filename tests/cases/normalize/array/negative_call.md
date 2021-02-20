@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# negative_call.md
 
-> normalize > new > call
+> Normalize > Array > Negative call
 >
 > Make sure negative function calls are not considered a literal
 

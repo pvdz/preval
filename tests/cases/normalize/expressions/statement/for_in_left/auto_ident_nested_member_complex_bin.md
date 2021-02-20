@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > statement > for_in_left > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Statement > For in left > Auto ident nested member complex bin
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

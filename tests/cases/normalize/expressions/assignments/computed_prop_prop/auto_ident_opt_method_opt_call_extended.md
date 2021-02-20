@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_opt_call_extended.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_opt_method_opt_call_extended
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident opt method opt call extended
 >
 > Normalization of assignments should work the same everywhere they are
 

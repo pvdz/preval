@@ -2,7 +2,7 @@
 
 # continue_outer_loop.md
 
-> labels > continue_outer_loop
+> Labels > Continue outer loop
 >
 > A continue may not reference its current loop
 

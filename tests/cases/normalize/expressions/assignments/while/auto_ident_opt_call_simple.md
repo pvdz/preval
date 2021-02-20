@@ -2,7 +2,7 @@
 
 # auto_ident_opt_call_simple.md
 
-> normalize > expressions > assignments > while > auto_ident_opt_call_simple
+> Normalize > Expressions > Assignments > While > Auto ident opt call simple
 >
 > Normalization of assignments should work the same everywhere they are
 

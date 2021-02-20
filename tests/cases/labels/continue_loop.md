@@ -2,7 +2,7 @@
 
 # continue_loop.md
 
-> labels > continue_loop
+> Labels > Continue loop
 >
 > Labels that are direct parents of loops should not become blocks because that might break labeled continue statements
 

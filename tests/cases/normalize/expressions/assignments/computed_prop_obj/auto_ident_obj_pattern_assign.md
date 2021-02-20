@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_obj_pattern_assign
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident obj pattern assign
 >
 > Normalization of assignments should work the same everywhere they are
 

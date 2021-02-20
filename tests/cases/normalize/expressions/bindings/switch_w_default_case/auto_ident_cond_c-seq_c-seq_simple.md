@@ -2,7 +2,7 @@
 
 # auto_ident_cond_c-seq_c-seq_simple.md
 
-> normalize > expressions > bindings > switch_w_default_case > auto_ident_cond_c-seq_c-seq_simple
+> Normalize > Expressions > Bindings > Switch w default case > Auto ident cond c-seq c-seq simple
 >
 > Normalization of var decls should work the same everywhere they are
 

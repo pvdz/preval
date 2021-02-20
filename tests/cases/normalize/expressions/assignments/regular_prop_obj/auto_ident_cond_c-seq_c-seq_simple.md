@@ -2,7 +2,7 @@
 
 # auto_ident_cond_c-seq_c-seq_simple.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_cond_c-seq_c-seq_simple
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident cond c-seq c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

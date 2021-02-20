@@ -2,7 +2,7 @@
 
 # arrow_this.md
 
-> normalize > arrow > arrow_this
+> Normalize > Arrow > Arrow this
 >
 > Basic case of this wrapping
 

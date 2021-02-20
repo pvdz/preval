@@ -2,7 +2,7 @@
 
 # ident_sequence_simple.md
 
-> normalize > assignment > stmt > ident_sequence_simple
+> Normalize > Binding > Stmt-global-block > Ident sequence simple
 >
 > Assignments of all kinds should be normalized in all circumstances
 

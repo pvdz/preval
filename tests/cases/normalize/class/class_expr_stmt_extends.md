@@ -2,7 +2,7 @@
 
 # class_expr_stmt_extends.md
 
-> normalize > class > class_expr_stmt_extends
+> Normalize > Class > Class expr stmt extends
 >
 > Class expression as a statement (possible as we can see here, not the same as a decl), should be dropped entirely.
 

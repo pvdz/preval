@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_complex_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_call_computed_complex_simple
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident call computed complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > statement > for_of_left > auto_ident_func_anon
+> Normalize > Expressions > Statement > For of left > Auto ident func anon
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

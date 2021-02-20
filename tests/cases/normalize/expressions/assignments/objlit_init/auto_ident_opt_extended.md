@@ -2,7 +2,7 @@
 
 # auto_ident_opt_extended.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_opt_extended
+> Normalize > Expressions > Assignments > Objlit init > Auto ident opt extended
 >
 > Normalization of assignments should work the same everywhere they are
 

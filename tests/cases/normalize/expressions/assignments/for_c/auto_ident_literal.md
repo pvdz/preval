@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > assignments > for_c > auto_ident_literal
+> Normalize > Expressions > Assignments > For c > Auto ident literal
 >
 > Normalization of assignments should work the same everywhere they are
 

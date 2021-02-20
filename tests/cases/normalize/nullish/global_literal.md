@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_ident.md
+# global_literal.md
 
-> normalize > member_access > global_ident
+> Normalize > Nullish > Global literal
 >
 > Literal property access should not be changed
 

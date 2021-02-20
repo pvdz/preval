@@ -2,7 +2,7 @@
 
 # base.md
 
-> normalize > function > expr > base
+> Normalize > Function > Expr > Base
 >
 > a func expr is slightly different from func expr
 

@@ -2,7 +2,7 @@
 
 # early_access.md
 
-> normalize > var > early_access
+> Normalize > Var > Early access
 >
 > Actual early access case
 

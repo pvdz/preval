@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_block.md
+# func_global_top.md
 
-> normalize > hoisting > global_block
+> Normalize > Hoisting > Base > Func global top
 >
 > Function declarations in a block are not hoisted
 

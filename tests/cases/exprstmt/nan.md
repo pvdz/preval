@@ -1,8 +1,8 @@
 # Preval test case
 
-# null.md
+# nan.md
 
-> exprstmt > null
+> Exprstmt > Nan
 >
 > Nulls as statement can be eliminated
 

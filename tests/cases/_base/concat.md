@@ -2,7 +2,7 @@
 
 # concat.md
 
-> base > concat
+> Base > Concat
 >
 > Simple string concat
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# fence_at_loop.md
+# fence_at_loop_switch.md
 
-> normalize > dce > continue > fence_at_loop
+> Normalize > Dce > Break > Fence at loop switch
 >
 > The DCE after a continue should be fenced at the nearest loop, not beyond.
 

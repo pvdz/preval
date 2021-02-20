@@ -2,7 +2,7 @@
 
 # opt_prop_nonopt_prop_call_pass.md
 
-> normalize > optional > opt_prop_nonopt_prop_call_pass
+> Normalize > Optional > Opt prop nonopt prop call pass
 >
 > Make sure this works properly
 

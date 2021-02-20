@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_delete_prop_simple
+> Normalize > Expressions > Statement > Ternary a > Auto ident delete prop simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

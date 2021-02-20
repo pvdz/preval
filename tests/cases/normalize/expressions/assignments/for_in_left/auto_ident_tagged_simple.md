@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > for_in_left > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > For in left > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# import_default.md
+# import_default_named_function.md
 
-> import > import_default
+> Import > Import default named function
 >
 > Import statements need special care in our system and our tests
 

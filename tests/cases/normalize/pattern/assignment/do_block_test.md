@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# do_block_test.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Assignment > Do block test
 >
 > Testing simple pattern normalizations
 

@@ -2,7 +2,7 @@
 
 # auto_ident_upd_im_complex.md
 
-> normalize > expressions > bindings > stmt_global_block > auto_ident_upd_im_complex
+> Normalize > Expressions > Bindings > Stmt global block > Auto ident upd im complex
 >
 > Normalization of var decls should work the same everywhere they are
 

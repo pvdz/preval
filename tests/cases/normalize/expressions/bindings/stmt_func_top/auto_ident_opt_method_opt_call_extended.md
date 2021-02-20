@@ -2,7 +2,7 @@
 
 # auto_ident_opt_method_opt_call_extended.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_opt_method_opt_call_extended
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident opt method opt call extended
 >
 > Normalization of var decls should work the same everywhere they are
 

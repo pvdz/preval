@@ -2,7 +2,7 @@
 
 # call_yes_yes_yes.md
 
-> normalize > optional > call_yes_yes_yes
+> Normalize > Optional > Call yes yes yes
 >
 > Mix optional with regular member call
 

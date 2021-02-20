@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > assignments > arr_spread > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Assignments > Arr spread > Auto ident new ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

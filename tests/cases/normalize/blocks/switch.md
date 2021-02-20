@@ -2,7 +2,7 @@
 
 # switch.md
 
-> normalize > blocks > switch
+> Normalize > Blocks > Switch
 >
 > Add blocks to sub-statements. Let's do this for cases as well, for now. Maybe that's a mistake :)
 

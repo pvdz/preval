@@ -2,7 +2,7 @@
 
 # nan.md
 
-> normalize > unary > minus > nan
+> Normalize > Unary > Minus > Nan
 >
 > Negative literals should be statically resolved where possible
 

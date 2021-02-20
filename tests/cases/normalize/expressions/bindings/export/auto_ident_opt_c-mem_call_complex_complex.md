@@ -2,7 +2,7 @@
 
 # auto_ident_opt_c-mem_call_complex_complex.md
 
-> normalize > expressions > bindings > export > auto_ident_opt_c-mem_call_complex_complex
+> Normalize > Expressions > Bindings > Export > Auto ident opt c-mem call complex complex
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_simple_complex.md
 
-> normalize > expressions > statement > for_in_right > auto_ident_logic_and_simple_complex
+> Normalize > Expressions > Statement > For in right > Auto ident logic and simple complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

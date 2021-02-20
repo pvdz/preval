@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_complex.md
 
-> normalize > expressions > assignments > let > auto_ident_unary_tilde_complex
+> Normalize > Expressions > Assignments > Let > Auto ident unary tilde complex
 >
 > Normalization of assignments should work the same everywhere they are
 

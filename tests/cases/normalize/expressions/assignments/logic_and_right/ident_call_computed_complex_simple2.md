@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_call_computed_complex_simple.md
+# ident_call_computed_complex_simple2.md
 
-> normalize > expressions > assignments > logic_and_right > auto_ident_call_computed_complex_simple
+> Normalize > Expressions > Assignments > Logic and right > Ident call computed complex simple2
 >
 > Normalization of assignments should work the same everywhere they are
 

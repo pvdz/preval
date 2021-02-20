@@ -2,7 +2,7 @@
 
 # pattern_pattern.md
 
-> normalize > assignment > stmt > pattern_pattern
+> Normalize > Binding > Stmt-global-top > Pattern pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 

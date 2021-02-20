@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_one.md
+# if_block.md
 
-> ifelse > simple > if_one
+> Ifelse > Simple > If block
 >
 > Eliminate simple tautology
 

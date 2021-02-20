@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_true.md
+# minus_true.md
 
-> plusmin > min_true
+> Minus unary > Minus true
 >
 > Literals with a minus unary coerced to a negative number (or positive if the arg is negative)
 

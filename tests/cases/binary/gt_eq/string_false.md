@@ -2,7 +2,7 @@
 
 # string_false.md
 
-> eq > string_false
+> Binary > Gt eq > String false
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

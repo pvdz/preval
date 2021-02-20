@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_call_prop_simple
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident call prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # pattern.md
 
-> normalize > assignment > export-default > pattern
+> Normalize > Binding > Export-default > Pattern
 >
 > Assignments of all kinds should be normalized in all circumstances
 

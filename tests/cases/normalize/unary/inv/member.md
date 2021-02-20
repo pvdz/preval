@@ -2,7 +2,7 @@
 
 # member.md
 
-> normalize > unary > inv > member
+> Normalize > Unary > Inv > Member
 >
 > Inverting a member expression is two things
 

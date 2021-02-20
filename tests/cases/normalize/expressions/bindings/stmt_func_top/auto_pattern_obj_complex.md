@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_pattern_obj_complex
+> Normalize > Expressions > Bindings > Stmt func top > Auto pattern obj complex
 >
 > Normalization of var decls should work the same everywhere they are
 

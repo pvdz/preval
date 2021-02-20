@@ -2,7 +2,7 @@
 
 # break_block.md
 
-> labels > break_block
+> Labels > Break block
 >
 > Labels should not throw
 

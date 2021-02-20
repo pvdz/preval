@@ -2,7 +2,7 @@
 
 # shru.md
 
-> normalize > compound > coverage > shru
+> Normalize > Compound > Coverage > Shru
 >
 > Compound assignments should destructure to regular assignments
 

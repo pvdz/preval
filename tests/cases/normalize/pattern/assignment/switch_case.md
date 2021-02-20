@@ -2,7 +2,7 @@
 
 # switch_case.md
 
-> normalize > pattern > assignment > switch_case
+> Normalize > Pattern > Assignment > Switch case
 >
 > Scope of a switch block is shared between all cases so bindings need to be hoisted above it
 

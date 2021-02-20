@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_ident.md
+# func_ident.md
 
-> normalize > member_access > global_ident
+> Normalize > Optional > Func ident
 >
 > Ident property access should not be changed
 

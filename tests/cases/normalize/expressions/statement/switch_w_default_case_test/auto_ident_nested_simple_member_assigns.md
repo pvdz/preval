@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > statement > switch_w_default_case_test > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Statement > Switch w default case test > Auto ident nested simple member assigns
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # arr_holes.md
 
-> normalize > templates > static_resolve > var_decl > arr_holes
+> Normalize > Templates > Static resolve > Var decl > Arr holes
 >
 > Templates should be able to resolve literals
 

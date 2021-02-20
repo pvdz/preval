@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > assignments > switch_discriminant > auto_base_assign_pattern_arr
+> Normalize > Expressions > Assignments > Switch discriminant > Auto base assign pattern arr
 >
 > Normalization of assignments should work the same everywhere they are
 

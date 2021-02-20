@@ -1,8 +1,8 @@
 # Preval test case
 
-# undefined.md
+# date.md
 
-> exprstmt > undefined
+> Exprstmt > Date
 >
 > Date as ident statement can be eliminated
 

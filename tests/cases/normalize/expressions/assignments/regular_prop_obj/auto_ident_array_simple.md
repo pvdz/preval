@@ -2,7 +2,7 @@
 
 # auto_ident_array_simple.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_array_simple
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident array simple
 >
 > Normalization of assignments should work the same everywhere they are
 

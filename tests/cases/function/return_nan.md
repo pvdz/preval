@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_string.md
+# return_nan.md
 
-> function > return_string
+> Function > Return nan
 >
 > A function that returns NaN
 

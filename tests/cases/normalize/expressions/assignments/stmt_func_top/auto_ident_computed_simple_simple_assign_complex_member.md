@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_ident_computed_simple_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Stmt func top > Auto ident computed simple simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

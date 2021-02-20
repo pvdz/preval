@@ -2,7 +2,7 @@
 
 # auto_ident_complex.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_complex
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident complex
 >
 > Normalization of assignments should work the same everywhere they are
 

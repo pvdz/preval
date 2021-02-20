@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_c-seq.md
 
-> normalize > expressions > statement > switch_case_top > auto_ident_new_prop_c-seq
+> Normalize > Expressions > Statement > Switch case top > Auto ident new prop c-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

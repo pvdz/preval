@@ -1,8 +1,8 @@
 # Preval test case
 
-# min_undefined.md
+# undefined.md
 
-> plusmin > min_undefined
+> Typeof > Undefined
 >
 > Inlining `typeof` when we know something is a literal
 

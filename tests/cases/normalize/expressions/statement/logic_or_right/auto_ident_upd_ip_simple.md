@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > statement > logic_or_right > auto_ident_upd_ip_simple
+> Normalize > Expressions > Statement > Logic or right > Auto ident upd ip simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

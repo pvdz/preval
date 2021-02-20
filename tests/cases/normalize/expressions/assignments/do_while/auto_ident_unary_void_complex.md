@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > assignments > do_while > auto_ident_unary_void_complex
+> Normalize > Expressions > Assignments > Do while > Auto ident unary void complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# labeled.md
 
-> normalize > dowhile > base
+> Normalize > Dowhile > Labeled
 >
 > We transform do-while to regular while
 

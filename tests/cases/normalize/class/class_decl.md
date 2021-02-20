@@ -2,7 +2,7 @@
 
 # class_decl.md
 
-> normalize > class > class_decl
+> Normalize > Class > Class decl
 >
 > Class decls should become expressions
 

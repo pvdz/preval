@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_s-seq_simple.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_new_computed_s-seq_simple
+> Normalize > Expressions > Assignments > Ternary b > Auto ident new computed s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

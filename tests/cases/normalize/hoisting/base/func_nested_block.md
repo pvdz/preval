@@ -1,8 +1,8 @@
 # Preval test case
 
-# global_block.md
+# func_nested_block.md
 
-> normalize > hoisting > global_block
+> Normalize > Hoisting > Base > Func nested block
 >
 > Function declarations in a block are not hoisted
 

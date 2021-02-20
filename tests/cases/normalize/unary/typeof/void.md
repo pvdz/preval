@@ -2,7 +2,7 @@
 
 # void.md
 
-> normalize > unary > typeof > void
+> Normalize > Unary > Typeof > Void
 >
 > Typeof always returns a string
 

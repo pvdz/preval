@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_s-seq_simple.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_cond_simple_s-seq_simple
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident cond simple s-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

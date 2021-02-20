@@ -2,7 +2,7 @@
 
 # auto_ident_unary_excl_simple.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_unary_excl_simple
+> Normalize > Expressions > Assignments > Binary both > Auto ident unary excl simple
 >
 > Normalization of assignments should work the same everywhere they are
 

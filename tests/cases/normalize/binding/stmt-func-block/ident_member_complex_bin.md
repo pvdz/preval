@@ -2,7 +2,7 @@
 
 # ident_member_complex_bin.md
 
-> normalize > assignment > stmt > ident_member_complex_bin
+> Normalize > Binding > Stmt-func-block > Ident member complex bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 

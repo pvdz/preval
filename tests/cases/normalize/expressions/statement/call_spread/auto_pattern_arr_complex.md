@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_complex.md
 
-> normalize > expressions > statement > call_spread > auto_pattern_arr_complex
+> Normalize > Expressions > Statement > Call spread > Auto pattern arr complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_simple_simple.md
 
-> normalize > expressions > statement > objlit_spread > auto_ident_cond_simple_simple_simple
+> Normalize > Expressions > Statement > Objlit spread > Auto ident cond simple simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

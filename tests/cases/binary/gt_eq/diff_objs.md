@@ -2,7 +2,7 @@
 
 # diff_objs.md
 
-> eq > diff_objs
+> Binary > Gt eq > Diff objs
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

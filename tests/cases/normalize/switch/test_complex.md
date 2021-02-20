@@ -2,7 +2,7 @@
 
 # test_complex.md
 
-> normalize > switch > test_complex
+> Normalize > Switch > Test complex
 >
 > Normalize switches
 

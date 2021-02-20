@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_s-seq.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_delete_prop_s-seq
+> Normalize > Expressions > Assignments > Objlit init > Auto ident delete prop s-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

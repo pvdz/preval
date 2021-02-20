@@ -2,7 +2,7 @@
 
 # auto_ident_unary_tilde_complex.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_unary_tilde_complex
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident unary tilde complex
 >
 > Normalization of var decls should work the same everywhere they are
 

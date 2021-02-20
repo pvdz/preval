@@ -2,7 +2,7 @@
 
 # auto_ident_arr_pattern_assign.md
 
-> normalize > expressions > statement > switch_discriminant > auto_ident_arr_pattern_assign
+> Normalize > Expressions > Statement > Switch discriminant > Auto ident arr pattern assign
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

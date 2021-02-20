@@ -1,8 +1,8 @@
 # Preval test case
 
-# order.md
+# assign_lhs.md
 
-> assignment > order
+> Expr order > Assign lhs
 >
 > The order of occurrence is relevant.
 

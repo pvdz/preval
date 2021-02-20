@@ -2,7 +2,7 @@
 
 # auto_ident_logic_||_simple_complex.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_logic_||_simple_complex
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident logic || simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

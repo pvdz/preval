@@ -2,7 +2,7 @@
 
 # xor.md
 
-> normalize > compound > coverage > xor
+> Normalize > Compound > Coverage > Xor
 >
 > Compound assignments should destructure to regular assignments
 

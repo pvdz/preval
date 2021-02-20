@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_complex.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_call_prop_complex
+> Normalize > Expressions > Assignments > Logic and both > Auto ident call prop complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# return_sequence.md
+# if_sequence.md
 
-> normalize > sequence > return_sequence
+> Normalize > Sequence > If sequence
 >
 > Conditional sequence
 

@@ -2,7 +2,7 @@
 
 # auto_ident_object_empty.md
 
-> normalize > expressions > bindings > export > auto_ident_object_empty
+> Normalize > Expressions > Bindings > Export > Auto ident object empty
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_upd_mi_complex
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident upd mi complex
 >
 > Normalization of assignments should work the same everywhere they are
 

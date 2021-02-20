@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_complex.md
 
-> normalize > expressions > assignments > tagged > auto_pattern_obj_complex
+> Normalize > Expressions > Assignments > Tagged > Auto pattern obj complex
 >
 > Normalization of assignments should work the same everywhere they are
 

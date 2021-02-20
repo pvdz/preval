@@ -2,7 +2,7 @@
 
 # _base_prop_undef.md
 
-> normalize > nullish > _base_prop_undef
+> Normalize > Nullish > Base prop undef
 >
 > Simple example
 

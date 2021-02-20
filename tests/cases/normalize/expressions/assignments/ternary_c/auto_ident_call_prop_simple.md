@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_simple.md
 
-> normalize > expressions > assignments > ternary_c > auto_ident_call_prop_simple
+> Normalize > Expressions > Assignments > Ternary c > Auto ident call prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

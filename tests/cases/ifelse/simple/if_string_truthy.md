@@ -2,7 +2,7 @@
 
 # if_string_truthy.md
 
-> ifelse > simple > if_string_truthy
+> Ifelse > Simple > If string truthy
 >
 > Eliminate simple tautology
 

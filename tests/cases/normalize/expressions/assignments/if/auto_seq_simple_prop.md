@@ -2,7 +2,7 @@
 
 # auto_seq_simple_prop.md
 
-> normalize > expressions > assignments > if > auto_seq_simple_prop
+> Normalize > Expressions > Assignments > If > Auto seq simple prop
 >
 > Normalization of assignments should work the same everywhere they are
 

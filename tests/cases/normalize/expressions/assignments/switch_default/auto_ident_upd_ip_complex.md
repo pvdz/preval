@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_complex.md
 
-> normalize > expressions > assignments > switch_default > auto_ident_upd_ip_complex
+> Normalize > Expressions > Assignments > Switch default > Auto ident upd ip complex
 >
 > Normalization of assignments should work the same everywhere they are
 

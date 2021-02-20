@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# complex_callee.md
 
-> normalize > new > call
+> Normalize > New > Complex callee
 >
 > The `new` operator should apply to a single identifier. A literal can also work though it would lead to a runtime error.
 

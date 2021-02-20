@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_complex_assign_complex_member.md
 
-> normalize > expressions > statement > switch_case_block > auto_ident_computed_simple_complex_assign_complex_member
+> Normalize > Expressions > Statement > Switch case block > Auto ident computed simple complex assign complex member
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

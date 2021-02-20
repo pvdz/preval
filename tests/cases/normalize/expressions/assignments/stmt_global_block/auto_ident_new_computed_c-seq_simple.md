@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_c-seq_simple.md
 
-> normalize > expressions > assignments > stmt_global_block > auto_ident_new_computed_c-seq_simple
+> Normalize > Expressions > Assignments > Stmt global block > Auto ident new computed c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

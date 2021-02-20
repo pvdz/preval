@@ -2,7 +2,7 @@
 
 # auto_ident_nested_simple_member_assigns.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_nested_simple_member_assigns
+> Normalize > Expressions > Assignments > Objlit init > Auto ident nested simple member assigns
 >
 > Normalization of assignments should work the same everywhere they are
 

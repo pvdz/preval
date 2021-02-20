@@ -2,7 +2,7 @@
 
 # member.md
 
-> normalize > unary > inv > member
+> Normalize > Unary > Tilde > Member
 >
 > Negative builtins should be statically resolved where possible
 

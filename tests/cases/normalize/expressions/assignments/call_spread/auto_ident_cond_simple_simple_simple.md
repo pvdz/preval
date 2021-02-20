@@ -2,7 +2,7 @@
 
 # auto_ident_cond_simple_simple_simple.md
 
-> normalize > expressions > assignments > call_spread > auto_ident_cond_simple_simple_simple
+> Normalize > Expressions > Assignments > Call spread > Auto ident cond simple simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

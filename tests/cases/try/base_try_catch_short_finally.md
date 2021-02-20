@@ -2,7 +2,7 @@
 
 # base_try_catch_short_finally.md
 
-> try > base_try_catch_short_finally
+> Try > Base try catch short finally
 >
 > Try base cases
 

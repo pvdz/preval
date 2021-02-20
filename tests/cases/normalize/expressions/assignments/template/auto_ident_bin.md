@@ -2,7 +2,7 @@
 
 # auto_ident_bin.md
 
-> normalize > expressions > assignments > template > auto_ident_bin
+> Normalize > Expressions > Assignments > Template > Auto ident bin
 >
 > Normalization of assignments should work the same everywhere they are
 

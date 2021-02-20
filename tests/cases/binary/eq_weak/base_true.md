@@ -2,7 +2,7 @@
 
 # base_true.md
 
-> eq > base_true
+> Binary > Eq weak > Base true
 >
 > If two values compare to the same primitive value in code then we can freely replace them with true or false
 

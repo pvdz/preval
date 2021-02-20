@@ -2,7 +2,7 @@
 
 # nested_order.md
 
-> normalize > hoisting > func > nested_order
+> Normalize > Hoisting > Exported func > Nested order
 >
 > How do we normalize multiple func decls on the same level?
 

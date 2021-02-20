@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_obj.md
 
-> normalize > expressions > statement > objlit_dyn_prop > auto_base_assign_pattern_obj
+> Normalize > Expressions > Statement > Objlit dyn prop > Auto base assign pattern obj
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

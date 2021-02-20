@@ -2,7 +2,7 @@
 
 # minus.md
 
-> normalize > binary > minus
+> Normalize > Binary > Minus
 >
 > Baseline binary expressions to cover ops
 

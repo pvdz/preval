@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > bindings > switch_case > auto_ident_regex
+> Normalize > Expressions > Bindings > Switch case > Auto ident regex
 >
 > Normalization of var decls should work the same everywhere they are
 

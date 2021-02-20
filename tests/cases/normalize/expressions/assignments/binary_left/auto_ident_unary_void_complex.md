@@ -2,7 +2,7 @@
 
 # auto_ident_unary_void_complex.md
 
-> normalize > expressions > assignments > binary_left > auto_ident_unary_void_complex
+> Normalize > Expressions > Assignments > Binary left > Auto ident unary void complex
 >
 > Normalization of assignments should work the same everywhere they are
 

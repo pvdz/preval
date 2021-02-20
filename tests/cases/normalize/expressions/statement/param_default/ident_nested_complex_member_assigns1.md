@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_nested_complex_member_assigns.md
+# ident_nested_complex_member_assigns1.md
 
-> normalize > expressions > statement > param_default > auto_ident_nested_complex_member_assigns
+> Normalize > Expressions > Statement > Param default > Ident nested complex member assigns1
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

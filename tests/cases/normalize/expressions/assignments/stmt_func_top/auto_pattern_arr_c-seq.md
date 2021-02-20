@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_c-seq.md
 
-> normalize > expressions > assignments > stmt_func_top > auto_pattern_arr_c-seq
+> Normalize > Expressions > Assignments > Stmt func top > Auto pattern arr c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# var.md
+# let.md
 
-> normalize > ternary > var
+> Normalize > Ternary > Let
 >
 > Example of rewriting a var decl with ternary as init
 

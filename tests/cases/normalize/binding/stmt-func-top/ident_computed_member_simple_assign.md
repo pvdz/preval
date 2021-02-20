@@ -2,7 +2,7 @@
 
 # ident_computed_member_simple_assign.md
 
-> normalize > assignment > stmt > ident_computed_member_simple_assign
+> Normalize > Binding > Stmt-func-top > Ident computed member simple assign
 >
 > Assignments of all kinds should be normalized in all circumstances
 

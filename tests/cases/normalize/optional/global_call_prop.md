@@ -2,7 +2,7 @@
 
 # global_call_prop.md
 
-> normalize > member_access > global_call_prop
+> Normalize > Optional > Global call prop
 >
 > Ident property access should not be changed
 

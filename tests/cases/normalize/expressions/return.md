@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# return.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Expressions > Return
 >
 > Testing simple pattern normalizations
 

@@ -2,7 +2,7 @@
 
 # auto_base_assign_ident.md
 
-> normalize > expressions > statement > switch_case_top > auto_base_assign_ident
+> Normalize > Expressions > Statement > Switch case top > Auto base assign ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

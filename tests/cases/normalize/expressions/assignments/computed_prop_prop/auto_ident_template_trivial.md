@@ -2,7 +2,7 @@
 
 # auto_ident_template_trivial.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_template_trivial
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident template trivial
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # undefined.md
 
-> normalize > unary > inv > undefined
+> Normalize > Unary > Inv > Undefined
 >
 > Inverting literals should be statically resolved
 

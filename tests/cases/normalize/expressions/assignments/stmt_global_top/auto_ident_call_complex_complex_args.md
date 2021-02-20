@@ -2,7 +2,7 @@
 
 # auto_ident_call_complex_complex_args.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_call_complex_complex_args
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident call complex complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# false_call.md
+# null_call.md
 
-> normalize > optional > false_call
+> Normalize > Optional > Null call
 >
 > Empty string should make `?.` to return undefined. This should throw, not return undefined.
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_s-seq.md
 
-> normalize > expressions > statement > for_of_right > auto_ident_prop_s-seq
+> Normalize > Expressions > Statement > For of right > Auto ident prop s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

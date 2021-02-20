@@ -2,7 +2,7 @@
 
 # init_member_call.md
 
-> normalize > binding > init_member_call
+> Normalize > Binding > Init member call
 >
 > Binding declaration with a member expression call init should not be outlined
 

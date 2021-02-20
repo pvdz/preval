@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_complex_complex.md
 
-> normalize > expressions > statement > objlit_init > auto_ident_logic_or_complex_complex
+> Normalize > Expressions > Statement > Objlit init > Auto ident logic or complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

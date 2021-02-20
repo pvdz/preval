@@ -2,7 +2,7 @@
 
 # prop_no_no_no.md
 
-> normalize > optional > prop_no_no_no
+> Normalize > Optional > Prop no no no
 >
 > Mix optional with regular member expressions
 

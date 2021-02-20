@@ -2,7 +2,7 @@
 
 # auto_ident_logic_and_or.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_logic_and_or
+> Normalize > Expressions > Statement > Ternary a > Auto ident logic and or
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

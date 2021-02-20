@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > assignments > logic_and_right > auto_pattern_arr_simple
+> Normalize > Expressions > Assignments > Logic and right > Auto pattern arr simple
 >
 > Normalization of assignments should work the same everywhere they are
 

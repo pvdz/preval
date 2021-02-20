@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_s-seq.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_call_prop_s-seq
+> Normalize > Expressions > Statement > Ternary a > Auto ident call prop s-seq
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # spread_simple.md
 
-> normalize > object > spread_simple
+> Normalize > Object > Spread simple
 >
 > Spread arg that is simple should not change
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# plus_undefined.md
+# undefined.md
 
-> plusmin > plus_undefined
+> Plus unary > Undefined
 >
 > Literals with a plus unary coerced to number without the plus
 

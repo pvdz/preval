@@ -1,8 +1,8 @@
 # Preval test case
 
-# end.md
+# global_assign.md
 
-> normalize > sequence > end
+> Normalize > Sequence > Global assign
 >
 > Special case for toplevel assignments to a property of a sequence
 

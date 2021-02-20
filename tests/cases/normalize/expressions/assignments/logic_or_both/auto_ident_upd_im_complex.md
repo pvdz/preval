@@ -2,7 +2,7 @@
 
 # auto_ident_upd_im_complex.md
 
-> normalize > expressions > assignments > logic_or_both > auto_ident_upd_im_complex
+> Normalize > Expressions > Assignments > Logic or both > Auto ident upd im complex
 >
 > Normalization of assignments should work the same everywhere they are
 

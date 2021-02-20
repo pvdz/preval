@@ -1,8 +1,8 @@
 # Preval test case
 
-# test_complex.md
+# deault_middle_without.md
 
-> normalize > switch > test_complex
+> Normalize > Switch > Deault middle without
 >
 > Normalize switches
 

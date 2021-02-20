@@ -2,7 +2,7 @@
 
 # auto_ident_opt_simple.md
 
-> normalize > expressions > statement > computed_prop_obj > auto_ident_opt_simple
+> Normalize > Expressions > Statement > Computed prop obj > Auto ident opt simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

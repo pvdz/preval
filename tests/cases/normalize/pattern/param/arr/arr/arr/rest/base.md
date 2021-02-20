@@ -2,7 +2,7 @@
 
 # base.md
 
-> normalize > pattern > param > arr > arr > arr > rest > base
+> Normalize > Pattern > Param > Arr > Arr > Arr > Rest > Base
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 

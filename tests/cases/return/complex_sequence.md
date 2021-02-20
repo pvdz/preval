@@ -2,7 +2,7 @@
 
 # complex_sequence.md
 
-> return > complex_sequence
+> Return > Complex sequence
 >
 > Returning a sequence that ends in a simple node
 

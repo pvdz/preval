@@ -2,7 +2,7 @@
 
 # auto_ident_c-opt_simple_simple.md
 
-> normalize > expressions > statement > for_of_left > auto_ident_c-opt_simple_simple
+> Normalize > Expressions > Statement > For of left > Auto ident c-opt simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

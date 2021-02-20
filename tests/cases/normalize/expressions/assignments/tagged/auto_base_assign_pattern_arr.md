@@ -2,7 +2,7 @@
 
 # auto_base_assign_pattern_arr.md
 
-> normalize > expressions > assignments > tagged > auto_base_assign_pattern_arr
+> Normalize > Expressions > Assignments > Tagged > Auto base assign pattern arr
 >
 > Normalization of assignments should work the same everywhere they are
 

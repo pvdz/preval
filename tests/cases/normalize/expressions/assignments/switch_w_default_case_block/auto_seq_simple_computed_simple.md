@@ -2,7 +2,7 @@
 
 # auto_seq_simple_computed_simple.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_seq_simple_computed_simple
+> Normalize > Expressions > Assignments > Switch w default case block > Auto seq simple computed simple
 >
 > Normalization of assignments should work the same everywhere they are
 

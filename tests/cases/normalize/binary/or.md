@@ -2,7 +2,7 @@
 
 # or.md
 
-> normalize > binary > or
+> Normalize > Binary > Or
 >
 > Baseline binary expressions to cover ops
 

@@ -2,7 +2,7 @@
 
 # complex_lhs.md
 
-> normalize > assignment > complex_lhs
+> Normalize > Expressions > Complex lhs
 >
 > Lhs of assignment can have side effects too
 

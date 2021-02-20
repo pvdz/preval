@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > statement > ternary_a > auto_ident_literal
+> Normalize > Expressions > Statement > Ternary a > Auto ident literal
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

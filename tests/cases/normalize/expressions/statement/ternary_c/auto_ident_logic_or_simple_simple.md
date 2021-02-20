@@ -2,7 +2,7 @@
 
 # auto_ident_logic_or_simple_simple.md
 
-> normalize > expressions > statement > ternary_c > auto_ident_logic_or_simple_simple
+> Normalize > Expressions > Statement > Ternary c > Auto ident logic or simple simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

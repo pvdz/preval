@@ -2,7 +2,7 @@
 
 # auto_ident_regex.md
 
-> normalize > expressions > assignments > arr_element > auto_ident_regex
+> Normalize > Expressions > Assignments > Arr element > Auto ident regex
 >
 > Normalization of assignments should work the same everywhere they are
 

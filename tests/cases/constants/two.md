@@ -2,7 +2,7 @@
 
 # two.md
 
-> constants > two
+> Constants > Two
 >
 > Two constants, nothing happens
 

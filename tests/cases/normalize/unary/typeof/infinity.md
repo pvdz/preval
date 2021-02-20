@@ -2,7 +2,7 @@
 
 # infinity.md
 
-> normalize > unary > typeof > infinity
+> Normalize > Unary > Typeof > Infinity
 >
 > Typeof always returns a string
 

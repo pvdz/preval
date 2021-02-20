@@ -2,7 +2,7 @@
 
 # auto_pattern_arr_simple.md
 
-> normalize > expressions > statement > stmt_func_top > auto_pattern_arr_simple
+> Normalize > Expressions > Statement > Stmt func top > Auto pattern arr simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

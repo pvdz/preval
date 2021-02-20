@@ -2,7 +2,7 @@
 
 # auto_ident_func_id.md
 
-> normalize > expressions > statement > objlit_dyn_prop > auto_ident_func_id
+> Normalize > Expressions > Statement > Objlit dyn prop > Auto ident func id
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

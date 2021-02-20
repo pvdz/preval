@@ -2,7 +2,7 @@
 
 # auto_ident_call_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_test > auto_ident_call_complex
+> Normalize > Expressions > Assignments > Switch w default case test > Auto ident call complex
 >
 > Normalization of assignments should work the same everywhere they are
 

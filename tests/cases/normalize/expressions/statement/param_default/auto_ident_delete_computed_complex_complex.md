@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_complex_complex.md
 
-> normalize > expressions > statement > param_default > auto_ident_delete_computed_complex_complex
+> Normalize > Expressions > Statement > Param default > Auto ident delete computed complex complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

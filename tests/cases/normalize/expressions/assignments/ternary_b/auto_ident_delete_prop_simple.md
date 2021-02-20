@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_simple.md
 
-> normalize > expressions > assignments > ternary_b > auto_ident_delete_prop_simple
+> Normalize > Expressions > Assignments > Ternary b > Auto ident delete prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

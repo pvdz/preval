@@ -2,7 +2,7 @@
 
 # nan.md
 
-> normalize > unary > typeof > nan
+> Normalize > Unary > Typeof > Nan
 >
 > Typeof always returns a string
 

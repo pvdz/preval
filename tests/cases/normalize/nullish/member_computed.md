@@ -2,7 +2,7 @@
 
 # member_computed.md
 
-> normalize > nullish > member_computed
+> Normalize > Nullish > Member computed
 >
 > nullish chaining fun
 

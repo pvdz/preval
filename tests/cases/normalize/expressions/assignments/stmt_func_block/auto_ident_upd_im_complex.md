@@ -2,7 +2,7 @@
 
 # auto_ident_upd_im_complex.md
 
-> normalize > expressions > assignments > stmt_func_block > auto_ident_upd_im_complex
+> Normalize > Expressions > Assignments > Stmt func block > Auto ident upd im complex
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_bin.md
 
-> normalize > expressions > assignments > objlit_init > auto_ident_nested_member_complex_bin
+> Normalize > Expressions > Assignments > Objlit init > Auto ident nested member complex bin
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_logic_||_simple_complex.md
 
-> normalize > expressions > assignments > logic_and_left > auto_ident_logic_||_simple_complex
+> Normalize > Expressions > Assignments > Logic and left > Auto ident logic || simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

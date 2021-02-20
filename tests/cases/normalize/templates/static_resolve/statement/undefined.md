@@ -2,7 +2,7 @@
 
 # undefined.md
 
-> normalize > templates > static_resolve > statement > undefined
+> Normalize > Templates > Static resolve > Statement > Undefined
 >
 > Templates should be able to resolve literals
 

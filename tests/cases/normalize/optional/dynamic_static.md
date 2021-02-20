@@ -2,7 +2,7 @@
 
 # dynamic_static.md
 
-> normalize > member_access > dynamic_static
+> Normalize > Optional > Dynamic static
 >
 > Member expressions with literal keys should be inlined
 

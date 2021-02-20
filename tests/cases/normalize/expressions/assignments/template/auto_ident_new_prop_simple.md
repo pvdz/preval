@@ -2,7 +2,7 @@
 
 # auto_ident_new_prop_simple.md
 
-> normalize > expressions > assignments > template > auto_ident_new_prop_simple
+> Normalize > Expressions > Assignments > Template > Auto ident new prop simple
 >
 > Normalization of assignments should work the same everywhere they are
 

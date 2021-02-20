@@ -2,7 +2,7 @@
 
 # auto_ident_unary_plus_simple.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_unary_plus_simple
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident unary plus simple
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # double.md
 
-> normalize > hoisting > var > double
+> Normalize > Hoisting > Var > Double
 >
 > Duplicate var statements is legit but we should drop the duplicate version
 

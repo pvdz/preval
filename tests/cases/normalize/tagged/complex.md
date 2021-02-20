@@ -2,7 +2,7 @@
 
 # complex.md
 
-> normalize > templates > complex
+> Normalize > Tagged > Complex
 >
 > A tagged template that has complex elements should be normalized to only contain simple ones
 

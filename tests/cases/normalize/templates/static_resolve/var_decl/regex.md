@@ -2,7 +2,7 @@
 
 # regex.md
 
-> normalize > templates > static_resolve > var_decl > regex
+> Normalize > Templates > Static resolve > Var decl > Regex
 >
 > Templates should be able to resolve literals
 

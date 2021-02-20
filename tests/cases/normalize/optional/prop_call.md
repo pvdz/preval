@@ -1,8 +1,8 @@
 # Preval test case
 
-# computed_call.md
+# prop_call.md
 
-> normalize > optional > computed_call
+> Normalize > Optional > Prop call
 >
 > Computed member sets context so should be kept
 

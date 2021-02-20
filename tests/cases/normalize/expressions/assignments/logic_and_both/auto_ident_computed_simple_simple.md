@@ -2,7 +2,7 @@
 
 # auto_ident_computed_simple_simple.md
 
-> normalize > expressions > assignments > logic_and_both > auto_ident_computed_simple_simple
+> Normalize > Expressions > Assignments > Logic and both > Auto ident computed simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

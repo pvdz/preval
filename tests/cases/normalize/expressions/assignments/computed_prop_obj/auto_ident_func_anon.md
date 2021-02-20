@@ -2,7 +2,7 @@
 
 # auto_ident_func_anon.md
 
-> normalize > expressions > assignments > computed_prop_obj > auto_ident_func_anon
+> Normalize > Expressions > Assignments > Computed prop obj > Auto ident func anon
 >
 > Normalization of assignments should work the same everywhere they are
 

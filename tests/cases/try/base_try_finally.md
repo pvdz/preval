@@ -2,7 +2,7 @@
 
 # base_try_finally.md
 
-> try > base_try_finally
+> Try > Base try finally
 >
 > Try base cases
 

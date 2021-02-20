@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident.md
 
-> normalize > expressions > statement > switch_default > auto_ident_new_ident
+> Normalize > Expressions > Statement > Switch default > Auto ident new ident
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

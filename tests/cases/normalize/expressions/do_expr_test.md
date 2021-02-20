@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# do_expr_test.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Expressions > Do expr test
 >
 > Testing simple pattern normalizations
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# complex_simple.md
+# stmt_complex_simple.md
 
-> logical > and > complex_simple
+> Logical > Or > Stmt complex simple
 >
 > Logical ops need to be normalized
 

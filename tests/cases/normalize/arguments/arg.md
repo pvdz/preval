@@ -2,7 +2,7 @@
 
 # arg.md
 
-> normalize > arguments > arg
+> Normalize > Arguments > Arg
 >
 > This was causing a problem when arguments was passed on in a call.
 

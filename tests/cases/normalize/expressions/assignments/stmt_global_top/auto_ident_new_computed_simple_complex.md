@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_simple_complex.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_ident_new_computed_simple_complex
+> Normalize > Expressions > Assignments > Stmt global top > Auto ident new computed simple complex
 >
 > Normalization of assignments should work the same everywhere they are
 

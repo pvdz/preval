@@ -1,8 +1,8 @@
 # Preval test case
 
-# obj.md
+# obj_unique.md
 
-> normalize > pattern > param > _base > obj
+> Normalize > Pattern > Binding > Base alias > Obj unique
 >
 > Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
 

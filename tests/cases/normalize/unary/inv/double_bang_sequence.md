@@ -2,7 +2,7 @@
 
 # double_bang_sequence.md
 
-> normalize > unary > inv > double_bang_sequence
+> Normalize > Unary > Inv > Double bang sequence
 >
 > This is an example of a double bang that can be moved into a sequence
 

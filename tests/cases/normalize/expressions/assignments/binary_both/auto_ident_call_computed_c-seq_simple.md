@@ -2,7 +2,7 @@
 
 # auto_ident_call_computed_c-seq_simple.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_call_computed_c-seq_simple
+> Normalize > Expressions > Assignments > Binary both > Auto ident call computed c-seq simple
 >
 > Normalization of assignments should work the same everywhere they are
 

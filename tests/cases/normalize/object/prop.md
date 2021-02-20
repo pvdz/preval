@@ -2,7 +2,7 @@
 
 # prop.md
 
-> normalize > object > prop
+> Normalize > Object > Prop
 >
 > Property with sequence value
 

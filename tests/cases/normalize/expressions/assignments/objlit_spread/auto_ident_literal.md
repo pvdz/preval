@@ -2,7 +2,7 @@
 
 # auto_ident_literal.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_literal
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident literal
 >
 > Normalization of assignments should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_ident.md
 
-> normalize > expressions > assignments > switch_w_default_case_top > auto_ident_ident
+> Normalize > Expressions > Assignments > Switch w default case top > Auto ident ident
 >
 > Normalization of assignments should work the same everywhere they are
 

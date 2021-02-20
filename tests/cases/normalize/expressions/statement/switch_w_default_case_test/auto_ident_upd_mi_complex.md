@@ -2,7 +2,7 @@
 
 # auto_ident_upd_mi_complex.md
 
-> normalize > expressions > statement > switch_w_default_case_test > auto_ident_upd_mi_complex
+> Normalize > Expressions > Statement > Switch w default case test > Auto ident upd mi complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

@@ -2,7 +2,7 @@
 
 # auto_ident_prop_simple_assign_complex_member.md
 
-> normalize > expressions > assignments > binary_both > auto_ident_prop_simple_assign_complex_member
+> Normalize > Expressions > Assignments > Binary both > Auto ident prop simple assign complex member
 >
 > Normalization of assignments should work the same everywhere they are
 

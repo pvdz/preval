@@ -1,8 +1,8 @@
 # Preval test case
 
-# assignment_to_string_key.md
+# assignment_from_string_key.md
 
-> normalize > object > assignment_to_string_key
+> Normalize > Object > Assignment from string key
 >
 > Should convert the key to a regular property
 

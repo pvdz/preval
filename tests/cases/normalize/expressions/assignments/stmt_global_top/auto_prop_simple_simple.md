@@ -2,7 +2,7 @@
 
 # auto_prop_simple_simple.md
 
-> normalize > expressions > assignments > stmt_global_top > auto_prop_simple_simple
+> Normalize > Expressions > Assignments > Stmt global top > Auto prop simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

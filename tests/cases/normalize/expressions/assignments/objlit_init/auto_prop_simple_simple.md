@@ -2,7 +2,7 @@
 
 # auto_prop_simple_simple.md
 
-> normalize > expressions > assignments > objlit_init > auto_prop_simple_simple
+> Normalize > Expressions > Assignments > Objlit init > Auto prop simple simple
 >
 > Normalization of assignments should work the same everywhere they are
 

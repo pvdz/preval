@@ -2,7 +2,7 @@
 
 # auto_prop_complex_simple.md
 
-> normalize > expressions > assignments > switch_case_test > auto_prop_complex_simple
+> Normalize > Expressions > Assignments > Switch case test > Auto prop complex simple
 >
 > Normalization of assignments should work the same everywhere they are
 

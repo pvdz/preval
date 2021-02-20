@@ -2,7 +2,7 @@
 
 # func_hoisting_order.md
 
-> normalize > functions > func_hoisting_order
+> Normalize > Hoisting > Func > Func hoisting order
 >
 > The result should be that the functions appear in lexicographical order
 

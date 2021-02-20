@@ -2,7 +2,7 @@
 
 # auto_ident_upd_ip_simple.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_upd_ip_simple
+> Normalize > Expressions > Assignments > Switch case block > Auto ident upd ip simple
 >
 > Normalization of assignments should work the same everywhere they are
 

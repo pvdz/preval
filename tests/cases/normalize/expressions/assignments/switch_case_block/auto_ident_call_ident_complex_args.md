@@ -2,7 +2,7 @@
 
 # auto_ident_call_ident_complex_args.md
 
-> normalize > expressions > assignments > switch_case_block > auto_ident_call_ident_complex_args
+> Normalize > Expressions > Assignments > Switch case block > Auto ident call ident complex args
 >
 > Normalization of assignments should work the same everywhere they are
 

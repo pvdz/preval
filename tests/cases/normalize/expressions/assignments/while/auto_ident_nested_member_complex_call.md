@@ -2,7 +2,7 @@
 
 # auto_ident_nested_member_complex_call.md
 
-> normalize > expressions > assignments > while > auto_ident_nested_member_complex_call
+> Normalize > Expressions > Assignments > While > Auto ident nested member complex call
 >
 > Normalization of assignments should work the same everywhere they are
 

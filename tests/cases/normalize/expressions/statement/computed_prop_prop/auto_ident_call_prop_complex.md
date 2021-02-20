@@ -2,7 +2,7 @@
 
 # auto_ident_call_prop_complex.md
 
-> normalize > expressions > statement > computed_prop_prop > auto_ident_call_prop_complex
+> Normalize > Expressions > Statement > Computed prop prop > Auto ident call prop complex
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

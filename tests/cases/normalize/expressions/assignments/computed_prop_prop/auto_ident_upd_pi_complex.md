@@ -2,7 +2,7 @@
 
 # auto_ident_upd_pi_complex.md
 
-> normalize > expressions > assignments > computed_prop_prop > auto_ident_upd_pi_complex
+> Normalize > Expressions > Assignments > Computed prop prop > Auto ident upd pi complex
 >
 > Normalization of assignments should work the same everywhere they are
 

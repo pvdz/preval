@@ -1,8 +1,8 @@
 # Preval test case
 
-# test_complex.md
+# cross_case_scoping.md
 
-> normalize > switch > test_complex
+> Normalize > Switch > Cross case scoping
 >
 > Normalize switches
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# class_computed_key_extends.md
+# class_extending_string.md
 
-> normalize > class > class_computed_key_extends
+> Normalize > Class > Class extending string
 >
 > This broke something at some point in time :)
 

@@ -2,7 +2,7 @@
 
 # auto_ident_obj_pattern_assign_seq.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_obj_pattern_assign_seq
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident obj pattern assign seq
 >
 > Normalization of assignments should work the same everywhere they are
 

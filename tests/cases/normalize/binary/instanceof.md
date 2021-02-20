@@ -2,7 +2,7 @@
 
 # instanceof.md
 
-> normalize > binary > instanceof
+> Normalize > Binary > Instanceof
 >
 > Baseline binary expressions to cover ops
 

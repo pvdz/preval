@@ -2,7 +2,7 @@
 
 # init_simple.md
 
-> normalize > binding > init_simple
+> Normalize > Binding > Init simple
 >
 > Binding declaration with a simple init should not be outlined
 

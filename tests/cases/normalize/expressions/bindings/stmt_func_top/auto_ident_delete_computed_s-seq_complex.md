@@ -2,7 +2,7 @@
 
 # auto_ident_delete_computed_s-seq_complex.md
 
-> normalize > expressions > bindings > stmt_func_top > auto_ident_delete_computed_s-seq_complex
+> Normalize > Expressions > Bindings > Stmt func top > Auto ident delete computed s-seq complex
 >
 > Normalization of var decls should work the same everywhere they are
 

@@ -2,7 +2,7 @@
 
 # empty_string_prop.md
 
-> normalize > optional > empty_string_prop
+> Normalize > Optional > Empty string prop
 >
 > Empty string should make `?.` to return undefined.
 

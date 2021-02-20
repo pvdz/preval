@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# dowhile2.md
 
-> normalize > dce > base
+> Normalize > Dce > Break > Dowhile2
 >
 > Any statements that follow a return in the same parent should be eliminated.
 

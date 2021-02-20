@@ -2,7 +2,7 @@
 
 # auto_ident_new_computed_complex_complex.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_ident_new_computed_complex_complex
+> Normalize > Expressions > Assignments > Switch w default case block > Auto ident new computed complex complex
 >
 > Normalization of assignments should work the same everywhere they are
 

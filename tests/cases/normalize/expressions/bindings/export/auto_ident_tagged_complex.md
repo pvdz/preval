@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_complex.md
 
-> normalize > expressions > bindings > export > auto_ident_tagged_complex
+> Normalize > Expressions > Bindings > Export > Auto ident tagged complex
 >
 > Normalization of var decls should work the same everywhere they are
 

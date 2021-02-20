@@ -1,8 +1,8 @@
 # Preval test case
 
-# cond_read_before_write.md
+# no__cond_read_before_write.md
 
-> binding > cond_read_before_write
+> Binding > Promote const > No  cond read before write
 >
 > Test case where the read of a var binding occurs before the write, even if it never does so (though preval won't be able to assert this).
 

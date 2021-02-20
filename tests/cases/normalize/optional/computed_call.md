@@ -2,7 +2,7 @@
 
 # computed_call.md
 
-> normalize > optional > computed_call
+> Normalize > Optional > Computed call
 >
 > Computed member sets context so should be kept
 

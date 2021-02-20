@@ -2,7 +2,7 @@
 
 # auto_pattern_obj_simple.md
 
-> normalize > expressions > assignments > param_default > auto_pattern_obj_simple
+> Normalize > Expressions > Assignments > Param default > Auto pattern obj simple
 >
 > Normalization of assignments should work the same everywhere they are
 

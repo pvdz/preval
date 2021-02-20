@@ -2,7 +2,7 @@
 
 # auto_ident_delete_prop_c-seq.md
 
-> normalize > expressions > assignments > regular_prop_obj > auto_ident_delete_prop_c-seq
+> Normalize > Expressions > Assignments > Regular prop obj > Auto ident delete prop c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

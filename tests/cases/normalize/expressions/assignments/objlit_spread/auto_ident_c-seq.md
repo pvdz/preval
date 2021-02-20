@@ -2,7 +2,7 @@
 
 # auto_ident_c-seq.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_c-seq
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident c-seq
 >
 > Normalization of assignments should work the same everywhere they are
 

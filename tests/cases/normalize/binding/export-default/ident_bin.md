@@ -2,7 +2,7 @@
 
 # ident_bin.md
 
-> normalize > assignment > export-default > ident_bin
+> Normalize > Binding > Export-default > Ident bin
 >
 > Assignments of all kinds should be normalized in all circumstances
 

@@ -2,7 +2,7 @@
 
 # auto_seq_simple_prop.md
 
-> normalize > expressions > assignments > switch_w_default_case_block > auto_seq_simple_prop
+> Normalize > Expressions > Assignments > Switch w default case block > Auto seq simple prop
 >
 > Normalization of assignments should work the same everywhere they are
 

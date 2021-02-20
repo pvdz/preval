@@ -2,7 +2,7 @@
 
 # auto_ident_tagged_simple.md
 
-> normalize > expressions > assignments > logic_or_both > auto_ident_tagged_simple
+> Normalize > Expressions > Assignments > Logic or both > Auto ident tagged simple
 >
 > Normalization of assignments should work the same everywhere they are
 

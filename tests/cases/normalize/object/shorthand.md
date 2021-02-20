@@ -2,7 +2,7 @@
 
 # shorthand.md
 
-> normalize > object > shorthand
+> Normalize > Object > Shorthand
 >
 > Shorthand should normalize to a regular property
 

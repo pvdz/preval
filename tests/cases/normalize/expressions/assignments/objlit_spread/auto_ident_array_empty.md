@@ -2,7 +2,7 @@
 
 # auto_ident_array_empty.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_array_empty
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident array empty
 >
 > Normalization of assignments should work the same everywhere they are
 

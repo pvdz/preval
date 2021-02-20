@@ -2,7 +2,7 @@
 
 # auto_ident_template_complex.md
 
-> normalize > expressions > assignments > objlit_spread > auto_ident_template_complex
+> Normalize > Expressions > Assignments > Objlit spread > Auto ident template complex
 >
 > Normalization of assignments should work the same everywhere they are
 

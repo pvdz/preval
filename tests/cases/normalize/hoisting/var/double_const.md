@@ -2,7 +2,7 @@
 
 # double_const.md
 
-> normalize > hoisting > var > double_const
+> Normalize > Hoisting > Var > Double const
 >
 > Duplicate var statements is legit but we should drop the duplicate version
 

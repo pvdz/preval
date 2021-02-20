@@ -2,7 +2,7 @@
 
 # auto_ident_new_ident_complex_args.md
 
-> normalize > expressions > statement > do_while > auto_ident_new_ident_complex_args
+> Normalize > Expressions > Statement > Do while > Auto ident new ident complex args
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

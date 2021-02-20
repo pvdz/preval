@@ -2,7 +2,7 @@
 
 # computed_key_number.md
 
-> normalize > object > computed_key_number
+> Normalize > Object > Computed key number
 >
 > Computed key that is a number value might as well not be computed
 

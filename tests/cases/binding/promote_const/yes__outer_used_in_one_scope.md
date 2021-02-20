@@ -1,8 +1,8 @@
 # Preval test case
 
-# hoisting_use_before_define.md
+# yes__outer_used_in_one_scope.md
 
-> binding > hoisting_use_before_define
+> Binding > Promote const > Yes  outer used in one scope
 >
 > Can we inline hoisted vars
 

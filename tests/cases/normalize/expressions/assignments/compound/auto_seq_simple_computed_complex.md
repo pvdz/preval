@@ -65,8 +65,7 @@ Should call `$` with:
  - 3: 1
  - 4: 'b'
  - 5: 2
- - 6: NaN
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'b' on number 'NaN' ]>")
 
 Normalized calls: Same
 

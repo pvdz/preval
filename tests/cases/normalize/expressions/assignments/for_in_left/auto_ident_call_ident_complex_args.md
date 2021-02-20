@@ -66,8 +66,7 @@ Should call `$` with:
  - 2: 1
  - 3: 2
  - 4: 1, 2
- - 5: 1
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'x' on number '1' ]>")
 
 Normalized calls: Same
 

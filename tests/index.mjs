@@ -22,45 +22,124 @@ import {
 } from './utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
+// Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
+import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 
 Error.stackTraceLimit = Infinity;
 
-const CONFIG = parseTestArgs();
+console.time('Total test time');
 
-const fileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(CONFIG.targetDir);
+const CONFIG = parseTestArgs();
+if (isMainThread) {
+  console.log(CONFIG);
+}
+
+if (isMainThread && CONFIG.threads > 1) {
+  // Spin off multiple threads and have them do the work in chunks. This thread will do the reporting.
+
+  console.log('Spinning up', CONFIG.threads, 'threads');
+  console.log('import.meta.url:', import.meta.url.replace('file://', ''));
+
+  let retryVerbose = '';
+  const resolvers = [];
+  const promises = [];
+  const threads = [];
+  let broke = false;
+  for (let threadIndex = 0; threadIndex < CONFIG.threads; ++threadIndex) {
+    promises.push(
+      new Promise((resolve, reject) => {
+        resolvers.push(resolve);
+        const worker = new Worker(import.meta.url.replace('file://', ''), {
+          workerData: {
+            config: {
+              ...CONFIG,
+              threadIndex,
+            },
+          },
+        });
+        let last = '';
+        worker.on('message', (arr) => {
+          if (broke) return;
+          last = arr[arr.length - 2];
+          console.log(...arr);
+        });
+        worker.on('error', (e) => {
+          if (broke) return;
+          console.log('Going to kill all threads and run this test case in verbose mode... : ' + last);
+          // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
+          // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.
+          retryVerbose = last;
+          resolvers.forEach(r => r());
+          broke = true;
+        });
+        worker.on('exit', (code) => {
+          if (broke) return;
+          if (code === 0 || broke) {
+            resolve();
+          } else {
+            reject(new Error(`Worker stopped with exit code ${code}`));
+          }
+        });
+        threads.push(worker);
+      }),
+    );
+  }
+
+  console.log('Waiting for threads to complete...');
+  await Promise.all(promises);
+  if (retryVerbose) {
+    console.log('A test failed (' + retryVerbose + '). Running it in verbose mode in main thread');
+    CONFIG.targetFile = retryVerbose;
+  } else {
+    console.log('Finished, no test fataled, exiting now...');
+    //if (isMainThread) {
+      console.log(`Suite finished`);
+      console.timeEnd('Total test time');
+    //}
+    process.exit();
+  }
+}
+
+const allFileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(CONFIG.targetDir);
+const fastFileNames = allFileNames.filter(
+  (fname) =>
+    !(
+      CONFIG.fastTest &&
+      (fname.includes('normalize/expressions/bindings') ||
+        fname.includes('normalize/expressions/assignment') ||
+        (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')))
+    ),
+);
+const workerStep = Math.ceil(fastFileNames.length / CONFIG.threads);
+const workerOffset = CONFIG.threadIndex * workerStep;
+console.log('Slicing test cases from', workerOffset, 'to', workerOffset + workerStep);
+const fileNames = fastFileNames.slice(workerOffset, workerOffset + workerStep);
 const testCases = fileNames
-  .filter(
-    (fname) =>
-      !(
-        CONFIG.fastTest &&
-        (fname.includes('normalize/expressions/bindings') ||
-          fname.includes('normalize/expressions/assignment') ||
-          (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')))
-      ),
-  )
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
 
-console.time('Total test time');
 let snap = 0; // snapshot fail
 let fail = 0; // crash
 let badNorm = 0; // evaluation of normalized code does not match input
 let badFinal = 0; // evaluation of final output does not match input
 testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 
-console.log(
-  `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
-    fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
-  }${badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''}${
-    badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
-  }`,
-);
-console.timeEnd('Total test time');
+if (isMainThread) {
+  console.log(
+    `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
+      fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
+    }${badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''}${
+      badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
+    }`,
+  );
+  console.timeEnd('Total test time');
+}
 
 function runTestCase(
   { md, mdHead, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
-  caseIndex,
+  relativeCaseIndex,
 ) {
+  const caseIndex = workerOffset + relativeCaseIndex;
   if (JSON.stringify(other) !== '{}') {
     console.log('received these unexpected args:', other);
     test_arg_count;
@@ -68,7 +147,14 @@ function runTestCase(
 
   const code = '// ' + (caseIndex + 1) + ' / ' + testCases.length + ' : intro\n' + fin.intro; // .intro is the main entry point
 
-  console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', sname, ']');
+  {
+    const data = ['###################################################', ' '.repeat(String(fastFileNames.length).length - String(caseIndex + 1).length), caseIndex + 1, '/', fastFileNames.length, '(', (((caseIndex - workerOffset) / testCases.length) * 100)|0, '%) [', sname, ']'];
+    if (isMainThread) {
+      console.log(...data);
+    } else {
+      parentPort.postMessage(data);
+    }
+  }
 
   if (withOutput) {
     console.log('code:');
@@ -198,7 +284,9 @@ function runTestCase(
         withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
         return clone;
       }
-      const returns = new Function('$', 'objPatternRest', fdata.intro)($, objPatternRest);
+      // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
+      //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
+      const returns = new Function('$', 'objPatternRest', '"use strict"; ' + fdata.intro)($, objPatternRest);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(safeCloneString(returns));
 
@@ -285,7 +373,12 @@ function runTestCase(
     }
   } else {
     const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError });
-    if (md2 !== md) {
+
+    let snapshotChanged = md2 !== md;
+    let normalizationDesync = md2.includes('BAD?!');
+    let outputDesync = md2.includes('BAD!!');
+
+    if (snapshotChanged) {
       ++snap;
 
       if (CONFIG.fileVerbatim) {
@@ -297,8 +390,23 @@ function runTestCase(
       }
     }
 
-    if (md2.includes('BAD?!')) ++badNorm;
-    else if (md2.includes('BAD!!')) ++badFinal;
+    if (normalizationDesync) ++badNorm;
+    else if (outputDesync) ++badFinal;
+
+    if (snapshotChanged || normalizationDesync || outputDesync) {
+      const data = [
+        snapshotChanged ? BOLD + 'Snapshot changed' + RESET : '',
+        normalizationDesync ? 'Eval changes for normalization' : '',
+        !normalizationDesync && outputDesync ? 'Eval changes for result' : '',
+        ' --> ',
+        fname,
+      ];
+      if (isMainThread) {
+        console.log(...data);
+      } else {
+        parentPort.postMessage(data);
+      }
+    }
 
     console.groupEnd();
     console.groupEnd();

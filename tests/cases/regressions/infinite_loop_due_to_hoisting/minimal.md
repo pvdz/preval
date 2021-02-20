@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-const obj = {x: 1};
+const a = {x: 1};
 
 function f() {}
 f(a.x === 1 ? 2 : 3);
@@ -21,7 +21,7 @@ f(a.x === 1 ? 2 : 3);
 
 `````js filename=intro
 function f() {}
-const obj = { x: 1 };
+const a = { x: 1 };
 const tmpCallCallee = f;
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;
@@ -38,6 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {}
+const a = { x: 1 };
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;
 const tmpIfTest = tmpBinLhs === 1;
@@ -51,9 +52,7 @@ f(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-a
+None
 
 ## Result
 

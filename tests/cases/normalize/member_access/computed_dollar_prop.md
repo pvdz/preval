@@ -11,32 +11,41 @@
 ## Input
 
 `````js filename=intro
-//const a = {['$']() { $(1); }};
+const a = {['$']() { $(1); }};
 a['$']();
 `````
 
 ## Normalized
 
 `````js filename=intro
+const a = {
+  $() {
+    $(1);
+  },
+};
 a.$();
 `````
 
 ## Output
 
 `````js filename=intro
+const a = {
+  $() {
+    $(1);
+  },
+};
 a.$();
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-a
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Normalized calls: Same
 

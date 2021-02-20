@@ -11,14 +11,27 @@
 ## Input
 
 `````js filename=intro
-$(1)[$(2)] = $(3);
+let b = {
+  get c()  { $('get'); }, 
+  set c(x) { $('set'); },
+};
+
+$(b)[$('c')] = $(3);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignComMemLhsObj = $(1);
-const tmpAssignComMemLhsProp = $(2);
+let b = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $('c');
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(3);
@@ -28,8 +41,16 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 ## Output
 
 `````js filename=intro
-const tmpAssignComMemLhsObj = $(1);
-const tmpAssignComMemLhsProp = $(2);
+const b = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $('c');
 const tmpAssignComputedRhs = $(3);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 `````
@@ -41,9 +62,10 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 2
+ - 1: { c: '<get/set>' }
+ - 2: 'c'
  - 3: 3
+ - 4: 'set'
  - eval returned: undefined
 
 Normalized calls: Same

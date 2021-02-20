@@ -48,5 +48,4 @@ Normalized calls: Same
 
 Final output calls: BAD!!
  - 1: 5
- - 2: 5
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')

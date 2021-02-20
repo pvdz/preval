@@ -71,8 +71,7 @@ y
 
 Should call `$` with:
  - 1: { y: '"pass2"' }
- - 2: 'pass2'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

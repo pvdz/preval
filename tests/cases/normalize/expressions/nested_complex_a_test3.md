@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-//var a = [], b = 20, c = 30;
+let a = $([]), b;
 //$($(a).length);
 //$($(a).length = b);
 //$(a).length = b;
@@ -23,30 +23,35 @@ $($(a).length);
 
 `````js filename=intro
 const tmpCallCallee = $;
+const tmpCalleeParam = [];
+let a = tmpCallCallee(tmpCalleeParam);
+let b;
+const tmpCallCallee$1 = $;
 const tmpCompObj = $(a);
-const tmpCalleeParam = tmpCompObj.length;
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = tmpCompObj.length;
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
+const tmpCalleeParam = [];
+const a = $(tmpCalleeParam);
 const tmpCompObj = $(a);
-const tmpCalleeParam = tmpCompObj.length;
-$(tmpCalleeParam);
+const tmpCalleeParam$1 = tmpCompObj.length;
+$(tmpCalleeParam$1);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-a
+None
 
 ## Result
 
 Should call `$` with:
- - 1: 5
- - 2: undefined
+ - 1: []
+ - 2: []
+ - 3: 0
  - eval returned: undefined
 
 Normalized calls: Same

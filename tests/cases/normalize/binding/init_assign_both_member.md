@@ -40,7 +40,7 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'x' on number '10' ]>")
 
 Normalized calls: Same
 

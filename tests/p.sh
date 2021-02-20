@@ -18,6 +18,7 @@ ACTION_ARG=''
 PARAM_NO_COLOR=''
 PARAM_NORM=''
 PARAM_FAST=''
+PARAM_THREADS='1'
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -56,6 +57,7 @@ Preval CLI Toolkit help:
  --node-bin=path Use this node binary to run stuff
  -C              Do not print colors
  -n              Only show normalized output
+ -t <count>      Run tests in this many threads (default=1; no threads)
          "
       exit
       ;;
@@ -112,6 +114,11 @@ Preval CLI Toolkit help:
       # Only show normalized output
       PARAM_NORM='-n'
       ;;
+    -t)
+      # Only show normalized output
+      shift
+      PARAM_THREADS="$1"
+      ;;
 
     fast)
       # Skip a bunch of test variations
@@ -145,7 +152,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}"
     ;;
 esac
 set +x

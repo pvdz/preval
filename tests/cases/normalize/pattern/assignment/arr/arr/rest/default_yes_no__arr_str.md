@@ -60,8 +60,7 @@ x
 ## Result
 
 Should call `$` with:
- - 1: ['a', 'b', 'c']
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

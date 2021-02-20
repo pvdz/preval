@@ -11,11 +11,15 @@
 ## Input
 
 `````js filename=intro
-var a = function(){ $('a'); return 1; }
-var b = function(){ $('b'); a = 21; return 2; }
-var c = function(){ $('c'); a = 31; b = 32; return 3; }
-var d = function(){ $('d'); a = 41; b = 42; c = 43; return 4; }
-var e = function(){ $('e'); a = 51; b = 52; c = 53; d = 54; return 5; }
+let obj = {
+  get c()  { $('get'); }, 
+  set c(x) { $('set'); },
+};
+var a = function(){ $('a'); return obj; }
+var b = function(){ $('b'); a = 21; return obj; }
+var c = function(){ $('c'); a = 31; b = 32; return obj; }
+var d = function(){ $('d'); a = 41; b = 42; c = 43; return obj; }
+var e = function(){ $('e'); a = 51; b = 52; c = 53; d = 54; return obj; }
 a().x = b().x = c().x = d().x = e()
 $(a, b, c, d, e);
 `````
@@ -28,27 +32,35 @@ var b;
 var c;
 var d;
 var e;
+let obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
 a = function () {
   $('a');
-  return 1;
+  return obj;
 };
 b = function () {
   $('b');
   a = 21;
-  return 2;
+  return obj;
 };
 c = function () {
   $('c');
   a = 31;
   b = 32;
-  return 3;
+  return obj;
 };
 d = function () {
   $('d');
   a = 41;
   b = 42;
   c = 43;
-  return 4;
+  return obj;
 };
 e = function () {
   $('e');
@@ -56,7 +68,7 @@ e = function () {
   b = 52;
   c = 53;
   d = 54;
-  return 5;
+  return obj;
 };
 const tmpAssignMemLhsObj = a();
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
@@ -77,27 +89,35 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
+const obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
 let SSA_a = function () {
   $('a');
-  return 1;
+  return obj;
 };
 let SSA_b = function () {
   $('b');
   SSA_a = 21;
-  return 2;
+  return obj;
 };
 let SSA_c = function () {
   $('c');
   SSA_a = 31;
   SSA_b = 32;
-  return 3;
+  return obj;
 };
 let SSA_d = function () {
   $('d');
   SSA_a = 41;
   SSA_b = 42;
   SSA_c = 43;
-  return 4;
+  return obj;
 };
 const e = function () {
   $('e');
@@ -105,7 +125,7 @@ const e = function () {
   SSA_b = 52;
   SSA_c = 53;
   SSA_d = 54;
-  return 5;
+  return obj;
 };
 const tmpAssignMemLhsObj = SSA_a();
 const varInitAssignLhsComputedObj = SSA_b();

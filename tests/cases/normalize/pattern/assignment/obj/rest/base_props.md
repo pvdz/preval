@@ -49,8 +49,7 @@ a, b, x
 ## Result
 
 Should call `$` with:
- - 1: { x: '1', c: '4' }
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -68,8 +68,7 @@ Should call `$` with:
  - 2: 1
  - 3: 2
  - 4: { y: '1' }
- - 5: true, {}
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'x' on boolean 'true' ]>")
 
 Normalized calls: Same
 

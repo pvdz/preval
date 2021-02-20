@@ -114,8 +114,7 @@ Should call `$` with:
  - 11: 'x'
  - 12: { x: '1' }
  - 13: 'x'
- - 14: { a: '999', b: '1000' }, { x: '3' }, 3
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'x' on number '3' ]>")
 
 Normalized calls: Same
 

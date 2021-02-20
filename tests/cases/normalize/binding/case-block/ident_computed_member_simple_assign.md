@@ -11,6 +11,10 @@
 ## Input
 
 `````js filename=intro
+let obj = {
+  get c()  { $('get'); }, 
+  set c(x) { $('set'); },
+};
 let a = 1, b = {x: 2}, c = 3, d = 4;
 switch ($('a')) { case $('a'): let a = b[$('x')] = $(c)[$('y')] = $(d); break; }
 $(a, b, c);
@@ -19,6 +23,14 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
+let obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -95,8 +107,7 @@ Should call `$` with:
  - 4: 3
  - 5: 'y'
  - 6: 4
- - 7: 1, { x: '4' }, 3
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'y' on number '3' ]>")
 
 Normalized calls: Same
 

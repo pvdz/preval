@@ -1,5 +1,11 @@
 import fs from 'fs';
+import { isMainThread, workerData } from 'worker_threads';
+
 export function parseTestArgs() {
+  if (!isMainThread) {
+    return workerData.config;
+  }
+
   // Note: 0=node, 1=file. Ignore empty args
   const argv = process.argv.slice(2).filter(Boolean);
 
@@ -10,6 +16,8 @@ export function parseTestArgs() {
     fileVerbatim: false,
     fastTest: false,
     onlyNormalized: false,
+    threads: 1, // By default, only run one thread
+    threadIndex: 0, // ... and this will be that thread
   };
 
   while (argv.length) {
@@ -47,6 +55,12 @@ export function parseTestArgs() {
       case '-n': {
         // Only output the normalized code
         config.onlyNormalized = true;
+        break;
+      }
+
+      case '-t': {
+        // Thread count
+        config.threads = (argv.shift()|0) || 1;
         break;
       }
 

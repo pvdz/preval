@@ -70,9 +70,7 @@ Should call `$` with:
  - 2: 3
  - 3: 'y'
  - 4: 4
- - 5: 4, { x: '4' }, 3
- - 6: undefined
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'y' on number '3' ]>")
 
 Normalized calls: Same
 

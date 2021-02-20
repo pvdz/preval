@@ -11,24 +11,45 @@
 ## Input
 
 `````js filename=intro
-$(1).x = $(2);
+let b = {
+  get c()  { $('get'); }, 
+  set c(x) { $('set'); },
+};
+
+$(b).c = $(2);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $(1);
+let b = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+const tmpAssignMemLhsObj = $(b);
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $(1);
+const b = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+const tmpAssignMemLhsObj = $(b);
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 `````
 
 ## Globals
@@ -38,8 +59,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: { c: '<get/set>' }
  - 2: 2
+ - 3: 'set'
  - eval returned: undefined
 
 Normalized calls: Same

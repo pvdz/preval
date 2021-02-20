@@ -11,14 +11,26 @@
 ## Input
 
 `````js filename=intro
+let obj = {
+  get c()  { $('get'); }, 
+  set c(x) { $('set'); },
+};
 let a = 1, b = {x: 2}, c = 3, d = 4;
-switch ($('a')) { case $('a'): let a = $(b)[$('x')] = $(c)[$('y')] = $(d); break; }
-$(a, b, c, d);
+switch ($('a')) { case $('a'): let a = $(obj)[$('x')] = $(obj)[$('y')] = $(d); break; }
+$(a, b, c, d, obj);
 `````
 
 ## Normalized
 
 `````js filename=intro
+let obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
 let a = 1;
 let b = { x: 2 };
 let c = 3;
@@ -41,9 +53,9 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    varInitAssignLhsComputedObj = $(b);
+    varInitAssignLhsComputedObj = $(obj);
     varInitAssignLhsComputedProp = $('x');
-    varInitAssignLhsComputedObj$1 = $(c);
+    varInitAssignLhsComputedObj$1 = $(obj);
     varInitAssignLhsComputedProp$1 = $('y');
     varInitAssignLhsComputedRhs$1 = $(d);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
@@ -53,12 +65,20 @@ tmpSwitchBreak: {
     break tmpSwitchBreak;
   }
 }
-$(a, b, c, d);
+$(a, b, c, d, obj);
 `````
 
 ## Output
 
 `````js filename=intro
+const obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
 const b = { x: 2 };
 const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
@@ -70,9 +90,9 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedObj = $(obj);
     const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(3);
+    const varInitAssignLhsComputedObj$1 = $(obj);
     const varInitAssignLhsComputedProp$1 = $('y');
     const varInitAssignLhsComputedRhs$1 = $(4);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
@@ -80,7 +100,7 @@ tmpSwitchBreak: {
     break tmpSwitchBreak;
   }
 }
-$(1, b, 3, 4);
+$(1, b, 3, 4, obj);
 `````
 
 ## Globals
@@ -92,12 +112,12 @@ None
 Should call `$` with:
  - 1: 'a'
  - 2: 'a'
- - 3: { x: '2' }
+ - 3: { c: '<get/set>' }
  - 4: 'x'
- - 5: 3
+ - 5: { c: '<get/set>' }
  - 6: 'y'
  - 7: 4
- - 8: 1, { x: '4' }, 3, 4
+ - 8: 1, { x: '2' }, 3, 4, { c: '<get/set>', y: '4', x: '4' }
  - eval returned: undefined
 
 Normalized calls: Same

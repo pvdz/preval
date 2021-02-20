@@ -51,8 +51,7 @@ x
 ## Result
 
 Should call `$` with:
- - 1: { x: '1', y: '2', z: '3' }
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

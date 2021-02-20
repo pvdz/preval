@@ -37,7 +37,8 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
+ - 1: undefined
+ - eval returned: undefined
 
 Normalized calls: Same
 

@@ -21,6 +21,7 @@ tmp = $(a); tmp.length = b;
 ## Input
 
 `````js filename=intro
+let a = $([]), b;
 //var a = [], b = 20, c = 30;
 //$($(a).length);
 //$($(a).length = b);
@@ -32,6 +33,10 @@ $(a).length = b;
 ## Normalized
 
 `````js filename=intro
+const tmpCallCallee = $;
+const tmpCalleeParam = [];
+let a = tmpCallCallee(tmpCalleeParam);
+let b;
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.length = b;
 `````
@@ -39,21 +44,22 @@ tmpAssignMemLhsObj.length = b;
 ## Output
 
 `````js filename=intro
+const tmpCalleeParam = [];
+const a = $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.length = b;
+tmpAssignMemLhsObj.length = undefined;
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-a, b
+None
 
 ## Result
 
 Should call `$` with:
- - 1: 5
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: []
+ - 2: []
+ - eval returned: ('<crash[ Invalid array length ]>')
 
 Normalized calls: Same
 

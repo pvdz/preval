@@ -65,8 +65,7 @@ y
 
 Should call `$` with:
  - 1: { a: '"fail"' }
- - 2: 'bad'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

@@ -58,8 +58,7 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - 2: 100
- - 3: false
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot create property 'x' on boolean 'false' ]>")
 
 Normalized calls: Same
 

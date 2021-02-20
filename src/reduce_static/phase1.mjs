@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
-import { getIdentUsageKind, createUniqueGlobalLabel, registerGlobalLabel, createReadRef, createWriteRef } from '../bindings.mjs';
+import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
@@ -13,16 +13,13 @@ export function phase1(fdata, resolve, req, verbose) {
   const ast = fdata.tenkoOutput.ast;
 
   const funcStack = [];
-  const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   const thisStack = [];
   const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
   const blockIds = []; // Same as blockStack except only contains its $p.pid's. Negative if the parent was a loop of sorts.
   let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
-  const globallyUniqueLabelRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
-  fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
 
   globals.forEach((_, name) =>
     globallyUniqueNamingRegistry.set(name, {
@@ -338,52 +335,6 @@ export function phase1(fdata, resolve, req, verbose) {
         break;
       }
 
-      case 'BreakStatement:before':
-      case 'ContinueStatement:before': {
-        // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
-        // Find the first label ancestor where the original name matches the label of this node
-        if (node.label) {
-          const name = node.label.name;
-          log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
-          let i = labelStack.length;
-          while (--i >= 0) {
-            log('->', labelStack[i].$p.originalLabelName);
-            if (labelStack[i].$p.originalLabelName === name) {
-              const newName = labelStack[i].label.name;
-              if (newName !== name) {
-                log('- Label was renamed to', newName);
-                node.label.name = newName;
-                break;
-              } else {
-                log('- Label not renamed');
-              }
-            }
-          }
-        } else {
-          log('No label');
-        }
-        break;
-      }
-
-      case 'LabeledStatement:before': {
-        labelStack.push(node);
-        log('Label:', node.label.name);
-        node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name, globallyUniqueLabelRegistry);
-        registerGlobalLabel(fdata, uniqueName, node.label.name, node);
-        if (node.label.name !== uniqueName) {
-          log('- Unique label name:', uniqueName);
-          node.label.name = uniqueName;
-        } else {
-          log('- Label is now registered and unique');
-        }
-        break;
-      }
-      case 'LabeledStatement:after': {
-        labelStack.pop();
-        break;
-      }
-
       case 'VariableDeclaration:after': {
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
@@ -414,14 +365,6 @@ export function phase1(fdata, resolve, req, verbose) {
       : globallyUniqueNamingRegistry.size === globals.size
       ? '<none>'
       : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
-  );
-  log(
-    '\ngloballyUniqueLabelRegistry:\n',
-    globallyUniqueLabelRegistry.size > 50
-      ? '<too many>'
-      : globallyUniqueLabelRegistry.size === 0
-      ? '<none>'
-      : [...globallyUniqueLabelRegistry.keys()].join(', '),
   );
 
   log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');

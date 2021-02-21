@@ -5527,6 +5527,8 @@ export function phaseNormalize(fdata, fname) {
       hoistingRoot,
     );
 
+    log('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
+
     // There are two things in three contexts that we hoist
     // - functions and variables
     // - exports and non-exports
@@ -5562,7 +5564,7 @@ export function phaseNormalize(fdata, fname) {
     if (hoistingRoot.$p.hoistedVars.length) {
       // Note: the parent can be a scope root (global/func), or export (named/default)
       // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
-      group('hoisting');
+      group();
       rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
       example('f(x); var x = 10; f(x);', 'var x; f(x); x = 10; f(x);');
       example('f(x); export var x = 10; f(x);', 'var x; f(x); x = 10; f(x); export {x};');
@@ -5572,13 +5574,20 @@ export function phaseNormalize(fdata, fname) {
       const names = [];
       const exportedNames = new Set();
       let exportDefault = ''; // There's at most one of these.
-      hoistingRoot.$p.hoistedVars.forEach(([hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
+      hoistingRoot.$p.hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
+        group();
         rule(
-          '- Hoisting step. Node is a `' +
-          hoistNode.type +
-          '`, parent: `' +
-          parentNode.type + '.' + parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : '') + '`'+
-          (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : ''),
+          '- Hoisting step. What = ' +
+            what +
+            '. Node is a `' +
+            hoistNode.type +
+            '`, parent: `' +
+            parentNode.type +
+            '.' +
+            parentProp +
+            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
+            '`' +
+            (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : ''),
         );
         group();
 
@@ -5593,10 +5602,12 @@ export function phaseNormalize(fdata, fname) {
           case 'FunctionDeclaration':
           case 'BlockStatement': {
             if (hoistNode.type === 'FunctionDeclaration') {
+              log('Queueing function node to be moved');
               funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
               // We will inject this node at the top
               parentNode[parentProp][parentIndex] = AST.emptyStatement();
             } else {
+              log('Queueing bindings to be moved');
               before(hoistNode);
               const newNodes = [];
 
@@ -5757,12 +5768,26 @@ export function phaseNormalize(fdata, fname) {
             ASSERT(false, 'what other node holds var or func decls?', parentNode);
         }
 
+        log('End of Hoisting step');
+        groupEnd();
         groupEnd();
       });
 
       const set = new Set(names);
       // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
       funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => set.delete(hoistNode.id.name));
+
+      log(
+        'Queued',
+        funcs.length,
+        'functions and',
+        names.length,
+        'var names and',
+        exportedNames.size,
+        'exports for hoisting (adding',
+        set.size,
+        'var names after duplication)',
+      );
 
       // This will invalidate all cached indexes moving forward!
 
@@ -5786,10 +5811,12 @@ export function phaseNormalize(fdata, fname) {
 
       hoistingRoot.$p.hoistedVars.length = 0; // Clear it. We don't need it anymore.
 
-      rule('End of hoisting');
       groupEnd();
+      log('/Hoisting');
       return true;
     }
+
+    log('/Hoisting');
 
     return false;
   }

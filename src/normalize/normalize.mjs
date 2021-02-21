@@ -4294,18 +4294,18 @@ export function phaseNormalize(fdata, fname) {
           }
 
           if (enode.type === 'TemplateLiteral' && enode.expressions.length === 0) {
-              rule('Template expressions that are literal values should be serialized');
-              example('`x${"abc"}y`', '`xabcy`');
-              example('`x${true}y`', '`xtruey`');
-              before(enode, node);
+            rule('Template expressions that are literal values should be serialized');
+            example('`x${"abc"}y`', '`xabcy`');
+            example('`x${true}y`', '`xtruey`');
+            before(enode, node);
 
-              // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
-              node.expressions[i] = AST.literal(String(enode.quasis[0].value.raw));
+            // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
+            node.expressions[i] = AST.literal(String(enode.quasis[0].value.raw));
 
-              after(node.expressions[i], node);
-              changes = true;
+            after(node.expressions[i], node);
+            changes = true;
 
-              hasStrings = true;
+            hasStrings = true;
           }
         });
         if (newNodes.length > 0) {
@@ -4330,9 +4330,11 @@ export function phaseNormalize(fdata, fname) {
             if (expr.type === 'Literal' && typeof expr.value === 'string') {
               const a = node.quasis[i];
               const c = node.quasis[i + 1];
-              log(a,c);
               ASSERT(
-                a.type === 'TemplateElement' && c.type === 'TemplateElement' && typeof a.value.raw === 'string' && typeof c.value.raw === 'string',
+                a.type === 'TemplateElement' &&
+                  c.type === 'TemplateElement' &&
+                  typeof a.value.raw === 'string' &&
+                  typeof c.value.raw === 'string',
                 'quasis are strings?',
                 a,
                 c,

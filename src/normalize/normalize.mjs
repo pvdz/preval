@@ -5831,7 +5831,8 @@ export function phaseNormalize(fdata, fname) {
     }
 
     // Variables declared on the toplevel of a switch case have to be hoisted to before the switch case, and const
-    // converted to let, to ensure that all cases still have access to that binding after the transformations
+    // converted to let, to ensure that all cases still have access to that binding after the transformations.
+    // Function declarations need to be converted to hoisted vars, and their init outlined before anything else.
     const vars = [];
     const lets = [];
     let hasDefaultAt = -1;
@@ -5840,9 +5841,9 @@ export function phaseNormalize(fdata, fname) {
 
       // Keep repeating as long as case-top-level var decls are encountered that introduce multiple bindings
       while (
-        cnode.consequent.some((snode, i) => {
+        cnode.consequent.some((snode, j) => {
           if (snode.type === 'VariableDeclaration') {
-            if (transformVariableDeclaration(snode, cnode.consequent, i)) {
+            if (transformVariableDeclaration(snode, cnode.consequent, j)) {
               return true;
             }
 
@@ -5864,7 +5865,7 @@ export function phaseNormalize(fdata, fname) {
                 snode.declarations.map((dnode) => AST.assignmentExpression(dnode.id, dnode.init || AST.identifier('undefined'))),
               ),
             );
-            cnode.consequent[i] = newNode;
+            cnode.consequent[j] = newNode;
 
             after(newNode);
           }

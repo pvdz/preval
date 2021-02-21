@@ -947,6 +947,31 @@ export function phaseNormalize(fdata, fname) {
       // cause the function to get another reference which may hold back other reduction rules.
       // Best course of action is probably to opt-in or out of this behavior, or to leave this particular
       // case of the default export as is. Would put the burden of support on us, not users.
+      log('Not inliing the function because it is anonymous and we do not want to change .name at this time'); // TODO. We do.
+
+      // The rest is the same as a regular function decl, except there's no id
+      if (hoistingOnce(node.declaration)) {
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
+      // Array<name, expr>
+      // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
+      const newBindings = [];
+
+      transformFunctionParams(node.declaration, body, i, newBindings);
+
+      if (newBindings.length) {
+        log('Params were transformed somehow, injecting new nodes into body');
+        node.declaration.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+        after(node.declaration);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      anyBlock(node.declaration.body);
+
       return false;
     }
 

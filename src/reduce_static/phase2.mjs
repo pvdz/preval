@@ -164,7 +164,14 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
       }
     }
 
-    if (meta.reads.length === 0 && meta.writes.length === 1 && meta.writes[0].funcDecl) {
+    // Do not eliminated exported functions (here). That should be part of tree shaking.
+    if (
+      meta.reads.length === 0 &&
+      meta.writes.length === 1 &&
+      meta.writes[0].funcDecl &&
+      meta.writes[0].funcDecl.funcParent.type !== 'ExportNamedDeclaration' &&
+      meta.writes[0].funcDecl.funcParent.type !== 'ExportDefaultDeclaration'
+    ) {
       group();
       rule('Unused function declaration should be removed');
       example('function f(){}', '');

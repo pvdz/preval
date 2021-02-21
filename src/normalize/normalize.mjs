@@ -5549,11 +5549,11 @@ export function phaseNormalize(fdata, fname) {
       let exportDefault = ''; // There's at most one of these.
       hoistingRoot.$p.hoistedVars.forEach(([hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
         rule(
-          '- Hoisting step. Node is a',
-          hoistNode.type,
-          ', parent:',
-          parentNode.type + '.' + parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : ''),
-          exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : '',
+          '- Hoisting step. Node is a `' +
+          hoistNode.type +
+          '`, parent: `' +
+          parentNode.type + '.' + parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : '') + '`'+
+          (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : ''),
         );
         group();
 

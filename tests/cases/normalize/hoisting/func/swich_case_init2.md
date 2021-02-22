@@ -1,8 +1,8 @@
 # Preval test case
 
-# swtich_case_init.md
+# swich_case_init2.md
 
-> Normalize > Hoisting > Func > Swtich case init
+> Normalize > Hoisting > Func > Swich case init2
 >
 > Vars can be declared in a switch case
 
@@ -13,9 +13,10 @@
 `````js filename=intro
 switch ($(1)) {
   case 0:
-    function f() { return $('f'); }
+    function f() { return $(x, 'x'); }
     break;
   case 1:
+    const x = 100; // The func still needs access to this binding... very unusual...
     f();
     break;
 }
@@ -24,11 +25,12 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-function f() {
-  const tmpReturnArg = $('f');
-  return tmpReturnArg;
-}
 const tmpSwitchTest = $(1);
+let x;
+var f = function () {
+  const tmpReturnArg = $(x, 'x');
+  return tmpReturnArg;
+};
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 2;
 const tmpIfTest = 0 === tmpSwitchValue;
@@ -47,6 +49,7 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
+    x = 100;
     f();
     break tmpSwitchBreak;
   }
@@ -56,11 +59,12 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-function f() {
-  const tmpReturnArg = $('f');
-  return tmpReturnArg;
-}
 const tmpSwitchTest = $(1);
+let x;
+const f = function () {
+  const tmpReturnArg = $(x, 'x');
+  return tmpReturnArg;
+};
 let tmpSwitchCaseToStart = 2;
 const tmpIfTest = 0 === tmpSwitchTest;
 if (tmpIfTest) {
@@ -78,6 +82,7 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
+    x = 100;
     f();
     break tmpSwitchBreak;
   }
@@ -92,7 +97,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 'f'
+ - 2: 100, 'x'
  - eval returned: undefined
 
 Normalized calls: Same

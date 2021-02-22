@@ -1,39 +1,43 @@
 # Preval test case
 
-# swtich_case_no_init.md
+# switch_func_hoisting_tdz.md
 
-> Normalize > Hoisting > Var > Swtich case no init
+> Normalize > Hoisting > Func > Switch func hoisting tdz
 >
-> Vars can be declared in a switch case
+> Func decl inside a switch block
 
 #TODO
 
 ## Input
 
 `````js filename=intro
+f(); // This should fail
 switch ($(1)) {
-  case 0:
-    var x;
+  case $(1):
+    f();
     break;
-  case 1:
-    x = 20;
-    break;
+  case $(2):
+    function f() { $('pass'); }
 }
-$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var x;
+f();
 const tmpSwitchTest = $(1);
+var f$1 = function () {
+  $('pass');
+};
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchValue;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
+  const tmpBinLhs$1 = $(2);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }
@@ -41,28 +45,29 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
+    f$1();
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    x = 20;
-    break tmpSwitchBreak;
-  }
 }
-$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var x;
+f();
 const tmpSwitchTest = $(1);
+const f$1 = function () {
+  $('pass');
+};
 let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchTest;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchTest;
+  const tmpBinLhs$1 = $(2);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }
@@ -70,27 +75,23 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
+    f$1();
     break tmpSwitchBreak;
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    x = 20;
-    break tmpSwitchBreak;
-  }
+  tmpSwitchCaseToStart <= 1;
 }
-$(x);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+f
 
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 20
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same
 

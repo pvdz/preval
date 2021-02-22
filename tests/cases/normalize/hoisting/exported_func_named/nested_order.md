@@ -2,7 +2,7 @@
 
 # nested_order.md
 
-> Normalize > Hoisting > Exported func > Nested order
+> Normalize > Hoisting > Exported func named > Nested order
 >
 > How do we normalize multiple func decls on the same level?
 
@@ -25,11 +25,6 @@ export function f() {
 
 `````js filename=intro
 function f() {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f$1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   function f$1() {
     const tmpReturnArg = $();
     return tmpReturnArg;
@@ -42,6 +37,11 @@ function f() {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f$1();
+  const tmpCalleeParam$1 = g();
+  const tmpCalleeParam$2 = h();
+  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
@@ -53,10 +53,6 @@ export { f };
 
 `````js filename=intro
 function f() {
-  const tmpCalleeParam = f$1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
-  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   function f$1() {
     const tmpReturnArg = $();
     return tmpReturnArg;
@@ -69,6 +65,10 @@ function f() {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   }
+  const tmpCalleeParam = f$1();
+  const tmpCalleeParam$1 = g();
+  const tmpCalleeParam$2 = h();
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 }
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);

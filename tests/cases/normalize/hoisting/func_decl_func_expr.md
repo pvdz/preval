@@ -1,24 +1,20 @@
 # Preval test case
 
-# func_nested_block.md
+# func_decl_func_expr.md
 
-> Normalize > Hoisting > Base > Func nested block
+> Normalize > Hoisting > Func decl func expr
 >
-> Function declarations in a block are not hoisted
+> Function declaration in toplevel
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function g() {
-  {
-    let x = 100;  
-    function f() {
-      return x;
-    }
-    $(f());
-  }
+const g = function() {
+  $(1);
+  function f() {}
+  $(f());
 }
 g();
 `````
@@ -26,28 +22,25 @@ g();
 ## Normalized
 
 `````js filename=intro
-function g() {
-  let f = function () {
-    return x;
-  };
-  let x = 100;
+const g = function () {
+  function f() {}
+  $(1);
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  const f = function () {
-    return 100;
-  };
+const g = function () {
+  function f() {}
+  $(1);
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
-}
+};
 g();
 `````
 
@@ -58,7 +51,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 100
+ - 1: 1
+ - 2: undefined
  - eval returned: undefined
 
 Normalized calls: Same

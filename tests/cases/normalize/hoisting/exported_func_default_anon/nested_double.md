@@ -2,15 +2,15 @@
 
 # nested_double.md
 
-> Normalize > Hoisting > Exported func > Nested double
+> Normalize > Hoisting > Exported func default anon > Nested double
 >
 > Note: not valid in global. Function declarations are hoisted and will be initialized at the start of a function. So they should be moved to the very top. Even above var decls of the same name, if any. Their order should not matter.
 
 ## Input
 
 `````js filename=intro
-$(g());
-export function g() {
+$(1);
+export default function() {
   $(f(3));
   function f() { return $(1); }
   function f() { return $(2); }
@@ -20,10 +20,8 @@ export function g() {
 ## Normalized
 
 `````js filename=intro
-function g() {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
+$(1);
+export default function () {
   function f() {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
@@ -32,19 +30,17 @@ function g() {
     const tmpReturnArg$1 = $(2);
     return tmpReturnArg$1;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(3);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
-export { g };
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  const tmpCalleeParam = f(3);
-  $(tmpCalleeParam);
+$(1);
+export default function () {
   function f() {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
@@ -53,10 +49,9 @@ function g() {
     const tmpReturnArg$1 = $(2);
     return tmpReturnArg$1;
   }
+  const tmpCalleeParam = f(3);
+  $(tmpCalleeParam);
 }
-const tmpCalleeParam$1 = g();
-$(tmpCalleeParam$1);
-export { g };
 `````
 
 ## Globals

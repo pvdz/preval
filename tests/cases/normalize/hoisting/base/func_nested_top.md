@@ -25,12 +25,12 @@ g();
 
 `````js filename=intro
 function g() {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
   function f() {
     return 100;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f();
+  tmpCallCallee(tmpCalleeParam);
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
@@ -42,11 +42,11 @@ g();
 
 `````js filename=intro
 function g() {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
   function f() {
     return 100;
   }
+  const tmpCalleeParam = f();
+  $(tmpCalleeParam);
   const tmpCalleeParam$1 = f();
   $(tmpCalleeParam$1);
 }

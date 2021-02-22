@@ -1,8 +1,8 @@
 # Preval test case
 
-# swtich_case_no_init.md
+# swich_case_init.md
 
-> Normalize > Hoisting > Func > Swtich case no init
+> Normalize > Hoisting > Var > Swich case init
 >
 > Vars can be declared in a switch case
 
@@ -13,21 +13,19 @@
 `````js filename=intro
 switch ($(1)) {
   case 0:
-    function f() { return $('f'); }
+    var x = 10;
     break;
   case 1:
-    f();
+    x = 20;
     break;
 }
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-function f() {
-  const tmpReturnArg = $('f');
-  return tmpReturnArg;
-}
+var x;
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 2;
@@ -43,23 +41,22 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
+    x = 10;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
-    f();
+    x = 20;
     break tmpSwitchBreak;
   }
 }
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
-  const tmpReturnArg = $('f');
-  return tmpReturnArg;
-}
+var x;
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 2;
 const tmpIfTest = 0 === tmpSwitchTest;
@@ -74,14 +71,16 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
+    x = 10;
     break tmpSwitchBreak;
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
-    f();
+    x = 20;
     break tmpSwitchBreak;
   }
 }
+$(x);
 `````
 
 ## Globals
@@ -92,7 +91,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 'f'
+ - 2: 20
  - eval returned: undefined
 
 Normalized calls: Same

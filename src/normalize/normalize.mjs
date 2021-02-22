@@ -686,7 +686,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ReturnStatement':
         return transformReturnStatement(node, body, i, parent);
       case 'SwitchStatement':
-        return transformSwitchStatement(node, body, i);
+        return transformSwitchStatement(node, body, i, parent);
       case 'ThrowStatement':
         return transformThrowStatement(node, body, i, parent);
       case 'TryStatement':
@@ -767,7 +767,43 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (parent.type === 'BlockStatement') {
+    const varDeclsToHoist = []; // Note: these are block scoped var decls.
+    for (let i = 0; i < node.body.length; ++i) {
+      const enode = node.body[i];
+      if (enode.type === 'FunctionDeclaration') {
+        if (enode.$p.isBlockFuncDecl) {
+          ASSERT(node.$p.hasFuncDecl, 'parent block should be marked as having a func decl', node);
+          // Hoist it to the top of the block as a var statement...
+          varDeclsToHoist.push(enode);
+          node.body.splice(i, 1);
+          --i;
+        }
+      }
+    }
+    if (varDeclsToHoist.length) {
+      rule('Hoist block scoped var decls to the top of the block, sort them, and convert them to `let` decls');
+      example('{ f(); function f(){} }', '{ let f = function(){}; f(); }');
+      varDeclsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
+      node.body.unshift(
+        ...varDeclsToHoist.map((enode) => {
+          group();
+          before(enode);
+
+          const decl = AST.variableDeclaration(enode.id, enode, 'let'); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
+          enode.type = 'FunctionExpression';
+          enode.id = null;
+          enode.$p.isBlockFuncDecl = false;
+
+          after(decl);
+          groupEnd();
+          return decl;
+        }),
+      );
+      node.$p.hasFuncDecl = false;
+      return true;
+    }
+
+    if (parent.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
       rule('Nested blocks should be smooshed');
       example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
       before(node, parent);
@@ -778,7 +814,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (parent.type === 'Program') {
+    if (parent.type === 'Program' && !node.$p.hasFuncDecl) {
       rule('Top level blocks should be eliminated');
       example('a(); { b(); } c();', 'a(); b(); c();');
       before(node, parent);
@@ -5867,7 +5903,7 @@ export function phaseNormalize(fdata, fname) {
     }
     return false;
   }
-  function transformSwitchStatement(node, body, i) {
+  function transformSwitchStatement(node, body, i, parentNode) {
     if (isComplexNode(node.discriminant)) {
       rule('Switch condition should be simple node');
       example('switch (f()) {}', '{ let tmp = f(); switch (tmp) {} }');
@@ -5889,6 +5925,7 @@ export function phaseNormalize(fdata, fname) {
     // Function declarations need to be converted to hoisted vars, and their init outlined before anything else.
     const vars = [];
     const lets = [];
+    const funcdecls = [];
     let hasDefaultAt = -1;
     node.cases.forEach((cnode, i) => {
       if (!cnode.test) hasDefaultAt = i;
@@ -5908,7 +5945,7 @@ export function phaseNormalize(fdata, fname) {
             if (snode.kind === 'var') vars.push(...names);
             else lets.push(...names);
 
-            rule('Switch case toplevel declaration should be outlined; [1/2] replacing decls with their inits');
+            rule('[1.a/2] Switch case toplevel declaration should be outlined; [1/2] replacing decls with their inits');
             example('switch (x) { case a: let b = 10, c = 20; }', 'let b, c; switch (x) { case a: b = 10, c = 20; }');
             example('switch (x) { case a: let b; }', 'switch (x) { case a: b = undefined; }');
             example('switch (x) { case a: let [b, c] = [10, 20]; }', 'let b, c; switch (x) { case a: [b, c] = [10, 20]; }');
@@ -5922,19 +5959,37 @@ export function phaseNormalize(fdata, fname) {
             cnode.consequent[j] = newNode;
 
             after(newNode);
+          } else if (snode.type === 'FunctionDeclaration') {
+            rule('[1.b/2] Function declaration in a switch block must be handled');
+            example(
+              'switch (x) { case x: f(); break; case y: function f(){} }',
+              'var f = function(){}; switch(x) { case x: f(); case y: }',
+            );
+            before(snode, parentNode);
+
+            ASSERT(snode.id, 'since this cannot be an export, the id must be present');
+            const newNode = AST.variableDeclaration(snode.id, snode, 'var');
+            // TODO: create a fresh var that clones snode props instead...
+            snode.type = 'FunctionExpression';
+            snode.id = null;
+            cnode.consequent[j] = AST.emptyStatement();
+
+            after(newNode, parentNode);
+            funcdecls.push(newNode);
           }
         })
       );
     });
 
-    if (vars.length || lets.length) {
+    if (vars.length || lets.length || funcdecls.length) {
       // TODO: if the vars are only used inside the case then we could inline them, perhaps keep the `const` tag. nbd
-      rule('Switch case toplevel declaration should be outlined; [2/2] adding var decls before the switch');
+      rule('[2/2] Switch case toplevel declaration should be outlined; adding var and func decls before the switch');
       example('switch (x) { case y: let a = 10, b = 20; }', '{ let a; let b; switch (x) { case y: a = 10, b = 10; } }');
 
       const newNode = AST.blockStatement(
         ...vars.map((name) => AST.variableDeclaration(name, undefined, 'var')),
         ...lets.map((name) => AST.variableDeclaration(name)),
+        ...funcdecls,
         node,
       );
       body[i] = newNode;

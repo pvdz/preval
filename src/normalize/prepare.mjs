@@ -144,6 +144,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
           exportIndex, // if node is an export, global.body[exportIndex] == parentNode
         ]> */ = [];
       }
+      if (['BlockStatement', 'SwitchStatement'].includes(node.type)) {
+        node.$p.hoistedVars = [];
+      }
 
       lexScopeStack.push(node);
       node.$p.lexScopeId = ++lexScopeCounter;
@@ -269,6 +272,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'FunctionDeclaration:before':
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
+        log('Name:', node.id?.name ?? '<anon>');
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           node.$p.scope = { type: 'zscope', names: new Map() };
@@ -279,33 +283,56 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'FunctionDeclaration:after':
       case 'FunctionExpression:after':
       case 'ArrowFunctionExpression:after': {
+        log('Name:', node.id?.name ?? '<anon>');
         funcStack.pop();
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.pop();
         }
 
-        const parentNode = path.nodes[path.nodes.length - 2];
-
-        // Do not attempt to hoist anonymous default function exports
-        // Function declarations inside blocks are not hoisted
-        if (node.type === 'FunctionDeclaration' && node.id && parentNode.type !== 'BlockStatement') {
-          const func = funcStack[funcStack.length - 1];
+        if (node.type === 'FunctionDeclaration') {
+          log('It _is_ a function decl. How should it be hoisted?');
+          const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
+          const grandparent = path.nodes[path.nodes.length - 3];
 
-          if (parentNode.type.includes('Export')) {
-            ASSERT(parentNode.type === 'ExportNamedDeclaration' || parentNode.type === 'ExportDefaultDeclaration');
+          // Note: special case for Switch body will be picked up explicitly by the switch transform
+          if (parentNode.type === 'Program') {
+            log('- Hoisting toplevel global function');
+            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in global');
+            ASSERT(parentIndex >= 0, 'node should be in a body');
+            ASSERT(parentProp === 'body', 'children of Program are in body', parentProp);
+            ASSERT(parentNode.body[parentIndex] === node, 'path should be correct');
+            parentNode.$p.hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
+          } else if (parentNode.type === 'ExportNamedDeclaration' || (parentNode.type === 'ExportDefaultDeclaration' && node.id)) {
+            log('- Hoisting entire export');
+            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in global');
+            ASSERT(parentProp === 'declaration');
             ASSERT(parentIndex === -1, 'parent is not an array');
-            ASSERT(parentNode[parentProp] === node, 'check parent prop');
-            const exportIndex = path.indexes[path.indexes.length - 2]; // index of parentNode in body
-            ASSERT(node && exportIndex >= 0 && parentNode && parentProp, 'exist', exportIndex, parentProp);
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex, exportIndex]);
-          } else {
+            ASSERT(parentNode.declaration === node, 'path should be correct');
+            ASSERT(grandparent.type === 'Program', 'exports are only children of the root');
+            const exportIndex = path.indexes[path.indexes.length - 2]; // index of parentNode in body (=ast.body)
+            ASSERT(exportIndex >= 0);
+            grandparent.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
+          } else if (['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)) {
+            // Func decl nested in the toplevel of another function
+            log('- Hoisting function nested directly in another function');
+            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in parent function');
+            ASSERT(parentProp === 'body', 'Func param defaults would not yield func declarations', parentProp);
             ASSERT(parentIndex >= 0);
-            ASSERT(parentNode[parentProp][parentIndex] === node, 'check parent prop', parentProp);
-            ASSERT(node && parentIndex >= 0);
+            ASSERT(parentNode.body[parentIndex] === node, 'path should be correct', parentProp);
             // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+            grandparent.$p.hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
+          } else if (parentNode.type === 'BlockStatement') {
+            log('This is a function decl nested in a non-func-body block');
+            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in block');
+            // TODO: this does slightly change the semantics because either we need to drop the name so it doesn't
+            //       shadow the binding but still make it mutable, or we keep the name but then the binding is
+            //       not mutable from within the function. Maybe the best course is to rename the function and its
+            //       refs and then restore the function name... But we maul the function names anyways for the sake
+            //       of using unique names, so maybe this is not a big deal for us.
+            node.$p.isBlockFuncDecl = true;
+            parentNode.$p.hasFuncDecl = true; // Prevents elimination of this block
           }
         }
 
@@ -394,7 +421,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex === -1);
             ASSERT(exportIndex >= 0);
             ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex, exportIndex]);
+            func.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
             log('- is a for-child');
             // for (var x;;);
@@ -405,18 +432,18 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex === -1);
             //ASSERT(exportIndex >= 0);
             //ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+            func.$p.hoistedVars.push(['for', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
             log('- is a block-var');
             // { var x; }
             ASSERT(parentNode[parentProp][parentIndex] === node);
             ASSERT(node && parentIndex >= 0);
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+            func.$p.hoistedVars.push(['block', node, parentNode, parentProp, parentIndex]);
           } else {
             // var x;
             ASSERT(node);
             ASSERT((parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === node, 'should find parent', node);
-            func.$p.hoistedVars.push([node, parentNode, parentProp, parentIndex]);
+            func.$p.hoistedVars.push(['other', node, parentNode, parentProp, parentIndex]);
           }
         }
         break;

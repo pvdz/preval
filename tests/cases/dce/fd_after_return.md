@@ -26,12 +26,12 @@ $(f(1));
 
 `````js filename=intro
 function f(x) {
-  const tmpReturnArg = g();
-  return tmpReturnArg;
   function g() {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
+    const tmpReturnArg = $();
+    return tmpReturnArg;
   }
+  const tmpReturnArg$1 = g();
+  return tmpReturnArg$1;
 }
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
@@ -42,12 +42,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f(x) {
-  const tmpReturnArg = g();
-  return tmpReturnArg;
   function g() {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
+    const tmpReturnArg = $();
+    return tmpReturnArg;
   }
+  const tmpReturnArg$1 = g();
+  return tmpReturnArg$1;
 }
 const tmpCalleeParam = f(1);
 $(tmpCalleeParam);

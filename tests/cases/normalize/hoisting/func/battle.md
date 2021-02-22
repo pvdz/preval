@@ -29,17 +29,16 @@ $(top());
 
 `````js filename=intro
 function top() {
-  var a;
   function a() {
     $(1);
   }
   function a() {
     $(2);
   }
-  $(3);
   function a() {
     $(4);
   }
+  $(3);
   $(5);
   a();
   $(6);
@@ -53,17 +52,16 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function top() {
-  var a;
   function a() {
     $(1);
   }
   function a() {
     $(2);
   }
-  $(3);
   function a() {
     $(4);
   }
+  $(3);
   $(5);
   a();
   $(6);

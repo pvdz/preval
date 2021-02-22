@@ -27,5 +27,7 @@ export function $p() {
     // varBindingsToInject // Array<node>. Var statements to inject at the top of a function/program node. Func decls will still precede it.
     // funcBindingsToInject // Array<node>. Func decls to inject at the top of a function/program node. Order can be relevant (two funcs with same id).
     // hoistedVars // Array<[node, parent, prop, index, exportIndex]> Allows a one-time pass at hoisting by passing on all relevant information through this array
+    // isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
+    // hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
   };
 }

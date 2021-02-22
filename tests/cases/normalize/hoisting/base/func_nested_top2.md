@@ -1,8 +1,8 @@
 # Preval test case
 
-# func_global_block.md
+# func_nested_top2.md
 
-> Normalize > Hoisting > Base > Func global block
+> Normalize > Hoisting > Base > Func nested top2
 >
 > Function declarations in a block are not hoisted
 
@@ -11,35 +11,37 @@
 ## Input
 
 `````js filename=intro
-{
-  let x = 100;
+g();
+function g() {
+  f();
   function f() {
-    return x;
+    return 100;
   }
-  $(f());
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {
-  return x;
-};
-let x = 100;
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+function g() {
+  function f() {
+    return 100;
+  }
+  f();
+}
+g();
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function () {
-  return 100;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+function g() {
+  function f() {
+    return 100;
+  }
+  f();
+}
+g();
 `````
 
 ## Globals
@@ -49,7 +51,6 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 100
  - eval returned: undefined
 
 Normalized calls: Same

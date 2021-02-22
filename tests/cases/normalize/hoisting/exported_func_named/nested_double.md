@@ -2,17 +2,15 @@
 
 # nested_double.md
 
-> Normalize > Hoisting > Func > Nested double
+> Normalize > Hoisting > Exported func named > Nested double
 >
 > Note: not valid in global. Function declarations are hoisted and will be initialized at the start of a function. So they should be moved to the very top. Even above var decls of the same name, if any. Their order should not matter.
-
-#TODO
 
 ## Input
 
 `````js filename=intro
 $(g());
-function g() {
+export function g() {
   $(f(3));
   function f() { return $(1); }
   function f() { return $(2); }
@@ -38,6 +36,7 @@ function g() {
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g();
 tmpCallCallee$1(tmpCalleeParam$1);
+export { g };
 `````
 
 ## Output
@@ -57,6 +56,7 @@ function g() {
 }
 const tmpCalleeParam$1 = g();
 $(tmpCalleeParam$1);
+export { g };
 `````
 
 ## Globals
@@ -66,10 +66,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 2
- - 2: 2
- - 3: undefined
- - eval returned: undefined
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

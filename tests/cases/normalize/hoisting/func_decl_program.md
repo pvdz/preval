@@ -1,32 +1,26 @@
 # Preval test case
 
-# func_global_block.md
+# func_decl_program.md
 
-> Normalize > Hoisting > Base > Func global block
+> Normalize > Hoisting > Func decl program
 >
-> Function declarations in a block are not hoisted
+> Function declaration in toplevel
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-{
-  let x = 100;
-  function f() {
-    return x;
-  }
-  $(f());
-}
+$(1);
+function f() {}
+$(f());
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {
-  return x;
-};
-let x = 100;
+function f() {}
+$(1);
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -35,9 +29,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  return 100;
-};
+function f() {}
+$(1);
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
@@ -49,7 +42,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 100
+ - 1: 1
+ - 2: undefined
  - eval returned: undefined
 
 Normalized calls: Same

@@ -2,17 +2,19 @@
 
 # nested_order.md
 
-> Normalize > Hoisting > Func > Nested order
+> Normalize > Hoisting > Exported func default > Nested order
 >
 > How do we normalize multiple func decls on the same level?
+
+#TODO
 
 ## Input
 
 `````js filename=intro
 $(f());
-function f() {
+export default function f() {
   $(f(), g(), h());
-    
+
   function f() { return $(); }
   function g() { return $(); }
   function h() { return $(); }
@@ -44,6 +46,7 @@ function f() {
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
 tmpCallCallee$1(tmpCalleeParam$3);
+export { f as default };
 `````
 
 ## Output
@@ -69,6 +72,7 @@ function f() {
 }
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
+export { f as default };
 `````
 
 ## Globals
@@ -78,12 +82,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 
- - 2: 
- - 3: 
- - 4: undefined, undefined, undefined
- - 5: undefined
- - eval returned: undefined
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
 
 Normalized calls: Same
 

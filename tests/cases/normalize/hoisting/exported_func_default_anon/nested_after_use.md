@@ -2,15 +2,17 @@
 
 # nested_after_use.md
 
-> Normalize > Hoisting > Exported func > Nested after use
+> Normalize > Hoisting > Exported func default anon > Nested after use
 >
 > Function declarations are hoisted and will be initialized at the start of a function. So they should be moved to the very top. Even above var decls of the same name, if any. Their order should not matter.
+
+Exported functions must still hoist their own body
 
 ## Input
 
 `````js filename=intro
-$(g());
-export function g() {
+$(1);
+export default function() {
   $(f(1));
   function f() {
     return $(2);
@@ -21,35 +23,30 @@ export function g() {
 ## Normalized
 
 `````js filename=intro
-function g() {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = f(1);
-  tmpCallCallee(tmpCalleeParam);
+$(1);
+export default function () {
   function f() {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = f(1);
+  tmpCallCallee(tmpCalleeParam);
 }
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
-export { g };
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  const tmpCalleeParam = f(1);
-  $(tmpCalleeParam);
+$(1);
+export default function () {
   function f() {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   }
+  const tmpCalleeParam = f(1);
+  $(tmpCalleeParam);
 }
-const tmpCalleeParam$1 = g();
-$(tmpCalleeParam$1);
-export { g };
 `````
 
 ## Globals

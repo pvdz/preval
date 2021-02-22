@@ -1,8 +1,8 @@
 # Preval test case
 
-# swtich_default_no_init.md
+# swich_default_init.md
 
-> Normalize > Hoisting > Var > Swtich default no init
+> Normalize > Hoisting > Func > Swich default init
 >
 > Vars can be declared in a switch case
 
@@ -13,20 +13,22 @@
 `````js filename=intro
 switch ($(1)) {
   default:
-    var x;
+    function f() { return $('f'); }
     break;
   case 1:
-    x = 20;
+    f();
     break;
 }
-$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-var x;
 const tmpSwitchTest = $(1);
+var f = function () {
+  const tmpReturnArg = $('f');
+  return tmpReturnArg;
+};
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = 1 === tmpSwitchValue;
@@ -40,18 +42,20 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$2) {
-    x = 20;
+    f();
     break tmpSwitchBreak;
   }
 }
-$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-var x;
 const tmpSwitchTest = $(1);
+const f = function () {
+  const tmpReturnArg = $('f');
+  return tmpReturnArg;
+};
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
@@ -64,11 +68,10 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$2) {
-    x = 20;
+    f();
     break tmpSwitchBreak;
   }
 }
-$(x);
 `````
 
 ## Globals
@@ -79,7 +82,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 20
+ - 2: 'f'
  - eval returned: undefined
 
 Normalized calls: Same

@@ -29,13 +29,13 @@ $(f.call({y: 1}));
 
 `````js filename=intro
 function f() {
-  const x = this;
-  $(x);
   function g() {
     $(x);
     const tmpReturnArg = x.y;
     return tmpReturnArg;
   }
+  const x = this;
+  $(x);
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 }
@@ -51,13 +51,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 function f() {
-  const x = this;
-  $(this);
   function g() {
     $(x);
     const tmpReturnArg = x.y;
     return tmpReturnArg;
   }
+  const x = this;
+  $(this);
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 }

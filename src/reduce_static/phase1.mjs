@@ -189,6 +189,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
+              log('Adding decl write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -208,6 +209,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
+              log('Adding assign write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -226,6 +228,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const funcParent = path.nodes[path.nodes.length - 3];
               const funcProp = path.props[path.props.length - 2];
               const funcIndex = path.indexes[path.indexes.length - 2];
+              log('Adding funcdecl write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -239,8 +242,27 @@ export function phase1(fdata, resolve, req, verbose) {
                   funcDecl: { funcParent, funcProp, funcIndex },
                 }),
               );
+            } else if (parentProp === 'params' && (parentNode.type === 'FunctionDeclaration' || parentNode.type === 'FunctionExpression' || parentNode.type === 'ArrowFunctionExpression')) {
+              const paramParent = path.nodes[path.nodes.length - 3];
+              const paramProp = path.props[path.props.length - 2];
+              const paramIndex = path.indexes[path.indexes.length - 2];
+              log('Adding param write');
+              meta.writes.push(
+                createWriteRef({
+                  parentNode,
+                  parentProp,
+                  parentIndex,
+                  node,
+                  rwCounter: ++readWriteCounter,
+                  scope: currentScope.$p.pid,
+                  blockChain: blockIds.join(','),
+                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  param: { paramParent, paramProp, paramIndex },
+                }),
+              );
             } else {
               // for-x lhs, param, etc
+              log('Adding "other" write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,

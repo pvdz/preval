@@ -346,18 +346,23 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
     //   - there are no prior reads in the same or an even deeper loop
     //   - all future reads are in the same scope
 
-    // "Is this binding defined through a var decl?" -- prevents params, forx, func decl closures, implicit globals, and TDZ cases.
-    if (declData) {
+    // Note regarding SSA on param names; there exists a secret live binding in `arguments` that this transform breaks. Not sure I car.e
+
+    log('Starts with decl or param?', !!declData, !!meta.writes[0].param);
+
+    // "Is this binding defined through a var decl or param name?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
+    if (declData || meta.writes[0].param) {
       log('The binding `' + name + '` has a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
       const rwOrder = [...meta.reads, ...meta.writes].sort(({ rwCounter: a }, { rwCounter: b }) => (a < b ? -1 : a > b ? 1 : 0));
       log('rwOrder:', [rwOrder.map((o) => o.action).join(', ')]);
-      // Note: we asserted that the first write is a var decl, but a closure in func decl may still put a read as the first source ref
+      // Note: We asserted that the first write is a var decl, but a closure in func decl may still put a read as
+      //       the first source ref. This is not a concern for params since they must go first in their scope (defaults are gone).
       if (rwOrder[0].action === 'write') {
-        ASSERT(rwOrder[0].decl, 'the first write should be a decl, or maybe this is TDZ');
+        ASSERT(rwOrder[0].decl || rwOrder[0].param, 'the first write should be a decl or param, otherwise maybe this is TDZ');
         ASSERT(
-          rwOrder.slice(1).every((rw) => !rw.decl),
-          'a binding should have no more than one var decl after normalization',
+          rwOrder.slice(1).every((rw) => !rw.decl && !rw.param),
+          'a binding should have no more than one var decl / param after normalization',
         );
 
         log('The initial binding:');
@@ -376,7 +381,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
           source(b.parentNode);
 
           if (b.scope !== bindingScope) {
-            // TODO: I think there are situations where we can stlil safely support this case
+            // TODO: I think there are situations where we can still safely support this case
             log('Found a read/write in a different scope. Bailing as we cannot guarantee the remaining read/writes.');
             break;
           }
@@ -393,7 +398,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
             log('Is the write an assign?', !!b.assign);
 
             // Verify that the write is an assign that happens in the same scope because we must ignore closures for now
-            ASSERT(!b.decl, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
+            ASSERT(!b.decl && !b.param, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
             if (b.assign) {
               // Must verify that all remaining usages can reach this write
 
@@ -401,7 +406,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
               log('Write inside a loop?', loopId);
               let canSSA = true;
               if (loopId) {
-                log('Checking if all previous reads can reach this write (it is bad if they do)');
+                log('Checking if any previous read can reach this write (it is bad if one does)');
                 // All previous reads must not be able to reach this assign (because that implies they're part of the loop)
                 for (let j = 0; j < i; ++j) {
                   const c = rwOrder[j];

@@ -431,7 +431,8 @@ export function createWriteRef({
   innerLoop,
   decl = null,
   assign = null,
-  funcDecl = null
+  funcDecl = null,
+  param = null,
 }) {
   return {
     action: 'write',
@@ -446,5 +447,6 @@ export function createWriteRef({
     decl,
     assign,
     funcDecl,
+    param,
   };
 }

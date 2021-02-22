@@ -5672,49 +5672,83 @@ export function phaseNormalize(fdata, fname) {
           }
 
           case 'ForStatement': {
-            // Regular loop. If there's an init, replace with assignment. Otherwise drop it entirely.
-            before(hoistNode, parentNode);
-            const newNodes = [];
+            if (parentProp === 'body') {
+              // for (..) var x = y;
 
-            // Decl is not normalized. Can have any number of declarators, can still be pattern
-            hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
-              // Now we have the names, remove the var keyword from the declaration
-              // If there was no init, ignore this step
-              // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-              if (decl.init) {
-                newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-              }
-            });
-            // Must replace one node with one new node to preserve indexes of other var statements that appear later
-            ASSERT(parentIndex === -1, 'var decls in global/func/block must be inside a body array');
-            parentNode[parentProp] =
-              newNodes.length === 0 ? AST.identifier('undefined') : newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes);
+              rule('A for-sub-statement that is a variable declaration should be hoisted');
+              example('if (x) var y = z;', 'var y; if (x) y = z;');
+              before(hoistNode, parentNode);
 
-            after(newNodes, parentNode);
+              findBoundNamesInVarDeclaration(hoistNode, names);
+              parentNode.body = AST.expressionStatement(
+                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
+              );
+
+              after(hoistNode);
+            } else {
+              // Regular loop. If there's an init, replace with assignment. Otherwise drop it entirely.
+              before(hoistNode, parentNode);
+              const newNodes = [];
+
+              // Decl is not normalized. Can have any number of declarators, can still be pattern
+              hoistNode.declarations.forEach((decl) => {
+                findBoundNamesInVarDeclarator(decl, names);
+                // Now we have the names, remove the var keyword from the declaration
+                // If there was no init, ignore this step
+                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+                if (decl.init) {
+                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                }
+              });
+              // Must replace one node with one new node to preserve indexes of other var statements that appear later
+              ASSERT(parentIndex === -1, 'var decls in global/func/block must be inside a body array');
+              parentNode[parentProp] =
+                newNodes.length === 0
+                  ? AST.identifier('undefined')
+                  : newNodes.length === 1
+                  ? newNodes[0]
+                  : AST.sequenceExpression(newNodes);
+
+              after(newNodes, parentNode);
+            }
             break;
           }
 
           case 'ForInStatement':
           case 'ForOfStatement':
-            // For of/in.
-            // Should always be var decl, not func decl
-            // Should always introduce one binding
-            // Should not have an init (syntax bound)
-            // Always replace decl with the .id, even if pattern.
-            ASSERT(hoistNode.type === 'VariableDeclaration');
-            ASSERT(hoistNode.declarations.length === 1, 'should have exactly one declarator');
-            ASSERT(!hoistNode.declarations[0].init, 'should not have init');
+            if (parentProp === 'body') {
+              // for (..) var x = y;
 
-            before(hoistNode, parentNode);
-            const newNodes = [];
+              rule('A forx-sub-statement that is a variable declaration should be hoisted');
+              example('if (x) var y = z;', 'var y; if (x) y = z;');
+              before(hoistNode, parentNode);
 
-            // Decl is not normalized but somewhat limited due to for-syntax
-            findBoundNamesInVarDeclaration(hoistNode, names);
-            ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
-            parentNode[parentProp] = hoistNode.declarations[0].id;
+              findBoundNamesInVarDeclaration(hoistNode, names);
+              parentNode.body = AST.expressionStatement(
+                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
+              );
 
-            after(newNodes, parentNode);
+              after(hoistNode);
+            } else {
+              // For of/in.
+              // Should always be var decl, not func decl
+              // Should always introduce one binding
+              // Should not have an init (syntax bound)
+              // Always replace decl with the .id, even if pattern.
+              ASSERT(hoistNode.type === 'VariableDeclaration');
+              ASSERT(hoistNode.declarations.length === 1, 'should have exactly one declarator');
+              ASSERT(!hoistNode.declarations[0].init, 'should not have init');
+
+              before(hoistNode, parentNode);
+              const newNodes = [];
+
+              // Decl is not normalized but somewhat limited due to for-syntax
+              findBoundNamesInVarDeclaration(hoistNode, names);
+              ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
+              parentNode[parentProp] = hoistNode.declarations[0].id;
+
+              after(newNodes, parentNode);
+            }
             break;
 
           case 'ExportNamedDeclaration': {
@@ -5798,6 +5832,50 @@ export function phaseNormalize(fdata, fname) {
             }
 
             after(newNodes, parentNode);
+            break;
+          }
+
+          case 'DoWhileStatement':
+          case 'IfStatement':
+          case 'LabeledStatement':
+          case 'WhileStatement': {
+            // if (x) var y = z;
+            // do var x = y; while (z);
+            // while (x) var y = z;
+
+            ASSERT(
+              parentNode.type === 'IfStatement' ? parentProp === 'consequent' || parentProp === 'alternate' : parentProp === 'body',
+              'this should concern a var decl as the body of a statement',
+              parentProp,
+            );
+
+            rule('A sub-statement that is a variable declaration should be hoisted');
+            example('do var y = z; while (x);', 'var y; do y = z; while (x);', () => parentNode.type === 'DoWhileStatement');
+            example('if (x) var y = z;', 'var y; if (x) y = z;', () => parentNode.type === 'IfStatement');
+            example('foo: var y = z;', 'var y; foo: y = z;', () => parentNode.type === 'LabeledStatement');
+            example('while (x) var y = z;', 'var y; while (x) y = z;', () => parentNode.type === 'WhileStatement');
+            before(hoistNode, parentNode);
+
+            // Note: this var may introduce multiple bindings (!)
+            const newNodes = [];
+            hoistNode.declarations.forEach((decl) => {
+              findBoundNamesInVarDeclarator(decl, names);
+              // Now we have the names, remove the var keyword from the declaration
+              // If there was no init, ignore this step
+              // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+              if (decl.init) {
+                newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+              }
+            });
+
+            parentNode[parentProp] =
+                newNodes.length === 0
+                  ? AST.emptyStatement()
+                  : newNodes.length === 1
+                  ? AST.expressionStatement(newNodes[0])
+                  : AST.expressionStatement(AST.sequenceExpression(newNodes));
+
+            after(parentNode[parentProp]);
             break;
           }
 

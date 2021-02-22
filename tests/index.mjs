@@ -194,6 +194,9 @@ function runTestCase(
         return fin[importPath];
       },
       stopAfterNormalize: !!CONFIG.onlyNormalized,
+      options: {
+        logPasses: CONFIG.logPasses,
+      }
     });
   } catch (e) {
     if (isExpectingAnError) {

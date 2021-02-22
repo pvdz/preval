@@ -15,6 +15,7 @@ export function parseTestArgs() {
     targetFile: undefined,
     fileVerbatim: false,
     fastTest: false,
+    logPasses: false,
     onlyNormalized: false,
     threads: 1, // By default, only run one thread
     threadIndex: 0, // ... and this will be that thread
@@ -68,6 +69,11 @@ export function parseTestArgs() {
         // Skip most of the cases/normalization/expression variations
         config.fastTest = true;
         console.log('WARNING: Skipping many tests in cases/normalization/expression !');
+        break;
+      }
+
+      case '--log': {
+        config.logPasses = true;
         break;
       }
 

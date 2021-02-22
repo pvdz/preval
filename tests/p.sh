@@ -19,6 +19,7 @@ PARAM_NO_COLOR=''
 PARAM_NORM=''
 PARAM_FAST=''
 PARAM_THREADS='1'
+PARAM_LOG=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -54,6 +55,7 @@ Preval CLI Toolkit help:
  m               Run all tests and ask for update one-by-one
  fast            Omit many of the expression variation tests (ignores about 18k auto generated tests)
 
+ --log           Automatically write normalization and result outputs to a log file after every pass
  --node-bin=path Use this node binary to run stuff
  -C              Do not print colors
  -n              Only show normalized output
@@ -101,6 +103,9 @@ Preval CLI Toolkit help:
       ACTION='-q -U'
       ;;
 
+    --log)
+      PARAM_LOG='--log'
+      ;;
     --node-bin)
       shift
       NODE_BIN=$1
@@ -152,7 +157,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}"
     ;;
 esac
 set +x

@@ -4,9 +4,7 @@ import globals from './globals.mjs';
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
-//import { phase2 } from './normalize/phase2.mjs';
-//import { phase3 } from './normalize/phase3.mjs';
-//import { phase4 } from './normalize/phase4.mjs';
+import fs from 'fs';
 
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
@@ -16,7 +14,7 @@ const MARK_NONE = 0;
 const MARK_TEMP = 1;
 const MARK_PERM = 2;
 
-export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfterNormalize }) {
+export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfterNormalize, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
 
@@ -117,6 +115,15 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   log('######################################################################################################');
   log();
 
+  if (options.logPasses) {
+    allFileNames.forEach((fname, i) => {
+      fs.writeFileSync(
+        'preval.pass1.f' + i + '.normalized.log.js',
+        '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname],
+      );
+    });
+  }
+
   group('Resolving correct import order of dependency tree (total ' + allFileNames.length + ' files)');
   // https://en.wikipedia.org/wiki/Topological_sorting#Depth-first_search
   const evalOrder = [];
@@ -156,7 +163,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
 
   if (!stopAfterNormalize) {
     // Traverse the dependency tree, bottom to top
-    evalOrder.forEach((fname) => {
+    evalOrder.forEach((fname, fi) => {
       let changed = true;
       const mod = modules.get(fname);
       let inputCode = mod.normalizedCode;
@@ -171,6 +178,14 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         mod.fdata = fdata;
 
         const outCode = tmat(fdata.tenkoOutput.ast, true);
+
+        if (options.logPasses) {
+          fs.writeFileSync(
+            'preval.pass' + cycles + '.f' + fi + '.result.log.js',
+            '// Resulting output after one pass [' + fname + ']\n' + outCode,
+          );
+        }
+
         changed = outCode !== inputCode;
         if (changed) {
           log('Something changed in phase2 so we will be rerolling it again');
@@ -182,6 +197,13 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           phaseNormalize(fdata, fname);
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
+
+          if (options.logPasses) {
+            fs.writeFileSync(
+              'preval.pass' + (cycles + 1) + '.f' + fi + '.normalized.log.js',
+              '// Resulting output after ' + (cycles + 1) + ' passes [' + fname + ']\n' + outCode,
+            );
+          }
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.

@@ -203,7 +203,7 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
         .slice(0, -3) // Remove .md
         .replace(/.*tests\/cases\//, '')
         .split('/')
-        .map((s) => s.replace(/_/g, ' ').trim())
+        .map((s) => s ? s.replace(/_/g, ' ').trim() : '{??}')
         .map(s => s[0].toUpperCase() + s.slice(1))
         .join(' > '),
   );

@@ -57,151 +57,196 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   // even though it's technically still part of the AST. But since we take the books as leading in this step
   // that should not be a problem.
 
-  group('Checking for inlinable constants');
-  let inlined = false;
-  // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
-  //       Take care to preserve body[index] ordering. Don't add/remove elements to any body array.
-  //       Preserve the parent of any identifier as detaching them may affect future steps.
-  //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
-  fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
-    if (meta.isBuiltin) return;
-    group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
-
-    if (meta.writes.length === 1 && !meta.isConstant) {
-      log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
-      meta.isConstant = true;
-      if (meta.writes[0].decl) {
-        const { declParent, declProp, declIndex } = meta.writes[0].decl;
-        const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
-
-        ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
-        ASSERT(varDecl.kind === 'var' || varDecl.kind === 'let', 'so it must be a var or let right now', varDecl.declParent);
-        if (varDecl.declarations[0].init) {
-          rule('A binding decl where the binding has one write must be a const');
-          example('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
-          example('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
-          before(meta.writes[0].decl.declParent);
-
-          varDecl.kind = 'const';
-
-          after(meta.writes[0].decl.declParent);
-        } else {
-          log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
-        }
-      }
-    }
-
-    // Attempt to fold up constants
-    if (meta.isConstant) {
-      log('Is a constant');
-      ASSERT(meta.name === name);
-      if (attemptConstantInlining(meta, fdata)) {
-        groupEnd();
-        inlined = true;
-        return;
-      }
-    }
-
-    if (meta.reads.length === 0 && meta.writes[0].decl) {
-      ASSERT(meta.writes.length);
-      group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
-      // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
-      // If any writes are eliminated this way, drop them from the books and queue them up
-
-      // If the decl is used in a for-x, export, or catch binding (or?) then we must keep the binding decl (should only be one).
-      const keepDecl = meta.writes.some((write) => !write.decl && !write.assign);
-
-      rule('Write-only bindings should be eliminated');
-      example('let a = f(); a = g();', 'f(); g();');
-
-      for (let i = 0; i < meta.writes.length; ++i) {
-        const write = meta.writes[i];
-        if (write.decl && !keepDecl) {
-          // Replace the decl with the init.
-
-          const { declParent, declProp, declIndex } = write.decl;
-          const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
-          log('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
-          before(node, declParent);
-
-          ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
-          //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
-          log('Var decl queued for actual deletion');
-          toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
-          meta.writes.splice(i, 1);
-
-          inlined = true;
-          --i;
-        } else if (write.assign) {
-          // Replace the assignment with the rhs
-
-          const { assignParent, assignProp, assignIndex } = write.assign;
-          const node = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
-          log('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
-          before(node, assignParent);
-
-          ASSERT(
-            node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression',
-            'if not then indexes changed?',
-            node,
-          );
-          log('Assignment queued for actual deletion');
-          toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
-          meta.writes.splice(i, 1);
-
-          inlined = true;
-          --i;
-        }
-      }
-
-      if (meta.writes.length === 0) {
-        fdata.globallyUniqueNamingRegistry.delete(name);
-      }
-      groupEnd();
-      if (inlined) {
-        groupEnd();
-        return;
-      }
-    }
-
-    // Do not eliminated exported functions (here). That should be part of tree shaking.
-    if (
-      meta.reads.length === 0 &&
-      meta.writes.length === 1 &&
-      meta.writes[0].funcDecl &&
-      meta.writes[0].funcDecl.funcParent.type !== 'ExportNamedDeclaration' &&
-      meta.writes[0].funcDecl.funcParent.type !== 'ExportDefaultDeclaration'
-    ) {
-      group();
-      rule('Unused function declaration should be removed');
-      example('function f(){}', '');
-      toEliminate.push({
-        parent: meta.writes[0].funcDecl.funcParent,
-        prop: meta.writes[0].funcDecl.funcProp,
-        index: meta.writes[0].funcDecl.funcIndex,
-      });
-      fdata.globallyUniqueNamingRegistry.delete(name);
-      log('Scheduled `' + name + '` for deletion...');
-      groupEnd();
-      groupEnd();
-      return;
-    }
-
-    groupEnd();
-  });
-  log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
-
   const ast = fdata.tenkoOutput.ast;
-  log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
-  groupEnd();
-  if (inlined) {
-    log('Trying again...');
+  let inlined = false;
+  let inlinedSomething = false;
+  do {
+    inlined = false;
+
+    group('Start of constant folding');
+    // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
+    //       Take care to preserve body[index] ordering. Don't add/remove elements to any body array.
+    //       Preserve the parent of any identifier as detaching them may affect future steps.
+    //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
+    fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
+      if (meta.isBuiltin) return;
+      group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+
+      if (meta.writes.length === 1 && !meta.isConstant) {
+        log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
+        meta.isConstant = true;
+        if (meta.writes[0].decl) {
+          const { declParent, declProp, declIndex } = meta.writes[0].decl;
+          const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+
+          ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
+          ASSERT(varDecl.kind === 'var' || varDecl.kind === 'let', 'so it must be a var or let right now', varDecl.declParent);
+          if (varDecl.declarations[0].init) {
+            rule('A binding decl where the binding has one write must be a const');
+            example('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
+            example('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
+            before(meta.writes[0].decl.declParent);
+
+            varDecl.kind = 'const';
+
+            after(meta.writes[0].decl.declParent);
+          } else {
+            log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
+          }
+        }
+      }
+
+      // Attempt to fold up constants
+      if (meta.isConstant) {
+        log('Is a constant');
+        ASSERT(meta.name === name);
+        if (attemptConstantInlining(meta, fdata)) {
+          groupEnd();
+          inlined = true;
+          return;
+        }
+      }
+
+      if (meta.reads.length === 0 && meta.writes[0].decl) {
+        ASSERT(meta.writes.length);
+        group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
+        // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
+        // If any writes are eliminated this way, drop them from the books and queue them up
+
+        // If the decl is used in a for-x, export, or catch binding (or?) then we must keep the binding decl (should only be one).
+        const keepDecl = meta.writes.some((write) => !write.decl && !write.assign);
+
+        rule('Write-only bindings should be eliminated');
+        example('let a = f(); a = g();', 'f(); g();');
+
+        for (let i = 0; i < meta.writes.length; ++i) {
+          const write = meta.writes[i];
+          if (write.decl && !keepDecl) {
+            // Replace the decl with the init.
+
+            const { declParent, declProp, declIndex } = write.decl;
+            const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+            log('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
+            before(node, declParent);
+
+            ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
+            //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
+            log('Var decl queued for actual deletion');
+            toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
+            meta.writes.splice(i, 1);
+
+            inlined = true;
+            --i;
+          } else if (write.assign) {
+            // Replace the assignment with the rhs
+
+            const { assignParent, assignProp, assignIndex } = write.assign;
+            const node = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
+            log('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
+            before(node, assignParent);
+
+            ASSERT(
+              node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression',
+              'if not then indexes changed?',
+              node,
+            );
+            log('Assignment queued for actual deletion');
+            toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
+            meta.writes.splice(i, 1);
+
+            inlined = true;
+            --i;
+          }
+        }
+
+        if (meta.writes.length === 0) {
+          fdata.globallyUniqueNamingRegistry.delete(name);
+        }
+
+        groupEnd();
+
+        if (inlined) {
+          groupEnd();
+          return;
+        }
+      }
+
+      // Do not eliminated exported functions (here). That should be part of tree shaking.
+      if (
+        meta.reads.length === 0 &&
+        meta.writes.length === 1 &&
+        meta.writes[0].funcDecl &&
+        meta.writes[0].funcDecl.funcParent.type !== 'ExportNamedDeclaration' &&
+        meta.writes[0].funcDecl.funcParent.type !== 'ExportDefaultDeclaration'
+      ) {
+        group();
+        rule('Unused function declaration should be removed');
+        example('function f(){}', '');
+        toEliminate.push({
+          parent: meta.writes[0].funcDecl.funcParent,
+          prop: meta.writes[0].funcDecl.funcProp,
+          index: meta.writes[0].funcDecl.funcIndex,
+        });
+        fdata.globallyUniqueNamingRegistry.delete(name);
+        log('Scheduled `' + name + '` for deletion...');
+        groupEnd();
+        groupEnd();
+        return;
+      }
+
+      groupEnd();
+    });
+    log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
+
+    log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+
+    if (inlined) {
+      log('Folded some constants. Trying loop again...\n\n');
+      inlinedSomething = true;
+    }
     groupEnd();
-    return phase2(program, fdata, resolve, req, toEliminate);
+  } while (inlined);
+  // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
+  if (toEliminate.length) {
+    group('Actually eliminate', toEliminate.length, 'var decls and assignments that were rendered redundant');
+    toEliminate.forEach(({ parent, prop, index }) => {
+      const node = index >= 0 ? parent[prop][index] : parent[prop];
+      before(node, parent);
+      if (node.type === 'ExpressionStatement') {
+        ASSERT(node.expression.type === 'AssignmentExpression');
+        node.expression = node.expression.right;
+        after(node);
+      } else if (node.type === 'FunctionDeclaration') {
+        ASSERT(node.id);
+        log('Eliminating `' + node.id.name + '`');
+        if (index >= 0) {
+          parent[prop][index] = AST.emptyStatement();
+        } else {
+          parent[prop] = AST.emptyStatement();
+        }
+      } else {
+        ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
+        const init = node.declarations[0].init;
+        const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
+        if (index >= 0) {
+          parent[prop][index] = newNode;
+        } else {
+          parent[prop] = newNode;
+        }
+
+        after(newNode, parent);
+      }
+    });
+    groupEnd();
+    // The read/write data is unreliable from here on out and requires a new phase1 step!
+  }
+  if (inlinedSomething || toEliminate.length) {
+    log('Folded at least one constant. Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    return;
   }
 
-  group('Checking for promotable vars\n');
+  group('\n\n\nChecking for promotable vars\n');
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
@@ -498,38 +543,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   });
   groupEnd();
 
-  // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
-  group('Actually eliminate var decls and assignments that were rendered redundant');
-  toEliminate.forEach(({ parent, prop, index }) => {
-    const node = index >= 0 ? parent[prop][index] : parent[prop];
-    before(node, parent);
-    if (node.type === 'ExpressionStatement') {
-      ASSERT(node.expression.type === 'AssignmentExpression');
-      node.expression = node.expression.right;
-      after(node);
-    } else if (node.type === 'FunctionDeclaration') {
-      ASSERT(node.id);
-      log('Eliminating `' + node.id.name + '`');
-      if (index >= 0) {
-        parent[prop][index] = AST.emptyStatement();
-      } else {
-        parent[prop] = AST.emptyStatement();
-      }
-    } else {
-      ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
-      const init = node.declarations[0].init;
-      const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
-      if (index >= 0) {
-        parent[prop][index] = newNode;
-      } else {
-        parent[prop] = newNode;
-      }
-
-      after(newNode, parent);
-    }
-  });
-  groupEnd();
-  // The reads data is unreliable from here on out and requires a new phase1 step!
+  // The read/write data should still be in tact
 
   log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 

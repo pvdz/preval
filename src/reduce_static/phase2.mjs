@@ -556,13 +556,11 @@ function attemptConstantInlining(meta, fdata) {
     rhs = write.parentNode.right;
   } else {
     // Tough luck. Until we support parameters and all that.
-    groupEnd();
     return;
   }
 
   if (rhs && rhs.name === 'arguments') {
     log('TODO; uncomment me to figure out what to do with `arguments`');
-    groupEnd();
     return;
   }
 
@@ -575,13 +573,14 @@ function attemptConstantInlining(meta, fdata) {
     // - replace all reads with a clone of it
     // - deregister the name
 
+    group('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with reads of `' + rhs.name);
+
     rule('Declaring a constant with a constant value should eliminate the binding');
     example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
     example('const x = f(); const y = x; g(y);', 'const x = f(); g(x);', () => !assigneeMeta.isBuiltin);
     before(write.parentNode);
 
     // With the new
-    group('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with reads of `' + rhs.name);
     const clone = AST.cloneSimple(rhs);
     const reads = meta.reads;
     let inlined = false;
@@ -630,7 +629,6 @@ function attemptConstantInlining(meta, fdata) {
       }
     }
     log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
-    groupEnd();
 
     if (reads.length === 0 && write.decl) {
       group('Eliminating var decl');
@@ -760,7 +758,6 @@ function attemptConstantInlining(meta, fdata) {
       }
     }
     log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
-    groupEnd();
 
     if (reads.length === 0 && write.decl) {
       group('Deleting the var decl');

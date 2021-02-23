@@ -15,7 +15,6 @@ export function $p() {
     //scopeBinding: undefined, // Reference to nearest func/global map. Global/func nodes get a fresh Map.
     //scope: undefined, // Only functions get this (not arrows, not global)
     //thisAccess: undefined, // boolean. For functions (not arrows), whether it access `this` anywhere in its own scope. Includes whether nested arrows access this in its scope. But not nested functions
-    //parentScope // Object. parent function stack or global scope. Program has this null.
     //uniqueName // string. Globally unique name for this binding name. Phase1 will sort out scoping problems and assign each unique binding a globally unique name (its original name with possibly a suffix to distinct it)
     //originalLabelName // string. Name of a label before making it unique
 

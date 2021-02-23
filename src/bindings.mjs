@@ -1,4 +1,6 @@
-import { ASSERT } from './utils.mjs';
+import { ASSERT, BLUE, group, groupEnd, log, RESET } from './utils.mjs';
+import globals from './globals.mjs';
+import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 
 export function getIdentUsageKind(parentNode, parentProp) {
   // Returns 'read', 'write', 'readwrite', 'none', or 'label'
@@ -449,4 +451,203 @@ export function createWriteRef({
     funcDecl,
     param,
   };
+}
+
+export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack) {
+  const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
+  ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
+  log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
+  let index = lexScopeStack.length;
+  if (isFuncDeclId) {
+    // The func decl id has to be looked up outside its own inner scope
+    log('- Starting at parent because func decl id');
+    --index;
+  }
+  while (--index >= 0) {
+    log(
+      '- Checking lex level',
+      index,
+      ' (' + lexScopeStack[index].type + '): lex id:',
+      lexScopeStack[index].$p.lexScopeId,
+      ':',
+      lexScopeStack[index].$p.nameMapping.has(node.name),
+    );
+    if (lexScopeStack[index].$p.nameMapping.has(node.name)) {
+      break;
+    }
+  }
+
+  if (index < 0) {
+    log('The ident `' + node.name + '` could not be resolved and is an implicit global');
+    // Register one...
+    log('Creating implicit global binding for `' + node.name + '` now');
+    const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
+    log('-->', uniqueName);
+    const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
+    log('- Meta:', {
+      ...meta,
+      reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+      writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+    });
+    lexScopeStack[0].$p.nameMapping.set(node.name, uniqueName);
+    return uniqueName;
+  }
+
+  const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
+  ASSERT(uniqueName !== undefined, 'should exist');
+  log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
+  const meta = globallyUniqueNamingRegistry.get(uniqueName);
+  log('- Meta:', {
+    ...meta,
+    reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+    writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+  });
+  ASSERT(meta, 'the meta should exist for all declared variables at this point');
+  return uniqueName;
+}
+export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter) {
+  ASSERT(arguments.length === preprocessScopeNode.length, 'arg count');
+  // This function attempts to find all binding names defined in this scope and create unique name mappings for them
+  // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
+
+  ASSERT(node.$scope);
+  ASSERT(
+    [
+      'Program',
+      'FunctionExpression',
+      'ArrowFunctionExpression',
+      'FunctionDeclaration',
+      'BlockStatement',
+      'SwitchStatement',
+      'ForStatement',
+      'ForInStatement',
+      'ForOfStatement',
+      'CatchClause',
+    ].includes(node.type),
+    'what else has a $scope?',
+    node.type,
+  );
+
+  if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
+    // The idea for hoistedVars is that we need to be able to remove/replace the initial var/func decl node
+    // For the export, we need to know the index where it is located so we can remove it.
+    // For the other cases that won't be necessary.
+    node.$p.hoistedVars /*: Array<[
+          node, // the var/func decl
+          parentNode, // the node that holds the var decl (global/func/block/for/export node)
+          prop, // parentNode[prop] --> node, if index<0
+          index, // parentNode[prop][index] --> node, if index>=0
+          exportIndex, // if node is an export, global.body[exportIndex] == parentNode
+        ]> */ = [];
+  }
+  if (['BlockStatement', 'SwitchStatement'].includes(node.type)) {
+    node.$p.hoistedVars = [];
+  }
+
+  node.$p.lexScopeId = lexScopeCounter;
+  node.$scope.$sid = lexScopeCounter;
+
+  group(BLUE + 'Scope tracking' + RESET, 'scope id=', lexScopeCounter);
+
+  // Assign unique names to bindings to work around lex scope shadowing `let x = 1; { let x = 'x'; }`
+  // This allows us to connect identifier binding references that belong together, indeed together, and distinct a
+  // binding from its shadow by the same name. Otherwise in the previous example, we'd never know "which" x is x.
+
+  // lex binding can look up its unique global name through this (nearest) mapping
+  if (node.type === 'Program') {
+    // global scope
+    node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
+  } else {
+    // non-global scope
+    node.$p.nameMapping = new Map([
+      ['this', 'this'],
+      ['arguments', 'arguments'],
+    ]);
+  }
+
+  let s = node.$scope;
+  ASSERT(
+    ['FunctionExpression', 'FunctionDeclaration'].includes(node.type) ? s.type === Tenko.SCOPE_LAYER_FUNC_BODY : true,
+    'scope type is body, which we ignore (perhaps not for arrows?)',
+    node.$scope,
+  );
+
+  do {
+    group('Checking scope... (sid=', s.$sid, ')');
+    log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
+    if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
+      log('Breaking for function header scopes in Block');
+      groupEnd();
+      break;
+    }
+
+    if (s.names === Tenko.HAS_NO_BINDINGS) {
+      log('- no bindings in this scope, parent:', s.parent && s.parent.type);
+    } else if (
+      ['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(node.type) &&
+      s.type === Tenko.SCOPE_LAYER_FUNC_BODY
+    ) {
+      log('- ignoring scope body in function node');
+    } else if (node.type === 'CatchClause' && s.type !== Tenko.SCOPE_LAYER_CATCH_HEAD && s.type !== Tenko.SCOPE_LAYER_CATCH_BODY) {
+      log('- in catch clause we only care about the two catch scopes');
+      groupEnd();
+      break;
+    } else if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_GLOBAL) {
+      log('- do not process global scope in block');
+      groupEnd();
+      break;
+    } else if (
+      node.type === 'BlockStatement' &&
+      s.type === Tenko.SCOPE_LAYER_FUNC_BODY &&
+      !['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(parentNode.type)
+    ) {
+      log('- do not process func scope in a block that is not child of a function');
+      groupEnd();
+      break;
+    } else {
+      s.names.forEach((v, name) => {
+        log('-', name, ':', v);
+
+        if (v === Tenko.BINDING_TYPE_VAR && funcNode !== node) {
+          // only process `var` bindings in the scope root
+          log('  - skipping var because not scope root');
+          return;
+        }
+
+        if (v === Tenko.BINDING_TYPE_FUNC_VAR && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
+          log('  - skipping func var in param layer or global layer');
+          return;
+        }
+
+        const uniqueName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry);
+        log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
+        registerGlobalIdent(fdata, uniqueName, name);
+        node.$p.nameMapping.set(name, uniqueName);
+      });
+    }
+
+    groupEnd();
+
+    // Only certain nodes have hidden scopes to process. For any other node do not process the parent.
+    if (
+      !['FunctionExpression', 'ArrowFunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration', 'CatchClause'].includes(
+        node.type,
+      )
+    ) {
+      break;
+    }
+  } while (s.type !== Tenko.SCOPE_LAYER_GLOBAL && (s = s.parent));
+
+  groupEnd();
+
+  // Each node should now be able to search through the lexScopeStack, and if any of them .has() the name, it will
+  // be able to .get() the unique name, which can be used in either the root scope or by the compiler in phase2.
+  log('Scope', lexScopeCounter, '; ' + node.type + '.$p.nameMapping:');
+  log(
+    new Map(
+      [...node.$p.nameMapping.entries()].filter(([tid]) =>
+        node.type === 'Program' ? !globals.has(tid) : !['this', 'arguments'].includes(tid),
+      ),
+    ),
+  );
 }

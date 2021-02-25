@@ -501,9 +501,9 @@ export function templateElement(raw, tail, cooked = raw) {
   return {
     type: 'TemplateElement',
     tail,
-    value: {raw, cooked},
+    value: { raw, cooked },
     $p: $p(),
-  }
+  };
 }
 
 export function thisExpression() {
@@ -589,4 +589,19 @@ export function whileStatement(test, body) {
 
 export function zero() {
   return literal(0);
+}
+
+export function isPrimitive(node) {
+  // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
+  // It's different from a literal since, for example, `undefined` is not a Litearl node.
+
+  if (node.type === 'Literal') {
+    return node.raw === 'null' || ['number', 'string', 'boolean'].includes(typeof node.value);
+  }
+
+  if (node.type === 'Identifier') {
+    return ['undefined', 'NaN', 'Infinity'].includes(node.name);
+  }
+
+  return false;
 }

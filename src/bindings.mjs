@@ -459,23 +459,26 @@ export function createWriteRef({
 
 export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
+  const VERBOSE_TRACING = fdata.len < 10 * 1024; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
-  log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
+  if (VERBOSE_TRACING) log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
   let index = lexScopeStack.length;
   if (isFuncDeclId) {
     // The func decl id has to be looked up outside its own inner scope
-    log('- Starting at parent because func decl id');
+    if (VERBOSE_TRACING) log('- Starting at parent because func decl id');
     --index;
   }
   while (--index >= 0) {
-    log(
-      '- Checking lex level',
-      index,
-      ' (' + lexScopeStack[index].type + '): lex id:',
-      lexScopeStack[index].$p.lexScopeId,
-      ':',
-      lexScopeStack[index].$p.nameMapping.has(node.name),
-    );
+    if (VERBOSE_TRACING) {
+      log(
+        '- Checking lex level',
+        index,
+        ' (' + lexScopeStack[index].type + '): lex id:',
+        lexScopeStack[index].$p.lexScopeId,
+        ':',
+        lexScopeStack[index].$p.nameMapping.has(node.name),
+      );
+    }
     if (lexScopeStack[index].$p.nameMapping.has(node.name)) {
       break;
     }
@@ -484,32 +487,37 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   if (index < 0) {
     log('The ident `' + node.name + '` could not be resolved and is an implicit global');
     // Register one...
-    log('Creating implicit global binding for `' + node.name + '` now');
+    if (VERBOSE_TRACING) log('Creating implicit global binding for `' + node.name + '` now');
     const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
     log('-->', uniqueName);
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
-    log('- Meta:', {
-      ...meta,
-      reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
-      writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
-    });
+    if (VERBOSE_TRACING) {
+      log('- Meta:', {
+        ...meta,
+        reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+        writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+      });
+    }
     lexScopeStack[0].$p.nameMapping.set(node.name, uniqueName);
     return uniqueName;
   }
 
   const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
   ASSERT(uniqueName !== undefined, 'should exist');
-  log('Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
+  if (VERBOSE_TRACING) log('- Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
   const meta = globallyUniqueNamingRegistry.get(uniqueName);
-  log('- Meta:', {
-    ...meta,
-    reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
-    writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
-  });
+  if (VERBOSE_TRACING) {
+    log('- Meta:', {
+      ...meta,
+      reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
+      writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
+    });
+  }
   ASSERT(meta, 'the meta should exist for all declared variables at this point');
   return uniqueName;
 }
 export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter) {
+  const VERBOSE_TRACING = fdata.len < 10 * 1024; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
   ASSERT(arguments.length === preprocessScopeNode.length, 'arg count');
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
@@ -551,7 +559,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   node.$p.lexScopeId = lexScopeCounter;
   node.$scope.$sid = lexScopeCounter;
 
-  group(BLUE + 'Scope tracking' + RESET, 'scope id=', lexScopeCounter);
+  if (VERBOSE_TRACING) group(BLUE + 'Scope tracking' + RESET, 'scope id=', lexScopeCounter);
 
   // Assign unique names to bindings to work around lex scope shadowing `let x = 1; { let x = 'x'; }`
   // This allows us to connect identifier binding references that belong together, indeed together, and distinct a
@@ -577,54 +585,54 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   );
 
   do {
-    group('Checking scope... (sid=', s.$sid, ')');
-    log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
+    if (VERBOSE_TRACING) group('Checking scope... (sid=', s.$sid, ')');
+    if (VERBOSE_TRACING) log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
     if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
-      log('Breaking for function header scopes in Block');
+      if (VERBOSE_TRACING) log('Breaking for function header scopes in Block');
       groupEnd();
       break;
     }
 
     if (s.names === Tenko.HAS_NO_BINDINGS) {
-      log('- no bindings in this scope, parent:', s.parent && s.parent.type);
+      if (VERBOSE_TRACING) log('- no bindings in this scope, parent:', s.parent && s.parent.type);
     } else if (
       ['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(node.type) &&
       s.type === Tenko.SCOPE_LAYER_FUNC_BODY
     ) {
-      log('- ignoring scope body in function node');
+      if (VERBOSE_TRACING) log('- ignoring scope body in function node');
     } else if (node.type === 'CatchClause' && s.type !== Tenko.SCOPE_LAYER_CATCH_HEAD && s.type !== Tenko.SCOPE_LAYER_CATCH_BODY) {
-      log('- in catch clause we only care about the two catch scopes');
-      groupEnd();
+      if (VERBOSE_TRACING) log('- in catch clause we only care about the two catch scopes');
+      if (VERBOSE_TRACING) groupEnd();
       break;
     } else if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_GLOBAL) {
-      log('- do not process global scope in block');
-      groupEnd();
+      if (VERBOSE_TRACING) log('- do not process global scope in block');
+      if (VERBOSE_TRACING) groupEnd();
       break;
     } else if (
       node.type === 'BlockStatement' &&
       s.type === Tenko.SCOPE_LAYER_FUNC_BODY &&
       !['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(parentNode.type)
     ) {
-      log('- do not process func scope in a block that is not child of a function');
-      groupEnd();
+      if (VERBOSE_TRACING) log('- do not process func scope in a block that is not child of a function');
+      if (VERBOSE_TRACING) groupEnd();
       break;
     } else {
       s.names.forEach((v, name) => {
-        log('-', name, ':', v);
+        if (VERBOSE_TRACING) log('-', name, ':', v);
 
         if (v === Tenko.BINDING_TYPE_VAR && funcNode !== node) {
           // only process `var` bindings in the scope root
-          log('  - skipping var because not scope root');
+          if (VERBOSE_TRACING) log('  - skipping var because not scope root');
           return;
         }
 
         if (v === Tenko.BINDING_TYPE_FUNC_VAR && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
-          log('  - skipping func var in param layer or global layer');
+          if (VERBOSE_TRACING) log('  - skipping func var in param layer or global layer');
           return;
         }
 
         const uniqueName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry);
-        log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
+        if (VERBOSE_TRACING) log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
         registerGlobalIdent(fdata, uniqueName, name);
         node.$p.nameMapping.set(name, uniqueName);
       });
@@ -642,16 +650,18 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     }
   } while (s.type !== Tenko.SCOPE_LAYER_GLOBAL && (s = s.parent));
 
-  groupEnd();
+  if (VERBOSE_TRACING) {
+    groupEnd();
 
-  // Each node should now be able to search through the lexScopeStack, and if any of them .has() the name, it will
-  // be able to .get() the unique name, which can be used in either the root scope or by the compiler in phase2.
-  log('Scope', lexScopeCounter, '; ' + node.type + '.$p.nameMapping:');
-  log(
-    new Map(
-      [...node.$p.nameMapping.entries()].filter(([tid]) =>
-        node.type === 'Program' ? !globals.has(tid) : !['this', 'arguments'].includes(tid),
+    // Each node should now be able to search through the lexScopeStack, and if any of them .has() the name, it will
+    // be able to .get() the unique name, which can be used in either the root scope or by the compiler in phase2.
+    log('Scope', lexScopeCounter, '; ' + node.type + '.$p.nameMapping:');
+    log(
+      new Map(
+        [...node.$p.nameMapping.entries()].filter(([tid]) =>
+          node.type === 'Program' ? !globals.has(tid) : !['this', 'arguments'].includes(tid),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

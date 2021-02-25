@@ -1,9 +1,9 @@
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, PURPLE, DIM, YELLOW } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, TRIBE, PURPLE, DIM, YELLOW } from '../utils.mjs';
 import { getIdentUsageKind, createFreshVar, createReadRef, createWriteRef } from '../bindings.mjs';
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 
-const VERBOSE_TRACING = true;
+let VERBOSE_TRACING = true;
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -14,17 +14,19 @@ const VERBOSE_TRACING = true;
 // - Unary negative/positive should look at argument
 
 function rule(desc, ...rest) {
-  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
+  log(TRIBE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
 }
 function example(from, to, condition) {
+  if (!VERBOSE_TRACING) return;
   if (!condition || condition()) {
     log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
   }
 }
 
 function before(node, parent) {
+  if (!VERBOSE_TRACING) return;
   if (Array.isArray(node)) node.forEach((n) => before(n, parent));
-  else if (VERBOSE_TRACING) {
+  else {
     const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
     const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
     if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
@@ -33,13 +35,15 @@ function before(node, parent) {
 }
 
 function source(node) {
+  if (!VERBOSE_TRACING) return;
   if (Array.isArray(node)) node.forEach((n) => source(n));
-  else if (VERBOSE_TRACING) log(YELLOW + 'Source:' + RESET, tmat(node));
+  else log(YELLOW + 'Source:' + RESET, tmat(node));
 }
 
 function after(node, parentNode) {
+  if (!VERBOSE_TRACING) return;
   if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
-  else if (VERBOSE_TRACING) {
+  else {
     const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
     const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
     log(YELLOW + 'After :' + RESET, nodeCode);
@@ -47,7 +51,10 @@ function after(node, parentNode) {
   }
 }
 
-export function phase2(program, fdata, resolve, req, toEliminate = []) {
+export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) {
+  VERBOSE_TRACING = verbose;
+  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
+
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
@@ -58,6 +65,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
   // that should not be a problem.
 
   const ast = fdata.tenkoOutput.ast;
+  const toEliminate = [];
 
   let inlined = false;
   let inlinedSomething = false;
@@ -199,7 +207,7 @@ export function phase2(program, fdata, resolve, req, toEliminate = []) {
     });
     log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
 
-    log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
     if (inlined) {
       log('Folded some constants. Trying loop again...\n\n');

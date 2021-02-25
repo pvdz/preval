@@ -5,11 +5,15 @@ import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
 
+let VERBOSE_TRACING = true;
+
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
 export function phase1(fdata, resolve, req, verbose) {
+  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
+
   const ast = fdata.tenkoOutput.ast;
 
   const funcStack = [];
@@ -52,7 +56,7 @@ export function phase1(fdata, resolve, req, verbose) {
       node.$p = $p();
     }
 
-    group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    if (VERBOSE_TRACING) group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -77,7 +81,7 @@ export function phase1(fdata, resolve, req, verbose) {
             ? -node.$p.pid
             : node.$p.pid,
         );
-        log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
+        if (VERBOSE_TRACING) log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
         break;
       }
       case 'BlockStatement:after': {
@@ -142,21 +146,23 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'Identifier:before': {
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
-        log('Ident:', name);
+        if (VERBOSE_TRACING) log('Ident:', name);
         const kind = getIdentUsageKind(parentNode, parentProp);
-        log('- Ident kind:', kind);
+        if (VERBOSE_TRACING) log('- Ident kind:', kind);
 
-        log(
-          '- Parent: `' + parentNode.type + '.' + parentProp + '`',
-          parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
-        );
+        if (VERBOSE_TRACING) {
+          log(
+            '- Parent: `' + parentNode.type + '.' + parentProp + '`',
+            parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
+          );
+        }
         if (kind !== 'none' && kind !== 'label' && name !== 'arguments') {
           ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
-          log('- Binding referenced in', currentScope.$p.pid);
+          if (VERBOSE_TRACING) log('- Binding referenced in $p.pid:', currentScope.$p.pid);
           let meta = globallyUniqueNamingRegistry.get(name);
           if (!meta) {
-            log('- Creating meta for `' + name + '`');
+            if (VERBOSE_TRACING) log('- Creating meta for `' + name + '`');
             meta = {
               name,
               isConstant: false, // Either declared as const or a builtin global that we can assume to be a constant
@@ -189,7 +195,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
-              log('Adding decl write');
+              if (VERBOSE_TRACING) log('Adding decl write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -209,7 +215,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
-              log('Adding assign write');
+              if (VERBOSE_TRACING) log('Adding assign write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -228,7 +234,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const funcParent = path.nodes[path.nodes.length - 3];
               const funcProp = path.props[path.props.length - 2];
               const funcIndex = path.indexes[path.indexes.length - 2];
-              log('Adding funcdecl write');
+              if (VERBOSE_TRACING) log('Adding funcdecl write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -246,7 +252,7 @@ export function phase1(fdata, resolve, req, verbose) {
               const paramParent = path.nodes[path.nodes.length - 3];
               const paramProp = path.props[path.props.length - 2];
               const paramIndex = path.indexes[path.indexes.length - 2];
-              log('Adding param write');
+              if (VERBOSE_TRACING) log('Adding param write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -262,7 +268,7 @@ export function phase1(fdata, resolve, req, verbose) {
               );
             } else {
               // for-x lhs, param, etc
-              log('Adding "other" write');
+              if (VERBOSE_TRACING) log('Adding "other" write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -284,11 +290,11 @@ export function phase1(fdata, resolve, req, verbose) {
           // TODO: local vs exported. also: exports are neither read nor write. well, pseudo read maybe?
           const grandParent = path.nodes[path.nodes.length - 3];
           if (grandParent.type === 'ExportNamedDeclaration') {
-            log('Marking `' + name + '` as being an export');
+            if (VERBOSE_TRACING) log('Marking `' + name + '` as being an export');
             meta.isExport = true;
           }
         } else {
-          log(RED + '- skipping; not a binding' + RESET);
+          if (VERBOSE_TRACING) log(RED + '- skipping; not a binding' + RESET);
         }
 
         break;
@@ -302,7 +308,7 @@ export function phase1(fdata, resolve, req, verbose) {
 
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
-        log('Importing symbols from "' + source + '"');
+        if (VERBOSE_TRACING) log('Importing symbols from "' + source + '"');
         ASSERT(typeof resolve === 'function', 'resolve must be a function here', resolve);
         const resolvedSource = resolve(source, fdata.fname);
 
@@ -347,7 +353,7 @@ export function phase1(fdata, resolve, req, verbose) {
 
       case 'ThisExpression:after': {
         if (thisStack.length) {
-          log('Marking func as having `this` access');
+          if (VERBOSE_TRACING) log('Marking func as having `this` access');
           thisStack[thisStack.length - 1].$p.thisAccess = true;
         }
         break;
@@ -369,27 +375,29 @@ export function phase1(fdata, resolve, req, verbose) {
       }
     }
 
-    groupEnd();
+    if (VERBOSE_TRACING) groupEnd();
   }
 
-  log();
-  log('Imports from:');
-  log(
-    [...imports.values()]
-      .sort()
-      .map((s) => '- "' + s + '"')
-      .join('\n'),
-  );
-  log(
-    '\ngloballyUniqueNamingRegistry (sans builtins):\n',
-    globallyUniqueNamingRegistry.size > 50
-      ? '<too many>'
-      : globallyUniqueNamingRegistry.size === globals.size
-      ? '<none>'
-      : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
-  );
+  if (VERBOSE_TRACING) {
+    log();
+    log('Imports from:');
+    log(
+      [...imports.values()]
+        .sort()
+        .map((s) => '- "' + s + '"')
+        .join('\n'),
+    );
+    log(
+      '\ngloballyUniqueNamingRegistry (sans builtins):\n',
+      globallyUniqueNamingRegistry.size > 50
+        ? '<too many>'
+        : globallyUniqueNamingRegistry.size === globals.size
+        ? '<none>'
+        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
+    );
 
-  log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
+    log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
+  }
 
   log('End of phase 1');
   groupEnd();

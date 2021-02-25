@@ -11,6 +11,8 @@ import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
 
+let VERBOSE_TRACING = true;
+
 const MARK_NONE = 0;
 const MARK_TEMP = 1;
 const MARK_PERM = 2;
@@ -66,6 +68,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
+    if (inputCode.length > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
     const fdata = parseCode(inputCode, nextFname);
     prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname);
@@ -131,37 +134,38 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   const evalOrder = [];
   [...modules.keys()].forEach(function visit(n) {
     const mod = modules.get(n);
-    group('- visiting "' + n + '", mark = ' + mod.mark);
+    if (VERBOSE_TRACING) group('- visiting "' + n + '", mark = ' + mod.mark);
     if (mod.mark !== MARK_NONE) {
-      log('  - Already marked, skipping');
-      groupEnd();
+      if (VERBOSE_TRACING) log('  - Already marked, skipping');
+      if (VERBOSE_TRACING) groupEnd();
       return;
     }
     if (mod.mark === MARK_TEMP) {
-      log('  - marked temp');
-      groupEnd();
+      if (VERBOSE_TRACING) log('  - marked temp');
+      if (VERBOSE_TRACING) groupEnd();
       return;
     }
     if (mod.mark === MARK_PERM) {
       console.log('dependency cycle detected');
       console.log('module:');
       console.log({ ...mod, fdata: '<supressed>' });
-      groupEnd();
+      if (VERBOSE_TRACING) groupEnd();
       throw new Error('Preval: dependency cycle detected');
     }
     mod.mark = MARK_TEMP;
-    log(' - imports from', mod.children.size);
+    if (VERBOSE_TRACING) log(' - imports from', mod.children.size);
     mod.children.forEach(visit);
     mod.mark = MARK_PERM;
     evalOrder.push(n);
-    groupEnd();
+    if (VERBOSE_TRACING) groupEnd();
   });
-  if (evalOrder.length < 10) {
+  if (VERBOSE_TRACING) {
     log();
     log('Proper eval order is:');
     log(evalOrder.map((fname) => ' - ' + fname).join('\n'));
   }
   program.evalOrder = evalOrder;
+  groupEnd('Order resolved...');
 
   if (!stopAfterNormalize) {
     // Traverse the dependency tree, bottom to top
@@ -175,7 +179,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
 
         ++cycles;
-        changed = phase2(program, fdata, resolve, req);
+        changed = phase2(program, fdata, resolve, req, verbose);
 
         mod.fdata = fdata;
 
@@ -223,8 +227,6 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       log('Ran for', cycles, 'cycles');
     });
   }
-
-  groupEnd();
 
   return contents;
 }

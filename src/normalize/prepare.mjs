@@ -11,11 +11,15 @@ import {
 import globals from '../globals.mjs';
 import { $p } from '../$p.mjs';
 
+let VERBOSE_TRACING = true;
+
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
 export function prepareNormalization(fdata, resolve, req, verbose) {
+  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
+
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
 
@@ -52,12 +56,14 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       node.$p = $p();
     }
 
-    group(
-      BLUE + nodeType + ':' + (before ? 'before' : 'after'),
-      RESET,
-      // To debug lexical scopes:
-      //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
-    );
+    if (VERBOSE_TRACING) {
+      group(
+        BLUE + nodeType + ':' + (before ? 'before' : 'after'),
+        RESET,
+        // To debug lexical scopes:
+        //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
+      );
+    }
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -82,7 +88,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'FunctionDeclaration:before':
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
-        log('Name:', node.id?.name ?? '<anon>');
+        if (VERBOSE_TRACING) log('Name:', node.id?.name ?? '<anon>');
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.push(node);
@@ -92,7 +98,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'FunctionDeclaration:after':
       case 'FunctionExpression:after':
       case 'ArrowFunctionExpression:after': {
-        log('Name:', node.id?.name ?? '<anon>');
+        if (VERBOSE_TRACING) log('Name:', node.id?.name ?? '<anon>');
         funcStack.pop();
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.pop();
@@ -107,15 +113,19 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
           // Note: special case for Switch body will be picked up explicitly by the switch transform
           if (parentNode.type === 'Program') {
-            log('- Hoisting toplevel global function');
-            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in global');
+            if (VERBOSE_TRACING) {
+              log('- Hoisting toplevel global function');
+              log('- Scheduling func decl `' + node?.id.name + '` to be hoisted in global');
+            }
             ASSERT(parentIndex >= 0, 'node should be in a body');
             ASSERT(parentProp === 'body', 'children of Program are in body', parentProp);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct');
             parentNode.$p.hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'ExportNamedDeclaration' || (parentNode.type === 'ExportDefaultDeclaration' && node.id)) {
-            log('- Hoisting entire export');
-            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in global');
+            if (VERBOSE_TRACING) {
+              log('- Hoisting entire export');
+              log('- Scheduling func decl `' + node.id.name + '` to be hoisted in global');
+            }
             ASSERT(parentProp === 'declaration');
             ASSERT(parentIndex === -1, 'parent is not an array');
             ASSERT(parentNode.declaration === node, 'path should be correct');
@@ -125,16 +135,20 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             grandparent.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)) {
             // Func decl nested in the toplevel of another function
-            log('- Hoisting function nested directly in another function');
-            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in parent function');
+            if (VERBOSE_TRACING) {
+              log('- Hoisting function nested directly in another function');
+              log('- Scheduling func decl `' + node?.id.name + '` to be hoisted in parent function');
+            }
             ASSERT(parentProp === 'body', 'Func param defaults would not yield func declarations', parentProp);
             ASSERT(parentIndex >= 0);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct', parentProp);
             // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
             grandparent.$p.hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
-            log('This is a function decl nested in a non-func-body block');
-            log('- Scheduling func decl `' + node?.id?.name + '` to be hoisted in block');
+            if (VERBOSE_TRACING) {
+              log('This is a function decl nested in a non-func-body block');
+              log('- Scheduling func decl `' + node.id.name + '` to be hoisted in block');
+            }
             // TODO: this does slightly change the semantics because either we need to drop the name so it doesn't
             //       shadow the binding but still make it mutable, or we keep the name but then the binding is
             //       not mutable from within the function. Maybe the best course is to rename the function and its
@@ -159,13 +173,13 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       }
 
       case 'Identifier:before': {
-        log('Ident:', node.name);
+        if (VERBOSE_TRACING) log('Ident:', node.name);
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
         const kind = getIdentUsageKind(parentNode, parentProp);
-        log('- Ident kind:', kind);
+        if (VERBOSE_TRACING) log('- Ident kind:', kind);
 
-        log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
+        if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind !== 'none' && kind !== 'label' && node.name !== 'arguments') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(
@@ -174,7 +188,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             fdata,
             lexScopeStack,
           );
-          log('- initial name:', node.name, ', unique name:', uniqueName);
+          if (VERBOSE_TRACING) log('- initial name:', node.name, ', unique name:', uniqueName);
           node.$p.uniqueName = uniqueName;
           node.$p.debug_originalName = node.name;
           node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
@@ -201,11 +215,11 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               path.nodes[path.nodes.length - 4].type === 'ExportNamedDeclaration')
           ) {
             // TODO: unused by normalization. Remove it.
-            log('Marking `' + uniqueName + '` as being an export');
+            if (VERBOSE_TRACING) log('Marking `' + uniqueName + '` as being an export');
             meta.isExport = true;
           }
         } else {
-          log(RED + '- skipping; not a binding' + RESET);
+          if (VERBOSE_TRACING) log(RED + '- skipping; not a binding' + RESET);
         }
 
         break;
@@ -221,8 +235,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
           log('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
 
           if (parentNode.type === 'ExportNamedDeclaration') {
-            log('- is an export-child');
-            // export var x
+            // `export var x`, which we transform into `var x; export {x}`
             ASSERT(parentNode[parentProp] === node);
             ASSERT(func.type === 'Program', 'exports can only appear in one place');
             const exportIndex = path.indexes[path.indexes.length - 2];
@@ -232,7 +245,6 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
             func.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
-            log('- is a for-child');
             // for (var x;;);
             // for (var x in y);
             // for (var x of y);
@@ -305,7 +317,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
       case 'ThisExpression:after': {
         if (thisStack.length) {
-          log('Marking func as having `this` access');
+          if (VERBOSE_TRACING) log('Marking func as having `this` access');
           thisStack[thisStack.length - 1].$p.thisAccess = true;
         }
         break;
@@ -317,38 +329,38 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         // Find the first label ancestor where the original name matches the label of this node
         if (node.label) {
           const name = node.label.name;
-          log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
+          if (VERBOSE_TRACING) log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
           let i = labelStack.length;
           while (--i >= 0) {
-            log('->', labelStack[i].$p.originalLabelName);
+            if (VERBOSE_TRACING) log('->', labelStack[i].$p.originalLabelName);
             if (labelStack[i].$p.originalLabelName === name) {
               const newName = labelStack[i].label.name;
               if (newName !== name) {
-                log('- Label was renamed to', newName);
+                if (VERBOSE_TRACING) log('- Label was renamed to', newName);
                 node.label.name = newName;
                 break;
               } else {
-                log('- Label not renamed');
+                if (VERBOSE_TRACING) log('- Label not renamed');
               }
             }
           }
         } else {
-          log('No label');
+          if (VERBOSE_TRACING) log('No label');
         }
         break;
       }
 
       case 'LabeledStatement:before': {
         labelStack.push(node);
-        log('Label:', node.label.name);
+        if (VERBOSE_TRACING) log('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
         const uniqueName = createUniqueGlobalLabel(node.label.name, globallyUniqueLabelRegistry);
         registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
-          log('- Unique label name:', uniqueName);
+          if (VERBOSE_TRACING) log('- Unique label name:', uniqueName);
           node.label.name = uniqueName;
         } else {
-          log('- Label is now registered and unique');
+          if (VERBOSE_TRACING) log('- Label is now registered and unique');
         }
         break;
       }
@@ -365,36 +377,39 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       }
     }
 
-    groupEnd();
+    if (VERBOSE_TRACING) {
+      groupEnd();
+    }
   }
 
-  log();
-  log('Imports from:');
-  log(
-    [...imports.values()]
-      .sort()
-      .map((s) => '- "' + s + '"')
-      .join('\n'),
-  );
-  log(
-    '\ngloballyUniqueNamingRegistry (sans builtins):\n',
-    globallyUniqueNamingRegistry.size > 50
-      ? '<too many>'
-      : globallyUniqueNamingRegistry.size === globals.size
-      ? '<none>'
-      : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
-  );
-  log(
-    '\ngloballyUniqueLabelRegistry:\n',
-    globallyUniqueLabelRegistry.size > 50
-      ? '<too many>'
-      : globallyUniqueLabelRegistry.size === 0
-      ? '<none>'
-      : [...globallyUniqueLabelRegistry.keys()].join(', '),
-  );
+  if (VERBOSE_TRACING) {
+    log();
+    log('Imports from:');
+    log(
+      [...imports.values()]
+        .sort()
+        .map((s) => '- "' + s + '"')
+        .join('\n'),
+    );
+    log(
+      '\ngloballyUniqueNamingRegistry (sans builtins):\n',
+      globallyUniqueNamingRegistry.size > 50
+        ? '<too many>'
+        : globallyUniqueNamingRegistry.size === globals.size
+        ? '<none>'
+        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
+    );
+    log(
+      '\ngloballyUniqueLabelRegistry:\n',
+      globallyUniqueLabelRegistry.size > 50
+        ? '<too many>'
+        : globallyUniqueLabelRegistry.size === 0
+        ? '<none>'
+        : [...globallyUniqueLabelRegistry.keys()].join(', '),
+    );
 
-  log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
-
+    log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
+  }
   log('End of phase 1');
   groupEnd();
 

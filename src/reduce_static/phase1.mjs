@@ -248,7 +248,12 @@ export function phase1(fdata, resolve, req, verbose) {
                   funcDecl: { funcParent, funcProp, funcIndex },
                 }),
               );
-            } else if (parentProp === 'params' && (parentNode.type === 'FunctionDeclaration' || parentNode.type === 'FunctionExpression' || parentNode.type === 'ArrowFunctionExpression')) {
+            } else if (
+              parentProp === 'params' &&
+              (parentNode.type === 'FunctionDeclaration' ||
+                parentNode.type === 'FunctionExpression' ||
+                parentNode.type === 'ArrowFunctionExpression')
+            ) {
               const paramParent = path.nodes[path.nodes.length - 3];
               const paramProp = path.props[path.props.length - 2];
               const paramIndex = path.indexes[path.indexes.length - 2];

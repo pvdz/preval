@@ -551,9 +551,11 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
           index, // parentNode[prop][index] --> node, if index>=0
           exportIndex, // if node is an export, global.body[exportIndex] == parentNode
         ]> */ = [];
+    node.$p.hoistingStage = { stage: 'var', lastName: '' };
   }
   if (['BlockStatement', 'SwitchStatement'].includes(node.type)) {
     node.$p.hoistedVars = [];
+    node.$p.hoistingStage = { stage: 'var', lastName: '' };
   }
 
   node.$p.lexScopeId = lexScopeCounter;

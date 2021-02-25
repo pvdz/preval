@@ -150,12 +150,7 @@ const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 const FRESH = true;
 const OLD = false;
 
-function rold(desc, ...rest) {
-  if (desc.slice(-1) === '"') fixme;
-  log(PURPLE + 'OldRule:' + RESET + ' "' + desc + '"', ...rest);
-}
 function rule(desc, ...rest) {
-  if (desc.slice(-1) === '"') fixme;
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
 }
 function example(from, to, condition) {
@@ -628,7 +623,7 @@ export function phaseNormalize(fdata, fname) {
     groupEnd();
   }
 
-  function anyBlock(block) {
+  function anyBlock(block, funcNode = null) {
     // program, body of a function, actual block statement, switch case body, try/catch/finally body
     group('anyBlock');
     const body = block.body;
@@ -636,7 +631,7 @@ export function phaseNormalize(fdata, fname) {
     let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i, block)) {
+      if (jumpTable(cnode, body, i, block, funcNode)) {
         changed = true;
         somethingChanged = true;
         --i;
@@ -654,7 +649,7 @@ export function phaseNormalize(fdata, fname) {
     if (VERBOSE_TRACING) groupEnd();
     return r;
   }
-  function _jumpTable(node, body, i, parent) {
+  function _jumpTable(node, body, i, parent, funcNode) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent);
@@ -705,7 +700,7 @@ export function phaseNormalize(fdata, fname) {
       case 'TryStatement':
         return transformTryStatement(node, body, i, parent);
       case 'VariableDeclaration':
-        return transformVariableDeclaration(node, body, i, parent);
+        return transformVariableDeclaration(node, body, i, parent, funcNode);
       case 'WhileStatement':
         return transformWhileStatement(node, body, i);
 
@@ -1006,7 +1001,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       // The rest is the same as a regular function decl, except there's no id
-      if (hoistingOnce(node.declaration)) {
+      if (hoistingOnce(node.declaration, 'expdef')) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -1026,7 +1021,7 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      anyBlock(node.declaration.body);
+      anyBlock(node.declaration.body, node.declaration);
 
       return false;
     }
@@ -1225,7 +1220,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (hoistingOnce(node)) {
+        if (hoistingOnce(node, 'funcexpr')) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -1244,7 +1239,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        anyBlock(node.body);
+        anyBlock(node.body, node);
 
         return false;
       }
@@ -4073,10 +4068,10 @@ export function phaseNormalize(fdata, fname) {
               newNames.push([tmpName, false]);
             }
           }
-          const finalNode = AST.arrayExpression(
+          const finalNode = AST.arrayExpression([
             ...newNames.map(([name, spread]) => (name === null ? null : spread ? AST.spreadElement(name) : AST.identifier(name))),
             ...node.elements.slice(last + 1),
-          );
+          ]);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
           body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4224,7 +4219,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
-        if (hoistingOnce(node)) {
+        if (hoistingOnce(node, 'arrow')) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -4256,7 +4251,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        anyBlock(node.body);
+        anyBlock(node.body, node);
 
         return false;
       }
@@ -5105,7 +5100,7 @@ export function phaseNormalize(fdata, fname) {
     });
   }
   function transformFunctionDeclaration(node, body, i) {
-    if (hoistingOnce(node)) {
+    if (hoistingOnce(node, 'funcdecl')) {
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
@@ -5125,7 +5120,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    anyBlock(node.body);
+    anyBlock(node.body, node);
 
     return false;
   }
@@ -5577,11 +5572,11 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    anyBlock(node.body);
+    anyBlock(node.body, node);
 
     return false;
   }
-  function hoistingOnce(hoistingRoot) {
+  function hoistingOnce(hoistingRoot, from) {
     ASSERT(
       ['Program', 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(hoistingRoot.type),
       'hoisting should only apply to hoisting roots',
@@ -5622,218 +5617,291 @@ export function phaseNormalize(fdata, fname) {
 
     const rootBody = hoistingRoot.type === 'Program' ? hoistingRoot.body : hoistingRoot.body.body;
 
-    if (hoistingRoot.$p.hoistedVars.length) {
-      // Note: the parent can be a scope root (global/func), or export (named/default)
-      // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
-      group();
-      rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
-      example('f(x); var x = 10; f(x);', 'var x; f(x); x = 10; f(x);');
-      example('f(x); export var x = 10; f(x);', 'var x; f(x); x = 10; f(x); export {x};');
-      example('f(x); export default function f() {}; f(x);', 'function f(){} f(x); f(x); export {f as default};');
-
-      const funcs = [];
-      const names = [];
-      const exportedNames = new Set();
-      let exportDefault = ''; // There's at most one of these.
-      hoistingRoot.$p.hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
+    const hoistedVars = hoistingRoot.$p.hoistedVars;
+    if (hoistedVars.length) {
+      let hoistedCount = 0;
+      hoistedVars.forEach(([what, alreadyHoisted]) => {
+        if (alreadyHoisted) ++hoistedCount;
+      });
+      if (VERBOSE_TRACING) {
+        log('Hoisting state:', hoistedCount, '/', hoistedVars.length, 'hoistable elements are already hoisted');
+      }
+      if (hoistedCount === hoistedVars.length) {
+        // If all elements are already hoisted then we don't need to do anything here.
+        hoistedVars.length = 0; // Clear it. We don't need it anymore.
+      } else {
+        if (VERBOSE_TRACING) {
+          log(
+            '  - Not hoisted reasons:\n' +
+              hoistedVars.map(([what, was, reason], i) => '   - ' + i + ' -> ' + (was ? '(already hoisted)' : reason)).join('\n'),
+          );
+        }
+        // Note: the parent can be a scope root (global/func), or export (named/default)
+        // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
         group();
-        rule(
-          '- Hoisting step. What = ' +
-            what +
-            '. Node is a `' +
-            hoistNode.type +
-            '`, parent: `' +
-            parentNode.type +
-            '.' +
-            parentProp +
-            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
-            '`' +
-            (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : ''),
-        );
-        group();
+        rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
+        example('f(x); var x = 10; f(x);', 'var x; f(x); x = 10; f(x);');
+        example('f(x); export var x = 10; f(x);', 'var x; f(x); x = 10; f(x); export {x};');
+        example('f(x); export default function f() {}; f(x);', 'function f(){} f(x); f(x); export {f as default};');
 
-        ASSERT(
-          (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === hoistNode,
-          'indexes should not be stale',
-        );
-        ASSERT(parentNode.type.includes('Export') === exportIndex >= 0, 'export index is set iif the parent is an export');
+        const funcs = [];
+        const names = [];
+        const exportedNames = new Set();
+        let exportDefault = ''; // There's at most one of these.
+        hoistedVars.forEach(([what, alreadyHoisted, notHoistedReason, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
+          group();
+          rule(
+            '- Hoisting step. From ' +
+              from +
+              '; what = ' +
+              what +
+              '. Node is a `' +
+              hoistNode.type +
+              '`, parent: `' +
+              parentNode.type +
+              '.' +
+              parentProp +
+              (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
+              '`' +
+              (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : '') +
+              (' (`' + (hoistNode.id?.name ?? hoistNode.declarations?.[0]?.id?.name ?? '<unknown>') + '`)'),
+          );
+          group();
 
-        switch (parentNode.type) {
-          case 'Program':
-          case 'FunctionDeclaration':
-          case 'BlockStatement': {
-            if (hoistNode.type === 'FunctionDeclaration') {
-              log('Queueing function node to be moved');
-              funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
-              // We will inject this node at the top
-              parentNode[parentProp][parentIndex] = AST.emptyStatement();
-            } else {
-              log('Queueing bindings to be moved');
-              before(hoistNode);
-              const newNodes = [];
+          ASSERT(
+            (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === hoistNode,
+            'indexes should not be stale',
+          );
+          ASSERT(parentNode.type.includes('Export') === exportIndex >= 0, 'export index is set iif the parent is an export');
+          ASSERT(parentNode.type !== 'FunctionExpression' && parentNode.type !== 'ArrowFunctionExpression', 'why not check this?');
 
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                findBoundNamesInVarDeclarator(decl, names);
-                // Now we have the names, remove the var keyword from the declaration
-                // If there was no init, ignore this step
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+          switch (parentNode.type) {
+            case 'Program':
+            case 'FunctionDeclaration':
+            case 'BlockStatement': {
+              if (hoistNode.type === 'FunctionDeclaration') {
+                if (VERBOSE_TRACING) {
+                  log('Queueing function node to be moved');
                 }
-              });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex >= 0, 'var decls in global/func/block must be inside a body array');
-              parentNode[parentProp][parentIndex] =
-                newNodes.length === 0
-                  ? AST.emptyStatement()
-                  : AST.expressionStatement(newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes));
-
-              after(newNodes);
-            }
-            break;
-          }
-
-          case 'ForStatement': {
-            if (parentProp === 'body') {
-              // for (..) var x = y;
-
-              rule('A for-sub-statement that is a variable declaration should be hoisted');
-              example('if (x) var y = z;', 'var y; if (x) y = z;');
-              before(hoistNode, parentNode);
-
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              parentNode.body = AST.expressionStatement(
-                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
-              );
-
-              after(hoistNode);
-            } else {
-              // Regular loop. If there's an init, replace with assignment. Otherwise drop it entirely.
-              before(hoistNode, parentNode);
-              const newNodes = [];
-
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                findBoundNamesInVarDeclarator(decl, names);
-                // Now we have the names, remove the var keyword from the declaration
-                // If there was no init, ignore this step
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
+                // We will inject this node at the top
+                parentNode[parentProp][parentIndex] = AST.emptyStatement();
+              } else {
+                if (VERBOSE_TRACING) {
+                  log('Queueing bindings to be moved');
                 }
-              });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex === -1, 'var decls in global/func/block must be inside a body array');
-              parentNode[parentProp] =
-                newNodes.length === 0
-                  ? AST.identifier('undefined')
-                  : newNodes.length === 1
-                  ? newNodes[0]
-                  : AST.sequenceExpression(newNodes);
+                before(hoistNode);
+                const newNodes = [];
 
-              after(newNodes, parentNode);
+                // Decl is not normalized. Can have any number of declarators, can still be pattern
+                hoistNode.declarations.forEach((decl) => {
+                  findBoundNamesInVarDeclarator(decl, names);
+                  // Now we have the names, remove the var keyword from the declaration
+                  // If there was no init, ignore this step
+                  // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+                  if (decl.init) {
+                    newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                  }
+                });
+                // Must replace one node with one new node to preserve indexes of other var statements that appear later
+                ASSERT(parentIndex >= 0, 'var decls in global/func/block must be inside a body array');
+                parentNode[parentProp][parentIndex] =
+                  newNodes.length === 0
+                    ? AST.emptyStatement()
+                    : AST.expressionStatement(newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes));
+
+                after(newNodes);
+              }
+              break;
             }
-            break;
-          }
 
-          case 'ForInStatement':
-          case 'ForOfStatement':
-            if (parentProp === 'body') {
-              // for (..) var x = y;
+            case 'ForStatement': {
+              if (parentProp === 'body') {
+                // for (..) var x = y;
 
-              rule('A forx-sub-statement that is a variable declaration should be hoisted');
-              example('if (x) var y = z;', 'var y; if (x) y = z;');
-              before(hoistNode, parentNode);
+                rule('A for-sub-statement that is a variable declaration should be hoisted');
+                example('if (x) var y = z;', 'var y; if (x) y = z;');
+                before(hoistNode, parentNode);
 
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              parentNode.body = AST.expressionStatement(
-                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
-              );
+                findBoundNamesInVarDeclaration(hoistNode, names);
+                parentNode.body = AST.expressionStatement(
+                  AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
+                );
 
-              after(hoistNode);
-            } else {
-              // For of/in.
-              // Should always be var decl, not func decl
-              // Should always introduce one binding
-              // Should not have an init (syntax bound)
-              // Always replace decl with the .id, even if pattern.
-              ASSERT(hoistNode.type === 'VariableDeclaration');
-              ASSERT(hoistNode.declarations.length === 1, 'should have exactly one declarator');
-              ASSERT(!hoistNode.declarations[0].init, 'should not have init');
+                after(hoistNode);
+              } else {
+                // Regular loop. If there's an init, replace with assignment. Otherwise drop it entirely.
+                before(hoistNode, parentNode);
+                const newNodes = [];
 
-              before(hoistNode, parentNode);
-              const newNodes = [];
+                // Decl is not normalized. Can have any number of declarators, can still be pattern
+                hoistNode.declarations.forEach((decl) => {
+                  findBoundNamesInVarDeclarator(decl, names);
+                  // Now we have the names, remove the var keyword from the declaration
+                  // If there was no init, ignore this step
+                  // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+                  if (decl.init) {
+                    newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                  }
+                });
+                // Must replace one node with one new node to preserve indexes of other var statements that appear later
+                ASSERT(parentIndex === -1, 'var decls in global/func/block must be inside a body array');
+                parentNode[parentProp] =
+                  newNodes.length === 0
+                    ? AST.identifier('undefined')
+                    : newNodes.length === 1
+                    ? newNodes[0]
+                    : AST.sequenceExpression(newNodes);
 
-              // Decl is not normalized but somewhat limited due to for-syntax
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
-              parentNode[parentProp] = hoistNode.declarations[0].id;
-
-              after(newNodes, parentNode);
+                after(newNodes, parentNode);
+              }
+              break;
             }
-            break;
 
-          case 'ExportNamedDeclaration': {
-            // Must be the `var` or `function` form to reach here.
-            // Same as global except we must also eliminate the original export and track the exported names
-            if (hoistNode.type === 'FunctionDeclaration') {
+            case 'ForInStatement':
+            case 'ForOfStatement':
+              if (parentProp === 'body') {
+                // for (..) var x = y;
+
+                rule('A forx-sub-statement that is a variable declaration should be hoisted');
+                example('if (x) var y = z;', 'var y; if (x) y = z;');
+                before(hoistNode, parentNode);
+
+                findBoundNamesInVarDeclaration(hoistNode, names);
+                parentNode.body = AST.expressionStatement(
+                  AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
+                );
+
+                after(hoistNode);
+              } else {
+                // For of/in.
+                // Should always be var decl, not func decl
+                // Should always introduce one binding
+                // Should not have an init (syntax bound)
+                // Always replace decl with the .id, even if pattern.
+                ASSERT(hoistNode.type === 'VariableDeclaration');
+                ASSERT(hoistNode.declarations.length === 1, 'should have exactly one declarator');
+                ASSERT(!hoistNode.declarations[0].init, 'should not have init');
+
+                before(hoistNode, parentNode);
+                const newNodes = [];
+
+                // Decl is not normalized but somewhat limited due to for-syntax
+                findBoundNamesInVarDeclaration(hoistNode, names);
+                ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
+                parentNode[parentProp] = hoistNode.declarations[0].id;
+
+                after(newNodes, parentNode);
+              }
+              break;
+
+            case 'ExportNamedDeclaration': {
+              // Must be the `var` or `function` form to reach here.
+              // Same as global except we must also eliminate the original export and track the exported names
+              if (hoistNode.type === 'FunctionDeclaration') {
+                funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
+                hoistingRoot.body[exportIndex] = AST.emptyStatement();
+                exportedNames.add(hoistNode.id.name);
+              } else {
+                before(hoistNode);
+                const newNodes = [];
+
+                // Decl is not normalized. Can have any number of declarators, can still be pattern
+                hoistNode.declarations.forEach((decl) => {
+                  const boundNames = findBoundNamesInVarDeclarator(decl);
+                  boundNames.forEach((name) => {
+                    names.push(name);
+                    exportedNames.add(name);
+                  });
+
+                  // If there was an init prepare an assignment to retain semantics
+                  // Patterns must have an init (strict syntax) except as lhs of for-in/for-of so it should work out
+                  if (decl.init) {
+                    newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                  }
+                });
+                // Delete the export node. Replace it with the assignments or an empty statement. We'll inject a new one later.
+                ASSERT(hoistingRoot.body[exportIndex] === parentNode, 'this is why we pass on exportIndex');
+                hoistingRoot.body[exportIndex] =
+                  newNodes.length === 0
+                    ? AST.emptyStatement()
+                    : newNodes.length === 1
+                    ? AST.expressionStatement(newNodes[0])
+                    : AST.expressionStatement(AST.sequenceExpression(newNodes));
+
+                after(newNodes.length === 0 ? AST.emptyStatement() : newNodes);
+              }
+              break;
+            }
+
+            case 'ExportDefaultDeclaration': {
+              ASSERT(hoistNode.type === 'FunctionDeclaration');
               funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
               hoistingRoot.body[exportIndex] = AST.emptyStatement();
               exportedNames.add(hoistNode.id.name);
-            } else {
-              before(hoistNode);
+              exportDefault = hoistNode.id.name; // max one of these ever
+              break;
+            }
+
+            case 'SwitchCase': {
+              // Switch case shares scope with all other in the same switch body. For hoisting not special.
+              // If there's an init, replace with assignment. Otherwise drop it entirely.
+              before(hoistNode, parentNode);
               const newNodes = [];
 
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                const boundNames = findBoundNamesInVarDeclarator(decl);
-                boundNames.forEach((name) => {
-                  names.push(name);
-                  exportedNames.add(name);
+              if (hoistNode.type === 'FunctionDeclaration') {
+                funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
+                // We will inject this node at the top
+                parentNode[parentProp][parentIndex] = AST.emptyStatement();
+              } else {
+                // Decl is not normalized. Can have any number of declarators, can still be pattern
+                hoistNode.declarations.forEach((decl) => {
+                  findBoundNamesInVarDeclarator(decl, names);
+                  // Now we have the names, remove the var keyword from the declaration
+                  // If there was no init, ignore this step
+                  // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
+                  if (decl.init) {
+                    newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+                  }
                 });
+                // Must replace one node with one new node to preserve indexes of other var statements that appear later
+                ASSERT(parentIndex >= 0, 'var decls in switch case must be inside an array');
+                parentNode[parentProp][parentIndex] = AST.expressionStatement(
+                  newNodes.length === 0
+                    ? AST.identifier('undefined')
+                    : newNodes.length === 1
+                    ? newNodes[0]
+                    : AST.sequenceExpression(newNodes),
+                );
+              }
 
-                // If there was an init prepare an assignment to retain semantics
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of so it should work out
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-                }
-              });
-              // Delete the export node. Replace it with the assignments or an empty statement. We'll inject a new one later.
-              ASSERT(hoistingRoot.body[exportIndex] === parentNode, 'this is why we pass on exportIndex');
-              hoistingRoot.body[exportIndex] =
-                newNodes.length === 0
-                  ? AST.emptyStatement()
-                  : newNodes.length === 1
-                  ? AST.expressionStatement(newNodes[0])
-                  : AST.expressionStatement(AST.sequenceExpression(newNodes));
-
-              after(newNodes.length === 0 ? AST.emptyStatement() : newNodes);
+              after(newNodes, parentNode);
+              break;
             }
-            break;
-          }
 
-          case 'ExportDefaultDeclaration': {
-            ASSERT(hoistNode.type === 'FunctionDeclaration');
-            funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
-            hoistingRoot.body[exportIndex] = AST.emptyStatement();
-            exportedNames.add(hoistNode.id.name);
-            exportDefault = hoistNode.id.name; // max one of these ever
-            break;
-          }
+            case 'DoWhileStatement':
+            case 'IfStatement':
+            case 'LabeledStatement':
+            case 'WhileStatement': {
+              // if (x) var y = z;
+              // do var x = y; while (z);
+              // while (x) var y = z;
 
-          case 'SwitchCase': {
-            // Switch case shares scope with all other in the same switch body. For hoisting not special.
-            // If there's an init, replace with assignment. Otherwise drop it entirely.
-            before(hoistNode, parentNode);
-            const newNodes = [];
+              ASSERT(
+                parentNode.type === 'IfStatement' ? parentProp === 'consequent' || parentProp === 'alternate' : parentProp === 'body',
+                'this should concern a var decl as the body of a statement',
+                parentProp,
+              );
 
-            if (hoistNode.type === 'FunctionDeclaration') {
-              funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
-              // We will inject this node at the top
-              parentNode[parentProp][parentIndex] = AST.emptyStatement();
-            } else {
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
+              rule('A sub-statement that is a variable declaration should be hoisted');
+              example('do var y = z; while (x);', 'var y; do y = z; while (x);', () => parentNode.type === 'DoWhileStatement');
+              example('if (x) var y = z;', 'var y; if (x) y = z;', () => parentNode.type === 'IfStatement');
+              example('foo: var y = z;', 'var y; foo: y = z;', () => parentNode.type === 'LabeledStatement');
+              example('while (x) var y = z;', 'var y; while (x) y = z;', () => parentNode.type === 'WhileStatement');
+              before(hoistNode, parentNode);
+
+              // Note: this var may introduce multiple bindings (!)
+              const newNodes = [];
               hoistNode.declarations.forEach((decl) => {
                 findBoundNamesInVarDeclarator(decl, names);
                 // Now we have the names, remove the var keyword from the declaration
@@ -5843,116 +5911,88 @@ export function phaseNormalize(fdata, fname) {
                   newNodes.push(AST.assignmentExpression(decl.id, decl.init));
                 }
               });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex >= 0, 'var decls in switch case must be inside an array');
-              parentNode[parentProp][parentIndex] = AST.expressionStatement(
-                newNodes.length === 0
-                  ? AST.identifier('undefined')
-                  : newNodes.length === 1
-                  ? newNodes[0]
-                  : AST.sequenceExpression(newNodes),
-              );
-            }
 
-            after(newNodes, parentNode);
-            break;
-          }
-
-          case 'DoWhileStatement':
-          case 'IfStatement':
-          case 'LabeledStatement':
-          case 'WhileStatement': {
-            // if (x) var y = z;
-            // do var x = y; while (z);
-            // while (x) var y = z;
-
-            ASSERT(
-              parentNode.type === 'IfStatement' ? parentProp === 'consequent' || parentProp === 'alternate' : parentProp === 'body',
-              'this should concern a var decl as the body of a statement',
-              parentProp,
-            );
-
-            rule('A sub-statement that is a variable declaration should be hoisted');
-            example('do var y = z; while (x);', 'var y; do y = z; while (x);', () => parentNode.type === 'DoWhileStatement');
-            example('if (x) var y = z;', 'var y; if (x) y = z;', () => parentNode.type === 'IfStatement');
-            example('foo: var y = z;', 'var y; foo: y = z;', () => parentNode.type === 'LabeledStatement');
-            example('while (x) var y = z;', 'var y; while (x) y = z;', () => parentNode.type === 'WhileStatement');
-            before(hoistNode, parentNode);
-
-            // Note: this var may introduce multiple bindings (!)
-            const newNodes = [];
-            hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
-              // Now we have the names, remove the var keyword from the declaration
-              // If there was no init, ignore this step
-              // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-              if (decl.init) {
-                newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-              }
-            });
-
-            parentNode[parentProp] =
+              parentNode[parentProp] =
                 newNodes.length === 0
                   ? AST.emptyStatement()
                   : newNodes.length === 1
                   ? AST.expressionStatement(newNodes[0])
                   : AST.expressionStatement(AST.sequenceExpression(newNodes));
 
-            after(parentNode[parentProp]);
-            break;
+              after(parentNode[parentProp]);
+              break;
+            }
+
+            default:
+              console.dir(parentNode, { depth: null });
+              ASSERT(false, 'what other node holds var or func decls?', parentNode);
           }
 
-          default:
-            console.dir(parentNode, { depth: null });
-            ASSERT(false, 'what other node holds var or func decls?', parentNode);
+          log('End of Hoisting step');
+          groupEnd();
+          groupEnd();
+        });
+
+        const set = new Set(names);
+        if (VERBOSE_TRACING) {
+          log('Removing any func decl names and param names from the hoisted var decl set (' + set.size + ' names before)');
+        }
+        // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
+        funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => set.delete(hoistNode.id.name));
+        // Try to find a param on function.params
+        if (hoistingRoot.type !== 'Program') {
+          set.forEach((name) => {
+            if (hoistingRoot.params.some((pnode) => pnode.type === 'Identifier' && pnode.name === name)) {
+              set.delete(name);
+              if (VERBOSE_TRACING) {
+                log(
+                  '- The binding name `' + name + '` was also a parameter so not adding the var decl for it (' + set.size + ' names left)',
+                );
+              }
+            }
+          });
         }
 
-        log('End of Hoisting step');
+        if (VERBOSE_TRACING) {
+          log(
+            'Queued',
+            funcs.length,
+            'functions and',
+            names.length,
+            'var names and',
+            exportedNames.size,
+            'exports for hoisting (actually adding',
+            set.size,
+            'var names after filtering)',
+          );
+        }
+
+        // This will invalidate all cached indexes moving forward!
+
+        // Sort them and then inject them at the top.
+        funcs.sort(([a], [b]) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
+        rootBody.unshift(...funcs.map(([hoistNode, rootIndex, rootChild, exportProp]) => hoistNode));
+
+        const sorted = [...set].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+        rootBody.unshift(
+          ...sorted.map((name) => {
+            // Exports are already replaced
+            return AST.variableDeclaration(name, undefined, 'var');
+          }),
+        );
+
+        // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
+        // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.
+        rootBody.push(
+          ...[...exportedNames].map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
+        );
+
+        hoistedVars.length = 0; // Clear it. We don't need it anymore.
+
         groupEnd();
-        groupEnd();
-      });
-
-      const set = new Set(names);
-      // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
-      funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => set.delete(hoistNode.id.name));
-
-      log(
-        'Queued',
-        funcs.length,
-        'functions and',
-        names.length,
-        'var names and',
-        exportedNames.size,
-        'exports for hoisting (adding',
-        set.size,
-        'var names after duplication)',
-      );
-
-      // This will invalidate all cached indexes moving forward!
-
-      // Sort them and then inject them at the top.
-      funcs.sort(([a], [b]) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
-      rootBody.unshift(...funcs.map(([hoistNode, rootIndex, rootChild, exportProp]) => hoistNode));
-
-      const sorted = [...set].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
-      rootBody.unshift(
-        ...sorted.map((name) => {
-          // Exports are already replaced
-          return AST.variableDeclaration(name, undefined, 'var');
-        }),
-      );
-
-      // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
-      // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.
-      rootBody.push(
-        ...[...exportedNames].map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
-      );
-
-      hoistingRoot.$p.hoistedVars.length = 0; // Clear it. We don't need it anymore.
-
-      groupEnd();
-      log('/Hoisting');
-      return true;
+        if (VERBOSE_TRACING) log('/Hoisting true');
+        return true;
+      }
     }
 
     if (VERBOSE_TRACING) log('/Hoisting false');
@@ -5960,7 +6000,7 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
   function transformProgram(node) {
-    hoistingOnce(node);
+    hoistingOnce(node, 'prog');
 
     anyBlock(node);
     return false;
@@ -6351,7 +6391,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
-  function transformVariableDeclaration(node, body, i, parent) {
+  function transformVariableDeclaration(node, body, i, parentNode, funcNode) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
       example('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
@@ -6409,7 +6449,7 @@ export function phaseNormalize(fdata, fname) {
     if (dnode.id.type === 'ObjectPattern') {
       rule('Binding object patterns not allowed');
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
-      before(node, parent);
+      before(node, parentNode);
 
       const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
@@ -6452,6 +6492,27 @@ export function phaseNormalize(fdata, fname) {
       );
     }
 
+    if (node.kind === 'var') {
+      ASSERT(!funcNode || ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode.type));
+      if (
+        funcNode &&
+        funcNode.params.some((pnode) => (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name) === dnode.id.name)
+      ) {
+        before(funcNode);
+        ASSERT(!dnode.init, 'binding decls with `var` should be hoisted if they have an init');
+        // There's a var decl that has the same name as a param. Drop it.
+        rule('Var decl as `var` with same name as param should be dropped');
+        example('function f(a) { var a; a = 10; return a; }', 'function f(a) { ; a = 10; return a; }');
+        before(node, parentNode);
+
+        body[i] = AST.emptyStatement();
+
+        after(parentNode);
+        doneit;
+        return true;
+      }
+    }
+
     if (dnode.init) {
       if (VERBOSE_TRACING) log('Init:', dnode.init.type);
 
@@ -6463,7 +6524,7 @@ export function phaseNormalize(fdata, fname) {
           if (dnode.init.operator !== '=') {
             rule('Var inits can not be compound assignments to ident');
             example('let x = y *= z()', 'let x = y = y * z();');
-            before(node, parent);
+            before(node, parentNode);
 
             dnode.init = AST.assignmentExpression(
               dnode.init.left,
@@ -6481,7 +6542,7 @@ export function phaseNormalize(fdata, fname) {
 
           rule('Var inits can not be assignments; lhs ident');
           example('let x = y = z()', 'y = z; let x = y;');
-          before(node, parent);
+          before(node, parentNode);
 
           const newNodes = [
             AST.expressionStatement(dnode.init),
@@ -6499,7 +6560,7 @@ export function phaseNormalize(fdata, fname) {
             ASSERT(dnode.id.type === 'Identifier');
             rule('Var inits can not be assignments; lhs computed complex prop');
             example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-            before(node, parent);
+            before(node, parentNode);
 
             const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
             const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
@@ -6541,7 +6602,7 @@ export function phaseNormalize(fdata, fname) {
               'tmp = a(); let x = tmp[b] *= z();',
               () => dnode.init.operator !== '=' && dnode.init.left.computed,
             );
-            before(node, parent);
+            before(node, parentNode);
 
             const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
             const newNodes = [
@@ -6590,7 +6651,7 @@ export function phaseNormalize(fdata, fname) {
           ASSERT(dnode.id.type === 'Identifier');
           rule('Var inits can not be assignments; lhs simple member');
           example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-          before(node, parent);
+          before(node, parentNode);
 
           const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
           const newNodes = [
@@ -6609,7 +6670,7 @@ export function phaseNormalize(fdata, fname) {
 
         rule('Var inits can not be assignments; pattern lhs');
         example('let x = [y] = z()', 'let x, x = [y] = z()');
-        before(node, parent);
+        before(node, parentNode);
 
         const newNodes = [
           AST.variableDeclaration(AST.cloneSimple(dnode.id)),

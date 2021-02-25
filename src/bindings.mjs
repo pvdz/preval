@@ -319,6 +319,10 @@ export function generateUniqueGlobalName(name, globallyUniqueNamingRegistry) {
   // Create a (module) globally unique name. Then use that name for the local scope.
   let n = 0;
   if (globallyUniqueNamingRegistry.has(name)) {
+    // No point in having a `foo$1$22$1$1$1$1$1$1$1$1$1$1$1$1$1`
+    if (name.includes('$')) {
+      name = name.replace(/\$\d+$/, '');
+    }
     while (globallyUniqueNamingRegistry.has(name + '$' + ++n));
   }
   return n ? name + '$' + n : name;

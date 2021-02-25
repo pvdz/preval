@@ -36,9 +36,9 @@ g();
 
 `````js filename=intro
 const g = () => {
-  function f$2$2() {}
+  function f$3() {}
   $(1);
-  const tmpCalleeParam = f$2$2();
+  const tmpCalleeParam = f$3();
   $(tmpCalleeParam);
 };
 g();

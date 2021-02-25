@@ -258,6 +258,7 @@ function runTestCase(
               clone[key] = '<get/set>';
             }
           });
+
           return (JSON.stringify(clone) ?? '"' + typeof a + '"').replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
         }
 
@@ -310,7 +311,7 @@ function runTestCase(
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
         .replace(/Cannot access '[\w$]+' before initialization/, "Cannot access '<ref>' before initialization");
-      stack.push('"<crash[ ' + msg.replace(/"/g, '\\"') + ' ]>"');
+      stack.push('"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"');
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack.concat(e?.message ?? e));

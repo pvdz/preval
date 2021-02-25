@@ -457,7 +457,7 @@ export function createWriteRef({
   };
 }
 
-export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack) {
+export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   const VERBOSE_TRACING = fdata.len < 10 * 1024; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
@@ -485,7 +485,8 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   }
 
   if (index < 0) {
-    log('The ident `' + node.name + '` could not be resolved and is an implicit global');
+    if (ignoreGlobals) return node.name; // Ignore the globals. Assume they are already handled (function cloning)
+    log('- The ident `' + node.name + '` could not be resolved and is an implicit global');
     // Register one...
     if (VERBOSE_TRACING) log('Creating implicit global binding for `' + node.name + '` now');
     const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);

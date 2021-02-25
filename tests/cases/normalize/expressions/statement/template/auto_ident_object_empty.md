@@ -44,7 +44,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  [object Object]  after'
+ - 1: 'before [object Object] after'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
 

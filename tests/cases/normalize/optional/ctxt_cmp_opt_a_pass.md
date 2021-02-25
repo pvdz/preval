@@ -76,11 +76,11 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { b: '{"c":"\\"function\\""}' }
+ - 1: { b: '{"c":"\\"<function>\\""}' }
  - 2: 'b'
  - 3: 'c'
  - 4: [100]
- - 5: [100], { c: '"function"' }
+ - 5: [100], { c: '"<function>"' }
  - 6: 100
  - eval returned: undefined
 

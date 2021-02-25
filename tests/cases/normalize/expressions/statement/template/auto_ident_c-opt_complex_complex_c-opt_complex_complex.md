@@ -78,7 +78,7 @@ Should call `$` with:
  - 1: { x: '{"y":"1"}' }
  - 2: 'x'
  - 3: 'y'
- - 4: 'before  1  after'
+ - 4: 'before 1 after'
  - 5: { a: '999', b: '1000' }
  - eval returned: undefined
 

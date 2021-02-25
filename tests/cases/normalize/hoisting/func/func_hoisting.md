@@ -58,7 +58,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'function', 'function', 'function', 'function', 'function', 'function'
+ - 1: '<function>', '<function>', '<function>', '<function>', '<function>', '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

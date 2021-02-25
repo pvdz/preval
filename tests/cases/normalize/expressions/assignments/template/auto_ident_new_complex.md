@@ -48,7 +48,7 @@ None
 Should call `$` with:
  - 1: '<$>'
  - 2: 1
- - 3: 'before  [object Object]  after'
+ - 3: 'before [object Object] after'
  - 4: {}
  - eval returned: undefined
 

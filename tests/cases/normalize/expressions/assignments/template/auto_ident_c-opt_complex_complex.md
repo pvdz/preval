@@ -66,7 +66,7 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - 2: 'x'
- - 3: 'before  1  after'
+ - 3: 'before 1 after'
  - 4: 1
  - eval returned: undefined
 

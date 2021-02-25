@@ -53,7 +53,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'function'
+ - 1: '<function>'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
 

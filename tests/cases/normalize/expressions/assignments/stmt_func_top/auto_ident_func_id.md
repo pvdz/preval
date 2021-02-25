@@ -50,7 +50,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'function'
+ - 1: '<function>'
  - 2: undefined
  - eval returned: undefined
 

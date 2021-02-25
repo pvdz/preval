@@ -57,7 +57,7 @@ Should call `$` with:
  - 2: 1
  - 3: 2
  - 4: 1, 2
- - 5: 'before  [object Object]  after'
+ - 5: 'before [object Object] after'
  - 6: {}
  - eval returned: undefined
 

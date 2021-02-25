@@ -61,7 +61,7 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - 2: { x: '1' }
- - 3: 'before  1  after'
+ - 3: 'before 1 after'
  - 4: { a: '999', b: '1000' }, { x: '2' }
  - eval returned: undefined
 

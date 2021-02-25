@@ -68,7 +68,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  100  after'
+ - 1: 'before 100 after'
  - 2: 100
  - eval returned: undefined
 

@@ -60,7 +60,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { x: '"function"', y: '100' }
+ - 1: { x: '"<function>"', y: '100' }
  - 2: [1, 2, 3], 100
  - eval returned: undefined
 

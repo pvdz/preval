@@ -51,7 +51,7 @@ None
 Should call `$` with:
  - 1: 1
  - 2: 3
- - 3: 'before  [object Object]  after'
+ - 3: 'before [object Object] after'
  - 4: { a: '999', b: '1000' }
  - eval returned: undefined
 

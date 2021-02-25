@@ -44,7 +44,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  1,2,3  after'
+ - 1: 'before 1,2,3 after'
  - 2: [1, 2, 3]
  - eval returned: undefined
 

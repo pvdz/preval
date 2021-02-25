@@ -44,8 +44,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { x: '"function"' }
- - 2: 'function'
+ - 1: { x: '"<function>"' }
+ - 2: '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

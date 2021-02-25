@@ -106,7 +106,7 @@ Should call `$` with:
  - 10: 'x'
  - 11: { x: '1' }
  - 12: 'x'
- - 13: 'before  3  after'
+ - 13: 'before 3 after'
  - 14: { a: '999', b: '1000' }, { x: '3' }, 3
  - eval returned: undefined
 

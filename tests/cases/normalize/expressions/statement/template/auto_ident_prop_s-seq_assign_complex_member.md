@@ -58,7 +58,7 @@ None
 Should call `$` with:
  - 1: { c: '10', d: '20' }
  - 2: 'd'
- - 3: 'before  20  after'
+ - 3: 'before 20 after'
  - 4: 
   { a: '999', b: '1000' },
   { c: '20', d: '20' },

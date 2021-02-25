@@ -123,7 +123,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'function'
+ - 1: '<function>'
  - 2: 'f'
  - 3: 100, 'method'
  - 4: 100

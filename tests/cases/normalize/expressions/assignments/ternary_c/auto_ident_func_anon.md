@@ -59,8 +59,8 @@ None
 
 Should call `$` with:
  - 1: 0
- - 2: 'function'
- - 3: 'function'
+ - 2: '<function>'
+ - 3: '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

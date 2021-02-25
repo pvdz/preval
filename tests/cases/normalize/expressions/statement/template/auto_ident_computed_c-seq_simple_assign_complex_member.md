@@ -63,7 +63,7 @@ Should call `$` with:
  - 2: 'c'
  - 3: { c: '10', d: '20' }
  - 4: 'd'
- - 5: 'before  20  after'
+ - 5: 'before 20 after'
  - 6: 
   { a: '999', b: '1000' },
   { c: '20', d: '20' },

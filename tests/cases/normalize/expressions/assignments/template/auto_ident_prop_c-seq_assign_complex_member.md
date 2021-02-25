@@ -61,7 +61,7 @@ Should call `$` with:
  - 1: { c: '10', d: '20' }
  - 2: { c: '10', d: '20' }
  - 3: 'd'
- - 4: 'before  20  after'
+ - 4: 'before 20 after'
  - 5: 20, { c: '20', d: '20' }
  - eval returned: undefined
 

@@ -46,7 +46,7 @@ None
 
 Should call `$` with:
  - 1: { '() => {}': '10' }
- - 2: 'function'
+ - 2: '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

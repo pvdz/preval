@@ -72,7 +72,7 @@ Should call `$` with:
  - 2: 1
  - 3: 1
  - 4: 1
- - 5: 'before  1  after'
+ - 5: 'before 1 after'
  - 6: 1
  - eval returned: undefined
 

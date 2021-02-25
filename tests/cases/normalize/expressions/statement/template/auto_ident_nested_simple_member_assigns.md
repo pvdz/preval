@@ -66,7 +66,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  3  after'
+ - 1: 'before 3 after'
  - 2: { a: '999', b: '1000' }, { x: '3' }, 3
  - eval returned: undefined
 

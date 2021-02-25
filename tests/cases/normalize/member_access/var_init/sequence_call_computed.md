@@ -50,7 +50,7 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - 3: 'toString'
- - 4: 'function'
+ - 4: '<function>'
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same

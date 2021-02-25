@@ -53,7 +53,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  2  after'
+ - 1: 'before 2 after'
  - 2: 2
  - eval returned: undefined
 

@@ -49,7 +49,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'function'
+ - 1: '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

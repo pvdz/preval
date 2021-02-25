@@ -59,7 +59,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 'before  [object Object]  after'
+ - 2: 'before [object Object] after'
  - 3: 1
  - 4: 'b'
  - 5: 2

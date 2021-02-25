@@ -55,7 +55,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 'before  [object Object]  after'
+ - 2: 'before [object Object] after'
  - 3: { b: '1' }
  - 4: 2
  - 5: { b: '2' }

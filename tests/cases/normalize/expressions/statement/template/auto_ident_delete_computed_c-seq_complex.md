@@ -60,7 +60,7 @@ Should call `$` with:
  - 2: 2
  - 3: { y: '1' }
  - 4: 'y'
- - 5: 'before  true  after'
+ - 5: 'before true after'
  - 6: { a: '999', b: '1000' }, {}
  - eval returned: undefined
 

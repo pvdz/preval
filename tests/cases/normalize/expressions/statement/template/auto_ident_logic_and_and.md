@@ -71,7 +71,7 @@ Should call `$` with:
  - 4: 1
  - 5: 2
  - 6: 2
- - 7: 'before  2  after'
+ - 7: 'before 2 after'
  - 8: { a: '999', b: '1000' }
  - eval returned: undefined
 

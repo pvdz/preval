@@ -51,7 +51,7 @@ None
 Should call `$` with:
  - 1: 1
  - 2: 3
- - 3: 'before  [object Object]  after'
+ - 3: 'before [object Object] after'
  - 4: { x: '1', y: '2', z: '3' }
  - eval returned: undefined
 

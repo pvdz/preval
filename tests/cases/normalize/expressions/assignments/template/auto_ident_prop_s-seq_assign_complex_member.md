@@ -59,7 +59,7 @@ None
 Should call `$` with:
  - 1: { c: '10', d: '20' }
  - 2: 'd'
- - 3: 'before  20  after'
+ - 3: 'before 20 after'
  - 4: 20, { c: '20', d: '20' }
  - eval returned: undefined
 

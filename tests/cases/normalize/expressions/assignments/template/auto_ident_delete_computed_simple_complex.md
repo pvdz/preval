@@ -52,7 +52,7 @@ None
 
 Should call `$` with:
  - 1: 'y'
- - 2: 'before  true  after'
+ - 2: 'before true after'
  - 3: true, {}
  - eval returned: undefined
 

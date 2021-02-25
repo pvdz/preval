@@ -225,11 +225,16 @@ function runTestCase(
   const evalled = { $in: [], $norm: [], $out: [] };
   function ev(desc, fdata, stack) {
     if (!fdata) return stack.slice(0);
+
     try {
       let before = true;
       function safeCloneString(a) {
         if (typeof a === 'number') {
           return String(a);
+        }
+
+        if (typeof a === 'string') {
+          return JSON.stringify(a.replace(/\n/g, '').replace(/  +/g, ' ')).replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
         }
 
         if (a === undefined) {
@@ -248,14 +253,18 @@ function runTestCase(
           return '[' + a.map(safeCloneString).join(', ') + ']';
         }
 
+        if (typeof a === 'function') {
+          return '"<function>"';
+        }
+
         if (a && typeof a === 'object') {
           const clone = {};
           Object.keys(a).forEach((key) => {
             const d = Object.getOwnPropertyDescriptor(a, key);
             if ('value' in d) {
-              clone[key] = safeCloneString(d.value);
+              clone[key.replace(/\n\n/g, '')] = safeCloneString(d.value);
             } else {
-              clone[key] = '<get/set>';
+              clone[key.replace(/\n\n/g, '')] = '<get/set>';
             }
           });
 

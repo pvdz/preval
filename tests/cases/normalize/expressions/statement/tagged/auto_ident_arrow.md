@@ -44,7 +44,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ['before ', ' after'], 'function'
+ - 1: ['before ', ' after'], '<function>'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
 

@@ -89,7 +89,7 @@ Should call `$` with:
  - 1: 1
  - 2: 'fail1'
  - 3: 'fail2'
- - 4: 'function'
+ - 4: '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

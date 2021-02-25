@@ -42,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before  foo  after'
+ - 1: 'before foo after'
  - 2: 'foo'
  - eval returned: undefined
 

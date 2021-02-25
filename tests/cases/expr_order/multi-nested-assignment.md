@@ -151,7 +151,7 @@ Should call `$` with:
  - 3: 'c'
  - 4: 'd'
  - 5: 'e'
- - 6: 51, 52, 53, 54, 'function'
+ - 6: 51, 52, 53, 54, '<function>'
  - eval returned: undefined
 
 Normalized calls: Same

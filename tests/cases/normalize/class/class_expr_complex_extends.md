@@ -40,7 +40,7 @@ x
 ## Result
 
 Should call `$` with:
- - 1: 'function'
+ - 1: '<function>'
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Normalized calls: Same

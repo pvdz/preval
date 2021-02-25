@@ -47,7 +47,7 @@ None
 
 Should call `$` with:
  - 1: 100
- - 2: 'before  -100  after'
+ - 2: 'before -100 after'
  - 3: { a: '999', b: '1000' }
  - eval returned: undefined
 

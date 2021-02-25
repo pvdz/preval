@@ -47,7 +47,7 @@ None
 
 Should call `$` with:
  - 1: 100
- - 2: 'before  false  after'
+ - 2: 'before false after'
  - 3: false
  - eval returned: undefined
 

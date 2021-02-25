@@ -26,6 +26,7 @@ export function parseCode(code, fname) {
   return {
     // fdata
     fname,
+    len: code.length,
     cycle: 0, // How often did we repeat the main loop
     tenkoOutput,
     imports: undefined, // phase1

@@ -9,7 +9,8 @@ export function phase0(code, fname) {
   log('- Parsing code with Tenko...');
 
   const tenkoOutput = Tenko.Tenko(code, {
-    exposeScopes: false, // At this point all identifiers should be globally unique (relative to the module) so we don't need this
+    exposeScopes: true, // func cloning needs it. shouldn't add too much overhead except for debug output
+    //exposeScopes: false, // At this point all identifiers should be globally unique (relative to the module) so we don't need this
     collectTokens: Tenko.COLLECT_TOKENS_NONE,
     goalMode: Tenko.GOAL_MODULE,
     locationTracking: false,
@@ -26,6 +27,7 @@ export function phase0(code, fname) {
   return {
     // fdata
     fname,
+    len: code.length,
     cycle: 0, // How often did we repeat the main loop
     tenkoOutput,
     imports: undefined, // phase1

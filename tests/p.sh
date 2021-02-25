@@ -20,6 +20,7 @@ PARAM_NORM=''
 PARAM_FAST=''
 PARAM_THREADS='1'
 PARAM_LOG=''
+PARAM_LOGTO=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -106,6 +107,11 @@ Preval CLI Toolkit help:
     --log)
       PARAM_LOG='--log'
       ;;
+    --logto)
+      PARAM_LOG='--logto'
+      shift
+      PARAM_LOGTO=$1
+      ;;
     --node-bin)
       shift
       NODE_BIN=$1
@@ -157,7 +163,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}"
     ;;
 esac
 set +x

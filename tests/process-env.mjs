@@ -74,6 +74,13 @@ export function parseTestArgs() {
 
       case '--log': {
         config.logPasses = true;
+        config.logDir = '';
+        break;
+      }
+
+      case '--logto': {
+        config.logPasses = true;
+        config.logDir = argv.shift();
         break;
       }
 

@@ -5,6 +5,7 @@ import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
 import fs from 'fs';
+import path from 'path';
 
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
@@ -116,9 +117,10 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   log();
 
   if (options.logPasses) {
+    log('Logging current state to disk...');
     allFileNames.forEach((fname, i) => {
       fs.writeFileSync(
-        'preval.pass1.f' + i + '.normalized.log.js',
+        path.join(options.logDir, 'preval.pass001.f' + i + '.normalized.log.js'),
         '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname],
       );
     });
@@ -180,8 +182,9 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         const outCode = tmat(fdata.tenkoOutput.ast, true);
 
         if (options.logPasses) {
+          log('Logging current result to disk...');
           fs.writeFileSync(
-            'preval.pass' + cycles + '.f' + fi + '.result.log.js',
+            path.join(options.logDir, 'preval.pass' + String(cycles).padStart(3, '0') + '.f' + fi + '.result.log.js'),
             '// Resulting output after one pass [' + fname + ']\n' + outCode,
           );
         }
@@ -199,8 +202,9 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           inputCode = tmat(fdata.tenkoOutput.ast, true);
 
           if (options.logPasses) {
+            log('Logging current normalized state to disk...');
             fs.writeFileSync(
-              'preval.pass' + (cycles + 1) + '.f' + fi + '.normalized.log.js',
+              path.join(options.logDir, 'preval.pass' + String(cycles + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
               '// Resulting output after ' + (cycles + 1) + ' passes [' + fname + ']\n' + outCode,
             );
           }

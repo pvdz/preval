@@ -196,6 +196,7 @@ function runTestCase(
       stopAfterNormalize: !!CONFIG.onlyNormalized,
       options: {
         logPasses: CONFIG.logPasses,
+        logDir: CONFIG.logDir,
       }
     });
   } catch (e) {

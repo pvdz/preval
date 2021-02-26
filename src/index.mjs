@@ -173,13 +173,16 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       let changed = true;
       const mod = modules.get(fname);
       let inputCode = mod.normalizedCode;
-      let cycles = 0;
+      let passes = 0;
+      const maxPasses = options.maxPass > 0 ? options.maxPass : 0;
       while (changed) {
+        ++passes;
         const fdata = phase0(inputCode, fname);
-        phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+        do {
+          phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
 
-        ++cycles;
-        changed = phase2(program, fdata, resolve, req, verbose);
+          changed = phase2(program, fdata, resolve, req, verbose);
+        } while (changed === 'phase1');
 
         mod.fdata = fdata;
 
@@ -188,13 +191,13 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         if (options.logPasses) {
           log('Logging current result to disk...');
           fs.writeFileSync(
-            path.join(options.logDir, 'preval.pass' + String(cycles).padStart(3, '0') + '.f' + fi + '.result.log.js'),
+            path.join(options.logDir, 'preval.pass' + String(passes).padStart(3, '0') + '.f' + fi + '.result.log.js'),
             '// Resulting output after one pass [' + fname + ']\n' + outCode,
           );
         }
 
         changed = outCode !== inputCode;
-        if (changed) {
+        if (changed && (!maxPasses || passes < maxPasses)) {
           log('Something changed in phase2 so we will be rerolling it again');
           inputCode = outCode;
           log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
@@ -208,8 +211,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           if (options.logPasses) {
             log('Logging current normalized state to disk...');
             fs.writeFileSync(
-              path.join(options.logDir, 'preval.pass' + String(cycles + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
-              '// Resulting output after ' + (cycles + 1) + ' passes [' + fname + ']\n' + outCode,
+              path.join(options.logDir, 'preval.pass' + String(passes + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
+              '// Resulting output after ' + (passes + 1) + ' passes [' + fname + ']\n' + outCode,
             );
           }
         } else {
@@ -223,8 +226,13 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
 
           contents.files[fname] = outCode;
         }
+
+        if (changed && maxPasses && passes >= maxPasses) {
+          log('Reached the max number of passes requested. Bailing even though there are changes to process.');
+          break;
+        }
       }
-      log('Ran for', cycles, 'cycles');
+      log('Ran for', passes, 'passes');
     });
   }
 

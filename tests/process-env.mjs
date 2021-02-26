@@ -84,6 +84,11 @@ export function parseTestArgs() {
         break;
       }
 
+      case '--max-pass': {
+        config.maxPass = +argv.shift();
+        break;
+      }
+
       default: {
         throw new Error('Unknown parameter: ' + param);
       }

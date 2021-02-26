@@ -197,6 +197,7 @@ function runTestCase(
       options: {
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
+        maxPass: CONFIG.maxPass,
       }
     });
   } catch (e) {

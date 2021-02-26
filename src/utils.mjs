@@ -134,7 +134,7 @@ export function tmat(ast, shouldPrint = VERBOSE) {
   return '<verbose=false>';
 }
 export function fmat(code, shouldPrint = VERBOSE) {
-  if (!shouldPrint) return '<verbose=false>';
+  if (!shouldPrint) return code; // '<verbose=false>';
   try {
     return Prettier.format(code, {
       parser: 'babel',

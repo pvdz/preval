@@ -20,7 +20,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__p) {
+let f = function ($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
@@ -42,7 +42,7 @@ function f($tdz$__p) {
   } else {
     p = $tdz$__p;
   }
-}
+};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f();
@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
+const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
@@ -68,7 +68,7 @@ function f($tdz$__p) {
     }
     a = tmpNestedComplexRhs;
   }
-}
+};
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);

@@ -25,7 +25,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const varInitAssignLhsComputedRhs$4 = c;
   b.x = varInitAssignLhsComputedRhs$4;
   const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
@@ -42,7 +42,7 @@ function f() {
   a = tmpNestedPropAssignRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
@@ -55,7 +55,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   b.x = 3;
   b.x = 3;
   b.x = 3;
@@ -65,7 +65,7 @@ function f() {
   a = 3;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

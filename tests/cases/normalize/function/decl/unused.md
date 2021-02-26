@@ -21,9 +21,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   x = 2;
-}
+};
 let x = 1;
 $(x);
 `````

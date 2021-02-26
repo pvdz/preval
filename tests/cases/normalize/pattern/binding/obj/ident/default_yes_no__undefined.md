@@ -33,12 +33,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = undefined.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $('fail');
-}
-$('bad');
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

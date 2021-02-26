@@ -19,10 +19,10 @@ $(a)[b()](1);
 ## Normalized
 
 `````js filename=intro
-function b() {
+let b = function () {
   const tmpReturnArg = $('b');
   return tmpReturnArg;
-}
+};
 const a = { b: $ };
 const tmpCallCompObj = $(a);
 const tmpCallCompProp = b();
@@ -32,10 +32,10 @@ tmpCallCompObj[tmpCallCompProp](1);
 ## Output
 
 `````js filename=intro
-function b() {
+const b = function () {
   const tmpReturnArg = $('b');
   return tmpReturnArg;
-}
+};
 const a = { b: $ };
 const tmpCallCompObj = $(a);
 const tmpCallCompProp = b();

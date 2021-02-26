@@ -19,13 +19,13 @@ function i({x: [ y ]}) {
 ## Normalized
 
 `````js filename=intro
-function i(tmpParamPattern) {
+let i = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y$1 = arrPatternSplat[0];
   let y$2 = 2;
   return y$1;
-}
+};
 let y = 1;
 `````
 

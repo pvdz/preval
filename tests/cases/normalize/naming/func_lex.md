@@ -25,7 +25,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let a = $(1);
   $(a);
   let a$1 = $(1);
@@ -35,7 +35,7 @@ function f() {
     return a$1;
   }
   return a;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const a = $(1);
   $(a);
   const a$1 = $(1);
@@ -54,7 +54,7 @@ function f() {
     return a$1;
   }
   return a;
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

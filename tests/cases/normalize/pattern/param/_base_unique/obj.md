@@ -19,11 +19,11 @@ function g({ x }) {
 ## Normalized
 
 `````js filename=intro
-function g(tmpParamPattern) {
+let g = function (tmpParamPattern) {
   let x$1 = tmpParamPattern.x;
   let x$2 = 2;
   return x$1;
-}
+};
 let x = 1;
 `````
 

@@ -23,10 +23,10 @@ superExpensiveFunction().x += 5;
 ## Normalized
 
 `````js filename=intro
-function superExpensiveFunction() {
+let superExpensiveFunction = function () {
   const tmpReturnArg = $();
   return tmpReturnArg;
-}
+};
 const tmpAssignMemLhsObj = superExpensiveFunction();
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
@@ -37,10 +37,10 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-function superExpensiveFunction() {
+const superExpensiveFunction = function () {
   const tmpReturnArg = $();
   return tmpReturnArg;
-}
+};
 const tmpAssignMemLhsObj = superExpensiveFunction();
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;

@@ -24,7 +24,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let bindingPatternArrRoot = { a: 999, b: 1000 };
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
@@ -34,7 +34,7 @@ function f() {
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
   $(a);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const bindingPatternArrRoot = { a: 999, b: 1000 };
   const arrPatternSplat = [...bindingPatternArrRoot];
   arrPatternSplat[0];
@@ -53,7 +53,7 @@ function f() {
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   const SSA_a = arrPatternSplat$1[0];
   $(SSA_a);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

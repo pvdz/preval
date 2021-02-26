@@ -22,12 +22,12 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let a = { a: 999, b: 1000 };
   const tmpCallCallee = $($);
   tmpCallCallee(1);
   $(a);
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam = f();
 tmpCallCallee$1(tmpCalleeParam);
@@ -36,12 +36,12 @@ tmpCallCallee$1(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const a = { a: 999, b: 1000 };
   const tmpCallCallee = $($);
   tmpCallCallee(1);
   $(a);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

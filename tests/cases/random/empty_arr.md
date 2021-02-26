@@ -21,7 +21,7 @@ $(t);
 ## Normalized
 
 `````js filename=intro
-function f() {}
+let f = function () {};
 const t = f();
 $(t);
 `````
@@ -29,7 +29,7 @@ $(t);
 ## Output
 
 `````js filename=intro
-function f() {}
+const f = function () {};
 const t = f();
 $(t);
 `````

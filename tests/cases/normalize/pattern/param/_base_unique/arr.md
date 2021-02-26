@@ -19,12 +19,12 @@ function f([ x ]) {
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let x$1 = arrPatternSplat[0];
   let x$2 = 2;
   return x$1;
-}
+};
 let x = 1;
 `````
 

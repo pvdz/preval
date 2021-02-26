@@ -26,7 +26,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpForOfDeclRhs = [10, 20];
   let x;
   for (x of tmpForOfDeclRhs) {
@@ -34,7 +34,7 @@ function f() {
     throw tmpThrowArg;
   }
   $('keep, do not eval');
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpForOfDeclRhs = [10, 20];
   let x;
   for (x of tmpForOfDeclRhs) {
@@ -51,7 +51,7 @@ function f() {
     throw tmpThrowArg;
   }
   $('keep, do not eval');
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

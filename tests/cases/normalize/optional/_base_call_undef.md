@@ -18,7 +18,7 @@ $(f?.());
 ## Normalized
 
 `````js filename=intro
-var f;
+let f = undefined;
 f = undefined;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;

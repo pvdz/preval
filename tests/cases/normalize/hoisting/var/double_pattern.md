@@ -20,8 +20,8 @@ $(x,y);
 ## Normalized
 
 `````js filename=intro
-var x;
-var y;
+let x = undefined;
+let y = undefined;
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];

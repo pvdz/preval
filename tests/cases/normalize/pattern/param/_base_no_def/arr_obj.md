@@ -15,12 +15,12 @@ function h([{ x }]) { return x}
 ## Normalized
 
 `````js filename=intro
-function h(tmpParamPattern) {
+let h = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let x = arrPatternStep.x;
   return x;
-}
+};
 `````
 
 ## Output

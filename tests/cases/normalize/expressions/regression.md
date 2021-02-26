@@ -18,10 +18,10 @@ x[a + b] = c;
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var x;
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let x = undefined;
 x = {};
 a = 1;
 b = 2;
@@ -34,8 +34,8 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 ## Output
 
 `````js filename=intro
-const x = {};
-x[3] = 3;
+const SSA_x = {};
+SSA_x[3] = 3;
 `````
 
 ## Globals

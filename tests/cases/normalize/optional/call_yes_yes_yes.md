@@ -27,7 +27,7 @@ $(a?.().b?.().c?.().d);
 ## Normalized
 
 `````js filename=intro
-function a() {
+let a = function () {
   const a$1 = {
     a() {
       return a$1;
@@ -43,7 +43,7 @@ function a() {
     },
   };
   return a$1;
-}
+};
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = a;
@@ -69,7 +69,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function a() {
+const a = function () {
   const a$1 = {
     a() {
       return a$1;
@@ -85,7 +85,7 @@ function a() {
     },
   };
   return a$1;
-}
+};
 let tmpCalleeParam = undefined;
 const tmpIfTest = a != null;
 if (tmpIfTest) {

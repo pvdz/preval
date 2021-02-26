@@ -23,7 +23,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpDoWhileFlag = true;
   while (true) {
     let tmpIfTest = tmpDoWhileFlag;
@@ -39,7 +39,7 @@ function f() {
       break;
     }
   }
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -48,7 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   let tmpDoWhileFlag = true;
   while (true) {
     let tmpIfTest = tmpDoWhileFlag;
@@ -64,7 +64,7 @@ function f() {
       break;
     }
   }
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

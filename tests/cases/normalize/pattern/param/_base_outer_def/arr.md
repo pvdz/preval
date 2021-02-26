@@ -15,7 +15,7 @@ function f([ x ] = b) { return x }
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__pattern) {
+let f = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -26,7 +26,7 @@ function f($tdz$__pattern) {
   let arrPatternSplat = [...$tdz$__pattern_after_default];
   let x = arrPatternSplat[0];
   return x;
-}
+};
 `````
 
 ## Output

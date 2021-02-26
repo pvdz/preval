@@ -25,12 +25,12 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   b = 2;
   a = 2;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
@@ -43,12 +43,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   b = 2;
   a = 2;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

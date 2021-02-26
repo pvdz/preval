@@ -17,7 +17,7 @@ while ($(true)) var x = $(10);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {

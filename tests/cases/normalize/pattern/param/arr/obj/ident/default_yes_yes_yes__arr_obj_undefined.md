@@ -20,7 +20,7 @@ $(f([{ x: undefined, y: 2, z: 3 }, 20, 30], 200));
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__pattern) {
+let f = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -51,7 +51,7 @@ function f($tdz$__pattern) {
     x = objPatternBeforeDefault;
   }
   return x;
-}
+};
 const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;
 const tmpArrElement$1 = { x: undefined, y: 2, z: 3 };
@@ -64,7 +64,7 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-function f($tdz$__pattern) {
+const f = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -93,7 +93,7 @@ function f($tdz$__pattern) {
     x = objPatternBeforeDefault;
   }
   return x;
-}
+};
 const tmpArrElement$1 = { x: undefined, y: 2, z: 3 };
 const tmpCalleeParam$3 = [tmpArrElement$1, 20, 30];
 const tmpCalleeParam$2 = f(tmpCalleeParam$3, 200);

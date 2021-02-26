@@ -20,9 +20,9 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f(...x) {
+let f = function (...x) {
   return x;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -31,9 +31,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(...x) {
+const f = function (...x) {
   return x;
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

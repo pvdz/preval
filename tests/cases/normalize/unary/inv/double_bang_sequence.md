@@ -18,7 +18,7 @@ $(!!((x = 'foo'), $(x)));
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpCallCallee = $;
 x = 'foo';
 const tmpUnaryArg$1 = $(x);

@@ -18,7 +18,7 @@ $(f?.x);
 ## Normalized
 
 `````js filename=intro
-var f;
+let f = undefined;
 f = { x: 10 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
@@ -34,11 +34,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = { x: 10 };
+const SSA_f = { x: 10 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = f != null;
+const tmpIfTest = SSA_f != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = f.x;
+  const tmpChainElementObject = SSA_f.x;
   tmpCalleeParam = tmpChainElementObject;
 }
 $(tmpCalleeParam);

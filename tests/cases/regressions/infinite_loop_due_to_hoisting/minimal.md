@@ -20,7 +20,7 @@ f(a.x === 1 ? 2 : 3);
 ## Normalized
 
 `````js filename=intro
-function f() {}
+let f = function () {};
 const a = { x: 1 };
 const tmpCallCallee = f;
 let tmpCalleeParam = undefined;
@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {}
+const f = function () {};
 const a = { x: 1 };
 let tmpCalleeParam = undefined;
 const tmpBinLhs = a.x;

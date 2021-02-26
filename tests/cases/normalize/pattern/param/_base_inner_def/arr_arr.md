@@ -15,7 +15,7 @@ function i([[ x = a ]]) { return x }
 ## Normalized
 
 `````js filename=intro
-function i(tmpParamPattern) {
+let i = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
@@ -28,7 +28,7 @@ function i(tmpParamPattern) {
     x = arrPatternBeforeDefault;
   }
   return x;
-}
+};
 `````
 
 ## Output

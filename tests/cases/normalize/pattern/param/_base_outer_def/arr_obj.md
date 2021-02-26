@@ -15,7 +15,7 @@ function h([{ x }] = c ) { return x}
 ## Normalized
 
 `````js filename=intro
-function h($tdz$__pattern) {
+let h = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -27,7 +27,7 @@ function h($tdz$__pattern) {
   let arrPatternStep = arrPatternSplat[0];
   let x = arrPatternStep.x;
   return x;
-}
+};
 `````
 
 ## Output

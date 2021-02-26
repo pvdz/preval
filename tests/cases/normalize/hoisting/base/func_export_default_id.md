@@ -19,7 +19,7 @@ $(f);
 ## Normalized
 
 `````js filename=intro
-function f() {}
+let f = function () {};
 $(f);
 $(f);
 export { f as default };
@@ -28,7 +28,7 @@ export { f as default };
 ## Output
 
 `````js filename=intro
-function f() {}
+const f = function () {};
 $(f);
 $(f);
 export { f as default };

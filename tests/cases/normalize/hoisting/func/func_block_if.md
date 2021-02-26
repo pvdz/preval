@@ -23,7 +23,7 @@ g();
 ## Normalized
 
 `````js filename=intro
-function g() {
+let g = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     f();
@@ -31,14 +31,14 @@ function g() {
       $(1);
     }
   }
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
+const g = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     f();
@@ -46,7 +46,7 @@ function g() {
       $(1);
     }
   }
-}
+};
 g();
 `````
 

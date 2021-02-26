@@ -26,7 +26,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = { x: 1 };
   let c = { y: 2 };
   let d = 3;
@@ -42,7 +42,7 @@ function f() {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   $(a, b, c, d);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const b = { x: 1 };
   const c = { y: 2 };
   const tmpNestedAssignComMemberObj = $(b);
@@ -61,7 +61,7 @@ function f() {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   $(3, b, c, 3);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

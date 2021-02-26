@@ -27,7 +27,7 @@ $(a, b, c, d, e);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
@@ -40,7 +40,7 @@ function f() {
   a = tmpNestedPropAssignRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
@@ -55,7 +55,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
@@ -65,7 +65,7 @@ function f() {
   a = 7;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };

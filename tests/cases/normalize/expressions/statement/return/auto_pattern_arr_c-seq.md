@@ -22,14 +22,14 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   $(10);
   $(20);
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
   const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
-}
+};
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
@@ -42,13 +42,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(10);
   $(20);
   const tmpCalleeParam = [1, 2];
   const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
-}
+};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];

@@ -25,12 +25,12 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let x = 1;
   const tmpUnaryArg = $(x);
   let a = typeof tmpUnaryArg;
   $(a, x);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -39,11 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpUnaryArg = $(1);
   const a = typeof tmpUnaryArg;
   $(a, 1);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

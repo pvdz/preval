@@ -31,10 +31,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = null.x;
-const tmpCalleeParam$1 = [];
-objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

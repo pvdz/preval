@@ -43,21 +43,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = undefined.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { y: 'fail2' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  $('fail');
-}
-$('bad');
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

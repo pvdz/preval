@@ -22,7 +22,7 @@ $(x, 'final');
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 x = $(1, 'before');
 const tmpIfTest = $(2, 'if');
 if (tmpIfTest) {

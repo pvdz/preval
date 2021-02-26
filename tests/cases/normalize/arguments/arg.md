@@ -19,17 +19,17 @@ function f() {
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   f.apply(this, arguments);
-}
+};
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   f.apply(this, arguments);
-}
+};
 `````
 
 ## Globals

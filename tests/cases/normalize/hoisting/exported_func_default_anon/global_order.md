@@ -19,14 +19,14 @@ export function g() { return $(); }
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpReturnArg = $();
   return tmpReturnArg;
-}
-function g() {
+};
+let g = function () {
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
@@ -42,14 +42,14 @@ export { g };
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpReturnArg = $();
   return tmpReturnArg;
-}
-function g() {
+};
+const g = function () {
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
-}
+};
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 $(tmpCalleeParam, tmpCalleeParam$1);

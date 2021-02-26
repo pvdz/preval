@@ -23,7 +23,7 @@ $(100);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const varInitAssignLhsComputedObj = $(b);
@@ -31,7 +31,7 @@ function f() {
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-}
+};
 let b = { x: 1 };
 let c = 3;
 f();
@@ -41,12 +41,12 @@ $(100);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpAssignMemLhsObj = $(b);
   const varInitAssignLhsComputedObj = $(b);
   varInitAssignLhsComputedObj.x = 3;
   tmpAssignMemLhsObj.x = 3;
-}
+};
 const b = { x: 1 };
 f();
 $(100);

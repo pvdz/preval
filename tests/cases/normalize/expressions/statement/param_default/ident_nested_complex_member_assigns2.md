@@ -27,9 +27,9 @@ $(100, a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   a = y;
-}
+};
 let a = 1;
 const x = 3;
 const y = x;
@@ -40,9 +40,9 @@ $(100, a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   a = 3;
-}
+};
 let a = 1;
 f();
 $(100, a);

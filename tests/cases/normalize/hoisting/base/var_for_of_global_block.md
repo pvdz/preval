@@ -21,7 +21,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(x);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {
@@ -33,7 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(x);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {

@@ -24,7 +24,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
@@ -43,7 +43,7 @@ function f() {
     }
   }
   return tmpReturnArg;
-}
+};
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -55,7 +55,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   let tmpReturnArg = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
@@ -71,7 +71,7 @@ function f() {
     }
   }
   return tmpReturnArg;
-}
+};
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$2 = f();

@@ -22,14 +22,10 @@ export default function() {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
-    const tmpReturnArg = $(1);
+  let f = function () {
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
-  function f() {
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f(3);
   tmpCallCallee(tmpCalleeParam);
@@ -41,14 +37,10 @@ export default function () {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
-    const tmpReturnArg = $(1);
+  const f = function () {
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
-  function f() {
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  }
+  };
   const tmpCalleeParam = f(3);
   $(tmpCalleeParam);
 }

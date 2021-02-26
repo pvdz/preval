@@ -24,7 +24,7 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
@@ -34,7 +34,7 @@ function f() {
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   const tmpReturnArg = tmpPostUpdArgVal;
   return tmpReturnArg;
-}
+};
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -46,14 +46,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   return tmpPostUpdArgVal;
-}
+};
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

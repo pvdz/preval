@@ -27,9 +27,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = null.x;
-objPatternNoDefault.y;
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

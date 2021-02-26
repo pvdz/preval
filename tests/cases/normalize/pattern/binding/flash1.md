@@ -21,7 +21,7 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 ## Normalized
 
 `````js filename=intro
-function x(tmpParamPattern, tmpParamPattern$1) {
+let x = function (tmpParamPattern, tmpParamPattern$1) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
@@ -54,7 +54,7 @@ function x(tmpParamPattern, tmpParamPattern$1) {
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$2 = undefined;
   let x$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-}
+};
 `````
 
 ## Output

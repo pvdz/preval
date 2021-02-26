@@ -27,7 +27,7 @@ $(a().b().c().d);
 ## Normalized
 
 `````js filename=intro
-function a() {
+let a = function () {
   const a$1 = {
     a() {
       return a$1;
@@ -43,7 +43,7 @@ function a() {
     },
   };
   return a$1;
-}
+};
 const tmpCallCallee = $;
 const tmpCallObj$1 = a();
 const tmpCallObj = tmpCallObj$1.b();
@@ -55,7 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function a() {
+const a = function () {
   const a$1 = {
     a() {
       return a$1;
@@ -71,7 +71,7 @@ function a() {
     },
   };
   return a$1;
-}
+};
 const tmpCallObj$1 = a();
 const tmpCallObj = tmpCallObj$1.b();
 const tmpCompObj = tmpCallObj.c();

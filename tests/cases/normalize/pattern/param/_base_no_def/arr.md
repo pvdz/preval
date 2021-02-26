@@ -15,11 +15,11 @@ function f([ x ]) { return x }
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let x = arrPatternSplat[0];
   return x;
-}
+};
 `````
 
 ## Output

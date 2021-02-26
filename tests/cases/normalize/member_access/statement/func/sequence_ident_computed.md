@@ -22,7 +22,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = 'foo';
   let c = 1;
   $(1);
@@ -30,7 +30,7 @@ function f() {
   const tmpCompProp = $('length');
   tmpCompObj[tmpCompProp];
   $(c);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -39,12 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(1);
   const tmpCompProp = $('length');
   'foo'[tmpCompProp];
   $(1);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

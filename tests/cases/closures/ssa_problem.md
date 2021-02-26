@@ -28,9 +28,9 @@ a = 4;
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   a = 2;
-}
+};
 let a = 1;
 $(a);
 f();
@@ -44,9 +44,9 @@ a = 4;
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   a = 2;
-}
+};
 let a = 1;
 $(a);
 f();

@@ -40,26 +40,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = undefined.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$2 = [];
-y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
-$('bad');
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-y
+None
 
 ## Result
 

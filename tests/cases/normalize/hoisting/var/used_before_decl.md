@@ -22,12 +22,12 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
-  var a;
+let f = function () {
+  let a = undefined;
   a = $();
   a = $();
   return a;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -36,11 +36,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $();
   const SSA_a$1 = $();
   return SSA_a$1;
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

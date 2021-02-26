@@ -17,7 +17,7 @@ for(const n in {a: 1, b: 2}) var x = n;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpForInDeclRhs = { a: 1, b: 2 };
 let n;
 for (n in tmpForInDeclRhs) {

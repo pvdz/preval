@@ -24,12 +24,12 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   const tmpReturnArg = tmpPostUpdArgIdent;
   return tmpReturnArg;
-}
+};
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -41,11 +41,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   return tmpPostUpdArgIdent;
-}
+};
 let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

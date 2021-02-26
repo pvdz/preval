@@ -41,7 +41,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   if (tmpIfTest$32854) {
     let tmpReturnArg$21651 = undefined;
     const tmpCalleeParam$36039 = $(1);
@@ -63,7 +63,7 @@ function f() {
     );
     return tmpReturnArg$21651;
   }
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = [10, 20, 30, 40];
 const SSA_SNe$596 = tmpCallCallee(tmpCalleeParam);
@@ -75,7 +75,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   if (tmpIfTest$32854) {
     const tmpCalleeParam$36039 = $(1);
     const tmpCalleeParam$36040 = $(2);
@@ -96,7 +96,7 @@ function f() {
     );
     return SSA_tmpReturnArg$21651;
   }
-}
+};
 const tmpCalleeParam = [10, 20, 30, 40];
 const SSA_SNe$596 = $(tmpCalleeParam);
 const tmpCalleeParam$1 = f();

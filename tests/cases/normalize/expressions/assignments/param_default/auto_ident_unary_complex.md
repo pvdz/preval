@@ -22,7 +22,7 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__arg) {
+let f = function ($tdz$__arg) {
   let arg = undefined;
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
@@ -33,7 +33,7 @@ function f($tdz$__arg) {
   } else {
     arg = $tdz$__arg;
   }
-}
+};
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -45,14 +45,14 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-function f($tdz$__arg) {
+const f = function ($tdz$__arg) {
   const tmpIfTest = $tdz$__arg === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(1);
     const tmpNestedComplexRhs = typeof tmpUnaryArg;
     a = tmpNestedComplexRhs;
   }
-}
+};
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

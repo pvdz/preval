@@ -17,11 +17,11 @@ function f(x, y) {
 ## Normalized
 
 `````js filename=intro
-function f(x, y) {
+let f = function (x, y) {
   x = y;
   let tmpReturnArg = x;
   return tmpReturnArg;
-}
+};
 `````
 
 ## Output

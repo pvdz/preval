@@ -25,10 +25,10 @@ export default function() {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
+  let f = function () {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f(1);
   tmpCallCallee(tmpCalleeParam);
@@ -40,10 +40,10 @@ export default function () {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
+  const f = function () {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
+  };
   const tmpCalleeParam = f(1);
   $(tmpCalleeParam);
 }

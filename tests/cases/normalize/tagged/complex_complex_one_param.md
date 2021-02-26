@@ -32,9 +32,9 @@ f`abc ${ $(10) } ${ $(20) } def`;
 ## Normalized
 
 `````js filename=intro
-function f(x) {
+let f = function (x) {
   return x;
-}
+};
 const tmpCallCallee = f;
 const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
@@ -45,9 +45,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-function f(x) {
+const f = function (x) {
   return x;
-}
+};
 const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
 const tmpCalleeParam$2 = $(20);

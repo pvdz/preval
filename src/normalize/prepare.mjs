@@ -120,48 +120,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               ? grandparent
               : parentNode;
           if (VERBOSE_TRACING) log('The hoist root is a:', hoistRoot.type, hoistRoot.id?.name);
-          const hoistingStage = hoistRoot.$p.hoistingStage;
           const hoistedVars = hoistRoot.$p.hoistedVars;
-          let alreadyHoisted = false;
-          let notHoistedBecause = 'func;stage=after'; // Debugging
-          if (hoistingStage && hoistingStage.stage !== 'after') {
-            ASSERT(['var', 'func'].includes(hoistingStage.stage), 'update this check if more symbols are added');
-            // This func decl can be hoisted if and only if the previous sibling was a hoistable element
-            // that was also already hoisted. In that case, this function may not need to move at all.
-            notHoistedBecause = 'func;prev hot hoisted';
-
-            let prevHoisted = parentIndex === 0;
-            if (!prevHoisted && parentIndex > 0) {
-              let index = parentIndex;
-              while (parentNode[parentProp][index - 1]?.type === 'EmptyStatement') --index;
-              ASSERT(index >= 0);
-              if (index === 0) prevHoisted = true;
-              // Current node was only preceded by a bunch of empty statements
-              else prevHoisted = parentNode[parentProp][index - 1].$p.isHoisted;
-            }
-
-            if (prevHoisted) {
-              if (hoistingStage.stage === 'var') {
-                // We normalize to hoist vars before funcs.
-                hoistingStage.stage = 'func';
-              }
-
-              notHoistedBecause = 'func;prev name is bigger';
-              if (hoistingStage.lastName < node.id.name) {
-                if (VERBOSE_TRACING) {
-                  log('Function decl `' + node.id + '` is already in its hoisted position');
-                }
-                alreadyHoisted = true;
-                hoistingStage.lastName = node.id.name;
-                notHoistedBecause = '';
-                node.$p.isHoisted = true;
-              }
-            }
-            if (!alreadyHoisted) {
-              // If this func decl isn't hoisted then we must be past the hoisting stage
-              hoistingStage.stage === 'after';
-            }
-          }
 
           if (VERBOSE_TRACING) log('It _is_ a function decl. How should it be hoisted?');
 
@@ -174,7 +133,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex >= 0, 'node should be in a body');
             ASSERT(parentProp === 'body', 'children of Program are in body', parentProp);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct');
-            hoistedVars.push(['program', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex]);
+            hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'ExportNamedDeclaration' || (parentNode.type === 'ExportDefaultDeclaration' && node.id)) {
             if (VERBOSE_TRACING) {
               log('- Hoisting entire export');
@@ -186,7 +145,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(grandparent.type === 'Program', 'exports are only children of the root');
             const exportIndex = path.indexes[path.indexes.length - 2]; // index of parentNode in body (=ast.body)
             ASSERT(exportIndex >= 0);
-            hoistedVars.push(['export', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex, exportIndex]);
+            hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)) {
             // Func decl nested in the toplevel of another function
             if (VERBOSE_TRACING) {
@@ -197,7 +156,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex >= 0);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct', parentProp);
             // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
-            hoistedVars.push(['func', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex]);
+            hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
             if (VERBOSE_TRACING) {
               log('This is a function decl nested in a non-func-body block');
@@ -289,61 +248,8 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
           if (VERBOSE_TRACING) log('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
 
-          // If, in the normalization phase, all elements of the hoistedVars are "already hoisted" then do nothing there.
-          let alreadyHoisted = false;
-          let notHoistedBecause = 'var;stage!=var'; // Debugging
-          const hoistingStage = parentNode.$p.hoistingStage;
-          if (hoistingStage?.stage === 'var') {
-            // This func decl can be hoisted if and only if the previous sibling was a hoistable element
-            // that was also already hoisted. In that case, this function may not need to move at all.
-            notHoistedBecause =
-              'var;prev not hoisted;' + parentIndex + ',' + (parentIndex > 0 && !!parentNode[parentProp][parentIndex - 1].$p.isHoisted);
-
-            let prevHoisted = parentIndex === 0;
-            let prevType = '';
-            if (!prevHoisted && parentIndex > 0) {
-              let index = parentIndex;
-              while (parentNode[parentProp][index - 1]?.type === 'EmptyStatement') --index;
-              ASSERT(index >= 0);
-              if (index === 0) prevHoisted = true;
-              // Current node was only preceded by a bunch of empty statements
-              else prevHoisted = parentNode[parentProp][index - 1].$p.isHoisted;
-              prevType = parentNode[parentProp][index - 1]?.type;
-            }
-            notHoistedBecause += prevType;
-
-            if (prevHoisted) {
-              // Since var decls are not normalized, only allow decls to be considered hoisted if they introduce one
-              // binding, are not a pattern, and are properly ordered. It must also be child of a global/func.
-              // Vars with inits will also be split up so we cannot assume them to be hoisted either.
-              notHoistedBecause = 'var;not normalized';
-              if (node.declarations.length === 1 && !node.declarations[0].init && node.declarations[0].id.type === 'Identifier') {
-                notHoistedBecause = 'var;name order';
-                if (hoistingStage.lastName < node.declarations[0].id.name) {
-                  notHoistedBecause = 'var;bad grandparent:' + grandparent?.type;
-                  if (
-                    parentNode.type === 'Program' ||
-                    (grandparent && ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type))
-                  ) {
-                    if (VERBOSE_TRACING) {
-                      log('Var decl `' + node.id + '` is already in its hoisted position');
-                    }
-                    alreadyHoisted = true;
-                    hoistingStage.lastName = node.declarations[0].id.name;
-                    notHoistedBecause = '';
-                    node.$p.isHoisted = true;
-                  }
-                }
-              }
-            }
-            if (!alreadyHoisted) {
-              // If this func decl isn't hoisted then we must be past the hoisting stage
-              hoistingStage.stage === 'after';
-            }
-          }
-
           if (parentNode.type === 'ExportNamedDeclaration') {
-            if (VERBOSE_TRACING) log('- is an export-child, already hoisted?', alreadyHoisted);
+            if (VERBOSE_TRACING) log('- is an export-child');
             // `export var x`, which we transform into `var x; export {x}`
             ASSERT(parentNode[parentProp] === node);
             ASSERT(func.type === 'Program', 'exports can only appear in one place');
@@ -352,9 +258,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex === -1);
             ASSERT(exportIndex >= 0);
             ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
-            func.$p.hoistedVars.push(['export', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex, exportIndex]);
+            func.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
-            if (VERBOSE_TRACING) log('- is a for-child, already hoisted?', alreadyHoisted);
+            if (VERBOSE_TRACING) log('- is a for-child');
             // for (var x;;);
             // for (var x in y);
             // for (var x of y);
@@ -363,19 +269,19 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ASSERT(parentIndex === -1);
             //ASSERT(exportIndex >= 0);
             //ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
-            func.$p.hoistedVars.push(['for', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex]);
-          } else if ((parentNode.type === 'BlockStatement, already hoisted?', alreadyHoisted)) {
+            func.$p.hoistedVars.push(['for', node, parentNode, parentProp, parentIndex]);
+          } else if (parentNode.type === 'BlockStatement') {
             if (VERBOSE_TRACING) log('- is a block-var');
             // { var x; }
             ASSERT(parentNode[parentProp][parentIndex] === node);
             ASSERT(node && parentIndex >= 0);
-            func.$p.hoistedVars.push(['block', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex]);
+            func.$p.hoistedVars.push(['block', node, parentNode, parentProp, parentIndex]);
           } else {
             // var x;
-            if (VERBOSE_TRACING) log('- Regular hoistable var, already hoisted?', alreadyHoisted);
+            if (VERBOSE_TRACING) log('- Regular hoistable var');
             ASSERT(node);
             ASSERT((parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === node, 'should find parent', node);
-            func.$p.hoistedVars.push(['other', alreadyHoisted, notHoistedBecause, node, parentNode, parentProp, parentIndex]);
+            func.$p.hoistedVars.push(['other', node, parentNode, parentProp, parentIndex]);
           }
         }
         break;

@@ -20,7 +20,7 @@ $(f('', 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
@@ -40,7 +40,7 @@ function f(tmpParamPattern) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
   }
   return 'ok';
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f('', 10);
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -49,7 +49,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const objPatternBeforeDefault = tmpParamPattern.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
@@ -68,7 +68,7 @@ function f(tmpParamPattern) {
     objPatternAfterDefault.cannotDestructureThis;
   }
   return 'ok';
-}
+};
 const tmpCalleeParam$1 = f('', 10);
 $(tmpCalleeParam$1);
 `````

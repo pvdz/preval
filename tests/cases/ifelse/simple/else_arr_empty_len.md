@@ -18,8 +18,7 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = [];
-const tmpIfTest = tmpCompObj.length;
+const tmpIfTest = 0;
 if (tmpIfTest) {
   $(1);
 } else {
@@ -30,13 +29,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpCompObj = [];
-const tmpIfTest = tmpCompObj.length;
-if (tmpIfTest) {
-  $(1);
-} else {
-  $(2);
-}
+$(2);
 `````
 
 ## Globals

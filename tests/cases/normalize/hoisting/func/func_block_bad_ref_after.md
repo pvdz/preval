@@ -25,21 +25,21 @@ g();
 ## Normalized
 
 `````js filename=intro
-function g() {
+let g = function () {
   let f = function () {
     $(1);
   };
   f$1();
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
+const g = function () {
   f$1();
-}
+};
 g();
 `````
 

@@ -19,7 +19,7 @@ $(typeof foo)
 ## Normalized
 
 `````js filename=intro
-var foo;
+let foo = undefined;
 foo = 1;
 const tmpCallCallee = $;
 const tmpCalleeParam = true;

@@ -19,8 +19,8 @@ $(f?.[x]);
 ## Normalized
 
 `````js filename=intro
-var f;
-var x;
+let f = undefined;
+let x = undefined;
 f = undefined;
 x = 10;
 const tmpCallCallee = $;

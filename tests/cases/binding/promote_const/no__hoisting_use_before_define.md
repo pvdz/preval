@@ -27,10 +27,10 @@ function g() {
 ## Normalized
 
 `````js filename=intro
-var x;
-function g() {
+let x = undefined;
+let g = function () {
   x = 20;
-}
+};
 x = 100;
 g();
 const tmpIfTest = $(1);
@@ -43,10 +43,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
-function g() {
+let x = undefined;
+const g = function () {
   x = 20;
-}
+};
 x = 100;
 g();
 const tmpIfTest = $(1);

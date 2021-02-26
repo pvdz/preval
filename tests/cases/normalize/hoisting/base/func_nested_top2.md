@@ -23,24 +23,24 @@ function g() {
 ## Normalized
 
 `````js filename=intro
-function g() {
-  function f() {
+let g = function () {
+  let f = function () {
     return 100;
-  }
+  };
   f();
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  function f() {
+const g = function () {
+  const f = function () {
     return 100;
-  }
+  };
   f();
-}
+};
 g();
 `````
 

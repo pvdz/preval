@@ -24,32 +24,32 @@ g();
 ## Normalized
 
 `````js filename=intro
-function g() {
-  function f() {
+let g = function () {
+  let f = function () {
     return 100;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  function f() {
+const g = function () {
+  const f = function () {
     return 100;
-  }
+  };
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
   const tmpCalleeParam$1 = f();
   $(tmpCalleeParam$1);
-}
+};
 g();
 `````
 

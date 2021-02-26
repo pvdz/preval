@@ -20,8 +20,8 @@ a?.b(x.y);
 ## Normalized
 
 `````js filename=intro
-var a;
-var x;
+let a = undefined;
+let x = undefined;
 const tmpChainRootProp = a;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {

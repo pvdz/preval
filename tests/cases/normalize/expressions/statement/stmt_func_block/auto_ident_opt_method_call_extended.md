@@ -26,7 +26,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpObjLitVal$1 = { e: $ };
   const tmpObjLitVal = { d: tmpObjLitVal$1 };
   let b = { c: tmpObjLitVal };
@@ -40,7 +40,7 @@ function f() {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
   }
   $(a);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpObjLitVal$1 = { e: $ };
   const tmpObjLitVal = { d: tmpObjLitVal$1 };
   const b = { c: tmpObjLitVal };
@@ -62,7 +62,7 @@ function f() {
     tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
   }
   $(a);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

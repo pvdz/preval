@@ -17,7 +17,7 @@ for(;$(x);) var x = 0;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 while (true) {
   const tmpIfTest = $(x);
   if (tmpIfTest) {
@@ -31,7 +31,7 @@ while (true) {
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 while (true) {
   const tmpIfTest = $(x);
   if (tmpIfTest) {

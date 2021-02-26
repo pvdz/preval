@@ -20,19 +20,15 @@ export default function g() {
 ## Normalized
 
 `````js filename=intro
-function g() {
-  function f() {
-    const tmpReturnArg = $(1);
+let g = function () {
+  let f = function () {
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
-  function f() {
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f(3);
   tmpCallCallee(tmpCalleeParam);
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -42,18 +38,14 @@ export { g as default };
 ## Output
 
 `````js filename=intro
-function g() {
-  function f() {
-    const tmpReturnArg = $(1);
+const g = function () {
+  const f = function () {
+    const tmpReturnArg = $(2);
     return tmpReturnArg;
-  }
-  function f() {
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  }
+  };
   const tmpCalleeParam = f(3);
   $(tmpCalleeParam);
-}
+};
 const tmpCalleeParam$1 = g();
 $(tmpCalleeParam$1);
 export { g as default };

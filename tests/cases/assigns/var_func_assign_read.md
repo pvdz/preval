@@ -22,8 +22,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var f;
-var x;
+let f = undefined;
+let x = undefined;
 x = 20;
 f = () => {
   x = 10;
@@ -41,13 +41,13 @@ $(x);
 
 `````js filename=intro
 let SSA_x = 20;
-const f = () => {
+const SSA_f = () => {
   SSA_x = 10;
   const tmpReturnArg = SSA_x;
   return tmpReturnArg;
 };
 SSA_x = 30;
-const tmpCalleeParam = f();
+const tmpCalleeParam = SSA_f();
 $(tmpCalleeParam);
 $(SSA_x);
 `````

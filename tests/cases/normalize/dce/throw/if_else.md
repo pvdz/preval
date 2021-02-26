@@ -22,14 +22,14 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
   } else {
     throw 3;
   }
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -38,14 +38,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
   } else {
     throw 3;
   }
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

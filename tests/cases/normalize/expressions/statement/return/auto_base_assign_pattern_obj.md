@@ -24,7 +24,7 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpReturnArg;
   const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
@@ -33,7 +33,7 @@ function f() {
   b = tmpNestedAssignObjPatternRhs.b;
   tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
-}
+};
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -45,13 +45,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   return tmpNestedAssignObjPatternRhs;
-}
+};
 let b = {};
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

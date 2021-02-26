@@ -24,13 +24,13 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
   const tmpAssignRhsProp = $(b);
   a = tmpAssignRhsProp.c;
   $(a, b);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -39,12 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const b = { c: 1 };
   const tmpAssignRhsProp = $(b);
   const SSA_a = tmpAssignRhsProp.c;
   $(SSA_a, b);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

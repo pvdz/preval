@@ -18,7 +18,7 @@ for (var a = 1; ; ) $(d);
 ## Normalized
 
 `````js filename=intro
-var a;
+let a = undefined;
 let b = 2;
 let c = 3;
 let d = 4;

@@ -19,7 +19,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(x);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];

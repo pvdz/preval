@@ -24,14 +24,14 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
   const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -40,12 +40,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const arg = { y: 1 };
   const tmpDeleteCompProp = $('y');
   const SSA_a = delete arg[tmpDeleteCompProp];
   $(SSA_a, arg);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

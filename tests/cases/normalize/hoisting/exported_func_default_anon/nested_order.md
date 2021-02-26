@@ -25,18 +25,18 @@ export default function() {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
+  let f = function () {
     const tmpReturnArg = $();
     return tmpReturnArg;
-  }
-  function g() {
+  };
+  let g = function () {
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
-  }
-  function h() {
+  };
+  let h = function () {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   const tmpCalleeParam$1 = g();
@@ -50,18 +50,18 @@ export default function () {
 `````js filename=intro
 $(1);
 export default function () {
-  function f() {
+  const f = function () {
     const tmpReturnArg = $();
     return tmpReturnArg;
-  }
-  function g() {
+  };
+  const g = function () {
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
-  }
-  function h() {
+  };
+  const h = function () {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
-  }
+  };
   const tmpCalleeParam = f();
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$2 = h();

@@ -23,7 +23,7 @@ var x;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpCallCallee = $;
 x = $(10);
 let tmpCalleeParam = x;
@@ -34,9 +34,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $(10);
-$(x);
-$(x);
+const SSA_x = $(10);
+$(SSA_x);
+$(SSA_x);
 `````
 
 ## Globals

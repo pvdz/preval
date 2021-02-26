@@ -22,7 +22,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = 2;
   let c = 3;
   let d = 4;
@@ -33,7 +33,7 @@ function f() {
   b = tmpNestedPropAssignRhs;
   let a = b;
   $(a, b, c);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -42,12 +42,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpNestedAssignObj = $(3);
   const tmpNestedAssignPropRhs = $(4);
   tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
   $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

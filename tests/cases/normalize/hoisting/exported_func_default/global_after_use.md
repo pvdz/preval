@@ -16,10 +16,10 @@ export default function f() { return $(2); }
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpReturnArg = $(2);
   return tmpReturnArg;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
 tmpCallCallee(tmpCalleeParam);
@@ -29,10 +29,10 @@ export { f as default };
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpReturnArg = $(2);
   return tmpReturnArg;
-}
+};
 const tmpCalleeParam = f(1);
 $(tmpCalleeParam);
 export { f as default };

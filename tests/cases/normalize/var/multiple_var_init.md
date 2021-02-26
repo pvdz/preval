@@ -17,9 +17,9 @@ var a = $(1), b = $(2), c = $(3);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 a = $(1);
 b = $(2);
 c = $(3);

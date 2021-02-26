@@ -22,7 +22,7 @@ $(f());
 
 `````js filename=intro
 const f = (a$1) => {
-  var b$1;
+  let b$1 = undefined;
   a$1 = $(10);
   b$1 = $(20);
   const tmpReturnArg = [a$1, b$1];
@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = (a$1) => {
   const SSA_a$1 = $(10);
-  const b$2 = $(20);
-  const tmpReturnArg = [SSA_a$1, b$2];
+  const SSA_b$1 = $(20);
+  const tmpReturnArg = [SSA_a$1, SSA_b$1];
   return tmpReturnArg;
 };
 const tmpCalleeParam = f();

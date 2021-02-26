@@ -18,9 +18,9 @@ $($(a).length = b = c);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 a = [];
 b = 20;
 c = 30;
@@ -36,8 +36,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = [];
-const varInitAssignLhsComputedObj = $(a);
+const SSA_a = [];
+const varInitAssignLhsComputedObj = $(SSA_a);
 varInitAssignLhsComputedObj.length = 30;
 $(30);
 `````

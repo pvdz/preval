@@ -20,7 +20,7 @@ try {
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 try {
 } finally {
 }

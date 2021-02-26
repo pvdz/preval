@@ -31,7 +31,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
@@ -49,7 +49,7 @@ function f() {
     }
   }
   $('after (not invoked)');
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -58,7 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
@@ -76,7 +76,7 @@ function f() {
     }
   }
   $('after (not invoked)');
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

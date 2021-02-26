@@ -27,9 +27,9 @@ var c;
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 a = $(1);
 b = a;
 c = $(2);
@@ -41,10 +41,10 @@ tmpCompObj[tmpCompProp];
 ## Output
 
 `````js filename=intro
-const a = $(1);
-const c = $(2);
-const tmpCompProp = $(c);
-a[tmpCompProp];
+const SSA_a = $(1);
+const SSA_c = $(2);
+const tmpCompProp = $(SSA_c);
+SSA_a[tmpCompProp];
 `````
 
 ## Globals

@@ -26,7 +26,7 @@ $(a, b, c, d);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);
@@ -37,7 +37,7 @@ function f() {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpReturnArg = varInitAssignLhsComputedRhs;
   return tmpReturnArg;
-}
+};
 let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
@@ -51,7 +51,7 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);
@@ -59,7 +59,7 @@ function f() {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   return 3;
-}
+};
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };

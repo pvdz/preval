@@ -24,14 +24,14 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpNestedCompoundLhs = b;
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -43,14 +43,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpNestedCompoundLhs = b;
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

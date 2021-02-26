@@ -18,9 +18,9 @@ $(f?.());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   return 10;
-}
+};
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
@@ -35,9 +35,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   return 10;
-}
+};
 let tmpCalleeParam = undefined;
 const tmpIfTest = f != null;
 if (tmpIfTest) {

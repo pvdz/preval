@@ -25,7 +25,7 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
@@ -35,7 +35,7 @@ function f() {
   a = tmpNestedAssignArrPatternRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
@@ -48,7 +48,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
@@ -58,7 +58,7 @@ function f() {
   a = tmpNestedAssignArrPatternRhs;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };

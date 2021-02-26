@@ -43,24 +43,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = null.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { x: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-let objPatternCrashTest = objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-}
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

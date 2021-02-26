@@ -18,7 +18,7 @@ f()
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__a, $tdz$__b) {
+let f = function ($tdz$__a, $tdz$__b) {
   let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
@@ -33,14 +33,14 @@ function f($tdz$__a, $tdz$__b) {
   } else {
     b = $tdz$__b;
   }
-}
+};
 f();
 `````
 
 ## Output
 
 `````js filename=intro
-function f($tdz$__a, $tdz$__b) {}
+const f = function ($tdz$__a, $tdz$__b) {};
 f();
 `````
 

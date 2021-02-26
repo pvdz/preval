@@ -27,11 +27,11 @@ $(a, b, c, d, e);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
-var e;
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
 let obj = {
   get c() {
     $('get');
@@ -119,7 +119,7 @@ let SSA_d = function () {
   SSA_c = 43;
   return obj;
 };
-const e = function () {
+const SSA_e = function () {
   $('e');
   SSA_a = 51;
   SSA_b = 52;
@@ -131,12 +131,12 @@ const tmpAssignMemLhsObj = SSA_a();
 const varInitAssignLhsComputedObj = SSA_b();
 const varInitAssignLhsComputedObj$1 = SSA_c();
 const varInitAssignLhsComputedObj$2 = SSA_d();
-const varInitAssignLhsComputedRhs$2 = e();
+const varInitAssignLhsComputedRhs$2 = SSA_e();
 varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$2;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$2;
 tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$2;
-$(SSA_a, SSA_b, SSA_c, SSA_d, e);
+$(SSA_a, SSA_b, SSA_c, SSA_d, SSA_e);
 `````
 
 ## Globals

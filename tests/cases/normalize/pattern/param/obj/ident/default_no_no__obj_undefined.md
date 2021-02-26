@@ -20,10 +20,10 @@ $(f({ x: undefined }, 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let x = tmpParamPattern.x;
   return x;
-}
+};
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = { x: undefined };
@@ -35,10 +35,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const x = tmpParamPattern.x;
   return x;
-}
+};
 const tmpCalleeParam$1 = { x: undefined };
 const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);

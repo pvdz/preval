@@ -18,16 +18,16 @@ x.y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
-var e;
-var f;
-var g;
-var h;
-var x;
-var y;
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let f = undefined;
+let g = undefined;
+let h = undefined;
+let x = undefined;
+let y = undefined;
 const tmpCallObj = x;
 const tmpCallVal = tmpCallObj.y;
 const tmpCalleeParam = x;
@@ -42,11 +42,8 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamS
 ## Output
 
 `````js filename=intro
-const tmpCallVal = undefined.y;
-undefined.c;
-undefined[undefined];
-const tmpCalleeParamSpread = undefined.h;
-tmpCallVal.call(undefined, undefined, 8, ...tmpCalleeParamSpread);
+undefined.y;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

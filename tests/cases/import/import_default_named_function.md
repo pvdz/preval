@@ -34,7 +34,7 @@ $(x);
 `````
 
 `````js filename=x
-function f() {}
+let f = function () {};
 f = 10;
 export { f as default };
 `````
@@ -47,9 +47,8 @@ $(x);
 `````
 
 `````js filename=x
-function f() {}
-f = 10;
-export { f as default };
+const SSA_f = 10;
+export { SSA_f as default };
 `````
 
 ## Globals

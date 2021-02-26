@@ -26,13 +26,13 @@ $(i({x: {y: {z: {a: 10}}}}));
 ## Normalized
 
 `````js filename=intro
-function i(tmpParamPattern) {
+let i = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a$1 = objPatternNoDefault$1.z;
   let a$2 = 2;
   return a$1;
-}
+};
 let a = 1;
 const tmpCallCallee = $;
 const tmpCallCallee$1 = i;
@@ -47,12 +47,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function i(tmpParamPattern) {
+const i = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
   const a$1 = objPatternNoDefault$1.z;
   return a$1;
-}
+};
 const tmpObjLitVal$2 = { a: 10 };
 const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };

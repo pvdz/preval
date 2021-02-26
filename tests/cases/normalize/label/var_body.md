@@ -17,7 +17,7 @@ test: var x = 0;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 x = 0;
 `````
 

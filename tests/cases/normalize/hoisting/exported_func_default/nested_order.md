@@ -24,25 +24,25 @@ export default function f() {
 ## Normalized
 
 `````js filename=intro
-function f() {
-  function f$1() {
+let f = function () {
+  let f$1 = function () {
     const tmpReturnArg = $();
     return tmpReturnArg;
-  }
-  function g() {
+  };
+  let g = function () {
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
-  }
-  function h() {
+  };
+  let h = function () {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
-  }
+  };
   const tmpCallCallee = $;
   const tmpCalleeParam = f$1();
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$2 = h();
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
 tmpCallCallee$1(tmpCalleeParam$3);
@@ -52,24 +52,24 @@ export { f as default };
 ## Output
 
 `````js filename=intro
-function f() {
-  function f$1() {
+const f = function () {
+  const f$1 = function () {
     const tmpReturnArg = $();
     return tmpReturnArg;
-  }
-  function g() {
+  };
+  const g = function () {
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
-  }
-  function h() {
+  };
+  const h = function () {
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
-  }
+  };
   const tmpCalleeParam = f$1();
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$2 = h();
   $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-}
+};
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 export { f as default };

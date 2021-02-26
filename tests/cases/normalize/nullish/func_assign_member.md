@@ -22,8 +22,8 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
-  var y;
+let f = function () {
+  let y = undefined;
   y = $();
   const tmpIfTest = y == null;
   if (tmpIfTest) {
@@ -31,7 +31,7 @@ function f() {
   }
   const tmpReturnArg = $(y);
   return tmpReturnArg;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   let SSA_y = $();
   const tmpIfTest = SSA_y == null;
   if (tmpIfTest) {
@@ -48,7 +48,7 @@ function f() {
   }
   const tmpReturnArg = $(SSA_y);
   return tmpReturnArg;
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

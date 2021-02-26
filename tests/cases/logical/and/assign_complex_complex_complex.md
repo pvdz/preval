@@ -18,7 +18,7 @@ $(x = $(1) && $(2));
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpCallCallee = $;
 x = $(1);
 if (x) {

@@ -19,12 +19,12 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpCallCallee = $(parseInt);
   const y = tmpCallCallee();
   const tmpReturnArg = $(y);
   return tmpReturnArg;
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam = f();
 tmpCallCallee$1(tmpCalleeParam);
@@ -33,12 +33,12 @@ tmpCallCallee$1(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpCallCallee = $(parseInt);
   const y = tmpCallCallee();
   const tmpReturnArg = $(y);
   return tmpReturnArg;
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

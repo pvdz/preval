@@ -22,22 +22,22 @@ f();
 ## Normalized
 
 `````js filename=intro
-function f() {
-  var x;
+let f = function () {
+  let x = undefined;
   $(x);
   x = 10;
   $(x);
-}
+};
 f();
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(undefined);
   $(10);
-}
+};
 f();
 `````
 

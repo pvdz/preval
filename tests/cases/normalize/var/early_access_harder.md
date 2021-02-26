@@ -27,10 +27,10 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
-function f() {
+let x = undefined;
+let f = function () {
   x = 10;
-}
+};
 $(x);
 f();
 $(x);
@@ -39,10 +39,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
-function f() {
+let x = undefined;
+const f = function () {
   x = 10;
-}
+};
 $(x);
 f();
 $(x);

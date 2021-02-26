@@ -20,7 +20,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__p) {
+let f = function ($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
@@ -32,7 +32,7 @@ function f($tdz$__p) {
   } else {
     p = $tdz$__p;
   }
-}
+};
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
@@ -45,7 +45,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
+const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     $(10);
@@ -53,7 +53,7 @@ function f($tdz$__p) {
     const tmpCalleeParam = [1, 2];
     $(tmpCalleeParam);
   }
-}
+};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];

@@ -34,24 +34,24 @@ $$(obja, objb, objc, objd, obje);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
-var e;
-var obja;
-var objb;
-var objc;
-var objd;
-var obje;
-function $$(...a$1) {
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obja = undefined;
+let objb = undefined;
+let objc = undefined;
+let objd = undefined;
+let obje = undefined;
+let $$ = function (...a$1) {
   const tmpCallCallee = $;
   const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
-}
+};
 obja = {
   get a() {
     $$('a.get');
@@ -174,23 +174,23 @@ $$(obja, objb, objc, objd, obje);
 ## Output
 
 `````js filename=intro
-var a;
-var b;
-var c;
-var d;
-var e;
-var obja;
-var objb;
-var objc;
-var objd;
-var obje;
-function $$(...a$1) {
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obja = undefined;
+let objb = undefined;
+let objc = undefined;
+let objd = undefined;
+let obje = undefined;
+const $$ = function (...a$1) {
   const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   $(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
-}
+};
 obja = {
   get a() {
     $$('a.get');

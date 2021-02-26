@@ -23,7 +23,7 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 2;

@@ -18,9 +18,9 @@ $(a = b = $(c).x);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 a = 10;
 b = 20;
 c = {};
@@ -36,8 +36,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const c = {};
-const tmpCompObj = $(c);
+const SSA_c = {};
+const tmpCompObj = $(SSA_c);
 const tmpNestedComplexRhs = tmpCompObj.x;
 $(tmpNestedComplexRhs);
 `````

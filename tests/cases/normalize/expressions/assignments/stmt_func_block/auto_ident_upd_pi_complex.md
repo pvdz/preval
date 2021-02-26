@@ -26,7 +26,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCallCallee = $;
@@ -37,7 +37,7 @@ function f() {
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
   $(a, b);
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -46,7 +46,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const b = { x: 1 };
   const tmpCalleeParam = $(b);
   const tmpNestedAssignObj = $(tmpCalleeParam);
@@ -54,7 +54,7 @@ function f() {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   $(tmpNestedPropCompoundComplexRhs, b);
-}
+};
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````

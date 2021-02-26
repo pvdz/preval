@@ -15,7 +15,7 @@ function g({ x = b } ) { return x }
 ## Normalized
 
 `````js filename=intro
-function g(tmpParamPattern) {
+let g = function (tmpParamPattern) {
   let objPatternBeforeDefault = tmpParamPattern.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
@@ -25,7 +25,7 @@ function g(tmpParamPattern) {
     x = objPatternBeforeDefault;
   }
   return x;
-}
+};
 `````
 
 ## Output

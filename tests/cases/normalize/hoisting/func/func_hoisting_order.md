@@ -25,25 +25,25 @@ $(a,b,d,f,h,x);
 ## Normalized
 
 `````js filename=intro
-function a() {}
-function b() {}
-function d() {}
-function f() {}
-function h() {}
-function l() {}
-function x() {}
+let a = function () {};
+let b = function () {};
+let d = function () {};
+let f = function () {};
+let h = function () {};
+let l = function () {};
+let x = function () {};
 $(a, b, d, f, h, x);
 `````
 
 ## Output
 
 `````js filename=intro
-function a() {}
-function b() {}
-function d() {}
-function f() {}
-function h() {}
-function x() {}
+const a = function () {};
+const b = function () {};
+const d = function () {};
+const f = function () {};
+const h = function () {};
+const x = function () {};
 $(a, b, d, f, h, x);
 `````
 

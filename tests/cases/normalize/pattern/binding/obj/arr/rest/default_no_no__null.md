@@ -28,10 +28,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = null.x;
-const arrPatternSplat = [...objPatternNoDefault];
-arrPatternSplat.slice(0);
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

@@ -25,7 +25,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpSwitchTest = $(1);
 const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
@@ -51,7 +51,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = 1 === tmpSwitchTest;

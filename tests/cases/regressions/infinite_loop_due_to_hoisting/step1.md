@@ -24,10 +24,10 @@ f(tmpArg);
 ## Normalized
 
 `````js filename=intro
-var tmpArg;
-var tmpBinaryLeft;
-var tmpTernaryTest;
-function g() {}
+let tmpArg = undefined;
+let tmpBinaryLeft = undefined;
+let tmpTernaryTest = undefined;
+let g = function () {};
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
@@ -41,10 +41,10 @@ f(tmpArg);
 ## Output
 
 `````js filename=intro
-var tmpArg;
-const tmpBinaryLeft = a.x;
-const tmpTernaryTest = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
+let tmpArg = undefined;
+const SSA_tmpBinaryLeft = a.x;
+const SSA_tmpTernaryTest = SSA_tmpBinaryLeft === 1;
+if (SSA_tmpTernaryTest) {
   tmpArg = 2;
 } else {
   tmpArg = 3;

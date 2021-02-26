@@ -17,7 +17,7 @@ for(const n of [1,2,3]) var x = n;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpForOfDeclRhs = [1, 2, 3];
 let n;
 for (n of tmpForOfDeclRhs) {

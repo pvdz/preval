@@ -30,7 +30,7 @@ if ($(1)) {
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = 10;

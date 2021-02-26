@@ -28,21 +28,15 @@ $(top());
 ## Normalized
 
 `````js filename=intro
-function top() {
-  function a() {
-    $(1);
-  }
-  function a() {
-    $(2);
-  }
-  function a() {
+let top = function () {
+  let a = function () {
     $(4);
-  }
+  };
   $(3);
   $(5);
   a();
   $(6);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = top();
 tmpCallCallee(tmpCalleeParam);
@@ -51,21 +45,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function top() {
-  function a() {
-    $(1);
-  }
-  function a() {
-    $(2);
-  }
-  function a() {
+const top = function () {
+  const a = function () {
     $(4);
-  }
+  };
   $(3);
   $(5);
   a();
   $(6);
-}
+};
 const tmpCalleeParam = top();
 $(tmpCalleeParam);
 `````

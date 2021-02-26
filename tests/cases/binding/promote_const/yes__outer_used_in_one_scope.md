@@ -37,8 +37,8 @@ f();
 ## Normalized
 
 `````js filename=intro
-var x;
-function f() {
+let x = undefined;
+let f = function () {
   $('something');
   x = 100;
   const tmpIfTest = $(1);
@@ -47,22 +47,24 @@ function f() {
   }
   $(x);
   return x;
-}
+};
 f();
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
+let x = undefined;
+const f = function () {
   $('something');
+  x = 100;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $(100);
+    $(x);
   }
-  $(100);
-  return 100;
-}
+  $(x);
+  return x;
+};
 f();
 `````
 

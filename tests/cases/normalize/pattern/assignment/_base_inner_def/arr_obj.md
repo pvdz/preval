@@ -17,8 +17,8 @@ $(x, a);
 ## Normalized
 
 `````js filename=intro
-var a;
-var x;
+let a = undefined;
+let x = undefined;
 a = 100;
 const tmpArrElement = {};
 const arrAssignPatternRhs = [tmpArrElement];
@@ -37,7 +37,7 @@ $(x, a);
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpArrElement = {};
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];

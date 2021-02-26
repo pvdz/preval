@@ -23,7 +23,7 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__p) {
+let f = function ($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
@@ -32,7 +32,7 @@ function f($tdz$__p) {
   } else {
     p = $tdz$__p;
   }
-}
+};
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
@@ -45,12 +45,12 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
+const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     b = 2;
   }
-}
+};
 let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

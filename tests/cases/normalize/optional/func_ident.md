@@ -20,7 +20,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
   const tmpChainRootProp = global;
@@ -31,7 +31,7 @@ function f() {
   }
   const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -40,7 +40,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   let tmpCalleeParam = undefined;
   const tmpChainRootProp = global;
   const tmpIfTest = tmpChainRootProp != null;
@@ -50,7 +50,7 @@ function f() {
   }
   const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
-}
+};
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````

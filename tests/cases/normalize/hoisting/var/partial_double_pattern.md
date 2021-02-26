@@ -20,9 +20,9 @@ $(x, y, z);
 ## Normalized
 
 `````js filename=intro
-var x;
-var y;
-var z;
+let x = undefined;
+let y = undefined;
+let z = undefined;
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
@@ -41,13 +41,13 @@ $(x, y, z);
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const SSA_x = arrPatternSplat[0];
-const y = arrPatternSplat[1];
-$(SSA_x, y);
+const SSA_y = arrPatternSplat[1];
+$(SSA_x, SSA_y);
 const arrAssignPatternRhs$1 = [4, 5, 6];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
 const SSA_x$1 = arrPatternSplat$1[0];
-const z = arrPatternSplat$1[1];
-$(SSA_x$1, y, z);
+const SSA_z = arrPatternSplat$1[1];
+$(SSA_x$1, SSA_y, SSA_z);
 `````
 
 ## Globals

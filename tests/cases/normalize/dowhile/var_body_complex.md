@@ -18,7 +18,7 @@ while (0);
 ## Normalized
 
 `````js filename=intro
-var a;
+let a = undefined;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;

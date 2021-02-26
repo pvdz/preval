@@ -15,7 +15,7 @@ function g({ x } = b ) { return x }
 ## Normalized
 
 `````js filename=intro
-function g($tdz$__pattern) {
+let g = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -25,7 +25,7 @@ function g($tdz$__pattern) {
   }
   let x = $tdz$__pattern_after_default.x;
   return x;
-}
+};
 `````
 
 ## Output

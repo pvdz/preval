@@ -23,13 +23,13 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$1 = 2;
   const tmpObjLitVal$2 = $(3);
   let a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
   $(a);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -38,12 +38,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$2 = $(3);
   const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
   $(a);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

@@ -19,7 +19,7 @@ $(foo);
 ## Normalized
 
 `````js filename=intro
-var foo;
+let foo = undefined;
 let a = 1;
 let b = 2;
 let c = 3;

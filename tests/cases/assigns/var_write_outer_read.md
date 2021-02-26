@@ -23,7 +23,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(1);
 x = $(2);
 $(x, 'b');
@@ -34,9 +34,9 @@ $(x);
 
 `````js filename=intro
 $(1);
-const x = $(2);
-$(x, 'b');
-$(x);
+const SSA_x = $(2);
+$(SSA_x, 'b');
+$(SSA_x);
 `````
 
 ## Globals

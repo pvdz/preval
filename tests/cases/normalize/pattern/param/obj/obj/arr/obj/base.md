@@ -24,7 +24,7 @@ $(f({ x: { x: 13, y: [{ a: 1, b: 2, c: 3 }, 15], z: 14 }, b: 11, c: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let arrPatternSplat = [...objPatternNoDefault$1];
@@ -38,7 +38,7 @@ function f(tmpParamPattern) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
   }
   return 'ok';
-}
+};
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal$1 = 13;
@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
   const arrPatternSplat = [...objPatternNoDefault$1];
@@ -68,7 +68,7 @@ function f(tmpParamPattern) {
     arrPatternStep.cannotDestructureThis;
   }
   return 'ok';
-}
+};
 const tmpArrElement = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal$2 = [tmpArrElement, 15];
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };

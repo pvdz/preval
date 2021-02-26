@@ -23,7 +23,7 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__p) {
+let f = function ($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
@@ -39,7 +39,7 @@ function f($tdz$__p) {
   } else {
     p = $tdz$__p;
   }
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
@@ -52,7 +52,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
+const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(3);
@@ -62,7 +62,7 @@ function f($tdz$__p) {
     y = tmpNestedAssignObjPatternRhs.y;
     a = tmpNestedAssignObjPatternRhs;
   }
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };

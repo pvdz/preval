@@ -30,8 +30,8 @@ a.b(x.y);
 ## Normalized
 
 `````js filename=intro
-var a;
-var x;
+let a = undefined;
+let x = undefined;
 const tmpCallObj = a;
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = x.y;
@@ -41,9 +41,8 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallVal = undefined.b;
-const tmpCalleeParam = undefined.y;
-tmpCallVal.call(undefined, tmpCalleeParam);
+undefined.b;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

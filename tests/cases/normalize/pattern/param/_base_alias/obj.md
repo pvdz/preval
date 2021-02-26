@@ -15,10 +15,10 @@ function g({ x: y }) { return y }
 ## Normalized
 
 `````js filename=intro
-function g(tmpParamPattern) {
+let g = function (tmpParamPattern) {
   let y = tmpParamPattern.x;
   return y;
-}
+};
 `````
 
 ## Output

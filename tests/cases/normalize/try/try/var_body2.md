@@ -22,7 +22,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 try {
   x = 10;
 } catch {}
@@ -32,7 +32,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 try {
   x = 10;
 } catch {}

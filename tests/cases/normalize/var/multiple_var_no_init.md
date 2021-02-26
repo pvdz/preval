@@ -21,9 +21,9 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 $(a);
 $(b);
 $(c);

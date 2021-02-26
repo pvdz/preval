@@ -31,7 +31,7 @@ if ($(1)) {
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
@@ -51,7 +51,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);

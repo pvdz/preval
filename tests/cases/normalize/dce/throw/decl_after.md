@@ -27,14 +27,14 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = $('fail too');
   }
   throw 'exit';
   let x = $('fail');
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -43,14 +43,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = $('fail too');
   }
   throw 'exit';
   let x = $('fail');
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

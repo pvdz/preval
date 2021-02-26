@@ -22,25 +22,25 @@ g();
 ## Normalized
 
 `````js filename=intro
-function g() {
-  function f() {}
+let g = function () {
+  let f = function () {};
   $(1);
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
-}
+};
 g();
 `````
 
 ## Output
 
 `````js filename=intro
-function g() {
-  function f() {}
+const g = function () {
+  const f = function () {};
   $(1);
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
-}
+};
 g();
 `````
 

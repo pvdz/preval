@@ -21,7 +21,7 @@ $(x, 'b');
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(1);
 $(x, 'a');
 x = $(2);

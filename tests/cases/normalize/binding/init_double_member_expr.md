@@ -18,7 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = 'foo'.length;
+const tmpCompObj = 3;
 let x = tmpCompObj.toString;
 $(x);
 `````
@@ -26,8 +26,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = 'foo'.length;
-const x = tmpCompObj.toString;
+const x = (3).toString;
 $(x);
 `````
 

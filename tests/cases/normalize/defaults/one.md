@@ -20,7 +20,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__a) {
+let f = function ($tdz$__a) {
   let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
@@ -29,7 +29,7 @@ function f($tdz$__a) {
     a = $tdz$__a;
   }
   return a;
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f('x');
 tmpCallCallee(tmpCalleeParam);
@@ -41,7 +41,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-function f($tdz$__a) {
+const f = function ($tdz$__a) {
   let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
@@ -50,7 +50,7 @@ function f($tdz$__a) {
     a = $tdz$__a;
   }
   return a;
-}
+};
 const tmpCalleeParam = f('x');
 $(tmpCalleeParam);
 const tmpCalleeParam$1 = f();

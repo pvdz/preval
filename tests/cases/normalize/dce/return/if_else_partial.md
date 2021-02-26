@@ -24,13 +24,13 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 2;
   }
   $('keep, do not eval');
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -39,13 +39,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 2;
   }
   $('keep, do not eval');
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

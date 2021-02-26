@@ -21,11 +21,11 @@ $(f({x: 1}));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let a = tmpParamPattern.x;
   a = $(10);
   return a;
-}
+};
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = { x: 1 };
@@ -36,11 +36,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   tmpParamPattern.x;
   const SSA_a = $(10);
   return SSA_a;
-}
+};
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);

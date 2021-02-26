@@ -33,8 +33,8 @@ x.y(a.b);
 ## Normalized
 
 `````js filename=intro
-var a;
-var x;
+let a = undefined;
+let x = undefined;
 a = {
   get b() {
     $('b.get');
@@ -56,21 +56,21 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {
+const SSA_a = {
   get b() {
     $('b.get');
     return 100;
   },
 };
-const x = {
+const SSA_x = {
   get y() {
     $('y.get');
     return $;
   },
 };
-const tmpCallVal = x.y;
-const tmpCalleeParam = a.b;
-tmpCallVal.call(x, tmpCalleeParam);
+const tmpCallVal = SSA_x.y;
+const tmpCalleeParam = SSA_a.b;
+tmpCallVal.call(SSA_x, tmpCalleeParam);
 `````
 
 ## Globals

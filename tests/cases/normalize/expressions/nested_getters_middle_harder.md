@@ -64,7 +64,7 @@ f();
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   $('-------- start');
   const b = {
     get foo() {
@@ -99,14 +99,14 @@ function f() {
   const tmpCalleeParam$2 = varInitAssignLhsComputedRhs;
   tmpCallCallee$2(tmpCalleeParam$2);
   $('-------- a.foo = 4');
-}
+};
 f();
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $('-------- start');
   const b = {
     get foo() {
@@ -132,7 +132,7 @@ function f() {
   b.foo = 4;
   $(4);
   $('-------- a.foo = 4');
-}
+};
 f();
 `````
 

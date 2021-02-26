@@ -24,7 +24,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpSwitchTest = $(1, 'disc');
   const tmpSwitchValue = tmpSwitchTest;
   let tmpSwitchCaseToStart = 1;
@@ -38,7 +38,7 @@ function f() {
     const tmpThrowArg = $(2, 'ret');
     throw tmpThrowArg;
   }
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpSwitchTest = $(1, 'disc');
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
@@ -60,7 +60,7 @@ function f() {
     const tmpThrowArg = $(2, 'ret');
     throw tmpThrowArg;
   }
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

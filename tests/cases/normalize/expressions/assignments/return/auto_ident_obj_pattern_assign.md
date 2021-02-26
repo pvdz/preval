@@ -25,7 +25,7 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
@@ -34,7 +34,7 @@ function f() {
   a = tmpNestedAssignObjPatternRhs;
   let tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
@@ -47,7 +47,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
@@ -56,7 +56,7 @@ function f() {
   a = tmpNestedAssignObjPatternRhs;
   const tmpReturnArg = a;
   return tmpReturnArg;
-}
+};
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };

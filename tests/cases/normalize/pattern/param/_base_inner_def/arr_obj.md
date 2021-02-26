@@ -15,7 +15,7 @@ function h([{ x = a }]) { return x}
 ## Normalized
 
 `````js filename=intro
-function h(tmpParamPattern) {
+let h = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternBeforeDefault = arrPatternStep.x;
@@ -27,7 +27,7 @@ function h(tmpParamPattern) {
     x = objPatternBeforeDefault;
   }
   return x;
-}
+};
 `````
 
 ## Output

@@ -19,8 +19,8 @@ $(x, y);
 ## Normalized
 
 `````js filename=intro
-var x;
-var y;
+let x = undefined;
+let y = undefined;
 $(x, y);
 x = 10;
 y = 20;

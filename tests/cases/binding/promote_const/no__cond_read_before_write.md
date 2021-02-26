@@ -28,7 +28,7 @@ var x;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(x, 'fail');

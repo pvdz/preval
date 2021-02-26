@@ -20,12 +20,12 @@ $(f([{ x: 1, y: 2, z: 3 }, 20, 30], 200));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let x = arrPatternStep.x;
   return x;
-}
+};
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpArrElement = { x: 1, y: 2, z: 3 };
@@ -38,12 +38,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
   const arrPatternStep = arrPatternSplat[0];
   const x = arrPatternStep.x;
   return x;
-}
+};
 const tmpArrElement = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
 const tmpCalleeParam = f(tmpCalleeParam$1, 200);

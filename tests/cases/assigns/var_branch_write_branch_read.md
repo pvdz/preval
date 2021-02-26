@@ -21,7 +21,7 @@ if ($('if')) {
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $('if');
 if (tmpIfTest) {
   x = 10;

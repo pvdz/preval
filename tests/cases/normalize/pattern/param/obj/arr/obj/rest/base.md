@@ -20,7 +20,7 @@ $(f({ x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
@@ -30,7 +30,7 @@ function f(tmpParamPattern) {
   const tmpCalleeParam$2 = undefined;
   let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return y;
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
 const tmpArrElement = { x: 1, y: 2, c: 3 };
@@ -44,14 +44,14 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
   const arrPatternStep = arrPatternSplat[0];
   const tmpCalleeParam$1 = [];
   const y = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
   return y;
-}
+};
 const tmpArrElement = { x: 1, y: 2, c: 3 };
 const tmpObjLitVal = [tmpArrElement, 13, 14];
 const tmpCalleeParam$4 = { x: tmpObjLitVal, a: 11, b: 12 };

@@ -25,7 +25,7 @@ $(a, b, c, d, e);
 ## Normalized
 
 `````js filename=intro
-function f($tdz$__p) {
+let f = function ($tdz$__p) {
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
@@ -42,7 +42,7 @@ function f($tdz$__p) {
   } else {
     p = $tdz$__p;
   }
-}
+};
 let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
@@ -57,7 +57,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-function f($tdz$__p) {
+const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
@@ -67,7 +67,7 @@ function f($tdz$__p) {
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   }
-}
+};
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };

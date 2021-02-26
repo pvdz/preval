@@ -15,7 +15,7 @@ function i([[ x ]] = c ) { return x }
 ## Normalized
 
 `````js filename=intro
-function i($tdz$__pattern) {
+let i = function ($tdz$__pattern) {
   let $tdz$__pattern_after_default = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
@@ -28,7 +28,7 @@ function i($tdz$__pattern) {
   let arrPatternSplat$1 = [...arrPatternStep];
   let x = arrPatternSplat$1[0];
   return x;
-}
+};
 `````
 
 ## Output

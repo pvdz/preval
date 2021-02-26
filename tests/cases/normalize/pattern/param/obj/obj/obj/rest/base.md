@@ -24,7 +24,7 @@ $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   const tmpCallCallee = objPatternRest;
@@ -33,7 +33,7 @@ function f(tmpParamPattern) {
   const tmpCalleeParam$2 = undefined;
   let z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return z;
-}
+};
 const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
 const tmpObjLitVal$1 = 13;
@@ -48,13 +48,13 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternNoDefault$1 = objPatternNoDefault.y;
   const tmpCalleeParam$1 = [];
   const z = objPatternRest(objPatternNoDefault$1, tmpCalleeParam$1, undefined);
   return z;
-}
+};
 const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };

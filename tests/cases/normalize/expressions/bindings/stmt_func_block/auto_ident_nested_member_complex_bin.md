@@ -28,7 +28,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let b = { x: 1 };
   let c = { y: 2 };
   let d = 3;
@@ -43,7 +43,7 @@ function f() {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
   $(a, b, c, d, e);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const b = { x: 1 };
   const c = { y: 2 };
   const varInitAssignLhsComputedObj = $(b);
@@ -62,7 +62,7 @@ function f() {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   $(7, b, c, 3, 4);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

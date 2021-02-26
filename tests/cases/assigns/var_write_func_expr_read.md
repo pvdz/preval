@@ -21,7 +21,7 @@ f();
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(1);
 x = $(2);
 const f = function () {

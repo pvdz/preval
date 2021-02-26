@@ -23,9 +23,9 @@ f();
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   $(x, 'closure');
-}
+};
 let x = $(1);
 x = $(2);
 $(x);
@@ -35,9 +35,9 @@ f();
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(x, 'closure');
-}
+};
 let x = $(1);
 x = $(2);
 $(x);

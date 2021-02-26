@@ -22,7 +22,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpReturnArg;
   const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
@@ -30,7 +30,7 @@ function f() {
   a = tmpNestedAssignObjPatternRhs.a;
   tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
-}
+};
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee$1 = $;
@@ -42,12 +42,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpNestedAssignObjPatternRhs.a;
   return tmpNestedAssignObjPatternRhs;
-}
+};
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = f();

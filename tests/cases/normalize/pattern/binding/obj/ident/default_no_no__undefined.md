@@ -27,7 +27,7 @@ $('bad');
 
 `````js filename=intro
 undefined.x;
-$('bad');
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

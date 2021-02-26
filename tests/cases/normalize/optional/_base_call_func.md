@@ -18,9 +18,9 @@ $(f?.(1, 2, 3));
 ## Normalized
 
 `````js filename=intro
-function f(...args) {
+let f = function (...args) {
   $('f', args);
-}
+};
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
@@ -35,9 +35,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(...args) {
+const f = function (...args) {
   $('f', args);
-}
+};
 let tmpCalleeParam = undefined;
 const tmpIfTest = f != null;
 if (tmpIfTest) {

@@ -17,7 +17,7 @@ if ($(true)) var x = 0;
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 0;

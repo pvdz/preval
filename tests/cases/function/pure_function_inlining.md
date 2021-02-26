@@ -56,7 +56,7 @@ rule('You have to listen to me');
 ## Normalized
 
 `````js filename=intro
-function rule(desc) {
+let rule = function (desc) {
   const func = $;
   const a = PURPLE + 'Rule:';
   const b = a + RESET;
@@ -64,7 +64,7 @@ function rule(desc) {
   const d = c + desc;
   const e = d + '"';
   func(e);
-}
+};
 const PURPLE = 'purple';
 const RESET = 'reset';
 rule('I want it my way');
@@ -74,11 +74,11 @@ rule('You have to listen to me');
 ## Output
 
 `````js filename=intro
-function rule(desc) {
+const rule = function (desc) {
   const d = 'purpleRule:reset "' + desc;
   const e = d + '"';
   $(e);
-}
+};
 rule('I want it my way');
 rule('You have to listen to me');
 `````

@@ -25,13 +25,13 @@ export const x = $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let x$1 = $(1);
   return x$1;
-}
-function g(x$2) {
+};
+let g = function (x$2) {
   return x$2;
-}
+};
 export class c {}
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -44,13 +44,13 @@ export { g };
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const x$1 = $(1);
   return x$1;
-}
-function g(x$2) {
+};
+const g = function (x$2) {
   return x$2;
-}
+};
 export class c {}
 const tmpCalleeParam = f();
 const x = $(tmpCalleeParam);

@@ -20,11 +20,11 @@ $(f('', 10));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   return 'bad';
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f('', 10);
 tmpCallCallee(tmpCalleeParam);
@@ -33,11 +33,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   [...objPatternNoDefault];
   return 'bad';
-}
+};
 const tmpCalleeParam = f('', 10);
 $(tmpCalleeParam);
 `````

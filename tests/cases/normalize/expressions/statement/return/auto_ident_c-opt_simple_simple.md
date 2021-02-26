@@ -24,7 +24,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
@@ -34,7 +34,7 @@ function f() {
     tmpReturnArg = tmpChainElementObject;
   }
   return tmpReturnArg;
-}
+};
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -46,7 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
@@ -54,7 +54,7 @@ function f() {
     tmpReturnArg = tmpChainElementObject;
   }
   return tmpReturnArg;
-}
+};
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

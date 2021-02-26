@@ -20,7 +20,7 @@ $(x, 'out');
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(1);
 x = $(2);
 $(x, 'out');
@@ -30,8 +30,8 @@ $(x, 'out');
 
 `````js filename=intro
 $(1);
-const x = $(2);
-$(x, 'out');
+const SSA_x = $(2);
+$(SSA_x, 'out');
 `````
 
 ## Globals

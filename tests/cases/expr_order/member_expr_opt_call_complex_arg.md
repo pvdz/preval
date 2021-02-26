@@ -20,8 +20,8 @@ a.b?.(x.y);
 ## Normalized
 
 `````js filename=intro
-var a;
-var x;
+let a = undefined;
+let x = undefined;
 const tmpChainRootProp = a;
 const tmpChainElementObject = tmpChainRootProp.b;
 const tmpIfTest = tmpChainElementObject != null;
@@ -37,13 +37,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpChainElementObject = undefined.b;
-const tmpIfTest = tmpChainElementObject != null;
-if (tmpIfTest) {
-  const tmpCallVal = tmpChainElementObject.call;
-  const tmpCalleeParam$1 = undefined.y;
-  tmpCallVal.call(tmpChainElementObject, undefined, tmpCalleeParam$1);
-}
+undefined.b;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

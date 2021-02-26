@@ -18,7 +18,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 const tmpIfTest = $(true);
 $(x);
 `````

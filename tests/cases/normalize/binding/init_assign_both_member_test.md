@@ -22,9 +22,9 @@ $(5, a);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 b = {
   get x() {
     $(1);
@@ -53,7 +53,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
-const b = {
+const SSA_b = {
   get x() {
     $(1);
     return 10;
@@ -62,7 +62,7 @@ const b = {
     $(2, n);
   },
 };
-const c = {
+const SSA_c = {
   get x() {
     $(3);
     return 20;
@@ -71,8 +71,8 @@ const c = {
     $(4, n$1);
   },
 };
-const tmpNestedAssignPropRhs = c.x;
-b.x = tmpNestedAssignPropRhs;
+const tmpNestedAssignPropRhs = SSA_c.x;
+SSA_b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 

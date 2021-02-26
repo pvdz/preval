@@ -24,7 +24,7 @@ $(f([{ x: [[1, 2, 3], 10], y: 11 }, 20, 30], 200));
 ## Normalized
 
 `````js filename=intro
-function f(tmpParamPattern) {
+let f = function (tmpParamPattern) {
   let arrPatternSplat = [...tmpParamPattern];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;
@@ -32,7 +32,7 @@ function f(tmpParamPattern) {
   let arrPatternStep$1 = arrPatternSplat$1[0];
   let arrPatternSplat$2 = [...arrPatternStep$1];
   return 'ok';
-}
+};
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpArrElement$1 = [1, 2, 3];
@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f(tmpParamPattern) {
+const f = function (tmpParamPattern) {
   const arrPatternSplat = [...tmpParamPattern];
   const arrPatternStep = arrPatternSplat[0];
   const objPatternNoDefault = arrPatternStep.x;
@@ -55,7 +55,7 @@ function f(tmpParamPattern) {
   const arrPatternStep$1 = arrPatternSplat$1[0];
   [...arrPatternStep$1];
   return 'ok';
-}
+};
 const tmpArrElement$1 = [1, 2, 3];
 const tmpObjLitVal = [tmpArrElement$1, 10];
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };

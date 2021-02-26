@@ -17,7 +17,7 @@ do var x = 0; while ($(x));
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
@@ -37,7 +37,7 @@ while (true) {
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;

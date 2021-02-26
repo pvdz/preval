@@ -23,10 +23,10 @@ f.call({pass: 1});
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const x = this;
   $(x);
-}
+};
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam = { pass: 1 };
@@ -36,9 +36,9 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(this);
-}
+};
 const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };
 tmpCallVal.call(f, tmpCalleeParam);

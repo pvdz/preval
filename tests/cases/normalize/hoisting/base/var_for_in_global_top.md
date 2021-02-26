@@ -19,7 +19,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(x);
 const tmpForInRhs = { y: 100 };
 for (x in tmpForInRhs) {
@@ -31,7 +31,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-var x;
+let x = undefined;
 $(x);
 const tmpForInRhs = { y: 100 };
 for (x in tmpForInRhs) {

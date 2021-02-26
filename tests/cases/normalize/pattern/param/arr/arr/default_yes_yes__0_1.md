@@ -21,21 +21,21 @@ f(true);
 ## Normalized
 
 `````js filename=intro
-function f(tmp) {
+let f = function (tmp) {
   const arrAssignPatternRhs = tmp;
   const arrPatternSplat = [...arrAssignPatternRhs];
   return 'bad';
-}
+};
 f(true);
 `````
 
 ## Output
 
 `````js filename=intro
-function f(tmp) {
+const f = function (tmp) {
   [...tmp];
   return 'bad';
-}
+};
 f(true);
 `````
 

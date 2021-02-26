@@ -15,12 +15,12 @@ function i({x: [ y ]}) { return y }
 ## Normalized
 
 `````js filename=intro
-function i(tmpParamPattern) {
+let i = function (tmpParamPattern) {
   let objPatternNoDefault = tmpParamPattern.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat[0];
   return y;
-}
+};
 `````
 
 ## Output

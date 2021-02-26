@@ -21,7 +21,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   let a = tmpCallCallee(tmpCalleeParam);
@@ -38,7 +38,7 @@ function f() {
     a = tmpCallCallee$2(tmpCalleeParam$2);
   }
   $(a);
-}
+};
 const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f();
 tmpCallCallee$3(tmpCalleeParam$3);
@@ -47,7 +47,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpCalleeParam = $(0);
   let a = $(tmpCalleeParam);
   if (a) {
@@ -61,7 +61,7 @@ function f() {
     a = $(tmpCalleeParam$2);
   }
   $(a);
-}
+};
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````

@@ -22,14 +22,14 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let c = 'foo';
   $(1);
   const tmpCompObj = $(2);
   const tmpCompProp = $('toString');
   tmpCompObj[tmpCompProp];
   $(c);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -38,13 +38,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(1);
   const tmpCompObj = $(2);
   const tmpCompProp = $('toString');
   tmpCompObj[tmpCompProp];
   $('foo');
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

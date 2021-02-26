@@ -22,8 +22,8 @@ f();
 ## Normalized
 
 `````js filename=intro
-function f() {
-  var x;
+let f = function () {
+  let x = undefined;
   $(x);
   const tmpForInRhs = { y: 100 };
   let tmpForInLhsNode;
@@ -34,15 +34,15 @@ function f() {
     $(x, 'for');
   }
   $(x);
-}
+};
 f();
 `````
 
 ## Output
 
 `````js filename=intro
-function f() {
-  var x;
+const f = function () {
+  let x = undefined;
   $(x);
   const tmpForInRhs = { y: 100 };
   let tmpForInLhsNode;
@@ -53,7 +53,7 @@ function f() {
     $(x, 'for');
   }
   $(x);
-}
+};
 f();
 `````
 

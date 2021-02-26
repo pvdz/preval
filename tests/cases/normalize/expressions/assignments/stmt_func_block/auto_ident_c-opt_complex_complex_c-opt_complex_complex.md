@@ -26,7 +26,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   const tmpObjLitVal = { y: 1 };
   let b = { x: tmpObjLitVal };
   let a = { a: 999, b: 1000 };
@@ -45,7 +45,7 @@ function f() {
     }
   }
   $(a);
-}
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   let SSA_a = undefined;
@@ -71,7 +71,7 @@ function f() {
     }
   }
   $(SSA_a);
-}
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````

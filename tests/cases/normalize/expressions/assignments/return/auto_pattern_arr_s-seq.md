@@ -22,7 +22,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-function f() {
+let f = function () {
   let tmpReturnArg;
   $(10);
   $(20);
@@ -31,7 +31,7 @@ function f() {
   a = arrPatternSplat[0];
   tmpReturnArg = tmpNestedAssignArrPatternRhs;
   return tmpReturnArg;
-}
+};
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat$1 = [...bindingPatternArrRoot];
 let a = arrPatternSplat$1[0];
@@ -44,14 +44,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-function f() {
+const f = function () {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs = [1, 2];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat[0];
   return tmpNestedAssignArrPatternRhs;
-}
+};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat$1 = [...bindingPatternArrRoot];
 let a = arrPatternSplat$1[0];

@@ -18,9 +18,9 @@ $($(a).x = $(b).x = $(c).x);
 ## Normalized
 
 `````js filename=intro
-var a;
-var b;
-var c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 a = { x: 1 };
 b = { x: 2 };
 c = { x: 3 };
@@ -39,12 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { x: 2 };
-const c = { x: 3 };
-const varInitAssignLhsComputedObj = $(a);
-const varInitAssignLhsComputedObj$1 = $(b);
-const tmpCompObj = $(c);
+const SSA_a = { x: 1 };
+const SSA_b = { x: 2 };
+const SSA_c = { x: 3 };
+const varInitAssignLhsComputedObj = $(SSA_a);
+const varInitAssignLhsComputedObj$1 = $(SSA_b);
+const tmpCompObj = $(SSA_c);
 const varInitAssignLhsComputedRhs$1 = tmpCompObj.x;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;

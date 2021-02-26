@@ -34,16 +34,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = undefined.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
-}
-$('bad');
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

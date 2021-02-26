@@ -18,15 +18,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = 'foo'.length;
+let x = 3;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = 'foo'.length;
-$(x);
+$(3);
 `````
 
 ## Globals

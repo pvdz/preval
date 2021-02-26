@@ -28,17 +28,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = undefined.x;
-const arrPatternSplat = [...objPatternNoDefault];
-y = arrPatternSplat.slice(0);
-$('bad');
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-y
+None
 
 ## Result
 

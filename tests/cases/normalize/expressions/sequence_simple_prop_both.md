@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 let a = 0;
-const tmpBinBothLhs = 'Identifier'.length;
-const tmpBinBothRhs = 'woop'.length;
+const tmpBinBothLhs = 10;
+const tmpBinBothRhs = 4;
 a = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
@@ -31,10 +31,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBinBothLhs = 'Identifier'.length;
-const tmpBinBothRhs = 'woop'.length;
-const SSA_a = tmpBinBothLhs === tmpBinBothRhs;
-$(SSA_a);
+$(false);
 `````
 
 ## Globals

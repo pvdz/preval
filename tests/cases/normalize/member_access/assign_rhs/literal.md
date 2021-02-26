@@ -27,8 +27,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const SSA_x = 'foo'.length;
-$(SSA_x);
+$(3);
 `````
 
 ## Globals

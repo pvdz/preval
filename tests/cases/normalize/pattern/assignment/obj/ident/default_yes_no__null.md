@@ -32,21 +32,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = null.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('fail');
-} else {
-  x = objPatternBeforeDefault;
-}
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

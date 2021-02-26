@@ -28,7 +28,6 @@ tmpCompObj.length;
 
 `````js filename=intro
 $(1);
-'foo'.length;
 `````
 
 ## Globals

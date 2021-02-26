@@ -35,7 +35,7 @@ $(a, arg);
 
 `````js filename=intro
 undefined.a;
-$(undefined, 1);
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

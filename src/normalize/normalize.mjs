@@ -5,6 +5,9 @@ import globals from '../globals.mjs';
 import walk from '../../lib/walk.mjs';
 
 let VERBOSE_TRACING = true;
+const ASSUME_BUILTINS = true; // Put any rules that assert the internals of JS (prototype) that exist are not changed under this flag.
+
+const DCE_ERROR_MSG = '[Preval]: Can not reach here';
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
@@ -1605,6 +1608,7 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.optional) {
           // `x = a?.b` -> `let x = a; if (x != null) x = x.b; else x = undefined;`
+          // TODO: if the chain starts with null or undefined, the rest of the chain can be dropped
 
           rule('Optional member expression should be if-else');
           example('a()?.b', 'tmp = a(), (tmp != null ? tmp.b : undefined)', () => !node.computed);
@@ -1625,6 +1629,122 @@ export function phaseNormalize(fdata, fname) {
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
+        }
+
+        if (ASSUME_BUILTINS) {
+          if (AST.isPrimitive(node.object)) {
+            // "foo".length -> 3
+            if (node.object.type === 'Literal') {
+              if (typeof node.object.value === 'string') {
+                if (node.computed) {
+                  // "foo"[0]
+                  if (node.property.type === 'Literal' && typeof node.property.value === 'number') {
+                    rule('Array access on string should be the actual character being accessed');
+                    example('"Hello!"[1]', '"e"');
+                    before(node, parentNode);
+
+                    const v = node.object.value[node.property.value]; // OOB yields undefined.
+                    const finalNode = v === undefined ? AST.identifier('undefined') : AST.literal(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                    body.splice(i, 1, finalParent);
+
+                    after(finalNode, finalParent);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                } else {
+                  ASSERT(node.property.type === 'Identifier');
+                  switch (node.property.name) {
+                    case 'length': {
+                      // "foo".length
+                      rule('The `length` property on a string is a static expression');
+                      example('"foo".length', '3');
+                      before(node, parentNode);
+
+                      const finalNode = AST.literal(node.object.value.length);
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        finalNode,
+                      );
+                      body.splice(i, 1, finalParent);
+
+                      after(finalNode, finalParent);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          if (node.object.type === 'ArrayExpression' && !node.computed && node.property.type === 'Identifier' && node.property.name === 'length') {
+            // This should not happen frequently :p But after some passes it might. More likely once we do value tracking.
+            rule('The `length` directly on an array literal should be replaced with the count of elements in that array');
+            example('[10, 20, 30].length', '3');
+            before(node, parentNode);
+
+            const finalNode = AST.literal(node.object.elements.length); // Node: elided elements still count so this is ok
+            const finalParent = wrapExpressionAs(
+              wrapKind,
+              varInitAssignKind,
+              varInitAssignId,
+              wrapLhs,
+              varOrAssignKind,
+              finalNode,
+            );
+            body.splice(i, 1, finalParent);
+
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
+        if (
+          (node.object.type === 'Literal' && node.object.raw === 'null') ||
+          (node.object.type === 'Identifier' && node.object.name === 'undefined')
+        ) {
+          if (node.computed) {
+            rule('Computed property on `null` or `undefined` should be replaced with a regular prop');
+            example('null[foo]', 'null.eliminatedComputedProp');
+            example('undefined[foo]', 'undefined.eliminatedComputedProp');
+            before(node, parentNode);
+
+            node.computed = false;
+            node.property = AST.identifier('eliminatedComputedProp'); // This does change the error message slightly...
+
+            after(node, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true; // Very unlikely that we don't also want to do the next one but one step at a time.
+          }
+
+          if (
+            body[i + 1]?.type === 'ThrowStatement' &&
+            body[i + 1].argument.type === 'Literal' &&
+            body[i + 1].argument.value === DCE_ERROR_MSG
+          ) {
+            if (VERBOSE_TRACING) log('Already has throw following it');
+          } else {
+            // Any property on this object results in a throw... What do we want to do with that? DCE the rest?
+            // We can compile an explicit throw after this line so the DCE check cleans up any remains...
+            rule('Property on `null` or `undefined` must lead to an exception');
+            example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type === 'Literal');
+            example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type !== 'Literal');
+            before(node, parentNode);
+
+            const finalNode = AST.throwStatement(AST.literal(DCE_ERROR_MSG));
+            body.splice(i + 1, 0, finalNode);
+
+            after(finalNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         if (node.computed && isComplexNode(node.property)) {
@@ -4404,6 +4524,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ChainExpression': {
+        // TODO: what if the chain starts with null/undefined?
         // This serves as a fence. If there's an optional member/call then it might be nested in multiple
         // layers of member expressions. A call may have multiple member expressions as callee.
         // The parser will weed out illegal cases.

@@ -41,8 +41,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 function f() {
-  const tmpChainElementObject = 'foo'.length;
-  const tmpReturnArg = $(tmpChainElementObject);
+  const tmpReturnArg = $(3);
   return tmpReturnArg;
 }
 const tmpCalleeParam$1 = f();

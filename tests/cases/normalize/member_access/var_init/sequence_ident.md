@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 $(1);
-const x = 'foo'.length;
-$(x);
+$(3);
 `````
 
 ## Globals

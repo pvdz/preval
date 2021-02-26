@@ -17,13 +17,13 @@
 ## Normalized
 
 `````js filename=intro
-'foo'.length;
+
 `````
 
 ## Output
 
 `````js filename=intro
-'foo'.length;
+
 `````
 
 ## Globals

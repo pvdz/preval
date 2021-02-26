@@ -31,8 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpChainElementObject = ''.length;
-$(tmpChainElementObject);
+$(0);
 `````
 
 ## Globals

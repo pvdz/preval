@@ -31,10 +31,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(100);
 undefined.a;
-$(a);
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

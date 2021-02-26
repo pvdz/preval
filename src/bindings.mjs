@@ -413,7 +413,10 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
   });
 }
 
-export function createReadRef({ parentNode, parentProp, parentIndex, node, rwCounter, scope, blockChain, innerLoop }) {
+export function createReadRef(obj) {
+  const { parentNode, parentProp, parentIndex, node, rwCounter, scope, blockChain, innerLoop, ...rest } = obj;
+  ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
+
   return {
     action: 'read',
     parentNode,
@@ -426,20 +429,24 @@ export function createReadRef({ parentNode, parentProp, parentIndex, node, rwCou
     innerLoop,
   };
 }
-export function createWriteRef({
-  parentNode,
-  parentProp,
-  parentIndex,
-  node,
-  rwCounter,
-  scope,
-  blockChain,
-  innerLoop,
-  decl = null,
-  assign = null,
-  funcDecl = null,
-  param = null,
-}) {
+export function createWriteRef(obj) {
+  const {
+    parentNode,
+    parentProp,
+    parentIndex,
+    node,
+    rwCounter,
+    scope,
+    blockChain,
+    innerLoop,
+    decl = null,
+    assign = null,
+    funcDecl = null,
+    param = null,
+    ...rest
+  } = obj;
+  ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
+
   return {
     action: 'write',
     parentNode,

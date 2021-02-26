@@ -34,8 +34,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-(1).a;
-$(1, 1);
+(+1).a;
+$(+1, 1);
 `````
 
 ## Globals

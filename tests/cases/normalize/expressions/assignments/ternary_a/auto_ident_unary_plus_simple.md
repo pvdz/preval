@@ -41,7 +41,7 @@ $(a, arg);
 `````js filename=intro
 const SSA_tmpCalleeParam = $(100);
 $(SSA_tmpCalleeParam);
-$(1, 1);
+$(+1, 1);
 `````
 
 ## Globals

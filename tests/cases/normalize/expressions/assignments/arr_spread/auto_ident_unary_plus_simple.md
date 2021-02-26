@@ -34,9 +34,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [...1];
+const tmpCalleeParam = [...+1];
 $(tmpCalleeParam);
-$(1, 1);
+$(+1, 1);
 `````
 
 ## Globals

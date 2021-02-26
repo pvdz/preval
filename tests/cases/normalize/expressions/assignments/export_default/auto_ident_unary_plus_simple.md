@@ -34,7 +34,7 @@ $(a, arg);
 `````js filename=intro
 const tmpExportDefault = 1;
 export { tmpExportDefault as default };
-$(1, 1);
+$(+1, 1);
 `````
 
 ## Globals

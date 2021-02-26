@@ -36,8 +36,8 @@ $(a, arg);
 
 `````js filename=intro
 const obj = {};
-obj[1];
-$(1, 1);
+obj[+1];
+$(+1, 1);
 `````
 
 ## Globals

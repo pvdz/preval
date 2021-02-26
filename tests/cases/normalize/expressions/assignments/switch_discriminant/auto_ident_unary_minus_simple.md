@@ -40,6 +40,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+-1;
 $(100);
 $(-1, 1);
 `````

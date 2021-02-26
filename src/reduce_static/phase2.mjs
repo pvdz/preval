@@ -67,8 +67,9 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
   const ast = fdata.tenkoOutput.ast;
   const toEliminate = [];
 
+  group('\n\n\nInlining constants with primitive values\n');
   let inlined = false;
-  let inlinedSomething = false;
+  let inlinedSomething = 0;
   do {
     inlined = false;
 
@@ -211,7 +212,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
     if (inlined) {
       log('Folded some constants. Trying loop again...\n\n');
-      inlinedSomething = true;
+      ++inlinedSomething;
     }
     groupEnd();
   } while (inlined);
@@ -249,12 +250,15 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
     groupEnd();
     // The read/write data is unreliable from here on out and requires a new phase1 step!
   }
+  log('Folded', inlinedSomething, 'constants.');
   if (inlinedSomething || toEliminate.length) {
-    log('Folded at least one constant. Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
-    return;
+    log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    return 'phase1';
   }
+  groupEnd();
 
   group('\n\n\nChecking for promotable vars\n');
+  let promoted = 0;
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
@@ -267,7 +271,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
     const readScopes = new Set();
     meta.reads.forEach((write) => readScopes.add(write.scope));
 
-    ASSERT(meta.writes.length > 0, 'all bindings must have at least some writes...'); // what about implicit globals?
+    ASSERT(meta.writes.length > 0, 'all bindings must have at least some writes...');
     const declData = meta.writes[0].decl;
 
     // "Does the binding have two writes, of which the first was a decl and the second a regular assignment?"
@@ -366,6 +370,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
               after(newNode, assign.assign.assignParent);
               inlined = true;
+              ++promoted;
             } else {
               log('There was at least one read before the write. Binding may not be a constant (it could be).');
             }
@@ -412,14 +417,15 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
       // Note: We asserted that the first write is a var decl, but a closure in func decl may still put a read as
       //       the first source ref. This is not a concern for params since they must go first in their scope (defaults are gone).
       if (rwOrder[0].action === 'write') {
-        ASSERT(rwOrder[0].decl || rwOrder[0].param, 'the first write should be a decl or param, otherwise maybe this is TDZ');
-        ASSERT(
-          rwOrder.slice(1).every((rw) => !rw.decl && !rw.param),
-          'a binding should have no more than one var decl / param after normalization',
-        );
-
         log('The initial binding:');
         source(rwOrder[0].parentNode);
+
+        ASSERT(rwOrder[0].decl || rwOrder[0].param, 'the first write should be a decl or param, otherwise maybe this is TDZ');
+        ASSERT(
+          rwOrder.slice(1).every((rw) => (!rw.decl && !rw.param ? true : !!void console.dir(rw, { depth: null }))),
+          'a binding should have no more than one var decl / param after normalization',
+          rwOrder,
+        );
 
         // Bail as soon as we find a read/write in a different scope. In that case we have a TDZ or closure
         // and source-order-"future" read/writes can not (easily) statically be guaranteed to be safe.
@@ -536,7 +542,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
                 }
 
                 after(b.node);
-
+                ++promoted;
                 //endit
               } else {
                 log('At least one subsequent usage can not reach this write so we can not easily SSA here');
@@ -550,6 +556,11 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
     groupEnd();
   });
   groupEnd();
+  log('Promoted', promoted, 'bindings to constant');
+  if (promoted) {
+    log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    return 'phase1';
+  }
 
   // The read/write data should still be in tact
 

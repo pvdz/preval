@@ -363,7 +363,7 @@ export function phaseNormalize(fdata, fname) {
     if (node.type === 'Identifier') {
       return false;
     }
-    if (incNested && node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+')) {
+    if (incNested && node.type === 'UnaryExpression' && (node.operator === '-')) {
       // -100 (is a unary expression!)
       if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
       // A little unlikely but you know

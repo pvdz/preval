@@ -31,7 +31,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-throw +1;
+throw 1;
 `````
 
 ## Globals

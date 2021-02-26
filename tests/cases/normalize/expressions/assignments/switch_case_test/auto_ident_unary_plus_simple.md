@@ -43,12 +43,12 @@ $(a, arg);
 `````js filename=intro
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = +1 === tmpSwitchTest;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(+1, 1);
+$(1, 1);
 `````
 
 ## Globals

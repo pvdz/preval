@@ -35,7 +35,7 @@ $(a, arg);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 let x;
-for (x of +1) {
+for (x of 1) {
 }
 $(a, 1);
 `````

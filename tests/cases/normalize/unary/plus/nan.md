@@ -17,13 +17,15 @@ $(+NaN);
 ## Normalized
 
 `````js filename=intro
-$(+NaN);
+const tmpCallCallee = $;
+const tmpCalleeParam = NaN;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(+NaN);
+$(NaN);
 `````
 
 ## Globals

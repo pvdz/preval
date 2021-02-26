@@ -36,10 +36,10 @@ $(a, arg);
 
 `````js filename=intro
 while (true) {
-  $(+1);
+  $(1);
   $(1);
 }
-$(+1, 1);
+$(1, 1);
 `````
 
 ## Globals

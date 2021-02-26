@@ -36,7 +36,7 @@ $(a, arg);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-obj[+1];
+obj[1];
 $(a, 1);
 `````
 

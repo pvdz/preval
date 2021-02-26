@@ -59,7 +59,7 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-$(+1, 1);
+$(1, 1);
 $('fail1');
 $('fail2');
 `````

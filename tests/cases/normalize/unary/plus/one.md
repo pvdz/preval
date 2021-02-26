@@ -17,13 +17,15 @@ $(+1);
 ## Normalized
 
 `````js filename=intro
-$(+1);
+const tmpCallCallee = $;
+const tmpCalleeParam = 1;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(+1);
+$(1);
 `````
 
 ## Globals

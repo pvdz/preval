@@ -17,13 +17,15 @@ $(+Infinity);
 ## Normalized
 
 `````js filename=intro
-$(+Infinity);
+const tmpCallCallee = $;
+const tmpCalleeParam = Infinity;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(+Infinity);
+$(Infinity);
 `````
 
 ## Globals

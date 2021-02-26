@@ -43,7 +43,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(+1, 1);
+$(1, 1);
 `````
 
 ## Globals

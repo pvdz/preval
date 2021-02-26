@@ -42,7 +42,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  (+1).x = tmpForOfLhsNode;
+  (1).x = tmpForOfLhsNode;
 }
 $(a, 1);
 `````

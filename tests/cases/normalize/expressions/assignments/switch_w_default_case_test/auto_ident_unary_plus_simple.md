@@ -60,7 +60,7 @@ $(a, arg);
 `````js filename=intro
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = +1 === tmpSwitchTest;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -78,7 +78,7 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-$(+1, 1);
+$(1, 1);
 `````
 
 ## Globals

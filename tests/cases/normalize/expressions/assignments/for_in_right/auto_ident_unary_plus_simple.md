@@ -35,9 +35,9 @@ $(a, arg);
 
 `````js filename=intro
 let x;
-for (x in +1) {
+for (x in 1) {
 }
-$(+1, 1);
+$(1, 1);
 `````
 
 ## Globals

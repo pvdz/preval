@@ -40,7 +40,7 @@ $(a, arg);
 
 `````js filename=intro
 const f = function () {
-  return +1;
+  return 1;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

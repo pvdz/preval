@@ -34,9 +34,8 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  let a = undefined;
-  a = $(1);
-  $(a);
+  const SSA_a = $(1);
+  $(SSA_a);
   break;
 }
 `````

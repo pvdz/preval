@@ -469,16 +469,27 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
                 // All previous reads must not be able to reach this assign (because that implies they're part of the loop)
                 for (let j = 0; j < i; ++j) {
                   const c = rwOrder[j];
-                  log('-', j, ':', c.action, ', same loop:', loopId === c.innerLoop, ', can reach:', c.blockChain.startsWith(b.blockChain));
-                  if (loopId === c.innerLoop) {
-                    log('At least one previous ref is in the same loop so this we can not SSA');
-                    canSSA = false;
-                    break;
-                  }
-                  if (c.blockChain.startsWith(b.blockChain)) {
-                    log('At least one previous ref can reach this write so this we can not SSA');
-                    canSSA = false;
-                    break;
+                  if (c.action === 'read') {
+                    log(
+                      '-',
+                      j,
+                      ':',
+                      c.action,
+                      ', same loop:',
+                      loopId === c.innerLoop,
+                      ', can reach:',
+                      c.blockChain.startsWith(b.blockChain),
+                    );
+                    if (loopId === c.innerLoop) {
+                      log('At least one previous ref is in the same loop so this we can not SSA');
+                      canSSA = false;
+                      break;
+                    }
+                    if (c.blockChain.startsWith(b.blockChain)) {
+                      log('At least one previous ref can reach this write so this we can not SSA');
+                      canSSA = false;
+                      break;
+                    }
                   }
                 }
               }

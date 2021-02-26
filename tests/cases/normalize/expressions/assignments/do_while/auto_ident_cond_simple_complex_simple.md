@@ -51,10 +51,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs = undefined;
-    tmpNestedComplexRhs = $(2);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const SSA_tmpNestedComplexRhs = $(2);
+    a = SSA_tmpNestedComplexRhs;
+    tmpIfTest = SSA_tmpNestedComplexRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -27,7 +27,7 @@ switch ($(1)) {
 `````js filename=intro
 const tmpSwitchTest = $(1);
 let x;
-var f = function () {
+let f = function () {
   const tmpReturnArg = $(x, 'x');
   return tmpReturnArg;
 };

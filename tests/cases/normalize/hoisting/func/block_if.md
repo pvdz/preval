@@ -22,10 +22,10 @@ if ($(1)) {
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  f();
-  function f() {
+  let f = function () {
     $(1);
-  }
+  };
+  f();
 }
 `````
 
@@ -34,10 +34,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  f();
-  function f() {
+  const f = function () {
     $(1);
-  }
+  };
+  f();
 }
 `````
 

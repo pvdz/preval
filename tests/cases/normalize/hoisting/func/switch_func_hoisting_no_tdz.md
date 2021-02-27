@@ -25,7 +25,7 @@ f(); // This should work
 
 `````js filename=intro
 const tmpSwitchTest = $(1);
-var f = function () {
+let f = function () {
   $('pass');
 };
 const tmpSwitchValue = tmpSwitchTest;

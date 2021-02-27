@@ -658,7 +658,7 @@ export function phaseNormalize(fdata, fname) {
   function _jumpTable(node, body, i, parent, funcNode) {
     switch (node.type) {
       case 'BlockStatement':
-        return transformBlock(node, body, i, parent);
+        return transformBlock(node, body, i, parent, true);
       case 'BreakStatement':
         return transformBreakStatement(node, body, i, parent);
       case 'ClassDeclaration':
@@ -687,8 +687,6 @@ export function phaseNormalize(fdata, fname) {
         return transformForxStatement(node, body, i, true);
       case 'ForOfStatement':
         return transformForxStatement(node, body, i, false);
-      case 'FunctionDeclaration':
-        return transformFunctionDeclaration(node, body, i);
       case 'IfStatement':
         return transformIfStatement(node, body, i);
       case 'ImportDeclaration':
@@ -729,6 +727,8 @@ export function phaseNormalize(fdata, fname) {
       case 'VariableDeclarator':
       case 'WithStatement':
         throw ASSERT(false, 'these should not be visited', node, node.type);
+      case 'FunctionDeclaration':
+        throw ASSERT(false, 'all func decls are eliminated by hoisting etc');
     }
 
     log(RED + 'Missed stmt:', node.type, RESET);
@@ -784,8 +784,12 @@ export function phaseNormalize(fdata, fname) {
     assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
-  function transformBlock(node, body, i, parent) {
+  function transformBlock(node, body, i, parent, isNested) {
+    // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
+    ASSERT(isNested ? body && i >= 0 : (!body && i < 0), 'body and index are only given for nested blocks');
+
     if (node.body.length === 0) {
+      if (isNested) {
       rule('Empty nested blocks should be eliminated');
       example('{ f(); { } g(); }', '{ f(); g(); }');
       before(node, parent);
@@ -795,14 +799,22 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode, parent);
       return true;
+      } else {
+        // Parent statement (if/while/for-x) should eliminate this if possible
+        return false;
+      }
     }
 
+    if (node.$p.hasFuncDecl) {
+      if (VERBOSE_TRACING) log('Should find at least one func decl in this block...');
+    }
     const varDeclsToHoist = []; // Note: these are block scoped var decls.
     for (let i = 0; i < node.body.length; ++i) {
       const enode = node.body[i];
       if (enode.type === 'FunctionDeclaration') {
         if (enode.$p.isBlockFuncDecl) {
           ASSERT(node.$p.hasFuncDecl, 'parent block should be marked as having a func decl', node);
+          if (VERBOSE_TRACING) log('- Found a func decl');
           // Hoist it to the top of the block as a var statement...
           varDeclsToHoist.push(enode);
           node.body.splice(i, 1);
@@ -813,6 +825,8 @@ export function phaseNormalize(fdata, fname) {
     if (varDeclsToHoist.length) {
       rule('Hoist block scoped var decls to the top of the block, sort them, and convert them to `let` decls');
       example('{ f(); function f(){} }', '{ let f = function(){}; f(); }');
+      before(node);
+
       varDeclsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
       node.body.unshift(
         ...varDeclsToHoist.map((enode) => {
@@ -830,6 +844,9 @@ export function phaseNormalize(fdata, fname) {
         }),
       );
       node.$p.hasFuncDecl = false;
+
+      after(node);
+      if (isNested) assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -866,9 +883,11 @@ export function phaseNormalize(fdata, fname) {
       );
     }
     parent.$p.returnBreakContinueThrow = node.$p.returnBreakContinueThrow;
-    if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
-      if (dce(body, i, 'after block')) {
-        return true;
+    if (isNested) {
+      if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
+        if (dce(body, i, 'after block')) {
+          return true;
+        }
       }
     }
 
@@ -5078,7 +5097,8 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    anyBlock(node.body);
+    ASSERT(node.body.type === 'BlockStatement');
+    transformBlock(node.body, undefined, -1, node, false);
 
     if (VERBOSE_TRACING) {
       log(
@@ -5235,31 +5255,6 @@ export function phaseNormalize(fdata, fname) {
       }
     });
   }
-  function transformFunctionDeclaration(node, body, i) {
-    if (hoistingOnce(node, 'funcdecl')) {
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-    // Array<name, expr>
-    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-    const newBindings = [];
-
-    transformFunctionParams(node, body, i, newBindings);
-
-    if (newBindings.length) {
-      if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-      node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    anyBlock(node.body, node);
-
-    return false;
-  }
   function transformIfStatement(node, body, i) {
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '!') {
@@ -5342,10 +5337,11 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    anyBlock(node.consequent);
+    ASSERT(node.consequent.type === 'BlockStatement');
+    transformBlock(node.consequent, undefined, -1, node, false);
 
     if (node.alternate) {
-      anyBlock(node.alternate);
+      transformBlock(node.alternate, undefined, -1, node, false);
 
       if (node.alternate.body.length === 0) {
         rule('If-else with empty else-block should have no else');
@@ -5540,7 +5536,7 @@ export function phaseNormalize(fdata, fname) {
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
-        const changed = anyBlock(fakeWrapper);
+        const changed = transformBlock(fakeWrapper, undefined, -1, node, false);
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
@@ -5644,7 +5640,8 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (VERBOSE_TRACING) log('label has block, noop');
-    const anyChange = anyBlock(node.body);
+    ASSERT(node.body.type === 'BlockStatement');
+    const anyChange =transformBlock(node.body, undefined, -1, node, false);
     if (VERBOSE_TRACING) log('Changes?', anyChange);
     if (anyChange) {
       if (VERBOSE_TRACING)
@@ -6235,12 +6232,12 @@ export function phaseNormalize(fdata, fname) {
             rule('[1.b/2] Function declaration in a switch block must be handled');
             example(
               'switch (x) { case x: f(); break; case y: function f(){} }',
-              'var f = function(){}; switch(x) { case x: f(); case y: }',
+              'let f = function(){}; switch(x) { case x: f(); case y: }',
             );
             before(snode, parentNode);
 
             ASSERT(snode.id, 'since this cannot be an export, the id must be present');
-            const newNode = AST.variableDeclaration(snode.id, snode, 'var');
+            const newNode = AST.variableDeclaration(snode.id, snode, 'let');
             // TODO: create a fresh var that clones snode props instead...
             snode.type = 'FunctionExpression';
             snode.id = null;
@@ -6512,13 +6509,14 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
   function transformTryStatement(node, body, i, parent) {
+    transformBlock(node.block, undefined, -1, node, false);
     anyBlock(node.block);
     if (node.handler) {
       // TODO: catch arg as pattern
-      anyBlock(node.handler.body);
+      transformBlock(node.handler.body, undefined, -1, node, false);
     }
     if (node.finalizer) {
-      anyBlock(node.finalizer);
+      transformBlock(node.finalizer, undefined, -1, node, false);
     }
 
     return false;
@@ -6859,7 +6857,8 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    anyBlock(node.body);
+    ASSERT(node.body.type === 'BlockStatement');
+    transformBlock(node.body, undefined, -1, node, false);
 
     if (node.body.body.length === 1 && node.body.body[0].type === 'BreakStatement') {
       const brk = node.body.body[0];

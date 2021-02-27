@@ -26,10 +26,10 @@ g();
 let g = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    f();
-    function f() {
+    let f = function () {
       $(1);
-    }
+    };
+    f();
   }
 };
 g();
@@ -41,10 +41,10 @@ g();
 const g = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    f();
-    function f() {
+    const f = function () {
       $(1);
-    }
+    };
+    f();
   }
 };
 g();

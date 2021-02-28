@@ -28,11 +28,11 @@ if (a) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   a = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (a) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  a = tmpCallCallee$2(tmpCalleeParam$2);
+  if (a) {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    a = tmpCallCallee$2(tmpCalleeParam$2);
+  }
 }
 let xyz = a;
 $(xyz);
@@ -47,10 +47,10 @@ let SSA_a = $(tmpCalleeParam);
 if (SSA_a) {
   const tmpCalleeParam$1 = $(1);
   SSA_a = $(tmpCalleeParam$1);
-}
-if (SSA_a) {
-  const tmpCalleeParam$2 = $(2);
-  SSA_a = $(tmpCalleeParam$2);
+  if (SSA_a) {
+    const tmpCalleeParam$2 = $(2);
+    SSA_a = $(tmpCalleeParam$2);
+  }
 }
 const xyz = SSA_a;
 $(xyz);

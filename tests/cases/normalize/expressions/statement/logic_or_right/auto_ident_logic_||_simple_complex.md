@@ -24,12 +24,12 @@ let tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   tmpIfTest = 0;
-}
-if (tmpIfTest) {
-} else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    tmpCallCallee(tmpCalleeParam);
+  }
 }
 $(a);
 `````
@@ -38,11 +38,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(100);
-if (tmpIfTest) {
-} else {
-  tmpIfTest = 0;
-}
+const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam = $(1);

@@ -33,12 +33,12 @@ for (tmpForInLhsNode in tmpForInRhs) {
     const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(1);
     tmpAssignMemLhsObj = tmpCallCallee$2(tmpCalleeParam$2);
-  }
-  if (tmpAssignMemLhsObj) {
-  } else {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    if (tmpAssignMemLhsObj) {
+    } else {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(2);
+      tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    }
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -59,11 +59,11 @@ for (tmpForInLhsNode in tmpForInRhs) {
   } else {
     const tmpCalleeParam$2 = $(1);
     tmpAssignMemLhsObj = $(tmpCalleeParam$2);
-  }
-  if (tmpAssignMemLhsObj) {
-  } else {
-    const tmpCalleeParam$3 = $(2);
-    tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    if (tmpAssignMemLhsObj) {
+    } else {
+      const tmpCalleeParam$3 = $(2);
+      tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    }
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

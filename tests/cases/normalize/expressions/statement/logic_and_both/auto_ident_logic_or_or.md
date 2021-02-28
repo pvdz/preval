@@ -28,12 +28,12 @@ if (tmpIfTest) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpIfTest) {
-} else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpIfTest = tmpCallCallee$2(tmpCalleeParam$2);
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpIfTest = tmpCallCallee$2(tmpCalleeParam$2);
+  }
 }
 if (tmpIfTest) {
   const tmpCallCallee$3 = $;
@@ -44,12 +44,12 @@ if (tmpIfTest) {
     const tmpCallCallee$4 = $;
     const tmpCalleeParam$4 = $(1);
     tmpIfTest$1 = tmpCallCallee$4(tmpCalleeParam$4);
-  }
-  if (tmpIfTest$1) {
-  } else {
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(2);
-    tmpCallCallee$5(tmpCalleeParam$5);
+    if (tmpIfTest$1) {
+    } else {
+      const tmpCallCallee$5 = $;
+      const tmpCalleeParam$5 = $(2);
+      tmpCallCallee$5(tmpCalleeParam$5);
+    }
   }
 }
 $(a);
@@ -65,24 +65,24 @@ if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(1);
   tmpIfTest = $(tmpCalleeParam$1);
-}
-if (tmpIfTest) {
-} else {
-  const tmpCalleeParam$2 = $(2);
-  tmpIfTest = $(tmpCalleeParam$2);
+  if (tmpIfTest) {
+  } else {
+    const tmpCalleeParam$2 = $(2);
+    tmpIfTest = $(tmpCalleeParam$2);
+  }
 }
 if (tmpIfTest) {
   const tmpCalleeParam$3 = $(0);
-  let tmpIfTest$1 = $(tmpCalleeParam$3);
+  const tmpIfTest$1 = $(tmpCalleeParam$3);
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$4 = $(1);
-    tmpIfTest$1 = $(tmpCalleeParam$4);
-  }
-  if (tmpIfTest$1) {
-  } else {
-    const tmpCalleeParam$5 = $(2);
-    $(tmpCalleeParam$5);
+    const SSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+    if (SSA_tmpIfTest$1) {
+    } else {
+      const tmpCalleeParam$5 = $(2);
+      $(tmpCalleeParam$5);
+    }
   }
 }
 $(a);

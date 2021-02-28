@@ -26,10 +26,10 @@ let tmpIfTest = tmpCallCallee(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   tmpIfTest = 2;
-}
-if (tmpIfTest) {
-} else {
-  $(100);
+  if (tmpIfTest) {
+  } else {
+    $(100);
+  }
 }
 $(a);
 `````
@@ -39,15 +39,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  tmpIfTest = 2;
-}
-if (tmpIfTest) {
-} else {
-  $(100);
-}
+$(tmpCalleeParam);
 $(a);
 `````
 

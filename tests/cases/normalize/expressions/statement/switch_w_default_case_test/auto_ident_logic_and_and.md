@@ -37,11 +37,11 @@ if (tmpBinLhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpBinLhs) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpBinLhs = tmpCallCallee$2(tmpCalleeParam$2);
+  if (tmpBinLhs) {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpBinLhs = tmpCallCallee$2(tmpCalleeParam$2);
+  }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -80,10 +80,10 @@ let tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = $(tmpCalleeParam$1);
-}
-if (tmpBinLhs) {
-  const tmpCalleeParam$2 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$2);
+  if (tmpBinLhs) {
+    const tmpCalleeParam$2 = $(2);
+    tmpBinLhs = $(tmpCalleeParam$2);
+  }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {

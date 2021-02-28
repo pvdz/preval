@@ -29,12 +29,12 @@ if (tmpCalleeParam) {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(1);
   tmpCalleeParam = tmpCallCallee$2(tmpCalleeParam$2);
-}
-if (tmpCalleeParam) {
-} else {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  }
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -50,11 +50,11 @@ if (tmpCalleeParam) {
 } else {
   const tmpCalleeParam$2 = $(1);
   tmpCalleeParam = $(tmpCalleeParam$2);
-}
-if (tmpCalleeParam) {
-} else {
-  const tmpCalleeParam$3 = $(2);
-  tmpCalleeParam = $(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
+  } else {
+    const tmpCalleeParam$3 = $(2);
+    tmpCalleeParam = $(tmpCalleeParam$3);
+  }
 }
 $(tmpCalleeParam);
 $(a);

@@ -29,11 +29,11 @@ if (tmpBinBothRhs) {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(1);
   tmpBinBothRhs = tmpCallCallee$2(tmpCalleeParam$2);
-}
-if (tmpBinBothRhs) {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpBinBothRhs) {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
+  }
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -50,10 +50,10 @@ let tmpBinBothRhs = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
   const tmpCalleeParam$2 = $(1);
   tmpBinBothRhs = $(tmpCalleeParam$2);
-}
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$3 = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$3);
+  if (tmpBinBothRhs) {
+    const tmpCalleeParam$3 = $(2);
+    tmpBinBothRhs = $(tmpCalleeParam$3);
+  }
 }
 const SSA_a = a * tmpBinBothRhs;
 $(SSA_a);

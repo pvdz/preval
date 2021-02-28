@@ -29,12 +29,12 @@ if (a) {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(1);
   a = tmpCallCallee$2(tmpCalleeParam$2);
-}
-if (a) {
-} else {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  a = tmpCallCallee$3(tmpCalleeParam$3);
+  if (a) {
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    a = tmpCallCallee$3(tmpCalleeParam$3);
+  }
 }
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -52,11 +52,11 @@ if (SSA_a) {
 } else {
   const tmpCalleeParam$2 = $(1);
   SSA_a = $(tmpCalleeParam$2);
-}
-if (SSA_a) {
-} else {
-  const tmpCalleeParam$3 = $(2);
-  SSA_a = $(tmpCalleeParam$3);
+  if (SSA_a) {
+  } else {
+    const tmpCalleeParam$3 = $(2);
+    SSA_a = $(tmpCalleeParam$3);
+  }
 }
 const tmpObjLitPropKey = SSA_a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };

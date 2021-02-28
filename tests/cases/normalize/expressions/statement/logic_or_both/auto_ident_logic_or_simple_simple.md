@@ -24,10 +24,10 @@ let tmpIfTest = 0;
 if (tmpIfTest) {
 } else {
   tmpIfTest = 2;
-}
-if (tmpIfTest) {
-} else {
-  tmpIfTest = 0;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = 0;
+  }
 }
 $(a);
 `````

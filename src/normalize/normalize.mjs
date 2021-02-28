@@ -5447,6 +5447,48 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
+    if (
+      i &&
+      body[i - 1].type === 'IfStatement' &&
+      node.test.type === 'Identifier' &&
+      body[i - 1].test.type === 'Identifier' &&
+      node.test.name === body[i - 1].test.name
+    ) {
+      // This is, if nothing else, a common artifact from our logical operator transform
+      // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
+      const prev = body[i - 1];
+      if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
+        // If prev node has no "true" branch then append this if to its alternate
+        rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
+        example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
+        before(body[i - 1]);
+        before(node);
+
+        prev.alternate.body.push(node);
+        body[i] = AST.emptyStatement();
+
+        after(body[i - 1]);
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      } else if (!prev.alternate && !node.alternate) {
+        // If prev node has no "false" branch then append this if to its consequent
+        // The idea is that if an ident was truthy before then only the truthy branch may change that
+        rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
+        example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
+        before(body[i - 1]);
+        before(node);
+
+        prev.consequent.body.push(node);
+        body[i] = AST.emptyStatement();
+
+        after(body[i - 1]);
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+    }
+
     return false;
   }
   function transformImportDeclaration(node, body, i, parent) {

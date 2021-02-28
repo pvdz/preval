@@ -28,11 +28,11 @@ if (tmpCalleeParam) {
   const tmpCallCallee$2 = $;
   const tmpCalleeParam$2 = $(1);
   tmpCalleeParam = tmpCallCallee$2(tmpCalleeParam$2);
-}
-if (tmpCalleeParam) {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  }
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -47,10 +47,10 @@ let tmpCalleeParam = $(tmpCalleeParam$1);
 if (tmpCalleeParam) {
   const tmpCalleeParam$2 = $(1);
   tmpCalleeParam = $(tmpCalleeParam$2);
-}
-if (tmpCalleeParam) {
-  const tmpCalleeParam$3 = $(2);
-  tmpCalleeParam = $(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
+    const tmpCalleeParam$3 = $(2);
+    tmpCalleeParam = $(tmpCalleeParam$3);
+  }
 }
 $(tmpCalleeParam);
 $(a);

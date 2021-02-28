@@ -35,12 +35,12 @@ while (true) {
       const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
       tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-    }
-    if (tmpNestedComplexRhs) {
-    } else {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+      if (tmpNestedComplexRhs) {
+      } else {
+        const tmpCallCallee$2 = $;
+        const tmpCalleeParam$2 = $(2);
+        tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+      }
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -70,11 +70,11 @@ while (true) {
     } else {
       const tmpCalleeParam$1 = $(1);
       tmpNestedComplexRhs = $(tmpCalleeParam$1);
-    }
-    if (tmpNestedComplexRhs) {
-    } else {
-      const tmpCalleeParam$2 = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$2);
+      if (tmpNestedComplexRhs) {
+      } else {
+        const tmpCalleeParam$2 = $(2);
+        tmpNestedComplexRhs = $(tmpCalleeParam$2);
+      }
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

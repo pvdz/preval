@@ -12,11 +12,12 @@
 
 `````js filename=intro
 foo: do {
+  $(1, 'outer');
   do {
-    $(1);
+    $(1, 'inner');
     continue foo;
-  } while (false);
-} while (false);
+  } while ($(false));
+} while ($(false));
 `````
 
 ## Normalized
@@ -27,20 +28,21 @@ foo: while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = false;
+    tmpIfTest = $(false);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
+    $(1, 'outer');
     let tmpDoWhileFlag$1 = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag$1;
       if (tmpIfTest$1) {
       } else {
-        tmpIfTest$1 = false;
+        tmpIfTest$1 = $(false);
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag$1 = false;
-        $(1);
+        $(1, 'inner');
         continue foo;
       } else {
         break;
@@ -60,20 +62,21 @@ foo: while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = false;
+    tmpIfTest = $(false);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
+    $(1, 'outer');
     let tmpDoWhileFlag$1 = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag$1;
       if (tmpIfTest$1) {
       } else {
-        tmpIfTest$1 = false;
+        tmpIfTest$1 = $(false);
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag$1 = false;
-        $(1);
+        $(1, 'inner');
         continue foo;
       } else {
         break;
@@ -92,7 +95,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 1, 'outer'
+ - 2: 1, 'inner'
+ - 3: false
  - eval returned: undefined
 
 Normalized calls: Same

@@ -28,12 +28,12 @@ if (tmpExportDefault) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpExportDefault = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpExportDefault) {
-} else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpExportDefault = tmpCallCallee$2(tmpCalleeParam$2);
+  if (tmpExportDefault) {
+  } else {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpExportDefault = tmpCallCallee$2(tmpCalleeParam$2);
+  }
 }
 export { tmpExportDefault as default };
 $(a);
@@ -49,11 +49,11 @@ if (tmpExportDefault) {
 } else {
   const tmpCalleeParam$1 = $(1);
   tmpExportDefault = $(tmpCalleeParam$1);
-}
-if (tmpExportDefault) {
-} else {
-  const tmpCalleeParam$2 = $(2);
-  tmpExportDefault = $(tmpCalleeParam$2);
+  if (tmpExportDefault) {
+  } else {
+    const tmpCalleeParam$2 = $(2);
+    tmpExportDefault = $(tmpCalleeParam$2);
+  }
 }
 export { tmpExportDefault as default };
 $(a);

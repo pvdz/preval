@@ -32,12 +32,12 @@ let f = function ($tdz$__p) {
       const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
       p = tmpCallCallee$1(tmpCalleeParam$1);
-    }
-    if (p) {
-    } else {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      p = tmpCallCallee$2(tmpCalleeParam$2);
+      if (p) {
+      } else {
+        const tmpCallCallee$2 = $;
+        const tmpCalleeParam$2 = $(2);
+        p = tmpCallCallee$2(tmpCalleeParam$2);
+      }
     }
   } else {
     p = $tdz$__p;
@@ -57,16 +57,16 @@ const f = function ($tdz$__p) {
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(0);
-    let SSA_p = $(tmpCalleeParam);
+    const SSA_p = $(tmpCalleeParam);
     if (SSA_p) {
     } else {
       const tmpCalleeParam$1 = $(1);
-      SSA_p = $(tmpCalleeParam$1);
-    }
-    if (SSA_p) {
-    } else {
-      const tmpCalleeParam$2 = $(2);
-      $(tmpCalleeParam$2);
+      const SSA_p$1 = $(tmpCalleeParam$1);
+      if (SSA_p$1) {
+      } else {
+        const tmpCalleeParam$2 = $(2);
+        $(tmpCalleeParam$2);
+      }
     }
   }
 };

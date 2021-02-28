@@ -27,11 +27,11 @@ if (tmpForInDeclRhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpForInDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpForInDeclRhs) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpForInDeclRhs = tmpCallCallee$2(tmpCalleeParam$2);
+  if (tmpForInDeclRhs) {
+    const tmpCallCallee$2 = $;
+    const tmpCalleeParam$2 = $(2);
+    tmpForInDeclRhs = tmpCallCallee$2(tmpCalleeParam$2);
+  }
 }
 let x;
 for (x in tmpForInDeclRhs) {
@@ -48,10 +48,10 @@ let tmpForInDeclRhs = $(tmpCalleeParam);
 if (tmpForInDeclRhs) {
   const tmpCalleeParam$1 = $(1);
   tmpForInDeclRhs = $(tmpCalleeParam$1);
-}
-if (tmpForInDeclRhs) {
-  const tmpCalleeParam$2 = $(2);
-  tmpForInDeclRhs = $(tmpCalleeParam$2);
+  if (tmpForInDeclRhs) {
+    const tmpCalleeParam$2 = $(2);
+    tmpForInDeclRhs = $(tmpCalleeParam$2);
+  }
 }
 let x;
 for (x in tmpForInDeclRhs) {

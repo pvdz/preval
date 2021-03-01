@@ -603,5 +603,10 @@ export function isPrimitive(node) {
     return ['undefined', 'NaN', 'Infinity'].includes(node.name);
   }
 
+  if (node.type === 'UnaryExpression' && node.operator === '-' && node.argument.type !== 'UnaryExpression') {
+    // Negative literals. Maybe we should only consider numbers here, not -null etc?
+    return isPrimitive(node.argument);
+  }
+
   return false;
 }

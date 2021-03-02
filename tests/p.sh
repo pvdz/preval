@@ -23,6 +23,8 @@ PARAM_LOG=''
 PARAM_LOGTO=''
 PARAM_MAXPASS=''
 PARAM_MAXPASS_COUNT=''
+PARAM_CLONELIMIT=''
+PARAM_CLONELIMIT_COUNT=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -61,6 +63,7 @@ Preval CLI Toolkit help:
  --log           Automatically write normalization and result outputs to a log file after every pass
  --logto <path>  Folder to dump log files to. Implies --log.
  --max-pass <n>  Stop processing after n passes.
+ --clone-limit n How often can a function be cloned before it's considered recursion?
  --node-bin=path Use this node binary to run stuff
  -C              Do not print colors
  -n              Only show normalized output
@@ -121,6 +124,11 @@ Preval CLI Toolkit help:
       shift
       PARAM_MAXPASS_COUNT=$1
       ;;
+    --clone-limit)
+      PARAM_CLONELIMIT="--clone-limit"
+      shift
+      PARAM_CLONELIMIT_COUNT=$1
+      ;;
     --node-bin)
       shift
       NODE_BIN=$1
@@ -172,7 +180,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}"
     ;;
 esac
 set +x

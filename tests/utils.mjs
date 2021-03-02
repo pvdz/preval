@@ -44,6 +44,7 @@ export function fromMarkdownCase(md, fname, config) {
         '\n' +
         '>\n' +
         '> (verbatim file)\n\n#TODO',
+      mdOptions: {},
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md + '\n`````\n'],
       fin: {
         intro: md,
@@ -69,6 +70,7 @@ export function fromMarkdownCase(md, fname, config) {
         '> ' +
         md.slice(3, md.indexOf('\n')) +
         '\n\n#TODO',
+      mdOptions: {},
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md.slice(md.indexOf('\n')).trim() + '\n`````\n'],
       fin: {
         intro: md.slice(md.indexOf('\n')),
@@ -77,20 +79,40 @@ export function fromMarkdownCase(md, fname, config) {
   } else if (md[0] === '#') {
     const [mdHead, ...chunks] = md.split('\n## ').filter((s) => !s.startsWith('Eval\n'));
     const mdInput = chunks.filter((s) => s.startsWith('Input\n'))[0];
+    const mdOptions = [...(chunks.filter((s) => s.startsWith('Options\n'))?.[0] ?? '').trim().matchAll(/^- (\w+)=(.+)$/gm)].reduce(
+      (options, match) => {
+        let [, name, value] = match;
+        name = name.trim();
+        switch (name.trim()) {
+          case 'maxPass':
+          case 'cloneLimit':
+            value = parseInt(value.trim());
+            if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
+            break;
+          default:
+            throw new Error('Test case contained unsupported option: `' + name + '` (with value `' + value + '`)');
+        }
+        options[name] = value;
+        return options;
+      },
+      {},
+    );
     ASSERT(mdInput, 'all test cases should have an input block', fname);
 
     const testCase = {
       md,
       fname,
       mdHead: mdHead.trim(),
+      mdOptions,
       mdChunks: chunks
         .filter(
           (s) =>
+            // Remove these names because they will be auto-generated (or maybe because ew don't want them?)
             !s.startsWith('Output\n') &&
-            !s.startsWith('Normalized') &&
-            !s.startsWith('Uniformed') &&
-            !s.startsWith('Globals') &&
-            !s.startsWith('Result'),
+            !s.startsWith('Normalized\n') &&
+            !s.startsWith('Uniformed\n') &&
+            !s.startsWith('Globals\n') &&
+            !s.startsWith('Result\n'),
         )
         .map((s) => '## ' + s.trim()),
       fin: {},
@@ -185,7 +207,7 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }) {
+export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }) {
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
   }
@@ -203,8 +225,8 @@ export function toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evall
         .slice(0, -3) // Remove .md
         .replace(/.*tests\/cases\//, '')
         .split('/')
-        .map((s) => s ? s.replace(/_/g, ' ').trim() : '{??}')
-        .map(s => s[0].toUpperCase() + s.slice(1))
+        .map((s) => (s ? s.replace(/_/g, ' ').trim() : '{??}'))
+        .map((s) => s[0].toUpperCase() + s.slice(1))
         .join(' > '),
   );
 

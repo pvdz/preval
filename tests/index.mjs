@@ -136,7 +136,7 @@ if (isMainThread) {
 }
 
 function runTestCase(
-  { md, mdHead, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
+  { md, mdHead, mdOptions, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
   relativeCaseIndex,
 ) {
   const caseIndex = workerOffset + relativeCaseIndex;
@@ -169,6 +169,7 @@ function runTestCase(
   if (withOutput) {
     console.log('Test case:', isExpectingAnError ? 'Expecting to throw an error' : 'Not expecting an error');
   }
+
   let expectedError = false;
   try {
     output = preval({
@@ -195,9 +196,10 @@ function runTestCase(
       },
       stopAfterNormalize: !!CONFIG.onlyNormalized,
       options: {
+        cloneLimit: CONFIG.cloneLimit ?? mdOptions?.cloneLimit ?? 10,
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
-        maxPass: CONFIG.maxPass,
+        maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
       }
     });
   } catch (e) {

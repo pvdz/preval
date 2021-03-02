@@ -21,6 +21,16 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
 
+  {
+    const {logDir, logPasses, maxPass, cloneLimit, ...rest} = options;
+    if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
+  }
+
+  if (VERBOSE_TRACING) {
+    console.log('Preval options:');
+    console.log(options);
+  }
+
   const entryPoint = resolve(entryPointFile);
 
   const modules = new Map([

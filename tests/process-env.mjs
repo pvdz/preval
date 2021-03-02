@@ -19,6 +19,8 @@ export function parseTestArgs() {
     onlyNormalized: false,
     threads: 1, // By default, only run one thread
     threadIndex: 0, // ... and this will be that thread
+    cloneLimit: undefined, // How many times can a function be cloned for primitive inlining before it's considered recursion?
+    maxPass: undefined,
   };
 
   while (argv.length) {
@@ -86,6 +88,11 @@ export function parseTestArgs() {
 
       case '--max-pass': {
         config.maxPass = +argv.shift();
+        break;
+      }
+
+      case '--clone-limit': {
+        config.cloneLimit = +argv.shift();
         break;
       }
 

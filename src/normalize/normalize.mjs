@@ -363,7 +363,7 @@ export function phaseNormalize(fdata, fname) {
     if (node.type === 'Identifier') {
       return false;
     }
-    if (incNested && node.type === 'UnaryExpression' && (node.operator === '-')) {
+    if (incNested && node.type === 'UnaryExpression' && node.operator === '-') {
       // -100 (is a unary expression!)
       if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
       // A little unlikely but you know
@@ -786,19 +786,19 @@ export function phaseNormalize(fdata, fname) {
   }
   function transformBlock(node, body, i, parent, isNested) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
-    ASSERT(isNested ? body && i >= 0 : (!body && i < 0), 'body and index are only given for nested blocks');
+    ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
     if (node.body.length === 0) {
       if (isNested) {
-      rule('Empty nested blocks should be eliminated');
-      example('{ f(); { } g(); }', '{ f(); g(); }');
-      before(node, parent);
+        rule('Empty nested blocks should be eliminated');
+        example('{ f(); { } g(); }', '{ f(); g(); }');
+        before(node, parent);
 
-      const newNode = AST.emptyStatement();
-      body.splice(i, 1, newNode);
+        const newNode = AST.emptyStatement();
+        body.splice(i, 1, newNode);
 
-      after(newNode, parent);
-      return true;
+        after(newNode, parent);
+        return true;
       } else {
         // Parent statement (if/while/for-x) should eliminate this if possible
         return false;
@@ -5714,7 +5714,7 @@ export function phaseNormalize(fdata, fname) {
 
     if (VERBOSE_TRACING) log('label has block, noop');
     ASSERT(node.body.type === 'BlockStatement');
-    const anyChange =transformBlock(node.body, undefined, -1, node, false);
+    const anyChange = transformBlock(node.body, undefined, -1, node, false);
     if (VERBOSE_TRACING) log('Changes?', anyChange);
     if (anyChange) {
       if (VERBOSE_TRACING)

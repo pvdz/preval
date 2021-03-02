@@ -54,11 +54,12 @@ while (true) {
       if (tmpIfTest$2) {
         $('case');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        $('do not visit, default');
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          $('do not visit, default');
+          break tmpSwitchBreak;
+        }
       }
     }
     $('infiloop, do not eliminate');
@@ -88,11 +89,12 @@ while (true) {
       if (tmpIfTest$2) {
         $('case');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        $('do not visit, default');
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          $('do not visit, default');
+          break tmpSwitchBreak;
+        }
       }
     }
     $('infiloop, do not eliminate');

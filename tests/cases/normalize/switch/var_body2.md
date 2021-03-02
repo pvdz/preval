@@ -44,10 +44,11 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     x = 10;
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $(11);
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $(11);
+    }
   }
 }
 $(x);
@@ -75,10 +76,11 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     x = 10;
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $(11);
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $(11);
+    }
   }
 }
 $(x);

@@ -28,8 +28,9 @@ let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
+  } else {
+    $('keep, do not eval');
   }
-  $('keep, do not eval');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -43,8 +44,9 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
+  } else {
+    $('keep, do not eval');
   }
-  $('keep, do not eval');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

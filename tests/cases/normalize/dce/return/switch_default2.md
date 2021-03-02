@@ -41,13 +41,15 @@ let f = function () {
   if (tmpIfTest$1) {
     $('keep, do not eval');
     return undefined;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    } else {
+      $('fail');
+    }
   }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  }
-  $('fail');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -69,13 +71,15 @@ const f = function () {
   if (tmpIfTest$1) {
     $('keep, do not eval');
     return undefined;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    } else {
+      $('fail');
+    }
   }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  }
-  $('fail');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

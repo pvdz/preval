@@ -29,8 +29,9 @@ let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
+  } else {
+    throw 3;
   }
-  throw 3;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -44,8 +45,9 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     throw 2;
+  } else {
+    throw 3;
   }
-  throw 3;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -34,8 +34,8 @@ let f = function () {
     return undefined;
   } else {
     return undefined;
+    let x = $('fail');
   }
-  let x = $('fail');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -53,7 +53,6 @@ const f = function () {
   } else {
     return undefined;
   }
-  let x = $('fail');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -61,7 +60,9 @@ $(tmpCalleeParam);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x
 
 ## Result
 

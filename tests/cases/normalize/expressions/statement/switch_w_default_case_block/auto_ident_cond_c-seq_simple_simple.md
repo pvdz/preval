@@ -55,14 +55,15 @@ tmpSwitchBreak: {
       tmpCallCallee(tmpCalleeParam);
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
+  } else {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
+      $('fail1');
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('fail2');
+    }
   }
 }
 $(a);
@@ -95,14 +96,15 @@ tmpSwitchBreak: {
       $(tmpCalleeParam);
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
+  } else {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
+      $('fail1');
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('fail2');
+    }
   }
 }
 $(a);

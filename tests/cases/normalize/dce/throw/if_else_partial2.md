@@ -28,10 +28,10 @@ $(f());
 let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
+    $('keep, do not eval');
   } else {
     throw 2;
   }
-  $('keep, do not eval');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -44,10 +44,10 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
+    $('keep, do not eval');
   } else {
     throw 2;
   }
-  $('keep, do not eval');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

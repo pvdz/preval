@@ -37,8 +37,9 @@ let f = function () {
   if (tmpIfTest$1) {
     const tmpReturnArg = $(2, 'ret');
     return tmpReturnArg;
+  } else {
+    $('keep, do not eval');
   }
-  $('keep, do not eval');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -60,8 +61,9 @@ const f = function () {
   if (tmpIfTest$1) {
     const tmpReturnArg = $(2, 'ret');
     return tmpReturnArg;
+  } else {
+    $('keep, do not eval');
   }
-  $('keep, do not eval');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

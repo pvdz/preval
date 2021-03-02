@@ -61,14 +61,15 @@ tmpSwitchBreak: {
       }
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $('fail1');
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$6) {
-    $('fail2');
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $('fail1');
+    }
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$6) {
+      $('fail2');
+    }
   }
 }
 $(a);
@@ -105,14 +106,15 @@ tmpSwitchBreak: {
       }
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $('fail1');
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$6) {
-    $('fail2');
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $('fail1');
+    }
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$6) {
+      $('fail2');
+    }
   }
 }
 $(a);

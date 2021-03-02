@@ -95,24 +95,26 @@ tmpSwitchBreak: {
   if (tmpIfTest$5) {
     $(1);
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$6) {
-    $(2);
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$7) {
-    $(3);
-  }
-  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$8) {
-    $(4);
-    break tmpSwitchBreak;
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$9) {
-    $(5);
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$6) {
+      $(2);
+    }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
+      $(3);
+    }
+    const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$8) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+      if (tmpIfTest$9) {
+        $(5);
+        break tmpSwitchBreak;
+      }
+    }
   }
 }
 `````
@@ -155,24 +157,26 @@ tmpSwitchBreak: {
   if (tmpIfTest$5) {
     $(1);
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$6) {
-    $(2);
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$7) {
-    $(3);
-  }
-  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$8) {
-    $(4);
-    break tmpSwitchBreak;
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$9) {
-    $(5);
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$6) {
+      $(2);
+    }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
+      $(3);
+    }
+    const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$8) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+      if (tmpIfTest$9) {
+        $(5);
+        break tmpSwitchBreak;
+      }
+    }
   }
 }
 `````

@@ -42,12 +42,14 @@ while (true) {
     if (tmpIfTest$2) {
       $('keep, do not eval');
       continue;
+    } else {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$3) {
+        continue;
+      } else {
+        $('eliminate');
+      }
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      continue;
-    }
-    $('eliminate');
   } else {
     break;
   }
@@ -72,12 +74,14 @@ while (true) {
     if (tmpIfTest$2) {
       $('keep, do not eval');
       continue;
+    } else {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$3) {
+        continue;
+      } else {
+        $('eliminate');
+      }
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      continue;
-    }
-    $('eliminate');
   } else {
     break;
   }

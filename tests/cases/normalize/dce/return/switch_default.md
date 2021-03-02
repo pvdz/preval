@@ -40,11 +40,12 @@ let f = function () {
   if (tmpIfTest$1) {
     $('wrong branch');
     return undefined;
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    }
   }
 };
 const tmpCallCallee = $;
@@ -67,11 +68,12 @@ const f = function () {
   if (tmpIfTest$1) {
     $('wrong branch');
     return undefined;
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    }
   }
 };
 const tmpCalleeParam = f();

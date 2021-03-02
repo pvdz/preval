@@ -57,19 +57,22 @@ let f = function () {
   if (tmpIfTest$2) {
     $('keep, do not eval');
     return undefined;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('keep, eval');
+      return undefined;
+    } else {
+      const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+      if (tmpIfTest$4) {
+        $('keep, do not eval');
+        const tmpReturnArg = $(2, 'ret');
+        return tmpReturnArg;
+      } else {
+        $('eliminate after switch');
+      }
+    }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $('keep, eval');
-    return undefined;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
-    $('keep, do not eval');
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  }
-  $('eliminate after switch');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -97,19 +100,22 @@ const f = function () {
   if (tmpIfTest$2) {
     $('keep, do not eval');
     return undefined;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $('keep, eval');
+      return undefined;
+    } else {
+      const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+      if (tmpIfTest$4) {
+        $('keep, do not eval');
+        const tmpReturnArg = $(2, 'ret');
+        return tmpReturnArg;
+      } else {
+        $('eliminate after switch');
+      }
+    }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $('keep, eval');
-    return undefined;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$4) {
-    $('keep, do not eval');
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  }
-  $('eliminate after switch');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

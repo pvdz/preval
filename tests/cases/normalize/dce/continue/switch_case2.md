@@ -39,8 +39,9 @@ while (true) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       continue;
+    } else {
+      $('keep');
     }
-    $('keep');
   } else {
     break;
   }
@@ -64,8 +65,9 @@ while (true) {
     const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$2) {
       continue;
+    } else {
+      $('keep');
     }
-    $('keep');
   } else {
     break;
   }

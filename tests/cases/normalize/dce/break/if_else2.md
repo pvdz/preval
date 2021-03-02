@@ -31,8 +31,9 @@ while (true) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       break;
+    } else {
+      break;
     }
-    break;
   } else {
     break;
   }
@@ -49,8 +50,9 @@ while (true) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       break;
+    } else {
+      break;
     }
-    break;
   } else {
     break;
   }

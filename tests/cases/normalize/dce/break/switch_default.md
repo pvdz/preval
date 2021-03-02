@@ -43,10 +43,11 @@ while (true) {
       if (tmpIfTest$2) {
         $('wrong branch');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          break tmpSwitchBreak;
+        }
       }
     }
   } else {
@@ -74,10 +75,11 @@ while (true) {
       if (tmpIfTest$2) {
         $('wrong branch');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          break tmpSwitchBreak;
+        }
       }
     }
   } else {

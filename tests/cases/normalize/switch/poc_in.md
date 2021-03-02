@@ -82,11 +82,12 @@ tmpSwitchBreak: {
   if (tmpIfTest$4) {
     $('B');
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('C');
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('C');
+      break tmpSwitchBreak;
+    }
   }
 }
 `````
@@ -121,11 +122,12 @@ tmpSwitchBreak: {
   if (tmpIfTest$4) {
     $('B');
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('C');
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('C');
+      break tmpSwitchBreak;
+    }
   }
 }
 `````

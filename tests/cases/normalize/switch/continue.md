@@ -54,15 +54,17 @@ while (true) {
       if (tmpIfTest$2) {
         run = false;
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        continue;
-      }
-      const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$4) {
-        run = false;
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          continue;
+        } else {
+          const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+          if (tmpIfTest$4) {
+            run = false;
+            break tmpSwitchBreak;
+          }
+        }
       }
     }
   } else {

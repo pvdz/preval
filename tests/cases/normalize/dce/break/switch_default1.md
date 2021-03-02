@@ -43,10 +43,11 @@ while (true) {
       if (tmpIfTest$2) {
         $('keep, do not eval');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          break tmpSwitchBreak;
+        }
       }
     }
     $('keep');
@@ -75,10 +76,11 @@ while (true) {
       if (tmpIfTest$2) {
         $('keep, do not eval');
         break tmpSwitchBreak;
-      }
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          break tmpSwitchBreak;
+        }
       }
     }
     $('keep');

@@ -66,9 +66,10 @@ tmpSwitchBreak: {
   const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
   if (tmpIfTest$8) {
     break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+    const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
   }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
-  const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
 }
 `````
 
@@ -116,9 +117,10 @@ tmpSwitchBreak: {
   const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
   if (tmpIfTest$8) {
     break tmpSwitchBreak;
+  } else {
+    tmpSwitchCaseToStart <= 4;
+    tmpSwitchCaseToStart <= 5;
   }
-  tmpSwitchCaseToStart <= 4;
-  tmpSwitchCaseToStart <= 5;
 }
 `````
 

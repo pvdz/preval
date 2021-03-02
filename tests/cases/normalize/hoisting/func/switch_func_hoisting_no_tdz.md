@@ -46,8 +46,9 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     f();
     break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 }
 f$1();
 `````
@@ -76,8 +77,9 @@ tmpSwitchBreak: {
   if (tmpIfTest$2) {
     f();
     break tmpSwitchBreak;
+  } else {
+    tmpSwitchCaseToStart <= 1;
   }
-  tmpSwitchCaseToStart <= 1;
 }
 f$1();
 `````

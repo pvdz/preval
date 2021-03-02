@@ -40,11 +40,12 @@ let f = function () {
   if (tmpIfTest$1) {
     $('wrong branch');
     throw 'wrong exit';
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpThrowArg = $(2, 'throw');
-    throw tmpThrowArg;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpThrowArg = $(2, 'throw');
+      throw tmpThrowArg;
+    }
   }
 };
 const tmpCallCallee = $;
@@ -67,11 +68,12 @@ const f = function () {
   if (tmpIfTest$1) {
     $('wrong branch');
     throw 'wrong exit';
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpThrowArg = $(2, 'throw');
-    throw tmpThrowArg;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpThrowArg = $(2, 'throw');
+      throw tmpThrowArg;
+    }
   }
 };
 const tmpCalleeParam = f();

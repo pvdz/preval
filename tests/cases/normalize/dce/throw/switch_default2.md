@@ -41,13 +41,15 @@ let f = function () {
   if (tmpIfTest$1) {
     $('keep, do not eval');
     throw 'wrong exit';
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpThrowArg = $(2, 'ret');
+      throw tmpThrowArg;
+    } else {
+      $('fail');
+    }
   }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpThrowArg = $(2, 'ret');
-    throw tmpThrowArg;
-  }
-  $('fail');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -69,13 +71,15 @@ const f = function () {
   if (tmpIfTest$1) {
     $('keep, do not eval');
     throw 'wrong exit';
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      const tmpThrowArg = $(2, 'ret');
+      throw tmpThrowArg;
+    } else {
+      $('fail');
+    }
   }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    const tmpThrowArg = $(2, 'ret');
-    throw tmpThrowArg;
-  }
-  $('fail');
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

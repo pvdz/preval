@@ -79,17 +79,18 @@ exit: {
   if (tmpIfTest$1) {
     $('B');
     break exit;
-  }
-  let tmpIfTest$2 = fallthrough;
-  if (tmpIfTest$2) {
   } else {
-    const tmpBinBothLhs$2 = x;
-    const tmpBinBothRhs$2 = $(3);
-    tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    $('C');
-    break exit;
+    let tmpIfTest$2 = fallthrough;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpBinBothLhs$2 = x;
+      const tmpBinBothRhs$2 = $(3);
+      tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
+    }
+    if (tmpIfTest$2) {
+      $('C');
+      break exit;
+    }
   }
 }
 `````
@@ -118,16 +119,17 @@ exit: {
   if (tmpIfTest$1) {
     $('B');
     break exit;
-  }
-  let tmpIfTest$2 = fallthrough;
-  if (tmpIfTest$2) {
   } else {
-    const tmpBinBothRhs$2 = $(3);
-    tmpIfTest$2 = undefined === tmpBinBothRhs$2;
-  }
-  if (tmpIfTest$2) {
-    $('C');
-    break exit;
+    let tmpIfTest$2 = fallthrough;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpBinBothRhs$2 = $(3);
+      tmpIfTest$2 = undefined === tmpBinBothRhs$2;
+    }
+    if (tmpIfTest$2) {
+      $('C');
+      break exit;
+    }
   }
 }
 `````

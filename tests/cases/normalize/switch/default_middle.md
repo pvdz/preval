@@ -108,28 +108,30 @@ tmpSwitchBreak: {
   if (tmpIfTest$5) {
     $(1);
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$6) {
-    $(2);
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$7) {
-    $('d');
-  }
-  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$8) {
-    $(3);
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$9) {
-    $(4);
-    break tmpSwitchBreak;
-  }
-  const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
-  if (tmpIfTest$10) {
-    $(5);
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$6) {
+      $(2);
+    }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
+      $('d');
+    }
+    const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$8) {
+      $(3);
+    }
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$9) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
+      if (tmpIfTest$10) {
+        $(5);
+        break tmpSwitchBreak;
+      }
+    }
   }
 }
 `````
@@ -172,28 +174,30 @@ tmpSwitchBreak: {
   if (tmpIfTest$5) {
     $(1);
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$6) {
-    $(2);
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$7) {
-    $('d');
-  }
-  const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$8) {
-    $(3);
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$9) {
-    $(4);
-    break tmpSwitchBreak;
-  }
-  const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
-  if (tmpIfTest$10) {
-    $(5);
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$6) {
+      $(2);
+    }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
+      $('d');
+    }
+    const tmpIfTest$8 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$8) {
+      $(3);
+    }
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$9) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$10 = tmpSwitchCaseToStart <= 5;
+      if (tmpIfTest$10) {
+        $(5);
+        break tmpSwitchBreak;
+      }
+    }
   }
 }
 `````

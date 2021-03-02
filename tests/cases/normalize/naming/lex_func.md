@@ -31,10 +31,11 @@ let f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     return a$1;
+  } else {
+    let a = $(1);
+    $(a);
+    return a;
   }
-  let a = $(1);
-  $(a);
-  return a;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -50,10 +51,11 @@ const f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     return a$1;
+  } else {
+    const a = $(1);
+    $(a);
+    return a;
   }
-  const a = $(1);
-  $(a);
-  return a;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

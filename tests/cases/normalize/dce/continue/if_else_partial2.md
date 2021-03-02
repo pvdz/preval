@@ -30,10 +30,10 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
+      $('keep');
     } else {
       continue;
     }
-    $('keep');
   } else {
     break;
   }
@@ -49,10 +49,10 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
+      $('keep');
     } else {
       continue;
     }
-    $('keep');
   } else {
     break;
   }

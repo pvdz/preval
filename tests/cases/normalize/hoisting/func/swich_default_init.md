@@ -39,11 +39,12 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    f();
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      f();
+      break tmpSwitchBreak;
+    }
   }
 }
 `````
@@ -65,11 +66,12 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$2) {
-    f();
-    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$2) {
+      f();
+      break tmpSwitchBreak;
+    }
   }
 }
 `````

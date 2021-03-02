@@ -41,8 +41,9 @@ if (objPatternCrashTest) {
 if (objPatternCrashTest) {
   null.cannotDestructureThis;
   throw '[Preval]: Can not reach here';
+} else {
+  $('bad');
 }
-$('bad');
 `````
 
 ## Globals

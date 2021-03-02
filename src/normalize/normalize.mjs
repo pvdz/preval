@@ -688,7 +688,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ForOfStatement':
         return transformForxStatement(node, body, i, false);
       case 'IfStatement':
-        return transformIfStatement(node, body, i);
+        return transformIfStatement(node, body, i, parent);
       case 'ImportDeclaration':
         return transformImportDeclaration(node, body, i, parent);
       case 'LabeledStatement':
@@ -5255,7 +5255,7 @@ export function phaseNormalize(fdata, fname) {
       }
     });
   }
-  function transformIfStatement(node, body, i) {
+  function transformIfStatement(node, body, i, parentNode) {
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '!') {
         // It's kind of redundant since there are plenty of cases where we'll need to deal with
@@ -5426,6 +5426,37 @@ export function phaseNormalize(fdata, fname) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
+    }
+
+    if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
+      // Doesn't matter what kind of abrupt completion it was
+      // Inline the remainder of the parent block into the else branch
+      rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
+      example('if (x) return; f();', 'if (x) return; else f();');
+      before(node, parentNode);
+
+      if (!node.alternate) node.alternate = AST.blockStatement();
+      node.alternate.body.push(...body.slice(i + 1));
+      body.length = i + 1;
+
+      after(parentNode);
+      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+      return true;
+    }
+
+    if (node.alternate?.$p.returnBreakContinueThrow && i < body.length - 1) {
+      // Doesn't matter what kind of abrupt completion it was
+      // Inline the remainder of the parent block into the if branch
+      rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
+      example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
+      before(node, parentNode);
+
+      node.consequent.body.push(...body.slice(i + 1));
+      body.length = i + 1;
+
+      after(parentNode);
+      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+      return true;
     }
 
     if (VERBOSE_TRACING) {

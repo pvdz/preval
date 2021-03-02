@@ -56,14 +56,15 @@ tmpSwitchBreak: {
       const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
+  } else {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
+      $('fail1');
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('fail2');
+    }
   }
 }
 $(a);
@@ -95,14 +96,15 @@ tmpSwitchBreak: {
       tmpChainElementObject.call(b, 1);
     }
     break tmpSwitchBreak;
-  }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    $('fail1');
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$5) {
-    $('fail2');
+  } else {
+    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$4) {
+      $('fail1');
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$5) {
+      $('fail2');
+    }
   }
 }
 $(a);

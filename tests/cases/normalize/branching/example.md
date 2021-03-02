@@ -213,42 +213,42 @@ const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
 const tmpCalleeParam = (anode, i) => {
   if (anode) {
+    let valueNode = anode;
+    const tmpBinLhs = anode.type;
+    const tmpIfTest = tmpBinLhs === 'SpreadElement';
+    if (tmpIfTest) {
+      valueNode = anode.argument;
+      crumb(anode, 'argument', valueNode);
+    }
+    const tmpIfTest$1 = isComplexNode(valueNode);
+    if (tmpIfTest$1) {
+      const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+      const tmpCallObj$1 = assigns;
+      const tmpCallVal$1 = tmpCallObj$1.push;
+      const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
+      tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
+      const tmpCallObj$2 = newElements;
+      const tmpCallVal$2 = tmpCallObj$2.push;
+      let tmpCalleeParam$2 = undefined;
+      const tmpBinLhs$1 = anode.type;
+      const tmpIfTest$2 = tmpBinLhs$1 === 'SpreadElement';
+      if (tmpIfTest$2) {
+        tmpCalleeParam$2 = AST.spreadElement(tmpName);
+      } else {
+        tmpCalleeParam$2 = AST.identifier(tmpName);
+      }
+      tmpCallVal$2.call(tmpCallObj$2, tmpCalleeParam$2);
+    } else {
+      newElements.push(anode);
+    }
+    const tmpBinLhs$2 = anode.type;
+    const tmpIfTest$3 = tmpBinLhs$2 === 'SpreadElement';
+    if (tmpIfTest$3) {
+      uncrumb(anode, 'argument', valueNode);
+    }
   } else {
     const tmpReturnArg = newElements.push(null);
     return tmpReturnArg;
-  }
-  let valueNode = anode;
-  const tmpBinLhs = anode.type;
-  const tmpIfTest = tmpBinLhs === 'SpreadElement';
-  if (tmpIfTest) {
-    valueNode = anode.argument;
-    crumb(anode, 'argument', valueNode);
-  }
-  const tmpIfTest$1 = isComplexNode(valueNode);
-  if (tmpIfTest$1) {
-    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
-    const tmpCallObj$1 = assigns;
-    const tmpCallVal$1 = tmpCallObj$1.push;
-    const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
-    tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
-    const tmpCallObj$2 = newElements;
-    const tmpCallVal$2 = tmpCallObj$2.push;
-    let tmpCalleeParam$2 = undefined;
-    const tmpBinLhs$1 = anode.type;
-    const tmpIfTest$2 = tmpBinLhs$1 === 'SpreadElement';
-    if (tmpIfTest$2) {
-      tmpCalleeParam$2 = AST.spreadElement(tmpName);
-    } else {
-      tmpCalleeParam$2 = AST.identifier(tmpName);
-    }
-    tmpCallVal$2.call(tmpCallObj$2, tmpCalleeParam$2);
-  } else {
-    newElements.push(anode);
-  }
-  const tmpBinLhs$2 = anode.type;
-  const tmpIfTest$3 = tmpBinLhs$2 === 'SpreadElement';
-  if (tmpIfTest$3) {
-    uncrumb(anode, 'argument', valueNode);
   }
 };
 tmpCallVal.call(tmpCallObj, tmpCalleeParam);
@@ -261,42 +261,42 @@ const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
 const tmpCalleeParam = (anode, i) => {
   if (anode) {
+    let valueNode = anode;
+    const tmpBinLhs = anode.type;
+    const tmpIfTest = tmpBinLhs === 'SpreadElement';
+    if (tmpIfTest) {
+      valueNode = anode.argument;
+      crumb(anode, 'argument', valueNode);
+    }
+    const tmpIfTest$1 = isComplexNode(valueNode);
+    if (tmpIfTest$1) {
+      const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+      const tmpCallObj$1 = assigns;
+      const tmpCallVal$1 = tmpCallObj$1.push;
+      const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
+      tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
+      const tmpCallObj$2 = newElements;
+      const tmpCallVal$2 = tmpCallObj$2.push;
+      let tmpCalleeParam$2 = undefined;
+      const tmpBinLhs$1 = anode.type;
+      const tmpIfTest$2 = tmpBinLhs$1 === 'SpreadElement';
+      if (tmpIfTest$2) {
+        tmpCalleeParam$2 = AST.spreadElement(tmpName);
+      } else {
+        tmpCalleeParam$2 = AST.identifier(tmpName);
+      }
+      tmpCallVal$2.call(tmpCallObj$2, tmpCalleeParam$2);
+    } else {
+      newElements.push(anode);
+    }
+    const tmpBinLhs$2 = anode.type;
+    const tmpIfTest$3 = tmpBinLhs$2 === 'SpreadElement';
+    if (tmpIfTest$3) {
+      uncrumb(anode, 'argument', valueNode);
+    }
   } else {
     const tmpReturnArg = newElements.push(null);
     return tmpReturnArg;
-  }
-  let valueNode = anode;
-  const tmpBinLhs = anode.type;
-  const tmpIfTest = tmpBinLhs === 'SpreadElement';
-  if (tmpIfTest) {
-    valueNode = anode.argument;
-    crumb(anode, 'argument', valueNode);
-  }
-  const tmpIfTest$1 = isComplexNode(valueNode);
-  if (tmpIfTest$1) {
-    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
-    const tmpCallObj$1 = assigns;
-    const tmpCallVal$1 = tmpCallObj$1.push;
-    const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
-    tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
-    const tmpCallObj$2 = newElements;
-    const tmpCallVal$2 = tmpCallObj$2.push;
-    let tmpCalleeParam$2 = undefined;
-    const tmpBinLhs$1 = anode.type;
-    const tmpIfTest$2 = tmpBinLhs$1 === 'SpreadElement';
-    if (tmpIfTest$2) {
-      tmpCalleeParam$2 = AST.spreadElement(tmpName);
-    } else {
-      tmpCalleeParam$2 = AST.identifier(tmpName);
-    }
-    tmpCallVal$2.call(tmpCallObj$2, tmpCalleeParam$2);
-  } else {
-    newElements.push(anode);
-  }
-  const tmpBinLhs$2 = anode.type;
-  const tmpIfTest$3 = tmpBinLhs$2 === 'SpreadElement';
-  if (tmpIfTest$3) {
-    uncrumb(anode, 'argument', valueNode);
   }
 };
 tmpCallVal.call(tmpCallObj, tmpCalleeParam);
@@ -306,7 +306,7 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 
 BAD@! Found 8 implicit global bindings:
 
-node, newElements, crumb, isComplexNode, createFreshVarInCurrentRootScope, assigns, AST, uncrumb
+node, crumb, isComplexNode, createFreshVarInCurrentRootScope, assigns, AST, newElements, uncrumb
 
 ## Result
 

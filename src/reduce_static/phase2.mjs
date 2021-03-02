@@ -70,17 +70,18 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
   group('\n\n\nInlining constants with primitive values\n');
   let inlined = false;
   let inlinedSomething = 0;
+  let inlineLoops = 0;
   do {
     inlined = false;
 
-    group('Start of constant folding');
+    group('Start of constant folding ', ++inlineLoops);
     // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
     //       Take care to preserve body[index] ordering. Don't add/remove elements to any body array.
     //       Preserve the parent of any identifier as detaching them may affect future steps.
     //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
     fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
       if (meta.isBuiltin) return;
-      group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+      if (VERBOSE_TRACING) group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
       if (meta.writes.length === 1 && !meta.isConstant) {
         log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
@@ -90,11 +91,14 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
           const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
 
           ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
-          ASSERT(varDecl.kind === 'var' || varDecl.kind === 'let', 'so it must be a var or let right now', varDecl.declParent);
+          ASSERT(
+            varDecl.kind === 'let',
+            'so it must be a let right now because vars are eliminated and it wasnt marked as a constant',
+            declParent,
+          );
           if (varDecl.declarations[0].init) {
             rule('A binding decl where the binding has one write must be a const');
-            example('let x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'let');
-            example('var x = 10; f(x);', 'const x = 10; f(x);', () => varDecl.kind === 'var');
+            example('let x = 10; f(x);', 'const x = 10; f(x);');
             before(meta.writes[0].decl.declParent);
 
             varDecl.kind = 'const';
@@ -108,7 +112,6 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
       // Attempt to fold up constants
       if (meta.isConstant) {
-        log('Is a constant');
         ASSERT(meta.name === name);
         if (attemptConstantInlining(meta, fdata)) {
           groupEnd();
@@ -119,7 +122,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
       if (meta.reads.length === 0 && meta.writes[0].decl) {
         ASSERT(meta.writes.length);
-        group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
+        if (VERBOSE_TRACING) group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
         // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
         // If any writes are eliminated this way, drop them from the books and queue them up
 
@@ -173,38 +176,15 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
           fdata.globallyUniqueNamingRegistry.delete(name);
         }
 
-        groupEnd();
+        if (VERBOSE_TRACING) groupEnd();
 
         if (inlined) {
-          groupEnd();
+          if (VERBOSE_TRACING) groupEnd();
           return;
         }
       }
 
-      // Do not eliminated exported functions (here). That should be part of tree shaking.
-      if (
-        meta.reads.length === 0 &&
-        meta.writes.length === 1 &&
-        meta.writes[0].funcDecl &&
-        meta.writes[0].funcDecl.funcParent.type !== 'ExportNamedDeclaration' &&
-        meta.writes[0].funcDecl.funcParent.type !== 'ExportDefaultDeclaration'
-      ) {
-        group();
-        rule('Unused function declaration should be removed');
-        example('function f(){}', '');
-        toEliminate.push({
-          parent: meta.writes[0].funcDecl.funcParent,
-          prop: meta.writes[0].funcDecl.funcProp,
-          index: meta.writes[0].funcDecl.funcIndex,
-        });
-        fdata.globallyUniqueNamingRegistry.delete(name);
-        log('Scheduled `' + name + '` for deletion...');
-        groupEnd();
-        groupEnd();
-        return;
-      }
-
-      groupEnd();
+      if (VERBOSE_TRACING) groupEnd();
     });
     log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
 
@@ -253,6 +233,8 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
   log('Folded', inlinedSomething, 'constants.');
   if (inlinedSomething || toEliminate.length) {
     log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    groupEnd();
+    groupEnd();
     return 'phase1';
   }
   groupEnd();
@@ -263,7 +245,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
 
-    group('- `' + name + '`');
+    if (VERBOSE_TRACING) group('- `' + name + '`');
 
     // Check if all usages of the binding is consolidated to one scope
     const writeScopes = new Set();
@@ -276,7 +258,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
     // "Does the binding have two writes, of which the first was a decl and the second a regular assignment?"
     if (meta.writes.length === 2 && meta.writes[0].decl && meta.writes[1].assign) {
-      group('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
+      if (VERBOSE_TRACING) group('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
       const decl =
         declData.declIndex >= 0 ? declData.declParent[declData.declProp][declData.declIndex] : declData.declParent[declData.declProp];
       const decr = decl.declarations[0];
@@ -319,7 +301,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
               // Drop the decl (the first write) and promote the second write to a const decl. Make sure to update the write too.
 
               rule('Hoisted var decl that is a constant should become const');
-              example('var x; x = f(); g(x);', 'const x = f(); g(x);');
+              example('let x; x = f(); g(x);', 'const x = f(); g(x);');
               before(decl);
               before(meta.writes[1].parentNode);
 
@@ -371,6 +353,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
               after(newNode, assign.assign.assignParent);
               inlined = true;
               ++promoted;
+              return;
             } else {
               log('There was at least one read before the write. Binding may not be a constant (it could be).');
             }
@@ -381,7 +364,8 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
         }
       }
 
-      groupEnd();
+      if (VERBOSE_TRACING) log('- Var decl not immediately followed by assignment');
+      if (VERBOSE_TRACING) groupEnd();
     }
 
     // If a binding start with a var decl as first write (prevents func decl closure problem) and the next
@@ -406,7 +390,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
     // Note regarding SSA on param names; there exists a secret live binding in `arguments` that this transform breaks. Not sure I car.e
 
-    log('Starts with decl or param?', !!declData, !!meta.writes[0].param);
+    if (VERBOSE_TRACING) log('Starts with decl or param?', !!declData, !!meta.writes[0].param);
 
     // "Is this binding defined through a var decl or param name?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
     if (declData || meta.writes[0].param) {
@@ -564,10 +548,10 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
       }
     }
 
-    groupEnd();
+    if (VERBOSE_TRACING) groupEnd();
   });
   groupEnd();
-  log('Promoted', promoted, 'bindings to constant');
+  log('\nPromoted', promoted, 'bindings to constant');
   if (promoted) {
     log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
     groupEnd();
@@ -639,7 +623,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
   // The read/write data should still be in tact
 
-  log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   groupEnd();
 }

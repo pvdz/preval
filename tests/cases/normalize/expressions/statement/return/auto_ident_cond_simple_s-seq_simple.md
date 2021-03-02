@@ -37,12 +37,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  return 60;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+$(60);
 $(a);
 `````
 

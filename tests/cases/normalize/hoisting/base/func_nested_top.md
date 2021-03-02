@@ -42,13 +42,8 @@ g();
 
 `````js filename=intro
 const g = function () {
-  const f = function () {
-    return 100;
-  };
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
-  const tmpCalleeParam$1 = f();
-  $(tmpCalleeParam$1);
+  $(100);
+  $(100);
 };
 g();
 `````

@@ -41,8 +41,7 @@ const f = function () {
 let tmpCalleeParam = undefined;
 const tmpIfTest = f != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = f();
-  tmpCalleeParam = tmpChainElementCall;
+  tmpCalleeParam = 10;
 }
 $(tmpCalleeParam);
 `````

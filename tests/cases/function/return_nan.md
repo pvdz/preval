@@ -29,11 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  return NaN;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

@@ -35,12 +35,7 @@ g();
 ## Output
 
 `````js filename=intro
-const g = function () {
-  const f = function () {
-    return 100;
-  };
-  f();
-};
+const g = function () {};
 g();
 `````
 

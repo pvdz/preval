@@ -249,6 +249,20 @@ export function phase1(fdata, resolve, req, verbose) {
                   decl: { declParent, declProp, declIndex },
                 }),
               );
+
+              const grandParentNode = path.nodes[path.nodes.length - 3];
+              ASSERT(grandParentNode.type === 'VariableDeclaration');
+              if (VERBOSE_TRACING) log('- Binding kind is', grandParentNode.kind);
+
+              if (grandParentNode.kind === 'const') {
+                if (VERBOSE_TRACING) log('- Setting constValueRef to a', parentNode.init.type);
+                meta.constValueRef = {
+                  node: parentNode.init,
+                  containerNode: declParent,
+                  containerProp: declProp,
+                  containerIndex: declIndex,
+                };
+              }
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements');

@@ -4,6 +4,7 @@ import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mj
 import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
+import * as AST from '../ast.mjs';
 
 let VERBOSE_TRACING = true;
 
@@ -126,6 +127,38 @@ export function phase1(fdata, resolve, req, verbose) {
           }
         });
 
+        const body = node.body.body;
+        if (body.length === 1) {
+          if (body[0].type === 'ReturnStatement') {
+            // All usages can be inlined with the arg, provided the arg is reachable from the call sites (relevant for closures)
+            if (AST.isPrimitive(body[0].argument)) {
+              node.$p.inlineMe = 'single return with primitive';
+            }
+          }
+        } else if (body.length === 2) {
+          if (body[1].type === 'ReturnStatement' && body[0].type === 'VariableDeclaration') {
+            const decl = body[0];
+            const decr = decl.declarations[0];
+            const ret = body[1];
+            if (ret.argument?.type === 'Identifier' && decr.id.name === ret.argument.name) {
+              // This is a function whose body is a variable declaration that is then returned.
+              // `var x = unkonwn; return x`, where unknown is any normalized expression
+
+              ASSERT(decr.init, 'normalized var decls have an init, right');
+              if (AST.isPrimitive(decr.init)) {
+                // I think this shouldn't be the case as I expect these to be normalized away
+                node.$p.inlineMe = 'double with primitive';
+              } else if (decr.init.type === 'ArrayExpression') {
+                // `function f() { const x = [...]; return x; }`
+                // Let's start with arrays that only contain primitives
+                if (decr.init.elements.every((enode) => AST.isPrimitive(enode))) {
+                  node.$p.inlineMe = 'double with array with primitives';
+                }
+              }
+            }
+          }
+        }
+
         break;
       }
 
@@ -176,11 +209,18 @@ export function phase1(fdata, resolve, req, verbose) {
           }
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
           if (kind === 'read') {
+            const grandNode = path.nodes[path.nodes.length - 3];
+            const grandProp = path.props[path.props.length - 2];
+            const grandIndex = path.indexes[path.indexes.length - 2];
+
             meta.reads.push(
               createReadRef({
                 parentNode,
                 parentProp,
                 parentIndex,
+                grandNode,
+                grandProp,
+                grandIndex,
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,

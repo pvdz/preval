@@ -414,7 +414,20 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
 }
 
 export function createReadRef(obj) {
-  const { parentNode, parentProp, parentIndex, node, rwCounter, scope, blockChain, innerLoop, ...rest } = obj;
+  const {
+    parentNode,
+    parentProp,
+    parentIndex,
+    grandNode,
+    grandProp,
+    grandIndex,
+    node,
+    rwCounter,
+    scope,
+    blockChain,
+    innerLoop,
+    ...rest
+  } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
 
   return {
@@ -422,6 +435,9 @@ export function createReadRef(obj) {
     parentNode,
     parentProp,
     parentIndex,
+    grandNode,
+    grandProp,
+    grandIndex,
     node,
     rwCounter,
     scope,

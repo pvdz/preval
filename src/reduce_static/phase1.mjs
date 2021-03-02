@@ -91,7 +91,7 @@ export function phase1(fdata, resolve, req, verbose) {
         break;
       }
 
-      case 'FunctionDeclaration:before':
+      case 'FunctionDeclaration:before': // export default func only
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
         funcStack.push(node);
@@ -100,7 +100,8 @@ export function phase1(fdata, resolve, req, verbose) {
         }
         break;
       }
-      case 'FunctionDeclaration:after':
+
+      case 'FunctionDeclaration:after': // export default func only
       case 'FunctionExpression:after':
       case 'ArrowFunctionExpression:after': {
         funcStack.pop();
@@ -283,30 +284,11 @@ export function phase1(fdata, resolve, req, verbose) {
                   assign: { assignParent, assignProp, assignIndex },
                 }),
               );
-            } else if (parentNode.type === 'FunctionDeclaration' && parentProp === 'id') {
-              // opposed to a param
-              const funcParent = path.nodes[path.nodes.length - 3];
-              const funcProp = path.props[path.props.length - 2];
-              const funcIndex = path.indexes[path.indexes.length - 2];
-              if (VERBOSE_TRACING) log('Adding funcdecl write');
-              meta.writes.push(
-                createWriteRef({
-                  parentNode,
-                  parentProp,
-                  parentIndex,
-                  node,
-                  rwCounter: ++readWriteCounter,
-                  scope: currentScope.$p.pid,
-                  blockChain: blockIds.join(','),
-                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
-                  funcDecl: { funcParent, funcProp, funcIndex },
-                }),
-              );
+            } else if (parentNode.type === 'FunctionDeclaration') {
+              ASSERT(false, 'all function declarations should have been eliminated during hoisting');
             } else if (
               parentProp === 'params' &&
-              (parentNode.type === 'FunctionDeclaration' ||
-                parentNode.type === 'FunctionExpression' ||
-                parentNode.type === 'ArrowFunctionExpression')
+              (parentNode.type === 'FunctionExpression' || parentNode.type === 'ArrowFunctionExpression')
             ) {
               const paramParent = path.nodes[path.nodes.length - 3];
               const paramProp = path.props[path.props.length - 2];

@@ -29,10 +29,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('fail');
+    return 'bad';
   } else {
     x = arrPatternBeforeDefault;
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f('', 200);
@@ -50,8 +51,10 @@ const f = function (tmpParamPattern) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     $('fail');
+    return 'bad';
+  } else {
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCalleeParam = f('', 200);
 $(tmpCalleeParam);

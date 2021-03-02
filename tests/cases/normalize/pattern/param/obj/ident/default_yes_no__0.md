@@ -26,10 +26,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = $('pass');
+    return x;
   } else {
     x = objPatternBeforeDefault;
+    return x;
   }
-  return x;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 10);
@@ -41,14 +42,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function (tmpParamPattern) {
   const objPatternBeforeDefault = tmpParamPattern.x;
-  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('pass');
+    const SSA_x = $('pass');
+    return SSA_x;
   } else {
-    x = objPatternBeforeDefault;
+    return objPatternBeforeDefault;
   }
-  return x;
 };
 const tmpCalleeParam = f(0, 10);
 $(tmpCalleeParam);

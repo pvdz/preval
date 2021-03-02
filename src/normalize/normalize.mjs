@@ -6205,6 +6205,34 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    // This one can use some love but appeared frequent in the prettier file (common minifier pattern?)
+    ASSERT(node.argument, 'all return statements should be normalized to have an arg, yes?');
+    if (
+      //node.argument.type === 'Identifier' &&
+      //!['undefined', 'NaN', 'Infinity'].includes(node.argument.name) &&
+      i &&
+      body[i - 1].type === 'IfStatement'
+    ) {
+      const prev = body[i - 1];
+
+      rule('An if-else followed by a return statement should copy the return into both branches');
+      example('if (x) { a = 10; } else { f(); } return a;', 'if (x) { a = 10; return a; } else { return a; }');
+      before(prev);
+      before(node);
+
+      prev.consequent.body.push(AST.returnStatement(AST.cloneSimple(node.argument)));
+      if (prev.alternate) {
+        prev.alternate.body.push(AST.returnStatement(AST.cloneSimple(node.argument)));
+      } else {
+        prev.alternate = AST.blockStatement(AST.returnStatement(AST.cloneSimple(node.argument)));
+      }
+      body[i] = AST.emptyStatement();
+
+      after(prev);
+      assertNoDupeNodes(AST.blockStatement(parent), 'body');
+      return true;
+    }
+
     if (VERBOSE_TRACING) log(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
     parent.$p.returnBreakContinueThrow = 'return';
     if (body.length > i + 1) {

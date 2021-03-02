@@ -31,8 +31,10 @@ let f = function () {
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = $('fail too');
+    return undefined;
+  } else {
+    return undefined;
   }
-  return undefined;
   let x = $('fail');
 };
 const tmpCallCallee = $;
@@ -47,8 +49,10 @@ const f = function () {
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = $('fail too');
+    return undefined;
+  } else {
+    return undefined;
   }
-  return undefined;
   let x = $('fail');
 };
 const tmpCalleeParam = f();

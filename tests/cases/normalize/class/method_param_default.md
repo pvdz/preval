@@ -29,10 +29,11 @@ let x = class {
     const tmpIfTest = $tdz$__arg === undefined;
     if (tmpIfTest) {
       arg = $(10, 'default');
+      return arg;
     } else {
       arg = $tdz$__arg;
+      return arg;
     }
-    return arg;
   }
 };
 const tmpCallCallee = $;
@@ -46,14 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const x = class {
   y($tdz$__arg) {
-    let arg = undefined;
     const tmpIfTest = $tdz$__arg === undefined;
     if (tmpIfTest) {
-      arg = $(10, 'default');
+      const SSA_arg = $(10, 'default');
+      return SSA_arg;
     } else {
-      arg = $tdz$__arg;
+      return $tdz$__arg;
     }
-    return arg;
   }
 };
 const tmpCallObj = new x();

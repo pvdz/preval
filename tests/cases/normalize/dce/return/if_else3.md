@@ -28,8 +28,9 @@ let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 2;
+  } else {
+    return 3;
   }
-  return 3;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -43,8 +44,9 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 2;
+  } else {
+    return 3;
   }
-  return 3;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

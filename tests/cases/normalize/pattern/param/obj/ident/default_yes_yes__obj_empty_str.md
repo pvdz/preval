@@ -35,10 +35,11 @@ let f = function ($tdz$__pattern) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     x = $('fail');
+    return x;
   } else {
     x = objPatternBeforeDefault;
+    return x;
   }
-  return x;
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
@@ -61,14 +62,13 @@ const f = function ($tdz$__pattern) {
     $tdz$__pattern_after_default = $tdz$__pattern;
   }
   const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
-  let x = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    const SSA_x = $('fail');
+    return SSA_x;
   } else {
-    x = objPatternBeforeDefault;
+    return objPatternBeforeDefault;
   }
-  return x;
 };
 const tmpCalleeParam$2 = { x: '' };
 const tmpCalleeParam$1 = f(tmpCalleeParam$2, 10);

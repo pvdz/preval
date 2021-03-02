@@ -37,8 +37,10 @@ let f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -68,8 +70,10 @@ const f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     arrPatternStep.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpCalleeParam$1 = [undefined, 20, 30];
 const tmpCalleeParam = f(tmpCalleeParam$1, 200);

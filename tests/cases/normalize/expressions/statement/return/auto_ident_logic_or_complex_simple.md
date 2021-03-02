@@ -27,10 +27,11 @@ let f = function () {
   const tmpCalleeParam = $(0);
   let tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     tmpReturnArg = 2;
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -44,12 +45,12 @@ $(a);
 `````js filename=intro
 const f = function () {
   const tmpCalleeParam = $(0);
-  let tmpReturnArg = $(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
-    tmpReturnArg = 2;
+    return 2;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

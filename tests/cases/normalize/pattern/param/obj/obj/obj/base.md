@@ -34,8 +34,10 @@ let f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -61,8 +63,10 @@ const f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     objPatternNoDefault$1.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };

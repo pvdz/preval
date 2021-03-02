@@ -38,8 +38,10 @@ let f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
@@ -70,8 +72,10 @@ const f = function (tmpParamPattern) {
   }
   if (objPatternCrashTest) {
     objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpObjLitVal = {};
 const tmpCalleeParam$2 = { x: tmpObjLitVal, b: 11, c: 12 };

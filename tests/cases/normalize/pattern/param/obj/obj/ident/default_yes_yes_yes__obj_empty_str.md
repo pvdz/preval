@@ -46,10 +46,11 @@ let f = function ($tdz$__pattern) {
   const tmpIfTest$2 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$2) {
     y = $('pass');
+    return y;
   } else {
     y = objPatternBeforeDefault$1;
+    return y;
   }
-  return y;
 };
 const tmpCallCallee$2 = $;
 const tmpCallCallee$3 = f;
@@ -82,14 +83,13 @@ const f = function ($tdz$__pattern) {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y = undefined;
   const tmpIfTest$2 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$2) {
-    y = $('pass');
+    const SSA_y = $('pass');
+    return SSA_y;
   } else {
-    y = objPatternBeforeDefault$1;
+    return objPatternBeforeDefault$1;
   }
-  return y;
 };
 const tmpCalleeParam$3 = { x: '', b: 11, c: 12 };
 const tmpCalleeParam$2 = f(tmpCalleeParam$3, 10);

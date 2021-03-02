@@ -37,9 +37,13 @@ let f = function () {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpReturnArg = tmpChainElementObject$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
@@ -65,9 +69,13 @@ const f = function () {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpReturnArg = tmpChainElementObject$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };

@@ -34,9 +34,13 @@ let f = function () {
       const tmpCallCallee$2 = $;
       const tmpCalleeParam$2 = $(2);
       tmpReturnArg = tmpCallCallee$2(tmpCalleeParam$2);
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$3 = $;
@@ -57,9 +61,13 @@ const f = function () {
     if (tmpReturnArg) {
       const tmpCalleeParam$2 = $(2);
       tmpReturnArg = $(tmpCalleeParam$2);
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$3 = f();

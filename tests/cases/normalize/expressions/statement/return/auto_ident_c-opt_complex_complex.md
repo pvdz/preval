@@ -33,8 +33,10 @@ let f = function () {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpReturnArg = tmpChainElementObject;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
@@ -55,8 +57,10 @@ const f = function () {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpReturnArg = tmpChainElementObject;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };

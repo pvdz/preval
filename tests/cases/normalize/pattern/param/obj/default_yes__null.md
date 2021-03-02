@@ -35,8 +35,10 @@ let f = function ($tdz$__pattern) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+    return 'bad';
+  } else {
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(null, 10);
@@ -61,8 +63,10 @@ const f = function ($tdz$__pattern) {
   }
   if (objPatternCrashTest) {
     $tdz$__pattern_after_default.cannotDestructureThis;
+    return 'bad';
+  } else {
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCalleeParam = f(null, 10);
 $(tmpCalleeParam);

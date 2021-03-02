@@ -28,8 +28,10 @@ let f = function () {
   let tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   if (tmpReturnArg) {
     tmpReturnArg = 2;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -46,8 +48,10 @@ const f = function () {
   let tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     tmpReturnArg = 2;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

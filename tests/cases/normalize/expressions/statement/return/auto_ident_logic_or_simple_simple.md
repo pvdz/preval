@@ -25,10 +25,11 @@ $(a);
 let f = function () {
   let tmpReturnArg = 0;
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     tmpReturnArg = 2;
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -41,12 +42,7 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = 0;
-  if (tmpReturnArg) {
-  } else {
-    tmpReturnArg = 2;
-  }
-  return tmpReturnArg;
+  return 2;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

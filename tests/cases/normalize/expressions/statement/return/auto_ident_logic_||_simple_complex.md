@@ -25,12 +25,13 @@ $(a);
 let f = function () {
   let tmpReturnArg = 0;
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -43,13 +44,9 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = 0;
-  if (tmpReturnArg) {
-  } else {
-    const tmpCalleeParam = $(1);
-    tmpReturnArg = $(tmpCalleeParam);
-  }
-  return tmpReturnArg;
+  const tmpCalleeParam = $(1);
+  const SSA_tmpReturnArg = $(tmpCalleeParam);
+  return SSA_tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

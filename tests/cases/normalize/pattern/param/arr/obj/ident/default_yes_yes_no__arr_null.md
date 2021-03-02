@@ -37,10 +37,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     x = $('pass');
+    return 'bad';
   } else {
     x = objPatternBeforeDefault;
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$2 = f;
@@ -68,8 +69,10 @@ const f = function (tmpParamPattern) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     $('pass');
+    return 'bad';
+  } else {
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCalleeParam$2 = [null, 20, 30];
 const tmpCalleeParam$1 = f(tmpCalleeParam$2, 200);

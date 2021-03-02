@@ -32,12 +32,13 @@ let f = function () {
     tmpReturnArg = tmpCallCallee$1(tmpCalleeParam$1);
   }
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(2);
     tmpReturnArg = tmpCallCallee$2(tmpCalleeParam$2);
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$3 = $;
@@ -57,11 +58,12 @@ const f = function () {
     tmpReturnArg = $(tmpCalleeParam$1);
   }
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     const tmpCalleeParam$2 = $(2);
-    tmpReturnArg = $(tmpCalleeParam$2);
+    const SSA_tmpReturnArg = $(tmpCalleeParam$2);
+    return SSA_tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$3 = f();

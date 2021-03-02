@@ -32,8 +32,10 @@ let f = function () {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;
     tmpReturnArg = tmpChainElementObject;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
@@ -53,8 +55,10 @@ const f = function () {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;
     tmpReturnArg = tmpChainElementObject;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };

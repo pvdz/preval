@@ -25,10 +25,11 @@ let f = function ($tdz$__x) {
   const tmpIfTest = $tdz$__x === undefined;
   if (tmpIfTest) {
     x = 'fail';
+    return x;
   } else {
     x = $tdz$__x;
+    return x;
   }
-  return x;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 200);
@@ -39,14 +40,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function ($tdz$__x) {
-  let x = undefined;
   const tmpIfTest = $tdz$__x === undefined;
   if (tmpIfTest) {
-    x = 'fail';
+    return 'fail';
   } else {
-    x = $tdz$__x;
+    return $tdz$__x;
   }
-  return x;
 };
 const tmpCalleeParam = f(0, 200);
 $(tmpCalleeParam);

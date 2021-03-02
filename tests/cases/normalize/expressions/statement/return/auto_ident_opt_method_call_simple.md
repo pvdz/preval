@@ -32,8 +32,10 @@ let f = function () {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
@@ -53,8 +55,10 @@ const f = function () {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const b = { c: $ };
 const a = { a: 999, b: 1000 };

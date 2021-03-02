@@ -24,10 +24,11 @@ let i = function (tmpParamPattern) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     x = a;
+    return x;
   } else {
     x = arrPatternBeforeDefault;
+    return x;
   }
-  return x;
 };
 `````
 

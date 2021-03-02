@@ -24,10 +24,11 @@ const f = ($tdz$__a) => {
     const tmpNestedAssignObjPatternRhs = 1;
     x = tmpNestedAssignObjPatternRhs.x;
     a = tmpNestedAssignObjPatternRhs;
+    return a;
   } else {
     a = $tdz$__a;
+    return a;
   }
-  return a;
 };
 `````
 
@@ -35,15 +36,13 @@ const f = ($tdz$__a) => {
 
 `````js filename=intro
 ($tdz$__a) => {
-  let a = undefined;
   const tmpIfTest = $tdz$__a === undefined;
   if (tmpIfTest) {
     x = (1).x;
-    a = 1;
+    return 1;
   } else {
-    a = $tdz$__a;
+    return $tdz$__a;
   }
-  return a;
 };
 `````
 

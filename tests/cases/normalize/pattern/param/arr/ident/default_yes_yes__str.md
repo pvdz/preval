@@ -34,10 +34,11 @@ let f = function ($tdz$__pattern) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     x = $('fail');
+    return x;
   } else {
     x = arrPatternBeforeDefault;
+    return x;
   }
-  return x;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f('xyz', 200);
@@ -57,14 +58,13 @@ const f = function ($tdz$__pattern) {
   }
   const arrPatternSplat = [...$tdz$__pattern_after_default];
   const arrPatternBeforeDefault = arrPatternSplat[0];
-  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    const SSA_x = $('fail');
+    return SSA_x;
   } else {
-    x = arrPatternBeforeDefault;
+    return arrPatternBeforeDefault;
   }
-  return x;
 };
 const tmpCalleeParam = f('xyz', 200);
 $(tmpCalleeParam);

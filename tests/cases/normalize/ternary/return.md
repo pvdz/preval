@@ -28,10 +28,11 @@ let f = function () {
   let tmpReturnArg = undefined;
   if (a) {
     tmpReturnArg = b;
+    return tmpReturnArg;
   } else {
     tmpReturnArg = c;
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

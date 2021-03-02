@@ -28,10 +28,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     y = 'pass';
+    return y;
   } else {
     y = arrPatternBeforeDefault;
+    return y;
   }
-  return y;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -49,14 +50,12 @@ const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const arrPatternSplat = [...objPatternNoDefault];
   const arrPatternBeforeDefault = arrPatternSplat[0];
-  let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = 'pass';
+    return 'pass';
   } else {
-    y = arrPatternBeforeDefault;
+    return arrPatternBeforeDefault;
   }
-  return y;
 };
 const tmpObjLitVal = [undefined];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };

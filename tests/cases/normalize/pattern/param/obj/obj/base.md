@@ -44,8 +44,10 @@ let f = function ($tdz$__pattern) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const a = 1;
 const b = 2;
@@ -84,8 +86,10 @@ const f = function ($tdz$__pattern) {
   }
   if (objPatternCrashTest) {
     objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
-  return 'ok';
 };
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };

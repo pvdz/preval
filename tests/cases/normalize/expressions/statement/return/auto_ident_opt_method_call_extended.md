@@ -34,8 +34,10 @@ let f = function () {
     const tmpChainElementObject$2 = tmpChainElementObject$1.e;
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
@@ -59,8 +61,10 @@ const f = function () {
     const tmpChainElementObject$2 = tmpChainElementObject$1.e;
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };

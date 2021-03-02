@@ -36,10 +36,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     y = $('fail');
+    return y;
   } else {
     y = objPatternBeforeDefault$1;
+    return y;
   }
-  return y;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f('abc', 10);
@@ -60,14 +61,13 @@ const f = function (tmpParamPattern) {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    y = $('fail');
+    const SSA_y = $('fail');
+    return SSA_y;
   } else {
-    y = objPatternBeforeDefault$1;
+    return objPatternBeforeDefault$1;
   }
-  return y;
 };
 const tmpCalleeParam$1 = f('abc', 10);
 $(tmpCalleeParam$1);

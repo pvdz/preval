@@ -27,10 +27,11 @@ let f = function (tmpParamPattern) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     y = $('fail');
+    return y;
   } else {
     y = objPatternBeforeDefault;
+    return y;
   }
-  return y;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -47,14 +48,13 @@ tmpCallCallee(tmpCalleeParam);
 const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
   const objPatternBeforeDefault = objPatternNoDefault.y;
-  let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
+    const SSA_y = $('fail');
+    return SSA_y;
   } else {
-    y = objPatternBeforeDefault;
+    return objPatternBeforeDefault;
   }
-  return y;
 };
 const tmpObjLitVal = { x: 1, y: 0, z: 3 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };

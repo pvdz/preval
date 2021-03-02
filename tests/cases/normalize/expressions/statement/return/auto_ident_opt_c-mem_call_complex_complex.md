@@ -40,9 +40,13 @@ let f = function () {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
       tmpReturnArg = tmpChainElementCall$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -68,9 +72,13 @@ const f = function () {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       tmpReturnArg = tmpChainElementCall$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const b = { $: $ };
 const a = { a: 999, b: 1000 };

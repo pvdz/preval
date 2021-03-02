@@ -34,9 +34,13 @@ let f = function () {
     if (tmpIfTest$1) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpReturnArg = tmpChainElementObject$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
@@ -59,9 +63,13 @@ const f = function () {
     if (tmpIfTest$1) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpReturnArg = tmpChainElementObject$1;
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };

@@ -27,6 +27,7 @@ let f = function () {
   const tmpCalleeParam = $(0);
   let tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
@@ -35,9 +36,11 @@ let f = function () {
       const tmpCallCallee$2 = $;
       const tmpCalleeParam$2 = $(2);
       tmpReturnArg = tmpCallCallee$2(tmpCalleeParam$2);
+      return tmpReturnArg;
+    } else {
+      return tmpReturnArg;
     }
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$3 = $;
@@ -51,17 +54,20 @@ $(a);
 `````js filename=intro
 const f = function () {
   const tmpCalleeParam = $(0);
-  let tmpReturnArg = $(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
+    return tmpReturnArg;
   } else {
     const tmpCalleeParam$1 = $(1);
-    tmpReturnArg = $(tmpCalleeParam$1);
-    if (tmpReturnArg) {
+    let SSA_tmpReturnArg = $(tmpCalleeParam$1);
+    if (SSA_tmpReturnArg) {
       const tmpCalleeParam$2 = $(2);
-      tmpReturnArg = $(tmpCalleeParam$2);
+      SSA_tmpReturnArg = $(tmpCalleeParam$2);
+      return SSA_tmpReturnArg;
+    } else {
+      return SSA_tmpReturnArg;
     }
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$3 = f();

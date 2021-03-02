@@ -27,12 +27,13 @@ let f = function () {
   const tmpIfTest = $(30);
   if (tmpIfTest) {
     tmpReturnArg = 60;
+    return tmpReturnArg;
   } else {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
     tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
@@ -45,15 +46,14 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = undefined;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    tmpReturnArg = 60;
+    return 60;
   } else {
     const tmpCalleeParam = $(100);
-    tmpReturnArg = $(tmpCalleeParam);
+    const SSA_tmpReturnArg = $(tmpCalleeParam);
+    return SSA_tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();

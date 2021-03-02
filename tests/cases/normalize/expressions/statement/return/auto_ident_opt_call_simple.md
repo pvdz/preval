@@ -29,8 +29,10 @@ let f = function () {
   if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall(1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -48,8 +50,10 @@ const f = function () {
   if (tmpIfTest) {
     const tmpChainElementCall = $(1);
     tmpReturnArg = tmpChainElementCall;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

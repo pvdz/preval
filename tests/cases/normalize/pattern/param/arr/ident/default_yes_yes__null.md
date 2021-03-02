@@ -34,10 +34,11 @@ let f = function ($tdz$__pattern) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     x = $('fail');
+    return 'bad';
   } else {
     x = arrPatternBeforeDefault;
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(null, 200);
@@ -60,8 +61,10 @@ const f = function ($tdz$__pattern) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     $('fail');
+    return 'bad';
+  } else {
+    return 'bad';
   }
-  return 'bad';
 };
 const tmpCalleeParam = f(null, 200);
 $(tmpCalleeParam);

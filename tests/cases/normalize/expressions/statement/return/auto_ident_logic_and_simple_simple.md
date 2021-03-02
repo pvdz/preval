@@ -26,8 +26,10 @@ let f = function () {
   let tmpReturnArg = 1;
   if (tmpReturnArg) {
     tmpReturnArg = 2;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -43,8 +45,10 @@ const f = function () {
   let tmpReturnArg = 1;
   if (tmpReturnArg) {
     tmpReturnArg = 2;
+    return tmpReturnArg;
+  } else {
+    return tmpReturnArg;
   }
-  return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

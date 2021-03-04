@@ -480,9 +480,9 @@ export function createWriteRef(obj) {
   };
 }
 
-export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false) {
+export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false, VERBOSE_TRACING = true) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
-  const VERBOSE_TRACING = fdata.len < 10 * 1024; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
+  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
   if (VERBOSE_TRACING) log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
   let index = lexScopeStack.length;
@@ -540,9 +540,9 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   ASSERT(meta, 'the meta should exist for all declared variables at this point');
   return uniqueName;
 }
-export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter) {
-  const VERBOSE_TRACING = fdata.len < 10 * 1024; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
-  ASSERT(arguments.length === preprocessScopeNode.length, 'arg count');
+export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, VERBOSE_TRACING = true) {
+  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
+  ASSERT(arguments.length === preprocessScopeNode.length || arguments.length-1 === preprocessScopeNode.length, 'arg count');
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
 
@@ -613,7 +613,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     if (VERBOSE_TRACING) log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
     if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
       if (VERBOSE_TRACING) log('Breaking for function header scopes in Block');
-      groupEnd();
+      if (VERBOSE_TRACING) groupEnd();
       break;
     }
 
@@ -662,7 +662,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
       });
     }
 
-    groupEnd();
+    if (VERBOSE_TRACING) groupEnd();
 
     // Only certain nodes have hidden scopes to process. For any other node do not process the parent.
     if (

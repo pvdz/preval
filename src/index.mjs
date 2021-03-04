@@ -26,7 +26,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
-  if (VERBOSE_TRACING) {
+  if (verbose && VERBOSE_TRACING) {
     console.log('Preval options:');
     console.log(options);
   }

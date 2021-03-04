@@ -24,7 +24,8 @@ f.call({pass: 1});
 
 `````js filename=intro
 let f = function () {
-  const x = this;
+  const tmpPrevalThisAlias = this;
+  const x = tmpPrevalThisAlias;
   $(x);
 };
 const tmpCallObj = f;
@@ -37,7 +38,8 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  $(this);
+  const tmpPrevalThisAlias = this;
+  $(tmpPrevalThisAlias);
 };
 const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };

@@ -18,7 +18,7 @@ export function phase1(fdata, resolve, req, verbose) {
   const ast = fdata.tenkoOutput.ast;
 
   const funcStack = [];
-  const thisStack = [];
+  const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
   const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
   const blockIds = []; // Same as blockStack except only contains its $p.pid's. Negative if the parent was a loop of sorts.
   let readWriteCounter = 0;
@@ -190,7 +190,31 @@ export function phase1(fdata, resolve, req, verbose) {
             parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
           );
         }
-        if (kind !== 'none' && kind !== 'label' && name !== 'arguments') {
+        if (name === 'arguments') {
+          ASSERT(kind !== 'write', 'arguments cannot be written to in strict mode, right?');
+          if (kind === 'read') {
+            // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
+            // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
+            // TODO: check for `arguments.length` explicitly, since in that case the excessive args can be replaced with a simple primitive
+            if (thisStack.length) {
+              if (
+                parentNode.type === 'MemberExpression' &&
+                parentProp === 'object' &&
+                !parentNode.computed &&
+                parentNode.property.name === 'length'
+              ) {
+                // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
+                thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+              } else {
+                // This disables a few tricks because of observable side effects
+                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+              }
+            } else {
+              // TODO: do we want to act on this?
+              if (VERBOSE_TRACING) log('Attempting to access `arguments` in global space? Probably crashes at runtime.');
+            }
+          }
+        } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
           if (VERBOSE_TRACING) log('- Binding referenced in $p.pid:', currentScope.$p.pid);
@@ -236,7 +260,8 @@ export function phase1(fdata, resolve, req, verbose) {
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
-              if (VERBOSE_TRACING) log('Adding decl write');
+              if (VERBOSE_TRACING) log('- Adding decl write');
+
               meta.writes.push(
                 createWriteRef({
                   parentNode,

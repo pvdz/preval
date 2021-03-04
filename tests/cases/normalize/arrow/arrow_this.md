@@ -36,8 +36,10 @@ $(f.call({x: 100}));
 
 `````js filename=intro
 let f = function () {
+  const tmpPrevalThisAlias = this;
   const g = () => {
-    const tmpReturnArg = this.x;
+    const tmpCompObj = tmpPrevalThisAlias;
+    const tmpReturnArg = tmpCompObj.x;
     return tmpReturnArg;
   };
   const tmpReturnArg$1 = g();
@@ -55,8 +57,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  const tmpPrevalThisAlias = this;
   const g = () => {
-    const tmpReturnArg = this.x;
+    const tmpReturnArg = tmpPrevalThisAlias.x;
     return tmpReturnArg;
   };
   const tmpReturnArg$1 = g();

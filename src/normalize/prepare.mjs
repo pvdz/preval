@@ -13,6 +13,10 @@ import { $p } from '../$p.mjs';
 
 let VERBOSE_TRACING = true;
 
+const THIS_ALIAS_BASE_NAME = 'tmpPrevalThisAlias';
+const ARGUMENTS_ALIAS_BASE_NAME = 'tmpPrevalArgumentsAlias';
+const ARGLENGTH_ALIAS_BASE_NAME = 'tmpPrevalArgLengthAlias'; // `arguments.length`, which is easier than just `arguments`
+
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
@@ -91,6 +95,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         if (VERBOSE_TRACING) log('Name:', node.id?.name ?? '<anon>');
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
+          node.$p.thisAccess = false;
           thisStack.push(node);
         }
         break;
@@ -101,6 +106,72 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         if (VERBOSE_TRACING) log('Name:', node.id?.name ?? '<anon>');
         funcStack.pop();
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
+          // Check for this/arguments aliases. The order in which they may appear is fixed but optional
+          let aliasIndex = 0; // 0=this,1=arguments,2=arguments.length
+          const body = node.body.body;
+          if (
+            body.length > 0 &&
+            body[aliasIndex].type === 'VariableDeclaration' &&
+            body[aliasIndex].declarations.length === 1 &&
+            body[aliasIndex].declarations[0].id.type === 'Identifier' &&
+            body[aliasIndex].declarations[0].init
+          ) {
+            const decr = body[aliasIndex].declarations[0];
+            // We are looking for an alias of one of three things; `this`, `arguments`, and `arguments.length`
+
+            if (decr.init.type === 'ThisExpression' && decr.id.name.startsWith(THIS_ALIAS_BASE_NAME)) {
+              // This is the `this` alias
+              if (VERBOSE_TRACING) log('The `this` access is already aliased to `' + decr.id.name + '`');
+              node.$p.thisAlias = decr.id.name;
+              ++aliasIndex;
+              decr.init.$p.isForAlias = true;
+              body[aliasIndex].$p.isForAlias = 1;
+            }
+          }
+          if (
+            body.length > 0 &&
+            body[aliasIndex].type === 'VariableDeclaration' &&
+            body[aliasIndex].declarations.length === 1 &&
+            body[aliasIndex].declarations[0].id.type === 'Identifier' &&
+            body[aliasIndex].declarations[0].init
+          ) {
+            const decr = body[aliasIndex].declarations[0];
+            // We are looking for an alias of one of three things; `this`, `arguments`, and `arguments.length`
+
+            if (decr.init.type === 'Identifier' && decr.init.name === 'arguments' && decr.id.name.startsWith(ARGUMENTS_ALIAS_BASE_NAME)) {
+              if (VERBOSE_TRACING) log('The `arguments` access is already aliased to `' + decr.id.name + '`');
+              node.$p.argsAnyAlias = decr.id.name;
+              ++aliasIndex;
+              decr.init.$p.isForAlias = true;
+              body[aliasIndex].$p.isForAlias = 2;
+            }
+          }
+          if (
+            body.length > 0 &&
+            body[aliasIndex].type === 'VariableDeclaration' &&
+            body[aliasIndex].declarations.length === 1 &&
+            body[aliasIndex].declarations[0].id.type === 'Identifier' &&
+            body[aliasIndex].declarations[0].init
+          ) {
+            const decr = body[aliasIndex].declarations[0];
+            // We are looking for an alias of one of three things; `this`, `arguments`, and `arguments.length`
+            if (
+              decr.init.type === 'MemberExpression' &&
+              decr.init.object.type === 'Identifier' &&
+              decr.init.object.name === 'arguments' &&
+              decr.init.property.type === 'Identifier' &&
+              decr.init.property.name === 'length' &&
+              !decr.init.computed &&
+              decr.id.name.startsWith(ARGLENGTH_ALIAS_BASE_NAME)
+            ) {
+              if (VERBOSE_TRACING) log('The `arguments.length` access is already aliased to `' + decr.id.name + '`');
+              node.$p.argsLenAlias = decr.id.name;
+              ++aliasIndex;
+              decr.init.object.$p.isForAlias = true;
+              body[aliasIndex].$p.isForAlias = 3;
+            }
+          }
+
           thisStack.pop();
         }
 
@@ -193,7 +264,22 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         if (VERBOSE_TRACING) log('- Ident kind:', kind);
 
         if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
-        if (kind !== 'none' && kind !== 'label' && node.name !== 'arguments') {
+        if (kind === 'read' && node.name === 'arguments') {
+          // Make explicit check for `arguments.length`
+          if (
+            parentNode.type === 'MemberExpression' &&
+            parentNode.object === node &&
+            parentNode.property.type === 'Identifier' &&
+            parentNode.property.name === 'length' &&
+            !parentNode.computed
+          ) {
+            if (VERBOSE_TRACING) log('- Marking `arguments.length` access');
+            thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+          } else {
+            if (VERBOSE_TRACING) log('- Marking general `arguments` access');
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+          }
+        } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(
             node,

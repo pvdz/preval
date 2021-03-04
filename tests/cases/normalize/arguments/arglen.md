@@ -1,8 +1,8 @@
 # Preval test case
 
-# arg.md
+# arglen.md
 
-> Normalize > Arguments > Arg
+> Normalize > Arguments > Arglen
 >
 > This was causing a problem when arguments was passed on in a call.
 
@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f() {
-  f.apply(this, arguments);
+  f.apply(this, arguments.length);
 }
 `````
 
@@ -20,12 +20,12 @@ function f() {
 
 `````js filename=intro
 let f = function () {
+  const tmpPrevalArgLengthAlias = arguments.length;
   const tmpPrevalThisAlias = this;
-  const tmpPrevalArgumentsAlias = arguments;
   const tmpCallObj = f;
   const tmpCallVal = tmpCallObj.apply;
   const tmpCalleeParam = tmpPrevalThisAlias;
-  const tmpCalleeParam$1 = tmpPrevalArgumentsAlias;
+  const tmpCalleeParam$1 = tmpPrevalArgLengthAlias;
   tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 };
 `````
@@ -34,10 +34,11 @@ let f = function () {
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalThisAlias = this;
-  const tmpPrevalArgumentsAlias = arguments;
+  const tmpPrevalThisAlias$1 = this;
+  const tmpPrevalArgLengthAlias = arguments.length;
+  const tmpPrevalThisAlias = tmpPrevalThisAlias$1;
   const tmpCallVal = f.apply;
-  tmpCallVal.call(f, tmpPrevalThisAlias, tmpPrevalArgumentsAlias);
+  tmpCallVal.call(f, tmpPrevalThisAlias, tmpPrevalArgLengthAlias);
 };
 `````
 

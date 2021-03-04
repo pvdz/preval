@@ -17,6 +17,7 @@ export function $p() {
     //thisAccess: undefined, // boolean. For functions (not arrows), whether it access `this` anywhere in its own scope. Includes whether nested arrows access this in its scope. But not nested functions
     //uniqueName // string. Globally unique name for this binding name. Phase1 will sort out scoping problems and assign each unique binding a globally unique name (its original name with possibly a suffix to distinct it)
     //originalLabelName // string. Name of a label before making it unique
+    // isForAlias // bool. is this identifier used as part of the alias for this/arguments/arguments.length ?
 
     // phase2 (these props should exist after phase2... even on new nodes)
     // pure // boolean. For functions, whether the function does anything that might have observable side effects beyond the return value.
@@ -28,5 +29,8 @@ export function $p() {
     // hoistedVars // Array<[node, parent, prop, index, exportIndex]> Allows a one-time pass at hoisting by passing on all relevant information through this array
     // isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
     // hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
+    // readsArgumentsLen // bool. Does it read `arguments.length`?
+    // readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
+    // containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
   };
 }

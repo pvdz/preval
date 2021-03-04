@@ -5,6 +5,10 @@ import * as AST from '../ast.mjs';
 
 let VERBOSE_TRACING = true;
 
+const THIS_ALIAS_BASE_NAME = 'tmpPrevalThisAlias';
+const ARGUMENTS_ALIAS_BASE_NAME = 'tmpPrevalArgumentsAlias';
+const ARGLENGTH_ALIAS_BASE_NAME = 'tmpPrevalArgLengthAlias'; // `arguments.length`, which is easier than just `arguments`
+
 // Things to do
 // - Inline local constants, numbers, literal idents
 // - Inline imported constants
@@ -74,7 +78,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
   do {
     inlined = false;
 
-    group('Start of constant folding ', ++inlineLoops);
+    group('Iteration', ++inlineLoops, 'of constant inlining');
     // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
     //       Take care to preserve body[index] ordering. Don't add/remove elements to any body array.
     //       Preserve the parent of any identifier as detaching them may affect future steps.
@@ -83,40 +87,46 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
       if (meta.isBuiltin) return;
       if (VERBOSE_TRACING) group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
-      if (meta.writes.length === 1 && !meta.isConstant) {
-        log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
-        meta.isConstant = true;
-        if (meta.writes[0].decl) {
-          const { declParent, declProp, declIndex } = meta.writes[0].decl;
-          const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+      if (
+        !name.startsWith(THIS_ALIAS_BASE_NAME) &&
+        !name.startsWith(ARGUMENTS_ALIAS_BASE_NAME) &&
+        !name.startsWith(ARGLENGTH_ALIAS_BASE_NAME)
+      ) {
+        if (meta.writes.length === 1 && !meta.isConstant) {
+          log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
+          meta.isConstant = true;
+          if (meta.writes[0].decl) {
+            const { declParent, declProp, declIndex } = meta.writes[0].decl;
+            const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
 
-          ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
-          ASSERT(
-            varDecl.kind === 'let',
-            'so it must be a let right now because vars are eliminated and it wasnt marked as a constant',
-            declParent,
-          );
-          if (varDecl.declarations[0].init) {
-            rule('A binding decl where the binding has one write must be a const');
-            example('let x = 10; f(x);', 'const x = 10; f(x);');
-            before(meta.writes[0].decl.declParent);
+            ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
+            ASSERT(
+              varDecl.kind === 'let',
+              'so it must be a let right now because vars are eliminated and it wasnt marked as a constant',
+              declParent,
+            );
+            if (varDecl.declarations[0].init) {
+              rule('A binding decl where the binding has one write must be a const');
+              example('let x = 10; f(x);', 'const x = 10; f(x);');
+              before(meta.writes[0].decl.declParent);
 
-            varDecl.kind = 'const';
+              varDecl.kind = 'const';
 
-            after(meta.writes[0].decl.declParent);
-          } else {
-            log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
+              after(meta.writes[0].decl.declParent);
+            } else {
+              log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
+            }
           }
         }
-      }
 
-      // Attempt to fold up constants
-      if (meta.isConstant) {
-        ASSERT(meta.name === name);
-        if (attemptConstantInlining(meta, fdata)) {
-          groupEnd();
-          inlined = true;
-          return;
+        // Attempt to fold up constants
+        if (meta.isConstant) {
+          ASSERT(meta.name === name);
+          if (attemptConstantInlining(meta, fdata)) {
+            groupEnd();
+            inlined = true;
+            return;
+          }
         }
       }
 
@@ -186,15 +196,15 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
       if (VERBOSE_TRACING) groupEnd();
     });
-    log('End of constant folding. Did we inline anything?', inlined ? 'yes' : 'no');
+    log('End of iteration', inlineLoops, ' of constant inlining. Did we inline anything?', inlined ? 'yes' : 'no');
 
     if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
+    groupEnd();
     if (inlined) {
       log('Folded some constants. Trying loop again...\n\n');
       ++inlinedSomething;
     }
-    groupEnd();
   } while (inlined);
   // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
   if (toEliminate.length) {
@@ -408,6 +418,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
         ASSERT(
           rwOrder.slice(1).every((rw) => (!rw.decl && !rw.param ? true : !!void console.dir(rw, { depth: null }))),
           'a binding should have no more than one var decl / param after normalization',
+          name,
           rwOrder,
         );
 
@@ -749,56 +760,6 @@ function attemptConstantInlining(meta, fdata) {
     after(';');
     groupEnd();
     return inlined;
-  }
-
-  if (rhs.type === 'ThisExpression') {
-    // We can safely replace all occurrences of the constant binding that appear
-    // in the same scope. TODO: or that appear in the scope of an arrow (next level).
-    rule('The `this` is already an immutable constant in the same scope');
-    example('const x = this; f(x);', 'f(this);');
-    before(write.parentNode);
-
-    // With the new
-    group('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with `this`');
-    const writeScope = write.scope;
-    const reads = meta.reads;
-    let inlined = false;
-    for (let i = 0; i < reads.length; ++i) {
-      // Note: this parent may not be part of the AST anymore (!) (ex. if a var decl with complex init was eliminated)
-      const oldRead = reads[i];
-      const { parentNode, parentProp, parentIndex } = oldRead;
-      if (parentNode.type === 'ExportSpecifier') {
-        log('Skipping export ident');
-      } else if (oldRead.scope !== writeScope) {
-        // TODO: would be fine for arrows.
-        log('Cannot replace a read in a different scope because that is a different ref for `this`.');
-      } else {
-        log(
-          'Replacing a read of `' +
-            meta.name +
-            '` with a `this` (on prop `' +
-            parentNode.type +
-            '.' +
-            parentProp +
-            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
-            ')' +
-            '`...',
-        );
-        before(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
-        if (parentIndex >= 0) parentNode[parentProp][parentIndex] = AST.thisExpression();
-        else parentNode[parentProp] = AST.thisExpression();
-        after(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
-        inlined = true;
-        // Remove the read. This binding is read one fewer times
-        reads.splice(i, 1);
-        // We removed an element from the current loop so retry the current index
-        --i;
-      }
-    }
-    log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
-    groupEnd();
-
-    after(write.parentNode);
   }
 
   if (

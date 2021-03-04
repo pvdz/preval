@@ -19,13 +19,16 @@ $(this);
 ## Normalized
 
 `````js filename=intro
-$(this);
+const tmpCallCallee = $;
+const tmpCalleeParam = this;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(this);
+const tmpCalleeParam = this;
+$(tmpCalleeParam);
 `````
 
 ## Globals

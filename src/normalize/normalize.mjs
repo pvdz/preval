@@ -8,6 +8,9 @@ let VERBOSE_TRACING = true;
 const ASSUME_BUILTINS = true; // Put any rules that assert the internals of JS (prototype) that exist are not changed under this flag.
 
 const DCE_ERROR_MSG = '[Preval]: Can not reach here';
+const THIS_ALIAS_BASE_NAME = 'tmpPrevalThisAlias';
+const ARGUMENTS_ALIAS_BASE_NAME = 'tmpPrevalArgumentsAlias';
+const ARGLENGTH_ALIAS_BASE_NAME = 'tmpPrevalArgLengthAlias'; // `arguments.length`, which is easier than just `arguments`
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
@@ -217,6 +220,9 @@ export function phaseNormalize(fdata, fname) {
   let somethingChanged = false; // Did phase2 change anything at all?
 
   const ast = fdata.tenkoOutput.ast;
+  const funcStack = [];
+  const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
+  const ifelseStack = [ast];
 
   function assertNoDupeNodes(node = ast, prop = 'ast') {
     // Assert AST contains no duplicate node objects
@@ -384,7 +390,7 @@ export function phaseNormalize(fdata, fname) {
       if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
     }
     if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
-    if (node.type === 'ThisExpression') return false;
+    if (node.type === 'ThisExpression') return true;
     if (node.type === 'Super') return false;
 
     return true;
@@ -1232,7 +1238,41 @@ export function phaseNormalize(fdata, fname) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           } else {
+            // The idea is that we don't want to eliminate an implicit global that might trigger a runtime exception
             if (VERBOSE_TRACING) log('Not eliminating this identifier statement because it is an implicit global');
+          }
+        }
+
+        if (
+          node.name === 'arguments' &&
+          thisStack.length && // Do not be global, or arrow nested in global.
+          !node.$p.isForAlias // Ignore the case that is our own alias
+        ) {
+          // Two cases: general `arguments` access and specifically `arguments.length` access
+          if (
+            parentNode.type === 'MemberExpression' &&
+            parentNode.object === node &&
+            parentNode.property.type === 'Identifier' &&
+            parentNode.property.name === 'arguments' &&
+            !parentNode.computed
+          ) {
+            ASSERT(thisStack[thisStack.length - 1].$p.argsLenAlias, 'alias should be set by now');
+            // Ok this member expression was arguments.length
+            // Replace it in the member expression visitor
+            ASSERT(false, 'testing this because I dont think this should be reachable but perhaps it is by the alias');
+          } else {
+            rule('All `arguments` access must be replaced with a local alias');
+            example('f(arguments);', 'f(tmpPrevalArgumentsAlias)');
+            before(node, parentNode);
+
+            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
+            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, finalParent);
+
+            after(node, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
         }
 
@@ -1291,7 +1331,56 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        // Inject aliases for this/arguments/arguments.length and make sure to maintain their proper order (prevents infi loops)
+        if (node.$p.thisAccess && !node.$p.thisAlias) {
+          node.$p.thisAlias = createFreshVar(THIS_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
+          const thisNode = AST.thisExpression();
+          thisNode.$p.isForAlias = true;
+          const varNode = AST.variableDeclaration(node.$p.thisAlias, thisNode, 'const');
+          varNode.$p.isForAlias = 1;
+          node.body.body.unshift(varNode);
+          if (VERBOSE_TRACING) log('Created local alias for `this`;', node.$p.thisAlias);
+        }
+        if (node.$p.readsArgumentsAny && !node.$p.argsAnyAlias) {
+          node.$p.argsAnyAlias = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
+          const argNode = AST.identifier('arguments');
+          argNode.$p.isForAlias = true;
+          const varNode = AST.variableDeclaration(node.$p.argsAnyAlias, argNode, 'const');
+          varNode.$p.isForAlias = 2;
+          let at = 0;
+          if (node.body.body[0]?.$p.isForAlias === 1) {
+            ++at;
+            ASSERT(node.body.body[1]?.$p.isForAlias !== 1, 'should not have two `this` aliases');
+          }
+          node.body.body.splice(at, 0, varNode);
+          if (VERBOSE_TRACING) log('Created local alias for `arguments`;', node.$p.argsAnyAlias);
+        }
+        if (node.$p.readsArgumentsLen && !node.$p.argsLenAlias) {
+          node.$p.argsLenAlias = createFreshVar(ARGLENGTH_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
+          const argNode = AST.identifier('arguments');
+          argNode.$p.isForAlias = true;
+          const varNode = AST.variableDeclaration(node.$p.argsLenAlias, AST.memberExpression(argNode, 'length'), 'const');
+          varNode.$p.isForAlias = 3;
+          let at = 0;
+          if (node.body.body[0]?.$p.isForAlias === 1) {
+            ++at;
+            ASSERT(node.body.body[1]?.$p.isForAlias !== 1, 'should not have two `this` aliases');
+            if (node.body.body[1]?.$p.isForAlias === 2) {
+              ++at;
+              ASSERT(node.body.body[2]?.$p.isForAlias !== 2, 'should not have two `arguments` aliases');
+            }
+          }
+          node.body.body.unshift(varNode);
+          if (VERBOSE_TRACING) log('Created local alias for `arguments.length`;', node.$p.argsLenAlias);
+        }
+
+        funcStack.push(node);
+        thisStack.push(node);
+        ifelseStack.push(node);
         anyBlock(node.body, node);
+        ifelseStack.pop();
+        thisStack.pop();
+        funcStack.pop();
 
         return false;
       }
@@ -1678,6 +1767,35 @@ export function phaseNormalize(fdata, fname) {
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
+        }
+
+        if (node.object.type === 'Identifier' && node.object.name === 'arguments' && !node.object.$p.isForAlias) {
+          if (!node.computed && node.property.type === 'Identifier' && node.property.name === 'length') {
+            rule('All `arguments.length` access must be replaced with a local alias');
+            example('f(arguments.length);', 'f(tmpPrevalArgLengthAlias)');
+            before(node, parentNode);
+
+            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsLenAlias, 'Should be set for all cases?');
+            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsLenAlias);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, finalParent);
+
+            after(finalParent, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          } else {
+            rule('All `arguments` property access must be replaced with a local alias');
+            example('f(arguments[0]);', 'f(tmpPrevalArgumentsAlias[0])');
+            before(node, parentNode);
+
+            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
+            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+            node.object = finalNode;
+
+            after(node, parentNode);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         if (ASSUME_BUILTINS) {
@@ -4418,7 +4536,11 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        funcStack.push(node);
+        ifelseStack.push(node);
         anyBlock(node.body, node);
+        ifelseStack.pop();
+        funcStack.pop();
 
         return false;
       }
@@ -4761,6 +4883,27 @@ export function phaseNormalize(fdata, fname) {
           after(AST.emptyStatement());
           return true;
         }
+
+        // Attempt to detect our own transform and ignore it. It should always be in the form of `const tmpPrevalThisAlias = this`.
+        // Any other kind of usage of `this` should be replaced with that alias. This makes future func transforms safe.
+        if (
+          thisStack.length && // Do not be global, or arrow nested in global.
+          !node.$p.isForAlias // Ignore the usage in our own alias decl
+        ) {
+          rule('All `this` keywords must be replaced with a local alias');
+          example('f(this);', 'f(tmpPrevalThisAlias)');
+          before(node, parentNode);
+
+          ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.thisAlias, 'Should be set for all cases?');
+          const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.thisAlias);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, finalParent);
+
+          after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         return false;
       }
 
@@ -5111,7 +5254,9 @@ export function phaseNormalize(fdata, fname) {
     }
 
     ASSERT(node.body.type === 'BlockStatement');
+    ifelseStack.push(node);
     transformBlock(node.body, undefined, -1, node, false);
+    ifelseStack.pop();
 
     if (VERBOSE_TRACING) {
       log(
@@ -5351,7 +5496,9 @@ export function phaseNormalize(fdata, fname) {
     }
 
     ASSERT(node.consequent.type === 'BlockStatement');
+    ifelseStack.push(node);
     transformBlock(node.consequent, undefined, -1, node, false);
+    ifelseStack.pop();
 
     if (node.alternate) {
       transformBlock(node.alternate, undefined, -1, node, false);
@@ -5727,7 +5874,9 @@ export function phaseNormalize(fdata, fname) {
 
     if (VERBOSE_TRACING) log('label has block, noop');
     ASSERT(node.body.type === 'BlockStatement');
+    ifelseStack.push(node);
     const anyChange = transformBlock(node.body, undefined, -1, node, false);
+    ifelseStack.pop();
     if (VERBOSE_TRACING) log('Changes?', anyChange);
     if (anyChange) {
       if (VERBOSE_TRACING)
@@ -5802,6 +5951,7 @@ export function phaseNormalize(fdata, fname) {
       hoistingRoot,
     );
 
+    ASSERT(hoistingRoot.$p.hoistedVars, 'the hoistedVars should exist on anything that can hoist', hoistingRoot);
     if (VERBOSE_TRACING) log('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
 
     // There are two things in three contexts that we hoist
@@ -6927,7 +7077,11 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (isComplexNode(dnode.init, false) || dnode.init.type === 'TemplateLiteral') {
+      if (
+        isComplexNode(dnode.init, false) ||
+        (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments') ||
+        dnode.init.type === 'TemplateLiteral'
+      ) {
         // false: returns true for simple unary as well
         if (VERBOSE_TRACING) log('- init is complex, transforming expression');
         if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
@@ -6972,7 +7126,9 @@ export function phaseNormalize(fdata, fname) {
     }
 
     ASSERT(node.body.type === 'BlockStatement');
+    ifelseStack.push(node);
     transformBlock(node.body, undefined, -1, node, false);
+    ifelseStack.pop();
 
     if (node.body.body.length === 1 && node.body.body[0].type === 'BreakStatement') {
       const brk = node.body.body[0];

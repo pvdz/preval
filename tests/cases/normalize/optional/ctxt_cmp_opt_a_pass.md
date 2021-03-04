@@ -19,9 +19,10 @@ $($(a)?.[$('b')][$('c')](100));
 
 `````js filename=intro
 const tmpObjLitVal$1 = function (...a$1) {
+  const tmpPrevalThisAlias = this;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(a$1);
-  const tmpCalleeParam$1 = this;
+  const tmpCalleeParam$1 = tmpPrevalThisAlias;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -48,8 +49,9 @@ tmpCallCallee$1(tmpCalleeParam$2);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function (...a$1) {
+  const tmpPrevalThisAlias = this;
   const tmpCalleeParam = $(a$1);
-  $(tmpCalleeParam, this);
+  $(tmpCalleeParam, tmpPrevalThisAlias);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };

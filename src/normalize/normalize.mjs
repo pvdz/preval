@@ -182,7 +182,20 @@ function before(node, parent) {
 function source(node) {
   if (VERBOSE_TRACING) {
     if (Array.isArray(node)) node.forEach((n) => source(n));
-    else log(YELLOW + 'Source:' + RESET, tmat(node));
+    else {
+      let code = tmat(node);
+      try {
+        code = fmat(code); // May fail.
+      } catch {}
+      if (code.includes('\n')) {
+        log(YELLOW + 'Source:' + RESET);
+        group();
+        log(code);
+        groupEnd();
+      } else {
+        log(YELLOW + 'Source:' + RESET);
+      }
+    }
   }
 }
 

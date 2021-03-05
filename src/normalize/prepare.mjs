@@ -265,19 +265,22 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
         if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind === 'read' && node.name === 'arguments') {
-          // Make explicit check for `arguments.length`
-          if (
-            parentNode.type === 'MemberExpression' &&
-            parentNode.object === node &&
-            parentNode.property.type === 'Identifier' &&
-            parentNode.property.name === 'length' &&
-            !parentNode.computed
-          ) {
-            if (VERBOSE_TRACING) log('- Marking `arguments.length` access');
-            thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
-          } else {
-            if (VERBOSE_TRACING) log('- Marking general `arguments` access');
-            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+          // ignore global space
+          if (thisStack.length) {
+            // Make explicit check for `arguments.length`
+            if (
+              parentNode.type === 'MemberExpression' &&
+              parentNode.object === node &&
+              parentNode.property.type === 'Identifier' &&
+              parentNode.property.name === 'length' &&
+              !parentNode.computed
+            ) {
+              if (VERBOSE_TRACING) log('- Marking `arguments.length` access');
+              thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+            } else {
+              if (VERBOSE_TRACING) log('- Marking general `arguments` access');
+              thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+            }
           }
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');

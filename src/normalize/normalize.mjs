@@ -5178,6 +5178,17 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (thisStack.length && node.right.type === 'Identifier' && node.right.name === 'arguments') {
+      rule('Return value of `arguments` should be aliased'); // And silly.
+      example('while (arguments) {}', 'while (tmpPrevalArgumentsAliasA) {}');
+      before(node);
+
+      node.right = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+      after(node);
+      return true;
+    }
+
     // The lhs must be a pattern, an ident, or a member expression. We want it to be an ident.
     ASSERT(
       ['Identifier', 'MemberExpression', 'ArrayPattern', 'ObjectPattern'].includes(node.left.type),
@@ -5455,6 +5466,17 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
+    if (thisStack.length && node.test.type === 'Identifier' && node.test.name === 'arguments') {
+      rule('If test value of `arguments` should be aliased'); // And silly.
+      example('if (arguments) {}', 'if (tmpPrevalArgumentsAliasA) {}');
+      before(node);
+
+      node.test = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+      after(node);
+      return true;
+    }
+
     if (node.consequent.type !== 'BlockStatement') {
       rule('If sub-statement must be block');
       example('if (x) y', 'if (x) { y }');
@@ -5501,7 +5523,9 @@ export function phaseNormalize(fdata, fname) {
     ifelseStack.pop();
 
     if (node.alternate) {
+      ifelseStack.push(node);
       transformBlock(node.alternate, undefined, -1, node, false);
+      ifelseStack.pop();
 
       if (node.alternate.body.length === 0) {
         rule('If-else with empty else-block should have no else');
@@ -6382,7 +6406,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (isComplexNode(node.argument)) {
+    if (isComplexNode(node.argument) || (node.argument.type === 'Identifier' && node.argument.name === 'arguments')) {
       rule('Return argument must be simple');
       example('return $()', 'let tmp = $(); return tmp;');
       before(node);
@@ -6396,6 +6420,17 @@ export function phaseNormalize(fdata, fname) {
       after(newNode);
       after(node);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
+      rule('Return value of `arguments` should be aliased'); // And silly.
+      example('while (arguments) {}', 'while (tmpPrevalArgumentsAliasA) {}');
+      before(node);
+
+      node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+      after(node);
       return true;
     }
 
@@ -6450,6 +6485,17 @@ export function phaseNormalize(fdata, fname) {
       after(newNode);
       after(node);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (thisStack.length && node.discriminant.type === 'Identifier' && node.discriminant.name === 'arguments') {
+      rule('Switch discriminant of `arguments` should be alias'); // And silly.
+      example('switch (arguments) {}', 'switch (tmpPrevalArgumentsAliasA) {}');
+      before(node);
+
+      node.discriminant = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+      after(node);
       return true;
     }
 
@@ -6758,6 +6804,17 @@ export function phaseNormalize(fdata, fname) {
 
       after(newNode);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
+      rule('Throw value of `arguments` should be aliased'); // And silly.
+      example('throw arguments', 'throw tmpPrevalArgumentsAliasA');
+      before(node);
+
+      node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+      after(node);
       return true;
     }
 
@@ -7199,6 +7256,17 @@ export function phaseNormalize(fdata, fname) {
 
         after(node);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (thisStack.length && node.test.name === 'arguments') {
+        rule('While test value of `arguments` should be aliased'); // And silly.
+        example('while (arguments) {}', 'while (tmpPrevalArgumentsAliasA) {}');
+        before(node);
+
+        node.test = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+        after(node);
         return true;
       }
     }

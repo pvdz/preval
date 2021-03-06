@@ -21,12 +21,12 @@ $(a);
 
 `````js filename=intro
 let f = function ($tdz$__p) {
-  const tmpPrevalArgumentsAlias = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    a = tmpPrevalArgumentsAlias;
-    p = tmpPrevalArgumentsAlias;
+    a = tmpPrevalAliasArgumentsAny;
+    p = tmpPrevalAliasArgumentsAny;
   } else {
     p = $tdz$__p;
   }
@@ -42,10 +42,10 @@ $(a);
 
 `````js filename=intro
 const f = function ($tdz$__p) {
-  const tmpPrevalArgumentsAlias = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    a = tmpPrevalArgumentsAlias;
+    a = tmpPrevalAliasArgumentsAny;
   }
 };
 let a = { a: 999, b: 1000 };

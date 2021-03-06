@@ -23,11 +23,11 @@ $(a);
 
 `````js filename=intro
 let f = function ($tdz$__p) {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   let p = undefined;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = tmpPrevalThisAlias;
+    const tmpNestedComplexRhs = tmpPrevalAliasThis;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -45,10 +45,10 @@ $(a);
 
 `````js filename=intro
 const f = function ($tdz$__p) {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   const tmpIfTest = $tdz$__p === undefined;
   if (tmpIfTest) {
-    a = tmpPrevalThisAlias;
+    a = tmpPrevalAliasThis;
   }
 };
 let a = { a: 999, b: 1000 };

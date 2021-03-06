@@ -8,9 +8,11 @@ let VERBOSE_TRACING = true;
 const ASSUME_BUILTINS = true; // Put any rules that assert the internals of JS (prototype) that exist are not changed under this flag.
 
 const DCE_ERROR_MSG = '[Preval]: Can not reach here';
-const THIS_ALIAS_BASE_NAME = 'tmpPrevalThisAlias';
-const ARGUMENTS_ALIAS_BASE_NAME = 'tmpPrevalArgumentsAlias';
-const ARGLENGTH_ALIAS_BASE_NAME = 'tmpPrevalArgLengthAlias'; // `arguments.length`, which is easier than just `arguments`
+const ALIAS_PREFIX = 'tmpPrevalAlias';
+const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
+const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
+const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
+const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion

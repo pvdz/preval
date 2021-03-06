@@ -22,10 +22,10 @@ $(a).x?.(1, 2, 3);
 
 `````js filename=intro
 const tmpObjLitVal = function (...args) {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   const tmpCallCallee = $;
   const tmpCalleeParam = args;
-  const tmpCompObj = tmpPrevalThisAlias;
+  const tmpCompObj = tmpPrevalAliasThis;
   const tmpCalleeParam$1 = tmpCompObj.y;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 };
@@ -43,8 +43,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = function (...args) {
-  const tmpPrevalThisAlias = this;
-  const tmpCalleeParam$1 = tmpPrevalThisAlias.y;
+  const tmpPrevalAliasThis = this;
+  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
   $(args, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };

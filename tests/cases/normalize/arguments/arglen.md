@@ -20,12 +20,12 @@ function f() {
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalArgLengthAlias = arguments.length;
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  const tmpPrevalAliasThis = this;
   const tmpCallObj = f;
   const tmpCallVal = tmpCallObj.apply;
-  const tmpCalleeParam = tmpPrevalThisAlias;
-  const tmpCalleeParam$1 = tmpPrevalArgLengthAlias;
+  const tmpCalleeParam = tmpPrevalAliasThis;
+  const tmpCalleeParam$1 = tmpPrevalAliasArgumentsLen;
   tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 };
 `````
@@ -34,11 +34,11 @@ let f = function () {
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalThisAlias$1 = this;
-  const tmpPrevalArgLengthAlias = arguments.length;
-  const tmpPrevalThisAlias = tmpPrevalThisAlias$1;
+  const tmpPrevalAliasThis$1 = this;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
   const tmpCallVal = f.apply;
-  tmpCallVal.call(f, tmpPrevalThisAlias, tmpPrevalArgLengthAlias);
+  tmpCallVal.call(f, tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
 };
 `````
 

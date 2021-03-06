@@ -20,7 +20,7 @@ function f() {
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalArgumentsAlias = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
 };
 `````
 

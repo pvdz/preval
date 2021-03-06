@@ -8,6 +8,12 @@ import * as AST from '../ast.mjs';
 
 let VERBOSE_TRACING = true;
 
+const ALIAS_PREFIX = 'tmpPrevalAlias';
+const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
+const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
+const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
+const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
+
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.

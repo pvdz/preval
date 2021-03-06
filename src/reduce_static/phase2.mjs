@@ -5,9 +5,11 @@ import * as AST from '../ast.mjs';
 
 let VERBOSE_TRACING = true;
 
-const THIS_ALIAS_BASE_NAME = 'tmpPrevalThisAlias';
-const ARGUMENTS_ALIAS_BASE_NAME = 'tmpPrevalArgumentsAlias';
-const ARGLENGTH_ALIAS_BASE_NAME = 'tmpPrevalArgLengthAlias'; // `arguments.length`, which is easier than just `arguments`
+const ALIAS_PREFIX = 'tmpPrevalAlias';
+const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
+const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
+const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
+const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
 
 // Things to do
 // - Inline local constants, numbers, literal idents

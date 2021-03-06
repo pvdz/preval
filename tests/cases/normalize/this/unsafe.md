@@ -27,11 +27,11 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   let g = function () {
     return x;
   };
-  const x = tmpPrevalThisAlias;
+  const x = tmpPrevalAliasThis;
   const tmpReturnArg = g();
   return tmpReturnArg;
 };
@@ -44,9 +44,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   const g = function () {
-    return tmpPrevalThisAlias;
+    return tmpPrevalAliasThis;
   };
   const tmpReturnArg = g();
   return tmpReturnArg;

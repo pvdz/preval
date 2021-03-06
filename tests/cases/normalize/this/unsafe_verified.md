@@ -29,13 +29,13 @@ $(f.call({y: 1}));
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   let g = function () {
     $(x);
     const tmpReturnArg = x.y;
     return tmpReturnArg;
   };
-  const x = tmpPrevalThisAlias;
+  const x = tmpPrevalAliasThis;
   $(x);
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
@@ -52,13 +52,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalThisAlias = this;
+  const tmpPrevalAliasThis = this;
   const g = function () {
-    $(tmpPrevalThisAlias);
-    const tmpReturnArg = tmpPrevalThisAlias.y;
+    $(tmpPrevalAliasThis);
+    const tmpReturnArg = tmpPrevalAliasThis.y;
     return tmpReturnArg;
   };
-  $(tmpPrevalThisAlias);
+  $(tmpPrevalAliasThis);
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 };

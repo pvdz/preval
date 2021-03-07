@@ -198,7 +198,7 @@ function source(node) {
         log(code);
         groupEnd();
       } else {
-        log(YELLOW + 'Source:' + RESET);
+        log(YELLOW + 'Source:' + RESET, code);
       }
     }
   }
@@ -701,7 +701,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ExportNamedDeclaration':
         return transformExportNamedDeclaration(node, body, i);
       case 'ExpressionStatement':
-        return transformExpression('statement', node.expression, body, i, node.expression);
+        return transformExpression('statement', node.expression, body, i, node);
       case 'ForStatement':
         return transformForStatement(node, body, i);
       case 'ForInStatement':
@@ -1075,8 +1075,10 @@ export function phaseNormalize(fdata, fname) {
 
       if (newBindings.length) {
         if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-        node.declaration.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
-        after(node.declaration);
+        // let because params are mutable
+        const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
+        node.declaration.body.body.unshift(...newNodes);
+        after(newNodes, node);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -1201,7 +1203,7 @@ export function phaseNormalize(fdata, fname) {
     node,
     body,
     i,
-    parentNode, // For var/assign, this is the entire node. For statement, this is the same as node. For printing with `before`
+    parentNode, // For var/assign, this is the entire node. For statement, this is the ExpressionStatement
     wrapLhs = false,
     varOrAssignKind = false, // If parent is var then this is var kind, if parent is assign, this is assign operator. else empty
     varInitAssignKind, // if body[i] is a var decl and this assignment is its init, then this is the kind of the var
@@ -1328,7 +1330,9 @@ export function phaseNormalize(fdata, fname) {
 
         if (newBindings.length) {
           if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-          node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+          const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let')); // let because params are mutable
+          node.body.body.unshift(...newNodes);
+          after(newNodes, node);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -1341,6 +1345,7 @@ export function phaseNormalize(fdata, fname) {
           const varNode = AST.variableDeclaration(node.$p.thisAlias, thisNode, 'const');
           varNode.$p.isForAlias = 1;
           node.body.body.unshift(varNode);
+          rule('If the function references `this` then we must create an alias for it');
           if (VERBOSE_TRACING) log('Created local alias for `this`;', node.$p.thisAlias);
         }
         if (node.$p.readsArgumentsAny && !node.$p.argsAnyAlias) {
@@ -1355,6 +1360,7 @@ export function phaseNormalize(fdata, fname) {
             ASSERT(node.body.body[1]?.$p.isForAlias !== 1, 'should not have two `this` aliases');
           }
           node.body.body.splice(at, 0, varNode);
+          rule('If the function references `arguments` then we must create an alias for it');
           if (VERBOSE_TRACING) log('Created local alias for `arguments`;', node.$p.argsAnyAlias);
         }
         if (node.$p.readsArgumentsLen && !node.$p.argsLenAlias) {
@@ -1373,6 +1379,7 @@ export function phaseNormalize(fdata, fname) {
             }
           }
           node.body.body.unshift(varNode);
+          rule('If the function references `arguments.length` then we must create an alias for it');
           if (VERBOSE_TRACING) log('Created local alias for `arguments.length`;', node.$p.argsLenAlias);
         }
 
@@ -4533,7 +4540,9 @@ export function phaseNormalize(fdata, fname) {
 
         if (newBindings.length) {
           if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-          node.body.body.unshift(...newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'))); // let because params are mutable
+          const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
+          node.body.body.unshift(...newNodes); // let because params are mutable
+          after(newNodes, node);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -5305,7 +5314,7 @@ export function phaseNormalize(fdata, fname) {
       if (pnode.type === 'AssignmentPattern') {
         rule('Func params must not have inits/defaults');
         example('function f(x = y()) {}', 'function f(tmp) { x = tmp === undefined ? y() : tmp; }');
-        before({ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
+        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
 
         // Param defaults. Rewrite to be inside the function
         // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
@@ -5344,6 +5353,8 @@ export function phaseNormalize(fdata, fname) {
             AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
           ]);
 
+          after(newIdentNode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
+
           return;
         }
 
@@ -5376,15 +5387,20 @@ export function phaseNormalize(fdata, fname) {
         // - A leaf node should be able to access the property from the binding name at the top of the stack
 
         if (pnode.left.type === 'ObjectPattern') {
-          rule('Func params must not be object patterns');
+          rule('Func params must not be object assign patterns');
           example('function({x}) {}', 'function(tmp) { var x = tmp.x; }');
+          before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
 
           funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings, 'param');
+
+          after(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
         } else if (pnode.left.type === 'ArrayPattern') {
-          rule('Func params must not be array patterns');
+          rule('Func params must not be array assign patterns');
           example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
+          before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
 
           funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings, 'param');
+          after(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
         } else {
           ASSERT(false, 'what else?', pnode.left);
         }
@@ -5401,6 +5417,16 @@ export function phaseNormalize(fdata, fname) {
 
       ASSERT(pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern', 'wat else?', pnode);
 
+      if (pnode.type === 'ObjectPattern') {
+        rule('Func params must not be object patterns');
+        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
+        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
+      } else if (pnode.type === 'ArrayPattern') {
+        rule('Func params must not be array patterns');
+        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
+        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
+      }
+
       const newParamName = createFreshVar('tmpParamPattern', fdata);
       cacheNameStack.push(newParamName);
       if (VERBOSE_TRACING) log('- Replacing the pattern param with', '`' + newParamName + '`');
@@ -5414,16 +5440,11 @@ export function phaseNormalize(fdata, fname) {
       // - A leaf node should be able to access the property from the binding name at the top of the stack
 
       if (pnode.type === 'ObjectPattern') {
-        rule('Func params must not be array patterns');
-        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
         funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings, 'param');
       } else if (pnode.type === 'ArrayPattern') {
-        rule('Func params must not be array patterns');
-        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
         funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings, 'param');
-      } else {
-        ASSERT(false, 'dunno wat dis is', pnode);
       }
+      after(node.params[i], node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
     });
   }
   function transformIfStatement(node, body, i, parentNode) {
@@ -5961,7 +5982,7 @@ export function phaseNormalize(fdata, fname) {
       const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
       node.body.body.unshift(...newNodes);
 
-      after(newNodes);
+      after(newNodes, node);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }

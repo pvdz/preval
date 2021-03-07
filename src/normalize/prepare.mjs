@@ -267,9 +267,10 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
         if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind === 'read' && node.name === 'arguments') {
-          // ignore global space
+          // Ignore occurrences in global space (or in global nested arrows)
           if (thisStack.length) {
-            // Make explicit check for `arguments.length`
+            // Do not count cases like where the arguments have no observable side effect or our own alias
+            // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
             if (
               parentNode.type === 'MemberExpression' &&
               parentNode.object === node &&
@@ -277,11 +278,22 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               parentNode.property.name === 'length' &&
               !parentNode.computed
             ) {
-              if (VERBOSE_TRACING) log('- Marking `arguments.length` access');
+              // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
+              if (VERBOSE_TRACING) log('Marking function as accessing `arguments.length`');
               thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
             } else {
-              if (VERBOSE_TRACING) log('- Marking general `arguments` access');
-              thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+              if (parentNode.type === 'ExpressionStatement') {
+                if (VERBOSE_TRACING) log('Ignoring `arguments` as an expression statement');
+              //} else if (
+              //  parentNode.type === 'VariableDeclaration' &&
+              //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
+              //) {
+              //  if (VERBOSE_TRACING) log('Ignoring our own arguments alias');
+              } else {
+                // This disables a few tricks because of observable side effects
+                if (VERBOSE_TRACING) log('Marking function as accessing `arguments` in "any" way');
+                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+              }
             }
           }
         } else if (kind !== 'none' && kind !== 'label') {

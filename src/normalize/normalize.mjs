@@ -1227,11 +1227,13 @@ export function phaseNormalize(fdata, fname) {
     switch (node.type) {
       case 'Identifier':
         if (VERBOSE_TRACING) log('- name: `' + node.name + '`');
+
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
 
+          // The `arguments` reference is special as it implies func params can not be changed. Somethign to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
-          if (node.name === 'arguments' || !meta.isImplicitGlobal) {
+          if (node.name !== 'arguments' && !meta.isImplicitGlobal) {
             rule('A statement can not just be an identifier');
             example('x;', ';');
             before(node, parentNode);
@@ -1265,18 +1267,31 @@ export function phaseNormalize(fdata, fname) {
             // Replace it in the member expression visitor
             ASSERT(false, 'testing this because I dont think this should be reachable but perhaps it is by the alias');
           } else {
-            rule('All `arguments` access must be replaced with a local alias');
-            example('f(arguments);', 'f(tmpPrevalArgumentsAlias)');
-            before(node, parentNode);
+            if (wrapKind === 'statement') {
+              rule('Delete a statement that only contains `arguments`');
+              example(`if (x) arguments;`, 'if (x) ;');
+              before(node, parentNode);
 
-            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
-            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-            body.splice(i, 1, finalParent);
+              body.splice(i, 1, AST.emptyStatement());
 
-            after(node, parentNode);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
+              after(AST.emptyStatement(), parentNode);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            } else {
+              rule('All `arguments` access must be replaced with a local alias');
+              example('f(arguments);', 'f(tmpPrevalArgumentsAlias)');
+              before(node, parentNode);
+              console.log('-->', parentNode, parentNode === node);
+
+              ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
+              const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, finalParent);
+
+              after(node, parentNode);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
         }
 
@@ -3887,6 +3902,17 @@ export function phaseNormalize(fdata, fname) {
           after(newNodes);
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
+          rule('Unary argument value of `arguments` should be aliased'); // And is a little silly.
+          example('!arguments', '!tmpPrevalArgumentsAliasA');
+          before(node);
+
+          node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+          after(node);
           return true;
         }
 

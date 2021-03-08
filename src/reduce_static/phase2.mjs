@@ -89,11 +89,7 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
       if (meta.isBuiltin) return;
       if (VERBOSE_TRACING) group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
-      if (
-        !name.startsWith(THIS_ALIAS_BASE_NAME) &&
-        !name.startsWith(ARGUMENTS_ALIAS_BASE_NAME) &&
-        !name.startsWith(ARGLENGTH_ALIAS_BASE_NAME)
-      ) {
+      if (!name.startsWith(ALIAS_PREFIX)) {
         if (meta.writes.length === 1 && !meta.isConstant) {
           log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
           meta.isConstant = true;

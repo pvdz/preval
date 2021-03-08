@@ -1281,7 +1281,6 @@ export function phaseNormalize(fdata, fname) {
               rule('All `arguments` access must be replaced with a local alias');
               example('f(arguments);', 'f(tmpPrevalArgumentsAlias)');
               before(node, parentNode);
-              console.log('-->', parentNode, parentNode === node);
 
               ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
               const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);

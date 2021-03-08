@@ -429,7 +429,6 @@ export function createReadRef(obj) {
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
-
   return {
     action: 'read',
     parentNode,
@@ -480,7 +479,14 @@ export function createWriteRef(obj) {
   };
 }
 
-export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false, VERBOSE_TRACING = true) {
+export function findUniqueNameForBindingIdent(
+  node,
+  isFuncDeclId = false,
+  fdata,
+  lexScopeStack,
+  ignoreGlobals = false,
+  VERBOSE_TRACING = true,
+) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
@@ -513,7 +519,6 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
     // Register one...
     if (VERBOSE_TRACING) log('Creating implicit global binding for `' + node.name + '` now');
     const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
-    log('-->', uniqueName);
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
     if (VERBOSE_TRACING) {
       log('- Meta:', {
@@ -542,7 +547,7 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
 }
 export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, VERBOSE_TRACING = true) {
   if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Print less for large inputs. Mostly care about this for test cases. So, 10k?
-  ASSERT(arguments.length === preprocessScopeNode.length || arguments.length-1 === preprocessScopeNode.length, 'arg count');
+  ASSERT(arguments.length === preprocessScopeNode.length || arguments.length - 1 === preprocessScopeNode.length, 'arg count');
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
 

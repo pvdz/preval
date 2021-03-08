@@ -4553,6 +4553,17 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'ArrowFunctionExpression': {
+        if (wrapKind === 'statement') {
+          rule('Statement that is an arrow should be dropped');
+          example('()=>{};', ';');
+          before(node, parentNode);
+
+          body.splice(i, 1);
+
+          after(AST.emptyStatement(), parentNode);
+          return true;
+        }
+
         if (hoistingOnce(node, 'arrow')) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;

@@ -35,22 +35,12 @@ const f = ($tdz$__a) => {
 ## Output
 
 `````js filename=intro
-($tdz$__a) => {
-  const tmpIfTest = $tdz$__a === undefined;
-  if (tmpIfTest) {
-    x = (1).x;
-    return 1;
-  } else {
-    return $tdz$__a;
-  }
-};
+
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

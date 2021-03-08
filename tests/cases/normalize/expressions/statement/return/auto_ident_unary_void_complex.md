@@ -39,7 +39,6 @@ $(a);
 `````js filename=intro
 const f = function () {
   $(100);
-  return undefined;
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

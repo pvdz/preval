@@ -1,10 +1,10 @@
 # Preval test case
 
-# unused_only_return.md
+# undefined_explicit_plus_two.md
 
-> Normalize > Return > Unused only return
+> Normalize > Return > Undefined explicit plus two
 >
-> Unused return statements should be eliminated
+> Implicitly returning undefined as the last statement is not necessary
 
 #TODO
 
@@ -12,16 +12,20 @@
 
 `````js filename=intro
 function f() {
-  return;
+  $(1);
+  $(2);
+  return undefined;
 }
-
 $(f());
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  $(1);
+  $(2);
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -30,7 +34,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {};
+const f = function () {
+  $(1);
+  $(2);
+};
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
@@ -42,7 +49,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: undefined
+ - 1: 1
+ - 2: 2
+ - 3: undefined
  - eval returned: undefined
 
 Normalized calls: Same

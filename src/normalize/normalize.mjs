@@ -1406,6 +1406,21 @@ export function phaseNormalize(fdata, fname) {
         thisStack.pop();
         funcStack.pop();
 
+        if (node.body.body.length) {
+          const last = node.body.body[node.body.body.length - 1];
+          if (last.type === 'ReturnStatement' && last.argument.type === 'Identifier' && last.argument.name === 'undefined') {
+            // I think this rule may not be very valuable considering some of the other rules...
+            rule('If the last statement of a function is `return undefined` then drop it');
+            example('function f(){ g(); return undefined; }', 'function f(){ g(); }');
+            before(node, parentNode);
+
+            node.body.body.pop();
+
+            after(AST.emptyStatement(), parentNode);
+            return true;
+          }
+        }
+
         return false;
       }
 

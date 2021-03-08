@@ -1,10 +1,10 @@
 # Preval test case
 
-# unused_only_return.md
+# undefined_implicit_only.md
 
-> Normalize > Return > Unused only return
+> Normalize > Return > Undefined implicit only
 >
-> Unused return statements should be eliminated
+> Implicitly returning undefined as the last statement is not necessary
 
 #TODO
 
@@ -14,7 +14,6 @@
 function f() {
   return;
 }
-
 $(f());
 `````
 

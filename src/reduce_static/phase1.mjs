@@ -5,21 +5,25 @@ import globals from '../globals.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import { $p } from '../$p.mjs';
 import * as AST from '../ast.mjs';
-
-let VERBOSE_TRACING = true;
-
-const ALIAS_PREFIX = 'tmpPrevalAlias';
-const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
-const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
-const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
-const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
+import {
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+} from '../constants.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req, verbose) {
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
+export function phase1(fdata, resolve, req) {
 
   const ast = fdata.tenkoOutput.ast;
 
@@ -43,7 +47,7 @@ export function phase1(fdata, resolve, req, verbose) {
       isExport: false, // Set below
       reads: [],
       writes: [],
-    })
+    });
   });
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
@@ -159,8 +163,8 @@ export function phase1(fdata, resolve, req, verbose) {
             const decr = decl.declarations[0];
             const ret = body[1];
             if (ret.argument?.type === 'Identifier' && decr.id.name === ret.argument.name) {
-              // This is a function whose body is a variable declaration that is then returned.
-              // `var x = unkonwn; return x`, where unknown is any normalized expression
+              // This is a function whose body is a variable declaration that is then returned and the func is only called.
+              // `var x = unkonwn; return x`, where unknown is any normalized expression (idc)
 
               ASSERT(decr.init, 'normalized var decls have an init, right');
               if (AST.isPrimitive(decr.init)) {
@@ -278,7 +282,12 @@ export function phase1(fdata, resolve, req, verbose) {
               log('  - block step;', blockNode.type, blockNode.$p.pid);
               if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
                 blockIndex = path.indexes[pathIndex + 1];
-                ASSERT(blockIndex >= 0, 'block index should be set right', path.nodes.map(n => n.type), path.indexes);
+                ASSERT(
+                  blockIndex >= 0,
+                  'block index should be set right',
+                  path.nodes.map((n) => n.type),
+                  path.indexes,
+                );
                 break;
               }
               --pathIndex;
@@ -313,7 +322,12 @@ export function phase1(fdata, resolve, req, verbose) {
               log('  - block step;', blockNode.type, blockNode.$p.pid);
               if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
                 blockIndex = path.indexes[pathIndex + 1];
-                ASSERT(blockIndex >= 0, 'block index should be set right', path.nodes.map(n => n.type), path.indexes);
+                ASSERT(
+                  blockIndex >= 0,
+                  'block index should be set right',
+                  path.nodes.map((n) => n.type),
+                  path.indexes,
+                );
                 break;
               }
               --pathIndex;

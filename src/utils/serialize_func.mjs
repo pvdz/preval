@@ -1,8 +1,25 @@
+import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, YELLOW, rule, example, before, source, after } from '../utils.mjs';
+import {
+  setVerboseTracing,
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from '../constants.mjs';
 import { printer } from '../../lib/printer.mjs';
 import { phase0 } from '../reduce_static/phase0.mjs';
-import {log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, YELLOW} from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {uniqify_idents} from './uniqify_idents.mjs';
+import { uniqify_idents } from './uniqify_idents.mjs';
 
 // - Receive a function declaration AST node
 // - Serialize it to a string
@@ -10,30 +27,7 @@ import {uniqify_idents} from './uniqify_idents.mjs';
 // - Make sure all duplicated binding names are made unique
 // - Return AST node of the new function
 
-let VERBOSE_TRACING = true;
-
-function source(node, force) {
-  if (VERBOSE_TRACING || force) {
-    if (Array.isArray(node)) node.forEach((n) => source(n));
-    else {
-      let code = tmat(node);
-      try {
-        code = fmat(code); // May fail.
-      } catch {}
-      if (code.includes('\n')) {
-        log(YELLOW + 'Source:' + RESET);
-        group();
-        log(code);
-        groupEnd();
-      } else {
-        log(YELLOW + 'Source:' + RESET, code);
-      }
-    }
-  }
-}
-
-export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata, verbose = VERBOSE_TRACING) {
-  VERBOSE_TRACING = verbose;
+export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata) {
   group(
     '\n\n\n##################################\n## cloning function slowly  ::  ' +
       node.id?.name +
@@ -51,17 +45,18 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
     log('- Replacing param `' + node.params[paramIndex].name + '` with', paramValue);
     node.body.body.unshift(
       AST.expressionStatement(
-        AST.assignmentExpression(node.params[paramIndex].name, type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.literal(null, true) : AST.literal(paramValue)),
+        AST.assignmentExpression(
+          node.params[paramIndex].name,
+          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.literal(null, true) : AST.literal(paramValue),
+        ),
       ),
     );
-    //console.log(AST.expressionStatement(AST.assignmentExpression(node.params[paramIndex].name, AST.cloneSimple(paramValue))))
   });
   const str = printer(node);
   log('Serialized size of function:', str.length);
   staticArgs.forEach(() => {
     node.body.body.shift();
   });
-  if (str > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
   const newFdata = phase0('(' + str + ')', '<function duplicator>', true);
 
   if (VERBOSE_TRACING) log('\n\nNow processing\n\n');
@@ -78,7 +73,7 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
 
   clonedFunc.id = null;
 
-  uniqify_idents(clonedFunc, fdata, VERBOSE_TRACING);
+  uniqify_idents(clonedFunc, fdata);
 
   if (clonedName) clonedFunc.id = AST.identifier(clonedName);
 
@@ -87,12 +82,12 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
   if (clonedName) clonedFunc.id = null;
 
   groupEnd();
-  log('## End of function cloning', node.id?.name, '\n\n')
+  log('## End of function cloning', node.id?.name, '\n\n');
 
   if (node.id?.name === 'tmpUnusedPrimeFuncNameC$1436') {
-    log('the function:')
+    log('the function:');
 
-    source(ast.body[0], true)
+    source(ast.body[0], true);
   }
 
   return ast.body[0];

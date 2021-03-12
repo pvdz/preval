@@ -23,9 +23,13 @@ import { VERBOSE_TRACING, ALIAS_PREFIX } from '../constants.mjs';
 import { createReadRef } from '../bindings.mjs';
 
 export function inlineConstants(fdata) {
-  const toEliminate = [];
-
   group('\n\n\nInlining constants with primitive values\n');
+  const r = _inlineConstants(fdata);
+  groupEnd();
+  return r;
+}
+function _inlineConstants(fdata) {
+  const toEliminate = [];
   let inlined = false;
   let inlinedSomething = 0;
   let inlineLoops = 0;
@@ -73,7 +77,7 @@ export function inlineConstants(fdata) {
         if (meta.isConstant) {
           ASSERT(meta.name === name);
           if (attemptConstantInlining(meta, fdata)) {
-            groupEnd();
+            if (VERBOSE_TRACING) groupEnd();
             inlined = true;
             return;
           }
@@ -212,11 +216,8 @@ export function inlineConstants(fdata) {
   log('Folded', inlinedSomething, 'constants.');
   if (inlinedSomething || toEliminate.length) {
     log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
-    groupEnd();
-    groupEnd();
     return 'phase1';
   }
-  groupEnd();
 }
 
 function attemptConstantInlining(meta, fdata) {

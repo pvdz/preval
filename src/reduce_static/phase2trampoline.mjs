@@ -21,48 +21,6 @@ import {
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
 
-// TODO: move to AST
-function isSimpleCallee(node) {
-  if (!isComplexNode(node)) return true;
-  if (node.type !== 'MemberExpression') return false;
-  // Simple member expression must have a simple object and, if computed, a simple property and does not nest.
-  return !(isComplexNode(node.object) || (node.computed && isComplexNode(node.property)));
-}
-function isComplexNode(node, incNested = true) {
-  ASSERT([1, 2].includes(arguments.length), 'arg count');
-  // A node is simple if it is
-  // - an identifier
-  // - a literal (but not regex)
-  // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
-  // - a sequence expression ending in a simple node
-  // Most of the time these nodes are not reduced any further
-  // The sequence expression sounds complex but that's what we normalize into most of the time
-  //
-  // Note: An empty array/object literal is not "simple" because it has an observable reference
-  //       If we were to mark these "simple" then they might be duplicated without further thought,
-  //       leading to hard to debug reference related issues.
-
-  if (node.type === 'Literal') {
-    if (node.raw !== 'null' && node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
-    return false;
-  }
-  if (node.type === 'Identifier') {
-    return false;
-  }
-  if (incNested && node.type === 'UnaryExpression' && node.operator === '-') {
-    // -100 (is a unary expression!)
-    if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
-    // A little unlikely but you know
-    // -NaN, +NaN, -Infinity, +Infinity
-    if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
-  }
-  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
-  if (node.type === 'ThisExpression') return true;
-  if (node.type === 'Super') return false;
-
-  return true;
-}
-
 export function pruneTrampolineFunctions(fdata) {
   // Functions that just call another function and return the results.
   // It's a common artifact, at least, for the single branch normalization
@@ -309,8 +267,16 @@ function _pruneTrampolineFunctions(fdata) {
         ASSERT(replaceNode?.type === 'CallExpression', 'call?', replaceNode);
         const oldCallee = oldCall.callee;
         const replaceCallee = replaceNode.callee;
-        ASSERT(isSimpleCallee(oldCallee), 'outer callee should be normalized so a simple node or simple member expression', oldCall);
-        ASSERT(isSimpleCallee(replaceCallee), 'inner callee should be normalized so a simple node or simple member expression', oldCall);
+        ASSERT(
+          AST.isSimpleNodeOrSimpleMember(oldCallee),
+          'outer callee should be normalized so a simple node or simple member expression',
+          oldCall,
+        );
+        ASSERT(
+          AST.isSimpleNodeOrSimpleMember(replaceCallee),
+          'inner callee should be normalized so a simple node or simple member expression',
+          oldCall,
+        );
         // Take the replaceNode, clone the callee (could be ident or member, irrelevant) and either remap the args or clone it
         // Take special care if the callee was based on a parameter
         const newCallee =

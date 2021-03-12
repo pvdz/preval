@@ -1,11 +1,29 @@
 // When a function is called with a primitive; clone the function and force that parameter
 // to that primitive, in hopes of simplifying/reducing the function.
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, TRIBE, PURPLE, DIM, YELLOW, rule, example, before, source, after } from '../utils.mjs';
+import {
+  log,
+  group,
+  groupEnd,
+  ASSERT,
+  BLUE,
+  RED,
+  RESET,
+  tmat,
+  fmat,
+  TRIBE,
+  PURPLE,
+  DIM,
+  YELLOW,
+  rule,
+  example,
+  before,
+  source,
+  after,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import crypto from 'crypto';
-
-let VERBOSE_TRACING = true;
+import { VERBOSE_TRACING } from '../constants.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -15,11 +33,7 @@ let VERBOSE_TRACING = true;
 // - Const binding folding (const a = $(); const b = a; -> redundant)
 // - Unary negative/positive should look at argument
 
-export function phasePrimitiveArgInlining(program, fdata, resolve, req, verbose = VERBOSE_TRACING, cloneLimit = 0) {
-
-  VERBOSE_TRACING = verbose;
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-
+export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLimit = 0) {
   group(
     '\n\n\n##################################\n## phase primitive arg inlining  ::  ' +
       fdata.fname +
@@ -175,7 +189,10 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, verbose 
                     log('- Replacing param `' + funcNode.params[paramIndex].name + '` with', paramValue);
                     funcNode.body.body.unshift(
                       AST.expressionStatement(
-                        AST.assignmentExpression(funcNode.params[paramIndex].name, type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.literal(null, true) : AST.literal(paramValue)),
+                        AST.assignmentExpression(
+                          funcNode.params[paramIndex].name,
+                          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.literal(null, true) : AST.literal(paramValue),
+                        ),
                       ),
                     );
                   });
@@ -183,12 +200,13 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, verbose 
                     read.parentNode['arguments'][index] = AST.identifier('$');
                   });
                 } else if (cloneLimit && count > cloneLimit) {
-                  if (VERBOSE_TRACING) log('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
+                  if (VERBOSE_TRACING)
+                    log('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
                 } else {
                   if (VERBOSE_TRACING) log('Cloning...');
                   cloneMap.set(cloneCacheKey, cloneCacheKey);
                   cloneCounts.set(cloneDetails.name, count);
-                  const newFunc = cloneFunctionNode(funcNode, cloneCacheKey, staticArgs, fdata, VERBOSE_TRACING);
+                  const newFunc = cloneFunctionNode(funcNode, cloneCacheKey, staticArgs, fdata);
                   newFuncs.push([meta, AST.variableDeclaration(cloneCacheKey, newFunc, 'const')]);
                   staticArgs.forEach(({ index }) => {
                     read.parentNode['arguments'][index] = AST.identifier('$');

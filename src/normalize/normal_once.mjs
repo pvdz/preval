@@ -43,7 +43,7 @@ import * as AST from '../ast.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import {
-  //VERBOSE_TRACING,
+  VERBOSE_TRACING,
   ASSUME_BUILTINS,
   DCE_ERROR_MSG,
   ALIAS_PREFIX,
@@ -57,17 +57,8 @@ import {
 } from '../constants.mjs';
 import walk from '../../lib/walk.mjs';
 
-let VERBOSE_TRACING = true;
-
 export function phaseNormalOnce(fdata) {
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-  let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
-  let somethingChanged = false; // Did phase2 change anything at all?
-
   const ast = fdata.tenkoOutput.ast;
-  //const funcStack = [];
-  //const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
-  //const ifelseStack = [ast];
 
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
 

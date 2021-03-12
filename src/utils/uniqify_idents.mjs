@@ -1,6 +1,23 @@
 // Note: this require an AST from Tenko. ast.mjs does NOT generate the necessary $scope data!
-import walk from '../../lib/walk.mjs';
 import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
+import {
+  setVerboseTracing,
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from '../constants.mjs';
+import walk from '../../lib/walk.mjs';
 import {
   getIdentUsageKind,
   createUniqueGlobalLabel,
@@ -10,11 +27,7 @@ import {
 } from '../bindings.mjs';
 import { $p } from '../$p.mjs';
 
-let VERBOSE_TRACING = true;
-
-export function uniqify_idents(funcAst, fdata, verbose = VERBOSE_TRACING) {
-  VERBOSE_TRACING = verbose;
-
+export function uniqify_idents(funcAst, fdata) {
   const lexScopeStack = [];
   const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   let lexScopeCounter = 0;
@@ -39,7 +52,7 @@ export function uniqify_idents(funcAst, fdata, verbose = VERBOSE_TRACING) {
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
       }
-      preprocessScopeNode(node, path.nodes[path.nodes.length - 2], fdata, funcScopeStack[funcScopeStack.length - 1], ++lexScopeCounter, VERBOSE_TRACING);
+      preprocessScopeNode(node, path.nodes[path.nodes.length - 2], fdata, funcScopeStack[funcScopeStack.length - 1], ++lexScopeCounter);
     }
 
     switch (key) {
@@ -59,7 +72,6 @@ export function uniqify_idents(funcAst, fdata, verbose = VERBOSE_TRACING) {
             fdata,
             lexScopeStack,
             true,
-            VERBOSE_TRACING
           );
           if (VERBOSE_TRACING) log('- initial name:', node.name, ', unique name:', uniqueName);
           node.$p.uniqueName = uniqueName;

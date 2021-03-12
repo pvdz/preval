@@ -1,35 +1,47 @@
-import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
+import fs from 'fs';
+import path from 'path';
 
+import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
 import globals from './globals.mjs';
+import {
+  setVerboseTracing,
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from './constants.mjs';
+
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
 import { aliasThisAndArguments } from './normalize/aliasing.mjs';
-import fs from 'fs';
-import path from 'path';
-
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
 import { phasePrimitiveArgInlining } from './reduce_static/phase_primitive_arg_inlining.mjs';
 
-let VERBOSE_TRACING = true;
-
-const MARK_NONE = 0;
-const MARK_TEMP = 1;
-const MARK_PERM = 2;
-
 export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfterNormalize, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
+  setVerboseTracing(!!verbose);
 
   {
     const { logDir, logPasses, maxPass, cloneLimit, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
-  if (verbose && VERBOSE_TRACING) {
+  if (verbose) {
     console.log('Preval options:');
     console.log(options);
   }
@@ -85,16 +97,16 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
-    if (inputCode.length > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
+    if (inputCode.length > 10 * 1024) setVerboseTracing(false); // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
 
     const preFdata = parseCode(inputCode, nextFname);
-    prepareNormalization(preFdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(preFdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalOnce(preFdata);
     const preCode = tmat(preFdata.tenkoOutput.ast, true);
 
     const fdata = parseCode(preCode, nextFname);
-    prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-    aliasThisAndArguments(fdata, resolve, req, verbose);
+    prepareNormalization(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    aliasThisAndArguments(fdata, resolve, req);
     phaseNormalize(fdata, nextFname);
 
     mod.children = new Set(fdata.imports.values());
@@ -206,11 +218,11 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         ++passes;
         const fdata = phase0(inputCode, fname);
         do {
-          phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phase1(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
 
-          changed = phase2(program, fdata, resolve, req, verbose);
+          changed = phase2(program, fdata, resolve, req);
           // YOYO
-          //if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, verbose, options.cloneLimit);
+          //if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);
         } while (changed === 'phase1');
 
         mod.fdata = fdata;
@@ -234,8 +246,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           );
 
           const fdata = parseCode(inputCode, fname);
-          prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          aliasThisAndArguments(fdata, resolve, req, verbose);
+          prepareNormalization(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          aliasThisAndArguments(fdata, resolve, req);
           phaseNormalize(fdata, fname);
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);

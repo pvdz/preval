@@ -24,6 +24,7 @@ import { VERBOSE_TRACING } from '../constants.mjs';
 
 export function promoteVars(fdata) {
   group('\n\n\nChecking for promotable vars\n');
+
   let promoted = 0;
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;

@@ -1,20 +1,11 @@
 import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, TRIBE, PURPLE, DIM, YELLOW } from '../utils.mjs';
-import { getIdentUsageKind, createFreshVar, createReadRef, createWriteRef } from '../bindings.mjs';
-import * as AST from '../ast.mjs';
+import { VERBOSE_TRACING } from '../constants.mjs';
 import { pruneEmptyFunctions } from './phase2emptyfunc.mjs';
 import { pruneTrampolineFunctions } from './phase2trampoline.mjs';
 import { pruneExcessiveParams } from './phase2exparam.mjs';
 import { inlineConstants } from './phase2inlineconstants.mjs';
 import { promoteVars } from './phase2promotevars.mjs';
 import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
-
-let VERBOSE_TRACING = true;
-
-const ALIAS_PREFIX = 'tmpPrevalAlias';
-const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
-const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
-const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
-const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -24,62 +15,7 @@ const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.
 // - Const binding folding (const a = $(); const b = a; -> redundant)
 // - Unary negative/positive should look at argument
 
-function rule(desc, ...rest) {
-  log(TRIBE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
-}
-function example(from, to, condition) {
-  if (!VERBOSE_TRACING) return;
-  if (!condition || condition()) {
-    log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
-  }
-}
-
-function before(node, parent) {
-  if (!VERBOSE_TRACING) return;
-  if (Array.isArray(node)) node.forEach((n) => before(n, parent));
-  else {
-    const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
-    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-    if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-    log(YELLOW + 'Before:' + RESET, nodeCode);
-  }
-}
-
-function source(node) {
-  if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => source(n));
-    else {
-      let code = tmat(node);
-      try {
-        code = fmat(code); // May fail.
-      } catch {}
-      if (code.includes('\n')) {
-        log(YELLOW + 'Source:' + RESET);
-        group();
-        log(code);
-        groupEnd();
-      } else {
-        log(YELLOW + 'Source:' + RESET, code);
-      }
-    }
-  }
-}
-
-function after(node, parentNode) {
-  if (!VERBOSE_TRACING) return;
-  if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
-  else {
-    const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
-    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-    log(YELLOW + 'After :' + RESET, nodeCode);
-    if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-  }
-}
-
-export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) {
-  VERBOSE_TRACING = verbose;
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-
+export function phase2(program, fdata, resolve, req) {
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise

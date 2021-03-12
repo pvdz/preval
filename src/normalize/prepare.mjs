@@ -1,5 +1,22 @@
 import walk from '../../lib/walk.mjs';
 import { log, group, groupEnd, ASSERT, DIM, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
+import globals from '../globals.mjs';
+import {
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from '../constants.mjs';
 import {
   getIdentUsageKind,
   registerGlobalIdent,
@@ -8,24 +25,13 @@ import {
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
 } from '../bindings.mjs';
-import globals from '../globals.mjs';
 import { $p } from '../$p.mjs';
-
-let VERBOSE_TRACING = true;
-
-const ALIAS_PREFIX = 'tmpPrevalAlias';
-const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
-const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
-const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
-const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
 
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function prepareNormalization(fdata, resolve, req, verbose) {
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-
+export function prepareNormalization(fdata, resolve, req) {
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
 
@@ -583,7 +589,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         : [...globallyUniqueLabelRegistry.keys()].join(', '),
     );
 
-    log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
+    if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
   log('End of phase 1');
   groupEnd();

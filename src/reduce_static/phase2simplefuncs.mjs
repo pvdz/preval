@@ -19,7 +19,6 @@ import {
   after,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, createWriteRef } from '../bindings.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {

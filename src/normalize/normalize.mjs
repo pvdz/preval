@@ -1,23 +1,137 @@
-import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat, isProperIdent } from '../utils.mjs';
+import {
+  ASSERT,
+  DIM,
+  BOLD,
+  RED,
+  RESET,
+  BLUE,
+  PURPLE,
+  YELLOW,
+  dir,
+  group,
+  groupEnd,
+  log,
+  tmat,
+  fmat,
+  isProperIdent,
+  rule,
+  example,
+  before,
+  source,
+  after,
+} from '../utils.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
 import globals from '../globals.mjs';
 import walk from '../../lib/walk.mjs';
-import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import {
+  VERBOSE_TRACING,
   ASSUME_BUILTINS,
-  BUILTIN_REST_HANDLER_NAME,
   DCE_ERROR_MSG,
   ALIAS_PREFIX,
   THIS_ALIAS_BASE_NAME,
   ARGUMENTS_ALIAS_PREFIX,
   ARGUMENTS_ALIAS_BASE_NAME,
   ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
   FRESH,
   OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
 } from '../constants.mjs';
+import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
-let VERBOSE_TRACING = true;
+// http://compileroptimizations.com/category/if_optimization.htm
+// https://en.wikipedia.org/wiki/Loop-invariant_code_motion
+
+/*
+  Normalization steps that happen:
+  - Parameter defaults are rewritten to ES5 equivalent code
+  - All binding names are unique in a file
+    - No shadowing on any level or even between scopes. Lexical scoping becomes irrelevant.
+  - Hoists var statements and function declarations to the top of their scope
+    - Currently adds complexity because a variable can have two values. But the final system must be able to cope with this so I'm ok with this for now.
+    - Duplicate names are eliminated, preferring functions over vars
+    - Duplicate functions are reduced to one function
+    - Vars and funcs are ordered (within each group)
+  - All sub-statements are forced to be blocks
+    - We'll let the final formatting undo this step.
+    - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
+  - Flatten nested blocks
+    - Other transforming phases still need to do this because when a single statement is replaced with multiple statements and the parent block is still being iterated, we can't mutate the child-count of the block in-place so a block wrapper is added anyways. This is fine. :fire:
+    - Since we normalize binding names to be unique, we don't need to worry about block scoping issues that would otherwise arise here.
+  - Eliminate "use strict"
+    - We assume module goal. worst case this prevents a parse-time error and even that is a mighty edge case so who cares.
+    - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this will need extra work.
+    - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
+  - Member expressions only access idents, literals, or groups that end with an ident or literal
+    - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
+  - Sequence expressions (groups) nested directly in another sequence expression are flattened
+  - Sequence expressions that are expression statements are rewritten to a set of expression statements
+  - Sequence expression appearing in certain constructs are rewritten to statements when possible
+    - (`return (a,b)` -> `a; return b;`)
+    - Sequence expressions in a return statement or variable declaration, or inside a member expression, are normalized
+    - Work in progress to catch more cases as I find them
+  - One binding declared per decl
+    - Will make certain things easier to reason about. Can always assume `node.declarations[0]`.
+  - All call args are only identifiers or literals. Everything is first assigned to a tmp var.
+    - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
+  - Complex callee and arguments for `new` expressions (similar to regular calls)
+  - Array elements are normalized if they are not simple
+  - Object property shorthands into regular properties
+    - Simplifies some edge case code checks
+  - Computed property access for complex keys is normalized to ident keys
+  - Computed property access with literals that are valid idents become regular property access
+  - Normalize conditional / ternary expression parts
+    - Becomes `if-else` when possible
+  - All patterns are transformed to body code
+    - Parameter, binding, and assignment patterns
+    - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
+    - Including spread and defaults for all object/array patterns on any level
+  - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
+  - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
+  - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
+  - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
+  - Var binding inits that are assignments are outlined
+  - Outline complex `throw` or `return` arguments
+  - Outline complex spread arguments for object and array literals
+  - Tagged templates are decomposed into the runtime equivalent of a regular func call
+  - Templates that have no expressions are converted to regular strings
+  - All expressions inside templates are outlined to be simple nodes only.
+  - Binary expressions are normalized to always have simple left and right nodes
+  - Update expressions (++x) are transformed to regular binary expression assignments
+  - Normalize spread args in call/new expressions
+  - Normalize optional chaining / call away
+  - Normalize nullish coalescing away
+  - Regular for-loops are transformed to while loops
+  - If-else with empty blocks are eliminated
+  - Logical expressions with `??` are transformed away entirely, end up as ternaries
+  - Logical expressions with `&&` or `||` are decompiled to `if-else` statements where possible
+  - Decompose compound assignments (x+=y -> x=x+y)
+  - for-in and for-of lhs expressions are normalized to an identifier
+  - For headers with var decl are normalized to not contain the var decl
+  - While headers are normalized
+  - Switches are transformed to if-else with labeled break
+  - Label names are made unique globally (relative to the module)
+  - Unreferenced labels are dropped
+  - Each import statement has exactly one specifier
+  - Default imports become named imports (because default exports simply export 'default')
+  - Class declarations become class expressions
+  - Assignment of an ident to itself is eliminated
+  - Statements that only have an identifier will be eliminated unless that identifier is an implicit global
+  - DCE
+  - If the test of an `if` statement is a negative number, or a number with a `+` prefix, then still fold it.
+  - Remove `+` unary from number literals
+  - Remove double `-` unary from number literals
+  - Inlines various cases of unary `+`, `-`, and `!`
+  - Vars and function decls are replaced by lets and let assignments after applying hoisting rules
+    - Duplicate declarations are dropped (last func wins, func wins over var)
+    - Often func decls become constants, but since that's not a guarantee we leave that up to the next phase
+ */
+
+// low hanging fruit: async, iterators
+// next level: assignment analysis and first pass of ssa
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
@@ -132,7 +246,7 @@ let VERBOSE_TRACING = true;
   - Remove unused `return` keywords
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
-  - unused init for variabel (let x = 10; x = 20; $(x))
+  - unused init for variable (let x = 10; x = 20; $(x))
   - arguments (ehh)
   - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
@@ -140,85 +254,76 @@ let VERBOSE_TRACING = true;
   - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
     - check how the context is set when calling a namespace
   - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
-  - any binary expression between two literals
-  - certain binary expressions between constants, or constants and literals
-  - bindings that only have writes, no reads, can be eliminated?
   - method names that are literals, probably classes and objects alike
   - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
   - if a var binding is only referenced in one scope then we can, at least, hoist it to that scope.
     - runtime analysis may be able to get us closer to an initialization but that's gonna be much harder.
+  - can we drop unused parameters? probably not so easy because it affects function.length (and maybe arguments?)
+  - when the same value is assigned to two constants.... (a.b(); a.b(); will cache a.b twice)
+  - the value tracking idea where a value is statically resolved by referencing its node or something
+  - maybe reconsider var decls inside for headers. might be worthwhile to force them as const. perhaps we can hack it by assigning it to a const inside the body.
+  - can we do something with infinite loops? DCE code that follows it. maybe worth it when including some early return analysis?
+  - normalize labels in loops?
+    - make implicit breaks explicit even if it's for the current loop. not sure if that would help anything
+    - always compile a continue rather than implicitly?
+  - catch scope vars are not properly processed (or not at all?)
+  - catch scope to always have a binding even if its unused.
+  - assignments inside a branch could be assigned to a fresh var as well. then something like `let x=1; if (y) { x=2; f(x); } f(x)` could have the `f(x)` all be inlined to a constant `f(2)`. but risks infinite changes so non-trivial. could do future reads check to see whether there are any reads for that binding in this branch and then "ssa" for them.
+  - the `this` keyword assigned to a constant can be inlined for arrow scope usages as well
+  - Decide how to handle built-in cases like `String.fromCharCode(32)`
+  - double func decl with same name? can eliminate one. tests/cases/normalize/hoisting/exported_func_default/nested_double.md
+  - if a function does not reference `arguments` then we can drop some params.
+  - can we detect all operations that are applied to a binding and infer the contents that way?
+    - example: the way we transform switches, if (x <= 0) { ... return} if (x <= 1) { ... return } etc we could know that x cannot be <= 0 since that branch exited. probably a lot of data to track but who knows
+  - if a function is guaranteed to throw, compile a `throw "unreachable"` after each call to it. We can always eliminate those later but maybe they allow us to improve DCE
+  - [...null] etc (edge case)
+  - "`this` statement"
+  - what if I made pseudo-symbols for certain builtins, like `Math.round` to `$MathRound` to help static computations? Many funcs do not need a context but are accessed as such anyways.
+  - if we know a function does not access `this`, can we detect member expressions that contain it, anyways, and prevent them?
+  - a function returning one thing after normalization should be able to be inlined...
+  - if a function consists of an assignment and the return of that assigned value and the rest is pure then we can inline its calls...
+    - closures need to be accessible from the scope of the call, too
+    - parm/args need to be mapped properly etc
+  - if a func has an object arg "like" destructuring that is only read, can we pass on the properties as args instead?
+    - function f(obj) { x = obj.foo; } f({foo: 10}); -> function f(foo) { x = foo } f(10);
+  - the `if (x) y = 10; else y = 20; return y` pattern
+  - const tmpObjLitVal$342 = function ($h$254) { const tmpReturnArg$1021 = '' + $h$254; return tmpReturnArg$1021; };
+  - if an if/else ends with a return, move the rest of the sibling nodes after the if into and after the branch that does not return. `if (x) return x; y();` -> `if (x) return x; else y();`
+  - if a function returns a call to another function then it could be inlined by an immediate call to the other function
+    - does need to check whether the binding is reachable from the call site
+    - this/arguments/super stuff? I guess it can't be super (would be another line)
+    - must make sure the parameters are properly mapped because they might not map 1:1
+  - if a function is called once we should still do the parameter inlining, even if there's a function nested.
+  - if we know a function is called with the same primitive on all call sites, and there's no escaping, we should still just do it
+  - inline functions that have one statement which is not a return
+  - params that are builtins or implicit or explicit globals can be inlined as well
+  - `const tmpBranchingC = function (tmpNestedComplexRhs$4) { a = tmpNestedComplexRhs$4;};` inline at call sites tests/cases/normalize/expressions/assignments/param_default/auto_ident_c-opt_complex_complex.md
+  - what's up with `const $clone$f$0_Iundefined = function () { const tmpNestedComplexRhs$1 = () => {}; a = tmpNestedComplexRhs$1; };` tests/cases/normalize/expressions/assignments/param_default/auto_ident_arrow.md
+
+
+  - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
+  - TODO: what's up with the array in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/obj/rest/default_no_no__str.md ???
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
-  - TODO: does coercion have observable side effects (that we care to support)? -> yes. valueOf and toString
-  - TODO: do we properly simplify array literals with complex spreads?   
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
   - TODO: how does `arguments` work with the implicit unique binding stuff??
-  - TODO: I Don't think the break labeling of the switch transform is sufficient for all cases where a break may appear. What about nested in a label? I dunno.
   - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
   - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
   - TODO: how do we static compute something like `$(1) + 2 + 3` when it splits it like `tmp = $(1) + 2, tmp + 3` ...
-  - TODO: why are func decls in funcs not being hoisted? like in tests/cases/dce/fd_after_return.md
-  - TODO: force update the title of tests to match the path name
+  - TODO: can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
+  - TODO: if we clone normalized code then we should be able to assume that all idents are already unique within that func. So maybe an AST clone would suffice after all? and some special care in renaming all bindings. probably cheaper than a full reparse?
+  - TODO: if a function has arguments access then we shouldnt pad calls to it with undefined /home/ptr/proj/preval/tests/cases/normalize/arguments/param_default_len.md
+  - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
+  - TODO: fix property in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/_base_unique/arr_obj.md
+  -> if-else normalization;
+    break
+    continue should not be a problem
+    loops
+    switch?
+    super
 */
 
-function rule(desc, ...rest) {
-  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
-}
-
-function example(from, to, condition) {
-  if (VERBOSE_TRACING) {
-    if (!condition || condition()) {
-      log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
-    }
-  }
-}
-
-function before(node, parent) {
-  if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => before(n, parent));
-    else {
-      const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
-      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-      log(YELLOW + 'Before:' + RESET, nodeCode);
-    }
-  }
-}
-
-function source(node, force) {
-  if (VERBOSE_TRACING || force) {
-    if (Array.isArray(node)) node.forEach((n) => source(n));
-    else {
-      let code = tmat(node);
-      try {
-        code = fmat(code); // May fail.
-      } catch {}
-      if (code.includes('\n')) {
-        log(YELLOW + 'Source:' + RESET);
-        group();
-        log(code);
-        groupEnd();
-      } else {
-        log(YELLOW + 'Source:' + RESET, code);
-      }
-    }
-  }
-}
-
-function after(node, parentNode) {
-  if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
-    else {
-      const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
-      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      log(YELLOW + 'After :' + RESET, nodeCode);
-      if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-    }
-  }
-}
-
 export function phaseNormalize(fdata, fname) {
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
@@ -5122,7 +5227,7 @@ export function phaseNormalize(fdata, fname) {
             ),
             { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
           );
-          const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata, false).expression;
+          const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
           {
             primeAcloned.id = AST.identifier(tmpNameA);
             source(primeAcloned);
@@ -5140,7 +5245,7 @@ export function phaseNormalize(fdata, fname) {
             ]),
             { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
           );
-          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata, false).expression;
+          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
           {
             primeBcloned.id = AST.identifier(tmpNameB);
             source(primeBcloned);
@@ -5151,7 +5256,7 @@ export function phaseNormalize(fdata, fname) {
             bodyRest,
             { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
           );
-          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata, false).expression;
+          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
           {
             primeCcloned.id = AST.identifier(tmpNameC);
             source(primeCcloned);

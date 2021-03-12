@@ -1,85 +1,52 @@
 // Alias `this` and `arguments` at the top of each function that actually uses it
 // Requires info gathered by the prepare phase
 
-import { log, group, groupEnd, ASSERT, DIM, BLUE, RED, RESET, tmat, fmat, PURPLE, YELLOW } from '../utils.mjs';
 import {
-  createFreshVar,
-} from '../bindings.mjs';
+  log,
+  group,
+  groupEnd,
+  ASSERT,
+  DIM,
+  BLUE,
+  RED,
+  RESET,
+  tmat,
+  fmat,
+  PURPLE,
+  YELLOW,
+  rule,
+  example,
+  before,
+  source,
+  after,
+} from '../utils.mjs';
+import {
+  setVerboseTracing,
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from '../constants.mjs';
+import { createFreshVar } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
 
-let VERBOSE_TRACING = true;
-
-const ALIAS_PREFIX = 'tmpPrevalAlias';
-const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
-const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
-const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
-const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
-
-function rule(desc, ...rest) {
-  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
-}
-
-function example(from, to, condition) {
-  if (VERBOSE_TRACING) {
-    if (!condition || condition()) {
-      log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
-    }
-  }
-}
-
-function before(node, parent) {
-  if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => before(n, parent));
-    else {
-      const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
-      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-      log(YELLOW + 'Before:' + RESET, nodeCode);
-    }
-  }
-}
-
-function source(node, force) {
-  if (VERBOSE_TRACING || force) {
-    if (Array.isArray(node)) node.forEach((n) => source(n));
-    else {
-      let code = tmat(node);
-      try {
-        code = fmat(code); // May fail.
-      } catch {}
-      if (code.includes('\n')) {
-        log(YELLOW + 'Source:' + RESET);
-        group();
-        log(code);
-        groupEnd();
-      } else {
-        log(YELLOW + 'Source:' + RESET, code);
-      }
-    }
-  }
-}
-
-function after(node, parentNode) {
-  if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
-    else {
-      const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
-      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      log(YELLOW + 'After :' + RESET, nodeCode);
-      if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
-    }
-  }
-}
-
-export function aliasThisAndArguments(fdata, resolve, req, verbose) {
-  if (fdata.len > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-
+export function aliasThisAndArguments(fdata, resolve, req) {
   group('\n\n\n##################################\n## phase Aliasing  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) log('Aliasing all occurrences of `this`, `arguments`, and `arguments.length');
 
   let added = 0;
 
-  if (VERBOSE_TRACING) group('Adding aliases to',fdata.thisArgFuncs.size,'affected functions');
+  if (VERBOSE_TRACING) group('Adding aliases to', fdata.thisArgFuncs.size, 'affected functions');
   fdata.thisArgFuncs.forEach((node) => {
     // Inject aliases for this/arguments/arguments.length and make sure to maintain their proper order (prevents infi loops)
     if (node.$p.thisAccess && !node.$p.thisAlias) {
@@ -139,7 +106,7 @@ export function aliasThisAndArguments(fdata, resolve, req, verbose) {
   if (VERBOSE_TRACING) groupEnd();
   if (VERBOSE_TRACING) log('Actually added', added, 'new aliases');
 
-  const thisRefs = fdata.thisRefs.filter(({node}) => !node.$p.isForAlias);
+  const thisRefs = fdata.thisRefs.filter(({ node }) => !node.$p.isForAlias);
   if (VERBOSE_TRACING) group('Replacing all ' + thisRefs.length + ' occurrences of `this`');
   thisRefs.forEach(({ parent, prop, index, func }) => {
     const alias = func.$p.thisAlias;
@@ -148,7 +115,7 @@ export function aliasThisAndArguments(fdata, resolve, req, verbose) {
     ++added;
   });
   if (VERBOSE_TRACING) groupEnd();
-  const argsAnyRefs = fdata.argsAnyRefs.filter(({node}) => !node.$p.isForAlias);
+  const argsAnyRefs = fdata.argsAnyRefs.filter(({ node }) => !node.$p.isForAlias);
   if (VERBOSE_TRACING) group('Replacing all ' + argsAnyRefs.length + ' occurrences of `arguments`');
   argsAnyRefs.forEach(({ parent, prop, index, func }) => {
     const alias = func.$p.argsAnyAlias;
@@ -157,7 +124,7 @@ export function aliasThisAndArguments(fdata, resolve, req, verbose) {
     ++added;
   });
   if (VERBOSE_TRACING) groupEnd();
-  const argsLenRefs = fdata.argsLenRefs.filter(({node}) => !node.$p.isForAlias);
+  const argsLenRefs = fdata.argsLenRefs.filter(({ node }) => !node.$p.isForAlias);
   if (VERBOSE_TRACING) group('Replacing all ' + argsLenRefs.length + ' occurrences of `arguments.length`');
   argsLenRefs.forEach(({ parent, prop, index, func }) => {
     const alias = func.$p.argsLenAlias;

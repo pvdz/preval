@@ -1,6 +1,23 @@
 import Prettier from 'prettier';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
+import {
+  setVerboseTracing,
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  MARK_NONE,
+  MARK_TEMP,
+  MARK_PERM,
+} from './constants.mjs';
 
 const colorLess = typeof process !== 'undefined' && process.argv.includes('-C');
 
@@ -51,8 +68,6 @@ export function ASSERT_LOC(loc) {
   ASSERT(typeof loc.column === 'number' && loc.column >= 0, 'loc filename must be a number >=0', loc);
   ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
 }
-
-export const VERBOSE_TRACING = true;
 
 export function printNode(node) {
   ASSERT(node);

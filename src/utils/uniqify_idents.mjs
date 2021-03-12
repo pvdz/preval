@@ -1,23 +1,10 @@
 // Note: this require an AST from Tenko. ast.mjs does NOT generate the necessary $scope data!
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from '../constants.mjs';
+
 import walk from '../../lib/walk.mjs';
+
+import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT } from '../utils.mjs';
+import { $p } from '../$p.mjs';
 import {
   getIdentUsageKind,
   createUniqueGlobalLabel,
@@ -25,7 +12,6 @@ import {
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
 } from '../bindings.mjs';
-import { $p } from '../$p.mjs';
 
 export function uniqify_idents(funcAst, fdata) {
   const lexScopeStack = [];

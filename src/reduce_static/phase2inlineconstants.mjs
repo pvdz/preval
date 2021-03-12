@@ -1,25 +1,6 @@
-import {
-  log,
-  group,
-  groupEnd,
-  ASSERT,
-  BLUE,
-  RED,
-  RESET,
-  tmat,
-  fmat,
-  TRIBE,
-  PURPLE,
-  DIM,
-  YELLOW,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
-import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, ALIAS_PREFIX } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import * as AST from '../ast.mjs';
 import { createReadRef } from '../bindings.mjs';
 
 export function inlineConstants(fdata) {

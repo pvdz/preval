@@ -1,23 +1,7 @@
-import { ASSERT, BLUE, group, groupEnd, log, RESET } from './utils.mjs';
+import { VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
+import { ASSERT, group, groupEnd, log } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from './constants.mjs';
 
 export function getIdentUsageKind(parentNode, parentProp) {
   // Returns 'read', 'write', 'readwrite', 'none', or 'label'
@@ -507,13 +491,7 @@ export function createWriteRef(obj) {
   };
 }
 
-export function findUniqueNameForBindingIdent(
-  node,
-  isFuncDeclId = false,
-  fdata,
-  lexScopeStack,
-  ignoreGlobals = false,
-) {
+export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
   if (VERBOSE_TRACING) log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
@@ -719,7 +697,6 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     );
   }
 }
-
 
 export function findBoundNamesInVarDeclaration(node, names = []) {
   ASSERT(node.type === 'VariableDeclaration');

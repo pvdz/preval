@@ -1,25 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
+import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
 import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
 import globals from './globals.mjs';
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from './constants.mjs';
 
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';

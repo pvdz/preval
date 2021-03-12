@@ -1,45 +1,10 @@
-import {
-  ASSERT,
-  DIM,
-  BOLD,
-  RED,
-  RESET,
-  BLUE,
-  PURPLE,
-  YELLOW,
-  dir,
-  group,
-  groupEnd,
-  log,
-  tmat,
-  fmat,
-  isProperIdent,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
-import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
-import * as AST from '../ast.mjs';
-import globals from '../globals.mjs';
 import walk from '../../lib/walk.mjs';
-import {
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from '../constants.mjs';
+
+import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, BUILTIN_REST_HANDLER_NAME, FRESH, OLD, RED, BLUE, RESET } from '../constants.mjs';
+import { ASSERT, group, groupEnd, log, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import * as AST from '../ast.mjs';
+import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs';
+import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
 // http://compileroptimizations.com/category/if_optimization.htm
@@ -1098,7 +1063,7 @@ export function phaseNormalize(fdata, fname) {
         const args = node.arguments;
 
         if (callee.type === 'MemberExpression' && callee.computed) {
-          if (isProperIdent(callee.property)) {
+          if (AST.isProperIdent(callee.property)) {
             rule('Computed property that is a proper ident must be regular property; callee');
             example('a["x"]()', 'a.x()');
             before(callee, node);
@@ -1639,7 +1604,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (node.computed && isProperIdent(node.property)) {
+        if (node.computed && AST.isProperIdent(node.property)) {
           rule('Computed property that is valid ident must be member expression; prop');
           example('a["foo"]', 'a.foo');
           if (VERBOSE_TRACING) log('- Name: `' + node.property.value + '`');
@@ -1783,7 +1748,7 @@ export function phaseNormalize(fdata, fname) {
           // Must start with object/property because we don't want to duplicate complex nodes while eliminating compound assignments
           // The reason is that compound assignments read before they write so the getters also become an observable side effect
 
-          if (mem.computed && isProperIdent(mem.property)) {
+          if (mem.computed && AST.isProperIdent(mem.property)) {
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
             if (VERBOSE_TRACING) log('- Name: `' + mem.property.value + '`');
@@ -2370,7 +2335,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (rhs.computed && isProperIdent(rhs.property)) {
+          if (rhs.computed && AST.isProperIdent(rhs.property)) {
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
             if (VERBOSE_TRACING) log('- Name: `' + rhs.property.value + '`');
@@ -2716,7 +2681,7 @@ export function phaseNormalize(fdata, fname) {
 
           if (arg.type === 'MemberExpression') {
             if (arg.computed) {
-              if (isProperIdent(arg.property)) {
+              if (AST.isProperIdent(arg.property)) {
                 rule('Computed property that is valid ident must be member expression; delete');
                 example('a["foo"]', 'a.foo');
                 if (VERBOSE_TRACING) log('- Name: `' + arg.property.value + '`');
@@ -4073,7 +4038,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ObjectExpression': {
         let changes = false;
         node.properties.forEach((pnode) => {
-          if (pnode.computed && isProperIdent(pnode.key)) {
+          if (pnode.computed && AST.isProperIdent(pnode.key)) {
             rule('Object literal computed key that is ident must be ident');
             example('{["x"]: y}', '{x: y}');
             before(node, parentNode);

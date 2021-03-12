@@ -245,9 +245,9 @@ export function forOfStatement(left, right, body, async = false) {
   };
 }
 
-export function functionExpression(params, body, {id, generator, async} = {}) {
+export function functionExpression(params, body, { id, generator, async } = {}) {
   if (!Array.isArray(params)) params = [params];
-  params.map((n, i) => typeof n === 'string' ? identifier(n) : n);
+  params.map((n, i) => (typeof n === 'string' ? identifier(n) : n));
   if (!Array.isArray(body)) body = [body];
   body = blockStatement(body);
 
@@ -267,8 +267,8 @@ export function functionExpression(params, body, {id, generator, async} = {}) {
     $p: {
       ...$p(),
       hoistedVars: [],
-    }
-  }
+    },
+  };
 }
 
 export function identifier(name) {
@@ -730,4 +730,17 @@ export function isComplexNode(node, incNested = true) {
   if (node.type === 'Super') return false;
 
   return true;
+}
+
+export function isProperIdent(node) {
+  if (node.type === 'Literal' && typeof node.value === 'string') {
+    const str = node.value;
+    // If the key name is a legit key then why not. Let's just test it.
+    try {
+      // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
+      return !!(/^[\w_$]+$/.test(str) && Function('foo.' + str) && true);
+    } catch {
+      return false;
+    }
+  }
 }

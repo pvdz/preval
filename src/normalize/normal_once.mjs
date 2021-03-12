@@ -8,54 +8,12 @@
 // - All exports are converted to ExportNamedDeclaration with the `export {x as y}` style exclusively (even for default)
 // - All imports are consolidated to regular import statements that import exactly one symbol im the `import {x} from "y"` style
 
-import {
-  ASSERT,
-  DIM,
-  BOLD,
-  RED,
-  RESET,
-  BLUE,
-  PURPLE,
-  YELLOW,
-  dir,
-  group,
-  groupEnd,
-  log,
-  tmat,
-  fmat,
-  isProperIdent,
-  rule,
-  example,
-  before,
-  after,
-  assertNoDupeNodes,
-} from '../utils.mjs';
-import {
-  createFreshVar,
-  createReadRef,
-  createUniqueGlobalLabel,
-  createWriteRef,
-  findBoundNamesInVarDeclaration,
-  findBoundNamesInVarDeclarator,
-  getIdentUsageKind,
-} from '../bindings.mjs';
-import * as AST from '../ast.mjs';
-import globals from '../globals.mjs';
-import { cloneFunctionNode } from '../utils/serialize_func.mjs';
-import {
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-} from '../constants.mjs';
 import walk from '../../lib/walk.mjs';
+
+import { VERBOSE_TRACING, BLUE, RESET } from '../constants.mjs';
+import { ASSERT, group, groupEnd, log, tmat, fmat, rule, example, before, after } from '../utils.mjs';
+import * as AST from '../ast.mjs';
+import { createFreshVar, createUniqueGlobalLabel, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;

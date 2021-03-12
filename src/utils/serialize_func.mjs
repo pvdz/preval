@@ -1,24 +1,9 @@
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, YELLOW, rule, example, before, source, after } from '../utils.mjs';
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from '../constants.mjs';
 import { printer } from '../../lib/printer.mjs';
-import { phase0 } from '../reduce_static/phase0.mjs';
+
+import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { VERBOSE_TRACING } from '../constants.mjs';
 import * as AST from '../ast.mjs';
+import { phase0 } from '../reduce_static/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
 
 // - Receive a function declaration AST node

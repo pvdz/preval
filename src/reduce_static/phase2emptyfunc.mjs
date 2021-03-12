@@ -1,6 +1,6 @@
+import { VERBOSE_TRACING } from '../constants.mjs';
 import { fmat, group, groupEnd, log, tmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
 
 export function pruneEmptyFunctions(fdata) {
   group('\n\n\nPruning calls to empty and noop functions\n');

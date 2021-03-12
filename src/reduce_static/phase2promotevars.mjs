@@ -1,26 +1,7 @@
-import {
-  log,
-  group,
-  groupEnd,
-  ASSERT,
-  BLUE,
-  RED,
-  RESET,
-  tmat,
-  fmat,
-  TRIBE,
-  PURPLE,
-  DIM,
-  YELLOW,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
+import { VERBOSE_TRACING } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, createWriteRef } from '../bindings.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
 
 export function promoteVars(fdata) {
   group('\n\n\nChecking for promotable vars\n');

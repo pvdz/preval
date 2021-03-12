@@ -1,30 +1,17 @@
 import walk from '../../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
-import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mjs';
-import globals from '../globals.mjs';
-import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+
+import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import * as AST from '../ast.mjs';
-import {
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-} from '../constants.mjs';
+import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mjs';
+import globals from '../globals.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
 export function phase1(fdata, resolve, req) {
-
   const ast = fdata.tenkoOutput.ast;
 
   if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');

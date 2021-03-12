@@ -1,29 +1,12 @@
 // When a function is called with a primitive; clone the function and force that parameter
 // to that primitive, in hopes of simplifying/reducing the function.
-import {
-  log,
-  group,
-  groupEnd,
-  ASSERT,
-  BLUE,
-  RED,
-  RESET,
-  tmat,
-  fmat,
-  TRIBE,
-  PURPLE,
-  DIM,
-  YELLOW,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
+
+import crypto from 'crypto';
+
+import { VERBOSE_TRACING } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
-import crypto from 'crypto';
-import { VERBOSE_TRACING } from '../constants.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents

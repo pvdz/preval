@@ -1,38 +1,8 @@
 import Prettier from 'prettier';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from './constants.mjs';
 
-const colorLess = typeof process !== 'undefined' && process.argv.includes('-C');
-
-export const RED = colorLess ? '' : '\x1b[31;1m';
-export const RED_WHITE = colorLess ? '' : '\x1b[41;1m';
-export const GREEN = colorLess ? '' : '\x1b[32m';
-export const YELLOW = colorLess ? '' : '\x1b[33;1m';
-export const BLUE = colorLess ? '' : '\x1b[34;1m';
-export const PURPLE = colorLess ? '' : '\x1b[35;1m';
-export const WHITE = colorLess ? '' : '\x1b[37m';
-export const RESET = colorLess ? '' : '\x1b[0m';
-export const DIM = colorLess ? '' : '\x1b[30;1m';
-export const BOLD = colorLess ? '' : '\x1b[;1;1m';
-export const TRIBE = colorLess ? '' : '\x1b[36;1m';
-export const WHITE_BLACK = colorLess ? '' : '\x1b[30;47m';
+import { VERBOSE_TRACING, YELLOW, PURPLE, RESET, DIM } from './constants.mjs';
 
 export function ASSERT(b, m = '', ...rest) {
   if (!b) {
@@ -173,19 +143,6 @@ export function fmat(code, shouldPrint = VERBOSE) {
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
     throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
-  }
-}
-
-export function isProperIdent(node) {
-  if (node.type === 'Literal' && typeof node.value === 'string') {
-    const str = node.value;
-    // If the key name is a legit key then why not. Let's just test it.
-    try {
-      // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
-      return !!(/^[\w_$]+$/.test(str) && Function('foo.' + str) && true);
-    } catch {
-      return false;
-    }
   }
 }
 

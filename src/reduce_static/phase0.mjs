@@ -1,5 +1,5 @@
-import { log, group, groupEnd } from '../utils.mjs';
 import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+import { log, group, groupEnd } from '../utils.mjs';
 
 if (typeof window !== 'undefined') window.Tenko = Tenko; // Expose symbols for UI
 

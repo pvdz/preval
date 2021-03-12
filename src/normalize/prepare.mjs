@@ -1,22 +1,18 @@
 import walk from '../../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, DIM, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
-import globals from '../globals.mjs';
+
 import {
   VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
   THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
   ARGUMENTS_ALIAS_BASE_NAME,
   ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
+  RED,
+  BLUE,
+  RESET,
+  DIM,
 } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat } from '../utils.mjs';
+import { $p } from '../$p.mjs';
+import globals from '../globals.mjs';
 import {
   getIdentUsageKind,
   registerGlobalIdent,
@@ -25,7 +21,6 @@ import {
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
 } from '../bindings.mjs';
-import { $p } from '../$p.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.

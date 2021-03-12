@@ -1,44 +1,10 @@
 // Alias `this` and `arguments` at the top of each function that actually uses it
 // Requires info gathered by the prepare phase
 
-import {
-  log,
-  group,
-  groupEnd,
-  ASSERT,
-  DIM,
-  BLUE,
-  RED,
-  RESET,
-  tmat,
-  fmat,
-  PURPLE,
-  YELLOW,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
-import {
-  setVerboseTracing,
-  VERBOSE_TRACING,
-  ASSUME_BUILTINS,
-  DCE_ERROR_MSG,
-  ALIAS_PREFIX,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_PREFIX,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-  FRESH,
-  OLD,
-  MARK_NONE,
-  MARK_TEMP,
-  MARK_PERM,
-} from '../constants.mjs';
-import { createFreshVar } from '../bindings.mjs';
+import { VERBOSE_TRACING, THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function aliasThisAndArguments(fdata, resolve, req) {
   group('\n\n\n##################################\n## phase Aliasing  ::  ' + fdata.fname + '\n##################################\n\n\n');

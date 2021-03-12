@@ -1,25 +1,6 @@
-import {
-  log,
-  group,
-  groupEnd,
-  ASSERT,
-  BLUE,
-  RED,
-  RESET,
-  tmat,
-  fmat,
-  TRIBE,
-  PURPLE,
-  DIM,
-  YELLOW,
-  rule,
-  example,
-  before,
-  source,
-  after,
-} from '../utils.mjs';
-import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
+import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
+import * as AST from '../ast.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
   // Functions that just call another function and return the results.

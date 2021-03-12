@@ -1,4 +1,4 @@
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, TRIBE, PURPLE, DIM, YELLOW } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, tmat, fmat } from '../utils.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
 import { pruneEmptyFunctions } from './phase2emptyfunc.mjs';
 import { pruneTrampolineFunctions } from './phase2trampoline.mjs';

@@ -537,7 +537,7 @@ export function phase1(fdata, resolve, req) {
         : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
     );
 
-    log('\nCurrent state\n--------------\n' + (verbose ? fmat(tmat(fdata.tenkoOutput.ast)) : '') + '\n--------------\n');
+    if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
   log('End of phase 1');

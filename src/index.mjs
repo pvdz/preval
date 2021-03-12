@@ -12,6 +12,7 @@ import path from 'path';
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
+import { phasePrimitiveArgInlining } from './reduce_static/phase_primitive_arg_inlining.mjs';
 
 let VERBOSE_TRACING = true;
 
@@ -57,6 +58,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     modules: modules,
     evalOrder: undefined,
     main: entryPoint,
+    cloneCounts: new Map(), // how many clones did we generate for a particular function?
+    cloneMap: new Map(), // "Function cloning to inline params"-cache
   };
 
   const contents = {
@@ -206,6 +209,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           phase1(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
 
           changed = phase2(program, fdata, resolve, req, verbose);
+          // YOYO
+          //if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, verbose, options.cloneLimit);
         } while (changed === 'phase1');
 
         mod.fdata = fdata;

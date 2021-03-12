@@ -29,7 +29,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (a) {
+const f = function () {
   unknown;
 };
 f();

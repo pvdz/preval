@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (a) {
+const f = function () {
   const SSA_a = $(10);
   const SSA_b = $(20);
   const tmpReturnArg = [SSA_a, SSA_b];

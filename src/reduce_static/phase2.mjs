@@ -4,6 +4,7 @@ import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import {pruneEmptyFunctions} from './phase2emptyfunc.mjs';
 import {pruneTrampolineFunctions} from './phase2trampoline.mjs';
+import {pruneExcessiveParams} from './phase2exparam.mjs';
 
 let VERBOSE_TRACING = true;
 
@@ -94,6 +95,9 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
   const trampFuncs = pruneTrampolineFunctions(fdata);
   if (trampFuncs) return trampFuncs;
+
+  const prunedParams = pruneExcessiveParams(fdata);
+  if (prunedParams) return prunedParams;
 
   group('\n\n\nInlining constants with primitive values\n');
   let inlined = false;

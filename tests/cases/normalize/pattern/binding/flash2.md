@@ -35,7 +35,7 @@ x();
 ## Output
 
 `````js filename=intro
-const x = function (tmpParamDefault, tmpParamPattern) {
+const x = function (tmpParamPattern) {
   tmpParamPattern.x$1;
 };
 x();

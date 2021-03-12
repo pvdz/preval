@@ -48,7 +48,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (x1) {
+const f = function () {
   const g = function () {
     const tmpCalleeParam = arguments.length;
     $(tmpCalleeParam);

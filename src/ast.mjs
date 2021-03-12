@@ -25,6 +25,11 @@ export function cloneSimple(node) {
     return unaryExpression(node.operator, cloneSimple(node.argument));
   }
 
+  if (node.type === 'ThisExpression') {
+    ASSERT(false, 'I think we shouldnt allow to clone `this` without an explicit optin');
+    //return thisExpression();
+  }
+
   ASSERT(false, 'add me', node);
 }
 
@@ -103,7 +108,7 @@ export function callExpression(callee, args, optional = false) {
 export function classExpression(id = null, superClass = null, body) {
   if (typeof id === 'string') id = identifier(id);
   if (typeof superClass === 'string') superClass = identifier(superClass);
-  ASSERT(body && body.type === 'ClassBody');
+  ASSERT(body && body.type === 'ClassBody', 'body is ClassBody?', body);
 
   return {
     type: 'ClassExpression',
@@ -240,7 +245,34 @@ export function forOfStatement(left, right, body, async = false) {
   };
 }
 
+export function functionExpression(params, body, {id, generator, async} = {}) {
+  if (!Array.isArray(params)) params = [params];
+  params.map((n, i) => typeof n === 'string' ? identifier(n) : n);
+  if (!Array.isArray(body)) body = [body];
+  body = blockStatement(body);
+
+  generator = !!generator;
+  async = !!async;
+  id = id || null;
+  if (typeof id === 'string') id = identifier(id);
+
+  return {
+    type: 'FunctionExpression',
+    generator,
+    async,
+    expression: false, // for arrows
+    id,
+    params,
+    body,
+    $p: {
+      ...$p(),
+      hoistedVars: [],
+    }
+  }
+}
+
 export function identifier(name) {
+  ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
   return {
     type: 'Identifier',
     name,
@@ -609,4 +641,93 @@ export function isPrimitive(node) {
   }
 
   return false;
+}
+
+export function isNoob(node, v) {
+  const r = _isNoob(node, v);
+  if (v) console.log('  - Node:', node.type, ', noob?', r);
+  return r;
+}
+function _isNoob(node, v) {
+  // Does this node possibly have any side effect (aside from its main effect, like assignment or call)
+  if (node.type === 'VariableDeclaration') {
+    return !node.declarations[0].init || isNoob(node.declarations[0].init, v);
+  }
+
+  if (node.type === 'ExpressionStatement') {
+    return isNoob(node.expression, v);
+  }
+
+  if (node.type === 'AssignmentExpression') {
+    return isNoob(node.left, v) && isNoob(node.right, v);
+  }
+
+  if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
+    return true;
+  }
+
+  if (node.type === 'ArrayExpression') {
+    // This should be normalized, right? So none of the elements should have an observable side effect
+    return true;
+  }
+
+  if (node.type === 'ObjectExpression') {
+    // This should be normalized, right? So none of the properties or computed keys should have an observable side effect
+    return true;
+  }
+
+  if (node.type === 'EmptyStatement' || node.type === 'DebuggerStatement') {
+    return true;
+  }
+
+  // TODO: we can probably add more things to this list
+  return (
+    node.type === 'Identifier' ||
+    node.type === 'Literal' ||
+    isPrimitive(node) ||
+    // Typeof on an identifier does not trigger an observable side effect
+    (node.type === 'UnaryExpression' && node.operator === 'typeof' && node.argument.type === 'Identifier')
+  );
+}
+
+export function isSimpleNodeOrSimpleMember(node) {
+  if (!isComplexNode(node)) return true;
+  if (node.type !== 'MemberExpression') return false;
+  // Simple member expression must have a simple object and, if computed, a simple property and does not nest.
+  return !(isComplexNode(node.object) || (node.computed && isComplexNode(node.property)));
+}
+
+export function isComplexNode(node, incNested = true) {
+  ASSERT([1, 2].includes(arguments.length), 'arg count');
+  // A node is simple if it is
+  // - an identifier
+  // - a literal (but not regex)
+  // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
+  // - a sequence expression ending in a simple node
+  // Most of the time these nodes are not reduced any further
+  // The sequence expression sounds complex but that's what we normalize into most of the time
+  //
+  // Note: An empty array/object literal is not "simple" because it has an observable reference
+  //       If we were to mark these "simple" then they might be duplicated without further thought,
+  //       leading to hard to debug reference related issues.
+
+  if (node.type === 'Literal') {
+    if (node.raw !== 'null' && node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
+    return false;
+  }
+  if (node.type === 'Identifier') {
+    return false;
+  }
+  if (incNested && node.type === 'UnaryExpression' && node.operator === '-') {
+    // -100 (is a unary expression!)
+    if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
+    // A little unlikely but you know
+    // -NaN, +NaN, -Infinity, +Infinity
+    if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
+  }
+  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
+  if (node.type === 'ThisExpression') return true;
+  if (node.type === 'Super') return false;
+
+  return true;
 }

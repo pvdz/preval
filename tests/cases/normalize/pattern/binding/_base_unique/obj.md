@@ -18,8 +18,8 @@ const { x } = 1;
 
 `````js filename=intro
 let x$1 = 1;
-const $tdz$__pattern_after_default = 1;
-const x = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = 1;
+const x = bindingPatternObjRoot.x;
 let x$2 = 1;
 `````
 

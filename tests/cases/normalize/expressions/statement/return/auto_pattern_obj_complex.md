@@ -28,8 +28,8 @@ let f = function () {
   const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg;
 };
-let $tdz$__pattern_after_default = { a: 999, b: 1000 };
-let a = $tdz$__pattern_after_default.a;
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -44,8 +44,8 @@ const f = function () {
   const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
-const $tdz$__pattern_after_default = { a: 999, b: 1000 };
-const a = $tdz$__pattern_after_default.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+const a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

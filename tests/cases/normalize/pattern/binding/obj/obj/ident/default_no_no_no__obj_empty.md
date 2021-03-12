@@ -18,8 +18,8 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = {};
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = {};
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternNoDefault.y;
 $('bad');
 `````
@@ -27,8 +27,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const $tdz$__pattern_after_default = {};
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = {};
+const objPatternNoDefault = bindingPatternObjRoot.x;
 objPatternNoDefault.y;
 $('bad');
 `````

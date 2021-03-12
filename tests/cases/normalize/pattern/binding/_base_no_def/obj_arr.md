@@ -15,8 +15,8 @@ const {x: [ y ]} = 1
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = 1;
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = 1;
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
 `````

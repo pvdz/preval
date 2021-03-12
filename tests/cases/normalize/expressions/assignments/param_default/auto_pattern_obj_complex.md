@@ -33,8 +33,8 @@ let f = function (tmpParamDefault) {
     p = tmpParamDefault;
   }
 };
-let $tdz$__pattern_after_default = { a: 999, b: 1000 };
-let a = $tdz$__pattern_after_default.a;
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -52,8 +52,8 @@ const f = function (tmpParamDefault) {
     a = tmpNestedAssignObjPatternRhs.a;
   }
 };
-const $tdz$__pattern_after_default = { a: 999, b: 1000 };
-let a = $tdz$__pattern_after_default.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

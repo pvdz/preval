@@ -19,8 +19,8 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = ['abc'];
-const $tdz$__pattern_after_default = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
@@ -38,8 +38,8 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = ['abc'];
-const $tdz$__pattern_after_default = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

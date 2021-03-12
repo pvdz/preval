@@ -18,8 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = '';
-const x = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = '';
+const x = bindingPatternObjRoot.x;
 $(x);
 `````
 

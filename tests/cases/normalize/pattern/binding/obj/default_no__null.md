@@ -18,14 +18,14 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = null;
-let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+const bindingPatternObjRoot = null;
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = $tdz$__pattern_after_default === null;
+  objPatternCrashTest = bindingPatternObjRoot === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
 }
 $('bad');
 `````

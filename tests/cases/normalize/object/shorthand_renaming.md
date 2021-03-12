@@ -25,8 +25,8 @@ $(x, y, f(), g());
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
@@ -38,8 +38,8 @@ let f = function (tmpParamPattern) {
   }
 };
 let g = function (tmpParamPattern$1) {
-  let $tdz$__pattern_after_default$1 = tmpParamPattern$1;
-  let objPatternBeforeDefault$1 = $tdz$__pattern_after_default$1.x$1;
+  let bindingPatternObjRoot$1 = tmpParamPattern$1;
+  let objPatternBeforeDefault$1 = bindingPatternObjRoot$1.x$1;
   let x$1 = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {

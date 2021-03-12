@@ -21,9 +21,9 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
+  let bindingPatternObjRoot = tmpParamPattern;
   const tmpCallCallee = objPatternRest;
-  const tmpCalleeParam = $tdz$__pattern_after_default;
+  const tmpCalleeParam = bindingPatternObjRoot;
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$2 = 'x';
   let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);

@@ -21,17 +21,17 @@ $(f({}, 10));
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 'fail' };
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
   const tmpCallCallee$1 = objPatternRest;
-  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$2 = [];
   const tmpCalleeParam$3 = 'x';
   let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
@@ -49,15 +49,15 @@ tmpCallCallee$2(tmpCalleeParam$4);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = { a: 'fail' };
-    $tdz$__pattern_after_default = $(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  const tmpCalleeParam$1 = $tdz$__pattern_after_default;
+  const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$2 = [];
   const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, 'x');
   return x;

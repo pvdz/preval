@@ -5578,9 +5578,7 @@ export function phaseNormalize(fdata, fname) {
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
       before(node, parentNode);
 
-      //YOYO
-      //const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
-      const bindingPatternRootName = createFreshVar('$tdz$__pattern_after_default', fdata);
+      const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);

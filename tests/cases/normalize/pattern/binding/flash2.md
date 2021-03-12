@@ -26,8 +26,8 @@ let x = function (tmpParamDefault, tmpParamPattern) {
   } else {
     foo = tmpParamDefault;
   }
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let x$1 = $tdz$__pattern_after_default.x$1;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let x$1 = bindingPatternObjRoot.x$1;
 };
 x();
 `````

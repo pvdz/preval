@@ -18,8 +18,8 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: 'abc', b: 11, c: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: 'abc', b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
@@ -31,8 +31,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: 'abc', b: 11, c: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: 'abc', b: 11, c: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const tmpCalleeParam$1 = [];
 const y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(y);

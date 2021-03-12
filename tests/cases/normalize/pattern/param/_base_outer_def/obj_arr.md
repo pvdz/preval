@@ -16,14 +16,14 @@ function i({x: [ y ]} = c ) { return y }
 
 `````js filename=intro
 let i = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = c;
+    bindingPatternObjRoot = c;
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat[0];
   return y;

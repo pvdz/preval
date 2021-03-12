@@ -27,8 +27,8 @@ $(f({ x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, 
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let objPatternNoDefault$2 = objPatternNoDefault$1.z;
   let objPatternCrashTest = objPatternNoDefault$2 === undefined;

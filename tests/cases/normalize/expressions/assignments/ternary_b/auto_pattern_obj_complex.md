@@ -19,8 +19,8 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let $tdz$__pattern_after_default = { a: 999, b: 1000 };
-let a = $tdz$__pattern_after_default.a;
+let bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
@@ -40,8 +40,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { a: 999, b: 1000 };
-let a = $tdz$__pattern_after_default.a;
+const bindingPatternObjRoot = { a: 999, b: 1000 };
+let a = bindingPatternObjRoot.a;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {

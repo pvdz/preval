@@ -20,8 +20,8 @@ function i({x: [ y ]}) {
 
 `````js filename=intro
 let i = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y$1 = arrPatternSplat[0];
   let y$2 = 2;

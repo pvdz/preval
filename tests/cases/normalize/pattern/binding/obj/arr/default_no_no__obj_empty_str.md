@@ -18,8 +18,8 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: '', a: 11, b: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 $('ok');
 `````
@@ -27,8 +27,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: '', a: 11, b: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 [...objPatternNoDefault];
 $('ok');
 `````

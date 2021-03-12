@@ -21,20 +21,20 @@ $(f(null, 10));
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = $('fail');
+    bindingPatternObjRoot = $('fail');
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  let objPatternCrashTest = bindingPatternObjRoot === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = $tdz$__pattern_after_default === null;
+    objPatternCrashTest = bindingPatternObjRoot === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
     return 'bad';
   } else {
     return 'bad';
@@ -49,20 +49,20 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = $('fail');
+    bindingPatternObjRoot = $('fail');
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  let objPatternCrashTest = bindingPatternObjRoot === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = $tdz$__pattern_after_default === null;
+    objPatternCrashTest = bindingPatternObjRoot === null;
   }
   if (objPatternCrashTest) {
-    $tdz$__pattern_after_default.cannotDestructureThis;
+    bindingPatternObjRoot.cannotDestructureThis;
     return 'bad';
   } else {
     return 'bad';

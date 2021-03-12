@@ -21,14 +21,14 @@ $(f(null, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let objPatternCrashTest = bindingPatternObjRoot === undefined;
   if (objPatternCrashTest) {
   } else {
-    objPatternCrashTest = $tdz$__pattern_after_default === null;
+    objPatternCrashTest = bindingPatternObjRoot === null;
   }
   if (objPatternCrashTest) {
-    objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
+    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
     return 'bad';
   } else {
     return 'bad';

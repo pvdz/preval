@@ -15,8 +15,8 @@ const { x: a } = 1
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = 1;
-const a = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = 1;
+const a = bindingPatternObjRoot.x;
 `````
 
 ## Output

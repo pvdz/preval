@@ -49,8 +49,8 @@ let x = function (tmpParamPattern, tmpParamPattern$1) {
   } else {
     foo = arrPatternBeforeDefault$1;
   }
-  let $tdz$__pattern_after_default = tmpParamPattern$1;
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let bindingPatternObjRoot = tmpParamPattern$1;
+  let objPatternNoDefault = bindingPatternObjRoot.x;
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];

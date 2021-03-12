@@ -56,15 +56,15 @@ let obj = {
     return tmpReturnArg$5;
   },
 };
-let $tdz$__pattern_after_default = obj;
-let a = $tdz$__pattern_after_default.a;
-let objPatternNoDefault = $tdz$__pattern_after_default.b;
+let bindingPatternObjRoot = obj;
+let a = bindingPatternObjRoot.a;
+let objPatternNoDefault = bindingPatternObjRoot.b;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = undefined;
 let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-let c = $tdz$__pattern_after_default.c;
+let c = bindingPatternObjRoot.c;
 $(a, c, rest);
 `````
 

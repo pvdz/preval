@@ -16,14 +16,14 @@ function g({ x } = b ) { return x }
 
 `````js filename=intro
 let g = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = b;
+    bindingPatternObjRoot = b;
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  let x = $tdz$__pattern_after_default.x;
+  let x = bindingPatternObjRoot.x;
   return x;
 };
 `````

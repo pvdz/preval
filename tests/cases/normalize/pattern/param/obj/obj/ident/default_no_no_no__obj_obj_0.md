@@ -21,8 +21,8 @@ $(f({ x: { x: 1, y: 0, z: 3 }, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let $tdz$__pattern_after_default = tmpParamPattern;
-  let objPatternNoDefault = $tdz$__pattern_after_default.x;
+  let bindingPatternObjRoot = tmpParamPattern;
+  let objPatternNoDefault = bindingPatternObjRoot.x;
   let y = objPatternNoDefault.y;
   return y;
 };

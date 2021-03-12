@@ -19,8 +19,8 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = [, , , 1];
-const $tdz$__pattern_after_default = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
@@ -37,8 +37,8 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = [, , , 1];
-const $tdz$__pattern_after_default = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = $tdz$__pattern_after_default.x;
+const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
+const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;

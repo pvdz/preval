@@ -21,17 +21,17 @@ $(f('abc', 10));
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpObjLitVal = { y: 'fail2' };
     const tmpCalleeParam = { x: tmpObjLitVal };
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -62,16 +62,16 @@ tmpCallCallee$2(tmpCalleeParam$2);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = { y: 'fail2' };
     const tmpCalleeParam = { x: tmpObjLitVal };
-    $tdz$__pattern_after_default = $(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = tmpParamDefault;
+    bindingPatternObjRoot = tmpParamDefault;
   }
-  const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
+  const objPatternBeforeDefault = bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {

@@ -50,9 +50,9 @@ let obj = {
     return tmpReturnArg$1;
   },
 };
-let $tdz$__pattern_after_default = obj;
-let a = $tdz$__pattern_after_default.a;
-let objPatternNoDefault = $tdz$__pattern_after_default.b;
+let bindingPatternObjRoot = obj;
+let a = bindingPatternObjRoot.a;
+let objPatternNoDefault = bindingPatternObjRoot.b;
 let c = objPatternNoDefault.c;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;

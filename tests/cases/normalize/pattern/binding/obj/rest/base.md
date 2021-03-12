@@ -18,9 +18,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: 1, b: 2, c: 3 };
+const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
 const tmpCallCallee = objPatternRest;
-const tmpCalleeParam = $tdz$__pattern_after_default;
+const tmpCalleeParam = bindingPatternObjRoot;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = 'x';
 const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
@@ -30,9 +30,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-const $tdz$__pattern_after_default = { x: 1, b: 2, c: 3 };
+const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$1 = [];
-const x = objPatternRest($tdz$__pattern_after_default, tmpCalleeParam$1, 'x');
+const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, 'x');
 $(x);
 `````
 

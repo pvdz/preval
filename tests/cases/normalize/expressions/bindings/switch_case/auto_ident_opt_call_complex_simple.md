@@ -22,19 +22,17 @@ switch (1) {
 
 `````js filename=intro
 let a;
-let tmpChainRootCall;
-let tmpChainElementCall;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = undefined;
-  tmpChainRootCall = $;
-  tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
   const tmpIfTest$2 = tmpChainElementCall != null;
   if (tmpIfTest$2) {
     const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);

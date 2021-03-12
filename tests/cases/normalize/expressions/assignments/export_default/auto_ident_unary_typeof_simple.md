@@ -24,16 +24,16 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 a = typeof arg;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 'number';
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 'number';
+export { tmpAnonDefaultExport as default };
 $('number', 1);
 `````
 

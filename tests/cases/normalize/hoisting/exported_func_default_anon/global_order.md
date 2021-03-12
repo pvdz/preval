@@ -31,10 +31,11 @@ const tmpCallCallee = $;
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
-}
+};
+export { tmpAnonDefaultExport as default };
 export { f };
 export { g };
 `````
@@ -53,10 +54,11 @@ const g = function () {
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 $(tmpCalleeParam, tmpCalleeParam$1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
-}
+};
+export { tmpAnonDefaultExport as default };
 export { f };
 export { g };
 `````

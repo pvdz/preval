@@ -20,12 +20,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = 0;
-if (tmpExportDefault) {
+let tmpAnonDefaultExport = 0;
+if (tmpAnonDefaultExport) {
 } else {
-  tmpExportDefault = 2;
+  tmpAnonDefaultExport = 2;
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -33,12 +33,12 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpExportDefault = 0;
-if (tmpExportDefault) {
+let tmpAnonDefaultExport = 0;
+if (tmpAnonDefaultExport) {
 } else {
-  tmpExportDefault = 2;
+  tmpAnonDefaultExport = 2;
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

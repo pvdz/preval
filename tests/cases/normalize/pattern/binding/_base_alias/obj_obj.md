@@ -15,8 +15,8 @@ const {x: {y: {z: a}}} = 1
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = 1;
+const objPatternNoDefault = $tdz$__pattern_after_default.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const a = objPatternNoDefault$1.z;
 `````

@@ -30,8 +30,8 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -44,8 +44,8 @@ const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpExportDefault = tmpNestedPropCompoundComplexRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpNestedPropCompoundComplexRhs;
+export { tmpAnonDefaultExport as default };
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
 

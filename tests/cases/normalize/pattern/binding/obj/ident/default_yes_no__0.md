@@ -18,8 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 0;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = 0;
+const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

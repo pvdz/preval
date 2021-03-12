@@ -25,10 +25,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+let $tdz$__pattern_after_default = { a: 999, b: 1000 };
+let a = $tdz$__pattern_after_default.a;
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs;
 const tmpCallCallee = $;
@@ -36,11 +35,11 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpBinLhs = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -60,8 +59,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-bindingPatternObjRoot.a;
+const $tdz$__pattern_after_default = { a: 999, b: 1000 };
+$tdz$__pattern_after_default.a;
 const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = { a: 1, b: 2 };

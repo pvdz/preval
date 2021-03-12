@@ -16,7 +16,8 @@ function g({ x: y }) { return y }
 
 `````js filename=intro
 let g = function (tmpParamPattern) {
-  let y = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let y = $tdz$__pattern_after_default.x;
   return y;
 };
 `````

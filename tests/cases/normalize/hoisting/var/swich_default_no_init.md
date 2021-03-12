@@ -27,9 +27,8 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }

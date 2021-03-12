@@ -17,20 +17,22 @@ export default function() { return $(2); }
 
 `````js filename=intro
 $(1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   const tmpReturnArg = $(2);
   return tmpReturnArg;
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
 
 `````js filename=intro
 $(1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   const tmpReturnArg = $(2);
   return tmpReturnArg;
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Globals

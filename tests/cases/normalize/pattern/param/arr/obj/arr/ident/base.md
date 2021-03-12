@@ -25,7 +25,8 @@ $(f([{ x: [1, 2, 3] }, 20, 30], 200));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;
   let arrPatternSplat$1 = [...objPatternNoDefault];

@@ -20,19 +20,19 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     p = tmpCallCallee(tmpCalleeParam);
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+let $tdz$__pattern_after_default = { a: 999, b: 1000 };
+let a = $tdz$__pattern_after_default.a;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -42,15 +42,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = { a: 1, b: 2 };
     $(tmpCalleeParam);
   }
 };
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
+const $tdz$__pattern_after_default = { a: 999, b: 1000 };
+const a = $tdz$__pattern_after_default.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

@@ -31,8 +31,8 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   a = tmpChainElementCall;
 }
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -47,8 +47,8 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   SSA_a = tmpChainElementCall;
 }
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

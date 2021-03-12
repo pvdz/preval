@@ -26,8 +26,8 @@ let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -37,8 +37,8 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 b.c = 2;
-const tmpExportDefault = 2;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 2;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 

@@ -16,14 +16,14 @@ function f([ x ] = b) { return x }
 
 `````js filename=intro
 let f = function ($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternArrRoot = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
-    $tdz$__pattern_after_default = b;
+    bindingPatternArrRoot = b;
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    bindingPatternArrRoot = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let x = arrPatternSplat[0];
   return x;
 };

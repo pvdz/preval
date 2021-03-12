@@ -21,16 +21,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = 'foo';
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 'foo';
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 'foo';
+export { tmpAnonDefaultExport as default };
 $('foo');
 `````
 

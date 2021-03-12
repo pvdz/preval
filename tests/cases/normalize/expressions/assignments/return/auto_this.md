@@ -25,8 +25,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasThis = this;
-  a = tmpPrevalAliasThis;
+  a = this;
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -41,8 +40,7 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis = this;
-  a = tmpPrevalAliasThis;
+  a = this;
   const tmpReturnArg = a;
   return tmpReturnArg;
 };

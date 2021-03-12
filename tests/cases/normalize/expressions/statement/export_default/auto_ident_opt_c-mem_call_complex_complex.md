@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
+let tmpAnonDefaultExport = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -37,10 +37,10 @@ if (tmpIfTest) {
     const tmpCalleeParam = tmpChainElementCall;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-    tmpExportDefault = tmpChainElementCall$1;
+    tmpAnonDefaultExport = tmpChainElementCall$1;
   }
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
+let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
@@ -60,10 +60,10 @@ if (tmpIfTest) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-    tmpExportDefault = tmpChainElementCall$1;
+    tmpAnonDefaultExport = tmpChainElementCall$1;
   }
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

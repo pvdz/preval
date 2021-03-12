@@ -26,8 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -37,8 +37,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpExportDefault = $(tmpCalleeParam, tmpCalleeParam$1);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = $(tmpCalleeParam, tmpCalleeParam$1);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

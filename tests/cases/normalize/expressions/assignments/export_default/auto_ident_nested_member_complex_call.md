@@ -37,8 +37,8 @@ const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b, c, d);
 `````
 
@@ -54,8 +54,8 @@ const varInitAssignLhsComputedProp = $('y');
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 

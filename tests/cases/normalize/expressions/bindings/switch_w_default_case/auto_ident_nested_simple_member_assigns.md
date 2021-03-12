@@ -30,20 +30,14 @@ switch (1) {
 `````js filename=intro
 let b;
 let c;
-let varInitAssignLhsComputedRhs$5;
-let varInitAssignLhsComputedRhs$4;
-let varInitAssignLhsComputedRhs$3;
-let varInitAssignLhsComputedRhs$2;
-let varInitAssignLhsComputedRhs$1;
-let varInitAssignLhsComputedRhs;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -52,19 +46,20 @@ const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   b = { x: 1 };
   c = 3;
-  varInitAssignLhsComputedRhs$5 = c;
-  b.x = varInitAssignLhsComputedRhs$5;
-  varInitAssignLhsComputedRhs$4 = varInitAssignLhsComputedRhs$5;
+  const varInitAssignLhsComputedRhs$4 = c;
   b.x = varInitAssignLhsComputedRhs$4;
-  varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
   b.x = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
+  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
   b.x = varInitAssignLhsComputedRhs$2;
-  varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
   b.x = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
   b.x = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   $(a, b, c);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;

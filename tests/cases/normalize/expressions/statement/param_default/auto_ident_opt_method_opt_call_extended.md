@@ -22,9 +22,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     p = undefined;
     const tmpChainRootProp = b;
@@ -40,7 +40,7 @@ let f = function ($tdz$__p) {
       }
     }
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 const tmpObjLitVal$1 = { e: $ };
@@ -56,8 +56,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpIfTest$1 = b != null;
     if (tmpIfTest$1) {

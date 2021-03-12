@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
-tmpExportDefault = 2;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = undefined;
+tmpAnonDefaultExport = 2;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -30,8 +30,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_tmpExportDefault = 2;
-export { SSA_tmpExportDefault as default };
+const SSA_tmpAnonDefaultExport = 2;
+export { SSA_tmpAnonDefaultExport as default };
 $(a);
 `````
 

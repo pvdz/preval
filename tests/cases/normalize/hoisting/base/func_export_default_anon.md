@@ -20,7 +20,8 @@ $(f);
 
 `````js filename=intro
 $(f);
-export default function () {}
+const tmpAnonDefaultExport = function () {};
+export { tmpAnonDefaultExport as default };
 $(f);
 `````
 
@@ -28,7 +29,8 @@ $(f);
 
 `````js filename=intro
 $(f);
-export default function () {}
+const tmpAnonDefaultExport = function () {};
+export { tmpAnonDefaultExport as default };
 $(f);
 `````
 

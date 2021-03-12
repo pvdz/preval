@@ -35,8 +35,8 @@ const varInitAssignLhsComputedRhs$1 = $(d);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b, c, d);
 `````
 
@@ -53,8 +53,8 @@ const varInitAssignLhsComputedProp$1 = $('y');
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-const tmpExportDefault = varInitAssignLhsComputedRhs$1;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs$1;
+export { tmpAnonDefaultExport as default };
 $(a, b, c, 3);
 `````
 

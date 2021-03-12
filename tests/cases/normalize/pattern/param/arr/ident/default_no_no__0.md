@@ -21,7 +21,8 @@ $(f(0, 200));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let x = arrPatternSplat[0];
   return 'bad';
 };

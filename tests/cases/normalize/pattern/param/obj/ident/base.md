@@ -21,7 +21,8 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let x = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let x = $tdz$__pattern_after_default.x;
   return x;
 };
 const tmpCallCallee = $;

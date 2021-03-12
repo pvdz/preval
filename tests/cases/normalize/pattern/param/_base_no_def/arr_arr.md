@@ -16,7 +16,8 @@ function i([[ x ]]) { return x }
 
 `````js filename=intro
 let i = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let x = arrPatternSplat$1[0];

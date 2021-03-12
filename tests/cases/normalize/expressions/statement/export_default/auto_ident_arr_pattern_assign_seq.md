@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
+let tmpAnonDefaultExport;
 $(x);
 $(y);
 const tmpArrElement = $(3);
@@ -34,8 +34,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export { tmpExportDefault as default };
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, x, y);
 `````
 
@@ -51,8 +51,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_x = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-const tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, SSA_x, SSA_y);
 `````
 

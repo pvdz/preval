@@ -18,8 +18,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = { x: 1, b: 2, c: 3 };
+const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
@@ -33,8 +33,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = { x: 1, b: 2, c: 3 };
+const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

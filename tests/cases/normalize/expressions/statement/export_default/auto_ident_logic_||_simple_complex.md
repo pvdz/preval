@@ -20,14 +20,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = 0;
-if (tmpExportDefault) {
+let tmpAnonDefaultExport = 0;
+if (tmpAnonDefaultExport) {
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+  tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -35,13 +35,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpExportDefault = 0;
-if (tmpExportDefault) {
+let tmpAnonDefaultExport = 0;
+if (tmpAnonDefaultExport) {
 } else {
   const tmpCalleeParam = $(1);
-  tmpExportDefault = $(tmpCalleeParam);
+  tmpAnonDefaultExport = $(tmpCalleeParam);
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

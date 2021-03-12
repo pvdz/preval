@@ -18,16 +18,16 @@ f();
 ## Normalized
 
 `````js filename=intro
-const f = ($tdz$__a) => {
+const f = ($tdz$__pattern) => {
   let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignArrPatternRhs = [100];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     a = tmpNestedAssignArrPatternRhs;
   } else {
-    a = $tdz$__a;
+    a = $tdz$__pattern;
   }
   const tmpReturnArg = $(a);
   return tmpReturnArg;
@@ -38,16 +38,16 @@ f();
 ## Output
 
 `````js filename=intro
-const f = ($tdz$__a) => {
+const f = ($tdz$__pattern) => {
   let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignArrPatternRhs = [100];
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     a = tmpNestedAssignArrPatternRhs;
   } else {
-    a = $tdz$__a;
+    a = $tdz$__pattern;
   }
   const tmpReturnArg = $(a);
   return tmpReturnArg;

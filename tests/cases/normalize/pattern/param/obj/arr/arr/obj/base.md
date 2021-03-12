@@ -21,7 +21,8 @@ $(f({ x: [[{ a: 1, b: 2, c: 3 }, 14], 13], a: 11, b: 12 }, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];

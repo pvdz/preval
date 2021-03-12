@@ -22,13 +22,13 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__arg) {
+let f = function ($tdz$__pattern) {
   let arg = undefined;
-  const tmpIfTest = $tdz$__arg === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     arg = typeof x;
   } else {
-    arg = $tdz$__arg;
+    arg = $tdz$__pattern;
   }
 };
 let x = 1;
@@ -42,7 +42,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__arg) {};
+const f = function ($tdz$__pattern) {};
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

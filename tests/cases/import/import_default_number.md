@@ -31,8 +31,8 @@ $(x);
 `````
 
 `````js filename=x
-const tmpExportDefault = 100;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
@@ -43,8 +43,8 @@ $(x);
 `````
 
 `````js filename=x
-const tmpExportDefault = 100;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Globals

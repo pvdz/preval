@@ -32,20 +32,14 @@ switch (1) {
 let b;
 let c;
 let d;
-let varInitAssignLhsComputedObj;
-let varInitAssignLhsComputedProp;
-let varInitAssignLhsComputedObj$1;
-let varInitAssignLhsComputedProp$1;
-let varInitAssignLhsComputedRhs$1;
-let varInitAssignLhsComputedRhs;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -55,15 +49,16 @@ if (tmpIfTest$2) {
   b = { x: 1 };
   c = { y: 2 };
   d = 3;
-  varInitAssignLhsComputedObj = $(b);
-  varInitAssignLhsComputedProp = $('x');
-  varInitAssignLhsComputedObj$1 = $(c);
-  varInitAssignLhsComputedProp$1 = $('y');
-  varInitAssignLhsComputedRhs$1 = d;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $('x');
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedRhs = d;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   $(a, b, c, d);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -81,12 +76,12 @@ if (tmpIfTest$4) {
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, c, 3);
 $('fail1');
 $('fail2');

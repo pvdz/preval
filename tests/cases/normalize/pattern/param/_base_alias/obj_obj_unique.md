@@ -27,7 +27,8 @@ $(i({x: {y: {z: {a: 10}}}}));
 
 `````js filename=intro
 let i = function (tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a$1 = objPatternNoDefault$1.z;
   let a$2 = 2;

@@ -26,8 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -38,8 +38,8 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a, b);
 `````
 

@@ -22,11 +22,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-if (tmpExportDefault) {
-  tmpExportDefault = 2;
+let tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+if (tmpAnonDefaultExport) {
+  tmpAnonDefaultExport = 2;
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -35,11 +35,11 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-let tmpExportDefault = $(tmpCalleeParam);
-if (tmpExportDefault) {
-  tmpExportDefault = 2;
+let tmpAnonDefaultExport = $(tmpCalleeParam);
+if (tmpAnonDefaultExport) {
+  tmpAnonDefaultExport = 2;
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

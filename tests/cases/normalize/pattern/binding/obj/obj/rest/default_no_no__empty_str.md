@@ -18,8 +18,8 @@ $('bad');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '';
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = '';
+const objPatternNoDefault = $tdz$__pattern_after_default.x;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];

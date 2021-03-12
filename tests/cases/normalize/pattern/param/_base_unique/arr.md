@@ -20,7 +20,8 @@ function f([ x ]) {
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let x$1 = arrPatternSplat[0];
   let x$2 = 2;
   return x$1;

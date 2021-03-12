@@ -16,7 +16,8 @@ function g({ x = b } ) { return x }
 
 `````js filename=intro
 let g = function (tmpParamPattern) {
-  let objPatternBeforeDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {

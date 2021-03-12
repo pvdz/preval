@@ -22,8 +22,8 @@ const { x: a } = 1
 
 `````js filename=intro
 let a$1 = 1;
-const bindingPatternObjRoot = 1;
-const a = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = 1;
+const a = $tdz$__pattern_after_default.x;
 let a$2 = 1;
 `````
 

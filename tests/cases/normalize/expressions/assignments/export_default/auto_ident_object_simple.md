@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 a = { x: 1, y: 2, z: 3 };
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -30,8 +30,8 @@ $(a);
 
 `````js filename=intro
 const SSA_a = { x: 1, y: 2, z: 3 };
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

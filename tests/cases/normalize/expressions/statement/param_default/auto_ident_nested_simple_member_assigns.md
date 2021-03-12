@@ -23,9 +23,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const varInitAssignLhsComputedRhs$4 = c;
     b.x = varInitAssignLhsComputedRhs$4;
@@ -42,7 +42,7 @@ let f = function ($tdz$__p) {
     b.x = tmpNestedPropAssignRhs;
     p = tmpNestedPropAssignRhs;
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let b = { x: 1 };
@@ -57,8 +57,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     b.x = 3;
     b.x = 3;

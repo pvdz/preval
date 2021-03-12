@@ -18,20 +18,20 @@ f()
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__a, $tdz$__b) {
+let f = function ($tdz$__pattern, $tdz$__pattern$1) {
   let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     a = 1;
   } else {
-    a = $tdz$__a;
+    a = $tdz$__pattern;
   }
   let b = undefined;
-  const tmpIfTest$1 = $tdz$__b === undefined;
+  const tmpIfTest$1 = $tdz$__pattern$1 === undefined;
   if (tmpIfTest$1) {
     b = a;
   } else {
-    b = $tdz$__b;
+    b = $tdz$__pattern$1;
   }
 };
 f();
@@ -40,7 +40,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__a, $tdz$__b) {};
+const f = function ($tdz$__pattern, $tdz$__pattern$1) {};
 f();
 `````
 

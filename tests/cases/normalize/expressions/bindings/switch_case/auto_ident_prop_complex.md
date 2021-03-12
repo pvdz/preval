@@ -24,19 +24,18 @@ switch (1) {
 
 `````js filename=intro
 let b;
-let tmpCompObj;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { c: 1 };
-  tmpCompObj = $(b);
-  a = tmpCompObj.c;
+  const tmpAssignRhsProp = $(b);
+  a = tmpAssignRhsProp.c;
   $(a, b);
 }
 `````
@@ -45,8 +44,8 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpCompObj = $(b);
-const a = tmpCompObj.c;
+const tmpAssignRhsProp = $(b);
+const a = tmpAssignRhsProp.c;
 $(a, b);
 `````
 

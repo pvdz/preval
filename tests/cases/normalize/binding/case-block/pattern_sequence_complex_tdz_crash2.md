@@ -23,7 +23,7 @@ switch (1) { default: let x = x; $('fail'); }
 
 `````js filename=intro
 let x;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

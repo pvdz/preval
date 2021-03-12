@@ -24,11 +24,10 @@ switch (1) {
 
 `````js filename=intro
 let arg;
-let tmpDeleteObj;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -37,7 +36,7 @@ if (tmpIfTest$1) {
   arg = { y: 1 };
   $(1);
   $(2);
-  tmpDeleteObj = arg;
+  const tmpDeleteObj = arg;
   a = delete tmpDeleteObj.y;
   $(a, arg);
 }

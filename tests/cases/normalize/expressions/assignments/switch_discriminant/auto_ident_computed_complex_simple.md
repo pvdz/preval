@@ -29,7 +29,6 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
 a = tmpAssignRhsProp.c;
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

@@ -25,18 +25,14 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-let tmpCallCallee;
-let tmpCalleeParam;
-let bindingPatternArrRoot;
-let arrPatternSplat;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -45,10 +41,10 @@ const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   $(10);
   $(20);
-  tmpCallCallee = $;
-  tmpCalleeParam = [1, 2];
-  bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
-  arrPatternSplat = [...bindingPatternArrRoot];
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   $(a);
 }
@@ -68,8 +64,8 @@ if (tmpIfTest$4) {
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrAssignPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...arrAssignPatternRhs];
 const a = arrPatternSplat[0];
 $(a);
 $('fail1');

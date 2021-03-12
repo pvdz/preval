@@ -27,16 +27,16 @@ let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 a = 2;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b, c);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 2;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 2;
+export { tmpAnonDefaultExport as default };
 $(2, 2, 2);
 `````
 

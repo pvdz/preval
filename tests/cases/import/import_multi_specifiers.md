@@ -36,8 +36,8 @@ let b = 20;
 export { b };
 let c = 30;
 export { c };
-const tmpExportDefault = 100;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
@@ -55,8 +55,8 @@ const b = 20;
 export { b };
 const c = 30;
 export { c };
-const tmpExportDefault = 100;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Globals

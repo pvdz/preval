@@ -30,9 +30,9 @@ let f = function () {
   const tmpReturnArg = $('f');
   return tmpReturnArg;
 };
-const tmpSwitchValue = x;
+const tmpSwitchTest = x;
 let tmpSwitchCaseToStart = 0;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }

@@ -29,8 +29,8 @@ const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -44,8 +44,8 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 

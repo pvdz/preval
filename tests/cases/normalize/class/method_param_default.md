@@ -24,14 +24,14 @@ $(new x().y());
 
 `````js filename=intro
 let x = class {
-  y($tdz$__arg) {
+  y($tdz$__pattern) {
     let arg = undefined;
-    const tmpIfTest = $tdz$__arg === undefined;
+    const tmpIfTest = $tdz$__pattern === undefined;
     if (tmpIfTest) {
       arg = $(10, 'default');
       return arg;
     } else {
-      arg = $tdz$__arg;
+      arg = $tdz$__pattern;
       return arg;
     }
   }
@@ -46,13 +46,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = class {
-  y($tdz$__arg) {
-    const tmpIfTest = $tdz$__arg === undefined;
+  y($tdz$__pattern) {
+    const tmpIfTest = $tdz$__pattern === undefined;
     if (tmpIfTest) {
       const SSA_arg = $(10, 'default');
       return SSA_arg;
     } else {
-      return $tdz$__arg;
+      return $tdz$__pattern;
     }
   }
 };

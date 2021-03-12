@@ -1,5 +1,5 @@
 import walk from '../../lib/walk.mjs';
-import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
+import { log, group, groupEnd, ASSERT, DIM, BLUE, RED, RESET, tmat, fmat } from '../utils.mjs';
 import {
   getIdentUsageKind,
   registerGlobalIdent,
@@ -35,6 +35,12 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
   let lexScopeCounter = 0;
   const funcScopeStack = [];
   const thisStack = [];
+  const fenceStack = []; // switch, loops. To determine where unqualified break/continue jumps to.
+
+  fdata.thisRefs = [];
+  fdata.argsAnyRefs = [];
+  fdata.argsLenRefs = [];
+  fdata.thisArgFuncs = new Set();
 
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
@@ -65,7 +71,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
     if (VERBOSE_TRACING) {
       group(
         BLUE + nodeType + ':' + (before ? 'before' : 'after'),
-        RESET,
+        DIM + node.$p.pid + RESET,
         // To debug lexical scopes:
         //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
       );
@@ -125,13 +131,13 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               // This is the `this` alias
               if (VERBOSE_TRACING) log('The `this` access is already aliased to `' + decr.id.name + '`');
               node.$p.thisAlias = decr.id.name;
+              body[aliasIndex].$p.isForAlias = 1;
               ++aliasIndex;
               decr.init.$p.isForAlias = true;
-              body[aliasIndex].$p.isForAlias = 1;
             }
           }
           if (
-            body.length > 0 &&
+            body.length > aliasIndex &&
             body[aliasIndex].type === 'VariableDeclaration' &&
             body[aliasIndex].declarations.length === 1 &&
             body[aliasIndex].declarations[0].id.type === 'Identifier' &&
@@ -143,13 +149,13 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             if (decr.init.type === 'Identifier' && decr.init.name === 'arguments' && decr.id.name.startsWith(ARGUMENTS_ALIAS_BASE_NAME)) {
               if (VERBOSE_TRACING) log('The `arguments` access is already aliased to `' + decr.id.name + '`');
               node.$p.argsAnyAlias = decr.id.name;
+              body[aliasIndex].$p.isForAlias = 2;
               ++aliasIndex;
               decr.init.$p.isForAlias = true;
-              body[aliasIndex].$p.isForAlias = 2;
             }
           }
           if (
-            body.length > 0 &&
+            body.length > aliasIndex &&
             body[aliasIndex].type === 'VariableDeclaration' &&
             body[aliasIndex].declarations.length === 1 &&
             body[aliasIndex].declarations[0].id.type === 'Identifier' &&
@@ -168,9 +174,9 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
             ) {
               if (VERBOSE_TRACING) log('The `arguments.length` access is already aliased to `' + decr.id.name + '`');
               node.$p.argsLenAlias = decr.id.name;
+              body[aliasIndex].$p.isForAlias = 3;
               ++aliasIndex;
               decr.init.object.$p.isForAlias = true;
-              body[aliasIndex].$p.isForAlias = 3;
             }
           }
 
@@ -262,13 +268,15 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
         if (VERBOSE_TRACING) log('Ident:', node.name);
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
         const kind = getIdentUsageKind(parentNode, parentProp);
         if (VERBOSE_TRACING) log('- Ident kind:', kind);
 
         if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind === 'read' && node.name === 'arguments') {
           // Ignore occurrences in global space (or in global nested arrows)
-          if (thisStack.length) {
+          if (thisStack.length && !node.$p.isForAlias) {
+            const thisFunc = thisStack[thisStack.length - 1];
             // Do not count cases like where the arguments have no observable side effect or our own alias
             // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
             if (
@@ -278,21 +286,27 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
               parentNode.property.name === 'length' &&
               !parentNode.computed
             ) {
+              // Get the parent of the member expression so we can replace it
+              const grandNode = path.nodes[path.nodes.length - 3];
+              const grandProp = path.props[path.props.length - 2];
+              const grandIndex = path.indexes[path.indexes.length - 2];
+
               // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
-              if (VERBOSE_TRACING) log('Marking function as accessing `arguments.length`');
-              thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+              if (VERBOSE_TRACING) log('- Marking function as accessing `arguments.length`');
+              thisFunc.$p.readsArgumentsLen = true;
+              if (VERBOSE_TRACING) log('- Pushing node to stack for `arguments.length` alias replacement');
+              fdata.argsLenRefs.push({ parent: grandNode, prop: grandProp, index: grandIndex, func: thisFunc, node });
+              fdata.thisArgFuncs.add(thisFunc);
             } else {
               if (parentNode.type === 'ExpressionStatement') {
                 if (VERBOSE_TRACING) log('Ignoring `arguments` as an expression statement');
-              //} else if (
-              //  parentNode.type === 'VariableDeclaration' &&
-              //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
-              //) {
-              //  if (VERBOSE_TRACING) log('Ignoring our own arguments alias');
               } else {
                 // This disables a few tricks because of observable side effects
-                if (VERBOSE_TRACING) log('Marking function as accessing `arguments` in "any" way');
-                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+                if (VERBOSE_TRACING) log('- Marking function as accessing `arguments` in "any" way');
+                thisFunc.$p.readsArgumentsAny = true;
+                if (VERBOSE_TRACING) log('- Pushing node to stack for `arguments` alias replacement');
+                fdata.argsAnyRefs.push({ parent: parentNode, prop: parentProp, index: parentIndex, func: thisFunc, node });
+                fdata.thisArgFuncs.add(thisFunc);
               }
             }
           }
@@ -437,8 +451,19 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
 
       case 'ThisExpression:after': {
         if (thisStack.length) {
-          if (VERBOSE_TRACING) log('Marking func as having `this` access');
-          thisStack[thisStack.length - 1].$p.thisAccess = true;
+          const parentNode = path.nodes[path.nodes.length - 2];
+          if (parentNode.type !== 'ExpressionStatement') {
+            const thisFunc = thisStack[thisStack.length - 1];
+            if (VERBOSE_TRACING) {
+              log('Marking func ( pid =', thisFunc.$p.pid, ') as having `this` access');
+            }
+            const parentProp = path.props[path.props.length - 1];
+            const parentIndex = path.indexes[path.indexes.length - 1];
+            thisFunc.$p.thisAccess = true;
+            if (VERBOSE_TRACING) log('Pushing node to stack for `arguments` alias replacement');
+            fdata.thisRefs.push({ parent: parentNode, prop: parentProp, index: parentIndex, func: thisFunc, node });
+            fdata.thisArgFuncs.add(thisFunc);
+          }
         }
         break;
       }
@@ -447,6 +472,7 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       case 'ContinueStatement:before': {
         // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
         // Find the first label ancestor where the original name matches the label of this node
+        // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
         if (node.label) {
           const name = node.label.name;
           if (VERBOSE_TRACING) log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
@@ -466,6 +492,15 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
           }
         } else {
           if (VERBOSE_TRACING) log('No label');
+          let index = fenceStack.length - 1;
+          let fenceNode = fenceStack[index];
+          if (node.type === 'ContinueStatement') {
+            while (fenceNode.type === 'SwitchStatement') {
+              --index;
+              fenceNode = fenceStack[index];
+            }
+          }
+          fenceNode.$p.unqualifiedLabelUsages.push(node);
         }
         break;
       }
@@ -486,6 +521,26 @@ export function prepareNormalization(fdata, resolve, req, verbose) {
       }
       case 'LabeledStatement:after': {
         labelStack.pop();
+        break;
+      }
+
+      case 'ForStatement:before':
+      case 'ForInStatement:before':
+      case 'ForOfStatement:before':
+      case 'WhileStatement:before':
+      case 'DoWhileStatement:before':
+      case 'SwitchStatement:before': {
+        node.$p.unqualifiedLabelUsages = [];
+        fenceStack.push(node);
+        break;
+      }
+      case 'ForStatement:after':
+      case 'ForInStatement:after':
+      case 'ForOfStatement:after':
+      case 'WhileStatement:after':
+      case 'DoWhileStatement:after':
+      case 'SwitchStatement:after': {
+        fenceStack.pop();
         break;
       }
     }

@@ -23,9 +23,9 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     let tmpNestedComplexRhs;
     $(x);
@@ -40,7 +40,7 @@ let f = function ($tdz$__p) {
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let x = 1;
@@ -55,8 +55,8 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     $(x);
     $(y);

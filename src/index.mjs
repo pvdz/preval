@@ -3,6 +3,7 @@ import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.
 import globals from './globals.mjs';
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
+import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
 import fs from 'fs';
 import path from 'path';
@@ -22,7 +23,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   else clearStdio();
 
   {
-    const {logDir, logPasses, maxPass, cloneLimit, ...rest} = options;
+    const { logDir, logPasses, maxPass, cloneLimit, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
@@ -61,6 +62,8 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     // note: test runner will auto-Prettier the result. Perhaps this should be done here..? Or let the user take care of that?
     // TODO: this is "final output". Rename it.
     files: {},
+    // After the first pass for one-time transforms
+    pre: {},
     // For debug/testing
     normalized: {},
     // Was used for discovering code that wasn't normalized. Currently unused.
@@ -79,17 +82,25 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
     if (inputCode.length > 10 * 1024) VERBOSE_TRACING = false; // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-    const fdata = parseCode(inputCode, nextFname);
+
+    const preFdata = parseCode(inputCode, nextFname);
+    prepareNormalization(preFdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    phaseNormalOnce(preFdata);
+    const preCode = tmat(preFdata.tenkoOutput.ast, true);
+
+    const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname);
 
     mod.children = new Set(fdata.imports.values());
     mod.fdata = fdata;
     mod.inputCode = inputCode;
+    mod.preCode = preCode;
     mod.normalizedCode = tmat(fdata.tenkoOutput.ast, true);
     mod.specialCode = 'unused';
 
     contents.normalized[nextFname] = mod.normalizedCode;
+    contents.pre[nextFname] = mod.preCode;
     contents.special[nextFname] = mod.specialCode;
 
     // Inject the discovered imports to the queue so they'll be processed too, if they haven't been found before
@@ -109,6 +120,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           parents: new Set([nextFname]),
           inputCode: '',
           normalizedCode: '',
+          preCode: '',
           specialCode: '',
           outputCode: '',
           fdata: undefined,
@@ -210,7 +222,9 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
         if (changed && (!maxPasses || passes < maxPasses)) {
           log('Something changed in phase2 so we will be rerolling it again');
           inputCode = outCode;
-          log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
+          log(
+            '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
+          );
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings

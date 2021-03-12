@@ -23,15 +23,15 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpExportDefault;
+let tmpAnonDefaultExport;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export { tmpExportDefault as default };
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -44,8 +44,8 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_b = arrPatternSplat[0];
-const tmpExportDefault = tmpNestedAssignArrPatternRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, SSA_b);
 `````
 

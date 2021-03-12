@@ -31,10 +31,9 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpSwitchTest = $(1, 'disc');
-    const tmpSwitchValue = tmpSwitchTest;
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }

@@ -37,8 +37,8 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpExportDefault = varInitAssignLhsComputedRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
 $(a, b, c);
 `````
 
@@ -53,8 +53,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpExportDefault = 3;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 3;
+export { tmpAnonDefaultExport as default };
 $(a, b, 3);
 `````
 

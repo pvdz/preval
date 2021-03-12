@@ -24,8 +24,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-const tmpExportDefault = tmpCompObj.c;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpCompObj.c;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -34,8 +34,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpExportDefault = b.c;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = b.c;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 

@@ -24,8 +24,8 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = b.$(1);
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -34,8 +34,8 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const SSA_a = b.$(1);
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

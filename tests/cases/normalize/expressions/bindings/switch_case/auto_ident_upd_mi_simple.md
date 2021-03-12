@@ -25,17 +25,19 @@ switch (1) {
 `````js filename=intro
 let b;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = 1;
-  b = b - 1;
-  a = b;
+  const tmpNestedCompoundLhs = b;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   $(a, b);
 }
 `````

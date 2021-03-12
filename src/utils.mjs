@@ -52,7 +52,7 @@ export function ASSERT_LOC(loc) {
   ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
 }
 
-export const VERBOSE_TRACING = true
+export const VERBOSE_TRACING = true;
 
 export function printNode(node) {
   ASSERT(node);

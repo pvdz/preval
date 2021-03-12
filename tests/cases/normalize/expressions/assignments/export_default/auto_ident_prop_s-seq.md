@@ -25,8 +25,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = b;
 a = tmpAssignRhsProp.c;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -35,8 +35,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const SSA_a = b.c;
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a, b);
 `````
 

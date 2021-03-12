@@ -28,7 +28,6 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 a = delete arg.y;
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

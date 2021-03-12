@@ -23,6 +23,8 @@ export function phase1(fdata, resolve, req, verbose) {
 
   const ast = fdata.tenkoOutput.ast;
 
+  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
   const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
@@ -32,7 +34,8 @@ export function phase1(fdata, resolve, req, verbose) {
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
 
-  globals.forEach((_, name) =>
+  globals.forEach((_, name) => {
+    ASSERT(name);
     globallyUniqueNamingRegistry.set(name, {
       name,
       isBuiltin: true,
@@ -40,8 +43,8 @@ export function phase1(fdata, resolve, req, verbose) {
       isExport: false, // Set below
       reads: [],
       writes: [],
-    }),
-  );
+    })
+  });
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   const exports = new Map();
@@ -71,7 +74,7 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'Program:before': {
         funcStack.push(node);
         blockStack.push(node);
-        blockIds.push(node);
+        blockIds.push(node.$p.pid);
         break;
       }
       case 'Program:after': {
@@ -111,8 +114,16 @@ export function phase1(fdata, resolve, req, verbose) {
       case 'FunctionExpression:after':
       case 'ArrowFunctionExpression:after': {
         funcStack.pop();
+
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.pop();
+        }
+
+        if (funcStack.length > 1) {
+          // This is relevant for determining whether this function can be cloned when it is called with a primitive
+          // This prevents the cloning. This way we don't accidentally clone cloned functions and in general it serves
+          // as an artificial way to reduce the cloning surface a little bit.
+          funcStack[funcStack.length - 1].$p.containsFunctions = true;
         }
 
         if (node.id) {
@@ -187,6 +198,7 @@ export function phase1(fdata, resolve, req, verbose) {
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
         if (VERBOSE_TRACING) log('Ident:', name);
+        ASSERT(name, 'idents must have valid non-empty names...', node);
         const kind = getIdentUsageKind(parentNode, parentProp);
         if (VERBOSE_TRACING) log('- Ident kind:', kind);
 
@@ -201,8 +213,9 @@ export function phase1(fdata, resolve, req, verbose) {
           if (kind === 'read') {
             // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
             // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
-            // TODO: check for `arguments.length` explicitly, since in that case the excessive args can be replaced with a simple primitive
             if (thisStack.length) {
+              // Do not count cases like where the arguments have no observable side effect or our own alias
+              // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
               if (
                 parentNode.type === 'MemberExpression' &&
                 parentProp === 'object' &&
@@ -210,10 +223,21 @@ export function phase1(fdata, resolve, req, verbose) {
                 parentNode.property.name === 'length'
               ) {
                 // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
+                if (VERBOSE_TRACING) log('Marking function as accessing `arguments.length`');
                 thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
               } else {
-                // This disables a few tricks because of observable side effects
-                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+                if (parentNode.type === 'ExpressionStatement') {
+                  if (VERBOSE_TRACING) log('Ignoring `arguments` as an expression statement');
+                  //} else if (
+                  //  parentNode.type === 'VariableDeclaration' &&
+                  //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
+                  //) {
+                  //  if (VERBOSE_TRACING) log('Ignoring our own arguments alias');
+                } else {
+                  // This disables a few tricks because of observable side effects
+                  if (VERBOSE_TRACING) log('Marking function as accessing `arguments` in "any" way');
+                  thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+                }
               }
             } else {
               // TODO: do we want to act on this?
@@ -236,6 +260,7 @@ export function phase1(fdata, resolve, req, verbose) {
               reads: [],
               writes: [],
             };
+            ASSERT(name);
             globallyUniqueNamingRegistry.set(name, meta);
           }
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
@@ -243,7 +268,22 @@ export function phase1(fdata, resolve, req, verbose) {
             const grandNode = path.nodes[path.nodes.length - 3];
             const grandProp = path.props[path.props.length - 2];
             const grandIndex = path.indexes[path.indexes.length - 2];
-
+            // This is normalized code so there must be a block parent for any read ref
+            let blockNode;
+            let blockIndex;
+            // Start with the parent, not grandParent (!)
+            let pathIndex = path.nodes.length - 1;
+            do {
+              blockNode = path.nodes[pathIndex];
+              log('  - block step;', blockNode.type, blockNode.$p.pid);
+              if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
+                blockIndex = path.indexes[pathIndex + 1];
+                ASSERT(blockIndex >= 0, 'block index should be set right', path.nodes.map(n => n.type), path.indexes);
+                break;
+              }
+              --pathIndex;
+            } while (true);
+            const blockBody = blockNode.body;
             meta.reads.push(
               createReadRef({
                 parentNode,
@@ -252,6 +292,8 @@ export function phase1(fdata, resolve, req, verbose) {
                 grandNode,
                 grandProp,
                 grandIndex,
+                blockBody,
+                blockIndex,
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
@@ -261,6 +303,24 @@ export function phase1(fdata, resolve, req, verbose) {
             );
           }
           if (kind === 'write') {
+            // This is normalized code so there must be a block parent for any read ref
+            let blockNode;
+            let blockIndex;
+            // Start with the parent, not grandParent (!)
+            let pathIndex = path.nodes.length - 1;
+            do {
+              blockNode = path.nodes[pathIndex];
+              log('  - block step;', blockNode.type, blockNode.$p.pid);
+              if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
+                blockIndex = path.indexes[pathIndex + 1];
+                ASSERT(blockIndex >= 0, 'block index should be set right', path.nodes.map(n => n.type), path.indexes);
+                break;
+              }
+              --pathIndex;
+            } while (true);
+            const blockBody = blockNode.body;
+            if (VERBOSE_TRACING) log('- Parent block:', blockNode.type, blockNode.$p.pid);
+
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               const declParent = path.nodes[path.nodes.length - 4];
@@ -273,6 +333,8 @@ export function phase1(fdata, resolve, req, verbose) {
                   parentNode,
                   parentProp,
                   parentIndex,
+                  blockBody,
+                  blockIndex,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -307,6 +369,8 @@ export function phase1(fdata, resolve, req, verbose) {
                   parentNode,
                   parentProp,
                   parentIndex,
+                  blockBody,
+                  blockIndex,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -330,6 +394,8 @@ export function phase1(fdata, resolve, req, verbose) {
                   parentNode,
                   parentProp,
                   parentIndex,
+                  blockBody,
+                  blockIndex,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -346,6 +412,8 @@ export function phase1(fdata, resolve, req, verbose) {
                   parentNode,
                   parentProp,
                   parentIndex,
+                  blockBody,
+                  blockIndex,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -412,7 +480,7 @@ export function phase1(fdata, resolve, req, verbose) {
         // This must be an anonymous function
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
-        const resolvedSource = resolve(source, filename);
+        const resolvedSource = resolve(source, fdata.fname);
 
         ASSERT(node.specifiers, 'fixme if different', node);
 

@@ -31,8 +31,8 @@ let f = function () {
   tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
 };
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+let $tdz$__pattern_after_default = { a: 999, b: 1000 };
+let a = $tdz$__pattern_after_default.a;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -48,8 +48,8 @@ const f = function () {
   a = tmpNestedAssignObjPatternRhs.a;
   return tmpNestedAssignObjPatternRhs;
 };
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
+const $tdz$__pattern_after_default = { a: 999, b: 1000 };
+let a = $tdz$__pattern_after_default.a;
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

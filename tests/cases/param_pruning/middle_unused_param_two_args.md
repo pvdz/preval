@@ -1,0 +1,52 @@
+# Preval test case
+
+# middle_unused_param_two_args.md
+
+> Param pruning > Middle unused param two args
+>
+> Unused parameters should be eliminated under certain conditions, but not always.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(x, y, z) {
+  return $(x, z);
+}
+f(10, 20);
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function (x, y, z) {
+  const tmpReturnArg = $(x, z);
+  return tmpReturnArg;
+};
+f(10, 20);
+`````
+
+## Output
+
+`````js filename=intro
+const f = function (x, y, z) {
+  const tmpReturnArg = $(x, z);
+  return tmpReturnArg;
+};
+f(10, 20);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 10, undefined
+ - eval returned: undefined
+
+Normalized calls: Same
+
+Final output calls: Same

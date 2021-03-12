@@ -33,8 +33,8 @@ if (a) {
     a = tmpCallCallee$2(tmpCalleeParam$2);
   }
 }
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -51,8 +51,8 @@ if (SSA_a) {
     SSA_a = $(tmpCalleeParam$2);
   }
 }
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

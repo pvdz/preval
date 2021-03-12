@@ -22,20 +22,20 @@ $(f('x', 'y'));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__a, $tdz$__b) {
+let f = function ($tdz$__pattern, $tdz$__pattern$1) {
   let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     a = 'foo';
   } else {
-    a = $tdz$__a;
+    a = $tdz$__pattern;
   }
   let b = undefined;
-  const tmpIfTest$1 = $tdz$__b === undefined;
+  const tmpIfTest$1 = $tdz$__pattern$1 === undefined;
   if (tmpIfTest$1) {
     b = 'bar';
   } else {
-    b = $tdz$__b;
+    b = $tdz$__pattern$1;
   }
   const tmpReturnArg = [a, b];
   return tmpReturnArg;
@@ -57,20 +57,20 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__a, $tdz$__b) {
+const f = function ($tdz$__pattern, $tdz$__pattern$1) {
   let a = undefined;
-  const tmpIfTest = $tdz$__a === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     a = 'foo';
   } else {
-    a = $tdz$__a;
+    a = $tdz$__pattern;
   }
   let b = undefined;
-  const tmpIfTest$1 = $tdz$__b === undefined;
+  const tmpIfTest$1 = $tdz$__pattern$1 === undefined;
   if (tmpIfTest$1) {
     b = 'bar';
   } else {
-    b = $tdz$__b;
+    b = $tdz$__pattern$1;
   }
   const tmpReturnArg = [a, b];
   return tmpReturnArg;

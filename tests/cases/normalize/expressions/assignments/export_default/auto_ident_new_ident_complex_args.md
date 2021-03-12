@@ -27,8 +27,8 @@ const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -38,8 +38,8 @@ $(a);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const SSA_a = new $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

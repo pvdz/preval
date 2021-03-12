@@ -39,9 +39,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-export default function () {
+const tmpAnonDefaultExport = function () {
   return 100;
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
@@ -55,9 +56,10 @@ $(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-export default function () {
+const tmpAnonDefaultExport = function () {
   return 100;
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Globals

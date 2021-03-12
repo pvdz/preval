@@ -22,13 +22,13 @@ $(a, arg);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     p = delete arg.y;
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let arg = { y: 1 };
@@ -42,8 +42,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     delete arg.y;
   }

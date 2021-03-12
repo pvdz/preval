@@ -28,7 +28,6 @@ if (tmpSwitchTest) {
 } else {
   tmpSwitchTest = 2;
 }
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

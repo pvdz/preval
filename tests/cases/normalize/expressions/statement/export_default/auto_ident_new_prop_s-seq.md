@@ -25,8 +25,8 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
-const tmpExportDefault = new tmpNewCallee(1);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = new tmpNewCallee(1);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -36,8 +36,8 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-const tmpExportDefault = new tmpNewCallee(1);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = new tmpNewCallee(1);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

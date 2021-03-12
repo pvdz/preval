@@ -23,20 +23,20 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-const tmpSwitchTest = $('a');
 let a$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    b = c + d;
-    a$1 = b;
+    const tmpNestedComplexRhs = c + d;
+    b = tmpNestedComplexRhs;
+    a$1 = tmpNestedComplexRhs;
     break tmpSwitchBreak;
   }
 }

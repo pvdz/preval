@@ -18,18 +18,18 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 1, b: 2 };
-let a = bindingPatternObjRoot.a;
-let b = bindingPatternObjRoot.b;
+let $tdz$__pattern_after_default = { a: 1, b: 2 };
+let a = $tdz$__pattern_after_default.a;
+let b = $tdz$__pattern_after_default.b;
 $(a, b);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 1, b: 2 };
-const a = bindingPatternObjRoot.a;
-const b = bindingPatternObjRoot.b;
+const $tdz$__pattern_after_default = { a: 1, b: 2 };
+const a = $tdz$__pattern_after_default.a;
+const b = $tdz$__pattern_after_default.b;
 $(a, b);
 `````
 

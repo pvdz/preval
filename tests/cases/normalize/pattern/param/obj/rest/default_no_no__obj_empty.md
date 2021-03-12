@@ -33,7 +33,7 @@ let f = function ($tdz$__pattern) {
   const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = $tdz$__pattern_after_default;
   const tmpCalleeParam$2 = [];
-  const tmpCalleeParam$3 = undefined;
+  const tmpCalleeParam$3 = 'x';
   let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
   return x;
 };
@@ -59,7 +59,7 @@ const f = function ($tdz$__pattern) {
   }
   const tmpCalleeParam$1 = $tdz$__pattern_after_default;
   const tmpCalleeParam$2 = [];
-  const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+  const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, 'x');
   return x;
 };
 const tmpCalleeParam$5 = {};

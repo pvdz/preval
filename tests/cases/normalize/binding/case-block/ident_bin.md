@@ -22,12 +22,11 @@ $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
-const tmpSwitchTest = $('a');
 let a$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

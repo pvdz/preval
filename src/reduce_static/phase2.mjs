@@ -41,9 +41,23 @@ function before(node, parent) {
 }
 
 function source(node) {
-  if (!VERBOSE_TRACING) return;
-  if (Array.isArray(node)) node.forEach((n) => source(n));
-  else log(YELLOW + 'Source:' + RESET, tmat(node));
+  if (VERBOSE_TRACING) {
+    if (Array.isArray(node)) node.forEach((n) => source(n));
+    else {
+      let code = tmat(node);
+      try {
+        code = fmat(code); // May fail.
+      } catch {}
+      if (code.includes('\n')) {
+        log(YELLOW + 'Source:' + RESET);
+        group();
+        log(code);
+        groupEnd();
+      } else {
+        log(YELLOW + 'Source:' + RESET, code);
+      }
+    }
+  }
 }
 
 function after(node, parentNode) {
@@ -225,14 +239,33 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
       } else {
         ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
         const init = node.declarations[0].init;
-        const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
-        if (index >= 0) {
-          parent[prop][index] = newNode;
+        // If the init is `this`, `arguments`, or `arguments.length`, we can and should immediately drop it
+        if (
+          init &&
+          (init.type === 'ThisExpression' ||
+            (init.type === 'Identifier' && init.name === 'arguments') ||
+            (init.type === 'MemberExpression' &&
+              init.object.type === 'Identifier' &&
+              init.object.name === 'arguments' &&
+              !init.object.computed &&
+              init.property.name === 'length'))
+        ) {
+          if (VERBOSE_TRACING) log('Dropping the init because it is `this`, `arguments`, or `arguments.length`');
+          if (index >= 0) {
+            parent[prop][index] = AST.emptyStatement();
+          } else {
+            parent[prop] = AST.emptyStatement();
+          }
+          after(AST.emptyStatement(), parent);
         } else {
-          parent[prop] = newNode;
+          const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
+          if (index >= 0) {
+            parent[prop][index] = newNode;
+          } else {
+            parent[prop] = newNode;
+          }
+          after(newNode, parent);
         }
-
-        after(newNode, parent);
       }
     });
     groupEnd();
@@ -350,6 +383,8 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
                 parentNode: newNode.declarations[0],
                 parentProp: 'init',
                 parentIndex: -1,
+                blockBody: assign.blockBody,
+                blockIndex: assign.blockIndex,
                 node: newNode.declarations[0].id,
                 rwCounter: assign.rwCounter,
                 scope: assign.scope,
@@ -721,6 +756,8 @@ function attemptConstantInlining(meta, fdata) {
             grandNode,
             grandProp,
             grandIndex,
+            blockBody: oldRead.blockBody,
+            blockIndex: oldRead.blockIndex,
             node: clone,
             rwCounter: oldRead.rwCounter,
             scope: oldRead.scope,

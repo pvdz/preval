@@ -38,13 +38,13 @@ let run = true;
 while (true) {
   if (run) {
     $(1);
-    const tmpSwitchValue = 1;
+    const tmpSwitchTest = 1;
     let tmpSwitchCaseToStart = 1;
-    const tmpIfTest = 1 === tmpSwitchValue;
+    const tmpIfTest = 1 === tmpSwitchTest;
     if (tmpIfTest) {
       tmpSwitchCaseToStart = 0;
     } else {
-      const tmpIfTest$1 = 2 === tmpSwitchValue;
+      const tmpIfTest$1 = 2 === tmpSwitchTest;
       if (tmpIfTest$1) {
         tmpSwitchCaseToStart = 2;
       }

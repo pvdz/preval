@@ -23,24 +23,23 @@ let a = 1;
 let b = 2;
 let c = 3;
 let d = 4;
-const tmpSwitchTest = $('a');
 let a$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpNestedAssignObj = $(c);
-    const tmpNestedAssignPropRhs = $(d);
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-    b = tmpNestedPropAssignRhs;
-    a$1 = b;
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedRhs = $(d);
+    varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+    b = tmpNestedComplexRhs;
+    a$1 = tmpNestedComplexRhs;
     break tmpSwitchBreak;
   }
 }
@@ -61,10 +60,10 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpNestedAssignObj = $(3);
-    const tmpNestedAssignPropRhs = $(4);
-    tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-    b = tmpNestedAssignPropRhs;
+    const varInitAssignLhsComputedObj = $(3);
+    const varInitAssignLhsComputedRhs = $(4);
+    varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
+    b = varInitAssignLhsComputedRhs;
     break tmpSwitchBreak;
   }
 }

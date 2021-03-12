@@ -24,7 +24,7 @@ export default function() {
 
 `````js filename=intro
 $(1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   let f = function () {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
@@ -32,21 +32,23 @@ export default function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = f(1);
   tmpCallCallee(tmpCalleeParam);
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
 
 `````js filename=intro
 $(1);
-export default function () {
+const tmpAnonDefaultExport = function () {
   const f = function () {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   };
   const tmpCalleeParam = f(1);
   $(tmpCalleeParam);
-}
+};
+export { tmpAnonDefaultExport as default };
 `````
 
 ## Globals

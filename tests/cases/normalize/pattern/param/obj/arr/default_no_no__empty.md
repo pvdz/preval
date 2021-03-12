@@ -21,7 +21,8 @@ $(f());
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let arrPatternSplat = [...objPatternNoDefault];
   return 'bad';
 };

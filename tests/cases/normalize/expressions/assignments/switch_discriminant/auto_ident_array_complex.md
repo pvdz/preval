@@ -28,7 +28,6 @@ const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

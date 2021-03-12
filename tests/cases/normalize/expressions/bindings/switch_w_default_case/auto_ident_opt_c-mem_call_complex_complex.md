@@ -29,15 +29,13 @@ switch (1) {
 `````js filename=intro
 let b;
 let a;
-let tmpChainRootCall;
-let tmpChainElementCall;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -46,8 +44,8 @@ const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   b = { $: $ };
   a = undefined;
-  tmpChainRootCall = $;
-  tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest$3 = tmpChainElementCall != null;
   if (tmpIfTest$3) {
     const tmpChainRootComputed = $('$');

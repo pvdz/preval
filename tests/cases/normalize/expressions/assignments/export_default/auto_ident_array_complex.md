@@ -24,8 +24,8 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$2 = $(3);
 a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -35,8 +35,8 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$2 = $(3);
 const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

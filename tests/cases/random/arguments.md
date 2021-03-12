@@ -19,7 +19,9 @@ function f() {
 ## Normalized
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  arguments;
+};
 `````
 
 ## Output

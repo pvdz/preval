@@ -18,14 +18,14 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
+const $tdz$__pattern_after_default = { a: 1, b: 2, c: 3 };
+let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+  objPatternCrashTest = $tdz$__pattern_after_default === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+  objPatternCrashTest = $tdz$__pattern_after_default.cannotDestructureThis;
 }
 $('ok');
 `````
@@ -33,14 +33,14 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
+const $tdz$__pattern_after_default = { a: 1, b: 2, c: 3 };
+let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+  objPatternCrashTest = $tdz$__pattern_after_default === null;
 }
 if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
+  $tdz$__pattern_after_default.cannotDestructureThis;
 }
 $('ok');
 `````

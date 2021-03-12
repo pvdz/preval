@@ -28,7 +28,6 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = b.$(1);
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

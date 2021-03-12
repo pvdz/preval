@@ -23,24 +23,21 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-let tmpObjLitVal$1;
-let tmpObjLitVal;
 let b;
 let a;
-let tmpChainRootProp;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  tmpObjLitVal$1 = { e: $ };
-  tmpObjLitVal = { d: tmpObjLitVal$1 };
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal = { d: tmpObjLitVal$1 };
   b = { c: tmpObjLitVal };
   a = undefined;
-  tmpChainRootProp = b;
+  const tmpChainRootProp = b;
   const tmpIfTest$2 = tmpChainRootProp != null;
   if (tmpIfTest$2) {
     const tmpChainElementObject = tmpChainRootProp.c;

@@ -20,13 +20,13 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     p = function () {};
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {};
+const f = function ($tdz$__pattern) {};
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

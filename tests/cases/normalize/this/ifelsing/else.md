@@ -29,12 +29,11 @@ $(a.f());
 `````js filename=intro
 const tmpObjLitVal = 10;
 const tmpObjLitVal$1 = function f() {
-  const tmpPrevalAliasThis = this;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     $('fail');
   } else {
-    const tmpCompObj = tmpPrevalAliasThis;
+    const tmpCompObj = this;
     const tmpReturnArg = tmpCompObj.foo;
     return tmpReturnArg;
   }
@@ -49,12 +48,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function f() {
-  const tmpPrevalAliasThis = this;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     $('fail');
   } else {
-    const tmpReturnArg = tmpPrevalAliasThis.foo;
+    const tmpCompObj = this;
+    const tmpReturnArg = tmpCompObj.foo;
     return tmpReturnArg;
   }
 };

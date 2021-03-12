@@ -25,8 +25,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
-const tmpExportDefault = tmpPostUpdArgIdent;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpPostUpdArgIdent;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -34,8 +34,8 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpExportDefault = 1;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 1;
+export { tmpAnonDefaultExport as default };
 $(a, 2);
 `````
 

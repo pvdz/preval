@@ -26,8 +26,8 @@ let a = { a: 999, b: 1000 };
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -35,8 +35,8 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-const tmpExportDefault = tmpNestedComplexRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpNestedComplexRhs;
+export { tmpAnonDefaultExport as default };
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 

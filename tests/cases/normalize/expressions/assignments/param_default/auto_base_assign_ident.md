@@ -22,16 +22,16 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     b = $(2);
     let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let b = 1;
@@ -45,8 +45,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     b = $(2);
     const tmpNestedComplexRhs = b;

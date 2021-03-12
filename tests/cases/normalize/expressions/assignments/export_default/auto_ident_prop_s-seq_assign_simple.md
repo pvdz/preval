@@ -27,8 +27,8 @@ const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -37,8 +37,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 b.c = 2;
-const tmpExportDefault = 2;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 2;
+export { tmpAnonDefaultExport as default };
 $(2, b);
 `````
 

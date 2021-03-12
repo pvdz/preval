@@ -20,10 +20,10 @@ switch (6) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchValue = 6;
+const tmpSwitchTest = 6;
 let tmpSwitchCaseToStart = 0;
 const tmpBinLhs = $(30);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }

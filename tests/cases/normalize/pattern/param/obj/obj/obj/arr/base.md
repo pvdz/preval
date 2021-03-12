@@ -27,7 +27,8 @@ $(f({ x: { x: 13, y: { z: [1, 2, 3], a: 15, b: 16 }, z: 14 }, b: 11, c: 12 }, 10
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let objPatternNoDefault$2 = objPatternNoDefault$1.z;
   let arrPatternSplat = [...objPatternNoDefault$2];

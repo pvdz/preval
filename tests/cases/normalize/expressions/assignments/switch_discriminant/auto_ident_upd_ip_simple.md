@@ -30,7 +30,6 @@ const tmpPostUpdArgIdent = b;
 b = b + 1;
 a = tmpPostUpdArgIdent;
 let tmpSwitchTest = a;
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

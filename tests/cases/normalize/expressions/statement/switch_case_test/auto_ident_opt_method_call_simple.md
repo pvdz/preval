@@ -26,7 +26,6 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootProp = b;
@@ -36,7 +35,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   tmpBinLhs = tmpChainElementCall;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

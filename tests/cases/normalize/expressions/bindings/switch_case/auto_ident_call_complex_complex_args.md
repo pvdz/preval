@@ -24,22 +24,19 @@ switch (1) {
 
 `````js filename=intro
 let b;
-let tmpCallCallee;
-let tmpCalleeParam;
-let tmpCalleeParam$1;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { $: $ };
-  tmpCallCallee = $($);
-  tmpCalleeParam = $(1);
-  tmpCalleeParam$1 = $(2);
+  const tmpCallCallee = $($);
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
   a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
 }

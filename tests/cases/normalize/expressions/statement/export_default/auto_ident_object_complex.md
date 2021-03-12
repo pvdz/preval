@@ -23,8 +23,8 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$2 = $(3);
-const tmpExportDefault = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -34,8 +34,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$2 = $(3);
-const tmpExportDefault = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

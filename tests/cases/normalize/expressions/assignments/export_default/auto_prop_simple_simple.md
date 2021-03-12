@@ -23,8 +23,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 a.b = 2;
 $(a);
 `````
@@ -34,8 +34,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const SSA_a = { b: tmpObjLitVal };
-const tmpExportDefault = SSA_a;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = SSA_a;
+export { tmpAnonDefaultExport as default };
 SSA_a.b = 2;
 $(SSA_a);
 `````

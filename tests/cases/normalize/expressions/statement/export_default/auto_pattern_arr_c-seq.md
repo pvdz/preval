@@ -26,8 +26,8 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpExportDefault = tmpCallCallee(tmpCalleeParam);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -40,8 +40,8 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-const tmpExportDefault = $(tmpCalleeParam);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = $(tmpCalleeParam);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

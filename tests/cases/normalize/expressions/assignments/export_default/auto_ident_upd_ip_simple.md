@@ -26,16 +26,16 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 a = tmpPostUpdArgIdent;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 1;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 1;
+export { tmpAnonDefaultExport as default };
 $(1, 2);
 `````
 

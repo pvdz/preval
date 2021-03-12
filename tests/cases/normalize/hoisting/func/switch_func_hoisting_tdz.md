@@ -25,19 +25,18 @@ switch ($(1)) {
 
 `````js filename=intro
 f();
-const tmpSwitchTest = $(1);
 let f$1 = function () {
   $('pass');
 };
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }
@@ -57,10 +56,10 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 f();
-const tmpSwitchTest = $(1);
 const f$1 = function () {
   $('pass');
 };
+const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;

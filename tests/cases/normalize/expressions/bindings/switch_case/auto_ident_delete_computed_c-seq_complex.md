@@ -24,12 +24,10 @@ switch (1) {
 
 `````js filename=intro
 let arg;
-let tmpDeleteCompObj;
-let tmpDeleteCompProp;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -38,8 +36,8 @@ if (tmpIfTest$1) {
   arg = { y: 1 };
   $(1);
   $(2);
-  tmpDeleteCompObj = $(arg);
-  tmpDeleteCompProp = $('y');
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $('y');
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
 }

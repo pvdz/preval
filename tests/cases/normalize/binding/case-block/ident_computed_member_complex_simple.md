@@ -22,26 +22,22 @@ $(a, b, c);
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-const tmpSwitchTest = $('a');
-let varInitAssignLhsComputedObj;
-let varInitAssignLhsComputedProp;
-let varInitAssignLhsComputedRhs;
 let a$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    varInitAssignLhsComputedObj = $(b);
-    varInitAssignLhsComputedProp = $('x');
-    varInitAssignLhsComputedRhs = c;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    a$1 = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedPropAssignRhs = c;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a$1 = tmpNestedPropAssignRhs;
     break tmpSwitchBreak;
   }
 }
@@ -62,9 +58,9 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $('x');
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
     break tmpSwitchBreak;
   }
 }

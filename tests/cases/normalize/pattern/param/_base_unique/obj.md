@@ -20,7 +20,8 @@ function g({ x }) {
 
 `````js filename=intro
 let g = function (tmpParamPattern) {
-  let x$1 = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let x$1 = $tdz$__pattern_after_default.x$1;
   let x$2 = 2;
   return x$1;
 };

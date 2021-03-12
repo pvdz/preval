@@ -22,7 +22,8 @@ $(f([1]));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   a = $(10);
   return a;

@@ -18,9 +18,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 0;
+const $tdz$__pattern_after_default = 0;
 const tmpCallCallee = objPatternRest;
-const tmpCalleeParam = bindingPatternObjRoot;
+const tmpCalleeParam = $tdz$__pattern_after_default;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$2 = 'x';
 const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);

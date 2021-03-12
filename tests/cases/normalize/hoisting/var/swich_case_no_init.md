@@ -27,13 +27,12 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchValue;
+const tmpIfTest = 0 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
+  const tmpIfTest$1 = 1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }

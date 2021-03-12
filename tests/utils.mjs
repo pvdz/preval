@@ -109,6 +109,7 @@ export function fromMarkdownCase(md, fname, config) {
           (s) =>
             // Remove these names because they will be auto-generated (or maybe because ew don't want them?)
             !s.startsWith('Output\n') &&
+            !s.startsWith('Pre Normal\n') &&
             !s.startsWith('Normalized\n') &&
             !s.startsWith('Uniformed\n') &&
             !s.startsWith('Globals\n') &&
@@ -155,6 +156,16 @@ export function fmat(code) {
   }
 }
 
+export function toPreResult(obj) {
+  return (
+    '\n\n## Pre Normal\n\n' +
+    Object.keys(obj)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
+      .join('\n\n')
+  );
+}
+
 export function toNormalizedResult(obj) {
   return (
     '\n\n## Normalized\n\n' +
@@ -178,10 +189,12 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
   }
 
   const printOutput = printStack(evalled.$in);
+  const preOutput = printStack(evalled.$pre);
   const normalizedOutput = printStack(evalled.$norm);
   const finalOutput = printStack(evalled.$out);
 
-  const normalizedEvalResult = printOutput === normalizedOutput ? ' Same' : ' BAD?!\n' + normalizedOutput;
+  const preEvalResult = printOutput === preOutput ? ' Same' : ' BAD%!\n' + printOutput;
+  const normalizedEvalResult = preOutput === normalizedOutput ? ' Same' : ' BAD?!\n' + normalizedOutput;
   const finalEvalResult = skipFinal
     ? ''
     : 'Final output calls:' + (printOutput === finalOutput ? ' Same\n' : ' BAD!!\n' + finalOutput + '\n');
@@ -200,6 +213,10 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
     'Should call `$` with:\n' +
     printOutput +
     '\n\n' +
+    //YOYO
+    //'Pre normalization calls:' +
+    //preEvalResult +
+    //'\n\n' +
     'Normalized calls:' +
     normalizedEvalResult +
     '\n\n' +
@@ -235,6 +252,8 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
     mdHead +
     '\n\n' +
     mdChunks.join('\n\n').trim() +
+    //YOYO
+    //toPreResult(output.pre) +
     toNormalizedResult(output.normalized) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +

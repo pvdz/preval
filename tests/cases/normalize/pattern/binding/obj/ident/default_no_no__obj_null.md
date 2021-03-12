@@ -18,16 +18,16 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null };
-const x = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = { x: null };
+const x = $tdz$__pattern_after_default.x;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null };
-const x = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = { x: null };
+const x = $tdz$__pattern_after_default.x;
 $(x);
 `````
 

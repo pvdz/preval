@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-const tmpExportDefault = +tmpUnaryArg;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = +tmpUnaryArg;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -31,8 +31,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-const tmpExportDefault = +tmpUnaryArg;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = +tmpUnaryArg;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

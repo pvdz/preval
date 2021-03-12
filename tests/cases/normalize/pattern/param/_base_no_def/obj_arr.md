@@ -16,7 +16,8 @@ function i({x: [ y ]}) { return y }
 
 `````js filename=intro
 let i = function (tmpParamPattern) {
-  let objPatternNoDefault = tmpParamPattern.x;
+  let $tdz$__pattern_after_default = tmpParamPattern;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat[0];
   return y;

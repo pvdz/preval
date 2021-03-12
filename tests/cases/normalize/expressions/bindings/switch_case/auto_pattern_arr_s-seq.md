@@ -21,12 +21,10 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-let bindingPatternArrRoot;
-let arrPatternSplat;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -34,8 +32,8 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(10);
   $(20);
-  bindingPatternArrRoot = [1, 2];
-  arrPatternSplat = [...bindingPatternArrRoot];
+  const arrAssignPatternRhs = [1, 2];
+  const arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   $(a);
 }
@@ -46,8 +44,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 $(10);
 $(20);
-const bindingPatternArrRoot = [1, 2];
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrAssignPatternRhs = [1, 2];
+const arrPatternSplat = [...arrAssignPatternRhs];
 const a = arrPatternSplat[0];
 $(a);
 `````

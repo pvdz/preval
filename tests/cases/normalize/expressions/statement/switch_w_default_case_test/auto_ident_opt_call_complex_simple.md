@@ -28,7 +28,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootCall = $;
@@ -38,11 +37,11 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   tmpBinLhs = tmpChainElementCall$1;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$2 = 2 === tmpSwitchValue;
+  const tmpIfTest$2 = 2 === tmpSwitchTest;
   if (tmpIfTest$2) {
     tmpSwitchCaseToStart = 2;
   }

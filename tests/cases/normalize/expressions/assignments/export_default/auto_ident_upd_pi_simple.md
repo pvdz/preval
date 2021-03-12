@@ -27,16 +27,16 @@ const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 2;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 2;
+export { tmpAnonDefaultExport as default };
 $(2, 2);
 `````
 

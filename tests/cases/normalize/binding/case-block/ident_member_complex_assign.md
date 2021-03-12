@@ -23,29 +23,25 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-const tmpSwitchTest = $('a');
-let varInitAssignLhsComputedObj;
-let varInitAssignLhsComputedObj$1;
-let varInitAssignLhsComputedRhs$1;
-let varInitAssignLhsComputedRhs;
 let a$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    varInitAssignLhsComputedObj = $(b);
-    varInitAssignLhsComputedObj$1 = $(c);
-    varInitAssignLhsComputedRhs$1 = $(d);
-    varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    a$1 = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignObj = $(b);
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedRhs = $(d);
+    varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
+    a$1 = tmpNestedPropAssignRhs;
     break tmpSwitchBreak;
   }
 }
@@ -66,11 +62,11 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedObj$1 = $(3);
-    const varInitAssignLhsComputedRhs$1 = $(4);
-    varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+    const tmpNestedAssignObj = $(b);
+    const varInitAssignLhsComputedObj = $(3);
+    const varInitAssignLhsComputedRhs = $(4);
+    varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
+    tmpNestedAssignObj.x = varInitAssignLhsComputedRhs;
     break tmpSwitchBreak;
   }
 }

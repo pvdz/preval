@@ -20,16 +20,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
+let tmpAnonDefaultExport = undefined;
 const tmpIfTest = 30;
 if (tmpIfTest) {
-  tmpExportDefault = 60;
+  tmpAnonDefaultExport = 60;
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpExportDefault = tmpCallCallee(tmpCalleeParam);
+  tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_tmpExportDefault = 60;
-export { SSA_tmpExportDefault as default };
+const SSA_tmpAnonDefaultExport = 60;
+export { SSA_tmpAnonDefaultExport as default };
 $(a);
 `````
 

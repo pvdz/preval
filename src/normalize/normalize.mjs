@@ -1,18 +1,23 @@
 import { ASSERT, DIM, BOLD, RED, RESET, BLUE, PURPLE, YELLOW, dir, group, groupEnd, log, tmat, fmat, isProperIdent } from '../utils.mjs';
-import { createFreshVar } from '../bindings.mjs';
+import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
 import globals from '../globals.mjs';
 import walk from '../../lib/walk.mjs';
+import { cloneFunctionNode } from '../utils/serialize_func.mjs';
+import {
+  ASSUME_BUILTINS,
+  BUILTIN_REST_HANDLER_NAME,
+  DCE_ERROR_MSG,
+  ALIAS_PREFIX,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_PREFIX,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  FRESH,
+  OLD,
+} from '../constants.mjs';
 
 let VERBOSE_TRACING = true;
-const ASSUME_BUILTINS = true; // Put any rules that assert the internals of JS (prototype) that exist are not changed under this flag.
-
-const DCE_ERROR_MSG = '[Preval]: Can not reach here';
-const ALIAS_PREFIX = 'tmpPrevalAlias';
-const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
-const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
-const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
-const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
@@ -156,14 +161,10 @@ const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.
   - TODO: force update the title of tests to match the path name
 */
 
-const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
-
-const FRESH = true;
-const OLD = false;
-
 function rule(desc, ...rest) {
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
 }
+
 function example(from, to, condition) {
   if (VERBOSE_TRACING) {
     if (!condition || condition()) {
@@ -184,8 +185,8 @@ function before(node, parent) {
   }
 }
 
-function source(node) {
-  if (VERBOSE_TRACING) {
+function source(node, force) {
+  if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) node.forEach((n) => source(n));
     else {
       let code = tmat(node);
@@ -252,14 +253,6 @@ export function phaseNormalize(fdata, fname) {
     );
   }
 
-  function createNewUniqueLabel(name) {
-    let n = 0;
-    if (fdata.globallyUniqueLabelRegistry.has(name)) {
-      while (fdata.globallyUniqueLabelRegistry.has(name + '$' + ++n));
-    }
-    return n ? name + '$' + n : name;
-  }
-
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
 
   let passes = 0;
@@ -307,96 +300,6 @@ export function phaseNormalize(fdata, fname) {
   groupEnd();
 
   return somethingChanged;
-
-  function findBoundNamesInVarDeclaration(node, names = []) {
-    ASSERT(node.type === 'VariableDeclaration');
-    ASSERT(node.declarations.length === 1, 'var decls define one binding?', node);
-    const decl = node.declarations[0];
-    return findBoundNamesInVarDeclarator(decl, names);
-  }
-  function findBoundNamesInVarDeclarator(decl, names = []) {
-    if (decl.id.type === 'Identifier') {
-      names.push(decl.id.name);
-      return names;
-    }
-
-    ASSERT(decl.id.type === 'ObjectPattern' || decl.id.type === 'ArrayPattern', 'theres no other kind of decl..?');
-
-    function r(node, names) {
-      if (node.type === 'ObjectPattern') {
-        node.properties.forEach((pnode) => {
-          if (pnode.type !== 'RestElement') {
-            let value = pnode.value;
-            if (pnode.type === 'AssignmentPattern') {
-              value = pnode.left.value;
-              ASSERT(value.type !== 'RestElement', 'rest not allowed to have init');
-            }
-            if (value.type === 'Identifier') {
-              names.push(value.name);
-            } else {
-              ASSERT(value.type === 'ArrayPattern' || value.type === 'ObjectPattern');
-              r(value, names);
-            }
-          }
-        });
-      } else if (node.type === 'ArrayPattern') {
-        node.elements.forEach((enode) => {
-          if (enode.type !== 'RestElement') {
-            if (enode.type === 'AssignmentPattern') {
-              enode = enode.left;
-              ASSERT(enode.type !== 'RestElement', 'rest not allowed to have init');
-            }
-            if (enode.type === 'Identifier') {
-              names.push(enode.name);
-            } else {
-              ASSERT(enode.type === 'ArrayPattern' || enode.type === 'ObjectPattern');
-              r(enode, names);
-            }
-          }
-        });
-      } else {
-        ASSERT(false, 'wat', node);
-      }
-    }
-    r(decl.id, names);
-
-    return names;
-  }
-
-  function isComplexNode(node, incNested = true) {
-    ASSERT([1, 2].includes(arguments.length), 'arg count');
-    // A node is simple if it is
-    // - an identifier
-    // - a literal (but not regex)
-    // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
-    // - a sequence expression ending in a simple node
-    // Most of the time these nodes are not reduced any further
-    // The sequence expression sounds complex but that's what we normalize into most of the time
-    //
-    // Note: An empty array/object literal is not "simple" because it has an observable reference
-    //       If we were to mark these "simple" then they might be duplicated without further thought,
-    //       leading to hard to debug reference related issues.
-
-    if (node.type === 'Literal') {
-      if (node.raw !== 'null' && node.value === null) return true; // This will be a regex. They are objects, so they are references, which are observable.
-      return false;
-    }
-    if (node.type === 'Identifier') {
-      return false;
-    }
-    if (incNested && node.type === 'UnaryExpression' && node.operator === '-') {
-      // -100 (is a unary expression!)
-      if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
-      // A little unlikely but you know
-      // -NaN, +NaN, -Infinity, +Infinity
-      if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
-    }
-    if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
-    if (node.type === 'ThisExpression') return true;
-    if (node.type === 'Super') return false;
-
-    return true;
-  }
 
   function funcArgsWalkObjectPattern(node, cacheNameStack, newBindings, kind, top = false) {
     // kind = param, var, assign
@@ -669,6 +572,7 @@ export function phaseNormalize(fdata, fname) {
     log('/anyBlock', somethingChanged);
     return somethingChanged;
   }
+
   function jumpTable(node, body, i, parent, funcNode) {
     if (VERBOSE_TRACING) group('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
@@ -676,34 +580,27 @@ export function phaseNormalize(fdata, fname) {
     if (VERBOSE_TRACING) groupEnd();
     return r;
   }
+
   function _jumpTable(node, body, i, parent, funcNode) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent, true);
       case 'BreakStatement':
         return transformBreakStatement(node, body, i, parent);
-      case 'ClassDeclaration':
-        return transformClassDeclaration(node, body, i, parent);
       case 'ContinueStatement':
         return transformContinueStatement(node, body, i, parent);
       case 'DebuggerStatement':
         return false; // We could eliminate this but hwy
-      case 'DoWhileStatement':
-        return transformDoWhileStatement(node, body, i);
       case 'EmptyStatement': {
         rule('Drop empty statements inside a block');
         example('{;}', '{}');
         body.splice(i, 1);
         return true;
       }
-      case 'ExportDefaultDeclaration':
-        return transformExportDefault(node, body, i);
       case 'ExportNamedDeclaration':
         return transformExportNamedDeclaration(node, body, i);
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
-      case 'ForStatement':
-        return transformForStatement(node, body, i);
       case 'ForInStatement':
         return transformForxStatement(node, body, i, true);
       case 'ForOfStatement':
@@ -718,8 +615,6 @@ export function phaseNormalize(fdata, fname) {
         return transformMethodDefinition(node, body, i, parent);
       case 'ReturnStatement':
         return transformReturnStatement(node, body, i, parent);
-      case 'SwitchStatement':
-        return transformSwitchStatement(node, body, i, parent);
       case 'ThrowStatement':
         return transformThrowStatement(node, body, i, parent);
       case 'TryStatement':
@@ -748,8 +643,14 @@ export function phaseNormalize(fdata, fname) {
       case 'VariableDeclarator':
       case 'WithStatement':
         throw ASSERT(false, 'these should not be visited', node, node.type);
+      // These should already be normalized away
       case 'FunctionDeclaration':
-        throw ASSERT(false, 'all func decls are eliminated by hoisting etc');
+      case 'ClassDeclaration':
+      case 'DoWhileStatement':
+      case 'ExportDefaultDeclaration':
+      case 'ForStatement':
+      case 'SwitchStatement':
+        throw ASSERT(false, 'this node type should have been eliminated in the norm_once step');
     }
 
     log(RED + 'Missed stmt:', node.type, RESET);
@@ -763,9 +664,7 @@ export function phaseNormalize(fdata, fname) {
     // just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`
 
     const nominated = body.slice(i);
-    const toKeep = nominated.filter(
-      (node) => node.type === 'VariableDeclaration' /*|| node.type === 'FunctionDeclaration'*/ || node.type === 'ClassDeclaration',
-    );
+    const toKeep = nominated.filter((node) => node.type === 'VariableDeclaration');
     if (i + toKeep.length + 1 === body.length) {
       // This DCE call would not eliminate anything
       return false;
@@ -786,16 +685,13 @@ export function phaseNormalize(fdata, fname) {
       }
       body.push(
         ...toKeep.map((node) => {
-          switch (node.type) {
-            case 'VariableDeclaration':
-              return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), 'const');
-            case 'FunctionDeclaration':
+          if (node.type === 'VariableDeclaration') {
+            return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), 'const');
+          } else {
+            if (node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration') {
               throw ASSERT(false, 'these should be eliminated while hoisting');
-            case 'ClassDeclaration':
-              return AST.variableDeclaration(node.id.name, AST.literal(0), 'const');
-
-            default:
-              throw ASSERT(false, 'what are we keeping?');
+            }
+            throw ASSERT(false, 'what are we keeping?');
           }
         }),
       );
@@ -805,6 +701,7 @@ export function phaseNormalize(fdata, fname) {
     assertNoDupeNodes(AST.blockStatement(body), 'body');
     return true;
   }
+
   function transformBlock(node, body, i, parent, isNested) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
@@ -826,51 +723,7 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    if (node.$p.hasFuncDecl) {
-      if (VERBOSE_TRACING) log('Should find at least one func decl in this block...');
-    }
-    const varDeclsToHoist = []; // Note: these are block scoped var decls.
-    for (let i = 0; i < node.body.length; ++i) {
-      const enode = node.body[i];
-      if (enode.type === 'FunctionDeclaration') {
-        if (enode.$p.isBlockFuncDecl) {
-          ASSERT(node.$p.hasFuncDecl, 'parent block should be marked as having a func decl', node);
-          if (VERBOSE_TRACING) log('- Found a func decl');
-          // Hoist it to the top of the block as a var statement...
-          varDeclsToHoist.push(enode);
-          node.body.splice(i, 1);
-          --i;
-        }
-      }
-    }
-    if (varDeclsToHoist.length) {
-      rule('Hoist block scoped var decls to the top of the block, sort them, and convert them to `let` decls');
-      example('{ f(); function f(){} }', '{ let f = function(){}; f(); }');
-      before(node);
-
-      varDeclsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
-      node.body.unshift(
-        ...varDeclsToHoist.map((enode) => {
-          group();
-          before(enode);
-
-          const decl = AST.variableDeclaration(enode.id, enode, 'let'); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
-          enode.type = 'FunctionExpression';
-          enode.id = null;
-          enode.$p.isBlockFuncDecl = false;
-
-          after(decl);
-          groupEnd();
-          return decl;
-        }),
-      );
-      node.$p.hasFuncDecl = false;
-
-      after(node);
-      if (isNested) assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
+    ASSERT(!node.$p.hasFuncDecl);
     if (parent.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
       rule('Nested blocks should be smooshed');
       example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
@@ -882,7 +735,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (parent.type === 'Program' && !node.$p.hasFuncDecl) {
+    if (parent.type === 'Program') {
       rule('Top level blocks should be eliminated');
       example('a(); { b(); } c();', 'a(); b(); c();');
       before(node, parent);
@@ -914,6 +767,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function transformBreakStatement(node, body, i, parent) {
     if (node.label) {
       ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
@@ -929,20 +783,7 @@ export function phaseNormalize(fdata, fname) {
     }
     return false;
   }
-  function transformClassDeclaration(node, body, i, parent) {
-    // Since classes don't hoist we may as well transform them to their expression equivalent...
-    // They are not constants so they become let
-    rule('Class declaration should be let expression');
-    example('class x {}', 'let x = class {}');
-    before(node);
 
-    const newNode = AST.variableDeclaration(node.id.name, AST.classExpression(null, node.superClass, node.body), 'let');
-    body[i] = newNode;
-
-    after(newNode);
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
-    return true;
-  }
   function transformContinueStatement(node, body, i, parent) {
     if (node.label) {
       ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
@@ -959,48 +800,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
-  function transformDoWhileStatement(node, body, i) {
-    // We have to convert do-while to regular while because if the body contains a continue it will jump to the end
-    // which means it would skip any outlined code, unless we add worse overhead.
-    // So instead we had to bite the bullet
 
-    // Would love to merge the while's into one, but how...
-    // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
-    // `while (f()) {}` --> `if (f()) { do {} while(f()); }`
-    // `for (a(); b(); c()) d();` --> `a(); if (b()) { do { d(); c(); } while (b());`
-
-    if (node.body.type !== 'BlockStatement') {
-      rule('Do-while sub-statement must be block');
-      example('do x; while(y);', 'do { x; } while(y);');
-      before(node);
-
-      const newNode = AST.blockStatement(node.body);
-      node.body = newNode;
-
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    rule('Do-while must be regular while');
-    example('do { f(); } while(g());', 'let tmp = true; while (tmp || g()) { tmp = false; g(); }');
-    before(node);
-
-    const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
-    const newNodes = [
-      AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-      AST.whileStatement(
-        AST.logicalExpression('||', tmpName, node.test),
-        AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals())), ...node.body.body),
-      ),
-    ];
-    body.splice(i, 1, ...newNodes);
-
-    after(newNodes);
-    // Byebye do-while
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
-    return true;
-  }
   function normalizeCallArgs(args, newArgs, newNodes) {
     // This is used for `new` and regular function calls
     args.forEach((anode) => {
@@ -1016,138 +816,9 @@ export function phaseNormalize(fdata, fname) {
       }
     });
   }
-  function transformExportDefault(node, body, i) {
-    // We want to eliminate this but there are some subtle cases to keep in mind
-    // Relevant thread: https://github.com/rollup/rollup/issues/2524
-    // Detailed explanation: https://stackoverflow.com/questions/39276608/
-    // - Named export bindings are live ("as" is not relevant)
-    // - Default exports are live if they are named func/class decls, frozen otherwise
-    // - tldr;
-    //   - make sure not to _just_ "optimize" `export default x` to `export {x}`.
-    //   - named func/class decls can be outlined but should retain their name
-    //   - anonymous function being exported has func.name === 'default' ... (but at least can't be referenced locally...)
-    //     - we could do `Object.defineProperty(func, 'name', {value: 'default', writable: false})` to remedy...? with opt-out. would add another reference which may prevent inlining.
 
-    const type = node.declaration.type;
-    if (type === 'FunctionDeclaration' || type === 'ClassDeclaration') {
-      if (node.declaration.id) {
-        // We can outline the decl safely and change to named export with identical semantics
-        if (type === 'FunctionDeclaration') {
-          rule('Default named function exports should be a named exports; func');
-          example('export default function f(){}', 'function f(){}; export { F as default };');
-        } else {
-          rule('Default named class should be a named exports; class');
-          example('export default class F {}', 'class F {}; export { F as default };');
-        }
-        before(node);
-
-        const newNodes = [node.declaration, AST._exportNamedDeclarationFromNames(node.declaration.id.name, 'default')];
-        body.splice(i, 1, ...newNodes);
-
-        after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      // We can do the same for anonymous function but have to be careful that the .name is 'default'
-      // Since function names are not writable, we would have to do
-      // `Object.defineProperty(func, 'name', {value: 'default', writable: false})` instead. This would
-      // cause the function to get another reference which may hold back other reduction rules.
-      // Best course of action is probably to opt-in or out of this behavior, or to leave this particular
-      // case of the default export as is. Would put the burden of support on us, not users.
-      if (VERBOSE_TRACING) {
-        log('Not inliing the function because it is anonymous and we do not want to change .name at this time');
-        // TODO. We do.
-      }
-
-      // The rest is the same as a regular function decl, except there's no id
-      if (hoistingOnce(node.declaration, 'expdef')) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-      // Array<name, expr>
-      // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-      const newBindings = [];
-
-      transformFunctionParams(node.declaration, body, i, newBindings);
-
-      if (newBindings.length) {
-        if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-        // let because params are mutable
-        const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
-        node.declaration.body.body.unshift(...newNodes);
-        after(newNodes, node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      anyBlock(node.declaration.body, node.declaration);
-
-      return false;
-    }
-
-    // The export is frozen, even if the exported value is an identifier. Reassign it locally to make sure that stays the same.
-
-    rule('Default exports should be a named exports; expr');
-    example('export default 10', 'tmp = 10; export {tmp as default};');
-    example('export default x', 'tmp = x; export {tmp as default};');
-    before(node);
-
-    const tmpName = createFreshVar('tmpExportDefault', fdata);
-    const newNodes = [
-      AST.variableDeclaration(tmpName, node.declaration, 'const'),
-      AST._exportNamedDeclarationFromNames(tmpName, 'default'),
-    ];
-    body.splice(i, 1, ...newNodes);
-
-    after(newNodes);
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
-    return true;
-  }
   function transformExportNamedDeclaration(node, body, i) {
-    // This nodes represents a bunch of exports
-    // - export {x}
-    // - export {x as y}
-    // - export var x
-    // - export let x
-    // - export const x
-    // - export function f(){}
-    // - export class x {}
-    // Normalize them to regular statements and then export them in the `export {x}` form.
-    // Multiple of those are allowed and in the end we would combine them all in a different transform.
-    // TODO: since exports must be unique, we should try to give exported bindings priority when creating unique globals
-
-    const decl = node.declaration;
-    if (decl) {
-      if (VERBOSE_TRACING) log('- Decl type:', decl.type);
-
-      if (decl.type === 'VariableDeclaration') {
-        rule('Export declarations must be in specifier form');
-        example('export let x = 10;', 'let x = 10; export { x };');
-        before(node);
-
-        // Collect all names declared in all bindings. Note that some might be patterns so may introduce more than one binding.
-        const names = [];
-        findBoundNamesInVarDeclaration(decl, names);
-
-        // Now move the var decl to global space and replace the export with one that does `export {a,b,c}` instead
-        // We shouldn't need to alias anything since the exported bindings ought to remain the same and have to
-        // be unique (parser validated). This includes bindings from patterns.
-        const newNodes = [
-          decl, // This is the `let x = y` part
-          AST._exportNamedDeclarationFromNames(names.map((id) => AST.identifier(id))),
-        ];
-        body.splice(i, 1, ...newNodes);
-
-        after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      return false;
-    }
+    ASSERT(!node.declaration, 'decl style should have been eliminated in the initial norm_once step');
 
     const specs = node.specifiers;
     ASSERT(specs, 'one or the other', node);
@@ -1160,6 +831,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function wrapExpressionAs(kind, varInitAssignKind, varInitAssignId, lhs, varOrAssignKind, expr) {
     // TODO: Figure out whether I want to change the wrapping and double wrapper stuff, or that it might be fine this way
     //       It is the reason for
@@ -1198,6 +870,7 @@ export function phaseNormalize(fdata, fname) {
     if (kind === 'var') return AST.variableDeclaration(lhs, expr || 'undefined', varOrAssignKind);
     ASSERT(false);
   }
+
   function transformExpression(
     wrapKind /* statement, var, assign, export, default */,
     node,
@@ -1249,49 +922,8 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
-        if (
-          node.name === 'arguments' &&
-          thisStack.length && // Do not be global, or arrow nested in global.
-          !node.$p.isForAlias // Ignore the case that is our own alias
-        ) {
-          // Two cases: general `arguments` access and specifically `arguments.length` access
-          if (
-            parentNode.type === 'MemberExpression' &&
-            parentNode.object === node &&
-            parentNode.property.type === 'Identifier' &&
-            parentNode.property.name === 'arguments' &&
-            !parentNode.computed
-          ) {
-            ASSERT(thisStack[thisStack.length - 1].$p.argsLenAlias, 'alias should be set by now');
-            // Ok this member expression was arguments.length
-            // Replace it in the member expression visitor
-            ASSERT(false, 'testing this because I dont think this should be reachable but perhaps it is by the alias');
-          } else {
-            if (wrapKind === 'statement') {
-              rule('Delete a statement that only contains `arguments`');
-              example(`if (x) arguments;`, 'if (x) ;');
-              before(node, parentNode);
-
-              body.splice(i, 1, AST.emptyStatement());
-
-              after(AST.emptyStatement(), parentNode);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            } else {
-              rule('All `arguments` access must be replaced with a local alias');
-              example('f(arguments);', 'f(tmpPrevalArgumentsAlias)');
-              before(node, parentNode);
-
-              ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
-              const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
-
-              after(node, parentNode);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
+        if (node.name === 'arguments' && thisStack.length && !node.$p.isForAlias) {
+          // This should be the alias definition. Ignore it.
         }
 
         return false;
@@ -1328,73 +960,6 @@ export function phaseNormalize(fdata, fname) {
           after(body[i]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
-        }
-
-        if (hoistingOnce(node, 'funcexpr')) {
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-        // Array<name, expr>
-        // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-        const newBindings = [];
-
-        transformFunctionParams(node, body, i, newBindings);
-
-        if (newBindings.length) {
-          if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-          const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let')); // let because params are mutable
-          node.body.body.unshift(...newNodes);
-          after(newNodes, node);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // Inject aliases for this/arguments/arguments.length and make sure to maintain their proper order (prevents infi loops)
-        if (node.$p.thisAccess && !node.$p.thisAlias) {
-          node.$p.thisAlias = createFreshVar(THIS_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
-          const thisNode = AST.thisExpression();
-          thisNode.$p.isForAlias = true;
-          const varNode = AST.variableDeclaration(node.$p.thisAlias, thisNode, 'const');
-          varNode.$p.isForAlias = 1;
-          node.body.body.unshift(varNode);
-          rule('If the function references `this` then we must create an alias for it');
-          if (VERBOSE_TRACING) log('Created local alias for `this`;', node.$p.thisAlias);
-        }
-        if (node.$p.readsArgumentsAny && !node.$p.argsAnyAlias) {
-          node.$p.argsAnyAlias = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
-          const argNode = AST.identifier('arguments');
-          argNode.$p.isForAlias = true;
-          const varNode = AST.variableDeclaration(node.$p.argsAnyAlias, argNode, 'const');
-          varNode.$p.isForAlias = 2;
-          let at = 0;
-          if (node.body.body[0]?.$p.isForAlias === 1) {
-            ++at;
-            ASSERT(node.body.body[1]?.$p.isForAlias !== 1, 'should not have two `this` aliases');
-          }
-          node.body.body.splice(at, 0, varNode);
-          rule('If the function references `arguments` then we must create an alias for it');
-          if (VERBOSE_TRACING) log('Created local alias for `arguments`;', node.$p.argsAnyAlias);
-        }
-        if (node.$p.readsArgumentsLen && !node.$p.argsLenAlias) {
-          node.$p.argsLenAlias = createFreshVar(ARGLENGTH_ALIAS_BASE_NAME, fdata); // Name is relevant as we'll check it later.
-          const argNode = AST.identifier('arguments');
-          argNode.$p.isForAlias = true;
-          const varNode = AST.variableDeclaration(node.$p.argsLenAlias, AST.memberExpression(argNode, 'length'), 'const');
-          varNode.$p.isForAlias = 3;
-          let at = 0;
-          if (node.body.body[0]?.$p.isForAlias === 1) {
-            ++at;
-            ASSERT(node.body.body[1]?.$p.isForAlias !== 1, 'should not have two `this` aliases');
-            if (node.body.body[1]?.$p.isForAlias === 2) {
-              ++at;
-              ASSERT(node.body.body[2]?.$p.isForAlias !== 2, 'should not have two `arguments` aliases');
-            }
-          }
-          node.body.body.unshift(varNode);
-          rule('If the function references `arguments.length` then we must create an alias for it');
-          if (VERBOSE_TRACING) log('Created local alias for `arguments.length`;', node.$p.argsLenAlias);
         }
 
         funcStack.push(node);
@@ -1521,7 +1086,9 @@ export function phaseNormalize(fdata, fname) {
         }
 
         // There are two atomic kinds of callee; ident and member expression. Anything else normalizes to ident.
-        const hasComplexArg = args.some((anode) => (anode.type === 'SpreadElement' ? isComplexNode(anode.argument) : isComplexNode(anode)));
+        const hasComplexArg = args.some((anode) =>
+          anode.type === 'SpreadElement' ? AST.isComplexNode(anode.argument) : AST.isComplexNode(anode),
+        );
 
         if (callee.type === 'MemberExpression') {
           // Note: `a.b(c.d)` evaluates `a.b` before `c.d` (!)
@@ -1618,7 +1185,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (callee.computed && isComplexNode(callee.property)) {
+          if (callee.computed && AST.isComplexNode(callee.property)) {
             // Do computed first because that requires caching the object anyways, saving us an extra var
             rule('The property of a computed method call must be simple');
             example('a()[b()]()', 'tmp = a(), tmp2 = b(), tmp[tmp2]()');
@@ -1640,8 +1207,8 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (isComplexNode(callee.object)) {
-            ASSERT(!callee.computed || !isComplexNode(callee.property), 'If the prop is computed, it must be simple now');
+          if (AST.isComplexNode(callee.object)) {
+            ASSERT(!callee.computed || !AST.isComplexNode(callee.property), 'If the prop is computed, it must be simple now');
             rule('The object of a method call must be simple');
             example('a().b()', 'tmp = a(), tmp.b()', () => !callee.computed);
             example('a()[b]()', 'tmp = a(), tmp[b]()', () => callee.computed);
@@ -1690,7 +1257,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (isComplexNode(callee)) {
+        if (AST.isComplexNode(callee)) {
           // Calling something that is not an identifier (any other simple node would be a runtime error, but ok)
 
           rule('The callee of a call must all be simple or simple member expression');
@@ -1711,8 +1278,10 @@ export function phaseNormalize(fdata, fname) {
 
         // Assert normalized form
         ASSERT(
-          !isComplexNode(callee) ||
-            (callee.type === 'MemberExpression' && !isComplexNode(callee.object) && (!callee.computed || !isComplexNode(callee.property))),
+          !AST.isComplexNode(callee) ||
+            (callee.type === 'MemberExpression' &&
+              !AST.isComplexNode(callee.object) &&
+              (!callee.computed || !AST.isComplexNode(callee.property))),
           'callee should be a simple node or simple member expression',
         );
         ASSERT(!hasComplexArg, 'all args should be simple nodes');
@@ -1725,7 +1294,9 @@ export function phaseNormalize(fdata, fname) {
 
         const callee = node.callee;
         const args = node.arguments;
-        const hasComplexArg = args.some((anode) => (anode.type === 'SpreadElement' ? isComplexNode(anode.argument) : isComplexNode(anode)));
+        const hasComplexArg = args.some((anode) =>
+          anode.type === 'SpreadElement' ? AST.isComplexNode(anode.argument) : AST.isComplexNode(anode),
+        );
 
         // First check whether any of the args are complex. In that case we must cache the callee regardless.
         // Otherwise, check if the callee is simple. If not cache just the callee.
@@ -1752,7 +1323,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (isComplexNode(callee)) {
+        if (AST.isComplexNode(callee)) {
           // Calling something that is not an identifier (any other simple node would be a runtime error, but ok)
 
           rule('The callee of a new must all be simple');
@@ -1772,7 +1343,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         // Assert normalized form
-        ASSERT(!isComplexNode(callee), 'new callee should be simple node now');
+        ASSERT(!AST.isComplexNode(callee), 'new callee should be simple node now');
         ASSERT(!hasComplexArg, 'all args should be simple nodes');
 
         return false;
@@ -1808,32 +1379,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.object.type === 'Identifier' && node.object.name === 'arguments' && !node.object.$p.isForAlias) {
-          if (!node.computed && node.property.type === 'Identifier' && node.property.name === 'length') {
-            rule('All `arguments.length` access must be replaced with a local alias');
-            example('f(arguments.length);', 'f(tmpPrevalArgLengthAlias)');
-            before(node, parentNode);
-
-            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsLenAlias, 'Should be set for all cases?');
-            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsLenAlias);
-            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-            body.splice(i, 1, finalParent);
-
-            after(finalParent, parentNode);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          } else {
-            rule('All `arguments` property access must be replaced with a local alias');
-            example('f(arguments[0]);', 'f(tmpPrevalArgumentsAlias[0])');
-            before(node, parentNode);
-
-            ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.argsAnyAlias, 'Should be set for all cases?');
-            const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-            node.object = finalNode;
-
-            after(node, parentNode);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
+          // This should be the alias
         }
 
         if (ASSUME_BUILTINS) {
@@ -1950,7 +1496,7 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
-        if (node.computed && isComplexNode(node.property)) {
+        if (node.computed && AST.isComplexNode(node.property)) {
           rule('Computed member expression must have simple property');
           example('a()[b()]', 'tmp = a(), tmp2 = b(), a[b]');
           before(node, parentNode);
@@ -1971,7 +1517,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (isComplexNode(node.object)) {
+        if (AST.isComplexNode(node.object)) {
           rule('Member expression object must be simple');
           example('f().x', 'tmp = f(), tmp.x');
           before(node, parentNode);
@@ -2146,7 +1692,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (mem.computed && isComplexNode(b)) {
+          if (mem.computed && AST.isComplexNode(b)) {
             // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
             rule('Assignment to computed property must have simple property node');
             example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
@@ -2172,7 +1718,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (isComplexNode(a)) {
+          if (AST.isComplexNode(a)) {
             // Note: resulting node must remain assignment to member expression (because it's an assignment target)
             rule('Assignment to member expression must have simple lhs');
             example('a().b = c()', '(tmp = a(), tmp2.b = c())', () => !node.computed && node.operator === '=');
@@ -2227,7 +1773,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (mem.computed && isComplexNode(c)) {
+          if (mem.computed && AST.isComplexNode(c)) {
             // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
             // Note: a and b must be simple at this point but c() could still mutate them so we cache them anyways
             rule('Assignment to computed property must have simple object, property expression, and rhs');
@@ -2254,7 +1800,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (!mem.computed && isComplexNode(c)) {
+          if (!mem.computed && AST.isComplexNode(c)) {
             // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
             // Note: a must be simple at this point but c() could still mutate it so we cache it anyways
             rule('Assignment to member expression must have simple lhs and rhs');
@@ -2358,7 +1904,7 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (isComplexNode(c)) {
+            if (AST.isComplexNode(c)) {
               // In this case, a and b are only set, so we don't need to cache even if c() would mutate
               // With simple a and ident b
               rule('The rhs.rhs of a nested assignment must be simple');
@@ -2403,7 +1949,7 @@ export function phaseNormalize(fdata, fname) {
 
             ASSERT(!rhsLhs.optional, 'optional chaining cannot be lhs of nested assignment, right?');
 
-            if (rhsLhs.computed && isComplexNode(c)) {
+            if (rhsLhs.computed && AST.isComplexNode(c)) {
               // In this case we also need to cache b first, since the execution of c may change it after the fact
               // (so we must store the value before evaluating c) but we don't have to care if calling b or c changes the
               // value of d since that would always be evaluated last.
@@ -2430,7 +1976,7 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (isComplexNode(b)) {
+            if (AST.isComplexNode(b)) {
               // Whether c is computed or not, it is simple (as per above check). Check if b is complex.
               rule('The object of a nested property assignment must be a simple node');
               example('a = b().c = d', 'tmp = b(), a = tmp.c = d()', () => !rhsLhs.computed);
@@ -2475,7 +2021,7 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (isComplexNode(d)) {
+            if (AST.isComplexNode(d)) {
               // a and b.c are simple but d is not and the assignment is regular. Since this means neither a nor b.c
               // are read, we don't need to cache them and we can outline d() by itself without worrying about
               // awkward getter setter side effects. Getters dont trigger, setters retain order.
@@ -2503,12 +2049,12 @@ export function phaseNormalize(fdata, fname) {
             }
 
             ASSERT(
-              !isComplexNode(lhs) &&
+              !AST.isComplexNode(lhs) &&
                 node.operator === '=' &&
-                !isComplexNode(b) &&
-                (!rhsLhs.computed || !isComplexNode(c)) &&
+                !AST.isComplexNode(b) &&
+                (!rhsLhs.computed || !AST.isComplexNode(c)) &&
                 rhs.operator === '=' &&
-                !isComplexNode(d),
+                !AST.isComplexNode(d),
               'the nested assignment ought to be atomic now, apart from being nested',
             );
 
@@ -2675,7 +2221,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (rhs.computed && isComplexNode(rhs.property)) {
+          if (rhs.computed && AST.isComplexNode(rhs.property)) {
             rule('Assignment rhs member expression must have simple object and computed property');
             example('a = b()[c()]', 'tmp = b(), tmp2 = c(), a = tmp[tmp2]');
             before(node, parentNode);
@@ -2699,7 +2245,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (isComplexNode(rhs.object)) {
+          if (AST.isComplexNode(rhs.object)) {
             rule('Assignment rhs member expression must have simple object; prop already simple');
             example('a = b().c', 'tmp = b(), a = tmp.c', () => !rhs.computed);
             example('a = b()[c]', 'tmp = b(), a = tmp[c]', () => rhs.computed);
@@ -2801,7 +2347,7 @@ export function phaseNormalize(fdata, fname) {
           //       eliminating the dependency to each other.
         }
 
-        if (isComplexNode(node.right)) {
+        if (AST.isComplexNode(node.right)) {
           rule('Binary expression must have simple nodes; rhs is complex');
           example('a * f()', 'tmp = a, tmp2 = f(), tmp * tmp2');
           before(node, parentNode);
@@ -2822,7 +2368,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (isComplexNode(node.left)) {
+        if (AST.isComplexNode(node.left)) {
           rule('Binary expression must have simple nodes; lhs is complex');
           example('f() * a', 'tmp = f(), tmp * a');
           before(node, parentNode);
@@ -3079,7 +2625,7 @@ export function phaseNormalize(fdata, fname) {
                 return true;
               }
 
-              if (isComplexNode(arg.object) || isComplexNode(arg.property)) {
+              if (AST.isComplexNode(arg.object) || AST.isComplexNode(arg.property)) {
                 rule('Argument of delete must be simple computed member expression with simple property');
                 example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
                 before(node, parentNode);
@@ -3104,7 +2650,7 @@ export function phaseNormalize(fdata, fname) {
               return false;
             }
 
-            if (isComplexNode(arg.object)) {
+            if (AST.isComplexNode(arg.object)) {
               rule('Argument of delete must be simple member expression');
               example('delete f().x', 'tmp = f(), delete tmp.x');
               before(node, parentNode);
@@ -3902,7 +3448,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (isComplexNode(node.argument)) {
+        if (AST.isComplexNode(node.argument)) {
           rule('Unary argument cannot be complex');
           example('!f()', 'tmp = f(), !tmp');
           before(node, parentNode);
@@ -3919,16 +3465,17 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
-          rule('Unary argument value of `arguments` should be aliased'); // And is a little silly.
-          example('!arguments', '!tmpPrevalArgumentsAliasA');
-          before(node);
-
-          node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-
-          after(node);
-          return true;
-        }
+        //YOYO
+        //if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
+        //  rule('Unary argument value of `arguments` should be aliased'); // And is a little silly.
+        //  example('!arguments', '!tmpPrevalArgumentsAliasA');
+        //  before(node);
+        //
+        //  node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+        //
+        //  after(node);
+        //  return true;
+        //}
 
         return false;
       }
@@ -4168,7 +3715,7 @@ export function phaseNormalize(fdata, fname) {
 
         ASSERT(arg.type === 'Identifier' || arg.type === 'MemberExpression', 'only two things you can update and its not patterns');
         ASSERT(
-          arg.type === 'Identifier' ? !isComplexNode(arg) : true,
+          arg.type === 'Identifier' ? !AST.isComplexNode(arg) : true,
           'update expressions are only valid to idents and props; idents are never complex',
         );
         ASSERT(arg.type !== 'MemberExpression' || !arg.optional, 'optional chaining can not be args to update expressions');
@@ -4329,7 +3876,7 @@ export function phaseNormalize(fdata, fname) {
             node.elements.length === 1 &&
             node.elements[0] &&
             node.elements[0].type === 'SpreadElement' &&
-            !isComplexNode(node.elements[0].argument)
+            !AST.isComplexNode(node.elements[0].argument)
           ) {
             if (VERBOSE_TRACING) log('This is an array with only a spread with simple arg. Base case that we keep as is.');
             return false;
@@ -4347,7 +3894,7 @@ export function phaseNormalize(fdata, fname) {
             if (enode.type === 'SpreadElement') {
               // Replace with fresh array with one spread. Make sure the arg is simple.
 
-              if (isComplexNode(enode.argument)) {
+              if (AST.isComplexNode(enode.argument)) {
                 const tmpName = createFreshVar('tmpArrElToSpread', fdata);
                 const newNode = AST.variableDeclaration(tmpName, enode.argument, 'const');
                 newNodes.push(newNode);
@@ -4375,7 +3922,7 @@ export function phaseNormalize(fdata, fname) {
         let last = -1;
         node.elements.forEach((enode, i) => {
           if (enode) {
-            if (enode.type === 'SpreadElement' ? isComplexNode(enode.argument) : isComplexNode(enode)) {
+            if (enode.type === 'SpreadElement' ? AST.isComplexNode(enode.argument) : AST.isComplexNode(enode)) {
               last = i;
             }
           }
@@ -4484,10 +4031,10 @@ export function phaseNormalize(fdata, fname) {
             }
 
             if (pnode.type === 'SpreadElement') {
-              if (isComplexNode(pnode.argument)) last = i;
+              if (AST.isComplexNode(pnode.argument)) last = i;
             } else if (pnode.kind !== 'init' || pnode.method) {
               // Ignore. Declaring a function has no observable side effects.
-            } else if ((pnode.computed && isComplexNode(pnode.key)) || isComplexNode(pnode.value)) {
+            } else if ((pnode.computed && AST.isComplexNode(pnode.key)) || AST.isComplexNode(pnode.value)) {
               last = i;
             }
           });
@@ -4564,11 +4111,6 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (hoistingOnce(node, 'arrow')) {
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
         if (node.expression) {
           rule('Arrow body must be block');
           example('() => x', '() => { return x; }');
@@ -4578,22 +4120,6 @@ export function phaseNormalize(fdata, fname) {
           node.expression = false;
 
           after(node, parentNode);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-        // Array<name, expr>
-        // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-        const newBindings = [];
-
-        transformFunctionParams(node, body, i, newBindings);
-
-        if (newBindings.length) {
-          if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-          const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
-          node.body.body.unshift(...newNodes); // let because params are mutable
-          after(newNodes, node);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -4649,7 +4175,7 @@ export function phaseNormalize(fdata, fname) {
         let changes = false;
         let hasStrings = false;
         node.expressions.forEach((enode, i) => {
-          if (isComplexNode(enode)) {
+          if (AST.isComplexNode(enode)) {
             if (newNodes.length === 0) {
               rule('Expressions inside a template must be simple nodes');
               example('`a${f()}b`', 'tmp = f(), `a${f()}b`');
@@ -4952,18 +4478,7 @@ export function phaseNormalize(fdata, fname) {
           thisStack.length && // Do not be global, or arrow nested in global.
           !node.$p.isForAlias // Ignore the usage in our own alias decl
         ) {
-          rule('All `this` keywords must be replaced with a local alias');
-          example('f(this);', 'f(tmpPrevalThisAlias)');
-          before(node, parentNode);
-
-          ASSERT(thisStack.length && thisStack[thisStack.length - 1].$p.thisAlias, 'Should be set for all cases?');
-          const finalNode = AST.identifier(thisStack[thisStack.length - 1].$p.thisAlias);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, finalParent);
-
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+          // This should be the alias
         }
 
         return false;
@@ -4976,7 +4491,7 @@ export function phaseNormalize(fdata, fname) {
         let last = -1;
         node.body.body.forEach((pnode, i) => {
           ASSERT(pnode.type === 'MethodDefinition', 'update me if this gets extended');
-          if (pnode.computed && isComplexNode(pnode.key)) {
+          if (pnode.computed && AST.isComplexNode(pnode.key)) {
             last = i;
           }
         });
@@ -5013,7 +4528,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (node.superClass && isComplexNode(node.superClass)) {
+        if (node.superClass && AST.isComplexNode(node.superClass)) {
           // Since the class must be in a basic form at this point, the transforms are fairly care free.
           // Must take care that the extends value can be affected by computed member keys.
           rule('The `extends` of a class must be simple');
@@ -5077,25 +4592,7 @@ export function phaseNormalize(fdata, fname) {
     addme;
     return false;
   }
-  function transformForStatement(node, body, i) {
-    rule('Regular `for` loops must be `while`');
-    example('for (a(); b(); c()) d();', '{ a(); while (b()) { d(); c(); } }');
-    before(node);
 
-    const newNode = AST.blockStatement(
-      node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
-      AST.whileStatement(
-        node.test || AST.tru(),
-        AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
-      ),
-    );
-    body[i] = newNode;
-
-    after(newNode);
-
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
-    return true;
-  }
   function transformForxStatement(node, body, i, forin) {
     // https://pvdz.ee/weblog/439
     // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
@@ -5217,7 +4714,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (isComplexNode(node.right)) {
+    if (AST.isComplexNode(node.right)) {
       if (forin) {
         rule('Right side of `for-in` without decl must be simple');
         example('for (x in y());', '{ let tmp = y(); for (x in tmp); }');
@@ -5348,156 +4845,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
-  function transformFunctionParams(node, body, i, newBindings) {
-    node.params.forEach((pnode, i) => {
-      if (pnode.type === 'RestElement') {
-        return false;
-      }
 
-      // Node to represent the cache of the current property/element step
-      const cacheNameStack = [];
-
-      // Now there's basically two states: a param with a default or without a default. The params with a default
-      // have an node that is basically "boxed" into an AssignmentPattern. Put the right value on the stack and
-      // continue to process the left value. Otherwise, put null on the stack and process the node itself.
-      // See https://gist.github.com/pvdz/dc2c0a477cc276d1b9e6e2ddbb417135 for a brute force set of test cases
-      // See https://gist.github.com/pvdz/867502f6ed2dd902d061c82e38a81181 for the hack to regenerate them
-      if (pnode.type === 'AssignmentPattern') {
-        rule('Func params must not have inits/defaults');
-        example('function f(x = y()) {}', 'function f(tmp) { x = tmp === undefined ? y() : tmp; }');
-        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-
-        // Param defaults. Rewrite to be inside the function
-        // function f(a=x){} -> function f(_a){ let a = _a === undefined ? x : a; }
-        // function f(a=b, b=1){}
-        //   ->
-        // function f($a, $b){
-        //   let a = $a === undefined ? $b : $a; // b is tdz'd, mimicking the default behavior.
-        //   let b = $b === undefined ? 1 : $a;
-        // }
-        // The let bindings solely exist to catch reference errors thrown by default param handling
-        // One small source of trouble is that params are var bindings, not let. The default behavior is special.
-        // This transform would break functions that contain another var declaration for the same name.
-
-        ASSERT(
-          pnode.left.type === 'Identifier' || pnode.left.type === 'ObjectPattern' || pnode.left.type === 'ArrayPattern',
-          'wat node now?',
-          pnode.left,
-        );
-        ASSERT(!node.expression, 'expression arrows ought to be blocks by now');
-
-        if (pnode.left.type === 'Identifier') {
-          // ident param with default
-
-          const newParamName = createFreshVar('$tdz$__' + pnode.left.name, fdata);
-          cacheNameStack.push(newParamName);
-
-          if (VERBOSE_TRACING) log('Replacing param default with a local variable');
-          const newIdentNode = AST.identifier(newParamName);
-          node.params[i] = newIdentNode;
-
-          // Put new nodes at the start of the function body
-          newBindings.push([
-            pnode.left.name,
-            OLD,
-            // `param === undefined ? init : param`
-            AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
-          ]);
-
-          after(newIdentNode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-
-          return;
-        }
-
-        // pattern param with default
-
-        // Param name to hold the object to destructure
-        const newParamName = createFreshVar('$tdz$__pattern', fdata);
-        cacheNameStack.push(newParamName);
-        if (VERBOSE_TRACING) log('Replacing param default with a local variable');
-        const newIdentNode = AST.identifier(newParamName);
-        node.params[i] = newIdentNode;
-
-        // Create unique var containing the initial param value after resolving default values
-        const undefaultName = createFreshVar('$tdz$__pattern_after_default', fdata);
-        cacheNameStack.push(undefaultName);
-        if (VERBOSE_TRACING) log('Replacing param default with a local variable');
-        const undefaultNameNode = AST.identifier(undefaultName);
-
-        // Put new nodes at the start of the function body
-        newBindings.push([
-          undefaultNameNode,
-          FRESH,
-          // `param === undefined ? init : param`
-          AST.conditionalExpression(AST.binaryExpression('===', newParamName, 'undefined'), pnode.right, newParamName),
-        ]);
-
-        // Then walk the whole pattern.
-        // - At every step of the pattern create code that stores the value of that step in a tmp variable.
-        // - Store the tmp var in a stack (pop it when walking out)
-        // - A leaf node should be able to access the property from the binding name at the top of the stack
-
-        if (pnode.left.type === 'ObjectPattern') {
-          rule('Func params must not be object assign patterns');
-          example('function({x}) {}', 'function(tmp) { var x = tmp.x; }');
-          before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-
-          funcArgsWalkObjectPattern(pnode.left, cacheNameStack, newBindings, 'param');
-
-          after(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-        } else if (pnode.left.type === 'ArrayPattern') {
-          rule('Func params must not be array assign patterns');
-          example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
-          before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-
-          funcArgsWalkArrayPattern(pnode.left, cacheNameStack, newBindings, 'param');
-          after(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-        } else {
-          ASSERT(false, 'what else?', pnode.left);
-        }
-        return;
-      }
-
-      // Param has no default
-
-      if (pnode.type === 'Identifier') {
-        // This is already simple so nothing to do here
-        if (VERBOSE_TRACING) log('- Ident param;', '`' + pnode.name + '`');
-        return;
-      }
-
-      ASSERT(pnode.type === 'ObjectPattern' || pnode.type === 'ArrayPattern', 'wat else?', pnode);
-
-      if (pnode.type === 'ObjectPattern') {
-        rule('Func params must not be object patterns');
-        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
-        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-      } else if (pnode.type === 'ArrayPattern') {
-        rule('Func params must not be array patterns');
-        example('function([x]) {}', 'function(tmp) { var tmp1 = [...tmp], x = tmp1[0]; }');
-        before(pnode, node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-      }
-
-      const newParamName = createFreshVar('tmpParamPattern', fdata);
-      cacheNameStack.push(newParamName);
-      if (VERBOSE_TRACING) log('- Replacing the pattern param with', '`' + newParamName + '`');
-      // Replace the pattern with a variable that receives the whole object
-      const newIdentNode = AST.identifier(newParamName);
-      node.params[i] = newIdentNode;
-
-      // Then walk the whole pattern.
-      // - At every step of the pattern create code that stores the value of that step in a tmp variable.
-      // - Store the tmp var in a stack (pop it when walking out)
-      // - A leaf node should be able to access the property from the binding name at the top of the stack
-
-      if (pnode.type === 'ObjectPattern') {
-        funcArgsWalkObjectPattern(pnode, cacheNameStack, newBindings, 'param');
-      } else if (pnode.type === 'ArrayPattern') {
-        funcArgsWalkArrayPattern(pnode, cacheNameStack, newBindings, 'param');
-      }
-      after(node.params[i], node); //{ ...node, body: AST.blockStatement(AST.expressionStatement(AST.literal('<suppressed>'))) });
-    });
-  }
   function transformIfStatement(node, body, i, parentNode) {
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '!') {
@@ -5575,7 +4923,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (isComplexNode(node.test)) {
+    if (AST.isComplexNode(node.test)) {
       rule('If test must be simple node');
       example('if (f());', 'const tmp = f(); if (tmp);');
       before(node);
@@ -5780,6 +5128,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function transformImportDeclaration(node, body, i, parent) {
     if (node.specifiers.length > 1) {
       rule('Imports should have one specifier');
@@ -5817,6 +5166,7 @@ export function phaseNormalize(fdata, fname) {
     // TODO
     return false;
   }
+
   function transformLabeledStatement(node, body, i, parent) {
     if (VERBOSE_TRACING) log('Label: `' + node.label.name + '`');
 
@@ -5852,7 +5202,8 @@ export function phaseNormalize(fdata, fname) {
     // foo: {bar}
     // foo: while(true) continue foo;
     if (node.body.type !== 'BlockStatement') {
-      if (['ForStatement', 'ForInStatement', 'ForOfStatement', 'WhileStatement', 'DoWhileStatement'].includes(node.body.type)) {
+      ASSERT(node.body.type !== 'DoWhileStatement' && node.body.type !== 'ForStatement');
+      if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(node.body.type)) {
         // Do NOT force block wrapping because that may break labeled continues
         // Instead, fake the wrapper and then outline any statements
 
@@ -6009,6 +5360,7 @@ export function phaseNormalize(fdata, fname) {
 
     return anyChange;
   }
+
   function transformMethodDefinition(methodNode, body, i, parent) {
     // This will be an anonymous function expression.
     // For now, do the same as with functions
@@ -6020,453 +5372,20 @@ export function phaseNormalize(fdata, fname) {
 
     const node = methodNode.value; // function expression
 
-    // Store new nodes in an array first. This way we can maintain proper execution order after normalization.
-    // Array<name, expr>
-    // This way we can decide to create var declarator nodes, or assignment expressions for it afterwards
-    const newBindings = [];
-
-    transformFunctionParams(node, body, i, newBindings);
-
-    if (newBindings.length) {
-      if (VERBOSE_TRACING) log('Params were transformed somehow, injecting new nodes into body');
-      // let because params are mutable
-      const newNodes = newBindings.map(([name, _fresh, init]) => AST.variableDeclaration(name, init, 'let'));
-      node.body.body.unshift(...newNodes);
-
-      after(newNodes, node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
+    funcStack.push(node);
+    ifelseStack.push(node);
     anyBlock(node.body, node);
+    ifelseStack.pop();
+    funcStack.pop();
 
     return false;
   }
-  function hoistingOnce(hoistingRoot, from) {
-    ASSERT(
-      ['Program', 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(hoistingRoot.type),
-      'hoisting should only apply to hoisting roots',
-      hoistingRoot,
-    );
 
-    ASSERT(hoistingRoot.$p.hoistedVars, 'the hoistedVars should exist on anything that can hoist', hoistingRoot);
-    if (VERBOSE_TRACING) log('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
-
-    // There are two things in three contexts that we hoist
-    // - functions and variables
-    // - exports and non-exports
-    // - named exports and default exports
-
-    // The function declaration can appear in a root scope (global / func), a export default, or named export
-    // The var decls can appear in scope roots, blocks, or named exports
-    // So the table looks like this:
-    // - func decl in global
-    // - func decl in func
-    // - func decl in named export
-    // - func decl in default export (must have id, we ignore anon funcs)
-    // - var decl in global
-    // - var decl in func
-    // - var decl in block
-    // - var decl in named export
-    // - var decl in for-loop (regular), shouldn't matter where the for is
-    // - var decl in for-of / for-in loop, shouldn't matter where the for is
-    // (There's a base test case for at least each of these)
-
-    // The exports are all rewritten to named exports in the `export {X}` form
-    // The default export needs to use the `{f as default}` form
-    // The set of var names needs to be reduced by the name of hoisted functions
-    // Actions:
-    // - All vars are printed as `var x;` at the top, ordered by name
-    // - All functions are moved to the top, below the hoisted var names, ordered by name
-    // - All exported names are added at the bottom
-    // - All var decls with inits are replaced with assignments
-    // - All decls in a for-in or for-of header lhs are replaced with the .id
-
-    const rootBody = hoistingRoot.type === 'Program' ? hoistingRoot.body : hoistingRoot.body.body;
-
-    const hoistedVars = hoistingRoot.$p.hoistedVars;
-    if (hoistedVars.length) {
-      // Note: the parent can be a scope root (global/func), or export (named/default)
-      // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
-      group();
-      rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
-      example('f(x); var x = 10; f(x);', 'let x; f(x); x = 10; f(x);');
-      example('f(x); export var x = 10; f(x);', 'let x; f(x); x = 10; f(x); export {x};');
-      example('f(x); export default function f() {}; f(x);', 'let f = function(){} f(x); f(x); export {f as default};');
-
-      const funcs = [];
-      const names = [];
-      const exportedNames = new Set();
-      let exportDefault = ''; // There's at most one of these.
-      hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
-        group();
-        rule(
-          '- Hoisting step. From ' +
-            from +
-            '; what = ' +
-            what +
-            '. Node is a `' +
-            hoistNode.type +
-            '`, parent: `' +
-            parentNode.type +
-            '.' +
-            parentProp +
-            (parentIndex >= 0 ? '[' + parentIndex + ']' : '') +
-            '`' +
-            (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : '') +
-            (' (`' + (hoistNode.id?.name ?? hoistNode.declarations?.[0]?.id?.name ?? '<unknown>') + '`)'),
-        );
-        group();
-
-        ASSERT(
-          (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === hoistNode,
-          'indexes should not be stale',
-        );
-        ASSERT(parentNode.type.includes('Export') === exportIndex >= 0, 'export index is set iif the parent is an export');
-        ASSERT(parentNode.type !== 'FunctionExpression' && parentNode.type !== 'ArrowFunctionExpression', 'why not check this?');
-
-        switch (parentNode.type) {
-          case 'Program':
-          case 'FunctionDeclaration':
-          case 'BlockStatement': {
-            if (hoistNode.type === 'FunctionDeclaration') {
-              if (VERBOSE_TRACING) {
-                log('Queueing function node to be moved');
-              }
-              funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
-              // We will inject this node at the top
-              parentNode[parentProp][parentIndex] = AST.emptyStatement();
-            } else {
-              if (VERBOSE_TRACING) {
-                log('Queueing bindings to be moved');
-              }
-              before(hoistNode);
-              const newNodes = [];
-
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                findBoundNamesInVarDeclarator(decl, names);
-                // Now we have the names, remove the var keyword from the declaration
-                // If there was no init, ignore this step
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-                }
-              });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex >= 0, 'var decls in global/func/block must be inside a body array');
-              parentNode[parentProp][parentIndex] =
-                newNodes.length === 0
-                  ? AST.emptyStatement()
-                  : AST.expressionStatement(newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes));
-
-              after(newNodes);
-            }
-            break;
-          }
-
-          case 'ForStatement': {
-            if (parentProp === 'body') {
-              // for (..) var x = y;
-
-              rule('A for-sub-statement that is a variable declaration should be hoisted');
-              example('if (x) var y = z;', 'var y; if (x) y = z;');
-              before(hoistNode, parentNode);
-
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              parentNode.body = AST.expressionStatement(
-                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
-              );
-
-              after(hoistNode);
-            } else {
-              // Regular loop. If there's an init, replace with assignment. Otherwise drop it entirely.
-              before(hoistNode, parentNode);
-              const newNodes = [];
-
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                findBoundNamesInVarDeclarator(decl, names);
-                // Now we have the names, remove the var keyword from the declaration
-                // If there was no init, ignore this step
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-                }
-              });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex === -1, 'var decls in global/func/block must be inside a body array');
-              parentNode[parentProp] =
-                newNodes.length === 0
-                  ? AST.identifier('undefined')
-                  : newNodes.length === 1
-                  ? newNodes[0]
-                  : AST.sequenceExpression(newNodes);
-
-              after(newNodes, parentNode);
-            }
-            break;
-          }
-
-          case 'ForInStatement':
-          case 'ForOfStatement':
-            if (parentProp === 'body') {
-              // for (..) var x = y;
-
-              rule('A forx-sub-statement that is a variable declaration should be hoisted');
-              example('if (x) var y = z;', 'var y; if (x) y = z;');
-              before(hoistNode, parentNode);
-
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              parentNode.body = AST.expressionStatement(
-                AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
-              );
-
-              after(hoistNode);
-            } else {
-              // For of/in.
-              // Should always be var decl, not func decl
-              // Should always introduce one binding
-              // Should not have an init (syntax bound)
-              // Always replace decl with the .id, even if pattern.
-              ASSERT(hoistNode.type === 'VariableDeclaration');
-              ASSERT(hoistNode.declarations.length === 1, 'should have exactly one declarator');
-              ASSERT(!hoistNode.declarations[0].init, 'should not have init');
-
-              before(hoistNode, parentNode);
-              const newNodes = [];
-
-              // Decl is not normalized but somewhat limited due to for-syntax
-              findBoundNamesInVarDeclaration(hoistNode, names);
-              ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
-              parentNode[parentProp] = hoistNode.declarations[0].id;
-
-              after(newNodes, parentNode);
-            }
-            break;
-
-          case 'ExportNamedDeclaration': {
-            // Must be the `var` or `function` form to reach here.
-            // Same as global except we must also eliminate the original export and track the exported names
-            if (hoistNode.type === 'FunctionDeclaration') {
-              funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
-              hoistingRoot.body[exportIndex] = AST.emptyStatement();
-              exportedNames.add(hoistNode.id.name);
-            } else {
-              before(hoistNode);
-              const newNodes = [];
-
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                const boundNames = findBoundNamesInVarDeclarator(decl);
-                boundNames.forEach((name) => {
-                  names.push(name);
-                  exportedNames.add(name);
-                });
-
-                // If there was an init prepare an assignment to retain semantics
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of so it should work out
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-                }
-              });
-              // Delete the export node. Replace it with the assignments or an empty statement. We'll inject a new one later.
-              ASSERT(hoistingRoot.body[exportIndex] === parentNode, 'this is why we pass on exportIndex');
-              hoistingRoot.body[exportIndex] =
-                newNodes.length === 0
-                  ? AST.emptyStatement()
-                  : newNodes.length === 1
-                  ? AST.expressionStatement(newNodes[0])
-                  : AST.expressionStatement(AST.sequenceExpression(newNodes));
-
-              after(newNodes.length === 0 ? AST.emptyStatement() : newNodes);
-            }
-            break;
-          }
-
-          case 'ExportDefaultDeclaration': {
-            ASSERT(hoistNode.type === 'FunctionDeclaration');
-            funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
-            hoistingRoot.body[exportIndex] = AST.emptyStatement();
-            exportedNames.add(hoistNode.id.name);
-            exportDefault = hoistNode.id.name; // max one of these ever
-            break;
-          }
-
-          case 'SwitchCase': {
-            // Switch case shares scope with all other in the same switch body. For hoisting not special.
-            // If there's an init, replace with assignment. Otherwise drop it entirely.
-            before(hoistNode, parentNode);
-            const newNodes = [];
-
-            if (hoistNode.type === 'FunctionDeclaration') {
-              funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
-              // We will inject this node at the top
-              parentNode[parentProp][parentIndex] = AST.emptyStatement();
-            } else {
-              // Decl is not normalized. Can have any number of declarators, can still be pattern
-              hoistNode.declarations.forEach((decl) => {
-                findBoundNamesInVarDeclarator(decl, names);
-                // Now we have the names, remove the var keyword from the declaration
-                // If there was no init, ignore this step
-                // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-                if (decl.init) {
-                  newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-                }
-              });
-              // Must replace one node with one new node to preserve indexes of other var statements that appear later
-              ASSERT(parentIndex >= 0, 'var decls in switch case must be inside an array');
-              parentNode[parentProp][parentIndex] = AST.expressionStatement(
-                newNodes.length === 0
-                  ? AST.identifier('undefined')
-                  : newNodes.length === 1
-                  ? newNodes[0]
-                  : AST.sequenceExpression(newNodes),
-              );
-            }
-
-            after(newNodes, parentNode);
-            break;
-          }
-
-          case 'DoWhileStatement':
-          case 'IfStatement':
-          case 'LabeledStatement':
-          case 'WhileStatement': {
-            // if (x) var y = z;
-            // do var x = y; while (z);
-            // while (x) var y = z;
-
-            ASSERT(
-              parentNode.type === 'IfStatement' ? parentProp === 'consequent' || parentProp === 'alternate' : parentProp === 'body',
-              'this should concern a var decl as the body of a statement',
-              parentProp,
-            );
-
-            rule('A sub-statement that is a variable declaration should be hoisted');
-            example('do var y = z; while (x);', 'var y; do y = z; while (x);', () => parentNode.type === 'DoWhileStatement');
-            example('if (x) var y = z;', 'var y; if (x) y = z;', () => parentNode.type === 'IfStatement');
-            example('foo: var y = z;', 'var y; foo: y = z;', () => parentNode.type === 'LabeledStatement');
-            example('while (x) var y = z;', 'var y; while (x) y = z;', () => parentNode.type === 'WhileStatement');
-            before(hoistNode, parentNode);
-
-            // Note: this var may introduce multiple bindings (!)
-            const newNodes = [];
-            hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
-              // Now we have the names, remove the var keyword from the declaration
-              // If there was no init, ignore this step
-              // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-              if (decl.init) {
-                newNodes.push(AST.assignmentExpression(decl.id, decl.init));
-              }
-            });
-
-            parentNode[parentProp] =
-              newNodes.length === 0
-                ? AST.emptyStatement()
-                : newNodes.length === 1
-                ? AST.expressionStatement(newNodes[0])
-                : AST.expressionStatement(AST.sequenceExpression(newNodes));
-
-            after(parentNode[parentProp]);
-            break;
-          }
-
-          default:
-            console.dir(parentNode, { depth: null });
-            ASSERT(false, 'what other node holds var or func decls?', parentNode);
-        }
-
-        log('End of Hoisting step');
-        groupEnd();
-        groupEnd();
-      });
-
-      const set = new Set(names);
-      if (VERBOSE_TRACING) {
-        log('Removing any func decl names and param names from the hoisted var decl set (' + set.size + ' names before)');
-      }
-      // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
-      const dupeFunc = new Map();
-      funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => {
-        set.delete(hoistNode.id.name);
-        // Note: if there are two func decls with the same name in the same scope then we only keep the last one.
-        dupeFunc.set(hoistNode.id.name, hoistNode);
-      });
-      const uniqueFuncs = [...dupeFunc.values()];
-
-      // Try to find a param on function.params
-      if (hoistingRoot.type !== 'Program') {
-        set.forEach((name) => {
-          if (hoistingRoot.params.some((pnode) => pnode.type === 'Identifier' && pnode.name === name)) {
-            set.delete(name);
-            if (VERBOSE_TRACING) {
-              log('- The binding name `' + name + '` was also a parameter so not adding the var decl for it (' + set.size + ' names left)');
-            }
-          }
-        });
-      }
-
-      if (VERBOSE_TRACING) {
-        log(
-          'Queued',
-          funcs.length,
-          'functions and',
-          names.length,
-          'var names and',
-          exportedNames.size,
-          'exports for hoisting (actually adding',
-          set.size,
-          'var names after filtering)',
-        );
-      }
-
-      // This will invalidate all cached indexes moving forward!
-
-      // Sort them and then inject them at the top.
-      uniqueFuncs.sort((a, b) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
-      const newFuncs = uniqueFuncs.map((hoistNode) => {
-        // Convert to let assignment. Strip the name (prevents accidental shadowing)
-        const name = hoistNode.id.name;
-        hoistNode.id = null;
-        hoistNode.type = 'FunctionExpression';
-        return AST.variableDeclaration(name, hoistNode, 'let'); // probably const eventually
-      });
-      rootBody.unshift(...newFuncs);
-
-      const sorted = [...set].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
-      rootBody.unshift(
-        ...sorted.map((name) => {
-          // Exports are already replaced
-          // Create lets with explicit init to `undefined`. Eliminates all vars this way.
-          return AST.variableDeclaration(name, AST.identifier('undefined'), 'let');
-        }),
-      );
-
-      // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
-      // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.
-      rootBody.push(
-        ...[...exportedNames].map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
-      );
-
-      hoistedVars.length = 0; // Clear it. We don't need it anymore.
-
-      groupEnd();
-      if (VERBOSE_TRACING) log('/Hoisting true');
-      return true;
-    }
-
-    if (VERBOSE_TRACING) log('/Hoisting false');
-
-    return false;
-  }
   function transformProgram(node) {
-    hoistingOnce(node, 'prog');
-
     anyBlock(node);
     return false;
   }
+
   function transformReturnStatement(node, body, i, parent) {
     if (!node.argument) {
       rule('Return argument must exist');
@@ -6480,7 +5399,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (isComplexNode(node.argument) || (node.argument.type === 'Identifier' && node.argument.name === 'arguments')) {
+    if (AST.isComplexNode(node.argument) || (node.argument.type === 'Identifier' && node.argument.name === 'arguments')) {
       rule('Return argument must be simple');
       example('return $()', 'let tmp = $(); return tmp;');
       before(node);
@@ -6545,328 +5464,9 @@ export function phaseNormalize(fdata, fname) {
     }
     return false;
   }
-  function transformSwitchStatement(node, body, i, parentNode) {
-    if (isComplexNode(node.discriminant)) {
-      rule('Switch condition should be simple node');
-      example('switch (f()) {}', '{ let tmp = f(); switch (tmp) {} }');
-      before(node);
 
-      const tmpName = createFreshVar('tmpSwitchTest', fdata);
-      const newNode = AST.variableDeclaration(tmpName, node.discriminant, 'const');
-      body.splice(i, 0, newNode);
-      node.discriminant = AST.identifier(tmpName);
-
-      after(newNode);
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (thisStack.length && node.discriminant.type === 'Identifier' && node.discriminant.name === 'arguments') {
-      rule('Switch discriminant of `arguments` should be alias'); // And silly.
-      example('switch (arguments) {}', 'switch (tmpPrevalArgumentsAliasA) {}');
-      before(node);
-
-      node.discriminant = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-
-      after(node);
-      return true;
-    }
-
-    // Variables declared on the toplevel of a switch case have to be hoisted to before the switch case, and const
-    // converted to let, to ensure that all cases still have access to that binding after the transformations.
-    // Function declarations need to be converted to hoisted vars, and their init outlined before anything else.
-    const vars = [];
-    const lets = [];
-    const funcdecls = [];
-    let hasDefaultAt = -1;
-    node.cases.forEach((cnode, i) => {
-      if (!cnode.test) hasDefaultAt = i;
-
-      // Keep repeating as long as case-top-level var decls are encountered that introduce multiple bindings
-      while (
-        cnode.consequent.some((snode, j) => {
-          if (snode.type === 'VariableDeclaration') {
-            if (transformVariableDeclaration(snode, cnode.consequent, j)) {
-              return true;
-            }
-
-            const names = findBoundNamesInVarDeclaration(snode);
-            if (VERBOSE_TRACING) log('- Pattern binds these names:', names);
-            // Declare these names before the switch and "drop" the `var/let/const` keyword to have it be an assignment
-
-            if (snode.kind === 'var') vars.push(...names);
-            else lets.push(...names);
-
-            rule('[1.a/2] Switch case toplevel declaration should be outlined; [1/2] replacing decls with their inits');
-            example('switch (x) { case a: let b = 10, c = 20; }', 'let b, c; switch (x) { case a: b = 10, c = 20; }');
-            example('switch (x) { case a: let b; }', 'switch (x) { case a: b = undefined; }');
-            example('switch (x) { case a: let [b, c] = [10, 20]; }', 'let b, c; switch (x) { case a: [b, c] = [10, 20]; }');
-            before(snode);
-
-            const newNode = AST.expressionStatement(
-              AST.sequenceExpression(
-                snode.declarations.map((dnode) => AST.assignmentExpression(dnode.id, dnode.init || AST.identifier('undefined'))),
-              ),
-            );
-            cnode.consequent[j] = newNode;
-
-            after(newNode);
-          } else if (snode.type === 'FunctionDeclaration') {
-            rule('[1.b/2] Function declaration in a switch block must be handled');
-            example(
-              'switch (x) { case x: f(); break; case y: function f(){} }',
-              'let f = function(){}; switch(x) { case x: f(); case y: }',
-            );
-            before(snode, parentNode);
-
-            ASSERT(snode.id, 'since this cannot be an export, the id must be present');
-            const newNode = AST.variableDeclaration(snode.id, snode, 'let');
-            // TODO: create a fresh var that clones snode props instead...
-            snode.type = 'FunctionExpression';
-            snode.id = null;
-            cnode.consequent[j] = AST.emptyStatement();
-
-            after(newNode, parentNode);
-            funcdecls.push(newNode);
-          }
-        })
-      );
-    });
-
-    if (vars.length || lets.length || funcdecls.length) {
-      // TODO: if the vars are only used inside the case then we could inline them, perhaps keep the `const` tag. nbd
-      rule('[2/2] Switch case toplevel declaration should be outlined; adding var and func decls before the switch');
-      example('switch (x) { case y: let a = 10, b = 20; }', '{ let a; let b; switch (x) { case y: a = 10, b = 10; } }');
-
-      const newNode = AST.blockStatement(
-        ...vars.map((name) => AST.variableDeclaration(name, undefined, 'var')),
-        ...lets.map((name) => AST.variableDeclaration(name)),
-        ...funcdecls,
-        node,
-      );
-      body[i] = newNode;
-
-      after(newNode); // omit this one?
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (true) {
-      // Alternate switch transform
-
-      // The idea is to pull out all cases tests in order, compare the discriminant against it, and
-      // remember the index of the first case that matches. If none match, remember test case count.
-      // The next step is taking all the case/default bodies, in order, and wrapping them in `if index <= x`
-      // (using zero for the default case). That way a case match will match its own case plus all
-      // cases (and/or default) after it until the first case that breaks the control flow, or the
-      // last case if none break. The default will properly apply its behavior in the same way.
-
-      rule('Switch transform v2');
-      example(
-        'switch (x) { case a(): b(); break; default: c(); case d(): e(); }',
-        'let i = 1; if (x === a()) i = 0; else if (x === d()) i = 2; label: { if (i <= 0) b(); break label; if (i <= 1) c(); if (i <= 2) e(); }',
-      );
-      before(node);
-
-      const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
-      const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
-      const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
-      const defaultIndex = node.cases.findIndex((n) => !n.test);
-
-      function labelEmptyBreaks(snode) {
-        if (snode.type === 'BlockStatement') {
-          snode.body.forEach(labelEmptyBreaks);
-        } else if (snode.type === 'IfStatement') {
-          labelEmptyBreaks(snode.consequent);
-          if (snode.alternate) labelEmptyBreaks(snode.alternate);
-        } else if (snode.type === 'BreakStatement' && snode.label === null) {
-          // Change into labeled break. It will break to the start of what was originally a switch statement.
-          snode.label = AST.identifier(tmpLabel);
-        }
-      }
-
-      node.cases.forEach((cnode) => cnode.consequent.forEach(labelEmptyBreaks));
-
-      const newNodes = [
-        AST.variableDeclaration(tmpNameValue, node.discriminant, 'const'),
-        AST.variableDeclaration(tmpNameCase, AST.literal(defaultIndex >= 0 ? defaultIndex : node.cases.length)),
-        node.cases
-          .slice(0)
-          .reverse()
-          .reduce((prev, cnode, i) => {
-            if (!cnode.test) return prev;
-            return AST.ifStatement(
-              AST.binaryExpression('===', cnode.test, tmpNameValue),
-              AST.expressionStatement(AST.assignmentExpression(tmpNameCase, AST.literal(node.cases.length - i - 1))),
-              prev,
-            );
-          }, AST.emptyStatement()),
-        AST.labeledStatement(
-          tmpLabel,
-          AST.blockStatement(
-            ...node.cases.map((cnode, i) => {
-              return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));
-            }),
-          ),
-        ),
-      ];
-
-      body.splice(i, 1, ...newNodes);
-
-      after(newNodes);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    // This was the old transform. It's more verbose and probably harder to reason about. Maybe. Keeping it so I can test that later.
-    /*
-
-    // A switch with a default in the middle has a somewhat more complex transform involving a switch (but no labeled breaks...)
-    // That's because essentially a default occurs last and kind of jumps back up. This is a very uncommon case, but it's legal.
-    // If the default is the last case then there is no jumping back so we don't need the loop. That's almost always the case.
-
-    if (hasDefaultAt >= 0 && hasDefaultAt < node.cases.length - 1) {
-      rule('Switch case with default that is not the last case must be eliminated');
-      log('- transforms to do-while that loops at most once');
-      example(
-        'switch (1) { case a: b; default: c; case d: e }',
-        'let x = 1; let def = false; let fall = false; do { if (def) fall = true; else { if (x === a) { b; fall = true } } if (fall) { c; fall = true; } if (fall || x === d) { e; fall = true; } def = true; } while (fall === false);',
-      );
-      before(node); // omit this one?
-
-      const tmpVal = createFreshVar('tmpSwitchValue', fdata);
-      const tmpDef = createFreshVar('tmpSwitchVisitDefault', fdata);
-      const tmpFall = createFreshVar('tmpSwitchFallthrough', fdata);
-
-      const newNode = AST.blockStatement(
-        AST.variableDeclaration(tmpVal, node.discriminant, 'const'),
-        AST.variableDeclaration(tmpDef, 'false'),
-        AST.variableDeclaration(tmpFall, 'false'),
-        AST.doWhileStatement(
-          // TODO: this will be transformed away so we should be more concise in our transform to prevent that step
-          AST.blockStatement(
-            AST.ifStatement(
-              tmpDef,
-              // If all cases failed, then set fall=true so the default case gets visited after this branch
-              AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
-              AST.blockStatement(
-                AST.expressionStatement(AST.literal('Cases before the default case')),
-                ...node.cases.slice(0, hasDefaultAt).map((cnode, i) => {
-                  example('case x: y; break;', 'if (fall || x === value) { { y; break; } fall = true }');
-                  before(cnode);
-
-                  const newNode = AST.blockStatement(
-                    AST.expressionStatement(AST.literal('case ' + i)),
-                    AST.ifStatement(
-                      AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', cnode.test, tmpVal)),
-                      AST.blockStatement(
-                        AST.blockStatement(cnode.consequent),
-                        AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
-                      ),
-                    ),
-                  );
-
-                  after(newNode);
-                  return newNode;
-                }),
-              ),
-            ),
-            // Default case
-            AST.ifStatement(
-              tmpFall,
-              AST.blockStatement(
-                AST.expressionStatement(AST.literal('the default case')),
-                AST.blockStatement(node.cases[hasDefaultAt].consequent),
-                AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
-              ),
-            ),
-            // Cases after the default case (at least one)
-            AST.blockStatement(
-              AST.blockStatement(
-                AST.expressionStatement(AST.literal('cases after the default case')),
-                ...node.cases.slice(hasDefaultAt + 1).map((cnode, i) => {
-                  example('case x: y; break;', 'if (fall || x === value) { { y; break; } fall = true }');
-                  before(cnode);
-
-                  const newNode = AST.blockStatement(
-                    AST.expressionStatement(AST.literal('case ' + i)),
-                    AST.ifStatement(
-                      AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', cnode.test, tmpVal)),
-                      AST.blockStatement(
-                        AST.blockStatement(cnode.consequent),
-                        AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
-                      ),
-                    ),
-                  );
-
-                  after(newNode);
-                  return newNode;
-                }),
-              ),
-            ),
-            AST.expressionStatement(AST.assignmentExpression(tmpDef, 'true')),
-          ),
-          // } while()
-          AST.binaryExpression('===', tmpFall, 'false'),
-        ),
-      );
-
-      body[i] = newNode;
-
-      after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    // Note: discriminant is normalized at this point
-    rule('Switch cases must normalize to labeled if-else');
-    log('- Transform to a set of if-elses with fallthrough mechanics and labeled breaks');
-    example(
-      'switch (t) { case a(): b(); case c(): d(); break; case e(): f() }',
-      'let fall = false; exit: { if (fall || x === a()) { { b(); } fall = true; } if (fall || x === b()) { { d(); break exit; } fall = true } if (fall || x === e()) { { f(); break exit; } fall = true; } }',
-    );
-    before(node); // omit this one?
-
-    const tmpLabel = createNewUniqueLabel('tmpSwitchBreak');
-
-    const tmpFall = createFreshVar('tmpFallthrough', fdata);
-    fdata.globallyUniqueLabelRegistry.set(tmpLabel, true); // Mark as being reserved
-    const newNode = AST.labeledStatement(
-      tmpLabel,
-      AST.blockStatement(
-        AST.variableDeclaration(tmpFall, 'false'),
-        ...node.cases.map((cnode, i) => {
-          cnode.consequent.forEach(labelEmptyBreaks);
-
-          if (cnode.test) {
-            return AST.ifStatement(
-              AST.logicalExpression('||', tmpFall, AST.binaryExpression('===', node.discriminant, cnode.test)),
-              AST.blockStatement(
-                AST.expressionStatement(AST.literal('case ' + i + ':')),
-                AST.blockStatement(cnode.consequent),
-                AST.expressionStatement(AST.assignmentExpression(tmpFall, 'true')),
-              ),
-            );
-          } else {
-            // Default case. Must be last case of the switch (otherwise the other transform should be applied)
-            // I don't think there's a reason to check anything at this point, right? If the previous case(s)
-            // fall through, then they visit the code. And otherwise they break / return. So just add block as-is?
-            return AST.blockStatement(AST.expressionStatement(AST.literal('default case:')), ...cnode.consequent);
-          }
-        }),
-      ),
-    );
-
-    body[i] = newNode;
-
-    after(newNode);
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-   */
-  }
   function transformThrowStatement(node, body, i, parent) {
-    if (isComplexNode(node.argument)) {
+    if (AST.isComplexNode(node.argument)) {
       rule('Throw argument must be simple');
       example('throw $()', 'let tmp = $(); throw tmp;');
       before(node);
@@ -6903,6 +5503,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function transformTryStatement(node, body, i, parent) {
     transformBlock(node.block, undefined, -1, node, false);
     anyBlock(node.block);
@@ -6916,6 +5517,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function transformVariableDeclaration(node, body, i, parentNode, funcNode) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
@@ -6976,7 +5578,9 @@ export function phaseNormalize(fdata, fname) {
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
       before(node, parentNode);
 
-      const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
+      //YOYO
+      //const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
+      const bindingPatternRootName = createFreshVar('$tdz$__pattern_after_default', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
@@ -7017,26 +5621,7 @@ export function phaseNormalize(fdata, fname) {
       );
     }
 
-    if (node.kind === 'var') {
-      ASSERT(!funcNode || ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode.type));
-      if (
-        funcNode &&
-        funcNode.params.some((pnode) => (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name) === dnode.id.name)
-      ) {
-        before(funcNode);
-        ASSERT(!dnode.init, 'binding decls with `var` should be hoisted if they have an init');
-        // There's a var decl that has the same name as a param. Drop it.
-        rule('Var decl as `var` with same name as param should be dropped');
-        example('function f(a) { var a; a = 10; return a; }', 'function f(a) { ; a = 10; return a; }');
-        before(node, parentNode);
-
-        body[i] = AST.emptyStatement();
-
-        after(parentNode);
-        doneit;
-        return true;
-      }
-    }
+    ASSERT(node.kind !== 'var');
 
     if (dnode.init) {
       if (VERBOSE_TRACING) log('Init:', dnode.init.type);
@@ -7081,7 +5666,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (dnode.init.left.type === 'MemberExpression') {
-          if (dnode.init.left.computed && isComplexNode(dnode.init.left.property)) {
+          if (dnode.init.left.computed && AST.isComplexNode(dnode.init.left.property)) {
             ASSERT(dnode.id.type === 'Identifier');
             rule('Var inits can not be assignments; lhs computed complex prop');
             example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
@@ -7104,7 +5689,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (isComplexNode(dnode.init.left.object)) {
+          if (AST.isComplexNode(dnode.init.left.object)) {
             ASSERT(dnode.id.type === 'Identifier');
             rule('Var inits can not be assignments; lhs regular complex prop');
             example(
@@ -7209,7 +5794,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (
-        isComplexNode(dnode.init, false) ||
+        AST.isComplexNode(dnode.init, false) ||
         (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments') ||
         dnode.init.type === 'TemplateLiteral'
       ) {
@@ -7224,6 +5809,7 @@ export function phaseNormalize(fdata, fname) {
 
     return false;
   }
+
   function transformWhileStatement(node, body, i) {
     if (node.test.type !== 'Literal' || node.test.value !== true) {
       // We do this because it makes all reads that relate to the loop be inside the block.

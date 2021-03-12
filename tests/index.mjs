@@ -225,7 +225,7 @@ function runTestCase(
     }
   }
 
-  const evalled = { $in: [], $norm: [], $out: [] };
+  const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
   function ev(desc, fdata, stack) {
     if (!fdata) return stack.slice(0);
 
@@ -335,6 +335,7 @@ function runTestCase(
     return stack.slice(0);
   }
   evalled.$in = ev('input', fin, evalled.$in);
+  evalled.$pre = ev('pre normalization', fin, evalled.$pre);
   evalled.$norm = ev('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
     evalled.$out = ev('output', output?.files, evalled.$out);

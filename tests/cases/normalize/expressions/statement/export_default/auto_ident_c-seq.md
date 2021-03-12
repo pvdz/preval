@@ -25,8 +25,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpExportDefault = $(x);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = $(x);
+export { tmpAnonDefaultExport as default };
 $(a, x);
 `````
 
@@ -36,8 +36,8 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpExportDefault = $(1);
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = $(1);
+export { tmpAnonDefaultExport as default };
 $(a, 1);
 `````
 

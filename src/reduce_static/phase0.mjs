@@ -3,8 +3,9 @@ import * as Tenko from '../../lib/tenko.prod.mjs'; // This way it works in brows
 
 if (typeof window !== 'undefined') window.Tenko = Tenko; // Expose symbols for UI
 
-export function phase0(code, fname) {
-  group('\n\n\n##################################\n## phase0  ::  ' + fname + '\n##################################\n\n\n');
+export function phase0(code, fname, subCall) {
+  if (subCall) group('\nParsing with Tenko  ::  ' + fname + '\n\n');
+  else group('\n\n\n##################################\n## phase0  ::  ' + fname + '\n##################################\n\n\n');
 
   log('- Parsing code with Tenko...');
 

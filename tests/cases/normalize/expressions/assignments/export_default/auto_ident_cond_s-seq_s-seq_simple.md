@@ -28,16 +28,16 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = tmpCallCallee(tmpCalleeParam);
 }
-let tmpExportDefault = a;
-export { tmpExportDefault as default };
+let tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpExportDefault = 60;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = 60;
+export { tmpAnonDefaultExport as default };
 $(60);
 `````
 

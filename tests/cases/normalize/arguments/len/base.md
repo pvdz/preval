@@ -21,9 +21,8 @@ f(1, 2, 3);
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
   const tmpCallCallee = $;
-  const tmpCalleeParam = tmpPrevalAliasArgumentsLen;
+  const tmpCalleeParam = arguments.length;
   tmpCallCallee(tmpCalleeParam);
 };
 f(1, 2, 3);
@@ -33,8 +32,8 @@ f(1, 2, 3);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  $(tmpPrevalAliasArgumentsLen);
+  const tmpCalleeParam = arguments.length;
+  $(tmpCalleeParam);
 };
 f(1, 2, 3);
 `````

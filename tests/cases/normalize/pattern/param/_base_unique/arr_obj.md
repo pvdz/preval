@@ -20,9 +20,10 @@ function h([{ x }]) {
 
 `````js filename=intro
 let h = function (tmpParamPattern) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
-  let x$1 = arrPatternStep.x;
+  let x$1 = arrPatternStep.x$1;
   let x$2 = 2;
   return x$1;
 };

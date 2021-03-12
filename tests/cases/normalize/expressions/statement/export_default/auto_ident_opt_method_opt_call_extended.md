@@ -25,7 +25,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
+let tmpAnonDefaultExport = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
@@ -35,10 +35,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$2 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpExportDefault = tmpChainElementCall;
+    tmpAnonDefaultExport = tmpChainElementCall;
   }
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -49,7 +49,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpExportDefault = undefined;
+let tmpAnonDefaultExport = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
@@ -58,10 +58,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$2 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpExportDefault = tmpChainElementCall;
+    tmpAnonDefaultExport = tmpChainElementCall;
   }
 }
-export { tmpExportDefault as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

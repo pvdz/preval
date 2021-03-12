@@ -22,15 +22,14 @@ switch (1) {
 
 `````js filename=intro
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = undefined;
   const tmpIfTest$2 = $(30);
   if (tmpIfTest$2) {
     a = 60;
@@ -46,15 +45,15 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let a;
 const tmpIfTest$2 = $(30);
 if (tmpIfTest$2) {
-  SSA_a = 60;
+  a = 60;
 } else {
   const tmpCalleeParam = $(100);
-  SSA_a = $(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
-$(SSA_a);
+$(a);
 `````
 
 ## Globals

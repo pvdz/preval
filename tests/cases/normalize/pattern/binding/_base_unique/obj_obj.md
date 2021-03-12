@@ -18,8 +18,8 @@ const {x: {y: {z}}} = 1;
 
 `````js filename=intro
 let z$1 = 1;
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = 1;
+const objPatternNoDefault = $tdz$__pattern_after_default.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const z = objPatternNoDefault$1.z;
 let z$2 = 1;

@@ -21,22 +21,19 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-let tmpCallCallee;
-let tmpCalleeParam;
-let bindingPatternObjRoot;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  tmpCallCallee = $;
-  tmpCalleeParam = { a: 1, b: 2 };
-  bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
-  a = bindingPatternObjRoot.a;
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpAssignObjPatternRhs.a;
   $(a);
 }
 `````
@@ -45,8 +42,8 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
-const bindingPatternObjRoot = $(tmpCalleeParam);
-const a = bindingPatternObjRoot.a;
+const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+const a = tmpAssignObjPatternRhs.a;
 $(a);
 `````
 

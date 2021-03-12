@@ -21,17 +21,17 @@ $(f(['abc', 20, 30], 200));
 
 `````js filename=intro
 let f = function ($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternArrRoot = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpArrElement = { x: 'fail3' };
     const tmpCalleeParam = [tmpArrElement];
-    $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+    bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    bindingPatternArrRoot = $tdz$__pattern;
   }
-  let arrPatternSplat = [...$tdz$__pattern_after_default];
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
@@ -65,16 +65,16 @@ tmpCallCallee$2(tmpCalleeParam$2);
 
 `````js filename=intro
 const f = function ($tdz$__pattern) {
-  let $tdz$__pattern_after_default = undefined;
+  let bindingPatternArrRoot = undefined;
   const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const tmpArrElement = { x: 'fail3' };
     const tmpCalleeParam = [tmpArrElement];
-    $tdz$__pattern_after_default = $(tmpCalleeParam);
+    bindingPatternArrRoot = $(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    bindingPatternArrRoot = $tdz$__pattern;
   }
-  const arrPatternSplat = [...$tdz$__pattern_after_default];
+  const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

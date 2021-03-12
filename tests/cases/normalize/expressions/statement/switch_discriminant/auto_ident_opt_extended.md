@@ -37,7 +37,6 @@ if (tmpIfTest) {
   const tmpChainElementObject$2 = tmpChainElementObject$1.z;
   tmpSwitchTest = tmpChainElementObject$2;
 }
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {

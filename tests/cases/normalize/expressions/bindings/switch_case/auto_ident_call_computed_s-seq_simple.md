@@ -24,18 +24,17 @@ switch (1) {
 
 `````js filename=intro
 let b;
-let tmpCallObj;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { $: $ };
-  tmpCallObj = b;
+  const tmpCallObj = b;
   a = tmpCallObj.$(1);
   $(a);
 }

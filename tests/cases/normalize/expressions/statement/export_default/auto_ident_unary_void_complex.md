@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(100);
-const tmpExportDefault = undefined;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = undefined;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -31,8 +31,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(100);
-const tmpExportDefault = undefined;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = undefined;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

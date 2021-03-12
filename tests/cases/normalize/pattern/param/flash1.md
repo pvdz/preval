@@ -22,7 +22,8 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 
 `````js filename=intro
 let x = function (tmpParamPattern, tmpParamPattern$1) {
-  let arrPatternSplat = [...tmpParamPattern];
+  let bindingPatternArrRoot = tmpParamPattern;
+  let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
@@ -48,7 +49,8 @@ let x = function (tmpParamPattern, tmpParamPattern$1) {
   } else {
     foo = arrPatternBeforeDefault$1;
   }
-  let objPatternNoDefault = tmpParamPattern$1.x;
+  let $tdz$__pattern_after_default = tmpParamPattern$1;
+  let objPatternNoDefault = $tdz$__pattern_after_default.x;
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];

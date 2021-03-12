@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=x
 let X = class {};
-export { X as default };
+export { X };
 `````
 
 ## Output
@@ -50,7 +50,7 @@ $(tmpCalleeParam);
 
 `````js filename=x
 const X = class {};
-export { X as default };
+export { X };
 `````
 
 ## Globals

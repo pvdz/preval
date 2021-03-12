@@ -22,8 +22,8 @@
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
-let a = bindingPatternObjRoot.a;
+let $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
+let a = $tdz$__pattern_after_default.a;
 $(a);
 `````
 
@@ -31,8 +31,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
-const bindingPatternObjRoot = $(tmpCalleeParam);
-const a = bindingPatternObjRoot.a;
+const $tdz$__pattern_after_default = $(tmpCalleeParam);
+const a = $tdz$__pattern_after_default.a;
 $(a);
 `````
 

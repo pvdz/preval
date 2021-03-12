@@ -27,9 +27,9 @@ switch (1) {
 let b;
 let c;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -38,7 +38,7 @@ if (tmpIfTest$1) {
   b = 1;
   c = 2;
   b = 2;
-  a = b;
+  a = 2;
   $(a, b, c);
 }
 `````

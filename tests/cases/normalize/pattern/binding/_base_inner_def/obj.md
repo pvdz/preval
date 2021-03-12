@@ -15,8 +15,8 @@ const { x = b } = 1;
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const $tdz$__pattern_after_default = 1;
+const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

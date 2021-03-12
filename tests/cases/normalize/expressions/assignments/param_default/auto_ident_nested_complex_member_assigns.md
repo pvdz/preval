@@ -27,9 +27,9 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__p) {
+let f = function ($tdz$__pattern) {
   let p = undefined;
-  const tmpIfTest = $tdz$__p === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const varInitAssignLhsComputedObj = $(b);
     const varInitAssignLhsComputedProp = $('x');
@@ -59,7 +59,7 @@ let f = function ($tdz$__p) {
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = $tdz$__p;
+    p = $tdz$__pattern;
   }
 };
 let b = { x: 1 };
@@ -74,8 +74,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__p) {
-  const tmpIfTest = $tdz$__p === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     const varInitAssignLhsComputedObj = $(b);
     const varInitAssignLhsComputedProp = $('x');

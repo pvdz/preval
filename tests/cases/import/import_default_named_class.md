@@ -35,7 +35,7 @@ $(x);
 
 `````js filename=x
 let X = class {};
-export { X as default };
+export { X };
 X = 10;
 `````
 
@@ -48,7 +48,7 @@ $(x);
 
 `````js filename=x
 const X = class {};
-export { X as default };
+export { X };
 `````
 
 ## Globals

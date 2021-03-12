@@ -26,20 +26,19 @@ switch (1) {
 
 `````js filename=intro
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = undefined;
   a = $(2);
   $(a);
 }
@@ -56,8 +55,8 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-const SSA_a$1 = $(2);
-$(SSA_a$1);
+const a = $(2);
+$(a);
 $('fail1');
 $('fail2');
 `````

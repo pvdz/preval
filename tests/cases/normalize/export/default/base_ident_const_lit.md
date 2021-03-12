@@ -1,0 +1,45 @@
+# Preval test case
+
+# base_ident_const_lit.md
+
+> Normalize > Export > Default > Base ident const lit
+>
+> Exporting a value
+
+#TODO
+
+## Input
+
+`````js filename=intro
+const FOO = 100;
+
+export default FOO;
+`````
+
+## Normalized
+
+`````js filename=intro
+const FOO = 100;
+const tmpAnonDefaultExport = FOO;
+export { tmpAnonDefaultExport as default };
+`````
+
+## Output
+
+`````js filename=intro
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Normalized calls: Same
+
+Final output calls: Same

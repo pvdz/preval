@@ -32,7 +32,8 @@ let f = function () {
 let g = function (x$2) {
   return x$2;
 };
-export class c {}
+let c = class {};
+export { c };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 const x = tmpCallCallee(tmpCalleeParam);
@@ -51,7 +52,8 @@ const f = function () {
 const g = function (x$2) {
   return x$2;
 };
-export class c {}
+const c = class {};
+export { c };
 const tmpCalleeParam = f();
 const x = $(tmpCalleeParam);
 export { x };

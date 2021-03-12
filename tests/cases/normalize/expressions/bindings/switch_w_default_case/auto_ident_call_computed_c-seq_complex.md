@@ -28,16 +28,14 @@ switch (1) {
 
 `````js filename=intro
 let b;
-let tmpCallCompObj;
-let tmpCallCompProp;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 = 2 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   }
@@ -45,8 +43,8 @@ if (tmpIfTest) {
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
   b = { $: $ };
-  tmpCallCompObj = $(b);
-  tmpCallCompProp = $('$');
+  const tmpCallCompObj = $(b);
+  const tmpCallCompProp = $('$');
   a = tmpCallCompObj[tmpCallCompProp](1);
   $(a);
 }

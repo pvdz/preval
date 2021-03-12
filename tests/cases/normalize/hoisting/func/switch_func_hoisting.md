@@ -23,19 +23,18 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
 let f = function () {
   $('pass');
 };
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }
@@ -54,10 +53,10 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
 const f = function () {
   $('pass');
 };
+const tmpSwitchTest = $(1);
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchTest;

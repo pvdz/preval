@@ -19,28 +19,28 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-let tmpExportDefault;
+let $tdz$__pattern_after_default = { a: 999, b: 1000 };
+let a = $tdz$__pattern_after_default.a;
+let tmpAnonDefaultExport;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpExportDefault = tmpNestedAssignObjPatternRhs;
-export { tmpExportDefault as default };
+tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-bindingPatternObjRoot.a;
+const $tdz$__pattern_after_default = { a: 999, b: 1000 };
+$tdz$__pattern_after_default.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const SSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpExportDefault = tmpNestedAssignObjPatternRhs;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

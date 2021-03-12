@@ -24,28 +24,25 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-const tmpSwitchTest = $('a');
-let bindingPatternArrRoot;
-let arrPatternSplat;
 let a$1;
 let b$1;
-const tmpSwitchValue = tmpSwitchTest;
+const tmpSwitchTest = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    bindingPatternArrRoot = undefined;
+    let arrAssignPatternRhs;
     const tmpNestedAssignArrPatternRhs = z;
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat$1[1];
     y = arrPatternSplat$1[2];
-    bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-    arrPatternSplat = [...bindingPatternArrRoot];
+    arrAssignPatternRhs = tmpNestedAssignArrPatternRhs;
+    const arrPatternSplat = [...arrAssignPatternRhs];
     a$1 = arrPatternSplat[0];
     b$1 = arrPatternSplat[1];
     break tmpSwitchBreak;

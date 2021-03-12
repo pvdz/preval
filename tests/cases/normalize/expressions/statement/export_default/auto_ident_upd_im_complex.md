@@ -30,8 +30,8 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpExportDefault = tmpPostUpdArgVal;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpPostUpdArgVal;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
@@ -45,8 +45,8 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpExportDefault = tmpPostUpdArgVal;
-export { tmpExportDefault as default };
+const tmpAnonDefaultExport = tmpPostUpdArgVal;
+export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 

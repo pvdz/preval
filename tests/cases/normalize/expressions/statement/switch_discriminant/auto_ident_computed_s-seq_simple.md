@@ -29,7 +29,6 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpCompProp = $('c');
 const tmpSwitchTest = tmpCompObj[tmpCompProp];
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

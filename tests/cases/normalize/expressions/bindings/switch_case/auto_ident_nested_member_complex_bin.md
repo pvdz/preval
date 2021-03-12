@@ -30,16 +30,10 @@ let b;
 let c;
 let d;
 let e;
-let varInitAssignLhsComputedObj;
-let varInitAssignLhsComputedProp;
-let varInitAssignLhsComputedObj$1;
-let varInitAssignLhsComputedProp$1;
-let varInitAssignLhsComputedRhs$1;
-let varInitAssignLhsComputedRhs;
 let a;
-const tmpSwitchValue = 1;
+const tmpSwitchTest = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -49,15 +43,16 @@ if (tmpIfTest$1) {
   c = { y: 2 };
   d = 3;
   e = 4;
-  varInitAssignLhsComputedObj = $(b);
-  varInitAssignLhsComputedProp = $('x');
-  varInitAssignLhsComputedObj$1 = $(c);
-  varInitAssignLhsComputedProp$1 = $('y');
-  varInitAssignLhsComputedRhs$1 = d + e;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $('x');
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedRhs = d + e;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
   $(a, b, c, d, e);
 }
 `````
@@ -67,12 +62,12 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, b, c, 3, 4);
 `````
 

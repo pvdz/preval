@@ -19,14 +19,14 @@
 `````js filename=intro
 let x = 1;
 const tmpAssignObjPatternRhs = 1;
-x$1 = tmpAssignObjPatternRhs.x;
+x$1 = tmpAssignObjPatternRhs.x$1;
 let x$2 = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-x$1 = (1).x;
+x$1 = (1).x$1;
 `````
 
 ## Globals

@@ -20,14 +20,14 @@ $(f(0, 200));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__x) {
+let f = function ($tdz$__pattern) {
   let x = undefined;
-  const tmpIfTest = $tdz$__x === undefined;
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     x = 'fail';
     return x;
   } else {
-    x = $tdz$__x;
+    x = $tdz$__pattern;
     return x;
   }
 };
@@ -39,12 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__x) {
-  const tmpIfTest = $tdz$__x === undefined;
+const f = function ($tdz$__pattern) {
+  const tmpIfTest = $tdz$__pattern === undefined;
   if (tmpIfTest) {
     return 'fail';
   } else {
-    return $tdz$__x;
+    return $tdz$__pattern;
   }
 };
 const tmpCalleeParam = f(0, 200);

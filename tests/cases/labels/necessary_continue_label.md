@@ -23,25 +23,25 @@ foo: do {
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let tmpDoWhileFlag$1 = true;
 foo: while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+  let tmpIfTest = tmpDoWhileFlag$1;
   if (tmpIfTest) {
   } else {
     tmpIfTest = $(false);
   }
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
+    tmpDoWhileFlag$1 = false;
     $(1, 'outer');
-    let tmpDoWhileFlag$1 = true;
+    let tmpDoWhileFlag = true;
     while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag$1;
+      let tmpIfTest$1 = tmpDoWhileFlag;
       if (tmpIfTest$1) {
       } else {
         tmpIfTest$1 = $(false);
       }
       if (tmpIfTest$1) {
-        tmpDoWhileFlag$1 = false;
+        tmpDoWhileFlag = false;
         $(1, 'inner');
         continue foo;
       } else {
@@ -57,25 +57,25 @@ foo: while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let tmpDoWhileFlag$1 = true;
 foo: while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+  let tmpIfTest = tmpDoWhileFlag$1;
   if (tmpIfTest) {
   } else {
     tmpIfTest = $(false);
   }
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
+    tmpDoWhileFlag$1 = false;
     $(1, 'outer');
-    let tmpDoWhileFlag$1 = true;
+    let tmpDoWhileFlag = true;
     while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag$1;
+      let tmpIfTest$1 = tmpDoWhileFlag;
       if (tmpIfTest$1) {
       } else {
         tmpIfTest$1 = $(false);
       }
       if (tmpIfTest$1) {
-        tmpDoWhileFlag$1 = false;
+        tmpDoWhileFlag = false;
         $(1, 'inner');
         continue foo;
       } else {

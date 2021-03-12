@@ -21,10 +21,11 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 
 `````js filename=intro
 let f = function (tmpParamPattern) {
+  let $tdz$__pattern_after_default = tmpParamPattern;
   const tmpCallCallee = objPatternRest;
-  const tmpCalleeParam = tmpParamPattern;
+  const tmpCalleeParam = $tdz$__pattern_after_default;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
+  const tmpCalleeParam$2 = 'x';
   let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
   return x;
 };
@@ -41,7 +42,7 @@ tmpCallCallee$1(tmpCalleeParam$3);
 `````js filename=intro
 const f = function (tmpParamPattern) {
   const tmpCalleeParam$1 = [];
-  const x = objPatternRest(tmpParamPattern, tmpCalleeParam$1, undefined);
+  const x = objPatternRest(tmpParamPattern, tmpCalleeParam$1, 'x');
   return x;
 };
 const tmpCalleeParam$4 = { x: 1, b: 2, c: 3 };

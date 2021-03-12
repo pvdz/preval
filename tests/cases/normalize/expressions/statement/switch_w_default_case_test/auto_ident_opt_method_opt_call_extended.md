@@ -33,7 +33,6 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpSwitchTest = $(1);
-const tmpSwitchValue = tmpSwitchTest;
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootProp = b;
@@ -48,11 +47,11 @@ if (tmpIfTest$1) {
     tmpBinLhs = tmpChainElementCall;
   }
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = tmpBinLhs === tmpSwitchTest;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  const tmpIfTest$3 = 2 === tmpSwitchTest;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   }

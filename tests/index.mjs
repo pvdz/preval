@@ -69,7 +69,7 @@ if (isMainThread && CONFIG.threads > 1) {
           // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
           // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.
           retryVerbose = last;
-          resolvers.forEach(r => r());
+          resolvers.forEach((r) => r());
           broke = true;
         });
         worker.on('exit', (code) => {
@@ -93,8 +93,8 @@ if (isMainThread && CONFIG.threads > 1) {
   } else {
     console.log('Finished, no test fataled, exiting now...');
     //if (isMainThread) {
-      console.log(`Suite finished`);
-      console.timeEnd('Total test time');
+    console.log(`Suite finished`);
+    console.timeEnd('Total test time');
     //}
     process.exit();
   }
@@ -113,7 +113,7 @@ const fastFileNames = allFileNames.filter(
 const workerStep = Math.ceil(fastFileNames.length / CONFIG.threads);
 const workerOffset = CONFIG.threadIndex * workerStep;
 console.log('Slicing test cases from', workerOffset, 'to', workerOffset + workerStep);
-const fileNames = fastFileNames.slice(workerOffset, workerOffset + workerStep);
+const fileNames = fastFileNames.filter((fn, fi) => fi % CONFIG.threads === CONFIG.threadIndex);
 const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));
@@ -148,7 +148,18 @@ function runTestCase(
   const code = '// ' + (caseIndex + 1) + ' / ' + testCases.length + ' : intro\n' + fin.intro; // .intro is the main entry point
 
   {
-    const data = ['###################################################', ' '.repeat(String(fastFileNames.length).length - String(caseIndex + 1).length), caseIndex + 1, '/', fastFileNames.length, '(', (((caseIndex - workerOffset) / testCases.length) * 100)|0, '%) [', sname, ']'];
+    const data = [
+      '###################################################',
+      ' '.repeat(String(fastFileNames.length).length - String(caseIndex + 1).length),
+      caseIndex + 1,
+      '/',
+      fastFileNames.length,
+      '(',
+      (((caseIndex - workerOffset) / testCases.length) * 100) | 0,
+      '%) [',
+      sname,
+      ']',
+    ];
     if (isMainThread) {
       console.log(...data);
     } else {
@@ -200,7 +211,7 @@ function runTestCase(
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
-      }
+      },
     });
   } catch (e) {
     if (isExpectingAnError) {

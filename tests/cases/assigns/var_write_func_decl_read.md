@@ -33,13 +33,9 @@ f();
 ## Output
 
 `````js filename=intro
-let x = undefined;
-const f = function () {
-  $(x, 'f');
-};
 $(1);
-x = $(2);
-f();
+const SSA_x = $(2);
+$(SSA_x, 'f');
 `````
 
 ## Globals

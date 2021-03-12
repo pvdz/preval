@@ -30,11 +30,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (x, y, z) {
-  const tmpReturnArg = $(x, z);
-  return tmpReturnArg;
-};
-f();
+$(undefined, undefined);
 `````
 
 ## Globals

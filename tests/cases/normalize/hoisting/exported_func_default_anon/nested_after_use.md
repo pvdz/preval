@@ -41,11 +41,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
-  const f = function () {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam = f(1);
+  const tmpCalleeParam = $(2);
   $(tmpCalleeParam);
 };
 export { tmpAnonDefaultExport as default };

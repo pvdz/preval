@@ -51,21 +51,9 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
-  const f = function () {
-    const tmpReturnArg = $();
-    return tmpReturnArg;
-  };
-  const g = function () {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
-  };
-  const h = function () {
-    const tmpReturnArg$2 = $();
-    return tmpReturnArg$2;
-  };
-  const tmpCalleeParam = f();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
+  const tmpCalleeParam = $();
+  const tmpCalleeParam$1 = $();
+  const tmpCalleeParam$2 = $();
   $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 };
 export { tmpAnonDefaultExport as default };

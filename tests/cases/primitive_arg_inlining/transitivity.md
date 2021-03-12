@@ -86,33 +86,29 @@ tmpCallCallee$13(tmpCalleeParam$26, tmpCalleeParam$27);
 ## Output
 
 `````js filename=intro
-const f = function (a, b) {
-  const tmpReturnArg = $(a, b);
-  return tmpReturnArg;
-};
 const tmpCalleeParam$3 = $('b');
-const tmpCalleeParam = f('a', tmpCalleeParam$3);
+const tmpCalleeParam = $('a', tmpCalleeParam$3);
 $(tmpCalleeParam, 'first A');
 const tmpCalleeParam$6 = $('a');
-const tmpCalleeParam$4 = f(tmpCalleeParam$6, 'b');
+const tmpCalleeParam$4 = $(tmpCalleeParam$6, 'b');
 $(tmpCalleeParam$4, 'first B');
 const tmpCalleeParam$10 = $('a');
 const tmpCalleeParam$11 = $('b');
-const tmpCalleeParam$8 = f(tmpCalleeParam$10, tmpCalleeParam$11);
+const tmpCalleeParam$8 = $(tmpCalleeParam$10, tmpCalleeParam$11);
 $(tmpCalleeParam$8, 'first C');
-const tmpCalleeParam$12 = f('a', 'b');
+const tmpCalleeParam$12 = $('a', 'b');
 $(tmpCalleeParam$12, 'first D');
 const tmpCalleeParam$17 = $('b');
-const tmpCalleeParam$14 = f('a', tmpCalleeParam$17);
+const tmpCalleeParam$14 = $('a', tmpCalleeParam$17);
 $(tmpCalleeParam$14, 'second A');
 const tmpCalleeParam$20 = $('a');
-const tmpCalleeParam$18 = f(tmpCalleeParam$20, 'b');
+const tmpCalleeParam$18 = $(tmpCalleeParam$20, 'b');
 $(tmpCalleeParam$18, 'second B');
 const tmpCalleeParam$24 = $('a');
 const tmpCalleeParam$25 = $('b');
-const tmpCalleeParam$22 = f(tmpCalleeParam$24, tmpCalleeParam$25);
+const tmpCalleeParam$22 = $(tmpCalleeParam$24, tmpCalleeParam$25);
 $(tmpCalleeParam$22, 'second C');
-const tmpCalleeParam$26 = f('a', 'b');
+const tmpCalleeParam$26 = $('a', 'b');
 $(tmpCalleeParam$26, 'second D');
 `````
 

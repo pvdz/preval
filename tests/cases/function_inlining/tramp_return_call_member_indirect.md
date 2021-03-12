@@ -41,15 +41,7 @@ $(r);
 ## Output
 
 `````js filename=intro
-const g = function (b) {
-  const y = b.toString();
-  return y;
-};
-const f = function (a) {
-  const x = g(a);
-  return x;
-};
-const r = f(String);
+const r = String.toString();
 $(r);
 `````
 

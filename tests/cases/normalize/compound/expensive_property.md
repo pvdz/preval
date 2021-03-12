@@ -37,11 +37,7 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-const superExpensiveFunction = function () {
-  const tmpReturnArg = $();
-  return tmpReturnArg;
-};
-const tmpAssignMemLhsObj = superExpensiveFunction();
+const tmpAssignMemLhsObj = $();
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;

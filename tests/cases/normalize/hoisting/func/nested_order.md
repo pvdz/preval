@@ -50,21 +50,9 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 const f = function () {
-  const f$1 = function () {
-    const tmpReturnArg = $();
-    return tmpReturnArg;
-  };
-  const g = function () {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
-  };
-  const h = function () {
-    const tmpReturnArg$2 = $();
-    return tmpReturnArg$2;
-  };
-  const tmpCalleeParam = f$1();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$2 = h();
+  const tmpCalleeParam = $();
+  const tmpCalleeParam$1 = $();
+  const tmpCalleeParam$2 = $();
   $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 };
 const tmpCalleeParam$3 = f();

@@ -45,18 +45,14 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function (a, b) {
-  const tmpReturnArg = $(a, b);
-  return tmpReturnArg;
-};
 const g = function (b$1) {
-  const tmpCalleeParam = f(1, b$1);
+  const tmpCalleeParam = $(1, b$1);
   const tmpReturnArg$1 = $(tmpCalleeParam);
   return tmpReturnArg$1;
 };
 const tmpCalleeParam$1 = g(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$2 = f(1, 2);
+const tmpCalleeParam$2 = $(1, 2);
 $(tmpCalleeParam$2);
 `````
 

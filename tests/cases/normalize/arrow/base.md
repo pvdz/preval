@@ -28,11 +28,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = () => {
-  const tmpReturnArg = $(1);
-  return tmpReturnArg;
-};
-f();
+$(1);
 `````
 
 ## Globals

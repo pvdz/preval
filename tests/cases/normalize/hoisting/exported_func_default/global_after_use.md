@@ -33,7 +33,7 @@ const f = function () {
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };
-const tmpCalleeParam = f(1);
+const tmpCalleeParam = $(2);
 $(tmpCalleeParam);
 export { f as default };
 `````

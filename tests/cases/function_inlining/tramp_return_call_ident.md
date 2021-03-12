@@ -41,15 +41,7 @@ $(r);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  const y = $(10);
-  return y;
-};
-const f = function () {
-  const x = g();
-  return x;
-};
-const r = f();
+const r = $(10);
 $(r);
 `````
 

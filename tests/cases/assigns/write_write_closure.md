@@ -35,13 +35,10 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(x, 'closure');
-};
-let x = $(1);
-x = $(2);
-$(x);
-f();
+$(1);
+const SSA_x = $(2);
+$(SSA_x);
+$(SSA_x, 'closure');
 `````
 
 ## Globals

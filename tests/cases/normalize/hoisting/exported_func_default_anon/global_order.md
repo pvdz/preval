@@ -51,8 +51,8 @@ const g = function () {
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
-const tmpCalleeParam = f();
-const tmpCalleeParam$1 = g();
+const tmpCalleeParam = $();
+const tmpCalleeParam$1 = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
   const tmpReturnArg$2 = $();

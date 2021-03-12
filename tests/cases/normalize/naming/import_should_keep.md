@@ -54,7 +54,7 @@ const g = function (x$2) {
 };
 const c = class {};
 export { c };
-const tmpCalleeParam = f();
+const tmpCalleeParam = $(1);
 const x = $(tmpCalleeParam);
 export { x };
 export { f };

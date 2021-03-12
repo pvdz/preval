@@ -59,9 +59,6 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $('pass');
-};
 const tmpSwitchValue = $(2);
 let tmpSwitchCaseToStart = 2;
 const tmpBinLhs = $(1);
@@ -78,13 +75,13 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$2) {
-    f();
+    $('pass');
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
-      f();
-      f();
+      $('pass');
+      $('pass');
     }
   }
 }

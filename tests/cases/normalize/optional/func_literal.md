@@ -40,11 +40,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpReturnArg = $(3);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 = $(3);
 $(tmpCalleeParam$1);
 `````
 

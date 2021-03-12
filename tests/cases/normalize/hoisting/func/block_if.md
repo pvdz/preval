@@ -34,10 +34,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const f = function () {
-    $(1);
-  };
-  f();
+  $(1);
 }
 `````
 

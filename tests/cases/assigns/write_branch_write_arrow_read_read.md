@@ -44,19 +44,15 @@ $(x, 'final');
 ## Output
 
 `````js filename=intro
-let x = $(1);
+$(1);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  x = $(2, 'branch');
-  const f = () => {
-    const tmpReturnArg = $(x, 'arrow');
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam = f();
+  const SSA_x$1 = $(2, 'branch');
+  const tmpCalleeParam = $(SSA_x$1, 'arrow');
   $(tmpCalleeParam, 'result');
 }
-x = $(3, 'after');
-$(x, 'final');
+const SSA_x = $(3, 'after');
+$(SSA_x, 'final');
 `````
 
 ## Globals

@@ -35,10 +35,7 @@ f();
 `````js filename=intro
 $(1);
 const SSA_x = $(2);
-const f = function () {
-  $(SSA_x, 'f');
-};
-f();
+$(SSA_x, 'f');
 `````
 
 ## Globals

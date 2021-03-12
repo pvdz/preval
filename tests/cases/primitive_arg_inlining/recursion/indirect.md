@@ -55,10 +55,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (n) {
-  const tmpReturnArg = g(n);
-  return tmpReturnArg;
-};
 const g = function (n$1) {
   const tmpCalleeParam = n$1 + 1;
   const tmpReturnArg$1 = h(tmpCalleeParam);
@@ -70,11 +66,11 @@ const h = function (n$2) {
   if (tmpIfTest) {
     return n$2;
   } else {
-    const tmpReturnArg$2 = f(n$2);
+    const tmpReturnArg$2 = g(n$2);
     return tmpReturnArg$2;
   }
 };
-const tmpCalleeParam$1 = f(0);
+const tmpCalleeParam$1 = g(0);
 $(tmpCalleeParam$1);
 `````
 

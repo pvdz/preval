@@ -46,12 +46,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const top = function () {
-  const a = function () {
-    $(4);
-  };
   $(3);
   $(5);
-  a();
+  $(4);
   $(6);
 };
 const tmpCalleeParam = top();

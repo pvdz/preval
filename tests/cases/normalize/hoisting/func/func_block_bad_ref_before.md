@@ -37,10 +37,7 @@ g();
 ## Output
 
 `````js filename=intro
-const g = function () {
-  f();
-};
-g();
+f();
 `````
 
 ## Globals

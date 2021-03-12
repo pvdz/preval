@@ -91,7 +91,6 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
-      case 'FunctionDeclaration:before': // export default func only
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
         funcStack.push(node);
@@ -101,7 +100,6 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
-      case 'FunctionDeclaration:after': // export default func only
       case 'FunctionExpression:after':
       case 'ArrowFunctionExpression:after': {
         funcStack.pop();
@@ -138,14 +136,17 @@ export function phase1(fdata, resolve, req) {
 
         const body = node.body.body;
         if (body.length === 1) {
-          if (body[0].type === 'ReturnStatement') {
+          const stmt = body[0];
+          if (stmt.type === 'ReturnStatement') {
             // All usages can be inlined with the arg, provided the arg is reachable from the call sites (relevant for closures)
             if (AST.isPrimitive(body[0].argument)) {
               node.$p.inlineMe = 'single return with primitive';
             }
           }
         } else if (body.length === 2) {
-          if (body[1].type === 'ReturnStatement' && body[0].type === 'VariableDeclaration') {
+          const one = body[0];
+          const two = body[1];
+          if (two.type === 'ReturnStatement' && one.type === 'VariableDeclaration') {
             const decl = body[0];
             const decr = decl.declarations[0];
             const ret = body[1];
@@ -168,15 +169,6 @@ export function phase1(fdata, resolve, req) {
           }
         }
 
-        break;
-      }
-
-      case 'ClassDeclaration:after': {
-        if (node.id) {
-          const meta = globallyUniqueNamingRegistry.get(node.id.name);
-          ASSERT(meta);
-          meta.isImplicitGlobal = false;
-        }
         break;
       }
 

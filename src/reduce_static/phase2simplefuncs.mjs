@@ -12,45 +12,52 @@ export function inlineSimpleFuncCalls(fdata) {
         meta.reads.forEach((read) => {
           if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
             // This read was a call to the function
-            if (funcNode.$p.inlineMe === 'single return with primitive') {
-              rule('Function that only returns primitive must be inlined');
-              example('function f() { return 5; } f();', '5;');
-              before(read.node, read.parentNode);
+            switch (funcNode.$p.inlineMe) {
+              case 'single return with primitive': {
+                rule('Function that only returns primitive must be inlined');
+                example('function f() { return 5; } f();', '5;');
+                before(read.node, read.parentNode);
 
-              if (read.grandIndex >= 0) {
-                read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcNode.body.body[0].argument);
-              } else {
-                read.grandNode[read.grandProp] = AST.cloneSimple(funcNode.body.body[0].argument);
+                if (read.grandIndex >= 0) {
+                  read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcNode.body.body[0].argument);
+                } else {
+                  read.grandNode[read.grandProp] = AST.cloneSimple(funcNode.body.body[0].argument);
+                }
+                ++inlinedFuncCount;
+
+                after(read.parentNode);
+                break;
               }
-              ++inlinedFuncCount;
+              case 'double with primitive': {
+                rule('Function that returns local primitive should be inlined');
+                example('function f() { const x = undefined; return x; } f();', 'undefined;');
+                before(read.node, read.parentNode);
 
-              after(read.parentNode);
-            } else if (funcNode.$p.inlineMe === 'double with primitive') {
-              rule('Function that returns local primitive should be inlined');
-              example('function f() { const x = undefined; return x; } f();', 'undefined;');
-              before(read.node, read.parentNode);
+                if (read.grandIndex >= 0) {
+                  read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
+                } else {
+                  read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                }
+                ++inlinedFuncCount;
 
-              if (read.grandIndex >= 0) {
-                read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
-              } else {
-                read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                after(read.parentNode);
+                break;
               }
-              ++inlinedFuncCount;
+              case 'double with array with primitives': {
+                rule('Function that returns array literal with only primitives should be inlined');
+                example('function f() { const arr = [1, 2]; return arr; } f();', '[1, 2];');
+                before(read.node, read.parentNode);
 
-              after(read.parentNode);
-            } else if (funcNode.$p.inlineMe === 'double with array with primitives') {
-              rule('Function that returns array literal with only primitives should be inlined');
-              example('function f() { const arr = [1, 2]; return arr; } f();', '[1, 2];');
-              before(read.node, read.parentNode);
+                if (read.grandIndex >= 0) {
+                  read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
+                } else {
+                  read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                }
+                ++inlinedFuncCount;
 
-              if (read.grandIndex >= 0) {
-                read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
-              } else {
-                read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                after(read.parentNode);
+                break;
               }
-              ++inlinedFuncCount;
-
-              after(read.parentNode);
             }
           }
         });

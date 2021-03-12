@@ -22,7 +22,7 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 tmpSwitchBreak: {
   const tmpIfTest = tmpSwitchCaseToStart <= 0;

@@ -29,7 +29,7 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+const tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

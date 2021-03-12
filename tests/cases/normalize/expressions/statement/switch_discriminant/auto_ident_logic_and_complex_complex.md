@@ -25,11 +25,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-if (tmpSwitchTest) {
+let tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
+if (tmpSwitchValue) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpSwitchTest = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpSwitchValue = tmpCallCallee$1(tmpCalleeParam$1);
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -44,8 +44,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSwitchTest = $(tmpCalleeParam);
-if (tmpSwitchTest) {
+const tmpSwitchValue = $(tmpCalleeParam);
+if (tmpSwitchValue) {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);
 }

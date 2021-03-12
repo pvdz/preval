@@ -24,10 +24,10 @@ switch (x) {
 
 `````js filename=intro
 let x = 1;
-const tmpSwitchTest = x;
+const tmpSwitchValue = x;
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

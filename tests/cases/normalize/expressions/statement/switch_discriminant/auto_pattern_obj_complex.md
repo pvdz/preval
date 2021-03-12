@@ -26,7 +26,7 @@ let $tdz$__pattern_after_default = { a: 999, b: 1000 };
 let a = $tdz$__pattern_after_default.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+const tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

@@ -38,7 +38,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {

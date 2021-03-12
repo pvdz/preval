@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 a = $(x);
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

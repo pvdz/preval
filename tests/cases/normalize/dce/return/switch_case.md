@@ -25,10 +25,10 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }
@@ -47,10 +47,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   }

@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = tmpCallCallee(tmpCalleeParam);
 }
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {

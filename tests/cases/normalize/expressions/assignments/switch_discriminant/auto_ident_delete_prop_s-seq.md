@@ -30,7 +30,7 @@ $(1);
 $(2);
 const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

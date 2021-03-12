@@ -25,17 +25,17 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-if (tmpSwitchTest) {
+let tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
+if (tmpSwitchValue) {
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpSwitchTest = tmpCallCallee$1(tmpCalleeParam$1);
-  if (tmpSwitchTest) {
+  tmpSwitchValue = tmpCallCallee$1(tmpCalleeParam$1);
+  if (tmpSwitchValue) {
   } else {
     const tmpCallCallee$2 = $;
     const tmpCalleeParam$2 = $(2);
-    tmpSwitchTest = tmpCallCallee$2(tmpCalleeParam$2);
+    tmpSwitchValue = tmpCallCallee$2(tmpCalleeParam$2);
   }
 }
 let tmpSwitchCaseToStart = 0;
@@ -51,12 +51,12 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
-const tmpSwitchTest = $(tmpCalleeParam);
-if (tmpSwitchTest) {
+const tmpSwitchValue = $(tmpCalleeParam);
+if (tmpSwitchValue) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  const SSA_tmpSwitchTest = $(tmpCalleeParam$1);
-  if (SSA_tmpSwitchTest) {
+  const SSA_tmpSwitchValue = $(tmpCalleeParam$1);
+  if (SSA_tmpSwitchValue) {
   } else {
     const tmpCalleeParam$2 = $(2);
     $(tmpCalleeParam$2);

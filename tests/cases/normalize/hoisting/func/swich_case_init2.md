@@ -30,13 +30,13 @@ let f = function () {
   const tmpReturnArg = $(x, 'x');
   return tmpReturnArg;
 };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchTest;
+const tmpIfTest = 0 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchTest;
+  const tmpIfTest$1 = 1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }
@@ -64,13 +64,13 @@ const f = function () {
   const tmpReturnArg = $(x, 'x');
   return tmpReturnArg;
 };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchTest;
+const tmpIfTest = 0 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchTest;
+  const tmpIfTest$1 = 1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   }

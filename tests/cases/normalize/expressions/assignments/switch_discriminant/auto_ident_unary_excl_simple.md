@@ -27,7 +27,7 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 a = !arg;
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

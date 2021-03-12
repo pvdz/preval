@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let $tdz$__pattern_after_default = { a: 999, b: 1000 };
 let a = $tdz$__pattern_after_default.a;
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs;
 const tmpCallCallee = $;
@@ -31,7 +31,7 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpBinLhs = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -44,12 +44,12 @@ $(a);
 `````js filename=intro
 const $tdz$__pattern_after_default = { a: 999, b: 1000 };
 $tdz$__pattern_after_default.a;
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const SSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchTest;
+const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

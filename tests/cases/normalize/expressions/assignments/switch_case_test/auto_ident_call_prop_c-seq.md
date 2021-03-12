@@ -25,12 +25,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCallObj = $(b);
 a = tmpCallObj.$(1);
 let tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -42,11 +42,11 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCallObj = $(b);
 const SSA_a = tmpCallObj.$(1);
-const tmpIfTest = SSA_a === tmpSwitchTest;
+const tmpIfTest = SSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

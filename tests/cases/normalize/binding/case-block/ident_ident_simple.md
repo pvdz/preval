@@ -23,10 +23,10 @@ let a = 1;
 let b = 2;
 let c = 3;
 let a$1;
-const tmpSwitchTest = $('a');
+const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -45,10 +45,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 2;
-const tmpSwitchTest = $('a');
+const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

@@ -23,8 +23,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
-tmpSwitchTest = $(60);
+let tmpSwitchValue = undefined;
+tmpSwitchValue = $(60);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

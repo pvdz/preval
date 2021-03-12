@@ -40,7 +40,7 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpSwitchTest = varInitAssignLhsComputedRhs;
+const tmpSwitchValue = varInitAssignLhsComputedRhs;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

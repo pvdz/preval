@@ -27,7 +27,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest = undefined;
+let tmpSwitchValue = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpSwitchTest = tmpChainElementObject$1;
+    tmpSwitchValue = tmpChainElementObject$1;
   }
 }
 let tmpSwitchCaseToStart = 0;

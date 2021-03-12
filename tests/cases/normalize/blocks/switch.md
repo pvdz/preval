@@ -24,30 +24,30 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 5;
 const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(4);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
     const tmpBinLhs$2 = $(5);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchTest;
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 2;
     } else {
       const tmpBinLhs$3 = $(6);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchTest;
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 3;
       } else {
         const tmpBinLhs$4 = $(7);
-        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchTest;
+        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
         if (tmpIfTest$4) {
           tmpSwitchCaseToStart = 4;
         }
@@ -75,30 +75,30 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 5;
 const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(4);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
     const tmpBinLhs$2 = $(5);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchTest;
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 2;
     } else {
       const tmpBinLhs$3 = $(6);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchTest;
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 3;
       } else {
         const tmpBinLhs$4 = $(7);
-        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchTest;
+        const tmpIfTest$4 = tmpBinLhs$4 === tmpSwitchValue;
         if (tmpIfTest$4) {
           tmpSwitchCaseToStart = 4;
         }

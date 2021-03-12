@@ -27,9 +27,9 @@ switch (1) {
 let b;
 let c;
 let a;
-const tmpSwitchTest = 1;
+const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchTest;
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

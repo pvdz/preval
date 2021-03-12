@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let $tdz$__pattern_after_default = { a: 999, b: 1000 };
 let a = $tdz$__pattern_after_default.a;
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

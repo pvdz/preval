@@ -492,9 +492,7 @@ export function phaseNormalOnce(fdata) {
         before(node);
 
         const tmpLabel = createUniqueGlobalLabel('tmpSwitchBreak', fdata.globallyUniqueLabelRegistry);
-        //YOYO
-        //const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
-        const tmpNameValue = createFreshVar('tmpSwitchTest', fdata);
+        const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
         const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
         const defaultIndex = node.cases.findIndex((n) => !n.test);
 

@@ -32,7 +32,7 @@ const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpSwitchTest = varInitAssignLhsComputedRhs;
+const tmpSwitchValue = varInitAssignLhsComputedRhs;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-const tmpSwitchTest = -tmpUnaryArg;
+const tmpSwitchValue = -tmpUnaryArg;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

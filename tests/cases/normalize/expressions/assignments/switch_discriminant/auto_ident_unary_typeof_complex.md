@@ -28,7 +28,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

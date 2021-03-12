@@ -26,10 +26,10 @@ let y = 2;
 let z = [10, 20, 30];
 let x$1;
 let y$1;
-const tmpSwitchTest = $('a');
+const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
@@ -52,10 +52,10 @@ $(x, y, z);
 
 `````js filename=intro
 const z = [10, 20, 30];
-const tmpSwitchTest = $('a');
+const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

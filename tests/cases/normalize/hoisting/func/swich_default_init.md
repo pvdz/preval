@@ -28,9 +28,9 @@ let f = function () {
   const tmpReturnArg = $('f');
   return tmpReturnArg;
 };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
-const tmpIfTest = 1 === tmpSwitchTest;
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }
@@ -55,9 +55,9 @@ const f = function () {
   const tmpReturnArg = $('f');
   return tmpReturnArg;
 };
-const tmpSwitchTest = $(1);
+const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
-const tmpIfTest = 1 === tmpSwitchTest;
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
 }

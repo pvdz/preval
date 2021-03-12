@@ -25,10 +25,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
-if (tmpSwitchTest) {
+let tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
+if (tmpSwitchValue) {
 } else {
-  tmpSwitchTest = 2;
+  tmpSwitchValue = 2;
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;

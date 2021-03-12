@@ -54,20 +54,20 @@ switch (x) {
 
 `````js filename=intro
 let x = 1;
-const tmpSwitchTest = x;
+const tmpSwitchValue = x;
 let tmpSwitchCaseToStart = 3;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
     const tmpBinLhs$2 = $(3);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchTest;
+    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
     if (tmpIfTest$2) {
       tmpSwitchCaseToStart = 2;
     }

@@ -29,7 +29,7 @@ a = tmpCallCallee(tmpCalleeParam);
 if (a) {
   a = 2;
 }
-let tmpSwitchTest = a;
+let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

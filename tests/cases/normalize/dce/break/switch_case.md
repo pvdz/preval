@@ -27,10 +27,10 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchTest = $(1, 'disc');
+    const tmpSwitchValue = $(1, 'disc');
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(1, 'case');
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
@@ -53,10 +53,10 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchTest = $(1, 'disc');
+    const tmpSwitchValue = $(1, 'disc');
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(1, 'case');
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }

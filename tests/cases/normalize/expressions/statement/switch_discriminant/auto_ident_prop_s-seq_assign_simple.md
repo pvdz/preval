@@ -29,7 +29,7 @@ let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpSwitchTest = varInitAssignLhsComputedRhs;
+const tmpSwitchValue = varInitAssignLhsComputedRhs;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

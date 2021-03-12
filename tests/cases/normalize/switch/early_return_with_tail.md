@@ -33,24 +33,24 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchTest = $(7);
+  const tmpSwitchValue = $(7);
   let tmpSwitchCaseToStart = 4;
-  const tmpIfTest = 0 === tmpSwitchTest;
+  const tmpIfTest = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
     const tmpBinLhs = $(1);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
       const tmpBinLhs$1 = $(4);
-      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchTest;
+      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue;
       if (tmpIfTest$2) {
         tmpSwitchCaseToStart = 2;
       } else {
         const tmpBinLhs$2 = $(7);
-        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchTest;
+        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchValue;
         if (tmpIfTest$3) {
           tmpSwitchCaseToStart = 3;
         }
@@ -91,24 +91,24 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpSwitchTest = $(7);
+  const tmpSwitchValue = $(7);
   let tmpSwitchCaseToStart = 4;
-  const tmpIfTest = 0 === tmpSwitchTest;
+  const tmpIfTest = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
     const tmpBinLhs = $(1);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
       const tmpBinLhs$1 = $(4);
-      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchTest;
+      const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue;
       if (tmpIfTest$2) {
         tmpSwitchCaseToStart = 2;
       } else {
         const tmpBinLhs$2 = $(7);
-        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchTest;
+        const tmpIfTest$3 = tmpBinLhs$2 === tmpSwitchValue;
         if (tmpIfTest$3) {
           tmpSwitchCaseToStart = 3;
         }

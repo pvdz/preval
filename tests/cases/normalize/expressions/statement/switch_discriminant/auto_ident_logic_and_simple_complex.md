@@ -23,11 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpSwitchTest = 1;
-if (tmpSwitchTest) {
+let tmpSwitchValue = 1;
+if (tmpSwitchValue) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpSwitchTest = tmpCallCallee(tmpCalleeParam);
+  tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;

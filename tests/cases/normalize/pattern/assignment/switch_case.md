@@ -25,9 +25,9 @@ switch (0) {
 `````js filename=intro
 let a;
 let b;
-const tmpSwitchTest = 0;
+const tmpSwitchValue = 0;
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 0 === tmpSwitchTest;
+const tmpIfTest = 0 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }

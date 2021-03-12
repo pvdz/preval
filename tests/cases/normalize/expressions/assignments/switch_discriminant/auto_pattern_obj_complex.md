@@ -24,12 +24,12 @@ $(a);
 `````js filename=intro
 let $tdz$__pattern_after_default = { a: 999, b: 1000 };
 let a = $tdz$__pattern_after_default.a;
-let tmpSwitchTest;
+let tmpSwitchValue;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpSwitchTest = tmpNestedAssignObjPatternRhs;
+tmpSwitchValue = tmpNestedAssignObjPatternRhs;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

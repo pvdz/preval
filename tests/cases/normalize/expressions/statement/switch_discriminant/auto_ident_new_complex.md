@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
-const tmpSwitchTest = new tmpNewCallee(1);
+const tmpSwitchValue = new tmpNewCallee(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

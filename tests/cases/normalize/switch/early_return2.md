@@ -26,17 +26,17 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchTest = 1;
+  const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 3;
-  const tmpIfTest = 0 === tmpSwitchTest;
+  const tmpIfTest = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 1 === tmpSwitchTest;
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
-      const tmpIfTest$2 = 2 === tmpSwitchTest;
+      const tmpIfTest$2 = 2 === tmpSwitchValue;
       if (tmpIfTest$2) {
         tmpSwitchCaseToStart = 2;
       }

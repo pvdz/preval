@@ -39,15 +39,15 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 2;
   const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
     const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     }
@@ -82,15 +82,15 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpSwitchTest = $(1, 'disc');
+  const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 2;
   const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchTest;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
     const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchTest;
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     }

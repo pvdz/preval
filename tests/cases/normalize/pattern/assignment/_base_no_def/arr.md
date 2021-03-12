@@ -22,6 +22,14 @@ let x = 10;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 10;
+[x] = [100];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +58,8 @@ None
 Should call `$` with:
  - 1: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

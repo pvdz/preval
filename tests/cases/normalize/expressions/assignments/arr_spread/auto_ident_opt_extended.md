@@ -18,6 +18,15 @@ $([...(a = b?.x.y.z)]);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: { z: 100 } } };
+let a = { a: 999, b: 1000 };
+$([...(a = b?.x.y.z)]);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +78,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

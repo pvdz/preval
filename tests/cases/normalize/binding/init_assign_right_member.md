@@ -16,6 +16,14 @@ let c = 20;
 let a = b.x = c
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 10;
+let c = 20;
+let a = (b.x = c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +48,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot create property 'x' on number '10' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

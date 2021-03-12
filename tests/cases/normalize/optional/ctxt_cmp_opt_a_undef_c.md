@@ -15,6 +15,13 @@ const a = {b: {}};
 $($(a)?.[$('b')][$('c')](100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = { b: {} };
+$($(a)?.[$('b')][$('c')](100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +73,8 @@ Should call `$` with:
  - 2: 'b'
  - 3: 'c'
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

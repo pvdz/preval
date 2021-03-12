@@ -24,6 +24,31 @@ switch ($(1)) {
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+{
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 1;
+  if ((a = delete arg[$('y')]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+      $('fail1');
+    }
+    if (tmpSwitchCaseToStart <= 2) {
+      $('fail2');
+    }
+  }
+}
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -98,6 +123,8 @@ Should call `$` with:
  - 4: 'fail2'
  - 5: true, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

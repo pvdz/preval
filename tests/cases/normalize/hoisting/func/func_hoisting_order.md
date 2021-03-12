@@ -22,6 +22,19 @@ function a(){}
 $(a,b,d,f,h,x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = function () {};
+let b = function () {};
+let d = function () {};
+let f = function () {};
+let h = function () {};
+let l = function () {};
+let x = function () {};
+$(a, b, d, f, h, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +69,8 @@ None
 Should call `$` with:
  - 1: '<function>', '<function>', '<function>', '<function>', '<function>', '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

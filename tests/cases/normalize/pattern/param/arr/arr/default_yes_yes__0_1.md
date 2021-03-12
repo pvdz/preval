@@ -18,6 +18,16 @@ function f(tmp) {
 f(true);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmp) {
+  [] = tmp;
+  return 'bad';
+};
+f(true);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +57,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

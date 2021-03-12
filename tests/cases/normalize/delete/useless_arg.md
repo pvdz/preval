@@ -14,6 +14,12 @@
 $(delete $(1));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(delete $(1));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 1
  - 2: true
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

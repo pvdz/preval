@@ -15,6 +15,14 @@ if ($(true)) var x;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+if ($(true));
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +48,8 @@ Should call `$` with:
  - 1: true
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

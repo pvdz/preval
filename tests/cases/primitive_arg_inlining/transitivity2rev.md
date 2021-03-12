@@ -21,6 +21,19 @@ $(g(2));
 $(f(1, 2)); // Should ultimately reuse the cloned func from the prev call
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (a, b) {
+  return $(a, b);
+};
+let g = function (b$1) {
+  return $(f(1, b$1));
+};
+$(g(2));
+$(f(1, 2));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +82,8 @@ Should call `$` with:
  - 4: 1, 2
  - 5: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

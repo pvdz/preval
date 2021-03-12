@@ -16,6 +16,23 @@ function i({x: {y: {z}}}) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let i = function (tmpParamPattern) {
+  let {
+    x: {
+      y: { z$1 },
+    },
+  } = tmpParamPattern;
+  {
+    let z$2 = 2;
+  }
+  return z$1;
+};
+let z = 1;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +61,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

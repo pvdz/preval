@@ -22,6 +22,24 @@ export class c {}
 export const x = $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let x$1 = $(1);
+  return x$1;
+};
+let g = function (x$2) {
+  return x$2;
+};
+let c = class {};
+export { c };
+const x = $(f());
+export { x };
+export { f };
+export { g };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +87,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

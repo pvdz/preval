@@ -12,6 +12,12 @@
 if (new ($($))) $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+if (new ($($))()) $(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +49,8 @@ Should call `$` with:
  - 2: 
  - 3: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

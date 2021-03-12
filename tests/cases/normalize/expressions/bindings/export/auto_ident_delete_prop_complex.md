@@ -17,6 +17,15 @@ export let a = delete $(arg).y;
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = delete $(arg).y;
+export { a };
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

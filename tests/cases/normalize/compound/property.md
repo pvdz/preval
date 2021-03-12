@@ -29,6 +29,26 @@ obj.x += 5; // This line should become `obj.x = obj.x + 5`
 $(a, s); // 5, 'read;write[5]'
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let s = '';
+let a = 0;
+const obj = {
+  get x() {
+    s += 'read;';
+    return a;
+  },
+  set x(v) {
+    s += 'write[' + v + '];';
+    a += v;
+    return a;
+  },
+};
+obj.x += 5;
+$(a, s);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -89,6 +109,8 @@ None
 Should call `$` with:
  - 1: 5, 'read;write[5];'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

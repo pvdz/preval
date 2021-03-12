@@ -12,6 +12,12 @@
 $?.(15);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$?.(15);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ None
 Should call `$` with:
  - 1: 15
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

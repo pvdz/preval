@@ -14,6 +14,12 @@
 $(false?.toString());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(false?.toString());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +52,8 @@ None
 Should call `$` with:
  - 1: 'false'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

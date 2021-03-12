@@ -15,6 +15,16 @@ var a = 10, b = 20, c = {};
 $(a = b = $(c).x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+(a = 10), (b = 20), (c = {});
+$((a = b = $(c).x));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +62,8 @@ Should call `$` with:
  - 1: {}
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

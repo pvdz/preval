@@ -12,6 +12,19 @@
 function i({x: {y: {z}}} = d ) { return z }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let i = function (tmpParamDefault) {
+  let {
+    x: {
+      y: { z },
+    },
+  } = tmpParamDefault === undefined ? d : tmpParamDefault;
+  return z;
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +57,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

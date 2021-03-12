@@ -20,6 +20,24 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  {
+    let tmpDoWhileFlag = true;
+    while (tmpDoWhileFlag || $(true)) {
+      tmpDoWhileFlag = false;
+      {
+        throw $(1, 'return');
+      }
+    }
+  }
+  $('keep, do not eval');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -80,6 +98,8 @@ None
 Should call `$` with:
  - 1: 1, 'return'
  - eval returned: ('<crash[ 1 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

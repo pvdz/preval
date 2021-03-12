@@ -31,6 +31,27 @@ let f = function () {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  const x = 0;
+  if (x) {
+    $('a');
+  } else {
+    const y = 1;
+    if (y) {
+      $('b');
+    } else {
+      $('c');
+    }
+    $('after inner');
+  }
+  $('after outer');
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +95,8 @@ Should call `$` with:
  - 2: 'after inner'
  - 3: 'after outer'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

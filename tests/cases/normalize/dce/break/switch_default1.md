@@ -24,6 +24,30 @@ while ($(true)) {
 $('after, do not evaluate (infinite loop)');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  {
+    const tmpSwitchValue = $(1, 'disc');
+    let tmpSwitchCaseToStart = 1;
+    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+        $('keep, do not eval');
+        break tmpSwitchBreak;
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+        break tmpSwitchBreak;
+      }
+    }
+  }
+  $('keep');
+}
+$('after, do not evaluate (infinite loop)');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -124,6 +148,8 @@ Should call `$` with:
  - 25: true
  - 26: 1, 'disc'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

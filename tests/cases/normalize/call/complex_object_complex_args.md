@@ -15,6 +15,13 @@ const a = {b: $};
 $(a).b($(1), $(2));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = { b: $ };
+$(a).b($(1), $(2));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +56,8 @@ Should call `$` with:
  - 3: 2
  - 4: 1, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

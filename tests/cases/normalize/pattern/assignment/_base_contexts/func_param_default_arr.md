@@ -15,6 +15,16 @@ const f = (a = [ x ] = [100]) => { return $(a) };
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = (tmpParamDefault) => {
+  let a = tmpParamDefault === undefined ? ([x] = [100]) : tmpParamDefault;
+  return $(a);
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +75,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,14 @@ let b = {x: 1, y: 2}
 for (a in b) $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a;
+let b = { x: 1, y: 2 };
+for (a in b) $(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +54,8 @@ Should call `$` with:
  - 1: 'x'
  - 2: 'y'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,18 @@ $(...($(b)[$("x")] = $(c)[$("y")] = d + e));
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = { a: 999, b: 1000 };
+$(...($(b)[$('x')] = $(c)[$('y')] = d + e));
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +83,8 @@ Should call `$` with:
  - 3: { y: '2' }
  - 4: 'y'
  - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -20,6 +20,18 @@ foo: while (true) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+foo: while (true) {
+  $(1);
+  while (true) {
+    $(2);
+    continue foo;
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -78,6 +90,8 @@ Should call `$` with:
  - 25: 1
  - 26: 2
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

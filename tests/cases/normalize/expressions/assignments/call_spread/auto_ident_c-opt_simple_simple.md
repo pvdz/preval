@@ -18,6 +18,15 @@ $(...(a = b?.["x"]));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+$(...(a = b?.['x']));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +69,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

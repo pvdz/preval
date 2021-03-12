@@ -16,6 +16,14 @@ throw function () {};
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+throw function () {};
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +47,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ function() {} ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,16 @@ obj[(a = $(b)?.[$("x")])];
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+let obj = {};
+obj[(a = $(b)?.[$('x')])];
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +79,8 @@ Should call `$` with:
  - 2: 'x'
  - 3: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

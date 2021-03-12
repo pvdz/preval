@@ -15,6 +15,15 @@
 $(y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({
+  x: [{ ...y }],
+} = { x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 });
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +65,8 @@ y
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

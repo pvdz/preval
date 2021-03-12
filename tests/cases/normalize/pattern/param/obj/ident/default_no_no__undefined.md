@@ -17,6 +17,16 @@ function f({ x }) {
 $(f(undefined, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let { x } = tmpParamPattern;
+  return 'bad';
+};
+$(f(undefined, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +59,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

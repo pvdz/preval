@@ -15,6 +15,14 @@ var a = undefined;
 $(a?.b());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+a = undefined;
+$(a?.b());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +55,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

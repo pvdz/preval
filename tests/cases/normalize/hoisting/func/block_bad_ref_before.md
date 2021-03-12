@@ -19,6 +19,17 @@ f(); // This ought to trigger TDZ (or whatever)...
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+f();
+{
+  let f$1 = function () {
+    $(1);
+  };
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +55,8 @@ f
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

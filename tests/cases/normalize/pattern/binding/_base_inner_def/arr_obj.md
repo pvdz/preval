@@ -12,6 +12,12 @@
 const [{ x = a }] = [{}];
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [{ x = a }] = [{}];
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +59,8 @@ a
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

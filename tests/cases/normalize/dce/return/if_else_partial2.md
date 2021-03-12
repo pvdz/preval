@@ -22,6 +22,20 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(1)) {
+  } else {
+    return 2;
+    $('fail');
+  }
+  $('keep, do not eval');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +78,8 @@ Should call `$` with:
  - 2: 'keep, do not eval'
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

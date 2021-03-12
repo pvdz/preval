@@ -25,6 +25,24 @@ do {
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = 3;
+let a = { a: 999, b: 1000 };
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || ($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c)) {
+    tmpDoWhileFlag = false;
+    {
+      $(100);
+    }
+  }
+}
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -147,6 +165,8 @@ Should call `$` with:
  - 25: { x: '3' }
  - 26: 'x'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

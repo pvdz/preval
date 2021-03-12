@@ -14,6 +14,12 @@
 $(new Array(5 + 5, $(), Array.prototype.length));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(new Array(5 + 5, $(), Array.prototype.length));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +53,8 @@ Should call `$` with:
  - 1: 
  - 2: [10, undefined, 0]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

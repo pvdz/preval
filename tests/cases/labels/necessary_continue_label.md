@@ -20,6 +20,28 @@ foo: do {
 } while ($(false));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+dropme: {
+  let tmpDoWhileFlag$1 = true;
+  foo: while (tmpDoWhileFlag$1 || $(false)) {
+    tmpDoWhileFlag$1 = false;
+    $(1, 'outer');
+    {
+      let tmpDoWhileFlag = true;
+      while (tmpDoWhileFlag || $(false)) {
+        tmpDoWhileFlag = false;
+        {
+          $(1, 'inner');
+          continue foo;
+        }
+      }
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -99,6 +121,8 @@ Should call `$` with:
  - 2: 1, 'inner'
  - 3: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

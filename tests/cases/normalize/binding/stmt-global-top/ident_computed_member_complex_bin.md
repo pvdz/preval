@@ -16,6 +16,16 @@ let a = $(b)[$('x')] = c + d;
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 2 },
+  c = 3,
+  d = 4;
+let a = ($(b)[$('x')] = c + d);
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +61,8 @@ Should call `$` with:
  - 2: 'x'
  - 3: 7, { x: '7' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

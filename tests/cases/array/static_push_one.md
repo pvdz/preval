@@ -18,6 +18,14 @@ arr.push(1);
 $(arr);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const arr = [];
+arr.push(1);
+$(arr);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +51,8 @@ None
 Should call `$` with:
  - 1: [1]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -20,6 +20,18 @@ foo: if (x) {
 $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(100);
+$(0);
+foo: if (x) {
+  $(1);
+  break foo;
+}
+$(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +72,8 @@ Should call `$` with:
  - 3: 1
  - 4: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

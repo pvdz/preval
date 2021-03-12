@@ -16,6 +16,16 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  const y = (1, 2, $(parseInt))();
+  return $(y);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +64,8 @@ Should call `$` with:
  - 2: NaN
  - 3: NaN
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

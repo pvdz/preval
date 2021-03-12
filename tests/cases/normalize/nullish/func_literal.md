@@ -17,6 +17,15 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return $('foo' ?? length);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +72,8 @@ Should call `$` with:
  - 1: 'foo'
  - 2: 'foo'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

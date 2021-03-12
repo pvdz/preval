@@ -18,6 +18,15 @@ let a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+[...+arg];
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +53,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

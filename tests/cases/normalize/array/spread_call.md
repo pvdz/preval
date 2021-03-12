@@ -14,6 +14,12 @@
 $([...$("foo")]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$([...$('foo')]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +47,8 @@ Should call `$` with:
  - 1: 'foo'
  - 2: ['f', 'o', 'o']
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

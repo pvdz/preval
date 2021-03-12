@@ -21,6 +21,18 @@ for ((a = $(b)[$("x")] = $(c)[$("y")] = d + e).x of $({ x: 1 }));
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = { a: 999, b: 1000 };
+for ((a = $(b)[$('x')] = $(c)[$('y')] = d + e).x of $({ x: 1 }));
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -82,6 +94,8 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

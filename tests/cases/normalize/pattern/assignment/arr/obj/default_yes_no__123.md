@@ -15,6 +15,13 @@
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[{} = $('pass')] = undefined;
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +77,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

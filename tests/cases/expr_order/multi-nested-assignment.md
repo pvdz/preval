@@ -24,6 +24,56 @@ a().x = b().x = c().x = d().x = e()
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+a = function () {
+  $('a');
+  return obj;
+};
+b = function () {
+  $('b');
+  a = 21;
+  return obj;
+};
+c = function () {
+  $('c');
+  a = 31;
+  b = 32;
+  return obj;
+};
+d = function () {
+  $('d');
+  a = 41;
+  b = 42;
+  c = 43;
+  return obj;
+};
+e = function () {
+  $('e');
+  a = 51;
+  b = 52;
+  c = 53;
+  d = 54;
+  return obj;
+};
+a().x = b().x = c().x = d().x = e();
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -153,6 +203,8 @@ Should call `$` with:
  - 5: 'e'
  - 6: 51, 52, 53, 54, '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

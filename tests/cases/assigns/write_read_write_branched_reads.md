@@ -20,6 +20,16 @@ if ($(1)) $(x, 'b');
 else $(x, 'c');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+$(x, 'a');
+x = $(2);
+if ($(1)) $(x, 'b');
+else $(x, 'c');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +71,8 @@ Should call `$` with:
  - 4: 1
  - 5: 2, 'b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

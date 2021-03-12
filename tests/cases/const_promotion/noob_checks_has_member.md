@@ -20,6 +20,29 @@ x = $(20);
 $(x, a, b, 'final');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let x = $(10);
+a = function () {
+  return x;
+};
+b = {
+  set x(n) {
+    x = $(30, 'from set');
+  },
+  get x() {
+    return $(40, 'from get');
+  },
+};
+a = 2;
+b.x = x;
+x = $(20);
+$(x, a, b, 'final');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +97,8 @@ Should call `$` with:
  - 3: 20
  - 4: 20, 2, { x: '<get/set>' }, 'final'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

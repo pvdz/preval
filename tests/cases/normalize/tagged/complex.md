@@ -14,6 +14,12 @@
 $`abc ${ 10 } def`;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$`abc ${10} def`;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +45,8 @@ None
 Should call `$` with:
  - 1: ['abc ', ' def'], 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -24,6 +24,22 @@ $(f());
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let p =
+    tmpParamDefault === undefined
+      ? ($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c)
+      : tmpParamDefault;
+};
+let b = { x: 1 },
+  c = 3;
+let a = { a: 999, b: 1000 };
+$(f());
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -125,6 +141,8 @@ Should call `$` with:
  - 13: undefined
  - 14: { a: '999', b: '1000' }, { x: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,14 @@ obj['x'] = 2;
 $(obj);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = { x: 1 };
+obj['x'] = 2;
+$(obj);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +49,8 @@ None
 Should call `$` with:
  - 1: { x: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

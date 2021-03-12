@@ -16,6 +16,12 @@ Note: in strict mode this in global is gonna be bad.
 $(this);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(this);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

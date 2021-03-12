@@ -19,6 +19,16 @@ let obj = {};
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+let obj = {};
+(void arg).a;
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +55,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

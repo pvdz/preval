@@ -14,6 +14,14 @@ const a = 10;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = 10;
+[[x = a]] = [[]];
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +69,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

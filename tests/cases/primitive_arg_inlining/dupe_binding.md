@@ -37,6 +37,17 @@ $(f($(1), $(2)), 'outer1');
 $(f(100, $(200)), 'outer2');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (a, b) {
+  $(a, b);
+  return a;
+};
+$(f($(1), $(2)), 'outer1');
+$(f(100, $(200)), 'outer2');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -91,6 +102,8 @@ Should call `$` with:
  - 6: 100, 200
  - 7: 100, 'outer2'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

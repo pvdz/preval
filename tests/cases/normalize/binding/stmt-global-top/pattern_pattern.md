@@ -16,6 +16,16 @@ let [a, b] = [, x, y] = z;
 $(a, b, x, y, z);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2,
+  z = [10, 20, 30];
+let [a, b] = ([, x, y] = z);
+$(a, b, x, y, z);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +66,8 @@ None
 Should call `$` with:
  - 1: 10, 20, 20, 30, [10, 20, 30]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

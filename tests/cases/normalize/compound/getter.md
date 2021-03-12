@@ -18,6 +18,14 @@ obj.x += 5;
 $(obj.x); // 5
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = { x: 0 };
+obj.x += 5;
+$(obj.x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +59,8 @@ None
 Should call `$` with:
  - 1: 5
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

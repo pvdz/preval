@@ -19,6 +19,19 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let b = 2,
+    c = 3,
+    d = 4;
+  let a = (b = $(c).y = $(d));
+  $(a, b, c);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +75,8 @@ Should call `$` with:
  - 1: 3
  - 2: 4
  - eval returned: ("<crash[ Cannot create property 'y' on number '3' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

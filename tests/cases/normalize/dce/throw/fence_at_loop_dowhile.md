@@ -28,6 +28,30 @@ function f(){
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  while ($(true)) {
+    $('loop');
+    {
+      let tmpDoWhileFlag = true;
+      while (tmpDoWhileFlag || $(true)) {
+        tmpDoWhileFlag = false;
+        {
+          $('loop');
+          throw $(7, 'throw');
+          $('fail');
+        }
+      }
+    }
+    $('do not visit, do not eliminate');
+  }
+  $('after (not invoked)');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -111,6 +135,8 @@ Should call `$` with:
  - 3: 'loop'
  - 4: 7, 'throw'
  - eval returned: ('<crash[ 7 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

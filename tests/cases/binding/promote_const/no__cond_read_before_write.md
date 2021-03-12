@@ -25,6 +25,21 @@ var x;
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+{
+  if ($(0)) {
+    $(x, 'fail');
+  }
+  x = 10;
+  if ($(1)) {
+    $(x);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +79,8 @@ Should call `$` with:
  - 2: 1
  - 3: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

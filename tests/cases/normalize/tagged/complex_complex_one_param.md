@@ -29,6 +29,15 @@ function f(x) { return x; }
 f`abc ${ $(10) } ${ $(20) } def`;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (x) {
+  return x;
+};
+f`abc ${$(10)} ${$(20)} def`;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +68,8 @@ Should call `$` with:
  - 1: 10
  - 2: 20
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

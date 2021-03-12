@@ -14,6 +14,12 @@
 ({x: 1, y: 2});
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({ x: 1, y: 2 });
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -34,6 +40,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

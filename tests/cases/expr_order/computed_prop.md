@@ -14,6 +14,12 @@
 $(1)[$(2)];
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(1)[$(2)];
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

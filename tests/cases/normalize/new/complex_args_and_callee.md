@@ -14,6 +14,12 @@
 $(new ($())(5 + 5, $(), Array.prototype.length));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(new ($())(5 + 5, $(), Array.prototype.length));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +54,8 @@ Should call `$` with:
  - 1: 
  - 2: 
  - eval returned: ('<crash[ <ref> is not a constructor ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

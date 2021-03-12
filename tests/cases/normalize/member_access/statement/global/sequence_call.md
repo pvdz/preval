@@ -14,6 +14,12 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 ($(1), $(2)).toString;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+($(1), $(2)).toString;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

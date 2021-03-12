@@ -31,6 +31,128 @@ $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obja = undefined;
+let objb = undefined;
+let objc = undefined;
+let objd = undefined;
+let obje = undefined;
+let $$ = function (...a$1) {
+  $(['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1], { depth: null });
+  return a$1[0];
+};
+obja = {
+  get a() {
+    $$('a.get');
+    return 110;
+  },
+  set a(x) {
+    $$('a.set', x);
+    return 1000;
+  },
+};
+objb = {
+  get b() {
+    $$('b.get');
+    a = 210;
+    return 100;
+  },
+  set b(x$1) {
+    $$('b.set', x$1);
+    a = 2100;
+    return 2000;
+  },
+};
+objc = {
+  get c() {
+    $$('c.get');
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c(x$2) {
+    $$('c.set', x$2);
+    a = 3100;
+    b = 3200;
+    return 3000;
+  },
+};
+objd = {
+  get d() {
+    $$('d.get');
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d(x$3) {
+    $$('d.set', x$3);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    return 4000;
+  },
+};
+obje = {
+  get e() {
+    $$('e.get');
+    a = 510;
+    b = 520;
+    c = 530;
+    d = 540;
+    return 100;
+  },
+  set e(x$4) {
+    $$('e.set', x$4);
+    a = 5100;
+    b = 5200;
+    c = 5300;
+    d = 5400;
+    return 5000;
+  },
+};
+a = function () {
+  $$('a');
+  return obja;
+};
+b = function () {
+  $$('b');
+  a = 21;
+  return objb;
+};
+c = function () {
+  $$('c');
+  a = 31;
+  b = 32;
+  return objc;
+};
+d = function () {
+  $$('d');
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+e = function () {
+  $$('e');
+  a = 51;
+  b = 52;
+  c = 53;
+  d = 54;
+  return obje;
+};
+$$((a().a = b().b = c().c = d().d = e()));
+$$(a, b, c, d, e);
+$$(obja, objb, objc, objd, obje);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -541,6 +663,8 @@ Should call `$` with:
   { depth: 'null' },
 
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

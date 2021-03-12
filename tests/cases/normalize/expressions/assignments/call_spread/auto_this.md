@@ -18,6 +18,14 @@ $(a);
 //*/// (end of file artifact)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(...(a = this));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +53,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

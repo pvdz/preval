@@ -15,6 +15,13 @@ var x;
 $(!!((x = 'foo'), $(x)));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+$(!!((x = 'foo'), $(x)));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +53,8 @@ Should call `$` with:
  - 1: 'foo'
  - 2: true
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

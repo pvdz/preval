@@ -14,6 +14,12 @@
 $(a = 5);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$((a = 5));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ a
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

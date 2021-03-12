@@ -15,6 +15,13 @@ const y = (1, 2, 3)??foo
 $(y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const y = (1, 2, 3) ?? foo;
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +55,8 @@ foo
 Should call `$` with:
  - 1: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

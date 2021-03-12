@@ -14,6 +14,12 @@
 [...[10, 20], 2, ...[30, 40]];
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[...[10, 20], 2, ...[30, 40]];
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -34,6 +40,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

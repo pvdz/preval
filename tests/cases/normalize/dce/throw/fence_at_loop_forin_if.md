@@ -36,6 +36,32 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  while ($(true)) {
+    $('loop');
+    for (let x in { a: 1, b: 2 }) {
+      $('loop', x);
+      if ($(1, 'if')) {
+        $('pass');
+        throw $(7, 'throw');
+        $('fail');
+      } else {
+        $('do not visit');
+        throw $(8, 'throw');
+        $('fail');
+      }
+      $('fail -> DCE');
+    }
+    $('after (not invoked but should not be eliminated)');
+  }
+  $('after (not invoked)');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -119,6 +145,8 @@ Should call `$` with:
  - 5: 'pass'
  - 6: 7, 'throw'
  - eval returned: ('<crash[ 7 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

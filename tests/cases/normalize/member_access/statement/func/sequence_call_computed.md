@@ -19,6 +19,17 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let c = 'foo';
+  ($(1), $(2))[$('toString')];
+  $(c);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +73,8 @@ Should call `$` with:
  - 4: 'foo'
  - 5: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({ x: [] = $(['fail']) } = '');
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +66,8 @@ Should call `$` with:
  - 1: ['fail']
  - 2: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

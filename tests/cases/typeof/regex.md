@@ -14,6 +14,12 @@ Regular expressions are objects. They do not have a special type, only special s
 $(typeof /1/);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(typeof /1/);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ None
 Should call `$` with:
  - 1: 'object'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

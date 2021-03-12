@@ -18,6 +18,15 @@ while ((a = $($(b)).x--)) $(100);
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+while ((a = $($(b)).x--)) $(100);
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -78,6 +87,8 @@ Should call `$` with:
  - 5: { x: '0' }
  - 6: 0, { x: '-1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

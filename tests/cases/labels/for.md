@@ -19,6 +19,21 @@ foo: for(;$(true);) {
 $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(0);
+dropme: {
+  foo: while ($(true)) {
+    {
+      if (1) break foo;
+      else continue foo;
+    }
+  }
+}
+$(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +75,8 @@ Should call `$` with:
  - 2: true
  - 3: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

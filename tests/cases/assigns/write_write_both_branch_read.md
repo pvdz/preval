@@ -17,6 +17,15 @@ else x = $(3);
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+if ($(10)) x = $(2);
+else x = $(3);
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ Should call `$` with:
  - 3: 2
  - 4: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,15 @@ x = obj[$('foo')];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = { foo: 10 };
+let x = 10;
+x = obj[$('foo')];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ Should call `$` with:
  - 1: 'foo'
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

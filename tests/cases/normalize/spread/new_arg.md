@@ -15,6 +15,22 @@ let a=1,b=2,c=3,d=4,e=5,f=6,g={h:[7]},h=8,x=8.5,y=String;
 new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = 2,
+  c = 3,
+  d = 4,
+  e = 5,
+  f = 6,
+  g = { h: [7] },
+  h = 8,
+  x = 8.5,
+  y = String;
+new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -58,6 +74,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

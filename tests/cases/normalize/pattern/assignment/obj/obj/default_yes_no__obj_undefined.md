@@ -15,6 +15,13 @@
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({ x: {} = $({ x: 'pass' }) } = { x: undefined, b: 11, c: 12 });
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +81,8 @@ Should call `$` with:
  - 1: { x: '"pass"' }
  - 2: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

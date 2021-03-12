@@ -15,6 +15,13 @@
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[[...x]] = undefined;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +53,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

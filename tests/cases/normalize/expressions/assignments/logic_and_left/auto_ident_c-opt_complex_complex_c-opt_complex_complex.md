@@ -18,6 +18,15 @@ $((a = $(b)?.[$("x")]?.[$("y")]) && $(100));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: 1 } };
+let a = { a: 999, b: 1000 };
+$((a = $(b)?.[$('x')]?.[$('y')]) && $(100));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -87,6 +96,8 @@ Should call `$` with:
  - 5: 100
  - 6: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

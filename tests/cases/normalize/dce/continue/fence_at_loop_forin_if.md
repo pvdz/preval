@@ -33,6 +33,29 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  $('loop');
+  for (let x in { a: 1, b: 2 }) {
+    $('loop', x);
+    if ($(1)) {
+      $('pass');
+      continue;
+      $('fail');
+    } else {
+      $('do not visit');
+      continue;
+      $('fail');
+    }
+    $('fail -> DCE');
+  }
+  $('infiloop, do not eliminate');
+}
+$('after (not invoked)');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -123,6 +146,8 @@ Should call `$` with:
  - 25: 1
  - 26: 'pass'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

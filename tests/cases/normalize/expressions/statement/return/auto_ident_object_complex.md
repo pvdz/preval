@@ -19,6 +19,17 @@ $(f());
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return { x: $(1), y: 2, z: $(3) };
+};
+let a = { a: 999, b: 1000 };
+$(f());
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +74,8 @@ Should call `$` with:
  - 3: { x: '1', y: '2', z: '3' }
  - 4: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ let x = `${`a ${$(1)} b`}`;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = `${`a ${$(1)} b`}`;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +50,8 @@ Should call `$` with:
  - 1: 1
  - 2: 'a 1 b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

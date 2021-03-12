@@ -25,6 +25,21 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  $('loop');
+  for (let x in { a: 1, b: 2 }) {
+    $('loop', x);
+    continue;
+    $('fail');
+  }
+  $('infiloop, do not eliminate');
+}
+$('after (not invoked)');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -101,6 +116,8 @@ Should call `$` with:
  - 25: 'infiloop, do not eliminate'
  - 26: true
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -17,6 +17,16 @@ function f([{ x = $('pass') } = $({ x: 'fail2' })]) {
 $(f(0));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let [{ x = $('pass') } = $({ x: 'fail2' })] = tmpParamPattern;
+  return 'bad';
+};
+$(f(0));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -84,6 +94,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

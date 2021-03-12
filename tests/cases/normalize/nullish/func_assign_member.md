@@ -19,6 +19,17 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let y = undefined;
+  y = (1, 2, $()) ?? foo;
+  return $(y);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +75,8 @@ foo
 Should call `$` with:
  - 1: 
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

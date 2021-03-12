@@ -17,6 +17,17 @@ let a = $(2);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let a$1 = $(1);
+  $(a$1);
+}
+let a = $(2);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +58,8 @@ Should call `$` with:
  - 3: 2
  - 4: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

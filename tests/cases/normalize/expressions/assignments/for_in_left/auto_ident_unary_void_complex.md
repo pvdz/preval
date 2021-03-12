@@ -16,6 +16,14 @@ for ((a = void $(100)).x in $({ x: 1 }));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+for ((a = void $(100)).x in $({ x: 1 }));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +67,8 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: 100
  - eval returned: ("<crash[ Cannot set property 'x' of undefined ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

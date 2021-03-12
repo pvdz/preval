@@ -14,6 +14,12 @@
 $(`${"why"}`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`${'why'}`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 Should call `$` with:
  - 1: 'why'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

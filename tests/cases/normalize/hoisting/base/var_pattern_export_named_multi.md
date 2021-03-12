@@ -16,6 +16,18 @@ export var [x] = [10], [y] = [20];
 $(x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+let y = undefined;
+$(x, y);
+([x] = [10]), ([y] = [20]);
+$(x, y);
+export { x };
+export { y };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +68,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

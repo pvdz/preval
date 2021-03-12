@@ -12,6 +12,12 @@
 ($(1), $(2), $(3), $(4), ($(5), $(6)));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(1), $(2), $(3), $(4), ($(5), $(6));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +54,8 @@ Should call `$` with:
  - 5: 5
  - 6: 6
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,14 @@ $({ x: (a = void $(100)) });
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$({ x: (a = void $(100)) });
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +57,8 @@ Should call `$` with:
  - 2: { x: 'undefined' }
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

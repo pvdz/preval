@@ -16,6 +16,14 @@ const y = x;
 $(x == y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = {};
+const y = x;
+$(x == y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +51,8 @@ None
 Should call `$` with:
  - 1: true
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

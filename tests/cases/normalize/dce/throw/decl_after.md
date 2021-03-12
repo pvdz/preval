@@ -24,6 +24,17 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(false)) x = $('fail too');
+  throw 'exit';
+  let x = $('fail');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +75,8 @@ None
 Should call `$` with:
  - 1: false
  - eval returned: ('<crash[ exit ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

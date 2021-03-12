@@ -15,6 +15,13 @@ class x extends y {}
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class extends y {};
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +46,8 @@ y
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -22,6 +22,20 @@ function g() {
 $(g());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let g = function () {
+  let f = function () {
+    return [10, y, z];
+  };
+  const y = $(20);
+  const z = $(30);
+  $(f());
+};
+$(g());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +84,8 @@ Should call `$` with:
  - 3: [10, 20, 30]
  - 4: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,15 @@ $($(0) ? $(100) : (a = typeof x));
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+$($(0) ? $(100) : (a = typeof x));
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +73,8 @@ Should call `$` with:
  - 2: 'number'
  - 3: 'number', 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

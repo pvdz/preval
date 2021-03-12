@@ -24,6 +24,19 @@ f();
 $(100, a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  a = y;
+};
+let a = 1;
+const x = 3;
+const y = x;
+f();
+$(100, a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +70,8 @@ None
 Should call `$` with:
  - 1: 100, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

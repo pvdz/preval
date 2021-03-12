@@ -15,6 +15,15 @@ function f(...args){ $('f', args); }
 $(f?.(1, 2, 3));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (...args) {
+  $('f', args);
+};
+$(f?.(1, 2, 3));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +66,8 @@ Should call `$` with:
  - 1: 'f', [1, 2, 3]
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

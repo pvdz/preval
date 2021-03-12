@@ -18,6 +18,15 @@ $`before ${(a = $(b)?.[$("$")]?.($(1)))} after`;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = { a: 999, b: 1000 };
+$`before ${(a = $(b)?.[$('$')]?.($(1)))} after`;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +94,8 @@ Should call `$` with:
  - 5: ['before ', ' after'], 1
  - 6: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,14 @@ for(const n in {a: 1, b: 2}) var x = n;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+for (const n in { a: 1, b: 2 }) x = n;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +56,8 @@ None
 Should call `$` with:
  - 1: 'b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

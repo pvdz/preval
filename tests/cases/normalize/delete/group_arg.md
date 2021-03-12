@@ -14,6 +14,12 @@
 $(delete (null, foo));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(delete (null, foo));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ foo
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,16 @@ const b = 'b', c = 'c', d = 'd';
 $(a[b]?.[c][d]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = { b: { c: { d: 10 } } };
+const b = 'b',
+  c = 'c',
+  d = 'd';
+$(a[b]?.[c][d]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +77,8 @@ None
 Should call `$` with:
  - 1: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,12 @@
 $(5 in Infinity);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(5 in Infinity);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot use 'in' operator to search for '5' in Infinity ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -17,6 +17,15 @@ function f(x, y) {
 f(10);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (x, y) {
+  return $(x);
+};
+f(10);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -42,6 +51,8 @@ None
 Should call `$` with:
  - 1: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

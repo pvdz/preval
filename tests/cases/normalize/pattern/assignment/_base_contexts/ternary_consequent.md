@@ -12,6 +12,12 @@
 a ? ({ x } = 1) : c;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+a ? ({ x } = 1) : c;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +49,8 @@ a, x, c
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

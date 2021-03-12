@@ -19,6 +19,16 @@ for (let x in (a = [x, y] = ($(x), $(y), [$(3), $(4)])));
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+for (let x$1 in (a = [x$1, y] = ($(x$1), $(y), [$(3), $(4)])));
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +76,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -24,6 +24,22 @@ function h(n) {
 $(f(0));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (n) {
+  return g(n);
+};
+let g = function (n$1) {
+  return h(n$1 + 1);
+};
+let h = function (n$2) {
+  if ($(n$2) > 1000) return n$2;
+  return f(n$2);
+};
+$(f(0));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -108,6 +124,8 @@ Should call `$` with:
  - 25: 25
  - 26: 26
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

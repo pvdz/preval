@@ -18,6 +18,17 @@ if ($(true)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+if ($(true)) {
+  let b = { x: 2 },
+    c = 3;
+  let a = (b.x = c);
+  $(a, b, c);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +64,8 @@ Should call `$` with:
  - 1: true
  - 2: 3, { x: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

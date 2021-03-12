@@ -17,6 +17,15 @@ a["b"] = 2;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$((a = { b: $(1) }) && $(100));
+a['b'] = 2;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +68,8 @@ Should call `$` with:
  - 3: 100
  - 4: { b: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

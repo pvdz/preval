@@ -26,6 +26,38 @@ let { a, b: { ...rest }, c } = obj;
 $(a, c, rest);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let obj = {
+  get a() {
+    return $('a');
+  },
+  get b() {
+    return {
+      get c() {
+        return $('b');
+      },
+      get d() {
+        return $('c');
+      },
+      get e() {
+        return $('d');
+      },
+    };
+  },
+  get c() {
+    return $('c');
+  },
+};
+let {
+  a,
+  b: { ...rest },
+  c,
+} = obj;
+$(a, c, rest);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -120,6 +152,8 @@ Should call `$` with:
  - 5: 'c'
  - 6: 'a', 'c', { c: '"b"', d: '"c"', e: '"d"' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,18 @@ const a = {
 $(a)[$('x')]?.(1, 2, 3);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = {
+  x: function (...args) {
+    $(args, this.y);
+  },
+  y: 100,
+};
+$(a)[$('x')]?.(1, 2, 3);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +80,8 @@ Should call `$` with:
  - 2: 'x'
  - 3: [1, 2, 3], 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

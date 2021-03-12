@@ -21,6 +21,25 @@ export function f() {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let f$1 = function () {
+    return $();
+  };
+  let g = function () {
+    return $();
+  };
+  let h = function () {
+    return $();
+  };
+  $(f$1(), g(), h());
+};
+$(f());
+export { f };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +90,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,16 @@ Make sure SSA doesn't apply here, or at least makes sure that the assignment in 
   }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let run = true;
+while (run) {
+  $(1);
+  run = false;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +65,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

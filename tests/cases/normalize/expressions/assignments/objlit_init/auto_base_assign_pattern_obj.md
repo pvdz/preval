@@ -18,6 +18,15 @@ $({ x: (a = { b } = $({ b: $(2) })) });
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = {};
+let a = { a: 999, b: 1000 };
+$({ x: (a = { b } = $({ b: $(2) })) });
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +69,8 @@ Should call `$` with:
  - 3: { x: '{"b":"2"}' }
  - 4: { b: '2' }, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

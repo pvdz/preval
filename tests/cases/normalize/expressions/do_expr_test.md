@@ -15,6 +15,21 @@ let a = 1, x = 3, y = 4;
 do $(a); while (x + y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  x = 3,
+  y = 4;
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || x + y) {
+    tmpDoWhileFlag = false;
+    $(a);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +105,8 @@ Should call `$` with:
  - 25: 1
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

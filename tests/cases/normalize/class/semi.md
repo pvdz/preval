@@ -19,6 +19,16 @@ class x {
 $(new x().b());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class {
+  a() {}
+  b() {}
+};
+$(new x().b());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +63,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

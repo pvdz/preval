@@ -21,6 +21,25 @@ while ($(true)) {
 $('after, do not evaluate (infinite loop)');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  {
+    let tmpDoWhileFlag = true;
+    while (tmpDoWhileFlag || $(true)) {
+      tmpDoWhileFlag = false;
+      {
+        break;
+        $('fail');
+      }
+    }
+  }
+  $('keep');
+}
+$('after, do not evaluate (infinite loop)');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -111,6 +130,8 @@ Should call `$` with:
  - 25: true
  - 26: 'keep'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

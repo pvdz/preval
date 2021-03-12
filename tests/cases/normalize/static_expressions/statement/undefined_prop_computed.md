@@ -17,6 +17,13 @@ $(undefined[$('keep me')]);
 $('fail, DCE me');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(undefined[$('keep me')]);
+$('fail, DCE me');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +48,8 @@ None
 Should call `$` with:
  - 1: 'keep me'
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: BAD?!
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

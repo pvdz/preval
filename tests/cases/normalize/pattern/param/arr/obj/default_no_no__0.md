@@ -17,6 +17,16 @@ function f([{}]) {
 $(f(0, 100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let [{}] = tmpParamPattern;
+  return 'bad';
+};
+$(f(0, 100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +81,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

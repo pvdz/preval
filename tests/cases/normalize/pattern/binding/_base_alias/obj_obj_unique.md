@@ -18,6 +18,22 @@ const {x: {y: {z: a}}} = 1
 { let a = 1; }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let a$1 = 1;
+}
+const {
+  x: {
+    y: { z: a },
+  },
+} = 1;
+{
+  let a$2 = 1;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +61,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

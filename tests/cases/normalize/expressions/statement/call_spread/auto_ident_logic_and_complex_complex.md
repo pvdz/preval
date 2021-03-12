@@ -16,6 +16,14 @@ $(...($($(1)) && $($(2))));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(...($($(1)) && $($(2))));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +67,8 @@ Should call `$` with:
  - 3: 2
  - 4: 2
  - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

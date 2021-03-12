@@ -20,6 +20,18 @@ a[$("b")] = 2;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return (a = { b: $(1) });
+};
+let a = { a: 999, b: 1000 };
+$(f());
+a[$('b')] = 2;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +81,8 @@ Should call `$` with:
  - 3: 'b'
  - 4: { b: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

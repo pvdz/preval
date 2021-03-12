@@ -17,6 +17,15 @@ function f(){
 $({...f()});
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return $({ x: 1 });
+};
+$({ ...f() });
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: { x: '1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

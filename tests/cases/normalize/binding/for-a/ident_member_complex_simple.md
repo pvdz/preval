@@ -15,6 +15,20 @@ let a = 1, b = {x: 2}, c = 3;
 for (let a = $(b).x = c;false;) $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = { x: 2 },
+  c = 3;
+{
+  let a$1 = ($(b).x = c);
+  while (false) {
+    $(a$1, b, c);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +58,8 @@ None
 Should call `$` with:
  - 1: { x: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

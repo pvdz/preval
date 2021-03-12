@@ -20,6 +20,37 @@ switch ($('a')) { case $('a'): let a = $(obj)[$('x')] = $(obj)[$('y')] = $(d); b
 $(a, b, c, d, obj);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let obj = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+let a = 1,
+  b = { x: 2 },
+  c = 3,
+  d = 4;
+{
+  let a$1;
+  const tmpSwitchValue = $('a');
+  let tmpSwitchCaseToStart = 1;
+  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      a$1 = $(obj)[$('x')] = $(obj)[$('y')] = $(d);
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(a, b, c, d, obj);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -113,6 +144,8 @@ Should call `$` with:
  - 7: 4
  - 8: 1, { x: '2' }, 3, 4, { c: '<get/set>', y: '4', x: '4' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

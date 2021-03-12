@@ -19,6 +19,22 @@ Maybe in the future we can come up with a solution where with more analysis we c
 switch (1) { default: let x = x; $('fail'); }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let x;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 0;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      x = x;
+      $('fail');
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +61,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: BAD?!
  - 1: 'fail'

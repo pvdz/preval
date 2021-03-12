@@ -17,6 +17,15 @@ $((a *= { b: $(1) }));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$((a *= { b: $(1) }));
+($(1), a)['b'] = $(2);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +71,8 @@ Should call `$` with:
  - 3: 1
  - 4: 2
  - eval returned: ("<crash[ Cannot create property 'b' on number 'NaN' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

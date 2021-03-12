@@ -24,6 +24,22 @@ $(f($('a'), $('b')), 'second C');
 $(f('a', 'b'), 'second D');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (a, b) {
+  return $(a, b);
+};
+$(f('a', $('b')), 'first A');
+$(f($('a'), 'b'), 'first B');
+$(f($('a'), $('b')), 'first C');
+$(f('a', 'b'), 'first D');
+$(f('a', $('b')), 'second A');
+$(f($('a'), 'b'), 'second B');
+$(f($('a'), $('b')), 'second C');
+$(f('a', 'b'), 'second D');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -144,6 +160,8 @@ Should call `$` with:
  - 23: 'a', 'b'
  - 24: 'a', 'second D'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

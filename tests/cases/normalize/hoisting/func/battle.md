@@ -25,6 +25,21 @@ $(top());
 
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let top = function () {
+  let a = function () {
+    $(4);
+  };
+  $(3);
+  $(5);
+  a();
+  $(6);
+};
+$(top());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +83,8 @@ Should call `$` with:
  - 4: 6
  - 5: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

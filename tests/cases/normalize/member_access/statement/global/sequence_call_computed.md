@@ -16,6 +16,14 @@ let c = 1;
 $(c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let c = 1;
+($(1), $(2))[$('toString')];
+$(c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +57,8 @@ Should call `$` with:
  - 3: 'toString'
  - 4: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

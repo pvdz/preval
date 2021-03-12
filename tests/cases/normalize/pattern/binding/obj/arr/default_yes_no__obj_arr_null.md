@@ -15,6 +15,13 @@ const { x: [] = $(['fail']) } = { x: [null], a: 11, b: 12 };
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const { x: [] = $(['fail']) } = { x: [null], a: 11, b: 12 };
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +68,8 @@ None
 Should call `$` with:
  - 1: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

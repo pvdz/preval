@@ -18,6 +18,16 @@ export default a = -arg;
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+const tmpAnonDefaultExport = (a = -arg);
+export { tmpAnonDefaultExport as default };
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +55,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

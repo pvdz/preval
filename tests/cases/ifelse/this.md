@@ -22,6 +22,20 @@ const obj = {f, foo: 10};
 $(obj.f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(1)) {
+    if ($(2)) {
+      return this;
+    }
+  }
+};
+const obj = { f, foo: 10 };
+$(obj.f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +84,8 @@ Should call `$` with:
  - 2: 2
  - 3: { f: '"<function>"', foo: '10' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

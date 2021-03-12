@@ -16,6 +16,16 @@ const a = {b: $};
 $(a)[b()]($(1), $(2));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = function () {
+  return $('b');
+};
+const a = { b: $ };
+$(a)[b()]($(1), $(2));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +67,8 @@ Should call `$` with:
  - 4: 2
  - 5: 1, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

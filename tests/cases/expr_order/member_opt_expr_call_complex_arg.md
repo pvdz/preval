@@ -17,6 +17,14 @@ var a, x;
 a?.b(x.y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let x = undefined;
+a?.b(x.y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +56,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,14 @@ throw $({ a: 1, b: 2 });
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let { a } = { a: 999, b: 1000 };
+throw $({ a: 1, b: 2 });
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +54,8 @@ None
 Should call `$` with:
  - 1: { a: '1', b: '2' }
  - eval returned: ('<crash[ [object Object] ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,15 @@ for (let x of ($(1), $(2), $(x)));
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+for (let x$1 of ($(1), $(2), $(x$1)));
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

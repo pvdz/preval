@@ -28,6 +28,26 @@ const out = f('abc');
 $(out);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (op) {
+  let ap = undefined;
+  const useDef = op === undefined;
+  if (useDef) {
+    const p = { a: 'fail' };
+    ap = $(p);
+  } else {
+    ap = op;
+  }
+  const tmpCalleeParam$2 = [];
+  let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
+  return x;
+};
+const out = f('abc');
+$(out);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -77,6 +97,8 @@ None
 Should call `$` with:
  - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

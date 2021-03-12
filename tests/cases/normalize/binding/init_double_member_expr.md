@@ -15,6 +15,13 @@ let x = "foo".length.toString;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 'foo'.length.toString;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +46,8 @@ None
 Should call `$` with:
  - 1: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

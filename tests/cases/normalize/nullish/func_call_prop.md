@@ -15,6 +15,15 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return $(parseInt(15) ?? foo);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +70,8 @@ Should call `$` with:
  - 1: 15
  - 2: 15
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,14 @@ a = 'Identifier'.length === 'woop'.length;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 0;
+a = 'Identifier'.length === 'woop'.length;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +51,8 @@ None
 Should call `$` with:
  - 1: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

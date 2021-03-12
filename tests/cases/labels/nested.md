@@ -14,6 +14,12 @@
 a: b: c: break a;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+a: b: c: break a;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +44,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

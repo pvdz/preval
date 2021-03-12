@@ -17,6 +17,15 @@ $(x);
 if ($(10)) $(x, 'branch')
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+x = $(2);
+$(x);
+if ($(10)) $(x, 'branch');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +63,8 @@ Should call `$` with:
  - 4: 10
  - 5: 2, 'branch'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

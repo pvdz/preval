@@ -19,6 +19,17 @@ for (let [x] in [x]) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let y = 1;
+for (let [x$1] in [x$1]) {
+  let y$1 = 2;
+  $(x$1);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -58,6 +69,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

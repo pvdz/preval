@@ -20,6 +20,16 @@ function f(a) {
 $(f($(1), $(2), $(3), $(4)));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (a) {
+  $(arguments.length);
+  return a;
+};
+$(f($(1), $(2), $(3), $(4)));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +78,8 @@ Should call `$` with:
  - 5: 4
  - 6: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

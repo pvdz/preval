@@ -15,6 +15,13 @@ let a = (10, 20, 30) ? (40, 50, 60) : $($(100));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = (10, 20, 30) ? (40, 50, 60) : $($(100));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +52,8 @@ None
 Should call `$` with:
  - 1: 60
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

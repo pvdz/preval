@@ -15,6 +15,20 @@ let a = 1, b = 2, z = [10, 20, 30];
 for (let [x, y] = ($(a), $(b), z);false;) $(a, b, x, y, z);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = 2,
+  z = [10, 20, 30];
+{
+  let [x, y] = ($(a), $(b), z);
+  while (false) {
+    $(a, b, x, y, z);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +64,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

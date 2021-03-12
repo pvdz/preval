@@ -19,6 +19,16 @@ $($(100) && (a = b = 2));
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 1,
+  c = 2;
+let a = { a: 999, b: 1000 };
+$($(100) && (a = b = 2));
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +74,8 @@ Should call `$` with:
  - 2: 2
  - 3: 2, 2, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

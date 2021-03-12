@@ -15,6 +15,22 @@ var a,b,c,d,e,f,g,h,x,y;
 x.y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let f = undefined;
+let g = undefined;
+let h = undefined;
+let x = undefined;
+let y = undefined;
+x.y(x, 8, ...((a = b.c), (d = e[f]), g).h);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +70,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

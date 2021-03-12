@@ -19,6 +19,17 @@ At some point the block would be dropped but the function wouldn't be hoisted
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let f = function () {
+    $(1);
+  };
+  f();
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +54,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

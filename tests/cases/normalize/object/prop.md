@@ -20,6 +20,18 @@ const program = {
 };
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const fdata = { name: 1 };
+let tmpElement_1 = 2;
+let tmpElement, tmpArg_1;
+const program = {
+  modules: ((tmpElement_1 = fdata.name), (tmpElement = [tmpElement_1, fdata]), (tmpArg_1 = [tmpElement]), new Map(tmpArg_1)),
+  main: fdata.name,
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +66,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

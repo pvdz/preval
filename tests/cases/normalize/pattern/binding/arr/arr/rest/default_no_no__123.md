@@ -15,6 +15,13 @@ const [[...x]] = [[ 100, 200 ]];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [[...x]] = [[100, 200]];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +55,8 @@ None
 Should call `$` with:
  - 1: [100, 200]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

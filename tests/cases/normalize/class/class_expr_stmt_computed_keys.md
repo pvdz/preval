@@ -17,6 +17,15 @@
 });
 `````
 
+## Pre Normal
+
+`````js filename=intro
+(class x {
+  [$('a')]() {}
+  [$('b')]() {}
+});
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +50,8 @@ Should call `$` with:
  - 1: 'a'
  - 2: 'b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

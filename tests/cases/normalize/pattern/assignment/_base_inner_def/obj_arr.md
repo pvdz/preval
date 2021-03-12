@@ -12,6 +12,14 @@
 ({x: [ y = a ]} = 1);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({
+  x: [y = a],
+} = 1);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +59,8 @@ a, y
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

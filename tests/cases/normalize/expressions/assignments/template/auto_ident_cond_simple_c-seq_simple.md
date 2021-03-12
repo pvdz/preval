@@ -16,6 +16,14 @@ $(`before  ${(a = 1 ? (40, 50, $(60)) : $($(100)))}  after`);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(`before  ${(a = 1 ? (40, 50, $(60)) : $($(100)))}  after`);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +56,8 @@ Should call `$` with:
  - 2: 'before 60 after'
  - 3: 60
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

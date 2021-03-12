@@ -17,6 +17,14 @@ function f() {}
 f(a.x === 1 ? 2 : 3);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {};
+const a = { x: 1 };
+f(a.x === 1 ? 2 : 3);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +57,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

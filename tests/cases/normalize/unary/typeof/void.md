@@ -14,6 +14,12 @@
 $(typeof void $(100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(typeof void $(100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 100
  - 2: 'undefined'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

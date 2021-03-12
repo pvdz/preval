@@ -12,6 +12,14 @@
 const {x: [ y = a ]} = 1;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const {
+  x: [y = a],
+} = 1;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +58,8 @@ a
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

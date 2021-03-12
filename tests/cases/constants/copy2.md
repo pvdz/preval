@@ -15,6 +15,15 @@ const wow = bar;
 $(wow)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const foo = 'five';
+const bar = foo;
+const wow = bar;
+$(wow);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +48,8 @@ None
 Should call `$` with:
  - 1: 'five'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

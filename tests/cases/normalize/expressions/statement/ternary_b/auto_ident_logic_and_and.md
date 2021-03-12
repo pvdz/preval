@@ -16,6 +16,14 @@ $(1) ? $($(1)) && $($(1)) && $($(2)) : $(200);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(1) ? $($(1)) && $($(1)) && $($(2)) : $(200);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -79,6 +87,8 @@ Should call `$` with:
  - 7: 2
  - 8: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

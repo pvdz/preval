@@ -21,6 +21,30 @@ switch ($(1)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+f();
+{
+  let f$1 = function () {
+    $('pass');
+  };
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 2;
+  if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else if ($(2) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      f$1();
+      break tmpSwitchBreak;
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +114,8 @@ f
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

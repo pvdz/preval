@@ -19,6 +19,16 @@ class x {
 x().y;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const y = 'y';
+let x = class {
+  x() {}
+};
+x().y;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +58,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Class constructor x cannot be invoked without 'new' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

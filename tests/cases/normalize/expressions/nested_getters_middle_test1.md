@@ -19,6 +19,12 @@ const b = {
 };
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const b = { get foo() {} };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +45,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

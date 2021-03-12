@@ -16,6 +16,14 @@ let x = 10;
 $('fail');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+x;
+let x = 10;
+$('fail');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +45,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: BAD?!
  - 1: 'fail'

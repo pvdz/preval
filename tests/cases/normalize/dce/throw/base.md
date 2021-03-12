@@ -18,6 +18,16 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  throw $(5, 'ret');
+  $('fail');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +60,8 @@ None
 Should call `$` with:
  - 1: 5, 'ret'
  - eval returned: ('<crash[ 5 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

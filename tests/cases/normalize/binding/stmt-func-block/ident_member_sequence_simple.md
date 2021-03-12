@@ -21,6 +21,20 @@ let b = {x: 2}, c = 3;
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(true)) {
+    let b = { x: 2 },
+      c = 3;
+    let a = (b.x, c).foo;
+    $(a, b, c);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +81,8 @@ Should call `$` with:
  - 2: undefined, { x: '2' }, 3
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

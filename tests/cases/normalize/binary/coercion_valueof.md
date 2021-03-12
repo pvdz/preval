@@ -16,6 +16,14 @@ const b = 2;
 a < b; // This shouldn't be eliminated because it triggers the valueOf above
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = $({ valueOf: $ });
+const b = 2;
+a < b;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +52,8 @@ Should call `$` with:
  - 1: { valueOf: '"<$>"' }
  - 2: 
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,16 @@ var a = {x:1}, b = {x:2}, c = {x:3};
 $($(a).x = $(b).x = $(c).x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+(a = { x: 1 }), (b = { x: 2 }), (c = { x: 3 });
+$(($(a).x = $(b).x = $(c).x));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +73,8 @@ Should call `$` with:
  - 3: { x: '3' }
  - 4: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

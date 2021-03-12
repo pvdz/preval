@@ -23,6 +23,21 @@ function g() {
 g();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let g = function () {
+  {
+    let f = function () {
+      return x;
+    };
+    let x = 100;
+    $(f());
+  }
+};
+g();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +68,8 @@ None
 Should call `$` with:
  - 1: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

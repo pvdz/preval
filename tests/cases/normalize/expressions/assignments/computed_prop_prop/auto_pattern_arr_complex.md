@@ -17,6 +17,15 @@ obj[([a] = $([1, 2]))];
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let [a] = { a: 999, b: 1000 };
+let obj = {};
+obj[([a] = $([1, 2]))];
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +68,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

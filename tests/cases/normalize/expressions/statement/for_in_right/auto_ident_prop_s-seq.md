@@ -18,6 +18,15 @@ for (let x in (1, 2, b).c);
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+for (let x in (1, 2, b).c);
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +61,8 @@ None
 Should call `$` with:
  - 1: { a: '999', b: '1000' }, { c: '1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

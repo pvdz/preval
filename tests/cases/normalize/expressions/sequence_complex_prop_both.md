@@ -18,6 +18,18 @@ a = (p.x, $(q)).y === ((b = c.x), $(b)).y;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 0,
+  b = 1,
+  c = { x: { y: 10 } },
+  p = { x: 20 },
+  q = 30;
+a = (p.x, $(q)).y === ((b = c.x), $(b)).y;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +76,8 @@ Should call `$` with:
  - 2: { y: '10' }
  - 3: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

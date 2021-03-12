@@ -106,6 +106,66 @@ const X_C = function (a, b, c, d, e, f, g, h, i) {
 X();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const X = function (a, b, c, d, e) {
+  const f = a.length;
+  const g = 0 === f;
+  if (g) {
+    return -1;
+  } else {
+    return X_B(a, b, c, d, e, f, g);
+  }
+};
+const X_B = function (a$1, b$1, c$1, d$1, e$1, f$1, g$1) {
+  const h = typeof c$1;
+  const i = 'string' == h;
+  if (i) {
+    return X_BA(a$1, b$1, c$1, d$1, e$1, f$1, g$1, h, true);
+  } else {
+    return X_BB(a$1, b$1, c$1, d$1, e$1, f$1, g$1, h, false);
+  }
+};
+const X_BA = function (a$2, b$2, c$2, d$2, e$2, f$2, g$2, h$1) {
+  d$2 = c$2;
+  c$2 = 0;
+  return X_C(a$2, b$2, c$2, d$2, e$2, f$2, g$2, h$1, true);
+};
+const X_BB = function (a$3, b$3, c$3, d$3, e$3, f$3, g$3, h$2) {
+  const j = 2147483647 < c$3;
+  if (j) {
+    return X_BBA(a$3, b$3, c$3, d$3, e$3, f$3, g$3, h$2);
+  } else {
+    return X_BBB(a$3, b$3, c$3, d$3, e$3, f$3, g$3, h$2);
+  }
+};
+const X_BBA = function (a$4, b$4, c$4, d$4, e$4, f$4, g$4, h$3) {
+  c$4 = 2147483647;
+  return X_BBC(a$4, b$4, c$4, d$4, e$4, f$4, g$4, h$3, false, true);
+};
+const X_BBB = function (a$5, b$5, c$5, d$5, e$5, f$5, g$5, h$4) {
+  const k = -2147483648 > c$5;
+  if (k) {
+    c$5 = -2147483648;
+  }
+  return X_BBC(a$5, b$5, c$5, d$5, e$5, f$5, g$5, h$4);
+};
+const X_BBC = function (a$6, b$6, c$6, d$6, e$6, f$6, g$6, h$5) {
+  return X_C(a$6, b$6, c$6, d$6, e$6, f$6, g$6, h$5, false);
+};
+const X_C = function (a$7, b$7, c$7, d$7, e$7, f$7, g$7, h$6, i$1) {
+  let l = +c$7;
+  const m = isNaN(l);
+  if (m) {
+    const n = a$7.length;
+    l = n - false;
+    return $(a$7, b$7, c$7, d$7, e$7, f$7, g$7, h$6, i$1, l, m);
+  }
+};
+X();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -241,6 +301,8 @@ isNaN
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

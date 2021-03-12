@@ -36,6 +36,32 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  while ($(true)) {
+    $('loop');
+    for (let x in { a: 1, b: 2 }) {
+      $('loop', x);
+      if ($(1, 'if')) {
+        $('pass');
+        return $(100, 'return');
+        $('fail');
+      } else {
+        $('do not visit');
+        return $(101, 'return');
+        $('fail');
+      }
+      $('fail -> DCE');
+    }
+    $('after (not invoked but should not be eliminated)');
+  }
+  $('after (not invoked)');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -120,6 +146,8 @@ Should call `$` with:
  - 6: 100, 'return'
  - 7: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

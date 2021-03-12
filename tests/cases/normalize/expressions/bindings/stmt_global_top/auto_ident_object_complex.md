@@ -15,6 +15,13 @@ let a = { x: $(1), y: 2, z: $(3) };
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { x: $(1), y: 2, z: $(3) };
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +52,8 @@ Should call `$` with:
  - 2: 3
  - 3: { x: '1', y: '2', z: '3' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

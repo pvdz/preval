@@ -20,6 +20,19 @@ $(f());
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let p = tmpParamDefault === undefined ? (a = [x, y] = [$(3), $(4)]) : tmpParamDefault;
+};
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+$(f());
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +98,8 @@ Should call `$` with:
  - 3: undefined
  - 4: [3, 4], 3, 4
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

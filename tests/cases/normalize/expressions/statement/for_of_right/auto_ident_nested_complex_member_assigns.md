@@ -21,6 +21,16 @@ for (let x of ($(b)[$("x")] = $(b)[$("x")] = $(b)[$("x")] = $(b)[$("x")] = $(b)[
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = 3;
+let a = { a: 999, b: 1000 };
+for (let x of ($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c));
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -107,6 +117,8 @@ Should call `$` with:
  - 11: { x: '1' }
  - 12: 'x'
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

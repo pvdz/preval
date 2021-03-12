@@ -18,6 +18,15 @@ $(...(a = !arg));
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+$(...(a = !arg));
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

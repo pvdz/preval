@@ -18,6 +18,14 @@ $(a);
 //*/// (end of file artifact)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+throw (a = this);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -42,6 +50,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ undefined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

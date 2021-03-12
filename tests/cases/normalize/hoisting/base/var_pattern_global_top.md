@@ -16,6 +16,15 @@ var [x] = [10];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+$(x);
+[x] = [10];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +56,8 @@ Should call `$` with:
  - 1: undefined
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

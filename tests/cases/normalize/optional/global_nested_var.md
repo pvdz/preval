@@ -17,6 +17,15 @@ const a = 10,
 $(c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = 10,
+  b = (a, $(2))?.toString,
+  c = (1, b)?.length;
+$(c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +77,8 @@ Should call `$` with:
  - 1: 2
  - 2: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

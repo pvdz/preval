@@ -24,6 +24,17 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(false)) x = $('fail too');
+  return;
+  let x = $('fail');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +81,8 @@ Should call `$` with:
  - 1: false
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

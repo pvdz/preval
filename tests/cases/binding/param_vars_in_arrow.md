@@ -18,6 +18,17 @@ const f = (a) => {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = (a$1) => {
+  let b$1 = undefined;
+  (a$1 = $(10)), (b$1 = $(20));
+  return [a$1, b$1];
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +68,8 @@ Should call `$` with:
  - 2: 20
  - 3: [10, 20]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

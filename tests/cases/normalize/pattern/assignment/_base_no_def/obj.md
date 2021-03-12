@@ -13,6 +13,13 @@ let x = 10;
 ({ x } = 1);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 10;
+({ x } = 1);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -35,6 +42,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

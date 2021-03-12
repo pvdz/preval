@@ -22,6 +22,20 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  if ($(1)) {
+    continue;
+    $('fail');
+  }
+  continue;
+  $('fail');
+}
+$('after, wont eval due to infinite loop');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -94,6 +108,8 @@ Should call `$` with:
  - 25: true
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -12,6 +12,12 @@
 ([ x = a ] = [1]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[x = a] = [1];
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +56,8 @@ a, x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

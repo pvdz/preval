@@ -14,6 +14,12 @@
 $({[1e4]: 10}); // This will create a key 1000, not '1e4'. Luckily this shouldn't matter for the AST but dangerous if keys get normalized to strings.
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$({ [1e4]: 10 });
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +44,8 @@ None
 Should call `$` with:
  - 1: { 10000: '10' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

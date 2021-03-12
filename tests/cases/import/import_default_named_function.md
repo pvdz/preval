@@ -26,6 +26,19 @@ export default function f() {}
 f = 10;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+import x from 'x';
+$(x);
+`````
+
+`````js filename=x
+let f = function () {};
+f = 10;
+export { f as default };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +74,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

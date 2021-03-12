@@ -15,6 +15,15 @@
 $('bad');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({
+  x: [y = 'fail'],
+} = {});
+$('bad');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +66,8 @@ y
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

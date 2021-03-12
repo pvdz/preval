@@ -15,6 +15,13 @@
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[a, ...x] = [1, 2, 3];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +52,8 @@ a, x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

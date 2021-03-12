@@ -14,6 +14,12 @@
 $(typeof Infinity);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(typeof Infinity);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 Should call `$` with:
  - 1: 'number'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

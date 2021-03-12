@@ -20,6 +20,18 @@ try {
 $(3);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(1);
+try {
+  $(2);
+} catch (e) {
+  $('fail');
+}
+$(3);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +69,8 @@ Should call `$` with:
  - 2: 2
  - 3: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

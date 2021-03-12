@@ -19,6 +19,16 @@
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let b = { c: 10, d: 20 };
+  let a = (b['c'] = $(b)[$('d')]);
+  $(a, b);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +63,8 @@ Should call `$` with:
  - 2: 'd'
  - 3: 20, { c: '20', d: '20' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

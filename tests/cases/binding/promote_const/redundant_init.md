@@ -38,6 +38,36 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if (tmpIfTest$32854) {
+    let tmpReturnArg$21651 = undefined;
+    const tmpCalleeParam$36039 = $(1);
+    const tmpCalleeParam$36040 = $(2);
+    const tmpCalleeParam$36041 = SSA_SNe$596[4];
+    const tmpCalleeParam$36042 = SSA_SNe$596[2];
+    const tmpCalleeParam$36043 = SSA_SNe$596[3];
+    const tmpCalleeParam$36044 = SSA_SNe$596[1];
+    tmpReturnArg$21651 = $(
+      100,
+      tmpCalleeParam$36039,
+      101,
+      tmpCalleeParam$36040,
+      tmpCalleeParam$36041,
+      tmpCalleeParam$36042,
+      tmpCalleeParam$36043,
+      102,
+      tmpCalleeParam$36044,
+    );
+    return tmpReturnArg$21651;
+  }
+};
+const SSA_SNe$596 = $([10, 20, 30, 40]);
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -114,6 +144,8 @@ tmpIfTest$32854
 Should call `$` with:
  - 1: [10, 20, 30, 40]
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

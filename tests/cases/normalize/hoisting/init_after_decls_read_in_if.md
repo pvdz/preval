@@ -21,6 +21,18 @@ const y = $(x, 'final');
 $(y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+let f = function () {
+  return $(x, 'returned');
+};
+x = 10;
+const y = $(x, 'final');
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +63,8 @@ Should call `$` with:
  - 1: 10, 'final'
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

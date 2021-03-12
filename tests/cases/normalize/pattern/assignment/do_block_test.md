@@ -14,6 +14,27 @@ do { [p, q] = $(b); } while (x + y);
 $(p, q);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = [10, 20],
+  x = 3,
+  y = 4,
+  p,
+  q;
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || x + y) {
+    tmpDoWhileFlag = false;
+    {
+      [p, q] = $(b);
+    }
+  }
+}
+$(p, q);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -103,6 +124,8 @@ Should call `$` with:
  - 25: [10, 20]
  - 26: [10, 20]
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

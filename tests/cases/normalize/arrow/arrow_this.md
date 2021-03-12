@@ -32,6 +32,18 @@ function f() {
 $(f.call({x: 100}));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  const g = () => {
+    return this.x;
+  };
+  return g();
+};
+$(f.call({ x: 100 }));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -79,6 +91,8 @@ None
 Should call `$` with:
  - 1: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

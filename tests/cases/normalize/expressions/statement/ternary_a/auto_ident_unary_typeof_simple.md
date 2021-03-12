@@ -18,6 +18,15 @@ typeof arg ? $(100) : $(200);
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+typeof arg ? $(100) : $(200);
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +59,8 @@ Should call `$` with:
  - 1: 100
  - 2: { a: '999', b: '1000' }, 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

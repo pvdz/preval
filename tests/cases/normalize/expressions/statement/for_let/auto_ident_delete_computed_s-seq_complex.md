@@ -18,6 +18,21 @@ for (let xyz = delete ($(1), $(2), arg)[$("y")]; ; $(1)) $(xyz);
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+{
+  let xyz = delete ($(1), $(2), arg)[$('y')];
+  while (true) {
+    $(xyz);
+    $(1);
+  }
+}
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +100,8 @@ Should call `$` with:
  - 25: 1
  - 26: true
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

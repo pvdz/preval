@@ -15,6 +15,13 @@ const [[[x]]] = [[[[1, 2, 3], 4, 5], 20, 30], 40, 50];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [[[x]]] = [[[[1, 2, 3], 4, 5], 20, 30], 40, 50];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +63,8 @@ None
 Should call `$` with:
  - 1: [1, 2, 3]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

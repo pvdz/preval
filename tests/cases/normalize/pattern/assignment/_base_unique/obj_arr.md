@@ -14,6 +14,20 @@
 { let y = 1; }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let y = 1;
+}
+({
+  x: [y$1],
+} = 1);
+{
+  let y$2 = 1;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +57,8 @@ y$1
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

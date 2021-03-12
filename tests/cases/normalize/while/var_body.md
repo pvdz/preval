@@ -14,6 +14,13 @@
 while ($(true)) var x = $(10);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+while ($(true)) x = $(10);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -75,6 +82,8 @@ Should call `$` with:
  - 25: true
  - 26: 10
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

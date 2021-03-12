@@ -31,6 +31,35 @@ while (run) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let run = true;
+while (run) {
+  $(1);
+  {
+    const tmpSwitchValue = 1;
+    let tmpSwitchCaseToStart = 1;
+    if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+        run = false;
+        break tmpSwitchBreak;
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+        continue;
+      }
+      if (tmpSwitchCaseToStart <= 2) {
+        run = false;
+        break tmpSwitchBreak;
+      }
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -99,6 +128,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

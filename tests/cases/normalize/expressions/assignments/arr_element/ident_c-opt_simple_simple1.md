@@ -16,6 +16,14 @@ let b = { x: 1 };
 $(a = b?.x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let b = { x: 1 };
+$((a = b?.x));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +64,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

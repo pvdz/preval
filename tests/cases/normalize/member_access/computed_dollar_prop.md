@@ -15,6 +15,17 @@ const a = {['$']() { $(1); }};
 a['$']();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = {
+  ['$']() {
+    $(1);
+  },
+};
+a['$']();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +57,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,22 @@ do {
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || (a = (10, 20, 30) ? (40, 50, $(60)) : $($(100)))) {
+    tmpDoWhileFlag = false;
+    {
+      $(100);
+    }
+  }
+}
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -106,6 +122,8 @@ Should call `$` with:
  - 25: 100
  - 26: 60
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

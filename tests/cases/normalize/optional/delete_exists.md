@@ -17,6 +17,15 @@ delete o?.x;
 $(o);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let o = { x: 1 };
+$(o);
+delete o?.x;
+$(o);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +61,8 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

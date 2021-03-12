@@ -14,6 +14,12 @@
 $(parseInt??length);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(parseInt ?? length);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +54,8 @@ length
 Should call `$` with:
  - 1: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

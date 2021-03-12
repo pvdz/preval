@@ -22,6 +22,28 @@ switch (1) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let b;
+  let c;
+  let d;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      (b = { x: 1 }), (c = { y: 2 }), (d = 3);
+      a = $(b)[$('x')] = $(c)[$('y')] = d;
+      $(a, b, c, d);
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -81,6 +103,8 @@ Should call `$` with:
  - 4: 'y'
  - 5: 3, { x: '3' }, { y: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

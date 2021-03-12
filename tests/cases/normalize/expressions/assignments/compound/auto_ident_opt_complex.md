@@ -18,6 +18,15 @@ $((a *= $(b)?.x));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+$((a *= $(b)?.x));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +76,8 @@ Should call `$` with:
  - 2: NaN
  - 3: NaN
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

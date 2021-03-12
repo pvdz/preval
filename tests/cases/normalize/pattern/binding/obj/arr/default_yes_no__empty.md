@@ -15,6 +15,13 @@ const { x: [] = $(['fail']) } = 1;
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const { x: [] = $(['fail']) } = 1;
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +66,8 @@ Should call `$` with:
  - 1: ['fail']
  - 2: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

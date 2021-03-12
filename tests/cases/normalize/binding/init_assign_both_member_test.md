@@ -19,6 +19,34 @@ var a = b.x = c.x;
 $(5, a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+b = {
+  get x() {
+    $(1);
+    return 10;
+  },
+  set x(n) {
+    $(2, n);
+  },
+};
+c = {
+  get x() {
+    $(3);
+    return 20;
+  },
+  set x(n$1) {
+    $(4, n$1);
+  },
+};
+a = b.x = c.x;
+$(5, a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -87,6 +115,8 @@ Should call `$` with:
  - 2: 2, 20
  - 3: 5, 20
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

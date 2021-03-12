@@ -19,6 +19,17 @@ for (let [x] in [y]) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let y = {};
+for (let [x$1] in [y]) {
+  let y$1 = 2;
+  $(x$1);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +70,8 @@ None
 Should call `$` with:
  - 1: '0'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

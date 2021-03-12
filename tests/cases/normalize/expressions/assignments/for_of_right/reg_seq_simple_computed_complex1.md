@@ -14,6 +14,12 @@
 for (let x of $([]));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+for (let x of $([]));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +50,8 @@ None
 Should call `$` with:
  - 1: []
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

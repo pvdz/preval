@@ -20,6 +20,18 @@ class x {
 $(new x().y());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class {
+  y(tmpParamDefault) {
+    let arg = tmpParamDefault === undefined ? $(10, 'default') : tmpParamDefault;
+    return arg;
+  }
+};
+$(new x().y());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +83,8 @@ Should call `$` with:
  - 1: 10, 'default'
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

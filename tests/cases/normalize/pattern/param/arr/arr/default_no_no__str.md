@@ -17,6 +17,16 @@ function f([[]]) {
 $(f('abc', 200));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let [[]] = tmpParamPattern;
+  return 'ok';
+};
+$(f('abc', 200));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +64,8 @@ None
 Should call `$` with:
  - 1: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

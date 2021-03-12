@@ -22,6 +22,23 @@ $(a);
 //*/// (end of file artifact)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  const tmpSwitchValue = (a = { b: $(1) });
+  let tmpSwitchCaseToStart = 0;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      $(100);
+    }
+  }
+}
+($(1), $(a))[$('b')] = $(2);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -73,6 +90,8 @@ Should call `$` with:
  - 6: 2
  - 7: { b: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

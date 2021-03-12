@@ -14,6 +14,12 @@
 $(new ($()));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(new ($())());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ None
 Should call `$` with:
  - 1: 
  - eval returned: ('<crash[ <ref> is not a constructor ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

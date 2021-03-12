@@ -15,6 +15,20 @@ const a = {b: {c: function(...a){ $($(a), this); return a[0]; }}};
 $($(a)?.[$('b')][$('c')](100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = {
+  b: {
+    c: function (...a$1) {
+      $($(a$1), this);
+      return a$1[0];
+    },
+  },
+};
+$($(a)?.[$('b')][$('c')](100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +99,8 @@ Should call `$` with:
  - 5: [100], { c: '"<function>"' }
  - 6: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

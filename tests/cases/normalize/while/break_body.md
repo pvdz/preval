@@ -17,6 +17,15 @@ while (true) {
 $('pass');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while (true) {
+  break;
+}
+$('pass');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +47,8 @@ None
 Should call `$` with:
  - 1: 'pass'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

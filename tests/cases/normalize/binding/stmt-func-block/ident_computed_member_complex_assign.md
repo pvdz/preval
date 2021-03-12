@@ -21,6 +21,21 @@ let b = {x: 2}, c = 3, d = 4;
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(true)) {
+    let b = { x: 2 },
+      c = 3,
+      d = 4;
+    let a = ($(b)[$('x')] = $(c)[$('y')] = $(d));
+    $(a, b, c, d);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -82,6 +97,8 @@ Should call `$` with:
  - 5: 'y'
  - 6: 4
  - eval returned: ("<crash[ Cannot create property 'y' on number '3' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

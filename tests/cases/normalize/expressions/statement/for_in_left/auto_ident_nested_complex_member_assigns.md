@@ -21,6 +21,16 @@ for (($(b)[$("x")] = $(b)[$("x")] = $(b)[$("x")] = $(b)[$("x")] = $(b)[
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = 3;
+let a = { a: 999, b: 1000 };
+for (($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c).x in $({ x: 1 }));
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -115,6 +125,8 @@ Should call `$` with:
  - 12: { x: '1' }
  - 13: 'x'
  - eval returned: ("<crash[ Cannot create property 'x' on number '3' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

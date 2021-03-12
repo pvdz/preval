@@ -15,6 +15,13 @@ const x = 10;
 $(x??[20]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = 10;
+$(x ?? [20]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +55,8 @@ None
 Should call `$` with:
  - 1: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

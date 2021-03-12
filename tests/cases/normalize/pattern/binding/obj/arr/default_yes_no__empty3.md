@@ -15,6 +15,13 @@ const val = true ? false : undefined
 $(val);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const val = true ? false : undefined;
+$(val);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +45,8 @@ None
 Should call `$` with:
  - 1: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

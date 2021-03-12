@@ -18,6 +18,15 @@ $(1) ? delete ($(1), $(2), arg)[$("y")] : $(200);
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(1) ? delete ($(1), $(2), arg)[$('y')] : $(200);
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +75,8 @@ Should call `$` with:
  - 4: 'y'
  - 5: { a: '999', b: '1000' }, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

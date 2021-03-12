@@ -23,6 +23,29 @@ a = b.c = d;
 $(a, b, d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1;
+let b = {
+  get c() {
+    $('b.get');
+    b = undefined;
+    d = undefined;
+    return 5;
+  },
+  set c(x) {
+    $('b.set');
+    b = null;
+    d = null;
+    return 7;
+  },
+};
+let d = 3;
+a = b.c = d;
+$(a, b, d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -81,6 +104,8 @@ Should call `$` with:
  - 1: 'b.set'
  - 2: 3, null, null
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

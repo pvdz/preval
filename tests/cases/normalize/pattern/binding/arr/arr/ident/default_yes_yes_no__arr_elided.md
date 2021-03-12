@@ -15,6 +15,13 @@ const [[x = $('fail')] = $(['pass2'])] = [, , , , 4, 5];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [[x = $('fail')] = $(['pass2'])] = [, , , , 4, 5];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -78,6 +85,8 @@ Should call `$` with:
  - 1: ['pass2']
  - 2: 'pass2'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -28,6 +28,39 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  {
+    const tmpSwitchValue = $(1);
+    let tmpSwitchCaseToStart = 4;
+    if (0 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+    else if ($(4) === tmpSwitchValue) tmpSwitchCaseToStart = 2;
+    else if ($(7) === tmpSwitchValue) tmpSwitchCaseToStart = 3;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+        $(2);
+        break tmpSwitchBreak;
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+        $(3);
+      }
+      if (tmpSwitchCaseToStart <= 2) {
+        $(5);
+        return $(6);
+      }
+      if (tmpSwitchCaseToStart <= 3) {
+        break tmpSwitchBreak;
+      }
+    }
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -155,6 +188,8 @@ Should call `$` with:
  - 5: 6
  - 6: 6
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

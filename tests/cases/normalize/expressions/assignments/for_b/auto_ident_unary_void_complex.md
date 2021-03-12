@@ -16,6 +16,18 @@ for (; (a = void $(100)); $(1));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  while ((a = void $(100))) {
+    $(1);
+  }
+}
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +72,8 @@ Should call `$` with:
  - 1: 100
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

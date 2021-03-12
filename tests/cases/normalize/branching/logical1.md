@@ -22,6 +22,20 @@ if (x) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = a;
+if (x) {
+  x = b;
+}
+if (x) {
+  c;
+} else {
+  d;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +74,8 @@ a, b, c, d
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

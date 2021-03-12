@@ -16,6 +16,14 @@ $(delete (null, foo));
 $(typeof foo)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let foo = 1;
+$(delete (null, foo));
+$(typeof foo);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +53,8 @@ Should call `$` with:
  - 1: true
  - 2: 'number'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

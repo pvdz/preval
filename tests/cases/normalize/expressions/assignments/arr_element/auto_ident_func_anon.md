@@ -16,6 +16,14 @@ $((a = function () {}) + (a = function () {}));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$((a = function () {}) + (a = function () {}));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +58,8 @@ Should call `$` with:
  - 1: 'function() {}function() {}'
  - 2: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

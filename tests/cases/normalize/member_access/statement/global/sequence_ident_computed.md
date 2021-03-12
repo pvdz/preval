@@ -16,6 +16,15 @@ let c = 1, b = "foo";
 $(c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let c = 1,
+  b = 'foo';
+($(1), b)[$('length')];
+$(c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +57,8 @@ Should call `$` with:
  - 2: 'length'
  - 3: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

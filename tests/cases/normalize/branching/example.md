@@ -206,6 +206,29 @@ const d = (anode, i) => {
 node.elements.forEach(d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+node.elements.forEach((anode, i) => {
+  if (!anode) return newElements.push(null);
+  let valueNode = anode;
+  if (anode.type === 'SpreadElement') {
+    valueNode = anode.argument;
+    crumb(anode, 'argument', valueNode);
+  }
+  if (isComplexNode(valueNode)) {
+    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+    assigns.push(AST.assignmentExpression(tmpName, valueNode));
+    newElements.push(anode.type === 'SpreadElement' ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
+  } else {
+    newElements.push(anode);
+  }
+  if (anode.type === 'SpreadElement') {
+    uncrumb(anode, 'argument', valueNode);
+  }
+});
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -312,6 +335,8 @@ node, crumb, isComplexNode, createFreshVarInCurrentRootScope, assigns, AST, newE
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

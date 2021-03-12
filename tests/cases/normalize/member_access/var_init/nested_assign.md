@@ -15,6 +15,15 @@ $(x);
 $(obj.a.b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = { a: { b: $() } };
+let x = (obj.a.b = 15);
+$(x);
+$(obj.a.b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +66,8 @@ Should call `$` with:
  - 2: 15
  - 3: 15
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

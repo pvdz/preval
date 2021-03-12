@@ -18,6 +18,19 @@ x = $(20);
 $(x, a, 'final');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let x = $(10);
+a = function () {
+  return x;
+};
+a = x;
+x = $(20);
+$(x, a, 'final');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +63,8 @@ Should call `$` with:
  - 2: 20
  - 3: 20, 10, 'final'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

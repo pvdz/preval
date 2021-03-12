@@ -18,6 +18,16 @@ $(x);
 x = $('redundant'); // This assignment should be dropped (but the expression is kept)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+$(x);
+x = $(2);
+$(x);
+x = $('redundant');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +61,8 @@ Should call `$` with:
  - 4: 2
  - 5: 'redundant'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

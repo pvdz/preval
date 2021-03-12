@@ -16,6 +16,14 @@ function f() {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  f.apply(this, arguments.length);
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +53,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,12 @@
 $(global?.foo);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(global?.foo);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +58,8 @@ global
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

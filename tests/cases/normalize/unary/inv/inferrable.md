@@ -18,6 +18,15 @@ if (x) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = $(true);
+if (x) {
+  $(!x);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +58,8 @@ Should call `$` with:
  - 1: true
  - 2: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

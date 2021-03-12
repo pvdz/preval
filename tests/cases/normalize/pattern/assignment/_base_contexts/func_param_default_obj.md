@@ -14,6 +14,15 @@
 const f = (a = { x } = 1) => { return a };
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = (tmpParamDefault) => {
+  let a = tmpParamDefault === undefined ? ({ x } = 1) : tmpParamDefault;
+  return a;
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +55,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

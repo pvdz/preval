@@ -16,6 +16,14 @@ let c = 20;
 let a = b = c
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 10;
+let c = 20;
+let a = (b = c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +47,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

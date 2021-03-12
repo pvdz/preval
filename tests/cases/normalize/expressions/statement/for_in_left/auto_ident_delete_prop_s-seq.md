@@ -18,6 +18,15 @@ for ((delete ($(1), $(2), arg).y).x in $({ x: 1 }));
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+for ((delete ($(1), $(2), arg).y).x in $({ x: 1 }));
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +74,8 @@ Should call `$` with:
  - 2: 1
  - 3: 2
  - eval returned: ("<crash[ Cannot create property 'x' on boolean 'true' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

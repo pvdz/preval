@@ -18,6 +18,16 @@ while ($(x)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(10);
+while ($(x)) {
+  x = $(0);
+  if ($(true)) $(x, 'branch');
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +78,8 @@ Should call `$` with:
  - 5: 0, 'branch'
  - 6: 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

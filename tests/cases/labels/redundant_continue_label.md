@@ -17,6 +17,19 @@ foo: do {
 } while (false);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+dropme: {
+  let tmpDoWhileFlag = true;
+  foo: while (tmpDoWhileFlag || false) {
+    tmpDoWhileFlag = false;
+    $(1);
+    continue foo;
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +79,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

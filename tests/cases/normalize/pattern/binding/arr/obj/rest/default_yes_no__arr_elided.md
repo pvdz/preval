@@ -15,6 +15,13 @@ const [{ ...x } = $({ a: 'pass' })] = [, , , , 20, 30];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [{ ...x } = $({ a: 'pass' })] = [, , , , 20, 30];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +75,8 @@ Should call `$` with:
  - 1: { a: '"pass"' }
  - 2: { a: '"pass"' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

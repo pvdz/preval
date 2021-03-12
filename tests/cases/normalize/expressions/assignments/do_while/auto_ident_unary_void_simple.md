@@ -20,6 +20,23 @@ do {
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || (a = void arg)) {
+    tmpDoWhileFlag = false;
+    {
+      $(100);
+    }
+  }
+}
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -76,6 +93,8 @@ Should call `$` with:
  - 1: 100
  - 2: undefined, 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

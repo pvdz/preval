@@ -18,6 +18,18 @@ const { x: a } = 1
 { let a = 1; }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let a$1 = 1;
+}
+const { x: a } = 1;
+{
+  let a$2 = 1;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +53,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

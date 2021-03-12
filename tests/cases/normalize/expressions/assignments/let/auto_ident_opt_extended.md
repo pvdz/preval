@@ -19,6 +19,16 @@ $(xyz);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: { z: 100 } } };
+let a = { a: 999, b: 1000 };
+let xyz = (a = b?.x.y.z);
+$(xyz);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +79,8 @@ Should call `$` with:
  - 1: 100
  - 2: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

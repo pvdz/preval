@@ -16,6 +16,14 @@ for (let x of $(1) ? (40, 50, $(60)) : $($(100)));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+for (let x of $(1) ? (40, 50, $(60)) : $($(100)));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +71,8 @@ Should call `$` with:
  - 1: 1
  - 2: 60
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

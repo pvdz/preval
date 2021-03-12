@@ -17,6 +17,15 @@ export let a = (1, 2, b)[$("$")](1);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = (1, 2, b)[$('$')](1);
+export { a };
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +55,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -16,6 +16,14 @@ let b = {x: 1, y: 2};
 for ($(a)[$('foo')] in $(b)) $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = {};
+let b = { x: 1, y: 2 };
+for ($(a)[$('foo')] in $(b)) $(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +69,8 @@ Should call `$` with:
  - 6: 'foo'
  - 7: { foo: '"y"' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,16 @@ var a = 10, b = 20, c = 30;
 $(a = b = c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+(a = 10), (b = 20), (c = 30);
+$((a = b = c));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +56,8 @@ None
 Should call `$` with:
  - 1: 30
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

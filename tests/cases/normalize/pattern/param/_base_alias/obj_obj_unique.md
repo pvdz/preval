@@ -23,6 +23,24 @@ function i({x: {y: {z: a}}}) {
 $(i({x: {y: {z: {a: 10}}}}));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let i = function (tmpParamPattern) {
+  let {
+    x: {
+      y: { z: a$1 },
+    },
+  } = tmpParamPattern;
+  {
+    let a$2 = 2;
+  }
+  return a$1;
+};
+let a = 1;
+$(i({ x: { y: { z: { a: 10 } } } }));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +89,8 @@ None
 Should call `$` with:
  - 1: { a: '10' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

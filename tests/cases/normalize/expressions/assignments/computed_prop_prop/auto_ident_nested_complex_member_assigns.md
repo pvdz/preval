@@ -24,6 +24,17 @@ obj[
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = 3;
+let a = { a: 999, b: 1000 };
+let obj = {};
+obj[(a = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c)];
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -111,6 +122,8 @@ Should call `$` with:
  - 12: 'x'
  - 13: 3, { x: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

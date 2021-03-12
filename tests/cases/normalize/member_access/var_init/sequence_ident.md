@@ -16,6 +16,14 @@ let x = ($(1), b).length;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 'foo';
+let x = ($(1), b).length;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +51,8 @@ Should call `$` with:
  - 1: 1
  - 2: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -61,6 +61,34 @@ function f() {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  $('-------- start');
+  const b = {
+    get foo() {
+      return $(2);
+    },
+    set foo(x) {
+      return $(3);
+    },
+  };
+  $('-------- bound');
+  let a = 1;
+  $('-------- let 1');
+  $((a = b.foo = $(6)));
+  $('-------- test case');
+  $(a);
+  $('-------- a');
+  $(b.foo);
+  $('-------- a.foo');
+  $((b.foo = 4));
+  $('-------- a.foo = 4');
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -159,6 +187,8 @@ Should call `$` with:
  - 14: 4
  - 15: '-------- a.foo = 4'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

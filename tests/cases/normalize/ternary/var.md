@@ -16,6 +16,17 @@ var foo = a ? b : c;
 $(foo);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let foo = undefined;
+let a = 1,
+  b = 2,
+  c = 3;
+foo = a ? b : c;
+$(foo);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +57,8 @@ None
 Should call `$` with:
  - 1: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

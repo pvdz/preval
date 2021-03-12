@@ -15,6 +15,13 @@ $(undefined.foo);
 $('fail, DCE me');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(undefined.foo);
+$('fail, DCE me');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +45,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

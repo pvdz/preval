@@ -22,6 +22,18 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  while ($(true)) {
+    throw $(1, 'throw');
+  }
+  $('keep, do not eval');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +83,8 @@ Should call `$` with:
  - 1: true
  - 2: 1, 'throw'
  - eval returned: ('<crash[ 1 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

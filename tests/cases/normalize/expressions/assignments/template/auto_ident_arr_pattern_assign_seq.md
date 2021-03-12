@@ -19,6 +19,16 @@ $(`before  ${(a = [x, y] = ($(x), $(y), [$(3), $(4)]))}  after`);
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+$(`before  ${(a = [x, y] = ($(x), $(y), [$(3), $(4)]))}  after`);
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +81,8 @@ Should call `$` with:
  - 5: 'before 3,4 after'
  - 6: [3, 4], 3, 4
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

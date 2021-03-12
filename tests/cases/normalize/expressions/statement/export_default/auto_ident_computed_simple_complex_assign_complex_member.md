@@ -18,6 +18,16 @@ export default b[$("c")] = $(b)[$("d")];
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+const tmpAnonDefaultExport = (b[$('c')] = $(b)[$('d')]);
+export { tmpAnonDefaultExport as default };
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +67,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

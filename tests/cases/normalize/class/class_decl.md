@@ -15,6 +15,13 @@ class x {}
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class {};
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +45,8 @@ None
 Should call `$` with:
  - 1: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

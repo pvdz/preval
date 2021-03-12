@@ -21,6 +21,21 @@ let b = {x: 2}, c = 3, d = 4;
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(true)) {
+    let b = { x: 2 },
+      c = 3,
+      d = 4;
+    let a = ($(b)[$('x')] = c + d);
+    $(a, b, c);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -73,6 +88,8 @@ Should call `$` with:
  - 4: 7, { x: '7' }, 3
  - 5: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

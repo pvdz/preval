@@ -21,6 +21,23 @@ export let c = 30;
 export default 100;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+import a, { b as b, c as c } from 'd';
+`````
+
+`````js filename=d
+let a = 10;
+export { a };
+let b = 20;
+export { b };
+let c = 30;
+export { c };
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +86,8 @@ a, b, c
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

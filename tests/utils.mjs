@@ -213,10 +213,9 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
     'Should call `$` with:\n' +
     printOutput +
     '\n\n' +
-    //YOYO
-    //'Pre normalization calls:' +
-    //preEvalResult +
-    //'\n\n' +
+    'Pre normalization calls:' +
+    preEvalResult +
+    '\n\n' +
     'Normalized calls:' +
     normalizedEvalResult +
     '\n\n' +
@@ -252,8 +251,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
     mdHead +
     '\n\n' +
     mdChunks.join('\n\n').trim() +
-    //YOYO
-    //toPreResult(output.pre) +
+    toPreResult(output.pre) +
     toNormalizedResult(output.normalized) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +

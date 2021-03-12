@@ -29,6 +29,27 @@ function f() {
 $(f(), 'final');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(1)) {
+    if ($(2)) {
+      return $(3);
+    } else {
+      return $(4);
+    }
+  } else {
+    if ($(5)) {
+      return $(6);
+    } else {
+      return $(7);
+    }
+  }
+};
+$(f(), 'final');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -101,6 +122,8 @@ Should call `$` with:
  - 3: 3
  - 4: 3, 'final'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,21 @@ for (let xyz = $(b)?.[$("x")]?.[$("y")]; ; $(1)) $(xyz);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: 1 } };
+let a = { a: 999, b: 1000 };
+{
+  let xyz = $(b)?.[$('x')]?.[$('y')];
+  while (true) {
+    $(xyz);
+    $(1);
+  }
+}
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -105,6 +120,8 @@ Should call `$` with:
  - 25: 1
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

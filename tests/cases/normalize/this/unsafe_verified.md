@@ -25,6 +25,21 @@ function f() {
 $(f.call({y: 1}));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let g = function () {
+    $(x);
+    return x.y;
+  };
+  const x = this;
+  $(x);
+  return g();
+};
+$(f.call({ y: 1 }));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -79,6 +94,8 @@ Should call `$` with:
  - 2: { y: '1' }
  - 3: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

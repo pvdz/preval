@@ -37,6 +37,30 @@ function f() {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  $(0);
+  label1: if ($(1)) {
+    label2: if ($(2)) {
+      label3: if ($(3)) {
+        break label2;
+      } else {
+        break label3;
+      }
+      $('tail3');
+    } else {
+      break label1;
+    }
+    $('tail2');
+  }
+  $('tail1');
+  $('end');
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -118,6 +142,8 @@ Should call `$` with:
  - 6: 'tail1'
  - 7: 'end'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

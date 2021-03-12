@@ -15,6 +15,15 @@ function f(){ return 10; }
 $(f?.());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  return 10;
+};
+$(f?.());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ None
 Should call `$` with:
  - 1: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

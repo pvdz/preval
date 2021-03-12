@@ -18,6 +18,16 @@ a = ((b = c.x), $(b)).y === 'Identifier';
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 0,
+  b = 1,
+  c = { x: { y: 10 } };
+a = ((b = c.x), $(b)).y === 'Identifier';
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +64,8 @@ Should call `$` with:
  - 1: { y: '10' }
  - 2: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,17 @@ if ($(2, 'if')) {
 $(x, 'final');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+x = $(1, 'before');
+if ($(2, 'if')) {
+  x = $(3, 'then');
+}
+$(x, 'final');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +65,8 @@ Should call `$` with:
  - 3: 3, 'then'
  - 4: 3, 'final'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

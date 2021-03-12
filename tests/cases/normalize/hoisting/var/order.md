@@ -17,6 +17,18 @@ var c = $();
 var b = $();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+$(a, b, c);
+a = $();
+c = $();
+b = $();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +62,8 @@ Should call `$` with:
  - 3: 
  - 4: 
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

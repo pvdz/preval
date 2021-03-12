@@ -17,6 +17,15 @@ const f = function (a) {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = function (a) {
+  a = unknown;
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ unknown
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

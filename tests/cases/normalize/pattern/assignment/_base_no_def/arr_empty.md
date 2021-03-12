@@ -21,6 +21,13 @@ let x = 10;
 ([ ] = [1, 2, 3]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 10;
+[] = [1, 2, 3];
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +51,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

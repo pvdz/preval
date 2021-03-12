@@ -24,6 +24,22 @@ const f = function(x1) {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = function (x1) {
+  let x = undefined;
+  if ($) {
+    x = {};
+  }
+  const g = function () {
+    $(arguments.length);
+  };
+  return g();
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +85,8 @@ Should call `$` with:
  - 1: 0
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

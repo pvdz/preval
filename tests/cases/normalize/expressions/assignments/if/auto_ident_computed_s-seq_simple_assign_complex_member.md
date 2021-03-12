@@ -18,6 +18,15 @@ if ((a = (1, 2, b)[$("c")] = $(b)[$("d")]));
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+if ((a = (1, 2, b)[$('c')] = $(b)[$('d')]));
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +68,8 @@ Should call `$` with:
  - 3: 'd'
  - 4: 20, { c: '20', d: '20' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

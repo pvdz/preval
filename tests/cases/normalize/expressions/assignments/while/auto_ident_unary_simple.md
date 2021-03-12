@@ -18,6 +18,15 @@ while ((a = typeof x)) $(100);
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+while ((a = typeof x)) $(100);
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +94,8 @@ Should call `$` with:
  - 25: 100
  - 26: 100
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

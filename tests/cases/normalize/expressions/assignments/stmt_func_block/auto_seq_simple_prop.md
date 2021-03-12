@@ -21,6 +21,19 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  {
+    let a = { a: 999, b: 1000 };
+    (a = { b: $(1) })($(1), a).b = $(2);
+    $(a);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +81,8 @@ Should call `$` with:
  - 1: 1
  - 2: 1
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

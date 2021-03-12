@@ -18,6 +18,15 @@ $($(100) && (a = b?.c.d.e(1)));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { c: { d: { e: $ } } };
+let a = { a: 999, b: 1000 };
+$($(100) && (a = b?.c.d.e(1)));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -82,6 +91,8 @@ Should call `$` with:
  - 3: 1
  - 4: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

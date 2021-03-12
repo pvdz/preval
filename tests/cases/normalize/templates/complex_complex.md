@@ -14,6 +14,12 @@
 $(`abc ${ $(10) } ${ $(20) } def`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`abc ${$(10)} ${$(20)} def`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +50,8 @@ Should call `$` with:
  - 2: 20
  - 3: 'abc 10 20 def'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

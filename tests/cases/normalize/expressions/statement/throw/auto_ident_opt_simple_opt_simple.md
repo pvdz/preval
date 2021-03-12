@@ -18,6 +18,15 @@ throw b?.x?.y;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: 1 } };
+let a = { a: 999, b: 1000 };
+throw b?.x?.y;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +73,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ 1 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

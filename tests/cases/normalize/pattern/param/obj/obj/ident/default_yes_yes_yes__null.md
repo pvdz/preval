@@ -17,6 +17,16 @@ function f({ x: { y = $('fail') } = $({ y: 'fail2' }) } = $({ x: { y: 'fail3' } 
 $(f(null, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let { x: { y = $('fail') } = $({ y: 'fail2' }) } = tmpParamDefault === undefined ? $({ x: { y: 'fail3' } }) : tmpParamDefault;
+  return 'bad';
+};
+$(f(null, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -100,6 +110,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

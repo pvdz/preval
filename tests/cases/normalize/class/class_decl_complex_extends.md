@@ -15,6 +15,13 @@ class x extends $(String) {}
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class extends $(String) {};
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +48,8 @@ Should call `$` with:
  - 1: '<function>'
  - 2: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

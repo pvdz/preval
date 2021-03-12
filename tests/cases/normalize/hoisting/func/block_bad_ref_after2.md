@@ -20,6 +20,18 @@ In strict mode the funcdecl is a hoisted lexical binding, not a var binding.
 f(); // Fails in strict mode (would be fine otherwise)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let f = function () {
+    $(1);
+  };
+  f();
+}
+f$1();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +60,8 @@ f$1
 Should call `$` with:
  - 1: 1
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

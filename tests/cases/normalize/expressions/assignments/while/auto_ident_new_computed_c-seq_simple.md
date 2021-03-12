@@ -18,6 +18,15 @@ while ((a = new (1, 2, $(b))["$"](1))) $(100);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = { a: 999, b: 1000 };
+while ((a = new (1, 2, $(b))['$'](1))) $(100);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +99,8 @@ Should call `$` with:
  - 25: { $: '"<$>"' }
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

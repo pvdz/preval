@@ -19,6 +19,16 @@
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let arg = { y: 1 };
+  let a = delete arg['y'];
+  $(a, arg);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +54,8 @@ None
 Should call `$` with:
  - 1: true, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

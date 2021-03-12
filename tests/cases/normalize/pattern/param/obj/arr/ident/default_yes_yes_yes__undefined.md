@@ -17,6 +17,16 @@ function f({ x: [y = 'fail'] = $(['fail2']) } = $({ x: ['pass3'] })) {
 $(f(undefined, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let { x: [y = 'fail'] = $(['fail2']) } = tmpParamDefault === undefined ? $({ x: ['pass3'] }) : tmpParamDefault;
+  return y;
+};
+$(f(undefined, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -103,6 +113,8 @@ Should call `$` with:
  - 1: { x: '["pass3"]' }
  - 2: 'pass3'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

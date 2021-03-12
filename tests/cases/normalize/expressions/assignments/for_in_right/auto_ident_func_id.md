@@ -16,6 +16,14 @@ for (let x in (a = function f() {}));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+for (let x in (a = function f() {}));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +55,8 @@ None
 Should call `$` with:
  - 1: '<function>'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

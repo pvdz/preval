@@ -19,6 +19,14 @@ $($(a).length = b);
 //$($(a).length);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = $([]),
+  b;
+$(($(a).length = b));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +62,8 @@ Should call `$` with:
  - 1: []
  - 2: []
  - eval returned: ('<crash[ Invalid array length ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

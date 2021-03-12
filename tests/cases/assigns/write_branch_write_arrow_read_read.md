@@ -21,6 +21,21 @@ x = $(3, 'after'); // This should get SSA'd
 $(x, 'final');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+if ($(1)) {
+  x = $(2, 'branch');
+  const f = () => {
+    return $(x, 'arrow');
+  };
+  $(f(), 'result');
+}
+x = $(3, 'after');
+$(x, 'final');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +85,8 @@ Should call `$` with:
  - 6: 3, 'after'
  - 7: 3, 'final'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,20 @@ function f({
 $(f({ x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 }, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let {
+    x: {
+      y: [...z],
+    },
+  } = tmpParamPattern;
+  return z;
+};
+$(f({ x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 }, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +83,8 @@ None
 Should call `$` with:
  - 1: [1, 2, 3]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

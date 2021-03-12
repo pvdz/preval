@@ -24,6 +24,22 @@ const r = f(String, toString);
 $(r);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const toString = $('toString');
+const g = function (o, p) {
+  const y = o[p]();
+  return y;
+};
+const f = function (m, n) {
+  const x = g(m);
+  return x;
+};
+const r = f(String, toString);
+$(r);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +73,8 @@ None
 Should call `$` with:
  - 1: 'toString'
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,18 @@ In particular, the pattern's "y" should be replaced with a different name.
 { let a = 1; }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let a = 1;
+}
+({ x: a$1 } = 1);
+{
+  let a$2 = 1;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +55,8 @@ a$1
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

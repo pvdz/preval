@@ -15,6 +15,13 @@ const [{}] = 0;
 $('bad');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [{}] = 0;
+$('bad');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +63,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

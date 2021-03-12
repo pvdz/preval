@@ -19,6 +19,17 @@ class x {
 $(new x().f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = class {
+  [$('f')]() {
+    return $(100);
+  }
+};
+$(new x().f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +72,8 @@ Should call `$` with:
  - 2: 100
  - 3: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

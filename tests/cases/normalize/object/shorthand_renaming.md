@@ -21,6 +21,21 @@ let g = function({x = 10}) {
 $(x, y, f(), g());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let { x = 10 } = tmpParamPattern;
+  return x;
+};
+let g = function (tmpParamPattern$1) {
+  let { x$1 = 10 } = tmpParamPattern$1;
+  let y = { x$1 };
+  return [x$1, y];
+};
+$(x$2, y$1, f(), g());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -101,6 +116,8 @@ x$2, y$1
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

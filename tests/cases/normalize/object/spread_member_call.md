@@ -15,6 +15,17 @@ const obj = {foo() { return $({ x: 1 }); }};
 $({...obj.foo()});
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = {
+  foo() {
+    return $({ x: 1 });
+  },
+};
+$({ ...obj.foo() });
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +68,8 @@ Should call `$` with:
  - 1: { x: '1' }
  - 2: { x: '1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

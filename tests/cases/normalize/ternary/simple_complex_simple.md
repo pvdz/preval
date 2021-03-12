@@ -16,6 +16,14 @@ const b = 0 ? $(4) : 5
 $(a, b)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = 1 ? $(2) : 3;
+const b = 0 ? $(4) : 5;
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +51,8 @@ Should call `$` with:
  - 1: 2
  - 2: 2, 5
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

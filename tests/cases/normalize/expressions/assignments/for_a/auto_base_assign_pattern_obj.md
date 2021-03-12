@@ -18,6 +18,20 @@ for (a = { b } = $({ b: $(2) }); ; $(1));
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = {};
+let a = { a: 999, b: 1000 };
+{
+  a = { b } = $({ b: $(2) });
+  while (true) {
+    $(1);
+  }
+}
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -82,6 +96,8 @@ Should call `$` with:
  - 25: 1
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

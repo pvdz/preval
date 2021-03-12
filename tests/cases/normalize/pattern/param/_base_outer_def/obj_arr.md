@@ -12,6 +12,17 @@
 function i({x: [ y ]} = c ) { return y }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let i = function (tmpParamDefault) {
+  let {
+    x: [y],
+  } = tmpParamDefault === undefined ? c : tmpParamDefault;
+  return y;
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +55,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

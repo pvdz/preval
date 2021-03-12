@@ -14,6 +14,19 @@
 do var x = 0; while ($(x));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || $(x)) {
+    tmpDoWhileFlag = false;
+    x = 0;
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +76,8 @@ None
 Should call `$` with:
  - 1: 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

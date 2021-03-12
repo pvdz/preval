@@ -17,6 +17,16 @@ function f({ x: { y = $('fail') } = $({ y: 'pass2' }) } = $({ x: { y: 'fail3' } 
 $(f({ x: undefined, b: 11, c: 12 }, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let { x: { y = $('fail') } = $({ y: 'pass2' }) } = tmpParamDefault === undefined ? $({ x: { y: 'fail3' } }) : tmpParamDefault;
+  return y;
+};
+$(f({ x: undefined, b: 11, c: 12 }, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -106,6 +116,8 @@ Should call `$` with:
  - 1: { y: '"pass2"' }
  - 2: 'pass2'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

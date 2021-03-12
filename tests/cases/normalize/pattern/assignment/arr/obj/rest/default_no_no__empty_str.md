@@ -15,6 +15,13 @@
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[{ ...x }] = '';
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +56,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

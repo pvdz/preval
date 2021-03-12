@@ -15,6 +15,19 @@ const obj = {a: {b: () => $(1)}};
 obj.a.b();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = {
+  a: {
+    b: () => {
+      return $(1);
+    },
+  },
+};
+obj.a.b();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +63,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

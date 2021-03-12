@@ -21,6 +21,19 @@ if (x) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(false, 'a');
+if (x) {
+  $(x, 'pass');
+  x = $(false, 'b');
+}
+if (x) {
+  $(x, 'hit');
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +69,8 @@ None
 Should call `$` with:
  - 1: false, 'a'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

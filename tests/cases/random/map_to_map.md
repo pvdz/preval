@@ -30,6 +30,28 @@ $(
 );
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(
+  new Map(
+    [
+      ...new Map([
+        ['clearInterval', 'global.clearInterval'],
+        ['clearTimeout', 'global.clearTimeout'],
+        ['console', 'global.console'],
+        ['false', 'boolean'],
+        ['null', 'null'],
+        ['$', '$'],
+      ]).keys(),
+      'module',
+    ].map((k) => {
+      return [k, k];
+    }),
+  ).get('$'),
+);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +112,8 @@ None
 Should call `$` with:
  - 1: '$'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -20,6 +20,17 @@ $((a = $(b)[$("x")] = $(c)[$("y")] = $(d)) ? $(100) : $(200));
 $(a, b, c, d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3;
+let a = { a: 999, b: 1000 };
+$((a = $(b)[$('x')] = $(c)[$('y')] = $(d)) ? $(100) : $(200));
+$(a, b, c, d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -87,6 +98,8 @@ Should call `$` with:
  - 7: 100
  - 8: 3, { x: '3' }, { y: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,12 @@
 $(5 instanceof Infinity);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(5 instanceof Infinity);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Right-hand side of 'instanceof' is not an object ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

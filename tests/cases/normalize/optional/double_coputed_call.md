@@ -15,6 +15,13 @@ let a = {x: {y: {z: $}}};
 $($(a)?.[$('x')]?.[$('y')][$('z')])?.(100);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { x: { y: { z: $ } } };
+$($(a)?.[$('x')]?.[$('y')][$('z')])?.(100);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -88,6 +95,8 @@ Should call `$` with:
  - 5: '<$>'
  - 6: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

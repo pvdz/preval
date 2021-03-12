@@ -18,6 +18,15 @@ $`before ${delete arg["y"]} after`;
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$`before ${delete arg['y']} after`;
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +60,8 @@ Should call `$` with:
  - 1: ['before ', ' after'], true
  - 2: { a: '999', b: '1000' }, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

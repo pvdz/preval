@@ -19,6 +19,20 @@ let b = {
 $(b)[$('c')] = $(3);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = {
+  get c() {
+    $('get');
+  },
+  set c(x) {
+    $('set');
+  },
+};
+$(b)[$('c')] = $(3);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +81,8 @@ Should call `$` with:
  - 3: 3
  - 4: 'set'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,15 @@ if ((1, 2, b)?.x);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+if ((1, 2, b)?.x);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +63,8 @@ None
 Should call `$` with:
  - 1: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

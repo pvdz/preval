@@ -19,6 +19,20 @@ for (; $(1); [x, y] = [$(3), $(4)]);
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+{
+  while ($(1)) {
+    [x, y] = [$(3), $(4)];
+  }
+}
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -97,6 +111,8 @@ Should call `$` with:
  - 25: 1
  - 26: 3
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

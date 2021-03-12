@@ -18,6 +18,15 @@ for ((typeof x).x of $({ x: 1 }));
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+for ((typeof x).x of $({ x: 1 }));
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +65,8 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

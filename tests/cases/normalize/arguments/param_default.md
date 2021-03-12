@@ -17,6 +17,16 @@ function f(a = arguments) {
 $(f(1, 2, 3));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let a = tmpParamDefault === undefined ? arguments : tmpParamDefault;
+  return a;
+};
+$(f(1, 2, 3));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +72,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

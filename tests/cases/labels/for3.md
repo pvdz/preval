@@ -19,6 +19,21 @@ foo: for(;$(true);) {
 $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(0);
+dropme: {
+  foo: while ($(true)) {
+    {
+      if ($()) break foo;
+      else continue foo;
+    }
+  }
+}
+$(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -93,6 +108,8 @@ Should call `$` with:
  - 25: 
  - 26: true
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,17 @@ $(a);
 //*/// (end of file artifact)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let p = tmpParamDefault === undefined ? (a = this) : tmpParamDefault;
+};
+let a = { a: 999, b: 1000 };
+$(f());
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +77,8 @@ Should call `$` with:
  - 1: undefined
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -34,6 +34,34 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  $('loop');
+  {
+    const tmpSwitchValue = $(true, 'dis');
+    let tmpSwitchCaseToStart = 1;
+    if ($(true, 'case') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+        $('case');
+        break tmpSwitchBreak;
+        $('fail');
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+        $('do not visit, default');
+        break tmpSwitchBreak;
+        $('fail');
+      }
+    }
+  }
+  $('infiloop, do not eliminate');
+}
+$('after (not invoked)');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -138,6 +166,8 @@ Should call `$` with:
  - 25: true
  - 26: 'loop'
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

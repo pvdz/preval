@@ -17,6 +17,16 @@ function f({ x: [y = 'fail'] = $(['pass2']) }) {
 $(f({ x: undefined, a: 11, b: 12 }, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let { x: [y = 'fail'] = $(['pass2']) } = tmpParamPattern;
+  return 'bad';
+};
+$(f({ x: undefined, a: 11, b: 12 }, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -89,6 +99,8 @@ Should call `$` with:
  - 1: ['pass2']
  - 2: 'bad'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -22,6 +22,20 @@ const f = function () {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = function () {
+  let g = undefined;
+  if ($(1)) {
+    if (typeof window !== 'undefined') {
+      g = this;
+    }
+  }
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +77,8 @@ window
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ $(undefined?.foo);
 $('okay, do not DCE');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(undefined?.foo);
+$('okay, do not DCE');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +54,8 @@ Should call `$` with:
  - 1: undefined
  - 2: 'okay, do not DCE'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ let a;
 for (a of $({x: 1, y: 2})) $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a;
+for (a of $({ x: 1, y: 2 })) $(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +54,8 @@ None
 Should call `$` with:
  - 1: { x: '1', y: '2' }
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

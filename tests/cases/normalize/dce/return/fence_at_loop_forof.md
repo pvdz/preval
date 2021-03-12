@@ -28,6 +28,24 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  while ($(true)) {
+    $('loop');
+    for (let x of [1, 2]) {
+      $('loop', x);
+      return $(100, 'return');
+      $('fail');
+    }
+    $('do not visit, do not eliminate');
+  }
+  $('after (not invoked)');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -94,6 +112,8 @@ Should call `$` with:
  - 4: 100, 'return'
  - 5: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

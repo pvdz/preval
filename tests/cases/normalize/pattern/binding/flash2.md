@@ -15,6 +15,16 @@ function x(foo = x, {x}) {
 x();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = function (tmpParamDefault, tmpParamPattern) {
+  let foo = tmpParamDefault === undefined ? x$1 : tmpParamDefault;
+  let { x$1 } = tmpParamPattern;
+};
+x();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +59,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

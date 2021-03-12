@@ -20,6 +20,21 @@ let x = $(obj)[$('x')] = 30;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = {
+  get x() {
+    return $(10);
+  },
+  set x(_) {
+    $(20);
+  },
+};
+let x = ($(obj)[$('x')] = 30);
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +85,8 @@ Should call `$` with:
  - 3: 20
  - 4: 30
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

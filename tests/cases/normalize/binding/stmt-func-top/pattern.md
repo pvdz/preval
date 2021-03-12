@@ -19,6 +19,19 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let x = 1,
+    y = 2,
+    z = [10, 20, 30];
+  let [a, b] = z;
+  $(a, b, x, y, z);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +74,8 @@ Should call `$` with:
  - 1: 10, 20, 1, 2, [10, 20, 30]
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

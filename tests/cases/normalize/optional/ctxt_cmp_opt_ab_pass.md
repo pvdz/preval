@@ -15,6 +15,13 @@ const a = {b: {c: $}};
 $($(a)?.[$('b')]?.[$('c')](100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = { b: { c: $ } };
+$($(a)?.[$('b')]?.[$('c')](100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +81,8 @@ Should call `$` with:
  - 4: 100
  - 5: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

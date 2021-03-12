@@ -19,6 +19,14 @@ $($(a).length);
 //$($(a).length);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = $([]),
+  b;
+$($(a).length);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +61,8 @@ Should call `$` with:
  - 2: []
  - 3: 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

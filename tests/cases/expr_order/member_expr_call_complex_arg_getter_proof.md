@@ -30,6 +30,26 @@ var x = {
 x.y(a.b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let x = undefined;
+a = {
+  get b() {
+    $('b.get');
+    return 100;
+  },
+};
+x = {
+  get y() {
+    $('y.get');
+    return $;
+  },
+};
+x.y(a.b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -84,6 +104,8 @@ Should call `$` with:
  - 2: 'b.get'
  - 3: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

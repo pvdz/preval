@@ -16,6 +16,14 @@ const y = x;
 $(y); // Should be inlined to -5
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = -5;
+const y = x;
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +47,8 @@ None
 Should call `$` with:
  - 1: -5
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

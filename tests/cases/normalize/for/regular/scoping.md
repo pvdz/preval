@@ -15,6 +15,18 @@ const x = 1;
 for (const x = 2;;) $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = 1;
+{
+  const x$1 = 2;
+  while (true) {
+    $(x$1);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +79,8 @@ Should call `$` with:
  - 25: 2
  - 26: 2
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

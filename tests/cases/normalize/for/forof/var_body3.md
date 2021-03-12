@@ -15,6 +15,14 @@ for(const n of [1,2,3]) var x;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+for (const n of [1, 2, 3]) x = undefined;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +56,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,21 @@ $(a);
 //*/// (end of file artifact)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  let xyz = (a = { b: $(1) });
+  while (true) {
+    $(xyz);
+    $(1);
+  }
+}
+($(1), $(a))[$('b')] = $(2);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -91,6 +106,8 @@ Should call `$` with:
  - 25: 1
  - 26: { b: '1' }
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,17 @@
 for(;$(false);) var x = 0;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+{
+  while ($(false)) {
+    x = 0;
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +60,8 @@ None
 Should call `$` with:
  - 1: false
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

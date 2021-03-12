@@ -23,6 +23,29 @@ switch ($('a')) {
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = { x: 2 },
+  c = 3,
+  d = 4;
+{
+  let a$1;
+  const tmpSwitchValue = $('a');
+  let tmpSwitchCaseToStart = 1;
+  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      a$1 = $(b)[$('x')] = c + d;
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -89,6 +112,8 @@ Should call `$` with:
  - 4: 'x'
  - 5: 1, { x: '7' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,19 @@
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+[
+  [
+    {
+      x: {},
+    },
+  ],
+] = [[{ x: { a: 1, b: 2, c: 3 } }, 20, 30], 40, 50];
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -76,6 +89,8 @@ None
 Should call `$` with:
  - 1: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

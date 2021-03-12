@@ -15,6 +15,13 @@ let o = $(undefined);
 delete o?.x;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let o = $(undefined);
+delete o?.x;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +52,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

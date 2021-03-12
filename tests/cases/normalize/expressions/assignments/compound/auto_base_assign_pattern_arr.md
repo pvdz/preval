@@ -18,6 +18,15 @@ $((a *= [b] = $([$(2)])));
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+$((a *= [b] = $([$(2)])));
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +74,8 @@ Should call `$` with:
  - 3: NaN
  - 4: NaN, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

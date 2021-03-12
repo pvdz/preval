@@ -22,6 +22,23 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  const obj = {
+    get x() {
+      return $(10);
+    },
+    set x(_) {
+      $(20);
+    },
+  };
+  $(obj)[$('x')] = 30;
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -77,6 +94,8 @@ Should call `$` with:
  - 3: 20
  - 4: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

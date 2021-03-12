@@ -15,6 +15,19 @@ do var a = b(c(2));
 while (0);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || 0) {
+    tmpDoWhileFlag = false;
+    a = b(c(2));
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +81,8 @@ b, c
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

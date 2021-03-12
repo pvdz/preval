@@ -15,6 +15,13 @@ const a = {};
 $($(a)[$('b')][$('c')]?.(100));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = {};
+$($(a)[$('b')][$('c')]?.(100));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +71,8 @@ Should call `$` with:
  - 2: 'b'
  - 3: 'c'
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

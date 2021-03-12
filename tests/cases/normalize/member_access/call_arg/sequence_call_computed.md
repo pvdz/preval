@@ -15,6 +15,13 @@ $(($(1), $(2))[$('toString')]);
 $(c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(($(1), $(2))[$('toString')]);
+$(c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +59,8 @@ Should call `$` with:
  - 3: 'toString'
  - 4: '<function>'
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,16 @@ x = $(2); // After inlining the above, this should become a constant anyways
 $(x, 'b');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+$(1);
+$(x, 'a');
+x = $(2);
+$(x, 'b');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +59,8 @@ Should call `$` with:
  - 3: 2
  - 4: 2, 'b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ const [{ x = $('pass') }] = [null, 20, 30];
 $('bad');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [{ x = $('pass') }] = [null, 20, 30];
+$('bad');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +61,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

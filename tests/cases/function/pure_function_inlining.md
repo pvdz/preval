@@ -53,6 +53,24 @@ rule('I want it my way');
 rule('You have to listen to me');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let rule = function (desc) {
+  const func = $;
+  const a = PURPLE + 'Rule:';
+  const b = a + RESET;
+  const c = b + ' "';
+  const d = c + desc;
+  const e = d + '"';
+  func(e);
+};
+const PURPLE = 'purple';
+const RESET = 'reset';
+rule('I want it my way');
+rule('You have to listen to me');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -93,6 +111,8 @@ Should call `$` with:
  - 1: 'purpleRule:reset "I want it my way"'
  - 2: 'purpleRule:reset "You have to listen to me"'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

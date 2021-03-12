@@ -13,6 +13,13 @@ const a = (1, 2, (3, 4), 5);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = (1, 2, (3, 4), 5);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -35,6 +42,8 @@ None
 Should call `$` with:
  - 1: 5
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

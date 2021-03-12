@@ -16,6 +16,16 @@ if ( a ? b : c) $(100);
 else $(200);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = 2,
+  c = 3;
+if (a ? b : c) $(100);
+else $(200);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +60,8 @@ None
 Should call `$` with:
  - 1: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

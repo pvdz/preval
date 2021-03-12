@@ -15,6 +15,13 @@ const [[] = $(['pass2'])] = [1, 2, 3, 4, 5];
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [[] = $(['pass2'])] = [1, 2, 3, 4, 5];
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +67,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

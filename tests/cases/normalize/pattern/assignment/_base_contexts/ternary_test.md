@@ -13,6 +13,15 @@ let x = 1, b = 2, c = 3;
 ({ x } = 1) ? b : c;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  b = 2,
+  c = 3;
+({ x } = 1) ? b : c;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +48,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

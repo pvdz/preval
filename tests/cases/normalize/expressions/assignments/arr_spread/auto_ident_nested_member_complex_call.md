@@ -20,6 +20,17 @@ $([...(a = $(b)[$("x")] = $(c)[$("y")] = $(d))]);
 $(a, b, c, d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3;
+let a = { a: 999, b: 1000 };
+$([...(a = $(b)[$('x')] = $(c)[$('y')] = $(d))]);
+$(a, b, c, d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +85,8 @@ Should call `$` with:
  - 4: 'y'
  - 5: 3
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

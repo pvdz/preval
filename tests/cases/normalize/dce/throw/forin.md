@@ -22,6 +22,18 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  for (let x in { a: 1, b: 2 }) {
+    throw $(1, 'throw');
+    $('fail');
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +74,8 @@ None
 Should call `$` with:
  - 1: 1, 'throw'
  - eval returned: ('<crash[ 1 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

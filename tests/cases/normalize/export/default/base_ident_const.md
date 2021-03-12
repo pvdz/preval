@@ -16,6 +16,14 @@ const FOO = $(1);
 export default FOO;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const FOO = $(1);
+const tmpAnonDefaultExport = FOO;
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +48,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,30 @@ switch ($(1)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let f = function () {
+    return $('f');
+  };
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 2;
+  if (0 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      break tmpSwitchBreak;
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+      f();
+      break tmpSwitchBreak;
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -91,6 +115,8 @@ Should call `$` with:
  - 1: 1
  - 2: 'f'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

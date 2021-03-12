@@ -19,6 +19,17 @@ export default a = [x, y] = ($(x), $(y), [$(3), $(4)]);
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+const tmpAnonDefaultExport = (a = [x, y] = ($(x), $(y), [$(3), $(4)]));
+export { tmpAnonDefaultExport as default };
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +74,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

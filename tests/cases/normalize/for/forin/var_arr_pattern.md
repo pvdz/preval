@@ -14,6 +14,12 @@
 for (let {x} in {a: 1, b: 2}) $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+for (let { x } in { a: 1, b: 2 }) $(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -49,6 +55,8 @@ Should call `$` with:
  - 1: undefined
  - 2: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

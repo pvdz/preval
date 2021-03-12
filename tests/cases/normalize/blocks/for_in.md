@@ -12,6 +12,12 @@
 for (x in $(1)) $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+for (x in $(1)) $(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +47,8 @@ x
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

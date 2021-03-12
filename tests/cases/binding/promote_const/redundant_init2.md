@@ -19,6 +19,17 @@ while (true) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while (true) {
+  let a = undefined;
+  a = $(1);
+  $(a);
+  break;
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +61,8 @@ Should call `$` with:
  - 1: 1
  - 2: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

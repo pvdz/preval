@@ -18,6 +18,17 @@ const [[[[[[foo = (y = a??z)]= {...[a(a?.b)]}]]]]] = 1, {x: {...x}} = 1;
 function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = function (tmpParamPattern, tmpParamPattern$1) {
+  let [[[[[[foo = x$1] = y]]]]] = tmpParamPattern;
+  let {
+    x: { ...x$1 },
+  } = tmpParamPattern$1;
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -73,6 +84,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

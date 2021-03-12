@@ -23,6 +23,21 @@ const r = f(String);
 $(r);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const g = function (b) {
+  const y = b.toString();
+  return y;
+};
+const f = function (a) {
+  const x = g(a);
+  return x;
+};
+const r = f(String);
+$(r);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +69,8 @@ None
 Should call `$` with:
  - 1: 'function() { [native code] }'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

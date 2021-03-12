@@ -18,6 +18,18 @@ if ($(true)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+if ($(true)) {
+  let x = 1,
+    y = 2,
+    z = [10, 20, 30];
+  let [a, b] = z;
+  $(a, b, x, y, z);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +69,8 @@ Should call `$` with:
  - 1: true
  - 2: 10, 20, 1, 2, [10, 20, 30]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

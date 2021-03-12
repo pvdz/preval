@@ -12,6 +12,12 @@
 $([100, $()]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$([100, $()]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 
  - 2: [100, undefined]
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

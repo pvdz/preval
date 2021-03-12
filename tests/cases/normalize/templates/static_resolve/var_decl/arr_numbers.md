@@ -15,6 +15,13 @@ let x = `${[1,2,3]}`;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = `${[1, 2, 3]}`;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +47,8 @@ None
 Should call `$` with:
  - 1: '1,2,3'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

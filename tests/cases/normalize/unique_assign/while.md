@@ -19,6 +19,17 @@ while (a < 10) {
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = $(1);
+while (a < 10) {
+  a += 1;
+  $(a);
+}
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -70,6 +81,8 @@ Should call `$` with:
  - 10: 10
  - 11: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

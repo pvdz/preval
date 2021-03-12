@@ -14,6 +14,12 @@
 $(`abc ${ $(1) } def`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`abc ${$(1)} def`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +47,8 @@ Should call `$` with:
  - 1: 1
  - 2: 'abc 1 def'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

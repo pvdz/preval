@@ -15,6 +15,21 @@ let a = 1, b = 2, c = 3, d = 4;
 for (let a = b = $(c).y = $(d);false;) $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = 2,
+  c = 3,
+  d = 4;
+{
+  let a$1 = (b = $(c).y = $(d));
+  while (false) {
+    $(a$1, b, c);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +63,8 @@ Should call `$` with:
  - 1: 3
  - 2: 4
  - eval returned: ("<crash[ Cannot create property 'y' on number '3' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

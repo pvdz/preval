@@ -17,6 +17,15 @@ function f(x, y, z) {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (x, y, z) {
+  return $(!!arguments, x, z);
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ None
 Should call `$` with:
  - 1: true, undefined, undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

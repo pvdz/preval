@@ -16,6 +16,14 @@ $`before ${(a = 1 ? 2 : $($(100)))} after`;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$`before ${(a = 1 ? 2 : $($(100)))} after`;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +54,8 @@ Should call `$` with:
  - 1: ['before ', ' after'], 2
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

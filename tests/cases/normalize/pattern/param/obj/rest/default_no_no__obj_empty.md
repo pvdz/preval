@@ -17,6 +17,16 @@ function f({ ...x } = $({ a: 'fail' })) {
 $(f({}, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let { ...x } = tmpParamDefault === undefined ? $({ a: 'fail' }) : tmpParamDefault;
+  return x;
+};
+$(f({}, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -76,6 +86,8 @@ None
 Should call `$` with:
  - 1: {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

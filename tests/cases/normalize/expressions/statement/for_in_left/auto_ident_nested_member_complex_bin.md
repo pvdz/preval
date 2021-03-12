@@ -21,6 +21,18 @@ for (($(b)[$("x")] = $(c)[$("y")] = d + e).x in $({ x: 1 }));
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = { a: 999, b: 1000 };
+for (($(b)[$('x')] = $(c)[$('y')] = d + e).x in $({ x: 1 }));
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -82,6 +94,8 @@ Should call `$` with:
  - 4: { y: '2' }
  - 5: 'y'
  - eval returned: ("<crash[ Cannot create property 'x' on number '7' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

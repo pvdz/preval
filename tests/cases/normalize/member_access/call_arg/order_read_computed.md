@@ -19,6 +19,20 @@ const obj = {
 $($(obj)[$('x')]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = {
+  get x() {
+    return $(10);
+  },
+  set x(_) {
+    $(20);
+  },
+};
+$($(obj)[$('x')]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +82,8 @@ Should call `$` with:
  - 3: 10
  - 4: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

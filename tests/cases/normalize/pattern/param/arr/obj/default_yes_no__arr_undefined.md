@@ -17,6 +17,16 @@ function f([{} = $('fail')]) {
 $(f([undefined, 20, 30], 200));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let [{} = $('fail')] = tmpParamPattern;
+  return 'ok';
+};
+$(f([undefined, 20, 30], 200));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -91,6 +101,8 @@ Should call `$` with:
  - 1: 'fail'
  - 2: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

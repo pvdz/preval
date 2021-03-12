@@ -12,6 +12,12 @@
 $(typeof true);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(typeof true);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -35,6 +41,8 @@ None
 Should call `$` with:
  - 1: 'boolean'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,20 @@ $(f(undefined, 'y')); // [foo, y]
 $(f('x', 'y')); // [x, y]
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault, tmpParamDefault$1) {
+  let a = tmpParamDefault === undefined ? 'foo' : tmpParamDefault;
+  let b = tmpParamDefault$1 === undefined ? a : tmpParamDefault$1;
+  return [a, b];
+};
+$(f());
+$(f('x'));
+$(f(undefined, 'y'));
+$(f('x', 'y'));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -97,6 +111,8 @@ Should call `$` with:
  - 3: ['foo', 'y']
  - 4: ['x', 'y']
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -17,6 +17,17 @@ if ($(1)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+if ($(1)) {
+  let f = function () {
+    $(1);
+  };
+  f();
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +59,8 @@ Should call `$` with:
  - 1: 1
  - 2: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

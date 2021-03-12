@@ -16,6 +16,16 @@ const xyz = z;
 $(xyz);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const x = 'a';
+const y = 'b' + x;
+const z = x + y;
+const xyz = z;
+$(xyz);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -41,6 +51,8 @@ None
 Should call `$` with:
  - 1: 'aba'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

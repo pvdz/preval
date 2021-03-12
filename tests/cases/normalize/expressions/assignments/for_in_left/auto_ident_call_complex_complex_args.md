@@ -18,6 +18,15 @@ for ((a = $($)($(1), $(2))).x in $({ x: 1 }));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = { a: 999, b: 1000 };
+for ((a = $($)($(1), $(2))).x in $({ x: 1 }));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -69,6 +78,8 @@ Should call `$` with:
  - 4: 2
  - 5: 1, 2
  - eval returned: ("<crash[ Cannot create property 'x' on number '1' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -13,6 +13,18 @@ do $(1);
 while ($(2));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let tmpDoWhileFlag = true;
+  while (tmpDoWhileFlag || $(2)) {
+    tmpDoWhileFlag = false;
+    $(1);
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -85,6 +97,8 @@ Should call `$` with:
  - 25: 1
  - 26: 2
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -23,6 +23,19 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  for (let x of [10, 20]) {
+    return $(1, 'return');
+    $('fail');
+  }
+  $('keep, do not eval');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +79,8 @@ Should call `$` with:
  - 1: 1, 'return'
  - 2: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ let x = `${/foo/g}`;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = `${/foo/g}`;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +47,8 @@ None
 Should call `$` with:
  - 1: '/foo/g'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

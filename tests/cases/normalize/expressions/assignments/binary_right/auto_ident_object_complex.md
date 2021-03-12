@@ -16,6 +16,14 @@ $($(100) + (a = { x: $(1), y: 2, z: $(3) }));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$($(100) + (a = { x: $(1), y: 2, z: $(3) }));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -57,6 +65,8 @@ Should call `$` with:
  - 4: '100[object Object]'
  - 5: { x: '1', y: '2', z: '3' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -12,6 +12,12 @@
 ({ x } = 1).foo
 `````
 
+## Pre Normal
+
+`````js filename=intro
+({ x } = 1).foo;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +45,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

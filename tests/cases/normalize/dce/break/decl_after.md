@@ -24,6 +24,17 @@ while ($(true)) {
 $('after');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+while ($(true)) {
+  if ($(false)) x = $('fail too');
+  break;
+  let x = $('fail');
+}
+$('after');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -73,6 +84,8 @@ Should call `$` with:
  - 2: false
  - 3: 'after'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

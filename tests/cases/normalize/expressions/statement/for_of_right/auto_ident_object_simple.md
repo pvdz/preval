@@ -16,6 +16,14 @@ for (let x of { x: 1, y: 2, z: 3 });
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+for (let x of { x: 1, y: 2, z: 3 });
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +54,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

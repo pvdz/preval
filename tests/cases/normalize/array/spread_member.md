@@ -14,6 +14,12 @@
 $([...true.toString.name]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$([...true.toString.name]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -42,6 +48,8 @@ None
 Should call `$` with:
  - 1: ['t', 'o', 'S', 't', 'r', 'i', 'n', 'g']
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,14 @@ export default class X {};
 new X();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let X = class {};
+export { X };
+new X();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -39,6 +47,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

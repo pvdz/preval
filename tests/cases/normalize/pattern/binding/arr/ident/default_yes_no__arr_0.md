@@ -15,6 +15,13 @@ const [x = $('pass')] = [0, 201];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [x = $('pass')] = [0, 201];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +63,8 @@ None
 Should call `$` with:
  - 1: 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

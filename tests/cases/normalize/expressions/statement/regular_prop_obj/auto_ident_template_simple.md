@@ -15,6 +15,13 @@ let a = `fo${1}o`;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = `fo${1}o`;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +44,8 @@ None
 Should call `$` with:
  - 1: 'fo1o'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

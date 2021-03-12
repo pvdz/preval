@@ -19,6 +19,16 @@ obj[(a = b?.x.y.z)];
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: { y: { z: 100 } } };
+let a = { a: 999, b: 1000 };
+let obj = {};
+obj[(a = b?.x.y.z)];
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +81,8 @@ None
 Should call `$` with:
  - 1: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -15,6 +15,13 @@ const a = {};
 $(a.b??c.d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const a = {};
+$(a.b ?? c.d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +57,8 @@ c
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

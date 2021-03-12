@@ -15,6 +15,15 @@ const { x: [{ y }] } = { x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 };
 $(y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const {
+  x: [{ y }],
+} = { x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 };
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +59,8 @@ None
 Should call `$` with:
  - 1: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

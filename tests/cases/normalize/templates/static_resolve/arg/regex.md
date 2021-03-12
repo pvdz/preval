@@ -14,6 +14,12 @@
 $(`${/foo/g}`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`${/foo/g}`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ None
 Should call `$` with:
  - 1: '/foo/g'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

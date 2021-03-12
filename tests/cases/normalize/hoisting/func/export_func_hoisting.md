@@ -24,6 +24,23 @@ export function a(){}
 $(a,b,d,f,h,x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = function () {};
+let b = function () {};
+let d = function () {};
+let f = function () {};
+let h = function () {};
+let l = function () {};
+let x = function () {};
+a();
+$(a, b, d, f, h, x);
+export { l };
+export { h };
+export { a };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +82,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

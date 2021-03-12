@@ -26,6 +26,21 @@ export default function() {
 };
 `````
 
+## Pre Normal
+
+`````js filename=intro
+import x from 'x';
+$(x());
+$(x.name);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport = function () {
+  return 100;
+};
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -72,6 +87,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

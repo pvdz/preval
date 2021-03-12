@@ -34,6 +34,33 @@ switch ($(30)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  const tmpSwitchValue = $(30);
+  let tmpSwitchCaseToStart = 1;
+  if ($(30) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else if ($(31) === tmpSwitchValue) tmpSwitchCaseToStart = 2;
+  else if ($(32) === tmpSwitchValue) tmpSwitchCaseToStart = 3;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      $('a');
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+      $('b');
+    }
+    if (tmpSwitchCaseToStart <= 2) {
+      $('c');
+    }
+    if (tmpSwitchCaseToStart <= 3) {
+      $('d');
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -128,6 +155,8 @@ Should call `$` with:
  - 5: 'c'
  - 6: 'd'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

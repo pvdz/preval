@@ -24,6 +24,24 @@ var {
 } = foo();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arr_1 = undefined;
+let arr_2 = undefined;
+let arr_4 = undefined;
+let val_1_2 = undefined;
+let val_1_4 = undefined;
+let val_2_1 = undefined;
+let val_3_1 = undefined;
+({
+  val_1_1: { val_2_1, ...val_2_rest },
+  val_1_2,
+  val_1_3: [arr_1, arr_2, { val_3_1, ...val_3_rest }, arr_4],
+  val_1_4,
+} = foo());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -89,6 +107,8 @@ foo, val_2_rest, val_3_rest
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -20,6 +20,17 @@ throw (a = $(b)[$("x")] = $(c)[$("y")] = d);
 $(a, b, c, d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3;
+let a = { a: 999, b: 1000 };
+throw (a = $(b)[$('x')] = $(c)[$('y')] = d);
+$(a, b, c, d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +78,8 @@ Should call `$` with:
  - 3: { y: '2' }
  - 4: 'y'
  - eval returned: ('<crash[ 3 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

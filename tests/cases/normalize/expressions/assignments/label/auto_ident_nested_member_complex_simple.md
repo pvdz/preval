@@ -20,6 +20,17 @@ label: a = $(b)[$("x")] = $(c)[$("y")] = d;
 $(a, b, c, d);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3;
+let a = { a: 999, b: 1000 };
+label: a = $(b)[$('x')] = $(c)[$('y')] = d;
+$(a, b, c, d);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -67,6 +78,8 @@ Should call `$` with:
  - 4: 'y'
  - 5: 3, { x: '3' }, { y: '3' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

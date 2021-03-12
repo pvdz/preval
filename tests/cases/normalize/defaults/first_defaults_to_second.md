@@ -21,6 +21,20 @@ $(f(undefined, 'y')); // runtime error
 $(f('x', 'y')); // [x, y]
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault, tmpParamDefault$1) {
+  let a = tmpParamDefault === undefined ? b : tmpParamDefault;
+  let b = tmpParamDefault$1 === undefined ? 'bar' : tmpParamDefault$1;
+  return [a, b];
+};
+$(f());
+$(f('x'));
+$(f(undefined, 'y'));
+$(f('x', 'y'));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -95,6 +109,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

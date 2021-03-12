@@ -17,6 +17,16 @@ function f([[...x] = $('pass')] = $('fail2')) {
 $(f([, , , 4, 5], 200));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let [[...x] = $('pass')] = tmpParamDefault === undefined ? $('fail2') : tmpParamDefault;
+  return x;
+};
+$(f([, , , 4, 5], 200));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -88,6 +98,8 @@ Should call `$` with:
  - 1: 'pass'
  - 2: ['p', 'a', 's', 's']
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

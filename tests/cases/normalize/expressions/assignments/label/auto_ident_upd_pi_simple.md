@@ -18,6 +18,15 @@ label: a = ++b;
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 1;
+let a = { a: 999, b: 1000 };
+label: a = ++b;
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ None
 Should call `$` with:
  - 1: 2, 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -12,6 +12,12 @@
 $(parseInt(15)??foo);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(parseInt(15) ?? foo);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +52,8 @@ foo
 Should call `$` with:
  - 1: 15
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

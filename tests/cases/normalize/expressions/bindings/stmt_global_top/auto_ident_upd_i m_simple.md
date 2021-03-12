@@ -17,6 +17,14 @@ let a = b--;
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = 1;
+let a = b--;
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -42,6 +50,8 @@ None
 Should call `$` with:
  - 1: 1, 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

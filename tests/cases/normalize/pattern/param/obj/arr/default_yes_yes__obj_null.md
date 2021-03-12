@@ -17,6 +17,16 @@ function f({ x: [] = $(['fail']) } = $({ x: ['fail2'] })) {
 $(f({ x: null, a: 11, b: 12 }, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let { x: [] = $(['fail']) } = tmpParamDefault === undefined ? $({ x: ['fail2'] }) : tmpParamDefault;
+  return 'bad';
+};
+$(f({ x: null, a: 11, b: 12 }, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +100,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

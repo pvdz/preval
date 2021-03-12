@@ -16,6 +16,17 @@ a = b ? c : d;
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = 1,
+  b = 2,
+  c = 3,
+  d = 4;
+a = b ? c : d;
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +57,8 @@ None
 Should call `$` with:
  - 1: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

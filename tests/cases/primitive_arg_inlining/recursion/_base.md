@@ -21,6 +21,15 @@ function f(n) {
 $(f(0));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (n) {
+  return f(n + 1);
+};
+$(f(0));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +64,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

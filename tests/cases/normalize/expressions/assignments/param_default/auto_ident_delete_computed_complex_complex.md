@@ -19,6 +19,18 @@ $(f());
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let p = tmpParamDefault === undefined ? (a = delete $(arg)[$('y')]) : tmpParamDefault;
+};
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(f());
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +86,8 @@ Should call `$` with:
  - 3: undefined
  - 4: true, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

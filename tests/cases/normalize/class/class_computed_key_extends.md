@@ -34,6 +34,31 @@ $(new x().x());
 $(new x().y());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let s = String;
+const y = 'y';
+let x = class extends $(s) {
+  [$('f')]() {
+    return $(100, 'method');
+  }
+  g() {
+    return $(200, 'method');
+  }
+  [((s = Number), 'x')]() {
+    return $(300, 'method');
+  }
+  [y]() {
+    return $(400, 'method');
+  }
+};
+$(new x().f());
+$(new x().g());
+$(new x().x());
+$(new x().y());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -134,6 +159,8 @@ Should call `$` with:
  - 9: 400, 'method'
  - 10: 400
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

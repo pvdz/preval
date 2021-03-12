@@ -16,6 +16,14 @@ $(`before  ${$($(0)) || $($(2))}  after`);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(`before  ${$($(0)) || $($(2))}  after`);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +73,8 @@ Should call `$` with:
  - 5: 'before 2 after'
  - 6: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

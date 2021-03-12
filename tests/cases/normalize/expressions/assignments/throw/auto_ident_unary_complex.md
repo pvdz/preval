@@ -18,6 +18,15 @@ throw (a = typeof $(x));
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+throw (a = typeof $(x));
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -46,6 +55,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: ('<crash[ number ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

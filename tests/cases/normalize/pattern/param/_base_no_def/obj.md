@@ -12,6 +12,15 @@
 function g({ x }) { return x }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let g = function (tmpParamPattern) {
+  let { x } = tmpParamPattern;
+  return x;
+};
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -36,6 +45,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

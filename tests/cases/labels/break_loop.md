@@ -18,6 +18,16 @@ foo: while(true) {
 $(2);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+foo: while (true) {
+  $(1);
+  break foo;
+}
+$(2);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +58,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

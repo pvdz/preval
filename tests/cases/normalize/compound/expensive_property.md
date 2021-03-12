@@ -20,6 +20,15 @@ function superExpensiveFunction() {
 superExpensiveFunction().x += 5;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let superExpensiveFunction = function () {
+  return $();
+};
+superExpensiveFunction().x += 5;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +61,8 @@ None
 Should call `$` with:
  - 1: 
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,16 @@ try {
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+try {
+  x = 10;
+} catch {}
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +58,8 @@ None
 Should call `$` with:
  - 1: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

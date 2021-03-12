@@ -20,6 +20,18 @@ export let a = ($(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = ($(b)[$('x')] = $(c)[$('y')] = d + e);
+export { a };
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +76,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

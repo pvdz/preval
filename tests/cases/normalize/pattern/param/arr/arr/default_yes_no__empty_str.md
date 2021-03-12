@@ -17,6 +17,16 @@ function f([[] = $(['pass2'])]) {
 $(f('', 200));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let [[] = $(['pass2'])] = tmpParamPattern;
+  return 'ok';
+};
+$(f('', 200));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -72,6 +82,8 @@ Should call `$` with:
  - 1: ['pass2']
  - 2: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

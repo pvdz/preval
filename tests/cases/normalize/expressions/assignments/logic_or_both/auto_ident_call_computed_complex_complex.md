@@ -18,6 +18,15 @@ $((a = $(b)[$("$")](1)) || (a = $(b)[$("$")](1)));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = { a: 999, b: 1000 };
+$((a = $(b)[$('$')](1)) || (a = $(b)[$('$')](1)));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -73,6 +82,8 @@ Should call `$` with:
  - 4: 1
  - 5: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

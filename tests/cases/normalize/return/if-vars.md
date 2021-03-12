@@ -21,6 +21,19 @@ function f() {
 $(f(), 'result');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let x = undefined;
+  if ($(1)) {
+    x = $(1, 'a');
+  }
+  return x;
+};
+$(f(), 'result');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +81,8 @@ Should call `$` with:
  - 2: 1, 'a'
  - 3: 1, 'result'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

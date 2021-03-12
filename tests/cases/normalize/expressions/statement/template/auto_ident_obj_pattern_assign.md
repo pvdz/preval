@@ -19,6 +19,16 @@ $(`before  ${({ x, y } = { x: $(3), y: $(4) })}  after`);
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+$(`before  ${({ x, y } = { x: $(3), y: $(4) })}  after`);
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +74,8 @@ Should call `$` with:
  - 3: 'before [object Object] after'
  - 4: { a: '999', b: '1000' }, 3, 4
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

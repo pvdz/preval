@@ -21,6 +21,23 @@ for (a = $(b)[$("x")] = $(c)[$("y")] = d + e; ; $(1));
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = { a: 999, b: 1000 };
+{
+  a = $(b)[$('x')] = $(c)[$('y')] = d + e;
+  while (true) {
+    $(1);
+  }
+}
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -96,6 +113,8 @@ Should call `$` with:
  - 25: 1
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

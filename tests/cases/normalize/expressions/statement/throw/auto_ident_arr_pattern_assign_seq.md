@@ -19,6 +19,16 @@ throw ([x, y] = ($(x), $(y), [$(3), $(4)]));
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+throw ([x, y] = ($(x), $(y), [$(3), $(4)]));
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +74,8 @@ Should call `$` with:
  - 3: 3
  - 4: 4
  - eval returned: ('<crash[ 3,4 ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

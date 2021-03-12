@@ -20,6 +20,18 @@ f();
 $(100);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  $(b).x = $(b).x = c;
+};
+let b = { x: 1 };
+let c = 3;
+f();
+$(100);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +75,8 @@ Should call `$` with:
  - 2: { x: '1' }
  - 3: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -19,6 +19,17 @@ x = $('unknown 3'); // This has to be made a constant in the first cycle. The un
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $('unknown 1');
+let z = $('unknown 2');
+$(x);
+let unused = x + z;
+x = $('unknown 3');
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -54,6 +65,8 @@ Should call `$` with:
  - 4: 'unknown 3'
  - 5: 'unknown 3'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

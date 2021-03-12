@@ -21,6 +21,20 @@ function f() {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let x = undefined;
+  $(x);
+  {
+    for ([x] of [[100]]) $(x, 'for');
+  }
+  $(x);
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -72,6 +86,8 @@ Should call `$` with:
  - 2: 100, 'for'
  - 3: 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

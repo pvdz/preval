@@ -21,6 +21,18 @@ $(100) || ($(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 },
+  c = { y: 2 },
+  d = 3,
+  e = 4;
+let a = { a: 999, b: 1000 };
+$(100) || ($(b)[$('x')] = $(c)[$('y')] = d + e);
+$(a, b, c, d, e);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -75,6 +87,8 @@ Should call `$` with:
  - 1: 100
  - 2: { a: '999', b: '1000' }, { x: '1' }, { y: '2' }, 3, 4
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

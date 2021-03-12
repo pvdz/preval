@@ -20,6 +20,26 @@ switch (1) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+{
+  let arg;
+  let a;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 1;
+  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      arg = { y: 1 };
+      a = delete $(arg).y;
+      $(a, arg);
+    }
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +79,8 @@ Should call `$` with:
  - 1: { y: '1' }
  - 2: true, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

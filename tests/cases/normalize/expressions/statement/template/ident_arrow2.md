@@ -18,6 +18,18 @@ $(`before  ${function() {
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(
+  `before  ${function () {
+    if (x) y;
+  }}  after`,
+);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +71,8 @@ Should call `$` with:
  - 1: 'before function() { if (x) y;} after'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: BAD?!
  - 1: 'before function() {if (x) {y;}} after'

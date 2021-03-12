@@ -25,6 +25,22 @@ $(a);
 a = 4;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  a = 2;
+};
+let a = 1;
+$(a);
+f();
+a = 3;
+$(a);
+f();
+$(a);
+a = 4;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -68,6 +84,8 @@ Should call `$` with:
  - 2: 3
  - 3: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

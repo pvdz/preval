@@ -14,6 +14,12 @@
 $(`${`I am a string`}`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`${`I am a string`}`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 Should call `$` with:
  - 1: 'I am a string'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

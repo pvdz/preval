@@ -19,6 +19,16 @@ a = { x, y } = { x: $(3), y: $(4) };
 $(a, x, y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2;
+let a = { a: 999, b: 1000 };
+a = { x, y } = { x: $(3), y: $(4) };
+$(a, x, y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +66,8 @@ Should call `$` with:
  - 2: 4
  - 3: { x: '3', y: '4' }, 3, 4
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,19 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  {
+    let a = { a: 999, b: 1000 };
+    a = $(1) ? (40, 50, $(60)) : $($(100));
+    $(a);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -71,6 +84,8 @@ Should call `$` with:
  - 3: 60
  - 4: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

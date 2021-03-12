@@ -15,6 +15,13 @@ let a = {x: {y: {z: 10}}};
 $($(a)?.[$('x')]?.[$('y')][$('z')]);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { x: { y: { z: 10 } } };
+$($(a)?.[$('x')]?.[$('y')][$('z')]);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -78,6 +85,8 @@ Should call `$` with:
  - 4: 'z'
  - 5: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

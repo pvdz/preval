@@ -83,6 +83,13 @@ if (a) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+if (a && b) c;
+else d;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -121,6 +128,8 @@ a, b, c, d
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -20,6 +20,16 @@ function f() {
 f.call({pass: 1});
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  const x = this;
+  $(x);
+};
+f.call({ pass: 1 });
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +65,8 @@ None
 Should call `$` with:
  - 1: { pass: '1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

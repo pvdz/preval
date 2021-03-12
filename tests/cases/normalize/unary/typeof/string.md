@@ -14,6 +14,12 @@
 $(typeof "foo");
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(typeof 'foo');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 Should call `$` with:
  - 1: 'string'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -17,6 +17,17 @@ $(f('x'));
 $(f('y'));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamDefault) {
+  let a = tmpParamDefault === undefined ? 'foo' : tmpParamDefault;
+  return a;
+};
+$(f('x'));
+$(f('y'));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -66,6 +77,8 @@ Should call `$` with:
  - 1: 'x'
  - 2: 'y'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

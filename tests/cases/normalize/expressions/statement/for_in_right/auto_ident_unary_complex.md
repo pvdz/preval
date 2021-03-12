@@ -18,6 +18,15 @@ for (let x in typeof $(x));
 $(a, x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+for (let x$1 in typeof $(x$1));
+$(a, x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +60,8 @@ None
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,14 @@ x = ($(1), $(2), $($)).length;
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 10;
+x = ($(1), $(2), $($)).length;
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +55,8 @@ Should call `$` with:
  - 3: '<$>'
  - 4: 0
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

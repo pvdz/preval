@@ -16,6 +16,14 @@ for ("foo".x in $({ x: 1 }));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+for ('foo'.x in $({ x: 1 }));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -52,6 +60,8 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - eval returned: ("<crash[ Cannot create property 'x' on string 'foo' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -21,6 +21,17 @@ var tmpTernaryTest;
 f(tmpArg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let tmpArg = undefined;
+let tmpBinaryLeft = undefined;
+let tmpTernaryTest = undefined;
+let g = function () {};
+(tmpTernaryTest = ((tmpBinaryLeft = a.x), tmpBinaryLeft === 1)), (tmpArg = tmpTernaryTest ? 2 : 3);
+f(tmpArg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -62,6 +73,8 @@ a, f
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

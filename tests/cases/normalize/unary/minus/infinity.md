@@ -14,6 +14,12 @@
 $(-Infinity);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(-Infinity);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -35,6 +41,8 @@ None
 Should call `$` with:
  - 1: -Infinity
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -17,6 +17,15 @@ y = o['x'] ;
 $(y, o);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const o = { x: 1 };
+let y = 1;
+y = o['x'];
+$(y, o);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +52,8 @@ None
 Should call `$` with:
  - 1: 1, { x: '1' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,16 @@ var x, a = 100;
 $(x, a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = undefined;
+let x = undefined;
+a = 100;
+[{ x = a }] = [{}];
+$(x, a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +71,8 @@ None
 Should call `$` with:
  - 1: 100, 100
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

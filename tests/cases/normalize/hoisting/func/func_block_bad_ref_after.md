@@ -22,6 +22,20 @@ function g() {
 g();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let g = function () {
+  {
+    let f = function () {
+      $(1);
+    };
+  }
+  f$1();
+};
+g();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -50,6 +64,8 @@ f$1
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

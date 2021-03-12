@@ -24,6 +24,30 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  {
+    const tmpSwitchValue = $(1, 'disc');
+    let tmpSwitchCaseToStart = 1;
+    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+        $('keep, do not eval');
+        return;
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+        return $(2, 'ret');
+      }
+    }
+  }
+  $('fail');
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -95,6 +119,8 @@ Should call `$` with:
  - 3: 2, 'ret'
  - 4: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

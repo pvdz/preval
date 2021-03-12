@@ -15,6 +15,13 @@ const [[]] = ['abc', 4, 5];
 $('ok');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [[]] = ['abc', 4, 5];
+$('ok');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -44,6 +51,8 @@ None
 Should call `$` with:
  - 1: 'ok'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

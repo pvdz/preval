@@ -14,6 +14,14 @@ const bar = "six";
 $(bar)
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const foo = 'five';
+const bar = 'six';
+$(bar);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +45,8 @@ None
 Should call `$` with:
  - 1: 'six'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

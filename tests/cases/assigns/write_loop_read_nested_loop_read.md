@@ -20,6 +20,18 @@ while ($(true)) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+while ($(true)) {
+  $(x, 'loop1');
+  while ($(true)) {
+    $(x, 'loop2');
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -98,6 +110,8 @@ Should call `$` with:
  - 25: 1, 'loop2'
  - 26: true
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

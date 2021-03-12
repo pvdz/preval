@@ -17,6 +17,15 @@ x = $(2); // SSA since all future reads can only inspect this write
 $(x, 'b');
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = $(1);
+$(x, 'a');
+x = $(2);
+$(x, 'b');
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -47,6 +56,8 @@ Should call `$` with:
  - 3: 2
  - 4: 2, 'b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

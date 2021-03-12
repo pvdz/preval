@@ -20,6 +20,17 @@ function f() {
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let b = { c: 1 };
+  let a = (1, 2, b)[$('c')];
+  $(a, b);
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -59,6 +70,8 @@ Should call `$` with:
  - 2: 1, { c: '1' }
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

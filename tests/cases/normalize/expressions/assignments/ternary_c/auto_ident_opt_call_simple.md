@@ -16,6 +16,14 @@ $($(0) ? $(100) : (a = $?.(1)));
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$($(0) ? $(100) : (a = $?.(1)));
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +82,8 @@ Should call `$` with:
  - 3: 1
  - 4: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,12 @@
 $(`${`a ${$(1)} b`}`);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(`${`a ${$(1)} b`}`);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -43,6 +49,8 @@ Should call `$` with:
  - 1: 1
  - 2: 'a 1 b'
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

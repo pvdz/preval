@@ -52,6 +52,35 @@ exit: {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x;
+let fallthrough = false;
+exit: {
+  if (fallthrough || x === $(1)) {
+    {
+      $('A');
+    }
+    fallthrough = true;
+  }
+  if (fallthrough || x === $(2)) {
+    {
+      $('B');
+      break exit;
+    }
+    fallthrough = true;
+  }
+  if (fallthrough || x === $(3)) {
+    {
+      $('C');
+      break exit;
+    }
+    fallthrough = true;
+  }
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -145,6 +174,8 @@ Should call `$` with:
  - 2: 2
  - 3: 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

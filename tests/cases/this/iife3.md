@@ -19,6 +19,17 @@ const f = function () {
 f();
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const f = function () {
+  if ($(1) && $(2)) {
+    this;
+  }
+};
+f();
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +64,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

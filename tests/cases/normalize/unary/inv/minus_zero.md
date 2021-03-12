@@ -14,6 +14,12 @@
 $(!-0);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(!-0);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -38,6 +44,8 @@ None
 Should call `$` with:
  - 1: true
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

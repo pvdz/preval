@@ -18,6 +18,15 @@ $(1) ? new ($(b)[$("$")])(1) : $(200);
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { $ };
+let a = { a: 999, b: 1000 };
+$(1) ? new ($(b)[$('$')])(1) : $(200);
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -65,6 +74,8 @@ Should call `$` with:
  - 4: 1
  - 5: { a: '999', b: '1000' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

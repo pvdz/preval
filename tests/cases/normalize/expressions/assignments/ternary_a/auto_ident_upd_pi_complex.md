@@ -18,6 +18,15 @@ $((a = ++$($(b)).x) ? $(100) : $(200));
 $(a, b);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+$((a = ++$($(b)).x) ? $(100) : $(200));
+$(a, b);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -74,6 +83,8 @@ Should call `$` with:
  - 4: 100
  - 5: 2, { x: '2' }
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

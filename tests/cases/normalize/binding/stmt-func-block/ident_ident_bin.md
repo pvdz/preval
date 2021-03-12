@@ -21,6 +21,21 @@ let b = 2, c = 3, d = 4;
 $(f());
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  if ($(true)) {
+    let b = 2,
+      c = 3,
+      d = 4;
+    let a = (b = c + d);
+    $(a, b, c);
+  }
+};
+$(f());
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -64,6 +79,8 @@ Should call `$` with:
  - 2: 7, 7, 3
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

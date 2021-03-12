@@ -18,6 +18,16 @@ if ($('if')) {
 }
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+if ($('if')) {
+  x = 10;
+  $(x);
+}
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -48,6 +58,8 @@ Should call `$` with:
  - 1: 'if'
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -14,6 +14,12 @@
 $(void 5);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+$(void 5);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -37,6 +43,8 @@ None
 Should call `$` with:
  - 1: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

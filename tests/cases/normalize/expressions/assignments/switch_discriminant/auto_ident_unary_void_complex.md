@@ -19,6 +19,22 @@ switch ((a = void $(100))) {
 $(a);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  const tmpSwitchValue = (a = void $(100));
+  let tmpSwitchCaseToStart = 0;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      $(100);
+    }
+  }
+}
+$(a);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +69,8 @@ Should call `$` with:
  - 2: 100
  - 3: undefined
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

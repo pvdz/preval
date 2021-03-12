@@ -20,6 +20,29 @@ switch ($('a')) { case $('a'): let [x, y] = ($(x), $(y), $(z)); break; }
 $(x, y, z);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = 1,
+  y = 2,
+  z = [10, 20, 30];
+{
+  let x$1;
+  let y$1;
+  const tmpSwitchValue = $('a');
+  let tmpSwitchCaseToStart = 1;
+  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+      [x$1, y$1] = ($(x$1), $(y$1), $(z));
+      break tmpSwitchBreak;
+    }
+  }
+}
+$(x, y, z);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -86,6 +109,8 @@ Should call `$` with:
  - 1: 'a'
  - 2: 'a'
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: BAD?!
  - 1: 'a'

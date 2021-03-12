@@ -19,6 +19,17 @@ const [
 $(y);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [
+  {
+    x: [y],
+  },
+] = [{ x: [1, 2, 3] }, 20, 30];
+$(y);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -56,6 +67,8 @@ None
 Should call `$` with:
  - 1: 1
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

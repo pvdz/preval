@@ -24,6 +24,19 @@ $(x.name);
 export default class X {};
 `````
 
+## Pre Normal
+
+`````js filename=intro
+import x from 'x';
+$(x);
+$(x.name);
+`````
+
+`````js filename=x
+let X = class {};
+export { X };
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -63,6 +76,8 @@ x
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

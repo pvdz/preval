@@ -23,6 +23,21 @@ const r = f($);
 $(r);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const g = function (a) {
+  const y = a(10);
+  return y;
+};
+const f = function (b) {
+  const x = g(b);
+  return x;
+};
+const r = f($);
+$(r);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -55,6 +70,8 @@ Should call `$` with:
  - 1: 10
  - 2: 10
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

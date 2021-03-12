@@ -17,6 +17,18 @@ var [x, z] = [4, 5, 6];
 $(x, y, z);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+let y = undefined;
+let z = undefined;
+[x, y] = [1, 2, 3];
+$(x, y);
+[x, z] = [4, 5, 6];
+$(x, y, z);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -60,6 +72,8 @@ Should call `$` with:
  - 1: 1, 2
  - 2: 4, 2, 5
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

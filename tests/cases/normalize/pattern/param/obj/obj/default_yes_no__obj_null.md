@@ -17,6 +17,16 @@ function f({ x: {} = $({ x: 'fail' }) }) {
 $(f({ x: null, b: 11, c: 12 }, 10));
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let f = function (tmpParamPattern) {
+  let { x: {} = $({ x: 'fail' }) } = tmpParamPattern;
+  return 'bad';
+};
+$(f({ x: null, b: 11, c: 12 }, 10));
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -90,6 +100,8 @@ None
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,15 @@ label: a = delete ($(1), $(2), arg).y;
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+label: a = delete ($(1), $(2), arg).y;
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -51,6 +60,8 @@ Should call `$` with:
  - 2: 2
  - 3: true, {}
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

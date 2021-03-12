@@ -14,6 +14,12 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 ($(1), $(2)).x = 1;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+($(1), $(2)).x = 1;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -40,6 +46,8 @@ Should call `$` with:
  - 1: 1
  - 2: 2
  - eval returned: ("<crash[ Cannot create property 'x' on number '2' ]>")
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

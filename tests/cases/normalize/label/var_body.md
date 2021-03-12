@@ -14,6 +14,13 @@
 test: var x = 0;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let x = undefined;
+test: x = 0;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -35,6 +42,8 @@ None
 
 Should call `$` with:
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

@@ -18,6 +18,15 @@ $(...delete $(arg)[$("y")]);
 $(a, arg);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(...delete $(arg)[$('y')]);
+$(a, arg);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -53,6 +62,8 @@ Should call `$` with:
  - 1: { y: '1' }
  - 2: 'y'
  - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

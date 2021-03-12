@@ -15,6 +15,13 @@ const [x] = [null];
 $(x);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const [x] = [null];
+$(x);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -42,6 +49,8 @@ None
 Should call `$` with:
  - 1: null
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

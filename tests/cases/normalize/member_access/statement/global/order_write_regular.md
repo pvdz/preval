@@ -19,6 +19,20 @@ const obj = {
 $(obj).x = 30;
 `````
 
+## Pre Normal
+
+`````js filename=intro
+const obj = {
+  get x() {
+    return $(10);
+  },
+  set x(_) {
+    $(20);
+  },
+};
+$(obj).x = 30;
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -61,6 +75,8 @@ Should call `$` with:
  - 1: { x: '<get/set>' }
  - 2: 20
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

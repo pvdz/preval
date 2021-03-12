@@ -16,6 +16,15 @@ let a = (b.x, c).foo;
 $(a, b, c);
 `````
 
+## Pre Normal
+
+`````js filename=intro
+let b = { x: 2 },
+  c = 3;
+let a = (b.x, c).foo;
+$(a, b, c);
+`````
+
 ## Normalized
 
 `````js filename=intro
@@ -45,6 +54,8 @@ None
 Should call `$` with:
  - 1: undefined, { x: '2' }, 3
  - eval returned: undefined
+
+Pre normalization calls: Same
 
 Normalized calls: Same
 

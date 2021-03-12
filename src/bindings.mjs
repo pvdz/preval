@@ -382,6 +382,7 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     writes: [], // {parent, prop, index} indirect reference ot the node being assigned
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
   };
+  ASSERT(name);
   fdata.globallyUniqueNamingRegistry.set(name, newMeta);
   return newMeta;
 }
@@ -415,12 +416,14 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
 
 export function createReadRef(obj) {
   const {
-    parentNode,
+    parentNode, // parent of the node
     parentProp,
     parentIndex,
-    grandNode,
+    grandNode, // parent of the parent
     grandProp,
     grandIndex,
+    blockBody, // nearest ancestor block to the node
+    blockIndex,
     node,
     rwCounter,
     scope,
@@ -429,14 +432,17 @@ export function createReadRef(obj) {
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
+  ASSERT(blockIndex >= 0);
   return {
     action: 'read',
-    parentNode,
+    parentNode, // parent of the node
     parentProp,
     parentIndex,
-    grandNode,
+    grandNode, // parent of the parent
     grandProp,
     grandIndex,
+    blockBody, // nearest ancestor block to the node
+    blockIndex,
     node,
     rwCounter,
     scope,
@@ -446,9 +452,11 @@ export function createReadRef(obj) {
 }
 export function createWriteRef(obj) {
   const {
-    parentNode,
+    parentNode, // parent of the node
     parentProp,
     parentIndex,
+    blockBody, // nearest ancestor block to the node
+    blockIndex,
     node,
     rwCounter,
     scope,
@@ -461,12 +469,15 @@ export function createWriteRef(obj) {
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
+  ASSERT(blockIndex >= 0);
 
   return {
     action: 'write',
     parentNode,
     parentProp,
     parentIndex,
+    blockBody,
+    blockIndex,
     node,
     rwCounter,
     scope,
@@ -693,4 +704,62 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
       ),
     );
   }
+}
+
+
+export function findBoundNamesInVarDeclaration(node, names = []) {
+  ASSERT(node.type === 'VariableDeclaration');
+  ASSERT(node.declarations.length === 1, 'var decls define one binding?', node);
+  const decl = node.declarations[0];
+  return findBoundNamesInVarDeclarator(decl, names);
+}
+
+export function findBoundNamesInVarDeclarator(decl, names = []) {
+  if (decl.id.type === 'Identifier') {
+    names.push(decl.id.name);
+    return names;
+  }
+
+  ASSERT(decl.id.type === 'ObjectPattern' || decl.id.type === 'ArrayPattern', 'theres no other kind of decl..?');
+
+  function r(node, names) {
+    if (node.type === 'ObjectPattern') {
+      node.properties.forEach((pnode) => {
+        if (pnode.type !== 'RestElement') {
+          let value = pnode.value;
+          if (pnode.type === 'AssignmentPattern') {
+            value = pnode.left.value;
+            ASSERT(value.type !== 'RestElement', 'rest not allowed to have init');
+          }
+          if (value.type === 'Identifier') {
+            names.push(value.name);
+          } else {
+            ASSERT(value.type === 'ArrayPattern' || value.type === 'ObjectPattern');
+            r(value, names);
+          }
+        }
+      });
+    } else if (node.type === 'ArrayPattern') {
+      node.elements.forEach((enode) => {
+        if (enode.type !== 'RestElement') {
+          if (enode.type === 'AssignmentPattern') {
+            enode = enode.left;
+            ASSERT(enode.type !== 'RestElement', 'rest not allowed to have init');
+          }
+          if (enode.type === 'Identifier') {
+            names.push(enode.name);
+          } else {
+            ASSERT(enode.type === 'ArrayPattern' || enode.type === 'ObjectPattern');
+            r(enode, names);
+          }
+        }
+      });
+    } else {
+      ASSERT(false, 'wat', node);
+    }
+  }
+
+  r(decl.id, names);
+
+  return names;
 }

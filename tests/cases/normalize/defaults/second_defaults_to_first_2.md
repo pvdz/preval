@@ -40,8 +40,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault, tmpParamDefault$1) {};
-f();
+
 `````
 
 ## Globals

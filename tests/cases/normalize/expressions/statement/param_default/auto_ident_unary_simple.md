@@ -42,10 +42,8 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(undefined);
 $(a, 1);
 `````
 

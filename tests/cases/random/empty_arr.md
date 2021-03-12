@@ -29,9 +29,7 @@ $(t);
 ## Output
 
 `````js filename=intro
-const f = function () {};
-const t = f();
-$(t);
+$(undefined);
 `````
 
 ## Globals

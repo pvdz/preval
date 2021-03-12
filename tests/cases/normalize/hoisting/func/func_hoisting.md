@@ -47,7 +47,6 @@ const d = function () {};
 const f = function () {};
 const h = function () {};
 const x = function () {};
-a();
 $(a, b, d, f, h, x);
 `````
 

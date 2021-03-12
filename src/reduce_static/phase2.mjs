@@ -2,6 +2,7 @@ import { log, group, groupEnd, ASSERT, BLUE, RED, RESET, tmat, fmat, TRIBE, PURP
 import { getIdentUsageKind, createFreshVar, createReadRef, createWriteRef } from '../bindings.mjs';
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
+import {pruneEmptyFunctions} from './phase2emptyfunc.mjs';
 
 let VERBOSE_TRACING = true;
 
@@ -86,6 +87,9 @@ export function phase2(program, fdata, resolve, req, verbose = VERBOSE_TRACING) 
 
   const ast = fdata.tenkoOutput.ast;
   const toEliminate = [];
+
+  const emptyFuncs = pruneEmptyFunctions(fdata);
+  if (emptyFuncs) return emptyFuncs;
 
   group('\n\n\nInlining constants with primitive values\n');
   let inlined = false;

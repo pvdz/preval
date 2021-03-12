@@ -37,17 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {};
 const a = { x: 1 };
-let tmpCalleeParam = undefined;
-const tmpBinLhs = a.x;
-const tmpIfTest = tmpBinLhs === 1;
-if (tmpIfTest) {
-  tmpCalleeParam = 2;
-} else {
-  tmpCalleeParam = 3;
-}
-f(tmpCalleeParam);
+a.x;
 `````
 
 ## Globals

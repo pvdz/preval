@@ -27,7 +27,6 @@ export { f };
 
 `````js filename=intro
 const f = function () {};
-f();
 export { f };
 `````
 

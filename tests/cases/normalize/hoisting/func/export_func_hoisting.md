@@ -51,7 +51,6 @@ const f = function () {};
 const h = function () {};
 const l = function () {};
 const x = function () {};
-a();
 $(a, b, d, f, h, x);
 export { l };
 export { h };

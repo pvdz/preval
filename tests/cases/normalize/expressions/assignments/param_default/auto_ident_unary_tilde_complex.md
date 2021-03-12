@@ -20,16 +20,16 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(100);
     const tmpNestedComplexRhs = ~tmpUnaryArg;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -42,8 +42,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(100);
     const tmpNestedComplexRhs = ~tmpUnaryArg;

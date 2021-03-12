@@ -20,13 +20,13 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     bindingPatternArrRoot = $('pass2');
   } else {
-    bindingPatternArrRoot = $tdz$__pattern;
+    bindingPatternArrRoot = tmpParamDefault;
   }
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternBeforeDefault = arrPatternSplat[0];
@@ -49,13 +49,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
+const f = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     bindingPatternArrRoot = $('pass2');
   } else {
-    bindingPatternArrRoot = $tdz$__pattern;
+    bindingPatternArrRoot = tmpParamDefault;
   }
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];

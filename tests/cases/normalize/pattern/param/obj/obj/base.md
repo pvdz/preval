@@ -21,13 +21,13 @@ $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = b;
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   let objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault = undefined;
@@ -63,13 +63,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
+const f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = 2;
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   const objPatternBeforeDefault = $tdz$__pattern_after_default.x;
   let objPatternAfterDefault = undefined;

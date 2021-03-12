@@ -22,16 +22,16 @@ $(a, arg);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
     const tmpDeleteObj = $(arg);
     p = delete tmpDeleteObj.y;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let arg = { y: 1 };
@@ -45,8 +45,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);

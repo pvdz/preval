@@ -20,16 +20,16 @@ $(f([{ x: undefined, y: 2, z: 3 }, 20, 30], 200));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpArrElement = { x: 'fail3' };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    bindingPatternArrRoot = $tdz$__pattern;
+    bindingPatternArrRoot = tmpParamDefault;
   }
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternBeforeDefault = arrPatternSplat[0];
@@ -65,15 +65,15 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
+const f = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpArrElement = { x: 'fail3' };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = $(tmpCalleeParam);
   } else {
-    bindingPatternArrRoot = $tdz$__pattern;
+    bindingPatternArrRoot = tmpParamDefault;
   }
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];

@@ -22,9 +22,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = b;
     const tmpNestedAssignComMemberProp = $('c');
@@ -35,7 +35,7 @@ let f = function ($tdz$__pattern) {
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     p = tmpNestedPropAssignRhs;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let b = { c: 10, d: 20 };
@@ -49,8 +49,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberProp = $('c');
     const tmpCompObj = $(b);

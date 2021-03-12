@@ -15,13 +15,13 @@ function i({x: {y: {z}}} = d ) { return z }
 ## Normalized
 
 `````js filename=intro
-let i = function ($tdz$__pattern) {
+let i = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = d;
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   let objPatternNoDefault = $tdz$__pattern_after_default.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;

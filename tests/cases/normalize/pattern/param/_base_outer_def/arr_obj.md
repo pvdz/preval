@@ -15,13 +15,13 @@ function h([{ x }] = c ) { return x}
 ## Normalized
 
 `````js filename=intro
-let h = function ($tdz$__pattern) {
+let h = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     bindingPatternArrRoot = c;
   } else {
-    bindingPatternArrRoot = $tdz$__pattern;
+    bindingPatternArrRoot = tmpParamDefault;
   }
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];

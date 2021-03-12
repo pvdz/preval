@@ -981,9 +981,7 @@ function transformFunctionParams(node, fdata) {
     // Not a rest. Two cases to do, maybe both; non-ident param, param with default. The default subsumes the pattern case.
     if (pnode.type === 'AssignmentPattern') {
       // Doesn't matter whether the param is a pattern. We replace it with the same kind of conditional assignment either way.
-      //YOYO
-      //const tmpName = createFreshVar('tmpParamDefault', fdata);
-      const tmpName = createFreshVar('$tdz$__pattern', fdata);
+      const tmpName = createFreshVar('tmpParamDefault', fdata);
       node.params[i] = AST.identifier(tmpName);
       // `let x = param === undefined ? def : param`
       toInline.push(

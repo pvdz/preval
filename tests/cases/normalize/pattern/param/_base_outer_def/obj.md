@@ -15,13 +15,13 @@ function g({ x } = b ) { return x }
 ## Normalized
 
 `````js filename=intro
-let g = function ($tdz$__pattern) {
+let g = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = b;
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   let x = $tdz$__pattern_after_default.x;
   return x;

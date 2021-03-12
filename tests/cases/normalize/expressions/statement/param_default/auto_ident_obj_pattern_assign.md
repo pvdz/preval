@@ -23,9 +23,9 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
@@ -34,7 +34,7 @@ let f = function ($tdz$__pattern) {
     y = tmpNestedAssignObjPatternRhs.y;
     p = tmpNestedAssignObjPatternRhs;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let x = 1;
@@ -49,8 +49,8 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);

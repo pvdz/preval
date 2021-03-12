@@ -17,16 +17,16 @@ const f = (a = { x } = 1) => { return a };
 ## Normalized
 
 `````js filename=intro
-const f = ($tdz$__pattern) => {
+const f = (tmpParamDefault) => {
   let a = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignObjPatternRhs = 1;
     x = tmpNestedAssignObjPatternRhs.x;
     a = tmpNestedAssignObjPatternRhs;
     return a;
   } else {
-    a = $tdz$__pattern;
+    a = tmpParamDefault;
     return a;
   }
 };

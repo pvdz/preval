@@ -18,13 +18,13 @@ x();
 ## Normalized
 
 `````js filename=intro
-let x = function ($tdz$__pattern, tmpParamPattern) {
+let x = function (tmpParamDefault, tmpParamPattern) {
   let foo = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     foo = x$1;
   } else {
-    foo = $tdz$__pattern;
+    foo = tmpParamDefault;
   }
   let $tdz$__pattern_after_default = tmpParamPattern;
   let x$1 = $tdz$__pattern_after_default.x$1;
@@ -35,7 +35,7 @@ x();
 ## Output
 
 `````js filename=intro
-const x = function ($tdz$__pattern, tmpParamPattern) {
+const x = function (tmpParamDefault, tmpParamPattern) {
   tmpParamPattern.x$1;
 };
 x();

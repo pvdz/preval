@@ -20,13 +20,13 @@ $(f('abc', 10));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('fail');
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
   if (objPatternCrashTest) {
@@ -48,13 +48,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
+const f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     $tdz$__pattern_after_default = $('fail');
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   let objPatternCrashTest = $tdz$__pattern_after_default === undefined;
   if (objPatternCrashTest) {

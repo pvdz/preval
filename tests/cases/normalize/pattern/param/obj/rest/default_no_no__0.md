@@ -20,15 +20,15 @@ $(f(0, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 'fail' };
     $tdz$__pattern_after_default = tmpCallCallee(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = $tdz$__pattern_after_default;
@@ -45,14 +45,14 @@ tmpCallCallee$2(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
+const f = function (tmpParamDefault) {
   let $tdz$__pattern_after_default = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = { a: 'fail' };
     $tdz$__pattern_after_default = $(tmpCalleeParam);
   } else {
-    $tdz$__pattern_after_default = $tdz$__pattern;
+    $tdz$__pattern_after_default = tmpParamDefault;
   }
   const tmpCalleeParam$1 = $tdz$__pattern_after_default;
   const tmpCalleeParam$2 = [];

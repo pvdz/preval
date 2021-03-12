@@ -23,14 +23,14 @@ $(a, b, c);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     b = 2;
     p = 2;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let b = 1;
@@ -45,8 +45,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     b = 2;
   }

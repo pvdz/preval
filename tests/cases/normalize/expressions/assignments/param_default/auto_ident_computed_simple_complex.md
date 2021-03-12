@@ -22,9 +22,9 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let f = function ($tdz$__pattern) {
+let f = function (tmpParamDefault) {
   let p = undefined;
-  const tmpIfTest = $tdz$__pattern === undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCompObj = b;
     const tmpCompProp = $('c');
@@ -32,7 +32,7 @@ let f = function ($tdz$__pattern) {
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = $tdz$__pattern;
+    p = tmpParamDefault;
   }
 };
 let b = { c: 1 };
@@ -46,8 +46,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function ($tdz$__pattern) {
-  const tmpIfTest = $tdz$__pattern === undefined;
+const f = function (tmpParamDefault) {
+  const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
     const tmpCompProp = $('c');
     const tmpNestedComplexRhs = b[tmpCompProp];

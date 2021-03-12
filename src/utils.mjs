@@ -1,5 +1,6 @@
 import Prettier from 'prettier';
 import { printer } from '../lib/printer.mjs';
+import walk from '../lib/walk.mjs';
 
 const colorLess = typeof process !== 'undefined' && process.argv.includes('-C');
 
@@ -50,6 +51,8 @@ export function ASSERT_LOC(loc) {
   ASSERT(typeof loc.column === 'number' && loc.column >= 0, 'loc filename must be a number >=0', loc);
   ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
 }
+
+export const VERBOSE_TRACING = true
 
 export function printNode(node) {
   ASSERT(node);
@@ -169,4 +172,86 @@ export function isProperIdent(node) {
       return false;
     }
   }
+}
+
+export function rule(desc, ...rest) {
+  log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
+}
+
+export function example(from, to, condition) {
+  if (VERBOSE_TRACING) {
+    if (!condition || condition()) {
+      log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
+    }
+  }
+}
+
+export function before(node, parent) {
+  if (VERBOSE_TRACING) {
+    if (Array.isArray(node)) node.forEach((n) => before(n, parent));
+    else {
+      const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
+      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+      if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+      log(YELLOW + 'Before:' + RESET, nodeCode);
+    }
+  }
+}
+
+export function source(node, force) {
+  if (VERBOSE_TRACING || force) {
+    if (Array.isArray(node)) node.forEach((n) => source(n));
+    else {
+      let code = tmat(node);
+      try {
+        code = fmat(code); // May fail.
+      } catch {}
+      if (code.includes('\n')) {
+        log(YELLOW + 'Source:' + RESET);
+        group();
+        log(code);
+        groupEnd();
+      } else {
+        log(YELLOW + 'Source:' + RESET, code);
+      }
+    }
+  }
+}
+
+export function after(node, parentNode) {
+  if (VERBOSE_TRACING) {
+    if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
+    else {
+      const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
+      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+      log(YELLOW + 'After :' + RESET, nodeCode);
+      if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+    }
+  }
+}
+
+export function assertNoDupeNodes(node, prop) {
+  // Assert AST contains no duplicate node objects
+  const map = new Map();
+  walk(
+    (node, down, type, path) => {
+      if (!node || !node.$p) return;
+      if (down) {
+        if (map.has(node.$p.pid)) {
+          console.dir(node, { depth: null });
+          console.log('previous parent:', map.get(node.$p.pid));
+          console.log('current  parent:', path.nodes[path.nodes.length - 2]);
+          console.log('truncated node:', node);
+          ASSERT(
+            false,
+            'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
+            node,
+          );
+        }
+        map.set(node.$p.pid, path.nodes[path.nodes.length - 2]);
+      }
+    },
+    node,
+    prop,
+  );
 }

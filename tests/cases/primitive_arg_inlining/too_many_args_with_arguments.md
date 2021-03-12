@@ -24,35 +24,34 @@ $(f($(1), $(2), $(3), $(4)));
 
 `````js filename=intro
 let f = function (a) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = arguments.length;
-  tmpCallCallee(tmpCalleeParam);
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  $(tmpPrevalAliasArgumentsLen);
   return a;
 };
-const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
-const tmpCalleeParam$2 = $(1);
-const tmpCalleeParam$3 = $(2);
-const tmpCalleeParam$4 = $(3);
-const tmpCalleeParam$5 = $(4);
-const tmpCalleeParam$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4, tmpCalleeParam$5);
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$2 = $(2);
+const tmpCalleeParam$3 = $(3);
+const tmpCalleeParam$4 = $(4);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
 const f = function (a) {
-  const tmpCalleeParam = arguments.length;
-  $(tmpCalleeParam);
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  $(tmpPrevalAliasArgumentsLen);
   return a;
 };
-const tmpCalleeParam$2 = $(1);
-const tmpCalleeParam$3 = $(2);
-const tmpCalleeParam$4 = $(3);
-const tmpCalleeParam$5 = $(4);
-const tmpCalleeParam$1 = f(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4, tmpCalleeParam$5);
-$(tmpCalleeParam$1);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$2 = $(2);
+const tmpCalleeParam$3 = $(3);
+const tmpCalleeParam$4 = $(4);
+const tmpCalleeParam = f(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+$(tmpCalleeParam);
 `````
 
 ## Globals

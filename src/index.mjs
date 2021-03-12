@@ -5,6 +5,7 @@ import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
+import { aliasThisAndArguments } from './normalize/aliasing.mjs';
 import fs from 'fs';
 import path from 'path';
 
@@ -90,6 +91,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
 
     const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    aliasThisAndArguments(fdata, resolve, req, verbose);
     phaseNormalize(fdata, nextFname);
 
     mod.children = new Set(fdata.imports.values());
@@ -228,6 +230,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, verbose); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          aliasThisAndArguments(fdata, resolve, req, verbose);
           phaseNormalize(fdata, fname);
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);

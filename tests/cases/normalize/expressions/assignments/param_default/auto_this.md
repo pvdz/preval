@@ -23,12 +23,12 @@ $(a);
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
+  const tmpPrevalAliasThis = this;
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = this;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+    a = tmpPrevalAliasThis;
+    p = tmpPrevalAliasThis;
   } else {
     p = tmpParamDefault;
   }
@@ -44,10 +44,10 @@ $(a);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
+  const tmpPrevalAliasThis = this;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = this;
-    a = tmpNestedComplexRhs;
+    a = tmpPrevalAliasThis;
   }
 };
 let a = { a: 999, b: 1000 };

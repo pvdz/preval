@@ -21,8 +21,9 @@ f();
 
 `````js filename=intro
 let f = function (x, y, z) {
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpCallCallee = $;
-  const tmpUnaryArg = !arguments;
+  const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
   const tmpCalleeParam$2 = z;
@@ -36,7 +37,8 @@ f();
 
 `````js filename=intro
 const f = function (x, y, z) {
-  const tmpUnaryArg = !arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpReturnArg = $(tmpCalleeParam, x, z);
   return tmpReturnArg;

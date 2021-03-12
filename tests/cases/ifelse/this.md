@@ -26,12 +26,12 @@ $(obj.f());
 
 `````js filename=intro
 let f = function () {
+  const tmpPrevalAliasThis = this;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(2);
     if (tmpIfTest$1) {
-      const tmpReturnArg = this;
-      return tmpReturnArg;
+      return tmpPrevalAliasThis;
     }
   }
 };
@@ -45,12 +45,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  const tmpPrevalAliasThis = this;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(2);
     if (tmpIfTest$1) {
-      const tmpReturnArg = this;
-      return tmpReturnArg;
+      return tmpPrevalAliasThis;
     }
   }
 };

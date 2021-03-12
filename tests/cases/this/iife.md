@@ -25,11 +25,12 @@ f();
 
 `````js filename=intro
 const f = function () {
+  const tmpPrevalAliasThis = this;
   let t = $(1);
   if (t) {
     t = $(2);
     if (t) {
-      const g = this;
+      const g = tmpPrevalAliasThis;
     }
   }
 };

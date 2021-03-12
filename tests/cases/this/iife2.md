@@ -26,13 +26,14 @@ f();
 
 `````js filename=intro
 const f = function () {
+  const tmpPrevalAliasThis = this;
   let g = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpBinLhs = typeof window;
     const tmpIfTest$1 = tmpBinLhs !== 'undefined';
     if (tmpIfTest$1) {
-      g = this;
+      g = tmpPrevalAliasThis;
     }
   }
 };

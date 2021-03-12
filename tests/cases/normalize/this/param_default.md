@@ -21,10 +21,11 @@ $(f());
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
+  const tmpPrevalAliasThis = this;
   let a = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    a = this;
+    a = tmpPrevalAliasThis;
     return a;
   } else {
     a = tmpParamDefault;
@@ -40,10 +41,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
+  const tmpPrevalAliasThis = this;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const SSA_a = this;
-    return SSA_a;
+    return tmpPrevalAliasThis;
   } else {
     return tmpParamDefault;
   }

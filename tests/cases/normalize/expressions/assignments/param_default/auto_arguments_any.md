@@ -21,11 +21,12 @@ $(a);
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
+  const tmpPrevalAliasArgumentsAny = arguments;
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    a = arguments;
-    p = arguments;
+    a = tmpPrevalAliasArgumentsAny;
+    p = tmpPrevalAliasArgumentsAny;
   } else {
     p = tmpParamDefault;
   }
@@ -41,10 +42,10 @@ $(a);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    a = arguments;
-    arguments;
+    a = tmpPrevalAliasArgumentsAny;
   }
 };
 let a = { a: 999, b: 1000 };

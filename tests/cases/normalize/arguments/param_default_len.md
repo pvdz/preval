@@ -21,10 +21,11 @@ $(f());
 
 `````js filename=intro
 let f = function (tmpParamDefault) {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    a = arguments.length;
+    a = tmpPrevalAliasArgumentsLen;
     return a;
   } else {
     a = tmpParamDefault;
@@ -40,10 +41,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function (tmpParamDefault) {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const SSA_a = arguments.length;
-    return SSA_a;
+    return tmpPrevalAliasArgumentsLen;
   } else {
     return tmpParamDefault;
   }

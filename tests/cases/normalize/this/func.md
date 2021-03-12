@@ -24,7 +24,8 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const x = this;
+  const tmpPrevalAliasThis = this;
+  const x = tmpPrevalAliasThis;
   return x;
 };
 const tmpCallCallee = $;
@@ -36,8 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const x = this;
-  return x;
+  const tmpPrevalAliasThis = this;
+  return tmpPrevalAliasThis;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

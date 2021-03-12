@@ -33,16 +33,15 @@ const f = function (x1) {
     x = {};
   }
   const g = function () {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = arguments.length;
-    tmpCallCallee(tmpCalleeParam);
+    const tmpPrevalAliasArgumentsLen = arguments.length;
+    $(tmpPrevalAliasArgumentsLen);
   };
   const tmpReturnArg = g();
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
@@ -50,14 +49,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   const g = function () {
-    const tmpCalleeParam = arguments.length;
-    $(tmpCalleeParam);
+    const tmpPrevalAliasArgumentsLen = arguments.length;
+    $(tmpPrevalAliasArgumentsLen);
   };
   const tmpReturnArg = g();
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

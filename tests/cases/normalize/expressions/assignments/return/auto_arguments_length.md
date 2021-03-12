@@ -23,7 +23,8 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  a = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
+  a = tmpPrevalAliasArgumentsAny;
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -38,7 +39,8 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  a = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
+  a = tmpPrevalAliasArgumentsAny;
   const tmpReturnArg = a;
   return tmpReturnArg;
 };

@@ -3465,17 +3465,17 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        //YOYO
-        //if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
-        //  rule('Unary argument value of `arguments` should be aliased'); // And is a little silly.
-        //  example('!arguments', '!tmpPrevalArgumentsAliasA');
-        //  before(node);
-        //
-        //  node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-        //
-        //  after(node);
-        //  return true;
-        //}
+        if (thisStack.length && node.argument.type === 'Identifier' && node.argument.name === 'arguments') {
+          // Not sure if this is possible since we alias it aggressively before this phase...
+          rule('Unary argument value of `arguments` should be aliased'); // And is a little silly.
+          example('!arguments', '!tmpPrevalArgumentsAliasA');
+          before(node);
+
+          node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
+
+          after(node);
+          return true;
+        }
 
         return false;
       }
